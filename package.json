@@ -1,0 +1,41 @@
+{
+  "name": "packemon",
+  "version": "0.0.0",
+  "description": "Pack and bundle your application. Gotta pack 'em all!",
+  "keywords": [
+    "pack",
+    "bundle"
+  ],
+  "scripts": {
+    "build": "beemo run-script build",
+    "coverage": "yarn run jest --coverage",
+    "eslint": "beemo eslint",
+    "jest": "beemo jest",
+    "prettier": "beemo prettier",
+    "release": "np --yolo --no-yarn",
+    "type": "beemo typescript --noEmit",
+    "prerelease": "yarn test && yarn run build",
+    "pretest": "yarn run type",
+    "test": "yarn run jest",
+    "posttest": "yarn run eslint"
+  },
+  "repository": "https://github.com/milesj/packemon.git",
+  "author": "Miles Johnson",
+  "license": "MIT",
+  "beemo": {
+    "module": "@milesj/build-tools",
+    "drivers": [
+      "babel",
+      "eslint",
+      "jest",
+      "prettier",
+      "typescript"
+    ],
+    "settings": {
+      "node": true
+    }
+  },
+  "devDependencies": {
+    "@milesj/build-tools": "^0.46.2"
+  }
+}
