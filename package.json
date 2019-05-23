@@ -7,7 +7,7 @@
     "bundle"
   ],
   "scripts": {
-    "build": "beemo run-script build",
+    "build": "beemo typescript",
     "coverage": "yarn run jest --coverage",
     "eslint": "beemo eslint",
     "jest": "beemo jest",
@@ -37,5 +37,9 @@
   },
   "devDependencies": {
     "@milesj/build-tools": "^0.46.2"
+  },
+  "dependencies": {
+    "@babel/parser": "^7.4.5",
+    "@babel/types": "^7.4.4"
   }
 }
