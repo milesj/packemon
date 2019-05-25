@@ -3,9 +3,9 @@ import { parse } from '@babel/parser';
 import { File } from '@babel/types';
 
 export default class JsAsset {
-  contents: string;
+  static EXTENSIONS: string[] = ['js', 'mjs'];
 
-  extensions: string[] = ['js', 'mjs'];
+  contents: string;
 
   resolvedPath: string;
 
