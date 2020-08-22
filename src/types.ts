@@ -1,3 +1,5 @@
+import { PackageStructure, Path } from '@boost/common';
+
 export type Platform = 'node' | 'browser'; // electron
 
 export type Target =
@@ -28,11 +30,31 @@ export type NodeFormat =
 
 export type Format = NodeFormat | BrowserFormat;
 
-export interface WorkUnit {
-  format: Format;
+export interface PackemonPackage extends PackageStructure {
+  packemon?: {
+    namespace?: string;
+    platform?: Platform;
+    target?: Target;
+  };
+}
+
+export interface PackemonOptions {
+  checkLicenses: boolean;
+  skipPrivate: boolean;
+  // Node
+  addExports: boolean;
+}
+
+export interface Build {
+  formats: Format[];
+  meta: {
+    namespace?: string;
+    workspaces: string[];
+  };
+  package: PackemonPackage;
+  path: Path;
   platform: Platform;
   target: Target;
-  workspaces: string[];
 }
 
 export interface FeatureFlags {

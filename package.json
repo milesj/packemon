@@ -25,6 +25,7 @@
   "license": "MIT",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
+  "bin": "./lib/bin.js",
   "sideEffects": false,
   "engines": {
     "node": ">=10.10.0"
@@ -39,11 +40,14 @@
       "typescript"
     ],
     "settings": {
-      "node": true
+      "decorators": true,
+      "node": true,
+      "react": true
     }
   },
   "devDependencies": {
-    "@milesj/build-tools": "^2.10.1"
+    "@milesj/build-tools": "^2.10.1",
+    "@types/react": "^16.9.46"
   },
   "dependencies": {
     "@babel/core": "^7.11.4",
@@ -55,6 +59,8 @@
     "@boost/common": "^2.2.0",
     "babel-plugin-transform-dev": "^2.0.1",
     "ink": "^3.0.4",
-    "react": "^16.13.1"
+    "react": "^16.13.1",
+    "rollup": "^2.26.5",
+    "spdx-license-list": "^6.2.0"
   }
 }

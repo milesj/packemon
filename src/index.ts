@@ -3,12 +3,6 @@
  * @license     https://opensource.org/licenses/MIT
  */
 
-import { Program } from '@boost/cli';
-import pkg from '../package.json';
+import Packemon from './Packemon';
 
-const program = new Program({
-  bin: 'packemon',
-  footer: 'Documentation: https://packemon.dev',
-  name: 'Packemon',
-  version: pkg.version,
-});
+export default Packemon;

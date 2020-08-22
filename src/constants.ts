@@ -1,3 +1,5 @@
+/* eslint-disable sort-keys */
+
 import { Target } from './types';
 
 // Based on LTS schedule: https://nodejs.org/en/about/releases/
