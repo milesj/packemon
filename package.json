@@ -1,27 +1,34 @@
 {
   "name": "packemon",
   "version": "0.0.0",
-  "description": "Pack and bundle your application. Gotta pack 'em all!",
+  "description": "Build and prepare your package using standardized practices. Gotta pack 'em all!",
   "keywords": [
+    "build",
+    "prepare",
     "pack",
-    "bundle"
+    "package"
   ],
   "scripts": {
+    "prepare": "beemo create-config --silent",
     "build": "beemo typescript",
-    "coverage": "yarn run jest --coverage",
-    "eslint": "beemo eslint",
-    "jest": "beemo jest",
-    "prettier": "beemo prettier",
-    "release": "np --yolo --no-yarn",
+    "ci": "yarn run type && yarn run test && yarn run lint",
+    "coverage": "yarn run test --coverage",
+    "format": "beemo prettier",
+    "lint": "beemo eslint",
+    "release": "npx np --yolo",
+    "test": "beemo jest",
     "type": "beemo typescript --noEmit",
-    "prerelease": "yarn test && yarn run build",
-    "pretest": "yarn run type",
-    "test": "yarn run jest",
-    "posttest": "yarn run eslint"
+    "prerelease": "yarn test && yarn run build"
   },
   "repository": "https://github.com/milesj/packemon.git",
   "author": "Miles Johnson",
   "license": "MIT",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "sideEffects": false,
+  "engines": {
+    "node": ">=10.10.0"
+  },
   "beemo": {
     "module": "@milesj/build-tools",
     "drivers": [
@@ -36,15 +43,7 @@
     }
   },
   "devDependencies": {
-    "@milesj/build-tools": "^0.46.2",
-    "@types/fs-extra": "^7.0.0",
-    "fast-glob": "^2.2.7",
-    "fs-extra": "^8.0.1"
+    "@milesj/build-tools": "^2.10.1"
   },
-  "dependencies": {
-    "@babel/parser": "^7.4.5",
-    "@babel/types": "^7.4.4",
-    "@boost/common": "^1.0.1",
-    "optimal": "^3.2.1"
-  }
+  "dependencies": {}
 }
