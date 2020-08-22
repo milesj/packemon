@@ -45,5 +45,16 @@
   "devDependencies": {
     "@milesj/build-tools": "^2.10.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@babel/core": "^7.11.4",
+    "@babel/preset-env": "^7.11.0",
+    "@babel/preset-flow": "^7.10.4",
+    "@babel/preset-react": "^7.10.4",
+    "@babel/preset-typescript": "^7.10.4",
+    "@boost/cli": "^2.1.0",
+    "@boost/common": "^2.2.0",
+    "babel-plugin-transform-dev": "^2.0.1",
+    "ink": "^3.0.4",
+    "react": "^16.13.1"
+  }
 }
