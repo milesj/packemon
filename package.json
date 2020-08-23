@@ -57,10 +57,14 @@
     "@babel/preset-typescript": "^7.10.4",
     "@boost/cli": "^2.1.0",
     "@boost/common": "^2.2.0",
+    "@rollup/plugin-babel": "^5.2.0",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^9.0.0",
     "babel-plugin-transform-dev": "^2.0.1",
     "ink": "^3.0.4",
     "react": "^16.13.1",
     "rollup": "^2.26.5",
+    "rollup-plugin-node-externals": "^2.2.0",
     "spdx-license-list": "^6.2.0"
   }
 }

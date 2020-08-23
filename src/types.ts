@@ -30,31 +30,47 @@ export type NodeFormat =
 
 export type Format = NodeFormat | BrowserFormat;
 
+export interface PackemonPackageConfig {
+  namespace: string;
+  platform: Platform | Platform[];
+  target: Target;
+}
+
 export interface PackemonPackage extends PackageStructure {
-  packemon?: {
-    namespace?: string;
-    platform?: Platform;
-    target?: Target;
+  packemon: PackemonPackageConfig & {
+    path: Path;
   };
 }
 
 export interface PackemonOptions {
+  addExports: boolean;
   checkLicenses: boolean;
   skipPrivate: boolean;
-  // Node
-  addExports: boolean;
+}
+
+// BUILD PHASE
+
+export interface BuildFlags {
+  requiresSharedLib?: boolean;
 }
 
 export interface Build {
+  flags: BuildFlags;
   formats: Format[];
   meta: {
-    namespace?: string;
+    namespace: string;
     workspaces: string[];
   };
   package: PackemonPackage;
-  path: Path;
+  platforms: Platform[];
+  target: Target;
+}
+
+export interface BuildUnit {
+  format: Format;
   platform: Platform;
   target: Target;
+  workspaces: string[];
 }
 
 export interface FeatureFlags {

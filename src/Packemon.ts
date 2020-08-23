@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+
 import {
   Path,
   Project,
@@ -7,9 +9,19 @@ import {
   toArray,
   optimal,
   predicates,
+  WorkspacePackage,
 } from '@boost/common';
+import rollup from 'rollup';
 import spdxLicenses from 'spdx-license-list';
-import { PackemonPackage, PackemonOptions, Build, Format } from './types';
+import {
+  PackemonPackage,
+  PackemonOptions,
+  Build,
+  Format,
+  PackemonPackageConfig,
+  Platform,
+  BuildFlags,
+} from './types';
 
 export default class Packemon extends Contract<PackemonOptions> {
   cwd: Path;
@@ -42,37 +54,43 @@ export default class Packemon extends Contract<PackemonOptions> {
   }
 
   generateBuilds(packages: PackemonPackage[], workspaces: string[]): Build[] {
-    const { string } = predicates;
-    const blueprint = {
-      namespace: string(),
-      platform: string('browser').oneOf(['node', 'browser']),
-      target: string('legacy').oneOf(['legacy', 'modern', 'future']),
-    };
-
     return packages.map((pkg) => {
-      const { namespace, platform, target } = optimal(pkg.packemon || {}, blueprint);
-      const formats: Format[] = [];
+      const config = pkg.packemon;
+      const flags: BuildFlags = {};
+      const formats = new Set<Format>();
+      const platforms = new Set<Platform>();
 
-      if (platform === 'node') {
-        formats.push('lib', 'cjs', 'mjs');
-      } else if (platform === 'browser') {
-        formats.push('lib', 'esm');
+      toArray(config.platform).forEach((platform) => {
+        platforms.add(platform);
 
-        if (namespace) {
-          formats.push('umd');
+        if (formats.has('lib')) {
+          flags.requiresSharedLib = true;
         }
-      }
+
+        if (platform === 'node') {
+          formats.add('lib');
+          formats.add('cjs');
+          formats.add('mjs');
+        } else if (platform === 'browser') {
+          formats.add('lib');
+          formats.add('esm');
+
+          if (config.namespace) {
+            formats.add('umd');
+          }
+        }
+      });
 
       return {
-        formats,
+        flags,
+        formats: Array.from(formats),
         meta: {
-          namespace,
+          namespace: config.namespace,
           workspaces,
         },
         package: pkg,
-        path: new Path(),
-        platform,
-        target,
+        platforms: Array.from(platforms),
+        target: config.target,
       };
     });
   }
@@ -82,33 +100,54 @@ export default class Packemon extends Contract<PackemonOptions> {
     workspaces: string[];
   } {
     const workspaces = this.project.getWorkspaceGlobs({ relative: true });
-    let packages: PackemonPackage[] = [];
+    let packages: WorkspacePackage<PackemonPackage>[];
 
     // Multi package repo
     if (workspaces.length > 0) {
-      packages = this.project.getWorkspacePackages<PackemonPackage>().map((pkg) => pkg.package);
+      packages = this.project.getWorkspacePackages<PackemonPackage>();
 
       // Single package repo
     } else {
-      packages = [this.project.getPackage<PackemonPackage>()];
+      packages = [
+        {
+          metadata: this.project.createWorkspaceMetadata(this.project.root.append('package.json')),
+          package: this.project.getPackage<PackemonPackage>(),
+        },
+      ];
     }
 
     if (this.options.skipPrivate) {
-      packages = packages.filter((pkg) => !pkg.private);
+      packages = packages.filter((pkg) => !pkg.package.private);
     }
 
     return {
-      packages: this.validatePackages(packages),
+      packages: this.validateAndPreparePackages(packages),
       workspaces,
     };
   }
 
-  validatePackages(packages: PackemonPackage[]): PackemonPackage[] {
+  validateAndPreparePackages(packages: WorkspacePackage<PackemonPackage>[]): PackemonPackage[] {
     const spdxLicenseTypes = new Set(
       Object.keys(spdxLicenses).map((key) => key.toLocaleLowerCase()),
     );
 
-    return packages.map((pkg) => {
+    // Blueprint for `packemon` block
+    const { array, string, union } = predicates;
+    const platformPredicate = string('browser').oneOf(['node', 'browser']);
+    const blueprint: Blueprint<PackemonPackageConfig> = {
+      namespace: string(),
+      platform: union([array(platformPredicate), platformPredicate], 'browser'),
+      target: string('legacy').oneOf(['legacy', 'modern', 'future']),
+    };
+
+    return packages.map(({ metadata, package: pkg }) => {
+      // Validate and set metadata
+      pkg.packemon = {
+        ...optimal(pkg.packemon || {}, blueprint),
+        path: Path.create(metadata.packagePath),
+      };
+
+      // Validate licenses
       if (this.options.checkLicenses) {
         if (pkg.license) {
           toArray(

@@ -1,6 +1,6 @@
-import { MatchPattern, PluginItem, TransformOptions as ConfigStructure } from '@babel/core';
+import { PluginItem, TransformOptions as ConfigStructure } from '@babel/core';
 import { BROWSER_TARGETS, NODE_TARGETS } from '../constants';
-import { Target, Format, Platform, FeatureFlags, WorkUnit } from '../types';
+import { Target, Format, Platform, FeatureFlags, BuildUnit } from '../types';
 
 // https://babeljs.io/docs/en/babel-preset-env
 export interface PresetEnvOptions {
@@ -8,10 +8,10 @@ export interface PresetEnvOptions {
   bugfixes?: boolean;
   corejs?: 2 | 3 | { version: 2 | 3; proposals: boolean };
   debug?: boolean;
-  exclude?: MatchPattern[];
+  exclude?: string[];
   forceAllTransforms?: boolean;
   ignoreBrowserslistConfig?: boolean;
-  include?: MatchPattern[];
+  include?: string[];
   loose?: boolean;
   modules?: 'amd' | 'umd' | 'systemjs' | 'commonjs' | 'cjs' | 'auto' | false;
   shippedProposals?: boolean;
@@ -52,13 +52,14 @@ function getPlatformEnvOptions(
 }
 
 export default function getBabelConfig(
-  { format, platform, target, workspaces }: WorkUnit,
+  { format, platform, target, workspaces }: BuildUnit,
   features: FeatureFlags,
-): ConfigStructure {
+): Omit<ConfigStructure, 'include' | 'exclude'> {
   const plugins: PluginItem[] = [];
   const presets: PluginItem[] = [];
 
   // ENVIRONMENT
+
   // This must be determined first before we add other presets or plugins
   const envOptions: PresetEnvOptions = {
     // Prefer spec compliance over speed
@@ -76,6 +77,7 @@ export default function getBabelConfig(
   presets.push(['@babel/preset-env', envOptions]);
 
   // PRESETS
+
   if (features.react) {
     presets.push([
       '@babel/preset-react',
@@ -105,6 +107,7 @@ export default function getBabelConfig(
   }
 
   // PLUGINS
+
   // Use `Object.assign` when available
   // https://babeljs.io/docs/en/babel-plugin-transform-destructuring#usebuiltins
   if (target !== 'legacy') {
