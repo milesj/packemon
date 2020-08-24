@@ -3,25 +3,28 @@ import { Path } from '@boost/common';
 import { RollupOptions, RollupCache, OutputOptions, ModuleFormat } from 'rollup';
 import externals from 'rollup-plugin-node-externals';
 import resolve from '@rollup/plugin-node-resolve';
-import babel from '@rollup/plugin-babel';
 import json from '@rollup/plugin-json';
+import { getBabelInputPlugin, getBabelOutputPlugin } from '@rollup/plugin-babel';
 import getBabelConfig from './babel';
-import { Build, FeatureFlags, PackemonPackage, Format, BuildUnit, Platform } from '../types';
+import { Build, FeatureFlags, PackemonPackage, Format, BuildUnit } from '../types';
 import { EXTENSIONS, EXCLUDE } from '../constants';
+import getPlatformFromBuild from '../helpers/getPlatformFromBuild';
 
 const sharedPlugins = [resolve({ extensions: EXTENSIONS }), json({ namedExports: false })];
 
-function getInputFile(packagePath: Path, pkg: PackemonPackage): string {
+function getInputFile(packagePath: Path, pkg: PackemonPackage): Path | null {
   // eslint-disable-next-line no-restricted-syntax
   for (const ext of EXTENSIONS) {
     const entryPath = packagePath.append(`src/index${ext}`);
 
     if (entryPath.exists()) {
-      return entryPath.path();
+      return entryPath;
     }
   }
 
-  throw new Error(`Cannot find entry point for package "${pkg.name}".`);
+  console.warn(`Cannot find entry point for package "${pkg.name}". Skipping package.`);
+
+  return null;
 }
 
 function getOutputFile(inputFile: string, format: Format): string {
@@ -29,31 +32,6 @@ function getOutputFile(inputFile: string, format: Format): string {
   const ext = format === 'cjs' || format === 'mjs' ? format : 'js';
 
   return outputFile.replace(/\.(js|ts)x?$/iu, `.${ext}`);
-}
-
-function getPlatformFromBuild(format: Format, build: Build): Platform {
-  if (format === 'cjs' || format === 'mjs') {
-    return 'node';
-  }
-
-  if (format === 'esm' || format === 'umd') {
-    return 'browser';
-  }
-
-  // "lib" is a shared format across all platforms,
-  // and when a package wants to support multiple platforms,
-  // we must down-level the "lib" format to the lowest platform.
-  if (build.flags.requiresSharedLib) {
-    const platforms = new Set(build.platforms);
-
-    if (platforms.has('browser')) {
-      return 'browser';
-    } else if (platforms.has('node')) {
-      return 'node';
-    }
-  }
-
-  return build.platforms[0] || 'browser';
 }
 
 function getModuleFormat(format: Format): ModuleFormat {
@@ -69,20 +47,18 @@ function getModuleFormat(format: Format): ModuleFormat {
 }
 
 export default function getRollupConfig(
-  packagePath: Path, // Relative to cwd
+  packagePath: Path,
   build: Build,
   features: FeatureFlags,
   cache?: RollupCache,
-): RollupOptions {
-  const sharedBabelConfig = {
-    babelHelpers: 'bundled',
-    exclude: EXCLUDE,
-    extensions: EXTENSIONS,
-    filename: packagePath.path(),
-  } as const;
+): RollupOptions | null {
+  const inputPath = getInputFile(packagePath, build.package);
 
-  // Generate our input config
-  const input = getInputFile(packagePath, build.package);
+  if (!inputPath) {
+    return null;
+  }
+
+  const input = build.root.relativeTo(inputPath).path();
   const config: RollupOptions = {
     cache,
     input,
@@ -100,9 +76,12 @@ export default function getRollupConfig(
         peerDeps: true,
       }),
       // Declare Babel here so we can parse TypeScript/Flow
-      babel({
+      getBabelInputPlugin({
         ...getBabelConfig(null, features),
-        ...sharedBabelConfig,
+        babelHelpers: 'bundled',
+        exclude: EXCLUDE,
+        extensions: EXTENSIONS,
+        filename: packagePath.path(),
       }),
     ],
     // Always treeshake for smaller builds
@@ -124,9 +103,9 @@ export default function getRollupConfig(
       preferConst: build.target !== 'legacy',
       // Output specific plugins
       plugins: [
-        babel({
+        getBabelOutputPlugin({
           ...getBabelConfig(buildUnit, features),
-          ...sharedBabelConfig,
+          filename: packagePath.path(),
         }),
       ],
     };

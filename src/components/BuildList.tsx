@@ -1,24 +1,15 @@
 import React from 'react';
 import { Box } from 'ink';
 import { Style, StyleType } from '@boost/cli';
-import { Build, Platform, BuildStatus, Target } from '../types';
-
-const PLATFORMS: { [K in Platform]: string } = {
-  node: 'Node',
-  browser: 'Browser',
-};
-
-const TARGETS: { [K in Target]: string } = {
-  legacy: 'Legacy',
-  modern: 'Modern',
-  future: 'Future',
-};
+import TargetPlatforms from './TargetPlatforms';
+import { Build, BuildStatus } from '../types';
 
 const STATUS_COLORS: { [K in BuildStatus]: StyleType } = {
   pending: 'muted',
   building: 'default',
   passed: 'success',
   failed: 'failure',
+  skipped: 'warning',
 };
 
 export interface BuildsProps {
@@ -47,11 +38,7 @@ export default function BuildList({ builds }: BuildsProps) {
           </Box>
 
           <Box>
-            <Style type="muted">
-              {TARGETS[build.target]}
-              {' / '}
-              {build.platforms.map((platform) => PLATFORMS[platform]).join(' | ')}
-            </Style>
+            <TargetPlatforms platforms={build.platforms} target={build.target} />
           </Box>
         </Box>
       ))}

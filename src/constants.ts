@@ -22,5 +22,5 @@ export const NODE_TARGETS: { [K in Target]: string } = {
 export const BROWSER_TARGETS: { [K in Target]: string | string[] } = {
   legacy: 'IE 11',
   modern: 'defaults',
-  future: ['last 2 chrome versions', 'last 2 firefox versions', 'last 2 safari versions'],
+  future: ['last 2 chrome versions', 'last 2 firefox versions'],
 };

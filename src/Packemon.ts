@@ -30,7 +30,7 @@ import {
 } from './types';
 
 export default class Packemon extends Contract<PackemonOptions> {
-  cwd: Path;
+  root: Path;
 
   project: Project;
 
@@ -39,8 +39,8 @@ export default class Packemon extends Contract<PackemonOptions> {
   constructor(cwd: string, options: PackemonOptions) {
     super(options);
 
-    this.cwd = Path.create(cwd);
-    this.project = new Project(this.cwd);
+    this.root = Path.resolve(cwd);
+    this.project = new Project(this.root);
   }
 
   blueprint({ bool }: Predicates): Blueprint<PackemonOptions> {
@@ -51,30 +51,34 @@ export default class Packemon extends Contract<PackemonOptions> {
     };
   }
 
-  async build(builds: Build[]): Promise<void> {
+  async build(builds: Build[]) {
     const pipeline = new PooledPipeline(new Context());
 
     builds.forEach((build) => {
       pipeline.add(`Building ${build.package.name}`, () => this.buildWithRollup(build));
     });
 
-    const { errors } = await pipeline.run();
-
-    // TODO
-    if (errors.length > 0) {
-      throw errors[0];
-    }
+    return pipeline.run();
   }
 
   async buildWithRollup(build: Build) {
-    const packagePath = build.package.packemon.path.relativeTo(this.cwd);
+    const packagePath = build.package.packemon.path;
     const featureFlags = this.getFeatureFlags(build.package, build.meta.workspaces);
-    const { output = [], ...input } = getRollupConfig(
+    const rollupConfig = getRollupConfig(
       packagePath,
       build,
       featureFlags,
       this.buildCache[packagePath.path()],
     );
+
+    // Skip build because of invalid config
+    if (!rollupConfig) {
+      build.status = 'skipped';
+
+      return;
+    }
+
+    const { output = [], ...input } = rollupConfig;
 
     // Start the build
     build.status = 'building';
@@ -132,13 +136,14 @@ export default class Packemon extends Contract<PackemonOptions> {
 
       return {
         flags,
-        formats: Array.from(formats),
+        formats: Array.from(formats).sort(),
         meta: {
           namespace: config.namespace,
           workspaces,
         },
         package: pkg,
-        platforms: Array.from(platforms),
+        platforms: Array.from(platforms).sort(),
+        root: this.root,
         status: 'pending',
         target: config.target,
       };
@@ -171,7 +176,7 @@ export default class Packemon extends Contract<PackemonOptions> {
     }
 
     // TypeScript
-    const tsconfigPath = this.project.root.append('tsconfig.json');
+    const tsconfigPath = this.root.append('tsconfig.json');
 
     if (this.hasDependency(pkg, 'typescript') || tsconfigPath.exists()) {
       flags.typescript = true;
@@ -183,8 +188,8 @@ export default class Packemon extends Contract<PackemonOptions> {
       flags.decorators = Boolean(tsconfig?.compilerOptions?.experimentalDecorators);
     }
 
-    // Flowtype
-    const flowconfigPath = this.project.root.append('.flowconfig');
+    // Flow
+    const flowconfigPath = this.root.append('.flowconfig');
 
     if (this.hasDependency(pkg, 'flow-bin') || flowconfigPath.exists()) {
       flags.flow = true;
@@ -208,12 +213,13 @@ export default class Packemon extends Contract<PackemonOptions> {
     } else {
       packages = [
         {
-          metadata: this.project.createWorkspaceMetadata(this.project.root.append('package.json')),
+          metadata: this.project.createWorkspaceMetadata(this.root.append('package.json')),
           package: this.project.getPackage<PackemonPackage>(),
         },
       ];
     }
 
+    // Skip `private` packages
     if (this.options.skipPrivate) {
       packages = packages.filter((pkg) => !pkg.package.private);
     }
@@ -253,14 +259,14 @@ export default class Packemon extends Contract<PackemonOptions> {
               ? { type: pkg.license, url: spdxLicenses[pkg.license] }
               : pkg.license,
           ).forEach((license) => {
-            if (!spdxLicenseTypes.has(license.type)) {
+            if (!spdxLicenseTypes.has(license.type.toLocaleLowerCase())) {
               console.error(
-                `Invalid license ${license.type} for package ${pkg.name}. Must be an official SPDX license type.`,
+                `Invalid license ${license.type} for package "${pkg.name}". Must be an official SPDX license type.`,
               );
             }
           });
         } else {
-          console.error(`No license found for package ${pkg.name}.`);
+          console.error(`No license found for package "${pkg.name}".`);
         }
       }
 

@@ -52,7 +52,7 @@ export interface PackemonOptions {
 
 // BUILD PHASE
 
-export type BuildStatus = 'pending' | 'building' | 'passed' | 'failed';
+export type BuildStatus = 'pending' | 'building' | 'passed' | 'failed' | 'skipped';
 
 export interface BuildFlags {
   requiresSharedLib?: boolean;
@@ -67,6 +67,7 @@ export interface Build {
   };
   package: PackemonPackage;
   platforms: Platform[];
+  root: Path;
   status: BuildStatus;
   target: Target;
 }
