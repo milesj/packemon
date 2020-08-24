@@ -16,7 +16,7 @@ import {
 } from '@boost/common';
 import { PooledPipeline, Context } from '@boost/pipeline';
 import spdxLicenses from 'spdx-license-list';
-import rollup, { RollupCache } from 'rollup';
+import { rollup, RollupCache } from 'rollup';
 import getRollupConfig from './configs/rollup';
 import {
   PackemonPackage,
@@ -51,18 +51,6 @@ export default class Packemon extends Contract<PackemonOptions> {
     };
   }
 
-  async pack() {
-    const { packages, workspaces } = this.getPackagesAndWorkspaces();
-
-    if (packages.length === 0) {
-      throw new Error('No packages found to build.');
-    }
-
-    const builds = this.generateBuilds(packages, workspaces);
-
-    await this.build(builds);
-  }
-
   async build(builds: Build[]): Promise<void> {
     const pipeline = new PooledPipeline(new Context());
 
@@ -70,12 +58,17 @@ export default class Packemon extends Contract<PackemonOptions> {
       pipeline.add(`Building ${build.package.name}`, () => this.buildWithRollup(build));
     });
 
-    await pipeline.run();
+    const { errors } = await pipeline.run();
+
+    // TODO
+    if (errors.length > 0) {
+      throw errors[0];
+    }
   }
 
   async buildWithRollup(build: Build) {
     const packagePath = build.package.packemon.path.relativeTo(this.cwd);
-    const featureFlags = this.getFeatureFlags(build.package);
+    const featureFlags = this.getFeatureFlags(build.package, build.meta.workspaces);
     const { output = [], ...input } = getRollupConfig(
       packagePath,
       build,
@@ -84,7 +77,9 @@ export default class Packemon extends Contract<PackemonOptions> {
     );
 
     // Start the build
-    const bundle = await rollup.rollup(input);
+    build.status = 'building';
+
+    const bundle = await rollup(input);
 
     // Cache the build
     if (bundle.cache) {
@@ -92,7 +87,19 @@ export default class Packemon extends Contract<PackemonOptions> {
     }
 
     // Write each build output
-    await Promise.all(toArray(output).map((out) => bundle.write(out)));
+    await Promise.all(
+      toArray(output).map(async (out) => {
+        try {
+          await bundle.write(out);
+
+          build.status = 'passed';
+        } catch (error) {
+          console.error(error.message);
+
+          build.status = 'failed';
+        }
+      }),
+    );
   }
 
   generateBuilds(packages: PackemonPackage[], workspaces: string[]): Build[] {
@@ -132,14 +139,15 @@ export default class Packemon extends Contract<PackemonOptions> {
         },
         package: pkg,
         platforms: Array.from(platforms),
+        status: 'pending',
         target: config.target,
       };
     });
   }
 
-  getFeatureFlags(pkg: PackemonPackage): FeatureFlags {
+  getFeatureFlags(pkg: PackemonPackage, workspaces: string[]): FeatureFlags {
     const rootPkg = this.project.getPackage<PackemonPackage>();
-    const rootFeatureFlags = this.getRootFeatureFlags(rootPkg);
+    const rootFeatureFlags = this.getRootFeatureFlags(rootPkg, workspaces);
 
     if (pkg.name === rootPkg.name) {
       return rootFeatureFlags;
@@ -147,13 +155,15 @@ export default class Packemon extends Contract<PackemonOptions> {
 
     return {
       ...rootFeatureFlags,
-      ...this.getRootFeatureFlags(pkg),
+      ...this.getRootFeatureFlags(pkg, workspaces),
     };
   }
 
   @Memoize()
-  getRootFeatureFlags(pkg: PackemonPackage): FeatureFlags {
-    const flags: FeatureFlags = {};
+  getRootFeatureFlags(pkg: PackemonPackage, workspaces: string[]): FeatureFlags {
+    const flags: FeatureFlags = {
+      workspaces,
+    };
 
     // React
     if (this.hasDependency(pkg, 'react')) {

@@ -25,10 +25,10 @@ function getInputFile(packagePath: Path, pkg: PackemonPackage): string {
 }
 
 function getOutputFile(inputFile: string, format: Format): string {
-  const outputFile = inputFile.replace('/src/', `/${format}/`);
+  const outputFile = inputFile.replace('src/', `${format}/`);
   const ext = format === 'cjs' || format === 'mjs' ? format : 'js';
 
-  return outputFile.replace(/\.{ts,tsx,js,jsx}$/iu, `.${ext}`);
+  return outputFile.replace(/\.(js|ts)x?$/iu, `.${ext}`);
 }
 
 function getPlatformFromBuild(format: Format, build: Build): Platform {
@@ -74,6 +74,14 @@ export default function getRollupConfig(
   features: FeatureFlags,
   cache?: RollupCache,
 ): RollupOptions {
+  const sharedBabelConfig = {
+    babelHelpers: 'bundled',
+    exclude: EXCLUDE,
+    extensions: EXTENSIONS,
+    filename: packagePath.path(),
+  } as const;
+
+  // Generate our input config
   const input = getInputFile(packagePath, build.package);
   const config: RollupOptions = {
     cache,
@@ -81,6 +89,7 @@ export default function getRollupConfig(
     output: [],
     // Shared output plugins
     plugins: [
+      ...sharedPlugins,
       // Mark all dependencies in `package.json` as external
       externals({
         builtins: true,
@@ -90,19 +99,22 @@ export default function getRollupConfig(
         packagePath: path.resolve(packagePath.append('package.json').path()),
         peerDeps: true,
       }),
-      ...sharedPlugins,
+      // Declare Babel here so we can parse TypeScript/Flow
+      babel({
+        ...getBabelConfig(null, features),
+        ...sharedBabelConfig,
+      }),
     ],
     // Always treeshake for smaller builds
     treeshake: true,
   };
 
   // Add an output for each build format
-  build.formats.forEach((format) => {
+  config.output = build.formats.map((format) => {
     const buildUnit: BuildUnit = {
       format,
       platform: getPlatformFromBuild(format, build),
       target: build.target,
-      workspaces: build.meta.workspaces,
     };
 
     const output: OutputOptions = {
@@ -114,9 +126,7 @@ export default function getRollupConfig(
       plugins: [
         babel({
           ...getBabelConfig(buildUnit, features),
-          babelHelpers: 'bundled',
-          exclude: EXCLUDE,
-          extensions: EXTENSIONS,
+          ...sharedBabelConfig,
         }),
       ],
     };
@@ -127,9 +137,7 @@ export default function getRollupConfig(
       output.noConflict = true;
     }
 
-    if (Array.isArray(config.output)) {
-      config.output.push(output);
-    }
+    return output;
   });
 
   return config;

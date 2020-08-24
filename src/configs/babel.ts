@@ -52,7 +52,7 @@ function getPlatformEnvOptions(
 }
 
 export default function getBabelConfig(
-  { format, platform, target, workspaces }: BuildUnit,
+  build: BuildUnit | null,
   features: FeatureFlags,
 ): Omit<ConfigStructure, 'include' | 'exclude'> {
   const plugins: PluginItem[] = [];
@@ -61,32 +61,25 @@ export default function getBabelConfig(
   // ENVIRONMENT
 
   // This must be determined first before we add other presets or plugins
-  const envOptions: PresetEnvOptions = {
-    // Prefer spec compliance over speed
-    spec: true,
-    loose: false,
-    // Consumers must polyfill accordingly
-    useBuiltIns: false,
-    // Transform features accordingly
-    bugfixes: true,
-    shippedProposals: true,
-    // Platform specific
-    ...getPlatformEnvOptions(platform, target, format),
-  };
+  if (build) {
+    const { format, platform, target } = build;
+    const envOptions: PresetEnvOptions = {
+      // Prefer spec compliance over speed
+      spec: true,
+      loose: false,
+      // Consumers must polyfill accordingly
+      useBuiltIns: false,
+      // Transform features accordingly
+      bugfixes: true,
+      shippedProposals: true,
+      // Platform specific
+      ...getPlatformEnvOptions(platform, target, format),
+    };
 
-  presets.push(['@babel/preset-env', envOptions]);
+    presets.push(['@babel/preset-env', envOptions]);
+  }
 
   // PRESETS
-
-  if (features.react) {
-    presets.push([
-      '@babel/preset-react',
-      {
-        development: process.env.NODE_ENV === 'development',
-        throwIfNamespace: true,
-      },
-    ]);
-  }
 
   if (features.flow) {
     presets.push(['@babel/preset-flow', { allowDeclareFields: true }]);
@@ -106,11 +99,21 @@ export default function getBabelConfig(
     }
   }
 
+  if (features.react) {
+    presets.push([
+      '@babel/preset-react',
+      {
+        development: process.env.NODE_ENV === 'development',
+        throwIfNamespace: true,
+      },
+    ]);
+  }
+
   // PLUGINS
 
   // Use `Object.assign` when available
   // https://babeljs.io/docs/en/babel-plugin-transform-destructuring#usebuiltins
-  if (target !== 'legacy') {
+  if (build?.target !== 'legacy') {
     plugins.push(
       ['@babel/plugin-transform-destructuring', { useBuiltIns: true }],
       ['@babel/plugin-proposal-object-rest-spread', { useBuiltIns: true }],
@@ -125,13 +128,12 @@ export default function getBabelConfig(
       name: 'packemon',
     },
     comments: false,
+    plugins,
+    presets,
     // Do NOT load root `babel.config.js` as we need full control
     configFile: false,
     // Do load branch `.babelrc.js` files for granular customization
     babelrc: true,
-    babelrcRoots: workspaces,
-    // Pass our plugins and presets
-    plugins,
-    presets,
+    babelrcRoots: features.workspaces,
   };
 }

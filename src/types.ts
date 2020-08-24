@@ -30,6 +30,8 @@ export type NodeFormat =
 
 export type Format = NodeFormat | BrowserFormat;
 
+export type Phase = 'find' | 'build' | 'prepare';
+
 export interface PackemonPackageConfig {
   namespace: string;
   platform: Platform | Platform[];
@@ -50,6 +52,8 @@ export interface PackemonOptions {
 
 // BUILD PHASE
 
+export type BuildStatus = 'pending' | 'building' | 'passed' | 'failed';
+
 export interface BuildFlags {
   requiresSharedLib?: boolean;
 }
@@ -63,6 +67,7 @@ export interface Build {
   };
   package: PackemonPackage;
   platforms: Platform[];
+  status: BuildStatus;
   target: Target;
 }
 
@@ -70,12 +75,14 @@ export interface BuildUnit {
   format: Format;
   platform: Platform;
   target: Target;
-  workspaces: string[];
 }
+
+// CONFIG
 
 export interface FeatureFlags {
   decorators?: boolean;
   flow?: boolean;
   react?: boolean;
   typescript?: boolean;
+  workspaces?: string[];
 }

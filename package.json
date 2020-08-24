@@ -18,17 +18,21 @@
     "release": "npx np --yolo",
     "test": "beemo jest",
     "type": "beemo typescript --noEmit",
-    "prerelease": "yarn test && yarn run build"
+    "prerelease": "yarn run ci && yarn run build",
+    "packemon": "node ./lib/src/bin.js"
   },
   "repository": "https://github.com/milesj/packemon.git",
   "author": "Miles Johnson",
   "license": "MIT",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
-  "bin": "./lib/bin.js",
+  "bin": "./bin/packemon.js",
   "sideEffects": false,
   "engines": {
     "node": ">=10.10.0"
+  },
+  "packemon": {
+    "platform": "node"
   },
   "beemo": {
     "module": "@milesj/build-tools",

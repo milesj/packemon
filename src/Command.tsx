@@ -1,4 +1,6 @@
+import React from 'react';
 import { Arg, Command, Config, GlobalOptions } from '@boost/cli';
+import Main from './components/Main';
 import Packemon from './Packemon';
 import { PackemonOptions } from './types';
 
@@ -8,7 +10,7 @@ export type Params = [string];
 
 @Config('packemon', 'Build standardized packages for distribution.')
 export default class PackemonCommand extends Command<Options, Params> {
-  @Arg.Flag('Add an `exports` field to `package.json` based on the build', { category: 'node' })
+  @Arg.Flag('Add `main` and `exports` fields to every `package.json`')
   addExports: boolean = false;
 
   @Arg.Flag('Check that packages have a valid `license` field')
@@ -22,13 +24,13 @@ export default class PackemonCommand extends Command<Options, Params> {
     label: 'cwd',
     type: 'string',
   })
-  async run(cwd: string = process.cwd()) {
-    const packer = new Packemon(cwd, {
+  run(cwd?: string) {
+    const packemon = new Packemon(cwd || process.cwd(), {
       addExports: this.addExports,
       checkLicenses: this.checkLicenses,
       skipPrivate: this.skipPrivate,
     });
 
-    await packer.pack();
+    return <Main packemon={packemon} />;
   }
 }

@@ -4,5 +4,9 @@
  */
 
 import Packemon from './Packemon';
+import run from './run';
 
-export default Packemon;
+export * from './constants';
+export * from './types';
+
+export { Packemon, run };
