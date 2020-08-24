@@ -1,4 +1,4 @@
-/* eslint-disable no-param-reassign */
+/* eslint-disable @typescript-eslint/member-ordering, no-param-reassign */
 
 import {
   Path,
@@ -10,9 +10,14 @@ import {
   optimal,
   predicates,
   WorkspacePackage,
+  Memoize,
+  PackageStructure,
+  parseFile,
 } from '@boost/common';
-import rollup from 'rollup';
+import { PooledPipeline, Context } from '@boost/pipeline';
 import spdxLicenses from 'spdx-license-list';
+import rollup, { RollupCache } from 'rollup';
+import getRollupConfig from './configs/rollup';
 import {
   PackemonPackage,
   PackemonOptions,
@@ -21,12 +26,15 @@ import {
   PackemonPackageConfig,
   Platform,
   BuildFlags,
+  FeatureFlags,
 } from './types';
 
 export default class Packemon extends Contract<PackemonOptions> {
   cwd: Path;
 
   project: Project;
+
+  private buildCache: Record<string, RollupCache> = {};
 
   constructor(cwd: string, options: PackemonOptions) {
     super(options);
@@ -51,6 +59,40 @@ export default class Packemon extends Contract<PackemonOptions> {
     }
 
     const builds = this.generateBuilds(packages, workspaces);
+
+    await this.build(builds);
+  }
+
+  async build(builds: Build[]): Promise<void> {
+    const pipeline = new PooledPipeline(new Context());
+
+    builds.forEach((build) => {
+      pipeline.add(`Building ${build.package.name}`, () => this.buildWithRollup(build));
+    });
+
+    await pipeline.run();
+  }
+
+  async buildWithRollup(build: Build) {
+    const packagePath = build.package.packemon.path.relativeTo(this.cwd);
+    const featureFlags = this.getFeatureFlags(build.package);
+    const { output = [], ...input } = getRollupConfig(
+      packagePath,
+      build,
+      featureFlags,
+      this.buildCache[packagePath.path()],
+    );
+
+    // Start the build
+    const bundle = await rollup.rollup(input);
+
+    // Cache the build
+    if (bundle.cache) {
+      this.buildCache[packagePath.path()] = bundle.cache;
+    }
+
+    // Write each build output
+    await Promise.all(toArray(output).map((out) => bundle.write(out)));
   }
 
   generateBuilds(packages: PackemonPackage[], workspaces: string[]): Build[] {
@@ -93,6 +135,52 @@ export default class Packemon extends Contract<PackemonOptions> {
         target: config.target,
       };
     });
+  }
+
+  getFeatureFlags(pkg: PackemonPackage): FeatureFlags {
+    const rootPkg = this.project.getPackage<PackemonPackage>();
+    const rootFeatureFlags = this.getRootFeatureFlags(rootPkg);
+
+    if (pkg.name === rootPkg.name) {
+      return rootFeatureFlags;
+    }
+
+    return {
+      ...rootFeatureFlags,
+      ...this.getRootFeatureFlags(pkg),
+    };
+  }
+
+  @Memoize()
+  getRootFeatureFlags(pkg: PackemonPackage): FeatureFlags {
+    const flags: FeatureFlags = {};
+
+    // React
+    if (this.hasDependency(pkg, 'react')) {
+      flags.react = true;
+    }
+
+    // TypeScript
+    const tsconfigPath = this.project.root.append('tsconfig.json');
+
+    if (this.hasDependency(pkg, 'typescript') || tsconfigPath.exists()) {
+      flags.typescript = true;
+
+      const tsconfig = parseFile<{ compilerOptions?: { experimentalDecorators?: boolean } }>(
+        tsconfigPath,
+      );
+
+      flags.decorators = Boolean(tsconfig?.compilerOptions?.experimentalDecorators);
+    }
+
+    // Flowtype
+    const flowconfigPath = this.project.root.append('.flowconfig');
+
+    if (this.hasDependency(pkg, 'flow-bin') || flowconfigPath.exists()) {
+      flags.flow = true;
+    }
+
+    return flags;
   }
 
   getPackagesAndWorkspaces(): {
@@ -168,5 +256,11 @@ export default class Packemon extends Contract<PackemonOptions> {
 
       return pkg;
     });
+  }
+
+  protected hasDependency(pkg: PackageStructure, name: string): boolean {
+    return Boolean(
+      pkg.dependencies?.[name] || pkg.peerDependencies?.[name] || pkg.devDependencies?.[name],
+    );
   }
 }
