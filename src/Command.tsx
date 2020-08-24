@@ -4,6 +4,8 @@ import Main from './components/Main';
 import Packemon from './Packemon';
 import { PackemonOptions } from './types';
 
+const CONCURRENCY = 4;
+
 export type Options = GlobalOptions & PackemonOptions;
 
 export type Params = [string];
@@ -16,19 +18,27 @@ export default class PackemonCommand extends Command<Options, Params> {
   @Arg.Flag('Check that packages have a valid `license` field')
   checkLicenses: boolean = false;
 
+  @Arg.Number('Number of builds to run in parallel')
+  concurrency: number = CONCURRENCY;
+
   @Arg.Flag('Skip `private` packages from being built')
   skipPrivate: boolean = false;
+
+  @Arg.Number('Timeout in milliseconds before a build is cancelled')
+  timeout: number = 0;
 
   @Arg.Params<Params>({
     description: 'Project root that contains a `package.json`',
     label: 'cwd',
     type: 'string',
   })
-  run(cwd?: string) {
-    const packemon = new Packemon(cwd || process.cwd(), {
+  run(cwd: string = process.cwd()) {
+    const packemon = new Packemon(cwd, {
       addExports: this.addExports,
       checkLicenses: this.checkLicenses,
+      concurrency: this.concurrency,
       skipPrivate: this.skipPrivate,
+      timeout: this.timeout,
     });
 
     return <Main packemon={packemon} />;

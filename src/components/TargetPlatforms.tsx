@@ -15,12 +15,12 @@ const TARGETS: { [K in Target]: string } = {
   future: 'Future',
 };
 
-export interface TargetTextProps {
+export interface TargetPlatformsProps {
   platforms: Platform[];
   target: Target;
 }
 
-export default function TargetText({ platforms, target }: TargetTextProps) {
+export default function TargetPlatforms({ platforms, target }: TargetPlatformsProps) {
   const versions: string[] = [];
 
   platforms.forEach((platform) => {
@@ -35,7 +35,7 @@ export default function TargetText({ platforms, target }: TargetTextProps) {
     <Style type="muted">
       {TARGETS[target]}
       {' / '}
-      {versions.join(' / ')}
+      {versions.join(', ')}
     </Style>
   );
 }

@@ -1,17 +1,19 @@
 /* eslint-disable promise/always-return */
 
+import util from 'util';
 import React, { useState, useEffect } from 'react';
-import { Box } from 'ink';
+import { Box, Static } from 'ink';
 import { Header, Failure } from '@boost/cli';
 import Packemon from '../Packemon';
 import { Phase, Build } from '../types';
 import BuildList from './BuildList';
+import BuildRow from './BuildRow';
 
 const REFRESH_RATE = 100;
 
 const PHASES: { [K in Phase]: string } = {
   find: 'Finding packages',
-  build: 'Building packages',
+  build: 'Building %d packages',
   prepare: 'Preparing packages',
 };
 
@@ -61,13 +63,36 @@ export default function Main({ packemon }: MainProps) {
     }
   }, [packemon, phase, builds]);
 
+  // Group builds based on type
+  const finishedBuilds = builds.filter(
+    (build) => build.status === 'passed' || build.status === 'failed' || build.status === 'skipped',
+  );
+  const pendingBuilds = builds.filter((build) => build.status === 'pending');
+  const ongoingBuilds = builds.filter((build) => build.status === 'building');
+
+  // Phase label
+  let label = util.format(PHASES[phase], ongoingBuilds.length);
+
+  if (pendingBuilds.length > 0) {
+    label += ` (${pendingBuilds.length} pending builds)`;
+  }
+
   return (
-    <Box flexDirection="column">
-      <Header label={PHASES[phase]} />
+    <>
+      <Static items={finishedBuilds}>
+        {(build) => <BuildRow key={build.package.name} build={build} />}
+      </Static>
 
-      {builds.length > 0 && <BuildList builds={builds} />}
+      <Box flexDirection="column">
+        {ongoingBuilds.length > 0 && (
+          <>
+            <Header label={label} />
+            <BuildList builds={ongoingBuilds} />
+          </>
+        )}
 
-      {errors.length > 0 && <Failure error={errors[0]} />}
-    </Box>
+        {errors.length > 0 && <Failure error={errors[0]} />}
+      </Box>
+    </>
   );
 }

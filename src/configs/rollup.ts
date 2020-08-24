@@ -99,6 +99,7 @@ export default function getRollupConfig(
     const output: OutputOptions = {
       file: getOutputFile(input, format),
       format: getModuleFormat(format),
+      originalFormat: format,
       // Use const when not supporting old targets
       preferConst: build.target !== 'legacy',
       // Output specific plugins

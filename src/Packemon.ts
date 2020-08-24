@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/member-ordering, no-param-reassign */
+/* eslint-disable no-param-reassign, require-atomic-updates, @typescript-eslint/member-ordering */
 
 import {
   Path,
@@ -27,6 +27,7 @@ import {
   Platform,
   BuildFlags,
   FeatureFlags,
+  TSConfigStructure,
 } from './types';
 
 export default class Packemon extends Contract<PackemonOptions> {
@@ -43,22 +44,40 @@ export default class Packemon extends Contract<PackemonOptions> {
     this.project = new Project(this.root);
   }
 
-  blueprint({ bool }: Predicates): Blueprint<PackemonOptions> {
+  blueprint({ bool, number }: Predicates): Blueprint<PackemonOptions> {
     return {
       addExports: bool(),
       checkLicenses: bool(),
+      concurrency: number(1).gte(1),
       skipPrivate: bool(),
+      timeout: number().gte(0),
     };
   }
 
   async build(builds: Build[]) {
     const pipeline = new PooledPipeline(new Context());
 
+    pipeline.configure({
+      concurrency: this.options.concurrency,
+      timeout: this.options.timeout,
+    });
+
     builds.forEach((build) => {
       pipeline.add(`Building ${build.package.name}`, () => this.buildWithRollup(build));
     });
 
-    return pipeline.run();
+    const result = await pipeline.run();
+
+    // Mark all running builds as skipped
+    if (result.errors.length > 0) {
+      builds.forEach((build) => {
+        if (build.status === 'building') {
+          build.status = 'skipped';
+        }
+      });
+    }
+
+    return result;
   }
 
   async buildWithRollup(build: Build) {
@@ -78,11 +97,9 @@ export default class Packemon extends Contract<PackemonOptions> {
       return;
     }
 
-    const { output = [], ...input } = rollupConfig;
-
-    // Start the build
     build.status = 'building';
 
+    const { output = [], ...input } = rollupConfig;
     const bundle = await rollup(input);
 
     // Cache the build
@@ -91,19 +108,35 @@ export default class Packemon extends Contract<PackemonOptions> {
     }
 
     // Write each build output
+    const start = Date.now();
+
+    build.result = {
+      output: [],
+      time: 0,
+    };
+
     await Promise.all(
       toArray(output).map(async (out) => {
+        const { originalFormat, ...outOptions } = out;
+
         try {
-          await bundle.write(out);
+          await bundle.write(outOptions);
 
           build.status = 'passed';
         } catch (error) {
-          console.error(error.message);
+          console.error(`Failed to build package "${build.package.name}": ${error.message}`);
 
           build.status = 'failed';
         }
+
+        build.result?.output.push({
+          format: originalFormat!,
+          path: out.file!,
+        });
       }),
     );
+
+    build.result.time = Date.now() - start;
   }
 
   generateBuilds(packages: PackemonPackage[], workspaces: string[]): Build[] {
@@ -113,36 +146,38 @@ export default class Packemon extends Contract<PackemonOptions> {
       const formats = new Set<Format>();
       const platforms = new Set<Platform>();
 
-      toArray(config.platform).forEach((platform) => {
-        platforms.add(platform);
+      toArray(config.platform)
+        .sort()
+        .forEach((platform) => {
+          platforms.add(platform);
 
-        if (formats.has('lib')) {
-          flags.requiresSharedLib = true;
-        }
-
-        if (platform === 'node') {
-          formats.add('lib');
-          formats.add('cjs');
-          formats.add('mjs');
-        } else if (platform === 'browser') {
-          formats.add('lib');
-          formats.add('esm');
-
-          if (config.namespace) {
-            formats.add('umd');
+          if (formats.has('lib')) {
+            flags.requiresSharedLib = true;
           }
-        }
-      });
+
+          if (platform === 'node') {
+            formats.add('lib');
+            formats.add('cjs');
+            formats.add('mjs');
+          } else if (platform === 'browser') {
+            formats.add('lib');
+            formats.add('esm');
+
+            if (config.namespace) {
+              formats.add('umd');
+            }
+          }
+        });
 
       return {
         flags,
-        formats: Array.from(formats).sort(),
+        formats: Array.from(formats),
         meta: {
           namespace: config.namespace,
           workspaces,
         },
         package: pkg,
-        platforms: Array.from(platforms).sort(),
+        platforms: Array.from(platforms),
         root: this.root,
         status: 'pending',
         target: config.target,
@@ -180,12 +215,9 @@ export default class Packemon extends Contract<PackemonOptions> {
 
     if (this.hasDependency(pkg, 'typescript') || tsconfigPath.exists()) {
       flags.typescript = true;
-
-      const tsconfig = parseFile<{ compilerOptions?: { experimentalDecorators?: boolean } }>(
-        tsconfigPath,
+      flags.decorators = Boolean(
+        this.resolveTsConfig(tsconfigPath)?.compilerOptions?.experimentalDecorators,
       );
-
-      flags.decorators = Boolean(tsconfig?.compilerOptions?.experimentalDecorators);
     }
 
     // Flow
@@ -278,5 +310,19 @@ export default class Packemon extends Contract<PackemonOptions> {
     return Boolean(
       pkg.dependencies?.[name] || pkg.peerDependencies?.[name] || pkg.devDependencies?.[name],
     );
+  }
+
+  protected resolveTsConfig(path: Path): TSConfigStructure {
+    const contents = parseFile<TSConfigStructure>(path);
+
+    // TODO deep merge
+    if (contents.extends) {
+      return {
+        ...this.resolveTsConfig(path.parent().append(contents.extends)),
+        ...contents,
+      };
+    }
+
+    return contents;
   }
 }

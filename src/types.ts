@@ -1,4 +1,5 @@
 import { PackageStructure, Path } from '@boost/common';
+import type { CompilerOptions } from 'typescript';
 
 export type Platform = 'node' | 'browser'; // electron
 
@@ -47,7 +48,9 @@ export interface PackemonPackage extends PackageStructure {
 export interface PackemonOptions {
   addExports: boolean;
   checkLicenses: boolean;
+  concurrency: number;
   skipPrivate: boolean;
+  timeout: number;
 }
 
 // BUILD PHASE
@@ -56,6 +59,16 @@ export type BuildStatus = 'pending' | 'building' | 'passed' | 'failed' | 'skippe
 
 export interface BuildFlags {
   requiresSharedLib?: boolean;
+}
+
+export interface BuildResultOutput {
+  format: Format;
+  path: string;
+}
+
+export interface BuildResult {
+  time: number;
+  output: BuildResultOutput[];
 }
 
 export interface Build {
@@ -67,6 +80,7 @@ export interface Build {
   };
   package: PackemonPackage;
   platforms: Platform[];
+  result?: BuildResult;
   root: Path;
   status: BuildStatus;
   target: Target;
@@ -86,4 +100,15 @@ export interface FeatureFlags {
   react?: boolean;
   typescript?: boolean;
   workspaces?: string[];
+}
+
+export interface TSConfigStructure {
+  compilerOptions?: CompilerOptions;
+  extends?: string;
+}
+
+declare module 'rollup' {
+  interface OutputOptions {
+    originalFormat?: Format;
+  }
 }
