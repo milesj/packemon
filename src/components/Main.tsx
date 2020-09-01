@@ -64,6 +64,7 @@ export default function Main({ packemon }: MainProps) {
   }, [packemon, phase, builds]);
 
   // Group builds based on type
+  // TODO store finished builds in state so that Static works correctly
   const finishedBuilds = builds.filter(
     (build) => build.status === 'passed' || build.status === 'failed' || build.status === 'skipped',
   );
