@@ -36,6 +36,11 @@ function getPlatformEnvOptions(
   switch (platform) {
     case 'node':
       return {
+        // Async/await has been available since v7
+        exclude: [
+          '@babel/plugin-transform-regenerator',
+          '@babel/plugin-transform-async-to-generator',
+        ],
         modules,
         targets: { node: NODE_TARGETS[target] },
       };
