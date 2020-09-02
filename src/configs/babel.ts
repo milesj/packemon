@@ -1,6 +1,7 @@
 import { PluginItem, TransformOptions as ConfigStructure } from '@babel/core';
 import { BROWSER_TARGETS, NODE_TARGETS } from '../constants';
 import { Target, Format, Platform, FeatureFlags, BuildUnit } from '../types';
+import Build from '../Build';
 
 // https://babeljs.io/docs/en/babel-preset-env
 export interface PresetEnvOptions {
@@ -57,7 +58,8 @@ function getPlatformEnvOptions(
 }
 
 export default function getBabelConfig(
-  build: BuildUnit | null,
+  build: Build,
+  buildUnit: BuildUnit | null,
   features: FeatureFlags,
 ): Omit<ConfigStructure, 'include' | 'exclude'> {
   const plugins: PluginItem[] = [];
@@ -66,8 +68,8 @@ export default function getBabelConfig(
   // ENVIRONMENT
 
   // This must be determined first before we add other presets or plugins
-  if (build) {
-    const { format, platform, target } = build;
+  if (buildUnit) {
+    const { format, platform, target } = buildUnit;
     const envOptions: PresetEnvOptions = {
       // Prefer spec compliance over speed
       spec: true,
@@ -99,9 +101,11 @@ export default function getBabelConfig(
         ['@babel/plugin-proposal-decorators', { legacy: true }],
         ['@babel/plugin-proposal-class-properties', { loose: true }],
         ['@babel/plugin-proposal-private-methods', { loose: true }],
-        // TODO
-        // ['@babel/plugin-proposal-private-property-in-object', { loose: true }],
       );
+
+      if (build.hasDependency('@babel/plugin-proposal-private-property-in-object')) {
+        plugins.push(['@babel/plugin-proposal-private-property-in-object', { loose: true }]);
+      }
     }
   }
 
@@ -119,7 +123,7 @@ export default function getBabelConfig(
 
   // Use `Object.assign` when available
   // https://babeljs.io/docs/en/babel-plugin-transform-destructuring#usebuiltins
-  if (build?.target !== 'legacy') {
+  if (buildUnit?.target !== 'legacy') {
     plugins.push(
       ['@babel/plugin-transform-destructuring', { useBuiltIns: true }],
       ['@babel/plugin-proposal-object-rest-spread', { useBuiltIns: true }],

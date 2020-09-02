@@ -71,21 +71,6 @@ export interface BuildResult {
   output: BuildResultOutput[];
 }
 
-export interface Build {
-  flags: BuildFlags;
-  formats: Format[];
-  meta: {
-    namespace: string;
-    workspaces: string[];
-  };
-  package: PackemonPackage;
-  platforms: Platform[];
-  result?: BuildResult;
-  root: Path;
-  status: BuildStatus;
-  target: Target;
-}
-
 export interface BuildUnit {
   format: Format;
   platform: Platform;

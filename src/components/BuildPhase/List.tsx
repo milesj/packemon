@@ -1,6 +1,6 @@
 import React from 'react';
 import BuildRow from './Row';
-import { Build } from '../../types';
+import Build from '../../Build';
 
 export interface BuildListProps {
   builds: Build[];

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useReducer, useCallback } from 'react';
+import Build from '../Build';
 import Packemon from '../Packemon';
-import { Phase, Build } from '../types';
+import { Phase } from '../types';
 import BootPhase from './BootPhase';
 import BuildPhase from './BuildPhase';
 

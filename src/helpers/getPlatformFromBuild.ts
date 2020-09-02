@@ -1,4 +1,5 @@
-import { Format, Build, Platform } from '../types';
+import Build from '../Build';
+import { Format, Platform } from '../types';
 
 export default function getPlatformFromBuild(format: Format, build: Build): Platform {
   if (format === 'cjs' || format === 'mjs') {

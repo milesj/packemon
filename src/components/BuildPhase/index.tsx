@@ -4,7 +4,7 @@ import { Header } from '@boost/cli';
 import BuildRow from './Row';
 import BuildList from './List';
 import Packemon from '../../Packemon';
-import { Build } from '../../types';
+import Build from '../../Build';
 
 export interface BuildPhaseProps {
   builds: Build[];

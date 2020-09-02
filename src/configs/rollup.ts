@@ -1,28 +1,29 @@
 import path from 'path';
 import { Path } from '@boost/common';
-import { RollupOptions, RollupCache, OutputOptions, ModuleFormat } from 'rollup';
+import { RollupOptions, OutputOptions, ModuleFormat } from 'rollup';
 import externals from 'rollup-plugin-node-externals';
 import resolve from '@rollup/plugin-node-resolve';
 import json from '@rollup/plugin-json';
 import { getBabelInputPlugin, getBabelOutputPlugin } from '@rollup/plugin-babel';
 import getBabelConfig from './babel';
-import { Build, FeatureFlags, PackemonPackage, Format, BuildUnit } from '../types';
+import Build from '../Build';
+import { FeatureFlags, Format, BuildUnit } from '../types';
 import { EXTENSIONS, EXCLUDE } from '../constants';
 import getPlatformFromBuild from '../helpers/getPlatformFromBuild';
 
 const sharedPlugins = [resolve({ extensions: EXTENSIONS }), json({ namedExports: false })];
 
-function getInputFile(packagePath: Path, pkg: PackemonPackage): Path | null {
+function getInputFile(build: Build): Path | null {
   // eslint-disable-next-line no-restricted-syntax
   for (const ext of EXTENSIONS) {
-    const entryPath = packagePath.append(`src/index${ext}`);
+    const entryPath = build.packagePath.append(`src/index${ext}`);
 
     if (entryPath.exists()) {
       return entryPath;
     }
   }
 
-  console.warn(`Cannot find entry point for package "${pkg.name}". Skipping package.`);
+  console.warn(`Cannot find entry point for package "${build.package.name}". Skipping package.`);
 
   return null;
 }
@@ -47,12 +48,10 @@ function getModuleFormat(format: Format): ModuleFormat {
 }
 
 export default function getRollupConfig(
-  packagePath: Path,
   build: Build,
   features: FeatureFlags,
-  cache?: RollupCache,
 ): RollupOptions | null {
-  const inputPath = getInputFile(packagePath, build.package);
+  const inputPath = getInputFile(build);
 
   if (!inputPath) {
     return null;
@@ -60,28 +59,28 @@ export default function getRollupConfig(
 
   const input = build.root.relativeTo(inputPath).path();
   const config: RollupOptions = {
-    cache,
+    cache: build.cache,
     input,
     output: [],
     // Shared output plugins
     plugins: [
       ...sharedPlugins,
+      // Declare Babel here so we can parse TypeScript/Flow
+      getBabelInputPlugin({
+        ...getBabelConfig(build, null, features),
+        babelHelpers: 'bundled',
+        exclude: EXCLUDE,
+        extensions: EXTENSIONS,
+        filename: build.packagePath.path(),
+      }),
       // Mark all dependencies in `package.json` as external
       externals({
         builtins: true,
         deps: true,
         devDeps: true,
         optDeps: true,
-        packagePath: path.resolve(packagePath.append('package.json').path()),
+        packagePath: path.resolve(build.packagePath.append('package.json').path()),
         peerDeps: true,
-      }),
-      // Declare Babel here so we can parse TypeScript/Flow
-      getBabelInputPlugin({
-        ...getBabelConfig(null, features),
-        babelHelpers: 'bundled',
-        exclude: EXCLUDE,
-        extensions: EXTENSIONS,
-        filename: packagePath.path(),
       }),
     ],
     // Always treeshake for smaller builds
@@ -105,8 +104,8 @@ export default function getRollupConfig(
       // Output specific plugins
       plugins: [
         getBabelOutputPlugin({
-          ...getBabelConfig(buildUnit, features),
-          filename: packagePath.path(),
+          ...getBabelConfig(build, buildUnit, features),
+          filename: build.packagePath.path(),
         }),
       ],
     };

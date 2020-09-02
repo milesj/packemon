@@ -12,25 +12,22 @@ import {
   predicates,
   WorkspacePackage,
   Memoize,
-  PackageStructure,
-  parseFile,
   json,
 } from '@boost/common';
 import { Event } from '@boost/event';
 import { PooledPipeline, Context } from '@boost/pipeline';
 import spdxLicenses from 'spdx-license-list';
-import { rollup, RollupCache } from 'rollup';
+import { rollup } from 'rollup';
 import getRollupConfig from './configs/rollup';
+import Build from './Build';
 import {
   PackemonPackage,
   PackemonOptions,
-  Build,
   Format,
   PackemonPackageConfig,
   Platform,
   BuildFlags,
   FeatureFlags,
-  TSConfigStructure,
 } from './types';
 
 export default class Packemon extends Contract<PackemonOptions> {
@@ -44,8 +41,6 @@ export default class Packemon extends Contract<PackemonOptions> {
 
   readonly onBuildProgress = new Event<[Build[]]>('build-progress');
 
-  private buildCache: Record<string, RollupCache> = {};
-
   constructor(cwd: string, options: PackemonOptions) {
     super(options);
 
@@ -55,7 +50,7 @@ export default class Packemon extends Contract<PackemonOptions> {
 
   blueprint({ bool, number }: Predicates): Blueprint<PackemonOptions> {
     return {
-      addExports: bool(),
+      addExports: bool(), // TODO
       checkLicenses: bool(),
       concurrency: number(1).gte(1),
       skipPrivate: bool(),
@@ -102,14 +97,7 @@ export default class Packemon extends Contract<PackemonOptions> {
   }
 
   async buildWithRollup(build: Build) {
-    const packagePath = build.package.packemon.path;
-    const featureFlags = this.getFeatureFlags(build.package, build.meta.workspaces);
-    const rollupConfig = getRollupConfig(
-      packagePath,
-      build,
-      featureFlags,
-      this.buildCache[packagePath.path()],
-    );
+    const rollupConfig = getRollupConfig(build, this.getFeatureFlags(build));
 
     // Skip build because of invalid config
     if (!rollupConfig) {
@@ -127,7 +115,7 @@ export default class Packemon extends Contract<PackemonOptions> {
 
     // Cache the build
     if (bundle.cache) {
-      this.buildCache[packagePath.path()] = bundle.cache;
+      build.cache = bundle.cache;
     }
 
     // Write each build output
@@ -196,65 +184,27 @@ export default class Packemon extends Contract<PackemonOptions> {
           }
         });
 
-      return {
-        flags,
-        formats: Array.from(formats),
-        meta: {
-          namespace: config.namespace,
-          workspaces,
-        },
-        package: pkg,
-        platforms: Array.from(platforms),
-        root: this.root,
-        status: 'pending',
-        target: config.target,
-      };
+      const build = new Build(this.root, pkg, workspaces);
+      build.flags = flags;
+      build.formats = Array.from(formats);
+      build.meta.namespace = config.namespace;
+      build.platforms = Array.from(platforms);
+      build.target = config.target;
+
+      return build;
     });
   }
 
-  getFeatureFlags(pkg: PackemonPackage, workspaces: string[]): FeatureFlags {
-    const rootPkg = this.project.getPackage<PackemonPackage>();
-    const rootFeatureFlags = this.getRootFeatureFlags(rootPkg, workspaces);
-
-    if (pkg.name === rootPkg.name) {
-      return rootFeatureFlags;
-    }
-
+  getFeatureFlags(build: Build): FeatureFlags {
     return {
-      ...rootFeatureFlags,
-      ...this.getRootFeatureFlags(pkg, workspaces),
+      ...this.getRootFeatureFlags(),
+      ...build.getFeatureFlags(),
     };
   }
 
   @Memoize()
-  getRootFeatureFlags(pkg: PackemonPackage, workspaces: string[]): FeatureFlags {
-    const flags: FeatureFlags = {
-      workspaces,
-    };
-
-    // React
-    if (this.hasDependency(pkg, 'react')) {
-      flags.react = true;
-    }
-
-    // TypeScript
-    const tsconfigPath = this.root.append('tsconfig.json');
-
-    if (this.hasDependency(pkg, 'typescript') || tsconfigPath.exists()) {
-      flags.typescript = true;
-      flags.decorators = Boolean(
-        this.resolveTsConfig(tsconfigPath)?.compilerOptions?.experimentalDecorators,
-      );
-    }
-
-    // Flow
-    const flowconfigPath = this.root.append('.flowconfig');
-
-    if (this.hasDependency(pkg, 'flow-bin') || flowconfigPath.exists()) {
-      flags.flow = true;
-    }
-
-    return flags;
+  getRootFeatureFlags(): FeatureFlags {
+    return new Build(this.root, this.project.getPackage<PackemonPackage>(), []).getFeatureFlags();
   }
 
   async getPackagesAndWorkspaces(): Promise<{
@@ -298,7 +248,7 @@ export default class Packemon extends Contract<PackemonOptions> {
       }),
     );
 
-    this.onBootProgress.emit([packages.length, pkgLength]);
+    this.onBootProgress.emit([pkgLength, pkgLength]);
 
     // Skip `private` packages
     if (this.options.skipPrivate) {
@@ -357,25 +307,5 @@ export default class Packemon extends Contract<PackemonOptions> {
 
   protected emitBuildProgress() {
     this.onBuildProgress.emit([this.builds]);
-  }
-
-  protected hasDependency(pkg: PackageStructure, name: string): boolean {
-    return Boolean(
-      pkg.dependencies?.[name] || pkg.peerDependencies?.[name] || pkg.devDependencies?.[name],
-    );
-  }
-
-  protected resolveTsConfig(path: Path): TSConfigStructure {
-    const contents = parseFile<TSConfigStructure>(path);
-
-    // TODO deep merge
-    if (contents.extends) {
-      return {
-        ...this.resolveTsConfig(path.parent().append(contents.extends)),
-        ...contents,
-      };
-    }
-
-    return contents;
   }
 }

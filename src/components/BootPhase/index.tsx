@@ -3,7 +3,7 @@ import { Box } from 'ink';
 import ProgressBar from 'ink-progress-bar';
 import { Header } from '@boost/cli';
 import Packemon from '../../Packemon';
-import { Build } from '../../types';
+import Build from '../../Build';
 
 const DELAY_PHASE = 100;
 
