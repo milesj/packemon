@@ -3,8 +3,8 @@ import { Box } from 'ink';
 import Spinner from 'ink-spinner';
 import { formatMs } from '@boost/common';
 import { Style, StyleType } from '@boost/cli';
-import TargetPlatforms from './TargetPlatforms';
-import { Build, BuildStatus } from '../types';
+import TargetPlatforms from '../TargetPlatforms';
+import { Build, BuildStatus } from '../../types';
 
 const STATUS_COLORS: { [K in BuildStatus]: StyleType } = {
   pending: 'muted',

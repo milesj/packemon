@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign, require-atomic-updates, @typescript-eslint/member-ordering */
 
+import fs from 'fs';
 import {
   Path,
   Project,
@@ -13,7 +14,9 @@ import {
   Memoize,
   PackageStructure,
   parseFile,
+  json,
 } from '@boost/common';
+import { Event } from '@boost/event';
 import { PooledPipeline, Context } from '@boost/pipeline';
 import spdxLicenses from 'spdx-license-list';
 import { rollup, RollupCache } from 'rollup';
@@ -31,9 +34,15 @@ import {
 } from './types';
 
 export default class Packemon extends Contract<PackemonOptions> {
+  builds: Build[] = [];
+
   root: Path;
 
   project: Project;
+
+  readonly onBootProgress = new Event<[number, number]>('boot-progress');
+
+  readonly onBuildProgress = new Event<[Build[]]>('build-progress');
 
   private buildCache: Record<string, RollupCache> = {};
 
@@ -54,7 +63,15 @@ export default class Packemon extends Contract<PackemonOptions> {
     };
   }
 
+  async boot() {
+    const result = await this.getPackagesAndWorkspaces();
+
+    return this.generateBuilds(result.packages, result.workspaces);
+  }
+
   async build(builds: Build[]) {
+    this.builds = builds;
+
     const pipeline = new PooledPipeline(new Context());
 
     pipeline.configure({
@@ -66,6 +83,8 @@ export default class Packemon extends Contract<PackemonOptions> {
       pipeline.add(`Building ${build.package.name}`, () => this.buildWithRollup(build));
     });
 
+    this.emitBuildProgress();
+
     const result = await pipeline.run();
 
     // Mark all running builds as skipped
@@ -76,6 +95,8 @@ export default class Packemon extends Contract<PackemonOptions> {
         }
       });
     }
+
+    this.emitBuildProgress();
 
     return result;
   }
@@ -101,6 +122,8 @@ export default class Packemon extends Contract<PackemonOptions> {
 
     const { output = [], ...input } = rollupConfig;
     const bundle = await rollup(input);
+
+    this.emitBuildProgress();
 
     // Cache the build
     if (bundle.cache) {
@@ -133,10 +156,14 @@ export default class Packemon extends Contract<PackemonOptions> {
           format: originalFormat!,
           path: out.file!,
         });
+
+        this.emitBuildProgress();
       }),
     );
 
     build.result.time = Date.now() - start;
+
+    this.emitBuildProgress();
   }
 
   generateBuilds(packages: PackemonPackage[], workspaces: string[]): Build[] {
@@ -230,26 +257,48 @@ export default class Packemon extends Contract<PackemonOptions> {
     return flags;
   }
 
-  getPackagesAndWorkspaces(): {
+  async getPackagesAndWorkspaces(): Promise<{
     packages: PackemonPackage[];
     workspaces: string[];
-  } {
+  }> {
     const workspaces = this.project.getWorkspaceGlobs({ relative: true });
-    let packages: WorkspacePackage<PackemonPackage>[];
+    const pkgPaths: Path[] = [];
+    const pkgLength = pkgPaths.length;
+
+    this.onBootProgress.emit([0, pkgLength]);
 
     // Multi package repo
     if (workspaces.length > 0) {
-      packages = this.project.getWorkspacePackages<PackemonPackage>();
+      this.project.getWorkspacePackagePaths().forEach((filePath) => {
+        pkgPaths.push(Path.create(filePath).append('package.json'));
+      });
 
       // Single package repo
     } else {
-      packages = [
-        {
-          metadata: this.project.createWorkspaceMetadata(this.root.append('package.json')),
-          package: this.project.getPackage<PackemonPackage>(),
-        },
-      ];
+      pkgPaths.push(this.root.append('package.json'));
     }
+
+    this.onBootProgress.emit([0, pkgLength]);
+
+    let counter = 0;
+    let packages: WorkspacePackage<PackemonPackage>[] = await Promise.all(
+      pkgPaths.map(async (pkgPath) => {
+        const content = json.parse<PackemonPackage>(
+          // eslint-disable-next-line node/no-unsupported-features/node-builtins
+          await fs.promises.readFile(pkgPath.path(), 'utf8'),
+        );
+
+        counter += 1;
+        this.onBootProgress.emit([counter, pkgLength]);
+
+        return {
+          metadata: this.project.createWorkspaceMetadata(pkgPath),
+          package: content,
+        };
+      }),
+    );
+
+    this.onBootProgress.emit([packages.length, pkgLength]);
 
     // Skip `private` packages
     if (this.options.skipPrivate) {
@@ -304,6 +353,10 @@ export default class Packemon extends Contract<PackemonOptions> {
 
       return pkg;
     });
+  }
+
+  protected emitBuildProgress() {
+    this.onBuildProgress.emit([this.builds]);
   }
 
   protected hasDependency(pkg: PackageStructure, name: string): boolean {
