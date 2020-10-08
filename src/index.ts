@@ -5,7 +5,7 @@
 
 import Build from './Build';
 import Packemon from './Packemon';
-import run from './run';
+import { run } from './run';
 
 export * from './constants';
 export * from './types';

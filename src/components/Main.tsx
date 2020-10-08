@@ -53,7 +53,7 @@ export default function Main({ packemon }: MainProps) {
 
       {phase === 'done' && (
         <Static items={packemon.builds}>
-          {(build) => <BuildRow key={build.package.name} build={build} />}
+          {(build) => <BuildRow key={build.name} build={build} />}
         </Static>
       )}
     </>

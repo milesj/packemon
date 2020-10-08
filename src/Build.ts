@@ -19,6 +19,10 @@ export default class Build {
 
   formats: Format[] = [];
 
+  inputName: string = '';
+
+  inputPath: string = '';
+
   meta: {
     namespace: string;
     workspaces: string[];
@@ -41,11 +45,25 @@ export default class Build {
   constructor(root: Path, pkg: PackemonPackage, workspaces: string[]) {
     this.root = root;
     this.package = pkg;
-    this.packagePath = pkg.packemon.path;
     this.meta = {
       namespace: '',
       workspaces,
     };
+
+    // Root workspace `package.json`s may not have this config block,
+    // but we need to load and parse them to extract feature flags.
+    this.packagePath = pkg.packemon?.path;
+  }
+
+  get name(): string {
+    let { name } = this.package;
+
+    if (this.inputName !== 'index') {
+      name += '/';
+      name += this.inputName;
+    }
+
+    return name;
   }
 
   getFeatureFlags(): FeatureFlags {

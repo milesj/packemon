@@ -1,5 +1,4 @@
 import path from 'path';
-import { Path } from '@boost/common';
 import { RollupOptions, OutputOptions, ModuleFormat } from 'rollup';
 import externals from 'rollup-plugin-node-externals';
 import commonjs from '@rollup/plugin-commonjs';
@@ -13,26 +12,22 @@ import getPlatformFromBuild from '../helpers/getPlatformFromBuild';
 
 const sharedPlugins = [resolve({ extensions: EXTENSIONS, preferBuiltins: true }), commonjs()];
 
-function getInputFile(build: Build): Path | null {
-  // eslint-disable-next-line no-restricted-syntax
-  for (const ext of EXTENSIONS) {
-    const entryPath = build.packagePath.append(`src/index${ext}`);
-
-    if (entryPath.exists()) {
-      return entryPath;
-    }
+function getInputFile(build: Build): string | null {
+  if (build.packagePath.append(build.inputPath).exists()) {
+    return build.inputPath;
   }
 
-  console.warn(`Cannot find entry point for package "${build.package.name}". Skipping package.`);
+  console.warn(
+    `Cannot find input "${build.inputName}" for package "${build.package.name}". Skipping package.`,
+  );
 
   return null;
 }
 
-function getOutputFile(inputFile: string, format: Format): string {
-  const outputFile = inputFile.replace('src/', `${format}/`);
+function getOutputFile(build: Build, format: Format): string {
   const ext = format === 'cjs' || format === 'mjs' ? format : 'js';
 
-  return outputFile.replace(/\.(js|ts)x?$/iu, `.${ext}`);
+  return `${format}/${build.inputName}.${ext}`;
 }
 
 function getModuleFormat(format: Format): ModuleFormat {
@@ -48,13 +43,12 @@ function getModuleFormat(format: Format): ModuleFormat {
 }
 
 export function getRollupConfig(build: Build, features: FeatureFlags): RollupOptions | null {
-  const inputPath = getInputFile(build);
+  const input = getInputFile(build);
 
-  if (!inputPath) {
+  if (!input) {
     return null;
   }
 
-  const input = build.root.relativeTo(inputPath).path();
   const packagePath = path.resolve(build.packagePath.append('package.json').path());
 
   const config: RollupOptions = {
@@ -97,7 +91,7 @@ export function getRollupConfig(build: Build, features: FeatureFlags): RollupOpt
     };
 
     const output: OutputOptions = {
-      file: getOutputFile(input, format),
+      file: getOutputFile(build, format),
       format: getModuleFormat(format),
       originalFormat: format,
       // Use const when not supporting old targets

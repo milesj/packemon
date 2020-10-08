@@ -32,6 +32,10 @@
     "node": ">=10.10.0"
   },
   "packemon": {
+    "inputs": {
+      "index": "src/index.ts",
+      "run": "src/run.ts"
+    },
     "platform": "node"
   },
   "beemo": {

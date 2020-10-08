@@ -77,7 +77,7 @@ export default class Packemon extends Contract<PackemonOptions> {
     });
 
     this.builds.forEach((build) => {
-      pipeline.add(`Building ${build.package.name}`, () => this.buildWithRollup(build));
+      pipeline.add(`Building ${build.name}`, () => this.buildWithRollup(build));
     });
 
     const result = await pipeline.run();
@@ -151,7 +151,9 @@ export default class Packemon extends Contract<PackemonOptions> {
   }
 
   protected generateBuilds(packages: PackemonPackage[], workspaces: string[]): Build[] {
-    return packages.map((pkg) => {
+    const builds: Build[] = [];
+
+    packages.forEach((pkg) => {
       const config = pkg.packemon;
       const flags: BuildFlags = {};
       const formats = new Set<Format>();
@@ -180,15 +182,21 @@ export default class Packemon extends Contract<PackemonOptions> {
           }
         });
 
-      const build = new Build(this.root, pkg, workspaces);
-      build.flags = flags;
-      build.formats = Array.from(formats);
-      build.meta.namespace = config.namespace;
-      build.platforms = Array.from(platforms);
-      build.target = config.target;
+      Object.entries(config.inputs).forEach(([name, path]) => {
+        const build = new Build(this.root, pkg, workspaces);
+        build.flags = flags;
+        build.formats = Array.from(formats);
+        build.meta.namespace = config.namespace;
+        build.platforms = Array.from(platforms);
+        build.target = config.target;
+        build.inputName = name;
+        build.inputPath = path;
 
-      return build;
+        builds.push(build);
+      });
     });
+
+    return builds;
   }
 
   protected getFeatureFlags(build: Build): FeatureFlags {
@@ -264,9 +272,10 @@ export default class Packemon extends Contract<PackemonOptions> {
     );
 
     // Blueprint for `packemon` block
-    const { array, string, union } = predicates;
+    const { array, object, string, union } = predicates;
     const platformPredicate = string('browser').oneOf(['node', 'browser']);
     const blueprint: Blueprint<PackemonPackageConfig> = {
+      inputs: object(string(), { index: 'src/index.ts' }),
       namespace: string(),
       platform: union([array(platformPredicate), platformPredicate], 'browser'),
       target: string('legacy').oneOf(['legacy', 'modern', 'future']),

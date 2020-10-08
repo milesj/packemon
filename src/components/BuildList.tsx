@@ -25,7 +25,7 @@ export function BuildRow({ build }: BuildRowProps) {
       <Box flexDirection="row">
         <Box>
           <Style bold type="default">
-            {build.package.name}
+            {build.name}
           </Style>
         </Box>
 
@@ -67,7 +67,7 @@ export default function BuildList({ builds }: BuildListProps) {
   return (
     <>
       {builds.map((build) => (
-        <BuildRow key={build.package.name} build={build} />
+        <BuildRow key={build.name} build={build} />
       ))}
     </>
   );
