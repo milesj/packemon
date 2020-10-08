@@ -3,9 +3,9 @@ import { Box } from 'ink';
 import Spinner from 'ink-spinner';
 import { formatMs } from '@boost/common';
 import { Style, StyleType } from '@boost/cli';
-import Build from '../../Build';
-import TargetPlatforms from '../TargetPlatforms';
-import { BuildStatus } from '../../types';
+import Build from '../Build';
+import { BuildStatus } from '../types';
+import TargetPlatforms from './TargetPlatforms';
 
 const STATUS_COLORS: { [K in BuildStatus]: StyleType } = {
   pending: 'muted',
@@ -19,7 +19,7 @@ export interface BuildRowProps {
   build: Build;
 }
 
-export default function BuildRow({ build }: BuildRowProps) {
+export function BuildRow({ build }: BuildRowProps) {
   return (
     <Box flexDirection="column" marginTop={1}>
       <Box flexDirection="row">
@@ -56,5 +56,19 @@ export default function BuildRow({ build }: BuildRowProps) {
         <TargetPlatforms platforms={build.platforms} target={build.target} />
       </Box>
     </Box>
+  );
+}
+
+export interface BuildListProps {
+  builds: Build[];
+}
+
+export default function BuildList({ builds }: BuildListProps) {
+  return (
+    <>
+      {builds.map((build) => (
+        <BuildRow key={build.package.name} build={build} />
+      ))}
+    </>
   );
 }

@@ -37,6 +37,8 @@ export default class Packemon extends Contract<PackemonOptions> {
 
   project: Project;
 
+  readonly onComplete = new Event('complete');
+
   readonly onBootProgress = new Event<[number, number]>('boot-progress');
 
   constructor(cwd: string, options: PackemonOptions) {
@@ -59,11 +61,13 @@ export default class Packemon extends Contract<PackemonOptions> {
   async boot() {
     const result = await this.getPackagesAndWorkspaces();
 
-    return this.generateBuilds(result.packages, result.workspaces);
+    this.builds = this.generateBuilds(result.packages, result.workspaces);
   }
 
-  async build(builds: Build[]) {
-    this.builds = builds;
+  async build() {
+    if (this.builds.length === 0) {
+      throw new Error('No builds found. Aborting.');
+    }
 
     const pipeline = new PooledPipeline(new Context());
 
@@ -72,7 +76,7 @@ export default class Packemon extends Contract<PackemonOptions> {
       timeout: this.options.timeout,
     });
 
-    builds.forEach((build) => {
+    this.builds.forEach((build) => {
       pipeline.add(`Building ${build.package.name}`, () => this.buildWithRollup(build));
     });
 
@@ -80,7 +84,7 @@ export default class Packemon extends Contract<PackemonOptions> {
 
     // Mark all running builds as skipped
     if (result.errors.length > 0) {
-      builds.forEach((build) => {
+      this.builds.forEach((build) => {
         if (build.status === 'building') {
           build.status = 'skipped';
         }
@@ -142,7 +146,11 @@ export default class Packemon extends Contract<PackemonOptions> {
     build.result.time = Date.now() - start;
   }
 
-  generateBuilds(packages: PackemonPackage[], workspaces: string[]): Build[] {
+  async pack() {
+    this.onComplete.emit([]);
+  }
+
+  protected generateBuilds(packages: PackemonPackage[], workspaces: string[]): Build[] {
     return packages.map((pkg) => {
       const config = pkg.packemon;
       const flags: BuildFlags = {};
@@ -183,7 +191,7 @@ export default class Packemon extends Contract<PackemonOptions> {
     });
   }
 
-  getFeatureFlags(build: Build): FeatureFlags {
+  protected getFeatureFlags(build: Build): FeatureFlags {
     return {
       ...this.getRootFeatureFlags(),
       ...build.getFeatureFlags(),
@@ -191,19 +199,18 @@ export default class Packemon extends Contract<PackemonOptions> {
   }
 
   @Memoize()
-  getRootFeatureFlags(): FeatureFlags {
+  protected getRootFeatureFlags(): FeatureFlags {
     return new Build(this.root, this.project.getPackage<PackemonPackage>(), []).getFeatureFlags();
   }
 
-  async getPackagesAndWorkspaces(): Promise<{
+  protected async getPackagesAndWorkspaces(): Promise<{
     packages: PackemonPackage[];
     workspaces: string[];
   }> {
     const workspaces = this.project.getWorkspaceGlobs({ relative: true });
     const pkgPaths: Path[] = [];
-    const pkgLength = pkgPaths.length;
 
-    this.onBootProgress.emit([0, pkgLength]);
+    this.onBootProgress.emit([0, pkgPaths.length]);
 
     // Multi package repo
     if (workspaces.length > 0) {
@@ -216,7 +223,7 @@ export default class Packemon extends Contract<PackemonOptions> {
       pkgPaths.push(this.root.append('package.json'));
     }
 
-    this.onBootProgress.emit([0, pkgLength]);
+    this.onBootProgress.emit([0, pkgPaths.length]);
 
     let counter = 0;
     let packages: WorkspacePackage<PackemonPackage>[] = await Promise.all(
@@ -227,7 +234,7 @@ export default class Packemon extends Contract<PackemonOptions> {
         );
 
         counter += 1;
-        this.onBootProgress.emit([counter, pkgLength]);
+        this.onBootProgress.emit([counter, pkgPaths.length]);
 
         return {
           metadata: this.project.createWorkspaceMetadata(pkgPath),
@@ -236,7 +243,7 @@ export default class Packemon extends Contract<PackemonOptions> {
       }),
     );
 
-    this.onBootProgress.emit([pkgLength, pkgLength]);
+    this.onBootProgress.emit([pkgPaths.length, pkgPaths.length]);
 
     // Skip `private` packages
     if (this.options.skipPrivate) {
@@ -249,7 +256,9 @@ export default class Packemon extends Contract<PackemonOptions> {
     };
   }
 
-  validateAndPreparePackages(packages: WorkspacePackage<PackemonPackage>[]): PackemonPackage[] {
+  protected validateAndPreparePackages(
+    packages: WorkspacePackage<PackemonPackage>[],
+  ): PackemonPackage[] {
     const spdxLicenseTypes = new Set(
       Object.keys(spdxLicenses).map((key) => key.toLocaleLowerCase()),
     );

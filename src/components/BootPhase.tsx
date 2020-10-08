@@ -2,28 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { Box } from 'ink';
 import ProgressBar from 'ink-progress-bar';
 import { Header } from '@boost/cli';
-import Packemon from '../../Packemon';
-import Build from '../../Build';
-
-const DELAY_PHASE = 100;
+import Packemon from '../Packemon';
 
 export interface BootPhaseProps {
   packemon: Packemon;
-  onBooted: (builds: Build[]) => void;
+  onBooted: () => void;
 }
 
 export default function BootPhase({ packemon, onBooted }: BootPhaseProps) {
   const [progress, setProgress] = useState(0);
-
-  // Find all packages and generate builds on mount
-  useEffect(() => {
-    void packemon.boot().then((builds) => {
-      // Delay next phase to show progress bar
-      setTimeout(() => {
-        onBooted(builds);
-      }, DELAY_PHASE);
-    });
-  }, [packemon, onBooted]);
 
   // Monitor generation progress
   useEffect(() => {
@@ -38,10 +25,20 @@ export default function BootPhase({ packemon, onBooted }: BootPhaseProps) {
     };
   }, [packemon]);
 
+  // Find all packages and generate builds on mount
+  useEffect(() => {
+    void packemon.boot().then(() => {
+      // Delay next phase to show progress bar
+      setTimeout(() => {
+        onBooted();
+      }, 1000);
+    });
+  }, [packemon, onBooted]);
+
   return (
     <Box flexDirection="column">
       <Header label="Bootstrapping packages and generating build requests" />
-      <ProgressBar percent={progress} />
+      <ProgressBar percent={progress || 0.1} />
     </Box>
   );
 }

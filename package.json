@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "prepare": "beemo create-config --silent",
-    "build": "beemo typescript",
+    "build": "yarn run packemon",
     "ci": "yarn run type && yarn run test && yarn run lint",
     "coverage": "yarn run test --coverage",
     "format": "beemo prettier",
@@ -19,7 +19,7 @@
     "test": "beemo jest",
     "type": "beemo typescript --noEmit",
     "prerelease": "yarn run ci && yarn run build",
-    "packemon": "node ./lib/src/bin.js"
+    "packemon": "node ./bin/packemon.js"
   },
   "repository": "https://github.com/milesj/packemon.git",
   "author": "Miles Johnson",
