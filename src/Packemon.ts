@@ -39,8 +39,6 @@ export default class Packemon extends Contract<PackemonOptions> {
 
   readonly onBootProgress = new Event<[number, number]>('boot-progress');
 
-  readonly onBuildProgress = new Event<[Build[]]>('build-progress');
-
   constructor(cwd: string, options: PackemonOptions) {
     super(options);
 
@@ -78,8 +76,6 @@ export default class Packemon extends Contract<PackemonOptions> {
       pipeline.add(`Building ${build.package.name}`, () => this.buildWithRollup(build));
     });
 
-    this.emitBuildProgress();
-
     const result = await pipeline.run();
 
     // Mark all running builds as skipped
@@ -90,8 +86,6 @@ export default class Packemon extends Contract<PackemonOptions> {
         }
       });
     }
-
-    this.emitBuildProgress();
 
     return result;
   }
@@ -110,8 +104,6 @@ export default class Packemon extends Contract<PackemonOptions> {
 
     const { output = [], ...input } = rollupConfig;
     const bundle = await rollup(input);
-
-    this.emitBuildProgress();
 
     // Cache the build
     if (bundle.cache) {
@@ -144,14 +136,10 @@ export default class Packemon extends Contract<PackemonOptions> {
           format: originalFormat!,
           path: out.file!,
         });
-
-        this.emitBuildProgress();
       }),
     );
 
     build.result.time = Date.now() - start;
-
-    this.emitBuildProgress();
   }
 
   generateBuilds(packages: PackemonPackage[], workspaces: string[]): Build[] {
@@ -303,9 +291,5 @@ export default class Packemon extends Contract<PackemonOptions> {
 
       return pkg;
     });
-  }
-
-  protected emitBuildProgress() {
-    this.onBuildProgress.emit([this.builds]);
   }
 }

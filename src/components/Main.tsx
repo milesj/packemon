@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import Build from '../Build';
 import Packemon from '../Packemon';
 import { Phase } from '../types';
@@ -12,16 +12,6 @@ export interface MainProps {
 export default function Main({ packemon }: MainProps) {
   const [phase, setPhase] = useState<Phase>('boot');
   const [builds, setBuilds] = useState<Build[]>([]);
-  const [, forceUpdate] = useReducer((num) => num + 1, 0);
-
-  // Listen to the build process and re-render on each update
-  useEffect(() => {
-    packemon.onBuildProgress.listen(forceUpdate);
-
-    return () => {
-      packemon.onBuildProgress.unlisten(forceUpdate);
-    };
-  }, [packemon]);
 
   const handleBooted = useCallback((generatedBuilds: Build[]) => {
     setBuilds(generatedBuilds);
