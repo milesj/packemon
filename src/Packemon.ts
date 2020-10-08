@@ -18,7 +18,7 @@ import { Event } from '@boost/event';
 import { PooledPipeline, Context } from '@boost/pipeline';
 import spdxLicenses from 'spdx-license-list';
 import { rollup } from 'rollup';
-import getRollupConfig from './configs/rollup';
+import { getRollupConfig } from './configs/rollup';
 import Build from './Build';
 import {
   PackemonPackage,
@@ -127,9 +127,9 @@ export default class Packemon extends Contract<PackemonOptions> {
 
           build.status = 'passed';
         } catch (error) {
-          console.error(`Failed to build package "${build.package.name}": ${error.message}`);
-
           build.status = 'failed';
+
+          throw error;
         }
 
         build.result?.output.push({

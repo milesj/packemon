@@ -2,16 +2,16 @@ import path from 'path';
 import { Path } from '@boost/common';
 import { RollupOptions, OutputOptions, ModuleFormat } from 'rollup';
 import externals from 'rollup-plugin-node-externals';
+import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
-import json from '@rollup/plugin-json';
 import { getBabelInputPlugin, getBabelOutputPlugin } from '@rollup/plugin-babel';
-import getBabelConfig from './babel';
+import { getBabelInputConfig, getBabelOutputConfig } from './babel';
 import Build from '../Build';
 import { FeatureFlags, Format, BuildUnit } from '../types';
 import { EXTENSIONS, EXCLUDE } from '../constants';
 import getPlatformFromBuild from '../helpers/getPlatformFromBuild';
 
-const sharedPlugins = [resolve({ extensions: EXTENSIONS }), json({ namedExports: false })];
+const sharedPlugins = [resolve({ extensions: EXTENSIONS, preferBuiltins: true }), commonjs()];
 
 function getInputFile(build: Build): Path | null {
   // eslint-disable-next-line no-restricted-syntax
@@ -47,10 +47,7 @@ function getModuleFormat(format: Format): ModuleFormat {
   return 'cjs';
 }
 
-export default function getRollupConfig(
-  build: Build,
-  features: FeatureFlags,
-): RollupOptions | null {
+export function getRollupConfig(build: Build, features: FeatureFlags): RollupOptions | null {
   const inputPath = getInputFile(build);
 
   if (!inputPath) {
@@ -58,29 +55,33 @@ export default function getRollupConfig(
   }
 
   const input = build.root.relativeTo(inputPath).path();
+  const packagePath = path.resolve(build.packagePath.append('package.json').path());
+
   const config: RollupOptions = {
     cache: build.cache,
+    external: [packagePath],
     input,
     output: [],
     // Shared output plugins
     plugins: [
-      ...sharedPlugins,
-      // Declare Babel here so we can parse TypeScript/Flow
-      getBabelInputPlugin({
-        ...getBabelConfig(build, null, features),
-        babelHelpers: 'bundled',
-        exclude: EXCLUDE,
-        extensions: EXTENSIONS,
-        filename: build.packagePath.path(),
-      }),
       // Mark all dependencies in `package.json` as external
       externals({
         builtins: true,
         deps: true,
         devDeps: true,
         optDeps: true,
-        packagePath: path.resolve(build.packagePath.append('package.json').path()),
+        packagePath,
         peerDeps: true,
+      }),
+      // Externals MUST be listed before shared plugins
+      ...sharedPlugins,
+      // Declare Babel here so we can parse TypeScript/Flow
+      getBabelInputPlugin({
+        ...getBabelInputConfig(build, features),
+        babelHelpers: 'bundled',
+        exclude: EXCLUDE,
+        extensions: EXTENSIONS,
+        filename: build.packagePath.path(),
       }),
     ],
     // Always treeshake for smaller builds
@@ -104,10 +105,12 @@ export default function getRollupConfig(
       // Output specific plugins
       plugins: [
         getBabelOutputPlugin({
-          ...getBabelConfig(build, buildUnit, features),
+          ...getBabelOutputConfig(buildUnit, features),
           filename: build.packagePath.path(),
         }),
       ],
+      // Disable source maps
+      sourcemap: false,
     };
 
     if (format === 'umd') {

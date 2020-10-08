@@ -57,36 +57,36 @@ function getPlatformEnvOptions(
   }
 }
 
-export default function getBabelConfig(
+function getSharedConfig(
+  plugins: PluginItem[],
+  presets: PluginItem[],
+  features: FeatureFlags,
+): ConfigStructure {
+  return {
+    caller: {
+      name: 'packemon',
+    },
+    comments: false,
+    plugins,
+    presets,
+    // Do NOT load root `babel.config.js` as we need full control
+    configFile: false,
+    // Do load branch `.babelrc.js` files for granular customization
+    babelrc: true,
+    babelrcRoots: features.workspaces,
+    // Disable source maps
+    sourceMaps: false,
+  };
+}
+
+// The input config should only parse special syntax, not transform and downlevel.
+// This applies to all formats within a build target.
+export function getBabelInputConfig(
   build: Build,
-  buildUnit: BuildUnit | null,
   features: FeatureFlags,
 ): Omit<ConfigStructure, 'include' | 'exclude'> {
   const plugins: PluginItem[] = [];
   const presets: PluginItem[] = [];
-
-  // ENVIRONMENT
-
-  // This must be determined first before we add other presets or plugins
-  if (buildUnit) {
-    const { format, platform, target } = buildUnit;
-    const envOptions: PresetEnvOptions = {
-      // Prefer spec compliance over speed
-      spec: true,
-      loose: false,
-      // Consumers must polyfill accordingly
-      useBuiltIns: false,
-      // Transform features accordingly
-      bugfixes: true,
-      shippedProposals: true,
-      // Platform specific
-      ...getPlatformEnvOptions(platform, target, format),
-    };
-
-    presets.push(['@babel/preset-env', envOptions]);
-  }
-
-  // PRESETS
 
   if (features.flow) {
     presets.push(['@babel/preset-flow', { allowDeclareFields: true }]);
@@ -119,11 +119,41 @@ export default function getBabelConfig(
     ]);
   }
 
+  return getSharedConfig(plugins, presets, features);
+}
+
+// The output config does all the transformation and downleveling through the preset-env.
+// This is handled per output since we need to configure based on target + format combinations.
+export function getBabelOutputConfig(
+  buildUnit: BuildUnit,
+  features: FeatureFlags,
+): ConfigStructure {
+  const plugins: PluginItem[] = [];
+  const presets: PluginItem[] = [];
+
+  // ENVIRONMENT
+
+  const { format, platform, target } = buildUnit;
+  const envOptions: PresetEnvOptions = {
+    // Prefer spec compliance over speed
+    spec: true,
+    loose: false,
+    // Consumers must polyfill accordingly
+    useBuiltIns: false,
+    // Transform features accordingly
+    bugfixes: true,
+    shippedProposals: true,
+    // Platform specific
+    ...getPlatformEnvOptions(platform, target, format),
+  };
+
+  presets.push(['@babel/preset-env', envOptions]);
+
   // PLUGINS
 
   // Use `Object.assign` when available
   // https://babeljs.io/docs/en/babel-plugin-transform-destructuring#usebuiltins
-  if (buildUnit?.target !== 'legacy') {
+  if (buildUnit.target !== 'legacy') {
     plugins.push(
       ['@babel/plugin-transform-destructuring', { useBuiltIns: true }],
       ['@babel/plugin-proposal-object-rest-spread', { useBuiltIns: true }],
@@ -133,17 +163,5 @@ export default function getBabelConfig(
   // Support `__DEV__` shortcuts
   plugins.push(['babel-plugin-transform-dev', { evaluate: false }]);
 
-  return {
-    caller: {
-      name: 'packemon',
-    },
-    comments: false,
-    plugins,
-    presets,
-    // Do NOT load root `babel.config.js` as we need full control
-    configFile: false,
-    // Do load branch `.babelrc.js` files for granular customization
-    babelrc: true,
-    babelrcRoots: features.workspaces,
-  };
+  return getSharedConfig(plugins, presets, features);
 }

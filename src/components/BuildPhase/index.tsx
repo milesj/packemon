@@ -14,9 +14,6 @@ export interface BuildPhaseProps {
 
 export default function BuildPhase({ builds, packemon, onBuilt }: BuildPhaseProps) {
   const [errors, setErrors] = useState<Error[]>([]);
-  const [finishedBuilds, setFinishedBuilds] = useState<Build[]>([]);
-  const [pendingBuilds, setPendingBuilds] = useState<Build[]>(builds);
-  const [runningBuilds, setRunningBuilds] = useState<Build[]>([]);
 
   // Start building packages on mount
   useEffect(() => {
@@ -29,34 +26,20 @@ export default function BuildPhase({ builds, packemon, onBuilt }: BuildPhaseProp
     });
   }, [packemon, builds, onBuilt]);
 
-  // Update build list states
-  useEffect(() => {
-    const sortBuilds = (buildList: Build[]) => {
-      const finished: Build[] = [];
-      const pending: Build[] = [];
-      const running: Build[] = [];
+  // Update and sort build list states
+  const finishedBuilds: Build[] = [];
+  const pendingBuilds: Build[] = [];
+  const runningBuilds: Build[] = [];
 
-      buildList.forEach((build) => {
-        if (build.status === 'passed' || build.status === 'failed' || build.status === 'skipped') {
-          finished.push(build);
-        } else if (build.status === 'building') {
-          running.push(build);
-        } else {
-          pending.push(build);
-        }
-      });
-
-      setFinishedBuilds(finished);
-      setPendingBuilds(pending);
-      setRunningBuilds(running);
-    };
-
-    packemon.onBuildProgress.listen(sortBuilds);
-
-    return () => {
-      packemon.onBuildProgress.unlisten(sortBuilds);
-    };
-  }, [packemon]);
+  builds.forEach((build) => {
+    if (build.status === 'passed' || build.status === 'failed' || build.status === 'skipped') {
+      finishedBuilds.push(build);
+    } else if (build.status === 'building') {
+      runningBuilds.push(build);
+    } else {
+      pendingBuilds.push(build);
+    }
+  });
 
   // Bubble up errors to the main application
   if (errors.length > 0) {
