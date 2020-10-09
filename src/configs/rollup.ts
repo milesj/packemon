@@ -1,4 +1,5 @@
 import path from 'path';
+import { Path } from '@boost/common';
 import { RollupOptions, OutputOptions, ModuleFormat } from 'rollup';
 import externals from 'rollup-plugin-node-externals';
 import commonjs from '@rollup/plugin-commonjs';
@@ -12,9 +13,11 @@ import getPlatformFromBuild from '../helpers/getPlatformFromBuild';
 
 const sharedPlugins = [resolve({ extensions: EXTENSIONS, preferBuiltins: true }), commonjs()];
 
-function getInputFile(build: Build): string | null {
-  if (build.packagePath.append(build.inputPath).exists()) {
-    return build.inputPath;
+function getInputFile(build: Build): Path | null {
+  const inputPath = build.packagePath.append(build.inputPath);
+
+  if (inputPath.exists()) {
+    return inputPath;
   }
 
   console.warn(
@@ -24,10 +27,10 @@ function getInputFile(build: Build): string | null {
   return null;
 }
 
-function getOutputFile(build: Build, format: Format): string {
+function getOutputFile(build: Build, format: Format): Path {
   const ext = format === 'cjs' || format === 'mjs' ? format : 'js';
 
-  return `${format}/${build.inputName}.${ext}`;
+  return build.packagePath.append(`${format}/${build.inputName}.${ext}`);
 }
 
 function getModuleFormat(format: Format): ModuleFormat {
@@ -43,9 +46,9 @@ function getModuleFormat(format: Format): ModuleFormat {
 }
 
 export function getRollupConfig(build: Build, features: FeatureFlags): RollupOptions | null {
-  const input = getInputFile(build);
+  const inputPath = getInputFile(build);
 
-  if (!input) {
+  if (!inputPath) {
     return null;
   }
 
@@ -54,7 +57,7 @@ export function getRollupConfig(build: Build, features: FeatureFlags): RollupOpt
   const config: RollupOptions = {
     cache: build.cache,
     external: [packagePath],
-    input,
+    input: inputPath.path(),
     output: [],
     // Shared output plugins
     plugins: [
@@ -91,7 +94,7 @@ export function getRollupConfig(build: Build, features: FeatureFlags): RollupOpt
     };
 
     const output: OutputOptions = {
-      file: getOutputFile(build, format),
+      file: getOutputFile(build, format).path(),
       format: getModuleFormat(format),
       originalFormat: format,
       // Use const when not supporting old targets
