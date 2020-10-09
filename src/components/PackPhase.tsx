@@ -12,9 +12,7 @@ export default function PackPhase({ packemon, onPacked }: PackPhaseProps) {
   // Start packing packages on mount
   useEffect(() => {
     void packemon.pack().then(() => {
-      setTimeout(() => {
-        onPacked();
-      }, 1000);
+      onPacked();
     });
   }, [packemon, onPacked]);
 

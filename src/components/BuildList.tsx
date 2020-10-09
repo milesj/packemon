@@ -1,8 +1,9 @@
-import React from 'react';
-import { Box } from 'ink';
+import React, { useEffect, useState } from 'react';
+import { Box, useStdout } from 'ink';
 import Spinner from 'ink-spinner';
 import { formatMs } from '@boost/common';
 import { Style, StyleType } from '@boost/cli';
+import { screen } from '@boost/terminal';
 import Build from '../Build';
 import { BuildStatus } from '../types';
 import TargetPlatforms from './TargetPlatforms';
@@ -59,14 +60,34 @@ export function BuildRow({ build }: BuildRowProps) {
   );
 }
 
+const ROW_HEIGHT = 3; // 2 rows + 1 top margin
+
 export interface BuildListProps {
   builds: Build[];
 }
 
 export default function BuildList({ builds }: BuildListProps) {
+  const [height, setHeight] = useState(screen.size().rows);
+  const { stdout } = useStdout();
+
+  useEffect(() => {
+    const handler = () => {
+      setHeight(screen.size().rows);
+    };
+
+    stdout?.on('resize', handler);
+
+    return () => {
+      stdout?.off('resize', handler);
+    };
+  }, [stdout]);
+
+  // We dont want to show more builds than the amount of rows available in the terminal
+  const visibleBuilds = builds.slice(0, Math.floor(height / ROW_HEIGHT) - 1);
+
   return (
     <>
-      {builds.map((build) => (
+      {visibleBuilds.map((build) => (
         <BuildRow key={build.name} build={build} />
       ))}
     </>

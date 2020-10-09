@@ -14,15 +14,9 @@ export default function BootPhase({ packemon, onBooted }: BootPhaseProps) {
 
   // Monitor generation progress
   useEffect(() => {
-    const handleProgress = (current: number, total: number) => {
+    return packemon.onBootProgress.listen((current, total) => {
       setProgress(current / total);
-    };
-
-    packemon.onBootProgress.listen(handleProgress);
-
-    return () => {
-      packemon.onBootProgress.unlisten(handleProgress);
-    };
+    });
   }, [packemon]);
 
   // Find all packages and generate builds on mount
@@ -31,13 +25,13 @@ export default function BootPhase({ packemon, onBooted }: BootPhaseProps) {
       // Delay next phase to show progress bar
       setTimeout(() => {
         onBooted();
-      }, 1000);
+      }, 500);
     });
   }, [packemon, onBooted]);
 
   return (
     <Box flexDirection="column">
-      <Header label="Bootstrapping packages and generating build requests" />
+      <Header label="Bootstrapping packages and builds" />
       <ProgressBar percent={progress || 0.1} />
     </Box>
   );

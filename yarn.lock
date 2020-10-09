@@ -1119,14 +1119,14 @@
     "@boost/internal" "^2.1.1"
     levenary "^1.1.1"
 
-"@boost/cli@^2.1.2":
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/@boost/cli/-/cli-2.1.2.tgz#e5491aad1152762ce703d70b927c1f1ddebca6c1"
-  integrity sha512-Yx6J8edUPjKO+QeKZWaVEb3+YHHRYIaLRWEuKNxTX5WXlPNP4OHj20/7Dy9JnRGsqHo+cQ9aWhfHermak2ar3w==
+"@boost/cli@^2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@boost/cli/-/cli-2.2.0.tgz#9cd2ee090498b536f6e3c57321d392c5b6faf3f0"
+  integrity sha512-kebHLHy6ZQ+dMSSWMrTbtgmOIg7gsbnzYHWFgY7VE8w4GvePe9nrfWsZFjq/H22doYXVLv6u6SuIlJPLeGpmnQ==
   dependencies:
     "@boost/args" "^2.2.1"
     "@boost/common" "^2.2.2"
-    "@boost/event" "^2.1.1"
+    "@boost/event" "^2.2.0"
     "@boost/internal" "^2.1.1"
     "@boost/log" "^2.1.2"
     "@boost/terminal" "^2.1.0"
@@ -1222,10 +1222,10 @@
   dependencies:
     "@boost/internal" "^1.2.0"
 
-"@boost/event@^2.1.1":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@boost/event/-/event-2.1.1.tgz#d74d6c404498a552173c06134a32739a8645a2bc"
-  integrity sha512-l4eCc2/4kukMb/PxJewQi3g+NofUf58uDtn+0PT/dDwtcPP2+yy2JUMvAz5W6sH0vvAEwfIfJF0snwnTgyD5+g==
+"@boost/event@^2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@boost/event/-/event-2.2.0.tgz#8d7ae0da240424d613977ba4224d7ad3fd2d0a96"
+  integrity sha512-Kvr6aZj+4oq/rghw+7I8rSpMYi1rBSmjwKUXLhH3pk1+WQvFGdE9xLmvXCRxRefhGyBUPvQ4pCUdhfqZhRfJBg==
   dependencies:
     "@boost/internal" "^2.1.1"
 
@@ -1263,14 +1263,14 @@
     "@boost/translate" "^2.1.2"
     chalk "^4.1.0"
 
-"@boost/pipeline@^2.1.2":
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/@boost/pipeline/-/pipeline-2.1.2.tgz#ca62f7e6ae65314aeebdd4c7811fa71b0e1398c5"
-  integrity sha512-4BdajpbmyjJ+gTz5horxgoLoOHqoDAONKL1WxcfcXTUWtjw1KpkABYqulOc06oSHIZCFIq4AN1FVoQWom2cBYw==
+"@boost/pipeline@^2.1.3":
+  version "2.1.3"
+  resolved "https://registry.yarnpkg.com/@boost/pipeline/-/pipeline-2.1.3.tgz#1aa902ea801ca9c1f7eb9f61fbf8b2a1e4206887"
+  integrity sha512-Bck/JizFB8hf+rmzrt/Dn+sH7F1z6+uuNsztbU6HlFYWdkApmb/W9okxA2zXBMJ7TH9bjpSJ4yBrd1WYKX0M5w==
   dependencies:
     "@boost/common" "^2.2.2"
     "@boost/debug" "^2.1.2"
-    "@boost/event" "^2.1.1"
+    "@boost/event" "^2.2.0"
     "@boost/internal" "^2.1.1"
     "@boost/translate" "^2.1.2"
     execa "^4.0.3"

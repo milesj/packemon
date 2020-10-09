@@ -1,10 +1,10 @@
+// eslint-disable-next-line no-use-before-define
 import React from 'react';
+import os from 'os';
 import { Arg, Command, Config, GlobalOptions } from '@boost/cli';
 import Main from './components/Main';
 import Packemon from './Packemon';
 import { PackemonOptions } from './types';
-
-const CONCURRENCY = 4;
 
 export type Options = GlobalOptions & PackemonOptions;
 
@@ -19,7 +19,7 @@ export default class PackemonCommand extends Command<Options, Params> {
   checkLicenses: boolean = false;
 
   @Arg.Number('Number of builds to run in parallel')
-  concurrency: number = CONCURRENCY;
+  concurrency: number = os.cpus().length;
 
   @Arg.Flag('Skip `private` packages from being built')
   skipPrivate: boolean = false;

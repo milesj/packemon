@@ -4,6 +4,7 @@ export const EXTENSIONS = ['.ts', '.tsx', '.js', '.jsx', '.cjs', '.mjs'];
 
 export const EXCLUDE = [
   'node_modules/**',
+  'tests/**',
   '__fixtures__/**',
   '__mocks__/**',
   '__tests__/**',

@@ -16,15 +16,18 @@ export default function BuildPhase({ packemon, onBuilt }: BuildPhaseProps) {
   // Start building packages on mount
   useEffect(() => {
     void packemon.build().then((result) => {
-      setTimeout(() => {
-        if (result.errors.length > 0) {
-          setErrors(result.errors);
-        } else {
-          onBuilt();
-        }
-      }, 1000);
+      if (result.errors.length > 0) {
+        setErrors(result.errors);
+      } else {
+        onBuilt();
+      }
     });
   }, [packemon, onBuilt]);
+
+  // Bubble up errors to the main application
+  if (errors.length > 0) {
+    throw errors[0];
+  }
 
   // Update and sort build list states
   const pendingBuilds: Build[] = [];
@@ -38,11 +41,6 @@ export default function BuildPhase({ packemon, onBuilt }: BuildPhaseProps) {
     }
   });
 
-  // Bubble up errors to the main application
-  if (errors.length > 0) {
-    throw errors[0];
-  }
-
   // Phase label
   let label = `Building ${runningBuilds.length} packages`;
 
@@ -52,7 +50,7 @@ export default function BuildPhase({ packemon, onBuilt }: BuildPhaseProps) {
 
   return (
     <Box flexDirection="column">
-      <Header label={label} />
+      <Header label={label} marginBottom={0} />
       <BuildList builds={runningBuilds} />
     </Box>
   );
