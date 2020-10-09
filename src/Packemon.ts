@@ -281,10 +281,17 @@ export default class Packemon extends Contract<PackemonOptions> {
       target: string('legacy').oneOf(['legacy', 'modern', 'future']),
     };
 
-    return packages.map(({ metadata, package: pkg }) => {
+    // Filter packages that only have packemon configured
+    const nextPackages: PackemonPackage[] = [];
+
+    packages.forEach(({ metadata, package: pkg }) => {
+      if (!pkg.packemon) {
+        return;
+      }
+
       // Validate and set metadata
       pkg.packemon = {
-        ...optimal(pkg.packemon || {}, blueprint),
+        ...optimal(pkg.packemon, blueprint),
         path: Path.create(metadata.packagePath),
       };
 
@@ -307,7 +314,9 @@ export default class Packemon extends Contract<PackemonOptions> {
         }
       }
 
-      return pkg;
+      nextPackages.push(pkg);
     });
+
+    return nextPackages;
   }
 }
