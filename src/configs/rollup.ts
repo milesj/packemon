@@ -1,4 +1,5 @@
 import path from 'path';
+import { Path } from '@boost/common';
 import { RollupOptions, OutputOptions, ModuleFormat } from 'rollup';
 import externals from 'rollup-plugin-node-externals';
 import commonjs from '@rollup/plugin-commonjs';
