@@ -2,7 +2,7 @@ import { Path, toArray } from '@boost/common';
 import { rollup, RollupCache } from 'rollup';
 import Artifact from './Artifact';
 import { getRollupConfig } from './configs/rollup';
-import { BuildResult, Format, Platform, Target } from './types';
+import { Format, Platform } from './types';
 
 export default class RollupArtifact extends Artifact {
   cache?: RollupCache;
@@ -18,23 +18,6 @@ export default class RollupArtifact extends Artifact {
   // Name of the output file without extension
   outputName: string = '';
 
-  platforms: Platform[] = [];
-
-  result?: BuildResult;
-
-  target: Target = 'legacy';
-
-  get name(): string {
-    let { name } = this.package.contents;
-
-    if (this.outputName !== 'index') {
-      name += '/';
-      name += this.outputName;
-    }
-
-    return name;
-  }
-
   async build() {
     const rollupConfig = getRollupConfig(this, this.package.getFeatureFlags());
 
@@ -46,22 +29,17 @@ export default class RollupArtifact extends Artifact {
     }
 
     this.status = 'building';
+    this.result = {
+      time: 0,
+    };
 
     const { output = [], ...input } = rollupConfig;
+    const start = Date.now();
     const bundle = await rollup(input);
 
-    // Cache the build
     if (bundle.cache) {
       this.cache = bundle.cache;
     }
-
-    // Write each build output
-    const start = Date.now();
-
-    this.result = {
-      output: [],
-      time: 0,
-    };
 
     await Promise.all(
       toArray(output).map(async (out) => {
@@ -73,18 +51,19 @@ export default class RollupArtifact extends Artifact {
           this.status = 'passed';
         } catch (error) {
           this.status = 'failed';
-
-          throw error;
         }
-
-        this.result?.output.push({
-          format: originalFormat!,
-          path: out.file!,
-        });
       }),
     );
 
     this.result.time = Date.now() - start;
+  }
+
+  getLabel(): string {
+    return this.outputName;
+  }
+
+  getBuilds(): string[] {
+    return this.formats;
   }
 
   getPlatform(format: Format): Platform {
@@ -100,7 +79,7 @@ export default class RollupArtifact extends Artifact {
     // and when a package wants to support multiple platforms,
     // we must down-level the "lib" format to the lowest platform.
     if (this.flags.requiresSharedLib) {
-      const platforms = new Set(this.platforms);
+      const platforms = new Set(this.package.platforms);
 
       if (platforms.has('browser')) {
         return 'browser';
@@ -109,7 +88,7 @@ export default class RollupArtifact extends Artifact {
       }
     }
 
-    return this.platforms[0];
+    return this.package.platforms[0];
   }
 
   getInputPath(): Path | null {

@@ -1,10 +1,12 @@
 import Package from './Package';
-import { ArtifactFlags, BuildStatus } from './types';
+import { ArtifactFlags, BuildResult, BuildStatus } from './types';
 
 export default abstract class Artifact {
   flags: ArtifactFlags = {};
 
   package: Package;
+
+  result?: BuildResult;
 
   status: BuildStatus = 'pending';
 
@@ -12,9 +14,9 @@ export default abstract class Artifact {
     this.package = pkg;
   }
 
-  get name(): string {
-    return this.package.name;
-  }
-
   abstract build(): Promise<void>;
+
+  abstract getLabel(): string;
+
+  abstract getBuilds(): string[];
 }

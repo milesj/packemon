@@ -71,7 +71,7 @@ export function getRollupConfig(
     const buildUnit: BuildUnit = {
       format,
       platform: artifact.getPlatform(format),
-      target: artifact.target,
+      target: artifact.package.target,
     };
 
     const output: OutputOptions = {
@@ -79,7 +79,7 @@ export function getRollupConfig(
       format: getRollupModuleFormat(format),
       originalFormat: format,
       // Use const when not supporting old targets
-      preferConst: artifact.target !== 'legacy',
+      preferConst: artifact.package.target !== 'legacy',
       // Output specific plugins
       plugins: [
         getBabelOutputPlugin({

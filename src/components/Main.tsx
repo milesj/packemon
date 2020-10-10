@@ -1,22 +1,28 @@
-import { Static } from 'ink';
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Box, Static } from 'ink';
+import { Header } from '@boost/cli';
 import Packemon from '../Packemon';
-import { Phase } from '../types';
-import BootPhase from './BootPhase';
-import BuildPhase from './BuildPhase';
-import { BuildRow } from './BuildList';
-import PackPhase from './PackPhase';
+import PackageList from './PackageList';
+import PackageRow from './PackageRow';
+import Package from '../Package';
+
+const HEADER_LABELS = {
+  boot: 'Bootstrapping packages',
+  build: 'Building package artifacts',
+  pack: 'Packing for distribution',
+};
 
 export interface MainProps {
   packemon: Packemon;
 }
 
 export default function Main({ packemon }: MainProps) {
-  const [phase, setPhase] = useState<Phase | 'done'>('boot');
-  const [, setCounter] = useState(0);
+  const [error, setError] = useState<Error>();
+  const [counter, setCounter] = useState(0);
+  const [builtPackages, setBuiltPackages] = useState<Package[]>([]);
 
-  // Continuously re-render so that each build status is updated
   useEffect(() => {
+    // Continuously re-render so that statuses are updated
     const timer = setInterval(() => {
       setCounter((count) => count + 1);
     }, 100);
@@ -25,37 +31,46 @@ export default function Main({ packemon }: MainProps) {
       clearInterval(timer);
     };
 
-    packemon.onComplete.listen(clear);
+    // Run the packemon process on mount
+    void packemon.run().then(clear).catch(setError);
 
     return clear;
   }, [packemon]);
 
-  // Handlers for advancing between phases
-  const handleBooted = useCallback(() => {
-    setPhase('build');
-  }, []);
+  // Update built packages list on each re-render
+  useEffect(() => {
+    setBuiltPackages((prevBuilt) => {
+      const builtSet = new Set(prevBuilt);
+      const nextBuilt: Package[] = [];
 
-  const handleBuilt = useCallback(() => {
-    setPhase('pack');
-  }, []);
+      packemon.packages.forEach((pkg) => {
+        if (pkg.isBuilt() && !builtSet.has(pkg)) {
+          nextBuilt.push(pkg);
+        }
+      });
 
-  const handlePacked = useCallback(() => {
-    setPhase('done');
-  }, []);
+      return [...prevBuilt, ...nextBuilt];
+    });
+  }, [counter, packemon]);
+
+  // Bubble up errors to the program
+  if (error) {
+    throw error;
+  }
+
+  const runningPackages = packemon.packages.filter((pkg) => !pkg.isBuilt());
 
   return (
     <>
-      {phase === 'boot' && <BootPhase packemon={packemon} onBooted={handleBooted} />}
+      <Static items={builtPackages}>
+        {(pkg) => <PackageRow key={pkg.getName()} package={pkg} />}
+      </Static>
 
-      {phase === 'build' && <BuildPhase packemon={packemon} onBuilt={handleBuilt} />}
+      <Box flexDirection="column">
+        <Header label={HEADER_LABELS[packemon.phase]} />
 
-      {phase === 'pack' && <PackPhase packemon={packemon} onPacked={handlePacked} />}
-
-      {phase === 'done' && (
-        <Static items={packemon.builds}>
-          {(build) => <BuildRow key={build.name} build={build} />}
-        </Static>
-      )}
+        {runningPackages.length > 0 && <PackageList packages={runningPackages} />}
+      </Box>
     </>
   );
 }

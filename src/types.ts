@@ -58,8 +58,6 @@ export interface ArtifactFlags {
   requiresSharedLib?: boolean;
 }
 
-// BUILD PHASE
-
 export type BuildStatus = 'pending' | 'building' | 'passed' | 'failed' | 'skipped';
 
 export interface BuildResultOutput {
@@ -68,8 +66,8 @@ export interface BuildResultOutput {
 }
 
 export interface BuildResult {
+  [key: string]: unknown;
   time: number;
-  output: BuildResultOutput[];
 }
 
 export interface BuildUnit {

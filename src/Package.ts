@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/member-ordering */
 
-import { Memoize, Path } from '@boost/common';
+import { Memoize, Path, toArray } from '@boost/common';
 import Artifact from './Artifact';
 import Project from './Project';
 import resolveTsConfig from './helpers/resolveTsConfig';
-import { FeatureFlags, PackemonPackage } from './types';
+import { FeatureFlags, PackemonPackage, Platform, Target } from './types';
 
 export default class Package {
   artifacts: Artifact[] = [];
@@ -13,22 +13,28 @@ export default class Package {
 
   path: Path;
 
+  platforms: Platform[];
+
   project: Project;
+
+  target: Target;
 
   constructor(project: Project, path: Path, contents: PackemonPackage) {
     this.project = project;
     this.path = path;
     this.contents = contents;
-  }
-
-  get name(): string {
-    return this.contents.name;
+    this.platforms = toArray(contents.packemon.platform);
+    this.target = contents.packemon.target;
   }
 
   addArtifact(artifact: Artifact): Artifact {
     this.artifacts.push(artifact);
 
     return artifact;
+  }
+
+  getName(): string {
+    return this.contents.name;
   }
 
   @Memoize()

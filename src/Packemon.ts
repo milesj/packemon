@@ -12,7 +12,6 @@ import {
   toArray,
   WorkspacePackage,
 } from '@boost/common';
-import { Event } from '@boost/event';
 import { PooledPipeline, Context } from '@boost/pipeline';
 import spdxLicenses from 'spdx-license-list';
 import Package from './Package';
@@ -24,7 +23,7 @@ import {
   PackemonOptions,
   PackemonPackage,
   PackemonPackageConfig,
-  Platform,
+  Phase,
 } from './types';
 
 export default class Packemon extends Contract<PackemonOptions> {
@@ -32,9 +31,9 @@ export default class Packemon extends Contract<PackemonOptions> {
 
   packages: Package[] = [];
 
-  project: Project;
+  phase: Phase = 'boot';
 
-  readonly onBootProgress = new Event<[number, number]>('boot-progress');
+  project: Project;
 
   constructor(cwd: string, options: PackemonOptions) {
     super(options);
@@ -54,14 +53,19 @@ export default class Packemon extends Contract<PackemonOptions> {
   }
 
   async run() {
-    // Find all packages
-    this.packages = await this.getPackages();
+    // Find packages and generate artifacts
+    this.phase = 'boot';
 
-    // Generate artifacts for each package
+    await this.findPackages();
     await this.generateArtifacts();
 
     // Build all artifacts in parallel
+    this.phase = 'build';
+
     await this.buildArtifacts();
+
+    // Run final packaging processes
+    this.phase = 'pack';
   }
 
   protected async buildArtifacts() {
@@ -74,63 +78,19 @@ export default class Packemon extends Contract<PackemonOptions> {
 
     this.packages.forEach((pkg) => {
       pkg.artifacts.forEach((artifact) => {
-        pipeline.add(`Building ${artifact.name} for package ${pkg.name}`, () => artifact.build());
+        pipeline.add(`Building ${artifact.getLabel()} for package ${pkg.getName()}`, () =>
+          artifact.build(),
+        );
       });
     });
 
     await pipeline.run();
   }
 
-  protected generateArtifacts() {
-    this.packages.forEach((pkg) => {
-      const config = pkg.contents.packemon;
-      const flags: ArtifactFlags = {};
-      const formats = new Set<Format>();
-      const platforms = new Set<Platform>();
-
-      toArray(config.platform)
-        .sort()
-        .forEach((platform) => {
-          platforms.add(platform);
-
-          if (formats.has('lib')) {
-            flags.requiresSharedLib = true;
-          }
-
-          if (platform === 'node') {
-            formats.add('lib');
-            formats.add('cjs');
-            formats.add('mjs');
-          } else if (platform === 'browser') {
-            formats.add('lib');
-            formats.add('esm');
-
-            if (config.namespace) {
-              formats.add('umd');
-            }
-          }
-        });
-
-      Object.entries(config.inputs).forEach(([name, path]) => {
-        const artifact = new RollupArtifact(pkg);
-        artifact.flags = flags;
-        artifact.formats = Array.from(formats);
-        artifact.inputPath = path;
-        artifact.namespace = config.namespace;
-        artifact.outputName = name;
-        artifact.platforms = Array.from(platforms);
-        artifact.target = config.target;
-
-        pkg.addArtifact(artifact);
-      });
-    });
-  }
-
-  protected async getPackages(): Promise<Package[]> {
+  protected async findPackages() {
     const pkgPaths: Path[] = [];
 
     this.project.workspaces = this.project.getWorkspaceGlobs({ relative: true });
-    this.onBootProgress.emit([0, pkgPaths.length]);
 
     // Multi package repo
     if (this.project.workspaces.length > 0) {
@@ -143,18 +103,12 @@ export default class Packemon extends Contract<PackemonOptions> {
       pkgPaths.push(this.root.append('package.json'));
     }
 
-    this.onBootProgress.emit([0, pkgPaths.length]);
-
-    let counter = 0;
     let packages: WorkspacePackage<PackemonPackage>[] = await Promise.all(
       pkgPaths.map(async (pkgPath) => {
         const content = json.parse<PackemonPackage>(
           // eslint-disable-next-line node/no-unsupported-features/node-builtins
           await fs.promises.readFile(pkgPath.path(), 'utf8'),
         );
-
-        counter += 1;
-        this.onBootProgress.emit([counter, pkgPaths.length]);
 
         return {
           metadata: this.project.createWorkspaceMetadata(pkgPath),
@@ -163,14 +117,50 @@ export default class Packemon extends Contract<PackemonOptions> {
       }),
     );
 
-    this.onBootProgress.emit([pkgPaths.length, pkgPaths.length]);
-
     // Skip `private` packages
     if (this.options.skipPrivate) {
       packages = packages.filter((pkg) => !pkg.package.private);
     }
 
-    return this.validateAndPreparePackages(packages);
+    this.packages = this.validateAndPreparePackages(packages);
+  }
+
+  protected generateArtifacts() {
+    this.packages.forEach((pkg) => {
+      const config = pkg.contents.packemon;
+      const flags: ArtifactFlags = {};
+      const formats = new Set<Format>();
+
+      pkg.platforms.sort().forEach((platform) => {
+        if (formats.has('lib')) {
+          flags.requiresSharedLib = true;
+        }
+
+        if (platform === 'node') {
+          formats.add('lib');
+          formats.add('cjs');
+          formats.add('mjs');
+        } else if (platform === 'browser') {
+          formats.add('lib');
+          formats.add('esm');
+
+          if (config.namespace) {
+            formats.add('umd');
+          }
+        }
+      });
+
+      Object.entries(config.inputs).forEach(([name, path]) => {
+        const artifact = new RollupArtifact(pkg);
+        artifact.flags = flags;
+        artifact.formats = Array.from(formats);
+        artifact.inputPath = path;
+        artifact.namespace = config.namespace;
+        artifact.outputName = name;
+
+        pkg.addArtifact(artifact);
+      });
+    });
   }
 
   protected validateAndPreparePackages(packages: WorkspacePackage<PackemonPackage>[]): Package[] {
