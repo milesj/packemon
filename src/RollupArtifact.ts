@@ -28,7 +28,6 @@ export default class RollupArtifact extends Artifact {
       return;
     }
 
-    this.status = 'building';
     this.result = {
       time: 0,
     };
@@ -47,8 +46,6 @@ export default class RollupArtifact extends Artifact {
 
         try {
           await bundle.write(outOptions);
-
-          this.status = 'passed';
         } catch (error) {
           this.status = 'failed';
         }

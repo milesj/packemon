@@ -16,9 +16,11 @@ import { PooledPipeline, Context } from '@boost/pipeline';
 import spdxLicenses from 'spdx-license-list';
 import Package from './Package';
 import Project from './Project';
+import Artifact from './Artifact';
 import RollupArtifact from './RollupArtifact';
 import {
   ArtifactFlags,
+  BuildStatus,
   Format,
   PackemonOptions,
   PackemonPackage,
@@ -54,37 +56,23 @@ export default class Packemon extends Contract<PackemonOptions> {
 
   async run() {
     // Find packages and generate artifacts
-    this.phase = 'boot';
-
     await this.findPackages();
     await this.generateArtifacts();
 
-    // Build all artifacts in parallel
+    // Bootstrap artifacts
+    this.phase = 'boot';
+
+    await this.processArtifacts('booting', (artifact) => artifact.boot());
+
+    // Build artifacts
     this.phase = 'build';
 
-    await this.buildArtifacts();
+    await this.processArtifacts('building', (artifact) => artifact.build());
 
-    // Run final packaging processes
+    // Package artifacts
     this.phase = 'pack';
-  }
 
-  protected async buildArtifacts() {
-    const pipeline = new PooledPipeline(new Context());
-
-    pipeline.configure({
-      concurrency: this.options.concurrency,
-      timeout: this.options.timeout,
-    });
-
-    this.packages.forEach((pkg) => {
-      pkg.artifacts.forEach((artifact) => {
-        pipeline.add(`Building ${artifact.getLabel()} for package ${pkg.getName()}`, () =>
-          artifact.build(),
-        );
-      });
-    });
-
-    await pipeline.run();
+    await this.processArtifacts('packing', (artifact) => artifact.pack());
   }
 
   protected async findPackages() {
@@ -161,6 +149,34 @@ export default class Packemon extends Contract<PackemonOptions> {
         pkg.addArtifact(artifact);
       });
     });
+  }
+
+  protected async processArtifacts(
+    status: BuildStatus,
+    callback: (artifact: Artifact) => Promise<void>,
+  ): Promise<void> {
+    const pipeline = new PooledPipeline(new Context());
+
+    pipeline.configure({
+      concurrency: this.options.concurrency,
+      timeout: this.options.timeout,
+    });
+
+    this.packages.forEach((pkg) => {
+      pkg.artifacts.forEach((artifact) => {
+        if (artifact.shouldSkip()) {
+          return;
+        }
+
+        pipeline.add(`${status} ${artifact.getLabel()} (${pkg.getName()})`, () => {
+          artifact.status = status;
+
+          return callback(artifact);
+        });
+      });
+    });
+
+    await pipeline.run();
   }
 
   protected validateAndPreparePackages(packages: WorkspacePackage<PackemonPackage>[]): Package[] {

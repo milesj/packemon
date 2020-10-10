@@ -5,7 +5,7 @@ export default class Project extends BaseProject {
   workspaces: string[] = [];
 
   @Memoize()
-  getRootPackage(): Package {
+  get rootPackage(): Package {
     return new Package(this, this.root.append('package.json'), this.getPackage());
   }
 }

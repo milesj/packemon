@@ -40,7 +40,7 @@ export default class Package {
   @Memoize()
   getFeatureFlags(): FeatureFlags {
     const flags: FeatureFlags = {
-      ...this.project.getRootPackage().getFeatureFlags(),
+      ...this.project.rootPackage.getFeatureFlags(),
       workspaces: this.project.workspaces,
     };
 
@@ -86,7 +86,7 @@ export default class Package {
 
   isBuilt(): boolean {
     return this.artifacts.every(
-      (artifact) => artifact.status !== 'pending' && artifact.status !== 'building',
+      (artifact) => artifact.status !== 'pending' && !artifact.isRunning(),
     );
   }
 }

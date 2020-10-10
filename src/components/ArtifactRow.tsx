@@ -6,9 +6,8 @@ import { Style, StyleType } from '@boost/cli';
 import Artifact from '../Artifact';
 import { BuildStatus } from '../types';
 
-const STATUS_COLORS: { [K in BuildStatus]: StyleType } = {
+const STATUS_COLORS: { [K in BuildStatus]?: StyleType } = {
   pending: 'muted',
-  building: 'default',
   passed: 'success',
   failed: 'failure',
   skipped: 'warning',
@@ -16,7 +15,9 @@ const STATUS_COLORS: { [K in BuildStatus]: StyleType } = {
 
 const STATUS_LABELS: { [K in BuildStatus]: string } = {
   pending: '',
+  booting: 'Booting…',
   building: 'Building…',
+  packing: 'Packing…',
   passed: 'Passed',
   failed: 'Failed',
   skipped: 'Skipped',
@@ -28,7 +29,6 @@ export interface ArtifactRowProps {
 
 export default function ArtifactRow({ artifact }: ArtifactRowProps) {
   const { status } = artifact;
-  const statusLabel = STATUS_LABELS[status];
 
   return (
     <Box flexDirection="row">
@@ -40,16 +40,18 @@ export default function ArtifactRow({ artifact }: ArtifactRowProps) {
 
       {artifact.getBuilds().map((build) => (
         <Box key={build} marginLeft={1}>
-          <Style bold inverted type={STATUS_COLORS[status]}>
+          <Style bold inverted type={STATUS_COLORS[status] || 'default'}>
             {` ${build.toUpperCase()} `}
           </Style>
         </Box>
       ))}
 
       <Box marginLeft={1}>
-        <Style type="muted">{artifact.result ? formatMs(artifact.result.time) : statusLabel}</Style>
+        <Style type="muted">
+          {artifact.result ? formatMs(artifact.result.time) : STATUS_LABELS[status]}
+        </Style>
 
-        {status === 'building' && (
+        {artifact.isRunning() && (
           <Style type="success">
             <Spinner type="dots" />
           </Style>

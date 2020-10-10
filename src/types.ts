@@ -58,12 +58,14 @@ export interface ArtifactFlags {
   requiresSharedLib?: boolean;
 }
 
-export type BuildStatus = 'pending' | 'building' | 'passed' | 'failed' | 'skipped';
-
-export interface BuildResultOutput {
-  format: Format;
-  path: string;
-}
+export type BuildStatus =
+  | 'pending'
+  | 'booting'
+  | 'building'
+  | 'packing'
+  | 'passed'
+  | 'failed'
+  | 'skipped';
 
 export interface BuildResult {
   [key: string]: unknown;
