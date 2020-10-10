@@ -1,4 +1,4 @@
-import { PackageStructure, Path } from '@boost/common';
+import { PackageStructure } from '@boost/common';
 import type { CompilerOptions } from 'typescript';
 
 export type Platform = 'node' | 'browser'; // electron
@@ -41,9 +41,7 @@ export interface PackemonPackageConfig {
 }
 
 export interface PackemonPackage extends PackageStructure {
-  packemon: PackemonPackageConfig & {
-    path: Path;
-  };
+  packemon: PackemonPackageConfig;
 }
 
 export interface PackemonOptions {
@@ -54,13 +52,15 @@ export interface PackemonOptions {
   timeout: number;
 }
 
+// ARTIFACTS
+
+export interface ArtifactFlags {
+  requiresSharedLib?: boolean;
+}
+
 // BUILD PHASE
 
 export type BuildStatus = 'pending' | 'building' | 'passed' | 'failed' | 'skipped';
-
-export interface BuildFlags {
-  requiresSharedLib?: boolean;
-}
 
 export interface BuildResultOutput {
   format: Format;

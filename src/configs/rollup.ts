@@ -1,39 +1,17 @@
 import path from 'path';
-import { Path } from '@boost/common';
 import { RollupOptions, OutputOptions, ModuleFormat } from 'rollup';
 import externals from 'rollup-plugin-node-externals';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import { getBabelInputPlugin, getBabelOutputPlugin } from '@rollup/plugin-babel';
 import { getBabelInputConfig, getBabelOutputConfig } from './babel';
-import Build from '../Build';
 import { FeatureFlags, Format, BuildUnit } from '../types';
 import { EXTENSIONS, EXCLUDE } from '../constants';
-import getPlatformFromBuild from '../helpers/getPlatformFromBuild';
+import RollupArtifact from '../RollupArtifact';
 
 const sharedPlugins = [resolve({ extensions: EXTENSIONS, preferBuiltins: true }), commonjs()];
 
-function getInputFile(build: Build): Path | null {
-  const inputPath = build.packagePath.append(build.inputPath);
-
-  if (inputPath.exists()) {
-    return inputPath;
-  }
-
-  console.warn(
-    `Cannot find input "${build.inputName}" for package "${build.package.name}". Skipping package.`,
-  );
-
-  return null;
-}
-
-function getOutputFile(build: Build, format: Format): Path {
-  const ext = format === 'cjs' || format === 'mjs' ? format : 'js';
-
-  return build.packagePath.append(`${format}/${build.inputName}.${ext}`);
-}
-
-function getModuleFormat(format: Format): ModuleFormat {
+function getRollupModuleFormat(format: Format): ModuleFormat {
   if (format === 'umd') {
     return 'umd';
   }
@@ -45,17 +23,20 @@ function getModuleFormat(format: Format): ModuleFormat {
   return 'cjs';
 }
 
-export function getRollupConfig(build: Build, features: FeatureFlags): RollupOptions | null {
-  const inputPath = getInputFile(build);
+export function getRollupConfig(
+  artifact: RollupArtifact,
+  features: FeatureFlags,
+): RollupOptions | null {
+  const inputPath = artifact.getInputPath();
 
   if (!inputPath) {
     return null;
   }
 
-  const packagePath = path.resolve(build.packagePath.append('package.json').path());
+  const packagePath = path.resolve(artifact.package.getJsonPath().path());
 
   const config: RollupOptions = {
-    cache: build.cache,
+    cache: artifact.cache,
     external: [packagePath],
     input: inputPath.path(),
     output: [],
@@ -74,36 +55,36 @@ export function getRollupConfig(build: Build, features: FeatureFlags): RollupOpt
       ...sharedPlugins,
       // Declare Babel here so we can parse TypeScript/Flow
       getBabelInputPlugin({
-        ...getBabelInputConfig(build, features),
+        ...getBabelInputConfig(artifact, features),
         babelHelpers: 'bundled',
         exclude: EXCLUDE,
         extensions: EXTENSIONS,
-        filename: build.packagePath.path(),
+        filename: artifact.package.path.path(),
       }),
     ],
     // Always treeshake for smaller builds
     treeshake: true,
   };
 
-  // Add an output for each build format
-  config.output = build.formats.map((format) => {
+  // Add an output for each format
+  config.output = artifact.formats.map((format) => {
     const buildUnit: BuildUnit = {
       format,
-      platform: getPlatformFromBuild(format, build),
-      target: build.target,
+      platform: artifact.getPlatform(format),
+      target: artifact.target,
     };
 
     const output: OutputOptions = {
-      file: getOutputFile(build, format).path(),
-      format: getModuleFormat(format),
+      file: artifact.getOutputPath(format).path(),
+      format: getRollupModuleFormat(format),
       originalFormat: format,
       // Use const when not supporting old targets
-      preferConst: build.target !== 'legacy',
+      preferConst: artifact.target !== 'legacy',
       // Output specific plugins
       plugins: [
         getBabelOutputPlugin({
           ...getBabelOutputConfig(buildUnit, features),
-          filename: build.packagePath.path(),
+          filename: artifact.package.path.path(),
         }),
       ],
       // Disable source maps
@@ -112,7 +93,7 @@ export function getRollupConfig(build: Build, features: FeatureFlags): RollupOpt
 
     if (format === 'umd') {
       output.extend = true;
-      output.name = build.meta.namespace;
+      output.name = artifact.namespace;
       output.noConflict = true;
     }
 

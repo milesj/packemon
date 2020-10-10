@@ -1,7 +1,7 @@
 import { PluginItem, TransformOptions as ConfigStructure } from '@babel/core';
 import { BROWSER_TARGETS, NODE_TARGETS } from '../constants';
 import { Target, Format, Platform, FeatureFlags, BuildUnit } from '../types';
-import Build from '../Build';
+import RollupArtifact from '../RollupArtifact';
 
 // https://babeljs.io/docs/en/babel-preset-env
 export interface PresetEnvOptions {
@@ -82,7 +82,7 @@ function getSharedConfig(
 // The input config should only parse special syntax, not transform and downlevel.
 // This applies to all formats within a build target.
 export function getBabelInputConfig(
-  build: Build,
+  artifact: RollupArtifact,
   features: FeatureFlags,
 ): Omit<ConfigStructure, 'include' | 'exclude'> {
   const plugins: PluginItem[] = [];
@@ -103,7 +103,7 @@ export function getBabelInputConfig(
         ['@babel/plugin-proposal-private-methods', { loose: true }],
       );
 
-      if (build.hasDependency('@babel/plugin-proposal-private-property-in-object')) {
+      if (artifact.package.hasDependency('@babel/plugin-proposal-private-property-in-object')) {
         plugins.push(['@babel/plugin-proposal-private-property-in-object', { loose: true }]);
       }
     }
