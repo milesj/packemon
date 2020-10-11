@@ -5,16 +5,16 @@ import { formatMs } from '@boost/common';
 import { Style, StyleType } from '@boost/cli';
 import { figures } from '@boost/terminal';
 import Artifact from '../Artifact';
-import { BuildStatus } from '../types';
+import { ArtifactState } from '../types';
 
-const STATUS_COLORS: { [K in BuildStatus]?: StyleType } = {
+const STATE_COLORS: { [K in ArtifactState]?: StyleType } = {
   pending: 'muted',
   passed: 'success',
   failed: 'failure',
   skipped: 'warning',
 };
 
-const STATUS_LABELS: { [K in BuildStatus]: string } = {
+const STATE_LABELS: { [K in ArtifactState]: string } = {
   pending: '',
   booting: 'Booting',
   building: 'Building',
@@ -29,7 +29,7 @@ export interface ArtifactRowProps {
 }
 
 export default function ArtifactRow({ artifact }: ArtifactRowProps) {
-  const { status } = artifact;
+  const { state } = artifact;
 
   return (
     <Box flexDirection="row">
@@ -39,7 +39,7 @@ export default function ArtifactRow({ artifact }: ArtifactRowProps) {
 
       {artifact.getBuilds().map((build) => (
         <Box key={build} marginLeft={1}>
-          <Style bold type={STATUS_COLORS[status] || 'default'}>
+          <Style bold type={STATE_COLORS[state] || 'default'}>
             {figures.squareSmallFilled} {build.toLowerCase()}
           </Style>
         </Box>
@@ -49,7 +49,7 @@ export default function ArtifactRow({ artifact }: ArtifactRowProps) {
         <Style type="muted">
           {artifact.result && artifact.result.time > 0
             ? formatMs(artifact.result.time)
-            : STATUS_LABELS[status]}
+            : STATE_LABELS[state]}
         </Style>
 
         {artifact.isRunning() && (

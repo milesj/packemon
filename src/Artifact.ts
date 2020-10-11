@@ -1,7 +1,7 @@
 /* eslint-disable no-empty-function */
 
 import Package from './Package';
-import { ArtifactFlags, BuildResult, BuildStatus } from './types';
+import { ArtifactFlags, BuildResult, ArtifactState } from './types';
 
 export default abstract class Artifact {
   flags: ArtifactFlags = {};
@@ -10,7 +10,7 @@ export default abstract class Artifact {
 
   result?: BuildResult;
 
-  status: BuildStatus = 'pending';
+  state: ArtifactState = 'pending';
 
   constructor(pkg: Package) {
     this.package = pkg;
@@ -23,11 +23,11 @@ export default abstract class Artifact {
   async pack(): Promise<void> {}
 
   isRunning(): boolean {
-    return this.status === 'booting' || this.status === 'building' || this.status === 'packing';
+    return this.state === 'booting' || this.state === 'building' || this.state === 'packing';
   }
 
   shouldSkip(): boolean {
-    return this.status === 'skipped' || this.status === 'failed';
+    return this.state === 'skipped' || this.state === 'failed';
   }
 
   abstract getLabel(): string;

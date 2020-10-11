@@ -23,7 +23,7 @@ export default class BundleArtifact extends Artifact {
 
     // Skip build because of invalid config
     if (!rollupConfig) {
-      this.status = 'skipped';
+      this.state = 'skipped';
 
       return;
     }
@@ -47,9 +47,9 @@ export default class BundleArtifact extends Artifact {
         try {
           await bundle.write(outOptions);
 
-          this.status = 'passed';
+          this.state = 'passed';
         } catch (error) {
-          this.status = 'failed';
+          this.state = 'failed';
         }
       }),
     );

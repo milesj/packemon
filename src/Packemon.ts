@@ -20,7 +20,7 @@ import Artifact from './Artifact';
 import BundleArtifact from './BundleArtifact';
 import {
   ArtifactFlags,
-  BuildStatus,
+  ArtifactState,
   Format,
   PackemonOptions,
   PackemonPackage,
@@ -155,7 +155,7 @@ export default class Packemon extends Contract<PackemonOptions> {
   }
 
   protected async processArtifacts(
-    status: BuildStatus,
+    status: ArtifactState,
     callback: (artifact: Artifact) => Promise<void>,
   ): Promise<void> {
     const pipeline = new PooledPipeline(new Context());
@@ -172,7 +172,7 @@ export default class Packemon extends Contract<PackemonOptions> {
         }
 
         pipeline.add(`${status} ${artifact.getLabel()} (${pkg.getName()})`, () => {
-          artifact.status = status;
+          artifact.state = status;
 
           return callback(artifact);
         });

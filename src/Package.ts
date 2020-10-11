@@ -90,7 +90,7 @@ export default class Package {
 
   isBuilt(): boolean {
     return this.artifacts.every(
-      (artifact) => artifact.status !== 'pending' && !artifact.isRunning(),
+      (artifact) => artifact.state !== 'pending' && !artifact.isRunning(),
     );
   }
 }

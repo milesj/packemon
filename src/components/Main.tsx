@@ -22,7 +22,7 @@ export default function Main({ packemon }: MainProps) {
   const [builtPackages, setBuiltPackages] = useState<Package[]>([]);
 
   useEffect(() => {
-    // Continuously re-render so that statuses are updated
+    // Continuously re-render so that states are updated
     const timer = setInterval(() => {
       setCounter((count) => count + 1);
     }, 50);

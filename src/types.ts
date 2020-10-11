@@ -58,7 +58,7 @@ export interface ArtifactFlags {
   requiresSharedLib?: boolean;
 }
 
-export type BuildStatus =
+export type ArtifactState =
   | 'pending'
   | 'booting'
   | 'building'
