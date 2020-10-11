@@ -20,12 +20,22 @@ export interface TargetPlatformsProps {
   target: Target;
 }
 
+function trimVersion(version: string) {
+  const parts = version.split('.');
+
+  while (parts[parts.length - 1] === '0') {
+    parts.pop();
+  }
+
+  return parts.join('.');
+}
+
 export default function TargetPlatforms({ platforms, target }: TargetPlatformsProps) {
   const versions: string[] = [];
 
   platforms.forEach((platform) => {
     if (platform === 'node') {
-      versions.push(`${PLATFORMS[platform]} (v${NODE_TARGETS[target]})`);
+      versions.push(`${PLATFORMS[platform]} (v${trimVersion(NODE_TARGETS[target])})`);
     } else if (platform === 'browser') {
       versions.push(`${PLATFORMS[platform]} (${toArray(BROWSER_TARGETS[target]).join(', ')})`);
     }
