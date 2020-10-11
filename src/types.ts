@@ -31,7 +31,7 @@ export type NodeFormat =
 
 export type Format = NodeFormat | BrowserFormat;
 
-export type Phase = 'boot' | 'build' | 'pack';
+export type Phase = 'boot' | 'build' | 'pack' | 'done';
 
 export interface PackemonPackageConfig {
   inputs: Record<string, string>;

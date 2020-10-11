@@ -13,18 +13,24 @@ export default class Package {
 
   path: Path;
 
-  platforms: Platform[];
+  platforms: Platform[] = [];
 
   project: Project;
 
-  target: Target;
+  root: boolean = false;
+
+  target: Target = 'legacy';
 
   constructor(project: Project, path: Path, contents: PackemonPackage) {
     this.project = project;
     this.path = path;
     this.contents = contents;
-    this.platforms = toArray(contents.packemon.platform);
-    this.target = contents.packemon.target;
+
+    // Workspace root `package.json`s may not have this
+    if (contents.packemon) {
+      this.platforms = toArray(contents.packemon.platform);
+      this.target = contents.packemon.target;
+    }
   }
 
   addArtifact(artifact: Artifact): Artifact {
@@ -39,10 +45,8 @@ export default class Package {
 
   @Memoize()
   getFeatureFlags(): FeatureFlags {
-    const flags: FeatureFlags = {
-      ...this.project.rootPackage.getFeatureFlags(),
-      workspaces: this.project.workspaces,
-    };
+    const flags: FeatureFlags = this.root ? {} : this.project.rootPackage.getFeatureFlags();
+    flags.workspaces = this.project.workspaces;
 
     // React
     if (this.hasDependency('react')) {

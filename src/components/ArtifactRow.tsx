@@ -3,6 +3,7 @@ import { Box } from 'ink';
 import Spinner from 'ink-spinner';
 import { formatMs } from '@boost/common';
 import { Style, StyleType } from '@boost/cli';
+import { figures } from '@boost/terminal';
 import Artifact from '../Artifact';
 import { BuildStatus } from '../types';
 
@@ -15,9 +16,9 @@ const STATUS_COLORS: { [K in BuildStatus]?: StyleType } = {
 
 const STATUS_LABELS: { [K in BuildStatus]: string } = {
   pending: '',
-  booting: 'Booting…',
-  building: 'Building…',
-  packing: 'Packing…',
+  booting: 'Booting',
+  building: 'Building',
+  packing: 'Packing',
   passed: 'Passed',
   failed: 'Failed',
   skipped: 'Skipped',
@@ -32,28 +33,28 @@ export default function ArtifactRow({ artifact }: ArtifactRowProps) {
 
   return (
     <Box flexDirection="row">
-      <Box>
-        <Style bold type="default">
-          {artifact.getLabel()}
-        </Style>
+      <Box marginLeft={2} marginRight={1}>
+        <Style type="default">{artifact.getLabel()}</Style>
       </Box>
 
       {artifact.getBuilds().map((build) => (
         <Box key={build} marginLeft={1}>
-          <Style bold inverted type={STATUS_COLORS[status] || 'default'}>
-            {` ${build.toUpperCase()} `}
+          <Style bold type={STATUS_COLORS[status] || 'default'}>
+            {figures.squareSmallFilled} {build.toLowerCase()}
           </Style>
         </Box>
       ))}
 
-      <Box marginLeft={1}>
+      <Box marginLeft={2}>
         <Style type="muted">
-          {artifact.result ? formatMs(artifact.result.time) : STATUS_LABELS[status]}
+          {artifact.result && artifact.result.time > 0
+            ? formatMs(artifact.result.time)
+            : STATUS_LABELS[status]}
         </Style>
 
         {artifact.isRunning() && (
-          <Style type="success">
-            <Spinner type="dots" />
+          <Style type="warning">
+            <Spinner type="simpleDotsScrolling" />
           </Style>
         )}
       </Box>

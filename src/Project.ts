@@ -6,6 +6,9 @@ export default class Project extends BaseProject {
 
   @Memoize()
   get rootPackage(): Package {
-    return new Package(this, this.root.append('package.json'), this.getPackage());
+    const pkg = new Package(this, this.root, this.getPackage());
+    pkg.root = true;
+
+    return pkg;
   }
 }

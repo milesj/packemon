@@ -25,14 +25,20 @@ export default function Main({ packemon }: MainProps) {
     // Continuously re-render so that statuses are updated
     const timer = setInterval(() => {
       setCounter((count) => count + 1);
-    }, 100);
+    }, 50);
 
     const clear = () => {
       clearInterval(timer);
     };
 
     // Run the packemon process on mount
-    void packemon.run().then(clear).catch(setError);
+    void packemon
+      .run()
+      .then(() => {
+        // Give some time for the static elements to flush
+        setTimeout(clear, 150);
+      })
+      .catch(setError);
 
     return clear;
   }, [packemon]);
@@ -66,11 +72,13 @@ export default function Main({ packemon }: MainProps) {
         {(pkg) => <PackageRow key={pkg.getName()} package={pkg} />}
       </Static>
 
-      <Box flexDirection="column">
-        <Header label={HEADER_LABELS[packemon.phase]} />
+      {packemon.phase !== 'done' && (
+        <Box flexDirection="column">
+          <Header label={HEADER_LABELS[packemon.phase]} marginBottom={0} />
 
-        {runningPackages.length > 0 && <PackageList packages={runningPackages} />}
-      </Box>
+          {runningPackages.length > 0 && <PackageList packages={runningPackages} />}
+        </Box>
+      )}
     </>
   );
 }

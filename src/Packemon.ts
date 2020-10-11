@@ -73,6 +73,9 @@ export default class Packemon extends Contract<PackemonOptions> {
     this.phase = 'pack';
 
     await this.processArtifacts('packing', (artifact) => artifact.pack());
+
+    // Done!
+    this.phase = 'done';
   }
 
   protected async findPackages() {
@@ -177,6 +180,11 @@ export default class Packemon extends Contract<PackemonOptions> {
     });
 
     await pipeline.run();
+
+    // We need a short timeout so the CLI can refresh
+    await new Promise((resolve) => {
+      setTimeout(resolve, 100);
+    });
   }
 
   protected validateAndPreparePackages(packages: WorkspacePackage<PackemonPackage>[]): Package[] {
