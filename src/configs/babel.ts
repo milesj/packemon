@@ -1,7 +1,7 @@
 import { PluginItem, TransformOptions as ConfigStructure } from '@babel/core';
 import { BROWSER_TARGETS, NODE_TARGETS } from '../constants';
 import { Target, Format, Platform, FeatureFlags, BuildUnit } from '../types';
-import RollupArtifact from '../RollupArtifact';
+import BundleArtifact from '../BundleArtifact';
 
 // https://babeljs.io/docs/en/babel-preset-env
 export interface PresetEnvOptions {
@@ -82,7 +82,7 @@ function getSharedConfig(
 // The input config should only parse special syntax, not transform and downlevel.
 // This applies to all formats within a build target.
 export function getBabelInputConfig(
-  artifact: RollupArtifact,
+  artifact: BundleArtifact,
   features: FeatureFlags,
 ): Omit<ConfigStructure, 'include' | 'exclude'> {
   const plugins: PluginItem[] = [];

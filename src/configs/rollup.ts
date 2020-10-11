@@ -7,7 +7,7 @@ import { getBabelInputPlugin, getBabelOutputPlugin } from '@rollup/plugin-babel'
 import { getBabelInputConfig, getBabelOutputConfig } from './babel';
 import { FeatureFlags, Format, BuildUnit } from '../types';
 import { EXTENSIONS, EXCLUDE } from '../constants';
-import RollupArtifact from '../RollupArtifact';
+import BundleArtifact from '../BundleArtifact';
 
 const sharedPlugins = [resolve({ extensions: EXTENSIONS, preferBuiltins: true }), commonjs()];
 
@@ -24,7 +24,7 @@ function getRollupModuleFormat(format: Format): ModuleFormat {
 }
 
 export function getRollupConfig(
-  artifact: RollupArtifact,
+  artifact: BundleArtifact,
   features: FeatureFlags,
 ): RollupOptions | null {
   const inputPath = artifact.getInputPath();

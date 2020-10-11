@@ -17,7 +17,7 @@ import spdxLicenses from 'spdx-license-list';
 import Package from './Package';
 import Project from './Project';
 import Artifact from './Artifact';
-import RollupArtifact from './RollupArtifact';
+import BundleArtifact from './BundleArtifact';
 import {
   ArtifactFlags,
   BuildStatus,
@@ -139,7 +139,7 @@ export default class Packemon extends Contract<PackemonOptions> {
       });
 
       Object.entries(config.inputs).forEach(([name, path]) => {
-        const artifact = new RollupArtifact(pkg);
+        const artifact = new BundleArtifact(pkg);
         artifact.flags = flags;
         artifact.formats = Array.from(formats);
         artifact.inputPath = path;

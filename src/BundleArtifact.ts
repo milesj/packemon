@@ -4,7 +4,7 @@ import Artifact from './Artifact';
 import { getRollupConfig } from './configs/rollup';
 import { Format, Platform } from './types';
 
-export default class RollupArtifact extends Artifact {
+export default class BundleArtifact extends Artifact {
   cache?: RollupCache;
 
   formats: Format[] = [];
