@@ -43,7 +43,7 @@ function getPlatformEnvOptions(
           '@babel/plugin-transform-async-to-generator',
         ],
         modules,
-        targets: { node: NODE_TARGETS[target] },
+        targets: { node: process.env.NODE_ENV === 'test' ? 'current' : NODE_TARGETS[target] },
       };
 
     case 'browser':

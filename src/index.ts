@@ -4,9 +4,21 @@
  */
 
 import Packemon from './Packemon';
+import Package from './Package';
+import Project from './Project';
+import BundleArtifact from './BundleArtifact';
 import { run } from './run';
+import { getBabelInputConfig, getBabelOutputConfig } from './configs/babel';
 
 export * from './constants';
 export * from './types';
 
-export { Packemon, run };
+export {
+  BundleArtifact,
+  getBabelInputConfig,
+  getBabelOutputConfig,
+  Package,
+  Packemon,
+  Project,
+  run,
+};
