@@ -110,3 +110,7 @@ declare module 'rollup' {
     originalFormat?: Format;
   }
 }
+
+// OTHER
+
+export type Awaitable = void | Promise<void>;

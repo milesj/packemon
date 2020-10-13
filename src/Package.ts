@@ -8,6 +8,7 @@ import Project from './Project';
 import resolveTsConfig from './helpers/resolveTsConfig';
 import {
   ArtifactState,
+  Awaitable,
   BootOptions,
   BuildOptions,
   FeatureFlags,
@@ -153,7 +154,7 @@ export default class Package {
 
   protected async processArtifacts(
     state: ArtifactState,
-    callback?: (artifact: Artifact) => Promise<void>,
+    callback?: (artifact: Artifact) => Awaitable,
   ) {
     await Promise.all(
       this.artifacts

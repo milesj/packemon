@@ -4,6 +4,7 @@ import Package from './Package';
 import {
   ArtifactFlags,
   ArtifactState,
+  Awaitable,
   BootOptions,
   BuildOptions,
   BuildResult,
@@ -23,11 +24,11 @@ export default abstract class Artifact<T = unknown> {
     this.package = pkg;
   }
 
-  async boot(options: BootOptions): Promise<void> {}
+  boot(options: BootOptions): Awaitable {}
 
-  async build(options: BuildOptions): Promise<void> {}
+  build(options: BuildOptions): Awaitable {}
 
-  async pack(options: PackOptions): Promise<void> {}
+  pack(options: PackOptions): Awaitable {}
 
   isComplete(): boolean {
     return this.state === 'passed' || this.state === 'failed' || this.state === 'skipped';

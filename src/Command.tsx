@@ -12,7 +12,7 @@ export type Params = [string];
 
 @Config('packemon', 'Build standardized packages for distribution.')
 export default class PackemonCommand extends Command<Options, Params> {
-  @Arg.Flag('Add `main` and `exports` fields to every `package.json`')
+  @Arg.Flag('Add `main`, `browser`, and `exports` fields to `package.json`')
   addExports: boolean = false;
 
   @Arg.Flag('Check that packages have a valid `license` field')

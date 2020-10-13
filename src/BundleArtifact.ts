@@ -1,8 +1,8 @@
-import { Path, toArray } from '@boost/common';
+import { Path, SettingMap, toArray } from '@boost/common';
 import { rollup, RollupCache } from 'rollup';
 import Artifact from './Artifact';
 import { getRollupConfig } from './configs/rollup';
-import { Format, Platform } from './types';
+import { Format, PackOptions, Platform } from './types';
 
 export default class BundleArtifact extends Artifact<{ size: number }> {
   cache?: RollupCache;
@@ -18,7 +18,7 @@ export default class BundleArtifact extends Artifact<{ size: number }> {
   // Name of the output file without extension
   outputName: string = '';
 
-  async build() {
+  async build(): Promise<void> {
     const rollupConfig = getRollupConfig(this, this.package.getFeatureFlags());
 
     // Skip build because of invalid config
@@ -62,6 +62,50 @@ export default class BundleArtifact extends Artifact<{ size: number }> {
     this.result.time = Date.now() - start;
   }
 
+  pack({ addExports }: PackOptions): void {
+    const pkg = this.package.contents;
+    const hasLib = this.formats.includes('lib');
+    const hasUmd = this.formats.includes('umd');
+
+    if (this.outputName === 'index') {
+      if (hasLib) {
+        pkg.main = './lib/index.js';
+      }
+
+      if (hasUmd) {
+        pkg.browser = './umd/index.js';
+      }
+    }
+
+    if (addExports) {
+      const paths: SettingMap = {};
+
+      this.formats.forEach((format) => {
+        const path = this.getOutputFile(format);
+
+        if (format === 'mjs' || format === 'esm') {
+          paths.import = path;
+        } else if (format === 'cjs') {
+          paths.require = path;
+        }
+      });
+
+      // Must come after import/require
+      if (hasLib) {
+        paths.default = this.getOutputFile('lib');
+      }
+
+      if (!pkg.exports) {
+        pkg.exports = {};
+      }
+
+      Object.assign(pkg.exports, {
+        './package.json': './package.json',
+        [this.outputName === 'index' ? '.' : `./${this.outputName}`]: paths,
+      });
+    }
+  }
+
   getLabel(): string {
     return this.outputName;
   }
@@ -103,15 +147,20 @@ export default class BundleArtifact extends Artifact<{ size: number }> {
     }
 
     console.warn(
-      `Cannot find input "${this.inputPath}" for package "${this.package.contents.name}". Skipping package.`,
+      `Cannot find input "${this.inputPath}" for package "${this.package.getName()}".`,
+      'Skipping package.',
     );
 
     return null;
   }
 
-  getOutputPath(format: Format): Path {
+  getOutputFile(format: Format): string {
     const ext = format === 'cjs' || format === 'mjs' ? format : 'js';
 
-    return this.package.path.append(`${format}/${this.outputName}.${ext}`);
+    return `./${format}/${this.outputName}.${ext}`;
+  }
+
+  getOutputPath(format: Format): Path {
+    return this.package.path.append(this.getOutputFile(format));
   }
 }

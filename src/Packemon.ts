@@ -50,7 +50,7 @@ export default class Packemon extends Contract<PackemonOptions> {
 
   blueprint({ bool, number }: Predicates): Blueprint<PackemonOptions> {
     return {
-      addExports: bool(), // TODO
+      addExports: bool(),
       checkLicenses: bool(),
       concurrency: number(1).gte(1),
       skipPrivate: bool(),
