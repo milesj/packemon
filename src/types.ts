@@ -49,6 +49,7 @@ export interface PackemonOptions {
   addExports: boolean;
   checkLicenses: boolean;
   concurrency: number;
+  generateDeclaration: boolean;
   skipPrivate: boolean;
   timeout: number;
 }

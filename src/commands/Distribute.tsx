@@ -21,6 +21,9 @@ export default class DistributeCommand extends Command<Options, Params> {
   @Arg.Number('Number of builds to run in parallel')
   concurrency: number = os.cpus().length;
 
+  @Arg.Flag('Generate a single TypeScript declaration for each package')
+  generateDeclaration: boolean = false;
+
   @Arg.Flag('Skip `private` packages from being built')
   skipPrivate: boolean = false;
 
@@ -37,6 +40,7 @@ export default class DistributeCommand extends Command<Options, Params> {
       addExports: this.addExports,
       checkLicenses: this.checkLicenses,
       concurrency: this.concurrency,
+      generateDeclaration: this.generateDeclaration,
       skipPrivate: this.skipPrivate,
       timeout: this.timeout,
     });

@@ -16,6 +16,7 @@ import Package from './Package';
 import Project from './Project';
 import Artifact from './Artifact';
 import BundleArtifact from './BundleArtifact';
+import TypesArtifact from './TypesArtifact';
 import {
   ArtifactFlags,
   BrowserFormat,
@@ -81,6 +82,7 @@ export default class Packemon extends Contract<PackemonOptions> {
       addExports: bool(),
       checkLicenses: bool(),
       concurrency: number(1).gte(1),
+      generateDeclaration: bool(),
       skipPrivate: bool(),
       timeout: number().gte(0),
     };
@@ -188,6 +190,10 @@ export default class Packemon extends Contract<PackemonOptions> {
 
         pkg.addArtifact(artifact);
       });
+
+      if (this.options.generateDeclaration) {
+        pkg.addArtifact(new TypesArtifact(pkg));
+      }
 
       this.onPackageUpdate.emit([pkg]);
     });
