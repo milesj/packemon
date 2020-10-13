@@ -19,7 +19,8 @@ export default function BundleBuilds({ artifact }: BundleBuildsProps) {
         return (
           <Box key={build} marginLeft={1}>
             <Style bold type={STATE_COLORS[artifact.state] || 'default'}>
-              {figures.squareSmallFilled} {build.toLowerCase()}
+              {artifact.state === 'failed' ? figures.cross : figures.squareSmallFilled}{' '}
+              {build.toLowerCase()}
             </Style>
 
             {stats && <Style type="muted">{` (${size(stats.size)})`}</Style>}

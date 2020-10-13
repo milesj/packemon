@@ -1,5 +1,5 @@
 import { Program } from '@boost/cli';
-import Command from './Command';
+import DistributeCommand from './commands/Distribute';
 
 export async function run() {
   const program = new Program({
@@ -10,13 +10,7 @@ export async function run() {
     version: require('../package.json').version,
   });
 
-  program
-    .categories({
-      browser: 'Browser',
-      global: 'Global',
-      node: 'Node',
-    })
-    .default(new Command());
+  program.register(new DistributeCommand());
 
   await program.runAndExit(process.argv);
 }

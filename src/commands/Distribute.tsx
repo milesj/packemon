@@ -2,16 +2,16 @@
 import React from 'react';
 import os from 'os';
 import { Arg, Command, Config, GlobalOptions } from '@boost/cli';
-import Main from './components/Main';
-import Packemon from './Packemon';
-import { PackemonOptions } from './types';
+import Distribute from '../components/Distribute';
+import Packemon from '../Packemon';
+import { PackemonOptions } from '../types';
 
 export type Options = GlobalOptions & PackemonOptions;
 
 export type Params = [string];
 
-@Config('packemon', 'Build standardized packages for distribution.')
-export default class PackemonCommand extends Command<Options, Params> {
+@Config('distribute', 'Build and prepare standardized packages for distribution.')
+export default class DistributeCommand extends Command<Options, Params> {
   @Arg.Flag('Add `main`, `browser`, and `exports` fields to `package.json`')
   addExports: boolean = false;
 
@@ -41,6 +41,6 @@ export default class PackemonCommand extends Command<Options, Params> {
       timeout: this.timeout,
     });
 
-    return <Main packemon={packemon} />;
+    return <Distribute packemon={packemon} />;
   }
 }

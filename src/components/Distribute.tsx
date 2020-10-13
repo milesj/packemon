@@ -12,11 +12,11 @@ const HEADER_LABELS = {
   pack: 'Packing for distribution',
 };
 
-export interface MainProps {
+export interface DistributeProps {
   packemon: Packemon;
 }
 
-export default function Main({ packemon }: MainProps) {
+export default function Distribute({ packemon }: DistributeProps) {
   const [, forceUpdate] = useReducer((count) => count + 1, 0);
   const [error, setError] = useState<Error>();
   const [staticPackages, setStaticPackages] = useState<Package[]>([]);
