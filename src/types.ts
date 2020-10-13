@@ -34,10 +34,10 @@ export type Format = NodeFormat | BrowserFormat;
 export type Phase = 'boot' | 'build' | 'pack' | 'done';
 
 export interface PackemonPackageConfig {
-  inputs: Record<string, string>;
-  namespace: string;
-  platform: Platform | Platform[];
-  target: Target;
+  inputs?: Record<string, string>;
+  namespace?: string;
+  platform?: Platform | Platform[];
+  target?: Target;
 }
 
 export interface PackemonPackage extends PackageStructure {

@@ -148,12 +148,12 @@ export default class Packemon extends Contract<PackemonOptions> {
         }
       });
 
-      Object.entries(config.inputs).forEach(([name, path]) => {
+      Object.entries(config.inputs || { index: 'src/index.ts' }).forEach(([name, path]) => {
         const artifact = new BundleArtifact(pkg);
         artifact.flags = flags;
         artifact.formats = Array.from(formats);
         artifact.inputPath = path;
-        artifact.namespace = config.namespace;
+        artifact.namespace = config.namespace || '';
         artifact.outputName = name;
 
         pkg.addArtifact(artifact);
@@ -198,8 +198,8 @@ export default class Packemon extends Contract<PackemonOptions> {
   protected validateAndPreparePackages(packages: WorkspacePackage<PackemonPackage>[]): Package[] {
     const { array, object, string, union } = predicates;
     const platformPredicate = string('browser').oneOf(['node', 'browser']);
-    const blueprint: Blueprint<PackemonPackageConfig> = {
-      inputs: object(string(), { index: 'src/index.ts' }),
+    const blueprint: Blueprint<Required<PackemonPackageConfig>> = {
+      inputs: object(string()),
       namespace: string(),
       platform: union([array(platformPredicate), platformPredicate], 'browser'),
       target: string('legacy').oneOf(['legacy', 'modern', 'future']),
@@ -212,7 +212,7 @@ export default class Packemon extends Contract<PackemonOptions> {
         return;
       }
 
-      contents.packemon = optimal(contents.packemon, blueprint);
+      optimal(contents.packemon, blueprint);
 
       nextPackages.push(new Package(this.project, Path.create(metadata.packagePath), contents));
     });

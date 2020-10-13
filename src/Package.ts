@@ -42,8 +42,8 @@ export default class Package {
 
     // Workspace root `package.json`s may not have this
     if (contents.packemon) {
-      this.platforms = toArray(contents.packemon.platform);
-      this.target = contents.packemon.target;
+      this.platforms = toArray(contents.packemon.platform || 'node');
+      this.target = contents.packemon.target || 'legacy';
     }
   }
 
@@ -169,6 +169,6 @@ export default class Package {
   }
 
   protected async syncJsonFile() {
-    await fs.writeFile(this.jsonPath.path(), this.contents, 'utf8');
+    await fs.writeJson(this.jsonPath.path(), this.contents, { spaces: 2 });
   }
 }
