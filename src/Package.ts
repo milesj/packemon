@@ -88,9 +88,11 @@ export default class Package {
     );
   }
 
-  isBuilt(): boolean {
-    return this.artifacts.every(
-      (artifact) => artifact.state !== 'pending' && !artifact.isRunning(),
-    );
+  isComplete(): boolean {
+    return this.artifacts.every((artifact) => artifact.isComplete());
+  }
+
+  isRunning(): boolean {
+    return this.artifacts.some((artifact) => artifact.isRunning());
   }
 }

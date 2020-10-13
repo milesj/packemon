@@ -29,7 +29,7 @@ export default function PackageList({ packages }: PackageListProps) {
   let currentHeight = 0;
 
   packages
-    .filter((pkg) => !pkg.isBuilt())
+    .filter((pkg) => pkg.isRunning())
     .some((pkg) => {
       // margin top (1) + name row (1) + artifacts (n)
       const rowHeight = 2 + pkg.artifacts.length;

@@ -46,9 +46,10 @@ export default class BundleArtifact extends Artifact {
 
         try {
           await bundle.write(outOptions);
-
-          this.state = 'passed';
         } catch (error) {
+          console.error('Failed to bundle package.');
+          console.error(error);
+
           this.state = 'failed';
         }
       }),

@@ -47,15 +47,17 @@ export default function ArtifactRow({ artifact }: ArtifactRowProps) {
 
       <Box marginLeft={2}>
         <Style type="muted">
-          {artifact.result && artifact.result.time > 0
+          {artifact.isComplete() && artifact.result && artifact.result.time > 0
             ? formatMs(artifact.result.time)
             : STATE_LABELS[state]}
         </Style>
 
         {artifact.isRunning() && (
-          <Style type="warning">
-            <Spinner type="simpleDotsScrolling" />
-          </Style>
+          <Box marginLeft={1}>
+            <Style type="warning">
+              <Spinner type="dots" />
+            </Style>
+          </Box>
         )}
       </Box>
     </Box>

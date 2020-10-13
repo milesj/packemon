@@ -21,7 +21,7 @@ const featureFlags = project.rootPackage.getFeatureFlags();
 const inputConfig = getBabelInputConfig(artifact, featureFlags);
 const outputConfig = getBabelOutputConfig({ format, platform, target }, featureFlags);
 
-export = {
+export const config = {
   babelrc: false,
   comments: false,
   // Input must come first

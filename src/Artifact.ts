@@ -22,6 +22,10 @@ export default abstract class Artifact {
 
   async pack(): Promise<void> {}
 
+  isComplete(): boolean {
+    return this.state === 'passed' || this.state === 'failed' || this.state === 'skipped';
+  }
+
   isRunning(): boolean {
     return this.state === 'booting' || this.state === 'building' || this.state === 'packing';
   }

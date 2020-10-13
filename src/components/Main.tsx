@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useReducer, useRef, useState } from 'react';
 import { Box, Static } from 'ink';
 import { Header } from '@boost/cli';
 import Packemon from '../Packemon';
@@ -17,58 +17,40 @@ export interface MainProps {
 }
 
 export default function Main({ packemon }: MainProps) {
+  const [, forceUpdate] = useReducer((count) => count + 1, 0);
   const [error, setError] = useState<Error>();
-  const [counter, setCounter] = useState(0);
-  const [builtPackages, setBuiltPackages] = useState<Package[]>([]);
+  const [staticPackages, setStaticPackages] = useState<Package[]>([]);
+  const staticNames = useRef(new Set<string>());
 
+  // Run the packemon process on mount
   useEffect(() => {
-    // Continuously re-render so that states are updated
-    const timer = setInterval(() => {
-      setCounter((count) => count + 1);
-    }, 50);
+    void packemon.run().catch(setError);
 
-    const clear = () => {
-      clearInterval(timer);
-    };
-
-    // Run the packemon process on mount
-    void packemon
-      .run()
-      .then(() => {
-        // Give some time for the static elements to flush
-        setTimeout(clear, 150);
-      })
-      .catch(setError);
-
-    return clear;
+    // Continuously re-render on state changes
+    packemon.onPhaseChange.listen(forceUpdate);
+    packemon.onArtifactUpdate.listen(forceUpdate);
   }, [packemon]);
 
-  // Update built packages list on each re-render
+  // Add complete packages to the static list
   useEffect(() => {
-    setBuiltPackages((prevBuilt) => {
-      const builtSet = new Set(prevBuilt);
-      const nextBuilt: Package[] = [];
-
-      packemon.packages.forEach((pkg) => {
-        if (pkg.isBuilt() && !builtSet.has(pkg)) {
-          nextBuilt.push(pkg);
-        }
-      });
-
-      return [...prevBuilt, ...nextBuilt];
+    return packemon.onPackageUpdate.listen((pkg) => {
+      if (pkg.isComplete() && !staticNames.current.has(pkg.getName())) {
+        setStaticPackages((pkgs) => [...pkgs, pkg]);
+        staticNames.current.add(pkg.getName());
+      }
     });
-  }, [counter, packemon]);
+  }, [packemon]);
 
   // Bubble up errors to the program
   if (error) {
     throw error;
   }
 
-  const runningPackages = packemon.packages.filter((pkg) => !pkg.isBuilt());
+  const runningPackages = packemon.packages.filter((pkg) => pkg.isRunning());
 
   return (
     <>
-      <Static items={builtPackages}>
+      <Static items={staticPackages}>
         {(pkg) => <PackageRow key={pkg.getName()} package={pkg} />}
       </Static>
 

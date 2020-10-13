@@ -12,6 +12,7 @@ import {
   toArray,
   WorkspacePackage,
 } from '@boost/common';
+import { Event } from '@boost/event';
 import { PooledPipeline, Context } from '@boost/pipeline';
 import spdxLicenses from 'spdx-license-list';
 import Package from './Package';
@@ -29,13 +30,19 @@ import {
 } from './types';
 
 export default class Packemon extends Contract<PackemonOptions> {
-  root: Path;
+  readonly root: Path;
+
+  readonly onArtifactUpdate = new Event<[Artifact]>('artifact-update');
+
+  readonly onPackageUpdate = new Event<[Package]>('package-update');
+
+  readonly onPhaseChange = new Event<[Phase]>('phase-change');
 
   packages: Package[] = [];
 
   phase: Phase = 'boot';
 
-  project: Project;
+  readonly project: Project;
 
   constructor(cwd: string, options: PackemonOptions) {
     super(options);
@@ -60,22 +67,24 @@ export default class Packemon extends Contract<PackemonOptions> {
     await this.generateArtifacts();
 
     // Bootstrap artifacts
-    this.phase = 'boot';
+    this.updatePhase('boot');
 
     await this.processArtifacts('booting', (artifact) => artifact.boot());
 
     // Build artifacts
-    this.phase = 'build';
+    this.updatePhase('build');
 
     await this.processArtifacts('building', (artifact) => artifact.build());
 
     // Package artifacts
-    this.phase = 'pack';
+    this.updatePhase('pack');
 
     await this.processArtifacts('packing', (artifact) => artifact.pack());
 
     // Done!
-    this.phase = 'done';
+    this.updatePhase('done');
+
+    await this.processArtifacts('passed');
   }
 
   protected async findPackages() {
@@ -151,12 +160,14 @@ export default class Packemon extends Contract<PackemonOptions> {
 
         pkg.addArtifact(artifact);
       });
+
+      this.onPackageUpdate.emit([pkg]);
     });
   }
 
   protected async processArtifacts(
     status: ArtifactState,
-    callback: (artifact: Artifact) => Promise<void>,
+    callback?: (artifact: Artifact) => Promise<void>,
   ): Promise<void> {
     const pipeline = new PooledPipeline(new Context());
 
@@ -171,20 +182,37 @@ export default class Packemon extends Contract<PackemonOptions> {
           return;
         }
 
-        pipeline.add(`${status} ${artifact.getLabel()} (${pkg.getName()})`, () => {
+        pipeline.add(`${status} ${artifact.getLabel()} (${pkg.getName()})`, async () => {
           artifact.state = status;
 
-          return callback(artifact);
+          if (callback) {
+            await callback(artifact);
+          }
+
+          this.onArtifactUpdate.emit([artifact]);
         });
       });
     });
 
-    await pipeline.run();
+    const { errors } = await pipeline.run();
+
+    if (errors.length > 0) {
+      throw errors[0];
+    }
+
+    this.packages.forEach((pkg) => {
+      this.onPackageUpdate.emit([pkg]);
+    });
 
     // We need a short timeout so the CLI can refresh
     await new Promise((resolve) => {
       setTimeout(resolve, 100);
     });
+  }
+
+  protected updatePhase(phase: Phase) {
+    this.phase = phase;
+    this.onPhaseChange.emit([phase]);
   }
 
   protected validateAndPreparePackages(packages: WorkspacePackage<PackemonPackage>[]): Package[] {
