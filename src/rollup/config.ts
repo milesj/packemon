@@ -4,7 +4,7 @@ import externals from 'rollup-plugin-node-externals';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import { getBabelInputPlugin, getBabelOutputPlugin } from '@rollup/plugin-babel';
-import { getBabelInputConfig, getBabelOutputConfig } from './babel';
+import { getBabelInputConfig, getBabelOutputConfig } from '../babel/config';
 import { FeatureFlags, Format, BuildUnit } from '../types';
 import { EXTENSIONS, EXCLUDE } from '../constants';
 import BundleArtifact from '../BundleArtifact';
@@ -23,6 +23,21 @@ function getRollupModuleFormat(format: Format): ModuleFormat {
   return 'cjs';
 }
 
+function getRollupExternalPaths(artifact: BundleArtifact, ext?: string): Record<string, string> {
+  const paths: Record<string, string> = {};
+
+  artifact.package.artifacts.forEach((art) => {
+    const bundle = art as BundleArtifact;
+
+    // Dont include non-bundle artifacts
+    if ('outputName' in bundle) {
+      paths[`./${bundle.outputName}`] = `./${bundle.outputName}${ext ? `.${ext}` : ''}`;
+    }
+  });
+
+  return paths;
+}
+
 export function getRollupConfig(
   artifact: BundleArtifact,
   features: FeatureFlags,
@@ -35,14 +50,9 @@ export function getRollupConfig(
 
   const packagePath = path.resolve(artifact.package.jsonPath.path());
 
-  // Allow artifacts to reference other artifact imports
-  const external = artifact.package.artifacts
-    .filter((a) => 'outputName' in a)
-    .map((a) => `./${(a as BundleArtifact).outputName}`);
-
   const config: RollupOptions = {
     cache: artifact.cache,
-    external,
+    external: Object.keys(getRollupExternalPaths(artifact)),
     input: inputPath.path(),
     output: [],
     // Shared output plugins
@@ -73,6 +83,7 @@ export function getRollupConfig(
 
   // Add an output for each format
   config.output = artifact.formats.map((format) => {
+    const ext = artifact.getExtension(format);
     const buildUnit: BuildUnit = {
       format,
       platform: artifact.getPlatform(format),
@@ -83,6 +94,11 @@ export function getRollupConfig(
       file: artifact.getOutputPath(format).path(),
       format: getRollupModuleFormat(format),
       originalFormat: format,
+      // Map our externals to local paths with trailing extension
+      paths: getRollupExternalPaths(artifact, ext),
+      assetFileNames: '../assets/[name]-[hash][extname]',
+      chunkFileNames: `[name]-[hash].${ext}`,
+      entryFileNames: `[name].${ext}`,
       // Use const when not supporting old targets
       preferConst: artifact.package.target !== 'legacy',
       // Output specific plugins

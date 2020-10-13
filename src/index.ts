@@ -8,7 +8,7 @@ import Package from './Package';
 import Project from './Project';
 import BundleArtifact from './BundleArtifact';
 import { run } from './run';
-import { getBabelInputConfig, getBabelOutputConfig } from './configs/babel';
+import { getBabelInputConfig, getBabelOutputConfig } from './babel/config';
 
 export * from './constants';
 export * from './types';

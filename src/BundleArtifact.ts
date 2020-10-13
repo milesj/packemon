@@ -1,7 +1,7 @@
 import { Path, SettingMap, toArray } from '@boost/common';
 import { rollup, RollupCache } from 'rollup';
 import Artifact from './Artifact';
-import { getRollupConfig } from './configs/rollup';
+import { getRollupConfig } from './rollup/config';
 import { Format, PackOptions, Platform } from './types';
 
 export default class BundleArtifact extends Artifact<{ size: number }> {
@@ -114,6 +114,10 @@ export default class BundleArtifact extends Artifact<{ size: number }> {
     return this.formats;
   }
 
+  getExtension(format: Format): string {
+    return format === 'cjs' || format === 'mjs' ? format : 'js';
+  }
+
   getPlatform(format: Format): Platform {
     if (format === 'cjs' || format === 'mjs') {
       return 'node';
@@ -155,9 +159,7 @@ export default class BundleArtifact extends Artifact<{ size: number }> {
   }
 
   getOutputFile(format: Format): string {
-    const ext = format === 'cjs' || format === 'mjs' ? format : 'js';
-
-    return `./${format}/${this.outputName}.${ext}`;
+    return `./${format}/${this.outputName}.${this.getExtension(format)}`;
   }
 
   getOutputPath(format: Format): Path {
