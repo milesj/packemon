@@ -34,12 +34,11 @@ export function getRollupConfig(
   }
 
   const packagePath = path.resolve(artifact.package.getJsonPath().path());
-  const external = [packagePath];
 
-  // Allow other artifacts to reference the primary index
-  if (artifact.outputName !== 'index') {
-    external.push('./index');
-  }
+  // Allow artifacts to reference other artifact imports
+  const external = artifact.package.artifacts
+    .filter((a) => 'outputName' in a)
+    .map((a) => `./${(a as BundleArtifact).outputName}`);
 
   const config: RollupOptions = {
     cache: artifact.cache,
