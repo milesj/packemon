@@ -52,6 +52,17 @@ export interface PackemonOptions {
   timeout: number;
 }
 
+export interface BootOptions {
+  checkLicenses: boolean;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface BuildOptions {}
+
+export interface PackOptions {
+  addExports: boolean;
+}
+
 // ARTIFACTS
 
 export interface ArtifactFlags {

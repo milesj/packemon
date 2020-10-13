@@ -9,19 +9,16 @@ import {
   Path,
   predicates,
   Predicates,
-  toArray,
   WorkspacePackage,
 } from '@boost/common';
 import { Event } from '@boost/event';
 import { PooledPipeline, Context } from '@boost/pipeline';
-import spdxLicenses from 'spdx-license-list';
 import Package from './Package';
 import Project from './Project';
 import Artifact from './Artifact';
 import BundleArtifact from './BundleArtifact';
 import {
   ArtifactFlags,
-  ArtifactState,
   Format,
   PackemonOptions,
   PackemonPackage,
@@ -62,28 +59,30 @@ export default class Packemon extends Contract<PackemonOptions> {
   }
 
   async run() {
+    const { checkLicenses, addExports } = this.options;
+
     await this.findPackages();
     await this.generateArtifacts();
 
     // Bootstrap artifacts
     this.updatePhase('boot');
 
-    await this.processArtifacts('booting', (artifact) => artifact.boot());
+    await this.processPackages((pkg) => pkg.boot({ checkLicenses }));
 
     // Build artifacts
     this.updatePhase('build');
 
-    await this.processArtifacts('building', (artifact) => artifact.build());
+    await this.processPackages((pkg) => pkg.build({}));
 
     // Package artifacts
     this.updatePhase('pack');
 
-    await this.processArtifacts('packing', (artifact) => artifact.pack());
+    await this.processPackages((pkg) => pkg.pack({ addExports }));
 
     // Done!
     this.updatePhase('done');
 
-    await this.processArtifacts('passed');
+    await this.processPackages((pkg) => pkg.complete());
   }
 
   protected async findPackages() {
@@ -164,10 +163,7 @@ export default class Packemon extends Contract<PackemonOptions> {
     });
   }
 
-  protected async processArtifacts(
-    status: ArtifactState,
-    callback?: (artifact: Artifact) => Promise<void>,
-  ): Promise<void> {
+  protected async processPackages(callback: (pkg: Package) => Promise<void>): Promise<void> {
     const pipeline = new PooledPipeline(new Context());
 
     pipeline.configure({
@@ -176,18 +172,12 @@ export default class Packemon extends Contract<PackemonOptions> {
     });
 
     this.packages.forEach((pkg) => {
-      pkg.artifacts.forEach((artifact) => {
-        if (artifact.shouldSkip()) {
-          return;
-        }
+      pipeline.add(pkg.getName(), async () => {
+        await callback(pkg);
 
-        pipeline.add(`${status} ${artifact.getLabel()} (${pkg.getName()})`, async () => {
-          artifact.state = status;
+        this.onPackageUpdate.emit([pkg]);
 
-          if (callback) {
-            await callback(artifact);
-          }
-
+        pkg.artifacts.forEach((artifact) => {
           this.onArtifactUpdate.emit([artifact]);
         });
       });
@@ -198,10 +188,6 @@ export default class Packemon extends Contract<PackemonOptions> {
     if (errors.length > 0) {
       throw errors[0];
     }
-
-    this.packages.forEach((pkg) => {
-      this.onPackageUpdate.emit([pkg]);
-    });
   }
 
   protected updatePhase(phase: Phase) {
@@ -210,11 +196,6 @@ export default class Packemon extends Contract<PackemonOptions> {
   }
 
   protected validateAndPreparePackages(packages: WorkspacePackage<PackemonPackage>[]): Package[] {
-    const spdxLicenseTypes = new Set(
-      Object.keys(spdxLicenses).map((key) => key.toLocaleLowerCase()),
-    );
-
-    // Blueprint for `packemon` block
     const { array, object, string, union } = predicates;
     const platformPredicate = string('browser').oneOf(['node', 'browser']);
     const blueprint: Blueprint<PackemonPackageConfig> = {
@@ -224,7 +205,6 @@ export default class Packemon extends Contract<PackemonOptions> {
       target: string('legacy').oneOf(['legacy', 'modern', 'future']),
     };
 
-    // Filter packages that only have packemon configured
     const nextPackages: Package[] = [];
 
     packages.forEach(({ metadata, package: contents }) => {
@@ -232,27 +212,7 @@ export default class Packemon extends Contract<PackemonOptions> {
         return;
       }
 
-      // Validate and set metadata
       contents.packemon = optimal(contents.packemon, blueprint);
-
-      // Validate licenses
-      if (this.options.checkLicenses) {
-        if (contents.license) {
-          toArray(
-            typeof contents.license === 'string'
-              ? { type: contents.license, url: spdxLicenses[contents.license] }
-              : contents.license,
-          ).forEach((license) => {
-            if (!spdxLicenseTypes.has(license.type.toLocaleLowerCase())) {
-              console.error(
-                `Invalid license ${license.type} for package "${contents.name}". Must be an official SPDX license type.`,
-              );
-            }
-          });
-        } else {
-          console.error(`No license found for package "${contents.name}".`);
-        }
-      }
 
       nextPackages.push(new Package(this.project, Path.create(metadata.packagePath), contents));
     });

@@ -1,7 +1,14 @@
 /* eslint-disable no-empty-function */
 
 import Package from './Package';
-import { ArtifactFlags, BuildResult, ArtifactState } from './types';
+import {
+  ArtifactFlags,
+  ArtifactState,
+  BootOptions,
+  BuildOptions,
+  BuildResult,
+  PackOptions,
+} from './types';
 
 export default abstract class Artifact<T = unknown> {
   flags: ArtifactFlags = {};
@@ -16,11 +23,11 @@ export default abstract class Artifact<T = unknown> {
     this.package = pkg;
   }
 
-  async boot(): Promise<void> {}
+  async boot(options: BootOptions): Promise<void> {}
 
-  async build(): Promise<void> {}
+  async build(options: BuildOptions): Promise<void> {}
 
-  async pack(): Promise<void> {}
+  async pack(options: PackOptions): Promise<void> {}
 
   isComplete(): boolean {
     return this.state === 'passed' || this.state === 'failed' || this.state === 'skipped';

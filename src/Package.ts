@@ -1,15 +1,28 @@
-/* eslint-disable @typescript-eslint/member-ordering */
+/* eslint-disable no-param-reassign, @typescript-eslint/member-ordering */
 
+import fs from 'fs-extra';
+import spdxLicenses from 'spdx-license-list';
 import { Memoize, Path, toArray } from '@boost/common';
 import Artifact from './Artifact';
 import Project from './Project';
 import resolveTsConfig from './helpers/resolveTsConfig';
-import { FeatureFlags, PackemonPackage, Platform, Target } from './types';
+import {
+  ArtifactState,
+  BootOptions,
+  BuildOptions,
+  FeatureFlags,
+  PackemonPackage,
+  PackOptions,
+  Platform,
+  Target,
+} from './types';
 
 export default class Package {
   artifacts: Artifact[] = [];
 
   contents: PackemonPackage;
+
+  jsonPath: Path;
 
   path: Path;
 
@@ -24,6 +37,7 @@ export default class Package {
   constructor(project: Project, path: Path, contents: PackemonPackage) {
     this.project = project;
     this.path = path;
+    this.jsonPath = this.path.append('package.json');
     this.contents = contents;
 
     // Workspace root `package.json`s may not have this
@@ -37,6 +51,27 @@ export default class Package {
     this.artifacts.push(artifact);
 
     return artifact;
+  }
+
+  async boot(options: BootOptions): Promise<void> {
+    if (options.checkLicenses) {
+      this.checkLicense();
+    }
+
+    await this.processArtifacts('booting', (artifact) => artifact.boot(options));
+  }
+
+  async build(options: BuildOptions): Promise<void> {
+    await this.processArtifacts('building', (artifact) => artifact.build(options));
+  }
+
+  async pack(options: PackOptions): Promise<void> {
+    await this.processArtifacts('packing', (artifact) => artifact.pack(options));
+    await this.syncJsonFile();
+  }
+
+  async complete(): Promise<void> {
+    await this.processArtifacts('passed');
   }
 
   getName(): string {
@@ -73,10 +108,6 @@ export default class Package {
     return flags;
   }
 
-  getJsonPath(): Path {
-    return this.path.append('package.json');
-  }
-
   hasDependency(name: string): boolean {
     const pkg = this.contents;
 
@@ -94,5 +125,50 @@ export default class Package {
 
   isRunning(): boolean {
     return this.artifacts.some((artifact) => artifact.isRunning());
+  }
+
+  protected checkLicense() {
+    const { contents } = this;
+    const spdxLicenseTypes = new Set(
+      Object.keys(spdxLicenses).map((key) => key.toLocaleLowerCase()),
+    );
+
+    if (contents.license) {
+      toArray(
+        typeof contents.license === 'string'
+          ? { type: contents.license, url: spdxLicenses[contents.license] }
+          : contents.license,
+      ).forEach((license) => {
+        if (!spdxLicenseTypes.has(license.type.toLocaleLowerCase())) {
+          console.error(
+            `Invalid license ${license.type} for package "${this.getName()}".`,
+            'Must be an official SPDX license type.',
+          );
+        }
+      });
+    } else {
+      console.error(`No license found for package "${this.getName()}".`);
+    }
+  }
+
+  protected async processArtifacts(
+    state: ArtifactState,
+    callback?: (artifact: Artifact) => Promise<void>,
+  ) {
+    await Promise.all(
+      this.artifacts
+        .filter((artifact) => !artifact.shouldSkip())
+        .map(async (artifact) => {
+          artifact.state = state;
+
+          if (callback) {
+            await callback(artifact);
+          }
+        }),
+    );
+  }
+
+  protected async syncJsonFile() {
+    await fs.writeFile(this.jsonPath.path(), this.contents, 'utf8');
   }
 }

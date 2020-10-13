@@ -33,7 +33,7 @@ export function getRollupConfig(
     return null;
   }
 
-  const packagePath = path.resolve(artifact.package.getJsonPath().path());
+  const packagePath = path.resolve(artifact.package.jsonPath.path());
 
   // Allow artifacts to reference other artifact imports
   const external = artifact.package.artifacts
