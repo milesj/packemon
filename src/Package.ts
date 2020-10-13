@@ -12,14 +12,16 @@ import {
   BootOptions,
   BuildOptions,
   FeatureFlags,
+  PackageConfig,
   PackemonPackage,
+  PackemonPackageConfig,
   PackOptions,
-  Platform,
-  Target,
 } from './types';
 
 export default class Package {
   artifacts: Artifact[] = [];
+
+  config!: PackageConfig;
 
   contents: PackemonPackage;
 
@@ -27,31 +29,31 @@ export default class Package {
 
   path: Path;
 
-  platforms: Platform[] = [];
-
   project: Project;
 
   root: boolean = false;
-
-  target: Target = 'legacy';
 
   constructor(project: Project, path: Path, contents: PackemonPackage) {
     this.project = project;
     this.path = path;
     this.jsonPath = this.path.append('package.json');
     this.contents = contents;
-
-    // Workspace root `package.json`s may not have this
-    if (contents.packemon) {
-      this.platforms = toArray(contents.packemon.platform || 'node');
-      this.target = contents.packemon.target || 'legacy';
-    }
   }
 
   addArtifact(artifact: Artifact): Artifact {
     this.artifacts.push(artifact);
 
     return artifact;
+  }
+
+  setConfig(config: Required<PackemonPackageConfig>) {
+    this.config = {
+      formats: toArray(config.format),
+      inputs: config.inputs,
+      namespace: config.namespace,
+      platforms: toArray(config.platform),
+      target: config.target,
+    };
   }
 
   async boot(options: BootOptions): Promise<void> {
@@ -68,11 +70,11 @@ export default class Package {
 
   async pack(options: PackOptions): Promise<void> {
     await this.processArtifacts('packing', (artifact) => artifact.pack(options));
-    await this.syncJsonFile();
   }
 
   async complete(): Promise<void> {
     await this.processArtifacts('passed');
+    await this.syncJsonFile();
   }
 
   getName(): string {

@@ -131,7 +131,7 @@ export default class BundleArtifact extends Artifact<{ size: number }> {
     // and when a package wants to support multiple platforms,
     // we must down-level the "lib" format to the lowest platform.
     if (this.flags.requiresSharedLib) {
-      const platforms = new Set(this.package.platforms);
+      const platforms = new Set(this.package.config.platforms);
 
       if (platforms.has('browser')) {
         return 'browser';
@@ -140,7 +140,7 @@ export default class BundleArtifact extends Artifact<{ size: number }> {
       }
     }
 
-    return this.package.platforms[0];
+    return this.package.config.platforms[0];
   }
 
   getInputPath(): Path | null {

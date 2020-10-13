@@ -1,5 +1,3 @@
-/* eslint-disable no-param-reassign */
-
 import fs from 'fs';
 import {
   Blueprint,
@@ -9,6 +7,7 @@ import {
   Path,
   predicates,
   Predicates,
+  toArray,
   WorkspacePackage,
 } from '@boost/common';
 import { Event } from '@boost/event';
@@ -19,12 +18,41 @@ import Artifact from './Artifact';
 import BundleArtifact from './BundleArtifact';
 import {
   ArtifactFlags,
+  BrowserFormat,
   Format,
+  NodeFormat,
   PackemonOptions,
   PackemonPackage,
   PackemonPackageConfig,
   Phase,
+  Platform,
 } from './types';
+
+const { array, custom, object, string, union } = predicates;
+
+const platformPredicate = string<Platform>('browser').oneOf(['node', 'browser']);
+const nodeFormatPredicate = string<NodeFormat>('lib').oneOf(['lib', 'mjs', 'cjs']);
+const browserFormatPredicate = string<BrowserFormat>('lib').oneOf(['lib', 'esm', 'umd']);
+const joinedFormatPredicate = string<Format>('lib').oneOf(['lib', 'esm', 'umd', 'mjs', 'cjs']);
+const formatPredicate = custom<Format, PackemonPackageConfig>((format, schema) => {
+  const platforms = new Set(toArray(schema.struct.platform));
+
+  if (platforms.has('browser') && !platforms.has('node')) {
+    return browserFormatPredicate.validate(format as BrowserFormat, schema.currentPath);
+  } else if (!platforms.has('browser') && platforms.has('node')) {
+    return nodeFormatPredicate.validate(format as NodeFormat, schema.currentPath);
+  }
+
+  return joinedFormatPredicate.validate(format, schema.currentPath);
+}, 'lib');
+
+const blueprint: Blueprint<Required<PackemonPackageConfig>> = {
+  format: union([array(formatPredicate), formatPredicate], []),
+  inputs: object(string()),
+  namespace: string(),
+  platform: union([array(platformPredicate), platformPredicate], 'browser'),
+  target: string('legacy').oneOf(['legacy', 'modern', 'future']),
+};
 
 export default class Packemon extends Contract<PackemonOptions> {
   readonly root: Path;
@@ -125,35 +153,37 @@ export default class Packemon extends Contract<PackemonOptions> {
 
   protected generateArtifacts() {
     this.packages.forEach((pkg) => {
-      const config = pkg.contents.packemon;
+      const { config } = pkg;
       const flags: ArtifactFlags = {};
-      const formats = new Set<Format>();
+      const formats = new Set<Format>(config.formats);
 
-      pkg.platforms.sort().forEach((platform) => {
-        if (formats.has('lib')) {
-          flags.requiresSharedLib = true;
-        }
-
-        if (platform === 'node') {
-          formats.add('lib');
-          formats.add('cjs');
-          formats.add('mjs');
-        } else if (platform === 'browser') {
-          formats.add('lib');
-          formats.add('esm');
-
-          if (config.namespace) {
-            formats.add('umd');
+      if (formats.size === 0) {
+        config.platforms.sort().forEach((platform) => {
+          if (formats.has('lib')) {
+            flags.requiresSharedLib = true;
           }
-        }
-      });
+
+          if (platform === 'node') {
+            formats.add('lib');
+            // formats.add('cjs');
+            // formats.add('mjs');
+          } else if (platform === 'browser') {
+            formats.add('lib');
+            formats.add('esm');
+
+            if (config.namespace) {
+              formats.add('umd');
+            }
+          }
+        });
+      }
 
       Object.entries(config.inputs || { index: 'src/index.ts' }).forEach(([name, path]) => {
         const artifact = new BundleArtifact(pkg);
         artifact.flags = flags;
         artifact.formats = Array.from(formats);
         artifact.inputPath = path;
-        artifact.namespace = config.namespace || '';
+        artifact.namespace = config.namespace;
         artifact.outputName = name;
 
         pkg.addArtifact(artifact);
@@ -171,14 +201,23 @@ export default class Packemon extends Contract<PackemonOptions> {
       timeout: this.options.timeout,
     });
 
+    const notifyArtifacts = (pkg: Package) => {
+      pkg.artifacts.forEach((artifact) => {
+        this.onArtifactUpdate.emit([artifact]);
+      });
+    };
+
     this.packages.forEach((pkg) => {
       pipeline.add(pkg.getName(), async () => {
-        await callback(pkg);
+        const promise = callback(pkg);
 
-        this.onPackageUpdate.emit([pkg]);
+        // Update once the promise has started
+        notifyArtifacts(pkg);
 
-        pkg.artifacts.forEach((artifact) => {
-          this.onArtifactUpdate.emit([artifact]);
+        // Update again once it has completed
+        return promise.then(() => {
+          this.onPackageUpdate.emit([pkg]);
+          notifyArtifacts(pkg);
         });
       });
     });
@@ -196,15 +235,6 @@ export default class Packemon extends Contract<PackemonOptions> {
   }
 
   protected validateAndPreparePackages(packages: WorkspacePackage<PackemonPackage>[]): Package[] {
-    const { array, object, string, union } = predicates;
-    const platformPredicate = string('browser').oneOf(['node', 'browser']);
-    const blueprint: Blueprint<Required<PackemonPackageConfig>> = {
-      inputs: object(string()),
-      namespace: string(),
-      platform: union([array(platformPredicate), platformPredicate], 'browser'),
-      target: string('legacy').oneOf(['legacy', 'modern', 'future']),
-    };
-
     const nextPackages: Package[] = [];
 
     packages.forEach(({ metadata, package: contents }) => {
@@ -212,9 +242,15 @@ export default class Packemon extends Contract<PackemonOptions> {
         return;
       }
 
-      optimal(contents.packemon, blueprint);
+      const pkg = new Package(this.project, Path.create(metadata.packagePath), contents);
 
-      nextPackages.push(new Package(this.project, Path.create(metadata.packagePath), contents));
+      pkg.setConfig(
+        optimal(contents.packemon, blueprint, {
+          name: pkg.getName(),
+        }),
+      );
+
+      nextPackages.push(pkg);
     });
 
     return nextPackages;

@@ -34,6 +34,7 @@ export type Format = NodeFormat | BrowserFormat;
 export type Phase = 'boot' | 'build' | 'pack' | 'done';
 
 export interface PackemonPackageConfig {
+  format?: Format | Format[];
   inputs?: Record<string, string>;
   namespace?: string;
   platform?: Platform | Platform[];
@@ -50,6 +51,14 @@ export interface PackemonOptions {
   concurrency: number;
   skipPrivate: boolean;
   timeout: number;
+}
+
+export interface PackageConfig {
+  formats: Format[];
+  inputs: Record<string, string>;
+  namespace: string;
+  platforms: Platform[];
+  target: Target;
 }
 
 export interface BootOptions {

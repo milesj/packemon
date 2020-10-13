@@ -84,10 +84,12 @@ export function getRollupConfig(
   // Add an output for each format
   config.output = artifact.formats.map((format) => {
     const ext = artifact.getExtension(format);
+    const { target } = artifact.package.config;
+
     const buildUnit: BuildUnit = {
       format,
       platform: artifact.getPlatform(format),
-      target: artifact.package.target,
+      target,
     };
 
     const output: OutputOptions = {
@@ -100,7 +102,7 @@ export function getRollupConfig(
       chunkFileNames: `[name]-[hash].${ext}`,
       entryFileNames: `[name].${ext}`,
       // Use const when not supporting old targets
-      preferConst: artifact.package.target !== 'legacy',
+      preferConst: target !== 'legacy',
       // Output specific plugins
       plugins: [
         getBabelOutputPlugin({
