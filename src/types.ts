@@ -67,8 +67,9 @@ export type ArtifactState =
   | 'failed'
   | 'skipped';
 
-export interface BuildResult {
+export interface BuildResult<T> {
   [key: string]: unknown;
+  stats: Record<string, T>;
   time: number;
 }
 

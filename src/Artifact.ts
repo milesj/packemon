@@ -3,12 +3,12 @@
 import Package from './Package';
 import { ArtifactFlags, BuildResult, ArtifactState } from './types';
 
-export default abstract class Artifact {
+export default abstract class Artifact<T = unknown> {
   flags: ArtifactFlags = {};
 
   package: Package;
 
-  result?: BuildResult;
+  result?: BuildResult<T>;
 
   state: ArtifactState = 'pending';
 

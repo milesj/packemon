@@ -1,4 +1,5 @@
-import { Target } from './types';
+import { StyleType } from '@boost/cli';
+import { ArtifactState, Target } from './types';
 
 export const EXTENSIONS = ['.ts', '.tsx', '.js', '.jsx', '.cjs', '.mjs'];
 
@@ -24,4 +25,21 @@ export const BROWSER_TARGETS: { [K in Target]: string | string[] } = {
   legacy: 'IE 11',
   modern: 'defaults',
   future: ['last 2 chrome versions', 'last 2 firefox versions'],
+};
+
+export const STATE_COLORS: { [K in ArtifactState]?: StyleType } = {
+  pending: 'muted',
+  passed: 'success',
+  failed: 'failure',
+  skipped: 'warning',
+};
+
+export const STATE_LABELS: { [K in ArtifactState]: string } = {
+  pending: '',
+  booting: 'Booting',
+  building: 'Building',
+  packing: 'Packing',
+  passed: 'Passed',
+  failed: 'Failed',
+  skipped: 'Skipped',
 };

@@ -4,7 +4,7 @@ import Artifact from './Artifact';
 import { getRollupConfig } from './configs/rollup';
 import { Format, Platform } from './types';
 
-export default class BundleArtifact extends Artifact {
+export default class BundleArtifact extends Artifact<{ size: number }> {
   cache?: RollupCache;
 
   formats: Format[] = [];
@@ -29,6 +29,7 @@ export default class BundleArtifact extends Artifact {
     }
 
     this.result = {
+      stats: {},
       time: 0,
     };
 
@@ -42,15 +43,18 @@ export default class BundleArtifact extends Artifact {
 
     await Promise.all(
       toArray(output).map(async (out) => {
-        const { originalFormat, ...outOptions } = out;
+        const { originalFormat = 'lib', ...outOptions } = out;
 
         try {
-          await bundle.write(outOptions);
-        } catch (error) {
-          console.error('Failed to bundle package.');
-          console.error(error);
+          const result = await bundle.write(outOptions);
 
+          this.result!.stats[originalFormat] = {
+            size: Buffer.byteLength(result.output[0].code),
+          };
+        } catch (error) {
           this.state = 'failed';
+
+          throw error;
         }
       }),
     );

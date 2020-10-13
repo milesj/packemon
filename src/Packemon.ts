@@ -62,7 +62,6 @@ export default class Packemon extends Contract<PackemonOptions> {
   }
 
   async run() {
-    // Find packages and generate artifacts
     await this.findPackages();
     await this.generateArtifacts();
 
@@ -202,11 +201,6 @@ export default class Packemon extends Contract<PackemonOptions> {
 
     this.packages.forEach((pkg) => {
       this.onPackageUpdate.emit([pkg]);
-    });
-
-    // We need a short timeout so the CLI can refresh
-    await new Promise((resolve) => {
-      setTimeout(resolve, 100);
     });
   }
 
