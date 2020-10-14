@@ -1,4 +1,4 @@
-/* eslint-disable no-param-reassign, @typescript-eslint/member-ordering */
+/* eslint-disable @typescript-eslint/member-ordering */
 
 import fs from 'fs-extra';
 import spdxLicenses from 'spdx-license-list';
@@ -7,29 +7,25 @@ import Artifact from './Artifact';
 import Project from './Project';
 import resolveTsConfig from './helpers/resolveTsConfig';
 import {
-  ArtifactState,
-  Awaitable,
-  BootOptions,
-  BuildOptions,
   FeatureFlags,
   PackageConfig,
+  PackemonOptions,
   PackemonPackage,
   PackemonPackageConfig,
-  PackOptions,
 } from './types';
 
 export default class Package {
-  artifacts: Artifact[] = [];
+  readonly artifacts: Artifact[] = [];
 
   config!: PackageConfig;
 
-  contents: PackemonPackage;
+  readonly contents: PackemonPackage;
 
-  jsonPath: Path;
+  readonly jsonPath: Path;
 
-  path: Path;
+  readonly path: Path;
 
-  project: Project;
+  readonly project: Project;
 
   root: boolean = false;
 
@@ -56,24 +52,15 @@ export default class Package {
     };
   }
 
-  async boot(options: BootOptions): Promise<void> {
+  async run(options: PackemonOptions): Promise<void> {
     if (options.checkLicenses) {
       this.checkLicense();
     }
 
-    await this.processArtifacts('booting', (artifact) => artifact.boot(options));
-  }
+    // Process artifacts in parallel
+    await Promise.all(this.artifacts.map((artifact) => artifact.run(options)));
 
-  async build(options: BuildOptions): Promise<void> {
-    await this.processArtifacts('building', (artifact) => artifact.build(options));
-  }
-
-  async pack(options: PackOptions): Promise<void> {
-    await this.processArtifacts('packing', (artifact) => artifact.pack(options));
-  }
-
-  async complete(): Promise<void> {
-    await this.processArtifacts('passed');
+    // Sync `package.json` in case it was modified
     await this.syncJsonFile();
   }
 
@@ -152,23 +139,6 @@ export default class Package {
     } else {
       console.error(`No license found for package "${this.getName()}".`);
     }
-  }
-
-  protected async processArtifacts(
-    state: ArtifactState,
-    callback?: (artifact: Artifact) => Awaitable,
-  ) {
-    await Promise.all(
-      this.artifacts
-        .filter((artifact) => !artifact.shouldSkip())
-        .map(async (artifact) => {
-          artifact.state = state;
-
-          if (callback) {
-            await callback(artifact);
-          }
-        }),
-    );
   }
 
   protected async syncJsonFile() {

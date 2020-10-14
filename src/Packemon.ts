@@ -14,7 +14,6 @@ import { Event } from '@boost/event';
 import { PooledPipeline, Context } from '@boost/pipeline';
 import Package from './Package';
 import Project from './Project';
-import Artifact from './Artifact';
 import BundleArtifact from './BundleArtifact';
 import TypesArtifact from './TypesArtifact';
 import {
@@ -25,7 +24,6 @@ import {
   PackemonOptions,
   PackemonPackage,
   PackemonPackageConfig,
-  Phase,
   Platform,
 } from './types';
 
@@ -56,19 +54,13 @@ const blueprint: Blueprint<Required<PackemonPackageConfig>> = {
 };
 
 export default class Packemon extends Contract<PackemonOptions> {
-  readonly root: Path;
-
-  readonly onArtifactUpdate = new Event<[Artifact]>('artifact-update');
-
-  readonly onPackageUpdate = new Event<[Package]>('package-update');
-
-  readonly onPhaseChange = new Event<[Phase]>('phase-change');
+  readonly onPackagePrepared = new Event<[Package]>('package-prepared');
 
   packages: Package[] = [];
 
-  phase: Phase = 'boot';
-
   readonly project: Project;
+
+  readonly root: Path;
 
   constructor(cwd: string, options: PackemonOptions) {
     super(options);
@@ -89,30 +81,29 @@ export default class Packemon extends Contract<PackemonOptions> {
   }
 
   async run() {
-    const { checkLicenses, addExports } = this.options;
-
     await this.findPackages();
     await this.generateArtifacts();
 
-    // Bootstrap artifacts
-    this.updatePhase('boot');
+    const pipeline = new PooledPipeline(new Context());
 
-    await this.processPackages((pkg) => pkg.boot({ checkLicenses }));
+    pipeline.configure({
+      concurrency: this.options.concurrency,
+      timeout: this.options.timeout,
+    });
 
-    // Build artifacts
-    this.updatePhase('build');
+    this.packages.forEach((pkg) => {
+      pipeline.add(pkg.getName(), async () => {
+        await pkg.run(this.options);
 
-    await this.processPackages((pkg) => pkg.build({}));
+        this.onPackagePrepared.emit([pkg]);
+      });
+    });
 
-    // Package artifacts
-    this.updatePhase('pack');
+    const { errors } = await pipeline.run();
 
-    await this.processPackages((pkg) => pkg.pack({ addExports }));
-
-    // Done!
-    this.updatePhase('done');
-
-    await this.processPackages((pkg) => pkg.complete());
+    if (errors.length > 0) {
+      throw errors[0];
+    }
   }
 
   protected async findPackages() {
@@ -167,8 +158,6 @@ export default class Packemon extends Contract<PackemonOptions> {
 
           if (platform === 'node') {
             formats.add('lib');
-            // formats.add('cjs');
-            // formats.add('mjs');
           } else if (platform === 'browser') {
             formats.add('lib');
             formats.add('esm');
@@ -180,13 +169,12 @@ export default class Packemon extends Contract<PackemonOptions> {
         });
       }
 
-      Object.entries(config.inputs || { index: 'src/index.ts' }).forEach(([name, path]) => {
-        const artifact = new BundleArtifact(pkg);
-        artifact.flags = flags;
+      Object.entries(config.inputs).forEach(([outputName, inputPath]) => {
+        const artifact = new BundleArtifact(pkg, flags);
         artifact.formats = Array.from(formats);
-        artifact.inputPath = path;
+        artifact.inputPath = inputPath;
         artifact.namespace = config.namespace;
-        artifact.outputName = name;
+        artifact.outputName = outputName;
 
         pkg.addArtifact(artifact);
       });
@@ -194,50 +182,7 @@ export default class Packemon extends Contract<PackemonOptions> {
       if (this.options.generateDeclaration) {
         pkg.addArtifact(new TypesArtifact(pkg));
       }
-
-      this.onPackageUpdate.emit([pkg]);
     });
-  }
-
-  protected async processPackages(callback: (pkg: Package) => Promise<void>): Promise<void> {
-    const pipeline = new PooledPipeline(new Context());
-
-    pipeline.configure({
-      concurrency: this.options.concurrency,
-      timeout: this.options.timeout,
-    });
-
-    const notifyArtifacts = (pkg: Package) => {
-      pkg.artifacts.forEach((artifact) => {
-        this.onArtifactUpdate.emit([artifact]);
-      });
-    };
-
-    this.packages.forEach((pkg) => {
-      pipeline.add(pkg.getName(), async () => {
-        const promise = callback(pkg);
-
-        // Update once the promise has started
-        notifyArtifacts(pkg);
-
-        // Update again once it has completed
-        return promise.then(() => {
-          this.onPackageUpdate.emit([pkg]);
-          notifyArtifacts(pkg);
-        });
-      });
-    });
-
-    const { errors } = await pipeline.run();
-
-    if (errors.length > 0) {
-      throw errors[0];
-    }
-  }
-
-  protected updatePhase(phase: Phase) {
-    this.phase = phase;
-    this.onPhaseChange.emit([phase]);
   }
 
   protected validateAndPreparePackages(packages: WorkspacePackage<PackemonPackage>[]): Package[] {

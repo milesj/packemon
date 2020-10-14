@@ -5,29 +5,18 @@ import { Extractor, ExtractorConfig } from '@microsoft/api-extractor';
 import Artifact from './Artifact';
 import { APIExtractorStructure } from './types';
 
-export default class TypesArtifact extends Artifact {
-  extractorConfig!: {
-    projectFolder: string;
-    mainEntryPointFilePath: string;
-    dtsRollup: {
-      untrimmedFilePath: string;
-    };
+// eslint-disable-next-line
+const extractorConfig = require(path.join(__dirname, '../api-extractor.json')) as {
+  projectFolder: string;
+  mainEntryPointFilePath: string;
+  dtsRollup: {
+    untrimmedFilePath: string;
   };
+};
 
-  async boot(): Promise<void> {
-    this.extractorConfig = (await fs.readJson(
-      path.join(__dirname, '../api-extractor.json'),
-    )) as APIExtractorStructure;
-  }
-
+export default class TypesArtifact extends Artifact {
   async build(): Promise<void> {
-    this.result = {
-      stats: {},
-      time: 0,
-    };
-
     const pkgPath = this.package.path;
-    const start = Date.now();
 
     // Compile the current project to a DTS folder
     await execa(
@@ -54,8 +43,6 @@ export default class TypesArtifact extends Artifact {
 
     // Remove old DTS build folder
     await fs.remove(pkgPath.append('dts-build').path());
-
-    this.result.time = Date.now() - start;
   }
 
   pack(): void {
@@ -73,11 +60,11 @@ export default class TypesArtifact extends Artifact {
   protected async generateDeclaration(outputName: string) {
     const configPath = this.package.path.append(`api-extractor-${outputName}.json`).path();
     const config: APIExtractorStructure = {
-      ...this.extractorConfig,
+      ...extractorConfig,
       projectFolder: this.package.path.path(),
       mainEntryPointFilePath: `<projectFolder>/dts-build/${outputName}.d.ts`,
       dtsRollup: {
-        ...this.extractorConfig.dtsRollup,
+        ...extractorConfig.dtsRollup,
         untrimmedFilePath: `<projectFolder>/dts/${outputName}.d.ts`,
       },
     };

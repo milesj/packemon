@@ -6,12 +6,6 @@ import PackageList from './PackageList';
 import PackageRow from './PackageRow';
 import Package from '../Package';
 
-const HEADER_LABELS = {
-  boot: 'Bootstrapping packages',
-  build: 'Building package artifacts',
-  pack: 'Packing for distribution',
-};
-
 export interface DistributeProps {
   packemon: Packemon;
 }
@@ -22,23 +16,26 @@ export default function Distribute({ packemon }: DistributeProps) {
   const [staticPackages, setStaticPackages] = useState<Package[]>([]);
   const staticNames = useRef(new Set<string>());
 
-  // Run the packemon process on mount
   useEffect(() => {
-    void packemon.run().catch(setError);
+    // Continuously render at 30 FPS
+    const timer = setInterval(forceUpdate, 1000 / 30);
+    const clear = () => clearInterval(timer);
 
-    // Continuously re-render on state changes
-    packemon.onPhaseChange.listen(forceUpdate);
-    packemon.onArtifactUpdate.listen(forceUpdate);
-  }, [packemon]);
+    // Run the packemon process on mount
+    void packemon.run().catch(setError).finally(clear);
 
-  // Add complete packages to the static list
-  useEffect(() => {
-    return packemon.onPackageUpdate.listen((pkg) => {
+    // Add complete packages to the static list
+    const unlisten = packemon.onPackagePrepared.listen((pkg) => {
       if (pkg.isComplete() && !staticNames.current.has(pkg.getName())) {
         setStaticPackages((pkgs) => [...pkgs, pkg]);
         staticNames.current.add(pkg.getName());
       }
     });
+
+    return () => {
+      clear();
+      unlisten();
+    };
   }, [packemon]);
 
   // Bubble up errors to the program
@@ -54,11 +51,10 @@ export default function Distribute({ packemon }: DistributeProps) {
         {(pkg) => <PackageRow key={pkg.getName()} package={pkg} />}
       </Static>
 
-      {packemon.phase !== 'done' && (
+      {runningPackages.length > 0 && (
         <Box flexDirection="column">
-          <Header label={HEADER_LABELS[packemon.phase]} marginBottom={0} />
-
-          {runningPackages.length > 0 && <PackageList packages={runningPackages} />}
+          <Header label="Preparing packages for distribution" marginBottom={0} />
+          <PackageList packages={runningPackages} />
         </Box>
       )}
     </>

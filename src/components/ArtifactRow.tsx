@@ -16,7 +16,7 @@ export interface ArtifactRowProps {
 export default function ArtifactRow({ artifact }: ArtifactRowProps) {
   return (
     <Box flexDirection="row">
-      <Box marginLeft={2} marginRight={1}>
+      <Box marginLeft={2}>
         <Style type="default">{artifact.getLabel()}</Style>
       </Box>
 
@@ -33,7 +33,7 @@ export default function ArtifactRow({ artifact }: ArtifactRowProps) {
         return <Build key={build} {...props} />;
       })}
 
-      <Box marginLeft={2}>
+      <Box marginLeft={1}>
         {artifact.isComplete() ? (
           <Style type="default" bold>
             {formatMs(artifact.result?.time || 0)}
@@ -41,15 +41,15 @@ export default function ArtifactRow({ artifact }: ArtifactRowProps) {
         ) : (
           <Style type="muted">{STATE_LABELS[artifact.state]}</Style>
         )}
-
-        {artifact.isRunning() && (
-          <Box marginLeft={1}>
-            <Style type="warning">
-              <Spinner type="dots" />
-            </Style>
-          </Box>
-        )}
       </Box>
+
+      {artifact.isRunning() && (
+        <Box marginLeft={1}>
+          <Style type="warning">
+            <Spinner type="dots" />
+          </Style>
+        </Box>
+      )}
     </Box>
   );
 }

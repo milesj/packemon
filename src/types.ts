@@ -31,8 +31,6 @@ export type NodeFormat =
 
 export type Format = NodeFormat | BrowserFormat;
 
-export type Phase = 'boot' | 'build' | 'pack' | 'done';
-
 export interface PackemonPackageConfig {
   format?: Format | Format[];
   inputs?: Record<string, string>;
@@ -62,31 +60,13 @@ export interface PackageConfig {
   target: Target;
 }
 
-export interface BootOptions {
-  checkLicenses: boolean;
-}
-
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface BuildOptions {}
-
-export interface PackOptions {
-  addExports: boolean;
-}
-
 // ARTIFACTS
 
 export interface ArtifactFlags {
   requiresSharedLib?: boolean;
 }
 
-export type ArtifactState =
-  | 'pending'
-  | 'booting'
-  | 'building'
-  | 'packing'
-  | 'passed'
-  | 'failed'
-  | 'skipped';
+export type ArtifactState = 'pending' | 'booting' | 'building' | 'packing' | 'passed' | 'failed';
 
 export interface BuildResult<T> {
   [key: string]: unknown;
@@ -110,11 +90,6 @@ export interface FeatureFlags {
   workspaces?: string[];
 }
 
-export interface TSConfigStructure {
-  compilerOptions?: CompilerOptions;
-  extends?: string;
-}
-
 declare module 'rollup' {
   interface OutputOptions {
     originalFormat?: Format;
@@ -124,6 +99,11 @@ declare module 'rollup' {
 // OTHER
 
 export type Awaitable = void | Promise<void>;
+
+export interface TSConfigStructure {
+  compilerOptions?: CompilerOptions;
+  extends?: string;
+}
 
 export interface APIExtractorStructure {
   projectFolder: string;

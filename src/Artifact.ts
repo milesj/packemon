@@ -1,37 +1,56 @@
-/* eslint-disable no-empty-function */
-
 import Package from './Package';
-import {
-  ArtifactFlags,
-  ArtifactState,
-  Awaitable,
-  BootOptions,
-  BuildOptions,
-  BuildResult,
-  PackOptions,
-} from './types';
+import { ArtifactFlags, ArtifactState, Awaitable, BuildResult, PackemonOptions } from './types';
 
 export default abstract class Artifact<T = unknown> {
-  flags: ArtifactFlags = {};
+  readonly flags: ArtifactFlags;
 
-  package: Package;
+  readonly package: Package;
 
-  result?: BuildResult<T>;
+  readonly result: BuildResult<T> = {
+    stats: {},
+    time: 0,
+  };
 
   state: ArtifactState = 'pending';
 
-  constructor(pkg: Package) {
+  constructor(pkg: Package, flags: ArtifactFlags = {}) {
     this.package = pkg;
+    this.flags = flags;
   }
 
-  boot(options: BootOptions): Awaitable {}
+  async run(options: PackemonOptions): Promise<void> {
+    const start = Date.now();
 
-  build(options: BuildOptions): Awaitable {}
+    try {
+      this.state = 'booting';
+      await this.boot(options);
 
-  pack(options: PackOptions): Awaitable {}
+      this.state = 'building';
+      await this.build(options);
+
+      this.state = 'packing';
+      await this.pack(options);
+
+      this.state = 'passed';
+    } catch (error) {
+      this.state = 'failed';
+
+      if (error instanceof Error) {
+        console.error(error.message);
+      }
+    }
+
+    this.result.time = Date.now() - start;
+  }
+
+  boot(options: PackemonOptions): Awaitable {}
+
+  build(options: PackemonOptions): Awaitable {}
+
+  pack(options: PackemonOptions): Awaitable {}
 
   isComplete(): boolean {
-    return this.state === 'passed' || this.state === 'failed' || this.state === 'skipped';
+    return this.state === 'passed' || this.state === 'failed';
   }
 
   isRunning(): boolean {
@@ -39,7 +58,7 @@ export default abstract class Artifact<T = unknown> {
   }
 
   shouldSkip(): boolean {
-    return this.state === 'skipped' || this.state === 'failed';
+    return this.state === 'failed';
   }
 
   abstract getLabel(): string;

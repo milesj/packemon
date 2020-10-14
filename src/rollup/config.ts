@@ -38,16 +38,8 @@ function getRollupExternalPaths(artifact: BundleArtifact, ext?: string): Record<
   return paths;
 }
 
-export function getRollupConfig(
-  artifact: BundleArtifact,
-  features: FeatureFlags,
-): RollupOptions | null {
+export function getRollupConfig(artifact: BundleArtifact, features: FeatureFlags): RollupOptions {
   const inputPath = artifact.getInputPath();
-
-  if (!inputPath) {
-    return null;
-  }
-
   const packagePath = path.resolve(artifact.package.jsonPath.path());
 
   const config: RollupOptions = {

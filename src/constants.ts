@@ -31,7 +31,6 @@ export const STATE_COLORS: { [K in ArtifactState]?: StyleType } = {
   pending: 'muted',
   passed: 'success',
   failed: 'failure',
-  skipped: 'warning',
 };
 
 export const STATE_LABELS: { [K in ArtifactState]: string } = {
@@ -41,5 +40,4 @@ export const STATE_LABELS: { [K in ArtifactState]: string } = {
   packing: 'Packing',
   passed: 'Passed',
   failed: 'Failed',
-  skipped: 'Skipped',
 };

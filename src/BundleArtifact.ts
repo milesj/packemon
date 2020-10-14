@@ -2,7 +2,7 @@ import { Path, SettingMap, toArray } from '@boost/common';
 import { rollup, RollupCache } from 'rollup';
 import Artifact from './Artifact';
 import { getRollupConfig } from './rollup/config';
-import { Format, PackOptions, Platform } from './types';
+import { Format, PackemonOptions, Platform } from './types';
 
 export default class BundleArtifact extends Artifact<{ size: number }> {
   cache?: RollupCache;
@@ -19,22 +19,7 @@ export default class BundleArtifact extends Artifact<{ size: number }> {
   outputName: string = '';
 
   async build(): Promise<void> {
-    const rollupConfig = getRollupConfig(this, this.package.getFeatureFlags());
-
-    // Skip build because of invalid config
-    if (!rollupConfig) {
-      this.state = 'skipped';
-
-      return;
-    }
-
-    this.result = {
-      stats: {},
-      time: 0,
-    };
-
-    const { output = [], ...input } = rollupConfig;
-    const start = Date.now();
+    const { output = [], ...input } = getRollupConfig(this, this.package.getFeatureFlags());
     const bundle = await rollup(input);
 
     if (bundle.cache) {
@@ -44,25 +29,16 @@ export default class BundleArtifact extends Artifact<{ size: number }> {
     await Promise.all(
       toArray(output).map(async (out) => {
         const { originalFormat = 'lib', ...outOptions } = out;
+        const result = await bundle.write(outOptions);
 
-        try {
-          const result = await bundle.write(outOptions);
-
-          this.result!.stats[originalFormat] = {
-            size: Buffer.byteLength(result.output[0].code),
-          };
-        } catch (error) {
-          this.state = 'failed';
-
-          throw error;
-        }
+        this.result.stats[originalFormat] = {
+          size: Buffer.byteLength(result.output[0].code),
+        };
       }),
     );
-
-    this.result.time = Date.now() - start;
   }
 
-  pack({ addExports }: PackOptions): void {
+  pack({ addExports }: PackemonOptions): void {
     const pkg = this.package.contents;
     const hasLib = this.formats.includes('lib');
     const hasUmd = this.formats.includes('umd');
@@ -143,19 +119,18 @@ export default class BundleArtifact extends Artifact<{ size: number }> {
     return this.package.config.platforms[0];
   }
 
-  getInputPath(): Path | null {
+  getInputPath(): Path {
     const inputPath = this.package.path.append(this.inputPath);
 
     if (inputPath.exists()) {
       return inputPath;
     }
 
-    console.warn(
-      `Cannot find input "${this.inputPath}" for package "${this.package.getName()}".`,
-      'Skipping package.',
+    throw new Error(
+      `Cannot find input "${
+        this.inputPath
+      }" for package "${this.package.getName()}". Skipping package.`,
     );
-
-    return null;
   }
 
   getOutputFile(format: Format): string {
