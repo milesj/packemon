@@ -21,16 +21,16 @@ export class BuildCommand extends Command<BuildOptions, BuildParams> {
   @Arg.Flag('Check that packages have a valid `license` field')
   checkLicenses: boolean = false;
 
-  @Arg.Number('Number of packages to run in parallel')
+  @Arg.Number('Number of builds to run in parallel')
   concurrency: number = os.cpus().length;
 
   @Arg.Flag('Generate a single TypeScript declaration for each package input')
   generateDeclaration: boolean = false;
 
-  @Arg.Flag('Skip `private` packages from being prepared')
+  @Arg.Flag('Skip `private` packages from being built')
   skipPrivate: boolean = false;
 
-  @Arg.Number('Timeout in milliseconds before a package is cancelled')
+  @Arg.Number('Timeout in milliseconds before a build is cancelled')
   timeout: number = 0;
 
   @Arg.Params<BuildParams>({
