@@ -20,7 +20,7 @@ export default function PackageRow({ package: pkg }: PackageRowProps) {
         </Box>
 
         <Box marginLeft={1}>
-          <TargetPlatforms platforms={pkg.config.platforms} target={pkg.config.target} />
+          <TargetPlatforms platforms={pkg.config.platforms} target={pkg.config.support} />
         </Box>
       </Box>
 

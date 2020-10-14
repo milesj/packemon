@@ -48,7 +48,7 @@ export default class Package {
       inputs: config.inputs,
       namespace: config.namespace,
       platforms: toArray(config.platform),
-      target: config.target,
+      support: config.support,
     };
   }
 

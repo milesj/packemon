@@ -1,6 +1,6 @@
 import { PluginItem, TransformOptions as ConfigStructure } from '@babel/core';
-import { BROWSER_TARGETS, NODE_TARGETS } from '../constants';
-import { Target, Format, Platform, FeatureFlags, BuildUnit } from '../types';
+import { BROWSER_TARGETS, NODE_SUPPORTED_VERSIONS } from '../constants';
+import { Support, Format, Platform, FeatureFlags, BuildUnit } from '../types';
 import BundleArtifact from '../BundleArtifact';
 
 // https://babeljs.io/docs/en/babel-preset-env
@@ -23,7 +23,7 @@ export interface PresetEnvOptions {
 
 function getPlatformEnvOptions(
   platform: Platform,
-  target: Target,
+  support: Support,
   format: Format,
 ): PresetEnvOptions {
   let modules: PresetEnvOptions['modules'] = false;
@@ -43,13 +43,15 @@ function getPlatformEnvOptions(
           '@babel/plugin-transform-async-to-generator',
         ],
         modules,
-        targets: { node: process.env.NODE_ENV === 'test' ? 'current' : NODE_TARGETS[target] },
+        targets: {
+          node: process.env.NODE_ENV === 'test' ? 'current' : NODE_SUPPORTED_VERSIONS[support],
+        },
       };
 
     case 'browser':
       return {
         modules,
-        targets: { browsers: BROWSER_TARGETS[target] },
+        targets: { browsers: BROWSER_TARGETS[support] },
       };
 
     default:
@@ -133,7 +135,7 @@ export function getBabelOutputConfig(
 
   // ENVIRONMENT
 
-  const { format, platform, target } = buildUnit;
+  const { format, platform, support } = buildUnit;
   const envOptions: PresetEnvOptions = {
     // Prefer spec compliance over speed
     spec: true,
@@ -144,7 +146,7 @@ export function getBabelOutputConfig(
     bugfixes: true,
     shippedProposals: true,
     // Platform specific
-    ...getPlatformEnvOptions(platform, target, format),
+    ...getPlatformEnvOptions(platform, support, format),
   };
 
   presets.push(['@babel/preset-env', envOptions]);
@@ -153,7 +155,7 @@ export function getBabelOutputConfig(
 
   // Use `Object.assign` when available
   // https://babeljs.io/docs/en/babel-plugin-transform-destructuring#usebuiltins
-  if (buildUnit.target !== 'legacy') {
+  if (buildUnit.support !== 'legacy' && buildUnit.support !== 'stable') {
     plugins.push(
       ['@babel/plugin-transform-destructuring', { useBuiltIns: true }],
       ['@babel/plugin-proposal-object-rest-spread', { useBuiltIns: true }],

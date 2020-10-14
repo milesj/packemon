@@ -1,23 +1,24 @@
 import React from 'react';
 import { toArray } from '@boost/common';
 import { Style } from '@boost/cli';
-import { NODE_TARGETS, BROWSER_TARGETS } from '../constants';
-import { Platform, Target } from '../types';
+import { NODE_SUPPORTED_VERSIONS, BROWSER_TARGETS } from '../constants';
+import { Platform, Support } from '../types';
 
 const PLATFORMS: { [K in Platform]: string } = {
   node: 'Node',
   browser: 'Browser',
 };
 
-const TARGETS: { [K in Target]: string } = {
+const SUPPORTED: { [K in Support]: string } = {
   legacy: 'Legacy',
-  modern: 'Modern',
-  future: 'Future',
+  stable: 'Stable',
+  current: 'Current',
+  experimental: 'Experimental',
 };
 
 export interface TargetPlatformsProps {
   platforms: Platform[];
-  target: Target;
+  target: Support;
 }
 
 function trimVersion(version: string) {
@@ -35,7 +36,7 @@ export default function TargetPlatforms({ platforms, target }: TargetPlatformsPr
 
   platforms.forEach((platform) => {
     if (platform === 'node') {
-      versions.push(`${PLATFORMS[platform]} (v${trimVersion(NODE_TARGETS[target])})`);
+      versions.push(`${PLATFORMS[platform]} (v${trimVersion(NODE_SUPPORTED_VERSIONS[target])})`);
     } else if (platform === 'browser') {
       versions.push(`${PLATFORMS[platform]} (${toArray(BROWSER_TARGETS[target]).join(', ')})`);
     }
@@ -43,7 +44,7 @@ export default function TargetPlatforms({ platforms, target }: TargetPlatformsPr
 
   return (
     <Style type="muted">
-      {TARGETS[target]}
+      {SUPPORTED[target]}
       {' / '}
       {versions.join(', ')}
     </Style>

@@ -6,20 +6,20 @@ import {
   getBabelOutputConfig,
   Platform,
   Project,
-  Target,
+  Support,
 } from './index';
 
 // Extract attributes from environment
 const format = (process.env.PACKEMON_FORMAT || 'lib') as Format;
 const platform = (process.env.PACKEMON_PLATFORM || 'node') as Platform;
-const target = (process.env.PACKEMON_TARGET || 'legacy') as Target;
+const support = (process.env.PACKEMON_SUPPORT || 'stable') as Support;
 
 const project = new Project(process.cwd());
 const artifact = new BundleArtifact(project.rootPackage);
 const featureFlags = project.rootPackage.getFeatureFlags();
 
 const inputConfig = getBabelInputConfig(artifact, featureFlags);
-const outputConfig = getBabelOutputConfig({ format, platform, target }, featureFlags);
+const outputConfig = getBabelOutputConfig({ format, platform, support }, featureFlags);
 
 export const config = {
   babelrc: false,

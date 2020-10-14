@@ -76,12 +76,12 @@ export function getRollupConfig(artifact: BundleArtifact, features: FeatureFlags
   // Add an output for each format
   config.output = artifact.formats.map((format) => {
     const ext = artifact.getExtension(format);
-    const { target } = artifact.package.config;
+    const { support } = artifact.package.config;
 
     const buildUnit: BuildUnit = {
       format,
       platform: artifact.getPlatform(format),
-      target,
+      support,
     };
 
     const output: OutputOptions = {
@@ -93,8 +93,8 @@ export function getRollupConfig(artifact: BundleArtifact, features: FeatureFlags
       assetFileNames: '../assets/[name]-[hash][extname]',
       chunkFileNames: `[name]-[hash].${ext}`,
       entryFileNames: `[name].${ext}`,
-      // Use const when not supporting old targets
-      preferConst: target !== 'legacy',
+      // Use const when not supporting new targets
+      preferConst: support === 'current' || support === 'experimental',
       // Output specific plugins
       plugins: [
         getBabelOutputPlugin({

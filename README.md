@@ -18,8 +18,8 @@ provide sane defaults and configurations, verify package requirements, and much 
 - Configure packages for Node.js or Web browsers, with CommonJS and ECMAScript output formats.
 - Builds packages with Rollup to create self-contained and tree-shaken entry points. Provide the
   smallest file size possible!
-- Transforms packages with Babel's `preset-env` and the configured platform, target, and format.
-  Only ship and polyfill what's truly necessary!
+- Transforms packages with Babel's `preset-env` and the configured platform targets. Only ship and
+  polyfill what's truly necessary!
 - Generate and combine TypeScript declarations into a single public-only API representation.
 
 ## Installation
@@ -75,26 +75,28 @@ To support multiple platforms, pass an array.
 }
 ```
 
-### Target
+### Support
 
-The target environment and or version for the configured platform(s).
+The supported environment and or version for the configured platform(s).
 
-- `legacy` - The oldest supported version, typically a version in LTS maintenance mode. _(default)_
-- `modern` - A stable LTS version.
-- `future` - The newest and or experimental version, typically a version not yet released for LTS.
+- `legacy` - An unsupported version. Only exists for legacy projects and systems.
+- `stable` - The oldest supported version, typically a version in LTS maintenance mode. _(default)_
+- `current` - The current supported LTS version.
+- `experimental` - The newest and or experimental version, typically a version not yet released for
+  LTS.
 
 ```json
 {
-  "target": "future"
+  "support": "current"
 }
 ```
 
-> We suggest leaving this setting at `legacy` for all libraries, as it offers the widest range of
+> We suggest leaving this setting at `stable` for all libraries, as it offers the widest range of
 > support for consumers.
 
 ### Formats
 
-The output format for each platform + target build.
+The output format for each platform build targets.
 
 - Node
   - `lib` - CommonJS output using `.js` file extension. For standard JavaScript and TypeScript

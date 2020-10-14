@@ -3,13 +3,15 @@ import type { CompilerOptions } from 'typescript';
 
 export type Platform = 'node' | 'browser'; // electron
 
-export type Target =
-  // Oldest target still supported
+export type Support =
+  // Unsupported version
   | 'legacy'
-  // Latest target
-  | 'modern'
-  // Experimental future target
-  | 'future';
+  // Oldest version still supported
+  | 'stable'
+  // Latest version
+  | 'current'
+  // Next/future version
+  | 'experimental';
 
 export type CommonFormat =
   // CommonJS modules with ".js" file extension
@@ -24,9 +26,9 @@ export type BrowserFormat =
 
 export type NodeFormat =
   | CommonFormat
-  // CommonJS modules with ".cjs" file extension (node)
+  // CommonJS modules with ".cjs" file extension
   | 'cjs'
-  // ECMAScript modules with ".mjs" file extension (node)
+  // ECMAScript modules with ".mjs" file extension
   | 'mjs';
 
 export type Format = NodeFormat | BrowserFormat;
@@ -36,7 +38,7 @@ export interface PackemonPackageConfig {
   inputs?: Record<string, string>;
   namespace?: string;
   platform?: Platform | Platform[];
-  target?: Target;
+  support?: Support;
 }
 
 export interface PackemonPackage extends PackageStructure {
@@ -58,7 +60,7 @@ export interface PackageConfig {
   inputs: Record<string, string>;
   namespace: string;
   platforms: Platform[];
-  target: Target;
+  support: Support;
 }
 
 // ARTIFACTS
@@ -78,7 +80,7 @@ export interface BuildResult<T> {
 export interface BuildUnit {
   format: Format;
   platform: Platform;
-  target: Target;
+  support: Support;
 }
 
 // CONFIG

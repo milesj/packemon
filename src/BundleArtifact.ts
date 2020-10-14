@@ -1,7 +1,7 @@
 import { Path, SettingMap, toArray } from '@boost/common';
 import { rollup, RollupCache } from 'rollup';
 import Artifact from './Artifact';
-import { NODE_TARGETS, NPM_TARGETS } from './constants';
+import { NODE_SUPPORTED_VERSIONS, NPM_SUPPORTED_VERSIONS } from './constants';
 import { getRollupConfig } from './rollup/config';
 import { Format, PackemonOptions, Platform } from './types';
 
@@ -41,7 +41,7 @@ export default class BundleArtifact extends Artifact<{ size: number }> {
 
   pack({ addEngines, addExports }: PackemonOptions): void {
     const pkg = this.package.contents;
-    const { platforms, target } = this.package.config;
+    const { platforms, support } = this.package.config;
     const hasLib = this.formats.includes('lib');
     const hasUmd = this.formats.includes('umd');
 
@@ -60,9 +60,13 @@ export default class BundleArtifact extends Artifact<{ size: number }> {
         pkg.engines = {};
       }
 
+      const npmVersion = NPM_SUPPORTED_VERSIONS[support];
+
       Object.assign(pkg.engines, {
-        node: `>=${NODE_TARGETS[target]}`,
-        npm: `>=${NPM_TARGETS[target]}`,
+        node: `>=${NODE_SUPPORTED_VERSIONS[support]}`,
+        npm: toArray(npmVersion)
+          .map((v) => `>=${v}`)
+          .join(' || '),
       });
     }
 
@@ -99,7 +103,7 @@ export default class BundleArtifact extends Artifact<{ size: number }> {
     return this.outputName;
   }
 
-  getBuilds(): string[] {
+  getTargets(): string[] {
     return this.formats;
   }
 

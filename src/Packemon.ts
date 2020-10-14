@@ -1,4 +1,4 @@
-import fs from 'fs';
+import fs from 'fs-extra';
 import {
   Blueprint,
   Contract,
@@ -50,7 +50,7 @@ const blueprint: Blueprint<Required<PackemonPackageConfig>> = {
   inputs: object(string()),
   namespace: string(),
   platform: union([array(platformPredicate), platformPredicate], 'browser'),
-  target: string('legacy').oneOf(['legacy', 'modern', 'future']),
+  support: string('stable').oneOf(['legacy', 'stable', 'current', 'experimental']),
 };
 
 export default class Packemon extends Contract<PackemonOptions> {
@@ -125,10 +125,7 @@ export default class Packemon extends Contract<PackemonOptions> {
 
     let packages: WorkspacePackage<PackemonPackage>[] = await Promise.all(
       pkgPaths.map(async (pkgPath) => {
-        const content = json.parse<PackemonPackage>(
-          // eslint-disable-next-line node/no-unsupported-features/node-builtins
-          await fs.promises.readFile(pkgPath.path(), 'utf8'),
-        );
+        const content = json.parse<PackemonPackage>(await fs.readFile(pkgPath.path(), 'utf8'));
 
         return {
           metadata: this.project.createWorkspaceMetadata(pkgPath),

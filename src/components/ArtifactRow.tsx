@@ -20,7 +20,7 @@ export default function ArtifactRow({ artifact }: ArtifactRowProps) {
         <Style type="default">{artifact.getLabel()}</Style>
       </Box>
 
-      {artifact.getBuilds().map((build) => {
+      {artifact.getTargets().map((build) => {
         const props = {
           build,
           state: artifact.state,
