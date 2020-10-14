@@ -19,20 +19,24 @@ export default class TypesArtifact extends Artifact {
     const pkgPath = this.package.path;
 
     // Compile the current project to a DTS folder
-    await execa(
-      'tsc',
-      [
-        '--declaration',
-        '--declarationMap',
-        '--declarationDir',
-        'dts-build',
-        '--emitDeclarationOnly',
-      ],
-      {
-        cwd: pkgPath.path(),
-        preferLocal: true,
-      },
-    );
+    let cwd = pkgPath.path();
+    const args = [
+      '--declaration',
+      '--declarationMap',
+      '--declarationDir',
+      'dts-build',
+      '--emitDeclarationOnly',
+    ];
+
+    if (this.package.project.isWorkspacesEnabled()) {
+      cwd = this.package.project.root.path();
+      args.unshift('--build', '--composite', '--incremental');
+    }
+
+    await execa('tsc', args, {
+      cwd,
+      preferLocal: true,
+    });
 
     // Combine all DTS files into a single file for each input
     await Promise.all(
@@ -45,7 +49,7 @@ export default class TypesArtifact extends Artifact {
     await fs.remove(pkgPath.append('dts-build').path());
   }
 
-  pack(): void {
+  postBuild(): void {
     this.package.contents.types = './dts/index.d.ts';
   }
 

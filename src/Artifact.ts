@@ -22,14 +22,11 @@ export default abstract class Artifact<T = unknown> {
     const start = Date.now();
 
     try {
-      this.state = 'booting';
-      await this.boot(options);
-
       this.state = 'building';
-      await this.build(options);
 
-      this.state = 'packing';
-      await this.pack(options);
+      await this.preBuild(options);
+      await this.build(options);
+      await this.postBuild(options);
 
       this.state = 'passed';
     } catch (error) {
@@ -43,18 +40,18 @@ export default abstract class Artifact<T = unknown> {
     this.result.time = Date.now() - start;
   }
 
-  boot(options: PackemonOptions): Awaitable {}
+  preBuild(options: PackemonOptions): Awaitable {}
 
   build(options: PackemonOptions): Awaitable {}
 
-  pack(options: PackemonOptions): Awaitable {}
+  postBuild(options: PackemonOptions): Awaitable {}
 
   isComplete(): boolean {
     return this.state === 'passed' || this.state === 'failed';
   }
 
   isRunning(): boolean {
-    return this.state === 'booting' || this.state === 'building' || this.state === 'packing';
+    return this.state === 'building';
   }
 
   shouldSkip(): boolean {

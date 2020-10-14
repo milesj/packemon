@@ -6,8 +6,8 @@ import { Style } from '@boost/cli';
 import Artifact from '../Artifact';
 import { STATE_LABELS } from '../constants';
 import BundleArtifact from '../BundleArtifact';
-import BundleBuild from './BundleBuild';
-import Build from './Build';
+import BundleTarget from './BundleTarget';
+import Target from './Target';
 
 export interface ArtifactRowProps {
   artifact: Artifact;
@@ -20,17 +20,17 @@ export default function ArtifactRow({ artifact }: ArtifactRowProps) {
         <Style type="default">{artifact.getLabel()}</Style>
       </Box>
 
-      {artifact.getTargets().map((build) => {
+      {artifact.getTargets().map((target) => {
         const props = {
-          build,
+          target,
           state: artifact.state,
         };
 
         if (artifact instanceof BundleArtifact) {
-          return <BundleBuild key={build} {...props} stats={artifact.result?.stats[build]} />;
+          return <BundleTarget key={target} {...props} stats={artifact.result?.stats[target]} />;
         }
 
-        return <Build key={build} {...props} />;
+        return <Target key={target} {...props} />;
       })}
 
       <Box marginLeft={1}>

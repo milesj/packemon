@@ -16,9 +16,9 @@ const SUPPORTED: { [K in Support]: string } = {
   experimental: 'Experimental',
 };
 
-export interface TargetPlatformsProps {
+export interface EnvironmentProps {
   platforms: Platform[];
-  target: Support;
+  support: Support;
 }
 
 function trimVersion(version: string) {
@@ -31,20 +31,20 @@ function trimVersion(version: string) {
   return parts.join('.');
 }
 
-export default function TargetPlatforms({ platforms, target }: TargetPlatformsProps) {
+export default function Environment({ platforms, support }: EnvironmentProps) {
   const versions: string[] = [];
 
   platforms.forEach((platform) => {
     if (platform === 'node') {
-      versions.push(`${PLATFORMS[platform]} (v${trimVersion(NODE_SUPPORTED_VERSIONS[target])})`);
+      versions.push(`${PLATFORMS[platform]} (v${trimVersion(NODE_SUPPORTED_VERSIONS[support])})`);
     } else if (platform === 'browser') {
-      versions.push(`${PLATFORMS[platform]} (${toArray(BROWSER_TARGETS[target]).join(', ')})`);
+      versions.push(`${PLATFORMS[platform]} (${toArray(BROWSER_TARGETS[support]).join(', ')})`);
     }
   });
 
   return (
     <Style type="muted">
-      {SUPPORTED[target]}
+      {SUPPORTED[support]}
       {' / '}
       {versions.join(', ')}
     </Style>

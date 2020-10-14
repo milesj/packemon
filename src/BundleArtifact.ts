@@ -39,7 +39,7 @@ export default class BundleArtifact extends Artifact<{ size: number }> {
     );
   }
 
-  pack({ addEngines, addExports }: PackemonOptions): void {
+  postBuild({ addEngines, addExports }: PackemonOptions): void {
     const pkg = this.package.contents;
     const { platforms, support } = this.package.config;
     const hasLib = this.formats.includes('lib');

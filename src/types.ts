@@ -69,7 +69,7 @@ export interface ArtifactFlags {
   requiresSharedLib?: boolean;
 }
 
-export type ArtifactState = 'pending' | 'booting' | 'building' | 'packing' | 'passed' | 'failed';
+export type ArtifactState = 'pending' | 'building' | 'passed' | 'failed';
 
 export interface BuildResult<T> {
   [key: string]: unknown;

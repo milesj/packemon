@@ -54,7 +54,7 @@ const blueprint: Blueprint<Required<PackemonPackageConfig>> = {
 };
 
 export default class Packemon extends Contract<PackemonOptions> {
-  readonly onPackagePrepared = new Event<[Package]>('package-prepared');
+  readonly onPackageBuilt = new Event<[Package]>('package-built');
 
   packages: Package[] = [];
 
@@ -81,7 +81,7 @@ export default class Packemon extends Contract<PackemonOptions> {
     };
   }
 
-  async run() {
+  async build() {
     await this.findPackages();
     await this.generateArtifacts();
 
@@ -96,7 +96,7 @@ export default class Packemon extends Contract<PackemonOptions> {
       pipeline.add(pkg.getName(), async () => {
         await pkg.run(this.options);
 
-        this.onPackagePrepared.emit([pkg]);
+        this.onPackageBuilt.emit([pkg]);
       });
     });
 

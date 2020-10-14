@@ -1,6 +1,6 @@
 import { Program } from '@boost/cli';
 // eslint-disable-next-line unicorn/import-index
-import { DistributeCommand } from './index';
+import { BuildCommand } from './index';
 
 async function run() {
   const program = new Program({
@@ -11,7 +11,7 @@ async function run() {
     version: require('../package.json').version,
   });
 
-  program.register(new DistributeCommand());
+  program.register(new BuildCommand());
 
   await program.runAndExit(process.argv);
 }

@@ -3,7 +3,7 @@ import { Box } from 'ink';
 import { Style } from '@boost/cli';
 import Package from '../Package';
 import ArtifactRow from './ArtifactRow';
-import TargetPlatforms from './TargetPlatforms';
+import Environment from './Environment';
 
 export interface PackageRowProps {
   package: Package;
@@ -20,7 +20,7 @@ export default function PackageRow({ package: pkg }: PackageRowProps) {
         </Box>
 
         <Box marginLeft={1}>
-          <TargetPlatforms platforms={pkg.config.platforms} target={pkg.config.support} />
+          <Environment platforms={pkg.config.platforms} support={pkg.config.support} />
         </Box>
       </Box>
 

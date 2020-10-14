@@ -44,9 +44,7 @@ export const STATE_COLORS: { [K in ArtifactState]?: StyleType } = {
 
 export const STATE_LABELS: { [K in ArtifactState]: string } = {
   pending: '',
-  booting: 'Booting',
   building: 'Building',
-  packing: 'Packing',
   passed: 'Passed',
   failed: 'Failed',
 };

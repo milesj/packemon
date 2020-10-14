@@ -1,16 +1,16 @@
 import React from 'react';
 import fileSize from 'filesize';
 import { Style } from '@boost/cli';
-import Build, { BuildProps } from './Build';
+import Target, { TargetProps } from './Target';
 
-export interface BundleBuildProps extends BuildProps {
+export interface BundleTargetProps extends TargetProps {
   stats?: { size: number };
 }
 
-export default function BundleBuild({ stats, ...props }: BundleBuildProps) {
+export default function BundleTarget({ stats, ...props }: BundleTargetProps) {
   return (
-    <Build {...props}>
+    <Target {...props}>
       {stats?.size && <Style type="muted">{` (${fileSize(stats.size)})`}</Style>}
-    </Build>
+    </Target>
   );
 }

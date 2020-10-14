@@ -11,7 +11,7 @@ import BundleArtifact from './BundleArtifact';
 import TypesArtifact from './TypesArtifact';
 import { getBabelInputConfig, getBabelOutputConfig } from './babel/config';
 
-export * from './commands/Distribute';
+export * from './commands/Build';
 export * from './constants';
 export * from './types';
 

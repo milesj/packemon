@@ -2,16 +2,16 @@
 import React from 'react';
 import os from 'os';
 import { Arg, Command, Config, GlobalOptions } from '@boost/cli';
-import Distribute from '../components/Distribute';
+import Build from '../components/Build';
 import Packemon from '../Packemon';
 import { PackemonOptions } from '../types';
 
-export type DistributeOptions = GlobalOptions & PackemonOptions;
+export type BuildOptions = GlobalOptions & PackemonOptions;
 
-export type DistributeParams = [string];
+export type BuildParams = [string];
 
-@Config('distribute', 'Prepare standardized packages for distribution.')
-export class DistributeCommand extends Command<DistributeOptions, DistributeParams> {
+@Config('build', 'Build standardized packages for distribution.')
+export class BuildCommand extends Command<BuildOptions, BuildParams> {
   @Arg.Flag('Add `engine` versions to each `package.json`')
   addEngines: boolean = false;
 
@@ -33,7 +33,7 @@ export class DistributeCommand extends Command<DistributeOptions, DistributePara
   @Arg.Number('Timeout in milliseconds before a package is cancelled')
   timeout: number = 0;
 
-  @Arg.Params<DistributeParams>({
+  @Arg.Params<BuildParams>({
     description: 'Project root that contains a `package.json`',
     label: 'cwd',
     type: 'string',
@@ -49,6 +49,6 @@ export class DistributeCommand extends Command<DistributeOptions, DistributePara
       timeout: this.timeout,
     });
 
-    return <Distribute packemon={packemon} />;
+    return <Build packemon={packemon} />;
   }
 }
