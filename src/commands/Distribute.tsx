@@ -12,7 +12,10 @@ export type Params = [string];
 
 @Config('distribute', 'Prepare standardized packages for distribution.')
 export default class DistributeCommand extends Command<Options, Params> {
-  @Arg.Flag('Add `main`, `browser`, and `exports` fields to each `package.json`')
+  @Arg.Flag('Add `engine` versions to each `package.json`')
+  addEngines: boolean = false;
+
+  @Arg.Flag('Add `exports` fields to each `package.json`')
   addExports: boolean = false;
 
   @Arg.Flag('Check that packages have a valid `license` field')
@@ -37,6 +40,7 @@ export default class DistributeCommand extends Command<Options, Params> {
   })
   run(cwd: string = process.cwd()) {
     const packemon = new Packemon(cwd, {
+      addEngines: this.addEngines,
       addExports: this.addExports,
       checkLicenses: this.checkLicenses,
       concurrency: this.concurrency,

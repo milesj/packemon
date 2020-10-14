@@ -44,6 +44,7 @@ export interface PackemonPackage extends PackageStructure {
 }
 
 export interface PackemonOptions {
+  addEngines: boolean;
   addExports: boolean;
   checkLicenses: boolean;
   concurrency: number;

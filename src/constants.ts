@@ -15,9 +15,15 @@ export const EXCLUDE = [
 
 // Based on LTS schedule: https://nodejs.org/en/about/releases/
 export const NODE_TARGETS: { [K in Target]: string } = {
-  legacy: '10.0.0',
+  legacy: '10.3.0', // Requires NPM v6
   modern: '12.0.0',
-  future: '14.8.0',
+  future: '14.13.0',
+};
+
+export const NPM_TARGETS: { [K in Target]: string } = {
+  legacy: '6.1.0',
+  modern: '6.9.0',
+  future: '6.14.0',
 };
 
 // Based on browserslist: https://github.com/browserslist/browserslist

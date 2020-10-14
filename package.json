@@ -11,7 +11,7 @@
   "scripts": {
     "prepare": "beemo create-config --silent",
     "setup": "beemo typescript",
-    "build": "yarn run packemon distribute --checkLicenses --generateDeclaration",
+    "build": "yarn run packemon distribute --addEngines --checkLicenses --generateDeclaration",
     "ci": "yarn run type && yarn run test && yarn run lint",
     "coverage": "yarn run test --coverage",
     "format": "beemo prettier",
@@ -30,7 +30,8 @@
   "bin": "./bin/packemon.js",
   "sideEffects": false,
   "engines": {
-    "node": ">=10.10.0"
+    "node": ">=10.3.0",
+    "npm": ">=6.1.0"
   },
   "packemon": {
     "inputs": {

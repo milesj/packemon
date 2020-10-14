@@ -1,6 +1,7 @@
 import { Path, SettingMap, toArray } from '@boost/common';
 import { rollup, RollupCache } from 'rollup';
 import Artifact from './Artifact';
+import { NODE_TARGETS, NPM_TARGETS } from './constants';
 import { getRollupConfig } from './rollup/config';
 import { Format, PackemonOptions, Platform } from './types';
 
@@ -38,8 +39,9 @@ export default class BundleArtifact extends Artifact<{ size: number }> {
     );
   }
 
-  pack({ addExports }: PackemonOptions): void {
+  pack({ addEngines, addExports }: PackemonOptions): void {
     const pkg = this.package.contents;
+    const { platforms, target } = this.package.config;
     const hasLib = this.formats.includes('lib');
     const hasUmd = this.formats.includes('umd');
 
@@ -53,7 +55,22 @@ export default class BundleArtifact extends Artifact<{ size: number }> {
       }
     }
 
+    if (addEngines && platforms.includes('node')) {
+      if (!pkg.engines) {
+        pkg.engines = {};
+      }
+
+      Object.assign(pkg.engines, {
+        node: `>=${NODE_TARGETS[target]}`,
+        npm: `>=${NPM_TARGETS[target]}`,
+      });
+    }
+
     if (addExports) {
+      if (!pkg.exports) {
+        pkg.exports = {};
+      }
+
       const paths: SettingMap = {};
 
       this.formats.forEach((format) => {
@@ -69,10 +86,6 @@ export default class BundleArtifact extends Artifact<{ size: number }> {
       // Must come after import/require
       if (hasLib) {
         paths.default = this.getOutputFile('lib');
-      }
-
-      if (!pkg.exports) {
-        pkg.exports = {};
       }
 
       Object.assign(pkg.exports, {
