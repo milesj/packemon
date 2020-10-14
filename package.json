@@ -1,7 +1,7 @@
 {
   "name": "packemon",
   "version": "0.1.0",
-  "description": "Build and prepare your package using standardized practices. Gotta pack 'em all!",
+  "description": "Build and prepare package using standardized practices. Gotta pack 'em all!",
   "keywords": [
     "build",
     "prepare",
@@ -11,7 +11,7 @@
   "scripts": {
     "prepare": "beemo create-config --silent",
     "setup": "beemo typescript",
-    "build": "yarn run packemon && beemo typescript --emitDeclarationOnly",
+    "build": "yarn run packemon distribute --checkLicenses --generateDeclaration",
     "ci": "yarn run type && yarn run test && yarn run lint",
     "coverage": "yarn run test --coverage",
     "format": "beemo prettier",
