@@ -124,3 +124,11 @@ declare module 'rollup' {
 // OTHER
 
 export type Awaitable = void | Promise<void>;
+
+export interface APIExtractorStructure {
+  projectFolder: string;
+  mainEntryPointFilePath: string;
+  dtsRollup: {
+    untrimmedFilePath: string;
+  };
+}

@@ -1,6 +1,5 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/api-extractor/v7/api-extractor.schema.json",
-  // "extends": "my-package/include/api-extractor-base.json"
   "projectFolder": ".",
   "mainEntryPointFilePath": "<projectFolder>/dts-build/index.d.ts",
   "bundledPackages": [],
@@ -16,7 +15,7 @@
   "dtsRollup": {
     "enabled": true,
     "untrimmedFilePath": "<projectFolder>/dts/index.d.ts",
-    "omitTrimmingComments": true
+    "omitTrimmingComments": false
   },
   "tsdocMetadata": {
     "enabled": false
