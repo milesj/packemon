@@ -3,6 +3,7 @@ logs/
 *.log
 
 # Cache
+.github
 .eslintcache
 .idea
 .npm
@@ -12,6 +13,8 @@ yarn.lock
 
 # Directories
 coverage/
+configs/
+build/
 docs/
 src/
 tests/
