@@ -6,12 +6,12 @@ import Distribute from '../components/Distribute';
 import Packemon from '../Packemon';
 import { PackemonOptions } from '../types';
 
-export type Options = GlobalOptions & PackemonOptions;
+export type DistributeOptions = GlobalOptions & PackemonOptions;
 
-export type Params = [string];
+export type DistributeParams = [string];
 
 @Config('distribute', 'Prepare standardized packages for distribution.')
-export default class DistributeCommand extends Command<Options, Params> {
+export class DistributeCommand extends Command<DistributeOptions, DistributeParams> {
   @Arg.Flag('Add `engine` versions to each `package.json`')
   addEngines: boolean = false;
 
@@ -33,7 +33,7 @@ export default class DistributeCommand extends Command<Options, Params> {
   @Arg.Number('Timeout in milliseconds before a package is cancelled')
   timeout: number = 0;
 
-  @Arg.Params<Params>({
+  @Arg.Params<DistributeParams>({
     description: 'Project root that contains a `package.json`',
     label: 'cwd',
     type: 'string',

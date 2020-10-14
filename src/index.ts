@@ -9,9 +9,9 @@ import Project from './Project';
 import Artifact from './Artifact';
 import BundleArtifact from './BundleArtifact';
 import TypesArtifact from './TypesArtifact';
-import { run } from './run';
 import { getBabelInputConfig, getBabelOutputConfig } from './babel/config';
 
+export * from './commands/Distribute';
 export * from './constants';
 export * from './types';
 
@@ -24,5 +24,4 @@ export {
   Package,
   Packemon,
   Project,
-  run,
 };

@@ -1,7 +1,8 @@
 import { Program } from '@boost/cli';
-import DistributeCommand from './commands/Distribute';
+// eslint-disable-next-line unicorn/import-index
+import { DistributeCommand } from './index';
 
-export async function run() {
+async function run() {
   const program = new Program({
     bin: 'packemon',
     footer: 'Documentation: https://packemon.dev',
@@ -14,3 +15,5 @@ export async function run() {
 
   await program.runAndExit(process.argv);
 }
+
+void run();
