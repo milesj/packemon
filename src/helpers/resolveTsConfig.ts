@@ -1,4 +1,4 @@
-import { Path, parseFile } from '@boost/common';
+import { Path, deepMerge, parseFile } from '@boost/common';
 import { TSConfigStructure } from '../types';
 
 const cache: Record<string, TSConfigStructure> = {};
@@ -12,12 +12,9 @@ export default function resolveTsConfig(path: Path): TSConfigStructure {
 
   let contents = parseFile<TSConfigStructure>(path);
 
-  // TODO deep merge
   if (contents.extends) {
-    contents = {
-      ...resolveTsConfig(path.parent().append(contents.extends)),
-      ...contents,
-    };
+    // @ts-expect-error Types need to be fixed upstream
+    contents = deepMerge(resolveTsConfig(path.parent().append(contents.extends)), contents);
   }
 
   cache[cacheKey] = contents;
