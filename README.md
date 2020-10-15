@@ -8,7 +8,8 @@
 
 Are you a library maintainer? Confused on how to build packages for consumers? Unsure of what
 tooling and plugins to use? What about CommonJS vs ECMAScript? TypeScript, JavaScript, or FlowType?
-Forget that headache and let Packemon do the heavy lifting for you!
+Forget that headache and let Packemon do the heavy lifting for you. No need to fiddle with Babel or
+Rollup configurations!
 
 Packemon will prepare each package for distribution by building with the proper tooling and plugins,
 provide sane defaults and configurations, verify package requirements, and much more!
@@ -42,6 +43,11 @@ dependency collisions and lock file churn.
 Packemon has been designed to build and prepare packages for distribution, and as such, supports
 workspaces (monorepos) or single packages (solorepos). By default, only packages configured for
 Packemon will be built. This allows specific packages to be completely ignored if need be.
+
+But before we jump to configurations, we must abide a few requirements.
+
+- Each package must contain a root `package.json` (duh).
+- Each package must have a source folder named `src`. Builds will output relative to this.
 
 To configure a package, add a `packemon` block to their `package.json`, with any of the following
 optional options. We suggest defining a platform at minimum.
@@ -79,7 +85,10 @@ To support multiple platforms, pass an array.
 
 ### Support
 
-The supported environment and or version for the configured platform(s).
+The supported environment and or version for the configured platform(s). View pre-defined
+[Node versions](https://github.com/milesj/packemon/blob/master/src/constants.ts#L17) and
+[browser targets](https://github.com/milesj/packemon/blob/master/src/constants.ts#L32) (using
+browserslist).
 
 - `legacy` - An unsupported version. Only exists for legacy projects and systems.
 - `stable` - The oldest supported version, typically a version in LTS maintenance mode. _(default)_
@@ -98,23 +107,25 @@ The supported environment and or version for the configured platform(s).
 
 ### Formats
 
-The output format for each platform build targets.
+The output format for each platform build target.
 
-- Node
-  - `lib` - CommonJS output using `.js` file extension. For standard JavaScript and TypeScript
-    projects. _(default)_
-  - `cjs` - [CommonJS](https://nodejs.org/api/modules.html) output using `.cjs` file extension.
-    Source files must be written in CommonJS (`.cjs`) and require paths must use trailing
-    extensions.
-  - `mjs` - [ECMAScript module](https://nodejs.org/api/esm.html) output using `.mjs` file extension.
-    Source files must be written in ESM (`.mjs`) and import paths must use trailing extensions.
-- Browser
-  - `lib` - CommonJS output using `.js` file extension. For standard JavaScript and TypeScript
-    projects. _(default)_
-  - `esm` - ECMAScript module output using `.js` file extension. The same as `lib`, but uses
-    `import/export` instead of `require`. (default)
-  - `umd` - Universal Module Definition output using `.js` file extension. Meant to be used directly
-    in the browser (via CDN) instead of being bundled. See [namespace](#namespace) option.
+#### Node
+
+- `lib` - CommonJS output using `.js` file extension. For standard JavaScript and TypeScript
+  projects. _(default)_
+- `cjs` - [CommonJS](https://nodejs.org/api/modules.html) output using `.cjs` file extension. Source
+  files must be written in CommonJS (`.cjs`) and `require` paths must use trailing extensions.
+- `mjs` - [ECMAScript module](https://nodejs.org/api/esm.html) output using `.mjs` file extension.
+  Source files must be written in ESM (`.mjs`) and `import` paths must use trailing extensions.
+
+#### Browser
+
+- `lib` - CommonJS output using `.js` file extension. For standard JavaScript and TypeScript
+  projects. _(default)_
+- `esm` - ECMAScript module output using `.js` file extension. The same as `lib`, but uses
+  `import/export` instead of `require`. (default)
+- `umd` - Universal Module Definition output using `.js` file extension. Meant to be used directly
+  in the browser (via CDN) instead of being bundled. See [namespace](#namespace) option.
 
 ```json
 {
@@ -137,7 +148,7 @@ built, and the value is an input source file relative to the package root.
 
 ```json
 {
-  "inputs" {
+  "inputs": {
     "index": "src/index.ts",
     "client": "src/client/index.ts",
     "server": "src/server.ts"
@@ -181,16 +192,16 @@ It supports the following command line options.
   ([more information](https://nodejs.org/api/packages.html#packages_package_entry_points)).
 - `--checkLicenses` - Check that packages have a valid `license` field. Will log a warning if
   invalid.
-- `--concurrency` - Number of builds to run in parallel. Defaults to OS CPU count.
+- `--concurrency` - Number of builds to run in parallel. Defaults to operating system CPU count.
 - `--generateDeclaration` - Generate a single TypeScript declaration for each package according to
   the `inputs` setting. Uses
-  [@microsoft/api-extractor](https://www.npmjs.com/package/@microsoft/api-extractor) to generate
-  _only_ the public API.
+  [@microsoft/api-extractor](https://www.npmjs.com/package/@microsoft/api-extractor) to _only_
+  generate the public API.
 - `--skipPrivate` - Skip `private` packages from being built.
 - `--timeout` - Timeout in milliseconds before a build is cancelled. Defaults to no timeout.
 
-By default will find a `package.json` in the current working directory. To build a different
-directory, pass a relative path as an argument.
+By default, `build` will find a `package.json` in the current working directory. To build a
+different directory, pass a relative path as an argument.
 
 ```
 packemon build ./some/other/package
