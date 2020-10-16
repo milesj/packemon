@@ -69,6 +69,10 @@ function getSharedConfig(
       name: 'packemon',
     },
     comments: false,
+    parserOpts: {
+      sourceType: 'unambiguous',
+      strictMode: features.strict,
+    },
     plugins,
     presets,
     // Do NOT load root `babel.config.js` as we need full control

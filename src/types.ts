@@ -89,6 +89,7 @@ export interface FeatureFlags {
   decorators?: boolean;
   flow?: boolean;
   react?: boolean;
+  strict?: boolean;
   typescript?: boolean;
   workspaces?: string[];
 }

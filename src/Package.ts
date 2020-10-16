@@ -71,6 +71,7 @@ export default class Package {
   @Memoize()
   getFeatureFlags(): FeatureFlags {
     const flags: FeatureFlags = this.root ? {} : this.project.rootPackage.getFeatureFlags();
+
     flags.workspaces = this.project.workspaces;
 
     // React
@@ -82,10 +83,11 @@ export default class Package {
     const tsconfigPath = this.project.root.append('tsconfig.json');
 
     if (this.hasDependency('typescript') || tsconfigPath.exists()) {
+      const tsConfig = resolveTsConfig(tsconfigPath) || {};
+
       flags.typescript = true;
-      flags.decorators = Boolean(
-        resolveTsConfig(tsconfigPath)?.compilerOptions?.experimentalDecorators,
-      );
+      flags.decorators = Boolean(tsConfig.compilerOptions?.experimentalDecorators);
+      flags.strict = Boolean(tsConfig.compilerOptions?.strict);
     }
 
     // Flow
