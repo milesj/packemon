@@ -39,6 +39,7 @@ export default class BundleArtifact extends Artifact<{ size: number }> {
     );
   }
 
+  // eslint-disable-next-line complexity
   postBuild({ addEngines, addExports }: PackemonOptions): void {
     const pkg = this.package.packageJson;
     const { platforms, support } = this.package.config;
@@ -52,6 +53,12 @@ export default class BundleArtifact extends Artifact<{ size: number }> {
 
       if (hasUmd) {
         pkg.browser = './umd/index.js';
+      }
+    }
+
+    if (this.outputName === 'bin') {
+      if (hasLib && !pkg.bin) {
+        pkg.bin = './lib/bin.js';
       }
     }
 
