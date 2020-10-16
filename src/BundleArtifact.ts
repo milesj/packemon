@@ -40,7 +40,7 @@ export default class BundleArtifact extends Artifact<{ size: number }> {
   }
 
   postBuild({ addEngines, addExports }: PackemonOptions): void {
-    const pkg = this.package.contents;
+    const pkg = this.package.packageJson;
     const { platforms, support } = this.package.config;
     const hasLib = this.formats.includes('lib');
     const hasUmd = this.formats.includes('umd');

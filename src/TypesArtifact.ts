@@ -50,7 +50,7 @@ export default class TypesArtifact extends Artifact {
   }
 
   postBuild(): void {
-    this.package.contents.types = './dts/index.d.ts';
+    this.package.packageJson.types = './dts/index.d.ts';
   }
 
   getLabel(): string {

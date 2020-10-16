@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/member-ordering */
 
 import fs from 'fs-extra';
+import ts from 'typescript';
 import spdxLicenses from 'spdx-license-list';
 import { Memoize, Path, toArray } from '@boost/common';
 import Artifact from './Artifact';
 import Project from './Project';
-import resolveTsConfig from './helpers/resolveTsConfig';
 import {
   FeatureFlags,
   PackageConfig,
@@ -19,9 +19,9 @@ export default class Package {
 
   config!: PackageConfig;
 
-  readonly contents: PackemonPackage;
+  readonly packageJson: PackemonPackage;
 
-  readonly jsonPath: Path;
+  readonly packageJsonPath: Path;
 
   readonly path: Path;
 
@@ -32,8 +32,40 @@ export default class Package {
   constructor(project: Project, path: Path, contents: PackemonPackage) {
     this.project = project;
     this.path = path;
-    this.jsonPath = this.path.append('package.json');
-    this.contents = contents;
+    this.packageJsonPath = this.path.append('package.json');
+    this.packageJson = contents;
+  }
+
+  @Memoize()
+  get tsconfigJson(): ts.ParsedCommandLine | null {
+    const path = this.path.append('tsconfig.json');
+
+    if (!path.exists()) {
+      return null;
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    const { config, error } = ts.readConfigFile(path.path(), (name) =>
+      fs.readFileSync(name, 'utf8'),
+    );
+
+    if (error) {
+      throw error;
+    }
+
+    const json = ts.parseJsonConfigFileContent(
+      config,
+      ts.sys,
+      path.parent().path(),
+      {},
+      path.path(),
+    );
+
+    if (json.errors.length > 0) {
+      throw json.errors[0];
+    }
+
+    return json;
   }
 
   addArtifact(artifact: Artifact): Artifact {
@@ -61,11 +93,11 @@ export default class Package {
     await Promise.all(this.artifacts.map((artifact) => artifact.run(options)));
 
     // Sync `package.json` in case it was modified
-    await this.syncJsonFile();
+    await this.syncPackageJson();
   }
 
   getName(): string {
-    return this.contents.name;
+    return this.packageJson.name;
   }
 
   @Memoize()
@@ -80,14 +112,12 @@ export default class Package {
     }
 
     // TypeScript
-    const tsconfigPath = this.project.root.append('tsconfig.json');
+    const tsConfig = this.tsconfigJson;
 
-    if (this.hasDependency('typescript') || tsconfigPath.exists()) {
-      const tsConfig = resolveTsConfig(tsconfigPath) || {};
-
+    if (this.hasDependency('typescript') && tsConfig) {
       flags.typescript = true;
-      flags.decorators = Boolean(tsConfig.compilerOptions?.experimentalDecorators);
-      flags.strict = Boolean(tsConfig.compilerOptions?.strict);
+      flags.decorators = Boolean(tsConfig.options.experimentalDecorators);
+      flags.strict = Boolean(tsConfig.options.strict);
     }
 
     // Flow
@@ -101,7 +131,7 @@ export default class Package {
   }
 
   hasDependency(name: string): boolean {
-    const pkg = this.contents;
+    const pkg = this.packageJson;
 
     return Boolean(
       pkg.dependencies?.[name] ||
@@ -120,7 +150,7 @@ export default class Package {
   }
 
   protected checkLicense() {
-    const { contents } = this;
+    const { packageJson: contents } = this;
     const spdxLicenseTypes = new Set(
       Object.keys(spdxLicenses).map((key) => key.toLocaleLowerCase()),
     );
@@ -143,7 +173,7 @@ export default class Package {
     }
   }
 
-  protected async syncJsonFile() {
-    await fs.writeJson(this.jsonPath.path(), this.contents, { spaces: 2 });
+  protected async syncPackageJson() {
+    await fs.writeJson(this.packageJsonPath.path(), this.packageJson, { spaces: 2 });
   }
 }
