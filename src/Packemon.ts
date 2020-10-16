@@ -47,7 +47,7 @@ const formatPredicate = custom<Format, PackemonPackageConfig>((format, schema) =
 
 const blueprint: Blueprint<Required<PackemonPackageConfig>> = {
   format: union([array(formatPredicate), formatPredicate], []),
-  inputs: object(string()),
+  inputs: object(string(), { index: 'src/index.ts' }),
   namespace: string(),
   platform: union([array(platformPredicate), platformPredicate], 'browser'),
   support: string('stable').oneOf(['legacy', 'stable', 'current', 'experimental']),
