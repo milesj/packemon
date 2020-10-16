@@ -13,7 +13,7 @@
     "setup": "beemo typescript",
     "build": "yarn run packemon build --addEngines --checkLicenses --generateDeclaration",
     "ci": "yarn run type && yarn run test && yarn run lint",
-    "clean": "rm -rf {build,dts,dts-build,lib}",
+    "clean": "rm -rf {build,dts,lib}",
     "coverage": "yarn run test --coverage",
     "format": "beemo prettier",
     "lint": "beemo eslint",
@@ -90,6 +90,7 @@
     "react": "^16.14.0",
     "rollup": "^2.31.0",
     "rollup-plugin-node-externals": "^2.2.0",
-    "spdx-license-list": "^6.3.0"
+    "spdx-license-list": "^6.3.0",
+    "typescript": "^4.0.3"
   }
 }

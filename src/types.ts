@@ -1,5 +1,5 @@
+import ts from 'typescript';
 import { PackageStructure } from '@boost/common';
-import type { CompilerOptions } from 'typescript';
 
 export type Platform = 'node' | 'browser'; // electron
 
@@ -104,10 +104,7 @@ declare module 'rollup' {
 
 export type Awaitable = void | Promise<void>;
 
-export interface TSConfigStructure {
-  compilerOptions?: CompilerOptions;
-  extends?: string;
-}
+export type TSConfigStructure = ts.ParsedCommandLine;
 
 export interface APIExtractorStructure {
   projectFolder: string;

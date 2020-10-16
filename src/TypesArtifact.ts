@@ -1,9 +1,8 @@
 import fs from 'fs-extra';
 import path from 'path';
-import execa from 'execa';
 import { Extractor, ExtractorConfig } from '@microsoft/api-extractor';
 import Artifact from './Artifact';
-import { APIExtractorStructure } from './types';
+import { APIExtractorStructure, TSConfigStructure } from './types';
 
 // eslint-disable-next-line
 const extractorConfig = require(path.join(__dirname, '../api-extractor.json')) as {
@@ -16,41 +15,21 @@ const extractorConfig = require(path.join(__dirname, '../api-extractor.json')) a
 
 export default class TypesArtifact extends Artifact {
   async build(): Promise<void> {
-    const pkgPath = this.package.path;
+    const tsConfig = this.package.tsconfigJson;
 
-    // Compile the current project to a DTS folder
-    let cwd = pkgPath.path();
-    const args = [
-      '--declaration',
-      '--declarationMap',
-      '--declarationDir',
-      'dts-build',
-      '--emitDeclarationOnly',
-    ];
-
-    if (this.package.project.isWorkspacesEnabled()) {
-      cwd = this.package.project.root.path();
-      args.unshift('--build', '--composite', '--incremental');
-    }
-
-    await execa('tsc', args, {
-      cwd,
-      preferLocal: true,
-    });
+    // Compile the current projects declarations
+    await this.package.project.generateDeclarations();
 
     // Combine all DTS files into a single file for each input
     await Promise.all(
       Object.entries(this.package.config.inputs).map(([outputName, inputPath]) =>
-        this.generateDeclaration(outputName),
+        this.generateDeclaration(outputName, tsConfig),
       ),
     );
-
-    // Remove old DTS build folder
-    await fs.remove(pkgPath.append('dts-build').path());
   }
 
   postBuild(): void {
-    this.package.contents.types = './dts/index.d.ts';
+    this.package.packageJson.types = './dts/index.d.ts';
   }
 
   getLabel(): string {
@@ -61,12 +40,19 @@ export default class TypesArtifact extends Artifact {
     return ['dts'];
   }
 
-  protected async generateDeclaration(outputName: string) {
+  protected async generateDeclaration(outputName: string, tsConfig?: TSConfigStructure) {
+    // Resolved compiler options use absolute paths, so we should match
+    const declDir =
+      tsConfig?.options.declarationDir ||
+      tsConfig?.options.outDir ||
+      this.package.path.append('lib');
+
+    // Create a fake config file
     const configPath = this.package.path.append(`api-extractor-${outputName}.json`).path();
     const config: APIExtractorStructure = {
       ...extractorConfig,
       projectFolder: this.package.path.path(),
-      mainEntryPointFilePath: `<projectFolder>/dts-build/${outputName}.d.ts`,
+      mainEntryPointFilePath: `${declDir}/${outputName}.d.ts`,
       dtsRollup: {
         ...extractorConfig.dtsRollup,
         untrimmedFilePath: `<projectFolder>/dts/${outputName}.d.ts`,
