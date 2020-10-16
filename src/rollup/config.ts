@@ -118,6 +118,10 @@ export function getRollupConfig(artifact: BundleArtifact, features: FeatureFlags
       output.noConflict = true;
     }
 
+    if (artifact.outputName === 'bin') {
+      output.banner = '#!/usr/bin/env node\n';
+    }
+
     return output;
   });
 
