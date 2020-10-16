@@ -129,15 +129,15 @@ export function getBabelInputConfig(
 // The output config does all the transformation and downleveling through the preset-env.
 // This is handled per output since we need to configure based on target + format combinations.
 export function getBabelOutputConfig(
-  buildUnit: BuildUnit,
+  { format, platform, support }: BuildUnit,
   features: FeatureFlags,
 ): ConfigStructure {
   const plugins: PluginItem[] = [];
   const presets: PluginItem[] = [];
+  const isFuture = support !== 'legacy' && support !== 'stable';
 
   // ENVIRONMENT
 
-  const { format, platform, support } = buildUnit;
   const envOptions: PresetEnvOptions = {
     // Prefer spec compliance over speed
     spec: true,
@@ -157,11 +157,19 @@ export function getBabelOutputConfig(
 
   // Use `Object.assign` when available
   // https://babeljs.io/docs/en/babel-plugin-transform-destructuring#usebuiltins
-  if (buildUnit.support !== 'legacy' && buildUnit.support !== 'stable') {
+  if (isFuture) {
     plugins.push(
       ['@babel/plugin-transform-destructuring', { useBuiltIns: true }],
       ['@babel/plugin-proposal-object-rest-spread', { useBuiltIns: true }],
     );
+  }
+
+  // Transform async/await into Promises for browsers
+  if (platform === 'browser') {
+    plugins.push([
+      'babel-plugin-transform-async-to-promises',
+      { inlineHelpers: true, target: isFuture ? 'es6' : 'es5' },
+    ]);
   }
 
   // Support `__DEV__` shortcuts
