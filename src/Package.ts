@@ -38,11 +38,11 @@ export default class Package {
   }
 
   @Memoize()
-  get tsconfigJson(): TSConfigStructure | null {
+  get tsconfigJson(): TSConfigStructure | undefined {
     const path = this.path.append('tsconfig.json');
 
     if (!path.exists()) {
-      return null;
+      return undefined;
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
