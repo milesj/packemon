@@ -37,64 +37,10 @@ export default class Package {
     this.packageJson = contents;
   }
 
-  @Memoize()
-  get tsconfigJson(): TSConfigStructure | undefined {
-    const path = this.path.append('tsconfig.json');
-
-    if (!path.exists()) {
-      return undefined;
-    }
-
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const { config, error } = ts.readConfigFile(path.path(), (name) =>
-      fs.readFileSync(name, 'utf8'),
-    );
-
-    if (error) {
-      throw error;
-    }
-
-    const json = ts.parseJsonConfigFileContent(
-      config,
-      ts.sys,
-      path.parent().path(),
-      {},
-      path.path(),
-    );
-
-    if (json.errors.length > 0) {
-      throw json.errors[0];
-    }
-
-    return json;
-  }
-
   addArtifact(artifact: Artifact): Artifact {
     this.artifacts.push(artifact);
 
     return artifact;
-  }
-
-  setConfig(config: Required<PackemonPackageConfig>) {
-    this.config = {
-      formats: toArray(config.format),
-      inputs: config.inputs,
-      namespace: config.namespace,
-      platforms: toArray(config.platform),
-      support: config.support,
-    };
-  }
-
-  async run(options: PackemonOptions): Promise<void> {
-    if (options.checkLicenses) {
-      this.checkLicense();
-    }
-
-    // Process artifacts in parallel
-    await Promise.all(this.artifacts.map((artifact) => artifact.run(options)));
-
-    // Sync `package.json` in case it was modified
-    await this.syncPackageJson();
   }
 
   getName(): string {
@@ -148,6 +94,54 @@ export default class Package {
 
   isRunning(): boolean {
     return this.artifacts.some((artifact) => artifact.isRunning());
+  }
+
+  async run(options: PackemonOptions): Promise<void> {
+    if (options.checkLicenses) {
+      this.checkLicense();
+    }
+
+    // Process artifacts in parallel
+    await Promise.all(this.artifacts.map((artifact) => artifact.run(options)));
+
+    // Sync `package.json` in case it was modified
+    await this.syncPackageJson();
+  }
+
+  setConfig(config: Required<PackemonPackageConfig>) {
+    this.config = {
+      formats: toArray(config.format),
+      inputs: config.inputs,
+      namespace: config.namespace,
+      platforms: toArray(config.platform),
+      support: config.support,
+    };
+  }
+
+  @Memoize()
+  get tsconfigJson(): TSConfigStructure | undefined {
+    const path = this.path.append('tsconfig.json');
+
+    if (!path.exists()) {
+      return undefined;
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    const { config, error } = ts.readConfigFile(path.path(), (name) =>
+      fs.readFileSync(name, 'utf8'),
+    );
+
+    if (error) {
+      throw error;
+    }
+
+    const result = ts.parseJsonConfigFileContent(config, ts.sys, this.path.path(), {}, path.path());
+
+    if (result.errors.length > 0) {
+      throw result.errors[0];
+    }
+
+    return result;
   }
 
   protected checkLicense() {
