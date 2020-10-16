@@ -12,6 +12,7 @@ import {
   PackemonOptions,
   PackemonPackage,
   PackemonPackageConfig,
+  TSConfigStructure,
 } from './types';
 
 export default class Package {
@@ -37,7 +38,7 @@ export default class Package {
   }
 
   @Memoize()
-  get tsconfigJson(): ts.ParsedCommandLine | null {
+  get tsconfigJson(): TSConfigStructure | null {
     const path = this.path.append('tsconfig.json');
 
     if (!path.exists()) {
