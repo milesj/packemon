@@ -76,8 +76,6 @@ function getSharedConfig(
     // Do load branch `.babelrc.js` files for granular customization
     babelrc: true,
     babelrcRoots: features.workspaces,
-    // Disable source maps
-    sourceMaps: false,
   };
 }
 

@@ -67,6 +67,8 @@ export function getRollupConfig(artifact: BundleArtifact, features: FeatureFlags
         exclude: EXCLUDE,
         extensions: EXTENSIONS,
         filename: artifact.package.path.path(),
+        // Extract maps from the original source
+        sourceMaps: true,
       }),
     ],
     // Always treeshake for smaller builds
@@ -90,6 +92,7 @@ export function getRollupConfig(artifact: BundleArtifact, features: FeatureFlags
       originalFormat: format,
       // Map our externals to local paths with trailing extension
       paths: getRollupExternalPaths(artifact, ext),
+      // Use our extension for file names
       assetFileNames: '../assets/[name]-[hash][extname]',
       chunkFileNames: `[name]-[hash].${ext}`,
       entryFileNames: `[name].${ext}`,
@@ -100,10 +103,13 @@ export function getRollupConfig(artifact: BundleArtifact, features: FeatureFlags
         getBabelOutputPlugin({
           ...getBabelOutputConfig(buildUnit, features),
           filename: artifact.package.path.path(),
+          // Maps are extracted above before transformation
+          sourceMaps: false,
         }),
       ],
-      // Disable source maps
-      sourcemap: false,
+      // Only enable source maps for browsers
+      sourcemap: buildUnit.platform === 'browser',
+      sourcemapExcludeSources: true,
     };
 
     if (format === 'umd') {

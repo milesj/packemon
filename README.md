@@ -24,6 +24,7 @@ provide sane defaults and configurations, verify package requirements, and much 
 - Transforms packages with Babel's `preset-env` and the configured platform targets. Only ship and
   polyfill what's truly necessary!
 - Generate and combine TypeScript declarations into a single public-only API representation.
+- Generates compact source maps for browser based builds.
 
 ## Installation
 
@@ -104,6 +105,13 @@ browserslist).
 
 > We suggest leaving this setting at `stable` for all libraries, as it offers the widest range of
 > support for consumers.
+
+#### Legend
+
+|         | Legacy   | Stable   | Current      | Experimental           |
+| ------- | -------- | -------- | ------------ | ---------------------- |
+| Node    | 8.10.0   | 10.3.0   | 12.0.0       | 14.13.0                |
+| Browser | >= IE 10 | >= IE 11 | > 0.5% usage | last 2 chrome versions |
 
 ### Formats
 
