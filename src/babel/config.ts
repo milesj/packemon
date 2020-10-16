@@ -21,6 +21,12 @@ export interface PresetEnvOptions {
   useBuiltIns?: 'usage' | 'entry' | false;
 }
 
+// Babel resolves plugins against the current working directory
+// and will not find globally installed dependencies unless we resolve.
+function resolve(path: string) {
+  return require.resolve(path);
+}
+
 function getPlatformEnvOptions(
   platform: Platform,
   support: Support,
@@ -93,29 +99,32 @@ export function getBabelInputConfig(
   const presets: PluginItem[] = [];
 
   if (features.flow) {
-    presets.push(['@babel/preset-flow', { allowDeclareFields: true }]);
+    presets.push([resolve('@babel/preset-flow'), { allowDeclareFields: true }]);
   }
 
   if (features.typescript) {
-    presets.push(['@babel/preset-typescript', { allowDeclareFields: true }]);
+    presets.push([resolve('@babel/preset-typescript'), { allowDeclareFields: true }]);
 
     // When decorators are used, class properties must be loose
     if (features.decorators) {
       plugins.push(
-        ['@babel/plugin-proposal-decorators', { legacy: true }],
-        ['@babel/plugin-proposal-class-properties', { loose: true }],
-        ['@babel/plugin-proposal-private-methods', { loose: true }],
+        [resolve('@babel/plugin-proposal-decorators'), { legacy: true }],
+        [resolve('@babel/plugin-proposal-class-properties'), { loose: true }],
+        [resolve('@babel/plugin-proposal-private-methods'), { loose: true }],
       );
 
       if (artifact.package.hasDependency('@babel/plugin-proposal-private-property-in-object')) {
-        plugins.push(['@babel/plugin-proposal-private-property-in-object', { loose: true }]);
+        plugins.push([
+          resolve('@babel/plugin-proposal-private-property-in-object'),
+          { loose: true },
+        ]);
       }
     }
   }
 
   if (features.react) {
     presets.push([
-      '@babel/preset-react',
+      resolve('@babel/preset-react'),
       {
         development: process.env.NODE_ENV === 'development',
         throwIfNamespace: true,
@@ -151,7 +160,7 @@ export function getBabelOutputConfig(
     ...getPlatformEnvOptions(platform, support, format),
   };
 
-  presets.push(['@babel/preset-env', envOptions]);
+  presets.push([resolve('@babel/preset-env'), envOptions]);
 
   // PLUGINS
 
@@ -159,21 +168,21 @@ export function getBabelOutputConfig(
   // https://babeljs.io/docs/en/babel-plugin-transform-destructuring#usebuiltins
   if (isFuture) {
     plugins.push(
-      ['@babel/plugin-transform-destructuring', { useBuiltIns: true }],
-      ['@babel/plugin-proposal-object-rest-spread', { useBuiltIns: true }],
+      [resolve('@babel/plugin-transform-destructuring'), { useBuiltIns: true }],
+      [resolve('@babel/plugin-proposal-object-rest-spread'), { useBuiltIns: true }],
     );
   }
 
   // Transform async/await into Promises for browsers
   if (platform === 'browser') {
     plugins.push([
-      'babel-plugin-transform-async-to-promises',
+      resolve('babel-plugin-transform-async-to-promises'),
       { inlineHelpers: true, target: isFuture ? 'es6' : 'es5' },
     ]);
   }
 
   // Support `__DEV__` shortcuts
-  plugins.push(['babel-plugin-transform-dev', { evaluate: false }]);
+  plugins.push([resolve('babel-plugin-transform-dev'), { evaluate: false }]);
 
   return getSharedConfig(plugins, presets, features);
 }
