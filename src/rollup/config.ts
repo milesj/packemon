@@ -12,11 +12,13 @@ import BundleArtifact from '../BundleArtifact';
 const sharedPlugins = [resolve({ extensions: EXTENSIONS, preferBuiltins: true }), commonjs()];
 
 function getRollupModuleFormat(format: Format): ModuleFormat {
-  if (format === 'umd') {
-    return 'umd';
-  }
-
-  if (format === 'esm' || format === 'mjs') {
+  if (
+    format === 'esm' ||
+    format === 'mjs' ||
+    // UMD needs to be compiled with Babel instead of Rollup,
+    // so we use ESM for better interoperability.
+    format === 'umd'
+  ) {
     return 'esm';
   }
 
@@ -103,6 +105,8 @@ export function getRollupConfig(artifact: BundleArtifact, features: FeatureFlags
         getBabelOutputPlugin({
           ...getBabelOutputConfig(buildUnit, features),
           filename: artifact.package.path.path(),
+          // Provide a custom name for the UMD global
+          moduleId: format === 'umd' ? artifact.namespace : undefined,
           // Maps are extracted above before transformation
           sourceMaps: false,
         }),
@@ -112,12 +116,12 @@ export function getRollupConfig(artifact: BundleArtifact, features: FeatureFlags
       sourcemapExcludeSources: true,
     };
 
-    if (format === 'umd') {
-      output.extend = true;
-      output.name = artifact.namespace;
-      output.noConflict = true;
+    // Disable warnings about default exports
+    if (format === 'lib' || format === 'cjs') {
+      output.exports = 'auto';
     }
 
+    // Automatically prepend a shebang for binaries
     if (artifact.outputName === 'bin') {
       output.banner = '#!/usr/bin/env node\n';
     }
