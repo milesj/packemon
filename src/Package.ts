@@ -59,18 +59,26 @@ export default class Package {
     }
 
     // TypeScript
-    const tsConfig = this.tsconfigJson;
+    const tsConfig = this.tsconfigJson || this.project.rootPackage.tsconfigJson;
 
-    if (this.hasDependency('typescript') && tsConfig) {
+    if (
+      this.project.rootPackage.hasDependency('typescript') ||
+      this.hasDependency('typescript') ||
+      tsConfig
+    ) {
       flags.typescript = true;
-      flags.decorators = Boolean(tsConfig.options.experimentalDecorators);
-      flags.strict = Boolean(tsConfig.options.strict);
+      flags.decorators = Boolean(tsConfig?.options.experimentalDecorators);
+      flags.strict = Boolean(tsConfig?.options.strict);
     }
 
     // Flow
     const flowconfigPath = this.project.root.append('.flowconfig');
 
-    if (this.hasDependency('flow-bin') || flowconfigPath.exists()) {
+    if (
+      this.project.rootPackage.hasDependency('flow-bin') ||
+      this.hasDependency('flow-bin') ||
+      flowconfigPath.exists()
+    ) {
       flags.flow = true;
     }
 
