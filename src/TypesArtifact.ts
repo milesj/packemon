@@ -1,5 +1,6 @@
 import fs from 'fs-extra';
 import path from 'path';
+import { Path } from '@boost/common';
 import { Extractor, ExtractorConfig } from '@microsoft/api-extractor';
 import Artifact from './Artifact';
 import { APIExtractorStructure, TSConfigStructure } from './types';
@@ -23,7 +24,7 @@ export default class TypesArtifact extends Artifact {
     // Combine all DTS files into a single file for each input
     await Promise.all(
       Object.entries(this.package.config.inputs).map(([outputName, inputPath]) =>
-        this.generateDeclaration(outputName, tsConfig),
+        this.generateDeclaration(outputName, inputPath, tsConfig),
       ),
     );
   }
@@ -40,19 +41,31 @@ export default class TypesArtifact extends Artifact {
     return ['dts'];
   }
 
-  protected async generateDeclaration(outputName: string, tsConfig?: TSConfigStructure) {
+  protected async generateDeclaration(
+    outputName: string,
+    inputPath: string,
+    tsConfig?: TSConfigStructure,
+  ): Promise<unknown> {
     // Resolved compiler options use absolute paths, so we should match
-    const declDir =
-      tsConfig?.options.declarationDir ||
-      tsConfig?.options.outDir ||
-      this.package.path.append('lib');
+    const declDir = tsConfig
+      ? new Path(tsConfig.options.declarationDir || tsConfig.options.outDir!)
+      : this.package.path.append('lib');
+    const declEntry = declDir.append(inputPath.replace('src/', '').replace('.ts', '.d.ts'));
+
+    if (!declEntry.exists()) {
+      console.warn(
+        `Unable to generate declaration for "${outputName}". Entry point "${declEntry}" does not exist.`,
+      );
+
+      return Promise.resolve();
+    }
 
     // Create a fake config file
     const configPath = this.package.path.append(`api-extractor-${outputName}.json`).path();
     const config: APIExtractorStructure = {
       ...extractorConfig,
       projectFolder: this.package.path.path(),
-      mainEntryPointFilePath: `${declDir}/${outputName}.d.ts`,
+      mainEntryPointFilePath: declEntry.path(),
       dtsRollup: {
         ...extractorConfig.dtsRollup,
         untrimmedFilePath: `<projectFolder>/dts/${outputName}.d.ts`,
@@ -70,11 +83,13 @@ export default class TypesArtifact extends Artifact {
 
     if (!result.succeeded) {
       console.error(
-        `Generated ${outputName} types completed with ${result.errorCount} errors and ${result.warningCount} warnings!`,
+        `Generated "${outputName}" types completed with ${result.errorCount} errors and ${result.warningCount} warnings!`,
       );
     }
 
     // Remove the config file
     await fs.unlink(configPath);
+
+    return result;
   }
 }

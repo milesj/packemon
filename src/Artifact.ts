@@ -32,9 +32,7 @@ export default abstract class Artifact<T = unknown> {
     } catch (error) {
       this.state = 'failed';
 
-      if (error instanceof Error) {
-        console.error(error.message);
-      }
+      throw error;
     }
 
     this.result.time = Date.now() - start;
