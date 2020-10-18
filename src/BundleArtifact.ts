@@ -3,7 +3,7 @@ import { rollup, RollupCache } from 'rollup';
 import Artifact from './Artifact';
 import { NODE_SUPPORTED_VERSIONS, NPM_SUPPORTED_VERSIONS } from './constants';
 import { getRollupConfig } from './rollup/config';
-import { Format, PackemonOptions, Platform } from './types';
+import { Format, PackemonOptions, Platform, Support } from './types';
 
 export default class BundleArtifact extends Artifact<{ size: number }> {
   cache?: RollupCache;
@@ -39,7 +39,6 @@ export default class BundleArtifact extends Artifact<{ size: number }> {
     );
   }
 
-  // eslint-disable-next-line complexity
   postBuild({ addEngines, addExports }: PackemonOptions): void {
     const pkg = this.package.packageJson;
     const { platforms, support } = this.package.config;
@@ -57,52 +56,18 @@ export default class BundleArtifact extends Artifact<{ size: number }> {
     }
 
     if (this.outputName === 'bin') {
+      // Bin field may be an object
       if (hasLib && !pkg.bin) {
         pkg.bin = './lib/bin.js';
       }
     }
 
     if (addEngines && platforms.includes('node')) {
-      if (!pkg.engines) {
-        pkg.engines = {};
-      }
-
-      const npmVersion = NPM_SUPPORTED_VERSIONS[support];
-
-      Object.assign(pkg.engines, {
-        node: `>=${NODE_SUPPORTED_VERSIONS[support]}`,
-        npm: toArray(npmVersion)
-          .map((v) => `>=${v}`)
-          .join(' || '),
-      });
+      this.addEnginesToPackageJson(support);
     }
 
     if (addExports) {
-      if (!pkg.exports) {
-        pkg.exports = {};
-      }
-
-      const paths: SettingMap = {};
-
-      this.formats.forEach((format) => {
-        const path = this.getOutputFile(format);
-
-        if (format === 'mjs' || format === 'esm') {
-          paths.import = path;
-        } else if (format === 'cjs') {
-          paths.require = path;
-        }
-      });
-
-      // Must come after import/require
-      if (hasLib) {
-        paths.default = this.getOutputFile('lib');
-      }
-
-      Object.assign(pkg.exports, {
-        './package.json': './package.json',
-        [this.outputName === 'index' ? '.' : `./${this.outputName}`]: paths,
-      });
+      this.addExportsToPackageJson(hasLib);
     }
   }
 
@@ -163,5 +128,52 @@ export default class BundleArtifact extends Artifact<{ size: number }> {
 
   getOutputPath(format: Format): Path {
     return this.package.path.append(this.getOutputFile(format));
+  }
+
+  protected addEnginesToPackageJson(support: Support) {
+    const pkg = this.package.packageJson;
+
+    if (!pkg.engines) {
+      pkg.engines = {};
+    }
+
+    const npmVersion = NPM_SUPPORTED_VERSIONS[support];
+
+    Object.assign(pkg.engines, {
+      node: `>=${NODE_SUPPORTED_VERSIONS[support]}`,
+      npm: toArray(npmVersion)
+        .map((v) => `>=${v}`)
+        .join(' || '),
+    });
+  }
+
+  protected addExportsToPackageJson(hasLib: boolean) {
+    const pkg = this.package.packageJson;
+
+    if (!pkg.exports) {
+      pkg.exports = {};
+    }
+
+    const paths: SettingMap = {};
+
+    this.formats.forEach((format) => {
+      const path = this.getOutputFile(format);
+
+      if (format === 'mjs' || format === 'esm') {
+        paths.import = path;
+      } else if (format === 'cjs') {
+        paths.require = path;
+      }
+    });
+
+    // Must come after import/require
+    if (hasLib) {
+      paths.default = this.getOutputFile('lib');
+    }
+
+    Object.assign(pkg.exports, {
+      './package.json': './package.json',
+      [this.outputName === 'index' ? '.' : `./${this.outputName}`]: paths,
+    });
   }
 }
