@@ -1,9 +1,10 @@
 import fs from 'fs-extra';
 import path from 'path';
+import glob from 'fast-glob';
 import { Path } from '@boost/common';
 import { Extractor, ExtractorConfig } from '@microsoft/api-extractor';
 import Artifact from './Artifact';
-import { APIExtractorStructure, TSConfigStructure } from './types';
+import { APIExtractorStructure } from './types';
 
 // eslint-disable-next-line
 const extractorConfig = require(path.join(__dirname, '../api-extractor.json')) as {
@@ -18,15 +19,26 @@ export default class TypesArtifact extends Artifact {
   async build(): Promise<void> {
     const tsConfig = this.package.tsconfigJson;
 
+    // Resolved compiler options use absolute paths, so we should match
+    const declBuildPath = tsConfig
+      ? new Path(tsConfig.options.declarationDir || tsConfig.options.outDir!)
+      : this.package.path.append('lib');
+
     // Compile the current projects declarations
     await this.package.project.generateDeclarations();
 
     // Combine all DTS files into a single file for each input
     await Promise.all(
       Object.entries(this.package.config.inputs).map(([outputName, inputPath]) =>
-        this.generateDeclaration(outputName, inputPath, tsConfig),
+        this.generateDeclaration(outputName, inputPath, declBuildPath),
       ),
     );
+
+    // Remove the TS output directory to reduce package size.
+    // We do this in the background to speed up the CLI process!
+    if (this.package.project.isWorkspacesEnabled()) {
+      void this.removeDeclarationBuild(declBuildPath);
+    }
   }
 
   postBuild(): void {
@@ -44,13 +56,9 @@ export default class TypesArtifact extends Artifact {
   protected async generateDeclaration(
     outputName: string,
     inputPath: string,
-    tsConfig?: TSConfigStructure,
+    declBuildPath: Path,
   ): Promise<unknown> {
-    // Resolved compiler options use absolute paths, so we should match
-    const declDir = tsConfig
-      ? new Path(tsConfig.options.declarationDir || tsConfig.options.outDir!)
-      : this.package.path.append('lib');
-    const declEntry = declDir.append(inputPath.replace('src/', '').replace('.ts', '.d.ts'));
+    const declEntry = declBuildPath.append(inputPath.replace('src/', '').replace('.ts', '.d.ts'));
 
     if (!declEntry.exists()) {
       console.warn(
@@ -91,5 +99,43 @@ export default class TypesArtifact extends Artifact {
     await fs.unlink(configPath);
 
     return result;
+  }
+
+  /**
+   * This method is unfortunate but necessary if TypeScript is using project references.
+   * When using references, TS uses the `types` (or `typings`) field to determine types
+   * across packages. But since we set that field to "dts/index.d.ts" for distributing
+   * only the types necessary, it breaks the `tsc --build` unless the `outDir` is "dts".
+   *
+   * But when this happens, we have all the generated `*.d.ts` and `*.js` files in the "dts"
+   * folder, which we do not want to distribute. So we need to manually delete all of them
+   * except for the output files we created above.
+   *
+   * Not sure of a workaround or better solution :(
+   */
+  protected async removeDeclarationBuild(declBuildPath: Path) {
+    const outputs = new Set<string>(
+      Object.keys(this.package.config.inputs).map((outputName) => `${outputName}.d.ts`),
+    );
+
+    // Remove all build files in the root except for the output files we created
+    const files = await glob(['*.js', '*.d.ts', '*.d.ts.map'], {
+      cwd: declBuildPath.path(),
+      onlyFiles: true,
+    });
+
+    await Promise.all(
+      files
+        .filter((file) => !outputs.has(file))
+        .map((file) => fs.unlink(declBuildPath.append(file).path())),
+    );
+
+    // Remove all build folders recursively since our output files are always in the root
+    const folders = await glob(['*'], {
+      cwd: declBuildPath.path(),
+      onlyDirectories: true,
+    });
+
+    await Promise.all(folders.map((folder) => fs.remove(declBuildPath.append(folder).path())));
   }
 }
