@@ -20,31 +20,7 @@ export default abstract class Artifact<T = unknown> {
 
   cleanup(): Awaitable {}
 
-  preBuild(options: PackemonOptions): Awaitable {}
-
   build(options: PackemonOptions): Awaitable {}
-
-  postBuild(options: PackemonOptions): Awaitable {}
-
-  async runBuild(options: PackemonOptions): Promise<void> {
-    const start = Date.now();
-
-    try {
-      this.state = 'building';
-
-      await this.preBuild(options);
-      await this.build(options);
-      await this.postBuild(options);
-
-      this.state = 'passed';
-    } catch (error) {
-      this.state = 'failed';
-
-      throw error;
-    }
-
-    this.result.time = Date.now() - start;
-  }
 
   isComplete(): boolean {
     return this.state === 'passed' || this.state === 'failed';
@@ -53,6 +29,10 @@ export default abstract class Artifact<T = unknown> {
   isRunning(): boolean {
     return this.state === 'building';
   }
+
+  postBuild(options: PackemonOptions): Awaitable {}
+
+  preBuild(options: PackemonOptions): Awaitable {}
 
   shouldSkip(): boolean {
     return this.state === 'failed';

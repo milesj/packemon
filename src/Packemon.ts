@@ -85,6 +85,7 @@ export default class Packemon extends Contract<PackemonOptions> {
     await this.findPackages();
     await this.generateArtifacts();
 
+    // Build packages in parallel using a pool
     const pipeline = new PooledPipeline(new Context());
 
     pipeline.configure({
@@ -94,7 +95,7 @@ export default class Packemon extends Contract<PackemonOptions> {
 
     this.packages.forEach((pkg) => {
       pipeline.add(pkg.getName(), async () => {
-        await pkg.run(this.options);
+        await pkg.build(this.options);
 
         this.onPackageBuilt.emit([pkg]);
       });

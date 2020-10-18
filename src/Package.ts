@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/member-ordering */
+/* eslint-disable require-atomic-updates, no-param-reassign, @typescript-eslint/member-ordering */
 
 import fs from 'fs-extra';
 import ts from 'typescript';
@@ -41,6 +41,38 @@ export default class Package {
     this.artifacts.push(artifact);
 
     return artifact;
+  }
+
+  async build(options: PackemonOptions): Promise<void> {
+    if (options.checkLicenses) {
+      this.checkLicense();
+    }
+
+    // Build artifacts in parallel
+    await Promise.all(
+      this.artifacts.map(async (artifact) => {
+        const start = Date.now();
+
+        try {
+          artifact.state = 'building';
+
+          await artifact.preBuild(options);
+          await artifact.build(options);
+          await artifact.postBuild(options);
+
+          artifact.state = 'passed';
+        } catch (error) {
+          artifact.state = 'failed';
+
+          throw error;
+        }
+
+        artifact.result.time = Date.now() - start;
+      }),
+    );
+
+    // Sync `package.json` in case it was modified
+    await this.syncPackageJson();
   }
 
   async cleanup(): Promise<void> {
@@ -106,18 +138,6 @@ export default class Package {
 
   isRunning(): boolean {
     return this.artifacts.some((artifact) => artifact.isRunning());
-  }
-
-  async run(options: PackemonOptions): Promise<void> {
-    if (options.checkLicenses) {
-      this.checkLicense();
-    }
-
-    // Process artifacts in parallel
-    await Promise.all(this.artifacts.map((artifact) => artifact.runBuild(options)));
-
-    // Sync `package.json` in case it was modified
-    await this.syncPackageJson();
   }
 
   setConfig(config: Required<PackemonPackageConfig>) {
