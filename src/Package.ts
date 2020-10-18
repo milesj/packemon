@@ -43,6 +43,10 @@ export default class Package {
     return artifact;
   }
 
+  async cleanup(): Promise<void> {
+    await Promise.all(this.artifacts.map((artifact) => artifact.cleanup()));
+  }
+
   getName(): string {
     return this.packageJson.name;
   }
@@ -110,7 +114,7 @@ export default class Package {
     }
 
     // Process artifacts in parallel
-    await Promise.all(this.artifacts.map((artifact) => artifact.run(options)));
+    await Promise.all(this.artifacts.map((artifact) => artifact.runBuild(options)));
 
     // Sync `package.json` in case it was modified
     await this.syncPackageJson();

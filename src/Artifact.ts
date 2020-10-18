@@ -18,7 +18,15 @@ export default abstract class Artifact<T = unknown> {
     this.flags = flags;
   }
 
-  async run(options: PackemonOptions): Promise<void> {
+  cleanup(): Awaitable {}
+
+  preBuild(options: PackemonOptions): Awaitable {}
+
+  build(options: PackemonOptions): Awaitable {}
+
+  postBuild(options: PackemonOptions): Awaitable {}
+
+  async runBuild(options: PackemonOptions): Promise<void> {
     const start = Date.now();
 
     try {
@@ -37,12 +45,6 @@ export default abstract class Artifact<T = unknown> {
 
     this.result.time = Date.now() - start;
   }
-
-  preBuild(options: PackemonOptions): Awaitable {}
-
-  build(options: PackemonOptions): Awaitable {}
-
-  postBuild(options: PackemonOptions): Awaitable {}
 
   isComplete(): boolean {
     return this.state === 'passed' || this.state === 'failed';

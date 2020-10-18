@@ -16,6 +16,13 @@ const extractorConfig = require(path.join(__dirname, '../api-extractor.json')) a
 };
 
 export default class TypesArtifact extends Artifact {
+  private apiExtractorConfigPaths: string[] = [];
+
+  async cleanup(): Promise<void> {
+    // Absolute paths to each temporary config file
+    await Promise.all(this.apiExtractorConfigPaths.map((cfgPath) => fs.remove(cfgPath)));
+  }
+
   async build(): Promise<void> {
     const tsConfig = this.package.tsconfigJson;
 
@@ -95,8 +102,8 @@ export default class TypesArtifact extends Artifact {
       );
     }
 
-    // Remove the config file
-    await fs.unlink(configPath);
+    // Enqueue to remove the config file
+    this.apiExtractorConfigPaths.push(configPath);
 
     return result;
   }

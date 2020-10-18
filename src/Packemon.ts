@@ -102,6 +102,10 @@ export default class Packemon extends Contract<PackemonOptions> {
 
     const { errors } = await pipeline.run();
 
+    // Always cleanup whether a successful or failed build
+    await Promise.all(this.packages.map((pkg) => pkg.cleanup()));
+
+    // Throw to trigger an error screen in the terminal
     if (errors.length > 0) {
       throw errors[0];
     }
