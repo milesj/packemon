@@ -10,6 +10,7 @@ import {
   toArray,
   WorkspacePackage,
 } from '@boost/common';
+import { createDebugger } from '@boost/debug';
 import { Event } from '@boost/event';
 import { PooledPipeline, Context } from '@boost/pipeline';
 import Package from './Package';
@@ -27,6 +28,7 @@ import {
   Platform,
 } from './types';
 
+const debug = createDebugger('packemon:core');
 const { array, custom, object, string, union } = predicates;
 
 const platformPredicate = string<Platform>('browser').oneOf(['node', 'browser']);
@@ -67,6 +69,8 @@ export default class Packemon extends Contract<PackemonOptions> {
 
     this.root = Path.resolve(cwd);
     this.project = new Project(this.root);
+
+    debug('Initializing packemon in project %s', this.root);
   }
 
   blueprint({ bool, number }: Predicates): Blueprint<PackemonOptions> {
@@ -82,6 +86,8 @@ export default class Packemon extends Contract<PackemonOptions> {
   }
 
   async build() {
+    debug('Starting build process');
+
     await this.findPackages();
     await this.generateArtifacts();
 
@@ -101,9 +107,13 @@ export default class Packemon extends Contract<PackemonOptions> {
       });
     });
 
+    debug('Building artifacts');
+
     const { errors } = await pipeline.run();
 
     // Always cleanup whether a successful or failed build
+    debug('Cleaning build artifacts');
+
     await Promise.all(this.packages.map((pkg) => pkg.cleanup()));
 
     // Throw to trigger an error screen in the terminal
@@ -113,28 +123,48 @@ export default class Packemon extends Contract<PackemonOptions> {
   }
 
   protected async findPackages() {
+    debug('Finding packages in project');
+
     const pkgPaths: Path[] = [];
 
     this.project.workspaces = this.project.getWorkspaceGlobs({ relative: true });
 
     // Multi package repo
     if (this.project.workspaces.length > 0) {
+      debug('Workspaces enabled, finding packages using globs');
+
       this.project.getWorkspacePackagePaths().forEach((filePath) => {
         pkgPaths.push(Path.create(filePath).append('package.json'));
       });
 
       // Single package repo
     } else {
+      debug('Not workspaces enabled, using root as package');
+
       pkgPaths.push(this.root.append('package.json'));
     }
 
+    debug('Found %d package(s)', pkgPaths.length);
+
+    const privatePackageNames: string[] = [];
+
     let packages: WorkspacePackage<PackemonPackage>[] = await Promise.all(
       pkgPaths.map(async (pkgPath) => {
-        const content = json.parse<PackemonPackage>(await fs.readFile(pkgPath.path(), 'utf8'));
+        const contents = json.parse<PackemonPackage>(await fs.readFile(pkgPath.path(), 'utf8'));
+
+        debug(
+          '\t%s - %s',
+          contents.name,
+          pkgPath.path().replace(this.root.path(), '').replace('package.json', ''),
+        );
+
+        if (contents.private) {
+          privatePackageNames.push(contents.name);
+        }
 
         return {
           metadata: this.project.createWorkspaceMetadata(pkgPath),
-          package: content,
+          package: contents,
         };
       }),
     );
@@ -142,12 +172,16 @@ export default class Packemon extends Contract<PackemonOptions> {
     // Skip `private` packages
     if (this.options.skipPrivate) {
       packages = packages.filter((pkg) => !pkg.package.private);
+
+      debug('Filtering private packages: %s', privatePackageNames.join(', '));
     }
 
     this.packages = this.validateAndPreparePackages(packages);
   }
 
   protected generateArtifacts() {
+    debug('Generating build artifacts for packages');
+
     this.packages.forEach((pkg) => {
       const { config } = pkg;
       const flags: ArtifactFlags = {};
@@ -185,14 +219,20 @@ export default class Packemon extends Contract<PackemonOptions> {
       if (this.options.generateDeclaration) {
         pkg.addArtifact(new TypesArtifact(pkg));
       }
+
+      debug('\t%s - %s', pkg.getName(), pkg.artifacts.join(', '));
     });
   }
 
   protected validateAndPreparePackages(packages: WorkspacePackage<PackemonPackage>[]): Package[] {
+    debug('Validating found packages');
+
     const nextPackages: Package[] = [];
 
     packages.forEach(({ metadata, package: contents }) => {
       if (!contents.packemon) {
+        debug('No `packemon` configuration found for %s, skipping', contents.name);
+
         return;
       }
 

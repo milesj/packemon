@@ -1,9 +1,12 @@
 import { Path, SettingMap, toArray } from '@boost/common';
+import { createDebugger } from '@boost/debug';
 import { rollup, RollupCache } from 'rollup';
 import Artifact from './Artifact';
 import { NODE_SUPPORTED_VERSIONS, NPM_SUPPORTED_VERSIONS } from './constants';
 import { getRollupConfig } from './rollup/config';
 import { Format, PackemonOptions, Platform, Support } from './types';
+
+const debug = createDebugger('packemon:bundle');
 
 export default class BundleArtifact extends Artifact<{ size: number }> {
   cache?: RollupCache;
@@ -20,6 +23,8 @@ export default class BundleArtifact extends Artifact<{ size: number }> {
   outputName: string = '';
 
   async build(): Promise<void> {
+    debug('Building %s bundle artifact with Rollup', this.outputName);
+
     const { output = [], ...input } = getRollupConfig(this, this.package.getFeatureFlags());
     const bundle = await rollup(input);
 
@@ -30,6 +35,9 @@ export default class BundleArtifact extends Artifact<{ size: number }> {
     await Promise.all(
       toArray(output).map(async (out) => {
         const { originalFormat = 'lib', ...outOptions } = out;
+
+        debug('\tWriting %s output', originalFormat);
+
         const result = await bundle.write(outOptions);
 
         this.result.stats[originalFormat] = {
@@ -130,7 +138,13 @@ export default class BundleArtifact extends Artifact<{ size: number }> {
     return this.package.path.append(this.getOutputFile(format));
   }
 
+  toString() {
+    return `bundle:${this.getLabel()} (${this.getTargets().join(', ')})`;
+  }
+
   protected addEnginesToPackageJson(support: Support) {
+    debug('Adding `engines` to %s `package.json`', this.package.getName());
+
     const pkg = this.package.packageJson;
 
     if (!pkg.engines) {
@@ -148,6 +162,8 @@ export default class BundleArtifact extends Artifact<{ size: number }> {
   }
 
   protected addExportsToPackageJson(hasLib: boolean) {
+    debug('Adding `exports` to %s `package.json`', this.package.getName());
+
     const pkg = this.package.packageJson;
 
     if (!pkg.exports) {

@@ -2,9 +2,12 @@ import fs from 'fs-extra';
 import path from 'path';
 import glob from 'fast-glob';
 import { Path } from '@boost/common';
+import { createDebugger } from '@boost/debug';
 import { Extractor, ExtractorConfig } from '@microsoft/api-extractor';
 import Artifact from './Artifact';
 import { APIExtractorStructure } from './types';
+
+const debug = createDebugger('packemon:types');
 
 // eslint-disable-next-line
 const extractorConfig = require(path.join(__dirname, '../api-extractor.json')) as {
@@ -19,11 +22,15 @@ export default class TypesArtifact extends Artifact {
   private apiExtractorConfigPaths: string[] = [];
 
   async cleanup(): Promise<void> {
+    debug('Cleaning up temporary API extractor config files');
+
     // Absolute paths to each temporary config file
     await Promise.all(this.apiExtractorConfigPaths.map((cfgPath) => fs.remove(cfgPath)));
   }
 
   async build(): Promise<void> {
+    debug('Building types artifact with TypeScript');
+
     const tsConfig = this.package.tsconfigJson;
 
     // Resolved compiler options use absolute paths, so we should match
@@ -32,9 +39,13 @@ export default class TypesArtifact extends Artifact {
       : this.package.path.append('lib');
 
     // Compile the current projects declarations
+    debug('Generating declarations at the root using `tsc`');
+
     await this.package.project.generateDeclarations();
 
     // Combine all DTS files into a single file for each input
+    debug('Combining declarations into a single API declaration file');
+
     await Promise.all(
       Object.entries(this.package.config.inputs).map(([outputName, inputPath]) =>
         this.generateDeclaration(outputName, inputPath, declBuildPath),
@@ -44,6 +55,8 @@ export default class TypesArtifact extends Artifact {
     // Remove the TS output directory to reduce package size.
     // We do this in the background to speed up the CLI process!
     if (this.package.project.isWorkspacesEnabled()) {
+      debug('Removing old and unnecessary declarations in the background');
+
       void this.removeDeclarationBuild(declBuildPath);
     }
   }
@@ -58,6 +71,10 @@ export default class TypesArtifact extends Artifact {
 
   getTargets(): string[] {
     return ['dts'];
+  }
+
+  toString() {
+    return `types (dts)`;
   }
 
   protected async generateDeclaration(
