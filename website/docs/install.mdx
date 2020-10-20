@@ -1,0 +1,47 @@
+---
+title: Installation
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Packemon was designed to be used as a global dependency, as we need full control of our
+dependencies, functionality, and build processes.
+
+<Tabs
+  groupId="package-manager"
+  defaultValue="yarn"
+  values={[
+    { label: 'Yarn', value: 'yarn' },
+    { label: 'NPM', value: 'npm' },
+  ]}
+>
+  <TabItem value="yarn">
+
+
+```bash
+yarn global add packemon
+```
+
+  </TabItem>
+  <TabItem value="npm">
+
+
+```bash
+npm install -g packemon
+```
+
+  </TabItem>
+</Tabs>
+
+
+Once installed, you can reference the `packemon` binary within a `package.json` script.
+
+```json
+{
+  "name": "package",
+  "scripts": {
+    "build": "packemon build"
+  }
+}
+```

@@ -3,6 +3,9 @@
 module.exports = {
   docs: [
     'index',
+    'install',
+    'setup',
+    'config',
     {
       type: 'link',
       label: 'Changelog',
