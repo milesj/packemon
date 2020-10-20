@@ -2,7 +2,7 @@
 
 module.exports = {
   title: 'Packemon',
-  tagline: "Build and prepare package using standardized practices. Gotta pack 'em all!",
+  tagline: "Build and prepare packages using standardized practices. Gotta pack 'em all!",
   url: 'https://packemon.dev',
   baseUrl: '/',
   onBrokenLinks: 'throw',
@@ -34,7 +34,7 @@ module.exports = {
     footer: {
       style: 'dark',
       links: [],
-      copyright: `Copyright © ${new Date().getFullYear()} Miles Johnson. Built with <a href="https://docusaurus.io/">Docusaurus</a>. Icon by <a href="https://thenounproject.com/search/?q=boost&i=1420345">Chameleon Design</a>.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Miles Johnson. Built with <a href="https://docusaurus.io/">Docusaurus</a>. Icon by <a href="https://thenounproject.com/search/?q=pokeball&i=3548794">Gregor Cresnar</a>.`,
     },
   },
   presets: [
