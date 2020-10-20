@@ -1,5 +1,5 @@
 ---
-title: Configuration
+title: Package configuration
 ---
 
 Packemon has been designed to build and prepare packages for distribution, and as such, supports

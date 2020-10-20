@@ -6,10 +6,13 @@ module.exports = {
     'install',
     'setup',
     'config',
+    'build',
+    'advanced',
     {
       type: 'link',
       label: 'Changelog',
-      href: 'https://github.com/milesj/packemon/blob/master/CHANGELOG.md',
+      href: 'https://github.com/milesj/packemon/releases',
+      // href: 'https://github.com/milesj/packemon/blob/master/CHANGELOG.md',
     },
   ],
 };

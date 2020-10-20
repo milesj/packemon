@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 Whether a solorepo (1 package) or a monorepo (many packages), Packemon makes the following
 assumptions, some of which are hard requirements.
 
-- Each package must contain a `package.json` (duh).
+- Each package must contain a `package.json` (of course).
 - Each package must have a source folder named `src`. Builds will output relative to this.
 - Each package must have a source entry point, typically a `src/index.ts` file (or `index.js` if not
   using TypeScript).
@@ -77,8 +77,8 @@ declaration generation only.
 
 ### Update output directories
 
-Both the `outDir` and `declarationDir` settings should be updated to `dts`, and should not be set to
-`lib`, `build`, or some other variant. This is especially true if using project references.
+Both the `outDir` and `declarationDir` settings should be updated to `dts`, and should _not_ be set
+to `lib`, `build`, or some other variant. This is especially true if using project references.
 
 ```json
 {
@@ -115,7 +115,8 @@ guarantees that Packemon needs for handling declarations.
 }
 ```
 
-If you really need to support this feature, please create an issue so that we can track it properly.
+> If you really need to support this feature, please create an issue so that we can track it
+> properly.
 
 ### Supporting project references
 
