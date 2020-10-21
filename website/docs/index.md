@@ -1,10 +1,7 @@
-# Packemon
-
-[![Build Status](https://github.com/milesj/packemon/workflows/Build/badge.svg)](https://github.com/milesj/packemon/actions?query=branch%3Amaster)
-[![npm version](https://badge.fury.io/js/packemon.svg)](https://www.npmjs.com/package/packemon)
-[![npm deps](https://david-dm.org/milesj/packemon.svg)](https://www.npmjs.com/package/packemon)
-
-> Gotta pack 'em all!
+---
+title: Introduction
+slug: /
+---
 
 Are you a library maintainer? Confused on how to build packages for consumers? Unsure of what
 tooling and plugins to use? What about CommonJS vs ECMAScript? TypeScript, JavaScript, or FlowType?
@@ -13,8 +10,6 @@ Rollup configurations!
 
 Packemon will prepare each package for distribution by building with the proper tooling and plugins,
 provide sane defaults and configurations, verify package requirements, and much more!
-
-![Packemon](https://raw.githubusercontent.com/milesj/packemon/master/website/static/img/cli.png)
 
 ## Features
 
@@ -31,7 +26,3 @@ provide sane defaults and configurations, verify package requirements, and much 
 
 - Linux, OSX, Windows
 - Node 10.3+
-
-## Documentation
-
-[https://packemon.dev](https://packemon.dev)

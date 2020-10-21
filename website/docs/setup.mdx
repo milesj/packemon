@@ -1,0 +1,136 @@
+---
+title: Setup & requirements
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+## Package structure
+
+Whether a solorepo (1 package) or a monorepo (many packages), Packemon makes the following
+assumptions, some of which are hard requirements.
+
+- Each package must contain a `package.json` (of course).
+- Each package must have a source folder named `src`. Builds will output relative to this.
+- Each package must have a source entry point, typically a `src/index.ts` file (or `index.js` if not
+  using TypeScript).
+- Each package may contain a `tsconfig.json`.
+- Each package should contain a `LICENSE` and `README.md`.
+
+This would look something like the following.
+
+<Tabs
+  groupId="package-structure"
+  defaultValue="solo"
+  values={[
+    { label: 'Solorepo', value: 'solo' },
+    { label: 'Monorepo', value: 'mono' },
+  ]}
+>
+  <TabItem value="solo">
+
+
+```
+/
+├── src/
+├── package.json
+├── LICENSE
+└── README.md
+```
+
+  </TabItem>
+  <TabItem value="mono">
+
+
+```
+/
+├── packages/
+│   ├── foo/
+│   |   ├── src/
+│   |   ├── package.json
+│   |   ├── LICENSE
+│   |   └── README.md
+│   ├── bar/
+│   |   ├── src/
+│   |   ├── package.json
+│   |   ├── LICENSE
+│   |   └── README.md
+│   └── baz/
+│       ├── src/
+│       ├── package.json
+│       ├── LICENSE
+│       └── README.md
+├── lerna.json
+├── package.json
+├── LICENSE
+└── README.md
+```
+
+  </TabItem>
+</Tabs>
+
+
+## TypeScript integration
+
+Integrating with TypeScript can sometimes be tricky, and with Packemon, that is definitely the case.
+Since Packemon now handles the build process, TypeScript should be configured for type checking and
+declaration generation only.
+
+### Update output directories
+
+Both the `outDir` and `declarationDir` settings should be updated to `dts`, and should _not_ be set
+to `lib`, `build`, or some other variant. This is especially true if using project references.
+
+```json title="tsconfig.json"
+{
+  "compilerOptions": {
+    "declarationDir": "dts",
+    "outDir": "dts"
+  }
+}
+```
+
+### Enable emitting
+
+The `noEmit` setting should only be used on the command line (via an NPM script) and should not be
+configured explicitly. We require emitting of declarations.
+
+```json title="tsconfig.json"
+{
+  "compilerOptions": {
+    "noEmit": false
+  }
+}
+```
+
+### Disable JSON resolving
+
+The `resolveJsonModule` setting alters the output folder structure in such a way that it breaks the
+guarantees that Packemon needs for handling declarations.
+
+```json title="tsconfig.json"
+{
+  "compilerOptions": {
+    "resolveJsonModule": false
+  }
+}
+```
+
+> If you really need to support this feature, please create an issue so that we can track it
+> properly.
+
+### Supporting project references
+
+Alongside the requirements listed above, the `tsconfig.json` within each project reference package
+should be updated to only emit declarations to `dts`, like so.
+
+```json title="tsconfig.json"
+{
+  "compilerOptions": {
+    "declarationDir": "dts",
+    "outDir": "dts",
+    "rootDir": "src",
+    "emitDeclarationOnly": true
+  }
+}
+```
