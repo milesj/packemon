@@ -37,6 +37,12 @@ html[data-theme='dark'] {
   margin-right: auto;
 }
 
+@media screen and (min-width: 966px) {
+  .hero__subtitle {
+    width: 60%;
+  }
+}
+
 .text--muted {
   color: var(--ifm-color-secondary-darkest);
 }

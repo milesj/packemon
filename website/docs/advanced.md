@@ -31,3 +31,5 @@ The contents of the binary source file can be whatever you want, but do be aware
 module scope will be executed immediately when the file is executed by Node.js.
 
 ## Referencing sibling inputs
+
+Coming soon...

@@ -2,7 +2,8 @@
 
 module.exports = {
   title: 'Packemon',
-  tagline: "Build and prepare packages using standardized practices. Gotta pack 'em all!",
+  tagline:
+    'Build and prepare packages for NPM distribution using standardized configurations and practices.',
   url: 'https://packemon.dev',
   baseUrl: '/',
   onBrokenLinks: 'throw',

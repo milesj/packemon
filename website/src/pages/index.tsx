@@ -15,61 +15,58 @@ interface FeatureProps {
 const features: FeatureProps[][] = [
   [
     {
-      title: '💻 Cross-platform',
+      title: '📦 Zero-config packages',
       description: (
         <>
-          Whether on MacOS, Windows, or Linux, take confidence in your code running on any and all
-          platforms.
+          No longer fiddle with Babel, Rollup, Webpack or other tooling configurations. Packemon
+          configures packages automatically using sane and common defaults.
         </>
       ),
     },
     {
-      title: '🔬 Type-safe',
+      title: '🧩 Multiple platforms',
       description: (
         <>
-          With the power of{' '}
-          <a href="https://www.typescriptlang.org/" target="_blank">
-            TypeScript
-          </a>
-          , we provide a strict, type-safe, and ergonomic API for a better developer experience.
+          Support either <em>or</em> both Node.js and Web based platforms on a per-project or
+          per-package basis.
         </>
       ),
     },
     {
-      title: '🔀 Async-first',
+      title: '🗂 Agnostic project structure',
       description: (
         <>
-          Engineered all APIs and abstractions to be async-first for maximum performance,
-          efficiency, and portability.
+          Whether your project repository contains one package (solorepo) or many packages
+          (monorepo), Packemon will handle any and all patterns.
         </>
       ),
     },
   ],
   [
     {
-      title: '📦 Low dependency',
+      title: '🌐 Stable environments',
       description: (
         <>
-          In an effort to reduce lock file churn, large dependency graphs, and unexpected
-          vulnerabilities, we only include a dependency when absolutely necessary.
+          Supported browser targets and Node.js versions are carefully crafted to provide long term
+          support and stability, with the ability to experiment.
         </>
       ),
     },
     {
-      title: '⚙️ Convention & configuration',
+      title: '⚡️ Runtime formats',
       description: (
         <>
-          Designed to offer the perfect blend of convention (we provide consistency) and
-          configuration (you customize for each integration) based patterns.
+          Want to support CommonJS (CJS)? ECMAScript (ESM)? What about Universal Module Definition
+          (UMD)? Or maybe Node.js modules? Packemon supports all of them out of the box.
         </>
       ),
     },
     {
-      title: '🚀 Environment agnostic',
+      title: '🚀 Distribution checks',
       description: (
         <>
-          Utilize Boost in both server-side and client-side environments -- web applications,
-          command line programs, developer tooling, packages, and more.
+          We provide safety checks to ensure your package's contain valid licenses, entry points,
+          metadata, and much more!
         </>
       ),
     },
@@ -98,7 +95,7 @@ export default function Home() {
   const { siteConfig = {} } = context;
 
   return (
-    <Layout title="Cross-platform tooling" description={siteConfig.tagline}>
+    <Layout title="Gotta pack 'em all!" description={siteConfig.tagline}>
       <header className={clsx('hero hero--primary', styles.heroBanner)}>
         <div className="container">
           <h1 className="hero__title">{siteConfig.title}</h1>
@@ -112,7 +109,7 @@ export default function Home() {
             </Link>
 
             <iframe
-              src="https://ghbtns.com/github-btn.html?user=milesj&repo=boost&type=star&count=true&size=large"
+              src="https://ghbtns.com/github-btn.html?user=milesj&repo=packemon&type=star&count=true&size=large"
               frameBorder="0"
               scrolling="0"
               title="GitHub"
