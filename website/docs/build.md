@@ -2,14 +2,17 @@
 title: Building packages
 ---
 
-The `build` command can be used to build all packages according to their configured build targets
-(platform, formats, etc).
+Packemon was primarily designed and engineered for building packages. But what is building you ask?
+Building is the process of parsing, transforming, and bundling a package's source code into
+distributable and consumable files for NPM, using community favorite tools like [Babel][babel] and
+[Rollup][rollup].
+
+With that being said, the `packemon build` command can be used to build all packages in a project
+according to their configured build targets (platform, formats, etc).
 
 ```
 packemon build --checkLicenses --generateDeclaration
 ```
-
-## How it works
 
 ## Options
 
@@ -37,12 +40,109 @@ different directory, pass a relative path as an argument.
 packemon build ./some/other/path
 ```
 
+## How it works
+
+When the build process is ran, Packemon will find all viable packages within the current project and
+generate build artifacts. A build artifact is an output file that _will be_ distributed with the NPM
+package, but _will **not** be_ committed to the project (ideally git ignored).
+
+To demonstrate this, let's assume we have a package with the following folder structure and file
+contents (not exhaustive).
+
+```
+/
+├── src/
+|   ├── index.ts
+|   └── *.ts
+├── tests/
+├── .npmignore
+├── package.json
+├── LICENSE
+└── README.md
+```
+
+```json title="package.json"
+{
+  "name": "package",
+  "packemon": {
+    "inputs": { "index": "src/index.ts" },
+    "platform": ["node", "browser"],
+    "formats": ["lib", "esm", "umd"],
+    "namespace": "Example"
+  }
+}
+```
+
+```ini title=".npmignore"
+src/
+tests/
+*.log
+```
+
+Based on the package configuration above, our build will target both Node.js and web browsers, while
+generating multiple `index` outputs across both platforms. The resulting folder structure will look
+like the following (when also using `--generateDeclaration`).
+
+```
+/
+├── dts/
+|   └── index.d.ts
+├── esm/
+|   └── index.js
+├── lib/
+|   └── index.js
+├── src/
+|   ├── index.ts
+|   └── *.ts
+├── tests/
+├── umd/
+|   └── index.js
+├── .npmignore
+├── package.json
+├── LICENSE
+└── README.md
+```
+
+Furthermore, the `package.json` will automatically be updated with our build artifact entry points,
+as demonstrated below. This can further be expanded upon using the `--addEngines` and `--addExports`
+options.
+
+```json title="package.json"
+{
+  "name": "package",
+  "main": "./lib/index.js",
+  "module": "./esm/index.js",
+  "browser": "./umd/index.js",
+  "types": "./dts/index.d.ts",
+  "packemon": {
+    "inputs": { "index": "src/index.ts" },
+    "platform": ["node", "browser"],
+    "formats": ["lib", "esm", "umd"],
+    "namespace": "Example"
+  }
+}
+```
+
+Amazing, we now have self-contained and tree-shaken build artifacts for consumption. However, to
+ensure _only_ build artifacts are packaged and distributed to NPM, we rely on `.npmignore`. Based on
+the ignore contents above, the files published to NPM would be the following.
+
+```
+/
+├── dts/
+├── esm/
+├── lib/
+├── umd/
+├── package.json
+├── LICENSE
+└── README.md
+```
+
 ## Babel configuration
 
-All packages are parsed and transpiled with [Babel](https://babeljs.io/) (through Rollup). The
-presets and plugins used are automatically determined on a package-by-package basis, by inspecting
-the package's root files and respective `package.json` (and root `package.json` if using
-workspaces).
+All packages are parsed and transpiled with [Babel][babel] (through Rollup). The presets and plugins
+used are automatically determined on a package-by-package basis, by inspecting the package's root
+files and respective `package.json` (and root `package.json` if using workspaces).
 
 ### Presets
 
@@ -81,9 +181,9 @@ The following plugins are enabled when one of their conditions are met.
 
 ## Rollup configuration
 
-While Babel handles the parsing and transformation of source files, [Rollup](https://rollupjs.org)
-bundles all entry point dependent source files into a single tree-shaken distributable file. This
-vastly reduces the file size, require/import times, evaluation speed, and more.
+While Babel handles the parsing and transformation of source files, [Rollup][rollup] bundles all
+entry point dependent source files into a single tree-shaken distributable file. This vastly reduces
+the file size, require/import times, evaluation speed, and more.
 
 However, configuring Rollup can be quite daunting. Because of this, the entire layer is abstracted
 away behind Packemon, and should just "work" when packages are configured correctly. Our abstraction
@@ -115,3 +215,6 @@ The following plugins are enabled per package.
 - `rollup-plugin-node-externals`
   - Defines `externals` based on `package.json` dependencies.
   - Includes `dependencies`, `devDependencies`, `peerDependencies`, and `optionalDependencies`.
+
+[babel]: https://babeljs.io/
+[rollup]: https://rollupjs.org

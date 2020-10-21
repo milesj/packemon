@@ -1,10 +1,10 @@
-import { Path, SettingMap, toArray } from '@boost/common';
+import { isObject, Path, SettingMap, toArray } from '@boost/common';
 import { createDebugger } from '@boost/debug';
 import { rollup, RollupCache } from 'rollup';
 import Artifact from './Artifact';
 import { NODE_SUPPORTED_VERSIONS, NPM_SUPPORTED_VERSIONS } from './constants';
 import { getRollupConfig } from './rollup/config';
-import { Format, PackemonOptions, Platform, Support } from './types';
+import { Format, PackemonOptions, Platform } from './types';
 
 const debug = createDebugger('packemon:bundle');
 
@@ -48,34 +48,14 @@ export default class BundleArtifact extends Artifact<{ size: number }> {
   }
 
   postBuild({ addEngines, addExports }: PackemonOptions): void {
-    const pkg = this.package.packageJson;
-    const { platforms, support } = this.package.config;
-    const hasLib = this.formats.includes('lib');
-    const hasUmd = this.formats.includes('umd');
+    this.addEntryPointsToPackageJson();
 
-    if (this.outputName === 'index') {
-      if (hasLib) {
-        pkg.main = './lib/index.js';
-      }
-
-      if (hasUmd) {
-        pkg.browser = './umd/index.js';
-      }
-    }
-
-    if (this.outputName === 'bin') {
-      // Bin field may be an object
-      if (hasLib && !pkg.bin) {
-        pkg.bin = './lib/bin.js';
-      }
-    }
-
-    if (addEngines && platforms.includes('node')) {
-      this.addEnginesToPackageJson(support);
+    if (addEngines) {
+      this.addEnginesToPackageJson();
     }
 
     if (addExports) {
-      this.addExportsToPackageJson(hasLib);
+      this.addExportsToPackageJson();
     }
   }
 
@@ -142,10 +122,15 @@ export default class BundleArtifact extends Artifact<{ size: number }> {
     return `bundle:${this.getLabel()} (${this.getTargets().join(', ')})`;
   }
 
-  protected addEnginesToPackageJson(support: Support) {
-    debug('Adding `engines` to %s `package.json`', this.package.getName());
-
+  protected addEnginesToPackageJson() {
+    const { platforms, support } = this.package.config;
     const pkg = this.package.packageJson;
+
+    if (!platforms.includes('node')) {
+      return;
+    }
+
+    debug('Adding `engines` to %s `package.json`', this.package.getName());
 
     if (!pkg.engines) {
       pkg.engines = {};
@@ -161,16 +146,47 @@ export default class BundleArtifact extends Artifact<{ size: number }> {
     });
   }
 
-  protected addExportsToPackageJson(hasLib: boolean) {
+  protected addEntryPointsToPackageJson() {
+    debug('Adding entry points to %s `package.json`', this.package.getName());
+
+    const pkg = this.package.packageJson;
+    const formats = new Set(this.formats);
+
+    if (this.outputName === 'index') {
+      if (formats.has('lib')) {
+        pkg.main = './lib/index.js';
+      } else if (formats.has('cjs')) {
+        pkg.main = './cjs/index.js';
+      }
+
+      if (formats.has('esm')) {
+        pkg.module = './esm/index.js';
+      }
+
+      if (formats.has('umd')) {
+        pkg.browser = './umd/index.js';
+      }
+    }
+
+    // Bin field may be an object
+    if (this.outputName === 'bin' && !isObject(pkg.bin)) {
+      if (formats.has('lib')) {
+        pkg.bin = './lib/bin.js';
+      } else if (formats.has('cjs')) {
+        pkg.bin = './cjs/bin.js';
+      }
+    }
+  }
+
+  protected addExportsToPackageJson() {
     debug('Adding `exports` to %s `package.json`', this.package.getName());
 
     const pkg = this.package.packageJson;
+    const paths: SettingMap = {};
 
     if (!pkg.exports) {
       pkg.exports = {};
     }
-
-    const paths: SettingMap = {};
 
     this.formats.forEach((format) => {
       const path = this.getOutputFile(format);
@@ -183,7 +199,7 @@ export default class BundleArtifact extends Artifact<{ size: number }> {
     });
 
     // Must come after import/require
-    if (hasLib) {
+    if (this.formats.includes('lib')) {
       paths.default = this.getOutputFile('lib');
     }
 

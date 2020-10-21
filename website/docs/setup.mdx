@@ -60,6 +60,7 @@ This would look something like the following.
 │       ├── package.json
 │       ├── LICENSE
 │       └── README.md
+├── lerna.json
 ├── package.json
 ├── LICENSE
 └── README.md
@@ -80,7 +81,7 @@ declaration generation only.
 Both the `outDir` and `declarationDir` settings should be updated to `dts`, and should _not_ be set
 to `lib`, `build`, or some other variant. This is especially true if using project references.
 
-```json
+```json title="tsconfig.json"
 {
   "compilerOptions": {
     "declarationDir": "dts",
@@ -94,7 +95,7 @@ to `lib`, `build`, or some other variant. This is especially true if using proje
 The `noEmit` setting should only be used on the command line (via an NPM script) and should not be
 configured explicitly. We require emitting of declarations.
 
-```json
+```json title="tsconfig.json"
 {
   "compilerOptions": {
     "noEmit": false
@@ -107,7 +108,7 @@ configured explicitly. We require emitting of declarations.
 The `resolveJsonModule` setting alters the output folder structure in such a way that it breaks the
 guarantees that Packemon needs for handling declarations.
 
-```json
+```json title="tsconfig.json"
 {
   "compilerOptions": {
     "resolveJsonModule": false
@@ -123,7 +124,7 @@ guarantees that Packemon needs for handling declarations.
 Alongside the requirements listed above, the `tsconfig.json` within each project reference package
 should be updated to only emit declarations to `dts`, like so.
 
-```json
+```json title="tsconfig.json"
 {
   "compilerOptions": {
     "declarationDir": "dts",

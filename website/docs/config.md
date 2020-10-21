@@ -9,7 +9,7 @@ Packemon will be built. This allows specific packages to be completely ignored i
 To configure a package, add a `packemon` block to their `package.json`, with any of the following
 optional options. We suggest defining a platform at minimum.
 
-```json
+```json title="package.json"
 {
   "name": "package",
   "packemon": {
