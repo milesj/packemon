@@ -4,14 +4,12 @@ import { rollup, RollupCache } from 'rollup';
 import Artifact from './Artifact';
 import { NODE_SUPPORTED_VERSIONS, NPM_SUPPORTED_VERSIONS } from './constants';
 import { getRollupConfig } from './rollup/config';
-import { Format, PackemonOptions, Platform } from './types';
+import { Format, PackemonOptions } from './types';
 
 const debug = createDebugger('packemon:bundle');
 
 export default class BundleArtifact extends Artifact<{ size: number }> {
   cache?: RollupCache;
-
-  formats: Format[] = [];
 
   // Path to the input file relative to the package
   inputPath: string = '';
@@ -33,14 +31,14 @@ export default class BundleArtifact extends Artifact<{ size: number }> {
     }
 
     await Promise.all(
-      toArray(output).map(async (out) => {
+      toArray(output).map(async (out, index) => {
         const { originalFormat = 'lib', ...outOptions } = out;
 
         debug('\tWriting %s output', originalFormat);
 
         const result = await bundle.write(outOptions);
 
-        this.result.stats[originalFormat] = {
+        this.builds[index].stats = {
           size: Buffer.byteLength(result.output[0].code),
         };
       }),
@@ -64,36 +62,11 @@ export default class BundleArtifact extends Artifact<{ size: number }> {
   }
 
   getTargets(): string[] {
-    return this.formats;
+    return this.builds.map((build) => build.format);
   }
 
   getExtension(format: Format): string {
     return format === 'cjs' || format === 'mjs' ? format : 'js';
-  }
-
-  getPlatform(format: Format): Platform {
-    if (format === 'cjs' || format === 'mjs') {
-      return 'node';
-    }
-
-    if (format === 'esm' || format === 'umd') {
-      return 'browser';
-    }
-
-    // "lib" is a shared format across all platforms,
-    // and when a package wants to support multiple platforms,
-    // we must down-level the "lib" format to the lowest platform.
-    if (this.flags.requiresSharedLib) {
-      const platforms = new Set(this.package.config.platforms);
-
-      if (platforms.has('browser')) {
-        return 'browser';
-      } else if (platforms.has('node')) {
-        return 'node';
-      }
-    }
-
-    return this.package.config.platforms[0];
   }
 
   getInputPath(): Path {
@@ -123,26 +96,27 @@ export default class BundleArtifact extends Artifact<{ size: number }> {
   }
 
   protected addEnginesToPackageJson() {
-    const { platforms, support } = this.package.config;
-    const pkg = this.package.packageJson;
-
-    if (!platforms.includes('node')) {
-      return;
-    }
-
     debug('Adding `engines` to %s `package.json`', this.package.getName());
+
+    const pkg = this.package.packageJson;
 
     if (!pkg.engines) {
       pkg.engines = {};
     }
 
-    const npmVersion = NPM_SUPPORTED_VERSIONS[support];
+    this.builds.forEach(({ platform, support }) => {
+      if (platform !== 'node') {
+        return;
+      }
 
-    Object.assign(pkg.engines, {
-      node: `>=${NODE_SUPPORTED_VERSIONS[support]}`,
-      npm: toArray(npmVersion)
-        .map((v) => `>=${v}`)
-        .join(' || '),
+      const npmVersion = NPM_SUPPORTED_VERSIONS[support];
+
+      Object.assign(pkg.engines, {
+        node: `>=${NODE_SUPPORTED_VERSIONS[support]}`,
+        npm: toArray(npmVersion)
+          .map((v) => `>=${v}`)
+          .join(' || '),
+      });
     });
   }
 
@@ -150,32 +124,29 @@ export default class BundleArtifact extends Artifact<{ size: number }> {
     debug('Adding entry points to %s `package.json`', this.package.getName());
 
     const pkg = this.package.packageJson;
-    const formats = new Set(this.formats);
 
-    if (this.outputName === 'index') {
-      if (formats.has('lib')) {
-        pkg.main = './lib/index.js';
-      } else if (formats.has('cjs')) {
-        pkg.main = './cjs/index.js';
+    this.builds.forEach(({ format }) => {
+      if (this.outputName === 'index') {
+        if (format === 'lib') {
+          pkg.main = './lib/index.js';
+        } else if (format === 'cjs') {
+          pkg.main = './cjs/index.js';
+        } else if (format === 'esm') {
+          pkg.module = './esm/index.js';
+        } else if (format === 'umd') {
+          pkg.browser = './umd/index.js';
+        }
       }
 
-      if (formats.has('esm')) {
-        pkg.module = './esm/index.js';
+      // Bin field may be an object
+      if (this.outputName === 'bin' && !isObject(pkg.bin)) {
+        if (format === 'lib') {
+          pkg.bin = './lib/bin.js';
+        } else if (format === 'cjs') {
+          pkg.bin = './cjs/bin.js';
+        }
       }
-
-      if (formats.has('umd')) {
-        pkg.browser = './umd/index.js';
-      }
-    }
-
-    // Bin field may be an object
-    if (this.outputName === 'bin' && !isObject(pkg.bin)) {
-      if (formats.has('lib')) {
-        pkg.bin = './lib/bin.js';
-      } else if (formats.has('cjs')) {
-        pkg.bin = './cjs/bin.js';
-      }
-    }
+    });
   }
 
   protected addExportsToPackageJson() {
@@ -188,18 +159,22 @@ export default class BundleArtifact extends Artifact<{ size: number }> {
       pkg.exports = {};
     }
 
-    this.formats.forEach((format) => {
+    let hasLib = false;
+
+    this.builds.forEach(({ format }) => {
       const path = this.getOutputFile(format);
 
       if (format === 'mjs' || format === 'esm') {
         paths.import = path;
       } else if (format === 'cjs') {
         paths.require = path;
+      } else if (format === 'lib') {
+        hasLib = true;
       }
     });
 
     // Must come after import/require
-    if (this.formats.includes('lib')) {
+    if (hasLib) {
       paths.default = this.getOutputFile('lib');
     }
 

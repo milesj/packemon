@@ -18,7 +18,7 @@ import {
 export default class Package {
   readonly artifacts: Artifact[] = [];
 
-  config!: PackageConfig;
+  configs: PackageConfig[] = [];
 
   readonly packageJson: PackemonPackage;
 
@@ -65,9 +65,9 @@ export default class Package {
           artifact.state = 'failed';
 
           throw error;
+        } finally {
+          artifact.buildResult.time = Date.now() - start;
         }
-
-        artifact.result.time = Date.now() - start;
       }),
     );
 
@@ -140,14 +140,16 @@ export default class Package {
     return this.artifacts.some((artifact) => artifact.isRunning());
   }
 
-  setConfig(config: Required<PackemonPackageConfig>) {
-    this.config = {
-      formats: toArray(config.format),
-      inputs: config.inputs,
-      namespace: config.namespace,
-      platforms: toArray(config.platform),
-      support: config.support,
-    };
+  setConfigs(configs: Required<PackemonPackageConfig>[]) {
+    configs.forEach((config) => {
+      this.configs.push({
+        formats: toArray(config.format),
+        inputs: config.inputs,
+        namespace: config.namespace,
+        platforms: toArray(config.platform),
+        support: config.support,
+      });
+    });
   }
 
   @Memoize()

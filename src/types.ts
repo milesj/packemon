@@ -42,7 +42,7 @@ export interface PackemonPackageConfig {
 }
 
 export interface PackemonPackage extends PackageStructure {
-  packemon: PackemonPackageConfig;
+  packemon: PackemonPackageConfig | PackemonPackageConfig[];
 }
 
 export interface PackemonOptions {
@@ -65,22 +65,18 @@ export interface PackageConfig {
 
 // ARTIFACTS
 
-export interface ArtifactFlags {
-  requiresSharedLib?: boolean;
-}
-
 export type ArtifactState = 'pending' | 'building' | 'passed' | 'failed';
 
-export interface BuildResult<T> {
+export interface BuildResult {
   [key: string]: unknown;
-  stats: Record<string, T>;
   time: number;
 }
 
-export interface BuildUnit {
+export interface Build<T = unknown> {
   format: Format;
   platform: Platform;
   support: Support;
+  stats?: T;
 }
 
 // CONFIG

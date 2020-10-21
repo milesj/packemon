@@ -1,6 +1,6 @@
 import { PluginItem, TransformOptions as ConfigStructure } from '@babel/core';
 import { BROWSER_TARGETS, NODE_SUPPORTED_VERSIONS } from '../constants';
-import { Support, Format, Platform, FeatureFlags, BuildUnit } from '../types';
+import { Support, Format, Platform, FeatureFlags, Build } from '../types';
 import BundleArtifact from '../BundleArtifact';
 
 // https://babeljs.io/docs/en/babel-preset-env
@@ -138,7 +138,7 @@ export function getBabelInputConfig(
 // The output config does all the transformation and downleveling through the preset-env.
 // This is handled per output since we need to configure based on target + format combinations.
 export function getBabelOutputConfig(
-  { format, platform, support }: BuildUnit,
+  { format, platform, support }: Build,
   features: FeatureFlags,
 ): ConfigStructure {
   const plugins: PluginItem[] = [];

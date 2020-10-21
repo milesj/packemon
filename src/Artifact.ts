@@ -1,21 +1,18 @@
 import Package from './Package';
-import { ArtifactFlags, ArtifactState, Awaitable, BuildResult, PackemonOptions } from './types';
+import { ArtifactState, Awaitable, Build, BuildResult, PackemonOptions } from './types';
 
 export default abstract class Artifact<T = unknown> {
-  readonly flags: ArtifactFlags;
+  readonly builds: Build<T>[] = [];
+
+  readonly buildResult: BuildResult = { time: 0 };
 
   readonly package: Package;
 
-  readonly result: BuildResult<T> = {
-    stats: {},
-    time: 0,
-  };
-
   state: ArtifactState = 'pending';
 
-  constructor(pkg: Package, flags: ArtifactFlags = {}) {
+  constructor(pkg: Package, builds: Build<T>[] = []) {
     this.package = pkg;
-    this.flags = flags;
+    this.builds = builds;
   }
 
   cleanup(): Awaitable {}

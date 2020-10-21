@@ -46,11 +46,15 @@ export default class TypesArtifact extends Artifact {
     // Combine all DTS files into a single file for each input
     debug('Combining declarations into a single API declaration file');
 
-    await Promise.all(
-      Object.entries(this.package.config.inputs).map(([outputName, inputPath]) =>
-        this.generateDeclaration(outputName, inputPath, declBuildPath),
-      ),
-    );
+    const promises: Promise<unknown>[] = [];
+
+    this.package.configs.forEach((config) => {
+      Object.entries(config.inputs).forEach(([outputName, inputPath]) => {
+        promises.push(this.generateDeclaration(outputName, inputPath, declBuildPath));
+      });
+    });
+
+    await Promise.all(promises);
 
     // Remove the TS output directory to reduce package size.
     // We do this in the background to speed up the CLI process!
@@ -138,9 +142,14 @@ export default class TypesArtifact extends Artifact {
    * Not sure of a workaround or better solution :(
    */
   protected async removeDeclarationBuild(declBuildPath: Path) {
-    const outputs = new Set<string>(
-      Object.keys(this.package.config.inputs).map((outputName) => `${outputName}.d.ts`),
-    );
+    const outputs = new Set<string>();
+
+    // Generate all output combinations
+    this.package.configs.forEach((config) => {
+      Object.keys(config.inputs).forEach((outputName) => {
+        outputs.add(`${outputName}.d.ts`);
+      });
+    });
 
     // Remove all build files in the root except for the output files we created
     const files = await glob(['*.js', '*.d.ts', '*.d.ts.map'], {

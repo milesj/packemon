@@ -18,14 +18,15 @@ import Project from './Project';
 import BundleArtifact from './BundleArtifact';
 import TypesArtifact from './TypesArtifact';
 import {
-  ArtifactFlags,
   BrowserFormat,
+  Build,
   Format,
   NodeFormat,
   PackemonOptions,
   PackemonPackage,
   PackemonPackageConfig,
   Platform,
+  Support,
 } from './types';
 
 const debug = createDebugger('packemon:core');
@@ -183,45 +184,79 @@ export default class Packemon extends Contract<PackemonOptions> {
     debug('Generating build artifacts for packages');
 
     this.packages.forEach((pkg) => {
-      const { config } = pkg;
-      const flags: ArtifactFlags = {};
-      const formats = new Set<Format>(config.formats);
+      pkg.configs.forEach((config) => {
+        let requiresSharedLib = false;
+        const formats = new Set<Format>(config.formats);
 
-      if (formats.size === 0) {
-        config.platforms.sort().forEach((platform) => {
-          if (formats.has('lib')) {
-            flags.requiresSharedLib = true;
-          }
-
-          if (platform === 'node') {
-            formats.add('lib');
-          } else if (platform === 'browser') {
-            formats.add('lib');
-            formats.add('esm');
-
-            if (config.namespace) {
-              formats.add('umd');
+        if (formats.size === 0) {
+          config.platforms.sort().forEach((platform) => {
+            if (formats.has('lib')) {
+              requiresSharedLib = true;
             }
-          }
+
+            if (platform === 'node') {
+              formats.add('lib');
+            } else if (platform === 'browser') {
+              formats.add('lib');
+              formats.add('esm');
+
+              if (config.namespace) {
+                formats.add('umd');
+              }
+            }
+          });
+        }
+
+        Object.entries(config.inputs).forEach(([outputName, inputPath]) => {
+          const artifact = new BundleArtifact(
+            pkg,
+            Array.from(formats).map((format) =>
+              this.generateBuild(format, config.support, config.platforms, requiresSharedLib),
+            ),
+          );
+          artifact.inputPath = inputPath;
+          artifact.namespace = config.namespace;
+          artifact.outputName = outputName;
+
+          pkg.addArtifact(artifact);
         });
-      }
 
-      Object.entries(config.inputs).forEach(([outputName, inputPath]) => {
-        const artifact = new BundleArtifact(pkg, flags);
-        artifact.formats = Array.from(formats);
-        artifact.inputPath = inputPath;
-        artifact.namespace = config.namespace;
-        artifact.outputName = outputName;
+        if (this.options.generateDeclaration) {
+          pkg.addArtifact(new TypesArtifact(pkg));
+        }
 
-        pkg.addArtifact(artifact);
+        debug('\t%s - %s', pkg.getName(), pkg.artifacts.join(', '));
       });
-
-      if (this.options.generateDeclaration) {
-        pkg.addArtifact(new TypesArtifact(pkg));
-      }
-
-      debug('\t%s - %s', pkg.getName(), pkg.artifacts.join(', '));
     });
+  }
+
+  protected generateBuild<T>(
+    format: Format,
+    support: Support,
+    platforms: Platform[],
+    requiresSharedLib: boolean,
+  ): Build<T> {
+    let platform: Platform = 'browser';
+
+    // Platform is dependent on the format
+    if (format === 'cjs' || format === 'mjs') {
+      platform = 'node';
+    } else if (requiresSharedLib) {
+      // "lib" is a shared format across all platforms,
+      // and when a package wants to support multiple platforms,
+      // we must down-level the "lib" format to the lowest platform.
+      if (platforms.includes('browser')) {
+        platform = 'browser';
+      } else if (platforms.includes('node')) {
+        platform = 'node';
+      }
+    }
+
+    return {
+      format,
+      platform,
+      support,
+    };
   }
 
   protected validateAndPreparePackages(packages: WorkspacePackage<PackemonPackage>[]): Package[] {
@@ -238,10 +273,12 @@ export default class Packemon extends Contract<PackemonOptions> {
 
       const pkg = new Package(this.project, Path.create(metadata.packagePath), contents);
 
-      pkg.setConfig(
-        optimal(contents.packemon, blueprint, {
-          name: pkg.getName(),
-        }),
+      pkg.setConfigs(
+        toArray(contents.packemon).map((config) =>
+          optimal(config, blueprint, {
+            name: pkg.getName(),
+          }),
+        ),
       );
 
       nextPackages.push(pkg);
