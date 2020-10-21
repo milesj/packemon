@@ -1,12 +1,10 @@
 import fs from 'fs-extra';
 import {
   Blueprint,
-  Contract,
   json,
   optimal,
   Path,
   predicates,
-  Predicates,
   toArray,
   WorkspacePackage,
 } from '@boost/common';
@@ -22,7 +20,7 @@ import {
   Build,
   Format,
   NodeFormat,
-  PackemonOptions,
+  BuildOptions,
   PackemonPackage,
   PackemonPackageConfig,
   Platform,
@@ -30,7 +28,7 @@ import {
 } from './types';
 
 const debug = createDebugger('packemon:core');
-const { array, custom, object, string, union } = predicates;
+const { array, bool, custom, number, object, string, union } = predicates;
 
 const platformPredicate = string<Platform>('browser').oneOf(['node', 'browser']);
 const nodeFormatPredicate = string<NodeFormat>('lib').oneOf(['lib', 'mjs', 'cjs']);
@@ -56,7 +54,7 @@ const blueprint: Blueprint<Required<PackemonPackageConfig>> = {
   support: string('stable').oneOf(['legacy', 'stable', 'current', 'experimental']),
 };
 
-export default class Packemon extends Contract<PackemonOptions> {
+export default class Packemon {
   readonly onPackageBuilt = new Event<[Package]>('package-built');
 
   packages: Package[] = [];
@@ -65,17 +63,17 @@ export default class Packemon extends Contract<PackemonOptions> {
 
   readonly root: Path;
 
-  constructor(cwd: string, options: PackemonOptions) {
-    super(options);
-
+  constructor(cwd: string) {
     this.root = Path.resolve(cwd);
     this.project = new Project(this.root);
 
     debug('Initializing packemon in project %s', this.root);
   }
 
-  blueprint({ bool, number }: Predicates): Blueprint<PackemonOptions> {
-    return {
+  async build(baseOptions: BuildOptions) {
+    debug('Starting build process');
+
+    const options = optimal(baseOptions, {
       addEngines: bool(),
       addExports: bool(),
       checkLicenses: bool(),
@@ -83,26 +81,22 @@ export default class Packemon extends Contract<PackemonOptions> {
       generateDeclaration: bool(),
       skipPrivate: bool(),
       timeout: number().gte(0),
-    };
-  }
+    });
 
-  async build() {
-    debug('Starting build process');
-
-    await this.findPackages();
-    await this.generateArtifacts();
+    await this.findPackages(options.skipPrivate);
+    await this.generateArtifacts(options.generateDeclaration);
 
     // Build packages in parallel using a pool
     const pipeline = new PooledPipeline(new Context());
 
     pipeline.configure({
-      concurrency: this.options.concurrency,
-      timeout: this.options.timeout,
+      concurrency: options.concurrency,
+      timeout: options.timeout,
     });
 
     this.packages.forEach((pkg) => {
       pipeline.add(pkg.getName(), async () => {
-        await pkg.build(this.options);
+        await pkg.build(options);
 
         this.onPackageBuilt.emit([pkg]);
       });
@@ -123,7 +117,7 @@ export default class Packemon extends Contract<PackemonOptions> {
     }
   }
 
-  protected async findPackages() {
+  protected async findPackages(skipPrivate: boolean) {
     debug('Finding packages in project');
 
     const pkgPaths: Path[] = [];
@@ -171,7 +165,7 @@ export default class Packemon extends Contract<PackemonOptions> {
     );
 
     // Skip `private` packages
-    if (this.options.skipPrivate) {
+    if (skipPrivate) {
       packages = packages.filter((pkg) => !pkg.package.private);
 
       debug('Filtering private packages: %s', privatePackageNames.join(', '));
@@ -180,7 +174,7 @@ export default class Packemon extends Contract<PackemonOptions> {
     this.packages = this.validateAndPreparePackages(packages);
   }
 
-  protected generateArtifacts() {
+  protected generateArtifacts(declarations: boolean) {
     debug('Generating build artifacts for packages');
 
     this.packages.forEach((pkg) => {
@@ -221,7 +215,7 @@ export default class Packemon extends Contract<PackemonOptions> {
           pkg.addArtifact(artifact);
         });
 
-        if (this.options.generateDeclaration) {
+        if (declarations) {
           pkg.addArtifact(new TypesArtifact(pkg));
         }
 

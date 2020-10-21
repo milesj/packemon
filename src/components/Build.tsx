@@ -5,12 +5,13 @@ import Packemon from '../Packemon';
 import PackageList from './PackageList';
 import PackageRow from './PackageRow';
 import Package from '../Package';
+import { BuildOptions } from '../types';
 
-export interface BuildProps {
+export interface BuildProps extends Required<BuildOptions> {
   packemon: Packemon;
 }
 
-export default function Build({ packemon }: BuildProps) {
+export default function Build({ packemon, ...options }: BuildProps) {
   const [, forceUpdate] = useReducer((count) => count + 1, 0);
   const [error, setError] = useState<Error>();
   const [staticPackages, setStaticPackages] = useState<Package[]>([]);
@@ -22,7 +23,7 @@ export default function Build({ packemon }: BuildProps) {
     const clear = () => clearInterval(timer);
 
     // Run the packemon process on mount
-    void packemon.build().catch(setError).finally(clear);
+    void packemon.build(options).catch(setError).finally(clear);
 
     // Add complete packages to the static list
     const unlisten = packemon.onPackageBuilt.listen((pkg) => {
@@ -36,7 +37,8 @@ export default function Build({ packemon }: BuildProps) {
       clear();
       unlisten();
     };
-  }, [packemon]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Bubble up errors to the program
   if (error) {

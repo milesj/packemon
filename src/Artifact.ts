@@ -1,5 +1,5 @@
 import Package from './Package';
-import { ArtifactState, Awaitable, Build, BuildResult, PackemonOptions } from './types';
+import { ArtifactState, Awaitable, Build, BuildResult, BuildOptions } from './types';
 
 export default abstract class Artifact<T = unknown> {
   readonly builds: Build<T>[] = [];
@@ -17,7 +17,7 @@ export default abstract class Artifact<T = unknown> {
 
   cleanup(): Awaitable {}
 
-  build(options: PackemonOptions): Awaitable {}
+  build(options: BuildOptions): Awaitable {}
 
   isComplete(): boolean {
     return this.state === 'passed' || this.state === 'failed';
@@ -27,9 +27,9 @@ export default abstract class Artifact<T = unknown> {
     return this.state === 'building';
   }
 
-  postBuild(options: PackemonOptions): Awaitable {}
+  postBuild(options: BuildOptions): Awaitable {}
 
-  preBuild(options: PackemonOptions): Awaitable {}
+  preBuild(options: BuildOptions): Awaitable {}
 
   shouldSkip(): boolean {
     return this.state === 'failed';

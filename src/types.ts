@@ -33,6 +33,8 @@ export type NodeFormat =
 
 export type Format = NodeFormat | BrowserFormat;
 
+// PACKAGES
+
 export interface PackemonPackageConfig {
   format?: Format | Format[];
   inputs?: Record<string, string>;
@@ -43,16 +45,6 @@ export interface PackemonPackageConfig {
 
 export interface PackemonPackage extends PackageStructure {
   packemon: PackemonPackageConfig | PackemonPackageConfig[];
-}
-
-export interface PackemonOptions {
-  addEngines: boolean;
-  addExports: boolean;
-  checkLicenses: boolean;
-  concurrency: number;
-  generateDeclaration: boolean;
-  skipPrivate: boolean;
-  timeout: number;
 }
 
 export interface PackageConfig {
@@ -66,6 +58,16 @@ export interface PackageConfig {
 // ARTIFACTS
 
 export type ArtifactState = 'pending' | 'building' | 'passed' | 'failed';
+
+export interface BuildOptions {
+  addEngines: boolean;
+  addExports: boolean;
+  checkLicenses: boolean;
+  concurrency: number;
+  generateDeclaration: boolean;
+  skipPrivate: boolean;
+  timeout: number;
+}
 
 export interface BuildResult {
   [key: string]: unknown;

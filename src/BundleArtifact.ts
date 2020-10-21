@@ -4,7 +4,7 @@ import { rollup, RollupCache } from 'rollup';
 import Artifact from './Artifact';
 import { NODE_SUPPORTED_VERSIONS, NPM_SUPPORTED_VERSIONS } from './constants';
 import { getRollupConfig } from './rollup/config';
-import { Format, PackemonOptions } from './types';
+import { Format, BuildOptions } from './types';
 
 const debug = createDebugger('packemon:bundle');
 
@@ -45,7 +45,7 @@ export default class BundleArtifact extends Artifact<{ size: number }> {
     );
   }
 
-  postBuild({ addEngines, addExports }: PackemonOptions): void {
+  postBuild({ addEngines, addExports }: BuildOptions): void {
     this.addEntryPointsToPackageJson();
 
     if (addEngines) {

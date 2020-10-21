@@ -9,7 +9,7 @@ import Project from './Project';
 import {
   FeatureFlags,
   PackageConfig,
-  PackemonOptions,
+  BuildOptions,
   PackemonPackage,
   PackemonPackageConfig,
   TSConfigStructure,
@@ -43,7 +43,7 @@ export default class Package {
     return artifact;
   }
 
-  async build(options: PackemonOptions): Promise<void> {
+  async build(options: BuildOptions): Promise<void> {
     if (options.checkLicenses) {
       this.checkLicense();
     }
