@@ -14,7 +14,7 @@ Rollup configurations!
 Packemon will prepare each package for distribution by building with the proper tooling and plugins,
 provide sane defaults and configurations, verify package requirements, and much more!
 
-![Packemon](./docs/cli.png)
+![Packemon](https://raw.githubusercontent.com/milesj/packemon/master/website/static/img/cli.png)
 
 ## Features
 
