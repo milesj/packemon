@@ -28,7 +28,7 @@ const features: FeatureProps[][] = [
       description: (
         <>
           Support either <em>or</em> both Node.js and Web based platforms on a per-project or
-          per-package basis.
+          per-package basis, with more platforms coming in the future.
         </>
       ),
     },
