@@ -30,4 +30,5 @@ jobs:
         with:
           node-version: 14
       - run: yarn install --ignore-engines --frozen-lockfile
+      - run: yarn run setup
       - run: yarn run build
