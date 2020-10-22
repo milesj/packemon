@@ -142,11 +142,29 @@ export default class Package {
 
   setConfigs(configs: Required<PackemonPackageConfig>[]) {
     configs.forEach((config) => {
+      const platforms = toArray(config.platform);
+      const formats = new Set(toArray(config.format));
+
+      if (formats.size === 0) {
+        platforms.sort().forEach((platform) => {
+          if (platform === 'node') {
+            formats.add('lib');
+          } else if (platform === 'browser') {
+            formats.add('lib');
+            formats.add('esm');
+
+            if (config.namespace) {
+              formats.add('umd');
+            }
+          }
+        });
+      }
+
       this.configs.push({
-        formats: toArray(config.format),
+        formats: Array.from(formats),
         inputs: config.inputs,
         namespace: config.namespace,
-        platforms: toArray(config.platform),
+        platforms,
         support: config.support,
       });
     });

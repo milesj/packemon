@@ -178,39 +178,22 @@ export default class Packemon {
 
     this.packages.forEach((pkg) => {
       const typesBuilds: TypesBuild[] = [];
-      const outputFormats: Format[] = [];
+      const libFormatCount = pkg.configs.reduce(
+        (sum, config) => (config.formats.includes('lib') ? sum + 1 : sum),
+        0,
+      );
 
       pkg.configs.forEach((config) => {
-        const formats = new Set<Format>(config.formats);
-
-        if (formats.size === 0) {
-          config.platforms.sort().forEach((platform) => {
-            if (platform === 'node') {
-              formats.add('lib');
-            } else if (platform === 'browser') {
-              formats.add('lib');
-              formats.add('esm');
-
-              if (config.namespace) {
-                formats.add('umd');
-              }
-            }
-          });
-        }
-
-        // We need to detect if `lib` is used multiple times
-        // within the same package config, or across all configs.
-        outputFormats.push(...Array.from(formats));
-
         Object.entries(config.inputs).forEach(([outputName, inputPath]) => {
           const artifact = new BundleArtifact(
             pkg,
-            Array.from(formats).map((format) =>
+            config.formats.map((format) =>
               BundleArtifact.generateBuild(
                 format,
                 config.support,
                 config.platforms,
-                outputFormats.includes('lib'),
+                // Down-level lib to the lowest target
+                libFormatCount > 1,
               ),
             ),
           );
