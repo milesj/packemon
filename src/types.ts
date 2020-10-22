@@ -33,6 +33,8 @@ export type NodeFormat =
 
 export type Format = NodeFormat | BrowserFormat;
 
+// PACKAGES
+
 export interface PackemonPackageConfig {
   format?: Format | Format[];
   inputs?: Record<string, string>;
@@ -42,17 +44,7 @@ export interface PackemonPackageConfig {
 }
 
 export interface PackemonPackage extends PackageStructure {
-  packemon: PackemonPackageConfig;
-}
-
-export interface PackemonOptions {
-  addEngines: boolean;
-  addExports: boolean;
-  checkLicenses: boolean;
-  concurrency: number;
-  generateDeclaration: boolean;
-  skipPrivate: boolean;
-  timeout: number;
+  packemon: PackemonPackageConfig | PackemonPackageConfig[];
 }
 
 export interface PackageConfig {
@@ -65,22 +57,33 @@ export interface PackageConfig {
 
 // ARTIFACTS
 
-export interface ArtifactFlags {
-  requiresSharedLib?: boolean;
-}
-
 export type ArtifactState = 'pending' | 'building' | 'passed' | 'failed';
 
-export interface BuildResult<T> {
+export interface BuildOptions {
+  addEngines: boolean;
+  addExports: boolean;
+  checkLicenses: boolean;
+  concurrency: number;
+  generateDeclaration: boolean;
+  skipPrivate: boolean;
+  timeout: number;
+}
+
+export interface BuildResult {
   [key: string]: unknown;
-  stats: Record<string, T>;
   time: number;
 }
 
-export interface BuildUnit {
+export interface BundleBuild {
   format: Format;
   platform: Platform;
   support: Support;
+  stats?: { size: number };
+}
+
+export interface TypesBuild {
+  inputPath: string;
+  outputName: string;
 }
 
 // CONFIG

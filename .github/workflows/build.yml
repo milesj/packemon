@@ -21,3 +21,14 @@ jobs:
       - run: yarn run type
       - run: yarn run test
       - run: yarn run lint
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2-beta
+        with:
+          node-version: 14
+      - run: yarn install --ignore-engines --frozen-lockfile
+      - run: yarn run setup
+      - run: yarn run build

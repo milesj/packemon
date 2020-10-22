@@ -18,6 +18,33 @@ optional options. We suggest defining a platform at minimum.
 }
 ```
 
+If you would like to support granular combinations of platforms, its formats, and supported
+environments, you may pass an array of options to `packemon`. This is an advanced feature, so use
+with caution.
+
+```json title="package.json"
+{
+  "name": "package",
+  "packemon": [
+    {
+      "inputs": { "index": "src/index.ts" },
+      "platform": "node"
+    },
+    {
+      "inputs": { "web": "src/web.ts" },
+      "platform": "browser",
+      "support": "current"
+    },
+    {
+      "inputs": { "node": "src/node.mjs" },
+      "format": "mjs",
+      "platform": "node",
+      "support": "experimental"
+    }
+  ]
+}
+```
+
 ## Platforms
 
 The platform in which built code will be ran.

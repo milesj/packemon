@@ -1,12 +1,10 @@
 import fs from 'fs-extra';
 import {
   Blueprint,
-  Contract,
   json,
   optimal,
   Path,
   predicates,
-  Predicates,
   toArray,
   WorkspacePackage,
 } from '@boost/common';
@@ -18,18 +16,18 @@ import Project from './Project';
 import BundleArtifact from './BundleArtifact';
 import TypesArtifact from './TypesArtifact';
 import {
-  ArtifactFlags,
   BrowserFormat,
   Format,
   NodeFormat,
-  PackemonOptions,
+  BuildOptions,
   PackemonPackage,
   PackemonPackageConfig,
   Platform,
+  TypesBuild,
 } from './types';
 
 const debug = createDebugger('packemon:core');
-const { array, custom, object, string, union } = predicates;
+const { array, bool, custom, number, object, string, union } = predicates;
 
 const platformPredicate = string<Platform>('browser').oneOf(['node', 'browser']);
 const nodeFormatPredicate = string<NodeFormat>('lib').oneOf(['lib', 'mjs', 'cjs']);
@@ -55,7 +53,7 @@ const blueprint: Blueprint<Required<PackemonPackageConfig>> = {
   support: string('stable').oneOf(['legacy', 'stable', 'current', 'experimental']),
 };
 
-export default class Packemon extends Contract<PackemonOptions> {
+export default class Packemon {
   readonly onPackageBuilt = new Event<[Package]>('package-built');
 
   packages: Package[] = [];
@@ -64,17 +62,17 @@ export default class Packemon extends Contract<PackemonOptions> {
 
   readonly root: Path;
 
-  constructor(cwd: string, options: PackemonOptions) {
-    super(options);
-
+  constructor(cwd: string) {
     this.root = Path.resolve(cwd);
     this.project = new Project(this.root);
 
     debug('Initializing packemon in project %s', this.root);
   }
 
-  blueprint({ bool, number }: Predicates): Blueprint<PackemonOptions> {
-    return {
+  async build(baseOptions: BuildOptions) {
+    debug('Starting build process');
+
+    const options = optimal(baseOptions, {
       addEngines: bool(),
       addExports: bool(),
       checkLicenses: bool(),
@@ -82,26 +80,22 @@ export default class Packemon extends Contract<PackemonOptions> {
       generateDeclaration: bool(),
       skipPrivate: bool(),
       timeout: number().gte(0),
-    };
-  }
+    });
 
-  async build() {
-    debug('Starting build process');
-
-    await this.findPackages();
-    await this.generateArtifacts();
+    await this.findPackages(options.skipPrivate);
+    await this.generateArtifacts(options.generateDeclaration);
 
     // Build packages in parallel using a pool
     const pipeline = new PooledPipeline(new Context());
 
     pipeline.configure({
-      concurrency: this.options.concurrency,
-      timeout: this.options.timeout,
+      concurrency: options.concurrency,
+      timeout: options.timeout,
     });
 
     this.packages.forEach((pkg) => {
       pipeline.add(pkg.getName(), async () => {
-        await pkg.build(this.options);
+        await pkg.build(options);
 
         this.onPackageBuilt.emit([pkg]);
       });
@@ -122,7 +116,7 @@ export default class Packemon extends Contract<PackemonOptions> {
     }
   }
 
-  protected async findPackages() {
+  protected async findPackages(skipPrivate: boolean) {
     debug('Finding packages in project');
 
     const pkgPaths: Path[] = [];
@@ -170,7 +164,7 @@ export default class Packemon extends Contract<PackemonOptions> {
     );
 
     // Skip `private` packages
-    if (this.options.skipPrivate) {
+    if (skipPrivate) {
       packages = packages.filter((pkg) => !pkg.package.private);
 
       debug('Filtering private packages: %s', privatePackageNames.join(', '));
@@ -179,45 +173,41 @@ export default class Packemon extends Contract<PackemonOptions> {
     this.packages = this.validateAndPreparePackages(packages);
   }
 
-  protected generateArtifacts() {
+  protected generateArtifacts(declarations: boolean) {
     debug('Generating build artifacts for packages');
 
     this.packages.forEach((pkg) => {
-      const { config } = pkg;
-      const flags: ArtifactFlags = {};
-      const formats = new Set<Format>(config.formats);
+      const typesBuilds: TypesBuild[] = [];
+      const libFormatCount = pkg.configs.reduce(
+        (sum, config) => (config.formats.includes('lib') ? sum + 1 : sum),
+        0,
+      );
 
-      if (formats.size === 0) {
-        config.platforms.sort().forEach((platform) => {
-          if (formats.has('lib')) {
-            flags.requiresSharedLib = true;
-          }
+      pkg.configs.forEach((config) => {
+        Object.entries(config.inputs).forEach(([outputName, inputPath]) => {
+          const artifact = new BundleArtifact(
+            pkg,
+            config.formats.map((format) =>
+              BundleArtifact.generateBuild(
+                format,
+                config.support,
+                config.platforms,
+                // Down-level lib to the lowest target
+                libFormatCount > 1,
+              ),
+            ),
+          );
+          artifact.inputPath = inputPath;
+          artifact.namespace = config.namespace;
+          artifact.outputName = outputName;
 
-          if (platform === 'node') {
-            formats.add('lib');
-          } else if (platform === 'browser') {
-            formats.add('lib');
-            formats.add('esm');
-
-            if (config.namespace) {
-              formats.add('umd');
-            }
-          }
+          pkg.addArtifact(artifact);
+          typesBuilds.push({ inputPath, outputName });
         });
-      }
-
-      Object.entries(config.inputs).forEach(([outputName, inputPath]) => {
-        const artifact = new BundleArtifact(pkg, flags);
-        artifact.formats = Array.from(formats);
-        artifact.inputPath = inputPath;
-        artifact.namespace = config.namespace;
-        artifact.outputName = outputName;
-
-        pkg.addArtifact(artifact);
       });
 
-      if (this.options.generateDeclaration) {
-        pkg.addArtifact(new TypesArtifact(pkg));
+      if (declarations) {
+        pkg.addArtifact(new TypesArtifact(pkg, typesBuilds));
       }
 
       debug('\t%s - %s', pkg.getName(), pkg.artifacts.join(', '));
@@ -238,10 +228,12 @@ export default class Packemon extends Contract<PackemonOptions> {
 
       const pkg = new Package(this.project, Path.create(metadata.packagePath), contents);
 
-      pkg.setConfig(
-        optimal(contents.packemon, blueprint, {
-          name: pkg.getName(),
-        }),
+      pkg.setConfigs(
+        toArray(contents.packemon).map((config) =>
+          optimal(config, blueprint, {
+            name: pkg.getName(),
+          }),
+        ),
       );
 
       nextPackages.push(pkg);

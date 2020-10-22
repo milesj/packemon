@@ -4,14 +4,12 @@ import os from 'os';
 import { Arg, Command, Config, GlobalOptions } from '@boost/cli';
 import Build from '../components/Build';
 import Packemon from '../Packemon';
-import { PackemonOptions } from '../types';
-
-export type BuildOptions = GlobalOptions & PackemonOptions;
+import { BuildOptions } from '../types';
 
 export type BuildParams = [string];
 
 @Config('build', 'Build standardized packages for distribution.')
-export class BuildCommand extends Command<BuildOptions, BuildParams> {
+export class BuildCommand extends Command<GlobalOptions & BuildOptions, BuildParams> {
   @Arg.Flag('Add `engine` versions to each `package.json`')
   addEngines: boolean = false;
 
@@ -39,16 +37,17 @@ export class BuildCommand extends Command<BuildOptions, BuildParams> {
     type: 'string',
   })
   run(cwd: string = process.cwd()) {
-    const packemon = new Packemon(cwd, {
-      addEngines: this.addEngines,
-      addExports: this.addExports,
-      checkLicenses: this.checkLicenses,
-      concurrency: this.concurrency,
-      generateDeclaration: this.generateDeclaration,
-      skipPrivate: this.skipPrivate,
-      timeout: this.timeout,
-    });
-
-    return <Build packemon={packemon} />;
+    return (
+      <Build
+        packemon={new Packemon(cwd)}
+        addEngines={this.addEngines}
+        addExports={this.addExports}
+        checkLicenses={this.checkLicenses}
+        concurrency={this.concurrency}
+        generateDeclaration={this.generateDeclaration}
+        skipPrivate={this.skipPrivate}
+        timeout={this.timeout}
+      />
+    );
   }
 }

@@ -20,14 +20,14 @@ export default function ArtifactRow({ artifact }: ArtifactRowProps) {
         <Style type="default">{artifact.getLabel()}</Style>
       </Box>
 
-      {artifact.getTargets().map((target) => {
+      {artifact.getBuildTargets().map((target, index) => {
         const props = {
           target,
           state: artifact.state,
         };
 
         if (artifact instanceof BundleArtifact) {
-          return <BundleTarget key={target} {...props} stats={artifact.result?.stats[target]} />;
+          return <BundleTarget key={target} {...props} stats={artifact.builds[index].stats} />;
         }
 
         return <Target key={target} {...props} />;
@@ -36,7 +36,7 @@ export default function ArtifactRow({ artifact }: ArtifactRowProps) {
       <Box marginLeft={1}>
         {artifact.isComplete() ? (
           <Style type="default" bold>
-            {formatMs(artifact.result?.time || 0)}
+            {formatMs(artifact.buildResult.time)}
           </Style>
         ) : (
           <Style type="muted">{STATE_LABELS[artifact.state]}</Style>

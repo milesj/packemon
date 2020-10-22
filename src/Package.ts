@@ -9,7 +9,7 @@ import Project from './Project';
 import {
   FeatureFlags,
   PackageConfig,
-  PackemonOptions,
+  BuildOptions,
   PackemonPackage,
   PackemonPackageConfig,
   TSConfigStructure,
@@ -18,7 +18,7 @@ import {
 export default class Package {
   readonly artifacts: Artifact[] = [];
 
-  config!: PackageConfig;
+  configs: PackageConfig[] = [];
 
   readonly packageJson: PackemonPackage;
 
@@ -43,7 +43,7 @@ export default class Package {
     return artifact;
   }
 
-  async build(options: PackemonOptions): Promise<void> {
+  async build(options: BuildOptions): Promise<void> {
     if (options.checkLicenses) {
       this.checkLicense();
     }
@@ -65,9 +65,9 @@ export default class Package {
           artifact.state = 'failed';
 
           throw error;
+        } finally {
+          artifact.buildResult.time = Date.now() - start;
         }
-
-        artifact.result.time = Date.now() - start;
       }),
     );
 
@@ -140,14 +140,34 @@ export default class Package {
     return this.artifacts.some((artifact) => artifact.isRunning());
   }
 
-  setConfig(config: Required<PackemonPackageConfig>) {
-    this.config = {
-      formats: toArray(config.format),
-      inputs: config.inputs,
-      namespace: config.namespace,
-      platforms: toArray(config.platform),
-      support: config.support,
-    };
+  setConfigs(configs: Required<PackemonPackageConfig>[]) {
+    configs.forEach((config) => {
+      const platforms = toArray(config.platform);
+      const formats = new Set(toArray(config.format));
+
+      if (formats.size === 0) {
+        platforms.sort().forEach((platform) => {
+          if (platform === 'node') {
+            formats.add('lib');
+          } else if (platform === 'browser') {
+            formats.add('lib');
+            formats.add('esm');
+
+            if (config.namespace) {
+              formats.add('umd');
+            }
+          }
+        });
+      }
+
+      this.configs.push({
+        formats: Array.from(formats),
+        inputs: config.inputs,
+        namespace: config.namespace,
+        platforms,
+        support: config.support,
+      });
+    });
   }
 
   @Memoize()

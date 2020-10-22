@@ -1,26 +1,23 @@
 import Package from './Package';
-import { ArtifactFlags, ArtifactState, Awaitable, BuildResult, PackemonOptions } from './types';
+import { ArtifactState, Awaitable, BuildResult, BuildOptions } from './types';
 
-export default abstract class Artifact<T = unknown> {
-  readonly flags: ArtifactFlags;
+export default abstract class Artifact<T extends object = {}> {
+  readonly builds: T[] = [];
+
+  readonly buildResult: BuildResult = { time: 0 };
 
   readonly package: Package;
 
-  readonly result: BuildResult<T> = {
-    stats: {},
-    time: 0,
-  };
-
   state: ArtifactState = 'pending';
 
-  constructor(pkg: Package, flags: ArtifactFlags = {}) {
+  constructor(pkg: Package, builds: T[]) {
     this.package = pkg;
-    this.flags = flags;
+    this.builds = builds;
   }
 
   cleanup(): Awaitable {}
 
-  build(options: PackemonOptions): Awaitable {}
+  build(options: BuildOptions): Awaitable {}
 
   isComplete(): boolean {
     return this.state === 'passed' || this.state === 'failed';
@@ -30,9 +27,9 @@ export default abstract class Artifact<T = unknown> {
     return this.state === 'building';
   }
 
-  postBuild(options: PackemonOptions): Awaitable {}
+  postBuild(options: BuildOptions): Awaitable {}
 
-  preBuild(options: PackemonOptions): Awaitable {}
+  preBuild(options: BuildOptions): Awaitable {}
 
   shouldSkip(): boolean {
     return this.state === 'failed';
@@ -40,7 +37,7 @@ export default abstract class Artifact<T = unknown> {
 
   abstract getLabel(): string;
 
-  abstract getTargets(): string[];
+  abstract getBuildTargets(): string[];
 
   abstract toString(): string;
 }

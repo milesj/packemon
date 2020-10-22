@@ -5,7 +5,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import { getBabelInputPlugin, getBabelOutputPlugin } from '@rollup/plugin-babel';
 import { getBabelInputConfig, getBabelOutputConfig } from '../babel/config';
-import { FeatureFlags, Format, BuildUnit } from '../types';
+import { FeatureFlags, Format } from '../types';
 import { EXTENSIONS, EXCLUDE } from '../constants';
 import BundleArtifact from '../BundleArtifact';
 
@@ -78,15 +78,9 @@ export function getRollupConfig(artifact: BundleArtifact, features: FeatureFlags
   };
 
   // Add an output for each format
-  config.output = artifact.formats.map((format) => {
+  config.output = artifact.builds.map((build) => {
+    const { format, platform, support } = build;
     const ext = artifact.getExtension(format);
-    const { support } = artifact.package.config;
-
-    const buildUnit: BuildUnit = {
-      format,
-      platform: artifact.getPlatform(format),
-      support,
-    };
 
     const output: OutputOptions = {
       file: artifact.getOutputPath(format).path(),
@@ -103,7 +97,7 @@ export function getRollupConfig(artifact: BundleArtifact, features: FeatureFlags
       // Output specific plugins
       plugins: [
         getBabelOutputPlugin({
-          ...getBabelOutputConfig(buildUnit, features),
+          ...getBabelOutputConfig(build, features),
           filename: artifact.package.path.path(),
           // Provide a custom name for the UMD global
           moduleId: format === 'umd' ? artifact.namespace : undefined,
@@ -112,7 +106,7 @@ export function getRollupConfig(artifact: BundleArtifact, features: FeatureFlags
         }),
       ],
       // Only enable source maps for browsers
-      sourcemap: buildUnit.platform === 'browser',
+      sourcemap: platform === 'browser',
       sourcemapExcludeSources: true,
     };
 
