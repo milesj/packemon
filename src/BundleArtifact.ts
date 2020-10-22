@@ -4,11 +4,11 @@ import { rollup, RollupCache } from 'rollup';
 import Artifact from './Artifact';
 import { NODE_SUPPORTED_VERSIONS, NPM_SUPPORTED_VERSIONS } from './constants';
 import { getRollupConfig } from './rollup/config';
-import { Format, BuildOptions } from './types';
+import { Format, BuildOptions, BundleBuild, Support, Platform } from './types';
 
 const debug = createDebugger('packemon:bundle');
 
-export default class BundleArtifact extends Artifact<{ size: number }> {
+export default class BundleArtifact extends Artifact<BundleBuild> {
   cache?: RollupCache;
 
   // Path to the input file relative to the package
@@ -19,6 +19,35 @@ export default class BundleArtifact extends Artifact<{ size: number }> {
 
   // Name of the output file without extension
   outputName: string = '';
+
+  static generateBuild(
+    format: Format,
+    support: Support,
+    platforms: Platform[],
+    requiresSharedLib: boolean,
+  ): BundleBuild {
+    let platform: Platform = 'browser';
+
+    // Platform is dependent on the format
+    if (format === 'cjs' || format === 'mjs') {
+      platform = 'node';
+    } else if (requiresSharedLib) {
+      // "lib" is a shared format across all platforms,
+      // and when a package wants to support multiple platforms,
+      // we must down-level the "lib" format to the lowest platform.
+      if (platforms.includes('browser')) {
+        platform = 'browser';
+      } else if (platforms.includes('node')) {
+        platform = 'node';
+      }
+    }
+
+    return {
+      format,
+      platform,
+      support,
+    };
+  }
 
   async build(): Promise<void> {
     debug('Building %s bundle artifact with Rollup', this.outputName);

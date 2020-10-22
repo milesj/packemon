@@ -74,11 +74,16 @@ export interface BuildResult {
   time: number;
 }
 
-export interface Build<T = unknown> {
+export interface BundleBuild {
   format: Format;
   platform: Platform;
   support: Support;
-  stats?: T;
+  stats?: { size: number };
+}
+
+export interface TypesBuild {
+  inputPath: string;
+  outputName: string;
 }
 
 // CONFIG

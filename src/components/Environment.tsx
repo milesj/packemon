@@ -19,17 +19,17 @@ function trimVersion(version: string) {
 }
 
 export default function Environment({ configs }: EnvironmentProps) {
-  const versions: string[] = [];
+  const versions = new Set<string>();
 
   configs.forEach(({ platforms, support }) => {
     platforms.forEach((platform) => {
       if (platform === 'node') {
-        versions.push(`Node v${trimVersion(NODE_SUPPORTED_VERSIONS[support])}`);
+        versions.add(`Node v${trimVersion(NODE_SUPPORTED_VERSIONS[support])}`);
       } else if (platform === 'browser') {
-        versions.push(`Browser (${toArray(BROWSER_TARGETS[support]).join(', ')})`);
+        versions.add(`Browser (${toArray(BROWSER_TARGETS[support]).join(', ')})`);
       }
     });
   });
 
-  return <Style type="muted">{versions.join(', ')}</Style>;
+  return <Style type="muted">{Array.from(versions).sort().join(', ')}</Style>;
 }

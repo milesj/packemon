@@ -5,7 +5,7 @@ import { Path } from '@boost/common';
 import { createDebugger } from '@boost/debug';
 import { Extractor, ExtractorConfig } from '@microsoft/api-extractor';
 import Artifact from './Artifact';
-import { APIExtractorStructure } from './types';
+import { APIExtractorStructure, TypesBuild } from './types';
 
 const debug = createDebugger('packemon:types');
 
@@ -18,7 +18,7 @@ const extractorConfig = require(path.join(__dirname, '../api-extractor.json')) a
   };
 };
 
-export default class TypesArtifact extends Artifact {
+export default class TypesArtifact extends Artifact<TypesBuild> {
   private apiExtractorConfigPaths: string[] = [];
 
   async cleanup(): Promise<void> {
@@ -46,15 +46,11 @@ export default class TypesArtifact extends Artifact {
     // Combine all DTS files into a single file for each input
     debug('Combining declarations into a single API declaration file');
 
-    const promises: Promise<unknown>[] = [];
-
-    this.package.configs.forEach((config) => {
-      Object.entries(config.inputs).forEach(([outputName, inputPath]) => {
-        promises.push(this.generateDeclaration(outputName, inputPath, declBuildPath));
-      });
-    });
-
-    await Promise.all(promises);
+    await Promise.all(
+      this.builds.map(({ inputPath, outputName }) =>
+        this.generateDeclaration(outputName, inputPath, declBuildPath),
+      ),
+    );
 
     // Remove the TS output directory to reduce package size.
     // We do this in the background to speed up the CLI process!
@@ -142,14 +138,7 @@ export default class TypesArtifact extends Artifact {
    * Not sure of a workaround or better solution :(
    */
   protected async removeDeclarationBuild(declBuildPath: Path) {
-    const outputs = new Set<string>();
-
-    // Generate all output combinations
-    this.package.configs.forEach((config) => {
-      Object.keys(config.inputs).forEach((outputName) => {
-        outputs.add(`${outputName}.d.ts`);
-      });
-    });
+    const outputs = new Set<string>(this.builds.map(({ outputName }) => `${outputName}.d.ts`));
 
     // Remove all build files in the root except for the output files we created
     const files = await glob(['*.js', '*.d.ts', '*.d.ts.map'], {

@@ -17,14 +17,13 @@ import BundleArtifact from './BundleArtifact';
 import TypesArtifact from './TypesArtifact';
 import {
   BrowserFormat,
-  Build,
   Format,
   NodeFormat,
   BuildOptions,
   PackemonPackage,
   PackemonPackageConfig,
   Platform,
-  Support,
+  TypesBuild,
 } from './types';
 
 const debug = createDebugger('packemon:core');
@@ -178,6 +177,8 @@ export default class Packemon {
     debug('Generating build artifacts for packages');
 
     this.packages.forEach((pkg) => {
+      const typesBuilds: TypesBuild[] = [];
+
       pkg.configs.forEach((config) => {
         let requiresSharedLib = false;
         const formats = new Set<Format>(config.formats);
@@ -205,7 +206,12 @@ export default class Packemon {
           const artifact = new BundleArtifact(
             pkg,
             Array.from(formats).map((format) =>
-              this.generateBuild(format, config.support, config.platforms, requiresSharedLib),
+              BundleArtifact.generateBuild(
+                format,
+                config.support,
+                config.platforms,
+                requiresSharedLib,
+              ),
             ),
           );
           artifact.inputPath = inputPath;
@@ -213,44 +219,16 @@ export default class Packemon {
           artifact.outputName = outputName;
 
           pkg.addArtifact(artifact);
+          typesBuilds.push({ inputPath, outputName });
         });
-
-        if (declarations) {
-          pkg.addArtifact(new TypesArtifact(pkg));
-        }
-
-        debug('\t%s - %s', pkg.getName(), pkg.artifacts.join(', '));
       });
-    });
-  }
 
-  protected generateBuild<T>(
-    format: Format,
-    support: Support,
-    platforms: Platform[],
-    requiresSharedLib: boolean,
-  ): Build<T> {
-    let platform: Platform = 'browser';
-
-    // Platform is dependent on the format
-    if (format === 'cjs' || format === 'mjs') {
-      platform = 'node';
-    } else if (requiresSharedLib) {
-      // "lib" is a shared format across all platforms,
-      // and when a package wants to support multiple platforms,
-      // we must down-level the "lib" format to the lowest platform.
-      if (platforms.includes('browser')) {
-        platform = 'browser';
-      } else if (platforms.includes('node')) {
-        platform = 'node';
+      if (declarations) {
+        pkg.addArtifact(new TypesArtifact(pkg, typesBuilds));
       }
-    }
 
-    return {
-      format,
-      platform,
-      support,
-    };
+      debug('\t%s - %s', pkg.getName(), pkg.artifacts.join(', '));
+    });
   }
 
   protected validateAndPreparePackages(packages: WorkspacePackage<PackemonPackage>[]): Package[] {

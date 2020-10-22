@@ -15,11 +15,11 @@ const platform = (process.env.PACKEMON_PLATFORM || 'node') as Platform;
 const support = (process.env.PACKEMON_SUPPORT || 'stable') as Support;
 
 const project = new Project(process.cwd());
-const artifact = new BundleArtifact(project.rootPackage);
+const artifact = new BundleArtifact(project.rootPackage, [{ format, platform, support }]);
 const featureFlags = project.rootPackage.getFeatureFlags();
 
 const inputConfig = getBabelInputConfig(artifact, featureFlags);
-const outputConfig = getBabelOutputConfig({ format, platform, support }, featureFlags);
+const outputConfig = getBabelOutputConfig(artifact.builds[0], featureFlags);
 
 export const config = {
   babelrc: false,

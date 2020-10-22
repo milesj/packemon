@@ -1,8 +1,8 @@
 import Package from './Package';
-import { ArtifactState, Awaitable, Build, BuildResult, BuildOptions } from './types';
+import { ArtifactState, Awaitable, BuildResult, BuildOptions } from './types';
 
-export default abstract class Artifact<T = unknown> {
-  readonly builds: Build<T>[] = [];
+export default abstract class Artifact<T extends object = {}> {
+  readonly builds: T[] = [];
 
   readonly buildResult: BuildResult = { time: 0 };
 
@@ -10,7 +10,7 @@ export default abstract class Artifact<T = unknown> {
 
   state: ArtifactState = 'pending';
 
-  constructor(pkg: Package, builds: Build<T>[] = []) {
+  constructor(pkg: Package, builds: T[]) {
     this.package = pkg;
     this.builds = builds;
   }
