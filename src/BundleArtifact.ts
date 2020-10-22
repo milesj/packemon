@@ -61,7 +61,7 @@ export default class BundleArtifact extends Artifact<{ size: number }> {
     return this.outputName;
   }
 
-  getTargets(): string[] {
+  getBuildTargets(): string[] {
     return this.builds.map((build) => build.format);
   }
 
@@ -92,7 +92,7 @@ export default class BundleArtifact extends Artifact<{ size: number }> {
   }
 
   toString() {
-    return `bundle:${this.getLabel()} (${this.getTargets().join(', ')})`;
+    return `bundle:${this.getLabel()} (${this.getBuildTargets().join(', ')})`;
   }
 
   protected addEnginesToPackageJson() {

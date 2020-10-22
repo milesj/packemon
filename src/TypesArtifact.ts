@@ -73,7 +73,7 @@ export default class TypesArtifact extends Artifact {
     return 'types';
   }
 
-  getTargets(): string[] {
+  getBuildTargets(): string[] {
     return ['dts'];
   }
 

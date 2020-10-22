@@ -37,7 +37,7 @@ export default abstract class Artifact<T = unknown> {
 
   abstract getLabel(): string;
 
-  abstract getTargets(): string[];
+  abstract getBuildTargets(): string[];
 
   abstract toString(): string;
 }
