@@ -133,20 +133,26 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
       pkg.engines = {};
     }
 
-    this.builds.forEach(({ platform, support }) => {
-      if (platform !== 'node') {
-        return;
-      }
+    // Update with the lowest supported node version
+    const supportRanks: Record<Support, number> = {
+      legacy: 1,
+      stable: 2,
+      current: 3,
+      experimental: 4,
+    };
 
-      const npmVersion = NPM_SUPPORTED_VERSIONS[support];
+    const nodeBuild = [...this.builds]
+      .sort((a, b) => supportRanks[a.support] - supportRanks[b.support])
+      .find((build) => build.platform === 'node');
 
+    if (nodeBuild) {
       Object.assign(pkg.engines, {
-        node: `>=${NODE_SUPPORTED_VERSIONS[support]}`,
-        npm: toArray(npmVersion)
+        node: `>=${NODE_SUPPORTED_VERSIONS[nodeBuild.support]}`,
+        npm: toArray(NPM_SUPPORTED_VERSIONS[nodeBuild.support])
           .map((v) => `>=${v}`)
           .join(' || '),
       });
-    });
+    }
   }
 
   protected addEntryPointsToPackageJson() {
@@ -156,10 +162,8 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
 
     this.builds.forEach(({ format }) => {
       if (this.outputName === 'index') {
-        if (format === 'lib') {
-          pkg.main = './lib/index.js';
-        } else if (format === 'cjs') {
-          pkg.main = './cjs/index.js';
+        if (format === 'lib' || format === 'cjs') {
+          pkg.main = `./${format}/index.js`;
         } else if (format === 'esm') {
           pkg.module = './esm/index.js';
         } else if (format === 'umd') {
@@ -169,10 +173,8 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
 
       // Bin field may be an object
       if (this.outputName === 'bin' && !isObject(pkg.bin)) {
-        if (format === 'lib') {
-          pkg.bin = './lib/bin.js';
-        } else if (format === 'cjs') {
-          pkg.bin = './cjs/bin.js';
+        if (format === 'lib' || format === 'cjs') {
+          pkg.bin = `./${format}/bin.js`;
         }
       }
     });

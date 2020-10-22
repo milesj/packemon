@@ -178,17 +178,13 @@ export default class Packemon {
 
     this.packages.forEach((pkg) => {
       const typesBuilds: TypesBuild[] = [];
+      const outputFormats: Format[] = [];
 
       pkg.configs.forEach((config) => {
-        let requiresSharedLib = false;
         const formats = new Set<Format>(config.formats);
 
         if (formats.size === 0) {
           config.platforms.sort().forEach((platform) => {
-            if (formats.has('lib')) {
-              requiresSharedLib = true;
-            }
-
             if (platform === 'node') {
               formats.add('lib');
             } else if (platform === 'browser') {
@@ -202,6 +198,10 @@ export default class Packemon {
           });
         }
 
+        // We need to detect if `lib` is used multiple times
+        // within the same package config, or across all configs.
+        outputFormats.push(...Array.from(formats));
+
         Object.entries(config.inputs).forEach(([outputName, inputPath]) => {
           const artifact = new BundleArtifact(
             pkg,
@@ -210,7 +210,7 @@ export default class Packemon {
                 format,
                 config.support,
                 config.platforms,
-                requiresSharedLib,
+                outputFormats.includes('lib'),
               ),
             ),
           );
