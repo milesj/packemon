@@ -53,7 +53,18 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
     debug('Building %s bundle artifact with Rollup', this.outputName);
 
     const { output = [], ...input } = getRollupConfig(this, this.package.getFeatureFlags());
-    const bundle = await rollup(input);
+    const bundle = await rollup({
+      ...input,
+      onwarn: ({ id, loc = {}, message }) => {
+        this.logWithSource(message, 'warn', {
+          id,
+          output: this.outputName,
+          sourceColumn: loc.column,
+          sourceFile: loc.file,
+          sourceLine: loc.line,
+        });
+      },
+    });
 
     if (bundle.cache) {
       this.cache = bundle.cache;

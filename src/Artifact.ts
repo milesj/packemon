@@ -1,3 +1,4 @@
+import { applyStyle } from '@boost/cli';
 import Package from './Package';
 import { ArtifactState, Awaitable, BuildResult, BuildOptions } from './types';
 
@@ -33,6 +34,46 @@ export default abstract class Artifact<T extends object = {}> {
 
   shouldSkip(): boolean {
     return this.state === 'failed';
+  }
+
+  protected logWithSource(
+    message: string,
+    level: 'info' | 'warn' | 'error',
+    {
+      id,
+      output,
+      sourceColumn,
+      sourceFile,
+      sourceLine,
+    }: {
+      id?: string;
+      output?: string;
+      sourceColumn?: number;
+      sourceFile?: string;
+      sourceLine?: number;
+    } = {},
+  ) {
+    let msg = `[${this.package.getName()}${output ? `/${output}` : ''}] ${message}`;
+
+    const meta: string[] = [];
+
+    if (id) {
+      meta.push(`id=${id}`);
+    }
+
+    if (sourceFile) {
+      meta.push(`file=${sourceFile}`);
+    }
+
+    if (sourceFile || sourceColumn) {
+      meta.push(`line=${sourceLine ?? '?'}:${sourceColumn ?? '?'}`);
+    }
+
+    if (meta.length > 0) {
+      msg += applyStyle(` (${meta.join(' ')})`, 'muted');
+    }
+
+    console[level](msg);
   }
 
   abstract getLabel(): string;

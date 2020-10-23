@@ -110,7 +110,30 @@ export default class TypesArtifact extends Artifact<TypesBuild> {
     // Extract all DTS into a single file
     const result = Extractor.invoke(ExtractorConfig.loadFileAndPrepare(configPath), {
       localBuild: process.env.NODE_ENV !== 'production',
-      showVerboseMessages: false,
+      messageCallback: (warn) => {
+        if (warn.messageId === 'ae-missing-release-tag' || warn.logLevel === 'verbose') {
+          return;
+        }
+
+        let level = 'info';
+
+        if (warn.logLevel === 'error') {
+          level = 'error';
+        } else if (warn.logLevel === 'warning') {
+          level = 'warn';
+        }
+
+        this.logWithSource(warn.text, level as 'info', {
+          id: warn.messageId,
+          output: outputName,
+          sourceColumn: warn.sourceFileColumn,
+          sourceFile: warn.sourceFilePath,
+          sourceLine: warn.sourceFileLine,
+        });
+
+        // eslint-disable-next-line no-param-reassign
+        warn.handled = true;
+      },
     });
 
     if (!result.succeeded) {
