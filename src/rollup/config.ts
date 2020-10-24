@@ -7,7 +7,7 @@ import { getBabelInputPlugin, getBabelOutputPlugin } from '@rollup/plugin-babel'
 import { getBabelInputConfig, getBabelOutputConfig } from '../babel/config';
 import { FeatureFlags, Format } from '../types';
 import { EXTENSIONS, EXCLUDE } from '../constants';
-import BundleArtifact from '../BundleArtifact';
+import type BundleArtifact from '../BundleArtifact';
 
 const sharedPlugins = [resolve({ extensions: EXTENSIONS, preferBuiltins: true }), commonjs()];
 
@@ -31,9 +31,11 @@ function getRollupExternalPaths(artifact: BundleArtifact, ext?: string): Record<
   artifact.package.artifacts.forEach((art) => {
     const bundle = art as BundleArtifact;
 
-    // Dont include non-bundle artifacts
+    // Don't include non-bundle artifacts. We can't use `instanceof`
+    // because of circular dependencies, boo!
     if ('outputName' in bundle) {
-      paths[`./${bundle.outputName}`] = `./${bundle.outputName}${ext ? `.${ext}` : ''}`;
+      // All output files are in the same directory, so we can hard-code a relative path
+      paths[bundle.getInputPath().path()] = `./${bundle.outputName}${ext ? `.${ext}` : ''}`;
     }
   });
 
