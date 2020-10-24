@@ -57,7 +57,7 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
       ...input,
       onwarn: ({ id, loc = {}, message }) => {
         this.logWithSource(message, 'warn', {
-          id,
+          id: id && id !== loc.file ? id : undefined,
           output: this.outputName,
           sourceColumn: loc.column,
           sourceFile: loc.file,

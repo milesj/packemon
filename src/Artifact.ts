@@ -1,4 +1,5 @@
 import { applyStyle } from '@boost/cli';
+import { Path } from '@boost/common';
 import Package from './Package';
 import { ArtifactState, Awaitable, BuildResult, BuildOptions } from './types';
 
@@ -62,7 +63,12 @@ export default abstract class Artifact<T extends object = {}> {
     }
 
     if (sourceFile) {
-      meta.push(`file=${sourceFile}`);
+      meta.push(
+        `file=${new Path(sourceFile)
+          .path()
+          .replace(this.package.project.root.path(), '')
+          .slice(1)}`,
+      );
     }
 
     if (sourceFile || sourceColumn) {
