@@ -127,8 +127,8 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
     return `./${format}/${this.outputName}.${this.getExtension(format)}`;
   }
 
-  getOutputPath(format: Format): Path {
-    return this.package.path.append(this.getOutputFile(format));
+  getOutputDir(format: Format): Path {
+    return this.package.path.append(format);
   }
 
   toString() {

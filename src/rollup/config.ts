@@ -83,7 +83,7 @@ export function getRollupConfig(artifact: BundleArtifact, features: FeatureFlags
     const ext = artifact.getExtension(format);
 
     const output: OutputOptions = {
-      file: artifact.getOutputPath(format).path(),
+      dir: artifact.getOutputDir(format).path(),
       format: getRollupModuleFormat(format),
       originalFormat: format,
       // Map our externals to local paths with trailing extension
