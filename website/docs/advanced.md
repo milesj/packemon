@@ -33,3 +33,18 @@ module scope will be executed immediately when the file is executed by Node.js.
 ## Referencing sibling inputs
 
 Coming soon...
+
+## Version constraints
+
+If you're using packemon as a global dependency and want to ensure all contributors of your project
+are using the correct packemon version, you can provide an `engines` constraint to your root
+`package.json`.
+
+```json title="package.json"
+{
+  "name": "package",
+  "engines": {
+    "packemon": "^1.0.0"
+  }
+}
+```

@@ -1,4 +1,5 @@
 import execa from 'execa';
+import semver from 'semver';
 import { Memoize, Project as BaseProject } from '@boost/common';
 import Package from './Package';
 
@@ -6,6 +7,18 @@ export default class Project extends BaseProject {
   workspaces: string[] = [];
 
   private buildPromise?: Promise<unknown>;
+
+  checkEngineVersionConstraint() {
+    // eslint-disable-next-line
+    const { version } = require('../package.json');
+    const versionConstraint = this.rootPackage.packageJson.engines?.packemon;
+
+    if (version && versionConstraint && !semver.satisfies(version, versionConstraint)) {
+      throw new Error(
+        `Project requires a packemon version compatible with ${versionConstraint}, found ${version}.`,
+      );
+    }
+  }
 
   isWorkspacesEnabled(): boolean {
     return this.workspaces.length > 0;

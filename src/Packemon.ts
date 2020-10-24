@@ -67,6 +67,8 @@ export default class Packemon {
     this.project = new Project(this.root);
 
     debug('Initializing packemon in project %s', this.root);
+
+    this.project.checkEngineVersionConstraint();
   }
 
   async build(baseOptions: BuildOptions) {
