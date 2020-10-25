@@ -11,7 +11,7 @@ With that being said, the `packemon build` command can be used to build all pack
 according to their configured build targets (platform, formats, etc).
 
 ```
-packemon build --checkLicenses --generateDeclaration
+NODE_ENV=production packemon build --checkLicenses --generateDeclaration
 ```
 
 ## Options

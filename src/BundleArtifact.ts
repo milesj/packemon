@@ -26,11 +26,12 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
     platforms: Platform[],
     requiresSharedLib: boolean,
   ): BundleBuild {
-    let platform: Platform = 'browser';
+    let platform: Platform | undefined;
 
-    // Platform is dependent on the format
     if (format === 'cjs' || format === 'mjs') {
       platform = 'node';
+    } else if (format === 'esm' || format === 'umd') {
+      platform = 'browser';
     } else if (requiresSharedLib) {
       // "lib" is a shared format across all platforms,
       // and when a package wants to support multiple platforms,
@@ -40,6 +41,10 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
       } else if (platforms.includes('node')) {
         platform = 'node';
       }
+    }
+
+    if (!platform) {
+      [platform] = platforms;
     }
 
     return {

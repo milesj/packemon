@@ -180,22 +180,19 @@ export default class Packemon {
 
     this.packages.forEach((pkg) => {
       const typesBuilds: TypesBuild[] = [];
-      const libFormatCount = pkg.configs.reduce(
-        (sum, config) => (config.formats.includes('lib') ? sum + 1 : sum),
-        0,
-      );
+      const requiresSharedLib = this.requiresSharedLib(pkg);
 
       pkg.configs.forEach((config) => {
         Object.entries(config.inputs).forEach(([outputName, inputPath]) => {
           const artifact = new BundleArtifact(
             pkg,
+            // Must be unique per input to avoid references
             config.formats.map((format) =>
               BundleArtifact.generateBuild(
                 format,
                 config.support,
                 config.platforms,
-                // Down-level lib to the lowest target
-                libFormatCount > 1,
+                requiresSharedLib,
               ),
             ),
           );
@@ -213,6 +210,25 @@ export default class Packemon {
       }
 
       debug('\t%s - %s', pkg.getName(), pkg.artifacts.join(', '));
+    });
+  }
+
+  protected requiresSharedLib(pkg: Package): boolean {
+    const platformsToBuild = new Set<Platform>();
+    let libFormatCount = 0;
+
+    return pkg.configs.some((config) => {
+      config.platforms.forEach((platform) => {
+        platformsToBuild.add(platform);
+      });
+
+      config.formats.forEach((format) => {
+        if (format === 'lib') {
+          libFormatCount += 1;
+        }
+      });
+
+      return platformsToBuild.has('node') && platformsToBuild.has('browser') && libFormatCount > 1;
     });
   }
 
