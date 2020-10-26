@@ -54,10 +54,13 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
     };
   }
 
-  async build(): Promise<void> {
+  async build(options: BuildOptions): Promise<void> {
     debug('Building %s bundle artifact with Rollup', this.outputName);
 
-    const { output = [], ...input } = getRollupConfig(this, this.package.getFeatureFlags());
+    const features = this.package.getFeatureFlags();
+    features.analyze = options.analyzeBundle;
+
+    const { output = [], ...input } = getRollupConfig(this, features);
     const bundle = await rollup({
       ...input,
       onwarn: ({ id, loc = {}, message }) => {

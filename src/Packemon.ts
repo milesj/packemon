@@ -25,6 +25,7 @@ import {
   PackemonPackageConfig,
   Platform,
   TypesBuild,
+  AnalyzeType,
 } from './types';
 
 const debug = createDebugger('packemon:core');
@@ -78,6 +79,7 @@ export default class Packemon {
     const options = optimal(baseOptions, {
       addEngines: bool(),
       addExports: bool(),
+      analyzeBundle: string('treemap').oneOf<AnalyzeType>(['sunburst', 'treemap', 'network']),
       checkLicenses: bool(),
       concurrency: number(1).gte(1),
       generateDeclaration: bool(),

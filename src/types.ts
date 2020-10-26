@@ -33,6 +33,8 @@ export type NodeFormat =
 
 export type Format = NodeFormat | BrowserFormat;
 
+export type AnalyzeType = 'sunburst' | 'treemap' | 'network';
+
 // PACKAGES
 
 export interface PackemonPackageConfig {
@@ -62,6 +64,7 @@ export type ArtifactState = 'pending' | 'building' | 'passed' | 'failed';
 export interface BuildOptions {
   addEngines: boolean;
   addExports: boolean;
+  analyzeBundle: AnalyzeType;
   checkLicenses: boolean;
   concurrency: number;
   generateDeclaration: boolean;
@@ -89,6 +92,7 @@ export interface TypesBuild {
 // CONFIG
 
 export interface FeatureFlags {
+  analyze?: AnalyzeType;
   decorators?: boolean;
   flow?: boolean;
   react?: boolean;

@@ -4,7 +4,7 @@ import os from 'os';
 import { Arg, Command, Config, GlobalOptions } from '@boost/cli';
 import Build from '../components/Build';
 import Packemon from '../Packemon';
-import { BuildOptions } from '../types';
+import { AnalyzeType, BuildOptions } from '../types';
 
 export type BuildParams = [string];
 
@@ -15,6 +15,11 @@ export class BuildCommand extends Command<GlobalOptions & BuildOptions, BuildPar
 
   @Arg.Flag('Add `exports` fields to each `package.json`')
   addExports: boolean = false;
+
+  @Arg.String('Visualize and analyze your generated builds', {
+    choices: ['sunburst', 'treemap', 'network'],
+  })
+  analyze: AnalyzeType = 'treemap';
 
   @Arg.Flag('Check that packages have a valid `license` field')
   checkLicenses: boolean = false;
@@ -42,6 +47,7 @@ export class BuildCommand extends Command<GlobalOptions & BuildOptions, BuildPar
         packemon={new Packemon(cwd)}
         addEngines={this.addEngines}
         addExports={this.addExports}
+        analyzeBundle={this.analyze}
         checkLicenses={this.checkLicenses}
         concurrency={this.concurrency}
         generateDeclaration={this.generateDeclaration}

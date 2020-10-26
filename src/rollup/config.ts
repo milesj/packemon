@@ -1,6 +1,8 @@
 import path from 'path';
+import hash from 'string-hash';
 import { RollupOptions, OutputOptions, ModuleFormat } from 'rollup';
 import externals from 'rollup-plugin-node-externals';
+import visualizer from 'rollup-plugin-visualizer';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import { getBabelInputPlugin, getBabelOutputPlugin } from '@rollup/plugin-babel';
@@ -79,6 +81,25 @@ export function getRollupConfig(artifact: BundleArtifact, features: FeatureFlags
     treeshake: true,
   };
 
+  // Analyze the bundle for debugging purposes
+  if (features.analyze) {
+    const title = `${artifact.package.getName()} / ${artifact.getLabel()}`;
+    const filename = `stats-${hash(title)}.html`;
+
+    artifact.filesToCleanup.push(artifact.package.project.root.append(filename).path());
+
+    config.plugins!.push(
+      visualizer({
+        filename,
+        gzipSize: true,
+        open: true,
+        sourcemap: true,
+        template: features.analyze,
+        title,
+      }),
+    );
+  }
+
   // Add an output for each format
   config.output = artifact.builds.map((build) => {
     const { format, platform, support } = build;
@@ -108,7 +129,7 @@ export function getRollupConfig(artifact: BundleArtifact, features: FeatureFlags
         }),
       ],
       // Only enable source maps for browsers
-      sourcemap: platform === 'browser',
+      sourcemap: Boolean(features.analyze) || platform === 'browser',
       sourcemapExcludeSources: true,
     };
 

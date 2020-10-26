@@ -19,15 +19,6 @@ const extractorConfig = require(path.join(__dirname, '../api-extractor.json')) a
 };
 
 export default class TypesArtifact extends Artifact<TypesBuild> {
-  private apiExtractorConfigPaths: string[] = [];
-
-  async cleanup(): Promise<void> {
-    debug('Cleaning up temporary API extractor config files');
-
-    // Absolute paths to each temporary config file
-    await Promise.all(this.apiExtractorConfigPaths.map((cfgPath) => fs.remove(cfgPath)));
-  }
-
   async build(): Promise<void> {
     debug('Building types artifact with TypeScript');
 
@@ -143,7 +134,7 @@ export default class TypesArtifact extends Artifact<TypesBuild> {
     }
 
     // Enqueue to remove the config file
-    this.apiExtractorConfigPaths.push(configPath);
+    this.filesToCleanup.push(configPath);
 
     return result;
   }

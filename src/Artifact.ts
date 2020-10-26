@@ -1,3 +1,4 @@
+import fs from 'fs-extra';
 import { applyStyle } from '@boost/cli';
 import { Path } from '@boost/common';
 import Package from './Package';
@@ -8,6 +9,8 @@ export default abstract class Artifact<T extends object = {}> {
 
   readonly buildResult: BuildResult = { time: 0 };
 
+  readonly filesToCleanup: string[] = [];
+
   readonly package: Package;
 
   state: ArtifactState = 'pending';
@@ -17,7 +20,9 @@ export default abstract class Artifact<T extends object = {}> {
     this.builds = builds;
   }
 
-  cleanup(): Awaitable {}
+  async cleanup(): Promise<void> {
+    await Promise.all(this.filesToCleanup.map((file) => fs.remove(file)));
+  }
 
   build(options: BuildOptions): Awaitable {}
 
