@@ -149,7 +149,7 @@ export function getBabelOutputConfig(
 
   const envOptions: PresetEnvOptions = {
     // Prefer spec compliance over speed
-    spec: true,
+    spec: process.env.NODE_ENV === 'development',
     loose: false,
     // Consumers must polyfill accordingly
     useBuiltIns: false,
