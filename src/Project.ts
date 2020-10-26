@@ -32,7 +32,7 @@ export default class Project extends BaseProject {
     const args: string[] = [];
 
     if (this.isWorkspacesEnabled()) {
-      args.push('--build', '--incremental');
+      args.push('--build');
     } else {
       args.push('--declaration', '--declarationMap', '--emitDeclarationOnly');
     }
