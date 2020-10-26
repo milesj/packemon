@@ -32,7 +32,13 @@ export default class Project extends BaseProject {
     const args: string[] = [];
 
     if (this.isWorkspacesEnabled()) {
-      args.push('--build');
+      args.push(
+        '--build',
+        // Since we collapse all DTS into a single file,
+        // we need to force build to overwrite the types,
+        // since they're not what the TS build expects.
+        '--force',
+      );
     } else {
       args.push('--declaration', '--declarationMap', '--emitDeclarationOnly');
     }
