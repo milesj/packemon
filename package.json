@@ -11,7 +11,7 @@
   "scripts": {
     "prepare": "beemo create-config --silent",
     "setup": "beemo typescript",
-    "build": "NODE_ENV=production yarn run packemon build --addEngines --checkLicenses --generateDeclaration",
+    "build": "yarn run packemon build --addEngines --checkLicenses --generateDeclaration",
     "ci": "yarn run type && yarn run test && yarn run lint",
     "clean": "rm -rf {build,dts,lib}",
     "coverage": "yarn run test --coverage",
