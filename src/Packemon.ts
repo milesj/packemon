@@ -1,4 +1,5 @@
 import fs from 'fs-extra';
+import rimraf from 'rimraf';
 import {
   Blueprint,
   json,
@@ -108,9 +109,7 @@ export default class Packemon {
     const { errors } = await pipeline.run();
 
     // Always cleanup whether a successful or failed build
-    debug('Cleaning build artifacts');
-
-    await Promise.all(this.packages.map((pkg) => pkg.cleanup()));
+    await this.cleanTemporaryFiles();
 
     // Throw to trigger an error screen in the terminal
     if (errors.length > 0) {
@@ -118,7 +117,58 @@ export default class Packemon {
     }
   }
 
-  protected async findPackages(skipPrivate: boolean) {
+  async clean() {
+    debug('Starting clean process');
+
+    await this.findPackages();
+    await this.cleanTemporaryFiles();
+
+    const formatFolders = '{cjs,dts,esm,lib,mjs,umd}';
+    const pathsToRemove: string[] = [];
+
+    if (this.project.isWorkspacesEnabled()) {
+      this.project.workspaces.forEach((ws) => {
+        let path = ws;
+
+        if (path.endsWith('*')) {
+          path += `/${formatFolders}`;
+        } else if (path.endsWith('/')) {
+          path += formatFolders;
+        }
+
+        pathsToRemove.push(path);
+      });
+    } else {
+      pathsToRemove.push(`./${formatFolders}`);
+    }
+
+    debug('Cleaning build artifacts');
+
+    await Promise.all(
+      pathsToRemove.map(
+        (path) =>
+          new Promise((resolve, reject) => {
+            debug('\t%s', path);
+
+            rimraf(path, (error) => {
+              if (error) {
+                reject(error);
+              } else {
+                resolve();
+              }
+            });
+          }),
+      ),
+    );
+  }
+
+  protected async cleanTemporaryFiles() {
+    debug('Cleaning temporary build files');
+
+    await Promise.all(this.packages.map((pkg) => pkg.cleanup()));
+  }
+
+  protected async findPackages(skipPrivate: boolean = false) {
     debug('Finding packages in project');
 
     const pkgPaths: Path[] = [];

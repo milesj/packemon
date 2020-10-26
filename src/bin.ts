@@ -1,6 +1,6 @@
 import { Program, checkPackageOutdated } from '@boost/cli';
 // eslint-disable-next-line unicorn/import-index
-import { BuildCommand } from './index';
+import { BuildCommand, CleanCommand } from './index';
 
 const version = String(require('../package.json').version);
 
@@ -14,7 +14,10 @@ async function run() {
     version,
   });
 
-  program.middleware(checkPackageOutdated('packemon', version)).register(new BuildCommand());
+  program
+    .middleware(checkPackageOutdated('packemon', version))
+    .register(new BuildCommand())
+    .register(new CleanCommand());
 
   await program.runAndExit(process.argv);
 }
