@@ -1,10 +1,11 @@
 import { isObject, Path, SettingMap, toArray } from '@boost/common';
 import { createDebugger } from '@boost/debug';
+import hash from 'string-hash';
 import { rollup, RollupCache } from 'rollup';
 import Artifact from './Artifact';
 import { NODE_SUPPORTED_VERSIONS, NPM_SUPPORTED_VERSIONS } from './constants';
 import { getRollupConfig } from './rollup/config';
-import { Format, BuildOptions, BundleBuild, Support, Platform } from './types';
+import { Format, BuildOptions, BundleBuild, Support, Platform, AnalyzeType } from './types';
 
 const debug = createDebugger('packemon:bundle');
 
@@ -54,11 +55,19 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
     };
   }
 
+  async cleanup(): Promise<void> {
+    // Visualizer stats
+    await this.removeFiles([this.package.project.root.append(this.getStatsFileName())]);
+  }
+
   async build(options: BuildOptions): Promise<void> {
     debug('Building %s bundle artifact with Rollup', this.outputName);
 
     const features = this.package.getFeatureFlags();
-    features.analyze = options.analyzeBundle;
+
+    if (options.analyzeBundle) {
+      features.analyze = options.analyzeBundle as AnalyzeType;
+    }
 
     const { output = [], ...input } = getRollupConfig(this, features);
     const bundle = await rollup({
@@ -137,6 +146,14 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
 
   getOutputDir(format: Format): Path {
     return this.package.path.append(format);
+  }
+
+  getStatsFileName(): string {
+    return `stats-${hash(this.getStatsTitle()).toString(16)}.html`;
+  }
+
+  getStatsTitle(): string {
+    return `${this.package.getName()}/${this.outputName}`;
   }
 
   toString() {

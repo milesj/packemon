@@ -1,5 +1,4 @@
 import path from 'path';
-import hash from 'string-hash';
 import { RollupOptions, OutputOptions, ModuleFormat } from 'rollup';
 import externals from 'rollup-plugin-node-externals';
 import visualizer from 'rollup-plugin-visualizer';
@@ -83,19 +82,14 @@ export function getRollupConfig(artifact: BundleArtifact, features: FeatureFlags
 
   // Analyze the bundle for debugging purposes
   if (features.analyze) {
-    const title = `${artifact.package.getName()} / ${artifact.getLabel()}`;
-    const filename = `stats-${hash(title)}.html`;
-
-    artifact.filesToCleanup.push(artifact.package.project.root.append(filename).path());
-
     config.plugins!.push(
       visualizer({
-        filename,
+        filename: artifact.getStatsFileName(),
         gzipSize: true,
         open: true,
         sourcemap: true,
         template: features.analyze,
-        title,
+        title: artifact.getStatsTitle(),
       }),
     );
   }

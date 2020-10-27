@@ -23,6 +23,8 @@ Build supports the following command line options.
 - `--addExports` - Add `exports` fields to each `package.json` according to the respective `inputs`
   setting. This is an experimental Node.js feature and may not work correctly
   ([more information](https://nodejs.org/api/packages.html#packages_package_entry_points)).
+- `--analyze` - Analyze and visualize all generated builds. Will open a browser visualization for
+  each bundle in one of the following formats: `sunburst`, `treemap`, `network`.
 - `--checkLicenses` - Check that packages have a valid `license` field. Will log a warning if
   invalid.
 - `--concurrency` - Number of builds to run in parallel. Defaults to operating system CPU count.

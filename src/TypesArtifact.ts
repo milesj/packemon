@@ -19,6 +19,13 @@ const extractorConfig = require(path.join(__dirname, '../api-extractor.json')) a
 };
 
 export default class TypesArtifact extends Artifact<TypesBuild> {
+  async cleanup(): Promise<void> {
+    // API extractor config files
+    await this.removeFiles(
+      this.builds.map(({ outputName }) => this.getApiExtractorConfigPath(outputName)),
+    );
+  }
+
   async build(): Promise<void> {
     debug('Building types artifact with TypeScript');
 
@@ -84,7 +91,7 @@ export default class TypesArtifact extends Artifact<TypesBuild> {
     }
 
     // Create a fake config file
-    const configPath = this.package.path.append(`api-extractor-${outputName}.json`).path();
+    const configPath = this.getApiExtractorConfigPath(outputName).path();
     const config: APIExtractorStructure = {
       ...extractorConfig,
       projectFolder: this.package.path.path(),
@@ -133,10 +140,11 @@ export default class TypesArtifact extends Artifact<TypesBuild> {
       );
     }
 
-    // Enqueue to remove the config file
-    this.filesToCleanup.push(configPath);
-
     return result;
+  }
+
+  protected getApiExtractorConfigPath(outputName: string): Path {
+    return this.package.path.append(`api-extractor-${outputName}.json`);
   }
 
   /**

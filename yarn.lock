@@ -1106,20 +1106,20 @@
     "@boost/event" "^1.3.1"
     rimraf "^3.0.2"
 
-"@boost/args@^2.2.1":
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/@boost/args/-/args-2.2.1.tgz#a60589686a593e729c986159d97f643949820d37"
-  integrity sha512-YKm8LgtUVK0+moPQPyBC0bwk/lVqfBxPcwY7taoQkjM6Gng3FJou/T7DMjdxGnU5JAk78fWxUvvQxd1yUG2PJw==
+"@boost/args@^2.2.2":
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/@boost/args/-/args-2.2.2.tgz#632d0fc6200b65ff4ad773bf452217e7dac643e9"
+  integrity sha512-GUHxdsk/d5OCEGbQLtIIFsXlN7RjwitQ4qcg34YX2KnKspJJqKEtg5Q4fLyA8+8du5rdVOqDuM53iyP+hiySBw==
   dependencies:
     "@boost/internal" "^2.1.1"
     levenary "^1.1.1"
 
-"@boost/cli@^2.4.2":
-  version "2.4.2"
-  resolved "https://registry.yarnpkg.com/@boost/cli/-/cli-2.4.2.tgz#d581ad8fd4a51091426149225f68c251282b89b1"
-  integrity sha512-TYBlalMNPBtsq/kHbCZhd9+SQQ4FcgtQ3eaHLnvw0/CoYbAgkvcIcfnUPePEqGbqC82iYpHtPZV7FsywJtJFqA==
+"@boost/cli@^2.4.3":
+  version "2.4.3"
+  resolved "https://registry.yarnpkg.com/@boost/cli/-/cli-2.4.3.tgz#d7e72bd115b0cb7a0b8880f45076d9936922bdf9"
+  integrity sha512-iqZoxGxtXZrzxGzDWSKqmTIDotYFJX2Hguf32IQzfN/2Ym/TqLvJNTS/CNQ99kwhkrpiXakdkOZ/zMNMxrcTdw==
   dependencies:
-    "@boost/args" "^2.2.1"
+    "@boost/args" "^2.2.2"
     "@boost/common" "^2.3.0"
     "@boost/event" "^2.2.0"
     "@boost/internal" "^2.1.1"
@@ -1895,10 +1895,10 @@
   resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-3.0.3.tgz#3dca0e3f33b200fc7d1139c0cd96c1268cadfd9d"
   integrity sha512-tHq6qdbT9U1IRSGf14CL0pUlULksvY9OZ+5eEgl1N7t+OA3tGvNpxJCzuKQlsNgCVwbAs670L1vcVQi8j9HjnA==
 
-"@types/node@*", "@types/node@^14.14.2":
-  version "14.14.2"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.2.tgz#d25295f9e4ca5989a2c610754dc02a9721235eeb"
-  integrity sha512-jeYJU2kl7hL9U5xuI/BhKPZ4vqGM/OmK6whiFAXVhlstzZhVamWhDSmHyGLIp+RVyuF9/d0dqr2P85aFj4BvJg==
+"@types/node@*", "@types/node@^14.14.5":
+  version "14.14.5"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.5.tgz#e92d3b8f76583efa26c1a63a21c9d3c1143daa29"
+  integrity sha512-H5Wn24s/ZOukBmDn03nnGTp18A60ny9AmCwnEcgJiTgSGsCO7k+NWP7zjCCbhlcnVCoI+co52dUAt9GMhOSULw==
 
 "@types/node@10.17.13":
   version "10.17.13"
@@ -7292,10 +7292,10 @@ typedarray-to-buffer@^3.1.5:
   dependencies:
     is-typedarray "^1.0.0"
 
-typescript@^4.0.3:
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.0.3.tgz#153bbd468ef07725c1df9c77e8b453f8d36abba5"
-  integrity sha512-tEu6DGxGgRJPb/mVPIZ48e69xCn2yRmCgYmDugAVwmJ6o+0u1RI18eO7E7WBTLYLaEVVOhwQmcdhQHweux/WPg==
+typescript@^4.0.3, typescript@^4.0.5:
+  version "4.0.5"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.0.5.tgz#ae9dddfd1069f1cb5beb3ef3b2170dd7c1332389"
+  integrity sha512-ywmr/VrTVCmNTJ6iV2LwIrfG1P+lv6luD8sUJs+2eI9NLGigaN+nUQc13iHqisq7bra9lnmUSYqbJvegraBOPQ==
 
 typescript@~3.9.7:
   version "3.9.7"

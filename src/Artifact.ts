@@ -1,6 +1,6 @@
 import fs from 'fs-extra';
 import { applyStyle } from '@boost/cli';
-import { Path } from '@boost/common';
+import { Path, PortablePath } from '@boost/common';
 import Package from './Package';
 import { ArtifactState, Awaitable, BuildResult, BuildOptions } from './types';
 
@@ -8,8 +8,6 @@ export default abstract class Artifact<T extends object = {}> {
   readonly builds: T[] = [];
 
   readonly buildResult: BuildResult = { time: 0 };
-
-  readonly filesToCleanup: string[] = [];
 
   readonly package: Package;
 
@@ -20,9 +18,7 @@ export default abstract class Artifact<T extends object = {}> {
     this.builds = builds;
   }
 
-  async cleanup(): Promise<void> {
-    await Promise.all(this.filesToCleanup.map((file) => fs.remove(file)));
-  }
+  cleanup(): Awaitable {}
 
   build(options: BuildOptions): Awaitable {}
 
@@ -85,6 +81,10 @@ export default abstract class Artifact<T extends object = {}> {
     }
 
     console[level](msg);
+  }
+
+  protected removeFiles(files: PortablePath[]): Promise<unknown> {
+    return Promise.all(files.map((file) => fs.remove(String(file))));
   }
 
   abstract getLabel(): string;
