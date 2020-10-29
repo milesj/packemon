@@ -6,7 +6,12 @@ module.exports = {
     'install',
     'setup',
     'config',
-    'build',
+    {
+      type: 'category',
+      label: 'Commands',
+      collapsed: false,
+      items: ['build', 'clean'],
+    },
     'advanced',
     {
       type: 'link',

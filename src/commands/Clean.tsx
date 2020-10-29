@@ -3,7 +3,7 @@ import Packemon from '../Packemon';
 
 export type CleanParams = [string];
 
-@Config('clean', 'Clean build artifacts from all packages.')
+@Config('clean', 'Clean build artifacts from packages.')
 export class CleanCommand extends Command<GlobalOptions, CleanParams> {
   @Arg.Params<CleanParams>({
     description: 'Project root that contains a `package.json`',

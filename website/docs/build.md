@@ -1,5 +1,6 @@
 ---
 title: Building packages
+sidebar_label: build
 ---
 
 Packemon was primarily designed and engineered for building packages. But what is building you ask?
@@ -7,8 +8,8 @@ Building is the process of parsing, transforming, and bundling a package's sourc
 distributable and consumable files for NPM, using community favorite tools like [Babel][babel] and
 [Rollup][rollup].
 
-With that being said, the `packemon build` command can be used to build all packages in a project
-according to their configured build targets (platform, formats, etc).
+With that being said, the `build` command can be used to build all packages in a project according
+to their configured build targets (platform, formats, etc).
 
 ```
 packemon build --checkLicenses --generateDeclaration
@@ -153,7 +154,7 @@ The environment preset is always enabled and configures the following.
 - `@babel/preset-env`
   - Defines `modules` and `targets` based on the chosen [platform](./config.md#platforms) and
     [format](./config.md#formats).
-  - Enables `spec` and disables `loose` for spec compliance.
+  - Enables `spec` (in development) and disables `loose` for closer compliance.
   - Enables `bugfixes` and `shippedProposals` for smaller file sizes.
   - Disables `useBuiltIns` as consumers of the package should polyfill accordingly.
 
