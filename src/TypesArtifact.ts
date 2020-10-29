@@ -109,7 +109,14 @@ export default class TypesArtifact extends Artifact<TypesBuild> {
     const result = Extractor.invoke(ExtractorConfig.loadFileAndPrepare(configPath), {
       localBuild: process.env.NODE_ENV !== 'production',
       messageCallback: (warn) => {
-        if (warn.messageId === 'ae-missing-release-tag' || warn.logLevel === 'verbose') {
+        // eslint-disable-next-line no-param-reassign
+        warn.handled = true;
+
+        if (
+          warn.messageId === 'ae-missing-release-tag' ||
+          warn.messageId === 'console-preamble' ||
+          warn.logLevel === 'verbose'
+        ) {
           return;
         }
 
@@ -128,9 +135,6 @@ export default class TypesArtifact extends Artifact<TypesBuild> {
           sourceFile: warn.sourceFilePath,
           sourceLine: warn.sourceFileLine,
         });
-
-        // eslint-disable-next-line no-param-reassign
-        warn.handled = true;
       },
     });
 
