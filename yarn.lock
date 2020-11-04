@@ -750,10 +750,10 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.10.4"
 
-"@babel/plugin-transform-react-jsx-development@^7.12.1":
-  version "7.12.1"
-  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-react-jsx-development/-/plugin-transform-react-jsx-development-7.12.1.tgz#0b8f8cd531dcf7991f1e5f2c10a2a4f1cfc78e36"
-  integrity sha512-IilcGWdN1yNgEGOrB96jbTplRh+V2Pz1EoEwsKsHfX1a/L40cUYuD71Zepa7C+ujv7kJIxnDftWeZbKNEqZjCQ==
+"@babel/plugin-transform-react-jsx-development@^7.12.5":
+  version "7.12.5"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-react-jsx-development/-/plugin-transform-react-jsx-development-7.12.5.tgz#677de5b96da310430d6cfb7fee16a1603afa3d56"
+  integrity sha512-1JJusg3iPgsZDthyWiCr3KQiGs31ikU/mSf2N2dSYEAO0GEImmVUbWf0VoSDGDFTAn5Dj4DUiR6SdIXHY7tELA==
   dependencies:
     "@babel/helper-builder-react-jsx-experimental" "^7.12.1"
     "@babel/helper-plugin-utils" "^7.10.4"
@@ -773,10 +773,10 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.10.4"
 
-"@babel/plugin-transform-react-jsx@^7.12.1":
-  version "7.12.1"
-  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-react-jsx/-/plugin-transform-react-jsx-7.12.1.tgz#c2d96c77c2b0e4362cc4e77a43ce7c2539d478cb"
-  integrity sha512-RmKejwnT0T0QzQUzcbP5p1VWlpnP8QHtdhEtLG55ZDQnJNalbF3eeDyu3dnGKvGzFIQiBzFhBYTwvv435p9Xpw==
+"@babel/plugin-transform-react-jsx@^7.12.5":
+  version "7.12.5"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-react-jsx/-/plugin-transform-react-jsx-7.12.5.tgz#39ede0e30159770561b6963be143e40af3bde00c"
+  integrity sha512-2xkcPqqrYiOQgSlM/iwto1paPijjsDbUynN13tI6bosDz/jOW3CRzYguIE8wKX32h+msbBM22Dv5fwrFkUOZjQ==
   dependencies:
     "@babel/helper-builder-react-jsx" "^7.10.4"
     "@babel/helper-builder-react-jsx-experimental" "^7.12.1"
@@ -957,15 +957,15 @@
     "@babel/types" "^7.4.4"
     esutils "^2.0.2"
 
-"@babel/preset-react@^7.10.4", "@babel/preset-react@^7.12.1":
-  version "7.12.1"
-  resolved "https://registry.yarnpkg.com/@babel/preset-react/-/preset-react-7.12.1.tgz#7f022b13f55b6dd82f00f16d1c599ae62985358c"
-  integrity sha512-euCExymHCi0qB9u5fKw7rvlw7AZSjw/NaB9h7EkdTt5+yHRrXdiRTh7fkG3uBPpJg82CqLfp1LHLqWGSCrab+g==
+"@babel/preset-react@^7.10.4", "@babel/preset-react@^7.12.5":
+  version "7.12.5"
+  resolved "https://registry.yarnpkg.com/@babel/preset-react/-/preset-react-7.12.5.tgz#d45625f65d53612078a43867c5c6750e78772c56"
+  integrity sha512-jcs++VPrgyFehkMezHtezS2BpnUlR7tQFAyesJn1vGTO9aTFZrgIQrA5YydlTwxbcjMwkFY6i04flCigRRr3GA==
   dependencies:
     "@babel/helper-plugin-utils" "^7.10.4"
     "@babel/plugin-transform-react-display-name" "^7.12.1"
-    "@babel/plugin-transform-react-jsx" "^7.12.1"
-    "@babel/plugin-transform-react-jsx-development" "^7.12.1"
+    "@babel/plugin-transform-react-jsx" "^7.12.5"
+    "@babel/plugin-transform-react-jsx-development" "^7.12.5"
     "@babel/plugin-transform-react-jsx-self" "^7.12.1"
     "@babel/plugin-transform-react-jsx-source" "^7.12.1"
     "@babel/plugin-transform-react-pure-annotations" "^7.12.1"
@@ -1114,10 +1114,10 @@
     "@boost/internal" "^2.1.1"
     levenary "^1.1.1"
 
-"@boost/cli@^2.4.3":
-  version "2.4.3"
-  resolved "https://registry.yarnpkg.com/@boost/cli/-/cli-2.4.3.tgz#d7e72bd115b0cb7a0b8880f45076d9936922bdf9"
-  integrity sha512-iqZoxGxtXZrzxGzDWSKqmTIDotYFJX2Hguf32IQzfN/2Ym/TqLvJNTS/CNQ99kwhkrpiXakdkOZ/zMNMxrcTdw==
+"@boost/cli@^2.4.4":
+  version "2.4.4"
+  resolved "https://registry.yarnpkg.com/@boost/cli/-/cli-2.4.4.tgz#357da458cabb33f5e23b6fafe1062da0b8eb2656"
+  integrity sha512-90Hs0vVNo7VbUGBlAO0uoHlhWbxG4dcgW1r3Vvh8rmaHDpYyKNPu+xCzAIR9xqDko5ak/pCAcsmK02AXUTM1HA==
   dependencies:
     "@boost/args" "^2.2.2"
     "@boost/common" "^2.3.0"
@@ -1126,7 +1126,7 @@
     "@boost/log" "^2.1.3"
     "@boost/terminal" "^2.1.0"
     "@boost/translate" "^2.1.3"
-    execa "^4.0.3"
+    execa "^4.1.0"
     levenary "^1.1.1"
     semver "^7.3.2"
 
@@ -1194,16 +1194,16 @@
     execa "^3.4.0"
     fast-glob "^3.2.2"
 
-"@boost/debug@^2.1.3":
-  version "2.1.3"
-  resolved "https://registry.yarnpkg.com/@boost/debug/-/debug-2.1.3.tgz#51dee557dde8b5e06e7ba97493cca5405b06734c"
-  integrity sha512-DHP2ErtlTszGYRF7araxY8FQU5nc7sFc1WoqredLkO/RLlfxg3jTVcrwuvCQGnfXe8+qhhr4iLlDyAqSY2jwbQ==
+"@boost/debug@^2.1.4":
+  version "2.1.4"
+  resolved "https://registry.yarnpkg.com/@boost/debug/-/debug-2.1.4.tgz#cac2b76fe234fc39cf62642b3ca0939bf8387518"
+  integrity sha512-HC2rxh9j/AxZR2aRcQRlrHEGWO1o02sWqkfiRzuyteN1EhxFrRbw0VUBXnwBJzA4lBjZHELN/Ip7LwJxEKaWMg==
   dependencies:
     "@boost/common" "^2.3.0"
     "@boost/internal" "^2.1.1"
     "@types/debug" "^4.1.5"
     debug "^4.2.0"
-    execa "^4.0.3"
+    execa "^4.1.0"
     fast-glob "^3.2.4"
 
 "@boost/decorators@^2.0.0":
@@ -1259,17 +1259,17 @@
     "@boost/translate" "^2.1.3"
     chalk "^4.1.0"
 
-"@boost/pipeline@^2.1.4":
-  version "2.1.4"
-  resolved "https://registry.yarnpkg.com/@boost/pipeline/-/pipeline-2.1.4.tgz#9e5912dfdd47ff5b941884758a0c9e8cd5cbefcb"
-  integrity sha512-q0PWIcy9gA0ijbZMeSonIyRO8gUPSSlLJcYDm1+h7nF01SboZh3hgqHEJ4gyssY83RHCs+obmNT554JpX18axw==
+"@boost/pipeline@^2.1.5":
+  version "2.1.5"
+  resolved "https://registry.yarnpkg.com/@boost/pipeline/-/pipeline-2.1.5.tgz#956fd7a22eda4ae9e84c6af69ac7db4704524e67"
+  integrity sha512-CrcdYIPZ7VRl2NbRlWZFlprMPEBr/yBvJed5E30yCSzNAvSL5CObcZOviIOXtsPNlCUJMCIKgC3h4z5hpMJ13w==
   dependencies:
     "@boost/common" "^2.3.0"
-    "@boost/debug" "^2.1.3"
+    "@boost/debug" "^2.1.4"
     "@boost/event" "^2.2.0"
     "@boost/internal" "^2.1.1"
     "@boost/translate" "^2.1.3"
-    execa "^4.0.3"
+    execa "^4.1.0"
     lodash "^4.17.20"
     split "^1.0.1"
 
@@ -1548,24 +1548,24 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-"@microsoft/api-extractor-model@7.10.6":
-  version "7.10.6"
-  resolved "https://registry.yarnpkg.com/@microsoft/api-extractor-model/-/api-extractor-model-7.10.6.tgz#2d20a5fffefd4063dfda747504ce3c810a3d78b5"
-  integrity sha512-kOhL5fjRIRJYKX5tQcijPcyejA3l29Lg+sbnpM+4owngdbM91O4PcysS6MrzKEvZrLN6+v8LkOlNre8n/sDZPA==
+"@microsoft/api-extractor-model@7.10.8":
+  version "7.10.8"
+  resolved "https://registry.yarnpkg.com/@microsoft/api-extractor-model/-/api-extractor-model-7.10.8.tgz#12fa3c25f26b5eb1f4799270bf0df12d4113f16e"
+  integrity sha512-9TfiCTPnkUeLaYywZeg9rYbVPX9Tj6AAkO6ThnjSE0tTPLjMcL3RiHkqn0BJ4+aGcl56APwo32zj5+kG+NqxYA==
   dependencies:
     "@microsoft/tsdoc" "0.12.19"
-    "@rushstack/node-core-library" "3.34.5"
+    "@rushstack/node-core-library" "3.34.7"
 
-"@microsoft/api-extractor@^7.11.0":
-  version "7.11.0"
-  resolved "https://registry.yarnpkg.com/@microsoft/api-extractor/-/api-extractor-7.11.0.tgz#5f1355c1152035c177081eb4127371fa7ade4531"
-  integrity sha512-VZ77kHn0CNWiPqe/yVY2XxL9AvDSy/Pvc7RqhVxy9OHiWV3Qkwh9gRssz+Wf5XLLWylduwg/Ikl9sneUJ2FVVw==
+"@microsoft/api-extractor@^7.11.2":
+  version "7.11.2"
+  resolved "https://registry.yarnpkg.com/@microsoft/api-extractor/-/api-extractor-7.11.2.tgz#7f90e39294d16a18bb00883e9462242dc1646efe"
+  integrity sha512-iZPv22j9K02cbwIDblOgF1MxZG+KWovp3CQpWCD6UC/+YYO4DfLxX5uZYVNzfgT4vU8fN0rugJmGm85rHX6Ouw==
   dependencies:
-    "@microsoft/api-extractor-model" "7.10.6"
+    "@microsoft/api-extractor-model" "7.10.8"
     "@microsoft/tsdoc" "0.12.19"
-    "@rushstack/node-core-library" "3.34.5"
-    "@rushstack/rig-package" "0.2.5"
-    "@rushstack/ts-command-line" "4.7.4"
+    "@rushstack/node-core-library" "3.34.7"
+    "@rushstack/rig-package" "0.2.7"
+    "@rushstack/ts-command-line" "4.7.6"
     colors "~1.2.1"
     lodash "~4.17.15"
     resolve "~1.17.0"
@@ -1705,10 +1705,10 @@
     estree-walker "^1.0.1"
     picomatch "^2.2.2"
 
-"@rushstack/node-core-library@3.34.5":
-  version "3.34.5"
-  resolved "https://registry.yarnpkg.com/@rushstack/node-core-library/-/node-core-library-3.34.5.tgz#ccd4316aed1651742b9bee97fc18b4236f4722b4"
-  integrity sha512-mbJxkrmtcIYH0DPVwPdt6RY27GUbIWG+5/6LPj3SJCF/TA45L0n7AL6cN90PrzdOUWOQV+41vxluLVcY9Ak3aw==
+"@rushstack/node-core-library@3.34.7":
+  version "3.34.7"
+  resolved "https://registry.yarnpkg.com/@rushstack/node-core-library/-/node-core-library-3.34.7.tgz#864c773212ec0fc158576fec0b5ae0535a246886"
+  integrity sha512-7FwJ0jmZsh7bDIZ1IqDNphY9Kc6aAi1D2K8jiq+da4flMyL84HNeq2KxvwFLzjLwu3eMr88X+oBpgxCTD5Y57Q==
   dependencies:
     "@types/node" "10.17.13"
     colors "~1.2.1"
@@ -1720,19 +1720,19 @@
     timsort "~0.3.0"
     z-schema "~3.18.3"
 
-"@rushstack/rig-package@0.2.5":
-  version "0.2.5"
-  resolved "https://registry.yarnpkg.com/@rushstack/rig-package/-/rig-package-0.2.5.tgz#241465ae97867bbdfb6a4467107fad309ae7981a"
-  integrity sha512-8f/NVb1BO5ZJPKTFVqsEikbznnY5qxOLoqayux5OaqxTyGY8YG3d7xqHJSKMUJhIUhSzgwVjT2WNNipD2/S7sw==
+"@rushstack/rig-package@0.2.7":
+  version "0.2.7"
+  resolved "https://registry.yarnpkg.com/@rushstack/rig-package/-/rig-package-0.2.7.tgz#42b1ed2cfd73d4fc50a119e74a236aacb70d2125"
+  integrity sha512-hI1L0IIzCHqH/uW64mKqEQ0/MANA/IklVId3jGpj1kt9RJcBdeNUIlzDtHl437LZRAuEA8CyotRHzG6YDgWlTw==
   dependencies:
     "@types/node" "10.17.13"
     resolve "~1.17.0"
     strip-json-comments "~3.1.1"
 
-"@rushstack/ts-command-line@4.7.4":
-  version "4.7.4"
-  resolved "https://registry.yarnpkg.com/@rushstack/ts-command-line/-/ts-command-line-4.7.4.tgz#71b785aea62b3cb71547a1c8a51e8948c8a26b87"
-  integrity sha512-x2ZQjE5ss5nnGRceAIRe16VNZNFoS4v/RJH9+Em/yYOIwPJr0TZ93xTXQQE2uQVTgBBw06I/BUOdfMpJK/vDUQ==
+"@rushstack/ts-command-line@4.7.6":
+  version "4.7.6"
+  resolved "https://registry.yarnpkg.com/@rushstack/ts-command-line/-/ts-command-line-4.7.6.tgz#ce509855b507863ed5e2a9ced8451774b6bfd359"
+  integrity sha512-falJVNfpJtsL3gJaY77JXXycfzhzB9VkKhqEfjRWD69/f6ezMUorPR6Nc90MnIaWgePTcdTJPZibxOQrNpu1Uw==
   dependencies:
     "@types/argparse" "1.0.38"
     argparse "~1.0.9"
@@ -6474,20 +6474,20 @@ rollup-plugin-node-externals@^2.2.0:
   dependencies:
     find-up "^4.1.0"
 
-rollup-plugin-visualizer@^4.1.2:
-  version "4.1.2"
-  resolved "https://registry.yarnpkg.com/rollup-plugin-visualizer/-/rollup-plugin-visualizer-4.1.2.tgz#d94202e3aa06e96007eecde84cca4864273fc14f"
-  integrity sha512-GdUYsbMSsIC7aXKMObNHHxu2CWyIem3uVGZJPx78e3W+TX7T7+dTj7kVTy4TMbBd2vFtVQ2E0PnwQfqYoY0sMw==
+rollup-plugin-visualizer@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-visualizer/-/rollup-plugin-visualizer-4.2.0.tgz#2fbdd9d11d22bf231782b6b56a10b5d30a94a01c"
+  integrity sha512-xjfvoK4x0G7lBT3toMx8K/9tkCEWhRehnSJnn+PLY3Hjk8sNvyo407b68Cd3hdV9j42xcb8HXt0ZrmRi5NWeaQ==
   dependencies:
     nanoid "^3.0.1"
     open "^7.0.3"
     source-map "^0.7.3"
     yargs "^16.0.3"
 
-rollup@^2.32.1:
-  version "2.32.1"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.32.1.tgz#625a92c54f5b4d28ada12d618641491d4dbb548c"
-  integrity sha512-Op2vWTpvK7t6/Qnm1TTh7VjEZZkN8RWgf0DHbkKzQBwNf748YhXbozHVefqpPp/Fuyk/PQPAnYsBxAEtlMvpUw==
+rollup@^2.33.1:
+  version "2.33.1"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.33.1.tgz#802795164164ee63cd47769d8879c33ec8ae0c40"
+  integrity sha512-uY4O/IoL9oNW8MMcbA5hcOaz6tZTMIh7qJHx/tzIJm+n1wLoY38BLn6fuy7DhR57oNFLMbDQtDeJoFURt5933w==
   optionalDependencies:
     fsevents "~2.1.2"
 
