@@ -31,8 +31,8 @@ export default function PackageList({ packages }: PackageListProps) {
   packages
     .filter((pkg) => pkg.isRunning())
     .some((pkg) => {
-      // margin top (1) + name row (1) + artifacts (n)
-      const rowHeight = 2 + pkg.artifacts.length;
+      // margin (2) + name row (1) + artifacts (n)
+      const rowHeight = 3 + pkg.artifacts.length;
 
       // Not enough room to display another row
       if (currentHeight + rowHeight > height) {
