@@ -56,6 +56,8 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
   }
 
   async cleanup(): Promise<void> {
+    debug('Cleaning %s bundle artifacts', this.outputName);
+
     // Visualizer stats
     await this.removeFiles([this.package.project.root.append(this.getStatsFileName())]);
   }
@@ -165,10 +167,6 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
 
     const pkg = this.package.packageJson;
 
-    if (!pkg.engines) {
-      pkg.engines = {};
-    }
-
     // Update with the lowest supported node version
     const supportRanks: Record<Support, number> = {
       legacy: 1,
@@ -182,6 +180,10 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
       .find((build) => build.platform === 'node');
 
     if (nodeBuild) {
+      if (!pkg.engines) {
+        pkg.engines = {};
+      }
+
       Object.assign(pkg.engines, {
         node: `>=${NODE_SUPPORTED_VERSIONS[nodeBuild.support]}`,
         npm: toArray(NPM_SUPPORTED_VERSIONS[nodeBuild.support])
@@ -221,11 +223,6 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
 
     const pkg = this.package.packageJson;
     const paths: SettingMap = {};
-
-    if (!pkg.exports) {
-      pkg.exports = {};
-    }
-
     let hasLib = false;
 
     this.builds.forEach(({ format }) => {
@@ -245,9 +242,15 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
       paths.default = this.getOutputFile('lib');
     }
 
-    Object.assign(pkg.exports, {
-      './package.json': './package.json',
-      [this.outputName === 'index' ? '.' : `./${this.outputName}`]: paths,
-    });
+    if (Object.keys(paths).length > 0) {
+      if (!pkg.exports) {
+        pkg.exports = {};
+      }
+
+      Object.assign(pkg.exports, {
+        './package.json': './package.json',
+        [this.outputName === 'index' ? '.' : `./${this.outputName}`]: paths,
+      });
+    }
   }
 }
