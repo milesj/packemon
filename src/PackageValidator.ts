@@ -1,6 +1,9 @@
-import { DependencyMap, isObject, Path, toArray } from '@boost/common';
+import http from 'http';
+import https from 'https';
+import { DependencyMap, isModuleName, isObject, Path, PeopleSetting, toArray } from '@boost/common';
 import spdxLicenses from 'spdx-license-list';
 import semver from 'semver';
+import execa from 'execa';
 import { PackemonPackage, ValidateOptions } from './types';
 
 export default class PackageValidator {
@@ -17,15 +20,17 @@ export default class PackageValidator {
     this.contents = contents;
   }
 
-  validate(options: ValidateOptions) {
-    this.checkName();
+  async validate(options: ValidateOptions) {
+    this.checkMetadata();
+
+    const promises: Promise<unknown>[] = [];
 
     if (options.deps) {
       this.checkDependencies();
     }
 
     if (options.engines) {
-      this.checkEngines();
+      promises.push(this.checkEngines());
     }
 
     if (options.entries) {
@@ -35,6 +40,20 @@ export default class PackageValidator {
     if (options.license) {
       this.checkLicense();
     }
+
+    if (options.links) {
+      promises.push(this.checkLinks());
+    }
+
+    if (options.people) {
+      promises.push(this.checkPeople());
+    }
+
+    if (options.repo) {
+      promises.push(this.checkRepository());
+    }
+
+    await Promise.all(promises);
 
     return this;
   }
@@ -79,19 +98,48 @@ export default class PackageValidator {
     });
   }
 
-  protected checkEngines() {
-    // ls-engines
+  protected async checkEngines() {
+    const { contents } = this;
+    const nodeConstraint = contents.engines?.node;
+    const npmConstraint = contents.engines?.npm;
+    const yarnConstraint = contents.engines?.yarn;
+
+    if (nodeConstraint && semver.satisfies(process.version, nodeConstraint)) {
+      this.warnings.push(
+        `Node.js runtime does not satisfy engine constraints. Found ${process.version}, requires ${nodeConstraint}.`,
+      );
+    }
+
+    if (npmConstraint) {
+      const npmVersion = await this.getBinVersion('npm');
+
+      if (semver.satisfies(npmVersion, npmConstraint)) {
+        this.warnings.push(
+          `NPM does not satisfy engine constraints. Found ${npmVersion}, requires ${npmConstraint}.`,
+        );
+      }
+    }
+
+    if (yarnConstraint) {
+      const yarnVersion = await this.getBinVersion('yarn');
+
+      if (semver.satisfies(yarnVersion, yarnConstraint)) {
+        this.warnings.push(
+          `Yarn does not satisfy engine constraints. Found ${yarnVersion}, requires ${yarnConstraint}.`,
+        );
+      }
+    }
   }
 
   protected checkEntryPoints() {
     const { contents } = this;
 
-    (['main', 'module', 'browser', 'types', 'typings', 'bin'] as const).forEach((field) => {
+    (['main', 'module', 'browser', 'types', 'typings', 'bin', 'man'] as const).forEach((field) => {
       const relPath = contents?.[field];
 
       if (!relPath || typeof relPath !== 'string') {
         if (field === 'main' && !contents.exports) {
-          this.errors.push('No "main" entry point.');
+          this.errors.push('Missing primary entry point. Provide a `main` or `exports` field.');
         }
 
         return;
@@ -106,6 +154,14 @@ export default class PackageValidator {
       Object.entries(contents.bin).forEach(([name, path]) => {
         if (!this.doesPathExist(path)) {
           this.errors.push(`Binary "${name}" resolves to an invalid or missing file.`);
+        }
+      });
+    }
+
+    if (Array.isArray(contents.man)) {
+      contents.man.forEach((path) => {
+        if (!this.doesPathExist(path)) {
+          this.errors.push(`Manual "${path}" resolves to an invalid or missing file.`);
         }
       });
     }
@@ -130,7 +186,7 @@ export default class PackageValidator {
         }
       });
     } else {
-      this.errors.push('No license field found.');
+      this.errors.push('Mssing license.');
     }
 
     if (!this.doesPathExist('LICENSE') && !this.doesPathExist('LICENSE.md')) {
@@ -138,15 +194,129 @@ export default class PackageValidator {
     }
   }
 
-  protected checkOwnership() {
-    // author, contribs
+  protected async checkLinks() {
+    const { bugs, homepage } = this.contents;
+    const bugsUrl = isObject(bugs) ? bugs.url : bugs;
+
+    if (homepage) {
+      if (!(await this.doesUrlExist(homepage))) {
+        this.warnings.push(
+          'Homepage link is invalid. URL is either malformed or upstream is down.',
+        );
+      }
+    }
+
+    if (bugsUrl) {
+      if (!(await this.doesUrlExist(bugsUrl))) {
+        this.warnings.push('Bugs link is invalid. URL is either malformed or upstream is down.');
+      }
+    }
   }
 
-  protected checkName() {}
+  protected checkMetadata() {
+    const { contents } = this;
 
-  protected checkRepository() {}
+    if (!contents.name) {
+      this.errors.push('Missing name.');
+    } else if (!isModuleName(contents.name)) {
+      this.errors.push('Invalid name format. Must contain alphanumeric characters and dashes.');
+    }
+
+    if (!contents.version) {
+      this.errors.push('Missing version.');
+    }
+
+    if (!contents.description) {
+      this.warnings.push('Missing description.');
+    }
+
+    if (!contents.keywords || contents.keywords.length === 0) {
+      this.warnings.push('Missing keywords.');
+    }
+
+    if (!this.doesPathExist('README') && !this.doesPathExist('README.md')) {
+      this.errors.push('No readme file found in package. Must be one of README or README.md.');
+    }
+  }
+
+  protected async checkPeople() {
+    const { author, contributors } = this.contents;
+
+    if (!author) {
+      this.warnings.push('Missing author.');
+    } else if (isObject(author)) {
+      if (!author.name) {
+        this.errors.push('Missing author name.');
+      }
+
+      if (author.url && !(await this.doesUrlExist(author.url))) {
+        this.warnings.push('Author URL is invalid. URL is either malformed or upstream is down.');
+      }
+    }
+
+    if (Array.isArray(contributors)) {
+      await Promise.all(
+        (contributors as PeopleSetting[]).map(async (contrib) => {
+          if (typeof contrib === 'string') {
+            return;
+          }
+
+          if (!contrib.name) {
+            this.errors.push('Missing contributor name.');
+          }
+
+          if (contrib.url && !(await this.doesUrlExist(contrib.url))) {
+            this.warnings.push(
+              'Contributor URL is invalid. URL is either malformed or upstream is down.',
+            );
+          }
+        }),
+      );
+    } else if (contributors) {
+      this.warnings.push('Contributors must be an array.');
+    }
+  }
+
+  protected async checkRepository() {
+    const repo = this.contents.repository;
+    const url = isObject(repo) ? repo.url : repo;
+
+    if (!url) {
+      this.errors.push('Missing repository.');
+    } else if (url.startsWith('http')) {
+      if (!(await this.doesUrlExist(url))) {
+        this.errors.push('Repository is invalid. URL is either malformed or upstream is down.');
+      }
+    }
+  }
 
   protected doesPathExist(path: string): boolean {
     return this.path.append(path).exists();
+  }
+
+  protected doesUrlExist(url: string): Promise<boolean> {
+    return new Promise((resolve) => {
+      const request = url.startsWith('https') ? https.request : http.request;
+      const ping = request(url, () => {
+        resolve(true);
+        ping.abort();
+      });
+
+      ping.on('error', () => {
+        resolve(false);
+        ping.abort();
+      });
+
+      ping.write('');
+      ping.end();
+    });
+  }
+
+  protected async getBinVersion(bin: string): Promise<string> {
+    try {
+      return (await execa(bin, ['-v'], { preferLocal: true })).stdout.trim();
+    } catch {
+      return '';
+    }
   }
 }

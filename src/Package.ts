@@ -73,11 +73,14 @@ export default class Package {
 
     // Validate `package.json`
     if (options.validate) {
-      this.validate({
+      await this.validate({
         deps: true,
         engines: true,
         entries: true,
         license: true,
+        links: true,
+        people: true,
+        repo: true,
       });
     }
   }
@@ -86,8 +89,8 @@ export default class Package {
     await Promise.all(this.artifacts.map((artifact) => artifact.cleanup()));
   }
 
-  validate(options: ValidateOptions) {
-    new PackageValidator(this.path, this.packageJson).validate(options);
+  async validate(options: ValidateOptions) {
+    const validator = await new PackageValidator(this.path, this.packageJson).validate(options);
   }
 
   getName(): string {

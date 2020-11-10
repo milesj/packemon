@@ -98,6 +98,9 @@ export interface ValidateOptions {
   engines: boolean;
   entries: boolean;
   license: boolean;
+  links: boolean;
+  people: boolean;
+  repo: boolean;
 }
 
 // CONFIG
