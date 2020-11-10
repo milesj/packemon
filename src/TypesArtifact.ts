@@ -5,7 +5,7 @@ import { Path } from '@boost/common';
 import { createDebugger } from '@boost/debug';
 import { Extractor, ExtractorConfig } from '@microsoft/api-extractor';
 import Artifact from './Artifact';
-import { APIExtractorStructure, TypesBuild } from './types';
+import { APIExtractorStructure, BuildDeclarationType, TypesBuild } from './types';
 
 const debug = createDebugger('packemon:types');
 
@@ -19,6 +19,8 @@ const extractorConfig = require(path.join(__dirname, '../api-extractor.json')) a
 };
 
 export default class TypesArtifact extends Artifact<TypesBuild> {
+  declarationType: BuildDeclarationType = 'standard';
+
   async cleanup(): Promise<void> {
     // API extractor config files
     await this.removeFiles(
@@ -27,14 +29,9 @@ export default class TypesArtifact extends Artifact<TypesBuild> {
   }
 
   async build(): Promise<void> {
-    debug('Building types artifact with TypeScript');
+    debug('Building %s types artifact with TypeScript', this.declarationType);
 
     const tsConfig = this.package.tsconfigJson;
-
-    // Resolved compiler options use absolute paths, so we should match
-    const declBuildPath = tsConfig
-      ? new Path(tsConfig.options.declarationDir || tsConfig.options.outDir!)
-      : this.package.path.append('lib');
 
     // Compile the current projects declarations
     debug('Generating declarations at the root using `tsc`');
@@ -42,17 +39,22 @@ export default class TypesArtifact extends Artifact<TypesBuild> {
     await this.package.project.generateDeclarations();
 
     // Combine all DTS files into a single file for each input
-    debug('Combining declarations into a single API declaration file');
+    if (this.declarationType === 'api') {
+      debug('Combining declarations into a single API declaration file');
 
-    await Promise.all(
-      this.builds.map(({ inputPath, outputName }) =>
-        this.generateDeclaration(outputName, inputPath, declBuildPath),
-      ),
-    );
+      // Resolved compiler options use absolute paths, so we should match
+      const declBuildPath = tsConfig
+        ? new Path(tsConfig.options.declarationDir || tsConfig.options.outDir!)
+        : this.package.path.append('lib');
 
-    // Remove the TS output directory to reduce package size.
-    // We do this in the background to speed up the CLI process!
-    if (this.package.project.isWorkspacesEnabled()) {
+      await Promise.all(
+        this.builds.map(({ inputPath, outputName }) =>
+          this.generateApiDeclaration(outputName, inputPath, declBuildPath),
+        ),
+      );
+
+      // Remove the TS output directory to reduce package size.
+      // We do this in the background to speed up the CLI process!
       debug('Removing old and unnecessary declarations in the background');
 
       void this.removeDeclarationBuild(declBuildPath);
@@ -75,7 +77,7 @@ export default class TypesArtifact extends Artifact<TypesBuild> {
     return `types (dts)`;
   }
 
-  protected async generateDeclaration(
+  protected async generateApiDeclaration(
     outputName: string,
     inputPath: string,
     declBuildPath: Path,

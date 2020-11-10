@@ -13,6 +13,7 @@ import { createDebugger } from '@boost/debug';
 import { Event } from '@boost/event';
 import { PooledPipeline, Context } from '@boost/pipeline';
 import Package from './Package';
+import PackageValidator from './PackageValidator';
 import Project from './Project';
 import BundleArtifact from './BundleArtifact';
 import TypesArtifact from './TypesArtifact';
@@ -26,8 +27,8 @@ import {
   Platform,
   TypesBuild,
   ValidateOptions,
+  BuildDeclarationType,
 } from './types';
-import PackageValidator from './PackageValidator';
 
 const debug = createDebugger('packemon:core');
 const { array, bool, custom, number, object, string, union } = predicates;
@@ -82,13 +83,13 @@ export default class Packemon {
       addExports: bool(),
       analyzeBundle: string().oneOf(['', 'sunburst', 'treemap', 'network']),
       concurrency: number(1).gte(1),
-      generateDeclaration: bool(),
+      generateDeclaration: string().oneOf(['', 'standard', 'api']),
       skipPrivate: bool(),
       timeout: number().gte(0),
     });
 
     await this.findPackages(options.skipPrivate);
-    await this.generateArtifacts(options.generateDeclaration);
+    await this.generateArtifacts(options.generateDeclaration as BuildDeclarationType);
 
     // Build packages in parallel using a pool
     const pipeline = new PooledPipeline(new Context());
@@ -245,7 +246,7 @@ export default class Packemon {
     this.packages = this.validateAndPreparePackages(packages);
   }
 
-  protected generateArtifacts(declarations: boolean) {
+  protected generateArtifacts(declarationType: BuildDeclarationType) {
     debug('Generating build artifacts for packages');
 
     this.packages.forEach((pkg) => {
@@ -275,8 +276,11 @@ export default class Packemon {
         });
       });
 
-      if (declarations) {
-        pkg.addArtifact(new TypesArtifact(pkg, typesBuilds));
+      if (declarationType) {
+        const artifact = new TypesArtifact(pkg, typesBuilds);
+        artifact.declarationType = declarationType;
+
+        pkg.addArtifact(artifact);
       }
 
       debug('\t%s - %s', pkg.getName(), pkg.artifacts.join(', '));

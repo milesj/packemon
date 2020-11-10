@@ -40,7 +40,13 @@ export default class Project extends BaseProject {
         '--force',
       );
     } else {
-      args.push('--declaration', '--declarationMap', '--emitDeclarationOnly');
+      args.push(
+        '--declaration',
+        '--declarationDir',
+        'dts',
+        '--declarationMap',
+        '--emitDeclarationOnly',
+      );
     }
 
     // Store the promise so parallel artifacts can rely on the same build
