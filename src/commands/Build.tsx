@@ -21,20 +21,22 @@ export class BuildCommand extends Command<GlobalOptions & BuildOptions, BuildPar
   })
   analyze: string = '';
 
-  @Arg.Flag('Check that packages have a valid `license` field')
-  checkLicenses: boolean = false;
-
   @Arg.Number('Number of builds to run in parallel')
   concurrency: number = os.cpus().length;
 
-  @Arg.Flag('Generate a single TypeScript declaration for each package input')
-  generateDeclaration: boolean = false;
+  @Arg.String('Generate a single TypeScript declaration for each package input', {
+    choices: ['standard', 'api'],
+  })
+  generateDeclaration: string = '';
 
   @Arg.Flag('Skip `private` packages from being built')
   skipPrivate: boolean = false;
 
   @Arg.Number('Timeout in milliseconds before a build is cancelled')
   timeout: number = 0;
+
+  @Arg.Flag('Validate fields in each `package.json`')
+  validate: boolean = false;
 
   @Arg.Params<BuildParams>({
     description: 'Project root that contains a `package.json`',
@@ -48,11 +50,11 @@ export class BuildCommand extends Command<GlobalOptions & BuildOptions, BuildPar
         addEngines={this.addEngines}
         addExports={this.addExports}
         analyzeBundle={this.analyze}
-        checkLicenses={this.checkLicenses}
         concurrency={this.concurrency}
         generateDeclaration={this.generateDeclaration}
         skipPrivate={this.skipPrivate}
         timeout={this.timeout}
+        validate={this.validate}
       />
     );
   }
