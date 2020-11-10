@@ -288,6 +288,14 @@ export default class PackageValidator {
         this.errors.push('Repository is invalid. URL is either malformed or upstream is down.');
       }
     }
+
+    if (isObject(repo)) {
+      const dir = (repo as { directory?: string }).directory;
+
+      if (dir && !this.doesPathExist(dir)) {
+        this.errors.push(`Repository directory "${dir}" does not exist.`);
+      }
+    }
   }
 
   protected doesPathExist(path: string): boolean {

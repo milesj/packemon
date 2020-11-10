@@ -24,10 +24,8 @@ export class BuildCommand extends Command<GlobalOptions & BuildOptions, BuildPar
   @Arg.Number('Number of builds to run in parallel')
   concurrency: number = os.cpus().length;
 
-  @Arg.String('Generate a single TypeScript declaration for each package input', {
-    choices: ['standard', 'api'],
-  })
-  generateDeclaration: string = '';
+  @Arg.Flag('Generate a single TypeScript declaration for each package input')
+  generateDeclaration: boolean = false;
 
   @Arg.Flag('Skip `private` packages from being built')
   skipPrivate: boolean = false;

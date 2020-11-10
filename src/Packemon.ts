@@ -25,6 +25,7 @@ import {
   PackemonPackageConfig,
   Platform,
   TypesBuild,
+  ValidateOptions,
 } from './types';
 
 const debug = createDebugger('packemon:core');
@@ -79,11 +80,11 @@ export default class Packemon {
       addEngines: bool(),
       addExports: bool(),
       analyzeBundle: string().oneOf(['', 'sunburst', 'treemap', 'network']),
-      checkLicenses: bool(),
       concurrency: number(1).gte(1),
       generateDeclaration: bool(),
       skipPrivate: bool(),
       timeout: number().gte(0),
+      validate: bool(),
     });
 
     await this.findPackages(options.skipPrivate);
@@ -161,6 +162,14 @@ export default class Packemon {
           }),
       ),
     );
+  }
+
+  async validate(options: ValidateOptions) {
+    debug('Starting validation process');
+
+    await this.findPackages();
+
+    await Promise.all(this.packages.map((pkg) => pkg.validate(options)));
   }
 
   protected async cleanTemporaryFiles() {

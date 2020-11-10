@@ -68,7 +68,7 @@ export interface BuildOptions {
   addExports: boolean;
   analyzeBundle: string;
   concurrency: number;
-  generateDeclaration: string;
+  generateDeclaration: boolean;
   skipPrivate: boolean;
   timeout: number;
   validate: boolean;
