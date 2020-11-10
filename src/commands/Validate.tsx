@@ -4,7 +4,7 @@ import { ValidateOptions } from '../types';
 
 export type ValidateParams = [string];
 
-@Config('validate', 'Validate `package.json` from packages.')
+@Config('validate', 'Validate package metadata and configuration.')
 export class ValidateCommand extends Command<GlobalOptions & ValidateOptions, ValidateParams> {
   @Arg.Flag('Check that dependencies have valid versions and constraints')
   deps: boolean = true;

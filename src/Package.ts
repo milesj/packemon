@@ -91,6 +91,8 @@ export default class Package {
 
   async validate(options: ValidateOptions) {
     const validator = await new PackageValidator(this.path, this.packageJson).validate(options);
+
+    console.log(validator);
   }
 
   getName(): string {

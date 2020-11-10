@@ -104,16 +104,20 @@ export default class PackageValidator {
     const npmConstraint = contents.engines?.npm;
     const yarnConstraint = contents.engines?.yarn;
 
-    if (nodeConstraint && semver.satisfies(process.version, nodeConstraint)) {
-      this.warnings.push(
-        `Node.js runtime does not satisfy engine constraints. Found ${process.version}, requires ${nodeConstraint}.`,
-      );
+    if (nodeConstraint) {
+      const nodeVerison = process.version.slice(1);
+
+      if (!semver.satisfies(nodeVerison, nodeConstraint)) {
+        this.warnings.push(
+          `Node.js does not satisfy engine constraints. Found ${nodeVerison}, requires ${nodeConstraint}.`,
+        );
+      }
     }
 
     if (npmConstraint) {
       const npmVersion = await this.getBinVersion('npm');
 
-      if (semver.satisfies(npmVersion, npmConstraint)) {
+      if (!semver.satisfies(npmVersion, npmConstraint)) {
         this.warnings.push(
           `NPM does not satisfy engine constraints. Found ${npmVersion}, requires ${npmConstraint}.`,
         );
@@ -123,7 +127,7 @@ export default class PackageValidator {
     if (yarnConstraint) {
       const yarnVersion = await this.getBinVersion('yarn');
 
-      if (semver.satisfies(yarnVersion, yarnConstraint)) {
+      if (!semver.satisfies(yarnVersion, yarnConstraint)) {
         this.warnings.push(
           `Yarn does not satisfy engine constraints. Found ${yarnVersion}, requires ${yarnConstraint}.`,
         );
