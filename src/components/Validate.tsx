@@ -9,17 +9,25 @@ export interface ValidateProps {
 }
 
 export default function Validate({ validators }: ValidateProps) {
-  const errorCount = validators.filter((validator) => validator.errors.length > 0).length;
-  const message =
+  const failedValidators = validators.filter(
+    (validator) => validator.errors.length > 0 || validator.warnings.length > 0,
+  );
+
+  if (failedValidators.length === 0) {
+    return null;
+  }
+
+  const errorCount = failedValidators.filter((validator) => validator.errors.length > 0).length;
+  const errorMessage =
     errorCount === 1 ? 'Found errors in 1 package!' : `Found errors in ${errorCount} packages!`;
 
   return (
     <>
-      <Static items={validators}>
+      <Static items={failedValidators}>
         {(validator) => <ValidateRow key={validator.contents.name} validator={validator} />}
       </Static>
 
-      {errorCount > 0 && <Failure error={new Error(`Validation failed. ${message}`)} />}
+      {errorCount > 0 && <Failure error={new Error(`Validation failed. ${errorMessage}`)} />}
     </>
   );
 }

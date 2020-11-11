@@ -70,19 +70,6 @@ export default class Package {
 
     // Sync `package.json` in case it was modified
     await this.syncPackageJson();
-
-    // Validate `package.json`
-    if (options.validate) {
-      await this.validate({
-        deps: true,
-        engines: true,
-        entries: true,
-        license: true,
-        links: true,
-        people: true,
-        repo: true,
-      });
-    }
   }
 
   async cleanup(): Promise<void> {

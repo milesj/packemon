@@ -11,7 +11,8 @@
   "scripts": {
     "prepare": "beemo create-config --silent",
     "setup": "beemo typescript",
-    "build": "yarn run packemon build --addEngines --checkLicenses --generateDeclaration",
+    "build": "yarn run packemon build --addEngines --generateDeclaration",
+    "validate": "yarn run packemon validate",
     "ci": "yarn run type && yarn run test && yarn run lint",
     "clean": "rm -rf {build,dts,lib}",
     "coverage": "yarn run test --coverage",
@@ -20,7 +21,7 @@
     "release": "npx np --yolo",
     "test": "beemo jest",
     "type": "beemo typescript --noEmit",
-    "prerelease": "yarn run ci && yarn run setup && yarn run build",
+    "prerelease": "yarn run ci && yarn run setup && yarn run build && yarn run validate",
     "packemon": "node ./build/bin.js"
   },
   "repository": "https://github.com/milesj/packemon.git",

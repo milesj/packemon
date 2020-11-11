@@ -32,9 +32,6 @@ export class BuildCommand extends Command<GlobalOptions & BuildOptions, BuildPar
   @Arg.Number('Timeout in milliseconds before a build is cancelled')
   timeout: number = 0;
 
-  @Arg.Flag('Validate fields in each `package.json`')
-  validate: boolean = false;
-
   @Arg.Params<BuildParams>({
     description: 'Project root that contains a `package.json`',
     label: 'cwd',
@@ -51,7 +48,6 @@ export class BuildCommand extends Command<GlobalOptions & BuildOptions, BuildPar
         generateDeclaration={this.generateDeclaration}
         skipPrivate={this.skipPrivate}
         timeout={this.timeout}
-        validate={this.validate}
       />
     );
   }

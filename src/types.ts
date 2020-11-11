@@ -71,7 +71,6 @@ export interface BuildOptions {
   generateDeclaration: boolean;
   skipPrivate: boolean;
   timeout: number;
-  validate: boolean;
 }
 
 export interface BuildResult {

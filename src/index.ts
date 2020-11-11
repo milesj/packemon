@@ -5,6 +5,7 @@
 
 import Packemon from './Packemon';
 import Package from './Package';
+import PackageValidator from './PackageValidator';
 import Project from './Project';
 import Artifact from './Artifact';
 import BundleArtifact from './BundleArtifact';
@@ -24,6 +25,7 @@ export {
   getBabelInputConfig,
   getBabelOutputConfig,
   Package,
+  PackageValidator,
   Packemon,
   Project,
 };

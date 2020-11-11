@@ -85,7 +85,6 @@ export default class Packemon {
       generateDeclaration: bool(),
       skipPrivate: bool(),
       timeout: number().gte(0),
-      validate: bool(),
     });
 
     await this.findPackages(options.skipPrivate);
@@ -165,8 +164,18 @@ export default class Packemon {
     );
   }
 
-  async validate(options: ValidateOptions): Promise<PackageValidator[]> {
+  async validate(baseOptions: ValidateOptions): Promise<PackageValidator[]> {
     debug('Starting validation process');
+
+    const options = optimal(baseOptions, {
+      deps: bool(true),
+      engines: bool(true),
+      entries: bool(true),
+      license: bool(true),
+      links: bool(true),
+      people: bool(true),
+      repo: bool(true),
+    });
 
     await this.findPackages();
 
