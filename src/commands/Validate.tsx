@@ -1,6 +1,8 @@
+import React from 'react';
 import { Arg, Command, Config, GlobalOptions } from '@boost/cli';
 import Packemon from '../Packemon';
 import { ValidateOptions } from '../types';
+import Validate from '../components/Validate';
 
 export type ValidateParams = [string];
 
@@ -33,7 +35,7 @@ export class ValidateCommand extends Command<GlobalOptions & ValidateOptions, Va
     type: 'string',
   })
   async run(cwd: string = process.cwd()) {
-    await new Packemon(cwd).validate({
+    const validators = await new Packemon(cwd).validate({
       deps: this.deps,
       engines: this.engines,
       entries: this.entries,
@@ -42,5 +44,7 @@ export class ValidateCommand extends Command<GlobalOptions & ValidateOptions, Va
       people: this.people,
       repo: this.repo,
     });
+
+    return <Validate validators={validators} />;
   }
 }

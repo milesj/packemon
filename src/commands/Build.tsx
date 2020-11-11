@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-use-before-define
 import React from 'react';
 import os from 'os';
 import { Arg, Command, Config, GlobalOptions } from '@boost/cli';

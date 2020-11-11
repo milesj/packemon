@@ -89,10 +89,8 @@ export default class Package {
     await Promise.all(this.artifacts.map((artifact) => artifact.cleanup()));
   }
 
-  async validate(options: ValidateOptions) {
-    const validator = await new PackageValidator(this.path, this.packageJson).validate(options);
-
-    console.log(validator);
+  async validate(options: ValidateOptions): Promise<PackageValidator> {
+    return new PackageValidator(this.path, this.packageJson).validate(options);
   }
 
   getName(): string {

@@ -27,6 +27,7 @@ import {
   TypesBuild,
   ValidateOptions,
 } from './types';
+import PackageValidator from './PackageValidator';
 
 const debug = createDebugger('packemon:core');
 const { array, bool, custom, number, object, string, union } = predicates;
@@ -164,12 +165,12 @@ export default class Packemon {
     );
   }
 
-  async validate(options: ValidateOptions) {
+  async validate(options: ValidateOptions): Promise<PackageValidator[]> {
     debug('Starting validation process');
 
     await this.findPackages();
 
-    await Promise.all(this.packages.map((pkg) => pkg.validate(options)));
+    return Promise.all(this.packages.map((pkg) => pkg.validate(options)));
   }
 
   protected async cleanTemporaryFiles() {
