@@ -11,9 +11,18 @@ distributable and consumable files for NPM, using community favorite tools like 
 With that being said, the `build` command can be used to build all packages in a project according
 to their configured build targets (platform, formats, etc).
 
+```json title="package.json"
+{
+  "scripts": {
+    "build": "packemon build --checkLicenses --generateDeclaration",
+    "build:dist": "NODE_ENV=production yarn run build",
+    "release": "yarn run build:dist && yarn publish"
+  }
+}
 ```
-packemon build --checkLicenses --generateDeclaration
-```
+
+> When publishing, be sure to set `NODE_ENV` to production to remove all development and testing
+> configuration settings.
 
 ## Options
 

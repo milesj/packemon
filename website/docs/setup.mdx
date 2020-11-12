@@ -10,12 +10,11 @@ import TabItem from '@theme/TabItem';
 Whether a solorepo (1 package) or a monorepo (many packages), Packemon makes the following
 assumptions, some of which are hard requirements.
 
-- Each package must contain a `package.json` (of course).
-- Each package must have a source folder named `src`. Builds will output relative to this.
-- Each package must have a source entry point, typically a `src/index.ts` file (or `index.js` if not
-  using TypeScript).
+- Each package _must_ contain a `package.json` (of course).
+- Each package _must_ have a source folder named `src`. Builds will output relative to this.
+- Each package _must_ have a source entry point, typically a `src/index.(js|ts)` file.
 - Each package may contain a `tsconfig.json`.
-- Each package should contain a `LICENSE` and `README.md`.
+- Each package should contain a `LICENSE(.md)?` and `README(.md)?`.
 
 This would look something like the following.
 
