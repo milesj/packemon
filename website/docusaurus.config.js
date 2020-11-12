@@ -1,5 +1,7 @@
 /* eslint-disable sort-keys */
 
+const pkg = require('../package.json');
+
 module.exports = {
   title: 'Packemon',
   tagline:
@@ -19,6 +21,11 @@ module.exports = {
         src: 'img/logo.svg',
       },
       items: [
+        {
+          label: `v${pkg.version}`,
+          position: 'left',
+          href: `https://www.npmjs.com/package/${pkg.name}`,
+        },
         {
           to: 'docs',
           activeBasePath: 'docs',
