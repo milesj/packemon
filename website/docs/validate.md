@@ -8,11 +8,16 @@ Does the package have a valid entry point? Does it have a license? Is the `packa
 correctly? So on and so forth.
 
 The `validate` command does just that and can be used to validate an array of options as a thorough
-pre-publish step. It accomplishes this by inspecting each package's `package.json` and build
-artifacts.
+pre-publish step. It accomplishes this by inspecting each package's `package.json` and
+[build artifacts](./build.md).
 
-```bash
-packemon validate
+```json title="package.json"
+{
+  "scripts": {
+    "release": "yarn run build && yarn run validate && yarn publish",
+    "validate": "packemon validate"
+  }
+}
 ```
 
 Any errors found within the validation process will cause a non-zero exit code, while warnings only,

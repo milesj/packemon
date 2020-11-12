@@ -14,9 +14,9 @@ to their configured build targets (platform, formats, etc).
 ```json title="package.json"
 {
   "scripts": {
-    "build": "packemon build --addEngines --generateDeclaration",
-    "build:dist": "NODE_ENV=production yarn run build",
-    "release": "yarn run build:dist && yarn publish"
+    "build:internal": "packemon build --addEngines --generateDeclaration",
+    "build": "NODE_ENV=production yarn run build:internal",
+    "release": "yarn run build && yarn publish"
   }
 }
 ```
