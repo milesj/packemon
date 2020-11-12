@@ -12,7 +12,7 @@ export interface ValidateRowProps {
 
 export default function ValidateRow({ validator }: ValidateRowProps) {
   return (
-    <Box flexDirection="column" marginTop={1}>
+    <Box flexDirection="column">
       <Box>
         <Style bold type="default">
           {validator.contents.name}

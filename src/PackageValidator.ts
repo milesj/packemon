@@ -20,6 +20,14 @@ export default class PackageValidator {
     this.contents = contents;
   }
 
+  hasErrors(): boolean {
+    return this.errors.length > 0;
+  }
+
+  hasWarnings(): boolean {
+    return this.warnings.length > 0;
+  }
+
   async validate(options: ValidateOptions) {
     this.checkMetadata();
 
@@ -190,7 +198,7 @@ export default class PackageValidator {
         }
       });
     } else {
-      this.errors.push('Mssing license.');
+      this.errors.push('Missing license.');
     }
 
     if (!this.doesPathExist('LICENSE') && !this.doesPathExist('LICENSE.md')) {
