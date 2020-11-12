@@ -25,7 +25,9 @@ import {
   PackemonPackageConfig,
   Platform,
   TypesBuild,
+  ValidateOptions,
 } from './types';
+import PackageValidator from './PackageValidator';
 
 const debug = createDebugger('packemon:core');
 const { array, bool, custom, number, object, string, union } = predicates;
@@ -79,7 +81,6 @@ export default class Packemon {
       addEngines: bool(),
       addExports: bool(),
       analyzeBundle: string().oneOf(['', 'sunburst', 'treemap', 'network']),
-      checkLicenses: bool(),
       concurrency: number(1).gte(1),
       generateDeclaration: bool(),
       skipPrivate: bool(),
@@ -161,6 +162,24 @@ export default class Packemon {
           }),
       ),
     );
+  }
+
+  async validate(baseOptions: ValidateOptions): Promise<PackageValidator[]> {
+    debug('Starting validation process');
+
+    const options = optimal(baseOptions, {
+      deps: bool(true),
+      engines: bool(true),
+      entries: bool(true),
+      license: bool(true),
+      links: bool(true),
+      people: bool(true),
+      repo: bool(true),
+    });
+
+    await this.findPackages();
+
+    return Promise.all(this.packages.map((pkg) => pkg.validate(options)));
   }
 
   protected async cleanTemporaryFiles() {

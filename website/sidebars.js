@@ -10,7 +10,7 @@ module.exports = {
       type: 'category',
       label: 'Commands',
       collapsed: false,
-      items: ['build', 'clean'],
+      items: ['build', 'clean', 'validate'],
     },
     'advanced',
     {

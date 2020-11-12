@@ -14,9 +14,9 @@ to their configured build targets (platform, formats, etc).
 ```json title="package.json"
 {
   "scripts": {
-    "build": "packemon build --checkLicenses --generateDeclaration",
-    "build:dist": "NODE_ENV=production yarn run build",
-    "release": "yarn run build:dist && yarn publish"
+    "build:internal": "packemon build --addEngines --generateDeclaration",
+    "build": "NODE_ENV=production yarn run build:internal",
+    "release": "yarn run build && yarn publish"
   }
 }
 ```
@@ -35,8 +35,6 @@ Build supports the following command line options.
   ([more information](https://nodejs.org/api/packages.html#packages_package_entry_points)).
 - `--analyze` - Analyze and visualize all generated builds. Will open a browser visualization for
   each bundle in one of the following formats: `sunburst`, `treemap`, `network`.
-- `--checkLicenses` - Check that packages have a valid `license` field. Will log a warning if
-  invalid.
 - `--concurrency` - Number of builds to run in parallel. Defaults to operating system CPU count.
 - `--generateDeclaration` - Generate a single TypeScript declaration for each package according to
   the `inputs` setting. Uses
@@ -228,5 +226,5 @@ The following plugins are enabled per package.
   - Defines `externals` based on `package.json` dependencies.
   - Includes `dependencies`, `devDependencies`, `peerDependencies`, and `optionalDependencies`.
 
-[babel]: https://babeljs.io/
+[babel]: https://babeljs.io
 [rollup]: https://rollupjs.org

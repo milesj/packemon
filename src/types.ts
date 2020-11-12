@@ -57,15 +57,16 @@ export interface PackageConfig {
   support: Support;
 }
 
-// ARTIFACTS
+// BUILD
 
 export type ArtifactState = 'pending' | 'building' | 'passed' | 'failed';
+
+export type BuildDeclarationType = 'standard' | 'api';
 
 export interface BuildOptions {
   addEngines: boolean;
   addExports: boolean;
   analyzeBundle: string;
-  checkLicenses: boolean;
   concurrency: number;
   generateDeclaration: boolean;
   skipPrivate: boolean;
@@ -87,6 +88,18 @@ export interface BundleBuild {
 export interface TypesBuild {
   inputPath: string;
   outputName: string;
+}
+
+// VALIDATE
+
+export interface ValidateOptions {
+  deps: boolean;
+  engines: boolean;
+  entries: boolean;
+  license: boolean;
+  links: boolean;
+  people: boolean;
+  repo: boolean;
 }
 
 // CONFIG

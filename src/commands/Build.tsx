@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-use-before-define
 import React from 'react';
 import os from 'os';
 import { Arg, Command, Config, GlobalOptions } from '@boost/cli';
@@ -20,9 +19,6 @@ export class BuildCommand extends Command<GlobalOptions & BuildOptions, BuildPar
     choices: ['sunburst', 'treemap', 'network'],
   })
   analyze: string = '';
-
-  @Arg.Flag('Check that packages have a valid `license` field')
-  checkLicenses: boolean = false;
 
   @Arg.Number('Number of builds to run in parallel')
   concurrency: number = os.cpus().length;
@@ -48,7 +44,6 @@ export class BuildCommand extends Command<GlobalOptions & BuildOptions, BuildPar
         addEngines={this.addEngines}
         addExports={this.addExports}
         analyzeBundle={this.analyze}
-        checkLicenses={this.checkLicenses}
         concurrency={this.concurrency}
         generateDeclaration={this.generateDeclaration}
         skipPrivate={this.skipPrivate}

@@ -2,10 +2,10 @@
 
 import fs from 'fs-extra';
 import ts from 'typescript';
-import spdxLicenses from 'spdx-license-list';
 import { Memoize, Path, toArray } from '@boost/common';
 import Artifact from './Artifact';
 import Project from './Project';
+import PackageValidator from './PackageValidator';
 import {
   FeatureFlags,
   PackageConfig,
@@ -13,6 +13,7 @@ import {
   PackemonPackage,
   PackemonPackageConfig,
   TSConfigStructure,
+  ValidateOptions,
 } from './types';
 
 export default class Package {
@@ -44,10 +45,6 @@ export default class Package {
   }
 
   async build(options: BuildOptions): Promise<void> {
-    if (options.checkLicenses) {
-      this.checkLicense();
-    }
-
     // Build artifacts in parallel
     await Promise.all(
       this.artifacts.map(async (artifact) => {
@@ -77,6 +74,10 @@ export default class Package {
 
   async cleanup(): Promise<void> {
     await Promise.all(this.artifacts.map((artifact) => artifact.cleanup()));
+  }
+
+  async validate(options: ValidateOptions): Promise<PackageValidator> {
+    return new PackageValidator(this.path, this.packageJson).validate(options);
   }
 
   getName(): string {
@@ -194,30 +195,6 @@ export default class Package {
     }
 
     return result;
-  }
-
-  protected checkLicense() {
-    const { packageJson: contents } = this;
-    const spdxLicenseTypes = new Set(
-      Object.keys(spdxLicenses).map((key) => key.toLocaleLowerCase()),
-    );
-
-    if (contents.license) {
-      toArray(
-        typeof contents.license === 'string'
-          ? { type: contents.license, url: spdxLicenses[contents.license] }
-          : contents.license,
-      ).forEach((license) => {
-        if (!spdxLicenseTypes.has(license.type.toLocaleLowerCase())) {
-          console.error(
-            `Invalid license ${license.type} for package "${this.getName()}".`,
-            'Must be an official SPDX license type.',
-          );
-        }
-      });
-    } else {
-      console.error(`No license found for package "${this.getName()}".`);
-    }
   }
 
   protected async syncPackageJson() {

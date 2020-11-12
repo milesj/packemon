@@ -5,6 +5,7 @@
 
 import Packemon from './Packemon';
 import Package from './Package';
+import PackageValidator from './PackageValidator';
 import Project from './Project';
 import Artifact from './Artifact';
 import BundleArtifact from './BundleArtifact';
@@ -13,6 +14,7 @@ import { getBabelInputConfig, getBabelOutputConfig } from './babel/config';
 
 export * from './commands/Build';
 export * from './commands/Clean';
+export * from './commands/Validate';
 export * from './constants';
 export * from './types';
 
@@ -23,6 +25,7 @@ export {
   getBabelInputConfig,
   getBabelOutputConfig,
   Package,
+  PackageValidator,
   Packemon,
   Project,
 };
