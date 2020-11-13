@@ -18,16 +18,17 @@ import Project from './Project';
 import BundleArtifact from './BundleArtifact';
 import TypesArtifact from './TypesArtifact';
 import {
+  AnalyzeType,
   BrowserFormat,
+  BuildOptions,
+  DeclarationType,
   Format,
   NodeFormat,
-  BuildOptions,
   PackemonPackage,
   PackemonPackageConfig,
   Platform,
   TypesBuild,
   ValidateOptions,
-  BuildDeclarationType,
 } from './types';
 
 const debug = createDebugger('packemon:core');
@@ -81,15 +82,15 @@ export default class Packemon {
     const options = optimal(baseOptions, {
       addEngines: bool(),
       addExports: bool(),
-      analyzeBundle: string().oneOf(['', 'sunburst', 'treemap', 'network']),
+      analyzeBundle: string('none').oneOf<AnalyzeType>(['none', 'sunburst', 'treemap', 'network']),
       concurrency: number(1).gte(1),
-      generateDeclaration: string().oneOf(['', 'standard', 'api']),
+      generateDeclaration: string('none').oneOf<DeclarationType>(['none', 'standard', 'api']),
       skipPrivate: bool(),
       timeout: number().gte(0),
     });
 
     await this.findPackages(options.skipPrivate);
-    await this.generateArtifacts(options.generateDeclaration as BuildDeclarationType);
+    await this.generateArtifacts(options.generateDeclaration);
 
     // Build packages in parallel using a pool
     const pipeline = new PooledPipeline(new Context());
@@ -246,7 +247,7 @@ export default class Packemon {
     this.packages = this.validateAndPreparePackages(packages);
   }
 
-  protected generateArtifacts(declarationType: BuildDeclarationType) {
+  protected generateArtifacts(declarationType: DeclarationType) {
     debug('Generating build artifacts for packages');
 
     this.packages.forEach((pkg) => {
@@ -276,7 +277,7 @@ export default class Packemon {
         });
       });
 
-      if (declarationType) {
+      if (declarationType !== 'none') {
         const artifact = new TypesArtifact(pkg, typesBuilds);
         artifact.declarationType = declarationType;
 

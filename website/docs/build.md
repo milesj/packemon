@@ -14,7 +14,7 @@ to their configured build targets (platform, formats, etc).
 ```json title="package.json"
 {
   "scripts": {
-    "build:internal": "packemon build --addEngines --generateDeclaration",
+    "build:internal": "packemon build --addEngines --generateDeclaration=api",
     "build": "NODE_ENV=production yarn run build:internal",
     "release": "yarn run build && yarn publish"
   }
@@ -44,7 +44,7 @@ Build supports the following command line options.
   - `standard` - Generates multiple `d.ts` files with `tsc`.
   - `api` - Generates a single `d.ts` file for each input. Uses
     [@microsoft/api-extractor](https://www.npmjs.com/package/@microsoft/api-extractor) to _only_
-    generate the public API.
+    generate the public API. (NOTE: this is quite slow)
 - `--skipPrivate` - Skip `private` packages from being built.
 - `--timeout` - Timeout in milliseconds before a build is cancelled. Defaults to no timeout.
 

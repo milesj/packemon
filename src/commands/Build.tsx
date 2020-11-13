@@ -3,11 +3,11 @@ import os from 'os';
 import { Arg, Command, Config, GlobalOptions } from '@boost/cli';
 import Build from '../components/Build';
 import Packemon from '../Packemon';
-import { BuildOptions } from '../types';
+import { AnalyzeType, BuildOptions, DeclarationType } from '../types';
 
 export type BuildParams = [string];
 
-@Config('build', 'Build standardized packages for distribution.')
+@Config('build', 'Build standardized packages for distribution')
 export class BuildCommand extends Command<GlobalOptions & BuildOptions, BuildParams> {
   @Arg.Flag('Add `engine` versions to each `package.json`')
   addEngines: boolean = false;
@@ -16,15 +16,17 @@ export class BuildCommand extends Command<GlobalOptions & BuildOptions, BuildPar
   addExports: boolean = false;
 
   @Arg.String('Visualize and analyze all generated builds', {
-    choices: ['sunburst', 'treemap', 'network'],
+    choices: ['none', 'sunburst', 'treemap', 'network'],
   })
-  analyze: string = '';
+  analyze: AnalyzeType = 'none';
 
   @Arg.Number('Number of builds to run in parallel')
   concurrency: number = os.cpus().length;
 
-  @Arg.Flag('Generate a single TypeScript declaration for each package input')
-  generateDeclaration: boolean = false;
+  @Arg.String('Generate a single TypeScript declaration for each package input', {
+    choices: ['none', 'standard', 'api'],
+  })
+  generateDeclaration: DeclarationType = 'none';
 
   @Arg.Flag('Skip `private` packages from being built')
   skipPrivate: boolean = false;

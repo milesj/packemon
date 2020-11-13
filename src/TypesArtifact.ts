@@ -5,7 +5,7 @@ import { Path } from '@boost/common';
 import { createDebugger } from '@boost/debug';
 import { Extractor, ExtractorConfig } from '@microsoft/api-extractor';
 import Artifact from './Artifact';
-import { APIExtractorStructure, BuildDeclarationType, TypesBuild } from './types';
+import { APIExtractorStructure, DeclarationType, TypesBuild } from './types';
 
 const debug = createDebugger('packemon:types');
 
@@ -19,7 +19,7 @@ const extractorConfig = require(path.join(__dirname, '../api-extractor.json')) a
 };
 
 export default class TypesArtifact extends Artifact<TypesBuild> {
-  declarationType: BuildDeclarationType = 'standard';
+  declarationType: DeclarationType = 'standard';
 
   async cleanup(): Promise<void> {
     // API extractor config files
@@ -43,9 +43,12 @@ export default class TypesArtifact extends Artifact<TypesBuild> {
       debug('Combining declarations into a single API declaration file');
 
       // Resolved compiler options use absolute paths, so we should match
-      const declBuildPath = tsConfig
-        ? new Path(tsConfig.options.declarationDir || tsConfig.options.outDir!)
-        : this.package.path.append('lib');
+      let declBuildPath = this.package.path.append('dts');
+
+      // Workspaces use the tsconfig setting, while non-workspaces is hard-coded to "dts"
+      if (tsConfig && this.package.project.isWorkspacesEnabled()) {
+        declBuildPath = new Path(tsConfig.options.declarationDir || tsConfig.options.outDir!);
+      }
 
       await Promise.all(
         this.builds.map(({ inputPath, outputName }) =>
