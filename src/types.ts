@@ -33,7 +33,9 @@ export type NodeFormat =
 
 export type Format = NodeFormat | BrowserFormat;
 
-export type AnalyzeType = 'sunburst' | 'treemap' | 'network';
+export type AnalyzeType = 'none' | 'sunburst' | 'treemap' | 'network';
+
+export type DeclarationType = 'none' | 'standard' | 'api';
 
 // PACKAGES
 
@@ -61,14 +63,12 @@ export interface PackageConfig {
 
 export type ArtifactState = 'pending' | 'building' | 'passed' | 'failed';
 
-export type BuildDeclarationType = 'standard' | 'api';
-
 export interface BuildOptions {
   addEngines: boolean;
   addExports: boolean;
-  analyzeBundle: string;
+  analyzeBundle: AnalyzeType;
   concurrency: number;
-  generateDeclaration: boolean;
+  generateDeclaration: DeclarationType;
   skipPrivate: boolean;
   timeout: number;
 }

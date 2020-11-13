@@ -13,21 +13,23 @@ import { createDebugger } from '@boost/debug';
 import { Event } from '@boost/event';
 import { PooledPipeline, Context } from '@boost/pipeline';
 import Package from './Package';
+import PackageValidator from './PackageValidator';
 import Project from './Project';
 import BundleArtifact from './BundleArtifact';
 import TypesArtifact from './TypesArtifact';
 import {
+  AnalyzeType,
   BrowserFormat,
+  BuildOptions,
+  DeclarationType,
   Format,
   NodeFormat,
-  BuildOptions,
   PackemonPackage,
   PackemonPackageConfig,
   Platform,
   TypesBuild,
   ValidateOptions,
 } from './types';
-import PackageValidator from './PackageValidator';
 
 const debug = createDebugger('packemon:core');
 const { array, bool, custom, number, object, string, union } = predicates;
@@ -80,9 +82,9 @@ export default class Packemon {
     const options = optimal(baseOptions, {
       addEngines: bool(),
       addExports: bool(),
-      analyzeBundle: string().oneOf(['', 'sunburst', 'treemap', 'network']),
+      analyzeBundle: string('none').oneOf<AnalyzeType>(['none', 'sunburst', 'treemap', 'network']),
       concurrency: number(1).gte(1),
-      generateDeclaration: bool(),
+      generateDeclaration: string('none').oneOf<DeclarationType>(['none', 'standard', 'api']),
       skipPrivate: bool(),
       timeout: number().gte(0),
     });
@@ -245,7 +247,7 @@ export default class Packemon {
     this.packages = this.validateAndPreparePackages(packages);
   }
 
-  protected generateArtifacts(declarations: boolean) {
+  protected generateArtifacts(declarationType: DeclarationType) {
     debug('Generating build artifacts for packages');
 
     this.packages.forEach((pkg) => {
@@ -275,8 +277,11 @@ export default class Packemon {
         });
       });
 
-      if (declarations) {
-        pkg.addArtifact(new TypesArtifact(pkg, typesBuilds));
+      if (declarationType !== 'none') {
+        const artifact = new TypesArtifact(pkg, typesBuilds);
+        artifact.declarationType = declarationType;
+
+        pkg.addArtifact(artifact);
       }
 
       debug('\t%s - %s', pkg.getName(), pkg.artifacts.join(', '));

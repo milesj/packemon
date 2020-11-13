@@ -5,7 +5,7 @@ import { rollup, RollupCache } from 'rollup';
 import Artifact from './Artifact';
 import { NODE_SUPPORTED_VERSIONS, NPM_SUPPORTED_VERSIONS } from './constants';
 import { getRollupConfig } from './rollup/config';
-import { Format, BuildOptions, BundleBuild, Support, Platform, AnalyzeType } from './types';
+import { Format, BuildOptions, BundleBuild, Support, Platform } from './types';
 
 const debug = createDebugger('packemon:bundle');
 
@@ -67,8 +67,8 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
 
     const features = this.package.getFeatureFlags();
 
-    if (options.analyzeBundle) {
-      features.analyze = options.analyzeBundle as AnalyzeType;
+    if (options.analyzeBundle !== 'none') {
+      features.analyze = options.analyzeBundle;
     }
 
     const { output = [], ...input } = getRollupConfig(this, features);

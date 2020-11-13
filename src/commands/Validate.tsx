@@ -6,7 +6,7 @@ import Validate from '../components/Validate';
 
 export type ValidateParams = [string];
 
-@Config('validate', 'Validate package metadata and configuration.')
+@Config('validate', 'Validate package metadata and configuration')
 export class ValidateCommand extends Command<GlobalOptions & ValidateOptions, ValidateParams> {
   @Arg.Flag('Check that dependencies have valid versions and constraints')
   deps: boolean = true;

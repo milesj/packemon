@@ -14,7 +14,7 @@ to their configured build targets (platform, formats, etc).
 ```json title="package.json"
 {
   "scripts": {
-    "build:internal": "packemon build --addEngines --generateDeclaration",
+    "build:internal": "packemon build --addEngines --generateDeclaration=api",
     "build": "NODE_ENV=production yarn run build:internal",
     "release": "yarn run build && yarn publish"
   }
@@ -34,12 +34,17 @@ Build supports the following command line options.
   setting. This is an experimental Node.js feature and may not work correctly
   ([more information](https://nodejs.org/api/packages.html#packages_package_entry_points)).
 - `--analyze` - Analyze and visualize all generated builds. Will open a browser visualization for
-  each bundle in one of the following formats: `sunburst`, `treemap`, `network`.
+  each bundle in one of the following formats.
+  - `sunburst` - Displays an inner circle surrounded by rings of deeper hierarchy levels.
+  - `treemap` - Displays hierarchy levels as top-level and nested rectangles of varying size.
+  - `network` - Displays files as nodes with the relationship between files.
 - `--concurrency` - Number of builds to run in parallel. Defaults to operating system CPU count.
-- `--generateDeclaration` - Generate a single TypeScript declaration for each package according to
-  the `inputs` setting. Uses
-  [@microsoft/api-extractor](https://www.npmjs.com/package/@microsoft/api-extractor) to _only_
-  generate the public API.
+- `--generateDeclaration` - Generate TypeScript declarations for each package. Accepts one of the
+  following values.
+  - `standard` - Generates multiple `d.ts` files with `tsc`.
+  - `api` - Generates a single `d.ts` file for each input. Uses
+    [@microsoft/api-extractor](https://www.npmjs.com/package/@microsoft/api-extractor) to _only_
+    generate the public API. (NOTE: this is quite slow)
 - `--skipPrivate` - Skip `private` packages from being built.
 - `--timeout` - Timeout in milliseconds before a build is cancelled. Defaults to no timeout.
 
