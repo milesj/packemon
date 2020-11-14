@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Box } from 'ink';
 import { Header, useProgram } from '@boost/cli';
+import Packemon from '../Packemon';
 import PackageValidator from '../PackageValidator';
 import ValidateRow from './ValidateRow';
 import { ValidateOptions } from '../types';
 import useRenderLoop from './hooks/useRenderLoop';
-import Packemon from '../Packemon';
+import useOnMount from './hooks/useOnMount';
 
 export interface ValidateProps extends Partial<ValidateOptions> {
   packemon: Packemon;
@@ -19,7 +20,7 @@ export default function Validate({ packemon, onValidated, ...options }: Validate
   const [failedValidators, setFailedValidators] = useState<PackageValidator[]>([]);
 
   // Run the validate process on mount
-  useEffect(() => {
+  useOnMount(() => {
     void packemon
       .validate(options)
       .then((validators) => {
@@ -27,14 +28,14 @@ export default function Validate({ packemon, onValidated, ...options }: Validate
         setFailedValidators(
           validators.filter((validator) => validator.hasErrors() || validator.hasWarnings()),
         );
+
         onValidated?.();
       })
       .catch(exit)
       .finally(clearLoop);
 
     return clearLoop;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  });
 
   // Exit validation if there are any errors
   useEffect(() => {

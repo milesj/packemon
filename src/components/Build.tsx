@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Box, Static } from 'ink';
 import { Header, useProgram } from '@boost/cli';
 import Packemon from '../Packemon';
@@ -7,6 +7,7 @@ import PackageRow from './PackageRow';
 import Package from '../Package';
 import { BuildOptions } from '../types';
 import useRenderLoop from './hooks/useRenderLoop';
+import useOnMount from './hooks/useOnMount';
 
 export interface BuildProps extends Partial<BuildOptions> {
   packemon: Packemon;
@@ -20,7 +21,7 @@ export default function Build({ packemon, onBuilt, ...options }: BuildProps) {
   const clearLoop = useRenderLoop();
 
   // Run the build process on mount
-  useEffect(() => {
+  useOnMount(() => {
     void packemon.build(options).then(onBuilt).catch(exit).finally(clearLoop);
 
     // Add complete packages to the static list
@@ -35,8 +36,7 @@ export default function Build({ packemon, onBuilt, ...options }: BuildProps) {
       clearLoop();
       unlisten();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  });
 
   const runningPackages = packemon.packages.filter((pkg) => pkg.isRunning());
 
