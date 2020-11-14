@@ -25,7 +25,7 @@ export default function PackageRow({ package: pkg }: PackageRowProps) {
       </Box>
 
       {pkg.artifacts.map((artifact) => (
-        <ArtifactRow key={artifact.getLabel()} artifact={artifact} />
+        <ArtifactRow key={`${pkg.getName()}-${artifact.getLabel()}`} artifact={artifact} />
       ))}
     </Box>
   );

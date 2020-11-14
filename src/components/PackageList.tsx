@@ -52,7 +52,7 @@ export default function PackageList({ packages }: PackageListProps) {
   return (
     <>
       {visiblePackages.map((pkg) => (
-        <PackageRow key={pkg.getName()} package={pkg} />
+        <PackageRow key={`build-${pkg.getName()}`} package={pkg} />
       ))}
     </>
   );

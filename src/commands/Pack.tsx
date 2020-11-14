@@ -1,6 +1,6 @@
 import React from 'react';
 import { Config } from '@boost/cli';
-import Build from '../components/Build';
+import Pack from '../components/Pack';
 import Packemon from '../Packemon';
 import { BuildCommand } from './Build';
 
@@ -8,7 +8,7 @@ import { BuildCommand } from './Build';
 export class PackCommand extends BuildCommand {
   run() {
     return (
-      <Build
+      <Pack
         packemon={new Packemon()}
         addEngines={this.addEngines}
         addExports={this.addExports}

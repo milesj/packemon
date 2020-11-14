@@ -27,17 +27,18 @@ export class ValidateCommand extends Command<GlobalOptions & ValidateOptions> {
   @Arg.Flag('Check that `repository` exists and is a valid URL')
   repo: boolean = true;
 
-  async run() {
-    const validators = await new Packemon().validate({
-      deps: this.deps,
-      engines: this.engines,
-      entries: this.entries,
-      license: this.license,
-      links: this.links,
-      people: this.people,
-      repo: this.repo,
-    });
-
-    return <Validate validators={validators} />;
+  run() {
+    return (
+      <Validate
+        packemon={new Packemon()}
+        deps={this.deps}
+        engines={this.engines}
+        entries={this.engines}
+        license={this.license}
+        links={this.links}
+        people={this.people}
+        repo={this.repo}
+      />
+    );
   }
 }

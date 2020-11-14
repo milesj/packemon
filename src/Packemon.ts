@@ -76,7 +76,7 @@ export default class Packemon {
     this.project.checkEngineVersionConstraint();
   }
 
-  async build(baseOptions: BuildOptions) {
+  async build(baseOptions: Partial<BuildOptions>) {
     debug('Starting `build` process');
 
     const options = optimal(baseOptions, {
@@ -107,8 +107,6 @@ export default class Packemon {
         this.onPackageBuilt.emit([pkg]);
       });
     });
-
-    debug('Building artifacts');
 
     const { errors } = await pipeline.run();
 
@@ -146,13 +144,11 @@ export default class Packemon {
       pathsToRemove.push(`./${formatFolders}`);
     }
 
-    debug('Cleaning build artifacts');
-
     await Promise.all(
       pathsToRemove.map(
         (path) =>
           new Promise((resolve, reject) => {
-            debug('- %s', path);
+            debug(' - %s', path);
 
             rimraf(path, (error) => {
               if (error) {
@@ -166,7 +162,7 @@ export default class Packemon {
     );
   }
 
-  async validate(baseOptions: ValidateOptions): Promise<PackageValidator[]> {
+  async validate(baseOptions: Partial<ValidateOptions>): Promise<PackageValidator[]> {
     debug('Starting `validate` process');
 
     const options = optimal(baseOptions, {
@@ -191,6 +187,10 @@ export default class Packemon {
   }
 
   protected async findPackages(skipPrivate: boolean = false) {
+    if (this.packages.length > 0) {
+      return;
+    }
+
     debug('Finding packages in project');
 
     const pkgPaths: Path[] = [];
@@ -221,7 +221,7 @@ export default class Packemon {
         const contents = json.parse<PackemonPackage>(await fs.readFile(pkgPath.path(), 'utf8'));
 
         debug(
-          '- %s: %s',
+          ' - %s: %s',
           contents.name,
           pkgPath.path().replace(this.root.path(), '').replace('package.json', ''),
         );
@@ -284,7 +284,7 @@ export default class Packemon {
         pkg.addArtifact(artifact);
       }
 
-      debug('- %s: %s', pkg.getName(), pkg.artifacts.join(', '));
+      debug(' - %s: %s', pkg.getName(), pkg.artifacts.join(', '));
     });
   }
 

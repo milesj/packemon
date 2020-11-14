@@ -1,29 +1,27 @@
-import React, { useEffect, useReducer, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Box, Static } from 'ink';
-import { Header } from '@boost/cli';
+import { Header, useProgram } from '@boost/cli';
 import Packemon from '../Packemon';
 import PackageList from './PackageList';
 import PackageRow from './PackageRow';
 import Package from '../Package';
 import { BuildOptions } from '../types';
+import useRenderLoop from './hooks/useRenderLoop';
 
-export interface BuildProps extends Required<BuildOptions> {
+export interface BuildProps extends Partial<BuildOptions> {
   packemon: Packemon;
+  onBuilt?: () => void;
 }
 
-export default function Build({ packemon, ...options }: BuildProps) {
-  const [, forceUpdate] = useReducer((count) => count + 1, 0);
-  const [error, setError] = useState<Error>();
+export default function Build({ packemon, onBuilt, ...options }: BuildProps) {
+  const { exit } = useProgram();
   const [staticPackages, setStaticPackages] = useState<Package[]>([]);
   const staticNames = useRef(new Set<string>());
+  const clearLoop = useRenderLoop();
 
+  // Run the build process on mount
   useEffect(() => {
-    // Continuously render at 30 FPS
-    const timer = setInterval(forceUpdate, 1000 / 30);
-    const clear = () => clearInterval(timer);
-
-    // Run the packemon process on mount
-    void packemon.build(options).catch(setError).finally(clear);
+    void packemon.build(options).then(onBuilt).catch(exit).finally(clearLoop);
 
     // Add complete packages to the static list
     const unlisten = packemon.onPackageBuilt.listen((pkg) => {
@@ -34,23 +32,18 @@ export default function Build({ packemon, ...options }: BuildProps) {
     });
 
     return () => {
-      clear();
+      clearLoop();
       unlisten();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  // Bubble up errors to the program
-  if (error) {
-    throw error;
-  }
 
   const runningPackages = packemon.packages.filter((pkg) => pkg.isRunning());
 
   return (
     <>
       <Static items={staticPackages}>
-        {(pkg) => <PackageRow key={pkg.getName()} package={pkg} />}
+        {(pkg) => <PackageRow key={`static-build-${pkg.getName()}`} package={pkg} />}
       </Static>
 
       {runningPackages.length > 0 && (

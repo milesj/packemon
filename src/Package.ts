@@ -79,7 +79,7 @@ export default class Package {
   }
 
   async cleanup(): Promise<void> {
-    this.debug('Cleaning artifacts');
+    this.debug('Cleaning build artifacts');
 
     await Promise.all(this.artifacts.map((artifact) => artifact.cleanup()));
   }
@@ -104,7 +104,7 @@ export default class Package {
     if (this.hasDependency('react')) {
       flags.react = true;
 
-      this.debug('- React');
+      this.debug(' - React');
     }
 
     // TypeScript
@@ -120,9 +120,9 @@ export default class Package {
       flags.strict = Boolean(tsConfig?.options.strict);
 
       this.debug(
-        `- TypeScript (${flags.strict ? 'strict' : 'non-strict'}, ${
-          flags.decorators ? 'decorators' : 'non-decorators'
-        })`,
+        ' - TypeScript (%s, %s)',
+        flags.strict ? 'strict' : 'non-strict',
+        flags.decorators ? 'decorators' : 'non-decorators',
       );
     }
 
@@ -136,7 +136,7 @@ export default class Package {
     ) {
       flags.flow = true;
 
-      this.debug('- Flow');
+      this.debug(' - Flow');
     }
 
     return flags;
