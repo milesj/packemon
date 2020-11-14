@@ -48,13 +48,6 @@ Build supports the following command line options.
 - `--skipPrivate` - Skip `private` packages from being built.
 - `--timeout` - Timeout in milliseconds before a build is cancelled. Defaults to no timeout.
 
-By default, `build` will find a `package.json` in the current working directory. To build a
-different directory, pass a relative path as an argument.
-
-```
-packemon build ./some/other/path
-```
-
 ## How it works
 
 When the build process is ran, Packemon will find all viable packages within the current project and

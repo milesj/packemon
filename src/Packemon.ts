@@ -67,7 +67,7 @@ export default class Packemon {
 
   readonly root: Path;
 
-  constructor(cwd: string) {
+  constructor(cwd: string = process.cwd()) {
     this.root = Path.resolve(cwd);
     this.project = new Project(this.root);
 

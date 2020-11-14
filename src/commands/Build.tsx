@@ -5,10 +5,8 @@ import Build from '../components/Build';
 import Packemon from '../Packemon';
 import { AnalyzeType, BuildOptions, DeclarationType } from '../types';
 
-export type BuildParams = [string];
-
 @Config('build', 'Build standardized packages for distribution')
-export class BuildCommand extends Command<GlobalOptions & BuildOptions, BuildParams> {
+export class BuildCommand extends Command<GlobalOptions & BuildOptions> {
   @Arg.Flag('Add `engine` versions to each `package.json`')
   addEngines: boolean = false;
 
@@ -34,15 +32,10 @@ export class BuildCommand extends Command<GlobalOptions & BuildOptions, BuildPar
   @Arg.Number('Timeout in milliseconds before a build is cancelled')
   timeout: number = 0;
 
-  @Arg.Params<BuildParams>({
-    description: 'Project root that contains a `package.json`',
-    label: 'cwd',
-    type: 'string',
-  })
-  run(cwd: string = process.cwd()) {
+  run() {
     return (
       <Build
-        packemon={new Packemon(cwd)}
+        packemon={new Packemon()}
         addEngines={this.addEngines}
         addExports={this.addExports}
         analyzeBundle={this.analyze}
