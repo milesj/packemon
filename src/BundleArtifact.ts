@@ -1,13 +1,11 @@
 import { isObject, Path, SettingMap, toArray } from '@boost/common';
-import { createDebugger } from '@boost/debug';
+import { createDebugger, Debugger } from '@boost/debug';
 import hash from 'string-hash';
 import { rollup, RollupCache } from 'rollup';
 import Artifact from './Artifact';
 import { NODE_SUPPORTED_VERSIONS, NPM_SUPPORTED_VERSIONS } from './constants';
 import { getRollupConfig } from './rollup/config';
 import { Format, BuildOptions, BundleBuild, Support, Platform } from './types';
-
-const debug = createDebugger('packemon:bundle');
 
 export default class BundleArtifact extends Artifact<BundleBuild> {
   cache?: RollupCache;
@@ -20,6 +18,8 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
 
   // Name of the output file without extension
   outputName: string = '';
+
+  protected debug!: Debugger;
 
   static generateBuild(
     format: Format,
@@ -55,15 +55,19 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
     };
   }
 
+  startup() {
+    this.debug = createDebugger(['packemon', 'bundle', this.package.getSlug(), this.outputName]);
+  }
+
   async cleanup(): Promise<void> {
-    debug('Cleaning %s bundle artifacts', this.outputName);
+    this.debug('Cleaning bundle artifacts');
 
     // Visualizer stats
     await this.removeFiles([this.package.project.root.append(this.getStatsFileName())]);
   }
 
   async build(options: BuildOptions): Promise<void> {
-    debug('Building %s bundle artifact with Rollup', this.outputName);
+    this.debug('Building bundle artifact with Rollup');
 
     const features = this.package.getFeatureFlags();
 
@@ -93,7 +97,7 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
       toArray(output).map(async (out, index) => {
         const { originalFormat = 'lib', ...outOptions } = out;
 
-        debug('\tWriting %s output', originalFormat);
+        this.debug('- Writing `%s` output', originalFormat);
 
         const result = await bundle.write(outOptions);
 
@@ -163,8 +167,6 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
   }
 
   protected addEnginesToPackageJson() {
-    debug('Adding `engines` to %s `package.json`', this.package.getName());
-
     const pkg = this.package.packageJson;
 
     // Update with the lowest supported node version
@@ -180,6 +182,8 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
       .find((build) => build.platform === 'node');
 
     if (nodeBuild) {
+      this.debug('Adding `engines` to `package.json`');
+
       if (!pkg.engines) {
         pkg.engines = {};
       }
@@ -194,7 +198,7 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
   }
 
   protected addEntryPointsToPackageJson() {
-    debug('Adding entry points to %s `package.json`', this.package.getName());
+    this.debug('Adding entry points to `package.json`');
 
     const pkg = this.package.packageJson;
 
@@ -219,8 +223,6 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
   }
 
   protected addExportsToPackageJson() {
-    debug('Adding `exports` to %s `package.json`', this.package.getName());
-
     const pkg = this.package.packageJson;
     const paths: SettingMap = {};
     let hasLib = false;
@@ -243,6 +245,8 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
     }
 
     if (Object.keys(paths).length > 0) {
+      this.debug('Adding `exports` to `package.json`');
+
       if (!pkg.exports) {
         pkg.exports = {};
       }

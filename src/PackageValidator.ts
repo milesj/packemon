@@ -1,23 +1,21 @@
 import http from 'http';
 import https from 'https';
-import { DependencyMap, isModuleName, isObject, Path, PeopleSetting, toArray } from '@boost/common';
+import { DependencyMap, isModuleName, isObject, PeopleSetting, toArray } from '@boost/common';
 import spdxLicenses from 'spdx-license-list';
 import semver from 'semver';
 import execa from 'execa';
-import { PackemonPackage, ValidateOptions } from './types';
+import Package from './Package';
+import { ValidateOptions } from './types';
 
 export default class PackageValidator {
-  contents: PackemonPackage;
-
   errors: string[] = [];
 
-  path: Path;
+  package: Package;
 
   warnings: string[] = [];
 
-  constructor(path: Path, contents: PackemonPackage) {
-    this.path = path;
-    this.contents = contents;
+  constructor(pkg: Package) {
+    this.package = pkg;
   }
 
   hasErrors(): boolean {
@@ -67,16 +65,23 @@ export default class PackageValidator {
   }
 
   protected checkDependencies() {
-    const { contents } = this;
+    this.package.debug('Checking dependencies');
 
-    this.checkDependencyRange(contents.dependencies);
-    this.checkDependencyRange(contents.devDependencies);
-    this.checkDependencyRange(contents.peerDependencies);
-    this.checkDependencyRange(contents.optionalDependencies);
+    const {
+      dependencies,
+      devDependencies,
+      peerDependencies,
+      optionalDependencies,
+    } = this.package.packageJson;
 
-    Object.entries(contents.peerDependencies || {}).forEach(([name, version]) => {
-      const devVersion = contents.devDependencies?.[name];
-      const prodVersion = contents.dependencies?.[name];
+    this.checkDependencyRange(dependencies);
+    this.checkDependencyRange(devDependencies);
+    this.checkDependencyRange(peerDependencies);
+    this.checkDependencyRange(optionalDependencies);
+
+    Object.entries(peerDependencies || {}).forEach(([name, version]) => {
+      const devVersion = devDependencies?.[name];
+      const prodVersion = dependencies?.[name];
 
       if (!devVersion) {
         this.warnings.push(
@@ -107,10 +112,12 @@ export default class PackageValidator {
   }
 
   protected async checkEngines() {
-    const { contents } = this;
-    const nodeConstraint = contents.engines?.node;
-    const npmConstraint = contents.engines?.npm;
-    const yarnConstraint = contents.engines?.yarn;
+    this.package.debug('Checking engines');
+
+    const { engines } = this.package.packageJson;
+    const nodeConstraint = engines?.node;
+    const npmConstraint = engines?.npm;
+    const yarnConstraint = engines?.yarn;
 
     if (nodeConstraint) {
       const nodeVerison = process.version.slice(1);
@@ -144,13 +151,13 @@ export default class PackageValidator {
   }
 
   protected checkEntryPoints() {
-    const { contents } = this;
+    this.package.debug('Checking entry points');
 
     (['main', 'module', 'browser', 'types', 'typings', 'bin', 'man'] as const).forEach((field) => {
-      const relPath = contents?.[field];
+      const relPath = this.package.packageJson[field];
 
       if (!relPath || typeof relPath !== 'string') {
-        if (field === 'main' && !contents.exports) {
+        if (field === 'main' && !exports) {
           this.errors.push('Missing primary entry point. Provide a `main` or `exports` field.');
         }
 
@@ -162,16 +169,18 @@ export default class PackageValidator {
       }
     });
 
-    if (isObject(contents.bin)) {
-      Object.entries(contents.bin).forEach(([name, path]) => {
+    const { bin, man } = this.package.packageJson;
+
+    if (isObject(bin)) {
+      Object.entries(bin).forEach(([name, path]) => {
         if (!this.doesPathExist(path)) {
           this.errors.push(`Binary "${name}" resolves to an invalid or missing file.`);
         }
       });
     }
 
-    if (Array.isArray(contents.man)) {
-      contents.man.forEach((path) => {
+    if (Array.isArray(man)) {
+      man.forEach((path) => {
         if (!this.doesPathExist(path)) {
           this.errors.push(`Manual "${path}" resolves to an invalid or missing file.`);
         }
@@ -180,21 +189,19 @@ export default class PackageValidator {
   }
 
   protected checkLicense() {
-    const { contents } = this;
+    this.package.debug('Checking license');
+
+    const { license } = this.package.packageJson;
     const spdxLicenseTypes = new Set(
       Object.keys(spdxLicenses).map((key) => key.toLocaleLowerCase()),
     );
 
-    if (contents.license) {
+    if (license) {
       toArray(
-        typeof contents.license === 'string'
-          ? { type: contents.license, url: spdxLicenses[contents.license] }
-          : contents.license,
-      ).forEach((license) => {
-        if (!spdxLicenseTypes.has(license.type.toLocaleLowerCase())) {
-          this.errors.push(
-            `Invalid license "${license.type}". Must be an official SPDX license type.`,
-          );
+        typeof license === 'string' ? { type: license, url: spdxLicenses[license] } : license,
+      ).forEach((l) => {
+        if (!spdxLicenseTypes.has(l.type.toLocaleLowerCase())) {
+          this.errors.push(`Invalid license "${l.type}". Must be an official SPDX license type.`);
         }
       });
     } else {
@@ -207,7 +214,9 @@ export default class PackageValidator {
   }
 
   protected async checkLinks() {
-    const { bugs, homepage } = this.contents;
+    this.package.debug('Checking links');
+
+    const { bugs, homepage } = this.package.packageJson;
     const bugsUrl = isObject(bugs) ? bugs.url : bugs;
 
     if (homepage) {
@@ -226,23 +235,25 @@ export default class PackageValidator {
   }
 
   protected checkMetadata() {
-    const { contents } = this;
+    this.package.debug('Checking metadata');
 
-    if (!contents.name) {
+    const { name, version, description, keywords } = this.package.packageJson;
+
+    if (!name) {
       this.errors.push('Missing name.');
-    } else if (!isModuleName(contents.name)) {
+    } else if (!isModuleName(name)) {
       this.errors.push('Invalid name format. Must contain alphanumeric characters and dashes.');
     }
 
-    if (!contents.version) {
+    if (!version) {
       this.errors.push('Missing version.');
     }
 
-    if (!contents.description) {
+    if (!description) {
       this.warnings.push('Missing description.');
     }
 
-    if (!contents.keywords || contents.keywords.length === 0) {
+    if (!keywords || keywords.length === 0) {
       this.warnings.push('Missing keywords.');
     }
 
@@ -252,7 +263,9 @@ export default class PackageValidator {
   }
 
   protected async checkPeople() {
-    const { author, contributors } = this.contents;
+    this.package.debug('Checking author and contributors');
+
+    const { author, contributors } = this.package.packageJson;
 
     if (!author) {
       this.warnings.push('Missing author.');
@@ -290,7 +303,9 @@ export default class PackageValidator {
   }
 
   protected async checkRepository() {
-    const repo = this.contents.repository;
+    this.package.debug('Checking repository');
+
+    const repo = this.package.packageJson.repository;
     const url = isObject(repo) ? repo.url : repo;
 
     if (!url) {
@@ -311,7 +326,7 @@ export default class PackageValidator {
   }
 
   protected doesPathExist(path: string): boolean {
-    return this.path.append(path).exists();
+    return this.package.path.append(path).exists();
   }
 
   protected doesUrlExist(url: string): Promise<boolean> {

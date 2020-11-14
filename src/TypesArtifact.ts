@@ -2,12 +2,10 @@ import fs from 'fs-extra';
 import path from 'path';
 import glob from 'fast-glob';
 import { Path } from '@boost/common';
-import { createDebugger } from '@boost/debug';
+import { createDebugger, Debugger } from '@boost/debug';
 import { Extractor, ExtractorConfig } from '@microsoft/api-extractor';
 import Artifact from './Artifact';
 import { APIExtractorStructure, DeclarationType, TypesBuild } from './types';
-
-const debug = createDebugger('packemon:types');
 
 // eslint-disable-next-line
 const extractorConfig = require(path.join(__dirname, '../api-extractor.json')) as {
@@ -21,6 +19,12 @@ const extractorConfig = require(path.join(__dirname, '../api-extractor.json')) a
 export default class TypesArtifact extends Artifact<TypesBuild> {
   declarationType: DeclarationType = 'standard';
 
+  protected debug!: Debugger;
+
+  startup() {
+    this.debug = createDebugger(['packemon', 'types', this.package.getSlug(), 'dts']);
+  }
+
   async cleanup(): Promise<void> {
     // API extractor config files
     await this.removeFiles(
@@ -29,18 +33,18 @@ export default class TypesArtifact extends Artifact<TypesBuild> {
   }
 
   async build(): Promise<void> {
-    debug('Building %s types artifact with TypeScript', this.declarationType);
+    this.debug('Building "%s" types artifact with TypeScript', this.declarationType);
 
     const tsConfig = this.package.tsconfigJson;
 
     // Compile the current projects declarations
-    debug('Generating declarations at the root using `tsc`');
+    this.debug('Generating declarations at the root using `tsc`');
 
     await this.package.project.generateDeclarations();
 
     // Combine all DTS files into a single file for each input
     if (this.declarationType === 'api') {
-      debug('Combining declarations into a single API declaration file');
+      this.debug('Combining declarations into a single API declaration file');
 
       // Resolved compiler options use absolute paths, so we should match
       let declBuildPath = this.package.path.append('dts');
@@ -58,7 +62,7 @@ export default class TypesArtifact extends Artifact<TypesBuild> {
 
       // Remove the TS output directory to reduce package size.
       // We do this in the background to speed up the CLI process!
-      debug('Removing old and unnecessary declarations in the background');
+      this.debug('Removing old and unnecessary declarations in the background');
 
       void this.removeDeclarationBuild(declBuildPath);
     }

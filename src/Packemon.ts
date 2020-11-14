@@ -77,7 +77,7 @@ export default class Packemon {
   }
 
   async build(baseOptions: BuildOptions) {
-    debug('Starting build process');
+    debug('Starting `build` process');
 
     const options = optimal(baseOptions, {
       addEngines: bool(),
@@ -122,7 +122,7 @@ export default class Packemon {
   }
 
   async clean() {
-    debug('Starting clean process');
+    debug('Starting `clean` process');
 
     await this.findPackages();
     await this.cleanTemporaryFiles();
@@ -152,7 +152,7 @@ export default class Packemon {
       pathsToRemove.map(
         (path) =>
           new Promise((resolve, reject) => {
-            debug('\t%s', path);
+            debug('- %s', path);
 
             rimraf(path, (error) => {
               if (error) {
@@ -167,7 +167,7 @@ export default class Packemon {
   }
 
   async validate(baseOptions: ValidateOptions): Promise<PackageValidator[]> {
-    debug('Starting validation process');
+    debug('Starting `validate` process');
 
     const options = optimal(baseOptions, {
       deps: bool(true),
@@ -181,7 +181,7 @@ export default class Packemon {
 
     await this.findPackages();
 
-    return Promise.all(this.packages.map((pkg) => pkg.validate(options)));
+    return Promise.all(this.packages.map((pkg) => new PackageValidator(pkg).validate(options)));
   }
 
   protected async cleanTemporaryFiles() {
@@ -221,7 +221,7 @@ export default class Packemon {
         const contents = json.parse<PackemonPackage>(await fs.readFile(pkgPath.path(), 'utf8'));
 
         debug(
-          '\t%s - %s',
+          '- %s: %s',
           contents.name,
           pkgPath.path().replace(this.root.path(), '').replace('package.json', ''),
         );
@@ -284,7 +284,7 @@ export default class Packemon {
         pkg.addArtifact(artifact);
       }
 
-      debug('\t%s - %s', pkg.getName(), pkg.artifacts.join(', '));
+      debug('- %s: %s', pkg.getName(), pkg.artifacts.join(', '));
     });
   }
 

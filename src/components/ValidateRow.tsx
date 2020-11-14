@@ -15,7 +15,7 @@ export default function ValidateRow({ validator }: ValidateRowProps) {
     <Box flexDirection="column">
       <Box>
         <Style bold type="default">
-          {validator.contents.name}
+          {validator.package.getName()}
         </Style>
       </Box>
 

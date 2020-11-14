@@ -3,9 +3,9 @@
 import fs from 'fs-extra';
 import ts from 'typescript';
 import { Memoize, Path, toArray } from '@boost/common';
+import { createDebugger, Debugger } from '@boost/debug';
 import Artifact from './Artifact';
 import Project from './Project';
-import PackageValidator from './PackageValidator';
 import {
   FeatureFlags,
   PackageConfig,
@@ -13,13 +13,14 @@ import {
   PackemonPackage,
   PackemonPackageConfig,
   TSConfigStructure,
-  ValidateOptions,
 } from './types';
 
 export default class Package {
   readonly artifacts: Artifact[] = [];
 
   configs: PackageConfig[] = [];
+
+  readonly debug!: Debugger;
 
   readonly packageJson: PackemonPackage;
 
@@ -36,15 +37,20 @@ export default class Package {
     this.path = path;
     this.packageJsonPath = this.path.append('package.json');
     this.packageJson = contents;
+    this.debug = createDebugger(['packemon', 'package', this.getSlug()]);
   }
 
   addArtifact(artifact: Artifact): Artifact {
     this.artifacts.push(artifact);
 
+    artifact.startup();
+
     return artifact;
   }
 
   async build(options: BuildOptions): Promise<void> {
+    this.debug('Building artifacts');
+
     // Build artifacts in parallel
     await Promise.all(
       this.artifacts.map(async (artifact) => {
@@ -73,11 +79,9 @@ export default class Package {
   }
 
   async cleanup(): Promise<void> {
-    await Promise.all(this.artifacts.map((artifact) => artifact.cleanup()));
-  }
+    this.debug('Cleaning artifacts');
 
-  async validate(options: ValidateOptions): Promise<PackageValidator> {
-    return new PackageValidator(this.path, this.packageJson).validate(options);
+    await Promise.all(this.artifacts.map((artifact) => artifact.cleanup()));
   }
 
   getName(): string {
@@ -85,14 +89,22 @@ export default class Package {
   }
 
   @Memoize()
+  // eslint-disable-next-line complexity
   getFeatureFlags(): FeatureFlags {
-    const flags: FeatureFlags = this.root ? {} : this.project.rootPackage.getFeatureFlags();
+    this.debug('Loading feature flags');
+
+    const flags: FeatureFlags =
+      this.root || !this.project.isWorkspacesEnabled()
+        ? {}
+        : this.project.rootPackage.getFeatureFlags();
 
     flags.workspaces = this.project.workspaces;
 
     // React
     if (this.hasDependency('react')) {
       flags.react = true;
+
+      this.debug('- React');
     }
 
     // TypeScript
@@ -106,6 +118,12 @@ export default class Package {
       flags.typescript = true;
       flags.decorators = Boolean(tsConfig?.options.experimentalDecorators);
       flags.strict = Boolean(tsConfig?.options.strict);
+
+      this.debug(
+        `- TypeScript (${flags.strict ? 'strict' : 'non-strict'}, ${
+          flags.decorators ? 'decorators' : 'non-decorators'
+        })`,
+      );
     }
 
     // Flow
@@ -117,9 +135,15 @@ export default class Package {
       flowconfigPath.exists()
     ) {
       flags.flow = true;
+
+      this.debug('- Flow');
     }
 
     return flags;
+  }
+
+  getSlug(): string {
+    return this.path.name(true);
   }
 
   hasDependency(name: string): boolean {

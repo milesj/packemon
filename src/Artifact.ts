@@ -38,6 +38,8 @@ export default abstract class Artifact<T extends object = {}> {
     return this.state === 'failed';
   }
 
+  startup() {}
+
   protected logWithSource(
     message: string,
     level: 'info' | 'warn' | 'error',

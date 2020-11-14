@@ -16,7 +16,7 @@ export default function Validate({ validators }: ValidateProps) {
   const errorCount = failedValidators.filter((validator) => validator.hasErrors()).length;
   const errorMessage =
     errorCount === 1
-      ? `Found errors in ${failedValidators[0].contents.name} package!`
+      ? `Found errors in ${failedValidators[0].package.getName()} package!`
       : `Found errors in ${errorCount} packages!`;
 
   useEffect(() => {
@@ -32,7 +32,7 @@ export default function Validate({ validators }: ValidateProps) {
   return (
     <>
       {failedValidators.map((validator, i) => (
-        <React.Fragment key={validator.contents.name}>
+        <React.Fragment key={validator.package.getName()}>
           {i > 0 && <Box marginTop={1} />}
           <ValidateRow validator={validator} />
         </React.Fragment>
