@@ -8,7 +8,7 @@ import { ValidateOptions } from '../types';
 import useRenderLoop from './hooks/useRenderLoop';
 import useOnMount from './hooks/useOnMount';
 
-export interface ValidateProps extends Partial<ValidateOptions> {
+export interface ValidateProps extends ValidateOptions {
   packemon: Packemon;
   onValidated?: () => void;
 }

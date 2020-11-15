@@ -64,13 +64,13 @@ export interface PackageConfig {
 export type ArtifactState = 'pending' | 'building' | 'passed' | 'failed';
 
 export interface BuildOptions {
-  addEngines: boolean;
-  addExports: boolean;
-  analyzeBundle: AnalyzeType;
-  concurrency: number;
-  generateDeclaration: DeclarationType;
-  skipPrivate: boolean;
-  timeout: number;
+  addEngines?: boolean;
+  addExports?: boolean;
+  analyzeBundle?: AnalyzeType;
+  concurrency?: number;
+  generateDeclaration?: DeclarationType;
+  skipPrivate?: boolean;
+  timeout?: number;
 }
 
 export interface BuildResult {
@@ -93,13 +93,13 @@ export interface TypesBuild {
 // VALIDATE
 
 export interface ValidateOptions {
-  deps: boolean;
-  engines: boolean;
-  entries: boolean;
-  license: boolean;
-  links: boolean;
-  people: boolean;
-  repo: boolean;
+  deps?: boolean;
+  engines?: boolean;
+  entries?: boolean;
+  license?: boolean;
+  links?: boolean;
+  people?: boolean;
+  repo?: boolean;
 }
 
 // CONFIG

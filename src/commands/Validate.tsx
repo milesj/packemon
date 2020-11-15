@@ -5,7 +5,7 @@ import { ValidateOptions } from '../types';
 import Validate from '../components/Validate';
 
 @Config('validate', 'Validate package metadata and configuration')
-export class ValidateCommand extends Command<GlobalOptions & ValidateOptions> {
+export class ValidateCommand extends Command<GlobalOptions & Required<ValidateOptions>> {
   @Arg.Flag('Check that dependencies have valid versions and constraints')
   deps: boolean = true;
 

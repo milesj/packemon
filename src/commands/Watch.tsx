@@ -7,7 +7,7 @@ import Packemon from '../Packemon';
 @Config('watch', 'Watch local files for changes and rebuild')
 export class WatchCommand extends Command<GlobalOptions> {
   @Arg.Number('Number of milliseconds to wait after a change before triggering a rebuild')
-  debounce: number = 350;
+  debounce: number = 150;
 
   @Arg.Flag('Poll for file changes instead of using file system events')
   poll: boolean = false;
@@ -95,19 +95,7 @@ export class WatchCommand extends Command<GlobalOptions> {
     try {
       const start = Date.now();
 
-      await Promise.all(
-        pkgs.map((pkg) =>
-          pkg.build({
-            addEngines: false,
-            addExports: false,
-            analyzeBundle: 'none',
-            concurrency: 1,
-            generateDeclaration: 'none',
-            skipPrivate: false,
-            timeout: 0,
-          }),
-        ),
-      );
+      await Promise.all(pkgs.map((pkg) => pkg.build({})));
 
       this.log(
         applyStyle('Built %s in %s', 'success'),

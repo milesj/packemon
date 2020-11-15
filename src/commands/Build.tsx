@@ -6,7 +6,7 @@ import Packemon from '../Packemon';
 import { AnalyzeType, BuildOptions, DeclarationType } from '../types';
 
 @Config('build', 'Build standardized packages for distribution')
-export class BuildCommand extends Command<GlobalOptions & BuildOptions> {
+export class BuildCommand extends Command<GlobalOptions & Required<BuildOptions>> {
   @Arg.Flag('Add `engine` versions to each `package.json`')
   addEngines: boolean = false;
 
