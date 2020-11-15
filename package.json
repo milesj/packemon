@@ -9,6 +9,7 @@
     "package"
   ],
   "scripts": {
+    "docs": "cd website && yarn run start",
     "prepare": "beemo create-config --silent",
     "setup": "beemo typescript",
     "build": "yarn run packemon build",
