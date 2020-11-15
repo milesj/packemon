@@ -16,6 +16,7 @@ export * from './commands/Build';
 export * from './commands/Clean';
 export * from './commands/Pack';
 export * from './commands/Validate';
+export * from './commands/Watch';
 export * from './constants';
 export * from './types';
 

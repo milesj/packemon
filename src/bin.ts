@@ -1,5 +1,5 @@
 import { Program, checkPackageOutdated } from '@boost/cli';
-import { BuildCommand, CleanCommand, PackCommand, ValidateCommand } from '.';
+import { BuildCommand, CleanCommand, PackCommand, ValidateCommand, WatchCommand } from '.';
 
 const version = String(require('../package.json').version);
 
@@ -16,7 +16,8 @@ async function run() {
     .register(new BuildCommand())
     .register(new CleanCommand())
     .register(new PackCommand())
-    .register(new ValidateCommand());
+    .register(new ValidateCommand())
+    .register(new WatchCommand());
 
   await program.runAndExit(process.argv);
 }
