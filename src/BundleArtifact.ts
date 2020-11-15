@@ -97,7 +97,7 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
       toArray(output).map(async (out, index) => {
         const { originalFormat = 'lib', ...outOptions } = out;
 
-        this.debug('- Writing `%s` output', originalFormat);
+        this.debug(' - Writing `%s` output', originalFormat);
 
         const result = await bundle.write(outOptions);
 

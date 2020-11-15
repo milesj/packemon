@@ -317,7 +317,7 @@ export default class PackageValidator {
     }
 
     if (isObject(repo)) {
-      const dir = (repo as { directory?: string }).directory;
+      const dir = repo.directory;
 
       if (dir && !this.doesPathExist(dir)) {
         this.errors.push(`Repository directory "${dir}" does not exist.`);

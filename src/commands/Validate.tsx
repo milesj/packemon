@@ -4,10 +4,8 @@ import Packemon from '../Packemon';
 import { ValidateOptions } from '../types';
 import Validate from '../components/Validate';
 
-export type ValidateParams = [string];
-
 @Config('validate', 'Validate package metadata and configuration')
-export class ValidateCommand extends Command<GlobalOptions & ValidateOptions, ValidateParams> {
+export class ValidateCommand extends Command<GlobalOptions & ValidateOptions> {
   @Arg.Flag('Check that dependencies have valid versions and constraints')
   deps: boolean = true;
 
@@ -29,22 +27,18 @@ export class ValidateCommand extends Command<GlobalOptions & ValidateOptions, Va
   @Arg.Flag('Check that `repository` exists and is a valid URL')
   repo: boolean = true;
 
-  @Arg.Params<ValidateParams>({
-    description: 'Project root that contains a `package.json`',
-    label: 'cwd',
-    type: 'string',
-  })
-  async run(cwd: string = process.cwd()) {
-    const validators = await new Packemon(cwd).validate({
-      deps: this.deps,
-      engines: this.engines,
-      entries: this.entries,
-      license: this.license,
-      links: this.links,
-      people: this.people,
-      repo: this.repo,
-    });
-
-    return <Validate validators={validators} />;
+  run() {
+    return (
+      <Validate
+        packemon={new Packemon()}
+        deps={this.deps}
+        engines={this.engines}
+        entries={this.engines}
+        license={this.license}
+        links={this.links}
+        people={this.people}
+        repo={this.repo}
+      />
+    );
   }
 }
