@@ -9,7 +9,7 @@ import { BuildOptions } from '../types';
 import useRenderLoop from './hooks/useRenderLoop';
 import useOnMount from './hooks/useOnMount';
 
-export interface BuildProps extends Partial<BuildOptions> {
+export interface BuildProps extends BuildOptions {
   packemon: Packemon;
   onBuilt?: () => void;
 }

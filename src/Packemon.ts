@@ -9,7 +9,7 @@ import {
   toArray,
   WorkspacePackage,
 } from '@boost/common';
-import { createDebugger } from '@boost/debug';
+import { createDebugger, Debugger } from '@boost/debug';
 import { Event } from '@boost/event';
 import { PooledPipeline, Context } from '@boost/pipeline';
 import Package from './Package';
@@ -31,7 +31,6 @@ import {
   ValidateOptions,
 } from './types';
 
-const debug = createDebugger('packemon:core');
 const { array, bool, custom, number, object, string, union } = predicates;
 
 const platformPredicate = string<Platform>('browser').oneOf(['node', 'browser']);
@@ -59,6 +58,8 @@ const blueprint: Blueprint<Required<PackemonPackageConfig>> = {
 };
 
 export default class Packemon {
+  readonly debug: Debugger;
+
   readonly onPackageBuilt = new Event<[Package]>('package-built');
 
   packages: Package[] = [];
@@ -70,14 +71,15 @@ export default class Packemon {
   constructor(cwd: string = process.cwd()) {
     this.root = Path.resolve(cwd);
     this.project = new Project(this.root);
+    this.debug = createDebugger('packemon:core');
 
-    debug('Initializing packemon in project %s', this.root);
+    this.debug('Initializing packemon in project %s', this.root);
 
     this.project.checkEngineVersionConstraint();
   }
 
   async build(baseOptions: Partial<BuildOptions>) {
-    debug('Starting `build` process');
+    this.debug('Starting `build` process');
 
     const options = optimal(baseOptions, {
       addEngines: bool(),
@@ -120,7 +122,7 @@ export default class Packemon {
   }
 
   async clean() {
-    debug('Starting `clean` process');
+    this.debug('Starting `clean` process');
 
     await this.findPackages();
     await this.cleanTemporaryFiles();
@@ -148,7 +150,7 @@ export default class Packemon {
       pathsToRemove.map(
         (path) =>
           new Promise((resolve, reject) => {
-            debug(' - %s', path);
+            this.debug(' - %s', path);
 
             rimraf(path, (error) => {
               if (error) {
@@ -163,7 +165,7 @@ export default class Packemon {
   }
 
   async validate(baseOptions: Partial<ValidateOptions>): Promise<PackageValidator[]> {
-    debug('Starting `validate` process');
+    this.debug('Starting `validate` process');
 
     const options = optimal(baseOptions, {
       deps: bool(true),
@@ -180,18 +182,12 @@ export default class Packemon {
     return Promise.all(this.packages.map((pkg) => new PackageValidator(pkg).validate(options)));
   }
 
-  protected async cleanTemporaryFiles() {
-    debug('Cleaning temporary build files');
-
-    await Promise.all(this.packages.map((pkg) => pkg.cleanup()));
-  }
-
-  protected async findPackages(skipPrivate: boolean = false) {
+  async findPackages(skipPrivate: boolean = false) {
     if (this.packages.length > 0) {
       return;
     }
 
-    debug('Finding packages in project');
+    this.debug('Finding packages in project');
 
     const pkgPaths: Path[] = [];
 
@@ -199,7 +195,7 @@ export default class Packemon {
 
     // Multi package repo
     if (this.project.workspaces.length > 0) {
-      debug('Workspaces enabled, finding packages using globs');
+      this.debug('Workspaces enabled, finding packages using globs');
 
       this.project.getWorkspacePackagePaths().forEach((filePath) => {
         pkgPaths.push(Path.create(filePath).append('package.json'));
@@ -207,12 +203,12 @@ export default class Packemon {
 
       // Single package repo
     } else {
-      debug('Not workspaces enabled, using root as package');
+      this.debug('Not workspaces enabled, using root as package');
 
       pkgPaths.push(this.root.append('package.json'));
     }
 
-    debug('Found %d package(s)', pkgPaths.length);
+    this.debug('Found %d package(s)', pkgPaths.length);
 
     const privatePackageNames: string[] = [];
 
@@ -220,7 +216,7 @@ export default class Packemon {
       pkgPaths.map(async (pkgPath) => {
         const contents = json.parse<PackemonPackage>(await fs.readFile(pkgPath.path(), 'utf8'));
 
-        debug(
+        this.debug(
           ' - %s: %s',
           contents.name,
           pkgPath.path().replace(this.root.path(), '').replace('package.json', ''),
@@ -241,14 +237,14 @@ export default class Packemon {
     if (skipPrivate) {
       packages = packages.filter((pkg) => !pkg.package.private);
 
-      debug('Filtering private packages: %s', privatePackageNames.join(', '));
+      this.debug('Filtering private packages: %s', privatePackageNames.join(', '));
     }
 
     this.packages = this.validateAndPreparePackages(packages);
   }
 
-  protected generateArtifacts(declarationType: DeclarationType) {
-    debug('Generating build artifacts for packages');
+  generateArtifacts(declarationType?: DeclarationType) {
+    this.debug('Generating build artifacts for packages');
 
     this.packages.forEach((pkg) => {
       const typesBuilds: TypesBuild[] = [];
@@ -277,15 +273,21 @@ export default class Packemon {
         });
       });
 
-      if (declarationType !== 'none') {
+      if (declarationType && declarationType !== 'none') {
         const artifact = new TypesArtifact(pkg, typesBuilds);
         artifact.declarationType = declarationType;
 
         pkg.addArtifact(artifact);
       }
 
-      debug(' - %s: %s', pkg.getName(), pkg.artifacts.join(', '));
+      this.debug(' - %s: %s', pkg.getName(), pkg.artifacts.join(', '));
     });
+  }
+
+  protected async cleanTemporaryFiles() {
+    this.debug('Cleaning temporary build files');
+
+    await Promise.all(this.packages.map((pkg) => pkg.cleanup()));
   }
 
   protected requiresSharedLib(pkg: Package): boolean {
@@ -308,13 +310,13 @@ export default class Packemon {
   }
 
   protected validateAndPreparePackages(packages: WorkspacePackage<PackemonPackage>[]): Package[] {
-    debug('Validating found packages');
+    this.debug('Validating found packages');
 
     const nextPackages: Package[] = [];
 
     packages.forEach(({ metadata, package: contents }) => {
       if (!contents.packemon) {
-        debug('No `packemon` configuration found for %s, skipping', contents.name);
+        this.debug('No `packemon` configuration found for %s, skipping', contents.name);
 
         return;
       }
