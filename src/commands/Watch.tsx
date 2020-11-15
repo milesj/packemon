@@ -49,7 +49,8 @@ export class WatchCommand extends Command<GlobalOptions> {
     this.log('Watching for changes...');
   }
 
-  enqueueRebuild = (event: string, path: string) => {
+  @Bind()
+  enqueueRebuild(event: string, path: string) {
     if (event !== 'add' && event !== 'change' && event !== 'unlink') {
       return;
     }
@@ -62,7 +63,7 @@ export class WatchCommand extends Command<GlobalOptions> {
       this.packagesToRebuild.add(changedPkg);
       this.triggerRebuilds();
     }
-  };
+  }
 
   triggerRebuilds() {
     if (this.rebuildTimer) {
@@ -74,7 +75,6 @@ export class WatchCommand extends Command<GlobalOptions> {
     }, this.debounce);
   }
 
-  @Bind()
   async rebuildPackages() {
     if (this.rebuilding) {
       this.triggerRebuilds();

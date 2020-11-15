@@ -1,5 +1,5 @@
 ---
-title: Validating packages
+title: Validate
 sidebar_label: validate
 ---
 
@@ -14,7 +14,6 @@ pre-publish step. It accomplishes this by inspecting each package's `package.jso
 ```json title="package.json"
 {
   "scripts": {
-    "release": "yarn run build && yarn run validate && yarn publish",
     "validate": "packemon validate"
   }
 }

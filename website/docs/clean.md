@@ -1,5 +1,5 @@
 ---
-title: Cleaning packages
+title: Clean
 sidebar_label: clean
 ---
 
