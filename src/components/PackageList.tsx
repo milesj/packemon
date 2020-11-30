@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useStdout } from 'ink';
-import { screen } from '@boost/terminal';
+import React from 'react';
+import { useDimensions } from '@boost/cli';
 import Package from '../Package';
 import PackageRow from './PackageRow';
 
@@ -9,20 +8,7 @@ export interface PackageListProps {
 }
 
 export default function PackageList({ packages }: PackageListProps) {
-  const [height, setHeight] = useState(screen.size().rows);
-  const { stdout } = useStdout();
-
-  useEffect(() => {
-    const handler = () => {
-      setHeight(screen.size().rows);
-    };
-
-    stdout?.on('resize', handler);
-
-    return () => {
-      stdout?.off('resize', handler);
-    };
-  }, [stdout]);
+  const { height } = useDimensions();
 
   // We dont want to show more packages than the amount of rows available in the terminal
   const visiblePackages: Package[] = [];
