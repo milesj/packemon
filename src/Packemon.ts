@@ -91,8 +91,8 @@ export default class Packemon {
       timeout: number().gte(0),
     });
 
-    await this.findPackages(options.skipPrivate);
-    await this.generateArtifacts(options.generateDeclaration);
+    await this.findConfiguredPackages(options.skipPrivate);
+    this.generateArtifacts(options.generateDeclaration);
 
     // Build packages in parallel using a pool
     const pipeline = new PooledPipeline(new Context());
@@ -124,7 +124,7 @@ export default class Packemon {
   async clean() {
     this.debug('Starting `clean` process');
 
-    await this.findPackages();
+    await this.findConfiguredPackages();
     await this.cleanTemporaryFiles();
 
     const formatFolders = '{cjs,dts,esm,lib,mjs,umd}';
@@ -156,7 +156,7 @@ export default class Packemon {
               if (error) {
                 reject(error);
               } else {
-                resolve();
+                resolve(undefined);
               }
             });
           }),
@@ -177,16 +177,20 @@ export default class Packemon {
       repo: bool(true),
     });
 
-    await this.findPackages();
+    await this.findConfiguredPackages();
 
     return Promise.all(this.packages.map((pkg) => new PackageValidator(pkg).validate(options)));
   }
 
-  async findPackages(skipPrivate: boolean = false) {
+  async findConfiguredPackages(skipPrivate: boolean = false) {
     if (this.packages.length > 0) {
       return;
     }
 
+    this.packages = this.validateAndPreparePackages(await this.findPackages(skipPrivate));
+  }
+
+  async findPackages(skipPrivate: boolean = false) {
     this.debug('Finding packages in project');
 
     const pkgPaths: Path[] = [];
@@ -240,7 +244,7 @@ export default class Packemon {
       this.debug('Filtering private packages: %s', privatePackageNames.join(', '));
     }
 
-    this.packages = this.validateAndPreparePackages(packages);
+    return packages;
   }
 
   generateArtifacts(declarationType?: DeclarationType) {
