@@ -1,5 +1,5 @@
 import React from 'react';
-import { Bind, Path, WorkspacePackage } from '@boost/common';
+import { Path, WorkspacePackage } from '@boost/common';
 import { Arg, Command, Config, GlobalOptions } from '@boost/cli';
 import Packemon from '../Packemon';
 import Package from '../Package';
@@ -7,7 +7,7 @@ import Init from '../components/Init';
 import { PackemonPackage, PackemonPackageConfig } from '../types';
 import { DEFAULT_FORMAT, DEFAULT_INPUT, DEFAULT_PLATFORM, DEFAULT_SUPPORT } from '../constants';
 
-@Config('init', 'Initialize Packemon for all packages')
+@Config('init', 'Initialize and configure Packemon for packages')
 export class InitCommand extends Command<GlobalOptions> {
   @Arg.Flag('Override already configured packages')
   force: boolean = false;
@@ -92,7 +92,6 @@ export class InitCommand extends Command<GlobalOptions> {
     return config;
   }
 
-  @Bind()
   async writeConfigsToPackageJsons(
     packages: WorkspacePackage<PackemonPackage>[],
     configs: Record<string, PackemonPackageConfig>,

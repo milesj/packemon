@@ -2,10 +2,6 @@
 title: Package configuration
 ---
 
-Packemon has been designed to build and prepare packages for distribution, and as such, supports
-workspaces (monorepos) or single packages (solorepos). By default, only packages configured for
-Packemon will be built. This allows specific packages to be completely ignored if need be.
-
 To configure a package, add a `packemon` block to their `package.json`, with any of the following
 optional options. We suggest defining a platform at minimum.
 
