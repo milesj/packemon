@@ -9,6 +9,9 @@ import { DEFAULT_FORMAT, DEFAULT_INPUT, DEFAULT_PLATFORM, DEFAULT_SUPPORT } from
 
 @Config('init', 'Initialize Packemon for all packages')
 export class InitCommand extends Command<GlobalOptions> {
+  @Arg.Flag('Override already configured packages')
+  force: boolean = false;
+
   @Arg.Flag('Skip `private` packages')
   skipPrivate: boolean = false;
 
@@ -18,7 +21,19 @@ export class InitCommand extends Command<GlobalOptions> {
     this.packemon = new Packemon();
 
     const packages = await this.packemon.findPackages(this.skipPrivate);
-    const unconfiguredPackages = packages.filter((pkg) => !pkg.package.packemon);
+    const unconfiguredPackages = this.force
+      ? packages
+      : packages.filter((pkg) => !pkg.package.packemon);
+
+    if (unconfiguredPackages.length === 0) {
+      if (packages.length === 0) {
+        this.log.error('No packages found in project.');
+      } else {
+        this.log.info('All packages have been configured. Pass --force to override.');
+      }
+
+      return Promise.resolve();
+    }
 
     return (
       <Init
@@ -41,7 +56,7 @@ export class InitCommand extends Command<GlobalOptions> {
     const config: PackemonPackageConfig = {};
 
     if (format) {
-      if (Array.isArray(format) && format.length === 0) {
+      if (Array.isArray(format) && format.length === 1) {
         if (format[0] !== DEFAULT_FORMAT) {
           [config.format] = format;
         }
@@ -51,14 +66,8 @@ export class InitCommand extends Command<GlobalOptions> {
     }
 
     if (inputs) {
-      config.inputs = {};
-
       if (!(Object.keys(inputs).length === 1 && inputs.index === DEFAULT_INPUT)) {
-        Object.assign(config.inputs, inputs);
-      }
-
-      if (Object.keys(config.inputs).length === 0) {
-        delete config.inputs;
+        config.inputs = inputs;
       }
     }
 
@@ -67,7 +76,7 @@ export class InitCommand extends Command<GlobalOptions> {
     }
 
     if (platform) {
-      if (Array.isArray(platform) && platform.length === 0) {
+      if (Array.isArray(platform) && platform.length === 1) {
         if (platform[0] !== DEFAULT_PLATFORM) {
           [config.platform] = platform;
         }
