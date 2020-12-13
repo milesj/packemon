@@ -2,7 +2,7 @@ import React from 'react';
 import { toArray } from '@boost/common';
 import { Style } from '@boost/cli';
 import { NODE_SUPPORTED_VERSIONS, BROWSER_TARGETS } from '../constants';
-import { PackageConfig } from '../types';
+import { PackageConfig, Platform, Support } from '../types';
 
 export interface EnvironmentProps {
   configs: PackageConfig[];
@@ -18,17 +18,28 @@ function trimVersion(version: string) {
   return parts.join('.');
 }
 
-export default function Environment({ configs }: EnvironmentProps) {
+export function getVersionsCombo(platforms: Platform[], support: Support): Set<string> {
   const versions = new Set<string>();
 
+  platforms.forEach((platform) => {
+    if (platform === 'node') {
+      versions.add(`Node v${trimVersion(NODE_SUPPORTED_VERSIONS[support])}`);
+    } else if (platform === 'browser') {
+      const targets =
+        support === 'experimental' ? ['last 2 versions'] : toArray(BROWSER_TARGETS[support]);
+
+      versions.add(`Browser (${targets.join(', ')})`);
+    }
+  });
+
+  return versions;
+}
+
+export default function Environment({ configs }: EnvironmentProps) {
+  let versions = new Set<string>();
+
   configs.forEach(({ platforms, support }) => {
-    platforms.forEach((platform) => {
-      if (platform === 'node') {
-        versions.add(`Node v${trimVersion(NODE_SUPPORTED_VERSIONS[support])}`);
-      } else if (platform === 'browser') {
-        versions.add(`Browser (${toArray(BROWSER_TARGETS[support]).join(', ')})`);
-      }
-    });
+    versions = new Set([...versions, ...getVersionsCombo(platforms, support)]);
   });
 
   return <Style type="muted">{Array.from(versions).sort().join(', ')}</Style>;

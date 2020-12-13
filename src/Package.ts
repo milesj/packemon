@@ -18,7 +18,7 @@ import {
 export default class Package {
   readonly artifacts: Artifact[] = [];
 
-  configs: PackageConfig[] = [];
+  readonly configs: PackageConfig[] = [];
 
   readonly debug!: Debugger;
 
@@ -195,6 +195,10 @@ export default class Package {
     });
   }
 
+  async syncPackageJson() {
+    await fs.writeJson(this.packageJsonPath.path(), this.packageJson, { spaces: 2 });
+  }
+
   @Memoize()
   get tsconfigJson(): TSConfigStructure | undefined {
     const path = this.path.append('tsconfig.json');
@@ -219,9 +223,5 @@ export default class Package {
     }
 
     return result;
-  }
-
-  protected async syncPackageJson() {
-    await fs.writeJson(this.packageJsonPath.path(), this.packageJson, { spaces: 2 });
   }
 }

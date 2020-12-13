@@ -27,8 +27,9 @@ export class WatchCommand extends Command<GlobalOptions> {
     packemon.debug('Starting `watch` process');
 
     // Generate all our build artifacts
-    await packemon.findPackages();
-    await packemon.generateArtifacts();
+    await packemon.loadConfiguredPackages();
+
+    packemon.generateArtifacts();
 
     // Instantiate the watcher for each package source
     const watchPaths = packemon.packages.map((pkg) => pkg.path.append('src/**/*').path());

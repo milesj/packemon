@@ -7,12 +7,14 @@ import {
   Platform,
   Project,
   Support,
+  DEFAULT_FORMAT,
+  DEFAULT_SUPPORT,
 } from './index';
 
 // Extract attributes from environment
-const format = (process.env.PACKEMON_FORMAT || 'lib') as Format;
+const format = (process.env.PACKEMON_FORMAT || DEFAULT_FORMAT) as Format;
 const platform = (process.env.PACKEMON_PLATFORM || 'node') as Platform;
-const support = (process.env.PACKEMON_SUPPORT || 'stable') as Support;
+const support = (process.env.PACKEMON_SUPPORT || DEFAULT_SUPPORT) as Support;
 
 const project = new Project(process.cwd());
 const artifact = new BundleArtifact(project.rootPackage, [{ format, platform, support }]);

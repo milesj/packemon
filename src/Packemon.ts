@@ -30,13 +30,20 @@ import {
   TypesBuild,
   ValidateOptions,
 } from './types';
+import { DEFAULT_FORMAT, DEFAULT_INPUT, DEFAULT_PLATFORM, DEFAULT_SUPPORT } from './constants';
 
 const { array, bool, custom, number, object, string, union } = predicates;
 
-const platformPredicate = string<Platform>('browser').oneOf(['node', 'browser']);
-const nodeFormatPredicate = string<NodeFormat>('lib').oneOf(['lib', 'mjs', 'cjs']);
-const browserFormatPredicate = string<BrowserFormat>('lib').oneOf(['lib', 'esm', 'umd']);
-const joinedFormatPredicate = string<Format>('lib').oneOf(['lib', 'esm', 'umd', 'mjs', 'cjs']);
+const platformPredicate = string<Platform>(DEFAULT_PLATFORM).oneOf(['node', 'browser']);
+const nodeFormatPredicate = string<NodeFormat>(DEFAULT_FORMAT).oneOf(['lib', 'mjs', 'cjs']);
+const browserFormatPredicate = string<BrowserFormat>(DEFAULT_FORMAT).oneOf(['lib', 'esm', 'umd']);
+const joinedFormatPredicate = string<Format>(DEFAULT_FORMAT).oneOf([
+  'lib',
+  'esm',
+  'umd',
+  'mjs',
+  'cjs',
+]);
 const formatPredicate = custom<Format, PackemonPackageConfig>((format, schema) => {
   const platforms = new Set(toArray(schema.struct.platform));
 
@@ -47,14 +54,14 @@ const formatPredicate = custom<Format, PackemonPackageConfig>((format, schema) =
   }
 
   return joinedFormatPredicate.validate(format, schema.currentPath);
-}, 'lib');
+}, DEFAULT_FORMAT);
 
 const blueprint: Blueprint<Required<PackemonPackageConfig>> = {
   format: union([array(formatPredicate), formatPredicate], []),
-  inputs: object(string(), { index: 'src/index.ts' }),
+  inputs: object(string(), { index: DEFAULT_INPUT }),
   namespace: string(),
-  platform: union([array(platformPredicate), platformPredicate], 'browser'),
-  support: string('stable').oneOf(['legacy', 'stable', 'current', 'experimental']),
+  platform: union([array(platformPredicate), platformPredicate], DEFAULT_PLATFORM),
+  support: string(DEFAULT_SUPPORT).oneOf(['legacy', 'stable', 'current', 'experimental']),
 };
 
 export default class Packemon {
@@ -91,8 +98,8 @@ export default class Packemon {
       timeout: number().gte(0),
     });
 
-    await this.findPackages(options.skipPrivate);
-    await this.generateArtifacts(options.generateDeclaration);
+    await this.loadConfiguredPackages(options.skipPrivate);
+    this.generateArtifacts(options.generateDeclaration);
 
     // Build packages in parallel using a pool
     const pipeline = new PooledPipeline(new Context());
@@ -124,7 +131,7 @@ export default class Packemon {
   async clean() {
     this.debug('Starting `clean` process');
 
-    await this.findPackages();
+    await this.loadConfiguredPackages();
     await this.cleanTemporaryFiles();
 
     const formatFolders = '{cjs,dts,esm,lib,mjs,umd}';
@@ -156,7 +163,7 @@ export default class Packemon {
               if (error) {
                 reject(error);
               } else {
-                resolve();
+                resolve(undefined);
               }
             });
           }),
@@ -177,16 +184,20 @@ export default class Packemon {
       repo: bool(true),
     });
 
-    await this.findPackages();
+    await this.loadConfiguredPackages();
 
     return Promise.all(this.packages.map((pkg) => new PackageValidator(pkg).validate(options)));
   }
 
-  async findPackages(skipPrivate: boolean = false) {
-    if (this.packages.length > 0) {
-      return;
+  async loadConfiguredPackages(skipPrivate: boolean = false) {
+    if (this.packages.length === 0) {
+      this.packages = this.validateAndPreparePackages(await this.findPackages(skipPrivate));
     }
 
+    return this.packages;
+  }
+
+  async findPackages(skipPrivate: boolean = false) {
     this.debug('Finding packages in project');
 
     const pkgPaths: Path[] = [];
@@ -240,7 +251,7 @@ export default class Packemon {
       this.debug('Filtering private packages: %s', privatePackageNames.join(', '));
     }
 
-    this.packages = this.validateAndPreparePackages(packages);
+    return packages;
   }
 
   generateArtifacts(declarationType?: DeclarationType) {

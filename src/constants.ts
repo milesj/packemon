@@ -1,5 +1,5 @@
 import { StyleType } from '@boost/cli';
-import { ArtifactState, Support } from './types';
+import { ArtifactState, Format, Platform, Support } from './types';
 
 export const EXTENSIONS = ['.ts', '.tsx', '.js', '.jsx', '.cjs', '.mjs'];
 
@@ -48,3 +48,11 @@ export const STATE_LABELS: { [K in ArtifactState]: string } = {
   passed: 'Passed',
   failed: 'Failed',
 };
+
+export const DEFAULT_FORMAT: Format = 'lib';
+
+export const DEFAULT_INPUT = 'src/index.ts';
+
+export const DEFAULT_PLATFORM: Platform = 'browser';
+
+export const DEFAULT_SUPPORT: Support = 'stable';
