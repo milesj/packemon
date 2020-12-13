@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Box, Text } from 'ink';
 import { Header, Style } from '@boost/cli';
 import PackageForm from './PackageForm';
@@ -11,15 +11,14 @@ export interface InitProps {
   onComplete: (configs: InitPackageConfigs) => void;
 }
 
-export default function Init({ packageNames }: InitProps) {
+export default function Init({ packageNames, onComplete }: InitProps) {
   const [pkgsToConfigure, setPkgsToConfigure] = useState(() => packageNames);
   const [pkgConfigs, setPkgConfigs] = useState<InitPackageConfigs>({});
   const currentPkg = pkgsToConfigure[0];
 
+  // Save config and move to next package
   const handleSubmit = useCallback(
     (config: PackemonPackageConfig) => {
-      console.log(currentPkg, config);
-
       setPkgConfigs((prev) => ({
         ...prev,
         [currentPkg]: config,
@@ -30,6 +29,14 @@ export default function Init({ packageNames }: InitProps) {
     [currentPkg],
   );
 
+  // Complete once all packages have been configured
+  useEffect(() => {
+    if (pkgsToConfigure.length === 0) {
+      onComplete(pkgConfigs);
+    }
+  }, [pkgsToConfigure, pkgConfigs, onComplete]);
+
+  // Exit when theres no packages
   if (pkgsToConfigure.length === 0) {
     return null;
   }

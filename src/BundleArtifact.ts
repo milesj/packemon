@@ -3,7 +3,7 @@ import { createDebugger, Debugger } from '@boost/debug';
 import hash from 'string-hash';
 import { rollup, RollupCache } from 'rollup';
 import Artifact from './Artifact';
-import { NODE_SUPPORTED_VERSIONS, NPM_SUPPORTED_VERSIONS } from './constants';
+import { DEFAULT_FORMAT, NODE_SUPPORTED_VERSIONS, NPM_SUPPORTED_VERSIONS } from './constants';
 import { getRollupConfig } from './rollup/config';
 import { Format, BuildOptions, BundleBuild, Support, Platform } from './types';
 
@@ -95,7 +95,7 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
 
     await Promise.all(
       toArray(output).map(async (out, index) => {
-        const { originalFormat = 'lib', ...outOptions } = out;
+        const { originalFormat = DEFAULT_FORMAT, ...outOptions } = out;
 
         this.debug(' - Writing `%s` output', originalFormat);
 

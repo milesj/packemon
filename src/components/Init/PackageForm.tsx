@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { applyStyle, Input, MultiSelect, Select, SelectOptionLike } from '@boost/cli';
 import { Format, PackemonPackageConfig, Platform, Support } from '../../types';
 import { getVersionsCombo } from '../Environment';
+import { DEFAULT_FORMAT, DEFAULT_INPUT, DEFAULT_SUPPORT } from '../../constants';
 
 export interface PackageFormProps {
   onSubmit: (config: PackemonPackageConfig) => void;
@@ -13,11 +14,12 @@ function getSupportVersions(platforms: Platform[], support: Support): string {
 
 export default function PackageForm({ onSubmit }: PackageFormProps) {
   const [platform, setPlatform] = useState<Platform[]>([]);
-  const [support, setSupport] = useState<Support>('stable');
+  const [support, setSupport] = useState<Support>(DEFAULT_SUPPORT);
   const [format, setFormat] = useState<Format[]>([]);
   const [input, setInput] = useState<string>('');
   const [namespace, setNamespace] = useState('');
 
+  // Submit once all values are acceptable
   useEffect(() => {
     const hasUMD = format.includes('umd');
 
@@ -139,7 +141,7 @@ export default function PackageForm({ onSubmit }: PackageFormProps) {
 
       <Select<Support>
         label="Environment to support?"
-        defaultSelected="stable"
+        defaultSelected={DEFAULT_SUPPORT}
         onSubmit={setSupport}
         options={supportOptions}
         validate={validateSupport}
@@ -147,7 +149,7 @@ export default function PackageForm({ onSubmit }: PackageFormProps) {
 
       <MultiSelect<Format>
         label="Formats to build?"
-        defaultSelected={['lib']}
+        defaultSelected={[DEFAULT_FORMAT]}
         onSubmit={setFormat}
         options={formatOptions}
         validate={validateFormat}
@@ -155,7 +157,7 @@ export default function PackageForm({ onSubmit }: PackageFormProps) {
 
       <Input
         label="Main entry point?"
-        defaultValue="src/index.ts"
+        defaultValue={DEFAULT_INPUT}
         onSubmit={setInput}
         validate={validateInput}
       />
