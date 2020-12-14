@@ -1,9 +1,9 @@
-import { Command, Config, GlobalOptions } from '@boost/cli';
-import Packemon from '../Packemon';
+import { Config } from '@boost/cli';
+import Command from './Base';
 
 @Config('clean', 'Clean build artifacts from packages')
-export class CleanCommand extends Command<GlobalOptions> {
+export class CleanCommand extends Command {
   async run() {
-    await new Packemon().clean();
+    await this.packemon.clean();
   }
 }

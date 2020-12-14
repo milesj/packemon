@@ -1,11 +1,11 @@
 import React from 'react';
-import { Arg, Command, Config, GlobalOptions } from '@boost/cli';
-import Packemon from '../Packemon';
+import { Arg, Config } from '@boost/cli';
+import Command from './Base';
 import { ValidateOptions } from '../types';
 import Validate from '../components/Validate';
 
 @Config('validate', 'Validate package metadata and configuration')
-export class ValidateCommand extends Command<GlobalOptions & Required<ValidateOptions>> {
+export class ValidateCommand extends Command<Required<ValidateOptions>> {
   @Arg.Flag('Check that dependencies have valid versions and constraints')
   deps: boolean = true;
 
@@ -30,7 +30,7 @@ export class ValidateCommand extends Command<GlobalOptions & Required<ValidateOp
   run() {
     return (
       <Validate
-        packemon={new Packemon()}
+        packemon={this.packemon}
         deps={this.deps}
         engines={this.engines}
         entries={this.engines}

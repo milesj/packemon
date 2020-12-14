@@ -1,12 +1,12 @@
 import React from 'react';
 import os from 'os';
-import { Arg, Command, Config, GlobalOptions } from '@boost/cli';
+import { Arg, Config } from '@boost/cli';
+import Command from './Base';
 import Build from '../components/Build';
-import Packemon from '../Packemon';
 import { AnalyzeType, BuildOptions, DeclarationType } from '../types';
 
 @Config('build', 'Build standardized packages for distribution')
-export class BuildCommand extends Command<GlobalOptions & Required<BuildOptions>> {
+export class BuildCommand extends Command<Required<BuildOptions>> {
   @Arg.Flag('Add `engine` versions to each `package.json`')
   addEngines: boolean = false;
 
@@ -35,7 +35,7 @@ export class BuildCommand extends Command<GlobalOptions & Required<BuildOptions>
   run() {
     return (
       <Build
-        packemon={new Packemon()}
+        packemon={this.packemon}
         addEngines={this.addEngines}
         addExports={this.addExports}
         analyzeBundle={this.analyze}
