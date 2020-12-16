@@ -10,6 +10,7 @@ import Project from './Project';
 import Artifact from './Artifact';
 import BundleArtifact from './BundleArtifact';
 import TypesArtifact from './TypesArtifact';
+import BaseCommand from './commands/Base';
 import { getBabelInputConfig, getBabelOutputConfig } from './babel/config';
 
 export * from './commands/Build';
@@ -31,4 +32,5 @@ export {
   PackageValidator,
   Packemon,
   Project,
+  BaseCommand,
 };
