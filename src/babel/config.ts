@@ -126,7 +126,7 @@ export function getBabelInputConfig(
     presets.push([
       resolve('@babel/preset-react'),
       {
-        development: process.env.NODE_ENV === 'development',
+        development: process.env.NODE_ENV !== 'production',
         throwIfNamespace: true,
       },
     ]);
@@ -144,13 +144,14 @@ export function getBabelOutputConfig(
   const plugins: PluginItem[] = [];
   const presets: PluginItem[] = [];
   const isFuture = support !== 'legacy' && support !== 'stable';
+  const isProd = process.env.NODE_ENV === 'production';
 
   // ENVIRONMENT
 
   const envOptions: PresetEnvOptions = {
-    // Prefer spec compliance over speed
-    spec: process.env.NODE_ENV === 'development',
-    loose: false,
+    // Prefer speed and smaller filesize in prod
+    spec: !isProd,
+    loose: isProd,
     // Consumers must polyfill accordingly
     useBuiltIns: false,
     // Transform features accordingly

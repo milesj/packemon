@@ -1,18 +1,21 @@
-import { applyStyle, Arg, Command, Config, GlobalOptions } from '@boost/cli';
+import { applyStyle, Arg, Config } from '@boost/cli';
 import { Bind, formatMs } from '@boost/common';
 import chokidar from 'chokidar';
+import Command from './Base';
 import Package from '../Package';
-import Packemon from '../Packemon';
+
+export interface WatchOptions {
+  debounce: number;
+  poll: boolean;
+}
 
 @Config('watch', 'Watch local files for changes and rebuild')
-export class WatchCommand extends Command<GlobalOptions> {
+export class WatchCommand extends Command<WatchOptions> {
   @Arg.Number('Number of milliseconds to wait after a change before triggering a rebuild')
   debounce: number = 150;
 
   @Arg.Flag('Poll for file changes instead of using file system events')
   poll: boolean = false;
-
-  protected packemon!: Packemon;
 
   protected packagesToRebuild = new Set<Package>();
 
@@ -21,9 +24,8 @@ export class WatchCommand extends Command<GlobalOptions> {
   protected rebuildTimer?: NodeJS.Timeout;
 
   async run() {
-    const packemon = new Packemon();
+    const { packemon } = this;
 
-    this.packemon = packemon;
     packemon.debug('Starting `watch` process');
 
     // Generate all our build artifacts

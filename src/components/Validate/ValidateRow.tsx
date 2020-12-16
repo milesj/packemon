@@ -4,7 +4,7 @@ import React from 'react';
 import { Box } from 'ink';
 import { Style } from '@boost/cli';
 import { figures } from '@boost/terminal';
-import PackageValidator from '../PackageValidator';
+import PackageValidator from '../../PackageValidator';
 
 export interface ValidateRowProps {
   validator: PackageValidator;

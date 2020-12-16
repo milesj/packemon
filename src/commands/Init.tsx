@@ -1,25 +1,26 @@
 import React from 'react';
 import { Path, WorkspacePackage } from '@boost/common';
-import { Arg, Command, Config, GlobalOptions } from '@boost/cli';
-import Packemon from '../Packemon';
+import { Arg, Config } from '@boost/cli';
+import Command from './Base';
 import Package from '../Package';
 import Init from '../components/Init';
 import { PackemonPackage, PackemonPackageConfig } from '../types';
 import { DEFAULT_FORMAT, DEFAULT_INPUT, DEFAULT_PLATFORM, DEFAULT_SUPPORT } from '../constants';
 
+export interface InitOptions {
+  force: boolean;
+  skipPrivate: boolean;
+}
+
 @Config('init', 'Initialize and configure Packemon for packages')
-export class InitCommand extends Command<GlobalOptions> {
+export class InitCommand extends Command<InitOptions> {
   @Arg.Flag('Override already configured packages')
   force: boolean = false;
 
   @Arg.Flag('Skip `private` packages')
   skipPrivate: boolean = false;
 
-  protected packemon!: Packemon;
-
   async run() {
-    this.packemon = new Packemon();
-
     const packages = await this.packemon.findPackages(this.skipPrivate);
     const unconfiguredPackages = this.force
       ? packages

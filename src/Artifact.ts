@@ -57,7 +57,7 @@ export default abstract class Artifact<T extends object = {}> {
       sourceLine?: number;
     } = {},
   ) {
-    let msg = `[${this.package.getName()}${output ? `/${output}` : ''}] ${message}`;
+    let msg = `[${this.package.getName()}${output ? `:${output}` : ''}] ${message}`;
 
     const meta: string[] = [];
 

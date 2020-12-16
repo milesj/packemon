@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useProgram, Header } from '@boost/cli';
-import Packemon from '../Packemon';
-import { BuildOptions } from '../types';
-import Build from './Build';
-import Validate from './Validate';
-import useOnMount from './hooks/useOnMount';
+import Packemon from '../../Packemon';
+import { BuildOptions } from '../../types';
+import Build from '../Build';
+import Validate from '../Validate';
+import useOnMount from '../hooks/useOnMount';
 
 export interface PackProps extends BuildOptions {
   packemon: Packemon;
