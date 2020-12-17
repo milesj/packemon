@@ -1,6 +1,6 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Box, Text } from 'ink';
-import { Header, Style } from '@boost/cli';
+import { Header, Style, useProgram } from '@boost/cli';
 import PackageForm from './PackageForm';
 import { PackemonPackageConfig } from '../../types';
 
@@ -8,13 +8,14 @@ export type InitPackageConfigs = Record<string, PackemonPackageConfig>;
 
 export interface InitProps {
   packageNames: string[];
-  onComplete: (configs: InitPackageConfigs) => void;
+  onComplete: (configs: InitPackageConfigs) => Promise<unknown>;
 }
 
 export default function Init({ packageNames, onComplete }: InitProps) {
+  const { exit } = useProgram();
   const [pkgsToConfigure, setPkgsToConfigure] = useState(() => packageNames);
   const [pkgConfigs, setPkgConfigs] = useState<InitPackageConfigs>({});
-  const currentPkg = pkgsToConfigure[0];
+  const currentPkg = useMemo(() => pkgsToConfigure[0], [pkgsToConfigure]);
 
   // Save config and move to next package
   const handleSubmit = useCallback(
@@ -32,9 +33,9 @@ export default function Init({ packageNames, onComplete }: InitProps) {
   // Complete once all packages have been configured
   useEffect(() => {
     if (pkgsToConfigure.length === 0) {
-      onComplete(pkgConfigs);
+      void onComplete(pkgConfigs).finally(exit);
     }
-  }, [pkgsToConfigure, pkgConfigs, onComplete]);
+  }, [pkgsToConfigure, pkgConfigs, onComplete, exit]);
 
   // Exit when theres no packages
   if (pkgsToConfigure.length === 0) {
@@ -54,7 +55,7 @@ export default function Init({ packageNames, onComplete }: InitProps) {
       </Box>
 
       <Box marginTop={1} flexDirection="column">
-        <PackageForm onSubmit={handleSubmit} />
+        <PackageForm key={currentPkg} onSubmit={handleSubmit} />
       </Box>
     </Box>
   );

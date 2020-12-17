@@ -30,19 +30,28 @@ export default function PackageForm({ onSubmit }: PackageFormProps) {
       input &&
       ((hasUMD && namespace) || (!hasUMD && !namespace))
     ) {
-      // Delay or focus API crashes
+      const result = {
+        format,
+        inputs: { index: input },
+        namespace,
+        platform,
+        support,
+      };
+
+      // Delay submission or focus API crashes
       // https://github.com/vadimdemedes/ink/pull/404
       setTimeout(() => {
-        onSubmit({
-          format,
-          inputs: { index: input },
-          namespace,
-          platform,
-          support,
-        });
+        onSubmit(result);
       }, 100);
+
+      // Reset state for the next package
+      setPlatform([]);
+      setSupport(DEFAULT_SUPPORT);
+      setFormat([]);
+      setInput('');
+      setNamespace('');
     }
-  });
+  }, [format, input, namespace, onSubmit, platform, support]);
 
   // PLATFORM
 

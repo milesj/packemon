@@ -5,7 +5,7 @@ import Command from './Base';
 import Package from '../Package';
 import Init from '../components/Init';
 import { PackemonPackage, PackemonPackageConfig } from '../types';
-import { DEFAULT_FORMAT, DEFAULT_INPUT, DEFAULT_PLATFORM, DEFAULT_SUPPORT } from '../constants';
+import { DEFAULT_FORMAT, DEFAULT_INPUT, DEFAULT_SUPPORT } from '../constants';
 
 export interface InitOptions {
   force: boolean;
@@ -39,9 +39,7 @@ export class InitCommand extends Command<InitOptions> {
     return (
       <Init
         packageNames={unconfiguredPackages.map((pkg) => pkg.package.name)}
-        onComplete={(configs) => {
-          void this.writeConfigsToPackageJsons(unconfiguredPackages, configs);
-        }}
+        onComplete={(configs) => this.writeConfigsToPackageJsons(unconfiguredPackages, configs)}
       />
     );
   }
@@ -78,9 +76,7 @@ export class InitCommand extends Command<InitOptions> {
 
     if (platform) {
       if (Array.isArray(platform) && platform.length === 1) {
-        if (platform[0] !== DEFAULT_PLATFORM) {
-          [config.platform] = platform;
-        }
+        [config.platform] = platform;
       } else {
         config.platform = platform;
       }
@@ -97,7 +93,7 @@ export class InitCommand extends Command<InitOptions> {
     packages: WorkspacePackage<PackemonPackage>[],
     configs: Record<string, PackemonPackageConfig>,
   ) {
-    return Promise.all(
+    await Promise.all(
       packages.map((item) => {
         const pkg = new Package(this.packemon.project, new Path(item.metadata.packagePath), {
           ...item.package,
