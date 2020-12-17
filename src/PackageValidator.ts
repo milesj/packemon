@@ -79,17 +79,17 @@ export default class PackageValidator {
     this.checkDependencyRange(peerDependencies);
     this.checkDependencyRange(optionalDependencies);
 
-    Object.entries(peerDependencies || {}).forEach(([name, version]) => {
-      const devVersion = devDependencies?.[name];
+    Object.entries(peerDependencies || {}).forEach(([name, versionConstraint]) => {
+      const devVersion = semver.coerce(devDependencies?.[name]);
       const prodVersion = dependencies?.[name];
 
       if (!devVersion) {
         this.warnings.push(
           `Peer dependency "${name}" is missing a version satisfying dev dependency.`,
         );
-      } else if (!semver.satisfies(devVersion, version)) {
+      } else if (!semver.satisfies(devVersion.version, versionConstraint)) {
         this.errors.push(
-          `Dev dependency "${name}" does not satisfy version constraint of its peer. Found ${devVersion}, requires ${version}.`,
+          `Dev dependency "${name}" does not satisfy version constraint of its peer. Found ${devVersion.version}, requires ${versionConstraint}.`,
         );
       }
 
@@ -120,31 +120,31 @@ export default class PackageValidator {
     const yarnConstraint = engines?.yarn;
 
     if (nodeConstraint) {
-      const nodeVerison = process.version.slice(1);
+      const nodeVersion = semver.coerce(process.version);
 
-      if (!semver.satisfies(nodeVerison, nodeConstraint)) {
+      if (nodeVersion && !semver.satisfies(nodeVersion.version, nodeConstraint)) {
         this.warnings.push(
-          `Node.js does not satisfy engine constraints. Found ${nodeVerison}, requires ${nodeConstraint}.`,
+          `Node.js does not satisfy engine constraints. Found ${nodeVersion.version}, requires ${nodeConstraint}.`,
         );
       }
     }
 
     if (npmConstraint) {
-      const npmVersion = await this.getBinVersion('npm');
+      const npmVersion = semver.coerce(await this.getBinVersion('npm'));
 
-      if (!semver.satisfies(npmVersion, npmConstraint)) {
+      if (npmVersion && !semver.satisfies(npmVersion.version, npmConstraint)) {
         this.warnings.push(
-          `NPM does not satisfy engine constraints. Found ${npmVersion}, requires ${npmConstraint}.`,
+          `NPM does not satisfy engine constraints. Found ${npmVersion.version}, requires ${npmConstraint}.`,
         );
       }
     }
 
     if (yarnConstraint) {
-      const yarnVersion = await this.getBinVersion('yarn');
+      const yarnVersion = semver.coerce(await this.getBinVersion('yarn'));
 
-      if (!semver.satisfies(yarnVersion, yarnConstraint)) {
+      if (yarnVersion && !semver.satisfies(yarnVersion.version, yarnConstraint)) {
         this.warnings.push(
-          `Yarn does not satisfy engine constraints. Found ${yarnVersion}, requires ${yarnConstraint}.`,
+          `Yarn does not satisfy engine constraints. Found ${yarnVersion.version}, requires ${yarnConstraint}.`,
         );
       }
     }
@@ -319,7 +319,7 @@ export default class PackageValidator {
     if (isObject(repo)) {
       const dir = repo.directory;
 
-      if (dir && !this.doesPathExist(dir)) {
+      if (dir && !this.package.project.root.append(dir).exists()) {
         this.errors.push(`Repository directory "${dir}" does not exist.`);
       }
     }
