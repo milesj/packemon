@@ -1,3 +1,4 @@
+import { TransformOptions } from '@babel/core';
 // eslint-disable-next-line unicorn/import-index
 import {
   BundleArtifact,
@@ -23,7 +24,7 @@ const featureFlags = project.rootPackage.getFeatureFlags();
 const inputConfig = getBabelInputConfig(artifact, featureFlags);
 const outputConfig = getBabelOutputConfig(artifact.builds[0], featureFlags);
 
-export const config = {
+export const config: TransformOptions = {
   babelrc: false,
   comments: false,
   // Input must come first
@@ -31,3 +32,12 @@ export const config = {
   // preset-env must come first
   presets: [...outputConfig.presets!, ...inputConfig.presets!],
 };
+
+if (platform === 'native') {
+  config.overrides = [
+    {
+      presets: ['@babel/preset-flow'],
+      test: /node_modules\/(react-native|@react-native|@react-native-community)/iu,
+    },
+  ];
+}
