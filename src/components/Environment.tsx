@@ -1,7 +1,7 @@
 import React from 'react';
 import { toArray } from '@boost/common';
 import { Style } from '@boost/cli';
-import { NODE_SUPPORTED_VERSIONS, BROWSER_TARGETS } from '../constants';
+import { NODE_SUPPORTED_VERSIONS, BROWSER_TARGETS, NATIVE_TARGETS } from '../constants';
 import { PackageConfig, Platform, Support } from '../types';
 
 export interface EnvironmentProps {
@@ -22,7 +22,9 @@ export function getVersionsCombo(platforms: Platform[], support: Support): Set<s
   const versions = new Set<string>();
 
   platforms.forEach((platform) => {
-    if (platform === 'node') {
+    if (platform === 'native') {
+      versions.add(`Native (${trimVersion(NATIVE_TARGETS[support])})`);
+    } else if (platform === 'node') {
       versions.add(`Node v${trimVersion(NODE_SUPPORTED_VERSIONS[support])}`);
     } else if (platform === 'browser') {
       const targets =

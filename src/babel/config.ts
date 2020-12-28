@@ -1,5 +1,5 @@
 import { PluginItem, TransformOptions as ConfigStructure } from '@babel/core';
-import { BROWSER_TARGETS, NODE_SUPPORTED_VERSIONS } from '../constants';
+import { BROWSER_TARGETS, NATIVE_TARGETS, NODE_SUPPORTED_VERSIONS } from '../constants';
 import { Support, Format, Platform, FeatureFlags, BundleBuild } from '../types';
 import BundleArtifact from '../BundleArtifact';
 
@@ -41,6 +41,18 @@ function getPlatformEnvOptions(
   }
 
   switch (platform) {
+    case 'browser':
+      return {
+        modules,
+        targets: { browsers: BROWSER_TARGETS[support] },
+      };
+
+    case 'native':
+      return {
+        modules,
+        targets: { browsers: NATIVE_TARGETS[support] },
+      };
+
     case 'node':
       return {
         // Async/await has been available since v7
@@ -52,12 +64,6 @@ function getPlatformEnvOptions(
         targets: {
           node: process.env.NODE_ENV === 'test' ? 'current' : NODE_SUPPORTED_VERSIONS[support],
         },
-      };
-
-    case 'browser':
-      return {
-        modules,
-        targets: { browsers: BROWSER_TARGETS[support] },
       };
 
     default:
@@ -175,7 +181,7 @@ export function getBabelOutputConfig(
   }
 
   // Transform async/await into Promises for browsers
-  if (platform === 'browser') {
+  if (platform === 'browser' || platform === 'native') {
     plugins.push([
       resolve('babel-plugin-transform-async-to-promises'),
       { inlineHelpers: true, target: isFuture ? 'es6' : 'es5' },

@@ -23,6 +23,7 @@ import {
   BuildOptions,
   DeclarationType,
   Format,
+  NativeFormat,
   NodeFormat,
   PackemonPackage,
   PackemonPackageConfig,
@@ -34,7 +35,8 @@ import { DEFAULT_FORMAT, DEFAULT_INPUT, DEFAULT_PLATFORM, DEFAULT_SUPPORT } from
 
 const { array, bool, custom, number, object, string, union } = predicates;
 
-const platformPredicate = string<Platform>(DEFAULT_PLATFORM).oneOf(['node', 'browser']);
+const platformPredicate = string<Platform>(DEFAULT_PLATFORM).oneOf(['native', 'node', 'browser']);
+const nativeFormatPredicate = string<NativeFormat>(DEFAULT_FORMAT).oneOf(['lib']);
 const nodeFormatPredicate = string<NodeFormat>(DEFAULT_FORMAT).oneOf(['lib', 'mjs', 'cjs']);
 const browserFormatPredicate = string<BrowserFormat>(DEFAULT_FORMAT).oneOf(['lib', 'esm', 'umd']);
 const joinedFormatPredicate = string<Format>(DEFAULT_FORMAT).oneOf([
@@ -47,9 +49,11 @@ const joinedFormatPredicate = string<Format>(DEFAULT_FORMAT).oneOf([
 const formatPredicate = custom<Format, PackemonPackageConfig>((format, schema) => {
   const platforms = new Set(toArray(schema.struct.platform));
 
-  if (platforms.has('browser') && !platforms.has('node')) {
+  if (platforms.has('browser') && platforms.size === 1) {
     return browserFormatPredicate.validate(format as BrowserFormat, schema.currentPath);
-  } else if (!platforms.has('browser') && platforms.has('node')) {
+  } else if (platforms.has('native') && platforms.size === 1) {
+    return nativeFormatPredicate.validate(format as NativeFormat, schema.currentPath);
+  } else if (platforms.has('node') && platforms.size === 1) {
     return nodeFormatPredicate.validate(format as NodeFormat, schema.currentPath);
   }
 
@@ -316,7 +320,7 @@ export default class Packemon {
         }
       });
 
-      return platformsToBuild.has('node') && platformsToBuild.has('browser') && libFormatCount > 1;
+      return platformsToBuild.size > 1 && libFormatCount > 1;
     });
   }
 

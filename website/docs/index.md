@@ -13,8 +13,8 @@ provide sane defaults and configurations, verify package requirements, and much 
 
 ## Features
 
-- Configure packages for Node.js or Web browsers, with multiple output formats like CommonJS and
-  ECMAScript.
+- Configure packages for Node.js, Web browsers, or React Native, with multiple output formats like
+  CommonJS and ECMAScript.
 - Builds packages with Rollup to create self-contained and tree-shaken entry points. Provide the
   smallest file sizes possible!
 - Transforms packages with Babel's `preset-env` and the configured platform targets. Only ship and
