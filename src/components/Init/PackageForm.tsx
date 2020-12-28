@@ -57,8 +57,9 @@ export default function PackageForm({ onSubmit }: PackageFormProps) {
 
   const platformOptions = useMemo<SelectOptionLike<Platform>[]>(
     () => [
-      { label: 'Node', value: 'node' },
       { label: 'Browsers', value: 'browser' },
+      { label: 'Node', value: 'node' },
+      { label: 'React Native', value: 'native' },
     ],
     [],
   );

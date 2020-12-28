@@ -1,7 +1,7 @@
 import ts from 'typescript';
 import { PackageStructure } from '@boost/common';
 
-export type Platform = 'node' | 'browser'; // electron
+export type Platform = 'native' | 'node' | 'browser'; // electron
 
 export type Support =
   // Unsupported version

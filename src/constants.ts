@@ -13,6 +13,15 @@ export const EXCLUDE = [
   '*.(test|spec).(js|ts)x?',
 ];
 
+// https://reactnative.dev/docs/javascript-environment
+// Based on browserslist: https://github.com/browserslist/browserslist
+export const NATIVE_TARGETS: { [K in Support]: string } = {
+  legacy: 'iOS 8',
+  stable: 'iOS 10',
+  current: 'iOS 12',
+  experimental: 'iOS 14',
+};
+
 // Based on LTS schedule: https://nodejs.org/en/about/releases/
 export const NODE_SUPPORTED_VERSIONS: { [K in Support]: string } = {
   legacy: '8.10.0',
