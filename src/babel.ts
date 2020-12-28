@@ -30,7 +30,7 @@ export const config: TransformOptions = {
   overrides: [
     {
       presets: ['@babel/preset-flow'],
-      test: /node_modules\/(react-native|@react-native|@react-native-community)/iu,
+      test: /node_modules\/((jest-)?react-native|@react-native(-community)?)/iu,
     },
   ],
   // Input must come first
