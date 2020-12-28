@@ -1,4 +1,3 @@
-import { TransformOptions } from '@babel/core';
 // eslint-disable-next-line unicorn/import-index
 import {
   BundleArtifact,
@@ -24,7 +23,7 @@ const featureFlags = project.rootPackage.getFeatureFlags();
 const inputConfig = getBabelInputConfig(artifact, featureFlags);
 const outputConfig = getBabelOutputConfig(artifact.builds[0], featureFlags);
 
-export const config: TransformOptions = {
+export const config = {
   babelrc: false,
   comments: false,
   overrides: [
