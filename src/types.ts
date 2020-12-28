@@ -1,7 +1,7 @@
 import ts from 'typescript';
 import { PackageStructure } from '@boost/common';
 
-export type Platform = 'native' | 'node' | 'browser'; // electron
+export type Platform = 'browser' | 'native' | 'node'; // electron
 
 export type Support =
   // Unsupported version
@@ -23,6 +23,8 @@ export type BrowserFormat =
   | 'esm'
   // Universal Module Definition with ".js" file extension
   | 'umd';
+
+export type NativeFormat = CommonFormat;
 
 export type NodeFormat =
   | CommonFormat

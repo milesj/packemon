@@ -27,17 +27,14 @@ const outputConfig = getBabelOutputConfig(artifact.builds[0], featureFlags);
 export const config: TransformOptions = {
   babelrc: false,
   comments: false,
+  overrides: [
+    {
+      presets: ['@babel/preset-flow'],
+      test: /node_modules\/(react-native|@react-native|@react-native-community)/iu,
+    },
+  ],
   // Input must come first
   plugins: [...inputConfig.plugins!, ...outputConfig.plugins!],
   // preset-env must come first
   presets: [...outputConfig.presets!, ...inputConfig.presets!],
 };
-
-if (platform === 'native') {
-  config.overrides = [
-    {
-      presets: ['@babel/preset-flow'],
-      test: /node_modules\/(react-native|@react-native|@react-native-community)/iu,
-    },
-  ];
-}

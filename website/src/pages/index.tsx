@@ -47,8 +47,8 @@ const features: FeatureProps[][] = [
       title: '🌐 Stable environments',
       description: (
         <>
-          Supported browser targets and Node.js versions are carefully crafted to provide long term
-          support and stability, with the ability to experiment.
+          Supported browser targets, React Native targets, and Node.js versions are carefully
+          crafted to provide long term support and stability, with the ability to experiment.
         </>
       ),
     },

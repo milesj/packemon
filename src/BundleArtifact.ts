@@ -41,6 +41,8 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
         platform = 'browser';
       } else if (platforms.includes('node')) {
         platform = 'node';
+      } else if (platforms.includes('native')) {
+        platform = 'native';
       }
     }
 

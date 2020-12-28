@@ -172,7 +172,7 @@ export default class Package {
 
       if (formats.size === 0) {
         platforms.sort().forEach((platform) => {
-          if (platform === 'node') {
+          if (platform === 'native' || platform === 'node') {
             formats.add('lib');
           } else if (platform === 'browser') {
             formats.add('lib');

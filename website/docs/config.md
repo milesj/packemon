@@ -45,8 +45,9 @@ with caution.
 
 The platform in which built code will be ran.
 
-- `node` - Node.js runtime.
 - `browser` _(default)_ - Web browsers on desktop and mobile.
+- `native` - Native devices, primarily for React Native.
+- `node` - Node.js runtime.
 
 ```json
 {
@@ -89,14 +90,31 @@ The supported environments above map to the following platform targets.
 
 |            | Legacy    | Stable    | Current      | Experimental           |
 | ---------- | --------- | --------- | ------------ | ---------------------- |
+| Browser    | >= IE 10  | >= IE 11  | > 0.5% usage | last 2 chrome versions |
+| Native     | >= iOS 8  | >= iOS 10 | >= iOS 12    | >= iOS 14              |
 | Node       | >= 8.10.0 | >= 10.3.0 | >= 12.0.0    | >= 15.0.0              |
 | Node (NPM) | >= 5.6.0  | >= 6.1.0  | >= 6.9.0     | >= 7.0.0               |
-| Browser    | >= IE 10  | >= IE 11  | > 0.5% usage | last 2 chrome versions |
 
 ## Formats
 
 The output format for each platform build target. Each format will create a folder relative to the
 project root that will house the built files.
+
+### Browser
+
+- `lib` _(default)_ - [CommonJS](https://nodejs.org/api/modules.html) output using `.js` file
+  extension. For standard JavaScript and TypeScript projects.
+- `esm` _(default)_ - ECMAScript module output using `.js` file extension. The same as `lib`, but
+  uses `import/export` instead of `require`.
+- `umd` - Universal Module Definition output using `.js` file extension. Meant to be used directly
+  in the browser (via CDN) instead of being bundled. Will be automatically enabled if
+  [namespace](#namespace) is provided and using default formats.
+
+### Native
+
+- `lib` _(default)_ - [CommonJS](https://nodejs.org/api/modules.html) output using `.js` file
+  extension. For standard JavaScript and TypeScript projects. _This is the only format supported by
+  React Native and Metro._
 
 ### Node
 
@@ -106,16 +124,6 @@ project root that will house the built files.
   files must be written in CommonJS (`.cjs`) and `require` paths must use trailing extensions.
 - `mjs` - [ECMAScript module](https://nodejs.org/api/esm.html) output using `.mjs` file extension.
   Source files must be written in ESM (`.mjs`) and `import` paths must use trailing extensions.
-
-### Browser
-
-- `lib` _(default)_ - CommonJS output using `.js` file extension. For standard JavaScript and
-  TypeScript projects.
-- `esm` _(default)_ - ECMAScript module output using `.js` file extension. The same as `lib`, but
-  uses `import/export` instead of `require`.
-- `umd` - Universal Module Definition output using `.js` file extension. Meant to be used directly
-  in the browser (via CDN) instead of being bundled. Will be automatically enabled if
-  [namespace](#namespace) is provided and using default formats.
 
 ```json
 {
