@@ -116,7 +116,7 @@ export default class TypesArtifact extends Artifact<TypesBuild> {
 
     // Extract all DTS into a single file
     const result = Extractor.invoke(ExtractorConfig.loadFileAndPrepare(configPath), {
-      localBuild: process.env.NODE_ENV !== 'production',
+      localBuild: __DEV__,
       messageCallback: (warn) => {
         // eslint-disable-next-line no-param-reassign
         warn.handled = true;
