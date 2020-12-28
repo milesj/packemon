@@ -1,5 +1,13 @@
+/* eslint-disable no-underscore-dangle */
+
 import ts from 'typescript';
 import { PackageStructure } from '@boost/common';
+
+declare global {
+  const __DEV__: boolean;
+  const __PROD__: boolean;
+  const __TEST__: boolean;
+}
 
 export type Platform = 'browser' | 'native' | 'node'; // electron
 
