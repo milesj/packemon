@@ -67,6 +67,8 @@ export default class PackageValidator {
   protected checkDependencies() {
     this.package.debug('Checking dependencies');
 
+    const usesLerna = this.package.project.isLernaManaged();
+    const workspacePackageNames = new Set(this.package.project.getWorkspacePackageNames());
     const {
       dependencies,
       devDependencies,
@@ -83,6 +85,21 @@ export default class PackageValidator {
       const devVersion = semver.coerce(devDependencies?.[name]);
       const prodVersion = dependencies?.[name];
 
+      if (prodVersion) {
+        this.errors.push(`Dependency "${name}" defined as both a prod and peer dependency.`);
+      }
+
+      // When using Lerna, we want to avoid pairing a peer with a dev dependency,
+      // as Lerna will update their `package.json` version of all dependent packages!
+      // This would accidently publish many packages that shouldn't be.
+      if (usesLerna && devVersion && workspacePackageNames.has(name)) {
+        this.errors.push(
+          `Peer dependency "${name}" should not define a dev dependency when using Lerna.`,
+        );
+
+        return;
+      }
+
       if (!devVersion) {
         this.warnings.push(
           `Peer dependency "${name}" is missing a version satisfying dev dependency.`,
@@ -91,10 +108,6 @@ export default class PackageValidator {
         this.errors.push(
           `Dev dependency "${name}" does not satisfy version constraint of its peer. Found ${devVersion.version}, requires ${versionConstraint}.`,
         );
-      }
-
-      if (prodVersion) {
-        this.errors.push(`Dependency "${name}" defined as both a prod and peer dependency.`);
       }
     });
   }

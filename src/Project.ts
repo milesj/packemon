@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/member-ordering */
+
 import execa from 'execa';
 import semver from 'semver';
 import { Memoize, Project as BaseProject } from '@boost/common';
@@ -18,6 +20,11 @@ export default class Project extends BaseProject {
         `Project requires a packemon version compatible with ${versionConstraint}, found ${version}.`,
       );
     }
+  }
+
+  @Memoize()
+  isLernaManaged(): boolean {
+    return this.isWorkspacesEnabled() && this.root.append('lerna.json').exists();
   }
 
   isWorkspacesEnabled(): boolean {
@@ -58,9 +65,14 @@ export default class Project extends BaseProject {
     const result = await this.buildPromise;
 
     // Remove the promise so the build can be ran again
-    this.buildPromise = undefined;
+    delete this.buildPromise;
 
     return result;
+  }
+
+  @Memoize()
+  getWorkspacePackageNames(): string[] {
+    return this.getWorkspacePackages().map((wp) => wp.package.name);
   }
 
   @Memoize()
