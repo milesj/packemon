@@ -195,13 +195,19 @@ export default class Packemon {
 
   async loadConfiguredPackages(skipPrivate: boolean = false) {
     if (this.packages.length === 0) {
-      this.packages = this.validateAndPreparePackages(await this.findPackages(skipPrivate));
+      this.packages = this.validateAndPreparePackages(
+        await this.findPackagesInProject(skipPrivate),
+      );
     }
 
     return this.packages;
   }
 
-  async findPackages(skipPrivate: boolean = false) {
+  /**
+   * Find all packages within a project. If using workspaces, return a list of packages
+   * from each workspace glob. If not using workspaces, assume project is a package.
+   */
+  async findPackagesInProject(skipPrivate: boolean = false) {
     this.debug('Finding packages in project');
 
     const pkgPaths: Path[] = [];
@@ -253,6 +259,11 @@ export default class Packemon {
       packages = packages.filter((pkg) => !pkg.package.private);
 
       this.debug('Filtering private packages: %s', privatePackageNames.join(', '));
+    }
+
+    // Error if no packages are found
+    if (packages.length === 0) {
+      throw new Error('No packages found in project.');
     }
 
     return packages;

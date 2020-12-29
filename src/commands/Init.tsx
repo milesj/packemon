@@ -21,7 +21,7 @@ export class InitCommand extends Command<InitOptions> {
   skipPrivate: boolean = false;
 
   async run() {
-    const packages = await this.packemon.findPackages(this.skipPrivate);
+    const packages = await this.packemon.findPackagesInProject(this.skipPrivate);
     const unconfiguredPackages = this.force
       ? packages
       : packages.filter((pkg) => !pkg.package.packemon);
