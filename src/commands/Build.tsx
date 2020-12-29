@@ -26,9 +26,6 @@ export class BuildCommand extends Command<Required<BuildOptions>> {
   })
   generateDeclaration: DeclarationType = 'none';
 
-  @Arg.Flag('Skip `private` packages from being built')
-  skipPrivate: boolean = false;
-
   @Arg.Number('Timeout in milliseconds before a build is cancelled')
   timeout: number = 0;
 

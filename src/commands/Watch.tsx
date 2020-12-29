@@ -29,7 +29,7 @@ export class WatchCommand extends Command<WatchOptions> {
     packemon.debug('Starting `watch` process');
 
     // Generate all our build artifacts
-    await packemon.loadConfiguredPackages();
+    await packemon.loadConfiguredPackages(this.skipPrivate);
 
     packemon.generateArtifacts();
 

@@ -17,9 +17,6 @@ export class InitCommand extends Command<InitOptions> {
   @Arg.Flag('Override already configured packages')
   force: boolean = false;
 
-  @Arg.Flag('Skip `private` packages')
-  skipPrivate: boolean = false;
-
   async run() {
     const packages = await this.packemon.findPackagesInProject(this.skipPrivate);
     const unconfiguredPackages = this.force

@@ -185,10 +185,11 @@ export default class Packemon {
       license: bool(true),
       links: bool(true),
       people: bool(true),
+      skipPrivate: bool(false),
       repo: bool(true),
     });
 
-    await this.loadConfiguredPackages();
+    await this.loadConfiguredPackages(options.skipPrivate);
 
     return Promise.all(this.packages.map((pkg) => new PackageValidator(pkg).validate(options)));
   }

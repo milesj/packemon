@@ -2,12 +2,20 @@ import { Arg, Command, GlobalOptions, PrimitiveType } from '@boost/cli';
 import { Memoize } from '@boost/common';
 import Packemon from '../Packemon';
 
+interface CommonOptions {
+  cwd: string;
+  skipPrivate: boolean;
+}
+
 export default abstract class BaseCommand<
   O extends object = {},
   P extends PrimitiveType[] = string[]
-> extends Command<O & GlobalOptions & { cwd: string }, P> {
+> extends Command<O & GlobalOptions & CommonOptions, P> {
   @Arg.String('Current working directory to run in', { category: 'global' })
   cwd: string = '';
+
+  @Arg.Flag('Skip `private` packages', { category: 'global' })
+  skipPrivate: boolean = false;
 
   @Memoize()
   protected get packemon() {

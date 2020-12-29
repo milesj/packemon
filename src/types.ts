@@ -109,6 +109,7 @@ export interface ValidateOptions {
   license?: boolean;
   links?: boolean;
   people?: boolean;
+  skipPrivate?: boolean;
   repo?: boolean;
 }
 

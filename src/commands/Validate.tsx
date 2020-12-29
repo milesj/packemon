@@ -37,6 +37,7 @@ export class ValidateCommand extends Command<Required<ValidateOptions>> {
         license={this.license}
         links={this.links}
         people={this.people}
+        skipPrivate={this.skipPrivate}
         repo={this.repo}
       />
     );
