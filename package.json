@@ -24,7 +24,7 @@
     "type": "beemo typescript --noEmit",
     "prerelease": "yarn run ci && yarn run setup && yarn run pack",
     "pack": "NODE_ENV=production yarn run packemon pack --addEngines --generateDeclaration=api",
-    "packemon": "node ./build/bin.js"
+    "packemon": "node ./packemon.js"
   },
   "repository": "https://github.com/milesj/packemon.git",
   "author": "Miles Johnson",
@@ -85,7 +85,6 @@
     "@rollup/plugin-commonjs": "^17.0.0",
     "@rollup/plugin-node-resolve": "^11.0.1",
     "babel-plugin-transform-async-to-promises": "^0.8.15",
-    "babel-plugin-transform-dev": "^2.0.1",
     "builtin-modules": "^3.2.0",
     "chokidar": "^3.4.3",
     "execa": "^5.0.0",

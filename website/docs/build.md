@@ -179,8 +179,9 @@ The following plugins are enabled when one of their conditions are met.
 - `babel-plugin-transform-async-to-promises`
   - Enabled when package [platform](./config.md#platforms) is configured to `browser`. This attempts
     to _avoid_ `regenerator-runtime` by transforming async/await to promises.
-- `babel-plugin-transform-dev`
-  - Always enabled. Will transform `__DEV__` to `process.env.NODE_ENV` conditionals.
+- _Custom_
+  - Always enabled. Will transform `__DEV__`, `__PROD__`, and `__TEST__` to `process.env.NODE_ENV`
+    conditionals.
 
 ## Rollup configuration
 

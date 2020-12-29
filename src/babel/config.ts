@@ -2,6 +2,7 @@ import { PluginItem, TransformOptions as ConfigStructure } from '@babel/core';
 import { BROWSER_TARGETS, NATIVE_TARGETS, NODE_SUPPORTED_VERSIONS } from '../constants';
 import { Support, Format, Platform, FeatureFlags, BundleBuild } from '../types';
 import BundleArtifact from '../BundleArtifact';
+import envExpressionsPlugin from './plugins/envExpressions';
 
 // https://babeljs.io/docs/en/babel-preset-env
 export interface PresetEnvOptions {
@@ -62,7 +63,7 @@ function getPlatformEnvOptions(
         ],
         modules,
         targets: {
-          node: process.env.NODE_ENV === 'test' ? 'current' : NODE_SUPPORTED_VERSIONS[support],
+          node: __TEST__ ? 'current' : NODE_SUPPORTED_VERSIONS[support],
         },
       };
 
@@ -132,7 +133,7 @@ export function getBabelInputConfig(
     presets.push([
       resolve('@babel/preset-react'),
       {
-        development: process.env.NODE_ENV !== 'production',
+        development: __DEV__,
         throwIfNamespace: true,
       },
     ]);
@@ -150,14 +151,13 @@ export function getBabelOutputConfig(
   const plugins: PluginItem[] = [];
   const presets: PluginItem[] = [];
   const isFuture = support !== 'legacy' && support !== 'stable';
-  const isProd = process.env.NODE_ENV === 'production';
 
   // ENVIRONMENT
 
   const envOptions: PresetEnvOptions = {
     // Prefer speed and smaller filesize in prod
-    spec: !isProd,
-    loose: isProd,
+    spec: __DEV__,
+    loose: __PROD__,
     // Consumers must polyfill accordingly
     useBuiltIns: false,
     // Transform features accordingly
@@ -188,8 +188,8 @@ export function getBabelOutputConfig(
     ]);
   }
 
-  // Support `__DEV__` shortcuts
-  plugins.push([resolve('babel-plugin-transform-dev'), { evaluate: false }]);
+  // Support env expression shortcuts
+  plugins.push(envExpressionsPlugin());
 
   return getSharedConfig(plugins, presets, features);
 }
