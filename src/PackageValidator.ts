@@ -81,45 +81,49 @@ export default class PackageValidator {
     this.checkDependencyRange(peerDependencies);
     this.checkDependencyRange(optionalDependencies);
 
-    Object.entries(peerDependencies || {}).forEach(([name, versionConstraint]) => {
-      const devVersion = semver.coerce(devDependencies?.[name]);
-      const prodVersion = dependencies?.[name];
+    Object.entries(peerDependencies || {}).forEach(([peerName, versionConstraint]) => {
+      const devVersion = semver.coerce(devDependencies?.[peerName]);
+      const prodVersion = dependencies?.[peerName];
 
       if (prodVersion) {
-        this.errors.push(`Dependency "${name}" defined as both a prod and peer dependency.`);
+        this.errors.push(`Dependency "${peerName}" defined as both a prod and peer dependency.`);
       }
 
       // When using Lerna, we want to avoid pairing a peer with a dev dependency,
       // as Lerna will update their `package.json` version of all dependent packages!
       // This would accidently publish many packages that shouldn't be.
-      if (usesLerna && devVersion && workspacePackageNames.has(name)) {
-        this.errors.push(
-          `Peer dependency "${name}" should not define a dev dependency when using Lerna.`,
-        );
+      if (usesLerna && workspacePackageNames.has(peerName)) {
+        if (devVersion) {
+          this.errors.push(
+            `Peer dependency "${peerName}" should not define a dev dependency when using Lerna.`,
+          );
+        }
 
         return;
       }
 
       if (!devVersion) {
         this.warnings.push(
-          `Peer dependency "${name}" is missing a version satisfying dev dependency.`,
+          `Peer dependency "${peerName}" is missing a version satisfying dev dependency.`,
         );
       } else if (!semver.satisfies(devVersion.version, versionConstraint)) {
         this.errors.push(
-          `Dev dependency "${name}" does not satisfy version constraint of its peer. Found ${devVersion.version}, requires ${versionConstraint}.`,
+          `Dev dependency "${peerName}" does not satisfy version constraint of its peer. Found ${devVersion.version}, requires ${versionConstraint}.`,
         );
       }
     });
   }
 
   protected checkDependencyRange(deps?: DependencyMap) {
-    Object.entries(deps || {}).forEach(([name, version]) => {
+    Object.entries(deps || {}).forEach(([depName, version]) => {
       if (version.startsWith('file:')) {
         this.errors.push(
-          `Dependency "${name}" must not require the file system. Found file: constraint.`,
+          `Dependency "${depName}" must not require the file system. Found file: constraint.`,
         );
       } else if (version.startsWith('link:')) {
-        this.errors.push(`Dependency "${name}" must not require symlinks. Found link: constraint.`);
+        this.errors.push(
+          `Dependency "${depName}" must not require symlinks. Found link: constraint.`,
+        );
       }
     });
   }
