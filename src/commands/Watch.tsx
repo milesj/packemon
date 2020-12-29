@@ -17,6 +17,8 @@ export class WatchCommand extends Command<WatchOptions> {
   @Arg.Flag('Poll for file changes instead of using file system events')
   poll: boolean = false;
 
+  protected packages: Package[] = [];
+
   protected packagesToRebuild = new Set<Package>();
 
   protected rebuilding: boolean = false;
@@ -29,12 +31,12 @@ export class WatchCommand extends Command<WatchOptions> {
     packemon.debug('Starting `watch` process');
 
     // Generate all our build artifacts
-    await packemon.loadConfiguredPackages(this.skipPrivate);
+    this.packages = await packemon.loadConfiguredPackages(this.skipPrivate);
 
-    packemon.generateArtifacts();
+    packemon.generateArtifacts(this.packages);
 
     // Instantiate the watcher for each package source
-    const watchPaths = packemon.packages.map((pkg) => pkg.path.append('src/**/*').path());
+    const watchPaths = this.packages.map((pkg) => pkg.path.append('src/**/*').path());
 
     packemon.debug('Initializing chokidar watcher for paths:');
     packemon.debug(watchPaths.map((path) => ` - ${path}`).join('\n'));
@@ -60,7 +62,7 @@ export class WatchCommand extends Command<WatchOptions> {
 
     this.log(applyStyle(' - %s', 'muted'), path.replace(`${this.packemon.root.path()}/`, ''));
 
-    const changedPkg = this.packemon.packages.find((pkg) => path.startsWith(pkg.path.path()));
+    const changedPkg = this.packages.find((pkg) => path.startsWith(pkg.path.path()));
 
     if (changedPkg) {
       this.packagesToRebuild.add(changedPkg);

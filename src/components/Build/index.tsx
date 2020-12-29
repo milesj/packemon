@@ -15,29 +15,34 @@ export interface BuildProps extends BuildOptions {
 
 export default function Build({ packemon, onBuilt, ...options }: BuildProps) {
   const { exit } = useProgram();
+  const [packages, setPackages] = useState<Package[]>([]);
   const [staticPackages, setStaticPackages] = useState<Package[]>([]);
-  const staticNames = useRef(new Set<string>());
+  const staticNames = useRef(new Set<string>()).current;
   const clearLoop = useRenderLoop();
 
-  // Run the build process on mount
   useOnMount(() => {
-    void packemon.build(options).then(onBuilt).catch(exit).finally(clearLoop);
+    // Save loaded packages
+    const unlistenLoaded = packemon.onPackagesLoaded.listen(setPackages);
 
-    // Add complete packages to the static list
-    const unlisten = packemon.onPackageBuilt.listen((pkg) => {
-      if (pkg.isComplete() && !staticNames.current.has(pkg.getName())) {
+    // Add built package to the static list
+    const unlistenBuilt = packemon.onPackageBuilt.listen((pkg) => {
+      if (pkg.isComplete() && !staticNames.has(pkg.getName())) {
         setStaticPackages((pkgs) => [...pkgs, pkg]);
-        staticNames.current.add(pkg.getName());
+        staticNames.add(pkg.getName());
       }
     });
 
+    // Run the build process on mount
+    void packemon.build(options).then(onBuilt).catch(exit).finally(clearLoop);
+
     return () => {
       clearLoop();
-      unlisten();
+      unlistenLoaded();
+      unlistenBuilt();
     };
   });
 
-  const runningPackages = packemon.packages.filter((pkg) => pkg.isRunning());
+  const runningPackages = packages.filter((pkg) => pkg.isRunning());
 
   return (
     <>

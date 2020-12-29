@@ -1,8 +1,11 @@
+/* eslint-disable @typescript-eslint/member-ordering */
 import fs from 'fs-extra';
 import rimraf from 'rimraf';
 import {
   Blueprint,
+  isObject,
   json,
+  Memoize,
   optimal,
   Path,
   predicates,
@@ -73,7 +76,7 @@ export default class Packemon {
 
   readonly onPackageBuilt = new Event<[Package]>('package-built');
 
-  packages: Package[] = [];
+  readonly onPackagesLoaded = new Event<[Package[]]>('packages-loaded');
 
   readonly project: Project;
 
@@ -102,8 +105,9 @@ export default class Packemon {
       timeout: number().gte(0),
     });
 
-    await this.loadConfiguredPackages(options.skipPrivate);
-    this.generateArtifacts(options.generateDeclaration);
+    const packages = await this.loadConfiguredPackages(options.skipPrivate);
+
+    this.generateArtifacts(packages, options.generateDeclaration);
 
     // Build packages in parallel using a pool
     const pipeline = new PooledPipeline(new Context());
@@ -113,7 +117,7 @@ export default class Packemon {
       timeout: options.timeout,
     });
 
-    this.packages.forEach((pkg) => {
+    packages.forEach((pkg) => {
       pipeline.add(pkg.getName(), async () => {
         await pkg.build(options);
 
@@ -124,7 +128,7 @@ export default class Packemon {
     const { errors } = await pipeline.run();
 
     // Always cleanup whether a successful or failed build
-    await this.cleanTemporaryFiles();
+    await this.cleanTemporaryFiles(packages);
 
     // Throw to trigger an error screen in the terminal
     if (errors.length > 0) {
@@ -135,10 +139,13 @@ export default class Packemon {
   async clean() {
     this.debug('Starting `clean` process');
 
-    await this.loadConfiguredPackages();
-    await this.cleanTemporaryFiles();
+    const packages = await this.loadConfiguredPackages();
 
-    const formatFolders = '{cjs,dts,esm,lib,mjs,umd}';
+    // Clean package specific files
+    await this.cleanTemporaryFiles(packages);
+
+    // Clean build formats
+    const formatFolders = '{cjs,esm,lib,mjs,umd}';
     const pathsToRemove: string[] = [];
 
     if (this.project.isWorkspacesEnabled()) {
@@ -189,19 +196,9 @@ export default class Packemon {
       repo: bool(true),
     });
 
-    await this.loadConfiguredPackages(options.skipPrivate);
+    const packages = await this.loadConfiguredPackages(options.skipPrivate);
 
-    return Promise.all(this.packages.map((pkg) => new PackageValidator(pkg).validate(options)));
-  }
-
-  async loadConfiguredPackages(skipPrivate: boolean = false) {
-    if (this.packages.length === 0) {
-      this.packages = this.validateAndPreparePackages(
-        await this.findPackagesInProject(skipPrivate),
-      );
-    }
-
-    return this.packages;
+    return Promise.all(packages.map((pkg) => new PackageValidator(pkg).validate(options)));
   }
 
   /**
@@ -270,10 +267,10 @@ export default class Packemon {
     return packages;
   }
 
-  generateArtifacts(declarationType?: DeclarationType) {
+  generateArtifacts(packages: Package[], declarationType?: DeclarationType) {
     this.debug('Generating build artifacts for packages');
 
-    this.packages.forEach((pkg) => {
+    packages.forEach((pkg) => {
       const typesBuilds: TypesBuild[] = [];
       const requiresSharedLib = this.requiresSharedLib(pkg);
 
@@ -311,10 +308,23 @@ export default class Packemon {
     });
   }
 
-  protected async cleanTemporaryFiles() {
+  /**
+   * Find and load all packages that have been configured with a `packemon`
+   * block in their `package.json`. Once loaded, validate the configuration.
+   */
+  @Memoize()
+  async loadConfiguredPackages(skipPrivate: boolean = false): Promise<Package[]> {
+    const packages = this.validateAndPreparePackages(await this.findPackagesInProject(skipPrivate));
+
+    this.onPackagesLoaded.emit([packages]);
+
+    return packages;
+  }
+
+  protected async cleanTemporaryFiles(packages: Package[]) {
     this.debug('Cleaning temporary build files');
 
-    await Promise.all(this.packages.map((pkg) => pkg.cleanup()));
+    await Promise.all(packages.map((pkg) => pkg.cleanup()));
   }
 
   protected requiresSharedLib(pkg: Package): boolean {
@@ -336,6 +346,10 @@ export default class Packemon {
     });
   }
 
+  /**
+   * Validate that every loaded package has a valid `packemon` configuration,
+   * otherwise skip it. All valid packages will return a `Package` instance.
+   */
   protected validateAndPreparePackages(packages: WorkspacePackage<PackemonPackage>[]): Package[] {
     this.debug('Validating found packages');
 
@@ -344,6 +358,13 @@ export default class Packemon {
     packages.forEach(({ metadata, package: contents }) => {
       if (!contents.packemon) {
         this.debug('No `packemon` configuration found for %s, skipping', contents.name);
+
+        return;
+      } else if (!isObject(contents.packemon) && !Array.isArray(contents.packemon)) {
+        this.debug(
+          'Invalid `packemon` configuration for %s, must be an object or array of objects',
+          contents.name,
+        );
 
         return;
       }
