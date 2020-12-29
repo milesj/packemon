@@ -21,7 +21,8 @@ export default function envExpressions() {
               return;
             }
 
-            // { __DEV__: var }, { [__DEV__]: var }
+            // { __DEV__: var }
+            // { [__DEV__]: var }
             if (path.parentPath.isObjectProperty() && path.parentPath.node.value !== path.node) {
               return;
             }

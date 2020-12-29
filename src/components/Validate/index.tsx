@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box } from 'ink';
+import { Box, Static } from 'ink';
 import { Header, useProgram, useRenderLoop } from '@boost/cli';
 import Packemon from '../../Packemon';
 import PackageValidator from '../../PackageValidator';
@@ -50,14 +50,16 @@ export default function Validate({ packemon, onValidated, ...options }: Validate
   }, [failedValidators, exit]);
 
   return (
-    <Box flexDirection="column" margin={0}>
-      {(isValidating || failedValidators.length > 0) && (
-        <Header label="Validating packages" marginBottom={0} />
-      )}
+    <>
+      <Static items={failedValidators}>
+        {(validator) => (
+          <ValidateRow key={`validate-${validator.package.getName()}`} validator={validator} />
+        )}
+      </Static>
 
-      {failedValidators.map((validator, i) => (
-        <ValidateRow key={`validate-${validator.package.getName()}`} validator={validator} />
-      ))}
-    </Box>
+      <Box flexDirection="column" margin={0}>
+        {isValidating && <Header label="Validating packages" marginBottom={0} />}
+      </Box>
+    </>
   );
 }
