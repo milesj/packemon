@@ -12,7 +12,7 @@ export default class Project extends BaseProject {
 
   checkEngineVersionConstraint() {
     // eslint-disable-next-line
-    const { version } = require('../package.json');
+    const { version } = require('packemon/package.json');
     const versionConstraint = this.rootPackage.packageJson.engines?.packemon;
 
     if (version && versionConstraint && !semver.satisfies(version, versionConstraint)) {

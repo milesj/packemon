@@ -6,6 +6,11 @@ import Packemon from '../src/Packemon';
 describe('Packemon', () => {
   let packemon: Packemon;
 
+  it('errors with engine version constraint', () => {
+    // eslint-disable-next-line jest/require-to-throw-message
+    expect(() => new Packemon(getFixturePath('project-constraint'))).toThrow();
+  });
+
   describe('findPackagesInProject()', () => {
     it('errors if no packages are found', async () => {
       packemon = new Packemon(getFixturePath('workspace-private'));
