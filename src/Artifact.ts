@@ -40,6 +40,10 @@ export default abstract class Artifact<T extends object = {}> {
 
   startup() {}
 
+  toString(): string {
+    return this.getLabel();
+  }
+
   protected logWithSource(
     message: string,
     level: 'info' | 'warn' | 'error',
@@ -92,6 +96,4 @@ export default abstract class Artifact<T extends object = {}> {
   abstract getLabel(): string;
 
   abstract getBuildTargets(): string[];
-
-  abstract toString(): string;
 }

@@ -2,6 +2,7 @@ import execa from 'execa';
 import { getFixturePath } from '@boost/test-utils';
 import Project from '../src/Project';
 import Package from '../src/Package';
+import { delay } from './helpers';
 
 jest.mock('execa');
 
@@ -86,6 +87,20 @@ describe('Project', () => {
         preferLocal: true,
       });
     });
+
+    it('reuses the same promise while building', async () => {
+      ((execa as unknown) as jest.SpyInstance).mockReset().mockImplementation(() => delay(200));
+
+      const project = new Project(getFixturePath('workspace-private'));
+
+      await Promise.all([
+        project.generateDeclarations(),
+        project.generateDeclarations(),
+        project.generateDeclarations(),
+      ]);
+
+      expect(execa).toHaveBeenCalledTimes(1);
+    });
   });
 
   describe('getWorkspacePackageNames()', () => {
@@ -106,7 +121,7 @@ describe('Project', () => {
     });
   });
 
-  describe('rootPackage', () => {
+  describe('rootPackage()', () => {
     const project = new Project(getFixturePath('workspaces'));
 
     it('returns an instance of `Package`', () => {

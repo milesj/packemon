@@ -21,8 +21,13 @@ export default function Build({ packemon, onBuilt, ...options }: BuildProps) {
   const clearLoop = useRenderLoop();
 
   useOnMount(() => {
+    let pkgCount = 0;
+
     // Save loaded packages
-    const unlistenLoaded = packemon.onPackagesLoaded.listen(setPackages);
+    const unlistenLoaded = packemon.onPackagesLoaded.listen((pkgs) => {
+      setPackages(pkgs);
+      pkgCount = pkgs.length;
+    });
 
     // Add built package to the static list
     const unlistenBuilt = packemon.onPackageBuilt.listen((pkg) => {
@@ -30,13 +35,16 @@ export default function Build({ packemon, onBuilt, ...options }: BuildProps) {
         setStaticPackages((pkgs) => [...pkgs, pkg]);
         staticNames.add(pkg.getName());
       }
+
+      if (staticNames.size === pkgCount) {
+        clearLoop();
+      }
     });
 
     // Run the build process on mount
-    void packemon.build(options).then(onBuilt).catch(exit).finally(clearLoop);
+    void packemon.build(options).then(onBuilt).catch(exit);
 
     return () => {
-      clearLoop();
       unlistenLoaded();
       unlistenBuilt();
     };

@@ -1,0 +1,13 @@
+{
+  "private": true,
+  "workspaces": ["packages/*"],
+  "dependencies": {
+    "flow-bin": "*"
+  },
+  "devDependencies": {
+    "typescript": "*"
+  },
+  "peerDependencies": {
+    "react": "*"
+  }
+}
