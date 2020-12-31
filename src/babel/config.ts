@@ -3,6 +3,7 @@ import { BROWSER_TARGETS, NATIVE_TARGETS, NODE_SUPPORTED_VERSIONS } from '../con
 import { Support, Format, Platform, FeatureFlags, BundleBuild } from '../types';
 import BundleArtifact from '../BundleArtifact';
 import envExpressionsPlugin from './plugins/envExpressions';
+import resolve from './resolve';
 
 // https://babeljs.io/docs/en/babel-preset-env
 export interface PresetEnvOptions {
@@ -22,12 +23,6 @@ export interface PresetEnvOptions {
   useBuiltIns?: 'usage' | 'entry' | false;
 }
 
-// Babel resolves plugins against the current working directory
-// and will not find globally installed dependencies unless we resolve.
-function resolve(path: string) {
-  return require.resolve(path);
-}
-
 function getPlatformEnvOptions(
   platform: Platform,
   support: Support,
@@ -38,7 +33,7 @@ function getPlatformEnvOptions(
   if (format === 'umd') {
     modules = 'umd';
   } else if (format === 'cjs' || format === 'lib') {
-    modules = 'cjs';
+    modules = 'cjs'; // Babel CommonJS
   }
 
   switch (platform) {
