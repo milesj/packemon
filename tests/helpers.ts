@@ -3,3 +3,7 @@ export function delay(time: number): Promise<void> {
     setTimeout(resolve, time);
   });
 }
+
+export function mockSpy(instance: unknown): jest.SpyInstance {
+  return instance as jest.SpyInstance;
+}

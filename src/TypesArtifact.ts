@@ -35,7 +35,7 @@ export default class TypesArtifact extends Artifact<TypesBuild> {
   async build(): Promise<void> {
     this.debug('Building "%s" types artifact with TypeScript', this.declarationType);
 
-    const tsConfig = this.package.tsconfigJson;
+    const tsConfig = this.loadTsconfigJson();
 
     // Compile the current projects declarations
     this.debug('Generating declarations at the root using `tsc`');
@@ -47,16 +47,18 @@ export default class TypesArtifact extends Artifact<TypesBuild> {
       this.debug('Combining declarations into a single API declaration file');
 
       // Resolved compiler options use absolute paths, so we should match
-      let declBuildPath = this.package.path.append('dts');
+      let dtsBuildPath = this.package.path.append('dts');
 
       // Workspaces use the tsconfig setting, while non-workspaces is hard-coded to "dts"
       if (tsConfig && this.package.project.isWorkspacesEnabled()) {
-        declBuildPath = new Path(tsConfig.options.declarationDir || tsConfig.options.outDir!);
+        dtsBuildPath = new Path(
+          tsConfig.options.declarationDir || tsConfig.options.outDir || dtsBuildPath,
+        );
       }
 
       await Promise.all(
         this.builds.map(({ inputPath, outputName }) =>
-          this.generateApiDeclaration(outputName, inputPath, declBuildPath),
+          this.generateApiDeclaration(outputName, inputPath, dtsBuildPath),
         ),
       );
 
@@ -64,7 +66,7 @@ export default class TypesArtifact extends Artifact<TypesBuild> {
       // We do this in the background to speed up the CLI process!
       this.debug('Removing old and unnecessary declarations in the background');
 
-      void this.removeDeclarationBuild(declBuildPath);
+      void this.removeDeclarationBuild(dtsBuildPath);
     }
   }
 
@@ -87,13 +89,15 @@ export default class TypesArtifact extends Artifact<TypesBuild> {
   protected async generateApiDeclaration(
     outputName: string,
     inputPath: string,
-    declBuildPath: Path,
+    dtsBuildPath: Path,
   ): Promise<unknown> {
-    const declEntry = declBuildPath.append(inputPath.replace('src/', '').replace('.ts', '.d.ts'));
+    const dtsEntryPoint = dtsBuildPath.append(
+      inputPath.replace('src/', '').replace('.ts', '.d.ts'),
+    );
 
-    if (!declEntry.exists()) {
+    if (!dtsEntryPoint.exists()) {
       console.warn(
-        `Unable to generate declaration for "${outputName}". Entry point "${declEntry}" does not exist.`,
+        `Unable to generate declaration for "${outputName}". Declaration entry point "${dtsEntryPoint}" does not exist.`,
       );
 
       return Promise.resolve();
@@ -104,7 +108,7 @@ export default class TypesArtifact extends Artifact<TypesBuild> {
     const config: APIExtractorStructure = {
       ...extractorConfig,
       projectFolder: this.package.path.path(),
-      mainEntryPointFilePath: declEntry.path(),
+      mainEntryPointFilePath: dtsEntryPoint.path(),
       dtsRollup: {
         ...extractorConfig.dtsRollup,
         untrimmedFilePath: `<projectFolder>/dts/${outputName}.d.ts`,
@@ -117,7 +121,7 @@ export default class TypesArtifact extends Artifact<TypesBuild> {
     // Extract all DTS into a single file
     const result = Extractor.invoke(ExtractorConfig.loadFileAndPrepare(configPath), {
       localBuild: __DEV__,
-      messageCallback: (warn) => {
+      messageCallback: /* istanbul ignore next */ (warn) => {
         // eslint-disable-next-line no-param-reassign
         warn.handled = true;
 
@@ -157,7 +161,13 @@ export default class TypesArtifact extends Artifact<TypesBuild> {
   }
 
   protected getApiExtractorConfigPath(outputName: string): Path {
-    return this.package.path.append(`api-extractor-${outputName}.json`);
+    return this.package.path.append(`api-extractor-${outputName.replace(/\//u, '-')}.json`);
+  }
+
+  // This method only exists so that we can mock in tests.
+  // istanbul ignore next
+  protected loadTsconfigJson() {
+    return this.package.tsconfigJson;
   }
 
   /**
@@ -172,27 +182,18 @@ export default class TypesArtifact extends Artifact<TypesBuild> {
    *
    * Not sure of a workaround or better solution :(
    */
-  protected async removeDeclarationBuild(declBuildPath: Path) {
+  protected async removeDeclarationBuild(dtsBuildPath: Path) {
     const outputs = new Set<string>(this.builds.map(({ outputName }) => `${outputName}.d.ts`));
 
-    // Remove all build files in the root except for the output files we created
-    const files = await glob(['*.js', '*.d.ts', '*.d.ts.map'], {
-      cwd: declBuildPath.path(),
+    const files = await glob(['**/*'], {
+      cwd: dtsBuildPath.path(),
       onlyFiles: true,
     });
 
     await Promise.all(
       files
         .filter((file) => !outputs.has(file))
-        .map((file) => fs.unlink(declBuildPath.append(file).path())),
+        .map((file) => fs.remove(dtsBuildPath.append(file).path())),
     );
-
-    // Remove all build folders recursively since our output files are always in the root
-    const folders = await glob(['*'], {
-      cwd: declBuildPath.path(),
-      onlyDirectories: true,
-    });
-
-    await Promise.all(folders.map((folder) => fs.remove(declBuildPath.append(folder).path())));
   }
 }

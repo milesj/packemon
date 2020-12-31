@@ -1,7 +1,7 @@
 const envs = {
   DEV: true,
   PROD: false,
-  TEST: false, // Avoid for self
+  TEST: false, // Avoid for testing self
 };
 
 Object.entries(envs).forEach(([name, bool]) => {

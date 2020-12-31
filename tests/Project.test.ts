@@ -2,7 +2,7 @@ import execa from 'execa';
 import { getFixturePath } from '@boost/test-utils';
 import Project from '../src/Project';
 import Package from '../src/Package';
-import { delay } from './helpers';
+import { delay, mockSpy } from './helpers';
 
 jest.mock('execa');
 
@@ -89,7 +89,9 @@ describe('Project', () => {
     });
 
     it('reuses the same promise while building', async () => {
-      ((execa as unknown) as jest.SpyInstance).mockReset().mockImplementation(() => delay(200));
+      mockSpy(execa)
+        .mockReset()
+        .mockImplementation(() => delay(200));
 
       const project = new Project(getFixturePath('workspace-private'));
 
