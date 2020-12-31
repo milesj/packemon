@@ -237,7 +237,7 @@ describe('Package', () => {
         });
       });
 
-      it('it extrators decorators and strict support from local `tsconfig.json`', () => {
+      it('extracts decorators and strict support from local `tsconfig.json`', () => {
         expect(loadPackage('ts-config').getFeatureFlags()).toEqual({
           decorators: true,
           strict: true,

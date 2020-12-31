@@ -5,5 +5,6 @@ const envs = {
 };
 
 Object.entries(envs).forEach(([name, bool]) => {
+  // @ts-expect-error
   global[`__${name}__`] = bool;
 });

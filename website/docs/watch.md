@@ -23,3 +23,4 @@ Watch supports the following command line options.
   to `150`.
 - `--poll` - Poll for file changes instead of using file system events. This is necessary if going
   across the network or through containers.
+- `--skipPrivate` - Skip `private` packages from being watched.
