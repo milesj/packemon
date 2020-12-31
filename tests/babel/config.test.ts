@@ -5,6 +5,50 @@ jest.mock('../../src/babel/resolve', () => (name) => name);
 
 const SUPPORTS: Support[] = ['legacy', 'stable', 'current', 'experimental'];
 
+describe('getBabelInputConfig()', () => {
+  const bundleArtifact: any = {
+    package: { hasDependency: () => false },
+  };
+
+  it('includes no plugins or presets by default', () => {
+    expect(getBabelInputConfig(bundleArtifact, {})).toMatchSnapshot();
+  });
+
+  it('includes react preset if `react` feature flag is true', () => {
+    expect(getBabelInputConfig(bundleArtifact, { react: true }).presets).toMatchSnapshot();
+  });
+
+  it('includes flow preset if `flow` feature flag is true', () => {
+    expect(getBabelInputConfig(bundleArtifact, { flow: true }).presets).toMatchSnapshot();
+  });
+
+  it('includes typescript preset if `typescript` feature flag is true', () => {
+    expect(getBabelInputConfig(bundleArtifact, { typescript: true }).presets).toMatchSnapshot();
+  });
+
+  it('includes typescript decorators if `typescript` and `decorators` feature flag is true', () => {
+    expect(
+      getBabelInputConfig(bundleArtifact, { decorators: true, typescript: true }),
+    ).toMatchSnapshot();
+  });
+
+  it('doesnt include typescript decorators if `typescript` feature flag is false', () => {
+    expect(
+      getBabelInputConfig(bundleArtifact, { decorators: true, typescript: false }),
+    ).toMatchSnapshot();
+  });
+
+  it('supports private properties with decorators if dep exists', () => {
+    const spy = jest.spyOn(bundleArtifact.package, 'hasDependency').mockImplementation(() => true);
+
+    expect(
+      getBabelInputConfig(bundleArtifact, { decorators: true, typescript: true }),
+    ).toMatchSnapshot();
+
+    spy.mockRestore();
+  });
+});
+
 function renderPresetEnv(platform: Platform, format: Format, support: Support) {
   it(`handles preset-env: ${platform} + ${format} + ${support}`, () => {
     expect(getBabelOutputConfig({ format, platform, support }, {}).presets[0]).toMatchSnapshot();

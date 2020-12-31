@@ -1,5 +1,169 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`getBabelInputConfig() doesnt include typescript decorators if \`typescript\` feature flag is false 1`] = `
+Object {
+  "babelrc": true,
+  "babelrcRoots": undefined,
+  "caller": Object {
+    "name": "packemon",
+  },
+  "comments": false,
+  "configFile": false,
+  "parserOpts": Object {
+    "sourceType": "unambiguous",
+    "strictMode": undefined,
+  },
+  "plugins": Array [],
+  "presets": Array [],
+}
+`;
+
+exports[`getBabelInputConfig() includes flow preset if \`flow\` feature flag is true 1`] = `
+Array [
+  Array [
+    "@babel/preset-flow",
+    Object {
+      "allowDeclareFields": true,
+    },
+  ],
+]
+`;
+
+exports[`getBabelInputConfig() includes no plugins or presets by default 1`] = `
+Object {
+  "babelrc": true,
+  "babelrcRoots": undefined,
+  "caller": Object {
+    "name": "packemon",
+  },
+  "comments": false,
+  "configFile": false,
+  "parserOpts": Object {
+    "sourceType": "unambiguous",
+    "strictMode": undefined,
+  },
+  "plugins": Array [],
+  "presets": Array [],
+}
+`;
+
+exports[`getBabelInputConfig() includes react preset if \`react\` feature flag is true 1`] = `
+Array [
+  Array [
+    "@babel/preset-react",
+    Object {
+      "development": true,
+      "throwIfNamespace": true,
+    },
+  ],
+]
+`;
+
+exports[`getBabelInputConfig() includes typescript decorators if \`typescript\` and \`decorators\` feature flag is true 1`] = `
+Object {
+  "babelrc": true,
+  "babelrcRoots": undefined,
+  "caller": Object {
+    "name": "packemon",
+  },
+  "comments": false,
+  "configFile": false,
+  "parserOpts": Object {
+    "sourceType": "unambiguous",
+    "strictMode": undefined,
+  },
+  "plugins": Array [
+    Array [
+      "@babel/plugin-proposal-decorators",
+      Object {
+        "legacy": true,
+      },
+    ],
+    Array [
+      "@babel/plugin-proposal-class-properties",
+      Object {
+        "loose": true,
+      },
+    ],
+    Array [
+      "@babel/plugin-proposal-private-methods",
+      Object {
+        "loose": true,
+      },
+    ],
+  ],
+  "presets": Array [
+    Array [
+      "@babel/preset-typescript",
+      Object {
+        "allowDeclareFields": true,
+      },
+    ],
+  ],
+}
+`;
+
+exports[`getBabelInputConfig() includes typescript preset if \`typescript\` feature flag is true 1`] = `
+Array [
+  Array [
+    "@babel/preset-typescript",
+    Object {
+      "allowDeclareFields": true,
+    },
+  ],
+]
+`;
+
+exports[`getBabelInputConfig() supports private properties with decorators if dep exists 1`] = `
+Object {
+  "babelrc": true,
+  "babelrcRoots": undefined,
+  "caller": Object {
+    "name": "packemon",
+  },
+  "comments": false,
+  "configFile": false,
+  "parserOpts": Object {
+    "sourceType": "unambiguous",
+    "strictMode": undefined,
+  },
+  "plugins": Array [
+    Array [
+      "@babel/plugin-proposal-decorators",
+      Object {
+        "legacy": true,
+      },
+    ],
+    Array [
+      "@babel/plugin-proposal-class-properties",
+      Object {
+        "loose": true,
+      },
+    ],
+    Array [
+      "@babel/plugin-proposal-private-methods",
+      Object {
+        "loose": true,
+      },
+    ],
+    Array [
+      "@babel/plugin-proposal-private-property-in-object",
+      Object {
+        "loose": true,
+      },
+    ],
+  ],
+  "presets": Array [
+    Array [
+      "@babel/preset-typescript",
+      Object {
+        "allowDeclareFields": true,
+      },
+    ],
+  ],
+}
+`;
+
 exports[`getBabelOutputConfig() handles preset-env: browser + esm + current 1`] = `
 Array [
   "@babel/preset-env",
