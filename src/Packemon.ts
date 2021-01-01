@@ -276,7 +276,7 @@ export default class Packemon {
       const requiresSharedLib = this.requiresSharedLib(pkg);
 
       pkg.configs.forEach((config) => {
-        Object.entries(config.inputs).forEach(([outputName, inputPath]) => {
+        Object.entries(config.inputs).forEach(([outputName, inputFile]) => {
           const artifact = new BundleArtifact(
             pkg,
             // Must be unique per input to avoid references
@@ -289,12 +289,12 @@ export default class Packemon {
               ),
             ),
           );
-          artifact.inputPath = inputPath;
+          artifact.inputFile = inputFile;
           artifact.namespace = config.namespace;
           artifact.outputName = outputName;
 
           pkg.addArtifact(artifact);
-          typesBuilds.push({ inputPath, outputName });
+          typesBuilds.push({ inputFile, outputName });
         });
       });
 

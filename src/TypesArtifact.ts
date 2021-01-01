@@ -57,8 +57,8 @@ export default class TypesArtifact extends Artifact<TypesBuild> {
       }
 
       await Promise.all(
-        this.builds.map(({ inputPath, outputName }) =>
-          this.generateApiDeclaration(outputName, inputPath, dtsBuildPath),
+        this.builds.map(({ inputFile, outputName }) =>
+          this.generateApiDeclaration(outputName, inputFile, dtsBuildPath),
         ),
       );
 
@@ -88,11 +88,11 @@ export default class TypesArtifact extends Artifact<TypesBuild> {
 
   protected async generateApiDeclaration(
     outputName: string,
-    inputPath: string,
+    inputFile: string,
     dtsBuildPath: Path,
   ): Promise<unknown> {
     const dtsEntryPoint = dtsBuildPath.append(
-      inputPath.replace('src/', '').replace('.ts', '.d.ts'),
+      inputFile.replace('src/', '').replace('.ts', '.d.ts'),
     );
 
     if (!dtsEntryPoint.exists()) {

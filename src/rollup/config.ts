@@ -97,7 +97,7 @@ export function getRollupConfig(artifact: BundleArtifact, features: FeatureFlags
   // Add an output for each format
   config.output = artifact.builds.map((build) => {
     const { format, platform, support } = build;
-    const ext = artifact.getExtension(format);
+    const ext = artifact.getOutputExtension(format);
 
     const output: OutputOptions = {
       dir: artifact.getOutputDir(format).path(),

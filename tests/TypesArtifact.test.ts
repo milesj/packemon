@@ -24,8 +24,8 @@ describe('TypesArtifact', () => {
         packemon: {},
       }),
       [
-        { inputPath: 'src/index.ts', outputName: 'index' },
-        { inputPath: 'src/sub/test.ts', outputName: 'sub/test' },
+        { inputFile: 'src/index.ts', outputName: 'index' },
+        { inputFile: 'src/sub/test.ts', outputName: 'sub/test' },
       ],
     );
     artifact.startup();
@@ -118,7 +118,7 @@ describe('TypesArtifact', () => {
 
       it('logs a warning if dts file does not exist', async () => {
         artifact.builds.push({
-          inputPath: 'src/missing.ts',
+          inputFile: 'src/missing.ts',
           outputName: 'missing',
         });
 

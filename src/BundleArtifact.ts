@@ -10,13 +10,13 @@ import { Format, BuildOptions, BundleBuild, Support, Platform } from './types';
 export default class BundleArtifact extends Artifact<BundleBuild> {
   cache?: RollupCache;
 
-  // Path to the input file relative to the package
-  inputPath: string = '';
+  // Input file path relative to the package root
+  inputFile: string = '';
 
   // Namespace for UMD bundles
   namespace: string = '';
 
-  // Name of the output file without extension
+  // Output file name without extension
   outputName: string = '';
 
   protected debug!: Debugger;
@@ -25,29 +25,25 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
     format: Format,
     support: Support,
     platforms: Platform[],
-    requiresSharedLib: boolean,
+    requiresSharedLib: boolean = false,
   ): BundleBuild {
-    let platform: Platform | undefined;
+    let platform: Platform = platforms[0] || 'browser';
 
     if (format === 'cjs' || format === 'mjs') {
       platform = 'node';
     } else if (format === 'esm' || format === 'umd') {
       platform = 'browser';
-    } else if (requiresSharedLib) {
+    } else if (format === 'lib' && requiresSharedLib) {
       // "lib" is a shared format across all platforms,
       // and when a package wants to support multiple platforms,
       // we must down-level the "lib" format to the lowest platform.
       if (platforms.includes('browser')) {
         platform = 'browser';
-      } else if (platforms.includes('node')) {
-        platform = 'node';
       } else if (platforms.includes('native')) {
         platform = 'native';
+      } else if (platforms.includes('node')) {
+        platform = 'node';
       }
-    }
-
-    if (!platform) {
-      [platform] = platforms;
     }
 
     return {
@@ -130,12 +126,8 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
     return this.builds.map((build) => build.format);
   }
 
-  getExtension(format: Format): string {
-    return format === 'cjs' || format === 'mjs' ? format : 'js';
-  }
-
   getInputPath(): Path {
-    const inputPath = this.package.path.append(this.inputPath);
+    const inputPath = this.package.path.append(this.inputFile);
 
     if (inputPath.exists()) {
       return inputPath;
@@ -143,13 +135,17 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
 
     throw new Error(
       `Cannot find input "${
-        this.inputPath
+        this.inputFile
       }" for package "${this.package.getName()}". Skipping package.`,
     );
   }
 
+  getOutputExtension(format: Format): string {
+    return format === 'cjs' || format === 'mjs' ? format : 'js';
+  }
+
   getOutputFile(format: Format): string {
-    return `./${format}/${this.outputName}.${this.getExtension(format)}`;
+    return `./${format}/${this.outputName}.${this.getOutputExtension(format)}`;
   }
 
   getOutputDir(format: Format): Path {
@@ -205,20 +201,23 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
     const pkg = this.package.packageJson;
 
     this.builds.forEach(({ format }) => {
+      const ext = this.getOutputExtension(format);
+      const isNode = format === 'lib' || format === 'cjs' || format === 'mjs';
+
       if (this.outputName === 'index') {
-        if (format === 'lib' || format === 'cjs') {
-          pkg.main = `./${format}/index.js`;
+        if (isNode) {
+          pkg.main = `./${format}/index.${ext}`;
         } else if (format === 'esm') {
-          pkg.module = './esm/index.js';
+          pkg.module = `./esm/index.${ext}`;
         } else if (format === 'umd') {
-          pkg.browser = './umd/index.js';
+          pkg.browser = `./umd/index.${ext}`;
         }
       }
 
       // Bin field may be an object
       if (this.outputName === 'bin' && !isObject(pkg.bin)) {
-        if (format === 'lib' || format === 'cjs') {
-          pkg.bin = `./${format}/bin.js`;
+        if (isNode) {
+          pkg.bin = `./${format}/bin.${ext}`;
         }
       }
     });

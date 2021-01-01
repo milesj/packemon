@@ -96,7 +96,7 @@ export interface BundleBuild {
 }
 
 export interface TypesBuild {
-  inputPath: string;
+  inputFile: string;
   outputName: string;
 }
 
