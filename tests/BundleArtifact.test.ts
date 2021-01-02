@@ -1,11 +1,26 @@
 import fs from 'fs-extra';
+import { rollup } from 'rollup';
 import { Path } from '@boost/common';
 import { getFixturePath } from '@boost/test-utils';
 import BundleArtifact from '../src/BundleArtifact';
 import Project from '../src/Project';
 import Package from '../src/Package';
+import { mockSpy } from './helpers';
+import { getRollupConfig } from '../src/rollup/config';
+
+jest.mock('../src/rollup/config', () => ({
+  getRollupConfig: jest.fn(() => ({
+    input: true,
+    output: [
+      { originalFormat: 'lib', a: true },
+      { originalFormat: 'esm', b: true },
+      { originalFormat: 'mjs', c: true },
+    ],
+  })),
+}));
 
 jest.mock('fs-extra');
+jest.mock('rollup');
 
 describe('BundleArtifact', () => {
   const fixturePath = new Path(getFixturePath('project-types'));
@@ -112,6 +127,71 @@ describe('BundleArtifact', () => {
         platform: 'node',
         support: 'stable',
       });
+    });
+  });
+
+  describe('build()', () => {
+    let bundleWriteSpy: jest.SpyInstance;
+
+    beforeEach(() => {
+      bundleWriteSpy = jest.fn(() => ({ output: [{ code: 'code' }] }));
+
+      mockSpy(rollup)
+        .mockReset()
+        .mockImplementation(() => ({
+          cache: { cache: true },
+          write: bundleWriteSpy,
+        }));
+
+      jest
+        .spyOn(artifact.package, 'getFeatureFlags')
+        .mockImplementation(() => ({ typescript: true }));
+
+      artifact.builds.push(
+        { format: 'lib', platform: 'browser', support: 'stable' },
+        { format: 'cjs', platform: 'node', support: 'legacy' },
+        { format: 'esm', platform: 'browser', support: 'current' },
+      );
+    });
+
+    it('generates rollup config using input config', async () => {
+      await artifact.build({});
+
+      expect(getRollupConfig).toHaveBeenCalledWith(artifact, { typescript: true });
+      expect(rollup).toHaveBeenCalledWith({
+        input: true,
+        onwarn: expect.any(Function),
+      });
+    });
+
+    it('inherits `analyze` feature flag', async () => {
+      await artifact.build({ analyzeBundle: 'network' });
+
+      expect(getRollupConfig).toHaveBeenCalledWith(artifact, {
+        analyze: 'network',
+        typescript: true,
+      });
+    });
+
+    it('sets rollup cache on artifact', async () => {
+      expect(artifact.cache).toBeUndefined();
+
+      await artifact.build({});
+
+      expect(artifact.cache).toEqual({ cache: true });
+    });
+
+    it('writes a bundle and stats for each build', async () => {
+      await artifact.build({});
+
+      expect(bundleWriteSpy).toHaveBeenCalledWith({ a: true });
+      expect(artifact.builds[0].stats?.size).toBe(4);
+
+      expect(bundleWriteSpy).toHaveBeenCalledWith({ b: true });
+      expect(artifact.builds[1].stats?.size).toBe(4);
+
+      expect(bundleWriteSpy).toHaveBeenCalledWith({ c: true });
+      expect(artifact.builds[2].stats?.size).toBe(4);
     });
   });
 
@@ -234,9 +314,192 @@ describe('BundleArtifact', () => {
       });
     });
 
-    describe('engines', () => {});
+    describe('engines', () => {
+      it('does nothing if no `node` build', () => {
+        artifact.builds.push({ format: 'lib', platform: 'browser', support: 'stable' });
 
-    describe('exports', () => {});
+        expect(artifact.package.packageJson.engines).toBeUndefined();
+
+        artifact.postBuild({ addEngines: true });
+
+        expect(artifact.package.packageJson.engines).toBeUndefined();
+      });
+
+      it('does nothing if `addEngines` is false', () => {
+        artifact.builds.push({ format: 'lib', platform: 'node', support: 'stable' });
+
+        expect(artifact.package.packageJson.engines).toBeUndefined();
+
+        artifact.postBuild({ addEngines: false });
+
+        expect(artifact.package.packageJson.engines).toBeUndefined();
+      });
+
+      it('adds npm and node engines for `node` build', () => {
+        artifact.builds.push({ format: 'lib', platform: 'node', support: 'stable' });
+
+        expect(artifact.package.packageJson.engines).toBeUndefined();
+
+        artifact.postBuild({ addEngines: true });
+
+        expect(artifact.package.packageJson.engines).toEqual({ node: '>=10.3.0', npm: '>=6.1.0' });
+      });
+
+      it('merges with existing engines', () => {
+        artifact.builds.push({ format: 'lib', platform: 'node', support: 'stable' });
+
+        artifact.package.packageJson.engines = {
+          packemon: '*',
+        };
+
+        expect(artifact.package.packageJson.engines).toEqual({ packemon: '*' });
+
+        artifact.postBuild({ addEngines: true });
+
+        expect(artifact.package.packageJson.engines).toEqual({
+          packemon: '*',
+          node: '>=10.3.0',
+          npm: '>=6.1.0',
+        });
+      });
+
+      it('adds lowest versions when multiple `node` builds exist', () => {
+        artifact.builds.push(
+          { format: 'lib', platform: 'node', support: 'stable' },
+          { format: 'lib', platform: 'node', support: 'legacy' },
+          { format: 'lib', platform: 'node', support: 'experimental' },
+        );
+
+        expect(artifact.package.packageJson.engines).toBeUndefined();
+
+        artifact.postBuild({ addEngines: true });
+
+        expect(artifact.package.packageJson.engines).toEqual({
+          node: '>=8.10.0',
+          npm: '>=5.6.0 || >=6.0.0',
+        });
+      });
+    });
+
+    describe('exports', () => {
+      it('does nothing if no builds', () => {
+        expect(artifact.package.packageJson.exports).toBeUndefined();
+
+        artifact.postBuild({ addExports: true });
+
+        expect(artifact.package.packageJson.exports).toBeUndefined();
+      });
+
+      it('does nothing if `addExports` is false', () => {
+        artifact.builds.push({ format: 'lib', platform: 'node', support: 'stable' });
+
+        expect(artifact.package.packageJson.exports).toBeUndefined();
+
+        artifact.postBuild({ addExports: false });
+
+        expect(artifact.package.packageJson.exports).toBeUndefined();
+      });
+
+      it('adds exports based on input file and output name', () => {
+        artifact.builds.push({ format: 'lib', platform: 'node', support: 'stable' });
+
+        expect(artifact.package.packageJson.exports).toBeUndefined();
+
+        artifact.postBuild({ addExports: true });
+
+        expect(artifact.package.packageJson.exports).toEqual({
+          '.': './lib/index.js',
+          './package.json': './package.json',
+        });
+      });
+
+      it('supports subpath file exports when output name is not "index"', () => {
+        artifact.outputName = 'sub';
+        artifact.builds.push({ format: 'lib', platform: 'node', support: 'stable' });
+
+        expect(artifact.package.packageJson.exports).toBeUndefined();
+
+        artifact.postBuild({ addExports: true });
+
+        expect(artifact.package.packageJson.exports).toEqual({
+          './sub': './lib/sub.js',
+          './package.json': './package.json',
+        });
+      });
+
+      it('supports deep subpath exports when output name contains a folder', () => {
+        artifact.outputName = 'sub/test';
+        artifact.builds.push({ format: 'lib', platform: 'node', support: 'stable' });
+
+        expect(artifact.package.packageJson.exports).toBeUndefined();
+
+        artifact.postBuild({ addExports: true });
+
+        expect(artifact.package.packageJson.exports).toEqual({
+          './sub/test': './lib/sub/test.js',
+          './package.json': './package.json',
+        });
+      });
+
+      it('supports conditional exports when there are multiple builds', () => {
+        artifact.builds.push(
+          { format: 'lib', platform: 'node', support: 'stable' },
+          { format: 'mjs', platform: 'node', support: 'stable' },
+          { format: 'cjs', platform: 'node', support: 'stable' },
+        );
+
+        expect(artifact.package.packageJson.exports).toBeUndefined();
+
+        artifact.postBuild({ addExports: true });
+
+        expect(artifact.package.packageJson.exports).toEqual({
+          '.': {
+            import: './mjs/index.mjs',
+            require: './cjs/index.cjs',
+            default: './lib/index.js',
+          },
+          './package.json': './package.json',
+        });
+      });
+
+      it('skips `default` export when there is no `lib` build', () => {
+        artifact.outputName = 'sub';
+        artifact.builds.push(
+          { format: 'mjs', platform: 'node', support: 'stable' },
+          { format: 'cjs', platform: 'node', support: 'stable' },
+        );
+
+        expect(artifact.package.packageJson.exports).toBeUndefined();
+
+        artifact.postBuild({ addExports: true });
+
+        expect(artifact.package.packageJson.exports).toEqual({
+          './sub': {
+            import: './mjs/sub.mjs',
+            require: './cjs/sub.cjs',
+          },
+          './package.json': './package.json',
+        });
+      });
+
+      it('merges with existing exports', () => {
+        artifact.builds.push({ format: 'lib', platform: 'node', support: 'stable' });
+
+        artifact.package.packageJson.exports = {
+          './docs': './README.md',
+        };
+
+        expect(artifact.package.packageJson.exports).toEqual({ './docs': './README.md' });
+
+        artifact.postBuild({ addExports: true });
+
+        expect(artifact.package.packageJson.exports).toEqual({
+          '.': './lib/index.js',
+          './docs': './README.md',
+          './package.json': './package.json',
+        });
+      });
+    });
   });
 
   describe('cleanup()', () => {
@@ -305,10 +568,10 @@ describe('BundleArtifact', () => {
     });
   });
 
-  describe('getOutputDir()', () => {
+  describe('getOutputFolderPath()', () => {
     (['lib', 'esm', 'umd', 'cjs', 'mjs'] as const).forEach((format) => {
-      it('returns file `Path` to output folder', () => {
-        expect(artifact.getOutputDir(format)).toEqual(fixturePath.append(format));
+      it('returns a file `Path` to output folder', () => {
+        expect(artifact.getOutputFolderPath(format)).toEqual(fixturePath.append(format));
       });
     });
   });

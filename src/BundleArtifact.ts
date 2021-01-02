@@ -76,7 +76,7 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
     const { output = [], ...input } = getRollupConfig(this, features);
     const bundle = await rollup({
       ...input,
-      onwarn: ({ id, loc = {}, message }) => {
+      onwarn: /* istanbul ignore next */ ({ id, loc = {}, message }) => {
         this.logWithSource(message, 'warn', {
           id: id && id !== loc.file ? id : undefined,
           output: this.outputName,
@@ -148,7 +148,7 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
     return `./${format}/${this.outputName}.${this.getOutputExtension(format)}`;
   }
 
-  getOutputDir(format: Format): Path {
+  getOutputFolderPath(format: Format): Path {
     return this.package.path.append(format);
   }
 
@@ -245,7 +245,9 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
       paths.default = this.getOutputFile('lib');
     }
 
-    if (Object.keys(paths).length > 0) {
+    const exportCount = Object.keys(paths).length;
+
+    if (exportCount > 0) {
       this.debug('Adding `exports` to `package.json`');
 
       if (!pkg.exports) {
@@ -254,7 +256,8 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
 
       Object.assign(pkg.exports, {
         './package.json': './package.json',
-        [this.outputName === 'index' ? '.' : `./${this.outputName}`]: paths,
+        [this.outputName === 'index' ? '.' : `./${this.outputName}`]:
+          exportCount === 1 && hasLib ? paths.default : paths,
       });
     }
   }
