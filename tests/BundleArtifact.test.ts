@@ -23,7 +23,7 @@ jest.mock('fs-extra');
 jest.mock('rollup');
 
 describe('BundleArtifact', () => {
-  const fixturePath = new Path(getFixturePath('project-types'));
+  const fixturePath = new Path(getFixturePath('project'));
   const packageJson = {
     name: 'project',
     version: '0.0.0',

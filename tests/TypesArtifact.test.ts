@@ -11,7 +11,7 @@ jest.mock('fs-extra');
 jest.mock('@microsoft/api-extractor');
 
 describe('TypesArtifact', () => {
-  const fixturePath = new Path(getFixturePath('project-types'));
+  const fixturePath = new Path(getFixturePath('project'));
   let artifact: TypesArtifact;
   let tsconfigSpy: jest.SpyInstance;
   let warnSpy: jest.SpyInstance;
