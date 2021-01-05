@@ -64,6 +64,109 @@ describe('getRollupConfig()', () => {
     });
   });
 
+  it('generates an output config for each build', () => {
+    artifact.builds.push(
+      { format: 'lib', platform: 'node', support: 'stable' },
+      { format: 'lib', platform: 'browser', support: 'legacy' },
+      { format: 'esm', platform: 'browser', support: 'current' },
+      { format: 'mjs', platform: 'node', support: 'experimental' },
+    );
+
+    expect(getRollupConfig(artifact, {})).toEqual({
+      cache: undefined,
+      external: [],
+      input: srcInputFile,
+      output: [
+        {
+          assetFileNames: '../assets/[name]-[hash][extname]',
+          chunkFileNames: 'index-[hash].js',
+          dir: fixturePath.append('lib').path(),
+          entryFileNames: 'index.js',
+          exports: 'auto',
+          format: 'cjs',
+          originalFormat: 'lib',
+          paths: {},
+          plugins: [`babelOutput(${fixturePath}, *)`],
+          preferConst: false,
+          sourcemap: false,
+          sourcemapExcludeSources: true,
+        },
+        {
+          assetFileNames: '../assets/[name]-[hash][extname]',
+          chunkFileNames: 'index-[hash].js',
+          dir: fixturePath.append('lib').path(),
+          entryFileNames: 'index.js',
+          exports: 'auto',
+          format: 'cjs',
+          originalFormat: 'lib',
+          paths: {},
+          plugins: [`babelOutput(${fixturePath}, *)`],
+          preferConst: false,
+          sourcemap: true,
+          sourcemapExcludeSources: true,
+        },
+        {
+          assetFileNames: '../assets/[name]-[hash][extname]',
+          chunkFileNames: 'index-[hash].js',
+          dir: fixturePath.append('esm').path(),
+          entryFileNames: 'index.js',
+          format: 'esm',
+          originalFormat: 'esm',
+          paths: {},
+          plugins: [`babelOutput(${fixturePath}, *)`],
+          preferConst: true,
+          sourcemap: true,
+          sourcemapExcludeSources: true,
+        },
+        {
+          assetFileNames: '../assets/[name]-[hash][extname]',
+          chunkFileNames: 'index-[hash].mjs',
+          dir: fixturePath.append('mjs').path(),
+          entryFileNames: 'index.mjs',
+          format: 'esm',
+          originalFormat: 'mjs',
+          paths: {},
+          plugins: [`babelOutput(${fixturePath}, *)`],
+          preferConst: true,
+          sourcemap: false,
+          sourcemapExcludeSources: true,
+        },
+      ],
+      plugins: sharedPlugins,
+      treeshake: true,
+    });
+  });
+
+  it('generates an accurate config if input/output are not "index"', () => {
+    artifact.inputFile = 'src/server/core.ts';
+    artifact.outputName = 'server';
+    artifact.builds.push({ format: 'lib', platform: 'node', support: 'stable' });
+
+    expect(getRollupConfig(artifact, {})).toEqual({
+      cache: undefined,
+      external: [],
+      input: fixturePath.append('src/server/core.ts').path(),
+      output: [
+        {
+          assetFileNames: '../assets/[name]-[hash][extname]',
+          chunkFileNames: 'server-[hash].js',
+          dir: fixturePath.append('lib').path(),
+          entryFileNames: 'server.js',
+          exports: 'auto',
+          format: 'cjs',
+          originalFormat: 'lib',
+          paths: {},
+          plugins: [`babelOutput(${fixturePath}, *)`],
+          preferConst: false,
+          sourcemap: false,
+          sourcemapExcludeSources: true,
+        },
+      ],
+      plugins: sharedPlugins,
+      treeshake: true,
+    });
+  });
+
   it('inherits artifact rollup cache', () => {
     artifact.cache = { modules: [] };
 
@@ -124,9 +227,9 @@ describe('getRollupOutputConfig()', () => {
       getRollupOutputConfig(artifact, {}, { format: 'lib', platform: 'node', support: 'stable' }),
     ).toEqual({
       assetFileNames: '../assets/[name]-[hash][extname]',
-      chunkFileNames: '[name]-[hash].js',
+      chunkFileNames: 'index-[hash].js',
       dir: fixturePath.append('lib').path(),
-      entryFileNames: '[name].js',
+      entryFileNames: 'index.js',
       exports: 'auto',
       format: 'cjs',
       originalFormat: 'lib',
@@ -221,8 +324,8 @@ describe('getRollupOutputConfig()', () => {
         getRollupOutputConfig(artifact, {}, { format: 'lib', platform: 'node', support: 'stable' }),
       ).toEqual(
         expect.objectContaining({
-          chunkFileNames: '[name]-[hash].js',
-          entryFileNames: '[name].js',
+          chunkFileNames: 'index-[hash].js',
+          entryFileNames: 'index.js',
         }),
       );
     });
@@ -236,8 +339,8 @@ describe('getRollupOutputConfig()', () => {
         ),
       ).toEqual(
         expect.objectContaining({
-          chunkFileNames: '[name]-[hash].js',
-          entryFileNames: '[name].js',
+          chunkFileNames: 'index-[hash].js',
+          entryFileNames: 'index.js',
         }),
       );
     });
@@ -251,8 +354,8 @@ describe('getRollupOutputConfig()', () => {
         ),
       ).toEqual(
         expect.objectContaining({
-          chunkFileNames: '[name]-[hash].js',
-          entryFileNames: '[name].js',
+          chunkFileNames: 'index-[hash].js',
+          entryFileNames: 'index.js',
         }),
       );
     });
@@ -262,8 +365,8 @@ describe('getRollupOutputConfig()', () => {
         getRollupOutputConfig(artifact, {}, { format: 'cjs', platform: 'node', support: 'stable' }),
       ).toEqual(
         expect.objectContaining({
-          chunkFileNames: '[name]-[hash].cjs',
-          entryFileNames: '[name].cjs',
+          chunkFileNames: 'index-[hash].cjs',
+          entryFileNames: 'index.cjs',
         }),
       );
     });
@@ -273,8 +376,8 @@ describe('getRollupOutputConfig()', () => {
         getRollupOutputConfig(artifact, {}, { format: 'mjs', platform: 'node', support: 'stable' }),
       ).toEqual(
         expect.objectContaining({
-          chunkFileNames: '[name]-[hash].mjs',
-          entryFileNames: '[name].mjs',
+          chunkFileNames: 'index-[hash].mjs',
+          entryFileNames: 'index.mjs',
         }),
       );
     });
@@ -315,6 +418,172 @@ describe('getRollupOutputConfig()', () => {
         [fixturePath.append('src/server/core.ts').path()]: './server.js',
         [fixturePath.append('src/test-utils/base.ts').path()]: './test.js',
       });
+    });
+  });
+
+  describe('exports', () => {
+    it('enables auto-exports for `lib` format', () => {
+      expect(
+        getRollupOutputConfig(artifact, {}, { format: 'lib', platform: 'node', support: 'stable' })
+          .exports,
+      ).toBe('auto');
+    });
+
+    it('enables auto-exports for `cjs` format', () => {
+      expect(
+        getRollupOutputConfig(artifact, {}, { format: 'cjs', platform: 'node', support: 'stable' })
+          .exports,
+      ).toBe('auto');
+    });
+
+    it('disables auto-exports for `mjs` format', () => {
+      expect(
+        getRollupOutputConfig(artifact, {}, { format: 'mjs', platform: 'node', support: 'stable' })
+          .exports,
+      ).toBeUndefined();
+    });
+
+    it('disables auto-exports for `esm` format', () => {
+      expect(
+        getRollupOutputConfig(
+          artifact,
+          {},
+          { format: 'esm', platform: 'browser', support: 'stable' },
+        ).exports,
+      ).toBeUndefined();
+    });
+
+    it('disables auto-exports for `umd` format', () => {
+      expect(
+        getRollupOutputConfig(
+          artifact,
+          {},
+          { format: 'umd', platform: 'browser', support: 'stable' },
+        ).exports,
+      ).toBeUndefined();
+    });
+  });
+
+  it('defines a shebang banner when output name is "bin"', () => {
+    artifact.outputName = 'bin';
+
+    expect(
+      getRollupOutputConfig(artifact, {}, { format: 'lib', platform: 'node', support: 'stable' })
+        .banner,
+    ).toBe('#!/usr/bin/env node\n');
+
+    artifact.outputName = 'index';
+
+    expect(
+      getRollupOutputConfig(artifact, {}, { format: 'lib', platform: 'node', support: 'stable' })
+        .banner,
+    ).toBeUndefined();
+  });
+
+  it('enables `const` for future versions', () => {
+    expect(
+      getRollupOutputConfig(artifact, {}, { format: 'lib', platform: 'node', support: 'legacy' })
+        .preferConst,
+    ).toBe(false);
+
+    expect(
+      getRollupOutputConfig(artifact, {}, { format: 'lib', platform: 'node', support: 'stable' })
+        .preferConst,
+    ).toBe(false);
+
+    expect(
+      getRollupOutputConfig(artifact, {}, { format: 'lib', platform: 'node', support: 'current' })
+        .preferConst,
+    ).toBe(true);
+
+    expect(
+      getRollupOutputConfig(
+        artifact,
+        {},
+        { format: 'lib', platform: 'node', support: 'experimental' },
+      ).preferConst,
+    ).toBe(true);
+  });
+
+  describe('sourcemaps', () => {
+    it('enables when platform is `browser`', () => {
+      expect(
+        getRollupOutputConfig(
+          artifact,
+          {},
+          { format: 'lib', platform: 'browser', support: 'stable' },
+        ),
+      ).toEqual(
+        expect.objectContaining({
+          sourcemap: true,
+          sourcemapExcludeSources: true,
+        }),
+      );
+    });
+
+    it('enables when platform is `native`', () => {
+      expect(
+        getRollupOutputConfig(
+          artifact,
+          {},
+          { format: 'lib', platform: 'native', support: 'stable' },
+        ),
+      ).toEqual(
+        expect.objectContaining({
+          sourcemap: true,
+          sourcemapExcludeSources: true,
+        }),
+      );
+    });
+
+    it('enables when `analyze` feature flag is on', () => {
+      expect(
+        getRollupOutputConfig(
+          artifact,
+          { analyze: 'network' },
+          { format: 'lib', platform: 'node', support: 'stable' },
+        ),
+      ).toEqual(
+        expect.objectContaining({
+          sourcemap: true,
+          sourcemapExcludeSources: true,
+        }),
+      );
+    });
+
+    it('disables when platform is `node`', () => {
+      expect(
+        getRollupOutputConfig(artifact, {}, { format: 'lib', platform: 'node', support: 'stable' }),
+      ).toEqual(
+        expect.objectContaining({
+          sourcemap: false,
+          sourcemapExcludeSources: true,
+        }),
+      );
+    });
+  });
+
+  it('passes `namespace` to Babel as UMD name', () => {
+    artifact.namespace = 'FooBar';
+
+    expect(
+      getRollupOutputConfig(
+        artifact,
+        {},
+        { format: 'umd', platform: 'browser', support: 'experimental' },
+      ),
+    ).toEqual({
+      assetFileNames: '../assets/[name]-[hash][extname]',
+      chunkFileNames: 'index-[hash].js',
+      dir: fixturePath.append('umd').path(),
+      entryFileNames: 'index.js',
+      format: 'esm',
+      originalFormat: 'umd',
+      paths: {},
+      plugins: [`babelOutput(${fixturePath}, FooBar)`],
+      preferConst: true,
+      sourcemap: true,
+      sourcemapExcludeSources: true,
     });
   });
 });

@@ -49,6 +49,7 @@ export function getRollupOutputConfig(
   build: BundleBuild,
 ): OutputOptions {
   const { format, platform, support } = build;
+  const name = artifact.outputName;
   const ext = artifact.getOutputExtension(format);
   const output: OutputOptions = {
     dir: artifact.getOutputFolderPath(format).path(),
@@ -58,8 +59,8 @@ export function getRollupOutputConfig(
     paths: getRollupExternalPaths(artifact, ext),
     // Use our extension for file names
     assetFileNames: '../assets/[name]-[hash][extname]',
-    chunkFileNames: `[name]-[hash].${ext}`,
-    entryFileNames: `[name].${ext}`,
+    chunkFileNames: `${name}-[hash].${ext}`,
+    entryFileNames: `${name}.${ext}`,
     // Use const when not supporting new targets
     preferConst: support === 'current' || support === 'experimental',
     // Output specific plugins
@@ -74,7 +75,7 @@ export function getRollupOutputConfig(
       }),
     ],
     // Only enable source maps for browsers
-    sourcemap: Boolean(features.analyze) || platform === 'browser',
+    sourcemap: Boolean(features.analyze) || platform !== 'node',
     sourcemapExcludeSources: true,
   };
 
