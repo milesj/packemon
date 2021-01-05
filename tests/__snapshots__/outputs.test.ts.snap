@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Outputs builds all the artifacts with rollup 1`] = `
+Array [
+  Object {
+    "format": "lib",
+    "platform": "node",
+    "support": "stable",
+  },
+]
+`;
+
+exports[`Outputs builds all the artifacts with rollup 2`] = `"[object Object]"`;
+
+exports[`Outputs builds all the artifacts with rollup 3`] = `
+Array [
+  Object {
+    "format": "lib",
+    "platform": "node",
+    "stats": Object {
+      "size": 130,
+    },
+    "support": "stable",
+  },
+]
+`;
