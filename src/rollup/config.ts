@@ -6,7 +6,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import { getBabelInputPlugin, getBabelOutputPlugin } from '@rollup/plugin-babel';
 import { getBabelInputConfig, getBabelOutputConfig } from '../babel/config';
-import { FeatureFlags, Format } from '../types';
+import { BundleBuild, FeatureFlags, Format } from '../types';
 import { EXTENSIONS, EXCLUDE } from '../constants';
 import type BundleArtifact from '../BundleArtifact';
 
@@ -41,6 +41,54 @@ function getRollupExternalPaths(artifact: BundleArtifact, ext?: string): Record<
   });
 
   return paths;
+}
+
+export function getRollupOutputConfig(
+  artifact: BundleArtifact,
+  features: FeatureFlags,
+  build: BundleBuild,
+): OutputOptions {
+  const { format, platform, support } = build;
+  const ext = artifact.getOutputExtension(format);
+  const output: OutputOptions = {
+    dir: artifact.getOutputFolderPath(format).path(),
+    format: getRollupModuleFormat(format),
+    originalFormat: format,
+    // Map our externals to local paths with trailing extension
+    paths: getRollupExternalPaths(artifact, ext),
+    // Use our extension for file names
+    assetFileNames: '../assets/[name]-[hash][extname]',
+    chunkFileNames: `[name]-[hash].${ext}`,
+    entryFileNames: `[name].${ext}`,
+    // Use const when not supporting new targets
+    preferConst: support === 'current' || support === 'experimental',
+    // Output specific plugins
+    plugins: [
+      getBabelOutputPlugin({
+        ...getBabelOutputConfig(build, features),
+        filename: artifact.package.path.path(),
+        // Provide a custom name for the UMD global
+        moduleId: format === 'umd' ? artifact.namespace : undefined,
+        // Maps are extracted above before transformation
+        sourceMaps: false,
+      }),
+    ],
+    // Only enable source maps for browsers
+    sourcemap: Boolean(features.analyze) || platform === 'browser',
+    sourcemapExcludeSources: true,
+  };
+
+  // Disable warnings about default exports
+  if (format === 'lib' || format === 'cjs') {
+    output.exports = 'auto';
+  }
+
+  // Automatically prepend a shebang for binaries
+  if (artifact.outputName === 'bin') {
+    output.banner = '#!/usr/bin/env node\n';
+  }
+
+  return output;
 }
 
 export function getRollupConfig(artifact: BundleArtifact, features: FeatureFlags): RollupOptions {
@@ -95,50 +143,7 @@ export function getRollupConfig(artifact: BundleArtifact, features: FeatureFlags
   }
 
   // Add an output for each format
-  config.output = artifact.builds.map((build) => {
-    const { format, platform, support } = build;
-    const ext = artifact.getOutputExtension(format);
-
-    const output: OutputOptions = {
-      dir: artifact.getOutputFolderPath(format).path(),
-      format: getRollupModuleFormat(format),
-      originalFormat: format,
-      // Map our externals to local paths with trailing extension
-      paths: getRollupExternalPaths(artifact, ext),
-      // Use our extension for file names
-      assetFileNames: '../assets/[name]-[hash][extname]',
-      chunkFileNames: `[name]-[hash].${ext}`,
-      entryFileNames: `[name].${ext}`,
-      // Use const when not supporting new targets
-      preferConst: support === 'current' || support === 'experimental',
-      // Output specific plugins
-      plugins: [
-        getBabelOutputPlugin({
-          ...getBabelOutputConfig(build, features),
-          filename: artifact.package.path.path(),
-          // Provide a custom name for the UMD global
-          moduleId: format === 'umd' ? artifact.namespace : undefined,
-          // Maps are extracted above before transformation
-          sourceMaps: false,
-        }),
-      ],
-      // Only enable source maps for browsers
-      sourcemap: Boolean(features.analyze) || platform === 'browser',
-      sourcemapExcludeSources: true,
-    };
-
-    // Disable warnings about default exports
-    if (format === 'lib' || format === 'cjs') {
-      output.exports = 'auto';
-    }
-
-    // Automatically prepend a shebang for binaries
-    if (artifact.outputName === 'bin') {
-      output.banner = '#!/usr/bin/env node\n';
-    }
-
-    return output;
-  });
+  config.output = artifact.builds.map((build) => getRollupOutputConfig(artifact, features, build));
 
   return config;
 }
