@@ -427,20 +427,6 @@ describe('BundleArtifact', () => {
         });
       });
 
-      it('supports deep subpath exports when output name contains a folder', () => {
-        artifact.outputName = 'sub/test';
-        artifact.builds.push({ format: 'lib', platform: 'node', support: 'stable' });
-
-        expect(artifact.package.packageJson.exports).toBeUndefined();
-
-        artifact.postBuild({ addExports: true });
-
-        expect(artifact.package.packageJson.exports).toEqual({
-          './sub/test': './lib/sub/test.js',
-          './package.json': './package.json',
-        });
-      });
-
       it('supports conditional exports when there are multiple builds', () => {
         artifact.builds.push(
           { format: 'lib', platform: 'node', support: 'stable' },

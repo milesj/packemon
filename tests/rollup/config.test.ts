@@ -99,7 +99,7 @@ describe('getRollupConfig()', () => {
       );
 
       artifact.package.addArtifact(
-        createArtifact('sub/test', 'src/test-utils/base.ts', artifact.package),
+        createArtifact('test', 'src/test-utils/base.ts', artifact.package),
       );
 
       expect(getRollupConfig(artifact, {}).external).toEqual([
@@ -303,7 +303,7 @@ describe('getRollupOutputConfig()', () => {
       );
 
       artifact.package.addArtifact(
-        createArtifact('sub/test', 'src/test-utils/base.ts', artifact.package),
+        createArtifact('test', 'src/test-utils/base.ts', artifact.package),
       );
 
       expect(
@@ -313,7 +313,7 @@ describe('getRollupOutputConfig()', () => {
         [srcInputFile]: './index.js',
         [fixturePath.append('src/client/index.ts').path()]: './client.js',
         [fixturePath.append('src/server/core.ts').path()]: './server.js',
-        [fixturePath.append('src/test-utils/base.ts').path()]: './sub/test.js',
+        [fixturePath.append('src/test-utils/base.ts').path()]: './test.js',
       });
     });
   });

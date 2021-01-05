@@ -25,7 +25,7 @@ describe('TypesArtifact', () => {
       }),
       [
         { inputFile: 'src/index.ts', outputName: 'index' },
-        { inputFile: 'src/sub/test.ts', outputName: 'sub/test' },
+        { inputFile: 'src/sub/test.ts', outputName: 'test' },
       ],
     );
     artifact.startup();
@@ -54,9 +54,7 @@ describe('TypesArtifact', () => {
       await artifact.cleanup();
 
       expect(fs.remove).toHaveBeenCalledWith(fixturePath.append('api-extractor-index.json').path());
-      expect(fs.remove).toHaveBeenCalledWith(
-        fixturePath.append('api-extractor-sub-test.json').path(),
-      );
+      expect(fs.remove).toHaveBeenCalledWith(fixturePath.append('api-extractor-test.json').path());
     });
   });
 
@@ -108,11 +106,7 @@ describe('TypesArtifact', () => {
 
         expect(declSpy).toHaveBeenCalled();
         expect(apiSpy).toHaveBeenCalledWith('index', 'src/index.ts', fixturePath.append('dts'));
-        expect(apiSpy).toHaveBeenCalledWith(
-          'sub/test',
-          'src/sub/test.ts',
-          fixturePath.append('dts'),
-        );
+        expect(apiSpy).toHaveBeenCalledWith('test', 'src/sub/test.ts', fixturePath.append('dts'));
         expect(Extractor.invoke).toHaveBeenCalledTimes(2);
       });
 
@@ -150,12 +144,12 @@ describe('TypesArtifact', () => {
           }),
         );
         expect(fs.writeJson).toHaveBeenCalledWith(
-          fixturePath.append('api-extractor-sub-test.json').path(),
+          fixturePath.append('api-extractor-test.json').path(),
           expect.objectContaining({
             projectFolder: artifact.package.path.path(),
             mainEntryPointFilePath: fixturePath.append('dts/sub/test.d.ts').path(),
             dtsRollup: expect.objectContaining({
-              untrimmedFilePath: '<projectFolder>/dts/sub/test.d.ts',
+              untrimmedFilePath: '<projectFolder>/dts/test.d.ts',
             }),
           }),
         );
@@ -169,7 +163,7 @@ describe('TypesArtifact', () => {
 
         expect(fs.remove).not.toHaveBeenCalledWith(fixturePath.append('dts/index.d.ts').path());
         expect(fs.remove).toHaveBeenCalledWith(fixturePath.append('dts/extra.d.ts').path());
-        expect(fs.remove).not.toHaveBeenCalledWith(fixturePath.append('dts/sub/test.d.ts').path());
+        expect(fs.remove).not.toHaveBeenCalledWith(fixturePath.append('dts/test.d.ts').path());
         expect(fs.remove).toHaveBeenCalledWith(fixturePath.append('dts/sub/other.d.ts').path());
       });
 
@@ -210,7 +204,7 @@ describe('TypesArtifact', () => {
 
           expect(apiSpy).toHaveBeenCalledWith('index', 'src/index.ts', new Path('declarationDir'));
           expect(apiSpy).toHaveBeenCalledWith(
-            'sub/test',
+            'test',
             'src/sub/test.ts',
             new Path('declarationDir'),
           );
@@ -229,18 +223,14 @@ describe('TypesArtifact', () => {
           await artifact.build();
 
           expect(apiSpy).toHaveBeenCalledWith('index', 'src/index.ts', new Path('outDir'));
-          expect(apiSpy).toHaveBeenCalledWith('sub/test', 'src/sub/test.ts', new Path('outDir'));
+          expect(apiSpy).toHaveBeenCalledWith('test', 'src/sub/test.ts', new Path('outDir'));
         });
 
         it('uses hard-coded dts folder if neither compiler option is defined', async () => {
           await artifact.build();
 
           expect(apiSpy).toHaveBeenCalledWith('index', 'src/index.ts', fixturePath.append('dts'));
-          expect(apiSpy).toHaveBeenCalledWith(
-            'sub/test',
-            'src/sub/test.ts',
-            fixturePath.append('dts'),
-          );
+          expect(apiSpy).toHaveBeenCalledWith('test', 'src/sub/test.ts', fixturePath.append('dts'));
         });
       });
     });

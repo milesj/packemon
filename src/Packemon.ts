@@ -66,7 +66,13 @@ const formatPredicate = custom<Format, PackemonPackageConfig>((format, schema) =
 
 const blueprint: Blueprint<Required<PackemonPackageConfig>> = {
   format: union([array(formatPredicate), formatPredicate], []),
-  inputs: object(string(), { index: DEFAULT_INPUT }),
+  inputs: object(string(), { index: DEFAULT_INPUT }).custom((obj) => {
+    Object.keys(obj).forEach((key) => {
+      if (!key.match(/^\w+$/u)) {
+        throw new Error(`Invalid input key "${key}". May only contain alpha-numeric characters.`);
+      }
+    });
+  }),
   namespace: string(),
   platform: union([array(platformPredicate), platformPredicate], DEFAULT_PLATFORM),
   support: string(DEFAULT_SUPPORT).oneOf(['legacy', 'stable', 'current', 'experimental']),

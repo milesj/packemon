@@ -161,7 +161,7 @@ export default class TypesArtifact extends Artifact<TypesBuild> {
   }
 
   protected getApiExtractorConfigPath(outputName: string): Path {
-    return this.package.path.append(`api-extractor-${outputName.replace(/\//u, '-')}.json`);
+    return this.package.path.append(`api-extractor-${outputName}.json`);
   }
 
   // This method only exists so that we can mock in tests.
