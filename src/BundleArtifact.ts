@@ -4,6 +4,7 @@ import { isObject, Path, SettingMap, toArray } from '@boost/common';
 import { createDebugger, Debugger } from '@boost/debug';
 import Artifact from './Artifact';
 import { DEFAULT_FORMAT, NODE_SUPPORTED_VERSIONS, NPM_SUPPORTED_VERSIONS } from './constants';
+import { supportRanks } from './helpers/getLowestSupport';
 import { getRollupConfig } from './rollup/config';
 import { BuildOptions, BundleBuild, Format, Platform, Support } from './types';
 
@@ -21,29 +22,13 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
 
   protected debug!: Debugger;
 
-  static generateBuild(
-    format: Format,
-    support: Support,
-    platforms: Platform[],
-    requiresSharedLib: boolean = false,
-  ): BundleBuild {
+  static generateBuild(format: Format, support: Support, platforms: Platform[]): BundleBuild {
     let platform: Platform = platforms[0] || 'browser';
 
     if (format === 'cjs' || format === 'mjs') {
       platform = 'node';
     } else if (format === 'esm' || format === 'umd') {
       platform = 'browser';
-    } else if (format === 'lib' && requiresSharedLib) {
-      // "lib" is a shared format across all platforms,
-      // and when a package wants to support multiple platforms,
-      // we must down-level the "lib" format to the lowest platform.
-      if (platforms.includes('browser')) {
-        platform = 'browser';
-      } else if (platforms.includes('native')) {
-        platform = 'native';
-      } else if (platforms.includes('node')) {
-        platform = 'node';
-      }
     }
 
     return {
@@ -168,13 +153,6 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
     const pkg = this.package.packageJson;
 
     // Update with the lowest supported node version
-    const supportRanks: Record<Support, number> = {
-      legacy: 1,
-      stable: 2,
-      current: 3,
-      experimental: 4,
-    };
-
     const nodeBuild = [...this.builds]
       .sort((a, b) => supportRanks[a.support] - supportRanks[b.support])
       .find((build) => build.platform === 'node');

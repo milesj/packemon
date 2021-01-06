@@ -7,12 +7,14 @@ import { createDebugger, Debugger } from '@boost/debug';
 import { Event } from '@boost/event';
 import { Context, PooledPipeline } from '@boost/pipeline';
 import BundleArtifact from './BundleArtifact';
+import { getLowestSupport } from './helpers/getLowestSupport';
 import Package from './Package';
 import PackageValidator from './PackageValidator';
 import Project from './Project';
 import { buildBlueprint, validateBlueprint } from './schemas';
 import {
   BuildOptions,
+  BundleBuild,
   DeclarationType,
   PackemonPackage,
   Platform,
@@ -198,12 +200,15 @@ export default class Packemon {
     return packages;
   }
 
-  generateArtifacts(packages: Package[], declarationType?: DeclarationType) {
-    this.debug('Generating build artifacts for packages');
+  /**
+   * Generate build and optional types artifacts for each package in the list.
+   */
+  generateArtifacts(packages: Package[], declarationType: DeclarationType = 'none') {
+    this.debug('Generating artifacts for packages');
 
     packages.forEach((pkg) => {
       const typesBuilds: TypesBuild[] = [];
-      const requiresSharedLib = this.requiresSharedLib(pkg);
+      const sharedLib = this.requiresSharedLib(pkg);
 
       pkg.configs.forEach((config) => {
         Object.entries(config.inputs).forEach(([outputName, inputFile]) => {
@@ -211,24 +216,21 @@ export default class Packemon {
             pkg,
             // Must be unique per input to avoid references
             config.formats.map((format) =>
-              BundleArtifact.generateBuild(
-                format,
-                config.support,
-                config.platforms,
-                requiresSharedLib,
-              ),
+              format === 'lib' && sharedLib
+                ? BundleArtifact.generateBuild('lib', sharedLib.support, [sharedLib.platform])
+                : BundleArtifact.generateBuild(format, config.support, config.platforms),
             ),
           );
           artifact.inputFile = inputFile;
-          artifact.namespace = config.namespace;
           artifact.outputName = outputName;
+          artifact.namespace = config.namespace;
 
           pkg.addArtifact(artifact);
           typesBuilds.push({ inputFile, outputName });
         });
       });
 
-      if (declarationType && declarationType !== 'none') {
+      if (declarationType !== 'none') {
         const artifact = new TypesArtifact(pkg, typesBuilds);
         artifact.declarationType = declarationType;
 
@@ -252,29 +254,56 @@ export default class Packemon {
     return packages;
   }
 
+  /**
+   * Cleanup all package and artifact related files in all packages.
+   */
   protected async cleanTemporaryFiles(packages: Package[]) {
     this.debug('Cleaning temporary build files');
 
     await Promise.all(packages.map((pkg) => pkg.cleanup()));
   }
 
-  protected requiresSharedLib(pkg: Package): boolean {
-    const platformsToBuild = new Set<Platform>();
+  /**
+   * Format "lib" is a shared format across all platforms,
+   * and when a package wants to support multiple platforms,
+   * we must down-level the "lib" format to the lowest platform.
+   */
+  protected requiresSharedLib(pkg: Package): BundleBuild | null {
+    const platformsToCheck = new Set<Platform>();
+    const build: BundleBuild = { format: 'lib', platform: 'node', support: 'stable' };
     let libFormatCount = 0;
 
-    return pkg.configs.some((config) => {
+    pkg.configs.forEach((config) => {
       config.platforms.forEach((platform) => {
-        platformsToBuild.add(platform);
+        platformsToCheck.add(platform);
       });
 
       config.formats.forEach((format) => {
-        if (format === 'lib') {
-          libFormatCount += 1;
+        if (format !== 'lib') {
+          return;
         }
-      });
 
-      return platformsToBuild.size > 1 && libFormatCount > 1;
+        libFormatCount += 1;
+
+        // From widest to narrowest requirements
+        if (platformsToCheck.has('browser')) {
+          build.platform = 'browser';
+        } else if (platformsToCheck.has('native')) {
+          build.platform = 'native';
+        } else if (platformsToCheck.has('node')) {
+          build.platform = 'node';
+        }
+
+        // Return the lowest supported target
+        build.support = getLowestSupport(build.support, config.support);
+      });
     });
+
+    if (platformsToCheck.size > 1 && libFormatCount > 1) {
+      return build;
+    }
+
+    return null;
   }
 
   /**

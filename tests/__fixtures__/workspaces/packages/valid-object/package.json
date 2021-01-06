@@ -1,6 +1,9 @@
 {
   "name": "pkg-valid-object",
   "packemon": {
-    "platform": "node"
+    "platform": "node",
+    "inputs": {
+      "core": "./src/core.ts"
+    }
   }
 }

@@ -102,32 +102,6 @@ describe('BundleArtifact', () => {
         support: 'stable',
       });
     });
-
-    it('down-levels shared lib to `browser` platform if in list', () => {
-      expect(
-        BundleArtifact.generateBuild('lib', 'stable', ['node', 'native', 'browser'], true),
-      ).toEqual({
-        format: 'lib',
-        platform: 'browser',
-        support: 'stable',
-      });
-    });
-
-    it('down-levels shared lib to `native` platform if in list', () => {
-      expect(BundleArtifact.generateBuild('lib', 'stable', ['node', 'native'], true)).toEqual({
-        format: 'lib',
-        platform: 'native',
-        support: 'stable',
-      });
-    });
-
-    it('down-levels shared lib to `node` platform if in list', () => {
-      expect(BundleArtifact.generateBuild('lib', 'stable', ['node'], true)).toEqual({
-        format: 'lib',
-        platform: 'node',
-        support: 'stable',
-      });
-    });
   });
 
   describe('build()', () => {

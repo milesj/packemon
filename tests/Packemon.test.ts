@@ -1,5 +1,6 @@
 import { Path } from '@boost/common';
 import { getFixturePath } from '@boost/test-utils';
+import { BundleArtifact } from '../src';
 import Package from '../src/Package';
 import Packemon from '../src/Packemon';
 
@@ -98,6 +99,80 @@ describe('Packemon', () => {
     });
   });
 
+  describe('generateArtifacts()', () => {
+    beforeEach(() => {
+      packemon = new Packemon(getFixturePath('workspaces'));
+    });
+
+    it('generates build artifacts for each config in a package', async () => {
+      const packages = await packemon.loadConfiguredPackages();
+
+      packemon.generateArtifacts(packages);
+
+      expect(packages[0].artifacts).toHaveLength(2);
+      expect((packages[0].artifacts[0] as BundleArtifact).outputName).toBe('index');
+      expect((packages[0].artifacts[0] as BundleArtifact).inputFile).toBe('src/index.ts');
+      expect(packages[0].artifacts[0].builds).toEqual([
+        { format: 'lib', platform: 'browser', support: 'stable' }, // Down-leveled node -> browser
+      ]);
+
+      expect((packages[0].artifacts[1] as BundleArtifact).outputName).toBe('index');
+      expect((packages[0].artifacts[1] as BundleArtifact).inputFile).toBe('src/index.ts');
+      expect(packages[0].artifacts[1].builds).toEqual([
+        { format: 'lib', platform: 'browser', support: 'stable' }, // Down-leveled current -> stable
+        { format: 'esm', platform: 'browser', support: 'current' },
+      ]);
+
+      expect(packages[1].artifacts).toHaveLength(1);
+      expect((packages[1].artifacts[0] as BundleArtifact).outputName).toBe('core');
+      expect((packages[1].artifacts[0] as BundleArtifact).inputFile).toBe('./src/core.ts');
+      expect(packages[1].artifacts[0].builds).toEqual([
+        { format: 'lib', platform: 'node', support: 'stable' },
+      ]);
+
+      expect(packages[2].artifacts).toHaveLength(1);
+      expect((packages[2].artifacts[0] as BundleArtifact).outputName).toBe('index');
+      expect((packages[2].artifacts[0] as BundleArtifact).inputFile).toBe('src/index.ts');
+      expect(packages[2].artifacts[0].builds).toEqual([
+        { format: 'lib', platform: 'browser', support: 'stable' },
+        { format: 'esm', platform: 'browser', support: 'stable' },
+        { format: 'umd', platform: 'browser', support: 'stable' },
+      ]);
+    });
+
+    it('down-levels "lib" format when shared is required', () => {
+      const pkg = new Package(packemon.project, packemon.project.root, {
+        name: 'a',
+        version: '0.0.0',
+        packemon: {},
+      });
+
+      pkg.setConfigs([
+        {
+          format: 'lib',
+          platform: 'browser',
+          support: 'legacy',
+        },
+        {
+          format: 'lib',
+          platform: 'node',
+          support: 'current',
+        },
+      ]);
+
+      packemon.generateArtifacts([pkg]);
+
+      expect(pkg.artifacts).toHaveLength(2);
+      expect(pkg.artifacts[0].builds).toEqual([
+        { format: 'lib', platform: 'browser', support: 'legacy' },
+      ]);
+      // Down-leveled
+      expect(pkg.artifacts[1].builds).toEqual([
+        { format: 'lib', platform: 'browser', support: 'legacy' },
+      ]);
+    });
+  });
+
   describe('loadConfiguredPackages()', () => {
     beforeEach(() => {
       packemon = new Packemon(getFixturePath('workspaces'));
@@ -135,7 +210,7 @@ describe('Packemon', () => {
           inputs: { index: 'src/index.ts' },
           namespace: '',
           platforms: ['browser'],
-          support: 'stable',
+          support: 'current',
         },
       ]);
 
@@ -143,7 +218,7 @@ describe('Packemon', () => {
       expect(two.configs).toEqual([
         {
           formats: ['lib'],
-          inputs: { index: 'src/index.ts' },
+          inputs: { core: './src/core.ts' },
           namespace: '',
           platforms: ['node'],
           support: 'stable',
