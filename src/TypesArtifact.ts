@@ -1,6 +1,6 @@
-import fs from 'fs-extra';
 import path from 'path';
 import glob from 'fast-glob';
+import fs from 'fs-extra';
 import { Path } from '@boost/common';
 import { createDebugger, Debugger } from '@boost/debug';
 import { Extractor, ExtractorConfig } from '@microsoft/api-extractor';

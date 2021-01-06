@@ -1,9 +1,9 @@
-import React from 'react';
 import os from 'os';
+import React from 'react';
 import { Arg, Config } from '@boost/cli';
-import Command from './Base';
 import Build from '../components/Build';
 import { AnalyzeType, BuildOptions, DeclarationType } from '../types';
+import Command from './Base';
 
 @Config('build', 'Build standardized packages for distribution')
 export class BuildCommand extends Command<Required<BuildOptions>> {

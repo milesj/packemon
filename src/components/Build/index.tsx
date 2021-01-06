@@ -1,12 +1,12 @@
 import React, { useRef, useState } from 'react';
 import { Box, Static } from 'ink';
 import { Header, useProgram, useRenderLoop } from '@boost/cli';
-import Packemon from '../../Packemon';
-import PackageList from '../PackageList';
-import PackageRow from '../PackageRow';
 import Package from '../../Package';
+import Packemon from '../../Packemon';
 import { BuildOptions } from '../../types';
 import useOnMount from '../hooks/useOnMount';
+import PackageList from '../PackageList';
+import PackageRow from '../PackageRow';
 
 export interface BuildProps extends BuildOptions {
   packemon: Packemon;

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Static } from 'ink';
 import { Header, useProgram, useRenderLoop } from '@boost/cli';
-import Packemon from '../../Packemon';
 import PackageValidator from '../../PackageValidator';
-import ValidateRow from './ValidateRow';
+import Packemon from '../../Packemon';
 import { ValidateOptions } from '../../types';
 import useOnMount from '../hooks/useOnMount';
+import ValidateRow from './ValidateRow';
 
 export interface ValidateProps extends ValidateOptions {
   packemon: Packemon;

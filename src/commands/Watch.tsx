@@ -1,8 +1,8 @@
+import chokidar from 'chokidar';
 import { applyStyle, Arg, Config } from '@boost/cli';
 import { Bind, formatMs } from '@boost/common';
-import chokidar from 'chokidar';
-import Command from './Base';
 import Package from '../Package';
+import Command from './Base';
 
 export interface WatchOptions {
   debounce: number;

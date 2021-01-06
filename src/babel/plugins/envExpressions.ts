@@ -1,4 +1,4 @@
-import { types as t, NodePath } from '@babel/core';
+import { NodePath, types as t } from '@babel/core';
 
 const exprs = {
   DEV: ['!==', 'production'],

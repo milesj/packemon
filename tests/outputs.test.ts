@@ -1,9 +1,9 @@
 /* eslint-disable no-underscore-dangle */
 
-import { Path } from '@boost/common';
-import { getFixturePath } from '@boost/test-utils';
 import fs from 'fs';
 import fsx from 'fs-extra';
+import { Path } from '@boost/common';
+import { getFixturePath } from '@boost/test-utils';
 import { BundleArtifact } from '../src';
 import Package from '../src/Package';
 import Project from '../src/Project';

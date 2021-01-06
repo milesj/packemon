@@ -1,7 +1,7 @@
 import execa from 'execa';
 import { getFixturePath } from '@boost/test-utils';
-import Project from '../src/Project';
 import Package from '../src/Package';
+import Project from '../src/Project';
 import { delay, mockSpy } from './helpers';
 
 jest.mock('execa');

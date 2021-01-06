@@ -1,8 +1,8 @@
 import React from 'react';
 import { Arg, Config } from '@boost/cli';
-import Command from './Base';
-import { ValidateOptions } from '../types';
 import Validate from '../components/Validate';
+import { ValidateOptions } from '../types';
+import Command from './Base';
 
 @Config('validate', 'Validate package metadata and configuration')
 export class ValidateCommand extends Command<Required<ValidateOptions>> {

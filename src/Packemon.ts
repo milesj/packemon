@@ -5,12 +5,12 @@ import rimraf from 'rimraf';
 import { isObject, json, Memoize, optimal, Path, toArray, WorkspacePackage } from '@boost/common';
 import { createDebugger, Debugger } from '@boost/debug';
 import { Event } from '@boost/event';
-import { PooledPipeline, Context } from '@boost/pipeline';
+import { Context, PooledPipeline } from '@boost/pipeline';
+import BundleArtifact from './BundleArtifact';
 import Package from './Package';
 import PackageValidator from './PackageValidator';
 import Project from './Project';
-import BundleArtifact from './BundleArtifact';
-import TypesArtifact from './TypesArtifact';
+import { buildBlueprint, validateBlueprint } from './schemas';
 import {
   BuildOptions,
   DeclarationType,
@@ -19,7 +19,7 @@ import {
   TypesBuild,
   ValidateOptions,
 } from './types';
-import { buildBlueprint, validateBlueprint } from './schemas';
+import TypesArtifact from './TypesArtifact';
 
 export default class Packemon {
   readonly debug: Debugger;

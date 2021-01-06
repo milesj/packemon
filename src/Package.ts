@@ -2,19 +2,19 @@
 
 import fs from 'fs-extra';
 import ts from 'typescript';
-import { Memoize, Path, toArray, optimal } from '@boost/common';
+import { Memoize, optimal, Path, toArray } from '@boost/common';
 import { createDebugger, Debugger } from '@boost/debug';
 import Artifact from './Artifact';
 import Project from './Project';
+import { packemonBlueprint } from './schemas';
 import {
+  BuildOptions,
   FeatureFlags,
   PackageConfig,
-  BuildOptions,
   PackemonPackage,
   PackemonPackageConfig,
   TSConfigStructure,
 } from './types';
-import { packemonBlueprint } from './schemas';
 
 export default class Package {
   readonly artifacts: Artifact[] = [];

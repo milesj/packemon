@@ -1,7 +1,7 @@
 import { PluginItem, TransformOptions as ConfigStructure } from '@babel/core';
-import { BROWSER_TARGETS, NATIVE_TARGETS, NODE_SUPPORTED_VERSIONS } from '../constants';
-import { Support, Format, Platform, FeatureFlags, BundleBuild } from '../types';
 import BundleArtifact from '../BundleArtifact';
+import { BROWSER_TARGETS, NATIVE_TARGETS, NODE_SUPPORTED_VERSIONS } from '../constants';
+import { BundleBuild, FeatureFlags, Format, Platform, Support } from '../types';
 import envExpressionsPlugin from './plugins/envExpressions';
 import resolve from './resolve';
 

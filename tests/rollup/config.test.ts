@@ -1,9 +1,9 @@
 import { Path } from '@boost/common';
 import { getFixturePath } from '@boost/test-utils';
 import BundleArtifact from '../../src/BundleArtifact';
-import { getRollupConfig, getRollupOutputConfig } from '../../src/rollup/config';
-import Project from '../../src/Project';
 import Package from '../../src/Package';
+import Project from '../../src/Project';
+import { getRollupConfig, getRollupOutputConfig } from '../../src/rollup/config';
 
 jest.mock('@rollup/plugin-commonjs', () => () => 'commonjs()');
 jest.mock('@rollup/plugin-node-resolve', () => () => 'resolve()');

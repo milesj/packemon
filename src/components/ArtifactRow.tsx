@@ -1,11 +1,11 @@
 import React from 'react';
 import { Box } from 'ink';
 import Spinner from 'ink-spinner';
-import { formatMs } from '@boost/common';
 import { Style } from '@boost/cli';
+import { formatMs } from '@boost/common';
 import Artifact from '../Artifact';
-import { STATE_LABELS } from '../constants';
 import BundleArtifact from '../BundleArtifact';
+import { STATE_LABELS } from '../constants';
 import BundleTarget from './BundleTarget';
 import Target from './Target';
 

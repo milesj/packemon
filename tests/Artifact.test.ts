@@ -1,5 +1,5 @@
-import { Path } from '@boost/common';
 import { applyStyle } from '@boost/cli';
+import { Path } from '@boost/common';
 import { getFixturePath } from '@boost/test-utils';
 import { Package, Project } from '../src';
 import { TestArtifact } from './helpers';

@@ -1,11 +1,11 @@
+import { rollup, RollupCache } from 'rollup';
+import hash from 'string-hash';
 import { isObject, Path, SettingMap, toArray } from '@boost/common';
 import { createDebugger, Debugger } from '@boost/debug';
-import hash from 'string-hash';
-import { rollup, RollupCache } from 'rollup';
 import Artifact from './Artifact';
 import { DEFAULT_FORMAT, NODE_SUPPORTED_VERSIONS, NPM_SUPPORTED_VERSIONS } from './constants';
 import { getRollupConfig } from './rollup/config';
-import { Format, BuildOptions, BundleBuild, Support, Platform } from './types';
+import { BuildOptions, BundleBuild, Format, Platform, Support } from './types';
 
 export default class BundleArtifact extends Artifact<BundleBuild> {
   cache?: RollupCache;

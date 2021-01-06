@@ -3,10 +3,10 @@ import { rollup } from 'rollup';
 import { Path } from '@boost/common';
 import { getFixturePath } from '@boost/test-utils';
 import BundleArtifact from '../src/BundleArtifact';
-import Project from '../src/Project';
 import Package from '../src/Package';
-import { mockSpy } from './helpers';
+import Project from '../src/Project';
 import { getRollupConfig } from '../src/rollup/config';
+import { mockSpy } from './helpers';
 
 jest.mock('../src/rollup/config', () => ({
   getRollupConfig: jest.fn(() => ({

@@ -2,8 +2,8 @@ import fs from 'fs-extra';
 import { Path } from '@boost/common';
 import { getFixturePath } from '@boost/test-utils';
 import { Extractor } from '@microsoft/api-extractor';
-import Project from '../src/Project';
 import Package from '../src/Package';
+import Project from '../src/Project';
 import TypesArtifact from '../src/TypesArtifact';
 import { delay, mockSpy } from './helpers';
 

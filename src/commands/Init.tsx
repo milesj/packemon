@@ -1,11 +1,11 @@
 import React from 'react';
-import { Path, WorkspacePackage } from '@boost/common';
 import { Arg, Config } from '@boost/cli';
-import Command from './Base';
-import Package from '../Package';
+import { Path, WorkspacePackage } from '@boost/common';
 import Init from '../components/Init';
-import { PackemonPackage, PackemonPackageConfig } from '../types';
 import { DEFAULT_FORMAT, DEFAULT_INPUT, DEFAULT_SUPPORT } from '../constants';
+import Package from '../Package';
+import { PackemonPackage, PackemonPackageConfig } from '../types';
+import Command from './Base';
 
 export interface InitOptions {
   force: boolean;

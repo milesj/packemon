@@ -1,14 +1,14 @@
 import path from 'path';
-import { RollupOptions, OutputOptions, ModuleFormat } from 'rollup';
+import { ModuleFormat, OutputOptions, RollupOptions } from 'rollup';
 import externals from 'rollup-plugin-node-externals';
 import visualizer from 'rollup-plugin-visualizer';
+import { getBabelInputPlugin, getBabelOutputPlugin } from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
-import { getBabelInputPlugin, getBabelOutputPlugin } from '@rollup/plugin-babel';
 import { getBabelInputConfig, getBabelOutputConfig } from '../babel/config';
-import { BundleBuild, FeatureFlags, Format } from '../types';
-import { EXTENSIONS, EXCLUDE } from '../constants';
 import type BundleArtifact from '../BundleArtifact';
+import { EXCLUDE, EXTENSIONS } from '../constants';
+import { BundleBuild, FeatureFlags, Format } from '../types';
 
 const sharedPlugins = [resolve({ extensions: EXTENSIONS, preferBuiltins: true }), commonjs()];
 

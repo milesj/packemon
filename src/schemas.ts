@@ -1,4 +1,5 @@
 import { Blueprint, predicates, toArray } from '@boost/common';
+import { DEFAULT_FORMAT, DEFAULT_INPUT, DEFAULT_PLATFORM, DEFAULT_SUPPORT } from './constants';
 import {
   AnalyzeType,
   BrowserFormat,
@@ -12,7 +13,6 @@ import {
   Support,
   ValidateOptions,
 } from './types';
-import { DEFAULT_FORMAT, DEFAULT_INPUT, DEFAULT_PLATFORM, DEFAULT_SUPPORT } from './constants';
 
 const { array, bool, number, object, string, union } = predicates;
 

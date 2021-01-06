@@ -1,9 +1,9 @@
 import http from 'http';
 import https from 'https';
-import { DependencyMap, isModuleName, isObject, PeopleSetting, toArray } from '@boost/common';
-import spdxLicenses from 'spdx-license-list';
-import semver from 'semver';
 import execa from 'execa';
+import semver from 'semver';
+import spdxLicenses from 'spdx-license-list';
+import { DependencyMap, isModuleName, isObject, PeopleSetting, toArray } from '@boost/common';
 import Package from './Package';
 import { ValidateOptions } from './types';
 
