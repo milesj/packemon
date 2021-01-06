@@ -134,11 +134,7 @@ export function getBabelInputConfig(
     ]);
   }
 
-  const config = getSharedConfig(plugins, presets, features);
-
-  // console.log(config);
-
-  return config;
+  return getSharedConfig(plugins, presets, features);
 }
 
 // The output config does all the transformation and downleveling through the preset-env.

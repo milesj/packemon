@@ -2,17 +2,223 @@
 
 exports[`Outputs builds all the artifacts with rollup 1`] = `
 Array [
+  "/cjs/server.cjs",
+  "'use strict';
+
+const https = require('https');
+
+function _interopDefaultLegacy(e) {
+  return e && typeof e === 'object' && 'default' in e ? e : {
+    'default': e
+  };
+}
+
+const https__default = _interopDefaultLegacy(https);
+
+https__default['default'].createServer((req, res) => {
+  res.writeHead(200, {
+    'Content-Type': 'text/plain'
+  });
+  res.write('Hello World!');
+  res.end();
+}).listen(8080);
+",
+]
+`;
+
+exports[`Outputs builds all the artifacts with rollup 2`] = `
+Array [
+  "/esm/client.js",
+  "function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\\"Cannot call a class as a function\\"); } }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var Client = function Client() {
+  _classCallCheck(this, Client);
+
+  _defineProperty(this, \\"prop\\", 123);
+};
+
+function createClient() {
+  return new Client();
+}
+
+export { createClient };
+//# sourceMappingURL=client.js.map
+",
+]
+`;
+
+exports[`Outputs builds all the artifacts with rollup 3`] = `
+Array [
+  "/esm/client.js.map",
+  "{\\"version\\":3,\\"file\\":\\"client.js\\",\\"sources\\":[\\"../src/client/index.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"Client\\",\\"prop\\",\\"createClient\\"],\\"mappings\\":\\"AAAA,MAAMA,MAAN,CAAa;AACXC,EAAAA,IAAI,GAAW,GAAX;AADO;;AAIN,SAASC,YAAT,GAAwB;AAC7B,SAAO,IAAIF,MAAJ,EAAP;AACD;;;;\\"}",
+]
+`;
+
+exports[`Outputs builds all the artifacts with rollup 4`] = `
+Array [
+  "/lib/client.js",
+  "'use strict';
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\\"Cannot call a class as a function\\"); } }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var Client = function Client() {
+  _classCallCheck(this, Client);
+
+  _defineProperty(this, \\"prop\\", 123);
+};
+
+function createClient() {
+  return new Client();
+}
+
+exports.createClient = createClient;
+//# sourceMappingURL=client.js.map
+",
+]
+`;
+
+exports[`Outputs builds all the artifacts with rollup 5`] = `
+Array [
+  "/lib/client.js.map",
+  "{\\"version\\":3,\\"file\\":\\"client.js\\",\\"sources\\":[\\"../src/client/index.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"Client\\",\\"prop\\",\\"createClient\\"],\\"mappings\\":\\";;;;AAAA,MAAMA,MAAN,CAAa;AACXC,EAAAA,IAAI,GAAW,GAAX;AADO;;AAIN,SAASC,YAAT,GAAwB;AAC7B,SAAO,IAAIF,MAAJ,EAAP;AACD;;;;\\"}",
+]
+`;
+
+exports[`Outputs builds all the artifacts with rollup 6`] = `
+Array [
+  "/lib/index.js",
+  "'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+const EXAMPLE = 'foo';
+exports.EXAMPLE = EXAMPLE;
+",
+]
+`;
+
+exports[`Outputs builds all the artifacts with rollup 7`] = `
+Array [
+  "/lib/test.js",
+  "'use strict';
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+const wait = () => Promise.resolve();
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+class Spy {
+  constructor() {
+    _defineProperty(this, \\"called\\", false);
+
+    _defineProperty(this, \\"mock\\", () => {});
+  }
+
+  method() {}
+
+}
+
+function spy() {
+  const inst = new Spy();
+  return jest.fn(inst.mock);
+}
+
+exports.spy = spy;
+exports.wait = wait;
+//# sourceMappingURL=test.js.map
+",
+]
+`;
+
+exports[`Outputs builds all the artifacts with rollup 8`] = `
+Array [
+  "/lib/test.js.map",
+  "{\\"version\\":3,\\"file\\":\\"test.js\\",\\"sources\\":[\\"../src/test-utils/base.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"Spy\\",\\"called\\",\\"mock\\",\\"method\\",\\"spy\\",\\"inst\\",\\"jest\\",\\"fn\\",\\"wait\\"],\\"mappings\\":\\";;;;AAAA,MAAMA,GAAN,CAAU;AACRC,EAAAA,MAAM,GAAY,KAAZ;AAENC,EAAAA,IAAI,GAAG,MAAM,EAAT;;AAEJC,EAAAA,MAAM,GAAG;;AALD;;AAQH,SAASC,GAAT,GAAe;AACpB,QAAMC,IAAI,GAAG,IAAIL,GAAJ,EAAb;AAEA,SAAOM,IAAI,CAACC,EAAL,CAAQF,IAAI,CAACH,IAAb,CAAP;AACD;AAEM,eAAeM,IAAf,GAAsB;;;;;\\"}",
+]
+`;
+
+exports[`Outputs builds all the artifacts with rollup 9`] = `
+Array [
+  "/package.json",
   Object {
-    "format": "lib",
-    "platform": "node",
-    "support": "stable",
+    "dependencies": Object {
+      "typescript": "*",
+    },
+    "main": "./lib/index.js",
+    "name": "project-rollup",
+    "packemon": Object {
+      "inputs": Object {
+        "client": "src/client.ts",
+        "index": "src/index.ts",
+        "server": "src/server/core.ts",
+        "test": "src/test-utils/base.ts",
+      },
+    },
   },
 ]
 `;
 
-exports[`Outputs builds all the artifacts with rollup 2`] = `"[object Object]"`;
+exports[`Outputs builds all the artifacts with rollup 10`] = `
+Array [
+  "/umd/client.js",
+  "(function (global, factory) {
+  if (typeof define === \\"function\\" && define.amd) {
+    define(\\"Packemon\\", [\\"exports\\"], factory);
+  } else if (typeof exports !== \\"undefined\\") {
+    factory(exports);
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports);
+    global.Packemon = mod.exports;
+  }
+})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports) {
+  \\"use strict\\";
 
-exports[`Outputs builds all the artifacts with rollup 3`] = `
+  Object.defineProperty(_exports, \\"__esModule\\", {
+    value: true
+  });
+  _exports.createClient = createClient;
+
+  function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+  class Client {
+    constructor() {
+      _defineProperty(this, \\"prop\\", 123);
+    }
+
+  }
+
+  function createClient() {
+    return new Client();
+  }
+});
+//# sourceMappingURL=client.js.map
+",
+]
+`;
+
+exports[`Outputs builds all the artifacts with rollup 11`] = `
+Array [
+  "/umd/client.js.map",
+  "{\\"version\\":3,\\"file\\":\\"client.js\\",\\"sources\\":[\\"../src/client/index.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"Client\\",\\"prop\\",\\"createClient\\"],\\"mappings\\":\\"AAAA,MAAMA,MAAN,CAAa;AACXC,EAAAA,IAAI,GAAW,GAAX;AADO;;AAIN,SAASC,YAAT,GAAwB;AAC7B,SAAO,IAAIF,MAAJ,EAAP;AACD;;;;\\"}",
+]
+`;
+
+exports[`Outputs builds all the artifacts with rollup 12`] = `
 Array [
   Object {
     "format": "lib",
