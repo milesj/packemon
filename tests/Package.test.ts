@@ -1,24 +1,9 @@
 import fs from 'fs-extra';
 import { Path } from '@boost/common';
 import { getFixturePath } from '@boost/test-utils';
-import Artifact from '../src/Artifact';
 import Package from '../src/Package';
 import Project from '../src/Project';
-import { delay } from './helpers';
-
-class TestArtifact extends Artifact {
-  build() {
-    return delay(50);
-  }
-
-  getBuildTargets() {
-    return ['test'];
-  }
-
-  getLabel() {
-    return 'test';
-  }
-}
+import { TestArtifact } from './helpers';
 
 describe('Package', () => {
   const fixturePath = getFixturePath('workspaces-feature-flags');
@@ -423,6 +408,63 @@ describe('Package', () => {
           support: 'stable',
         },
       ]);
+    });
+
+    it('errors if invalid format is provided for `browser` platform', () => {
+      expect(() => {
+        pkg.setConfigs([
+          {
+            format: ['mjs'],
+            platform: 'browser',
+          },
+        ]);
+      }).toThrowErrorMatchingSnapshot();
+    });
+
+    it('errors if invalid format is provided for `native` platform', () => {
+      expect(() => {
+        pkg.setConfigs([
+          {
+            format: ['esm'],
+            platform: 'native',
+          },
+        ]);
+      }).toThrowErrorMatchingSnapshot();
+    });
+
+    it('errors if invalid format is provided for `node` platform', () => {
+      expect(() => {
+        pkg.setConfigs([
+          {
+            format: ['umd'],
+            platform: 'node',
+          },
+        ]);
+      }).toThrowErrorMatchingSnapshot();
+    });
+
+    it('errors if input name contains a slash', () => {
+      expect(() => {
+        pkg.setConfigs([
+          {
+            inputs: {
+              'foo/bar': 'src/foo.ts',
+            },
+          },
+        ]);
+      }).toThrowErrorMatchingSnapshot();
+    });
+
+    it('errors if input name contains a space', () => {
+      expect(() => {
+        pkg.setConfigs([
+          {
+            inputs: {
+              'foo bar': 'src/foo.ts',
+            },
+          },
+        ]);
+      }).toThrowErrorMatchingSnapshot();
     });
   });
 

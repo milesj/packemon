@@ -2,17 +2,7 @@
 
 import fs from 'fs-extra';
 import rimraf from 'rimraf';
-import {
-  Blueprint,
-  isObject,
-  json,
-  Memoize,
-  optimal,
-  Path,
-  predicates,
-  toArray,
-  WorkspacePackage,
-} from '@boost/common';
+import { isObject, json, Memoize, optimal, Path, toArray, WorkspacePackage } from '@boost/common';
 import { createDebugger, Debugger } from '@boost/debug';
 import { Event } from '@boost/event';
 import { PooledPipeline, Context } from '@boost/pipeline';
@@ -22,61 +12,14 @@ import Project from './Project';
 import BundleArtifact from './BundleArtifact';
 import TypesArtifact from './TypesArtifact';
 import {
-  AnalyzeType,
-  BrowserFormat,
   BuildOptions,
   DeclarationType,
-  Format,
-  NativeFormat,
-  NodeFormat,
   PackemonPackage,
-  PackemonPackageConfig,
   Platform,
   TypesBuild,
   ValidateOptions,
 } from './types';
-import { DEFAULT_FORMAT, DEFAULT_INPUT, DEFAULT_PLATFORM, DEFAULT_SUPPORT } from './constants';
-
-const { array, bool, custom, number, object, string, union } = predicates;
-
-const platformPredicate = string<Platform>(DEFAULT_PLATFORM).oneOf(['native', 'node', 'browser']);
-const nativeFormatPredicate = string<NativeFormat>(DEFAULT_FORMAT).oneOf(['lib']);
-const nodeFormatPredicate = string<NodeFormat>(DEFAULT_FORMAT).oneOf(['lib', 'mjs', 'cjs']);
-const browserFormatPredicate = string<BrowserFormat>(DEFAULT_FORMAT).oneOf(['lib', 'esm', 'umd']);
-const joinedFormatPredicate = string<Format>(DEFAULT_FORMAT).oneOf([
-  'lib',
-  'esm',
-  'umd',
-  'mjs',
-  'cjs',
-]);
-const formatPredicate = custom<Format, PackemonPackageConfig>((format, schema) => {
-  const platforms = new Set(toArray(schema.struct.platform));
-
-  if (platforms.has('browser') && platforms.size === 1) {
-    return browserFormatPredicate.validate(format as BrowserFormat, schema.currentPath);
-  } else if (platforms.has('native') && platforms.size === 1) {
-    return nativeFormatPredicate.validate(format as NativeFormat, schema.currentPath);
-  } else if (platforms.has('node') && platforms.size === 1) {
-    return nodeFormatPredicate.validate(format as NodeFormat, schema.currentPath);
-  }
-
-  return joinedFormatPredicate.validate(format, schema.currentPath);
-}, DEFAULT_FORMAT);
-
-const blueprint: Blueprint<Required<PackemonPackageConfig>> = {
-  format: union([array(formatPredicate), formatPredicate], []),
-  inputs: object(string(), { index: DEFAULT_INPUT }).custom((obj) => {
-    Object.keys(obj).forEach((key) => {
-      if (!key.match(/^\w+$/u)) {
-        throw new Error(`Invalid input key "${key}". May only contain alpha-numeric characters.`);
-      }
-    });
-  }),
-  namespace: string(),
-  platform: union([array(platformPredicate), platformPredicate], DEFAULT_PLATFORM),
-  support: string(DEFAULT_SUPPORT).oneOf(['legacy', 'stable', 'current', 'experimental']),
-};
+import { buildBlueprint, validateBlueprint } from './schemas';
 
 export default class Packemon {
   readonly debug: Debugger;
@@ -102,16 +45,7 @@ export default class Packemon {
   async build(baseOptions: Partial<BuildOptions>) {
     this.debug('Starting `build` process');
 
-    const options = optimal(baseOptions, {
-      addEngines: bool(),
-      addExports: bool(),
-      analyzeBundle: string('none').oneOf<AnalyzeType>(['none', 'sunburst', 'treemap', 'network']),
-      concurrency: number(1).gte(1),
-      generateDeclaration: string('none').oneOf<DeclarationType>(['none', 'standard', 'api']),
-      skipPrivate: bool(),
-      timeout: number().gte(0),
-    });
-
+    const options = optimal(baseOptions, buildBlueprint);
     const packages = await this.loadConfiguredPackages(options.skipPrivate);
 
     this.generateArtifacts(packages, options.generateDeclaration);
@@ -192,17 +126,7 @@ export default class Packemon {
   async validate(baseOptions: Partial<ValidateOptions>): Promise<PackageValidator[]> {
     this.debug('Starting `validate` process');
 
-    const options = optimal(baseOptions, {
-      deps: bool(true),
-      engines: bool(true),
-      entries: bool(true),
-      license: bool(true),
-      links: bool(true),
-      people: bool(true),
-      skipPrivate: bool(false),
-      repo: bool(true),
-    });
-
+    const options = optimal(baseOptions, validateBlueprint);
     const packages = await this.loadConfiguredPackages(options.skipPrivate);
 
     return Promise.all(packages.map((pkg) => new PackageValidator(pkg).validate(options)));
@@ -378,13 +302,7 @@ export default class Packemon {
 
       const pkg = new Package(this.project, Path.create(metadata.packagePath), contents);
 
-      pkg.setConfigs(
-        toArray(contents.packemon).map((config) =>
-          optimal(config, blueprint, {
-            name: pkg.getName(),
-          }),
-        ),
-      );
+      pkg.setConfigs(toArray(contents.packemon));
 
       nextPackages.push(pkg);
     });

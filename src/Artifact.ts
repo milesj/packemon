@@ -20,8 +20,6 @@ export default abstract class Artifact<T extends object = {}> {
 
   cleanup(): Awaitable {}
 
-  build(options: BuildOptions): Awaitable {}
-
   isComplete(): boolean {
     return this.state === 'passed' || this.state === 'failed';
   }
@@ -33,10 +31,6 @@ export default abstract class Artifact<T extends object = {}> {
   postBuild(options: BuildOptions): Awaitable {}
 
   preBuild(options: BuildOptions): Awaitable {}
-
-  shouldSkip(): boolean {
-    return this.state === 'failed';
-  }
 
   startup() {}
 
@@ -78,7 +72,7 @@ export default abstract class Artifact<T extends object = {}> {
       );
     }
 
-    if (sourceFile || sourceColumn) {
+    if (sourceLine || sourceColumn) {
       meta.push(`line=${sourceLine ?? '?'}:${sourceColumn ?? '?'}`);
     }
 
@@ -92,6 +86,8 @@ export default abstract class Artifact<T extends object = {}> {
   protected removeFiles(files: PortablePath[]): Promise<unknown> {
     return Promise.all(files.map((file) => fs.remove(String(file))));
   }
+
+  abstract build(options: BuildOptions): Awaitable;
 
   abstract getLabel(): string;
 

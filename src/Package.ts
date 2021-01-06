@@ -2,7 +2,7 @@
 
 import fs from 'fs-extra';
 import ts from 'typescript';
-import { Memoize, Path, toArray } from '@boost/common';
+import { Memoize, Path, toArray, optimal } from '@boost/common';
 import { createDebugger, Debugger } from '@boost/debug';
 import Artifact from './Artifact';
 import Project from './Project';
@@ -14,6 +14,7 @@ import {
   PackemonPackageConfig,
   TSConfigStructure,
 } from './types';
+import { packemonBlueprint } from './schemas';
 
 export default class Package {
   readonly artifacts: Artifact[] = [];
@@ -165,8 +166,12 @@ export default class Package {
     return this.artifacts.some((artifact) => artifact.isRunning());
   }
 
-  setConfigs(configs: Required<PackemonPackageConfig>[]) {
-    configs.forEach((config) => {
+  setConfigs(configs: PackemonPackageConfig[]) {
+    configs.forEach((cfg) => {
+      const config = optimal(cfg, packemonBlueprint, {
+        name: this.getName(),
+      });
+
       const platforms = toArray(config.platform);
       const formats = new Set(toArray(config.format));
 
