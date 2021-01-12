@@ -207,7 +207,7 @@ export default class Packemon {
     this.debug('Generating artifacts for packages');
 
     packages.forEach((pkg) => {
-      const typesBuilds: TypesBuild[] = [];
+      const typesBuilds: Record<string, TypesBuild> = {};
       const sharedLib = this.requiresSharedLib(pkg);
 
       pkg.configs.forEach((config) => {
@@ -226,12 +226,12 @@ export default class Packemon {
           artifact.namespace = config.namespace;
 
           pkg.addArtifact(artifact);
-          typesBuilds.push({ inputFile, outputName });
+          typesBuilds[outputName] = { inputFile, outputName };
         });
       });
 
       if (declarationType !== 'none') {
-        const artifact = new TypesArtifact(pkg, typesBuilds);
+        const artifact = new TypesArtifact(pkg, Object.values(typesBuilds));
         artifact.declarationType = declarationType;
 
         pkg.addArtifact(artifact);

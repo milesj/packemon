@@ -1,6 +1,6 @@
 import { Path } from '@boost/common';
 import { getFixturePath } from '@boost/test-utils';
-import { BundleArtifact } from '../src';
+import { BundleArtifact, TypesArtifact } from '../src';
 import Package from '../src/Package';
 import Packemon from '../src/Packemon';
 
@@ -140,7 +140,73 @@ describe('Packemon', () => {
       ]);
     });
 
-    it('down-levels "lib" format when shared is required', () => {
+    it('generates "standard" type artifacts for each config in a package', async () => {
+      const packages = await packemon.loadConfiguredPackages();
+
+      packemon.generateArtifacts(packages, 'standard');
+
+      expect(packages[0].artifacts).toHaveLength(3);
+      expect((packages[0].artifacts[2] as TypesArtifact).declarationType).toBe('standard');
+      expect((packages[0].artifacts[2] as TypesArtifact).builds).toEqual([
+        {
+          inputFile: 'src/index.ts',
+          outputName: 'index',
+        },
+      ]);
+
+      expect(packages[1].artifacts).toHaveLength(2);
+      expect((packages[1].artifacts[1] as TypesArtifact).declarationType).toBe('standard');
+      expect((packages[1].artifacts[1] as TypesArtifact).builds).toEqual([
+        {
+          inputFile: './src/core.ts',
+          outputName: 'core',
+        },
+      ]);
+
+      expect(packages[2].artifacts).toHaveLength(2);
+      expect((packages[2].artifacts[1] as TypesArtifact).declarationType).toBe('standard');
+      expect((packages[2].artifacts[1] as TypesArtifact).builds).toEqual([
+        {
+          inputFile: 'src/index.ts',
+          outputName: 'index',
+        },
+      ]);
+    });
+
+    it('generates "api" type artifacts for each config in a package', async () => {
+      const packages = await packemon.loadConfiguredPackages();
+
+      packemon.generateArtifacts(packages, 'api');
+
+      expect(packages[0].artifacts).toHaveLength(3);
+      expect((packages[0].artifacts[2] as TypesArtifact).declarationType).toBe('api');
+      expect((packages[0].artifacts[2] as TypesArtifact).builds).toEqual([
+        {
+          inputFile: 'src/index.ts',
+          outputName: 'index',
+        },
+      ]);
+
+      expect(packages[1].artifacts).toHaveLength(2);
+      expect((packages[1].artifacts[1] as TypesArtifact).declarationType).toBe('api');
+      expect((packages[1].artifacts[1] as TypesArtifact).builds).toEqual([
+        {
+          inputFile: './src/core.ts',
+          outputName: 'core',
+        },
+      ]);
+
+      expect(packages[2].artifacts).toHaveLength(2);
+      expect((packages[2].artifacts[1] as TypesArtifact).declarationType).toBe('api');
+      expect((packages[2].artifacts[1] as TypesArtifact).builds).toEqual([
+        {
+          inputFile: 'src/index.ts',
+          outputName: 'index',
+        },
+      ]);
+    });
+
+    it('down-levels "lib" format from node -> browser when shared is required', () => {
       const pkg = new Package(packemon.project, packemon.project.root, {
         name: 'a',
         version: '0.0.0',
@@ -169,6 +235,38 @@ describe('Packemon', () => {
       // Down-leveled
       expect(pkg.artifacts[1].builds).toEqual([
         { format: 'lib', platform: 'browser', support: 'legacy' },
+      ]);
+    });
+
+    it('down-levels "lib" format from node -> native when shared is required', () => {
+      const pkg = new Package(packemon.project, packemon.project.root, {
+        name: 'a',
+        version: '0.0.0',
+        packemon: {},
+      });
+
+      pkg.setConfigs([
+        {
+          format: 'lib',
+          platform: 'native',
+          support: 'legacy',
+        },
+        {
+          format: 'lib',
+          platform: 'node',
+          support: 'current',
+        },
+      ]);
+
+      packemon.generateArtifacts([pkg]);
+
+      expect(pkg.artifacts).toHaveLength(2);
+      expect(pkg.artifacts[0].builds).toEqual([
+        { format: 'lib', platform: 'native', support: 'legacy' },
+      ]);
+      // Down-leveled
+      expect(pkg.artifacts[1].builds).toEqual([
+        { format: 'lib', platform: 'native', support: 'legacy' },
       ]);
     });
   });
