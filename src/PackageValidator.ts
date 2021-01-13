@@ -8,6 +8,8 @@ import Package from './Package';
 import { ValidateOptions } from './types';
 
 export default class PackageValidator {
+  static entryPoints: string[] = ['main', 'module', 'browser', 'types', 'typings', 'bin', 'man'];
+
   errors: string[] = [];
 
   package: Package;
@@ -27,9 +29,11 @@ export default class PackageValidator {
   }
 
   async validate(options: ValidateOptions) {
-    this.checkMetadata();
-
     const promises: Promise<unknown>[] = [];
+
+    if (options.meta) {
+      this.checkMetadata();
+    }
 
     if (options.deps) {
       this.checkDependencies();
@@ -170,11 +174,13 @@ export default class PackageValidator {
   protected checkEntryPoints() {
     this.package.debug('Checking entry points');
 
-    (['main', 'module', 'browser', 'types', 'typings', 'bin', 'man'] as const).forEach((field) => {
-      const relPath = this.package.packageJson[field];
+    const { bin, man, exports: exp } = this.package.packageJson;
+
+    PackageValidator.entryPoints.forEach((field) => {
+      const relPath = this.package.packageJson[field as 'main'];
 
       if (!relPath || typeof relPath !== 'string') {
-        if (field === 'main' && !exports) {
+        if (field === 'main' && !exp) {
           this.errors.push('Missing primary entry point. Provide a `main` or `exports` field.');
         }
 
@@ -186,12 +192,10 @@ export default class PackageValidator {
       }
     });
 
-    const { bin, man } = this.package.packageJson;
-
     if (isObject(bin)) {
       Object.entries(bin).forEach(([name, path]) => {
         if (!this.doesPathExist(path)) {
-          this.errors.push(`Binary "${name}" resolves to an invalid or missing file.`);
+          this.errors.push(`Bin "${name}" resolves to an invalid or missing file.`);
         }
       });
     }
@@ -226,7 +230,9 @@ export default class PackageValidator {
     }
 
     if (!this.doesPathExist('LICENSE') && !this.doesPathExist('LICENSE.md')) {
-      this.errors.push('No license file found in package. Must be one of LICENSE or LICENSE.md.');
+      this.errors.push(
+        'No license file found in package. Must contain one of LICENSE or LICENSE.md.',
+      );
     }
   }
 

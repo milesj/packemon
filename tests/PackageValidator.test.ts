@@ -1,39 +1,43 @@
+import fs from 'fs-extra';
+import execa from 'execa';
 import { Path } from '@boost/common';
 import { getFixturePath } from '@boost/test-utils';
 import Project from '../src/Project';
 import Package from '../src/Package';
 import PackageValidator from '../src/PackageValidator';
+import { mockSpy } from './helpers';
+
+jest.mock('execa');
+
+function createValidator(fixture: string) {
+  const root = new Path(getFixturePath(fixture));
+
+  return new PackageValidator(
+    new Package(new Project(root), root, {
+      name: 'test',
+      version: '0.0.0',
+      description: 'Test',
+      keywords: ['test'],
+      packemon: {},
+      ...fs.readJsonSync(root.append('package.json').path()),
+    }),
+  );
+}
 
 describe('PackageValidator', () => {
   let validator: PackageValidator;
-  let pathSpy: jest.SpyInstance;
   let urlSpy: jest.SpyInstance;
-  let binSpy: jest.SpyInstance;
 
-  beforeEach(() => {
-    const root = new Path(getFixturePath('project'));
-
-    validator = new PackageValidator(
-      new Package(new Project(root), root, {
-        name: 'test',
-        version: '0.0.0',
-        description: 'Test',
-        keywords: ['test'],
-        packemon: {},
-      }),
-    );
-
-    // @ts-expect-error Private
-    pathSpy = jest.spyOn(validator, 'doesPathExist').mockImplementation(() => true);
-
-    // @ts-expect-error Private
-    urlSpy = jest.spyOn(validator, 'doesUrlExist').mockImplementation(() => true);
-
-    // @ts-expect-error Private
-    binSpy = jest.spyOn(validator, 'getBinVersion').mockImplementation();
-  });
+  // beforeEach(() => {
+  //   // @ts-expect-error Private
+  //   urlSpy = jest.spyOn(validator, 'doesUrlExist').mockImplementation(() => true);
+  // });
 
   describe('checkEngines()', () => {
+    beforeEach(() => {
+      validator = createValidator('project');
+    });
+
     describe('node', () => {
       beforeEach(() => {
         validator.package.packageJson.engines = {
@@ -51,7 +55,7 @@ describe('PackageValidator', () => {
       });
 
       it('warns if node version doesnt satisfy constraint', async () => {
-        binSpy.mockImplementation(() => '9.1.2');
+        mockSpy(execa).mockImplementation(() => ({ stdout: '9.1.2' }));
 
         await validator.validate({ engines: true });
 
@@ -62,7 +66,7 @@ describe('PackageValidator', () => {
       });
 
       it('doesnt warn if node version satisfies constraint', async () => {
-        binSpy.mockImplementation(() => 'v12.1.2');
+        mockSpy(execa).mockImplementation(() => ({ stdout: 'v12.1.2' }));
 
         await validator.validate({ engines: true });
 
@@ -88,7 +92,7 @@ describe('PackageValidator', () => {
       });
 
       it('warns if npm version doesnt satisfy constraint', async () => {
-        binSpy.mockImplementation(() => 'v8.0.0');
+        mockSpy(execa).mockImplementation(() => ({ stdout: 'v8.0.0' }));
 
         await validator.validate({ engines: true });
 
@@ -99,7 +103,7 @@ describe('PackageValidator', () => {
       });
 
       it('doesnt warn if npm version satisfies constraint', async () => {
-        binSpy.mockImplementation(() => '7.7.7');
+        mockSpy(execa).mockImplementation(() => ({ stdout: '7.7.7' }));
 
         await validator.validate({ engines: true });
 
@@ -125,7 +129,7 @@ describe('PackageValidator', () => {
       });
 
       it('warns if yarn version doesnt satisfy constraint', async () => {
-        binSpy.mockImplementation(() => '0.1.9');
+        mockSpy(execa).mockImplementation(() => ({ stdout: '0.1.9' }));
 
         await validator.validate({ engines: true });
 
@@ -136,13 +140,111 @@ describe('PackageValidator', () => {
       });
 
       it('doesnt warn if yarn version satisfies constraint', async () => {
-        binSpy.mockImplementation(() => 'v1.4.6');
+        mockSpy(execa).mockImplementation(() => ({ stdout: 'v1.4.6' }));
 
         await validator.validate({ engines: true });
 
         expect(validator.warnings).toEqual([]);
         expect(validator.errors).toEqual([]);
       });
+    });
+  });
+
+  describe('checkEntryPoints()', () => {
+    PackageValidator.entryPoints.forEach((entryPoint) => {
+      describe(`${entryPoint}`, () => {
+        beforeEach(() => {
+          validator = createValidator(`validate-entry-${entryPoint}`);
+        });
+
+        it('doesnt error if field points to a valid file', async () => {
+          await validator.validate({ entries: true });
+
+          expect(validator.warnings).toEqual([]);
+          expect(validator.errors).toEqual([]);
+        });
+
+        if (entryPoint !== 'main') {
+          it('doesnt error if field is empty', async () => {
+            validator.package.packageJson[entryPoint] = undefined;
+
+            await validator.validate({ entries: true });
+
+            expect(validator.warnings).toEqual([]);
+            expect(validator.errors).toEqual([]);
+          });
+        }
+
+        it('errors if field points to an invalid file', async () => {
+          validator.package.packageJson[entryPoint] = './missing/file.js';
+
+          await validator.validate({ entries: true });
+
+          expect(validator.warnings).toEqual([]);
+          expect(validator.errors).toEqual([
+            `Entry point "${entryPoint}" resolves to an invalid or missing file.`,
+          ]);
+        });
+      });
+    });
+
+    describe('bin (object)', () => {
+      beforeEach(() => {
+        validator = createValidator('validate-entry-bin-object');
+      });
+
+      it('doesnt error if all bin fields point to a valid file', async () => {
+        await validator.validate({ entries: true });
+
+        expect(validator.warnings).toEqual([]);
+        expect(validator.errors).toEqual([]);
+      });
+
+      it('errors if a bin field points to an invalid file', async () => {
+        (validator.package.packageJson.bin as Record<string, string>).b = './missing/file.js';
+
+        await validator.validate({ entries: true });
+
+        expect(validator.warnings).toEqual([]);
+        expect(validator.errors).toEqual(['Bin "b" resolves to an invalid or missing file.']);
+      });
+    });
+
+    describe('man (array)', () => {
+      beforeEach(() => {
+        validator = createValidator('validate-entry-man-array');
+      });
+
+      it('doesnt error if all man fields point to a valid file', async () => {
+        await validator.validate({ entries: true });
+
+        expect(validator.warnings).toEqual([]);
+        expect(validator.errors).toEqual([]);
+      });
+
+      it('errors if a man field points to an invalid file', async () => {
+        (validator.package.packageJson.man as string[])[0] = './missing/file.js';
+
+        await validator.validate({ entries: true });
+
+        expect(validator.warnings).toEqual([]);
+        expect(validator.errors).toEqual([
+          'Manual "./missing/file.js" resolves to an invalid or missing file.',
+        ]);
+      });
+    });
+
+    it(`errors if "main" and "exports" are empty`, async () => {
+      validator = createValidator(`validate-entry-main`);
+      validator.package.packageJson.main = undefined;
+      validator.package.packageJson.exports = undefined;
+
+      await validator.validate({ entries: true });
+
+      expect(validator.warnings).toEqual([]);
+      expect(validator.errors).toEqual([
+        'Missing primary entry point. Provide a `main` or `exports` field.',
+      ]);
     });
   });
 });
