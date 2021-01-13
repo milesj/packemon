@@ -33,6 +33,190 @@ describe('PackageValidator', () => {
     urlSpy = jest.spyOn(validator, 'doesUrlExist').mockImplementation(() => true);
   }
 
+  describe('hasErrors()', () => {
+    beforeEach(() => {
+      validator = createValidator('project');
+    });
+
+    it('returns true if there are errors', () => {
+      validator.errors.push('Oops');
+
+      expect(validator.hasErrors()).toBe(true);
+    });
+
+    it('returns false if there are no errors', () => {
+      expect(validator.hasErrors()).toBe(false);
+    });
+  });
+
+  describe('hasWarnings()', () => {
+    beforeEach(() => {
+      validator = createValidator('project');
+    });
+
+    it('returns true if there are warnings', () => {
+      validator.warnings.push('Oops');
+
+      expect(validator.hasWarnings()).toBe(true);
+    });
+
+    it('returns false if there are no warnings', () => {
+      expect(validator.hasWarnings()).toBe(false);
+    });
+  });
+
+  describe('checkDependencies()', () => {
+    beforeEach(() => {
+      validator = createValidator('project');
+    });
+
+    ['dependencies', 'devDependencies', 'peerDependencies', 'optionalDependencies'].forEach(
+      (depType) => {
+        describe(`${depType}`, () => {
+          beforeEach(() => {
+            if (depType === 'peerDependencies') {
+              validator.package.packageJson.devDependencies = {
+                foo: '*',
+              };
+            }
+          });
+
+          it('does not error if no deps', async () => {
+            validator.package.packageJson[depType as 'dependencies'] = {};
+
+            await validator.validate({ deps: true });
+
+            expect(validator.warnings).toEqual([]);
+            expect(validator.errors).toEqual([]);
+          });
+
+          it('errors if a dep uses a file: constraint', async () => {
+            validator.package.packageJson[depType as 'dependencies'] = {
+              foo: 'file:../package',
+            };
+
+            await validator.validate({ deps: true });
+
+            expect(validator.warnings).toEqual([]);
+            expect(validator.errors).toEqual([
+              'Dependency "foo" must not require the file system. Found "file:" constraint.',
+            ]);
+          });
+
+          it('errors if a dep uses a link: constraint', async () => {
+            validator.package.packageJson[depType as 'dependencies'] = {
+              foo: 'link:../package',
+            };
+
+            await validator.validate({ deps: true });
+
+            expect(validator.warnings).toEqual([]);
+            expect(validator.errors).toEqual([
+              'Dependency "foo" must not require symlinks. Found "link:" constraint.',
+            ]);
+          });
+        });
+      },
+    );
+
+    it('errors if a dep defined as both a normal and peer', async () => {
+      validator.package.packageJson.dependencies = {
+        foo: '1.0.0',
+      };
+      validator.package.packageJson.peerDependencies = {
+        foo: '1.0.0',
+      };
+
+      await validator.validate({ deps: true });
+
+      expect(validator.warnings).toEqual([
+        'Peer dependency "foo" is missing a version satisfying dev dependency.',
+      ]);
+      expect(validator.errors).toEqual([
+        'Dependency "foo" defined as both a prod and peer dependency.',
+      ]);
+    });
+
+    it('warns if a dep defined as a peer without a dev', async () => {
+      validator.package.packageJson.peerDependencies = {
+        foo: '1.0.0',
+      };
+
+      await validator.validate({ deps: true });
+
+      expect(validator.warnings).toEqual([
+        'Peer dependency "foo" is missing a version satisfying dev dependency.',
+      ]);
+      expect(validator.errors).toEqual([]);
+    });
+
+    it('errors if a dep defined as a peer without a dev satisfying version', async () => {
+      validator.package.packageJson.peerDependencies = {
+        foo: '^1.0.0',
+      };
+      validator.package.packageJson.devDependencies = {
+        foo: '0.1.2',
+      };
+
+      await validator.validate({ deps: true });
+
+      expect(validator.warnings).toEqual([]);
+      expect(validator.errors).toEqual([
+        'Dev dependency "foo" does not satisfy version constraint of its peer. Found 0.1.2, requires ^1.0.0.',
+      ]);
+    });
+
+    it('doesnt error if a dep defined as a peer with a dev satisfying version', async () => {
+      validator.package.packageJson.peerDependencies = {
+        foo: '^1.0.0',
+      };
+      validator.package.packageJson.devDependencies = {
+        foo: '1.1.2',
+      };
+
+      await validator.validate({ deps: true });
+
+      expect(validator.warnings).toEqual([]);
+      expect(validator.errors).toEqual([]);
+    });
+
+    describe('lerna', () => {
+      beforeEach(() => {
+        jest.spyOn(validator.package.project, 'isLernaManaged').mockImplementation(() => true);
+        jest
+          .spyOn(validator.package.project, 'getWorkspacePackageNames')
+          .mockImplementation(() => ['foo', 'bar', 'baz']);
+      });
+
+      it('errors if a dep defined as a peer with a dev', async () => {
+        validator.package.packageJson.peerDependencies = {
+          foo: '^1.0.0',
+        };
+        validator.package.packageJson.devDependencies = {
+          foo: '1.2.3',
+        };
+
+        await validator.validate({ deps: true });
+
+        expect(validator.warnings).toEqual([]);
+        expect(validator.errors).toEqual([
+          'Peer dependency "foo" should not define a dev dependency when using Lerna.',
+        ]);
+      });
+
+      it('doesnt error if a dep defined as a peer without a dev', async () => {
+        validator.package.packageJson.peerDependencies = {
+          foo: '^1.0.0',
+        };
+
+        await validator.validate({ deps: true });
+
+        expect(validator.warnings).toEqual([]);
+        expect(validator.errors).toEqual([]);
+      });
+    });
+  });
+
   describe('checkEngines()', () => {
     beforeEach(() => {
       validator = createValidator('project');

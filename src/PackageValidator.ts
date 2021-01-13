@@ -93,6 +93,11 @@ export default class PackageValidator {
         this.errors.push(`Dependency "${peerName}" defined as both a prod and peer dependency.`);
       }
 
+      // Avoid further checks if constraint is special.
+      if (versionConstraint.includes(':')) {
+        return;
+      }
+
       // When using Lerna, we want to avoid pairing a peer with a dev dependency,
       // as Lerna will update their `package.json` version of all dependent packages!
       // This would accidently publish many packages that shouldn't be.
@@ -122,11 +127,11 @@ export default class PackageValidator {
     Object.entries(deps).forEach(([depName, version]) => {
       if (version.startsWith('file:')) {
         this.errors.push(
-          `Dependency "${depName}" must not require the file system. Found file: constraint.`,
+          `Dependency "${depName}" must not require the file system. Found "file:" constraint.`,
         );
       } else if (version.startsWith('link:')) {
         this.errors.push(
-          `Dependency "${depName}" must not require symlinks. Found link: constraint.`,
+          `Dependency "${depName}" must not require symlinks. Found "link:" constraint.`,
         );
       }
     });
