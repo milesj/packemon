@@ -70,10 +70,10 @@ export default class PackageValidator {
     const usesLerna = this.package.project.isLernaManaged();
     const workspacePackageNames = new Set(this.package.project.getWorkspacePackageNames());
     const {
-      dependencies,
-      devDependencies,
-      peerDependencies,
-      optionalDependencies,
+      dependencies = {},
+      devDependencies = {},
+      peerDependencies = {},
+      optionalDependencies = {},
     } = this.package.packageJson;
 
     this.checkDependencyRange(dependencies);
@@ -81,9 +81,9 @@ export default class PackageValidator {
     this.checkDependencyRange(peerDependencies);
     this.checkDependencyRange(optionalDependencies);
 
-    Object.entries(peerDependencies || {}).forEach(([peerName, versionConstraint]) => {
-      const devVersion = semver.coerce(devDependencies?.[peerName]);
-      const prodVersion = dependencies?.[peerName];
+    Object.entries(peerDependencies).forEach(([peerName, versionConstraint]) => {
+      const devVersion = semver.coerce(devDependencies[peerName]);
+      const prodVersion = dependencies[peerName];
 
       if (prodVersion) {
         this.errors.push(`Dependency "${peerName}" defined as both a prod and peer dependency.`);
@@ -114,8 +114,8 @@ export default class PackageValidator {
     });
   }
 
-  protected checkDependencyRange(deps?: DependencyMap) {
-    Object.entries(deps || {}).forEach(([depName, version]) => {
+  protected checkDependencyRange(deps: DependencyMap) {
+    Object.entries(deps).forEach(([depName, version]) => {
       if (version.startsWith('file:')) {
         this.errors.push(
           `Dependency "${depName}" must not require the file system. Found file: constraint.`,
@@ -137,7 +137,7 @@ export default class PackageValidator {
     const yarnConstraint = engines?.yarn;
 
     if (nodeConstraint) {
-      const nodeVersion = semver.coerce(process.version);
+      const nodeVersion = semver.coerce(await this.getBinVersion('node'));
 
       if (nodeVersion && !semver.satisfies(nodeVersion.version, nodeConstraint)) {
         this.warnings.push(
