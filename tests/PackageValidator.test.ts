@@ -28,11 +28,6 @@ describe('PackageValidator', () => {
   let validator: PackageValidator;
   let urlSpy: jest.SpyInstance;
 
-  // beforeEach(() => {
-  //   // @ts-expect-error Private
-  //   urlSpy = jest.spyOn(validator, 'doesUrlExist').mockImplementation(() => true);
-  // });
-
   describe('checkEngines()', () => {
     beforeEach(() => {
       validator = createValidator('project');
@@ -245,6 +240,106 @@ describe('PackageValidator', () => {
       expect(validator.errors).toEqual([
         'Missing primary entry point. Provide a `main` or `exports` field.',
       ]);
+    });
+  });
+
+  describe('checkLicense()', () => {
+    beforeEach(() => {
+      validator = createValidator('validate-license-file');
+    });
+
+    it('doesnt error if license field is defined', async () => {
+      await validator.validate({ license: true });
+
+      expect(validator.warnings).toEqual([]);
+      expect(validator.errors).toEqual([]);
+    });
+
+    it('errors if license field is not defined', async () => {
+      validator.package.packageJson.license = undefined;
+
+      await validator.validate({ license: true });
+
+      expect(validator.warnings).toEqual([]);
+      expect(validator.errors).toEqual(['Missing license.']);
+    });
+
+    it('errors if license field is an invalid SPDX license', async () => {
+      validator.package.packageJson.license = 'unknown';
+
+      await validator.validate({ license: true });
+
+      expect(validator.warnings).toEqual([]);
+      expect(validator.errors).toEqual([
+        'Invalid license "unknown". Must be an official SPDX license type.',
+      ]);
+    });
+
+    it('errors if license non-string field is an invalid SPDX license', async () => {
+      validator.package.packageJson.license = [
+        { type: 'MIT', url: '' },
+        { type: 'what', url: '' },
+      ];
+
+      await validator.validate({ license: true });
+
+      expect(validator.warnings).toEqual([]);
+      expect(validator.errors).toEqual([
+        'Invalid license "what". Must be an official SPDX license type.',
+      ]);
+    });
+
+    it('doesnt error if license field is an object', async () => {
+      validator.package.packageJson.license = { type: 'MIT', url: '' };
+
+      await validator.validate({ license: true });
+
+      expect(validator.warnings).toEqual([]);
+      expect(validator.errors).toEqual([]);
+    });
+
+    it('doesnt error if license field is an array of objects', async () => {
+      validator.package.packageJson.license = [
+        { type: 'MIT', url: '' },
+        { type: 'BSD-3-Clause', url: '' },
+      ];
+
+      await validator.validate({ license: true });
+
+      expect(validator.warnings).toEqual([]);
+      expect(validator.errors).toEqual([]);
+    });
+
+    describe('files', () => {
+      it('errors if LICENSE file is missing', async () => {
+        validator = createValidator('project');
+
+        await validator.validate({ license: true });
+
+        expect(validator.warnings).toEqual([]);
+        expect(validator.errors).toEqual([
+          'Missing license.',
+          'No license file found in package. Must contain one of LICENSE or LICENSE.md.',
+        ]);
+      });
+
+      it('doesnt error if LICENSE file exists', async () => {
+        validator = createValidator('validate-license-file');
+
+        await validator.validate({ license: true });
+
+        expect(validator.warnings).toEqual([]);
+        expect(validator.errors).toEqual([]);
+      });
+
+      it('doesnt error if LICENSE.md file exists', async () => {
+        validator = createValidator('validate-license-file-md');
+
+        await validator.validate({ license: true });
+
+        expect(validator.warnings).toEqual([]);
+        expect(validator.errors).toEqual([]);
+      });
     });
   });
 });
