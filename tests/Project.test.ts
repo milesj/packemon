@@ -133,7 +133,7 @@ describe('Project', () => {
     it('loads `package.json` contents', () => {
       expect(project.rootPackage.packageJson).toEqual({
         private: true,
-        workspaces: ['packages/*'],
+        workspaces: ['packages/*', 'other/', 'misc'],
       });
     });
   });

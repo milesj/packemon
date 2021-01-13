@@ -1,15 +1,226 @@
+import rimraf from 'rimraf';
 import { Path } from '@boost/common';
 import { getFixturePath } from '@boost/test-utils';
 import { BundleArtifact, TypesArtifact } from '../src';
 import Package from '../src/Package';
 import Packemon from '../src/Packemon';
 
+jest.mock('rimraf');
+
+jest.mock(
+  '../src/PackageValidator',
+  () =>
+    class MockValidator {
+      validate = jest.fn(() => this);
+    },
+);
+
 describe('Packemon', () => {
   let packemon: Packemon;
+
+  beforeEach(() => {
+    ((rimraf as unknown) as jest.Mock).mockImplementation((path: string, cb: Function) => {
+      cb();
+    });
+  });
+
+  it('runs on cwd by default', () => {
+    packemon = new Packemon();
+
+    expect(packemon.root).toEqual(new Path(process.cwd()));
+  });
 
   it('errors with engine version constraint', () => {
     // eslint-disable-next-line jest/require-to-throw-message
     expect(() => new Packemon(getFixturePath('project-constraint'))).toThrow();
+  });
+
+  describe('build()', () => {
+    let packages: Package[];
+
+    beforeEach(async () => {
+      packemon = new Packemon(getFixturePath('workspaces'));
+      packages = (await packemon.loadConfiguredPackages()).map((pkg) => {
+        jest.spyOn(pkg, 'build').mockImplementation(() => Promise.resolve());
+
+        return pkg;
+      });
+
+      jest
+        .spyOn(packemon, 'loadConfiguredPackages')
+        .mockImplementation(() => Promise.resolve(packages));
+    });
+
+    it('calls `build` on each package', async () => {
+      await packemon.build({ addEngines: true, concurrency: 3 });
+
+      const options = {
+        addEngines: true,
+        addExports: false,
+        analyzeBundle: 'none',
+        concurrency: 3,
+        generateDeclaration: 'none',
+        skipPrivate: false,
+        timeout: 0,
+      };
+
+      expect(packages[0].build).toHaveBeenCalledWith(options);
+      expect(packages[1].build).toHaveBeenCalledWith(options);
+      expect(packages[2].build).toHaveBeenCalledWith(options);
+    });
+
+    it('emits `onPackageBuilt` for each package', async () => {
+      const spy = jest.fn();
+
+      packemon.onPackageBuilt.listen(spy);
+
+      await packemon.build({ addExports: true, skipPrivate: true });
+
+      expect(spy).toHaveBeenCalledWith(packages[0]);
+      expect(spy).toHaveBeenCalledWith(packages[1]);
+      expect(spy).toHaveBeenCalledWith(packages[2]);
+    });
+
+    it('cleans temporary files from each package', async () => {
+      // @ts-expect-error Private
+      const spy = jest.spyOn(packemon, 'cleanTemporaryFiles');
+
+      await packemon.build({});
+
+      expect(spy).toHaveBeenCalledWith(packages);
+    });
+
+    it('throws if a build fails', async () => {
+      (packages[1].build as jest.Mock).mockImplementation(() => {
+        throw new Error('Oops');
+      });
+
+      await expect(() => packemon.build({})).rejects.toThrow('Oops');
+    });
+  });
+
+  describe('clean()', () => {
+    it('handles file system failures', async () => {
+      ((rimraf as unknown) as jest.Mock).mockImplementation((path, cb) => {
+        cb(new Error('Missing'));
+      });
+
+      packemon = new Packemon(getFixturePath('project'));
+
+      await expect(() => packemon.clean()).rejects.toThrow('Missing');
+    });
+
+    describe('solorepo', () => {
+      beforeEach(() => {
+        packemon = new Packemon(getFixturePath('project'));
+      });
+
+      it('cleans temporary files from each package', async () => {
+        // @ts-expect-error Private
+        const spy = jest.spyOn(packemon, 'cleanTemporaryFiles');
+
+        await packemon.clean();
+
+        expect(spy).toHaveBeenCalledWith([expect.any(Package)]);
+      });
+
+      it('cleans build folders from project', async () => {
+        await packemon.clean();
+
+        expect(rimraf).toHaveBeenCalledWith('./{cjs,esm,lib,mjs,umd}', expect.any(Function));
+      });
+    });
+
+    describe('monorepo', () => {
+      beforeEach(() => {
+        packemon = new Packemon(getFixturePath('workspaces'));
+      });
+
+      it('cleans temporary files from each package', async () => {
+        // @ts-expect-error Private
+        const spy = jest.spyOn(packemon, 'cleanTemporaryFiles');
+
+        await packemon.clean();
+
+        expect(spy).toHaveBeenCalledWith([
+          expect.any(Package),
+          expect.any(Package),
+          expect.any(Package),
+        ]);
+      });
+
+      it('cleans build folders from project', async () => {
+        await packemon.clean();
+
+        expect(rimraf).toHaveBeenCalledWith(
+          'packages/*/{cjs,esm,lib,mjs,umd}',
+          expect.any(Function),
+        );
+        expect(rimraf).toHaveBeenCalledWith('other/{cjs,esm,lib,mjs,umd}', expect.any(Function));
+        expect(rimraf).toHaveBeenCalledWith('misc/{cjs,esm,lib,mjs,umd}', expect.any(Function));
+      });
+    });
+  });
+
+  describe('validate()', () => {
+    it('can skip private packages', async () => {
+      packemon = new Packemon(getFixturePath('project'));
+
+      const spy = jest.spyOn(packemon, 'loadConfiguredPackages');
+
+      await packemon.validate({ skipPrivate: true });
+
+      expect(spy).toHaveBeenCalledWith(true);
+
+      spy.mockRestore();
+    });
+
+    describe('solorepo', () => {
+      beforeEach(() => {
+        packemon = new Packemon(getFixturePath('project'));
+      });
+
+      it('calls a validator on the package', async () => {
+        const validators = await packemon.validate({ deps: false, people: false });
+
+        expect(validators).toHaveLength(1);
+        expect(validators[0].validate).toHaveBeenCalledWith({
+          deps: false,
+          engines: true,
+          entries: true,
+          license: true,
+          links: true,
+          people: false,
+          repo: true,
+          skipPrivate: false,
+        });
+      });
+    });
+
+    describe('monorepo', () => {
+      beforeEach(() => {
+        packemon = new Packemon(getFixturePath('workspaces'));
+      });
+
+      it('calls a validator on each package', async () => {
+        const validators = await packemon.validate({ engines: false, license: false });
+        const options = {
+          deps: true,
+          engines: false,
+          entries: true,
+          license: false,
+          links: true,
+          people: true,
+          repo: true,
+          skipPrivate: false,
+        };
+
+        expect(validators).toHaveLength(3);
+        expect(validators[0].validate).toHaveBeenCalledWith(options);
+        expect(validators[1].validate).toHaveBeenCalledWith(options);
+        expect(validators[2].validate).toHaveBeenCalledWith(options);
+      });
+    });
   });
 
   describe('findPackagesInProject()', () => {

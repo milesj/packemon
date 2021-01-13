@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/member-ordering */
 
+import path from 'path';
 import fs from 'fs-extra';
 import rimraf from 'rimraf';
 import { isObject, json, Memoize, optimal, Path, toArray, WorkspacePackage } from '@boost/common';
@@ -93,15 +94,7 @@ export default class Packemon {
 
     if (this.project.isWorkspacesEnabled()) {
       this.project.workspaces.forEach((ws) => {
-        let path = ws;
-
-        if (path.endsWith('*')) {
-          path += `/${formatFolders}`;
-        } else if (path.endsWith('/')) {
-          path += formatFolders;
-        }
-
-        pathsToRemove.push(path);
+        pathsToRemove.push(path.join(ws, formatFolders));
       });
     } else {
       pathsToRemove.push(`./${formatFolders}`);
@@ -109,11 +102,11 @@ export default class Packemon {
 
     await Promise.all(
       pathsToRemove.map(
-        (path) =>
+        (rfPath) =>
           new Promise((resolve, reject) => {
-            this.debug(' - %s', path);
+            this.debug(' - %s', rfPath);
 
-            rimraf(path, (error) => {
+            rimraf(rfPath, (error) => {
               if (error) {
                 reject(error);
               } else {
