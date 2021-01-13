@@ -1,10 +1,10 @@
-import fs from 'fs-extra';
 import execa from 'execa';
+import fs from 'fs-extra';
 import { Path } from '@boost/common';
 import { getFixturePath } from '@boost/test-utils';
-import Project from '../src/Project';
 import Package from '../src/Package';
 import PackageValidator from '../src/PackageValidator';
+import Project from '../src/Project';
 import { mockSpy } from './helpers';
 
 jest.mock('execa');
@@ -161,7 +161,7 @@ describe('PackageValidator', () => {
 
         if (entryPoint !== 'main') {
           it('doesnt error if field is empty', async () => {
-            validator.package.packageJson[entryPoint] = undefined;
+            validator.package.packageJson[entryPoint as 'main'] = undefined;
 
             await validator.validate({ entries: true });
 
@@ -171,7 +171,7 @@ describe('PackageValidator', () => {
         }
 
         it('errors if field points to an invalid file', async () => {
-          validator.package.packageJson[entryPoint] = './missing/file.js';
+          validator.package.packageJson[entryPoint as 'main'] = './missing/file.js';
 
           await validator.validate({ entries: true });
 
@@ -336,6 +336,236 @@ describe('PackageValidator', () => {
         validator = createValidator('validate-license-file-md');
 
         await validator.validate({ license: true });
+
+        expect(validator.warnings).toEqual([]);
+        expect(validator.errors).toEqual([]);
+      });
+    });
+  });
+
+  describe('checkLinks()', () => {
+    beforeEach(() => {
+      validator = createValidator('project');
+
+      // @ts-expect-error Private
+      urlSpy = jest.spyOn(validator, 'doesUrlExist').mockImplementation(() => true);
+    });
+
+    describe('homepage', () => {
+      it('doesnt warn if not defined', async () => {
+        await validator.validate({ links: true });
+
+        expect(validator.warnings).toEqual([]);
+        expect(validator.errors).toEqual([]);
+      });
+
+      it('doesnt warn if defined and a valid URL', async () => {
+        validator.package.packageJson.homepage = 'https://packemon.dev';
+
+        await validator.validate({ links: true });
+
+        expect(validator.warnings).toEqual([]);
+        expect(validator.errors).toEqual([]);
+      });
+
+      it('warns if defined and an invalid URL', async () => {
+        urlSpy.mockImplementation(() => false);
+
+        validator.package.packageJson.homepage = 'invalid url';
+
+        await validator.validate({ links: true });
+
+        expect(validator.warnings).toEqual([
+          'Homepage link is invalid. URL is either malformed or upstream is down.',
+        ]);
+        expect(validator.errors).toEqual([]);
+      });
+    });
+
+    describe('bugs', () => {
+      it('doesnt warn if not defined', async () => {
+        await validator.validate({ links: true });
+
+        expect(validator.warnings).toEqual([]);
+        expect(validator.errors).toEqual([]);
+      });
+
+      it('doesnt warn if defined and a valid URL', async () => {
+        validator.package.packageJson.bugs = 'https://packemon.dev';
+
+        await validator.validate({ links: true });
+
+        expect(validator.warnings).toEqual([]);
+        expect(validator.errors).toEqual([]);
+      });
+
+      it('warns if defined and an invalid URL', async () => {
+        urlSpy.mockImplementation(() => false);
+
+        validator.package.packageJson.bugs = 'invalid url';
+
+        await validator.validate({ links: true });
+
+        expect(validator.warnings).toEqual([
+          'Bugs link is invalid. URL is either malformed or upstream is down.',
+        ]);
+        expect(validator.errors).toEqual([]);
+      });
+
+      describe('object', () => {
+        it('doesnt warn if defined and a valid URL', async () => {
+          validator.package.packageJson.bugs = { url: 'https://packemon.dev' };
+
+          await validator.validate({ links: true });
+
+          expect(validator.warnings).toEqual([]);
+          expect(validator.errors).toEqual([]);
+        });
+
+        it('warns if defined and an invalid URL', async () => {
+          urlSpy.mockImplementation(() => false);
+
+          validator.package.packageJson.bugs = { url: 'invalid url' };
+
+          await validator.validate({ links: true });
+
+          expect(validator.warnings).toEqual([
+            'Bugs link is invalid. URL is either malformed or upstream is down.',
+          ]);
+          expect(validator.errors).toEqual([]);
+        });
+      });
+    });
+  });
+
+  describe('checkMetadata()', () => {
+    beforeEach(() => {
+      validator = createValidator('validate-readme-file');
+    });
+
+    describe('name', () => {
+      it('doesnt error if defined', async () => {
+        validator.package.packageJson.name = 'packemon';
+
+        await validator.validate({ meta: true });
+
+        expect(validator.warnings).toEqual([]);
+        expect(validator.errors).toEqual([]);
+      });
+
+      it('errors if not defined', async () => {
+        validator.package.packageJson.name = '';
+
+        await validator.validate({ meta: true });
+
+        expect(validator.warnings).toEqual([]);
+        expect(validator.errors).toEqual(['Missing name.']);
+      });
+
+      it('errors if an invalid format', async () => {
+        validator.package.packageJson.name = 'what even is this';
+
+        await validator.validate({ meta: true });
+
+        expect(validator.warnings).toEqual([]);
+        expect(validator.errors).toEqual([
+          'Invalid name format. Must contain alphanumeric characters and dashes.',
+        ]);
+      });
+    });
+
+    describe('version', () => {
+      it('doesnt error if defined', async () => {
+        validator.package.packageJson.version = '1.0.0';
+
+        await validator.validate({ meta: true });
+
+        expect(validator.warnings).toEqual([]);
+        expect(validator.errors).toEqual([]);
+      });
+
+      it('errors if not defined', async () => {
+        validator.package.packageJson.version = '';
+
+        await validator.validate({ meta: true });
+
+        expect(validator.warnings).toEqual([]);
+        expect(validator.errors).toEqual(['Missing version.']);
+      });
+    });
+
+    describe('description', () => {
+      it('doesnt warn if defined', async () => {
+        validator.package.packageJson.description = 'Packemon';
+
+        await validator.validate({ meta: true });
+
+        expect(validator.warnings).toEqual([]);
+        expect(validator.errors).toEqual([]);
+      });
+
+      it('warns if not defined', async () => {
+        validator.package.packageJson.description = undefined;
+
+        await validator.validate({ meta: true });
+
+        expect(validator.warnings).toEqual(['Missing description.']);
+        expect(validator.errors).toEqual([]);
+      });
+    });
+
+    describe('keywords', () => {
+      it('doesnt warn if defined', async () => {
+        validator.package.packageJson.keywords = ['packemon'];
+
+        await validator.validate({ meta: true });
+
+        expect(validator.warnings).toEqual([]);
+        expect(validator.errors).toEqual([]);
+      });
+
+      it('warns if not defined', async () => {
+        validator.package.packageJson.keywords = undefined;
+
+        await validator.validate({ meta: true });
+
+        expect(validator.warnings).toEqual(['Missing keywords.']);
+        expect(validator.errors).toEqual([]);
+      });
+
+      it('warns if defined but empty', async () => {
+        validator.package.packageJson.keywords = [];
+
+        await validator.validate({ meta: true });
+
+        expect(validator.warnings).toEqual(['Missing keywords.']);
+        expect(validator.errors).toEqual([]);
+      });
+    });
+
+    describe('files', () => {
+      it('errors if README file is missing', async () => {
+        validator = createValidator('project');
+
+        await validator.validate({ meta: true });
+
+        expect(validator.warnings).toEqual([]);
+        expect(validator.errors).toEqual([
+          'No read me found in package. Must contain one of README or README.md.',
+        ]);
+      });
+
+      it('doesnt error if README file exists', async () => {
+        await validator.validate({ meta: true });
+
+        expect(validator.warnings).toEqual([]);
+        expect(validator.errors).toEqual([]);
+      });
+
+      it('doesnt error if README.md file exists', async () => {
+        validator = createValidator('validate-readme-file-md');
+
+        await validator.validate({ meta: true });
 
         expect(validator.warnings).toEqual([]);
         expect(validator.errors).toEqual([]);

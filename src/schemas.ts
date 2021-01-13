@@ -81,6 +81,7 @@ export const validateBlueprint: Blueprint<ValidateOptions> = {
   entries: bool(true),
   license: bool(true),
   links: bool(true),
+  meta: bool(true),
   people: bool(true),
   skipPrivate: bool(false),
   repo: bool(true),

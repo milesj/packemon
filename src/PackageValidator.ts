@@ -281,7 +281,7 @@ export default class PackageValidator {
     }
 
     if (!this.doesPathExist('README') && !this.doesPathExist('README.md')) {
-      this.errors.push('No readme file found in package. Must be one of README or README.md.');
+      this.errors.push('No read me found in package. Must contain one of README or README.md.');
     }
   }
 
@@ -352,6 +352,7 @@ export default class PackageValidator {
     return this.package.path.append(path).exists();
   }
 
+  // istanbul ignore next
   protected doesUrlExist(url: string): Promise<boolean> {
     return new Promise((resolve) => {
       const request = url.startsWith('https') ? https.request : http.request;
