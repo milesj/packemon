@@ -335,7 +335,7 @@ export default class PackageValidator {
       this.errors.push('Missing repository.');
     } else if (url.startsWith('http')) {
       if (!(await this.doesUrlExist(url))) {
-        this.errors.push('Repository is invalid. URL is either malformed or upstream is down.');
+        this.warnings.push('Repository is invalid. URL is either malformed or upstream is down.');
       }
     }
 
@@ -375,6 +375,7 @@ export default class PackageValidator {
     try {
       return (await execa(bin, ['-v'], { preferLocal: true })).stdout.trim();
     } catch {
+      // istanbul ignore next
       return '';
     }
   }

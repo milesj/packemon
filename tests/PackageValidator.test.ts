@@ -28,6 +28,11 @@ describe('PackageValidator', () => {
   let validator: PackageValidator;
   let urlSpy: jest.SpyInstance;
 
+  function createUrlSpy() {
+    // @ts-expect-error Private
+    urlSpy = jest.spyOn(validator, 'doesUrlExist').mockImplementation(() => true);
+  }
+
   describe('checkEngines()', () => {
     beforeEach(() => {
       validator = createValidator('project');
@@ -346,9 +351,7 @@ describe('PackageValidator', () => {
   describe('checkLinks()', () => {
     beforeEach(() => {
       validator = createValidator('project');
-
-      // @ts-expect-error Private
-      urlSpy = jest.spyOn(validator, 'doesUrlExist').mockImplementation(() => true);
+      createUrlSpy();
     });
 
     describe('homepage', () => {
@@ -569,6 +572,231 @@ describe('PackageValidator', () => {
 
         expect(validator.warnings).toEqual([]);
         expect(validator.errors).toEqual([]);
+      });
+    });
+  });
+
+  describe('checkPeople()', () => {
+    beforeEach(() => {
+      validator = createValidator('project');
+      createUrlSpy();
+    });
+
+    describe('author', () => {
+      it('warns if not defined', async () => {
+        validator.package.packageJson.author = undefined;
+
+        await validator.validate({ people: true });
+
+        expect(validator.warnings).toEqual(['Missing author.']);
+        expect(validator.errors).toEqual([]);
+      });
+
+      it('doesnt warn if defined', async () => {
+        validator.package.packageJson.author = 'Ash Ketchum';
+
+        await validator.validate({ people: true });
+
+        expect(validator.warnings).toEqual([]);
+        expect(validator.errors).toEqual([]);
+      });
+
+      it('errors if defined as an object without a name', async () => {
+        validator.package.packageJson.author = { name: '' };
+
+        await validator.validate({ people: true });
+
+        expect(validator.warnings).toEqual([]);
+        expect(validator.errors).toEqual(['Missing author name.']);
+      });
+
+      it('doesnt error if defined', async () => {
+        validator.package.packageJson.author = { name: 'Ash Ketchum' };
+
+        await validator.validate({ people: true });
+
+        expect(validator.warnings).toEqual([]);
+        expect(validator.errors).toEqual([]);
+      });
+
+      it('warns if defined and an invalid URL', async () => {
+        urlSpy.mockImplementation(() => false);
+
+        validator.package.packageJson.author = { name: 'Ash Ketchum', url: 'https broken url' };
+
+        await validator.validate({ people: true });
+
+        expect(validator.warnings).toEqual([
+          'Author URL is invalid. URL is either malformed or upstream is down.',
+        ]);
+        expect(validator.errors).toEqual([]);
+      });
+    });
+
+    describe('contributors', () => {
+      beforeEach(() => {
+        validator.package.packageJson.author = 'Professor Oak';
+      });
+
+      it('warns if defined and not an array', async () => {
+        // @ts-expect-error
+        validator.package.packageJson.contributors = {};
+
+        await validator.validate({ people: true });
+
+        expect(validator.warnings).toEqual(['Contributors must be an array.']);
+        expect(validator.errors).toEqual([]);
+      });
+
+      it('doesnt warn if defined but empty', async () => {
+        validator.package.packageJson.contributors = [];
+
+        await validator.validate({ people: true });
+
+        expect(validator.warnings).toEqual([]);
+        expect(validator.errors).toEqual([]);
+      });
+
+      it('doesnt warn if defined with strings', async () => {
+        validator.package.packageJson.contributors = ['Ash Ketchum'];
+
+        await validator.validate({ people: true });
+
+        expect(validator.warnings).toEqual([]);
+        expect(validator.errors).toEqual([]);
+      });
+
+      it('errors if defined with an object but missing name', async () => {
+        validator.package.packageJson.contributors = [{ name: '' }];
+
+        await validator.validate({ people: true });
+
+        expect(validator.warnings).toEqual([]);
+        expect(validator.errors).toEqual(['Missing contributor name.']);
+      });
+
+      it('warns if defined with an object but an invalid URL', async () => {
+        urlSpy.mockImplementation(() => false);
+
+        validator.package.packageJson.contributors = [
+          { name: 'Ash Ketchum', url: 'https broken url' },
+        ];
+
+        await validator.validate({ people: true });
+
+        expect(validator.warnings).toEqual([
+          'Contributor URL is invalid. URL is either malformed or upstream is down.',
+        ]);
+        expect(validator.errors).toEqual([]);
+      });
+    });
+  });
+
+  describe('checkRepository()', () => {
+    beforeEach(() => {
+      validator = createValidator('workspaces');
+      createUrlSpy();
+    });
+
+    it('errors if not defined', async () => {
+      validator.package.packageJson.repository = undefined;
+
+      await validator.validate({ repo: true });
+
+      expect(validator.warnings).toEqual([]);
+      expect(validator.errors).toEqual(['Missing repository.']);
+    });
+
+    it('warns if defined and an invalid URL', async () => {
+      urlSpy.mockImplementation(() => false);
+
+      validator.package.packageJson.repository = 'https broken url';
+
+      await validator.validate({ repo: true });
+
+      expect(validator.warnings).toEqual([
+        'Repository is invalid. URL is either malformed or upstream is down.',
+      ]);
+      expect(validator.errors).toEqual([]);
+    });
+
+    it('doesnt error if defined and a valid URL', async () => {
+      validator.package.packageJson.repository = 'https://packemon.dev';
+
+      await validator.validate({ repo: true });
+
+      expect(validator.warnings).toEqual([]);
+      expect(validator.errors).toEqual([]);
+    });
+
+    it('doesnt error if defined and a valid git SSH', async () => {
+      validator.package.packageJson.repository = 'git@github.com:milesj/packemon.git';
+
+      await validator.validate({ repo: true });
+
+      expect(validator.warnings).toEqual([]);
+      expect(validator.errors).toEqual([]);
+    });
+
+    describe('object', () => {
+      it('errors if not defined', async () => {
+        validator.package.packageJson.repository = { type: 'url', url: '' };
+
+        await validator.validate({ repo: true });
+
+        expect(validator.warnings).toEqual([]);
+        expect(validator.errors).toEqual(['Missing repository.']);
+      });
+
+      it('doesnt error if defined and a valid URL', async () => {
+        validator.package.packageJson.repository = { type: 'url', url: 'https://packemon.dev' };
+
+        await validator.validate({ repo: true });
+
+        expect(validator.warnings).toEqual([]);
+        expect(validator.errors).toEqual([]);
+      });
+
+      it('doesnt error if defined and a valid git SSH', async () => {
+        validator.package.packageJson.repository = {
+          type: 'git',
+          url: 'git@github.com:milesj/packemon.git',
+        };
+
+        await validator.validate({ repo: true });
+
+        expect(validator.warnings).toEqual([]);
+        expect(validator.errors).toEqual([]);
+      });
+
+      describe('directory', () => {
+        it('errors if defined and points to an invalid path', async () => {
+          validator.package.packageJson.repository = {
+            type: 'url',
+            url: 'https://packemon.dev',
+            directory: 'packages/missing-package',
+          };
+
+          await validator.validate({ repo: true });
+
+          expect(validator.warnings).toEqual([]);
+          expect(validator.errors).toEqual([
+            'Repository directory "packages/missing-package" does not exist.',
+          ]);
+        });
+
+        it('doesnt error if defined and points to an valid path', async () => {
+          validator.package.packageJson.repository = {
+            type: 'url',
+            url: 'https://packemon.dev',
+            directory: 'packages/valid-object',
+          };
+
+          await validator.validate({ repo: true });
+
+          expect(validator.warnings).toEqual([]);
+          expect(validator.errors).toEqual([]);
+        });
       });
     });
   });
