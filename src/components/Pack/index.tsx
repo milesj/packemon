@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Header, useProgram } from '@boost/cli';
+import { useProgram } from '@boost/cli';
 import Packemon from '../../Packemon';
 import { BuildOptions } from '../../types';
 import Build from '../Build';
@@ -26,8 +26,6 @@ export default function Pack({ packemon, ...options }: PackProps) {
 
   return (
     <>
-      {phase === 'clean' && <Header label="Cleaning packages" />}
-
       {phase === 'build' && (
         <Build
           {...options}

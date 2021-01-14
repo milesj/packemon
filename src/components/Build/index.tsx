@@ -24,7 +24,7 @@ export default function Build({ packemon, onBuilt, ...options }: BuildProps) {
     let pkgCount = 0;
 
     // Save loaded packages
-    const unlistenLoaded = packemon.onPackagesLoaded.listen((pkgs) => {
+    packemon.onPackagesLoaded.once((pkgs) => {
       setPackages(pkgs);
       pkgCount = pkgs.length;
     });
@@ -42,12 +42,21 @@ export default function Build({ packemon, onBuilt, ...options }: BuildProps) {
     });
 
     // Run the build process on mount
-    void packemon.build(options).then(onBuilt).catch(exit);
+    void packemon
+      .build(options)
+      .then(() => {
+        unlistenBuilt();
 
-    return () => {
-      unlistenLoaded();
-      unlistenBuilt();
-    };
+        setStaticPackages((prev) =>
+          prev.concat(
+            packages.filter((pkg) => pkg.isComplete() && !staticNames.has(pkg.getName())),
+          ),
+        );
+
+        onBuilt?.();
+      })
+      .catch(exit)
+      .finally(clearLoop);
   });
 
   const runningPackages = packages.filter((pkg) => pkg.isRunning());
