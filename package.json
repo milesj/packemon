@@ -22,7 +22,7 @@
     "release": "npx np --yolo",
     "test": "beemo jest",
     "type": "beemo typescript --noEmit",
-    "prerelease": "yarn run setup && yarn run pack && yarn run ci",
+    "prerelease": "yarn run clean && yarn run setup && yarn run pack && yarn run ci",
     "pack": "NODE_ENV=production yarn run packemon pack --addEngines --generateDeclaration=api",
     "packemon": "node ./packemon.js"
   },
