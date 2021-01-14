@@ -186,13 +186,20 @@ export default class TypesArtifact extends Artifact<TypesBuild> {
   protected async removeDeclarationBuild(dtsBuildPath: Path) {
     const outputs = new Set<string>(this.builds.map(({ outputName }) => `${outputName}.d.ts`));
 
-    // Remove all non-output files and folders
-    const files = await glob(['*'], {
+    // Remove all non-output files
+    const files = await glob('*', {
       cwd: dtsBuildPath.path(),
+      onlyFiles: true,
+    });
+
+    // Remove all folders
+    const folders = await glob('*', {
+      cwd: dtsBuildPath.path(),
+      onlyDirectories: true,
     });
 
     await Promise.all(
-      files
+      [...files, ...folders]
         .filter((file) => !outputs.has(file))
         .map((file) => fs.remove(dtsBuildPath.append(file).path())),
     );
