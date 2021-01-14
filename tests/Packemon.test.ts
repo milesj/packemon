@@ -57,7 +57,7 @@ describe('Packemon', () => {
       const options = {
         addEngines: true,
         addExports: false,
-        analyzeBundle: 'none',
+        analyze: 'none',
         concurrency: 3,
         declaration: 'none',
         skipPrivate: false,

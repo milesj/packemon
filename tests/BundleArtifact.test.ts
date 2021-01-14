@@ -139,7 +139,7 @@ describe('BundleArtifact', () => {
     });
 
     it('inherits `analyze` feature flag', async () => {
-      await artifact.build({ analyzeBundle: 'network' });
+      await artifact.build({ analyze: 'network' });
 
       expect(getRollupConfig).toHaveBeenCalledWith(artifact, {
         analyze: 'network',

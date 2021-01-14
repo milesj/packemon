@@ -11,7 +11,7 @@ export default function Duration({ time }: DurationProps) {
 
   return (
     <Style type={isFast ? 'muted' : 'default'} bold>
-      {isFast ? '↝' : formatMs(time)}
+      {isFast ? '~' : formatMs(time)}
     </Style>
   );
 }

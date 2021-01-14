@@ -54,8 +54,8 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
 
     const features = this.package.getFeatureFlags();
 
-    if (options.analyzeBundle !== 'none') {
-      features.analyze = options.analyzeBundle;
+    if (options.analyze !== 'none') {
+      features.analyze = options.analyze;
     }
 
     const { output = [], ...input } = getRollupConfig(this, features);

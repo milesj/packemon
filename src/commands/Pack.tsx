@@ -11,7 +11,7 @@ export class PackCommand extends BuildCommand {
         packemon={this.packemon}
         addEngines={this.addEngines}
         addExports={this.addExports}
-        analyzeBundle={this.analyze}
+        analyze={this.analyze}
         concurrency={this.concurrency}
         declaration={this.declaration}
         skipPrivate={this.skipPrivate}

@@ -68,7 +68,7 @@ export const packemonBlueprint: Blueprint<PackemonPackageConfig> = {
 export const buildBlueprint: Blueprint<BuildOptions> = {
   addEngines: bool(),
   addExports: bool(),
-  analyzeBundle: string('none').oneOf<AnalyzeType>(['none', 'sunburst', 'treemap', 'network']),
+  analyze: string('none').oneOf<AnalyzeType>(['none', 'sunburst', 'treemap', 'network']),
   concurrency: number(1).gte(1),
   declaration: string('none').oneOf<DeclarationType>(['none', 'standard', 'api']),
   skipPrivate: bool(),

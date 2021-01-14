@@ -76,7 +76,7 @@ export type ArtifactState = 'pending' | 'building' | 'passed' | 'failed';
 export interface BuildOptions {
   addEngines?: boolean;
   addExports?: boolean;
-  analyzeBundle?: AnalyzeType;
+  analyze?: AnalyzeType;
   concurrency?: number;
   declaration?: DeclarationType;
   skipPrivate?: boolean;
