@@ -13,7 +13,7 @@ export class PackCommand extends BuildCommand {
         addExports={this.addExports}
         analyzeBundle={this.analyze}
         concurrency={this.concurrency}
-        generateDeclaration={this.generateDeclaration}
+        declaration={this.declaration}
         skipPrivate={this.skipPrivate}
         timeout={this.timeout}
       />

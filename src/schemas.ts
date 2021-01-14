@@ -70,7 +70,7 @@ export const buildBlueprint: Blueprint<BuildOptions> = {
   addExports: bool(),
   analyzeBundle: string('none').oneOf<AnalyzeType>(['none', 'sunburst', 'treemap', 'network']),
   concurrency: number(1).gte(1),
-  generateDeclaration: string('none').oneOf<DeclarationType>(['none', 'standard', 'api']),
+  declaration: string('none').oneOf<DeclarationType>(['none', 'standard', 'api']),
   skipPrivate: bool(),
   timeout: number().gte(0),
 };

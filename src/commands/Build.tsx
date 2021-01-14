@@ -21,10 +21,10 @@ export class BuildCommand extends BaseCommand<Required<BuildOptions>> {
   @Arg.Number('Number of builds to run in parallel')
   concurrency: number = os.cpus().length;
 
-  @Arg.String('Generate a single TypeScript declaration for each package input', {
+  @Arg.String('Generate TypeScript declarations for each package', {
     choices: ['none', 'standard', 'api'],
   })
-  generateDeclaration: DeclarationType = 'none';
+  declaration: DeclarationType = 'none';
 
   @Arg.Number('Timeout in milliseconds before a build is cancelled')
   timeout: number = 0;
@@ -37,7 +37,7 @@ export class BuildCommand extends BaseCommand<Required<BuildOptions>> {
         addExports={this.addExports}
         analyzeBundle={this.analyze}
         concurrency={this.concurrency}
-        generateDeclaration={this.generateDeclaration}
+        declaration={this.declaration}
         skipPrivate={this.skipPrivate}
         timeout={this.timeout}
       />

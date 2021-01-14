@@ -59,7 +59,7 @@ describe('Packemon', () => {
         addExports: false,
         analyzeBundle: 'none',
         concurrency: 3,
-        generateDeclaration: 'none',
+        declaration: 'none',
         skipPrivate: false,
         timeout: 0,
       };

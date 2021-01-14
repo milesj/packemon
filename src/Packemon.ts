@@ -51,7 +51,7 @@ export default class Packemon {
     const options = optimal(baseOptions, buildBlueprint);
     const packages = await this.loadConfiguredPackages(options.skipPrivate);
 
-    this.generateArtifacts(packages, options.generateDeclaration);
+    this.generateArtifacts(packages, options.declaration);
 
     // Build packages in parallel using a pool
     const pipeline = new PooledPipeline(new Context());

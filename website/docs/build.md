@@ -34,8 +34,8 @@ Build supports the following command line options.
   - `treemap` - Displays hierarchy levels as top-level and nested rectangles of varying size.
   - `network` - Displays files as nodes with the relationship between files.
 - `--concurrency` - Number of builds to run in parallel. Defaults to operating system CPU count.
-- `--generateDeclaration` - Generate TypeScript declarations for each package. Accepts one of the
-  following values.
+- `--declaration` - Generate TypeScript declarations for each package. Accepts one of the following
+  values.
   - `standard` - Generates multiple `d.ts` files with `tsc`.
   - `api` - Generates a single `d.ts` file for each input. Uses
     [@microsoft/api-extractor](https://www.npmjs.com/package/@microsoft/api-extractor) to _only_
@@ -84,7 +84,7 @@ tests/
 
 Based on the package configuration above, our build will target both Node.js and web browsers, while
 generating multiple `index` outputs across both platforms. The resulting folder structure will look
-like the following (when also using `--generateDeclaration`).
+like the following (when also using `--declaration`).
 
 ```
 /
