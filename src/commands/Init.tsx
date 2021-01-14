@@ -5,7 +5,7 @@ import Init from '../components/Init';
 import { DEFAULT_FORMAT, DEFAULT_INPUT, DEFAULT_SUPPORT } from '../constants';
 import Package from '../Package';
 import { PackemonPackage, PackemonPackageConfig } from '../types';
-import Command from './Base';
+import { BaseCommand } from './Base';
 
 export interface InitOptions {
   force: boolean;
@@ -13,7 +13,7 @@ export interface InitOptions {
 }
 
 @Config('init', 'Initialize and configure Packemon for packages')
-export class InitCommand extends Command<InitOptions> {
+export class InitCommand extends BaseCommand<InitOptions> {
   @Arg.Flag('Override already configured packages')
   force: boolean = false;
 

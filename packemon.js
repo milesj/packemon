@@ -4,4 +4,10 @@ global.__DEV__ = true;
 global.__PROD__ = false;
 global.__TEST__ = false;
 
-require('./build/bin');
+try {
+  // Packemon built
+  require('./lib/bin');
+} catch {
+  // TypeScript built (initial setup)
+  require('./build/bin');
+}

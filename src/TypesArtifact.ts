@@ -1,6 +1,7 @@
 import path from 'path';
 import glob from 'fast-glob';
 import fs from 'fs-extra';
+import { ParsedCommandLine } from 'typescript';
 import { Path } from '@boost/common';
 import { createDebugger, Debugger } from '@boost/debug';
 import { Extractor, ExtractorConfig } from '@microsoft/api-extractor';
@@ -166,7 +167,7 @@ export default class TypesArtifact extends Artifact<TypesBuild> {
 
   // This method only exists so that we can mock in tests.
   // istanbul ignore next
-  protected loadTsconfigJson() {
+  protected loadTsconfigJson(): ParsedCommandLine | undefined {
     return this.package.tsconfigJson;
   }
 
@@ -185,9 +186,9 @@ export default class TypesArtifact extends Artifact<TypesBuild> {
   protected async removeDeclarationBuild(dtsBuildPath: Path) {
     const outputs = new Set<string>(this.builds.map(({ outputName }) => `${outputName}.d.ts`));
 
-    const files = await glob(['**/*'], {
+    // Remove all non-output files and folders
+    const files = await glob(['*'], {
       cwd: dtsBuildPath.path(),
-      onlyFiles: true,
     });
 
     await Promise.all(

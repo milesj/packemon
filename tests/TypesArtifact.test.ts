@@ -164,7 +164,6 @@ describe('TypesArtifact', () => {
         expect(fs.remove).not.toHaveBeenCalledWith(fixturePath.append('dts/index.d.ts').path());
         expect(fs.remove).toHaveBeenCalledWith(fixturePath.append('dts/extra.d.ts').path());
         expect(fs.remove).not.toHaveBeenCalledWith(fixturePath.append('dts/test.d.ts').path());
-        expect(fs.remove).toHaveBeenCalledWith(fixturePath.append('dts/sub/other.d.ts').path());
       });
 
       it('logs an error if extractor fails', async () => {

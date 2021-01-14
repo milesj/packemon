@@ -2,12 +2,12 @@ import { Arg, Command, GlobalOptions, PrimitiveType } from '@boost/cli';
 import { Memoize } from '@boost/common';
 import Packemon from '../Packemon';
 
-interface CommonOptions {
+export interface CommonOptions {
   cwd: string;
   skipPrivate: boolean;
 }
 
-export default abstract class BaseCommand<
+export abstract class BaseCommand<
   O extends object = {},
   P extends PrimitiveType[] = string[]
 > extends Command<O & GlobalOptions & CommonOptions, P> {

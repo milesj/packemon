@@ -2,7 +2,7 @@ import chokidar from 'chokidar';
 import { applyStyle, Arg, Config } from '@boost/cli';
 import { Bind, formatMs } from '@boost/common';
 import Package from '../Package';
-import Command from './Base';
+import { BaseCommand } from './Base';
 
 export interface WatchOptions {
   debounce: number;
@@ -10,7 +10,7 @@ export interface WatchOptions {
 }
 
 @Config('watch', 'Watch local files for changes and rebuild')
-export class WatchCommand extends Command<WatchOptions> {
+export class WatchCommand extends BaseCommand<WatchOptions> {
   @Arg.Number('Number of milliseconds to wait after a change before triggering a rebuild')
   debounce: number = 150;
 

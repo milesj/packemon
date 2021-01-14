@@ -2,10 +2,10 @@ import React from 'react';
 import { Arg, Config } from '@boost/cli';
 import Validate from '../components/Validate';
 import { ValidateOptions } from '../types';
-import Command from './Base';
+import { BaseCommand } from './Base';
 
 @Config('validate', 'Validate package metadata and configuration')
-export class ValidateCommand extends Command<Required<ValidateOptions>> {
+export class ValidateCommand extends BaseCommand<Required<ValidateOptions>> {
   @Arg.Flag('Check that dependencies have valid versions and constraints')
   deps: boolean = true;
 
@@ -20,6 +20,9 @@ export class ValidateCommand extends Command<Required<ValidateOptions>> {
 
   @Arg.Flag('Check that `homepage` and `bugs` links are valid URLs')
   links: boolean = true;
+
+  @Arg.Flag('Check that `name`, `version`, `description`, and `keywords` are valid')
+  meta: boolean = true;
 
   @Arg.Flag('Check that `author` and `contributors` contain a name and optional URL')
   people: boolean = true;
@@ -36,6 +39,7 @@ export class ValidateCommand extends Command<Required<ValidateOptions>> {
         entries={this.engines}
         license={this.license}
         links={this.links}
+        meta={this.meta}
         people={this.people}
         skipPrivate={this.skipPrivate}
         repo={this.repo}
