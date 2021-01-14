@@ -62,12 +62,7 @@ export default class Project extends BaseProject {
       preferLocal: true,
     });
 
-    const result = await this.buildPromise;
-
-    // Remove the promise so the build can be ran again
-    delete this.buildPromise;
-
-    return result;
+    return this.buildPromise;
   }
 
   @Memoize()

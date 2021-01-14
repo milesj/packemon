@@ -2,11 +2,11 @@ import React from 'react';
 import { Box } from 'ink';
 import Spinner from 'ink-spinner';
 import { Style } from '@boost/cli';
-import { formatMs } from '@boost/common';
 import Artifact from '../Artifact';
 import BundleArtifact from '../BundleArtifact';
 import { STATE_LABELS } from '../constants';
 import BundleTarget from './BundleTarget';
+import Duration from './Duration';
 import Target from './Target';
 
 export interface ArtifactRowProps {
@@ -35,9 +35,7 @@ export default function ArtifactRow({ artifact }: ArtifactRowProps) {
 
       <Box marginLeft={1}>
         {artifact.isComplete() ? (
-          <Style type="default" bold>
-            {formatMs(artifact.buildResult.time)}
-          </Style>
+          <Duration time={artifact.buildResult.time} />
         ) : (
           <Style type="muted">{STATE_LABELS[artifact.state]}</Style>
         )}
