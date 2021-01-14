@@ -1,9 +1,9 @@
-import { types as t, NodePath } from '@babel/core';
+import { NodePath, types as t } from '@babel/core';
 
 const exprs = {
-  __DEV__: ['!==', 'production'],
-  __PROD__: ['===', 'production'],
-  __TEST__: ['===', 'test'],
+  DEV: ['!==', 'production'],
+  PROD: ['===', 'production'],
+  TEST: ['===', 'test'],
 };
 
 export default function envExpressions() {
@@ -12,7 +12,7 @@ export default function envExpressions() {
       Identifier: {
         enter(path: NodePath<t.Identifier>) {
           Object.entries(exprs).forEach(([expr, [op, env]]) => {
-            if (!path.isIdentifier({ name: expr })) {
+            if (!path.isIdentifier({ name: `__${expr}__` })) {
               return;
             }
 

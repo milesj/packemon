@@ -1,14 +1,14 @@
 // eslint-disable-next-line unicorn/import-index
 import {
   BundleArtifact,
+  DEFAULT_FORMAT,
+  DEFAULT_SUPPORT,
   Format,
   getBabelInputConfig,
   getBabelOutputConfig,
   Platform,
   Project,
   Support,
-  DEFAULT_FORMAT,
-  DEFAULT_SUPPORT,
 } from './index';
 
 // Extract attributes from environment

@@ -1,0 +1,14 @@
+{
+  "name": "project-rollup",
+  "packemon": {
+    "inputs": {
+      "index": "src/index.ts",
+      "client": "src/client.ts",
+      "server": "src/server/core.ts",
+      "test": "src/test-utils/base.ts"
+    }
+  },
+  "dependencies": {
+    "typescript": "*"
+  }
+}

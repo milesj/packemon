@@ -1,0 +1,920 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`getBabelInputConfig() doesnt include typescript decorators if \`typescript\` feature flag is false 1`] = `
+Object {
+  "babelrc": true,
+  "babelrcRoots": undefined,
+  "caller": Object {
+    "name": "packemon",
+  },
+  "comments": false,
+  "configFile": false,
+  "parserOpts": Object {
+    "sourceType": "unambiguous",
+    "strictMode": undefined,
+  },
+  "plugins": Array [],
+  "presets": Array [],
+}
+`;
+
+exports[`getBabelInputConfig() includes flow preset if \`flow\` feature flag is true 1`] = `
+Array [
+  Array [
+    "@babel/preset-flow",
+    Object {
+      "allowDeclareFields": true,
+    },
+  ],
+]
+`;
+
+exports[`getBabelInputConfig() includes no plugins or presets by default 1`] = `
+Object {
+  "babelrc": true,
+  "babelrcRoots": undefined,
+  "caller": Object {
+    "name": "packemon",
+  },
+  "comments": false,
+  "configFile": false,
+  "parserOpts": Object {
+    "sourceType": "unambiguous",
+    "strictMode": undefined,
+  },
+  "plugins": Array [],
+  "presets": Array [],
+}
+`;
+
+exports[`getBabelInputConfig() includes react preset if \`react\` feature flag is true 1`] = `
+Array [
+  Array [
+    "@babel/preset-react",
+    Object {
+      "development": true,
+      "throwIfNamespace": true,
+    },
+  ],
+]
+`;
+
+exports[`getBabelInputConfig() includes typescript decorators if \`typescript\` and \`decorators\` feature flag is true 1`] = `
+Object {
+  "babelrc": true,
+  "babelrcRoots": undefined,
+  "caller": Object {
+    "name": "packemon",
+  },
+  "comments": false,
+  "configFile": false,
+  "parserOpts": Object {
+    "sourceType": "unambiguous",
+    "strictMode": undefined,
+  },
+  "plugins": Array [
+    Array [
+      "@babel/plugin-proposal-decorators",
+      Object {
+        "legacy": true,
+      },
+    ],
+    Array [
+      "@babel/plugin-proposal-class-properties",
+      Object {
+        "loose": true,
+      },
+    ],
+    Array [
+      "@babel/plugin-proposal-private-methods",
+      Object {
+        "loose": true,
+      },
+    ],
+  ],
+  "presets": Array [
+    Array [
+      "@babel/preset-typescript",
+      Object {
+        "allowDeclareFields": true,
+      },
+    ],
+  ],
+}
+`;
+
+exports[`getBabelInputConfig() includes typescript preset if \`typescript\` feature flag is true 1`] = `
+Array [
+  Array [
+    "@babel/preset-typescript",
+    Object {
+      "allowDeclareFields": true,
+    },
+  ],
+]
+`;
+
+exports[`getBabelInputConfig() supports private properties with decorators if dep exists 1`] = `
+Object {
+  "babelrc": true,
+  "babelrcRoots": undefined,
+  "caller": Object {
+    "name": "packemon",
+  },
+  "comments": false,
+  "configFile": false,
+  "parserOpts": Object {
+    "sourceType": "unambiguous",
+    "strictMode": undefined,
+  },
+  "plugins": Array [
+    Array [
+      "@babel/plugin-proposal-decorators",
+      Object {
+        "legacy": true,
+      },
+    ],
+    Array [
+      "@babel/plugin-proposal-class-properties",
+      Object {
+        "loose": true,
+      },
+    ],
+    Array [
+      "@babel/plugin-proposal-private-methods",
+      Object {
+        "loose": true,
+      },
+    ],
+    Array [
+      "@babel/plugin-proposal-private-property-in-object",
+      Object {
+        "loose": true,
+      },
+    ],
+  ],
+  "presets": Array [
+    Array [
+      "@babel/preset-typescript",
+      Object {
+        "allowDeclareFields": true,
+      },
+    ],
+  ],
+}
+`;
+
+exports[`getBabelOutputConfig() handles preset-env: browser + esm + current 1`] = `
+Array [
+  "@babel/preset-env",
+  Object {
+    "bugfixes": true,
+    "loose": false,
+    "modules": false,
+    "shippedProposals": true,
+    "spec": true,
+    "targets": Object {
+      "browsers": "defaults",
+    },
+    "useBuiltIns": false,
+  },
+]
+`;
+
+exports[`getBabelOutputConfig() handles preset-env: browser + esm + experimental 1`] = `
+Array [
+  "@babel/preset-env",
+  Object {
+    "bugfixes": true,
+    "loose": false,
+    "modules": false,
+    "shippedProposals": true,
+    "spec": true,
+    "targets": Object {
+      "browsers": Array [
+        "last 2 chrome versions",
+        "last 2 firefox versions",
+      ],
+    },
+    "useBuiltIns": false,
+  },
+]
+`;
+
+exports[`getBabelOutputConfig() handles preset-env: browser + esm + legacy 1`] = `
+Array [
+  "@babel/preset-env",
+  Object {
+    "bugfixes": true,
+    "loose": false,
+    "modules": false,
+    "shippedProposals": true,
+    "spec": true,
+    "targets": Object {
+      "browsers": "IE 10",
+    },
+    "useBuiltIns": false,
+  },
+]
+`;
+
+exports[`getBabelOutputConfig() handles preset-env: browser + esm + stable 1`] = `
+Array [
+  "@babel/preset-env",
+  Object {
+    "bugfixes": true,
+    "loose": false,
+    "modules": false,
+    "shippedProposals": true,
+    "spec": true,
+    "targets": Object {
+      "browsers": "IE 11",
+    },
+    "useBuiltIns": false,
+  },
+]
+`;
+
+exports[`getBabelOutputConfig() handles preset-env: browser + lib + current 1`] = `
+Array [
+  "@babel/preset-env",
+  Object {
+    "bugfixes": true,
+    "loose": false,
+    "modules": "cjs",
+    "shippedProposals": true,
+    "spec": true,
+    "targets": Object {
+      "browsers": "defaults",
+    },
+    "useBuiltIns": false,
+  },
+]
+`;
+
+exports[`getBabelOutputConfig() handles preset-env: browser + lib + experimental 1`] = `
+Array [
+  "@babel/preset-env",
+  Object {
+    "bugfixes": true,
+    "loose": false,
+    "modules": "cjs",
+    "shippedProposals": true,
+    "spec": true,
+    "targets": Object {
+      "browsers": Array [
+        "last 2 chrome versions",
+        "last 2 firefox versions",
+      ],
+    },
+    "useBuiltIns": false,
+  },
+]
+`;
+
+exports[`getBabelOutputConfig() handles preset-env: browser + lib + legacy 1`] = `
+Array [
+  "@babel/preset-env",
+  Object {
+    "bugfixes": true,
+    "loose": false,
+    "modules": "cjs",
+    "shippedProposals": true,
+    "spec": true,
+    "targets": Object {
+      "browsers": "IE 10",
+    },
+    "useBuiltIns": false,
+  },
+]
+`;
+
+exports[`getBabelOutputConfig() handles preset-env: browser + lib + stable 1`] = `
+Array [
+  "@babel/preset-env",
+  Object {
+    "bugfixes": true,
+    "loose": false,
+    "modules": "cjs",
+    "shippedProposals": true,
+    "spec": true,
+    "targets": Object {
+      "browsers": "IE 11",
+    },
+    "useBuiltIns": false,
+  },
+]
+`;
+
+exports[`getBabelOutputConfig() handles preset-env: browser + umd + current 1`] = `
+Array [
+  "@babel/preset-env",
+  Object {
+    "bugfixes": true,
+    "loose": false,
+    "modules": "umd",
+    "shippedProposals": true,
+    "spec": true,
+    "targets": Object {
+      "browsers": "defaults",
+    },
+    "useBuiltIns": false,
+  },
+]
+`;
+
+exports[`getBabelOutputConfig() handles preset-env: browser + umd + experimental 1`] = `
+Array [
+  "@babel/preset-env",
+  Object {
+    "bugfixes": true,
+    "loose": false,
+    "modules": "umd",
+    "shippedProposals": true,
+    "spec": true,
+    "targets": Object {
+      "browsers": Array [
+        "last 2 chrome versions",
+        "last 2 firefox versions",
+      ],
+    },
+    "useBuiltIns": false,
+  },
+]
+`;
+
+exports[`getBabelOutputConfig() handles preset-env: browser + umd + legacy 1`] = `
+Array [
+  "@babel/preset-env",
+  Object {
+    "bugfixes": true,
+    "loose": false,
+    "modules": "umd",
+    "shippedProposals": true,
+    "spec": true,
+    "targets": Object {
+      "browsers": "IE 10",
+    },
+    "useBuiltIns": false,
+  },
+]
+`;
+
+exports[`getBabelOutputConfig() handles preset-env: browser + umd + stable 1`] = `
+Array [
+  "@babel/preset-env",
+  Object {
+    "bugfixes": true,
+    "loose": false,
+    "modules": "umd",
+    "shippedProposals": true,
+    "spec": true,
+    "targets": Object {
+      "browsers": "IE 11",
+    },
+    "useBuiltIns": false,
+  },
+]
+`;
+
+exports[`getBabelOutputConfig() handles preset-env: native + lib + current 1`] = `
+Array [
+  "@babel/preset-env",
+  Object {
+    "bugfixes": true,
+    "loose": false,
+    "modules": "cjs",
+    "shippedProposals": true,
+    "spec": true,
+    "targets": Object {
+      "browsers": "iOS 12",
+    },
+    "useBuiltIns": false,
+  },
+]
+`;
+
+exports[`getBabelOutputConfig() handles preset-env: native + lib + experimental 1`] = `
+Array [
+  "@babel/preset-env",
+  Object {
+    "bugfixes": true,
+    "loose": false,
+    "modules": "cjs",
+    "shippedProposals": true,
+    "spec": true,
+    "targets": Object {
+      "browsers": "iOS 14",
+    },
+    "useBuiltIns": false,
+  },
+]
+`;
+
+exports[`getBabelOutputConfig() handles preset-env: native + lib + legacy 1`] = `
+Array [
+  "@babel/preset-env",
+  Object {
+    "bugfixes": true,
+    "loose": false,
+    "modules": "cjs",
+    "shippedProposals": true,
+    "spec": true,
+    "targets": Object {
+      "browsers": "iOS 8",
+    },
+    "useBuiltIns": false,
+  },
+]
+`;
+
+exports[`getBabelOutputConfig() handles preset-env: native + lib + stable 1`] = `
+Array [
+  "@babel/preset-env",
+  Object {
+    "bugfixes": true,
+    "loose": false,
+    "modules": "cjs",
+    "shippedProposals": true,
+    "spec": true,
+    "targets": Object {
+      "browsers": "iOS 10",
+    },
+    "useBuiltIns": false,
+  },
+]
+`;
+
+exports[`getBabelOutputConfig() handles preset-env: node + cjs + current 1`] = `
+Array [
+  "@babel/preset-env",
+  Object {
+    "bugfixes": true,
+    "exclude": Array [
+      "@babel/plugin-transform-regenerator",
+      "@babel/plugin-transform-async-to-generator",
+    ],
+    "loose": false,
+    "modules": "cjs",
+    "shippedProposals": true,
+    "spec": true,
+    "targets": Object {
+      "node": "12.0.0",
+    },
+    "useBuiltIns": false,
+  },
+]
+`;
+
+exports[`getBabelOutputConfig() handles preset-env: node + cjs + experimental 1`] = `
+Array [
+  "@babel/preset-env",
+  Object {
+    "bugfixes": true,
+    "exclude": Array [
+      "@babel/plugin-transform-regenerator",
+      "@babel/plugin-transform-async-to-generator",
+    ],
+    "loose": false,
+    "modules": "cjs",
+    "shippedProposals": true,
+    "spec": true,
+    "targets": Object {
+      "node": "15.0.0",
+    },
+    "useBuiltIns": false,
+  },
+]
+`;
+
+exports[`getBabelOutputConfig() handles preset-env: node + cjs + legacy 1`] = `
+Array [
+  "@babel/preset-env",
+  Object {
+    "bugfixes": true,
+    "exclude": Array [
+      "@babel/plugin-transform-regenerator",
+      "@babel/plugin-transform-async-to-generator",
+    ],
+    "loose": false,
+    "modules": "cjs",
+    "shippedProposals": true,
+    "spec": true,
+    "targets": Object {
+      "node": "8.10.0",
+    },
+    "useBuiltIns": false,
+  },
+]
+`;
+
+exports[`getBabelOutputConfig() handles preset-env: node + cjs + stable 1`] = `
+Array [
+  "@babel/preset-env",
+  Object {
+    "bugfixes": true,
+    "exclude": Array [
+      "@babel/plugin-transform-regenerator",
+      "@babel/plugin-transform-async-to-generator",
+    ],
+    "loose": false,
+    "modules": "cjs",
+    "shippedProposals": true,
+    "spec": true,
+    "targets": Object {
+      "node": "10.3.0",
+    },
+    "useBuiltIns": false,
+  },
+]
+`;
+
+exports[`getBabelOutputConfig() handles preset-env: node + lib + current 1`] = `
+Array [
+  "@babel/preset-env",
+  Object {
+    "bugfixes": true,
+    "exclude": Array [
+      "@babel/plugin-transform-regenerator",
+      "@babel/plugin-transform-async-to-generator",
+    ],
+    "loose": false,
+    "modules": "cjs",
+    "shippedProposals": true,
+    "spec": true,
+    "targets": Object {
+      "node": "12.0.0",
+    },
+    "useBuiltIns": false,
+  },
+]
+`;
+
+exports[`getBabelOutputConfig() handles preset-env: node + lib + experimental 1`] = `
+Array [
+  "@babel/preset-env",
+  Object {
+    "bugfixes": true,
+    "exclude": Array [
+      "@babel/plugin-transform-regenerator",
+      "@babel/plugin-transform-async-to-generator",
+    ],
+    "loose": false,
+    "modules": "cjs",
+    "shippedProposals": true,
+    "spec": true,
+    "targets": Object {
+      "node": "15.0.0",
+    },
+    "useBuiltIns": false,
+  },
+]
+`;
+
+exports[`getBabelOutputConfig() handles preset-env: node + lib + legacy 1`] = `
+Array [
+  "@babel/preset-env",
+  Object {
+    "bugfixes": true,
+    "exclude": Array [
+      "@babel/plugin-transform-regenerator",
+      "@babel/plugin-transform-async-to-generator",
+    ],
+    "loose": false,
+    "modules": "cjs",
+    "shippedProposals": true,
+    "spec": true,
+    "targets": Object {
+      "node": "8.10.0",
+    },
+    "useBuiltIns": false,
+  },
+]
+`;
+
+exports[`getBabelOutputConfig() handles preset-env: node + lib + stable 1`] = `
+Array [
+  "@babel/preset-env",
+  Object {
+    "bugfixes": true,
+    "exclude": Array [
+      "@babel/plugin-transform-regenerator",
+      "@babel/plugin-transform-async-to-generator",
+    ],
+    "loose": false,
+    "modules": "cjs",
+    "shippedProposals": true,
+    "spec": true,
+    "targets": Object {
+      "node": "10.3.0",
+    },
+    "useBuiltIns": false,
+  },
+]
+`;
+
+exports[`getBabelOutputConfig() handles preset-env: node + mjs + current 1`] = `
+Array [
+  "@babel/preset-env",
+  Object {
+    "bugfixes": true,
+    "exclude": Array [
+      "@babel/plugin-transform-regenerator",
+      "@babel/plugin-transform-async-to-generator",
+    ],
+    "loose": false,
+    "modules": false,
+    "shippedProposals": true,
+    "spec": true,
+    "targets": Object {
+      "node": "12.0.0",
+    },
+    "useBuiltIns": false,
+  },
+]
+`;
+
+exports[`getBabelOutputConfig() handles preset-env: node + mjs + experimental 1`] = `
+Array [
+  "@babel/preset-env",
+  Object {
+    "bugfixes": true,
+    "exclude": Array [
+      "@babel/plugin-transform-regenerator",
+      "@babel/plugin-transform-async-to-generator",
+    ],
+    "loose": false,
+    "modules": false,
+    "shippedProposals": true,
+    "spec": true,
+    "targets": Object {
+      "node": "15.0.0",
+    },
+    "useBuiltIns": false,
+  },
+]
+`;
+
+exports[`getBabelOutputConfig() handles preset-env: node + mjs + legacy 1`] = `
+Array [
+  "@babel/preset-env",
+  Object {
+    "bugfixes": true,
+    "exclude": Array [
+      "@babel/plugin-transform-regenerator",
+      "@babel/plugin-transform-async-to-generator",
+    ],
+    "loose": false,
+    "modules": false,
+    "shippedProposals": true,
+    "spec": true,
+    "targets": Object {
+      "node": "8.10.0",
+    },
+    "useBuiltIns": false,
+  },
+]
+`;
+
+exports[`getBabelOutputConfig() handles preset-env: node + mjs + stable 1`] = `
+Array [
+  "@babel/preset-env",
+  Object {
+    "bugfixes": true,
+    "exclude": Array [
+      "@babel/plugin-transform-regenerator",
+      "@babel/plugin-transform-async-to-generator",
+    ],
+    "loose": false,
+    "modules": false,
+    "shippedProposals": true,
+    "spec": true,
+    "targets": Object {
+      "node": "10.3.0",
+    },
+    "useBuiltIns": false,
+  },
+]
+`;
+
+exports[`getBabelOutputConfig() transforms async/await to promises when \`browser\` or \`native\` 1`] = `
+Object {
+  "babelrc": true,
+  "babelrcRoots": undefined,
+  "caller": Object {
+    "name": "packemon",
+  },
+  "comments": false,
+  "configFile": false,
+  "parserOpts": Object {
+    "sourceType": "unambiguous",
+    "strictMode": undefined,
+  },
+  "plugins": Array [
+    Array [
+      "babel-plugin-transform-async-to-promises",
+      Object {
+        "inlineHelpers": true,
+        "target": "es5",
+      },
+    ],
+    Object {
+      "visitor": Object {
+        "Identifier": Object {
+          "enter": [Function],
+        },
+      },
+    },
+  ],
+  "presets": Array [
+    Array [
+      "@babel/preset-env",
+      Object {
+        "bugfixes": true,
+        "loose": false,
+        "modules": "cjs",
+        "shippedProposals": true,
+        "spec": true,
+        "targets": Object {
+          "browsers": "IE 11",
+        },
+        "useBuiltIns": false,
+      },
+    ],
+  ],
+}
+`;
+
+exports[`getBabelOutputConfig() transforms async/await to promises when \`browser\` or \`native\` 2`] = `
+Object {
+  "babelrc": true,
+  "babelrcRoots": undefined,
+  "caller": Object {
+    "name": "packemon",
+  },
+  "comments": false,
+  "configFile": false,
+  "parserOpts": Object {
+    "sourceType": "unambiguous",
+    "strictMode": undefined,
+  },
+  "plugins": Array [
+    Array [
+      "@babel/plugin-transform-destructuring",
+      Object {
+        "useBuiltIns": true,
+      },
+    ],
+    Array [
+      "@babel/plugin-proposal-object-rest-spread",
+      Object {
+        "useBuiltIns": true,
+      },
+    ],
+    Array [
+      "babel-plugin-transform-async-to-promises",
+      Object {
+        "inlineHelpers": true,
+        "target": "es6",
+      },
+    ],
+    Object {
+      "visitor": Object {
+        "Identifier": Object {
+          "enter": [Function],
+        },
+      },
+    },
+  ],
+  "presets": Array [
+    Array [
+      "@babel/preset-env",
+      Object {
+        "bugfixes": true,
+        "loose": false,
+        "modules": "cjs",
+        "shippedProposals": true,
+        "spec": true,
+        "targets": Object {
+          "browsers": "iOS 14",
+        },
+        "useBuiltIns": false,
+      },
+    ],
+  ],
+}
+`;
+
+exports[`getBabelOutputConfig() uses built-in destructuring and object spread when \`current\` or \`experimental\` 1`] = `
+Object {
+  "babelrc": true,
+  "babelrcRoots": undefined,
+  "caller": Object {
+    "name": "packemon",
+  },
+  "comments": false,
+  "configFile": false,
+  "parserOpts": Object {
+    "sourceType": "unambiguous",
+    "strictMode": undefined,
+  },
+  "plugins": Array [
+    Array [
+      "@babel/plugin-transform-destructuring",
+      Object {
+        "useBuiltIns": true,
+      },
+    ],
+    Array [
+      "@babel/plugin-proposal-object-rest-spread",
+      Object {
+        "useBuiltIns": true,
+      },
+    ],
+    Object {
+      "visitor": Object {
+        "Identifier": Object {
+          "enter": [Function],
+        },
+      },
+    },
+  ],
+  "presets": Array [
+    Array [
+      "@babel/preset-env",
+      Object {
+        "bugfixes": true,
+        "exclude": Array [
+          "@babel/plugin-transform-regenerator",
+          "@babel/plugin-transform-async-to-generator",
+        ],
+        "loose": false,
+        "modules": "cjs",
+        "shippedProposals": true,
+        "spec": true,
+        "targets": Object {
+          "node": "12.0.0",
+        },
+        "useBuiltIns": false,
+      },
+    ],
+  ],
+}
+`;
+
+exports[`getBabelOutputConfig() uses built-in destructuring and object spread when \`current\` or \`experimental\` 2`] = `
+Object {
+  "babelrc": true,
+  "babelrcRoots": undefined,
+  "caller": Object {
+    "name": "packemon",
+  },
+  "comments": false,
+  "configFile": false,
+  "parserOpts": Object {
+    "sourceType": "unambiguous",
+    "strictMode": undefined,
+  },
+  "plugins": Array [
+    Array [
+      "@babel/plugin-transform-destructuring",
+      Object {
+        "useBuiltIns": true,
+      },
+    ],
+    Array [
+      "@babel/plugin-proposal-object-rest-spread",
+      Object {
+        "useBuiltIns": true,
+      },
+    ],
+    Object {
+      "visitor": Object {
+        "Identifier": Object {
+          "enter": [Function],
+        },
+      },
+    },
+  ],
+  "presets": Array [
+    Array [
+      "@babel/preset-env",
+      Object {
+        "bugfixes": true,
+        "exclude": Array [
+          "@babel/plugin-transform-regenerator",
+          "@babel/plugin-transform-async-to-generator",
+        ],
+        "loose": false,
+        "modules": "cjs",
+        "shippedProposals": true,
+        "spec": true,
+        "targets": Object {
+          "node": "15.0.0",
+        },
+        "useBuiltIns": false,
+      },
+    ],
+  ],
+}
+`;

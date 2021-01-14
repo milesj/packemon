@@ -1,7 +1,7 @@
 import React from 'react';
-import { toArray } from '@boost/common';
 import { Style } from '@boost/cli';
-import { NODE_SUPPORTED_VERSIONS, BROWSER_TARGETS, NATIVE_TARGETS } from '../constants';
+import { toArray } from '@boost/common';
+import { BROWSER_TARGETS, NATIVE_TARGETS, NODE_SUPPORTED_VERSIONS } from '../constants';
 import { PackageConfig, Platform, Support } from '../types';
 
 export interface EnvironmentProps {

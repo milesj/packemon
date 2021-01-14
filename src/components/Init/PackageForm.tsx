@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { applyStyle, Input, MultiSelect, Select, SelectOptionLike } from '@boost/cli';
+import { DEFAULT_FORMAT, DEFAULT_INPUT, DEFAULT_SUPPORT } from '../../constants';
 import { Format, PackemonPackageConfig, Platform, Support } from '../../types';
 import { getVersionsCombo } from '../Environment';
-import { DEFAULT_FORMAT, DEFAULT_INPUT, DEFAULT_SUPPORT } from '../../constants';
 
 export interface PackageFormProps {
   onSubmit: (config: PackemonPackageConfig) => void;

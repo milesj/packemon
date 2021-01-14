@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Package setConfigs() errors if input name contains a slash 1`] = `"Invalid flag-common field \\"inputs\\". Input \\"foo/bar\\" may only contain alpha-numeric characters."`;
+
+exports[`Package setConfigs() errors if input name contains a space 1`] = `"Invalid flag-common field \\"inputs\\". Input \\"foo bar\\" may only contain alpha-numeric characters."`;
+
+exports[`Package setConfigs() errors if invalid format is provided for \`browser\` platform 1`] = `
+"Invalid flag-common field \\"format\\". Type must be one of: array<string>, string. Received array with the following invalidations:
+ - Invalid flag-common field \\"format[0]\\". Invalid field \\"format[0]\\". String must be one of: lib, esm, umd"
+`;
+
+exports[`Package setConfigs() errors if invalid format is provided for \`native\` platform 1`] = `
+"Invalid flag-common field \\"format\\". Type must be one of: array<string>, string. Received array with the following invalidations:
+ - Invalid flag-common field \\"format[0]\\". Invalid field \\"format[0]\\". String must be one of: lib"
+`;
+
+exports[`Package setConfigs() errors if invalid format is provided for \`node\` platform 1`] = `
+"Invalid flag-common field \\"format\\". Type must be one of: array<string>, string. Received array with the following invalidations:
+ - Invalid flag-common field \\"format[0]\\". Invalid field \\"format[0]\\". String must be one of: lib, mjs, cjs"
+`;

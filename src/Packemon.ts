@@ -1,79 +1,35 @@
+/* eslint-disable @typescript-eslint/member-ordering */
+
+import path from 'path';
 import fs from 'fs-extra';
 import rimraf from 'rimraf';
-import {
-  Blueprint,
-  json,
-  optimal,
-  Path,
-  predicates,
-  toArray,
-  WorkspacePackage,
-} from '@boost/common';
+import { isObject, json, Memoize, optimal, Path, toArray, WorkspacePackage } from '@boost/common';
 import { createDebugger, Debugger } from '@boost/debug';
 import { Event } from '@boost/event';
-import { PooledPipeline, Context } from '@boost/pipeline';
+import { Context, PooledPipeline } from '@boost/pipeline';
+import BundleArtifact from './BundleArtifact';
+import { getLowestSupport } from './helpers/getLowestSupport';
 import Package from './Package';
 import PackageValidator from './PackageValidator';
 import Project from './Project';
-import BundleArtifact from './BundleArtifact';
-import TypesArtifact from './TypesArtifact';
+import { buildBlueprint, validateBlueprint } from './schemas';
 import {
-  AnalyzeType,
-  BrowserFormat,
   BuildOptions,
+  BundleBuild,
   DeclarationType,
-  Format,
-  NativeFormat,
-  NodeFormat,
   PackemonPackage,
-  PackemonPackageConfig,
   Platform,
   TypesBuild,
   ValidateOptions,
 } from './types';
-import { DEFAULT_FORMAT, DEFAULT_INPUT, DEFAULT_PLATFORM, DEFAULT_SUPPORT } from './constants';
-
-const { array, bool, custom, number, object, string, union } = predicates;
-
-const platformPredicate = string<Platform>(DEFAULT_PLATFORM).oneOf(['native', 'node', 'browser']);
-const nativeFormatPredicate = string<NativeFormat>(DEFAULT_FORMAT).oneOf(['lib']);
-const nodeFormatPredicate = string<NodeFormat>(DEFAULT_FORMAT).oneOf(['lib', 'mjs', 'cjs']);
-const browserFormatPredicate = string<BrowserFormat>(DEFAULT_FORMAT).oneOf(['lib', 'esm', 'umd']);
-const joinedFormatPredicate = string<Format>(DEFAULT_FORMAT).oneOf([
-  'lib',
-  'esm',
-  'umd',
-  'mjs',
-  'cjs',
-]);
-const formatPredicate = custom<Format, PackemonPackageConfig>((format, schema) => {
-  const platforms = new Set(toArray(schema.struct.platform));
-
-  if (platforms.has('browser') && platforms.size === 1) {
-    return browserFormatPredicate.validate(format as BrowserFormat, schema.currentPath);
-  } else if (platforms.has('native') && platforms.size === 1) {
-    return nativeFormatPredicate.validate(format as NativeFormat, schema.currentPath);
-  } else if (platforms.has('node') && platforms.size === 1) {
-    return nodeFormatPredicate.validate(format as NodeFormat, schema.currentPath);
-  }
-
-  return joinedFormatPredicate.validate(format, schema.currentPath);
-}, DEFAULT_FORMAT);
-
-const blueprint: Blueprint<Required<PackemonPackageConfig>> = {
-  format: union([array(formatPredicate), formatPredicate], []),
-  inputs: object(string(), { index: DEFAULT_INPUT }),
-  namespace: string(),
-  platform: union([array(platformPredicate), platformPredicate], DEFAULT_PLATFORM),
-  support: string(DEFAULT_SUPPORT).oneOf(['legacy', 'stable', 'current', 'experimental']),
-};
+import TypesArtifact from './TypesArtifact';
 
 export default class Packemon {
   readonly debug: Debugger;
 
   readonly onPackageBuilt = new Event<[Package]>('package-built');
 
-  packages: Package[] = [];
+  readonly onPackagesLoaded = new Event<[Package[]]>('packages-loaded');
 
   readonly project: Project;
 
@@ -92,18 +48,10 @@ export default class Packemon {
   async build(baseOptions: Partial<BuildOptions>) {
     this.debug('Starting `build` process');
 
-    const options = optimal(baseOptions, {
-      addEngines: bool(),
-      addExports: bool(),
-      analyzeBundle: string('none').oneOf<AnalyzeType>(['none', 'sunburst', 'treemap', 'network']),
-      concurrency: number(1).gte(1),
-      generateDeclaration: string('none').oneOf<DeclarationType>(['none', 'standard', 'api']),
-      skipPrivate: bool(),
-      timeout: number().gte(0),
-    });
+    const options = optimal(baseOptions, buildBlueprint);
+    const packages = await this.loadConfiguredPackages(options.skipPrivate);
 
-    await this.loadConfiguredPackages(options.skipPrivate);
-    this.generateArtifacts(options.generateDeclaration);
+    this.generateArtifacts(packages, options.generateDeclaration);
 
     // Build packages in parallel using a pool
     const pipeline = new PooledPipeline(new Context());
@@ -113,7 +61,7 @@ export default class Packemon {
       timeout: options.timeout,
     });
 
-    this.packages.forEach((pkg) => {
+    packages.forEach((pkg) => {
       pipeline.add(pkg.getName(), async () => {
         await pkg.build(options);
 
@@ -124,7 +72,7 @@ export default class Packemon {
     const { errors } = await pipeline.run();
 
     // Always cleanup whether a successful or failed build
-    await this.cleanTemporaryFiles();
+    await this.cleanTemporaryFiles(packages);
 
     // Throw to trigger an error screen in the terminal
     if (errors.length > 0) {
@@ -135,23 +83,18 @@ export default class Packemon {
   async clean() {
     this.debug('Starting `clean` process');
 
-    await this.loadConfiguredPackages();
-    await this.cleanTemporaryFiles();
+    const packages = await this.loadConfiguredPackages();
 
-    const formatFolders = '{cjs,dts,esm,lib,mjs,umd}';
+    // Clean package specific files
+    await this.cleanTemporaryFiles(packages);
+
+    // Clean build formats
+    const formatFolders = '{cjs,esm,lib,mjs,umd}';
     const pathsToRemove: string[] = [];
 
     if (this.project.isWorkspacesEnabled()) {
       this.project.workspaces.forEach((ws) => {
-        let path = ws;
-
-        if (path.endsWith('*')) {
-          path += `/${formatFolders}`;
-        } else if (path.endsWith('/')) {
-          path += formatFolders;
-        }
-
-        pathsToRemove.push(path);
+        pathsToRemove.push(path.join(ws, formatFolders));
       });
     } else {
       pathsToRemove.push(`./${formatFolders}`);
@@ -159,11 +102,11 @@ export default class Packemon {
 
     await Promise.all(
       pathsToRemove.map(
-        (path) =>
+        (rfPath) =>
           new Promise((resolve, reject) => {
-            this.debug(' - %s', path);
+            this.debug(' - %s', rfPath);
 
-            rimraf(path, (error) => {
+            rimraf(rfPath, (error) => {
               if (error) {
                 reject(error);
               } else {
@@ -178,30 +121,17 @@ export default class Packemon {
   async validate(baseOptions: Partial<ValidateOptions>): Promise<PackageValidator[]> {
     this.debug('Starting `validate` process');
 
-    const options = optimal(baseOptions, {
-      deps: bool(true),
-      engines: bool(true),
-      entries: bool(true),
-      license: bool(true),
-      links: bool(true),
-      people: bool(true),
-      repo: bool(true),
-    });
+    const options = optimal(baseOptions, validateBlueprint);
+    const packages = await this.loadConfiguredPackages(options.skipPrivate);
 
-    await this.loadConfiguredPackages();
-
-    return Promise.all(this.packages.map((pkg) => new PackageValidator(pkg).validate(options)));
+    return Promise.all(packages.map((pkg) => new PackageValidator(pkg).validate(options)));
   }
 
-  async loadConfiguredPackages(skipPrivate: boolean = false) {
-    if (this.packages.length === 0) {
-      this.packages = this.validateAndPreparePackages(await this.findPackages(skipPrivate));
-    }
-
-    return this.packages;
-  }
-
-  async findPackages(skipPrivate: boolean = false) {
+  /**
+   * Find all packages within a project. If using workspaces, return a list of packages
+   * from each workspace glob. If not using workspaces, assume project is a package.
+   */
+  async findPackagesInProject(skipPrivate: boolean = false) {
     this.debug('Finding packages in project');
 
     const pkgPaths: Path[] = [];
@@ -255,41 +185,46 @@ export default class Packemon {
       this.debug('Filtering private packages: %s', privatePackageNames.join(', '));
     }
 
+    // Error if no packages are found
+    if (packages.length === 0) {
+      throw new Error('No packages found in project.');
+    }
+
     return packages;
   }
 
-  generateArtifacts(declarationType?: DeclarationType) {
-    this.debug('Generating build artifacts for packages');
+  /**
+   * Generate build and optional types artifacts for each package in the list.
+   */
+  generateArtifacts(packages: Package[], declarationType: DeclarationType = 'none') {
+    this.debug('Generating artifacts for packages');
 
-    this.packages.forEach((pkg) => {
-      const typesBuilds: TypesBuild[] = [];
-      const requiresSharedLib = this.requiresSharedLib(pkg);
+    packages.forEach((pkg) => {
+      const typesBuilds: Record<string, TypesBuild> = {};
+      const sharedLib = this.requiresSharedLib(pkg);
 
       pkg.configs.forEach((config) => {
-        Object.entries(config.inputs).forEach(([outputName, inputPath]) => {
+        Object.entries(config.inputs).forEach(([outputName, inputFile]) => {
           const artifact = new BundleArtifact(
             pkg,
             // Must be unique per input to avoid references
             config.formats.map((format) =>
-              BundleArtifact.generateBuild(
-                format,
-                config.support,
-                config.platforms,
-                requiresSharedLib,
-              ),
+              format === 'lib' && sharedLib
+                ? BundleArtifact.generateBuild('lib', sharedLib.support, [sharedLib.platform])
+                : BundleArtifact.generateBuild(format, config.support, config.platforms),
             ),
           );
-          artifact.inputPath = inputPath;
-          artifact.namespace = config.namespace;
+          artifact.inputFile = inputFile;
           artifact.outputName = outputName;
+          artifact.namespace = config.namespace;
 
           pkg.addArtifact(artifact);
-          typesBuilds.push({ inputPath, outputName });
+          typesBuilds[outputName] = { inputFile, outputName };
         });
       });
 
-      if (declarationType && declarationType !== 'none') {
-        const artifact = new TypesArtifact(pkg, typesBuilds);
+      if (declarationType !== 'none') {
+        const artifact = new TypesArtifact(pkg, Object.values(typesBuilds));
         artifact.declarationType = declarationType;
 
         pkg.addArtifact(artifact);
@@ -299,31 +234,75 @@ export default class Packemon {
     });
   }
 
-  protected async cleanTemporaryFiles() {
-    this.debug('Cleaning temporary build files');
+  /**
+   * Find and load all packages that have been configured with a `packemon`
+   * block in their `package.json`. Once loaded, validate the configuration.
+   */
+  @Memoize()
+  async loadConfiguredPackages(skipPrivate: boolean = false): Promise<Package[]> {
+    const packages = this.validateAndPreparePackages(await this.findPackagesInProject(skipPrivate));
 
-    await Promise.all(this.packages.map((pkg) => pkg.cleanup()));
+    this.onPackagesLoaded.emit([packages]);
+
+    return packages;
   }
 
-  protected requiresSharedLib(pkg: Package): boolean {
-    const platformsToBuild = new Set<Platform>();
+  /**
+   * Cleanup all package and artifact related files in all packages.
+   */
+  protected async cleanTemporaryFiles(packages: Package[]) {
+    this.debug('Cleaning temporary build files');
+
+    await Promise.all(packages.map((pkg) => pkg.cleanup()));
+  }
+
+  /**
+   * Format "lib" is a shared format across all platforms,
+   * and when a package wants to support multiple platforms,
+   * we must down-level the "lib" format to the lowest platform.
+   */
+  protected requiresSharedLib(pkg: Package): BundleBuild | null {
+    const platformsToCheck = new Set<Platform>();
+    const build: BundleBuild = { format: 'lib', platform: 'node', support: 'stable' };
     let libFormatCount = 0;
 
-    return pkg.configs.some((config) => {
+    pkg.configs.forEach((config) => {
       config.platforms.forEach((platform) => {
-        platformsToBuild.add(platform);
+        platformsToCheck.add(platform);
       });
 
       config.formats.forEach((format) => {
-        if (format === 'lib') {
-          libFormatCount += 1;
+        if (format !== 'lib') {
+          return;
         }
-      });
 
-      return platformsToBuild.size > 1 && libFormatCount > 1;
+        libFormatCount += 1;
+
+        // From widest to narrowest requirements
+        if (platformsToCheck.has('browser')) {
+          build.platform = 'browser';
+        } else if (platformsToCheck.has('native')) {
+          build.platform = 'native';
+        } else if (platformsToCheck.has('node')) {
+          build.platform = 'node';
+        }
+
+        // Return the lowest supported target
+        build.support = getLowestSupport(build.support, config.support);
+      });
     });
+
+    if (platformsToCheck.size > 1 && libFormatCount > 1) {
+      return build;
+    }
+
+    return null;
   }
 
+  /**
+   * Validate that every loaded package has a valid `packemon` configuration,
+   * otherwise skip it. All valid packages will return a `Package` instance.
+   */
   protected validateAndPreparePackages(packages: WorkspacePackage<PackemonPackage>[]): Package[] {
     this.debug('Validating found packages');
 
@@ -334,17 +313,18 @@ export default class Packemon {
         this.debug('No `packemon` configuration found for %s, skipping', contents.name);
 
         return;
+      } else if (!isObject(contents.packemon) && !Array.isArray(contents.packemon)) {
+        this.debug(
+          'Invalid `packemon` configuration for %s, must be an object or array of objects',
+          contents.name,
+        );
+
+        return;
       }
 
       const pkg = new Package(this.project, Path.create(metadata.packagePath), contents);
 
-      pkg.setConfigs(
-        toArray(contents.packemon).map((config) =>
-          optimal(config, blueprint, {
-            name: pkg.getName(),
-          }),
-        ),
-      );
+      pkg.setConfigs(toArray(contents.packemon));
 
       nextPackages.push(pkg);
     });

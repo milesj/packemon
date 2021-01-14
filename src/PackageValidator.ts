@@ -1,13 +1,15 @@
 import http from 'http';
 import https from 'https';
-import { DependencyMap, isModuleName, isObject, PeopleSetting, toArray } from '@boost/common';
-import spdxLicenses from 'spdx-license-list';
-import semver from 'semver';
 import execa from 'execa';
+import semver from 'semver';
+import spdxLicenses from 'spdx-license-list';
+import { DependencyMap, isModuleName, isObject, PeopleSetting, toArray } from '@boost/common';
 import Package from './Package';
 import { ValidateOptions } from './types';
 
 export default class PackageValidator {
+  static entryPoints: string[] = ['main', 'module', 'browser', 'types', 'typings', 'bin', 'man'];
+
   errors: string[] = [];
 
   package: Package;
@@ -27,9 +29,11 @@ export default class PackageValidator {
   }
 
   async validate(options: ValidateOptions) {
-    this.checkMetadata();
-
     const promises: Promise<unknown>[] = [];
+
+    if (options.meta) {
+      this.checkMetadata();
+    }
 
     if (options.deps) {
       this.checkDependencies();
@@ -70,10 +74,10 @@ export default class PackageValidator {
     const usesLerna = this.package.project.isLernaManaged();
     const workspacePackageNames = new Set(this.package.project.getWorkspacePackageNames());
     const {
-      dependencies,
-      devDependencies,
-      peerDependencies,
-      optionalDependencies,
+      dependencies = {},
+      devDependencies = {},
+      peerDependencies = {},
+      optionalDependencies = {},
     } = this.package.packageJson;
 
     this.checkDependencyRange(dependencies);
@@ -81,12 +85,17 @@ export default class PackageValidator {
     this.checkDependencyRange(peerDependencies);
     this.checkDependencyRange(optionalDependencies);
 
-    Object.entries(peerDependencies || {}).forEach(([peerName, versionConstraint]) => {
-      const devVersion = semver.coerce(devDependencies?.[peerName]);
-      const prodVersion = dependencies?.[peerName];
+    Object.entries(peerDependencies).forEach(([peerName, versionConstraint]) => {
+      const devVersion = semver.coerce(devDependencies[peerName]);
+      const prodVersion = dependencies[peerName];
 
       if (prodVersion) {
         this.errors.push(`Dependency "${peerName}" defined as both a prod and peer dependency.`);
+      }
+
+      // Avoid further checks if constraint is special.
+      if (versionConstraint.includes(':')) {
+        return;
       }
 
       // When using Lerna, we want to avoid pairing a peer with a dev dependency,
@@ -114,15 +123,15 @@ export default class PackageValidator {
     });
   }
 
-  protected checkDependencyRange(deps?: DependencyMap) {
-    Object.entries(deps || {}).forEach(([depName, version]) => {
+  protected checkDependencyRange(deps: DependencyMap) {
+    Object.entries(deps).forEach(([depName, version]) => {
       if (version.startsWith('file:')) {
         this.errors.push(
-          `Dependency "${depName}" must not require the file system. Found file: constraint.`,
+          `Dependency "${depName}" must not require the file system. Found "file:" constraint.`,
         );
       } else if (version.startsWith('link:')) {
         this.errors.push(
-          `Dependency "${depName}" must not require symlinks. Found link: constraint.`,
+          `Dependency "${depName}" must not require symlinks. Found "link:" constraint.`,
         );
       }
     });
@@ -137,7 +146,7 @@ export default class PackageValidator {
     const yarnConstraint = engines?.yarn;
 
     if (nodeConstraint) {
-      const nodeVersion = semver.coerce(process.version);
+      const nodeVersion = semver.coerce(await this.getBinVersion('node'));
 
       if (nodeVersion && !semver.satisfies(nodeVersion.version, nodeConstraint)) {
         this.warnings.push(
@@ -170,11 +179,13 @@ export default class PackageValidator {
   protected checkEntryPoints() {
     this.package.debug('Checking entry points');
 
-    (['main', 'module', 'browser', 'types', 'typings', 'bin', 'man'] as const).forEach((field) => {
-      const relPath = this.package.packageJson[field];
+    const { bin, man, exports: exp } = this.package.packageJson;
+
+    PackageValidator.entryPoints.forEach((field) => {
+      const relPath = this.package.packageJson[field as 'main'];
 
       if (!relPath || typeof relPath !== 'string') {
-        if (field === 'main' && !exports) {
+        if (field === 'main' && !exp) {
           this.errors.push('Missing primary entry point. Provide a `main` or `exports` field.');
         }
 
@@ -186,12 +197,10 @@ export default class PackageValidator {
       }
     });
 
-    const { bin, man } = this.package.packageJson;
-
     if (isObject(bin)) {
       Object.entries(bin).forEach(([name, path]) => {
         if (!this.doesPathExist(path)) {
-          this.errors.push(`Binary "${name}" resolves to an invalid or missing file.`);
+          this.errors.push(`Bin "${name}" resolves to an invalid or missing file.`);
         }
       });
     }
@@ -226,7 +235,9 @@ export default class PackageValidator {
     }
 
     if (!this.doesPathExist('LICENSE') && !this.doesPathExist('LICENSE.md')) {
-      this.errors.push('No license file found in package. Must be one of LICENSE or LICENSE.md.');
+      this.errors.push(
+        'No license file found in package. Must contain one of LICENSE or LICENSE.md.',
+      );
     }
   }
 
@@ -275,7 +286,7 @@ export default class PackageValidator {
     }
 
     if (!this.doesPathExist('README') && !this.doesPathExist('README.md')) {
-      this.errors.push('No readme file found in package. Must be one of README or README.md.');
+      this.errors.push('No read me found in package. Must contain one of README or README.md.');
     }
   }
 
@@ -329,7 +340,7 @@ export default class PackageValidator {
       this.errors.push('Missing repository.');
     } else if (url.startsWith('http')) {
       if (!(await this.doesUrlExist(url))) {
-        this.errors.push('Repository is invalid. URL is either malformed or upstream is down.');
+        this.warnings.push('Repository is invalid. URL is either malformed or upstream is down.');
       }
     }
 
@@ -346,6 +357,7 @@ export default class PackageValidator {
     return this.package.path.append(path).exists();
   }
 
+  // istanbul ignore next
   protected doesUrlExist(url: string): Promise<boolean> {
     return new Promise((resolve) => {
       const request = url.startsWith('https') ? https.request : http.request;
@@ -368,6 +380,7 @@ export default class PackageValidator {
     try {
       return (await execa(bin, ['-v'], { preferLocal: true })).stdout.trim();
     } catch {
+      // istanbul ignore next
       return '';
     }
   }

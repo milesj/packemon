@@ -2,14 +2,15 @@
 
 import fs from 'fs-extra';
 import ts from 'typescript';
-import { Memoize, Path, toArray } from '@boost/common';
+import { Memoize, optimal, Path, toArray } from '@boost/common';
 import { createDebugger, Debugger } from '@boost/debug';
 import Artifact from './Artifact';
 import Project from './Project';
+import { packemonBlueprint } from './schemas';
 import {
+  BuildOptions,
   FeatureFlags,
   PackageConfig,
-  BuildOptions,
   PackemonPackage,
   PackemonPackageConfig,
   TSConfigStructure,
@@ -101,7 +102,7 @@ export default class Package {
     flags.workspaces = this.project.workspaces;
 
     // React
-    if (this.hasDependency('react')) {
+    if (this.project.rootPackage.hasDependency('react') || this.hasDependency('react')) {
       flags.react = true;
 
       this.debug(' - React');
@@ -165,8 +166,12 @@ export default class Package {
     return this.artifacts.some((artifact) => artifact.isRunning());
   }
 
-  setConfigs(configs: Required<PackemonPackageConfig>[]) {
-    configs.forEach((config) => {
+  setConfigs(configs: PackemonPackageConfig[]) {
+    configs.forEach((cfg) => {
+      const config = optimal(cfg, packemonBlueprint, {
+        name: this.getName(),
+      });
+
       const platforms = toArray(config.platform);
       const formats = new Set(toArray(config.format));
 
@@ -201,23 +206,31 @@ export default class Package {
 
   @Memoize()
   get tsconfigJson(): TSConfigStructure | undefined {
-    const path = this.path.append('tsconfig.json');
+    const tsconfigJsonPath = this.path.append('tsconfig.json');
 
-    if (!path.exists()) {
+    if (!tsconfigJsonPath.exists()) {
       return undefined;
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const { config, error } = ts.readConfigFile(path.path(), (name) =>
+    const { config, error } = ts.readConfigFile(tsconfigJsonPath.path(), (name) =>
       fs.readFileSync(name, 'utf8'),
     );
 
+    // istanbul ignore next
     if (error) {
       throw error;
     }
 
-    const result = ts.parseJsonConfigFileContent(config, ts.sys, this.path.path(), {}, path.path());
+    const result = ts.parseJsonConfigFileContent(
+      config,
+      ts.sys,
+      this.path.path(),
+      {},
+      tsconfigJsonPath.path(),
+    );
 
+    // istanbul ignore next
     if (result.errors.length > 0) {
       throw result.errors[0];
     }

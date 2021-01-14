@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Box, Text } from 'ink';
 import { Header, Style, useProgram } from '@boost/cli';
-import PackageForm from './PackageForm';
 import { PackemonPackageConfig } from '../../types';
+import PackageForm from './PackageForm';
 
 export type InitPackageConfigs = Record<string, PackemonPackageConfig>;
 

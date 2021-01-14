@@ -96,7 +96,7 @@ export interface BundleBuild {
 }
 
 export interface TypesBuild {
-  inputPath: string;
+  inputFile: string;
   outputName: string;
 }
 
@@ -108,7 +108,9 @@ export interface ValidateOptions {
   entries?: boolean;
   license?: boolean;
   links?: boolean;
+  meta?: boolean;
   people?: boolean;
+  skipPrivate?: boolean;
   repo?: boolean;
 }
 

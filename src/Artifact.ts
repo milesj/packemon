@@ -2,7 +2,7 @@ import fs from 'fs-extra';
 import { applyStyle } from '@boost/cli';
 import { Path, PortablePath } from '@boost/common';
 import Package from './Package';
-import { ArtifactState, Awaitable, BuildResult, BuildOptions } from './types';
+import { ArtifactState, Awaitable, BuildOptions, BuildResult } from './types';
 
 export default abstract class Artifact<T extends object = {}> {
   readonly builds: T[] = [];
@@ -20,8 +20,6 @@ export default abstract class Artifact<T extends object = {}> {
 
   cleanup(): Awaitable {}
 
-  build(options: BuildOptions): Awaitable {}
-
   isComplete(): boolean {
     return this.state === 'passed' || this.state === 'failed';
   }
@@ -34,11 +32,11 @@ export default abstract class Artifact<T extends object = {}> {
 
   preBuild(options: BuildOptions): Awaitable {}
 
-  shouldSkip(): boolean {
-    return this.state === 'failed';
-  }
-
   startup() {}
+
+  toString(): string {
+    return this.getLabel();
+  }
 
   protected logWithSource(
     message: string,
@@ -74,7 +72,7 @@ export default abstract class Artifact<T extends object = {}> {
       );
     }
 
-    if (sourceFile || sourceColumn) {
+    if (sourceLine || sourceColumn) {
       meta.push(`line=${sourceLine ?? '?'}:${sourceColumn ?? '?'}`);
     }
 
@@ -89,9 +87,9 @@ export default abstract class Artifact<T extends object = {}> {
     return Promise.all(files.map((file) => fs.remove(String(file))));
   }
 
+  abstract build(options: BuildOptions): Awaitable;
+
   abstract getLabel(): string;
 
   abstract getBuildTargets(): string[];
-
-  abstract toString(): string;
 }

@@ -1,4 +1,4 @@
-import { Program, checkPackageOutdated } from '@boost/cli';
+import { checkPackageOutdated, Program } from '@boost/cli';
 import {
   BuildCommand,
   CleanCommand,

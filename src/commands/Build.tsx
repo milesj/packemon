@@ -1,12 +1,12 @@
-import React from 'react';
 import os from 'os';
+import React from 'react';
 import { Arg, Config } from '@boost/cli';
-import Command from './Base';
 import Build from '../components/Build';
 import { AnalyzeType, BuildOptions, DeclarationType } from '../types';
+import { BaseCommand } from './Base';
 
 @Config('build', 'Build standardized packages for distribution')
-export class BuildCommand extends Command<Required<BuildOptions>> {
+export class BuildCommand extends BaseCommand<Required<BuildOptions>> {
   @Arg.Flag('Add `engine` versions to each `package.json`')
   addEngines: boolean = false;
 
@@ -25,9 +25,6 @@ export class BuildCommand extends Command<Required<BuildOptions>> {
     choices: ['none', 'standard', 'api'],
   })
   generateDeclaration: DeclarationType = 'none';
-
-  @Arg.Flag('Skip `private` packages from being built')
-  skipPrivate: boolean = false;
 
   @Arg.Number('Timeout in milliseconds before a build is cancelled')
   timeout: number = 0;

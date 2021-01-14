@@ -39,8 +39,10 @@ Validate supports the following command line options.
 - `--license` - Check that `license` is a valid SPDX license and a `LICENSE` (or `LICENSE.md`) file
   exists.
 - `--links` - Check that `homepage` and `bugs` links are valid URLs.
+- `--meta` - Check that `name`, `version`, `description`, and `keywords` are valid.
 - `--people` - Check that `author` and `contributors` contain a name and optional but valid URL.
 - `--repo` - Check that `repository` exists and is a valid URL.
+- `--skipPrivate` - Skip `private` packages from being packed.
 
 By default _all_ options are enabled, so you'd need to negate them with `--no-*` to disable each one
 (this is not suggested).
