@@ -11,6 +11,9 @@ import { BuildOptions, BundleBuild, Format, Platform, Support } from './types';
 export default class BundleArtifact extends Artifact<BundleBuild> {
   cache?: RollupCache;
 
+  // Config object in which inputs are grouped in
+  configGroup: number = 0;
+
   // Input file path relative to the package root
   inputFile: string = '';
 
@@ -19,6 +22,9 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
 
   // Output file name without extension
   outputName: string = '';
+
+  // Are multiple builds writing to the lib folder
+  sharedLib: boolean = false;
 
   protected debug!: Debugger;
 
@@ -125,16 +131,18 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
     );
   }
 
-  getOutputExtension(format: Format): string {
-    return format === 'cjs' || format === 'mjs' ? format : 'js';
-  }
+  getOutputMetadata(format: Format, platform: Platform) {
+    const ext = format === 'cjs' || format === 'mjs' ? format : 'js';
+    const folder = format === 'lib' && this.sharedLib ? `lib/${platform}` : format;
+    const file = `${this.outputName}.${ext}`;
+    const path = `./${folder}/${file}`;
 
-  getOutputFile(format: Format): string {
-    return `./${format}/${this.outputName}.${this.getOutputExtension(format)}`;
-  }
-
-  getOutputFolderPath(format: Format): Path {
-    return this.package.path.append(format);
+    return {
+      ext,
+      file,
+      folder,
+      path,
+    };
   }
 
   getStatsFileName(): string {
@@ -178,25 +186,23 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
 
     const pkg = this.package.packageJson;
 
-    this.builds.forEach(({ format }) => {
-      const ext = this.getOutputExtension(format);
+    this.builds.forEach(({ format, platform }) => {
+      const { path } = this.getOutputMetadata(format, platform);
       const isNode = format === 'lib' || format === 'cjs' || format === 'mjs';
 
       if (this.outputName === 'index') {
         if (isNode) {
-          pkg.main = `./${format}/index.${ext}`;
+          pkg.main = path;
         } else if (format === 'esm') {
-          pkg.module = `./esm/index.${ext}`;
+          pkg.module = path;
         } else if (format === 'umd') {
-          pkg.browser = `./umd/index.${ext}`;
+          pkg.browser = path;
         }
       }
 
       // Bin field may be an object
-      if (this.outputName === 'bin' && !isObject(pkg.bin)) {
-        if (isNode) {
-          pkg.bin = `./${format}/bin.${ext}`;
-        }
+      if (this.outputName === 'bin' && !isObject(pkg.bin) && isNode) {
+        pkg.bin = path;
       }
     });
   }
@@ -204,23 +210,23 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
   protected addExportsToPackageJson() {
     const pkg = this.package.packageJson;
     const paths: SettingMap = {};
-    let hasLib = false;
+    let libPath = '';
 
-    this.builds.forEach(({ format }) => {
-      const path = this.getOutputFile(format);
+    this.builds.forEach(({ format, platform }) => {
+      const { path } = this.getOutputMetadata(format, platform);
 
       if (format === 'mjs' || format === 'esm') {
         paths.import = path;
       } else if (format === 'cjs') {
         paths.require = path;
       } else if (format === 'lib') {
-        hasLib = true;
+        libPath = path;
       }
     });
 
     // Must come after import/require
-    if (hasLib) {
-      paths.default = this.getOutputFile('lib');
+    if (libPath) {
+      paths.default = libPath;
     }
 
     const exportCount = Object.keys(paths).length;
@@ -235,7 +241,7 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
       Object.assign(pkg.exports, {
         './package.json': './package.json',
         [this.outputName === 'index' ? '.' : `./${this.outputName}`]:
-          exportCount === 1 && hasLib ? paths.default : paths,
+          exportCount === 1 && libPath ? paths.default : paths,
       });
     }
   }

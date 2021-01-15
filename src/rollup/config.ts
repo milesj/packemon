@@ -26,21 +26,56 @@ function getRollupModuleFormat(format: Format): ModuleFormat {
   return 'cjs';
 }
 
-function getRollupExternalPaths(artifact: BundleArtifact, ext?: string): Record<string, string> {
+function getSiblingArtifacts(artifact: BundleArtifact): BundleArtifact[] {
+  return artifact.package.artifacts.filter((bundle) => {
+    if (bundle === artifact) {
+      return false;
+    }
+
+    // Don't include non-bundle artifacts. We also can't use `instanceof`
+    // because of circular dependencies, boo!
+    return 'configGroup' in bundle;
+  }) as BundleArtifact[];
+}
+
+function getRollupPaths(artifact: BundleArtifact, ext: string): Record<string, string> {
   const paths: Record<string, string> = {};
 
-  artifact.package.artifacts.forEach((art) => {
-    const bundle = art as BundleArtifact;
-
-    // Don't include non-bundle artifacts. We can't use `instanceof`
-    // because of circular dependencies, boo!
-    if ('outputName' in bundle) {
+  getSiblingArtifacts(artifact).forEach((bundle) => {
+    if (bundle.configGroup === artifact.configGroup) {
       // All output files are in the same directory, so we can hard-code a relative path
-      paths[bundle.getInputPath().path()] = `./${bundle.outputName}${ext ? `.${ext}` : ''}`;
+      paths[bundle.getInputPath().path()] = `./${bundle.outputName}.${ext}`;
     }
   });
 
   return paths;
+}
+
+export function getRollupExternals(artifact: BundleArtifact) {
+  const siblingInputs = new Set<string>();
+  const foreignInputs = new Set<string>();
+
+  getSiblingArtifacts(artifact).forEach((bundle) => {
+    const inputPath = bundle.getInputPath().path();
+
+    if (bundle.configGroup === artifact.configGroup) {
+      siblingInputs.add(inputPath);
+    } else {
+      foreignInputs.add(inputPath);
+    }
+  });
+
+  return (id: string, parent: string = '<unknown>') => {
+    if (siblingInputs.has(id)) {
+      return true;
+    } else if (foreignInputs.has(id)) {
+      throw new Error(
+        `Unexpected foreign input import. May only import sibling inputs within the same configuration \`inputs\` group. File "${parent}" attempted to import "${id}".`,
+      );
+    }
+
+    return false;
+  };
 }
 
 export function getRollupOutputConfig(
@@ -50,13 +85,14 @@ export function getRollupOutputConfig(
 ): OutputOptions {
   const { format, platform, support } = build;
   const name = artifact.outputName;
-  const ext = artifact.getOutputExtension(format);
+  const { ext, folder } = artifact.getOutputMetadata(format, platform);
+
   const output: OutputOptions = {
-    dir: artifact.getOutputFolderPath(format).path(),
+    dir: artifact.package.path.append(folder).path(),
     format: getRollupModuleFormat(format),
     originalFormat: format,
     // Map our externals to local paths with trailing extension
-    paths: getRollupExternalPaths(artifact, ext),
+    paths: getRollupPaths(artifact, ext),
     // Use our extension for file names
     assetFileNames: '../assets/[name]-[hash][extname]',
     chunkFileNames: `${name}-[hash].${ext}`,
@@ -98,7 +134,7 @@ export function getRollupConfig(artifact: BundleArtifact, features: FeatureFlags
 
   const config: RollupOptions = {
     cache: artifact.cache,
-    external: Object.keys(getRollupExternalPaths(artifact)),
+    external: getRollupExternals(artifact),
     input: inputPath.path(),
     output: [],
     // Shared output plugins

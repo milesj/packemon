@@ -3,7 +3,11 @@ import { getFixturePath } from '@boost/test-utils';
 import BundleArtifact from '../../src/BundleArtifact';
 import Package from '../../src/Package';
 import Project from '../../src/Project';
-import { getRollupConfig, getRollupOutputConfig } from '../../src/rollup/config';
+import {
+  getRollupConfig,
+  getRollupExternals,
+  getRollupOutputConfig,
+} from '../../src/rollup/config';
 
 jest.mock('@rollup/plugin-commonjs', () => () => 'commonjs()');
 jest.mock('@rollup/plugin-node-resolve', () => () => 'resolve()');
@@ -32,6 +36,7 @@ function createArtifact(outputName: string, inputFile: string, pkg?: Package) {
       }),
     [],
   );
+  artifact.configGroup = 1;
   artifact.outputName = outputName;
   artifact.inputFile = inputFile;
   artifact.startup();
@@ -56,7 +61,7 @@ describe('getRollupConfig()', () => {
   it('generates default input config', () => {
     expect(getRollupConfig(artifact, {})).toEqual({
       cache: undefined,
-      external: [],
+      external: expect.any(Function),
       input: srcInputFile,
       output: [],
       plugins: sharedPlugins,
@@ -74,7 +79,7 @@ describe('getRollupConfig()', () => {
 
     expect(getRollupConfig(artifact, {})).toEqual({
       cache: undefined,
-      external: [],
+      external: expect.any(Function),
       input: srcInputFile,
       output: [
         {
@@ -144,7 +149,7 @@ describe('getRollupConfig()', () => {
 
     expect(getRollupConfig(artifact, {})).toEqual({
       cache: undefined,
-      external: [],
+      external: expect.any(Function),
       input: fixturePath.append('src/server/core.ts').path(),
       output: [
         {
@@ -188,11 +193,15 @@ describe('getRollupConfig()', () => {
       artifact.package.addArtifact(artifact);
     });
 
-    it('adds external for self', () => {
-      expect(getRollupConfig(artifact, {}).external).toEqual([srcInputFile]);
+    it('returns false for self', () => {
+      expect(getRollupExternals(artifact)(srcInputFile)).toBe(false);
     });
 
-    it('adds externals for sibling artifacts', () => {
+    it('returns false for random files', () => {
+      expect(getRollupExternals(artifact)('some/random/file.js')).toBe(false);
+    });
+
+    it('returns true for sibling inputs in the same artifact config', () => {
       artifact.package.addArtifact(
         createArtifact('client', 'src/client/index.ts', artifact.package),
       );
@@ -205,12 +214,31 @@ describe('getRollupConfig()', () => {
         createArtifact('test', 'src/test-utils/base.ts', artifact.package),
       );
 
-      expect(getRollupConfig(artifact, {}).external).toEqual([
-        srcInputFile,
-        fixturePath.append('src/client/index.ts').path(),
-        fixturePath.append('src/server/core.ts').path(),
-        fixturePath.append('src/test-utils/base.ts').path(),
-      ]);
+      const ext = getRollupExternals(artifact);
+
+      expect(ext(fixturePath.append('src/client/index.ts').path())).toBe(true);
+      expect(ext(fixturePath.append('src/server/core.ts').path())).toBe(true);
+      expect(ext(fixturePath.append('src/test-utils/base.ts').path())).toBe(true);
+    });
+
+    it('errors for foreign inputs (not in the same artifact config)', () => {
+      const foreignArtifact = createArtifact('other', 'src/other/index.ts', artifact.package);
+      foreignArtifact.configGroup = 10;
+
+      artifact.package.addArtifact(foreignArtifact);
+
+      const parent = srcInputFile;
+      const child = fixturePath.append('src/other/index.ts').path();
+
+      try {
+        getRollupExternals(artifact)(child, parent);
+      } catch (error) {
+        expect(error.message).toContain('Unexpected foreign input import.');
+      }
+
+      expect(() => getRollupExternals(artifact)(child, srcInputFile)).toThrow(
+        `Unexpected foreign input import. May only import sibling inputs within the same configuration \`inputs\` group. File "${parent}" attempted to import "${child}".`,
+      );
     });
   });
 });
@@ -389,13 +417,6 @@ describe('getRollupOutputConfig()', () => {
       artifact.package.addArtifact(artifact);
     });
 
-    it('adds external for self', () => {
-      expect(
-        getRollupOutputConfig(artifact, {}, { format: 'lib', platform: 'node', support: 'stable' })
-          .paths,
-      ).toEqual({ [srcInputFile]: './index.js' });
-    });
-
     it('adds externals for sibling artifacts', () => {
       artifact.package.addArtifact(
         createArtifact('client', 'src/client/index.ts', artifact.package),
@@ -413,7 +434,6 @@ describe('getRollupOutputConfig()', () => {
         getRollupOutputConfig(artifact, {}, { format: 'lib', platform: 'node', support: 'stable' })
           .paths,
       ).toEqual({
-        [srcInputFile]: './index.js',
         [fixturePath.append('src/client/index.ts').path()]: './client.js',
         [fixturePath.append('src/server/core.ts').path()]: './server.js',
         [fixturePath.append('src/test-utils/base.ts').path()]: './test.js',
