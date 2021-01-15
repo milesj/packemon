@@ -70,7 +70,7 @@ export function getRollupExternals(artifact: BundleArtifact) {
       return true;
     } else if (foreignInputs.has(id)) {
       throw new Error(
-        `Unexpected foreign input import. May only import sibling inputs within the same configuration \`inputs\` group. File "${parent}" attempted to import "${id}".`,
+        `Unexpected foreign input import. May only import sibling files within the same \`inputs\` configuration group. File "${parent}" attempted to import "${id}".`,
       );
     }
 

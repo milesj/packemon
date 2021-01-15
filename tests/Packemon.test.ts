@@ -418,46 +418,6 @@ describe('Packemon', () => {
         },
       ]);
     });
-
-    it('creates additional targets when shared lib is required', () => {
-      const pkg = new Package(packemon.project, packemon.project.root, {
-        name: 'a',
-        version: '0.0.0',
-        packemon: {},
-      });
-
-      pkg.setConfigs([
-        {
-          inputs: { index: 'src/index.ts' },
-          format: 'lib',
-          platform: 'native',
-          support: 'legacy',
-        },
-        {
-          inputs: { index: 'src/index.ts', bin: 'src/bin.ts' },
-          format: 'lib',
-          platform: 'node',
-          support: 'current',
-        },
-        {
-          inputs: { index: 'src/index.ts', test: 'src/test-utils/index.ts' },
-          format: 'lib',
-          platform: 'browser',
-          support: 'stable',
-        },
-      ]);
-
-      packemon.generateArtifacts([pkg]);
-
-      expect(pkg.artifacts).toHaveLength(2);
-      expect(pkg.artifacts[0].builds).toEqual([
-        { format: 'lib', platform: 'native', support: 'legacy' },
-      ]);
-      // Down-leveled
-      expect(pkg.artifacts[1].builds).toEqual([
-        { format: 'lib', platform: 'native', support: 'legacy' },
-      ]);
-    });
   });
 
   describe('loadConfiguredPackages()', () => {

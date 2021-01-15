@@ -237,7 +237,7 @@ describe('getRollupConfig()', () => {
       }
 
       expect(() => getRollupExternals(artifact)(child, srcInputFile)).toThrow(
-        `Unexpected foreign input import. May only import sibling inputs within the same configuration \`inputs\` group. File "${parent}" attempted to import "${child}".`,
+        `Unexpected foreign input import. May only import sibling files within the same \`inputs\` configuration group. File "${parent}" attempted to import "${child}".`,
       );
     });
   });
