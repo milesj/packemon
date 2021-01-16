@@ -3,6 +3,13 @@
 import ts from 'typescript';
 import { PackageStructure } from '@boost/common';
 
+// Platform = The runtime or operating system the code will run in.
+// Support = The supported version and or range.
+// Format = Different outputs formats for compiled code.
+// Environment = Combination of platform and supported version.
+// Build = Combination of environment and format.
+// Build target = Individual units of a build (typically the format).
+
 declare global {
   const __DEV__: boolean;
   const __PROD__: boolean;
@@ -20,6 +27,8 @@ export type Support =
   | 'current'
   // Next/future version
   | 'experimental';
+
+export type Environment = `${Platform}:${Support}`;
 
 export type CommonFormat =
   // CommonJS modules with ".js" file extension

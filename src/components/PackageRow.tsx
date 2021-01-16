@@ -2,6 +2,7 @@ import React from 'react';
 import { Box } from 'ink';
 import { Style } from '@boost/cli';
 import Package from '../Package';
+import { Environment as EnvType } from '../types';
 import ArtifactList from './ArtifactList';
 import Environment from './Environment';
 import useGroupedArtifacts from './hooks/useGroupedArtifacts';
@@ -32,7 +33,7 @@ export default function PackageRow({ package: pkg }: PackageRowProps) {
       <ArtifactList artifacts={ungrouped} />
 
       {Object.entries(groups).map(([env, set]) => (
-        <ArtifactList key={env} artifacts={Array.from(set)} environment={env} />
+        <ArtifactList key={env} artifacts={Array.from(set!)} environment={env as EnvType} />
       ))}
     </Box>
   );
