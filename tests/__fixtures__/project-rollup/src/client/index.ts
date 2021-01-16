@@ -4,7 +4,11 @@ class Client {
 
 function* gen() {}
 
-export function createClient() {
+async function wait() {}
+
+export async function createClient() {
+  await wait();
+
   for (const iterator of gen()) {
     console.log(iterator);
   }
