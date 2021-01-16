@@ -29,7 +29,17 @@ https__default['default'].createServer((req, res) => {
 exports[`Outputs builds all the artifacts with rollup 2`] = `
 Array [
   "/esm/client.js",
-  "function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\\"Cannot call a class as a function\\"); } }
+  "import _regeneratorRuntime from \\"@babel/runtime/regenerator\\";
+
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === \\"undefined\\" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === \\"number\\") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError(\\"Invalid attempt to iterate non-iterable instance.\\\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\\"); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \\"string\\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \\"Object\\" && o.constructor) n = o.constructor.name; if (n === \\"Map\\" || n === \\"Set\\") return Array.from(o); if (n === \\"Arguments\\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+var _marked = _regeneratorRuntime.mark(gen);
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\\"Cannot call a class as a function\\"); } }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -39,7 +49,33 @@ var Client = function Client() {
   _defineProperty(this, \\"prop\\", 123);
 };
 
+function gen() {
+  return _regeneratorRuntime.wrap(function gen$(_context) {
+    while (1) {
+      switch (_context.prev = _context.next) {
+        case 0:
+        case \\"end\\":
+          return _context.stop();
+      }
+    }
+  }, _marked);
+}
+
 function createClient() {
+  var _iterator = _createForOfIteratorHelper(gen()),
+      _step;
+
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      var iterator = _step.value;
+      console.log(iterator);
+    }
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
+
   return new Client();
 }
 
@@ -52,7 +88,7 @@ export { createClient };
 exports[`Outputs builds all the artifacts with rollup 3`] = `
 Array [
   "/esm/client.js.map",
-  "{\\"version\\":3,\\"file\\":\\"client.js\\",\\"sources\\":[\\"../src/client/index.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"Client\\",\\"prop\\",\\"createClient\\"],\\"mappings\\":\\"AAAA,MAAMA,MAAN,CAAa;AACXC,EAAAA,IAAI,GAAW,GAAX;AADO;;AAIN,SAASC,YAAT,GAAwB;AAC7B,SAAO,IAAIF,MAAJ,EAAP;AACD;;;;\\"}",
+  "{\\"version\\":3,\\"file\\":\\"client.js\\",\\"sources\\":[\\"../src/client/index.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"Client\\",\\"prop\\",\\"gen\\",\\"createClient\\",\\"iterator\\",\\"console\\",\\"log\\"],\\"mappings\\":\\"AAAA,MAAMA,MAAN,CAAa;AACXC,EAAAA,IAAI,GAAW,GAAX;AADO;;AAIb,UAAUC,GAAV,GAAgB;;AAET,SAASC,YAAT,GAAwB;AAC7B,OAAK,MAAMC,QAAX,IAAuBF,GAAG,EAA1B,EAA8B;AAC5BG,IAAAA,OAAO,CAACC,GAAR,CAAYF,QAAZ;AACD;;AAED,SAAO,IAAIJ,MAAJ,EAAP;AACD;;;;\\"}",
 ]
 `;
 
@@ -60,6 +96,16 @@ exports[`Outputs builds all the artifacts with rollup 4`] = `
 Array [
   "/lib/client.js",
   "'use strict';
+
+var _regeneratorRuntime = require(\\"@babel/runtime/regenerator\\");
+
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === \\"undefined\\" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === \\"number\\") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError(\\"Invalid attempt to iterate non-iterable instance.\\\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\\"); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \\"string\\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \\"Object\\" && o.constructor) n = o.constructor.name; if (n === \\"Map\\" || n === \\"Set\\") return Array.from(o); if (n === \\"Arguments\\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+var _marked = _regeneratorRuntime.mark(gen);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\\"Cannot call a class as a function\\"); } }
 
@@ -75,7 +121,33 @@ var Client = function Client() {
   _defineProperty(this, \\"prop\\", 123);
 };
 
+function gen() {
+  return _regeneratorRuntime.wrap(function gen$(_context) {
+    while (1) {
+      switch (_context.prev = _context.next) {
+        case 0:
+        case \\"end\\":
+          return _context.stop();
+      }
+    }
+  }, _marked);
+}
+
 function createClient() {
+  var _iterator = _createForOfIteratorHelper(gen()),
+      _step;
+
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      var iterator = _step.value;
+      console.log(iterator);
+    }
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
+
   return new Client();
 }
 
@@ -88,7 +160,7 @@ exports.createClient = createClient;
 exports[`Outputs builds all the artifacts with rollup 5`] = `
 Array [
   "/lib/client.js.map",
-  "{\\"version\\":3,\\"file\\":\\"client.js\\",\\"sources\\":[\\"../src/client/index.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"Client\\",\\"prop\\",\\"createClient\\"],\\"mappings\\":\\";;;;AAAA,MAAMA,MAAN,CAAa;AACXC,EAAAA,IAAI,GAAW,GAAX;AADO;;AAIN,SAASC,YAAT,GAAwB;AAC7B,SAAO,IAAIF,MAAJ,EAAP;AACD;;;;\\"}",
+  "{\\"version\\":3,\\"file\\":\\"client.js\\",\\"sources\\":[\\"../src/client/index.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"Client\\",\\"prop\\",\\"gen\\",\\"createClient\\",\\"iterator\\",\\"console\\",\\"log\\"],\\"mappings\\":\\";;;;AAAA,MAAMA,MAAN,CAAa;AACXC,EAAAA,IAAI,GAAW,GAAX;AADO;;AAIb,UAAUC,GAAV,GAAgB;;AAET,SAASC,YAAT,GAAwB;AAC7B,OAAK,MAAMC,QAAX,IAAuBF,GAAG,EAA1B,EAA8B;AAC5BG,IAAAA,OAAO,CAACC,GAAR,CAAYF,QAAZ;AACD;;AAED,SAAO,IAAIJ,MAAJ,EAAP;AACD;;;;\\"}",
 ]
 `;
 
@@ -145,7 +217,7 @@ exports.wait = wait;
 exports[`Outputs builds all the artifacts with rollup 8`] = `
 Array [
   "/lib/test.js.map",
-  "{\\"version\\":3,\\"file\\":\\"test.js\\",\\"sources\\":[\\"../src/test-utils/base.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"Spy\\",\\"called\\",\\"mock\\",\\"method\\",\\"spy\\",\\"inst\\",\\"jest\\",\\"fn\\",\\"wait\\"],\\"mappings\\":\\";;;;AAAA,MAAMA,GAAN,CAAU;AACRC,EAAAA,MAAM,GAAY,KAAZ;AAENC,EAAAA,IAAI,GAAG,MAAM,EAAT;;AAEJC,EAAAA,MAAM,GAAG;;AALD;;AAQH,SAASC,GAAT,GAAe;AACpB,QAAMC,IAAI,GAAG,IAAIL,GAAJ,EAAb;AAEA,SAAOM,IAAI,CAACC,EAAL,CAAQF,IAAI,CAACH,IAAb,CAAP;AACD;AAEM,eAAeM,IAAf,GAAsB;;;;;\\"}",
+  "{\\"version\\":3,\\"file\\":\\"test.js\\",\\"sources\\":[\\"../src/test-utils/base.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"Spy\\",\\"called\\",\\"mock\\",\\"method\\",\\"spy\\",\\"inst\\",\\"jest\\",\\"fn\\",\\"wait\\"],\\"mappings\\":\\";;;;AAAA,MAAMA,GAAN,CAAU;AACRC,EAAAA,MAAM,GAAY,KAAZ;AAENC,EAAAA,IAAI,GAAG,MAAM,EAAT;;AAEJC,EAAAA,MAAM,GAAG;;AALD;;AAQH,SAASC,GAAT,GAAe;AACpB,QAAMC,IAAI,GAAG,IAAIL,GAAJ,EAAb;AAEA,SAAOM,IAAI,CAACC,EAAL,CAAQF,IAAI,CAACH,IAAb,CAAP;AACD;AAEM,eAAeM,IAAf,GAAqC;;;;;\\"}",
 ]
 `;
 
@@ -202,7 +274,13 @@ Array [
 
   }
 
+  function* gen() {}
+
   function createClient() {
+    for (const iterator of gen()) {
+      console.log(iterator);
+    }
+
     return new Client();
   }
 });
@@ -214,7 +292,7 @@ Array [
 exports[`Outputs builds all the artifacts with rollup 11`] = `
 Array [
   "/umd/client.js.map",
-  "{\\"version\\":3,\\"file\\":\\"client.js\\",\\"sources\\":[\\"../src/client/index.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"Client\\",\\"prop\\",\\"createClient\\"],\\"mappings\\":\\"AAAA,MAAMA,MAAN,CAAa;AACXC,EAAAA,IAAI,GAAW,GAAX;AADO;;AAIN,SAASC,YAAT,GAAwB;AAC7B,SAAO,IAAIF,MAAJ,EAAP;AACD;;;;\\"}",
+  "{\\"version\\":3,\\"file\\":\\"client.js\\",\\"sources\\":[\\"../src/client/index.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"Client\\",\\"prop\\",\\"gen\\",\\"createClient\\",\\"iterator\\",\\"console\\",\\"log\\"],\\"mappings\\":\\"AAAA,MAAMA,MAAN,CAAa;AACXC,EAAAA,IAAI,GAAW,GAAX;AADO;;AAIb,UAAUC,GAAV,GAAgB;;AAET,SAASC,YAAT,GAAwB;AAC7B,OAAK,MAAMC,QAAX,IAAuBF,GAAG,EAA1B,EAA8B;AAC5BG,IAAAA,OAAO,CAACC,GAAR,CAAYF,QAAZ;AACD;;AAED,SAAO,IAAIJ,MAAJ,EAAP;AACD;;;;\\"}",
 ]
 `;
 

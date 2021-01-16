@@ -12,4 +12,4 @@ export function spy() {
   return jest.fn(inst.mock);
 }
 
-export async function wait() {}
+export async function wait(): Promise<void> {}
