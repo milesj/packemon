@@ -51,7 +51,7 @@ describe('Outputs', () => {
 
     const client = new BundleArtifact(pkg, [
       { format: 'lib', platform: 'browser', support: 'legacy' },
-      { format: 'esm', platform: 'browser', support: 'legacy' },
+      { format: 'esm', platform: 'browser', support: 'stable' },
       { format: 'umd', platform: 'browser', support: 'experimental' },
     ]);
     client.outputName = 'client';

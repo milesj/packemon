@@ -154,7 +154,8 @@ The environment preset is always enabled and configures the following.
 - `@babel/preset-env`
   - Defines `modules` and `targets` based on the chosen [platform](./config.md#platforms) and
     [format](./config.md#formats).
-  - Enables `spec` (in development) and disables `loose` for closer compliance.
+  - Enables `spec` in development for testing compliance.
+  - Enables `loose` in production for smaller file sizes.
   - Enables `bugfixes` and `shippedProposals` for smaller file sizes.
   - Disables `useBuiltIns` as consumers of the package should polyfill accordingly.
 
@@ -167,7 +168,7 @@ The following presets are enabled when one of their conditions are met.
   - Package or root contains a `typescript` dependency.
   - Package contains a `tsconfig.json`.
 - `@babel/preset-react`
-  - Package contains a `react` dependency.
+  - Package or root contains a `react` dependency.
 
 ### Plugins
 
@@ -176,9 +177,12 @@ The following plugins are enabled when one of their conditions are met.
 - `@babel/plugin-proposal-decorators`
   - Enabled when package is TypeScript aware and defines `experimentalDecorators` in
     `tsconfig.json`.
+- `@babel/plugin-transform-runtime`
+  - Enabled when package [platform](./config.md#platforms) is configured to `browser` or `native`.
+    Will transform generators to `regnerator-runtime` for legacy versions.
 - `babel-plugin-transform-async-to-promises`
-  - Enabled when package [platform](./config.md#platforms) is configured to `browser`. This attempts
-    to _avoid_ `regenerator-runtime` by transforming async/await to promises.
+  - Enabled when package [platform](./config.md#platforms) is configured to `browser` or `native`.
+    Will transform async/await to promises for legacy versions.
 - _Custom_
   - Always enabled. Will transform `__DEV__`, `__PROD__`, and `__TEST__` to `process.env.NODE_ENV`
     conditionals.
@@ -219,6 +223,8 @@ The following plugins are enabled per package.
 - `rollup-plugin-node-externals`
   - Defines `externals` based on `package.json` dependencies.
   - Includes `dependencies`, `devDependencies`, `peerDependencies`, and `optionalDependencies`.
+- `rollup-plugin-visualizer`
+  - Analyzes and generates a bundle size visualizer.
 
 [babel]: https://babeljs.io
 [rollup]: https://rollupjs.org

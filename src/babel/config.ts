@@ -175,12 +175,20 @@ export function getBabelOutputConfig(
     );
   }
 
-  // Transform async/await into Promises for browsers
   if (platform === 'browser' || platform === 'native') {
+    // Transform async/await into Promises
     plugins.push([
       resolve('babel-plugin-transform-async-to-promises'),
       { inlineHelpers: true, target: isFuture ? 'es6' : 'es5' },
     ]);
+
+    // Transform generators for legacy
+    if (!isFuture) {
+      plugins.push([
+        resolve('@babel/plugin-transform-runtime'),
+        { helpers: false, regenerator: true, useESModules: format === 'esm' },
+      ]);
+    }
   }
 
   // Support env expression shortcuts
