@@ -3,7 +3,9 @@
 exports[`Outputs builds all the artifacts with rollup 1`] = `
 Array [
   "/cjs/server.cjs",
-  "'use strict';
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: current, Format: cjs
+'use strict';
 
 const https = require('https');
 
@@ -13,7 +15,9 @@ function _interopDefaultLegacy(e) {
   };
 }
 
-const https__default = _interopDefaultLegacy(https);
+const https__default = /*#__PURE__*/_interopDefaultLegacy(https);
+/* eslint-disable no-magic-numbers */
+
 
 https__default['default'].createServer((req, res) => {
   res.writeHead(200, {
@@ -65,12 +69,14 @@ var wait = function wait() {
   return Promise.resolve();
 };
 
-var _marked = _regeneratorRuntime.mark(gen);
+var _marked = /*#__PURE__*/_regeneratorRuntime.mark(gen);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\\"Cannot call a class as a function\\"); } }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+// Generated with Packemon: https://packemon.dev
+// Platform: browser, Support: stable, Format: esm
 var Client = function Client() {
   _classCallCheck(this, Client);
 
@@ -98,14 +104,16 @@ export { createClient };
 exports[`Outputs builds all the artifacts with rollup 3`] = `
 Array [
   "/esm/client.js.map",
-  "{\\"version\\":3,\\"file\\":\\"client.js\\",\\"sources\\":[\\"../src/client/index.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"Client\\",\\"prop\\",\\"gen\\",\\"wait\\",\\"createClient\\",\\"iterator\\",\\"console\\",\\"log\\"],\\"mappings\\":\\"AAAA,MAAMA,MAAN,CAAa;AACXC,EAAAA,IAAI,GAAW,GAAX;AADO;;AAIb,UAAUC,GAAV,GAAgB;;AAEhB,eAAeC,IAAf,GAAsB;;AAEf,eAAeC,YAAf,GAA8B;AACnC,QAAMD,IAAI,EAAV;;AAEA,OAAK,MAAME,QAAX,IAAuBH,GAAG,EAA1B,EAA8B;AAC5BI,IAAAA,OAAO,CAACC,GAAR,CAAYF,QAAZ;AACD;;AAED,SAAO,IAAIL,MAAJ,EAAP;AACD;;;;\\"}",
+  "{\\"version\\":3,\\"file\\":\\"client.js\\",\\"sources\\":[\\"../src/client/index.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"Client\\",\\"prop\\",\\"gen\\",\\"wait\\",\\"createClient\\",\\"iterator\\",\\"console\\",\\"log\\"],\\"mappings\\":\\";;;;AAAA,MAAMA,MAAN,CAAa;AACXC,EAAAA,IAAI,GAAW,GAAX;AADO;;AAIb,UAAUC,GAAV,GAAgB;;AAEhB,eAAeC,IAAf,GAAsB;;AAEf,eAAeC,YAAf,GAA8B;AACnC,QAAMD,IAAI,EAAV;;AAEA,OAAK,MAAME,QAAX,IAAuBH,GAAG,EAA1B,EAA8B;AAC5BI,IAAAA,OAAO,CAACC,GAAR,CAAYF,QAAZ;AACD;;AAED,SAAO,IAAIL,MAAJ,EAAP;AACD;;;;\\"}",
 ]
 `;
 
 exports[`Outputs builds all the artifacts with rollup 4`] = `
 Array [
   "/lib/client.js",
-  "'use strict';
+  "// Generated with Packemon: https://packemon.dev
+// Platform: browser, Support: legacy, Format: lib
+'use strict';
 
 var _regeneratorRuntime = require(\\"@babel/runtime/regenerator\\");
 
@@ -143,7 +151,7 @@ var wait = function wait() {
   return Promise.resolve();
 };
 
-var _marked = _regeneratorRuntime.mark(gen);
+var _marked = /*#__PURE__*/_regeneratorRuntime.mark(gen);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\\"Cannot call a class as a function\\"); } }
 
@@ -180,14 +188,16 @@ exports.createClient = createClient;
 exports[`Outputs builds all the artifacts with rollup 5`] = `
 Array [
   "/lib/client.js.map",
-  "{\\"version\\":3,\\"file\\":\\"client.js\\",\\"sources\\":[\\"../src/client/index.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"Client\\",\\"prop\\",\\"gen\\",\\"wait\\",\\"createClient\\",\\"iterator\\",\\"console\\",\\"log\\"],\\"mappings\\":\\";;;;AAAA,MAAMA,MAAN,CAAa;AACXC,EAAAA,IAAI,GAAW,GAAX;AADO;;AAIb,UAAUC,GAAV,GAAgB;;AAEhB,eAAeC,IAAf,GAAsB;;AAEf,eAAeC,YAAf,GAA8B;AACnC,QAAMD,IAAI,EAAV;;AAEA,OAAK,MAAME,QAAX,IAAuBH,GAAG,EAA1B,EAA8B;AAC5BI,IAAAA,OAAO,CAACC,GAAR,CAAYF,QAAZ;AACD;;AAED,SAAO,IAAIL,MAAJ,EAAP;AACD;;;;\\"}",
+  "{\\"version\\":3,\\"file\\":\\"client.js\\",\\"sources\\":[\\"../src/client/index.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"Client\\",\\"prop\\",\\"gen\\",\\"wait\\",\\"createClient\\",\\"iterator\\",\\"console\\",\\"log\\"],\\"mappings\\":\\";;;;;;;;AAAA,MAAMA,MAAN,CAAa;AACXC,EAAAA,IAAI,GAAW,GAAX;AADO;;AAIb,UAAUC,GAAV,GAAgB;;AAEhB,eAAeC,IAAf,GAAsB;;AAEf,eAAeC,YAAf,GAA8B;AACnC,QAAMD,IAAI,EAAV;;AAEA,OAAK,MAAME,QAAX,IAAuBH,GAAG,EAA1B,EAA8B;AAC5BI,IAAAA,OAAO,CAACC,GAAR,CAAYF,QAAZ;AACD;;AAED,SAAO,IAAIL,MAAJ,EAAP;AACD;;;;\\"}",
 ]
 `;
 
 exports[`Outputs builds all the artifacts with rollup 6`] = `
 Array [
   "/lib/index.js",
-  "'use strict';
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: lib
+'use strict';
 
 Object.defineProperty(exports, '__esModule', {
   value: true
@@ -201,7 +211,9 @@ exports.EXAMPLE = EXAMPLE;
 exports[`Outputs builds all the artifacts with rollup 7`] = `
 Array [
   "/lib/test.js",
-  "'use strict';
+  "// Generated with Packemon: https://packemon.dev
+// Platform: native, Support: experimental, Format: lib
+'use strict';
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -237,7 +249,7 @@ exports.wait = wait;
 exports[`Outputs builds all the artifacts with rollup 8`] = `
 Array [
   "/lib/test.js.map",
-  "{\\"version\\":3,\\"file\\":\\"test.js\\",\\"sources\\":[\\"../src/test-utils/base.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"Spy\\",\\"called\\",\\"mock\\",\\"method\\",\\"spy\\",\\"inst\\",\\"jest\\",\\"fn\\",\\"wait\\"],\\"mappings\\":\\";;;;AAAA,MAAMA,GAAN,CAAU;AACRC,EAAAA,MAAM,GAAY,KAAZ;AAENC,EAAAA,IAAI,GAAG,MAAM,EAAT;;AAEJC,EAAAA,MAAM,GAAG;;AALD;;AAQH,SAASC,GAAT,GAAe;AACpB,QAAMC,IAAI,GAAG,IAAIL,GAAJ,EAAb;AAEA,SAAOM,IAAI,CAACC,EAAL,CAAQF,IAAI,CAACH,IAAb,CAAP;AACD;AAEM,eAAeM,IAAf,GAAqC;;;;;\\"}",
+  "{\\"version\\":3,\\"file\\":\\"test.js\\",\\"sources\\":[\\"../src/test-utils/base.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"Spy\\",\\"called\\",\\"mock\\",\\"method\\",\\"spy\\",\\"inst\\",\\"jest\\",\\"fn\\",\\"wait\\"],\\"mappings\\":\\";;;;;;;;AAAA,MAAMA,GAAN,CAAU;AACRC,EAAAA,MAAM,GAAY,KAAZ;AAENC,EAAAA,IAAI,GAAG,MAAM,EAAT;;AAEJC,EAAAA,MAAM,GAAG;;AALD;;AAQH,SAASC,GAAT,GAAe;AACpB,QAAMC,IAAI,GAAG,IAAIL,GAAJ,EAAb;AAEA,SAAOM,IAAI,CAACC,EAAL,CAAQF,IAAI,CAACH,IAAb,CAAP;AACD;AAEM,eAAeM,IAAf,GAAqC;;;;;\\"}",
 ]
 `;
 
@@ -305,6 +317,8 @@ Array [
 
   const wait = () => Promise.resolve();
 
+  // Generated with Packemon: https://packemon.dev
+  // Platform: browser, Support: experimental, Format: umd
   class Client {
     constructor() {
       _defineProperty(this, \\"prop\\", 123);
@@ -322,7 +336,7 @@ Array [
 exports[`Outputs builds all the artifacts with rollup 11`] = `
 Array [
   "/umd/client.js.map",
-  "{\\"version\\":3,\\"file\\":\\"client.js\\",\\"sources\\":[\\"../src/client/index.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"Client\\",\\"prop\\",\\"gen\\",\\"wait\\",\\"createClient\\",\\"iterator\\",\\"console\\",\\"log\\"],\\"mappings\\":\\"AAAA,MAAMA,MAAN,CAAa;AACXC,EAAAA,IAAI,GAAW,GAAX;AADO;;AAIb,UAAUC,GAAV,GAAgB;;AAEhB,eAAeC,IAAf,GAAsB;;AAEf,eAAeC,YAAf,GAA8B;AACnC,QAAMD,IAAI,EAAV;;AAEA,OAAK,MAAME,QAAX,IAAuBH,GAAG,EAA1B,EAA8B;AAC5BI,IAAAA,OAAO,CAACC,GAAR,CAAYF,QAAZ;AACD;;AAED,SAAO,IAAIL,MAAJ,EAAP;AACD;;;;\\"}",
+  "{\\"version\\":3,\\"file\\":\\"client.js\\",\\"sources\\":[\\"../src/client/index.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"Client\\",\\"prop\\",\\"gen\\",\\"wait\\",\\"createClient\\",\\"iterator\\",\\"console\\",\\"log\\"],\\"mappings\\":\\";;;;AAAA,MAAMA,MAAN,CAAa;AACXC,EAAAA,IAAI,GAAW,GAAX;AADO;;AAIb,UAAUC,GAAV,GAAgB;;AAEhB,eAAeC,IAAf,GAAsB;;AAEf,eAAeC,YAAf,GAA8B;AACnC,QAAMD,IAAI,EAAV;;AAEA,OAAK,MAAME,QAAX,IAAuBH,GAAG,EAA1B,EAA8B;AAC5BI,IAAAA,OAAO,CAACC,GAAR,CAAYF,QAAZ;AACD;;AAED,SAAO,IAAIL,MAAJ,EAAP;AACD;;;;\\"}",
 ]
 `;
 
@@ -332,7 +346,7 @@ Array [
     "format": "lib",
     "platform": "node",
     "stats": Object {
-      "size": 130,
+      "size": 227,
     },
     "support": "stable",
   },
