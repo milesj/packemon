@@ -2,14 +2,18 @@ import React from 'react';
 import { Box } from 'ink';
 import { Style } from '@boost/cli';
 import Package from '../Package';
-import ArtifactRow from './ArtifactRow';
+import { Environment as EnvType } from '../types';
+import ArtifactList from './ArtifactList';
 import Environment from './Environment';
+import useGroupedArtifacts from './hooks/useGroupedArtifacts';
 
 export interface PackageRowProps {
   package: Package;
 }
 
 export default function PackageRow({ package: pkg }: PackageRowProps) {
+  const { envs, groups, ungrouped } = useGroupedArtifacts(pkg);
+
   return (
     <Box flexDirection="column" marginTop={1}>
       <Box flexDirection="row">
@@ -19,13 +23,17 @@ export default function PackageRow({ package: pkg }: PackageRowProps) {
           </Style>
         </Box>
 
-        <Box marginLeft={1}>
-          <Environment configs={pkg.configs} />
-        </Box>
+        {envs.length === 1 && (
+          <Box marginLeft={1}>
+            <Environment target={envs[0]} />
+          </Box>
+        )}
       </Box>
 
-      {pkg.artifacts.map((artifact) => (
-        <ArtifactRow key={String(artifact)} artifact={artifact} />
+      <ArtifactList artifacts={ungrouped} />
+
+      {Object.entries(groups).map(([env, set]) => (
+        <ArtifactList key={env} artifacts={Array.from(set!)} environment={env as EnvType} />
       ))}
     </Box>
   );

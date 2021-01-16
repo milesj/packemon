@@ -2,11 +2,14 @@ import React from 'react';
 import { Style } from '@boost/cli';
 import { toArray } from '@boost/common';
 import { BROWSER_TARGETS, NATIVE_TARGETS, NODE_SUPPORTED_VERSIONS } from '../constants';
-import { PackageConfig, Platform, Support } from '../types';
+import { Environment as EnvType, Platform, Support } from '../types';
 
-export interface EnvironmentProps {
-  configs: PackageConfig[];
-}
+export type EnvironmentProps =
+  | { target: EnvType }
+  | {
+      platform: Platform;
+      support: Support;
+    };
 
 function trimVersion(version: string) {
   const parts = version.split('.');
@@ -37,12 +40,19 @@ export function getVersionsCombo(platforms: Platform[], support: Support): Set<s
   return versions;
 }
 
-export default function Environment({ configs }: EnvironmentProps) {
-  let versions = new Set<string>();
+export default function Environment(props: EnvironmentProps) {
+  let platform: string;
+  let support: string;
 
-  configs.forEach(({ platforms, support }) => {
-    versions = new Set([...versions, ...getVersionsCombo(platforms, support)]);
-  });
+  if ('target' in props) {
+    [platform, support] = props.target.split(':');
+  } else {
+    ({ platform, support } = props);
+  }
 
-  return <Style type="muted">{Array.from(versions).sort().join(', ')}</Style>;
+  return (
+    <Style type="muted">
+      {Array.from(getVersionsCombo([platform as Platform], support as Support)).join(', ')}
+    </Style>
+  );
 }
