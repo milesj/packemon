@@ -175,8 +175,16 @@ export function getBabelOutputConfig(
     );
   }
 
-  // Transform async/await into Promises for browsers
   if (platform === 'browser' || platform === 'native') {
+    // Transform generators for legacy browsers
+    if (!isFuture) {
+      plugins.push([
+        resolve('@babel/plugin-transform-runtime'),
+        { helpers: false, regenerator: true, useESModules: format === 'esm' },
+      ]);
+    }
+
+    // Transform async/await into Promises for browsers
     plugins.push([
       resolve('babel-plugin-transform-async-to-promises'),
       { inlineHelpers: true, target: isFuture ? 'es6' : 'es5' },
