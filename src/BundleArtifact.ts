@@ -4,7 +4,6 @@ import { isObject, Path, SettingMap, toArray } from '@boost/common';
 import { createDebugger, Debugger } from '@boost/debug';
 import Artifact from './Artifact';
 import { DEFAULT_FORMAT, NODE_SUPPORTED_VERSIONS, NPM_SUPPORTED_VERSIONS } from './constants';
-import { supportRanks } from './helpers/getLowestSupport';
 import { getRollupConfig } from './rollup/config';
 import { BuildOptions, BundleBuild, Format, Platform, Support } from './types';
 
@@ -159,6 +158,12 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
 
   protected addEnginesToPackageJson() {
     const pkg = this.package.packageJson;
+    const supportRanks: Record<Support, number> = {
+      legacy: 1,
+      stable: 2,
+      current: 3,
+      experimental: 4,
+    };
 
     // Update with the lowest supported node version
     const nodeBuild = [...this.builds]
