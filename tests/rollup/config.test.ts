@@ -84,6 +84,7 @@ describe('getRollupConfig()', () => {
       output: [
         {
           assetFileNames: '../assets/[name]-[hash][extname]',
+          banner: expect.any(String),
           chunkFileNames: 'index-[hash].js',
           dir: fixturePath.append('lib').path(),
           entryFileNames: 'index.js',
@@ -98,6 +99,7 @@ describe('getRollupConfig()', () => {
         },
         {
           assetFileNames: '../assets/[name]-[hash][extname]',
+          banner: expect.any(String),
           chunkFileNames: 'index-[hash].js',
           dir: fixturePath.append('lib').path(),
           entryFileNames: 'index.js',
@@ -112,6 +114,7 @@ describe('getRollupConfig()', () => {
         },
         {
           assetFileNames: '../assets/[name]-[hash][extname]',
+          banner: expect.any(String),
           chunkFileNames: 'index-[hash].js',
           dir: fixturePath.append('esm').path(),
           entryFileNames: 'index.js',
@@ -125,6 +128,7 @@ describe('getRollupConfig()', () => {
         },
         {
           assetFileNames: '../assets/[name]-[hash][extname]',
+          banner: expect.any(String),
           chunkFileNames: 'index-[hash].mjs',
           dir: fixturePath.append('mjs').path(),
           entryFileNames: 'index.mjs',
@@ -154,6 +158,7 @@ describe('getRollupConfig()', () => {
       output: [
         {
           assetFileNames: '../assets/[name]-[hash][extname]',
+          banner: expect.any(String),
           chunkFileNames: 'server-[hash].js',
           dir: fixturePath.append('lib').path(),
           entryFileNames: 'server.js',
@@ -255,6 +260,7 @@ describe('getRollupOutputConfig()', () => {
       getRollupOutputConfig(artifact, {}, { format: 'lib', platform: 'node', support: 'stable' }),
     ).toEqual({
       assetFileNames: '../assets/[name]-[hash][extname]',
+      banner: expect.any(String),
       chunkFileNames: 'index-[hash].js',
       dir: fixturePath.append('lib').path(),
       entryFileNames: 'index.js',
@@ -490,14 +496,14 @@ describe('getRollupOutputConfig()', () => {
     expect(
       getRollupOutputConfig(artifact, {}, { format: 'lib', platform: 'node', support: 'stable' })
         .banner,
-    ).toBe('#!/usr/bin/env node\n');
+    ).toContain('#!/usr/bin/env node\n');
 
     artifact.outputName = 'index';
 
     expect(
       getRollupOutputConfig(artifact, {}, { format: 'lib', platform: 'node', support: 'stable' })
         .banner,
-    ).toBeUndefined();
+    ).not.toContain('#!/usr/bin/env node\n');
   });
 
   it('enables `const` for future versions', () => {
@@ -594,6 +600,7 @@ describe('getRollupOutputConfig()', () => {
       ),
     ).toEqual({
       assetFileNames: '../assets/[name]-[hash][extname]',
+      banner: expect.any(String),
       chunkFileNames: 'index-[hash].js',
       dir: fixturePath.append('umd').path(),
       entryFileNames: 'index.js',

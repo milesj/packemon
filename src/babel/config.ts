@@ -76,7 +76,7 @@ function getSharedConfig(
     caller: {
       name: 'packemon',
     },
-    comments: false,
+    comments: true,
     parserOpts: {
       sourceType: 'unambiguous',
       strictMode: features.strict,
