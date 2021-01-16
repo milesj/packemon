@@ -184,6 +184,20 @@ describe('BundleArtifact', () => {
         });
       });
 
+      it('adds "main" for `lib` format and shared lib required', () => {
+        artifact.sharedLib = true;
+        artifact.builds.push({ format: 'lib', platform: 'browser', support: 'stable' });
+
+        expect(artifact.package.packageJson).toEqual(packageJson);
+
+        artifact.postBuild({});
+
+        expect(artifact.package.packageJson).toEqual({
+          ...packageJson,
+          main: './lib/browser/index.js',
+        });
+      });
+
       it('adds "main" for `cjs` format', () => {
         artifact.builds.push({ format: 'cjs', platform: 'node', support: 'stable' });
 
@@ -249,6 +263,18 @@ describe('BundleArtifact', () => {
           expect(artifact.package.packageJson).toEqual({
             ...packageJson,
             bin: './lib/bin.js',
+          });
+        });
+
+        it('adds "bin" for `lib` format when shared lib required', () => {
+          artifact.sharedLib = true;
+          artifact.builds.push({ format: 'lib', platform: 'node', support: 'stable' });
+
+          artifact.postBuild({});
+
+          expect(artifact.package.packageJson).toEqual({
+            ...packageJson,
+            bin: './lib/node/bin.js',
           });
         });
 
@@ -387,6 +413,20 @@ describe('BundleArtifact', () => {
         });
       });
 
+      it('adds exports based on input file and output name when shared lib required', () => {
+        artifact.sharedLib = true;
+        artifact.builds.push({ format: 'lib', platform: 'node', support: 'stable' });
+
+        expect(artifact.package.packageJson.exports).toBeUndefined();
+
+        artifact.postBuild({ addExports: true });
+
+        expect(artifact.package.packageJson.exports).toEqual({
+          '.': './lib/node/index.js',
+          './package.json': './package.json',
+        });
+      });
+
       it('supports subpath file exports when output name is not "index"', () => {
         artifact.outputName = 'sub';
         artifact.builds.push({ format: 'lib', platform: 'node', support: 'stable' });
@@ -484,54 +524,73 @@ describe('BundleArtifact', () => {
     });
   });
 
-  describe('getOutputExtension()', () => {
-    it('returns "js" for `lib` format', () => {
-      expect(artifact.getOutputExtension('lib')).toBe('js');
+  describe('getOutputMetadata()', () => {
+    it('returns metadata for `lib` format', () => {
+      expect(artifact.getOutputMetadata('lib', 'node')).toEqual({
+        ext: 'js',
+        file: 'index.js',
+        folder: 'lib',
+        path: './lib/index.js',
+      });
     });
 
-    it('returns "js" for `esm` format', () => {
-      expect(artifact.getOutputExtension('esm')).toBe('js');
+    it('returns metadata for `esm` format', () => {
+      expect(artifact.getOutputMetadata('esm', 'node')).toEqual({
+        ext: 'js',
+        file: 'index.js',
+        folder: 'esm',
+        path: './esm/index.js',
+      });
     });
 
-    it('returns "js" for `umd` format', () => {
-      expect(artifact.getOutputExtension('umd')).toBe('js');
+    it('returns metadata for `umd` format', () => {
+      expect(artifact.getOutputMetadata('umd', 'node')).toEqual({
+        ext: 'js',
+        file: 'index.js',
+        folder: 'umd',
+        path: './umd/index.js',
+      });
     });
 
-    it('returns "cjs" for `cjs` format', () => {
-      expect(artifact.getOutputExtension('cjs')).toBe('cjs');
+    it('returns metadata for `cjs` format', () => {
+      expect(artifact.getOutputMetadata('cjs', 'node')).toEqual({
+        ext: 'cjs',
+        file: 'index.cjs',
+        folder: 'cjs',
+        path: './cjs/index.cjs',
+      });
     });
 
-    it('returns "mjs" for `mjs` format', () => {
-      expect(artifact.getOutputExtension('mjs')).toBe('mjs');
-    });
-  });
-
-  describe('getOutputFile()', () => {
-    it('returns file path for `lib` format', () => {
-      expect(artifact.getOutputFile('lib')).toBe('./lib/index.js');
-    });
-
-    it('returns file path for `esm` format', () => {
-      expect(artifact.getOutputFile('esm')).toBe('./esm/index.js');
+    it('returns metadata for `mjs` format', () => {
+      expect(artifact.getOutputMetadata('mjs', 'node')).toEqual({
+        ext: 'mjs',
+        file: 'index.mjs',
+        folder: 'mjs',
+        path: './mjs/index.mjs',
+      });
     });
 
-    it('returns file path for `umd` format', () => {
-      expect(artifact.getOutputFile('umd')).toBe('./umd/index.js');
-    });
+    describe('shared lib', () => {
+      it('includes platform in folder when shared lib required', () => {
+        artifact.sharedLib = true;
 
-    it('returns file path for `cjs` format', () => {
-      expect(artifact.getOutputFile('cjs')).toBe('./cjs/index.cjs');
-    });
+        expect(artifact.getOutputMetadata('lib', 'node')).toEqual({
+          ext: 'js',
+          file: 'index.js',
+          folder: 'lib/node',
+          path: './lib/node/index.js',
+        });
+      });
 
-    it('returns file path for `mjs` format', () => {
-      expect(artifact.getOutputFile('mjs')).toBe('./mjs/index.mjs');
-    });
-  });
+      it('ignores shared lib if not `lib` format', () => {
+        artifact.sharedLib = true;
 
-  describe('getOutputFolderPath()', () => {
-    (['lib', 'esm', 'umd', 'cjs', 'mjs'] as const).forEach((format) => {
-      it('returns a file `Path` to output folder', () => {
-        expect(artifact.getOutputFolderPath(format)).toEqual(fixturePath.append(format));
+        expect(artifact.getOutputMetadata('esm', 'node')).toEqual({
+          ext: 'js',
+          file: 'index.js',
+          folder: 'esm',
+          path: './esm/index.js',
+        });
       });
     });
   });

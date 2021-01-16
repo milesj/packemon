@@ -8,14 +8,12 @@ import { createDebugger, Debugger } from '@boost/debug';
 import { Event } from '@boost/event';
 import { Context, PooledPipeline } from '@boost/pipeline';
 import BundleArtifact from './BundleArtifact';
-import { getLowestSupport } from './helpers/getLowestSupport';
 import Package from './Package';
 import PackageValidator from './PackageValidator';
 import Project from './Project';
 import { buildBlueprint, validateBlueprint } from './schemas';
 import {
   BuildOptions,
-  BundleBuild,
   DeclarationType,
   PackemonPackage,
   Platform,
@@ -203,28 +201,30 @@ export default class Packemon {
       const typesBuilds: Record<string, TypesBuild> = {};
       const sharedLib = this.requiresSharedLib(pkg);
 
-      pkg.configs.forEach((config) => {
+      pkg.configs.forEach((config, index) => {
         Object.entries(config.inputs).forEach(([outputName, inputFile]) => {
           const artifact = new BundleArtifact(
             pkg,
             // Must be unique per input to avoid references
             config.formats.map((format) =>
-              format === 'lib' && sharedLib
-                ? BundleArtifact.generateBuild('lib', sharedLib.support, [sharedLib.platform])
-                : BundleArtifact.generateBuild(format, config.support, config.platforms),
+              BundleArtifact.generateBuild(format, config.support, config.platforms),
             ),
           );
+          artifact.configGroup = index;
           artifact.inputFile = inputFile;
           artifact.outputName = outputName;
           artifact.namespace = config.namespace;
+          artifact.sharedLib = sharedLib;
 
           pkg.addArtifact(artifact);
+
           typesBuilds[outputName] = { inputFile, outputName };
         });
       });
 
       if (declarationType !== 'none') {
         const artifact = new TypesArtifact(pkg, Object.values(typesBuilds));
+
         artifact.declarationType = declarationType;
 
         pkg.addArtifact(artifact);
@@ -259,11 +259,10 @@ export default class Packemon {
   /**
    * Format "lib" is a shared format across all platforms,
    * and when a package wants to support multiple platforms,
-   * we must down-level the "lib" format to the lowest platform.
+   * we must account for this and alter the output paths.
    */
-  protected requiresSharedLib(pkg: Package): BundleBuild | null {
+  protected requiresSharedLib(pkg: Package): boolean {
     const platformsToCheck = new Set<Platform>();
-    const build: BundleBuild = { format: 'lib', platform: 'node', support: 'stable' };
     let libFormatCount = 0;
 
     pkg.configs.forEach((config) => {
@@ -272,31 +271,13 @@ export default class Packemon {
       });
 
       config.formats.forEach((format) => {
-        if (format !== 'lib') {
-          return;
+        if (format === 'lib') {
+          libFormatCount += 1;
         }
-
-        libFormatCount += 1;
-
-        // From widest to narrowest requirements
-        if (platformsToCheck.has('browser')) {
-          build.platform = 'browser';
-        } else if (platformsToCheck.has('native')) {
-          build.platform = 'native';
-        } else if (platformsToCheck.has('node')) {
-          build.platform = 'node';
-        }
-
-        // Return the lowest supported target
-        build.support = getLowestSupport(build.support, config.support);
       });
     });
 
-    if (platformsToCheck.size > 1 && libFormatCount > 1) {
-      return build;
-    }
-
-    return null;
+    return platformsToCheck.size > 1 && libFormatCount > 1;
   }
 
   /**

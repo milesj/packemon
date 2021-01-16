@@ -326,13 +326,13 @@ describe('Packemon', () => {
       expect((packages[0].artifacts[0] as BundleArtifact).outputName).toBe('index');
       expect((packages[0].artifacts[0] as BundleArtifact).inputFile).toBe('src/index.ts');
       expect(packages[0].artifacts[0].builds).toEqual([
-        { format: 'lib', platform: 'browser', support: 'stable' }, // Down-leveled node -> browser
+        { format: 'lib', platform: 'node', support: 'stable' },
       ]);
 
       expect((packages[0].artifacts[1] as BundleArtifact).outputName).toBe('index');
       expect((packages[0].artifacts[1] as BundleArtifact).inputFile).toBe('src/index.ts');
       expect(packages[0].artifacts[1].builds).toEqual([
-        { format: 'lib', platform: 'browser', support: 'stable' }, // Down-leveled current -> stable
+        { format: 'lib', platform: 'browser', support: 'current' },
         { format: 'esm', platform: 'browser', support: 'current' },
       ]);
 
@@ -416,70 +416,6 @@ describe('Packemon', () => {
           inputFile: 'src/index.ts',
           outputName: 'index',
         },
-      ]);
-    });
-
-    it('down-levels "lib" format from node -> browser when shared is required', () => {
-      const pkg = new Package(packemon.project, packemon.project.root, {
-        name: 'a',
-        version: '0.0.0',
-        packemon: {},
-      });
-
-      pkg.setConfigs([
-        {
-          format: 'lib',
-          platform: 'browser',
-          support: 'legacy',
-        },
-        {
-          format: 'lib',
-          platform: 'node',
-          support: 'current',
-        },
-      ]);
-
-      packemon.generateArtifacts([pkg]);
-
-      expect(pkg.artifacts).toHaveLength(2);
-      expect(pkg.artifacts[0].builds).toEqual([
-        { format: 'lib', platform: 'browser', support: 'legacy' },
-      ]);
-      // Down-leveled
-      expect(pkg.artifacts[1].builds).toEqual([
-        { format: 'lib', platform: 'browser', support: 'legacy' },
-      ]);
-    });
-
-    it('down-levels "lib" format from node -> native when shared is required', () => {
-      const pkg = new Package(packemon.project, packemon.project.root, {
-        name: 'a',
-        version: '0.0.0',
-        packemon: {},
-      });
-
-      pkg.setConfigs([
-        {
-          format: 'lib',
-          platform: 'native',
-          support: 'legacy',
-        },
-        {
-          format: 'lib',
-          platform: 'node',
-          support: 'current',
-        },
-      ]);
-
-      packemon.generateArtifacts([pkg]);
-
-      expect(pkg.artifacts).toHaveLength(2);
-      expect(pkg.artifacts[0].builds).toEqual([
-        { format: 'lib', platform: 'native', support: 'legacy' },
-      ]);
-      // Down-leveled
-      expect(pkg.artifacts[1].builds).toEqual([
-        { format: 'lib', platform: 'native', support: 'legacy' },
       ]);
     });
   });
