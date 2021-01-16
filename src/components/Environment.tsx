@@ -4,10 +4,12 @@ import { toArray } from '@boost/common';
 import { BROWSER_TARGETS, NATIVE_TARGETS, NODE_SUPPORTED_VERSIONS } from '../constants';
 import { Platform, Support } from '../types';
 
-export interface EnvironmentProps {
-  platform: Platform;
-  support: Support;
-}
+export type EnvironmentProps =
+  | { target: string }
+  | {
+      platform: Platform;
+      support: Support;
+    };
 
 function trimVersion(version: string) {
   const parts = version.split('.');
@@ -38,6 +40,19 @@ export function getVersionsCombo(platforms: Platform[], support: Support): Set<s
   return versions;
 }
 
-export default function Environment({ platform, support }: EnvironmentProps) {
-  return <Style type="muted">{Array.from(getVersionsCombo([platform], support)).join(', ')}</Style>;
+export default function Environment(props: EnvironmentProps) {
+  let platform: string;
+  let support: string;
+
+  if ('target' in props) {
+    [platform, support] = props.target.split(':');
+  } else {
+    ({ platform, support } = props);
+  }
+
+  return (
+    <Style type="muted">
+      {Array.from(getVersionsCombo([platform as Platform], support as Support)).join(', ')}
+    </Style>
+  );
 }

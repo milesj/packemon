@@ -5,6 +5,7 @@ import Artifact from '../Artifact';
 import BundleArtifact from '../BundleArtifact';
 import Package from '../Package';
 import ArtifactList from './ArtifactList';
+import Environment from './Environment';
 
 export interface PackageRowProps {
   package: Package;
@@ -48,7 +49,7 @@ export default function PackageRow({ package: pkg }: PackageRowProps) {
 
         {envs.length === 1 && (
           <Box marginLeft={1}>
-            <ArtifactList environment={envs[0]} />
+            <Environment target={envs[0]} />
           </Box>
         )}
       </Box>
