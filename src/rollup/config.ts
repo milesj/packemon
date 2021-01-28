@@ -1,6 +1,7 @@
 import path from 'path';
 import { ModuleFormat, OutputOptions, RollupOptions } from 'rollup';
 import externals from 'rollup-plugin-node-externals';
+import nodePolyfills from 'rollup-plugin-polyfill-node';
 import visualizer from 'rollup-plugin-visualizer';
 import { getBabelInputPlugin, getBabelOutputPlugin } from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
@@ -114,6 +115,11 @@ export function getRollupOutputConfig(
     sourcemap: Boolean(features.analyze) || platform !== 'node',
     sourcemapExcludeSources: true,
   };
+
+  // Polyfill node modules when platform is not node
+  if (platform !== 'node') {
+    output.plugins!.unshift(nodePolyfills());
+  }
 
   // Disable warnings about default exports
   if (format === 'lib' || format === 'cjs') {

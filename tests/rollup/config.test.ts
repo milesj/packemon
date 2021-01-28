@@ -19,6 +19,7 @@ jest.mock('@rollup/plugin-babel', () => ({
 jest.mock('rollup-plugin-node-externals', () => (options: any) =>
   `externals(${options.packagePath})`,
 );
+jest.mock('rollup-plugin-polyfill-node', () => () => `polyfillNode()`);
 jest.mock('rollup-plugin-visualizer', () => (options: any) =>
   `visualizer(${options.template}, ${options.filename}, ${options.title})`,
 );
@@ -107,7 +108,7 @@ describe('getRollupConfig()', () => {
           format: 'cjs',
           originalFormat: 'lib',
           paths: {},
-          plugins: [`babelOutput(${fixturePath}, *)`],
+          plugins: ['polyfillNode()', `babelOutput(${fixturePath}, *)`],
           preferConst: false,
           sourcemap: true,
           sourcemapExcludeSources: true,
@@ -121,7 +122,7 @@ describe('getRollupConfig()', () => {
           format: 'esm',
           originalFormat: 'esm',
           paths: {},
-          plugins: [`babelOutput(${fixturePath}, *)`],
+          plugins: ['polyfillNode()', `babelOutput(${fixturePath}, *)`],
           preferConst: true,
           sourcemap: true,
           sourcemapExcludeSources: true,
@@ -607,7 +608,7 @@ describe('getRollupOutputConfig()', () => {
       format: 'esm',
       originalFormat: 'umd',
       paths: {},
-      plugins: [`babelOutput(${fixturePath}, FooBar)`],
+      plugins: ['polyfillNode()', `babelOutput(${fixturePath}, FooBar)`],
       preferConst: true,
       sourcemap: true,
       sourcemapExcludeSources: true,
