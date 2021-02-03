@@ -9,6 +9,7 @@ import {
   FORMATS_NATIVE,
   FORMATS_NODE,
   PLATFORMS,
+  SUPPORTS,
 } from './constants';
 import {
   AnalyzeType,
@@ -52,12 +53,7 @@ const format = string<Format>(DEFAULT_FORMAT)
 
 // SUPPORT
 
-const support = string<Support>(DEFAULT_SUPPORT).oneOf([
-  'legacy',
-  'stable',
-  'current',
-  'experimental',
-]);
+const support = string<Support>(DEFAULT_SUPPORT).oneOf(SUPPORTS);
 
 // BLUEPRINTS
 

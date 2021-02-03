@@ -4,11 +4,21 @@ import fs from 'fs';
 import fsx from 'fs-extra';
 import { Path } from '@boost/common';
 import { getFixturePath } from '@boost/test-utils';
-import { BundleArtifact } from '../src';
-import Package from '../src/Package';
-import Project from '../src/Project';
+import {
+  BundleArtifact,
+  BundleBuild,
+  FORMATS,
+  FORMATS_BROWSER,
+  FORMATS_NATIVE,
+  FORMATS_NODE,
+  PLATFORMS,
+  SUPPORTS,
+  Package,
+  Project,
+} from '../src';
 
 const root = new Path(getFixturePath('project-rollup'));
+const exampleRoot = new Path(getFixturePath('examples'));
 
 describe('Outputs', () => {
   let snapshots: [string, unknown][] = [];
@@ -89,5 +99,61 @@ describe('Outputs', () => {
       });
 
     expect(index.builds).toMatchSnapshot();
+  });
+
+  const builds = new Map<string, BundleBuild>();
+  const cases = {
+    'node-polyfills.ts': 'Node polyfills',
+  };
+
+  FORMATS.forEach((format) => {
+    PLATFORMS.forEach((platform) => {
+      SUPPORTS.forEach((support) => {
+        const key = `${format}:${platform}:${support}`;
+
+        if (
+          (platform === 'browser' && !(FORMATS_BROWSER as string[]).includes(format)) ||
+          (platform === 'native' && !(FORMATS_NATIVE as string[]).includes(format)) ||
+          (platform === 'node' && !(FORMATS_NODE as string[]).includes(format))
+        ) {
+          return;
+        }
+
+        builds.set(key, {
+          format,
+          platform,
+          support,
+        });
+      });
+    });
+  });
+
+  Object.entries(cases).forEach(([file, label]) => {
+    it(`transforms for case: ${label}`, async () => {
+      const project = new Project(exampleRoot);
+      const pkg = new Package(
+        project,
+        exampleRoot,
+        JSON.parse(fs.readFileSync(exampleRoot.append('package.json').path(), 'utf8')),
+      );
+
+      const artifact = new BundleArtifact(pkg, Array.from(builds.values()));
+      artifact.outputName = 'index';
+      artifact.inputFile = file;
+
+      pkg.addArtifact(artifact);
+
+      try {
+        await pkg.build({});
+      } catch (error) {
+        console.log(error);
+      }
+
+      snapshots
+        .sort((a, b) => a[0].localeCompare(b[0]))
+        .forEach((ss) => {
+          expect(ss).toMatchSnapshot();
+        });
+    });
   });
 });

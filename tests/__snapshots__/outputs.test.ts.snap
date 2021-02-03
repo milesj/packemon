@@ -352,3 +352,1405 @@ Array [
   },
 ]
 `;
+
+exports[`Outputs transforms for case: Node polyfills 1`] = `
+Array [
+  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/cjs/index.cjs",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: legacy, Format: cjs
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var path = require('path');
+
+var events = require('events');
+
+function _interopDefaultLegacy(e) {
+  return e && typeof e === 'object' && 'default' in e ? e : {
+    'default': e
+  };
+}
+
+var path__default = /*#__PURE__*/_interopDefaultLegacy(path);
+
+const test = path__default['default'].join('foo', 'bar');
+const emitter = new events.EventEmitter();
+
+class Example extends events.EventEmitter {
+  log() {}
+
+}
+
+exports.Example = Example;
+",
+]
+`;
+
+exports[`Outputs transforms for case: Node polyfills 2`] = `
+Array [
+  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/cjs/index.cjs",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: cjs
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var path = require('path');
+
+var events = require('events');
+
+function _interopDefaultLegacy(e) {
+  return e && typeof e === 'object' && 'default' in e ? e : {
+    'default': e
+  };
+}
+
+var path__default = /*#__PURE__*/_interopDefaultLegacy(path);
+
+const test = path__default['default'].join('foo', 'bar');
+const emitter = new events.EventEmitter();
+
+class Example extends events.EventEmitter {
+  log() {}
+
+}
+
+exports.Example = Example;
+",
+]
+`;
+
+exports[`Outputs transforms for case: Node polyfills 3`] = `
+Array [
+  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/cjs/index.cjs",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: current, Format: cjs
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+const path = require('path');
+
+const events = require('events');
+
+function _interopDefaultLegacy(e) {
+  return e && typeof e === 'object' && 'default' in e ? e : {
+    'default': e
+  };
+}
+
+const path__default = /*#__PURE__*/_interopDefaultLegacy(path);
+
+const test = path__default['default'].join('foo', 'bar');
+const emitter = new events.EventEmitter();
+
+class Example extends events.EventEmitter {
+  log() {}
+
+}
+
+exports.Example = Example;
+",
+]
+`;
+
+exports[`Outputs transforms for case: Node polyfills 4`] = `
+Array [
+  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/cjs/index.cjs",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: experimental, Format: cjs
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+const path = require('path');
+
+const events = require('events');
+
+function _interopDefaultLegacy(e) {
+  return e && typeof e === 'object' && 'default' in e ? e : {
+    'default': e
+  };
+}
+
+const path__default = /*#__PURE__*/_interopDefaultLegacy(path);
+
+const test = path__default['default'].join('foo', 'bar');
+const emitter = new events.EventEmitter();
+
+class Example extends events.EventEmitter {
+  log() {}
+
+}
+
+exports.Example = Example;
+",
+]
+`;
+
+exports[`Outputs transforms for case: Node polyfills 5`] = `
+Array [
+  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/esm/index.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: browser, Support: experimental, Format: esm
+import path from 'path';
+import { EventEmitter } from 'events';
+const test = path.join('foo', 'bar');
+const emitter = new EventEmitter();
+
+class Example extends EventEmitter {
+  log() {}
+
+}
+
+export { Example };
+//# sourceMappingURL=index.js.map
+",
+]
+`;
+
+exports[`Outputs transforms for case: Node polyfills 6`] = `
+Array [
+  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/esm/index.js",
+  "function _typeof(obj) { \\"@babel/helpers - typeof\\"; if (typeof Symbol === \\"function\\" && typeof Symbol.iterator === \\"symbol\\") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === \\"function\\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \\"symbol\\" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\\"Cannot call a class as a function\\"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\\"value\\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== \\"function\\" && superClass !== null) { throw new TypeError(\\"Super expression must either be null or a function\\"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === \\"object\\" || typeof call === \\"function\\")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError(\\"this hasn't been initialised - super() hasn't been called\\"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === \\"undefined\\" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === \\"function\\") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+// Generated with Packemon: https://packemon.dev
+// Platform: browser, Support: legacy, Format: esm
+import path from 'path';
+import { EventEmitter } from 'events';
+var test = path.join('foo', 'bar');
+var emitter = new EventEmitter();
+
+var Example = /*#__PURE__*/function (_EventEmitter) {
+  _inherits(Example, _EventEmitter);
+
+  var _super = _createSuper(Example);
+
+  function Example() {
+    _classCallCheck(this, Example);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(Example, [{
+    key: \\"log\\",
+    value: function log() {}
+  }]);
+
+  return Example;
+}(EventEmitter);
+
+export { Example };
+//# sourceMappingURL=index.js.map
+",
+]
+`;
+
+exports[`Outputs transforms for case: Node polyfills 7`] = `
+Array [
+  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/esm/index.js",
+  "function _typeof(obj) { \\"@babel/helpers - typeof\\"; if (typeof Symbol === \\"function\\" && typeof Symbol.iterator === \\"symbol\\") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === \\"function\\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \\"symbol\\" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\\"Cannot call a class as a function\\"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\\"value\\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== \\"function\\" && superClass !== null) { throw new TypeError(\\"Super expression must either be null or a function\\"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === \\"object\\" || typeof call === \\"function\\")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError(\\"this hasn't been initialised - super() hasn't been called\\"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === \\"undefined\\" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === \\"function\\") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+// Generated with Packemon: https://packemon.dev
+// Platform: browser, Support: stable, Format: esm
+import path from 'path';
+import { EventEmitter } from 'events';
+var test = path.join('foo', 'bar');
+var emitter = new EventEmitter();
+
+var Example = /*#__PURE__*/function (_EventEmitter) {
+  _inherits(Example, _EventEmitter);
+
+  var _super = _createSuper(Example);
+
+  function Example() {
+    _classCallCheck(this, Example);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(Example, [{
+    key: \\"log\\",
+    value: function log() {}
+  }]);
+
+  return Example;
+}(EventEmitter);
+
+export { Example };
+//# sourceMappingURL=index.js.map
+",
+]
+`;
+
+exports[`Outputs transforms for case: Node polyfills 8`] = `
+Array [
+  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/esm/index.js",
+  "function _typeof(obj) { \\"@babel/helpers - typeof\\"; if (typeof Symbol === \\"function\\" && typeof Symbol.iterator === \\"symbol\\") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === \\"function\\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \\"symbol\\" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\\"Cannot call a class as a function\\"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\\"value\\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== \\"function\\" && superClass !== null) { throw new TypeError(\\"Super expression must either be null or a function\\"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === \\"object\\" || typeof call === \\"function\\")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError(\\"this hasn't been initialised - super() hasn't been called\\"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === \\"undefined\\" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === \\"function\\") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+// Generated with Packemon: https://packemon.dev
+// Platform: browser, Support: current, Format: esm
+import path from 'path';
+import { EventEmitter } from 'events';
+var test = path.join('foo', 'bar');
+var emitter = new EventEmitter();
+
+var Example = /*#__PURE__*/function (_EventEmitter) {
+  _inherits(Example, _EventEmitter);
+
+  var _super = _createSuper(Example);
+
+  function Example() {
+    _classCallCheck(this, Example);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(Example, [{
+    key: \\"log\\",
+    value: function log() {}
+  }]);
+
+  return Example;
+}(EventEmitter);
+
+export { Example };
+//# sourceMappingURL=index.js.map
+",
+]
+`;
+
+exports[`Outputs transforms for case: Node polyfills 9`] = `
+Array [
+  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/esm/index.js.map",
+  "{\\"version\\":3,\\"file\\":\\"index.js\\",\\"sources\\":[\\"../node-polyfills.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"test\\",\\"path\\",\\"join\\",\\"emitter\\",\\"EventEmitter\\",\\"Example\\",\\"log\\"],\\"mappings\\":\\";;;;;;;AAGA,MAAMA,IAAI,GAAGC,IAAI,CAACC,IAAL,CAAU,KAAV,EAAiB,KAAjB,CAAb;AAEA,MAAMC,OAAO,GAAG,IAAIC,YAAJ,EAAhB;AAEO,MAAMC,OAAN,SAAsBD,YAAtB,CAAmC;AACxCE,EAAAA,GAAG,GAAG;;AADkC;;;;\\"}",
+]
+`;
+
+exports[`Outputs transforms for case: Node polyfills 10`] = `
+Array [
+  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/esm/index.js.map",
+  "{\\"version\\":3,\\"file\\":\\"index.js\\",\\"sources\\":[\\"../node-polyfills.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"test\\",\\"path\\",\\"join\\",\\"emitter\\",\\"EventEmitter\\",\\"Example\\",\\"log\\"],\\"mappings\\":\\";;;;;;;AAGA,MAAMA,IAAI,GAAGC,IAAI,CAACC,IAAL,CAAU,KAAV,EAAiB,KAAjB,CAAb;AAEA,MAAMC,OAAO,GAAG,IAAIC,YAAJ,EAAhB;AAEO,MAAMC,OAAN,SAAsBD,YAAtB,CAAmC;AACxCE,EAAAA,GAAG,GAAG;;AADkC;;;;\\"}",
+]
+`;
+
+exports[`Outputs transforms for case: Node polyfills 11`] = `
+Array [
+  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/esm/index.js.map",
+  "{\\"version\\":3,\\"file\\":\\"index.js\\",\\"sources\\":[\\"../node-polyfills.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"test\\",\\"path\\",\\"join\\",\\"emitter\\",\\"EventEmitter\\",\\"Example\\",\\"log\\"],\\"mappings\\":\\";;;;;;;AAGA,MAAMA,IAAI,GAAGC,IAAI,CAACC,IAAL,CAAU,KAAV,EAAiB,KAAjB,CAAb;AAEA,MAAMC,OAAO,GAAG,IAAIC,YAAJ,EAAhB;AAEO,MAAMC,OAAN,SAAsBD,YAAtB,CAAmC;AACxCE,EAAAA,GAAG,GAAG;;AADkC;;;;\\"}",
+]
+`;
+
+exports[`Outputs transforms for case: Node polyfills 12`] = `
+Array [
+  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/esm/index.js.map",
+  "{\\"version\\":3,\\"file\\":\\"index.js\\",\\"sources\\":[\\"../node-polyfills.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"test\\",\\"path\\",\\"join\\",\\"emitter\\",\\"EventEmitter\\",\\"Example\\",\\"log\\"],\\"mappings\\":\\";;;;;;;AAGA,MAAMA,IAAI,GAAGC,IAAI,CAACC,IAAL,CAAU,KAAV,EAAiB,KAAjB,CAAb;AAEA,MAAMC,OAAO,GAAG,IAAIC,YAAJ,EAAhB;AAEO,MAAMC,OAAN,SAAsBD,YAAtB,CAAmC;AACxCE,EAAAA,GAAG,GAAG;;AADkC;;;;\\"}",
+]
+`;
+
+exports[`Outputs transforms for case: Node polyfills 13`] = `
+Array [
+  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/lib/index.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: browser, Support: experimental, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+const path = require('path');
+
+const events = require('events');
+
+function _interopDefaultLegacy(e) {
+  return e && typeof e === 'object' && 'default' in e ? e : {
+    'default': e
+  };
+}
+
+const path__default = /*#__PURE__*/_interopDefaultLegacy(path);
+
+const test = path__default['default'].join('foo', 'bar');
+const emitter = new events.EventEmitter();
+
+class Example extends events.EventEmitter {
+  log() {}
+
+}
+
+exports.Example = Example;
+//# sourceMappingURL=index.js.map
+",
+]
+`;
+
+exports[`Outputs transforms for case: Node polyfills 14`] = `
+Array [
+  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/lib/index.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: legacy, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var path = require('path');
+
+var events = require('events');
+
+function _interopDefaultLegacy(e) {
+  return e && typeof e === 'object' && 'default' in e ? e : {
+    'default': e
+  };
+}
+
+var path__default = /*#__PURE__*/_interopDefaultLegacy(path);
+
+const test = path__default['default'].join('foo', 'bar');
+const emitter = new events.EventEmitter();
+
+class Example extends events.EventEmitter {
+  log() {}
+
+}
+
+exports.Example = Example;
+",
+]
+`;
+
+exports[`Outputs transforms for case: Node polyfills 15`] = `
+Array [
+  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/lib/index.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var path = require('path');
+
+var events = require('events');
+
+function _interopDefaultLegacy(e) {
+  return e && typeof e === 'object' && 'default' in e ? e : {
+    'default': e
+  };
+}
+
+var path__default = /*#__PURE__*/_interopDefaultLegacy(path);
+
+const test = path__default['default'].join('foo', 'bar');
+const emitter = new events.EventEmitter();
+
+class Example extends events.EventEmitter {
+  log() {}
+
+}
+
+exports.Example = Example;
+",
+]
+`;
+
+exports[`Outputs transforms for case: Node polyfills 16`] = `
+Array [
+  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/lib/index.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: native, Support: experimental, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+const path = require('path');
+
+const events = require('events');
+
+function _interopDefaultLegacy(e) {
+  return e && typeof e === 'object' && 'default' in e ? e : {
+    'default': e
+  };
+}
+
+const path__default = /*#__PURE__*/_interopDefaultLegacy(path);
+
+const test = path__default['default'].join('foo', 'bar');
+const emitter = new events.EventEmitter();
+
+class Example extends events.EventEmitter {
+  log() {}
+
+}
+
+exports.Example = Example;
+//# sourceMappingURL=index.js.map
+",
+]
+`;
+
+exports[`Outputs transforms for case: Node polyfills 17`] = `
+Array [
+  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/lib/index.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: current, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+const path = require('path');
+
+const events = require('events');
+
+function _interopDefaultLegacy(e) {
+  return e && typeof e === 'object' && 'default' in e ? e : {
+    'default': e
+  };
+}
+
+const path__default = /*#__PURE__*/_interopDefaultLegacy(path);
+
+const test = path__default['default'].join('foo', 'bar');
+const emitter = new events.EventEmitter();
+
+class Example extends events.EventEmitter {
+  log() {}
+
+}
+
+exports.Example = Example;
+",
+]
+`;
+
+exports[`Outputs transforms for case: Node polyfills 18`] = `
+Array [
+  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/lib/index.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: experimental, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+const path = require('path');
+
+const events = require('events');
+
+function _interopDefaultLegacy(e) {
+  return e && typeof e === 'object' && 'default' in e ? e : {
+    'default': e
+  };
+}
+
+const path__default = /*#__PURE__*/_interopDefaultLegacy(path);
+
+const test = path__default['default'].join('foo', 'bar');
+const emitter = new events.EventEmitter();
+
+class Example extends events.EventEmitter {
+  log() {}
+
+}
+
+exports.Example = Example;
+",
+]
+`;
+
+exports[`Outputs transforms for case: Node polyfills 19`] = `
+Array [
+  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/lib/index.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: native, Support: current, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+const path = require('path');
+
+const events = require('events');
+
+function _interopDefaultLegacy(e) {
+  return e && typeof e === 'object' && 'default' in e ? e : {
+    'default': e
+  };
+}
+
+const path__default = /*#__PURE__*/_interopDefaultLegacy(path);
+
+const test = path__default['default'].join('foo', 'bar');
+const emitter = new events.EventEmitter();
+
+class Example extends events.EventEmitter {
+  log() {}
+
+}
+
+exports.Example = Example;
+//# sourceMappingURL=index.js.map
+",
+]
+`;
+
+exports[`Outputs transforms for case: Node polyfills 20`] = `
+Array [
+  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/lib/index.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: native, Support: legacy, Format: lib
+'use strict';
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\\"Cannot call a class as a function\\"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\\"value\\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== \\"function\\" && superClass !== null) { throw new TypeError(\\"Super expression must either be null or a function\\"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === \\"object\\" || typeof call === \\"function\\")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError(\\"this hasn't been initialised - super() hasn't been called\\"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === \\"undefined\\" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === \\"function\\") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _typeof(obj) { \\"@babel/helpers - typeof\\"; if (typeof Symbol === \\"function\\" && typeof Symbol.iterator === \\"symbol\\") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === \\"function\\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \\"symbol\\" : typeof obj; }; } return _typeof(obj); }
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var path = require('path');
+
+var events = require('events');
+
+function _interopDefaultLegacy(e) {
+  return e && _typeof(e) === 'object' && 'default' in e ? e : {
+    'default': e
+  };
+}
+
+var path__default = /*#__PURE__*/_interopDefaultLegacy(path);
+
+var test = path__default['default'].join('foo', 'bar');
+var emitter = new events.EventEmitter();
+
+var Example = /*#__PURE__*/function (_events$EventEmitter) {
+  _inherits(Example, _events$EventEmitter);
+
+  var _super = _createSuper(Example);
+
+  function Example() {
+    _classCallCheck(this, Example);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(Example, [{
+    key: \\"log\\",
+    value: function log() {}
+  }]);
+
+  return Example;
+}(events.EventEmitter);
+
+exports.Example = Example;
+//# sourceMappingURL=index.js.map
+",
+]
+`;
+
+exports[`Outputs transforms for case: Node polyfills 21`] = `
+Array [
+  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/lib/index.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: native, Support: stable, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var path = require('path');
+
+var events = require('events');
+
+function _interopDefaultLegacy(e) {
+  return e && typeof e === 'object' && 'default' in e ? e : {
+    'default': e
+  };
+}
+
+var path__default = /*#__PURE__*/_interopDefaultLegacy(path);
+
+const test = path__default['default'].join('foo', 'bar');
+const emitter = new events.EventEmitter();
+
+class Example extends events.EventEmitter {
+  log() {}
+
+}
+
+exports.Example = Example;
+//# sourceMappingURL=index.js.map
+",
+]
+`;
+
+exports[`Outputs transforms for case: Node polyfills 22`] = `
+Array [
+  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/lib/index.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: browser, Support: legacy, Format: lib
+'use strict';
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\\"Cannot call a class as a function\\"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\\"value\\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== \\"function\\" && superClass !== null) { throw new TypeError(\\"Super expression must either be null or a function\\"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === \\"object\\" || typeof call === \\"function\\")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError(\\"this hasn't been initialised - super() hasn't been called\\"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === \\"undefined\\" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === \\"function\\") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _typeof(obj) { \\"@babel/helpers - typeof\\"; if (typeof Symbol === \\"function\\" && typeof Symbol.iterator === \\"symbol\\") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === \\"function\\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \\"symbol\\" : typeof obj; }; } return _typeof(obj); }
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var path = require('path');
+
+var events = require('events');
+
+function _interopDefaultLegacy(e) {
+  return e && _typeof(e) === 'object' && 'default' in e ? e : {
+    'default': e
+  };
+}
+
+var path__default = /*#__PURE__*/_interopDefaultLegacy(path);
+
+var test = path__default['default'].join('foo', 'bar');
+var emitter = new events.EventEmitter();
+
+var Example = /*#__PURE__*/function (_events$EventEmitter) {
+  _inherits(Example, _events$EventEmitter);
+
+  var _super = _createSuper(Example);
+
+  function Example() {
+    _classCallCheck(this, Example);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(Example, [{
+    key: \\"log\\",
+    value: function log() {}
+  }]);
+
+  return Example;
+}(events.EventEmitter);
+
+exports.Example = Example;
+//# sourceMappingURL=index.js.map
+",
+]
+`;
+
+exports[`Outputs transforms for case: Node polyfills 23`] = `
+Array [
+  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/lib/index.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: browser, Support: stable, Format: lib
+'use strict';
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\\"Cannot call a class as a function\\"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\\"value\\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== \\"function\\" && superClass !== null) { throw new TypeError(\\"Super expression must either be null or a function\\"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === \\"object\\" || typeof call === \\"function\\")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError(\\"this hasn't been initialised - super() hasn't been called\\"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === \\"undefined\\" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === \\"function\\") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _typeof(obj) { \\"@babel/helpers - typeof\\"; if (typeof Symbol === \\"function\\" && typeof Symbol.iterator === \\"symbol\\") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === \\"function\\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \\"symbol\\" : typeof obj; }; } return _typeof(obj); }
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var path = require('path');
+
+var events = require('events');
+
+function _interopDefaultLegacy(e) {
+  return e && _typeof(e) === 'object' && 'default' in e ? e : {
+    'default': e
+  };
+}
+
+var path__default = /*#__PURE__*/_interopDefaultLegacy(path);
+
+var test = path__default['default'].join('foo', 'bar');
+var emitter = new events.EventEmitter();
+
+var Example = /*#__PURE__*/function (_events$EventEmitter) {
+  _inherits(Example, _events$EventEmitter);
+
+  var _super = _createSuper(Example);
+
+  function Example() {
+    _classCallCheck(this, Example);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(Example, [{
+    key: \\"log\\",
+    value: function log() {}
+  }]);
+
+  return Example;
+}(events.EventEmitter);
+
+exports.Example = Example;
+//# sourceMappingURL=index.js.map
+",
+]
+`;
+
+exports[`Outputs transforms for case: Node polyfills 24`] = `
+Array [
+  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/lib/index.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: browser, Support: current, Format: lib
+'use strict';
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\\"Cannot call a class as a function\\"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\\"value\\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== \\"function\\" && superClass !== null) { throw new TypeError(\\"Super expression must either be null or a function\\"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === \\"object\\" || typeof call === \\"function\\")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError(\\"this hasn't been initialised - super() hasn't been called\\"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === \\"undefined\\" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === \\"function\\") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _typeof(obj) { \\"@babel/helpers - typeof\\"; if (typeof Symbol === \\"function\\" && typeof Symbol.iterator === \\"symbol\\") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === \\"function\\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \\"symbol\\" : typeof obj; }; } return _typeof(obj); }
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var path = require('path');
+
+var events = require('events');
+
+function _interopDefaultLegacy(e) {
+  return e && _typeof(e) === 'object' && 'default' in e ? e : {
+    'default': e
+  };
+}
+
+var path__default = /*#__PURE__*/_interopDefaultLegacy(path);
+
+var test = path__default['default'].join('foo', 'bar');
+var emitter = new events.EventEmitter();
+
+var Example = /*#__PURE__*/function (_events$EventEmitter) {
+  _inherits(Example, _events$EventEmitter);
+
+  var _super = _createSuper(Example);
+
+  function Example() {
+    _classCallCheck(this, Example);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(Example, [{
+    key: \\"log\\",
+    value: function log() {}
+  }]);
+
+  return Example;
+}(events.EventEmitter);
+
+exports.Example = Example;
+//# sourceMappingURL=index.js.map
+",
+]
+`;
+
+exports[`Outputs transforms for case: Node polyfills 25`] = `
+Array [
+  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/lib/index.js.map",
+  "{\\"version\\":3,\\"file\\":\\"index.js\\",\\"sources\\":[\\"../node-polyfills.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"test\\",\\"path\\",\\"join\\",\\"emitter\\",\\"EventEmitter\\",\\"Example\\",\\"log\\"],\\"mappings\\":\\";;;;;;;;;;;;;;;AAGA,MAAMA,IAAI,GAAGC,wBAAI,CAACC,IAAL,CAAU,KAAV,EAAiB,KAAjB,CAAb;AAEA,MAAMC,OAAO,GAAG,IAAIC,mBAAJ,EAAhB;AAEO,MAAMC,OAAN,SAAsBD,mBAAtB,CAAmC;AACxCE,EAAAA,GAAG,GAAG;;AADkC;;;;\\"}",
+]
+`;
+
+exports[`Outputs transforms for case: Node polyfills 26`] = `
+Array [
+  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/lib/index.js.map",
+  "{\\"version\\":3,\\"file\\":\\"index.js\\",\\"sources\\":[\\"../node-polyfills.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"test\\",\\"path\\",\\"join\\",\\"emitter\\",\\"EventEmitter\\",\\"Example\\",\\"log\\"],\\"mappings\\":\\";;;;;;;;;;;;;;;AAGA,MAAMA,IAAI,GAAGC,wBAAI,CAACC,IAAL,CAAU,KAAV,EAAiB,KAAjB,CAAb;AAEA,MAAMC,OAAO,GAAG,IAAIC,mBAAJ,EAAhB;AAEO,MAAMC,OAAN,SAAsBD,mBAAtB,CAAmC;AACxCE,EAAAA,GAAG,GAAG;;AADkC;;;;\\"}",
+]
+`;
+
+exports[`Outputs transforms for case: Node polyfills 27`] = `
+Array [
+  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/lib/index.js.map",
+  "{\\"version\\":3,\\"file\\":\\"index.js\\",\\"sources\\":[\\"../node-polyfills.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"test\\",\\"path\\",\\"join\\",\\"emitter\\",\\"EventEmitter\\",\\"Example\\",\\"log\\"],\\"mappings\\":\\";;;;;;;;;;;;;;;AAGA,MAAMA,IAAI,GAAGC,wBAAI,CAACC,IAAL,CAAU,KAAV,EAAiB,KAAjB,CAAb;AAEA,MAAMC,OAAO,GAAG,IAAIC,mBAAJ,EAAhB;AAEO,MAAMC,OAAN,SAAsBD,mBAAtB,CAAmC;AACxCE,EAAAA,GAAG,GAAG;;AADkC;;;;\\"}",
+]
+`;
+
+exports[`Outputs transforms for case: Node polyfills 28`] = `
+Array [
+  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/lib/index.js.map",
+  "{\\"version\\":3,\\"file\\":\\"index.js\\",\\"sources\\":[\\"../node-polyfills.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"test\\",\\"path\\",\\"join\\",\\"emitter\\",\\"EventEmitter\\",\\"Example\\",\\"log\\"],\\"mappings\\":\\";;;;;;;;;;;;;;;AAGA,MAAMA,IAAI,GAAGC,wBAAI,CAACC,IAAL,CAAU,KAAV,EAAiB,KAAjB,CAAb;AAEA,MAAMC,OAAO,GAAG,IAAIC,mBAAJ,EAAhB;AAEO,MAAMC,OAAN,SAAsBD,mBAAtB,CAAmC;AACxCE,EAAAA,GAAG,GAAG;;AADkC;;;;\\"}",
+]
+`;
+
+exports[`Outputs transforms for case: Node polyfills 29`] = `
+Array [
+  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/lib/index.js.map",
+  "{\\"version\\":3,\\"file\\":\\"index.js\\",\\"sources\\":[\\"../node-polyfills.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"test\\",\\"path\\",\\"join\\",\\"emitter\\",\\"EventEmitter\\",\\"Example\\",\\"log\\"],\\"mappings\\":\\";;;;;;;;;;;;;;;AAGA,MAAMA,IAAI,GAAGC,wBAAI,CAACC,IAAL,CAAU,KAAV,EAAiB,KAAjB,CAAb;AAEA,MAAMC,OAAO,GAAG,IAAIC,mBAAJ,EAAhB;AAEO,MAAMC,OAAN,SAAsBD,mBAAtB,CAAmC;AACxCE,EAAAA,GAAG,GAAG;;AADkC;;;;\\"}",
+]
+`;
+
+exports[`Outputs transforms for case: Node polyfills 30`] = `
+Array [
+  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/lib/index.js.map",
+  "{\\"version\\":3,\\"file\\":\\"index.js\\",\\"sources\\":[\\"../node-polyfills.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"test\\",\\"path\\",\\"join\\",\\"emitter\\",\\"EventEmitter\\",\\"Example\\",\\"log\\"],\\"mappings\\":\\";;;;;;;;;;;;;;;AAGA,MAAMA,IAAI,GAAGC,wBAAI,CAACC,IAAL,CAAU,KAAV,EAAiB,KAAjB,CAAb;AAEA,MAAMC,OAAO,GAAG,IAAIC,mBAAJ,EAAhB;AAEO,MAAMC,OAAN,SAAsBD,mBAAtB,CAAmC;AACxCE,EAAAA,GAAG,GAAG;;AADkC;;;;\\"}",
+]
+`;
+
+exports[`Outputs transforms for case: Node polyfills 31`] = `
+Array [
+  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/lib/index.js.map",
+  "{\\"version\\":3,\\"file\\":\\"index.js\\",\\"sources\\":[\\"../node-polyfills.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"test\\",\\"path\\",\\"join\\",\\"emitter\\",\\"EventEmitter\\",\\"Example\\",\\"log\\"],\\"mappings\\":\\";;;;;;;;;;;;;;;AAGA,MAAMA,IAAI,GAAGC,wBAAI,CAACC,IAAL,CAAU,KAAV,EAAiB,KAAjB,CAAb;AAEA,MAAMC,OAAO,GAAG,IAAIC,mBAAJ,EAAhB;AAEO,MAAMC,OAAN,SAAsBD,mBAAtB,CAAmC;AACxCE,EAAAA,GAAG,GAAG;;AADkC;;;;\\"}",
+]
+`;
+
+exports[`Outputs transforms for case: Node polyfills 32`] = `
+Array [
+  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/lib/index.js.map",
+  "{\\"version\\":3,\\"file\\":\\"index.js\\",\\"sources\\":[\\"../node-polyfills.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"test\\",\\"path\\",\\"join\\",\\"emitter\\",\\"EventEmitter\\",\\"Example\\",\\"log\\"],\\"mappings\\":\\";;;;;;;;;;;;;;;AAGA,MAAMA,IAAI,GAAGC,wBAAI,CAACC,IAAL,CAAU,KAAV,EAAiB,KAAjB,CAAb;AAEA,MAAMC,OAAO,GAAG,IAAIC,mBAAJ,EAAhB;AAEO,MAAMC,OAAN,SAAsBD,mBAAtB,CAAmC;AACxCE,EAAAA,GAAG,GAAG;;AADkC;;;;\\"}",
+]
+`;
+
+exports[`Outputs transforms for case: Node polyfills 33`] = `
+Array [
+  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/mjs/index.mjs",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: legacy, Format: mjs
+import path from 'path';
+import { EventEmitter } from 'events';
+const test = path.join('foo', 'bar');
+const emitter = new EventEmitter();
+
+class Example extends EventEmitter {
+  log() {}
+
+}
+
+export { Example };
+",
+]
+`;
+
+exports[`Outputs transforms for case: Node polyfills 34`] = `
+Array [
+  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/mjs/index.mjs",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: mjs
+import path from 'path';
+import { EventEmitter } from 'events';
+const test = path.join('foo', 'bar');
+const emitter = new EventEmitter();
+
+class Example extends EventEmitter {
+  log() {}
+
+}
+
+export { Example };
+",
+]
+`;
+
+exports[`Outputs transforms for case: Node polyfills 35`] = `
+Array [
+  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/mjs/index.mjs",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: current, Format: mjs
+import path from 'path';
+import { EventEmitter } from 'events';
+const test = path.join('foo', 'bar');
+const emitter = new EventEmitter();
+
+class Example extends EventEmitter {
+  log() {}
+
+}
+
+export { Example };
+",
+]
+`;
+
+exports[`Outputs transforms for case: Node polyfills 36`] = `
+Array [
+  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/mjs/index.mjs",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: experimental, Format: mjs
+import path from 'path';
+import { EventEmitter } from 'events';
+const test = path.join('foo', 'bar');
+const emitter = new EventEmitter();
+
+class Example extends EventEmitter {
+  log() {}
+
+}
+
+export { Example };
+",
+]
+`;
+
+exports[`Outputs transforms for case: Node polyfills 37`] = `
+Array [
+  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/package.json",
+  Object {
+    "browser": "./umd/index.js",
+    "main": "./cjs/index.cjs",
+    "module": "./esm/index.js",
+    "name": "examples",
+  },
+]
+`;
+
+exports[`Outputs transforms for case: Node polyfills 38`] = `
+Array [
+  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/umd/index.js",
+  "(function (global, factory) {
+  if (typeof define === \\"function\\" && define.amd) {
+    define([\\"exports\\", \\"path\\", \\"events\\"], factory);
+  } else if (typeof exports !== \\"undefined\\") {
+    factory(exports, require(\\"path\\"), require(\\"events\\"));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.path, global.events);
+    global.examples = mod.exports;
+  }
+})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports, _path, _events) {
+  \\"use strict\\";
+
+  Object.defineProperty(_exports, \\"__esModule\\", {
+    value: true
+  });
+  _exports.Example = void 0;
+  _path = _interopRequireDefault(_path);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  // Generated with Packemon: https://packemon.dev
+  // Platform: browser, Support: experimental, Format: umd
+  const test = _path.default.join('foo', 'bar');
+
+  const emitter = new _events.EventEmitter();
+
+  class Example extends _events.EventEmitter {
+    log() {}
+
+  }
+
+  _exports.Example = Example;
+});
+//# sourceMappingURL=index.js.map
+",
+]
+`;
+
+exports[`Outputs transforms for case: Node polyfills 39`] = `
+Array [
+  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/umd/index.js",
+  "function _typeof(obj) { \\"@babel/helpers - typeof\\"; if (typeof Symbol === \\"function\\" && typeof Symbol.iterator === \\"symbol\\") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === \\"function\\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \\"symbol\\" : typeof obj; }; } return _typeof(obj); }
+
+(function (global, factory) {
+  if (typeof define === \\"function\\" && define.amd) {
+    define([\\"exports\\", \\"path\\", \\"events\\"], factory);
+  } else if (typeof exports !== \\"undefined\\") {
+    factory(exports, require(\\"path\\"), require(\\"events\\"));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.path, global.events);
+    global.examples = mod.exports;
+  }
+})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports, _path, _events) {
+  \\"use strict\\";
+
+  Object.defineProperty(_exports, \\"__esModule\\", {
+    value: true
+  });
+  _exports.Example = void 0;
+  _path = _interopRequireDefault(_path);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\\"Cannot call a class as a function\\"); } }
+
+  function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\\"value\\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+  function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+  function _inherits(subClass, superClass) { if (typeof superClass !== \\"function\\" && superClass !== null) { throw new TypeError(\\"Super expression must either be null or a function\\"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+  function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+  function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+  function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === \\"object\\" || typeof call === \\"function\\")) { return call; } return _assertThisInitialized(self); }
+
+  function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError(\\"this hasn't been initialised - super() hasn't been called\\"); } return self; }
+
+  function _isNativeReflectConstruct() { if (typeof Reflect === \\"undefined\\" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === \\"function\\") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+  function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+  var test = _path.default.join('foo', 'bar');
+
+  var emitter = new _events.EventEmitter();
+
+  var Example = /*#__PURE__*/function (_EventEmitter) {
+    _inherits(Example, _EventEmitter);
+
+    var _super = _createSuper(Example);
+
+    function Example() {
+      _classCallCheck(this, Example);
+
+      return _super.apply(this, arguments);
+    }
+
+    _createClass(Example, [{
+      key: \\"log\\",
+      value: function log() {}
+    }]);
+
+    return Example;
+  }(_events.EventEmitter);
+
+  _exports.Example = Example;
+});
+//# sourceMappingURL=index.js.map
+",
+]
+`;
+
+exports[`Outputs transforms for case: Node polyfills 40`] = `
+Array [
+  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/umd/index.js",
+  "function _typeof(obj) { \\"@babel/helpers - typeof\\"; if (typeof Symbol === \\"function\\" && typeof Symbol.iterator === \\"symbol\\") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === \\"function\\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \\"symbol\\" : typeof obj; }; } return _typeof(obj); }
+
+(function (global, factory) {
+  if (typeof define === \\"function\\" && define.amd) {
+    define([\\"exports\\", \\"path\\", \\"events\\"], factory);
+  } else if (typeof exports !== \\"undefined\\") {
+    factory(exports, require(\\"path\\"), require(\\"events\\"));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.path, global.events);
+    global.examples = mod.exports;
+  }
+})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports, _path, _events) {
+  \\"use strict\\";
+
+  Object.defineProperty(_exports, \\"__esModule\\", {
+    value: true
+  });
+  _exports.Example = void 0;
+  _path = _interopRequireDefault(_path);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\\"Cannot call a class as a function\\"); } }
+
+  function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\\"value\\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+  function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+  function _inherits(subClass, superClass) { if (typeof superClass !== \\"function\\" && superClass !== null) { throw new TypeError(\\"Super expression must either be null or a function\\"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+  function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+  function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+  function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === \\"object\\" || typeof call === \\"function\\")) { return call; } return _assertThisInitialized(self); }
+
+  function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError(\\"this hasn't been initialised - super() hasn't been called\\"); } return self; }
+
+  function _isNativeReflectConstruct() { if (typeof Reflect === \\"undefined\\" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === \\"function\\") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+  function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+  var test = _path.default.join('foo', 'bar');
+
+  var emitter = new _events.EventEmitter();
+
+  var Example = /*#__PURE__*/function (_EventEmitter) {
+    _inherits(Example, _EventEmitter);
+
+    var _super = _createSuper(Example);
+
+    function Example() {
+      _classCallCheck(this, Example);
+
+      return _super.apply(this, arguments);
+    }
+
+    _createClass(Example, [{
+      key: \\"log\\",
+      value: function log() {}
+    }]);
+
+    return Example;
+  }(_events.EventEmitter);
+
+  _exports.Example = Example;
+});
+//# sourceMappingURL=index.js.map
+",
+]
+`;
+
+exports[`Outputs transforms for case: Node polyfills 41`] = `
+Array [
+  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/umd/index.js",
+  "function _typeof(obj) { \\"@babel/helpers - typeof\\"; if (typeof Symbol === \\"function\\" && typeof Symbol.iterator === \\"symbol\\") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === \\"function\\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \\"symbol\\" : typeof obj; }; } return _typeof(obj); }
+
+(function (global, factory) {
+  if (typeof define === \\"function\\" && define.amd) {
+    define([\\"exports\\", \\"path\\", \\"events\\"], factory);
+  } else if (typeof exports !== \\"undefined\\") {
+    factory(exports, require(\\"path\\"), require(\\"events\\"));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.path, global.events);
+    global.examples = mod.exports;
+  }
+})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports, _path, _events) {
+  \\"use strict\\";
+
+  Object.defineProperty(_exports, \\"__esModule\\", {
+    value: true
+  });
+  _exports.Example = void 0;
+  _path = _interopRequireDefault(_path);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\\"Cannot call a class as a function\\"); } }
+
+  function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\\"value\\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+  function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+  function _inherits(subClass, superClass) { if (typeof superClass !== \\"function\\" && superClass !== null) { throw new TypeError(\\"Super expression must either be null or a function\\"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+  function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+  function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+  function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === \\"object\\" || typeof call === \\"function\\")) { return call; } return _assertThisInitialized(self); }
+
+  function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError(\\"this hasn't been initialised - super() hasn't been called\\"); } return self; }
+
+  function _isNativeReflectConstruct() { if (typeof Reflect === \\"undefined\\" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === \\"function\\") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+  function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+  var test = _path.default.join('foo', 'bar');
+
+  var emitter = new _events.EventEmitter();
+
+  var Example = /*#__PURE__*/function (_EventEmitter) {
+    _inherits(Example, _EventEmitter);
+
+    var _super = _createSuper(Example);
+
+    function Example() {
+      _classCallCheck(this, Example);
+
+      return _super.apply(this, arguments);
+    }
+
+    _createClass(Example, [{
+      key: \\"log\\",
+      value: function log() {}
+    }]);
+
+    return Example;
+  }(_events.EventEmitter);
+
+  _exports.Example = Example;
+});
+//# sourceMappingURL=index.js.map
+",
+]
+`;
+
+exports[`Outputs transforms for case: Node polyfills 42`] = `
+Array [
+  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/umd/index.js.map",
+  "{\\"version\\":3,\\"file\\":\\"index.js\\",\\"sources\\":[\\"../node-polyfills.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"test\\",\\"path\\",\\"join\\",\\"emitter\\",\\"EventEmitter\\",\\"Example\\",\\"log\\"],\\"mappings\\":\\";;;;;;;AAGA,MAAMA,IAAI,GAAGC,IAAI,CAACC,IAAL,CAAU,KAAV,EAAiB,KAAjB,CAAb;AAEA,MAAMC,OAAO,GAAG,IAAIC,YAAJ,EAAhB;AAEO,MAAMC,OAAN,SAAsBD,YAAtB,CAAmC;AACxCE,EAAAA,GAAG,GAAG;;AADkC;;;;\\"}",
+]
+`;
+
+exports[`Outputs transforms for case: Node polyfills 43`] = `
+Array [
+  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/umd/index.js.map",
+  "{\\"version\\":3,\\"file\\":\\"index.js\\",\\"sources\\":[\\"../node-polyfills.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"test\\",\\"path\\",\\"join\\",\\"emitter\\",\\"EventEmitter\\",\\"Example\\",\\"log\\"],\\"mappings\\":\\";;;;;;;AAGA,MAAMA,IAAI,GAAGC,IAAI,CAACC,IAAL,CAAU,KAAV,EAAiB,KAAjB,CAAb;AAEA,MAAMC,OAAO,GAAG,IAAIC,YAAJ,EAAhB;AAEO,MAAMC,OAAN,SAAsBD,YAAtB,CAAmC;AACxCE,EAAAA,GAAG,GAAG;;AADkC;;;;\\"}",
+]
+`;
+
+exports[`Outputs transforms for case: Node polyfills 44`] = `
+Array [
+  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/umd/index.js.map",
+  "{\\"version\\":3,\\"file\\":\\"index.js\\",\\"sources\\":[\\"../node-polyfills.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"test\\",\\"path\\",\\"join\\",\\"emitter\\",\\"EventEmitter\\",\\"Example\\",\\"log\\"],\\"mappings\\":\\";;;;;;;AAGA,MAAMA,IAAI,GAAGC,IAAI,CAACC,IAAL,CAAU,KAAV,EAAiB,KAAjB,CAAb;AAEA,MAAMC,OAAO,GAAG,IAAIC,YAAJ,EAAhB;AAEO,MAAMC,OAAN,SAAsBD,YAAtB,CAAmC;AACxCE,EAAAA,GAAG,GAAG;;AADkC;;;;\\"}",
+]
+`;
+
+exports[`Outputs transforms for case: Node polyfills 45`] = `
+Array [
+  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/umd/index.js.map",
+  "{\\"version\\":3,\\"file\\":\\"index.js\\",\\"sources\\":[\\"../node-polyfills.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"test\\",\\"path\\",\\"join\\",\\"emitter\\",\\"EventEmitter\\",\\"Example\\",\\"log\\"],\\"mappings\\":\\";;;;;;;AAGA,MAAMA,IAAI,GAAGC,IAAI,CAACC,IAAL,CAAU,KAAV,EAAiB,KAAjB,CAAb;AAEA,MAAMC,OAAO,GAAG,IAAIC,YAAJ,EAAhB;AAEO,MAAMC,OAAN,SAAsBD,YAAtB,CAAmC;AACxCE,EAAAA,GAAG,GAAG;;AADkC;;;;\\"}",
+]
+`;
