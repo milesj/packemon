@@ -103,13 +103,6 @@ export { createClient };
 
 exports[`Outputs builds all the artifacts with rollup 3`] = `
 Array [
-  "/esm/client.js.map",
-  "{\\"version\\":3,\\"file\\":\\"client.js\\",\\"sources\\":[\\"../src/client/index.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"Client\\",\\"prop\\",\\"gen\\",\\"wait\\",\\"createClient\\",\\"iterator\\",\\"console\\",\\"log\\"],\\"mappings\\":\\";;;;AAAA,MAAMA,MAAN,CAAa;AACXC,EAAAA,IAAI,GAAW,GAAX;AADO;;AAIb,UAAUC,GAAV,GAAgB;;AAEhB,eAAeC,IAAf,GAAsB;;AAEf,eAAeC,YAAf,GAA8B;AACnC,QAAMD,IAAI,EAAV;;AAEA,OAAK,MAAME,QAAX,IAAuBH,GAAG,EAA1B,EAA8B;AAC5BI,IAAAA,OAAO,CAACC,GAAR,CAAYF,QAAZ;AACD;;AAED,SAAO,IAAIL,MAAJ,EAAP;AACD;;;;\\"}",
-]
-`;
-
-exports[`Outputs builds all the artifacts with rollup 4`] = `
-Array [
   "/lib/client.js",
   "// Generated with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: lib
@@ -185,14 +178,7 @@ exports.createClient = createClient;
 ]
 `;
 
-exports[`Outputs builds all the artifacts with rollup 5`] = `
-Array [
-  "/lib/client.js.map",
-  "{\\"version\\":3,\\"file\\":\\"client.js\\",\\"sources\\":[\\"../src/client/index.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"Client\\",\\"prop\\",\\"gen\\",\\"wait\\",\\"createClient\\",\\"iterator\\",\\"console\\",\\"log\\"],\\"mappings\\":\\";;;;;;;;AAAA,MAAMA,MAAN,CAAa;AACXC,EAAAA,IAAI,GAAW,GAAX;AADO;;AAIb,UAAUC,GAAV,GAAgB;;AAEhB,eAAeC,IAAf,GAAsB;;AAEf,eAAeC,YAAf,GAA8B;AACnC,QAAMD,IAAI,EAAV;;AAEA,OAAK,MAAME,QAAX,IAAuBH,GAAG,EAA1B,EAA8B;AAC5BI,IAAAA,OAAO,CAACC,GAAR,CAAYF,QAAZ;AACD;;AAED,SAAO,IAAIL,MAAJ,EAAP;AACD;;;;\\"}",
-]
-`;
-
-exports[`Outputs builds all the artifacts with rollup 6`] = `
+exports[`Outputs builds all the artifacts with rollup 4`] = `
 Array [
   "/lib/index.js",
   "// Generated with Packemon: https://packemon.dev
@@ -208,7 +194,7 @@ exports.EXAMPLE = EXAMPLE;
 ]
 `;
 
-exports[`Outputs builds all the artifacts with rollup 7`] = `
+exports[`Outputs builds all the artifacts with rollup 5`] = `
 Array [
   "/lib/test.js",
   "// Generated with Packemon: https://packemon.dev
@@ -246,14 +232,7 @@ exports.wait = wait;
 ]
 `;
 
-exports[`Outputs builds all the artifacts with rollup 8`] = `
-Array [
-  "/lib/test.js.map",
-  "{\\"version\\":3,\\"file\\":\\"test.js\\",\\"sources\\":[\\"../src/test-utils/base.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"Spy\\",\\"called\\",\\"mock\\",\\"method\\",\\"spy\\",\\"inst\\",\\"jest\\",\\"fn\\",\\"wait\\"],\\"mappings\\":\\";;;;;;;;AAAA,MAAMA,GAAN,CAAU;AACRC,EAAAA,MAAM,GAAY,KAAZ;AAENC,EAAAA,IAAI,GAAG,MAAM,EAAT;;AAEJC,EAAAA,MAAM,GAAG;;AALD;;AAQH,SAASC,GAAT,GAAe;AACpB,QAAMC,IAAI,GAAG,IAAIL,GAAJ,EAAb;AAEA,SAAOM,IAAI,CAACC,EAAL,CAAQF,IAAI,CAACH,IAAb,CAAP;AACD;AAEM,eAAeM,IAAf,GAAqC;;;;;\\"}",
-]
-`;
-
-exports[`Outputs builds all the artifacts with rollup 9`] = `
+exports[`Outputs builds all the artifacts with rollup 6`] = `
 Array [
   "/package.json",
   Object {
@@ -274,7 +253,7 @@ Array [
 ]
 `;
 
-exports[`Outputs builds all the artifacts with rollup 10`] = `
+exports[`Outputs builds all the artifacts with rollup 7`] = `
 Array [
   "/umd/client.js",
   "(function (global, factory) {
@@ -333,14 +312,7 @@ Array [
 ]
 `;
 
-exports[`Outputs builds all the artifacts with rollup 11`] = `
-Array [
-  "/umd/client.js.map",
-  "{\\"version\\":3,\\"file\\":\\"client.js\\",\\"sources\\":[\\"../src/client/index.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"Client\\",\\"prop\\",\\"gen\\",\\"wait\\",\\"createClient\\",\\"iterator\\",\\"console\\",\\"log\\"],\\"mappings\\":\\";;;;AAAA,MAAMA,MAAN,CAAa;AACXC,EAAAA,IAAI,GAAW,GAAX;AADO;;AAIb,UAAUC,GAAV,GAAgB;;AAEhB,eAAeC,IAAf,GAAsB;;AAEf,eAAeC,YAAf,GAA8B;AACnC,QAAMD,IAAI,EAAV;;AAEA,OAAK,MAAME,QAAX,IAAuBH,GAAG,EAA1B,EAA8B;AAC5BI,IAAAA,OAAO,CAACC,GAAR,CAAYF,QAAZ;AACD;;AAED,SAAO,IAAIL,MAAJ,EAAP;AACD;;;;\\"}",
-]
-`;
-
-exports[`Outputs builds all the artifacts with rollup 12`] = `
+exports[`Outputs builds all the artifacts with rollup 8`] = `
 Array [
   Object {
     "format": "lib",
@@ -691,34 +663,6 @@ export { Example };
 
 exports[`Outputs transforms for case: Node polyfills 9`] = `
 Array [
-  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/esm/index.js.map",
-  "{\\"version\\":3,\\"file\\":\\"index.js\\",\\"sources\\":[\\"../node-polyfills.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"test\\",\\"path\\",\\"join\\",\\"emitter\\",\\"EventEmitter\\",\\"Example\\",\\"log\\"],\\"mappings\\":\\";;;;;;;AAGA,MAAMA,IAAI,GAAGC,IAAI,CAACC,IAAL,CAAU,KAAV,EAAiB,KAAjB,CAAb;AAEA,MAAMC,OAAO,GAAG,IAAIC,YAAJ,EAAhB;AAEO,MAAMC,OAAN,SAAsBD,YAAtB,CAAmC;AACxCE,EAAAA,GAAG,GAAG;;AADkC;;;;\\"}",
-]
-`;
-
-exports[`Outputs transforms for case: Node polyfills 10`] = `
-Array [
-  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/esm/index.js.map",
-  "{\\"version\\":3,\\"file\\":\\"index.js\\",\\"sources\\":[\\"../node-polyfills.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"test\\",\\"path\\",\\"join\\",\\"emitter\\",\\"EventEmitter\\",\\"Example\\",\\"log\\"],\\"mappings\\":\\";;;;;;;AAGA,MAAMA,IAAI,GAAGC,IAAI,CAACC,IAAL,CAAU,KAAV,EAAiB,KAAjB,CAAb;AAEA,MAAMC,OAAO,GAAG,IAAIC,YAAJ,EAAhB;AAEO,MAAMC,OAAN,SAAsBD,YAAtB,CAAmC;AACxCE,EAAAA,GAAG,GAAG;;AADkC;;;;\\"}",
-]
-`;
-
-exports[`Outputs transforms for case: Node polyfills 11`] = `
-Array [
-  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/esm/index.js.map",
-  "{\\"version\\":3,\\"file\\":\\"index.js\\",\\"sources\\":[\\"../node-polyfills.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"test\\",\\"path\\",\\"join\\",\\"emitter\\",\\"EventEmitter\\",\\"Example\\",\\"log\\"],\\"mappings\\":\\";;;;;;;AAGA,MAAMA,IAAI,GAAGC,IAAI,CAACC,IAAL,CAAU,KAAV,EAAiB,KAAjB,CAAb;AAEA,MAAMC,OAAO,GAAG,IAAIC,YAAJ,EAAhB;AAEO,MAAMC,OAAN,SAAsBD,YAAtB,CAAmC;AACxCE,EAAAA,GAAG,GAAG;;AADkC;;;;\\"}",
-]
-`;
-
-exports[`Outputs transforms for case: Node polyfills 12`] = `
-Array [
-  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/esm/index.js.map",
-  "{\\"version\\":3,\\"file\\":\\"index.js\\",\\"sources\\":[\\"../node-polyfills.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"test\\",\\"path\\",\\"join\\",\\"emitter\\",\\"EventEmitter\\",\\"Example\\",\\"log\\"],\\"mappings\\":\\";;;;;;;AAGA,MAAMA,IAAI,GAAGC,IAAI,CAACC,IAAL,CAAU,KAAV,EAAiB,KAAjB,CAAb;AAEA,MAAMC,OAAO,GAAG,IAAIC,YAAJ,EAAhB;AAEO,MAAMC,OAAN,SAAsBD,YAAtB,CAAmC;AACxCE,EAAAA,GAAG,GAAG;;AADkC;;;;\\"}",
-]
-`;
-
-exports[`Outputs transforms for case: Node polyfills 13`] = `
-Array [
   "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/lib/index.js",
   "// Generated with Packemon: https://packemon.dev
 // Platform: browser, Support: experimental, Format: lib
@@ -754,7 +698,7 @@ exports.Example = Example;
 ]
 `;
 
-exports[`Outputs transforms for case: Node polyfills 14`] = `
+exports[`Outputs transforms for case: Node polyfills 10`] = `
 Array [
   "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/lib/index.js",
   "// Generated with Packemon: https://packemon.dev
@@ -790,7 +734,7 @@ exports.Example = Example;
 ]
 `;
 
-exports[`Outputs transforms for case: Node polyfills 15`] = `
+exports[`Outputs transforms for case: Node polyfills 11`] = `
 Array [
   "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/lib/index.js",
   "// Generated with Packemon: https://packemon.dev
@@ -826,7 +770,7 @@ exports.Example = Example;
 ]
 `;
 
-exports[`Outputs transforms for case: Node polyfills 16`] = `
+exports[`Outputs transforms for case: Node polyfills 12`] = `
 Array [
   "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/lib/index.js",
   "// Generated with Packemon: https://packemon.dev
@@ -863,7 +807,7 @@ exports.Example = Example;
 ]
 `;
 
-exports[`Outputs transforms for case: Node polyfills 17`] = `
+exports[`Outputs transforms for case: Node polyfills 13`] = `
 Array [
   "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/lib/index.js",
   "// Generated with Packemon: https://packemon.dev
@@ -899,7 +843,7 @@ exports.Example = Example;
 ]
 `;
 
-exports[`Outputs transforms for case: Node polyfills 18`] = `
+exports[`Outputs transforms for case: Node polyfills 14`] = `
 Array [
   "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/lib/index.js",
   "// Generated with Packemon: https://packemon.dev
@@ -935,7 +879,7 @@ exports.Example = Example;
 ]
 `;
 
-exports[`Outputs transforms for case: Node polyfills 19`] = `
+exports[`Outputs transforms for case: Node polyfills 15`] = `
 Array [
   "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/lib/index.js",
   "// Generated with Packemon: https://packemon.dev
@@ -972,7 +916,7 @@ exports.Example = Example;
 ]
 `;
 
-exports[`Outputs transforms for case: Node polyfills 20`] = `
+exports[`Outputs transforms for case: Node polyfills 16`] = `
 Array [
   "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/lib/index.js",
   "// Generated with Packemon: https://packemon.dev
@@ -1045,7 +989,7 @@ exports.Example = Example;
 ]
 `;
 
-exports[`Outputs transforms for case: Node polyfills 21`] = `
+exports[`Outputs transforms for case: Node polyfills 17`] = `
 Array [
   "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/lib/index.js",
   "// Generated with Packemon: https://packemon.dev
@@ -1082,7 +1026,7 @@ exports.Example = Example;
 ]
 `;
 
-exports[`Outputs transforms for case: Node polyfills 22`] = `
+exports[`Outputs transforms for case: Node polyfills 18`] = `
 Array [
   "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/lib/index.js",
   "// Generated with Packemon: https://packemon.dev
@@ -1155,7 +1099,7 @@ exports.Example = Example;
 ]
 `;
 
-exports[`Outputs transforms for case: Node polyfills 23`] = `
+exports[`Outputs transforms for case: Node polyfills 19`] = `
 Array [
   "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/lib/index.js",
   "// Generated with Packemon: https://packemon.dev
@@ -1228,7 +1172,7 @@ exports.Example = Example;
 ]
 `;
 
-exports[`Outputs transforms for case: Node polyfills 24`] = `
+exports[`Outputs transforms for case: Node polyfills 20`] = `
 Array [
   "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/lib/index.js",
   "// Generated with Packemon: https://packemon.dev
@@ -1301,63 +1245,7 @@ exports.Example = Example;
 ]
 `;
 
-exports[`Outputs transforms for case: Node polyfills 25`] = `
-Array [
-  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/lib/index.js.map",
-  "{\\"version\\":3,\\"file\\":\\"index.js\\",\\"sources\\":[\\"../node-polyfills.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"test\\",\\"path\\",\\"join\\",\\"emitter\\",\\"EventEmitter\\",\\"Example\\",\\"log\\"],\\"mappings\\":\\";;;;;;;;;;;;;;;AAGA,MAAMA,IAAI,GAAGC,wBAAI,CAACC,IAAL,CAAU,KAAV,EAAiB,KAAjB,CAAb;AAEA,MAAMC,OAAO,GAAG,IAAIC,mBAAJ,EAAhB;AAEO,MAAMC,OAAN,SAAsBD,mBAAtB,CAAmC;AACxCE,EAAAA,GAAG,GAAG;;AADkC;;;;\\"}",
-]
-`;
-
-exports[`Outputs transforms for case: Node polyfills 26`] = `
-Array [
-  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/lib/index.js.map",
-  "{\\"version\\":3,\\"file\\":\\"index.js\\",\\"sources\\":[\\"../node-polyfills.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"test\\",\\"path\\",\\"join\\",\\"emitter\\",\\"EventEmitter\\",\\"Example\\",\\"log\\"],\\"mappings\\":\\";;;;;;;;;;;;;;;AAGA,MAAMA,IAAI,GAAGC,wBAAI,CAACC,IAAL,CAAU,KAAV,EAAiB,KAAjB,CAAb;AAEA,MAAMC,OAAO,GAAG,IAAIC,mBAAJ,EAAhB;AAEO,MAAMC,OAAN,SAAsBD,mBAAtB,CAAmC;AACxCE,EAAAA,GAAG,GAAG;;AADkC;;;;\\"}",
-]
-`;
-
-exports[`Outputs transforms for case: Node polyfills 27`] = `
-Array [
-  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/lib/index.js.map",
-  "{\\"version\\":3,\\"file\\":\\"index.js\\",\\"sources\\":[\\"../node-polyfills.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"test\\",\\"path\\",\\"join\\",\\"emitter\\",\\"EventEmitter\\",\\"Example\\",\\"log\\"],\\"mappings\\":\\";;;;;;;;;;;;;;;AAGA,MAAMA,IAAI,GAAGC,wBAAI,CAACC,IAAL,CAAU,KAAV,EAAiB,KAAjB,CAAb;AAEA,MAAMC,OAAO,GAAG,IAAIC,mBAAJ,EAAhB;AAEO,MAAMC,OAAN,SAAsBD,mBAAtB,CAAmC;AACxCE,EAAAA,GAAG,GAAG;;AADkC;;;;\\"}",
-]
-`;
-
-exports[`Outputs transforms for case: Node polyfills 28`] = `
-Array [
-  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/lib/index.js.map",
-  "{\\"version\\":3,\\"file\\":\\"index.js\\",\\"sources\\":[\\"../node-polyfills.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"test\\",\\"path\\",\\"join\\",\\"emitter\\",\\"EventEmitter\\",\\"Example\\",\\"log\\"],\\"mappings\\":\\";;;;;;;;;;;;;;;AAGA,MAAMA,IAAI,GAAGC,wBAAI,CAACC,IAAL,CAAU,KAAV,EAAiB,KAAjB,CAAb;AAEA,MAAMC,OAAO,GAAG,IAAIC,mBAAJ,EAAhB;AAEO,MAAMC,OAAN,SAAsBD,mBAAtB,CAAmC;AACxCE,EAAAA,GAAG,GAAG;;AADkC;;;;\\"}",
-]
-`;
-
-exports[`Outputs transforms for case: Node polyfills 29`] = `
-Array [
-  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/lib/index.js.map",
-  "{\\"version\\":3,\\"file\\":\\"index.js\\",\\"sources\\":[\\"../node-polyfills.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"test\\",\\"path\\",\\"join\\",\\"emitter\\",\\"EventEmitter\\",\\"Example\\",\\"log\\"],\\"mappings\\":\\";;;;;;;;;;;;;;;AAGA,MAAMA,IAAI,GAAGC,wBAAI,CAACC,IAAL,CAAU,KAAV,EAAiB,KAAjB,CAAb;AAEA,MAAMC,OAAO,GAAG,IAAIC,mBAAJ,EAAhB;AAEO,MAAMC,OAAN,SAAsBD,mBAAtB,CAAmC;AACxCE,EAAAA,GAAG,GAAG;;AADkC;;;;\\"}",
-]
-`;
-
-exports[`Outputs transforms for case: Node polyfills 30`] = `
-Array [
-  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/lib/index.js.map",
-  "{\\"version\\":3,\\"file\\":\\"index.js\\",\\"sources\\":[\\"../node-polyfills.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"test\\",\\"path\\",\\"join\\",\\"emitter\\",\\"EventEmitter\\",\\"Example\\",\\"log\\"],\\"mappings\\":\\";;;;;;;;;;;;;;;AAGA,MAAMA,IAAI,GAAGC,wBAAI,CAACC,IAAL,CAAU,KAAV,EAAiB,KAAjB,CAAb;AAEA,MAAMC,OAAO,GAAG,IAAIC,mBAAJ,EAAhB;AAEO,MAAMC,OAAN,SAAsBD,mBAAtB,CAAmC;AACxCE,EAAAA,GAAG,GAAG;;AADkC;;;;\\"}",
-]
-`;
-
-exports[`Outputs transforms for case: Node polyfills 31`] = `
-Array [
-  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/lib/index.js.map",
-  "{\\"version\\":3,\\"file\\":\\"index.js\\",\\"sources\\":[\\"../node-polyfills.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"test\\",\\"path\\",\\"join\\",\\"emitter\\",\\"EventEmitter\\",\\"Example\\",\\"log\\"],\\"mappings\\":\\";;;;;;;;;;;;;;;AAGA,MAAMA,IAAI,GAAGC,wBAAI,CAACC,IAAL,CAAU,KAAV,EAAiB,KAAjB,CAAb;AAEA,MAAMC,OAAO,GAAG,IAAIC,mBAAJ,EAAhB;AAEO,MAAMC,OAAN,SAAsBD,mBAAtB,CAAmC;AACxCE,EAAAA,GAAG,GAAG;;AADkC;;;;\\"}",
-]
-`;
-
-exports[`Outputs transforms for case: Node polyfills 32`] = `
-Array [
-  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/lib/index.js.map",
-  "{\\"version\\":3,\\"file\\":\\"index.js\\",\\"sources\\":[\\"../node-polyfills.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"test\\",\\"path\\",\\"join\\",\\"emitter\\",\\"EventEmitter\\",\\"Example\\",\\"log\\"],\\"mappings\\":\\";;;;;;;;;;;;;;;AAGA,MAAMA,IAAI,GAAGC,wBAAI,CAACC,IAAL,CAAU,KAAV,EAAiB,KAAjB,CAAb;AAEA,MAAMC,OAAO,GAAG,IAAIC,mBAAJ,EAAhB;AAEO,MAAMC,OAAN,SAAsBD,mBAAtB,CAAmC;AACxCE,EAAAA,GAAG,GAAG;;AADkC;;;;\\"}",
-]
-`;
-
-exports[`Outputs transforms for case: Node polyfills 33`] = `
+exports[`Outputs transforms for case: Node polyfills 21`] = `
 Array [
   "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/mjs/index.mjs",
   "// Generated with Packemon: https://packemon.dev
@@ -1377,7 +1265,7 @@ export { Example };
 ]
 `;
 
-exports[`Outputs transforms for case: Node polyfills 34`] = `
+exports[`Outputs transforms for case: Node polyfills 22`] = `
 Array [
   "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/mjs/index.mjs",
   "// Generated with Packemon: https://packemon.dev
@@ -1397,7 +1285,7 @@ export { Example };
 ]
 `;
 
-exports[`Outputs transforms for case: Node polyfills 35`] = `
+exports[`Outputs transforms for case: Node polyfills 23`] = `
 Array [
   "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/mjs/index.mjs",
   "// Generated with Packemon: https://packemon.dev
@@ -1417,7 +1305,7 @@ export { Example };
 ]
 `;
 
-exports[`Outputs transforms for case: Node polyfills 36`] = `
+exports[`Outputs transforms for case: Node polyfills 24`] = `
 Array [
   "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/mjs/index.mjs",
   "// Generated with Packemon: https://packemon.dev
@@ -1437,7 +1325,7 @@ export { Example };
 ]
 `;
 
-exports[`Outputs transforms for case: Node polyfills 37`] = `
+exports[`Outputs transforms for case: Node polyfills 25`] = `
 Array [
   "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/package.json",
   Object {
@@ -1449,7 +1337,7 @@ Array [
 ]
 `;
 
-exports[`Outputs transforms for case: Node polyfills 38`] = `
+exports[`Outputs transforms for case: Node polyfills 26`] = `
 Array [
   "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/umd/index.js",
   "(function (global, factory) {
@@ -1493,7 +1381,7 @@ Array [
 ]
 `;
 
-exports[`Outputs transforms for case: Node polyfills 39`] = `
+exports[`Outputs transforms for case: Node polyfills 27`] = `
 Array [
   "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/umd/index.js",
   "function _typeof(obj) { \\"@babel/helpers - typeof\\"; if (typeof Symbol === \\"function\\" && typeof Symbol.iterator === \\"symbol\\") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === \\"function\\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \\"symbol\\" : typeof obj; }; } return _typeof(obj); }
@@ -1571,7 +1459,7 @@ Array [
 ]
 `;
 
-exports[`Outputs transforms for case: Node polyfills 40`] = `
+exports[`Outputs transforms for case: Node polyfills 28`] = `
 Array [
   "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/umd/index.js",
   "function _typeof(obj) { \\"@babel/helpers - typeof\\"; if (typeof Symbol === \\"function\\" && typeof Symbol.iterator === \\"symbol\\") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === \\"function\\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \\"symbol\\" : typeof obj; }; } return _typeof(obj); }
@@ -1649,7 +1537,7 @@ Array [
 ]
 `;
 
-exports[`Outputs transforms for case: Node polyfills 41`] = `
+exports[`Outputs transforms for case: Node polyfills 29`] = `
 Array [
   "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/umd/index.js",
   "function _typeof(obj) { \\"@babel/helpers - typeof\\"; if (typeof Symbol === \\"function\\" && typeof Symbol.iterator === \\"symbol\\") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === \\"function\\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \\"symbol\\" : typeof obj; }; } return _typeof(obj); }
@@ -1724,33 +1612,5 @@ Array [
 });
 //# sourceMappingURL=index.js.map
 ",
-]
-`;
-
-exports[`Outputs transforms for case: Node polyfills 42`] = `
-Array [
-  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/umd/index.js.map",
-  "{\\"version\\":3,\\"file\\":\\"index.js\\",\\"sources\\":[\\"../node-polyfills.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"test\\",\\"path\\",\\"join\\",\\"emitter\\",\\"EventEmitter\\",\\"Example\\",\\"log\\"],\\"mappings\\":\\";;;;;;;AAGA,MAAMA,IAAI,GAAGC,IAAI,CAACC,IAAL,CAAU,KAAV,EAAiB,KAAjB,CAAb;AAEA,MAAMC,OAAO,GAAG,IAAIC,YAAJ,EAAhB;AAEO,MAAMC,OAAN,SAAsBD,YAAtB,CAAmC;AACxCE,EAAAA,GAAG,GAAG;;AADkC;;;;\\"}",
-]
-`;
-
-exports[`Outputs transforms for case: Node polyfills 43`] = `
-Array [
-  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/umd/index.js.map",
-  "{\\"version\\":3,\\"file\\":\\"index.js\\",\\"sources\\":[\\"../node-polyfills.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"test\\",\\"path\\",\\"join\\",\\"emitter\\",\\"EventEmitter\\",\\"Example\\",\\"log\\"],\\"mappings\\":\\";;;;;;;AAGA,MAAMA,IAAI,GAAGC,IAAI,CAACC,IAAL,CAAU,KAAV,EAAiB,KAAjB,CAAb;AAEA,MAAMC,OAAO,GAAG,IAAIC,YAAJ,EAAhB;AAEO,MAAMC,OAAN,SAAsBD,YAAtB,CAAmC;AACxCE,EAAAA,GAAG,GAAG;;AADkC;;;;\\"}",
-]
-`;
-
-exports[`Outputs transforms for case: Node polyfills 44`] = `
-Array [
-  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/umd/index.js.map",
-  "{\\"version\\":3,\\"file\\":\\"index.js\\",\\"sources\\":[\\"../node-polyfills.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"test\\",\\"path\\",\\"join\\",\\"emitter\\",\\"EventEmitter\\",\\"Example\\",\\"log\\"],\\"mappings\\":\\";;;;;;;AAGA,MAAMA,IAAI,GAAGC,IAAI,CAACC,IAAL,CAAU,KAAV,EAAiB,KAAjB,CAAb;AAEA,MAAMC,OAAO,GAAG,IAAIC,YAAJ,EAAhB;AAEO,MAAMC,OAAN,SAAsBD,YAAtB,CAAmC;AACxCE,EAAAA,GAAG,GAAG;;AADkC;;;;\\"}",
-]
-`;
-
-exports[`Outputs transforms for case: Node polyfills 45`] = `
-Array [
-  "/Users/milesj/Projects/packemon/tests/__fixtures__/examples/umd/index.js.map",
-  "{\\"version\\":3,\\"file\\":\\"index.js\\",\\"sources\\":[\\"../node-polyfills.ts\\"],\\"sourcesContent\\":null,\\"names\\":[\\"test\\",\\"path\\",\\"join\\",\\"emitter\\",\\"EventEmitter\\",\\"Example\\",\\"log\\"],\\"mappings\\":\\";;;;;;;AAGA,MAAMA,IAAI,GAAGC,IAAI,CAACC,IAAL,CAAU,KAAV,EAAiB,KAAjB,CAAb;AAEA,MAAMC,OAAO,GAAG,IAAIC,YAAJ,EAAhB;AAEO,MAAMC,OAAN,SAAsBD,YAAtB,CAAmC;AACxCE,EAAAA,GAAG,GAAG;;AADkC;;;;\\"}",
 ]
 `;

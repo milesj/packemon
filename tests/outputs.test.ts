@@ -25,7 +25,11 @@ describe('Outputs', () => {
 
   beforeEach(() => {
     const handler = (file: unknown, content: unknown, cb?: unknown) => {
-      snapshots.push([String(file).replace(root.path(), ''), content]);
+      const filePath = String(file).replace(root.path(), '');
+
+      if (!filePath.endsWith('map')) {
+        snapshots.push([String(file).replace(root.path(), ''), content]);
+      }
 
       if (typeof cb === 'function') {
         cb(null);
