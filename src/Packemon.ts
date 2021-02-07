@@ -205,16 +205,20 @@ export default class Packemon {
         Object.entries(config.inputs).forEach(([outputName, inputFile]) => {
           const artifact = new BundleArtifact(
             pkg,
-            // Must be unique per input to avoid references
-            config.formats.map((format) =>
-              BundleArtifact.generateBuild(format, config.support, config.platforms),
-            ),
+            // Pass platform and support here for convenience
+            config.formats.map((format) => ({
+              format,
+              platform: config.platform,
+              support: config.support,
+            })),
           );
           artifact.configGroup = index;
           artifact.inputFile = inputFile;
           artifact.outputName = outputName;
           artifact.namespace = config.namespace;
+          artifact.platform = config.platform;
           artifact.sharedLib = sharedLib;
+          artifact.support = config.support;
 
           pkg.addArtifact(artifact);
 
@@ -266,9 +270,7 @@ export default class Packemon {
     let libFormatCount = 0;
 
     pkg.configs.forEach((config) => {
-      config.platforms.forEach((platform) => {
-        platformsToCheck.add(platform);
-      });
+      platformsToCheck.add(config.platform);
 
       config.formats.forEach((format) => {
         if (format === 'lib') {

@@ -51,57 +51,7 @@ describe('BundleArtifact', () => {
     expect(artifact.getBuildTargets()).toEqual(['lib', 'cjs']);
     expect(artifact.toString()).toBe('bundle:index (lib, cjs)');
     expect(artifact.getStatsTitle()).toBe('project/index');
-    expect(artifact.getStatsFileName()).toBe('stats-e000d9e1.html');
-  });
-
-  describe('.generateBuild()', () => {
-    it('returns combination as-is when no overrides are necessary', () => {
-      expect(BundleArtifact.generateBuild('lib', 'stable', ['browser'])).toEqual({
-        format: 'lib',
-        platform: 'browser',
-        support: 'stable',
-      });
-    });
-
-    it('returns `browser` platform if none provided', () => {
-      expect(BundleArtifact.generateBuild('lib', 'stable', [])).toEqual({
-        format: 'lib',
-        platform: 'browser',
-        support: 'stable',
-      });
-    });
-
-    it('forces platform to `node` if format is `cjs`', () => {
-      expect(BundleArtifact.generateBuild('cjs', 'current', ['browser'])).toEqual({
-        format: 'cjs',
-        platform: 'node',
-        support: 'current',
-      });
-    });
-
-    it('forces platform to `node` if format is `mjs`', () => {
-      expect(BundleArtifact.generateBuild('mjs', 'experimental', ['browser'])).toEqual({
-        format: 'mjs',
-        platform: 'node',
-        support: 'experimental',
-      });
-    });
-
-    it('forces platform to `browser` if format is `esm`', () => {
-      expect(BundleArtifact.generateBuild('esm', 'legacy', ['node'])).toEqual({
-        format: 'esm',
-        platform: 'browser',
-        support: 'legacy',
-      });
-    });
-
-    it('forces platform to `browser` if format is `umd`', () => {
-      expect(BundleArtifact.generateBuild('umd', 'stable', ['node'])).toEqual({
-        format: 'umd',
-        platform: 'browser',
-        support: 'stable',
-      });
-    });
+    expect(artifact.getStatsFileName()).toBe('stats-project-index.html');
   });
 
   describe('build()', () => {
@@ -172,6 +122,7 @@ describe('BundleArtifact', () => {
   describe('postBuild()', () => {
     describe('entry points', () => {
       it('adds "main" for `lib` format', () => {
+        artifact.platform = 'browser';
         artifact.builds.push({ format: 'lib', platform: 'browser', support: 'stable' });
 
         expect(artifact.package.packageJson).toEqual(packageJson);
@@ -186,6 +137,7 @@ describe('BundleArtifact', () => {
 
       it('adds "main" for `lib` format and shared lib required', () => {
         artifact.sharedLib = true;
+        artifact.platform = 'browser';
         artifact.builds.push({ format: 'lib', platform: 'browser', support: 'stable' });
 
         expect(artifact.package.packageJson).toEqual(packageJson);
@@ -315,7 +267,8 @@ describe('BundleArtifact', () => {
     });
 
     describe('engines', () => {
-      it('does nothing if no `node` build', () => {
+      it('does nothing if builds is not `node`', () => {
+        artifact.platform = 'browser';
         artifact.builds.push({ format: 'lib', platform: 'browser', support: 'stable' });
 
         expect(artifact.package.packageJson.engines).toBeUndefined();
@@ -360,23 +313,6 @@ describe('BundleArtifact', () => {
           packemon: '*',
           node: '>=10.3.0',
           npm: '>=6.1.0',
-        });
-      });
-
-      it('adds lowest versions when multiple `node` builds exist', () => {
-        artifact.builds.push(
-          { format: 'lib', platform: 'node', support: 'stable' },
-          { format: 'lib', platform: 'node', support: 'legacy' },
-          { format: 'lib', platform: 'node', support: 'experimental' },
-        );
-
-        expect(artifact.package.packageJson.engines).toBeUndefined();
-
-        artifact.postBuild({ addEngines: true });
-
-        expect(artifact.package.packageJson.engines).toEqual({
-          node: '>=8.10.0',
-          npm: '>=5.6.0 || >=6.0.0',
         });
       });
     });
@@ -506,7 +442,7 @@ describe('BundleArtifact', () => {
     it('removes visualizer HTML files', async () => {
       await artifact.cleanup();
 
-      expect(fs.remove).toHaveBeenCalledWith(fixturePath.append('stats-e000d9e1.html').path());
+      expect(fs.remove).toHaveBeenCalledWith(fixturePath.append('stats-project-index.html').path());
     });
   });
 
@@ -525,8 +461,12 @@ describe('BundleArtifact', () => {
   });
 
   describe('getOutputMetadata()', () => {
+    beforeEach(() => {
+      artifact.platform = 'node';
+    });
+
     it('returns metadata for `lib` format', () => {
-      expect(artifact.getOutputMetadata('lib', 'node')).toEqual({
+      expect(artifact.getOutputMetadata('lib')).toEqual({
         ext: 'js',
         file: 'index.js',
         folder: 'lib',
@@ -535,7 +475,7 @@ describe('BundleArtifact', () => {
     });
 
     it('returns metadata for `esm` format', () => {
-      expect(artifact.getOutputMetadata('esm', 'node')).toEqual({
+      expect(artifact.getOutputMetadata('esm')).toEqual({
         ext: 'js',
         file: 'index.js',
         folder: 'esm',
@@ -544,7 +484,7 @@ describe('BundleArtifact', () => {
     });
 
     it('returns metadata for `umd` format', () => {
-      expect(artifact.getOutputMetadata('umd', 'node')).toEqual({
+      expect(artifact.getOutputMetadata('umd')).toEqual({
         ext: 'js',
         file: 'index.js',
         folder: 'umd',
@@ -553,7 +493,7 @@ describe('BundleArtifact', () => {
     });
 
     it('returns metadata for `cjs` format', () => {
-      expect(artifact.getOutputMetadata('cjs', 'node')).toEqual({
+      expect(artifact.getOutputMetadata('cjs')).toEqual({
         ext: 'cjs',
         file: 'index.cjs',
         folder: 'cjs',
@@ -562,7 +502,7 @@ describe('BundleArtifact', () => {
     });
 
     it('returns metadata for `mjs` format', () => {
-      expect(artifact.getOutputMetadata('mjs', 'node')).toEqual({
+      expect(artifact.getOutputMetadata('mjs')).toEqual({
         ext: 'mjs',
         file: 'index.mjs',
         folder: 'mjs',
@@ -574,7 +514,7 @@ describe('BundleArtifact', () => {
       it('includes platform in folder when shared lib required', () => {
         artifact.sharedLib = true;
 
-        expect(artifact.getOutputMetadata('lib', 'node')).toEqual({
+        expect(artifact.getOutputMetadata('lib')).toEqual({
           ext: 'js',
           file: 'index.js',
           folder: 'lib/node',
@@ -585,7 +525,7 @@ describe('BundleArtifact', () => {
       it('ignores shared lib if not `lib` format', () => {
         artifact.sharedLib = true;
 
-        expect(artifact.getOutputMetadata('esm', 'node')).toEqual({
+        expect(artifact.getOutputMetadata('esm')).toEqual({
           ext: 'js',
           file: 'index.js',
           folder: 'esm',

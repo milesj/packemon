@@ -315,7 +315,7 @@ describe('Package', () => {
         {
           formats: ['lib', 'esm'],
           inputs: {},
-          platforms: ['browser'],
+          platform: 'browser',
           namespace: '',
           support: 'stable',
         },
@@ -337,7 +337,7 @@ describe('Package', () => {
         {
           formats: ['lib', 'esm', 'umd'],
           inputs: {},
-          platforms: ['browser'],
+          platform: 'browser',
           namespace: 'test',
           support: 'stable',
         },
@@ -359,7 +359,7 @@ describe('Package', () => {
         {
           formats: ['lib'],
           inputs: {},
-          platforms: ['native'],
+          platform: 'native',
           namespace: '',
           support: 'stable',
         },
@@ -381,7 +381,7 @@ describe('Package', () => {
         {
           formats: ['lib'],
           inputs: {},
-          platforms: ['node'],
+          platform: 'node',
           namespace: '',
           support: 'stable',
         },
@@ -403,7 +403,67 @@ describe('Package', () => {
         {
           formats: ['cjs', 'mjs'],
           inputs: {},
-          platforms: ['node'],
+          platform: 'node',
+          namespace: '',
+          support: 'stable',
+        },
+      ]);
+    });
+
+    it('sets default formats for multiple platforms', () => {
+      pkg.setConfigs([
+        {
+          inputs: {},
+          platform: ['browser', 'node'],
+        },
+      ]);
+
+      expect(pkg.configs).toEqual([
+        {
+          formats: ['lib', 'esm'],
+          inputs: {},
+          platform: 'browser',
+          namespace: '',
+          support: 'stable',
+        },
+        {
+          formats: ['lib'],
+          inputs: {},
+          platform: 'node',
+          namespace: '',
+          support: 'stable',
+        },
+      ]);
+    });
+
+    it('filters and divides formats for multiple platforms', () => {
+      pkg.setConfigs([
+        {
+          format: ['lib', 'esm', 'cjs'],
+          inputs: {},
+          platform: ['browser', 'node', 'native'],
+        },
+      ]);
+
+      expect(pkg.configs).toEqual([
+        {
+          formats: ['lib', 'esm'],
+          inputs: {},
+          platform: 'browser',
+          namespace: '',
+          support: 'stable',
+        },
+        {
+          formats: ['lib', 'cjs'],
+          inputs: {},
+          platform: 'node',
+          namespace: '',
+          support: 'stable',
+        },
+        {
+          formats: ['lib'],
+          inputs: {},
+          platform: 'native',
           namespace: '',
           support: 'stable',
         },

@@ -5,6 +5,7 @@ import ts from 'typescript';
 import { Memoize, optimal, Path, toArray } from '@boost/common';
 import { createDebugger, Debugger } from '@boost/debug';
 import Artifact from './Artifact';
+import { FORMATS_BROWSER, FORMATS_NATIVE, FORMATS_NODE } from './constants';
 import Project from './Project';
 import { packemonBlueprint } from './schemas';
 import {
@@ -172,30 +173,49 @@ export default class Package {
         name: this.getName(),
       });
 
-      const platforms = toArray(config.platform);
-      const formats = new Set(toArray(config.format));
+      toArray(config.platform).forEach((platform) => {
+        let formats = [...toArray(config.format)];
+        const isEmpty = formats.length === 0;
 
-      if (formats.size === 0) {
-        platforms.sort().forEach((platform) => {
-          if (platform === 'native' || platform === 'node') {
-            formats.add('lib');
-          } else if (platform === 'browser') {
-            formats.add('lib');
-            formats.add('esm');
-
-            if (config.namespace) {
-              formats.add('umd');
+        switch (platform) {
+          case 'native':
+            if (isEmpty) {
+              formats.push('lib');
+            } else {
+              formats = formats.filter((format) => (FORMATS_NATIVE as string[]).includes(format));
             }
-          }
-        });
-      }
+            break;
 
-      this.configs.push({
-        formats: Array.from(formats),
-        inputs: config.inputs,
-        namespace: config.namespace,
-        platforms,
-        support: config.support,
+          case 'node':
+            if (isEmpty) {
+              formats.push('lib');
+            } else {
+              formats = formats.filter((format) => (FORMATS_NODE as string[]).includes(format));
+            }
+            break;
+
+          case 'browser':
+          default:
+            if (isEmpty) {
+              formats.push('lib');
+              formats.push('esm');
+
+              if (config.namespace) {
+                formats.push('umd');
+              }
+            } else {
+              formats = formats.filter((format) => (FORMATS_BROWSER as string[]).includes(format));
+            }
+            break;
+        }
+
+        this.configs.push({
+          formats,
+          inputs: config.inputs,
+          namespace: config.namespace,
+          platform,
+          support: config.support,
+        });
       });
     });
   }

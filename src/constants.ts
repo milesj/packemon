@@ -1,5 +1,13 @@
 import { StyleType } from '@boost/cli';
-import { ArtifactState, Format, Platform, Support } from './types';
+import {
+  ArtifactState,
+  BrowserFormat,
+  Format,
+  NativeFormat,
+  NodeFormat,
+  Platform,
+  Support,
+} from './types';
 
 export const EXTENSIONS = ['.ts', '.tsx', '.js', '.jsx', '.cjs', '.mjs'];
 
@@ -60,8 +68,20 @@ export const STATE_LABELS: { [K in ArtifactState]: string } = {
 
 export const DEFAULT_FORMAT: Format = 'lib';
 
+export const FORMATS_BROWSER: BrowserFormat[] = ['lib', 'esm', 'umd'];
+
+export const FORMATS_NATIVE: NativeFormat[] = ['lib'];
+
+export const FORMATS_NODE: NodeFormat[] = ['lib', 'mjs', 'cjs'];
+
+export const FORMATS: Format[] = ['lib', 'esm', 'umd', 'mjs', 'cjs'];
+
 export const DEFAULT_INPUT = 'src/index.ts';
 
 export const DEFAULT_PLATFORM: Platform = 'browser';
 
+export const PLATFORMS: Platform[] = ['native', 'node', 'browser'];
+
 export const DEFAULT_SUPPORT: Support = 'stable';
+
+export const SUPPORTS: Support[] = ['legacy', 'stable', 'current', 'experimental'];

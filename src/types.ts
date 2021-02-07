@@ -74,7 +74,7 @@ export interface PackageConfig {
   formats: Format[];
   inputs: Record<string, string>;
   namespace: string;
-  platforms: Platform[];
+  platform: Platform;
   support: Support;
 }
 
