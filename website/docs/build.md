@@ -223,6 +223,8 @@ The following plugins are enabled per package.
 - `rollup-plugin-node-externals`
   - Defines `externals` based on `package.json` dependencies.
   - Includes `dependencies`, `devDependencies`, `peerDependencies`, and `optionalDependencies`.
+- `rollup-plugin-polyfill-node`
+  - Polyfills Node.js built-in modules when platform is `browser` or `native`.
 - `rollup-plugin-visualizer`
   - Analyzes and generates a bundle size visualizer.
 

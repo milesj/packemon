@@ -11,10 +11,10 @@ import {
   FORMATS_BROWSER,
   FORMATS_NATIVE,
   FORMATS_NODE,
-  PLATFORMS,
-  SUPPORTS,
   Package,
+  PLATFORMS,
   Project,
+  SUPPORTS,
 } from '../src';
 
 const root = new Path(getFixturePath('project-rollup'));
@@ -25,10 +25,10 @@ describe('Outputs', () => {
 
   beforeEach(() => {
     const handler = (file: unknown, content: unknown, cb?: unknown) => {
-      const filePath = String(file).replace(root.path(), '');
+      const filePath = String(file).replace(root.path(), '').replace(exampleRoot.path(), '');
 
       if (!filePath.endsWith('map')) {
-        snapshots.push([String(file).replace(root.path(), ''), content]);
+        snapshots.push([filePath, content]);
       }
 
       if (typeof cb === 'function') {
@@ -58,6 +58,8 @@ describe('Outputs', () => {
     );
 
     const index = new BundleArtifact(pkg, [{ format: 'lib', platform: 'node', support: 'stable' }]);
+    index.platform = 'node';
+    index.support = 'stable';
     index.outputName = 'index';
     index.inputFile = 'src/index.ts';
 
@@ -68,6 +70,7 @@ describe('Outputs', () => {
       { format: 'esm', platform: 'browser', support: 'stable' },
       { format: 'umd', platform: 'browser', support: 'experimental' },
     ]);
+    client.platform = 'browser';
     client.outputName = 'client';
     client.inputFile = 'src/client/index.ts';
     client.namespace = 'Packemon';
@@ -77,6 +80,8 @@ describe('Outputs', () => {
     const server = new BundleArtifact(pkg, [
       { format: 'cjs', platform: 'node', support: 'current' },
     ]);
+    server.platform = 'node';
+    server.support = 'current';
     server.outputName = 'server';
     server.inputFile = 'src/server/core.ts';
 
@@ -85,6 +90,8 @@ describe('Outputs', () => {
     const test = new BundleArtifact(pkg, [
       { format: 'lib', platform: 'native', support: 'experimental' },
     ]);
+    test.platform = 'native';
+    test.support = 'experimental';
     test.outputName = 'test';
     test.inputFile = 'src/test-utils/base.ts';
 
@@ -141,11 +148,15 @@ describe('Outputs', () => {
         JSON.parse(fs.readFileSync(exampleRoot.append('package.json').path(), 'utf8')),
       );
 
-      const artifact = new BundleArtifact(pkg, Array.from(builds.values()));
-      artifact.outputName = 'index';
-      artifact.inputFile = file;
+      Array.from(builds.values()).forEach((build) => {
+        const artifact = new BundleArtifact(pkg, [build]);
+        artifact.platform = build.platform;
+        artifact.support = build.support;
+        artifact.outputName = `index-${build.platform}-${build.support}-${build.format}`;
+        artifact.inputFile = file;
 
-      pkg.addArtifact(artifact);
+        pkg.addArtifact(artifact);
+      });
 
       try {
         await pkg.build({});
