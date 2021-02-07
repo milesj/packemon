@@ -145,7 +145,6 @@ export function getBabelOutputConfig(
 ): ConfigStructure {
   const plugins: PluginItem[] = [];
   const presets: PluginItem[] = [];
-  const isFuture = support !== 'legacy' && support !== 'stable';
 
   // ENVIRONMENT
 
@@ -168,27 +167,25 @@ export function getBabelOutputConfig(
 
   // Use `Object.assign` when available
   // https://babeljs.io/docs/en/babel-plugin-transform-destructuring#usebuiltins
-  if (isFuture) {
+  if (support === 'current' || support === 'experimental') {
     plugins.push(
       [resolve('@babel/plugin-transform-destructuring'), { useBuiltIns: true }],
       [resolve('@babel/plugin-proposal-object-rest-spread'), { useBuiltIns: true }],
     );
   }
 
-  if (platform === 'browser' || platform === 'native') {
+  if ((platform === 'browser' || platform === 'native') && support !== 'experimental') {
     // Transform async/await into Promises
     plugins.push([
       resolve('babel-plugin-transform-async-to-promises'),
-      { inlineHelpers: true, target: isFuture ? 'es6' : 'es5' },
+      { inlineHelpers: true, target: 'es5' },
     ]);
 
     // Transform generators to Regenerator
-    if (support !== 'experimental') {
-      plugins.push([
-        resolve('@babel/plugin-transform-runtime'),
-        { helpers: false, regenerator: true, useESModules: format === 'esm' },
-      ]);
-    }
+    plugins.push([
+      resolve('@babel/plugin-transform-runtime'),
+      { helpers: false, regenerator: true, useESModules: format === 'esm' },
+    ]);
   }
 
   // Support env expression shortcuts

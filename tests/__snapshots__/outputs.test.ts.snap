@@ -203,8 +203,6 @@ Array [
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-const wait = () => Promise.resolve();
-
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
@@ -224,6 +222,8 @@ function spy() {
   const inst = new Spy();
   return jest.fn(inst.mock);
 }
+
+async function wait() {}
 
 exports.spy = spy;
 exports.wait = wait;
@@ -274,27 +274,9 @@ Array [
   Object.defineProperty(_exports, \\"__esModule\\", {
     value: true
   });
-  _exports.createClient = void 0;
-
-  function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-  const createClient = () => {
-    try {
-      return Promise.resolve(wait()).then(() => {
-        for (const iterator of gen()) {
-          console.log(iterator);
-        }
-
-        return new Client();
-      });
-    } catch (e) {
-      return Promise.reject(e);
-    }
-  };
-
   _exports.createClient = createClient;
 
-  const wait = () => Promise.resolve();
+  function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
   // Generated with Packemon: https://packemon.dev
   // Platform: browser, Support: experimental, Format: umd
@@ -306,6 +288,18 @@ Array [
   }
 
   function* gen() {}
+
+  async function wait() {}
+
+  async function createClient() {
+    await wait();
+
+    for (const iterator of gen()) {
+      console.log(iterator);
+    }
+
+    return new Client();
+  }
 });
 //# sourceMappingURL=client.js.map
 ",
@@ -322,6 +316,1222 @@ Array [
     },
     "support": "stable",
   },
+]
+`;
+
+exports[`Outputs transforms for case: Async/Await 1`] = `
+Array [
+  "/cjs/index-node-current-cjs.cjs",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: current, Format: cjs
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+async function wait() {
+  return new Promise(resolve => {
+    setTimeout(resolve, 100);
+  });
+}
+
+async function run() {
+  try {
+    await wait();
+  } catch {
+    throw new Error();
+  }
+}
+
+exports.run = run;
+exports.wait = wait;
+",
+]
+`;
+
+exports[`Outputs transforms for case: Async/Await 2`] = `
+Array [
+  "/cjs/index-node-experimental-cjs.cjs",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: experimental, Format: cjs
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+async function wait() {
+  return new Promise(resolve => {
+    setTimeout(resolve, 100);
+  });
+}
+
+async function run() {
+  try {
+    await wait();
+  } catch {
+    throw new Error();
+  }
+}
+
+exports.run = run;
+exports.wait = wait;
+",
+]
+`;
+
+exports[`Outputs transforms for case: Async/Await 3`] = `
+Array [
+  "/cjs/index-node-legacy-cjs.cjs",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: legacy, Format: cjs
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+async function wait() {
+  return new Promise(resolve => {
+    setTimeout(resolve, 100);
+  });
+}
+
+async function run() {
+  try {
+    await wait();
+  } catch {
+    throw new Error();
+  }
+}
+
+exports.run = run;
+exports.wait = wait;
+",
+]
+`;
+
+exports[`Outputs transforms for case: Async/Await 4`] = `
+Array [
+  "/cjs/index-node-stable-cjs.cjs",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: cjs
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+async function wait() {
+  return new Promise(resolve => {
+    setTimeout(resolve, 100);
+  });
+}
+
+async function run() {
+  try {
+    await wait();
+  } catch {
+    throw new Error();
+  }
+}
+
+exports.run = run;
+exports.wait = wait;
+",
+]
+`;
+
+exports[`Outputs transforms for case: Async/Await 5`] = `
+Array [
+  "/esm/index-browser-current-esm.js",
+  "function _catch(body, recover) {
+  try {
+    var result = body();
+  } catch (e) {
+    return recover(e);
+  }
+
+  if (result && result.then) {
+    return result.then(void 0, recover);
+  }
+
+  return result;
+}
+
+function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError(\\"Cannot instantiate an arrow function\\"); } }
+
+var run = function run() {
+  try {
+    return Promise.resolve(_catch(function () {
+      return Promise.resolve(wait()).then(function () {});
+    }, function () {
+      throw new Error();
+    }));
+  } catch (e) {
+    return Promise.reject(e);
+  }
+};
+
+// Generated with Packemon: https://packemon.dev
+// Platform: browser, Support: current, Format: esm
+var wait = function wait() {
+  var _this = this;
+
+  try {
+    return Promise.resolve(new Promise(function (resolve) {
+      _newArrowCheck(this, _this);
+
+      setTimeout(resolve, 100);
+    }.bind(this)));
+  } catch (e) {
+    return Promise.reject(e);
+  }
+};
+
+export { run, wait };
+//# sourceMappingURL=index-browser-current-esm.js.map
+",
+]
+`;
+
+exports[`Outputs transforms for case: Async/Await 6`] = `
+Array [
+  "/esm/index-browser-experimental-esm.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: browser, Support: experimental, Format: esm
+async function wait() {
+  return new Promise(resolve => {
+    setTimeout(resolve, 100);
+  });
+}
+
+async function run() {
+  try {
+    await wait();
+  } catch {
+    throw new Error();
+  }
+}
+
+export { run, wait };
+//# sourceMappingURL=index-browser-experimental-esm.js.map
+",
+]
+`;
+
+exports[`Outputs transforms for case: Async/Await 7`] = `
+Array [
+  "/esm/index-browser-legacy-esm.js",
+  "function _catch(body, recover) {
+  try {
+    var result = body();
+  } catch (e) {
+    return recover(e);
+  }
+
+  if (result && result.then) {
+    return result.then(void 0, recover);
+  }
+
+  return result;
+}
+
+function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError(\\"Cannot instantiate an arrow function\\"); } }
+
+var run = function run() {
+  try {
+    return Promise.resolve(_catch(function () {
+      return Promise.resolve(wait()).then(function () {});
+    }, function () {
+      throw new Error();
+    }));
+  } catch (e) {
+    return Promise.reject(e);
+  }
+};
+
+// Generated with Packemon: https://packemon.dev
+// Platform: browser, Support: legacy, Format: esm
+var wait = function wait() {
+  var _this = this;
+
+  try {
+    return Promise.resolve(new Promise(function (resolve) {
+      _newArrowCheck(this, _this);
+
+      setTimeout(resolve, 100);
+    }.bind(this)));
+  } catch (e) {
+    return Promise.reject(e);
+  }
+};
+
+export { run, wait };
+//# sourceMappingURL=index-browser-legacy-esm.js.map
+",
+]
+`;
+
+exports[`Outputs transforms for case: Async/Await 8`] = `
+Array [
+  "/esm/index-browser-stable-esm.js",
+  "function _catch(body, recover) {
+  try {
+    var result = body();
+  } catch (e) {
+    return recover(e);
+  }
+
+  if (result && result.then) {
+    return result.then(void 0, recover);
+  }
+
+  return result;
+}
+
+function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError(\\"Cannot instantiate an arrow function\\"); } }
+
+var run = function run() {
+  try {
+    return Promise.resolve(_catch(function () {
+      return Promise.resolve(wait()).then(function () {});
+    }, function () {
+      throw new Error();
+    }));
+  } catch (e) {
+    return Promise.reject(e);
+  }
+};
+
+// Generated with Packemon: https://packemon.dev
+// Platform: browser, Support: stable, Format: esm
+var wait = function wait() {
+  var _this = this;
+
+  try {
+    return Promise.resolve(new Promise(function (resolve) {
+      _newArrowCheck(this, _this);
+
+      setTimeout(resolve, 100);
+    }.bind(this)));
+  } catch (e) {
+    return Promise.reject(e);
+  }
+};
+
+export { run, wait };
+//# sourceMappingURL=index-browser-stable-esm.js.map
+",
+]
+`;
+
+exports[`Outputs transforms for case: Async/Await 9`] = `
+Array [
+  "/lib/index-browser-current-lib.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: browser, Support: current, Format: lib
+'use strict';
+
+function _catch(body, recover) {
+  try {
+    var result = body();
+  } catch (e) {
+    return recover(e);
+  }
+
+  if (result && result.then) {
+    return result.then(void 0, recover);
+  }
+
+  return result;
+}
+
+function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError(\\"Cannot instantiate an arrow function\\"); } }
+
+var run = function run() {
+  try {
+    return Promise.resolve(_catch(function () {
+      return Promise.resolve(wait()).then(function () {});
+    }, function () {
+      throw new Error();
+    }));
+  } catch (e) {
+    return Promise.reject(e);
+  }
+};
+
+var wait = function wait() {
+  var _this = this;
+
+  try {
+    return Promise.resolve(new Promise(function (resolve) {
+      _newArrowCheck(this, _this);
+
+      setTimeout(resolve, 100);
+    }.bind(this)));
+  } catch (e) {
+    return Promise.reject(e);
+  }
+};
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports.run = run;
+exports.wait = wait;
+//# sourceMappingURL=index-browser-current-lib.js.map
+",
+]
+`;
+
+exports[`Outputs transforms for case: Async/Await 10`] = `
+Array [
+  "/lib/index-browser-experimental-lib.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: browser, Support: experimental, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+async function wait() {
+  return new Promise(resolve => {
+    setTimeout(resolve, 100);
+  });
+}
+
+async function run() {
+  try {
+    await wait();
+  } catch {
+    throw new Error();
+  }
+}
+
+exports.run = run;
+exports.wait = wait;
+//# sourceMappingURL=index-browser-experimental-lib.js.map
+",
+]
+`;
+
+exports[`Outputs transforms for case: Async/Await 11`] = `
+Array [
+  "/lib/index-browser-legacy-lib.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: browser, Support: legacy, Format: lib
+'use strict';
+
+function _catch(body, recover) {
+  try {
+    var result = body();
+  } catch (e) {
+    return recover(e);
+  }
+
+  if (result && result.then) {
+    return result.then(void 0, recover);
+  }
+
+  return result;
+}
+
+function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError(\\"Cannot instantiate an arrow function\\"); } }
+
+var run = function run() {
+  try {
+    return Promise.resolve(_catch(function () {
+      return Promise.resolve(wait()).then(function () {});
+    }, function () {
+      throw new Error();
+    }));
+  } catch (e) {
+    return Promise.reject(e);
+  }
+};
+
+var wait = function wait() {
+  var _this = this;
+
+  try {
+    return Promise.resolve(new Promise(function (resolve) {
+      _newArrowCheck(this, _this);
+
+      setTimeout(resolve, 100);
+    }.bind(this)));
+  } catch (e) {
+    return Promise.reject(e);
+  }
+};
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports.run = run;
+exports.wait = wait;
+//# sourceMappingURL=index-browser-legacy-lib.js.map
+",
+]
+`;
+
+exports[`Outputs transforms for case: Async/Await 12`] = `
+Array [
+  "/lib/index-browser-stable-lib.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: browser, Support: stable, Format: lib
+'use strict';
+
+function _catch(body, recover) {
+  try {
+    var result = body();
+  } catch (e) {
+    return recover(e);
+  }
+
+  if (result && result.then) {
+    return result.then(void 0, recover);
+  }
+
+  return result;
+}
+
+function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError(\\"Cannot instantiate an arrow function\\"); } }
+
+var run = function run() {
+  try {
+    return Promise.resolve(_catch(function () {
+      return Promise.resolve(wait()).then(function () {});
+    }, function () {
+      throw new Error();
+    }));
+  } catch (e) {
+    return Promise.reject(e);
+  }
+};
+
+var wait = function wait() {
+  var _this = this;
+
+  try {
+    return Promise.resolve(new Promise(function (resolve) {
+      _newArrowCheck(this, _this);
+
+      setTimeout(resolve, 100);
+    }.bind(this)));
+  } catch (e) {
+    return Promise.reject(e);
+  }
+};
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports.run = run;
+exports.wait = wait;
+//# sourceMappingURL=index-browser-stable-lib.js.map
+",
+]
+`;
+
+exports[`Outputs transforms for case: Async/Await 13`] = `
+Array [
+  "/lib/index-native-current-lib.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: native, Support: current, Format: lib
+'use strict';
+
+function _catch(body, recover) {
+  try {
+    var result = body();
+  } catch (e) {
+    return recover(e);
+  }
+
+  if (result && result.then) {
+    return result.then(void 0, recover);
+  }
+
+  return result;
+}
+
+const run = function () {
+  try {
+    return Promise.resolve(_catch(function () {
+      return Promise.resolve(wait()).then(function () {});
+    }, function () {
+      throw new Error();
+    }));
+  } catch (e) {
+    return Promise.reject(e);
+  }
+};
+
+const wait = function () {
+  try {
+    return Promise.resolve(new Promise(resolve => {
+      setTimeout(resolve, 100);
+    }));
+  } catch (e) {
+    return Promise.reject(e);
+  }
+};
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports.run = run;
+exports.wait = wait;
+//# sourceMappingURL=index-native-current-lib.js.map
+",
+]
+`;
+
+exports[`Outputs transforms for case: Async/Await 14`] = `
+Array [
+  "/lib/index-native-experimental-lib.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: native, Support: experimental, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+async function wait() {
+  return new Promise(resolve => {
+    setTimeout(resolve, 100);
+  });
+}
+
+async function run() {
+  try {
+    await wait();
+  } catch {
+    throw new Error();
+  }
+}
+
+exports.run = run;
+exports.wait = wait;
+//# sourceMappingURL=index-native-experimental-lib.js.map
+",
+]
+`;
+
+exports[`Outputs transforms for case: Async/Await 15`] = `
+Array [
+  "/lib/index-native-legacy-lib.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: native, Support: legacy, Format: lib
+'use strict';
+
+function _catch(body, recover) {
+  try {
+    var result = body();
+  } catch (e) {
+    return recover(e);
+  }
+
+  if (result && result.then) {
+    return result.then(void 0, recover);
+  }
+
+  return result;
+}
+
+function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError(\\"Cannot instantiate an arrow function\\"); } }
+
+var run = function run() {
+  try {
+    return Promise.resolve(_catch(function () {
+      return Promise.resolve(wait()).then(function () {});
+    }, function () {
+      throw new Error();
+    }));
+  } catch (e) {
+    return Promise.reject(e);
+  }
+};
+
+var wait = function wait() {
+  var _this = this;
+
+  try {
+    return Promise.resolve(new Promise(function (resolve) {
+      _newArrowCheck(this, _this);
+
+      setTimeout(resolve, 100);
+    }.bind(this)));
+  } catch (e) {
+    return Promise.reject(e);
+  }
+};
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports.run = run;
+exports.wait = wait;
+//# sourceMappingURL=index-native-legacy-lib.js.map
+",
+]
+`;
+
+exports[`Outputs transforms for case: Async/Await 16`] = `
+Array [
+  "/lib/index-native-stable-lib.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: native, Support: stable, Format: lib
+'use strict';
+
+function _catch(body, recover) {
+  try {
+    var result = body();
+  } catch (e) {
+    return recover(e);
+  }
+
+  if (result && result.then) {
+    return result.then(void 0, recover);
+  }
+
+  return result;
+}
+
+const run = function () {
+  try {
+    return Promise.resolve(_catch(function () {
+      return Promise.resolve(wait()).then(function () {});
+    }, function () {
+      throw new Error();
+    }));
+  } catch (e) {
+    return Promise.reject(e);
+  }
+};
+
+const wait = function () {
+  try {
+    return Promise.resolve(new Promise(resolve => {
+      setTimeout(resolve, 100);
+    }));
+  } catch (e) {
+    return Promise.reject(e);
+  }
+};
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports.run = run;
+exports.wait = wait;
+//# sourceMappingURL=index-native-stable-lib.js.map
+",
+]
+`;
+
+exports[`Outputs transforms for case: Async/Await 17`] = `
+Array [
+  "/lib/index-node-current-lib.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: current, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+async function wait() {
+  return new Promise(resolve => {
+    setTimeout(resolve, 100);
+  });
+}
+
+async function run() {
+  try {
+    await wait();
+  } catch {
+    throw new Error();
+  }
+}
+
+exports.run = run;
+exports.wait = wait;
+",
+]
+`;
+
+exports[`Outputs transforms for case: Async/Await 18`] = `
+Array [
+  "/lib/index-node-experimental-lib.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: experimental, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+async function wait() {
+  return new Promise(resolve => {
+    setTimeout(resolve, 100);
+  });
+}
+
+async function run() {
+  try {
+    await wait();
+  } catch {
+    throw new Error();
+  }
+}
+
+exports.run = run;
+exports.wait = wait;
+",
+]
+`;
+
+exports[`Outputs transforms for case: Async/Await 19`] = `
+Array [
+  "/lib/index-node-legacy-lib.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: legacy, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+async function wait() {
+  return new Promise(resolve => {
+    setTimeout(resolve, 100);
+  });
+}
+
+async function run() {
+  try {
+    await wait();
+  } catch {
+    throw new Error();
+  }
+}
+
+exports.run = run;
+exports.wait = wait;
+",
+]
+`;
+
+exports[`Outputs transforms for case: Async/Await 20`] = `
+Array [
+  "/lib/index-node-stable-lib.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+async function wait() {
+  return new Promise(resolve => {
+    setTimeout(resolve, 100);
+  });
+}
+
+async function run() {
+  try {
+    await wait();
+  } catch {
+    throw new Error();
+  }
+}
+
+exports.run = run;
+exports.wait = wait;
+",
+]
+`;
+
+exports[`Outputs transforms for case: Async/Await 21`] = `
+Array [
+  "/mjs/index-node-current-mjs.mjs",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: current, Format: mjs
+async function wait() {
+  return new Promise(resolve => {
+    setTimeout(resolve, 100);
+  });
+}
+
+async function run() {
+  try {
+    await wait();
+  } catch {
+    throw new Error();
+  }
+}
+
+export { run, wait };
+",
+]
+`;
+
+exports[`Outputs transforms for case: Async/Await 22`] = `
+Array [
+  "/mjs/index-node-experimental-mjs.mjs",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: experimental, Format: mjs
+async function wait() {
+  return new Promise(resolve => {
+    setTimeout(resolve, 100);
+  });
+}
+
+async function run() {
+  try {
+    await wait();
+  } catch {
+    throw new Error();
+  }
+}
+
+export { run, wait };
+",
+]
+`;
+
+exports[`Outputs transforms for case: Async/Await 23`] = `
+Array [
+  "/mjs/index-node-legacy-mjs.mjs",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: legacy, Format: mjs
+async function wait() {
+  return new Promise(resolve => {
+    setTimeout(resolve, 100);
+  });
+}
+
+async function run() {
+  try {
+    await wait();
+  } catch {
+    throw new Error();
+  }
+}
+
+export { run, wait };
+",
+]
+`;
+
+exports[`Outputs transforms for case: Async/Await 24`] = `
+Array [
+  "/mjs/index-node-stable-mjs.mjs",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: mjs
+async function wait() {
+  return new Promise(resolve => {
+    setTimeout(resolve, 100);
+  });
+}
+
+async function run() {
+  try {
+    await wait();
+  } catch {
+    throw new Error();
+  }
+}
+
+export { run, wait };
+",
+]
+`;
+
+exports[`Outputs transforms for case: Async/Await 25`] = `
+Array [
+  "/package.json",
+  Object {
+    "name": "examples",
+  },
+]
+`;
+
+exports[`Outputs transforms for case: Async/Await 26`] = `
+Array [
+  "/umd/index-browser-current-umd.js",
+  "function _catch(body, recover) {
+  try {
+    var result = body();
+  } catch (e) {
+    return recover(e);
+  }
+
+  if (result && result.then) {
+    return result.then(void 0, recover);
+  }
+
+  return result;
+}
+
+(function (global, factory) {
+  if (typeof define === \\"function\\" && define.amd) {
+    define([\\"exports\\"], factory);
+  } else if (typeof exports !== \\"undefined\\") {
+    factory(exports);
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports);
+    global.examples = mod.exports;
+  }
+})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports) {
+  \\"use strict\\";
+
+  Object.defineProperty(_exports, \\"__esModule\\", {
+    value: true
+  });
+  _exports.wait = _exports.run = void 0;
+
+  function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError(\\"Cannot instantiate an arrow function\\"); } }
+
+  var run = function run() {
+    try {
+      return Promise.resolve(_catch(function () {
+        return Promise.resolve(wait()).then(function () {});
+      }, function () {
+        throw new Error();
+      }));
+    } catch (e) {
+      return Promise.reject(e);
+    }
+  };
+
+  _exports.run = run;
+
+  // Generated with Packemon: https://packemon.dev
+  // Platform: browser, Support: current, Format: umd
+  var wait = function wait() {
+    var _this = this;
+
+    try {
+      return Promise.resolve(new Promise(function (resolve) {
+        _newArrowCheck(this, _this);
+
+        setTimeout(resolve, 100);
+      }.bind(this)));
+    } catch (e) {
+      return Promise.reject(e);
+    }
+  };
+
+  _exports.wait = wait;
+});
+//# sourceMappingURL=index-browser-current-umd.js.map
+",
+]
+`;
+
+exports[`Outputs transforms for case: Async/Await 27`] = `
+Array [
+  "/umd/index-browser-experimental-umd.js",
+  "(function (global, factory) {
+  if (typeof define === \\"function\\" && define.amd) {
+    define([\\"exports\\"], factory);
+  } else if (typeof exports !== \\"undefined\\") {
+    factory(exports);
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports);
+    global.examples = mod.exports;
+  }
+})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports) {
+  \\"use strict\\";
+
+  Object.defineProperty(_exports, \\"__esModule\\", {
+    value: true
+  });
+  _exports.run = run;
+  _exports.wait = wait;
+
+  // Generated with Packemon: https://packemon.dev
+  // Platform: browser, Support: experimental, Format: umd
+  async function wait() {
+    return new Promise(resolve => {
+      setTimeout(resolve, 100);
+    });
+  }
+
+  async function run() {
+    try {
+      await wait();
+    } catch {
+      throw new Error();
+    }
+  }
+});
+//# sourceMappingURL=index-browser-experimental-umd.js.map
+",
+]
+`;
+
+exports[`Outputs transforms for case: Async/Await 28`] = `
+Array [
+  "/umd/index-browser-legacy-umd.js",
+  "function _catch(body, recover) {
+  try {
+    var result = body();
+  } catch (e) {
+    return recover(e);
+  }
+
+  if (result && result.then) {
+    return result.then(void 0, recover);
+  }
+
+  return result;
+}
+
+(function (global, factory) {
+  if (typeof define === \\"function\\" && define.amd) {
+    define([\\"exports\\"], factory);
+  } else if (typeof exports !== \\"undefined\\") {
+    factory(exports);
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports);
+    global.examples = mod.exports;
+  }
+})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports) {
+  \\"use strict\\";
+
+  Object.defineProperty(_exports, \\"__esModule\\", {
+    value: true
+  });
+  _exports.wait = _exports.run = void 0;
+
+  function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError(\\"Cannot instantiate an arrow function\\"); } }
+
+  var run = function run() {
+    try {
+      return Promise.resolve(_catch(function () {
+        return Promise.resolve(wait()).then(function () {});
+      }, function () {
+        throw new Error();
+      }));
+    } catch (e) {
+      return Promise.reject(e);
+    }
+  };
+
+  _exports.run = run;
+
+  // Generated with Packemon: https://packemon.dev
+  // Platform: browser, Support: legacy, Format: umd
+  var wait = function wait() {
+    var _this = this;
+
+    try {
+      return Promise.resolve(new Promise(function (resolve) {
+        _newArrowCheck(this, _this);
+
+        setTimeout(resolve, 100);
+      }.bind(this)));
+    } catch (e) {
+      return Promise.reject(e);
+    }
+  };
+
+  _exports.wait = wait;
+});
+//# sourceMappingURL=index-browser-legacy-umd.js.map
+",
+]
+`;
+
+exports[`Outputs transforms for case: Async/Await 29`] = `
+Array [
+  "/umd/index-browser-stable-umd.js",
+  "function _catch(body, recover) {
+  try {
+    var result = body();
+  } catch (e) {
+    return recover(e);
+  }
+
+  if (result && result.then) {
+    return result.then(void 0, recover);
+  }
+
+  return result;
+}
+
+(function (global, factory) {
+  if (typeof define === \\"function\\" && define.amd) {
+    define([\\"exports\\"], factory);
+  } else if (typeof exports !== \\"undefined\\") {
+    factory(exports);
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports);
+    global.examples = mod.exports;
+  }
+})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports) {
+  \\"use strict\\";
+
+  Object.defineProperty(_exports, \\"__esModule\\", {
+    value: true
+  });
+  _exports.wait = _exports.run = void 0;
+
+  function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError(\\"Cannot instantiate an arrow function\\"); } }
+
+  var run = function run() {
+    try {
+      return Promise.resolve(_catch(function () {
+        return Promise.resolve(wait()).then(function () {});
+      }, function () {
+        throw new Error();
+      }));
+    } catch (e) {
+      return Promise.reject(e);
+    }
+  };
+
+  _exports.run = run;
+
+  // Generated with Packemon: https://packemon.dev
+  // Platform: browser, Support: stable, Format: umd
+  var wait = function wait() {
+    var _this = this;
+
+    try {
+      return Promise.resolve(new Promise(function (resolve) {
+        _newArrowCheck(this, _this);
+
+        setTimeout(resolve, 100);
+      }.bind(this)));
+    } catch (e) {
+      return Promise.reject(e);
+    }
+  };
+
+  _exports.wait = wait;
+});
+//# sourceMappingURL=index-browser-stable-umd.js.map
+",
 ]
 `;
 
