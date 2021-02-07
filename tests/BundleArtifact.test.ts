@@ -54,56 +54,6 @@ describe('BundleArtifact', () => {
     expect(artifact.getStatsFileName()).toBe('stats-e000d9e1.html');
   });
 
-  describe('.generateBuild()', () => {
-    it('returns combination as-is when no overrides are necessary', () => {
-      expect(BundleArtifact.generateBuild('lib', 'stable', ['browser'])).toEqual({
-        format: 'lib',
-        platform: 'browser',
-        support: 'stable',
-      });
-    });
-
-    it('returns `browser` platform if none provided', () => {
-      expect(BundleArtifact.generateBuild('lib', 'stable', [])).toEqual({
-        format: 'lib',
-        platform: 'browser',
-        support: 'stable',
-      });
-    });
-
-    it('forces platform to `node` if format is `cjs`', () => {
-      expect(BundleArtifact.generateBuild('cjs', 'current', ['browser'])).toEqual({
-        format: 'cjs',
-        platform: 'node',
-        support: 'current',
-      });
-    });
-
-    it('forces platform to `node` if format is `mjs`', () => {
-      expect(BundleArtifact.generateBuild('mjs', 'experimental', ['browser'])).toEqual({
-        format: 'mjs',
-        platform: 'node',
-        support: 'experimental',
-      });
-    });
-
-    it('forces platform to `browser` if format is `esm`', () => {
-      expect(BundleArtifact.generateBuild('esm', 'legacy', ['node'])).toEqual({
-        format: 'esm',
-        platform: 'browser',
-        support: 'legacy',
-      });
-    });
-
-    it('forces platform to `browser` if format is `umd`', () => {
-      expect(BundleArtifact.generateBuild('umd', 'stable', ['node'])).toEqual({
-        format: 'umd',
-        platform: 'browser',
-        support: 'stable',
-      });
-    });
-  });
-
   describe('build()', () => {
     let bundleWriteSpy: jest.SpyInstance;
 

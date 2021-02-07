@@ -27,29 +27,6 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
 
   protected debug!: Debugger;
 
-  static generateBuild(format: Format, support: Support, platforms: Platform[]): BundleBuild {
-    let platform: Platform;
-
-    if (format === 'cjs' || format === 'mjs') {
-      platform = 'node';
-    } else if (format === 'esm' || format === 'umd' || platforms.length === 0) {
-      platform = 'browser';
-      // Order by lowest platform
-    } else if (platforms.includes('browser')) {
-      platform = 'browser';
-    } else if (platforms.includes('native')) {
-      platform = 'native';
-    } else {
-      platform = 'node';
-    }
-
-    return {
-      format,
-      platform,
-      support,
-    };
-  }
-
   startup() {
     this.debug = createDebugger(['packemon', 'bundle', this.package.getSlug(), this.outputName]);
   }

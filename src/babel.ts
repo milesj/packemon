@@ -18,7 +18,6 @@ import {
 import { FeatureFlags } from './types';
 
 const format = (process.env.PACKEMON_FORMAT || DEFAULT_FORMAT) as Format;
-const platform = (process.env.PACKEMON_PLATFORM || 'node') as Platform;
 const support = (process.env.PACKEMON_SUPPORT || DEFAULT_SUPPORT) as Support;
 const project = new Project(process.cwd());
 
@@ -40,24 +39,27 @@ export function createConfig(folder: string): ConfigStructure {
 
   // Create package and configs
   const pkg = new Package(project, path, contents);
-  const platforms: Platform[] = [];
 
   pkg.setConfigs(toArray(pkg.packageJson.packemon));
 
-  pkg.configs.forEach((config) => {
-    platforms.push(...config.platforms);
-  });
+  // Determine the lowest platform to support
+  const platforms = pkg.configs.map((config) => config.platform);
+  let lowestPlatform: Platform = 'node';
 
-  // Create artifact and builds
-  const artifact = new BundleArtifact(pkg, [
-    BundleArtifact.generateBuild(format, support, platforms),
-  ]);
+  if (platforms.includes('browser')) {
+    lowestPlatform = 'browser';
+  } else if (platforms.includes('native')) {
+    lowestPlatform = 'native';
+  }
+
+  // Generate artifact and builds
+  const artifact = new BundleArtifact(pkg, [{ format, support, platform: lowestPlatform }]);
 
   return getBabelConfig(artifact, pkg.getFeatureFlags());
 }
 
 export function createRootConfig(): ConfigStructure {
-  const artifact = new BundleArtifact(project.rootPackage, [{ format, platform, support }]);
+  const artifact = new BundleArtifact(project.rootPackage, [{ format, platform: 'node', support }]);
   const config = getBabelConfig(artifact, project.rootPackage.getFeatureFlags());
 
   return {

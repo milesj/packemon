@@ -419,14 +419,21 @@ describe('Packemon', () => {
       ]);
     });
 
-    it.only('generates build artifacts for projects with multiple platforms', async () => {
+    it('generates build artifacts for projects with multiple platforms', async () => {
       packemon = new Packemon(getFixturePath('project-multi-platform'));
 
       const packages = await packemon.loadConfiguredPackages();
 
       packemon.generateArtifacts(packages);
 
-      console.log(packages[0].configs, packages[0].artifacts[0]);
+      expect(packages[0].artifacts[0].builds).toEqual([
+        { format: 'lib', platform: 'browser', support: 'stable' },
+        { format: 'esm', platform: 'browser', support: 'stable' },
+      ]);
+
+      expect(packages[0].artifacts[1].builds).toEqual([
+        { format: 'lib', platform: 'node', support: 'stable' },
+      ]);
     });
   });
 
@@ -459,14 +466,14 @@ describe('Packemon', () => {
           formats: ['lib'],
           inputs: { index: 'src/index.ts' },
           namespace: '',
-          platforms: ['node'],
+          platform: 'node',
           support: 'stable',
         },
         {
           formats: ['lib', 'esm'],
           inputs: { index: 'src/index.ts' },
           namespace: '',
-          platforms: ['browser'],
+          platform: 'browser',
           support: 'current',
         },
       ]);
@@ -477,7 +484,7 @@ describe('Packemon', () => {
           formats: ['lib'],
           inputs: { core: './src/core.ts' },
           namespace: '',
-          platforms: ['node'],
+          platform: 'node',
           support: 'stable',
         },
       ]);
@@ -488,7 +495,7 @@ describe('Packemon', () => {
           formats: ['lib', 'esm', 'umd'],
           inputs: { index: 'src/index.ts' },
           namespace: 'Test',
-          platforms: ['browser'],
+          platform: 'browser',
           support: 'stable',
         },
       ]);
