@@ -16,11 +16,11 @@ export interface PresetEnvOptions {
   ignoreBrowserslistConfig?: boolean;
   include?: string[];
   loose?: boolean;
-  modules?: 'amd' | 'umd' | 'systemjs' | 'commonjs' | 'cjs' | 'auto' | false;
+  modules?: 'amd' | 'auto' | 'cjs' | 'commonjs' | 'systemjs' | 'umd' | false;
   shippedProposals?: boolean;
   spec?: boolean;
-  targets?: string | string[] | { [key: string]: string | string[] };
-  useBuiltIns?: 'usage' | 'entry' | false;
+  targets?: string[] | string | { [key: string]: string[] | string };
+  useBuiltIns?: 'entry' | 'usage' | false;
 }
 
 function getPlatformEnvOptions(
@@ -96,7 +96,7 @@ function getSharedConfig(
 export function getBabelInputConfig(
   artifact: BundleArtifact,
   features: FeatureFlags,
-): Omit<ConfigStructure, 'include' | 'exclude'> {
+): Omit<ConfigStructure, 'exclude' | 'include'> {
   const plugins: PluginItem[] = [];
   const presets: PluginItem[] = [];
 

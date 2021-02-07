@@ -19,14 +19,14 @@ declare global {
 export type Platform = 'browser' | 'native' | 'node'; // electron
 
 export type Support =
-  // Unsupported version
-  | 'legacy'
-  // Oldest version still supported
-  | 'stable'
   // Latest version
   | 'current'
   // Next/future version
-  | 'experimental';
+  | 'experimental'
+  // Unsupported version
+  | 'legacy'
+  // Oldest version still supported
+  | 'stable';
 
 export type Environment = `${Platform}:${Support}`;
 
@@ -50,11 +50,11 @@ export type NodeFormat =
   // ECMAScript modules with ".mjs" file extension
   | 'mjs';
 
-export type Format = NodeFormat | BrowserFormat;
+export type Format = BrowserFormat | NodeFormat;
 
-export type AnalyzeType = 'none' | 'sunburst' | 'treemap' | 'network';
+export type AnalyzeType = 'network' | 'none' | 'sunburst' | 'treemap';
 
-export type DeclarationType = 'none' | 'standard' | 'api';
+export type DeclarationType = 'api' | 'none' | 'standard';
 
 // PACKAGES
 
@@ -80,7 +80,7 @@ export interface PackageConfig {
 
 // BUILD
 
-export type ArtifactState = 'pending' | 'building' | 'passed' | 'failed';
+export type ArtifactState = 'building' | 'failed' | 'passed' | 'pending';
 
 export interface BuildOptions {
   addEngines?: boolean;
@@ -143,7 +143,7 @@ declare module 'rollup' {
 
 // OTHER
 
-export type Awaitable = void | Promise<void>;
+export type Awaitable = Promise<void> | void;
 
 export type TSConfigStructure = ts.ParsedCommandLine;
 

@@ -40,7 +40,7 @@ export default abstract class Artifact<T extends object = {}> {
 
   protected logWithSource(
     message: string,
-    level: 'info' | 'warn' | 'error',
+    level: 'error' | 'info' | 'warn',
     {
       id,
       output,

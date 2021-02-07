@@ -30,7 +30,7 @@ export const NODE_SUPPORTED_VERSIONS: { [K in Support]: string } = {
   experimental: '15.0.0',
 };
 
-export const NPM_SUPPORTED_VERSIONS: { [K in Support]: string | string[] } = {
+export const NPM_SUPPORTED_VERSIONS: { [K in Support]: string[] | string } = {
   legacy: ['5.6.0', '6.0.0'],
   stable: '6.1.0',
   current: '6.9.0',
@@ -38,7 +38,7 @@ export const NPM_SUPPORTED_VERSIONS: { [K in Support]: string | string[] } = {
 };
 
 // Based on browserslist: https://github.com/browserslist/browserslist
-export const BROWSER_TARGETS: { [K in Support]: string | string[] } = {
+export const BROWSER_TARGETS: { [K in Support]: string[] | string } = {
   legacy: 'IE 10',
   stable: 'IE 11',
   current: 'defaults',

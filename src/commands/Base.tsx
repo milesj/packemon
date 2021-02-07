@@ -10,7 +10,7 @@ export interface CommonOptions {
 export abstract class BaseCommand<
   O extends object = {},
   P extends PrimitiveType[] = string[]
-> extends Command<O & GlobalOptions & CommonOptions, P> {
+> extends Command<CommonOptions & GlobalOptions & O, P> {
   @Arg.String('Current working directory to run in', { category: 'global' })
   cwd: string = '';
 
