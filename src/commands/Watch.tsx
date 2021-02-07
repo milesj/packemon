@@ -1,5 +1,6 @@
 import { applyStyle, Arg, Config } from '@boost/cli';
 import { Bind, formatMs } from '@boost/common';
+import { loadModule } from '../helpers/loadModule';
 import Package from '../Package';
 import { BaseCommand } from './Base';
 
@@ -26,7 +27,10 @@ export class WatchCommand extends BaseCommand<WatchOptions> {
 
   async run() {
     const { packemon } = this;
-    const chokidar = this.loadChokidar() as typeof import('chokidar');
+    const chokidar = loadModule(
+      'chokidar',
+      'Chokidar is required for file watching.',
+    ) as typeof import('chokidar');
 
     packemon.debug('Starting `watch` process');
 
@@ -67,17 +71,6 @@ export class WatchCommand extends BaseCommand<WatchOptions> {
     if (changedPkg) {
       this.packagesToRebuild.add(changedPkg);
       this.triggerRebuilds();
-    }
-  }
-
-  loadChokidar(): unknown {
-    try {
-      // eslint-disable-next-line global-require, import/no-extraneous-dependencies
-      return require('chokidar');
-    } catch {
-      throw new Error(
-        'Chokidar is required for file watching. Please install with `yarn add --dev chokidar`.',
-      );
     }
   }
 

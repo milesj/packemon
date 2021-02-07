@@ -1,11 +1,11 @@
 /* eslint-disable require-atomic-updates, no-param-reassign, @typescript-eslint/member-ordering */
 
 import fs from 'fs-extra';
-import ts from 'typescript';
 import { Memoize, optimal, Path, toArray } from '@boost/common';
 import { createDebugger, Debugger } from '@boost/debug';
 import Artifact from './Artifact';
 import { FORMATS_BROWSER, FORMATS_NATIVE, FORMATS_NODE } from './constants';
+import { loadModule } from './helpers/loadModule';
 import Project from './Project';
 import { packemonBlueprint } from './schemas';
 import {
@@ -231,6 +231,11 @@ export default class Package {
     if (!tsconfigJsonPath.exists()) {
       return undefined;
     }
+
+    const ts = loadModule(
+      'typescript',
+      'TypeScript is required for config loading.',
+    ) as typeof import('typescript');
 
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const { config, error } = ts.readConfigFile(tsconfigJsonPath.path(), (name) =>

@@ -1,12 +1,11 @@
 import path from 'path';
 import glob from 'fast-glob';
 import fs from 'fs-extra';
-import { ParsedCommandLine } from 'typescript';
 import { Path } from '@boost/common';
 import { createDebugger, Debugger } from '@boost/debug';
 import { Extractor, ExtractorConfig } from '@microsoft/api-extractor';
 import Artifact from './Artifact';
-import { APIExtractorStructure, DeclarationType, TypesBuild } from './types';
+import { APIExtractorStructure, DeclarationType, TSConfigStructure, TypesBuild } from './types';
 
 // eslint-disable-next-line
 const extractorConfig = require(path.join(__dirname, '../api-extractor.json')) as {
@@ -167,7 +166,7 @@ export default class TypesArtifact extends Artifact<TypesBuild> {
 
   // This method only exists so that we can mock in tests.
   // istanbul ignore next
-  protected loadTsconfigJson(): ParsedCommandLine | undefined {
+  protected loadTsconfigJson(): TSConfigStructure | undefined {
     return this.package.tsconfigJson;
   }
 

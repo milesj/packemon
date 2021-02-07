@@ -1,6 +1,5 @@
 /* eslint-disable no-underscore-dangle */
 
-import ts from 'typescript';
 import { PackageStructure } from '@boost/common';
 
 // Platform = The runtime or operating system the code will run in.
@@ -145,7 +144,14 @@ declare module 'rollup' {
 
 export type Awaitable = Promise<void> | void;
 
-export type TSConfigStructure = ts.ParsedCommandLine;
+export interface TSConfigStructure {
+  options: {
+    declarationDir?: string;
+    experimentalDecorators?: boolean;
+    outDir?: string;
+    strict?: boolean;
+  };
+}
 
 export interface APIExtractorStructure {
   projectFolder: string;
