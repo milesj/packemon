@@ -15,7 +15,7 @@ export default function ArtifactList({ artifacts = [], environment }: ArtifactLi
     <>
       {!!environment && (
         <Box marginLeft={1}>
-          <Environment target={environment} />
+          <Environment type={environment} />
         </Box>
       )}
 

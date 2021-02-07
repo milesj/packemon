@@ -279,7 +279,7 @@ export default class Packemon {
       });
     });
 
-    return platformsToCheck.size > 1 && libFormatCount >= 1;
+    return platformsToCheck.size > 1 && libFormatCount > 1;
   }
 
   /**

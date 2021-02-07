@@ -25,7 +25,7 @@ export default function PackageRow({ package: pkg }: PackageRowProps) {
 
         {envs.length === 1 && (
           <Box marginLeft={1}>
-            <Environment target={envs[0]} />
+            <Environment type={envs[0]} />
           </Box>
         )}
       </Box>

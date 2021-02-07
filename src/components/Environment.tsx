@@ -9,7 +9,7 @@ export type EnvironmentProps =
       platform: Platform;
       support: Support;
     }
-  | { target: EnvType };
+  | { type: EnvType };
 
 function trimVersion(version: string) {
   const parts = version.split('.');
@@ -44,8 +44,8 @@ export default function Environment(props: EnvironmentProps) {
   let platform: string;
   let support: string;
 
-  if ('target' in props) {
-    [platform, support] = props.target.split(':');
+  if ('type' in props) {
+    [platform, support] = props.type.split(':');
   } else {
     ({ platform, support } = props);
   }
