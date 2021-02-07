@@ -36,7 +36,7 @@ const features: FeatureProps[][] = [
       title: '🗂 Agnostic project structure',
       description: (
         <>
-          Whether your project repository contains one package (solorepo) or many packages
+          Whether your project repository contains one package (polyrepo) or many packages
           (monorepo), Packemon will handle any and all patterns.
         </>
       ),

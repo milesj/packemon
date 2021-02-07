@@ -6,7 +6,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 Packemon has been designed to build and prepare packages for distribution, and as such, supports
-workspaces (monorepos) or single packages (solorepos). By default, only packages configured for
+workspaces (monorepos) or single packages (polyrepo). By default, only packages configured for
 Packemon will be built (denoted by a `packemon` block in `package.json`). This allows specific
 packages to be completely ignored if need be.
 
@@ -32,13 +32,13 @@ This would look something like the following.
 
 <Tabs
   groupId="package-structure"
-  defaultValue="solo"
+  defaultValue="poly"
   values={[
-    { label: 'Solorepo', value: 'solo' },
+    { label: 'Polyrepo', value: 'poly' },
     { label: 'Monorepo', value: 'mono' },
   ]}
 >
-  <TabItem value="solo">
+  <TabItem value="poly">
 
 ```
 /

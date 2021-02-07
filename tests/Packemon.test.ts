@@ -110,7 +110,7 @@ describe('Packemon', () => {
       await expect(() => packemon.clean()).rejects.toThrow('Missing');
     });
 
-    describe('solorepo', () => {
+    describe('polyrepo', () => {
       beforeEach(() => {
         packemon = new Packemon(getFixturePath('project'));
       });
@@ -175,7 +175,7 @@ describe('Packemon', () => {
       spy.mockRestore();
     });
 
-    describe('solorepo', () => {
+    describe('polyrepo', () => {
       beforeEach(() => {
         packemon = new Packemon(getFixturePath('project'));
       });
@@ -234,7 +234,7 @@ describe('Packemon', () => {
       );
     });
 
-    describe('solorepo', () => {
+    describe('polyrepo', () => {
       it('sets workspaces property to an empty list', async () => {
         packemon = new Packemon(getFixturePath('workspace-not-configured'));
 
@@ -252,7 +252,7 @@ describe('Packemon', () => {
         expect(packages).toEqual([
           {
             metadata: packemon.project.createWorkspaceMetadata(new Path(root, 'package.json')),
-            package: { name: 'solorepo' },
+            package: { name: 'polyrepo' },
           },
         ]);
       });
