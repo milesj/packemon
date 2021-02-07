@@ -325,6 +325,1030 @@ Array [
 ]
 `;
 
+exports[`Outputs transforms for case: Generators 1`] = `
+Array [
+  "/cjs/index-node-current-cjs.cjs",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: current, Format: cjs
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function* gen() {}
+
+function runGen() {
+  for (const iterator of gen()) {
+    console.log(iterator);
+  }
+}
+
+exports.gen = gen;
+exports.runGen = runGen;
+",
+]
+`;
+
+exports[`Outputs transforms for case: Generators 2`] = `
+Array [
+  "/cjs/index-node-experimental-cjs.cjs",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: experimental, Format: cjs
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function* gen() {}
+
+function runGen() {
+  for (const iterator of gen()) {
+    console.log(iterator);
+  }
+}
+
+exports.gen = gen;
+exports.runGen = runGen;
+",
+]
+`;
+
+exports[`Outputs transforms for case: Generators 3`] = `
+Array [
+  "/cjs/index-node-legacy-cjs.cjs",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: legacy, Format: cjs
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function* gen() {}
+
+function runGen() {
+  for (const iterator of gen()) {
+    console.log(iterator);
+  }
+}
+
+exports.gen = gen;
+exports.runGen = runGen;
+",
+]
+`;
+
+exports[`Outputs transforms for case: Generators 4`] = `
+Array [
+  "/cjs/index-node-stable-cjs.cjs",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: cjs
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function* gen() {}
+
+function runGen() {
+  for (const iterator of gen()) {
+    console.log(iterator);
+  }
+}
+
+exports.gen = gen;
+exports.runGen = runGen;
+",
+]
+`;
+
+exports[`Outputs transforms for case: Generators 5`] = `
+Array [
+  "/esm/index-browser-current-esm.js",
+  "import _regeneratorRuntime from \\"@babel/runtime/regenerator\\";
+
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === \\"undefined\\" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === \\"number\\") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError(\\"Invalid attempt to iterate non-iterable instance.\\\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\\"); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \\"string\\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \\"Object\\" && o.constructor) n = o.constructor.name; if (n === \\"Map\\" || n === \\"Set\\") return Array.from(o); if (n === \\"Arguments\\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+var _marked = /*#__PURE__*/_regeneratorRuntime.mark(gen);
+
+// Generated with Packemon: https://packemon.dev
+// Platform: browser, Support: current, Format: esm
+function gen() {
+  return _regeneratorRuntime.wrap(function gen$(_context) {
+    while (1) {
+      switch (_context.prev = _context.next) {
+        case 0:
+        case \\"end\\":
+          return _context.stop();
+      }
+    }
+  }, _marked);
+}
+
+function runGen() {
+  var _iterator = _createForOfIteratorHelper(gen()),
+      _step;
+
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      var iterator = _step.value;
+      console.log(iterator);
+    }
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
+}
+
+export { gen, runGen };
+//# sourceMappingURL=index-browser-current-esm.js.map
+",
+]
+`;
+
+exports[`Outputs transforms for case: Generators 6`] = `
+Array [
+  "/esm/index-browser-experimental-esm.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: browser, Support: experimental, Format: esm
+function* gen() {}
+
+function runGen() {
+  for (const iterator of gen()) {
+    console.log(iterator);
+  }
+}
+
+export { gen, runGen };
+//# sourceMappingURL=index-browser-experimental-esm.js.map
+",
+]
+`;
+
+exports[`Outputs transforms for case: Generators 7`] = `
+Array [
+  "/esm/index-browser-legacy-esm.js",
+  "import _regeneratorRuntime from \\"@babel/runtime/regenerator\\";
+
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === \\"undefined\\" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === \\"number\\") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError(\\"Invalid attempt to iterate non-iterable instance.\\\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\\"); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \\"string\\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \\"Object\\" && o.constructor) n = o.constructor.name; if (n === \\"Map\\" || n === \\"Set\\") return Array.from(o); if (n === \\"Arguments\\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+var _marked = /*#__PURE__*/_regeneratorRuntime.mark(gen);
+
+// Generated with Packemon: https://packemon.dev
+// Platform: browser, Support: legacy, Format: esm
+function gen() {
+  return _regeneratorRuntime.wrap(function gen$(_context) {
+    while (1) {
+      switch (_context.prev = _context.next) {
+        case 0:
+        case \\"end\\":
+          return _context.stop();
+      }
+    }
+  }, _marked);
+}
+
+function runGen() {
+  var _iterator = _createForOfIteratorHelper(gen()),
+      _step;
+
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      var iterator = _step.value;
+      console.log(iterator);
+    }
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
+}
+
+export { gen, runGen };
+//# sourceMappingURL=index-browser-legacy-esm.js.map
+",
+]
+`;
+
+exports[`Outputs transforms for case: Generators 8`] = `
+Array [
+  "/esm/index-browser-stable-esm.js",
+  "import _regeneratorRuntime from \\"@babel/runtime/regenerator\\";
+
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === \\"undefined\\" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === \\"number\\") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError(\\"Invalid attempt to iterate non-iterable instance.\\\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\\"); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \\"string\\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \\"Object\\" && o.constructor) n = o.constructor.name; if (n === \\"Map\\" || n === \\"Set\\") return Array.from(o); if (n === \\"Arguments\\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+var _marked = /*#__PURE__*/_regeneratorRuntime.mark(gen);
+
+// Generated with Packemon: https://packemon.dev
+// Platform: browser, Support: stable, Format: esm
+function gen() {
+  return _regeneratorRuntime.wrap(function gen$(_context) {
+    while (1) {
+      switch (_context.prev = _context.next) {
+        case 0:
+        case \\"end\\":
+          return _context.stop();
+      }
+    }
+  }, _marked);
+}
+
+function runGen() {
+  var _iterator = _createForOfIteratorHelper(gen()),
+      _step;
+
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      var iterator = _step.value;
+      console.log(iterator);
+    }
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
+}
+
+export { gen, runGen };
+//# sourceMappingURL=index-browser-stable-esm.js.map
+",
+]
+`;
+
+exports[`Outputs transforms for case: Generators 9`] = `
+Array [
+  "/lib/index-browser-current-lib.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: browser, Support: current, Format: lib
+'use strict';
+
+var _regeneratorRuntime = require(\\"@babel/runtime/regenerator\\");
+
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === \\"undefined\\" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === \\"number\\") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError(\\"Invalid attempt to iterate non-iterable instance.\\\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\\"); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \\"string\\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \\"Object\\" && o.constructor) n = o.constructor.name; if (n === \\"Map\\" || n === \\"Set\\") return Array.from(o); if (n === \\"Arguments\\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+var _marked = /*#__PURE__*/_regeneratorRuntime.mark(gen);
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function gen() {
+  return _regeneratorRuntime.wrap(function gen$(_context) {
+    while (1) {
+      switch (_context.prev = _context.next) {
+        case 0:
+        case \\"end\\":
+          return _context.stop();
+      }
+    }
+  }, _marked);
+}
+
+function runGen() {
+  var _iterator = _createForOfIteratorHelper(gen()),
+      _step;
+
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      var iterator = _step.value;
+      console.log(iterator);
+    }
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
+}
+
+exports.gen = gen;
+exports.runGen = runGen;
+//# sourceMappingURL=index-browser-current-lib.js.map
+",
+]
+`;
+
+exports[`Outputs transforms for case: Generators 10`] = `
+Array [
+  "/lib/index-browser-experimental-lib.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: browser, Support: experimental, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function* gen() {}
+
+function runGen() {
+  for (const iterator of gen()) {
+    console.log(iterator);
+  }
+}
+
+exports.gen = gen;
+exports.runGen = runGen;
+//# sourceMappingURL=index-browser-experimental-lib.js.map
+",
+]
+`;
+
+exports[`Outputs transforms for case: Generators 11`] = `
+Array [
+  "/lib/index-browser-legacy-lib.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: browser, Support: legacy, Format: lib
+'use strict';
+
+var _regeneratorRuntime = require(\\"@babel/runtime/regenerator\\");
+
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === \\"undefined\\" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === \\"number\\") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError(\\"Invalid attempt to iterate non-iterable instance.\\\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\\"); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \\"string\\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \\"Object\\" && o.constructor) n = o.constructor.name; if (n === \\"Map\\" || n === \\"Set\\") return Array.from(o); if (n === \\"Arguments\\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+var _marked = /*#__PURE__*/_regeneratorRuntime.mark(gen);
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function gen() {
+  return _regeneratorRuntime.wrap(function gen$(_context) {
+    while (1) {
+      switch (_context.prev = _context.next) {
+        case 0:
+        case \\"end\\":
+          return _context.stop();
+      }
+    }
+  }, _marked);
+}
+
+function runGen() {
+  var _iterator = _createForOfIteratorHelper(gen()),
+      _step;
+
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      var iterator = _step.value;
+      console.log(iterator);
+    }
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
+}
+
+exports.gen = gen;
+exports.runGen = runGen;
+//# sourceMappingURL=index-browser-legacy-lib.js.map
+",
+]
+`;
+
+exports[`Outputs transforms for case: Generators 12`] = `
+Array [
+  "/lib/index-browser-stable-lib.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: browser, Support: stable, Format: lib
+'use strict';
+
+var _regeneratorRuntime = require(\\"@babel/runtime/regenerator\\");
+
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === \\"undefined\\" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === \\"number\\") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError(\\"Invalid attempt to iterate non-iterable instance.\\\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\\"); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \\"string\\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \\"Object\\" && o.constructor) n = o.constructor.name; if (n === \\"Map\\" || n === \\"Set\\") return Array.from(o); if (n === \\"Arguments\\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+var _marked = /*#__PURE__*/_regeneratorRuntime.mark(gen);
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function gen() {
+  return _regeneratorRuntime.wrap(function gen$(_context) {
+    while (1) {
+      switch (_context.prev = _context.next) {
+        case 0:
+        case \\"end\\":
+          return _context.stop();
+      }
+    }
+  }, _marked);
+}
+
+function runGen() {
+  var _iterator = _createForOfIteratorHelper(gen()),
+      _step;
+
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      var iterator = _step.value;
+      console.log(iterator);
+    }
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
+}
+
+exports.gen = gen;
+exports.runGen = runGen;
+//# sourceMappingURL=index-browser-stable-lib.js.map
+",
+]
+`;
+
+exports[`Outputs transforms for case: Generators 13`] = `
+Array [
+  "/lib/index-native-current-lib.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: native, Support: current, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function* gen() {}
+
+function runGen() {
+  for (const iterator of gen()) {
+    console.log(iterator);
+  }
+}
+
+exports.gen = gen;
+exports.runGen = runGen;
+//# sourceMappingURL=index-native-current-lib.js.map
+",
+]
+`;
+
+exports[`Outputs transforms for case: Generators 14`] = `
+Array [
+  "/lib/index-native-experimental-lib.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: native, Support: experimental, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function* gen() {}
+
+function runGen() {
+  for (const iterator of gen()) {
+    console.log(iterator);
+  }
+}
+
+exports.gen = gen;
+exports.runGen = runGen;
+//# sourceMappingURL=index-native-experimental-lib.js.map
+",
+]
+`;
+
+exports[`Outputs transforms for case: Generators 15`] = `
+Array [
+  "/lib/index-native-legacy-lib.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: native, Support: legacy, Format: lib
+'use strict';
+
+var _regeneratorRuntime = require(\\"@babel/runtime/regenerator\\");
+
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === \\"undefined\\" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === \\"number\\") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError(\\"Invalid attempt to iterate non-iterable instance.\\\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\\"); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \\"string\\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \\"Object\\" && o.constructor) n = o.constructor.name; if (n === \\"Map\\" || n === \\"Set\\") return Array.from(o); if (n === \\"Arguments\\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+var _marked = /*#__PURE__*/_regeneratorRuntime.mark(gen);
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function gen() {
+  return _regeneratorRuntime.wrap(function gen$(_context) {
+    while (1) {
+      switch (_context.prev = _context.next) {
+        case 0:
+        case \\"end\\":
+          return _context.stop();
+      }
+    }
+  }, _marked);
+}
+
+function runGen() {
+  var _iterator = _createForOfIteratorHelper(gen()),
+      _step;
+
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      var iterator = _step.value;
+      console.log(iterator);
+    }
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
+}
+
+exports.gen = gen;
+exports.runGen = runGen;
+//# sourceMappingURL=index-native-legacy-lib.js.map
+",
+]
+`;
+
+exports[`Outputs transforms for case: Generators 16`] = `
+Array [
+  "/lib/index-native-stable-lib.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: native, Support: stable, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function* gen() {}
+
+function runGen() {
+  for (const iterator of gen()) {
+    console.log(iterator);
+  }
+}
+
+exports.gen = gen;
+exports.runGen = runGen;
+//# sourceMappingURL=index-native-stable-lib.js.map
+",
+]
+`;
+
+exports[`Outputs transforms for case: Generators 17`] = `
+Array [
+  "/lib/index-node-current-lib.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: current, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function* gen() {}
+
+function runGen() {
+  for (const iterator of gen()) {
+    console.log(iterator);
+  }
+}
+
+exports.gen = gen;
+exports.runGen = runGen;
+",
+]
+`;
+
+exports[`Outputs transforms for case: Generators 18`] = `
+Array [
+  "/lib/index-node-experimental-lib.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: experimental, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function* gen() {}
+
+function runGen() {
+  for (const iterator of gen()) {
+    console.log(iterator);
+  }
+}
+
+exports.gen = gen;
+exports.runGen = runGen;
+",
+]
+`;
+
+exports[`Outputs transforms for case: Generators 19`] = `
+Array [
+  "/lib/index-node-legacy-lib.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: legacy, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function* gen() {}
+
+function runGen() {
+  for (const iterator of gen()) {
+    console.log(iterator);
+  }
+}
+
+exports.gen = gen;
+exports.runGen = runGen;
+",
+]
+`;
+
+exports[`Outputs transforms for case: Generators 20`] = `
+Array [
+  "/lib/index-node-stable-lib.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function* gen() {}
+
+function runGen() {
+  for (const iterator of gen()) {
+    console.log(iterator);
+  }
+}
+
+exports.gen = gen;
+exports.runGen = runGen;
+",
+]
+`;
+
+exports[`Outputs transforms for case: Generators 21`] = `
+Array [
+  "/mjs/index-node-current-mjs.mjs",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: current, Format: mjs
+function* gen() {}
+
+function runGen() {
+  for (const iterator of gen()) {
+    console.log(iterator);
+  }
+}
+
+export { gen, runGen };
+",
+]
+`;
+
+exports[`Outputs transforms for case: Generators 22`] = `
+Array [
+  "/mjs/index-node-experimental-mjs.mjs",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: experimental, Format: mjs
+function* gen() {}
+
+function runGen() {
+  for (const iterator of gen()) {
+    console.log(iterator);
+  }
+}
+
+export { gen, runGen };
+",
+]
+`;
+
+exports[`Outputs transforms for case: Generators 23`] = `
+Array [
+  "/mjs/index-node-legacy-mjs.mjs",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: legacy, Format: mjs
+function* gen() {}
+
+function runGen() {
+  for (const iterator of gen()) {
+    console.log(iterator);
+  }
+}
+
+export { gen, runGen };
+",
+]
+`;
+
+exports[`Outputs transforms for case: Generators 24`] = `
+Array [
+  "/mjs/index-node-stable-mjs.mjs",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: mjs
+function* gen() {}
+
+function runGen() {
+  for (const iterator of gen()) {
+    console.log(iterator);
+  }
+}
+
+export { gen, runGen };
+",
+]
+`;
+
+exports[`Outputs transforms for case: Generators 25`] = `
+Array [
+  "/package.json",
+  Object {
+    "name": "examples",
+  },
+]
+`;
+
+exports[`Outputs transforms for case: Generators 26`] = `
+Array [
+  "/umd/index-browser-current-umd.js",
+  "(function (global, factory) {
+  if (typeof define === \\"function\\" && define.amd) {
+    define([\\"exports\\", \\"@babel/runtime/regenerator\\"], factory);
+  } else if (typeof exports !== \\"undefined\\") {
+    factory(exports, require(\\"@babel/runtime/regenerator\\"));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.regenerator);
+    global.examples = mod.exports;
+  }
+})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports, _regenerator) {
+  \\"use strict\\";
+
+  Object.defineProperty(_exports, \\"__esModule\\", {
+    value: true
+  });
+  _exports.gen = gen;
+  _exports.runGen = runGen;
+  _regenerator = _interopRequireDefault(_regenerator);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === \\"undefined\\" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === \\"number\\") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError(\\"Invalid attempt to iterate non-iterable instance.\\\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\\"); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+
+  function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \\"string\\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \\"Object\\" && o.constructor) n = o.constructor.name; if (n === \\"Map\\" || n === \\"Set\\") return Array.from(o); if (n === \\"Arguments\\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+  function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+  var _marked = /*#__PURE__*/_regenerator.default.mark(gen);
+
+  // Generated with Packemon: https://packemon.dev
+  // Platform: browser, Support: current, Format: umd
+  function gen() {
+    return _regenerator.default.wrap(function gen$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+          case \\"end\\":
+            return _context.stop();
+        }
+      }
+    }, _marked);
+  }
+
+  function runGen() {
+    var _iterator = _createForOfIteratorHelper(gen()),
+        _step;
+
+    try {
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+        var iterator = _step.value;
+        console.log(iterator);
+      }
+    } catch (err) {
+      _iterator.e(err);
+    } finally {
+      _iterator.f();
+    }
+  }
+});
+//# sourceMappingURL=index-browser-current-umd.js.map
+",
+]
+`;
+
+exports[`Outputs transforms for case: Generators 27`] = `
+Array [
+  "/umd/index-browser-experimental-umd.js",
+  "(function (global, factory) {
+  if (typeof define === \\"function\\" && define.amd) {
+    define([\\"exports\\"], factory);
+  } else if (typeof exports !== \\"undefined\\") {
+    factory(exports);
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports);
+    global.examples = mod.exports;
+  }
+})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports) {
+  \\"use strict\\";
+
+  Object.defineProperty(_exports, \\"__esModule\\", {
+    value: true
+  });
+  _exports.gen = gen;
+  _exports.runGen = runGen;
+
+  // Generated with Packemon: https://packemon.dev
+  // Platform: browser, Support: experimental, Format: umd
+  function* gen() {}
+
+  function runGen() {
+    for (const iterator of gen()) {
+      console.log(iterator);
+    }
+  }
+});
+//# sourceMappingURL=index-browser-experimental-umd.js.map
+",
+]
+`;
+
+exports[`Outputs transforms for case: Generators 28`] = `
+Array [
+  "/umd/index-browser-legacy-umd.js",
+  "(function (global, factory) {
+  if (typeof define === \\"function\\" && define.amd) {
+    define([\\"exports\\", \\"@babel/runtime/regenerator\\"], factory);
+  } else if (typeof exports !== \\"undefined\\") {
+    factory(exports, require(\\"@babel/runtime/regenerator\\"));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.regenerator);
+    global.examples = mod.exports;
+  }
+})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports, _regenerator) {
+  \\"use strict\\";
+
+  Object.defineProperty(_exports, \\"__esModule\\", {
+    value: true
+  });
+  _exports.gen = gen;
+  _exports.runGen = runGen;
+  _regenerator = _interopRequireDefault(_regenerator);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === \\"undefined\\" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === \\"number\\") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError(\\"Invalid attempt to iterate non-iterable instance.\\\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\\"); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+
+  function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \\"string\\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \\"Object\\" && o.constructor) n = o.constructor.name; if (n === \\"Map\\" || n === \\"Set\\") return Array.from(o); if (n === \\"Arguments\\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+  function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+  var _marked = /*#__PURE__*/_regenerator.default.mark(gen);
+
+  // Generated with Packemon: https://packemon.dev
+  // Platform: browser, Support: legacy, Format: umd
+  function gen() {
+    return _regenerator.default.wrap(function gen$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+          case \\"end\\":
+            return _context.stop();
+        }
+      }
+    }, _marked);
+  }
+
+  function runGen() {
+    var _iterator = _createForOfIteratorHelper(gen()),
+        _step;
+
+    try {
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+        var iterator = _step.value;
+        console.log(iterator);
+      }
+    } catch (err) {
+      _iterator.e(err);
+    } finally {
+      _iterator.f();
+    }
+  }
+});
+//# sourceMappingURL=index-browser-legacy-umd.js.map
+",
+]
+`;
+
+exports[`Outputs transforms for case: Generators 29`] = `
+Array [
+  "/umd/index-browser-stable-umd.js",
+  "(function (global, factory) {
+  if (typeof define === \\"function\\" && define.amd) {
+    define([\\"exports\\", \\"@babel/runtime/regenerator\\"], factory);
+  } else if (typeof exports !== \\"undefined\\") {
+    factory(exports, require(\\"@babel/runtime/regenerator\\"));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.regenerator);
+    global.examples = mod.exports;
+  }
+})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports, _regenerator) {
+  \\"use strict\\";
+
+  Object.defineProperty(_exports, \\"__esModule\\", {
+    value: true
+  });
+  _exports.gen = gen;
+  _exports.runGen = runGen;
+  _regenerator = _interopRequireDefault(_regenerator);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === \\"undefined\\" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === \\"number\\") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError(\\"Invalid attempt to iterate non-iterable instance.\\\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\\"); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+
+  function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \\"string\\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \\"Object\\" && o.constructor) n = o.constructor.name; if (n === \\"Map\\" || n === \\"Set\\") return Array.from(o); if (n === \\"Arguments\\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+  function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+  var _marked = /*#__PURE__*/_regenerator.default.mark(gen);
+
+  // Generated with Packemon: https://packemon.dev
+  // Platform: browser, Support: stable, Format: umd
+  function gen() {
+    return _regenerator.default.wrap(function gen$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+          case \\"end\\":
+            return _context.stop();
+        }
+      }
+    }, _marked);
+  }
+
+  function runGen() {
+    var _iterator = _createForOfIteratorHelper(gen()),
+        _step;
+
+    try {
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+        var iterator = _step.value;
+        console.log(iterator);
+      }
+    } catch (err) {
+      _iterator.e(err);
+    } finally {
+      _iterator.f();
+    }
+  }
+});
+//# sourceMappingURL=index-browser-stable-umd.js.map
+",
+]
+`;
+
 exports[`Outputs transforms for case: Node polyfills 1`] = `
 Array [
   "/cjs/index-node-current-cjs.cjs",

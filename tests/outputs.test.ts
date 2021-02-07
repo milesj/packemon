@@ -114,6 +114,7 @@ describe('Outputs', () => {
 
   const builds = new Map<string, BundleBuild>();
   const cases = {
+    'generators.ts': 'Generators',
     'node-polyfills.ts': 'Node polyfills',
   };
 

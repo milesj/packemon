@@ -182,8 +182,8 @@ export function getBabelOutputConfig(
       { inlineHelpers: true, target: isFuture ? 'es6' : 'es5' },
     ]);
 
-    // Transform generators for legacy
-    if (!isFuture) {
+    // Transform generators to Regenerator
+    if (support !== 'experimental') {
       plugins.push([
         resolve('@babel/plugin-transform-runtime'),
         { helpers: false, regenerator: true, useESModules: format === 'esm' },
