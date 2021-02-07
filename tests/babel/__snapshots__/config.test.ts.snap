@@ -1,5 +1,144 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`createConfig() returns the correct config 1`] = `
+Object {
+  "plugins": Array [
+    Array [
+      "@babel/plugin-proposal-decorators",
+      Object {
+        "legacy": true,
+      },
+    ],
+    Array [
+      "@babel/plugin-proposal-class-properties",
+      Object {
+        "loose": true,
+      },
+    ],
+    Array [
+      "@babel/plugin-proposal-private-methods",
+      Object {
+        "loose": true,
+      },
+    ],
+    Object {
+      "visitor": Object {
+        "Identifier": Object {
+          "enter": [Function],
+        },
+      },
+    },
+  ],
+  "presets": Array [
+    Array [
+      "@babel/preset-env",
+      Object {
+        "bugfixes": true,
+        "exclude": Array [
+          "@babel/plugin-transform-regenerator",
+          "@babel/plugin-transform-async-to-generator",
+        ],
+        "loose": false,
+        "modules": "cjs",
+        "shippedProposals": true,
+        "spec": true,
+        "targets": Object {
+          "node": "10.3.0",
+        },
+        "useBuiltIns": false,
+      },
+    ],
+    Array [
+      "@babel/preset-typescript",
+      Object {
+        "allowDeclareFields": true,
+      },
+    ],
+    Array [
+      "@babel/preset-react",
+      Object {
+        "development": true,
+        "throwIfNamespace": true,
+      },
+    ],
+  ],
+}
+`;
+
+exports[`createRootConfig() returns the correct config 1`] = `
+Object {
+  "babelrc": true,
+  "overrides": Array [
+    Object {
+      "presets": Array [
+        "@babel/preset-flow",
+      ],
+      "test": /node_modules\\\\/\\(\\(jest-\\)\\?react-native\\|@react-native\\(-community\\)\\?\\)/iu,
+    },
+  ],
+  "plugins": Array [
+    Array [
+      "@babel/plugin-proposal-decorators",
+      Object {
+        "legacy": true,
+      },
+    ],
+    Array [
+      "@babel/plugin-proposal-class-properties",
+      Object {
+        "loose": true,
+      },
+    ],
+    Array [
+      "@babel/plugin-proposal-private-methods",
+      Object {
+        "loose": true,
+      },
+    ],
+    Object {
+      "visitor": Object {
+        "Identifier": Object {
+          "enter": [Function],
+        },
+      },
+    },
+  ],
+  "presets": Array [
+    Array [
+      "@babel/preset-env",
+      Object {
+        "bugfixes": true,
+        "exclude": Array [
+          "@babel/plugin-transform-regenerator",
+          "@babel/plugin-transform-async-to-generator",
+        ],
+        "loose": false,
+        "modules": "cjs",
+        "shippedProposals": true,
+        "spec": true,
+        "targets": Object {
+          "node": "10.3.0",
+        },
+        "useBuiltIns": false,
+      },
+    ],
+    Array [
+      "@babel/preset-typescript",
+      Object {
+        "allowDeclareFields": true,
+      },
+    ],
+    Array [
+      "@babel/preset-react",
+      Object {
+        "development": true,
+        "throwIfNamespace": true,
+      },
+    ],
+  ],
+}
+`;
+
 exports[`getBabelInputConfig() doesnt include typescript decorators if \`typescript\` feature flag is false 1`] = `
 Object {
   "babelrc": true,

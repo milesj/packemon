@@ -5,10 +5,11 @@ import { BROWSER_TARGETS, NATIVE_TARGETS, NODE_SUPPORTED_VERSIONS } from '../con
 import { Environment as EnvType, Platform, Support } from '../types';
 
 export type EnvironmentProps =
-  {
+  | {
       platform: Platform;
       support: Support;
-    } | { target: EnvType };
+    }
+  | { target: EnvType };
 
 function trimVersion(version: string) {
   const parts = version.split('.');

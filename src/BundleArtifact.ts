@@ -28,12 +28,19 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
   protected debug!: Debugger;
 
   static generateBuild(format: Format, support: Support, platforms: Platform[]): BundleBuild {
-    let platform: Platform = platforms[0] || 'browser';
+    let platform: Platform;
 
     if (format === 'cjs' || format === 'mjs') {
       platform = 'node';
-    } else if (format === 'esm' || format === 'umd') {
+    } else if (format === 'esm' || format === 'umd' || platforms.length === 0) {
       platform = 'browser';
+      // Order by lowest platform
+    } else if (platforms.includes('browser')) {
+      platform = 'browser';
+    } else if (platforms.includes('native')) {
+      platform = 'native';
+    } else {
+      platform = 'node';
     }
 
     return {

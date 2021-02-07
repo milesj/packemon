@@ -1,3 +1,4 @@
+import { createConfig, createRootConfig } from '../../src/babel';
 import { getBabelInputConfig, getBabelOutputConfig } from '../../src/babel/config';
 import { Format, Platform, Support } from '../../src/types';
 
@@ -123,5 +124,17 @@ describe('getBabelOutputConfig()', () => {
         babelrcRoots: ['packages/*'],
       }),
     );
+  });
+});
+
+describe('createRootConfig()', () => {
+  it('returns the correct config', () => {
+    expect(createRootConfig()).toMatchSnapshot();
+  });
+});
+
+describe('createConfig()', () => {
+  it('returns the correct config', () => {
+    expect(createConfig(process.cwd())).toMatchSnapshot();
   });
 });

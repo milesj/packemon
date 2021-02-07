@@ -17,7 +17,6 @@ Packemon can either be installed as a development or global dependency.
 >
   <TabItem value="yarn">
 
-
 ```bash
 yarn add --dev packemon
 ```
@@ -25,14 +24,12 @@ yarn add --dev packemon
   </TabItem>
   <TabItem value="npm">
 
-
 ```bash
 npm install --save-dev packemon
 ```
 
   </TabItem>
 </Tabs>
-
 
 Once installed, you can reference the `packemon` binary within a `package.json` script.
 
@@ -48,11 +45,23 @@ Once installed, you can reference the `packemon` binary within a `package.json` 
 ## Babel
 
 Packemon relies on its own internal Babel configuration for building packages, but if you want to
-use the same configuration for local development and testing, update your `babel.config.js` to the
-following.
+use the same configuration for local development and testing, update your root `babel.config.js` to
+the following.
 
 ```js title="babel.config.js"
-module.exports = require('packemon/babel');
+const { createRootConfig } = require('packemon/babel');
+
+module.exports = createRootConfig();
+```
+
+If you're using workspaces and certain packages require additional configuration that the root does
+not provide (for example the React preset), you can create branch relative `.babelrc.js` configs.
+These configs must be located relative to the package's `package.json`.
+
+```js title=".babelrc.js"
+const { createConfig } = require('packemon/babel');
+
+module.exports = createConfig(__dirname); // Dir is required!
 ```
 
 > We suggest using the configuration as is, which means no custom plugins or presets.
