@@ -1,6 +1,7 @@
 import path from 'path';
 import { ModuleFormat, OutputOptions, RollupOptions } from 'rollup';
 import externals from 'rollup-plugin-node-externals';
+import nodePolyfills from 'rollup-plugin-polyfill-node';
 import visualizer from 'rollup-plugin-visualizer';
 import { getBabelInputPlugin, getBabelOutputPlugin } from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
@@ -138,6 +139,7 @@ export function getRollupOutputConfig(
 export function getRollupConfig(artifact: BundleArtifact, features: FeatureFlags): RollupOptions {
   const inputPath = artifact.getInputPath();
   const packagePath = path.resolve(artifact.package.packageJsonPath.path());
+  const isNode = artifact.platform === 'node';
 
   const config: RollupOptions = {
     cache: artifact.cache,
@@ -148,7 +150,7 @@ export function getRollupConfig(artifact: BundleArtifact, features: FeatureFlags
     plugins: [
       // Mark all dependencies in `package.json` as external
       externals({
-        builtins: true,
+        builtins: isNode,
         deps: true,
         devDeps: true,
         optDeps: true,
@@ -171,6 +173,12 @@ export function getRollupConfig(artifact: BundleArtifact, features: FeatureFlags
     // Always treeshake for smaller builds
     treeshake: true,
   };
+
+  // Polyfill node modules when platform is not node
+  if (!isNode) {
+    // @ts-expect-error Types dont match
+    config.plugins!.unshift(nodePolyfills());
+  }
 
   // Analyze the bundle for debugging purposes
   if (features.analyze) {

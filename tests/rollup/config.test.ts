@@ -19,6 +19,7 @@ jest.mock('@rollup/plugin-babel', () => ({
 jest.mock('rollup-plugin-node-externals', () => (options: any) =>
   `externals(${options.packagePath})`,
 );
+jest.mock('rollup-plugin-polyfill-node', () => () => `polyfillNode()`);
 jest.mock('rollup-plugin-visualizer', () => (options: any) =>
   `visualizer(${options.template}, ${options.filename}, ${options.title})`,
 );
@@ -52,13 +53,43 @@ describe('getRollupConfig()', () => {
     `babelInput(${fixturePath})`,
   ];
 
+  const sharedNonNodePlugins = ['polyfillNode()', ...sharedPlugins];
+
   let artifact: BundleArtifact;
 
   beforeEach(() => {
     artifact = createArtifact('index', 'src/index.ts');
   });
 
-  it('generates default input config', () => {
+  it('generates default input config for `browser` platform', () => {
+    artifact.platform = 'browser';
+
+    expect(getRollupConfig(artifact, {})).toEqual({
+      cache: undefined,
+      external: expect.any(Function),
+      input: srcInputFile,
+      output: [],
+      plugins: sharedNonNodePlugins,
+      treeshake: true,
+    });
+  });
+
+  it('generates default input config for `native` platform', () => {
+    artifact.platform = 'native';
+
+    expect(getRollupConfig(artifact, {})).toEqual({
+      cache: undefined,
+      external: expect.any(Function),
+      input: srcInputFile,
+      output: [],
+      plugins: sharedNonNodePlugins,
+      treeshake: true,
+    });
+  });
+
+  it('generates default input config for `node` platform', () => {
+    artifact.platform = 'node';
+
     expect(getRollupConfig(artifact, {})).toEqual({
       cache: undefined,
       external: expect.any(Function),
@@ -149,6 +180,8 @@ describe('getRollupConfig()', () => {
   it('generates an accurate config if input/output are not "index"', () => {
     artifact.inputFile = 'src/server/core.ts';
     artifact.outputName = 'server';
+    artifact.platform = 'node';
+    artifact.support = 'stable';
     artifact.builds.push({ format: 'lib', platform: 'node', support: 'stable' });
 
     expect(getRollupConfig(artifact, {})).toEqual({
@@ -253,6 +286,8 @@ describe('getRollupOutputConfig()', () => {
 
   beforeEach(() => {
     artifact = createArtifact('index', 'src/index.ts');
+    artifact.platform = 'node';
+    artifact.support = 'stable';
   });
 
   it('generates default output config', () => {
@@ -276,10 +311,16 @@ describe('getRollupOutputConfig()', () => {
   });
 
   it('changes output dir based on format', () => {
+    artifact.platform = 'browser';
+    artifact.support = 'stable';
+
     expect(
       getRollupOutputConfig(artifact, {}, { format: 'esm', platform: 'browser', support: 'stable' })
         .dir,
     ).toBe(fixturePath.append('esm').path());
+
+    artifact.platform = 'node';
+    artifact.support = 'stable';
 
     expect(
       getRollupOutputConfig(artifact, {}, { format: 'mjs', platform: 'node', support: 'stable' })
@@ -322,6 +363,8 @@ describe('getRollupOutputConfig()', () => {
     });
 
     it('converts `esm` format to rollup "esm" format', () => {
+      artifact.platform = 'browser';
+
       expect(
         getRollupOutputConfig(
           artifact,
@@ -337,6 +380,8 @@ describe('getRollupOutputConfig()', () => {
     });
 
     it('converts `umd` format to rollup "esm" format', () => {
+      artifact.platform = 'browser';
+
       expect(
         getRollupOutputConfig(
           artifact,
@@ -365,6 +410,8 @@ describe('getRollupOutputConfig()', () => {
     });
 
     it('uses ".js" chunk extension for `esm` format', () => {
+      artifact.platform = 'browser';
+
       expect(
         getRollupOutputConfig(
           artifact,
@@ -380,6 +427,8 @@ describe('getRollupOutputConfig()', () => {
     });
 
     it('uses ".js" chunk extension for `umd` format', () => {
+      artifact.platform = 'browser';
+
       expect(
         getRollupOutputConfig(
           artifact,
@@ -470,6 +519,8 @@ describe('getRollupOutputConfig()', () => {
     });
 
     it('disables auto-exports for `esm` format', () => {
+      artifact.platform = 'browser';
+
       expect(
         getRollupOutputConfig(
           artifact,
@@ -480,6 +531,8 @@ describe('getRollupOutputConfig()', () => {
     });
 
     it('disables auto-exports for `umd` format', () => {
+      artifact.platform = 'browser';
+
       expect(
         getRollupOutputConfig(
           artifact,
@@ -507,20 +560,28 @@ describe('getRollupOutputConfig()', () => {
   });
 
   it('enables `const` for future versions', () => {
+    artifact.support = 'legacy';
+
     expect(
       getRollupOutputConfig(artifact, {}, { format: 'lib', platform: 'node', support: 'legacy' })
         .preferConst,
     ).toBe(false);
+
+    artifact.support = 'stable';
 
     expect(
       getRollupOutputConfig(artifact, {}, { format: 'lib', platform: 'node', support: 'stable' })
         .preferConst,
     ).toBe(false);
 
+    artifact.support = 'current';
+
     expect(
       getRollupOutputConfig(artifact, {}, { format: 'lib', platform: 'node', support: 'current' })
         .preferConst,
     ).toBe(true);
+
+    artifact.support = 'experimental';
 
     expect(
       getRollupOutputConfig(
@@ -533,6 +594,8 @@ describe('getRollupOutputConfig()', () => {
 
   describe('sourcemaps', () => {
     it('enables when platform is `browser`', () => {
+      artifact.platform = 'browser';
+
       expect(
         getRollupOutputConfig(
           artifact,
@@ -548,6 +611,8 @@ describe('getRollupOutputConfig()', () => {
     });
 
     it('enables when platform is `native`', () => {
+      artifact.platform = 'native';
+
       expect(
         getRollupOutputConfig(
           artifact,
@@ -590,6 +655,8 @@ describe('getRollupOutputConfig()', () => {
   });
 
   it('passes `namespace` to Babel as UMD name', () => {
+    artifact.platform = 'browser';
+    artifact.support = 'experimental';
     artifact.namespace = 'FooBar';
 
     expect(
