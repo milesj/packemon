@@ -1,5 +1,15 @@
 import { Blueprint, predicates, toArray } from '@boost/common';
-import { DEFAULT_FORMAT, DEFAULT_INPUT, DEFAULT_PLATFORM, DEFAULT_SUPPORT } from './constants';
+import {
+  DEFAULT_FORMAT,
+  DEFAULT_INPUT,
+  DEFAULT_PLATFORM,
+  DEFAULT_SUPPORT,
+  FORMATS,
+  FORMATS_BROWSER,
+  FORMATS_NATIVE,
+  FORMATS_NODE,
+  PLATFORMS,
+} from './constants';
 import {
   AnalyzeType,
   BrowserFormat,
@@ -18,16 +28,16 @@ const { array, bool, number, object, string, union } = predicates;
 
 // PLATFORMS
 
-const platform = string<Platform>(DEFAULT_PLATFORM).oneOf(['native', 'node', 'browser']);
+const platform = string<Platform>(DEFAULT_PLATFORM).oneOf(PLATFORMS);
 
 // FORMATS
 
-const nativeFormat = string<NativeFormat>(DEFAULT_FORMAT).oneOf(['lib']);
-const nodeFormat = string<NodeFormat>(DEFAULT_FORMAT).oneOf(['lib', 'mjs', 'cjs']);
-const browserFormat = string<BrowserFormat>(DEFAULT_FORMAT).oneOf(['lib', 'esm', 'umd']);
+const nativeFormat = string<NativeFormat>(DEFAULT_FORMAT).oneOf(FORMATS_NATIVE);
+const nodeFormat = string<NodeFormat>(DEFAULT_FORMAT).oneOf(FORMATS_NODE);
+const browserFormat = string<BrowserFormat>(DEFAULT_FORMAT).oneOf(FORMATS_BROWSER);
 
 const format = string<Format>(DEFAULT_FORMAT)
-  .oneOf(['lib', 'esm', 'umd', 'mjs', 'cjs'])
+  .oneOf(FORMATS)
   .custom<PackemonPackageConfig>((value, schema) => {
     const platforms = new Set(toArray(schema.struct.platform));
 
