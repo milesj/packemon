@@ -201,6 +201,8 @@ export default class Packemon {
       const typesBuilds: Record<string, TypesBuild> = {};
       const sharedLib = this.requiresSharedLib(pkg);
 
+      console.log({ sharedLib });
+
       pkg.configs.forEach((config, index) => {
         Object.entries(config.inputs).forEach(([outputName, inputFile]) => {
           const artifact = new BundleArtifact(
@@ -277,7 +279,7 @@ export default class Packemon {
       });
     });
 
-    return platformsToCheck.size > 1 && libFormatCount > 1;
+    return platformsToCheck.size > 1 && libFormatCount >= 1;
   }
 
   /**

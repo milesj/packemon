@@ -418,6 +418,16 @@ describe('Packemon', () => {
         },
       ]);
     });
+
+    it.only('generates build artifacts for projects with multiple platforms', async () => {
+      packemon = new Packemon(getFixturePath('project-multi-platform'));
+
+      const packages = await packemon.loadConfiguredPackages();
+
+      packemon.generateArtifacts(packages);
+
+      console.log(packages[0].configs, packages[0].artifacts[0]);
+    });
   });
 
   describe('loadConfiguredPackages()', () => {

@@ -172,30 +172,47 @@ export default class Package {
         name: this.getName(),
       });
 
-      const platforms = toArray(config.platform);
-      const formats = new Set(toArray(config.format));
+      toArray(config.platform).forEach((platform) => {
+        let formats = [...toArray(config.format)];
+        const isEmpty = formats.length === 0;
 
-      if (formats.size === 0) {
-        platforms.sort().forEach((platform) => {
-          if (platform === 'native' || platform === 'node') {
-            formats.add('lib');
-          } else if (platform === 'browser') {
-            formats.add('lib');
-            formats.add('esm');
-
-            if (config.namespace) {
-              formats.add('umd');
+        switch (platform) {
+          case 'native':
+            if (isEmpty) {
+              formats.push('lib');
+            } else {
+              formats = formats.filter(format => )
             }
-          }
-        });
-      }
+            break;
 
-      this.configs.push({
-        formats: Array.from(formats),
-        inputs: config.inputs,
-        namespace: config.namespace,
-        platforms,
-        support: config.support,
+          case 'node':
+            break;
+
+          case 'browser':
+          default:
+            break;
+        }
+
+        if (platform === 'native') {
+          formats.push('lib');
+        } else if (platform === 'node') {
+          formats.push('lib');
+        } else if (platform === 'browser') {
+          formats.push('lib');
+          formats.push('esm');
+
+          if (config.namespace) {
+            formats.push('umd');
+          }
+        }
+
+        this.configs.push({
+          formats,
+          inputs: config.inputs,
+          namespace: config.namespace,
+          platform,
+          support: config.support,
+        });
       });
     });
   }
