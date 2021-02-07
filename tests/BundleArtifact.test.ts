@@ -51,7 +51,7 @@ describe('BundleArtifact', () => {
     expect(artifact.getBuildTargets()).toEqual(['lib', 'cjs']);
     expect(artifact.toString()).toBe('bundle:index (lib, cjs)');
     expect(artifact.getStatsTitle()).toBe('project/index');
-    expect(artifact.getStatsFileName()).toBe('stats-e000d9e1.html');
+    expect(artifact.getStatsFileName()).toBe('stats-project-index.html');
   });
 
   describe('build()', () => {
@@ -442,7 +442,7 @@ describe('BundleArtifact', () => {
     it('removes visualizer HTML files', async () => {
       await artifact.cleanup();
 
-      expect(fs.remove).toHaveBeenCalledWith(fixturePath.append('stats-e000d9e1.html').path());
+      expect(fs.remove).toHaveBeenCalledWith(fixturePath.append('stats-project-index.html').path());
     });
   });
 

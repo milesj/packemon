@@ -1,5 +1,4 @@
 import { rollup, RollupCache } from 'rollup';
-import hash from 'string-hash';
 import { isObject, Path, SettingMap, toArray } from '@boost/common';
 import { createDebugger, Debugger } from '@boost/debug';
 import Artifact from './Artifact';
@@ -135,7 +134,7 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
   }
 
   getStatsFileName(): string {
-    return `stats-${hash(this.getStatsTitle()).toString(16)}.html`;
+    return `stats-${this.getStatsTitle().replace(/\//gu, '-')}.html`;
   }
 
   getStatsTitle(): string {

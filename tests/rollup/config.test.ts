@@ -188,7 +188,7 @@ describe('getRollupConfig()', () => {
   it('includes analyzer plugin if `analyze` feature flag is on', () => {
     expect(getRollupConfig(artifact, { analyze: 'treemap' }).plugins).toEqual([
       ...sharedPlugins,
-      'visualizer(treemap, stats-e000d9e1.html, project/index)',
+      'visualizer(treemap, stats-project-index.html, project/index)',
     ]);
   });
 
