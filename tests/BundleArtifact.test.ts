@@ -122,6 +122,7 @@ describe('BundleArtifact', () => {
   describe('postBuild()', () => {
     describe('entry points', () => {
       it('adds "main" for `lib` format', () => {
+        artifact.platform = 'browser';
         artifact.builds.push({ format: 'lib', platform: 'browser', support: 'stable' });
 
         expect(artifact.package.packageJson).toEqual(packageJson);
@@ -136,6 +137,7 @@ describe('BundleArtifact', () => {
 
       it('adds "main" for `lib` format and shared lib required', () => {
         artifact.sharedLib = true;
+        artifact.platform = 'browser';
         artifact.builds.push({ format: 'lib', platform: 'browser', support: 'stable' });
 
         expect(artifact.package.packageJson).toEqual(packageJson);
@@ -265,7 +267,8 @@ describe('BundleArtifact', () => {
     });
 
     describe('engines', () => {
-      it('does nothing if no `node` build', () => {
+      it('does nothing if builds is not `node`', () => {
+        artifact.platform = 'browser';
         artifact.builds.push({ format: 'lib', platform: 'browser', support: 'stable' });
 
         expect(artifact.package.packageJson.engines).toBeUndefined();
@@ -310,23 +313,6 @@ describe('BundleArtifact', () => {
           packemon: '*',
           node: '>=10.3.0',
           npm: '>=6.1.0',
-        });
-      });
-
-      it('adds lowest versions when multiple `node` builds exist', () => {
-        artifact.builds.push(
-          { format: 'lib', platform: 'node', support: 'stable' },
-          { format: 'lib', platform: 'node', support: 'legacy' },
-          { format: 'lib', platform: 'node', support: 'experimental' },
-        );
-
-        expect(artifact.package.packageJson.engines).toBeUndefined();
-
-        artifact.postBuild({ addEngines: true });
-
-        expect(artifact.package.packageJson.engines).toEqual({
-          node: '>=8.10.0',
-          npm: '>=5.6.0 || >=6.0.0',
         });
       });
     });
@@ -475,8 +461,12 @@ describe('BundleArtifact', () => {
   });
 
   describe('getOutputMetadata()', () => {
+    beforeEach(() => {
+      artifact.platform = 'node';
+    });
+
     it('returns metadata for `lib` format', () => {
-      expect(artifact.getOutputMetadata('lib', 'node')).toEqual({
+      expect(artifact.getOutputMetadata('lib')).toEqual({
         ext: 'js',
         file: 'index.js',
         folder: 'lib',
@@ -485,7 +475,7 @@ describe('BundleArtifact', () => {
     });
 
     it('returns metadata for `esm` format', () => {
-      expect(artifact.getOutputMetadata('esm', 'node')).toEqual({
+      expect(artifact.getOutputMetadata('esm')).toEqual({
         ext: 'js',
         file: 'index.js',
         folder: 'esm',
@@ -494,7 +484,7 @@ describe('BundleArtifact', () => {
     });
 
     it('returns metadata for `umd` format', () => {
-      expect(artifact.getOutputMetadata('umd', 'node')).toEqual({
+      expect(artifact.getOutputMetadata('umd')).toEqual({
         ext: 'js',
         file: 'index.js',
         folder: 'umd',
@@ -503,7 +493,7 @@ describe('BundleArtifact', () => {
     });
 
     it('returns metadata for `cjs` format', () => {
-      expect(artifact.getOutputMetadata('cjs', 'node')).toEqual({
+      expect(artifact.getOutputMetadata('cjs')).toEqual({
         ext: 'cjs',
         file: 'index.cjs',
         folder: 'cjs',
@@ -512,7 +502,7 @@ describe('BundleArtifact', () => {
     });
 
     it('returns metadata for `mjs` format', () => {
-      expect(artifact.getOutputMetadata('mjs', 'node')).toEqual({
+      expect(artifact.getOutputMetadata('mjs')).toEqual({
         ext: 'mjs',
         file: 'index.mjs',
         folder: 'mjs',
@@ -524,7 +514,7 @@ describe('BundleArtifact', () => {
       it('includes platform in folder when shared lib required', () => {
         artifact.sharedLib = true;
 
-        expect(artifact.getOutputMetadata('lib', 'node')).toEqual({
+        expect(artifact.getOutputMetadata('lib')).toEqual({
           ext: 'js',
           file: 'index.js',
           folder: 'lib/node',
@@ -535,7 +525,7 @@ describe('BundleArtifact', () => {
       it('ignores shared lib if not `lib` format', () => {
         artifact.sharedLib = true;
 
-        expect(artifact.getOutputMetadata('esm', 'node')).toEqual({
+        expect(artifact.getOutputMetadata('esm')).toEqual({
           ext: 'js',
           file: 'index.js',
           folder: 'esm',

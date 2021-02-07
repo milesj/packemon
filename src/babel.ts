@@ -40,7 +40,9 @@ export function createConfig(folder: string): ConfigStructure {
   // Create package and configs
   const pkg = new Package(project, path, contents);
 
-  pkg.setConfigs(toArray(pkg.packageJson.packemon));
+  if (pkg.packageJson.packemon) {
+    pkg.setConfigs(toArray(pkg.packageJson.packemon));
+  }
 
   // Determine the lowest platform to support
   const platforms = pkg.configs.map((config) => config.platform);
@@ -53,14 +55,15 @@ export function createConfig(folder: string): ConfigStructure {
   }
 
   // Generate artifact and builds
-  const artifact = new BundleArtifact(pkg, [{ format, support, platform: lowestPlatform }]);
+  const artifact = new BundleArtifact(pkg, [{ format, platform: lowestPlatform, support }]);
+  artifact.platform = lowestPlatform;
+  artifact.support = support;
 
   return getBabelConfig(artifact, pkg.getFeatureFlags());
 }
 
 export function createRootConfig(): ConfigStructure {
-  const artifact = new BundleArtifact(project.rootPackage, [{ format, platform: 'node', support }]);
-  const config = getBabelConfig(artifact, project.rootPackage.getFeatureFlags());
+  const config = createConfig(process.cwd());
 
   return {
     ...config,

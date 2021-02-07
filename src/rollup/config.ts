@@ -85,7 +85,7 @@ export function getRollupOutputConfig(
 ): OutputOptions {
   const { format, platform, support } = build;
   const name = artifact.outputName;
-  const { ext, folder } = artifact.getOutputMetadata(format, platform);
+  const { ext, folder } = artifact.getOutputMetadata(format);
 
   const output: OutputOptions = {
     dir: artifact.package.path.append(folder).path(),

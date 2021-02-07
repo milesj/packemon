@@ -22,8 +22,14 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
   // Output file name without extension
   outputName: string = '';
 
+  // Platform code will run on
+  platform: Platform = 'node';
+
   // Are multiple builds writing to the lib folder
   sharedLib: boolean = false;
+
+  // Target version code will run in
+  support: Support = 'stable';
 
   protected debug!: Debugger;
 
@@ -114,9 +120,9 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
     );
   }
 
-  getOutputMetadata(format: Format, platform: Platform) {
+  getOutputMetadata(format: Format) {
     const ext = format === 'cjs' || format === 'mjs' ? format : 'js';
-    const folder = format === 'lib' && this.sharedLib ? `lib/${platform}` : format;
+    const folder = format === 'lib' && this.sharedLib ? `lib/${this.platform}` : format;
     const file = `${this.outputName}.${ext}`;
     const path = `./${folder}/${file}`;
 
@@ -142,19 +148,8 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
 
   protected addEnginesToPackageJson() {
     const pkg = this.package.packageJson;
-    const supportRanks: Record<Support, number> = {
-      legacy: 1,
-      stable: 2,
-      current: 3,
-      experimental: 4,
-    };
 
-    // Update with the lowest supported node version
-    const nodeBuild = [...this.builds]
-      .sort((a, b) => supportRanks[a.support] - supportRanks[b.support])
-      .find((build) => build.platform === 'node');
-
-    if (nodeBuild) {
+    if (this.platform === 'node') {
       this.debug('Adding `engines` to `package.json`');
 
       if (!pkg.engines) {
@@ -162,8 +157,8 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
       }
 
       Object.assign(pkg.engines, {
-        node: `>=${NODE_SUPPORTED_VERSIONS[nodeBuild.support]}`,
-        npm: toArray(NPM_SUPPORTED_VERSIONS[nodeBuild.support])
+        node: `>=${NODE_SUPPORTED_VERSIONS[this.support]}`,
+        npm: toArray(NPM_SUPPORTED_VERSIONS[this.support])
           .map((v) => `>=${v}`)
           .join(' || '),
       });
@@ -175,8 +170,8 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
 
     const pkg = this.package.packageJson;
 
-    this.builds.forEach(({ format, platform }) => {
-      const { path } = this.getOutputMetadata(format, platform);
+    this.builds.forEach(({ format }) => {
+      const { path } = this.getOutputMetadata(format);
       const isNode = format === 'lib' || format === 'cjs' || format === 'mjs';
 
       if (this.outputName === 'index') {
@@ -201,8 +196,8 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
     const paths: SettingMap = {};
     let libPath = '';
 
-    this.builds.forEach(({ format, platform }) => {
-      const { path } = this.getOutputMetadata(format, platform);
+    this.builds.forEach(({ format }) => {
+      const { path } = this.getOutputMetadata(format);
 
       if (format === 'mjs' || format === 'esm') {
         paths.import = path;
