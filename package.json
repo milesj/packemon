@@ -89,7 +89,6 @@
     "@rollup/plugin-node-resolve": "^11.1.1",
     "babel-plugin-transform-async-to-promises": "^0.8.15",
     "builtin-modules": "^3.2.0",
-    "chokidar": "^3.5.1",
     "execa": "^5.0.0",
     "fast-glob": "^3.2.5",
     "filesize": "^6.1.0",
@@ -106,5 +105,8 @@
     "spdx-license-list": "^6.4.0",
     "string-hash": "^1.1.3",
     "typescript": "^4.1.3"
+  },
+  "optionalDependencies": {
+    "chokidar": "^3.5.1"
   }
 }
