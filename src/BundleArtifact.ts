@@ -85,15 +85,11 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
     );
   }
 
-  postBuild({ addEngines, addExports }: BuildOptions): void {
+  postBuild({ addEngines }: BuildOptions): void {
     this.addEntryPointsToPackageJson();
 
     if (addEngines) {
       this.addEnginesToPackageJson();
-    }
-
-    if (addExports) {
-      this.addExportsToPackageJson();
     }
   }
 
@@ -133,6 +129,38 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
     };
   }
 
+  getPackageExports(): Record<string, SettingMap | string> {
+    const paths: SettingMap = {};
+    let libPath = '';
+
+    this.builds.forEach(({ format }) => {
+      const { path } = this.getOutputMetadata(format);
+
+      if (format === 'mjs' || format === 'esm') {
+        paths.import = path;
+      } else if (format === 'cjs') {
+        paths.require = path;
+      } else if (format === 'lib') {
+        libPath = path;
+      }
+
+      // Webpack and Rollup support
+      if (format === 'esm') {
+        paths.module = path;
+      }
+    });
+
+    // Must come after import/require
+    if (libPath) {
+      paths.default = libPath;
+    }
+
+    return {
+      [this.platform === 'native' ? 'react-native' : this.platform]:
+        Object.keys(paths).length === 1 && libPath ? paths.default : paths,
+    };
+  }
+
   getStatsFileName(): string {
     return `stats-${this.getStatsTitle().replace(/\//gu, '-')}.html`;
   }
@@ -169,63 +197,44 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
 
     const pkg = this.package.packageJson;
 
-    this.builds.forEach(({ format }) => {
-      const { path } = this.getOutputMetadata(format);
-      const isNode = format === 'lib' || format === 'cjs' || format === 'mjs';
+    const hasFormat = (format: Format) => {
+      if (
+        (format === 'mjs' && pkg.type !== 'module') ||
+        (format === 'cjs' && pkg.type !== 'commonjs')
+      ) {
+        return false;
+      }
 
-      if (this.outputName === 'index') {
-        if (isNode) {
-          pkg.main = path;
-        } else if (format === 'esm') {
-          pkg.module = path;
-        } else if (format === 'umd') {
-          pkg.browser = path;
+      return this.builds.some((build) => build.format === format);
+    };
+
+    const findOutputPath = (formats: Format[]) => {
+      // eslint-disable-next-line no-restricted-syntax
+      for (const format of formats) {
+        if (hasFormat(format)) {
+          return this.getOutputMetadata(format).path;
         }
       }
 
-      // Bin field may be an object
-      if (this.outputName === 'bin' && !isObject(pkg.bin) && isNode) {
-        pkg.bin = path;
+      return '';
+    };
+
+    if (this.outputName === 'index') {
+      const mainPath = findOutputPath(['lib', 'cjs', 'mjs']);
+      const modulePath = findOutputPath(['mjs', 'esm']);
+
+      if (mainPath) {
+        pkg.main = mainPath;
       }
-    });
-  }
 
-  protected addExportsToPackageJson() {
-    const pkg = this.package.packageJson;
-    const paths: SettingMap = {};
-    let libPath = '';
-
-    this.builds.forEach(({ format }) => {
-      const { path } = this.getOutputMetadata(format);
-
-      if (format === 'mjs' || format === 'esm') {
-        paths.import = path;
-      } else if (format === 'cjs') {
-        paths.require = path;
-      } else if (format === 'lib') {
-        libPath = path;
+      if (modulePath && modulePath !== mainPath) {
+        pkg.module = modulePath;
       }
-    });
-
-    // Must come after import/require
-    if (libPath) {
-      paths.default = libPath;
     }
 
-    const exportCount = Object.keys(paths).length;
-
-    if (exportCount > 0) {
-      this.debug('Adding `exports` to `package.json`');
-
-      if (!pkg.exports) {
-        pkg.exports = {};
-      }
-
-      Object.assign(pkg.exports, {
-        './package.json': './package.json',
-        [this.outputName === 'index' ? '.' : `./${this.outputName}`]:
-          exportCount === 1 && libPath ? paths.default : paths,
-      });
+    // Bin field may be an object
+    if (this.outputName === 'bin' && !isObject(pkg.bin) && this.platform === 'node') {
+      pkg.bin = findOutputPath(['lib', 'cjs', 'mjs']);
     }
   }
 }

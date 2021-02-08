@@ -1,9 +1,10 @@
 /* eslint-disable require-atomic-updates, no-param-reassign, @typescript-eslint/member-ordering */
 
 import fs from 'fs-extra';
-import { Memoize, optimal, Path, toArray } from '@boost/common';
+import { Memoize, optimal, PackageStructure, Path, toArray } from '@boost/common';
 import { createDebugger, Debugger } from '@boost/debug';
 import Artifact from './Artifact';
+import BundleArtifact from './BundleArtifact';
 import { FORMATS_BROWSER, FORMATS_NATIVE, FORMATS_NODE } from './constants';
 import { loadModule } from './helpers/loadModule';
 import Project from './Project';
@@ -75,6 +76,11 @@ export default class Package {
         }
       }),
     );
+
+    // Add package `exports` based on artifacts
+    if (options.addExports) {
+      this.addPackageExports();
+    }
 
     // Sync `package.json` in case it was modified
     await this.syncPackageJson();
@@ -261,5 +267,27 @@ export default class Package {
     }
 
     return result;
+  }
+
+  private addPackageExports() {
+    this.debug('Adding `exports` to `package.json`');
+
+    const exports: PackageStructure['exports'] = {
+      './package.json': './package.json',
+    };
+
+    this.artifacts.forEach((artifact) => {
+      if (artifact instanceof BundleArtifact) {
+        const path = artifact.outputName === 'index' ? '.' : `./${artifact.outputName}`;
+
+        if (!exports[path]) {
+          exports[path] = {};
+        }
+
+        Object.assign(exports[path], artifact.getPackageExports());
+      }
+    });
+
+    this.packageJson.exports = exports;
   }
 }

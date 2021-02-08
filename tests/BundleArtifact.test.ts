@@ -155,12 +155,24 @@ describe('BundleArtifact', () => {
 
         expect(artifact.package.packageJson).toEqual(packageJson);
 
+        artifact.package.packageJson.type = 'commonjs';
         artifact.postBuild({});
 
         expect(artifact.package.packageJson).toEqual({
           ...packageJson,
           main: './cjs/index.cjs',
+          type: 'commonjs',
         });
+      });
+
+      it('doesnt add "main" for `cjs` format if no package `type`', () => {
+        artifact.builds.push({ format: 'cjs', platform: 'node', support: 'stable' });
+
+        expect(artifact.package.packageJson).toEqual(packageJson);
+
+        artifact.postBuild({});
+
+        expect(artifact.package.packageJson).toEqual(packageJson);
       });
 
       it('adds "main" for `mjs` format', () => {
@@ -168,12 +180,24 @@ describe('BundleArtifact', () => {
 
         expect(artifact.package.packageJson).toEqual(packageJson);
 
+        artifact.package.packageJson.type = 'module';
         artifact.postBuild({});
 
         expect(artifact.package.packageJson).toEqual({
           ...packageJson,
           main: './mjs/index.mjs',
+          type: 'module',
         });
+      });
+
+      it('doesnt add  "main" for `mjs` format if no package `type`', () => {
+        artifact.builds.push({ format: 'mjs', platform: 'node', support: 'stable' });
+
+        expect(artifact.package.packageJson).toEqual(packageJson);
+
+        artifact.postBuild({});
+
+        expect(artifact.package.packageJson).toEqual(packageJson);
       });
 
       it('adds "module" for `esm` format', () => {
@@ -186,19 +210,6 @@ describe('BundleArtifact', () => {
         expect(artifact.package.packageJson).toEqual({
           ...packageJson,
           module: './esm/index.js',
-        });
-      });
-
-      it('adds "browser" for `umd` format', () => {
-        artifact.builds.push({ format: 'umd', platform: 'browser', support: 'stable' });
-
-        expect(artifact.package.packageJson).toEqual(packageJson);
-
-        artifact.postBuild({});
-
-        expect(artifact.package.packageJson).toEqual({
-          ...packageJson,
-          browser: './umd/index.js',
         });
       });
 
@@ -233,22 +244,26 @@ describe('BundleArtifact', () => {
         it('adds "bin" for `cjs` format', () => {
           artifact.builds.push({ format: 'cjs', platform: 'node', support: 'stable' });
 
+          artifact.package.packageJson.type = 'commonjs';
           artifact.postBuild({});
 
           expect(artifact.package.packageJson).toEqual({
             ...packageJson,
             bin: './cjs/bin.cjs',
+            type: 'commonjs',
           });
         });
 
         it('adds "bin" for `mjs` format', () => {
           artifact.builds.push({ format: 'mjs', platform: 'node', support: 'stable' });
 
+          artifact.package.packageJson.type = 'module';
           artifact.postBuild({});
 
           expect(artifact.package.packageJson).toEqual({
             ...packageJson,
             bin: './mjs/bin.mjs',
+            type: 'module',
           });
         });
 
@@ -313,126 +328,6 @@ describe('BundleArtifact', () => {
           packemon: '*',
           node: '>=10.3.0',
           npm: '>=6.1.0',
-        });
-      });
-    });
-
-    describe('exports', () => {
-      it('does nothing if no builds', () => {
-        expect(artifact.package.packageJson.exports).toBeUndefined();
-
-        artifact.postBuild({ addExports: true });
-
-        expect(artifact.package.packageJson.exports).toBeUndefined();
-      });
-
-      it('does nothing if `addExports` is false', () => {
-        artifact.builds.push({ format: 'lib', platform: 'node', support: 'stable' });
-
-        expect(artifact.package.packageJson.exports).toBeUndefined();
-
-        artifact.postBuild({ addExports: false });
-
-        expect(artifact.package.packageJson.exports).toBeUndefined();
-      });
-
-      it('adds exports based on input file and output name', () => {
-        artifact.builds.push({ format: 'lib', platform: 'node', support: 'stable' });
-
-        expect(artifact.package.packageJson.exports).toBeUndefined();
-
-        artifact.postBuild({ addExports: true });
-
-        expect(artifact.package.packageJson.exports).toEqual({
-          '.': './lib/index.js',
-          './package.json': './package.json',
-        });
-      });
-
-      it('adds exports based on input file and output name when shared lib required', () => {
-        artifact.sharedLib = true;
-        artifact.builds.push({ format: 'lib', platform: 'node', support: 'stable' });
-
-        expect(artifact.package.packageJson.exports).toBeUndefined();
-
-        artifact.postBuild({ addExports: true });
-
-        expect(artifact.package.packageJson.exports).toEqual({
-          '.': './lib/node/index.js',
-          './package.json': './package.json',
-        });
-      });
-
-      it('supports subpath file exports when output name is not "index"', () => {
-        artifact.outputName = 'sub';
-        artifact.builds.push({ format: 'lib', platform: 'node', support: 'stable' });
-
-        expect(artifact.package.packageJson.exports).toBeUndefined();
-
-        artifact.postBuild({ addExports: true });
-
-        expect(artifact.package.packageJson.exports).toEqual({
-          './sub': './lib/sub.js',
-          './package.json': './package.json',
-        });
-      });
-
-      it('supports conditional exports when there are multiple builds', () => {
-        artifact.builds.push(
-          { format: 'lib', platform: 'node', support: 'stable' },
-          { format: 'mjs', platform: 'node', support: 'stable' },
-          { format: 'cjs', platform: 'node', support: 'stable' },
-        );
-
-        expect(artifact.package.packageJson.exports).toBeUndefined();
-
-        artifact.postBuild({ addExports: true });
-
-        expect(artifact.package.packageJson.exports).toEqual({
-          '.': {
-            import: './mjs/index.mjs',
-            require: './cjs/index.cjs',
-            default: './lib/index.js',
-          },
-          './package.json': './package.json',
-        });
-      });
-
-      it('skips `default` export when there is no `lib` build', () => {
-        artifact.outputName = 'sub';
-        artifact.builds.push(
-          { format: 'mjs', platform: 'node', support: 'stable' },
-          { format: 'cjs', platform: 'node', support: 'stable' },
-        );
-
-        expect(artifact.package.packageJson.exports).toBeUndefined();
-
-        artifact.postBuild({ addExports: true });
-
-        expect(artifact.package.packageJson.exports).toEqual({
-          './sub': {
-            import: './mjs/sub.mjs',
-            require: './cjs/sub.cjs',
-          },
-          './package.json': './package.json',
-        });
-      });
-
-      it('merges with existing exports', () => {
-        artifact.builds.push({ format: 'lib', platform: 'node', support: 'stable' });
-
-        artifact.package.packageJson.exports = {
-          './docs': './README.md',
-        };
-
-        expect(artifact.package.packageJson.exports).toEqual({ './docs': './README.md' });
-
-        artifact.postBuild({ addExports: true });
-
-        expect(artifact.package.packageJson.exports).toEqual({
-          '.': './lib/index.js',
-          './docs': './README.md',
-          './package.json': './package.json',
         });
       });
     });
@@ -531,6 +426,83 @@ describe('BundleArtifact', () => {
           folder: 'esm',
           path: './esm/index.js',
         });
+      });
+    });
+  });
+
+  describe('getPackageExports()', () => {
+    it('adds exports based on input file and output name', () => {
+      artifact.builds.push({ format: 'lib', platform: 'node', support: 'stable' });
+
+      expect(artifact.getPackageExports()).toEqual({
+        node: './lib/index.js',
+      });
+    });
+
+    it('adds exports based on input file and output name when shared lib required', () => {
+      artifact.sharedLib = true;
+      artifact.builds.push({ format: 'lib', platform: 'node', support: 'stable' });
+
+      expect(artifact.getPackageExports()).toEqual({
+        node: './lib/node/index.js',
+      });
+    });
+
+    it('supports subpath file exports when output name is not "index"', () => {
+      artifact.outputName = 'sub';
+      artifact.builds.push({ format: 'lib', platform: 'node', support: 'stable' });
+
+      expect(artifact.getPackageExports()).toEqual({
+        node: './lib/sub.js',
+      });
+    });
+
+    it('supports conditional exports when there are multiple builds', () => {
+      artifact.builds.push(
+        { format: 'lib', platform: 'node', support: 'stable' },
+        { format: 'mjs', platform: 'node', support: 'stable' },
+        { format: 'cjs', platform: 'node', support: 'stable' },
+      );
+
+      expect(artifact.getPackageExports()).toEqual({
+        node: {
+          import: './mjs/index.mjs',
+          require: './cjs/index.cjs',
+          default: './lib/index.js',
+        },
+      });
+    });
+
+    it('skips `default` export when there is no `lib` build', () => {
+      artifact.outputName = 'sub';
+      artifact.builds.push(
+        { format: 'mjs', platform: 'node', support: 'stable' },
+        { format: 'cjs', platform: 'node', support: 'stable' },
+      );
+
+      expect(artifact.getPackageExports()).toEqual({
+        node: {
+          import: './mjs/sub.mjs',
+          require: './cjs/sub.cjs',
+        },
+      });
+    });
+
+    it('changes export namespace to "browser" when a `browser` platform', () => {
+      artifact.platform = 'browser';
+      artifact.builds.push({ format: 'lib', platform: 'browser', support: 'stable' });
+
+      expect(artifact.getPackageExports()).toEqual({
+        browser: './lib/index.js',
+      });
+    });
+
+    it('changes export namespace to "react-native" when a `native` platform', () => {
+      artifact.platform = 'native';
+      artifact.builds.push({ format: 'lib', platform: 'native', support: 'stable' });
+
+      expect(artifact.getPackageExports()).toEqual({
+        'react-native': './lib/index.js',
       });
     });
   });

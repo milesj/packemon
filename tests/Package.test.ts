@@ -1,8 +1,10 @@
 import fs from 'fs-extra';
 import { Path } from '@boost/common';
 import { getFixturePath } from '@boost/test-utils';
+import BundleArtifact from '../src/BundleArtifact';
 import Package from '../src/Package';
 import Project from '../src/Project';
+import { BundleBuild } from '../src/types';
 import { TestArtifact } from './helpers';
 
 describe('Package', () => {
@@ -16,6 +18,15 @@ describe('Package', () => {
     const c = new TestArtifact(pkg, []);
 
     return [a, b, c];
+  }
+
+  function createBundleArtifact(builds: BundleBuild[]) {
+    const artifact = new BundleArtifact(pkg, builds);
+    artifact.outputName = 'index';
+
+    artifact.build = () => Promise.resolve();
+
+    return artifact;
   }
 
   function loadPackage(name: string, customProject?: Project): Package {
@@ -140,6 +151,178 @@ describe('Package', () => {
       await pkg.build({});
 
       expect(spy).toHaveBeenCalled();
+    });
+
+    describe('exports', () => {
+      it('does nothing if no builds', async () => {
+        pkg.addArtifact(new TestArtifact(pkg, []));
+
+        await pkg.build({});
+
+        expect(pkg.packageJson.exports).toBeUndefined();
+      });
+
+      it('does nothing if `addExports` is false', async () => {
+        pkg.addArtifact(new TestArtifact(pkg, []));
+
+        await pkg.build({ addExports: false });
+
+        expect(pkg.packageJson.exports).toBeUndefined();
+      });
+
+      it('adds exports for a single artifact and format', async () => {
+        pkg.addArtifact(
+          createBundleArtifact([{ format: 'lib', platform: 'node', support: 'stable' }]),
+        );
+
+        await pkg.build({ addExports: true });
+
+        expect(pkg.packageJson.exports).toEqual({
+          '.': { node: './lib/index.js' },
+          './package.json': './package.json',
+        });
+      });
+
+      it('adds exports for a single artifact and multiple format', async () => {
+        pkg.addArtifact(
+          createBundleArtifact([
+            { format: 'lib', platform: 'node', support: 'stable' },
+            { format: 'mjs', platform: 'node', support: 'stable' },
+            { format: 'cjs', platform: 'node', support: 'stable' },
+          ]),
+        );
+
+        await pkg.build({ addExports: true });
+
+        expect(pkg.packageJson.exports).toEqual({
+          '.': {
+            node: {
+              import: './mjs/index.mjs',
+              require: './cjs/index.cjs',
+              default: './lib/index.js',
+            },
+          },
+          './package.json': './package.json',
+        });
+      });
+
+      it('adds exports for multiple artifacts of the same output name', async () => {
+        const a = createBundleArtifact([{ format: 'lib', platform: 'node', support: 'stable' }]);
+        a.sharedLib = true;
+        pkg.addArtifact(a);
+
+        const b = createBundleArtifact([{ format: 'lib', platform: 'browser', support: 'stable' }]);
+        b.sharedLib = true;
+        b.platform = 'browser';
+        pkg.addArtifact(b);
+
+        const c = createBundleArtifact([{ format: 'lib', platform: 'native', support: 'stable' }]);
+        c.sharedLib = true;
+        c.platform = 'native';
+        pkg.addArtifact(c);
+
+        await pkg.build({ addExports: true });
+
+        expect(pkg.packageJson.exports).toEqual({
+          '.': {
+            node: './lib/node/index.js',
+            browser: './lib/browser/index.js',
+            'react-native': './lib/native/index.js',
+          },
+          './package.json': './package.json',
+        });
+      });
+
+      it('adds exports for multiple artifacts + formats of the same output name', async () => {
+        const a = createBundleArtifact([
+          { format: 'lib', platform: 'node', support: 'stable' },
+          { format: 'mjs', platform: 'node', support: 'stable' },
+          { format: 'cjs', platform: 'node', support: 'stable' },
+        ]);
+        pkg.addArtifact(a);
+
+        const b = createBundleArtifact([
+          { format: 'lib', platform: 'browser', support: 'stable' },
+          { format: 'esm', platform: 'browser', support: 'stable' },
+          { format: 'umd', platform: 'browser', support: 'stable' },
+        ]);
+        b.platform = 'browser';
+        pkg.addArtifact(b);
+
+        await pkg.build({ addExports: true });
+
+        expect(pkg.packageJson.exports).toEqual({
+          '.': {
+            node: {
+              import: './mjs/index.mjs',
+              require: './cjs/index.cjs',
+              default: './lib/index.js',
+            },
+            browser: {
+              import: './esm/index.js',
+              module: './esm/index.js',
+              default: './lib/index.js',
+            },
+          },
+          './package.json': './package.json',
+        });
+      });
+
+      it('adds exports for multiple artifacts of different output names', async () => {
+        const a = createBundleArtifact([{ format: 'lib', platform: 'node', support: 'stable' }]);
+        pkg.addArtifact(a);
+
+        const b = createBundleArtifact([{ format: 'lib', platform: 'browser', support: 'stable' }]);
+        b.platform = 'browser';
+        b.outputName = 'client';
+        pkg.addArtifact(b);
+
+        await pkg.build({ addExports: true });
+
+        expect(pkg.packageJson.exports).toEqual({
+          '.': { node: './lib/index.js' },
+          './client': { browser: './lib/client.js' },
+          './package.json': './package.json',
+        });
+      });
+
+      it('adds exports for multiple artifacts + formats of different output names', async () => {
+        const a = createBundleArtifact([
+          { format: 'lib', platform: 'node', support: 'stable' },
+          { format: 'mjs', platform: 'node', support: 'stable' },
+          { format: 'cjs', platform: 'node', support: 'stable' },
+        ]);
+        pkg.addArtifact(a);
+
+        const b = createBundleArtifact([
+          { format: 'lib', platform: 'browser', support: 'stable' },
+          { format: 'esm', platform: 'browser', support: 'stable' },
+          { format: 'umd', platform: 'browser', support: 'stable' },
+        ]);
+        b.platform = 'browser';
+        b.outputName = 'client';
+        pkg.addArtifact(b);
+
+        await pkg.build({ addExports: true });
+
+        expect(pkg.packageJson.exports).toEqual({
+          '.': {
+            node: {
+              import: './mjs/index.mjs',
+              require: './cjs/index.cjs',
+              default: './lib/index.js',
+            },
+          },
+          './client': {
+            browser: {
+              import: './esm/client.js',
+              module: './esm/client.js',
+              default: './lib/client.js',
+            },
+          },
+          './package.json': './package.json',
+        });
+      });
     });
   });
 
