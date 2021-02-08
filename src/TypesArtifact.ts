@@ -5,7 +5,13 @@ import { Path } from '@boost/common';
 import { createDebugger, Debugger } from '@boost/debug';
 import { Extractor, ExtractorConfig } from '@microsoft/api-extractor';
 import Artifact from './Artifact';
-import { APIExtractorStructure, DeclarationType, TSConfigStructure, TypesBuild } from './types';
+import {
+  APIExtractorStructure,
+  DeclarationType,
+  PackageExports,
+  TSConfigStructure,
+  TypesBuild,
+} from './types';
 
 // eslint-disable-next-line
 const extractorConfig = require(path.join(__dirname, '../api-extractor.json')) as {
@@ -70,16 +76,24 @@ export default class TypesArtifact extends Artifact<TypesBuild> {
     }
   }
 
-  postBuild(): void {
-    this.package.packageJson.types = './dts/index.d.ts';
-  }
-
   getLabel(): string {
     return 'types';
   }
 
   getBuildTargets(): string[] {
     return ['dts'];
+  }
+
+  getPackageExports(): PackageExports {
+    const exports: PackageExports = {};
+
+    this.builds.forEach(({ outputName }) => {
+      exports[`./${outputName}`] = {
+        types: `./dts/${outputName}.d.ts`,
+      };
+    });
+
+    return exports;
   }
 
   toString() {

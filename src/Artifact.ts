@@ -28,10 +28,6 @@ export default abstract class Artifact<T extends object = {}> {
     return this.state === 'building';
   }
 
-  postBuild(options: BuildOptions): Awaitable {}
-
-  preBuild(options: BuildOptions): Awaitable {}
-
   startup() {}
 
   toString(): string {

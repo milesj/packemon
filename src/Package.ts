@@ -1,9 +1,10 @@
 /* eslint-disable require-atomic-updates, no-param-reassign, @typescript-eslint/member-ordering */
 
 import fs from 'fs-extra';
-import { Memoize, optimal, Path, toArray } from '@boost/common';
+import { isObject, Memoize, optimal, PackageStructure, Path, toArray } from '@boost/common';
 import { createDebugger, Debugger } from '@boost/debug';
 import Artifact from './Artifact';
+import BundleArtifact from './BundleArtifact';
 import { FORMATS_BROWSER, FORMATS_NATIVE, FORMATS_NODE } from './constants';
 import { loadModule } from './helpers/loadModule';
 import Project from './Project';
@@ -12,10 +13,13 @@ import {
   BuildOptions,
   FeatureFlags,
   PackageConfig,
+  PackageExportPaths,
+  PackageExports,
   PackemonPackage,
   PackemonPackageConfig,
   TSConfigStructure,
 } from './types';
+import TypesArtifact from './TypesArtifact';
 
 export default class Package {
   readonly artifacts: Artifact[] = [];
@@ -61,9 +65,7 @@ export default class Package {
         try {
           artifact.state = 'building';
 
-          await artifact.preBuild(options);
           await artifact.build(options);
-          await artifact.postBuild(options);
 
           artifact.state = 'passed';
         } catch (error) {
@@ -75,6 +77,14 @@ export default class Package {
         }
       }),
     );
+
+    // Add package entry points based on artifacts
+    this.addEntryPoints();
+
+    // Add package `exports` based on artifacts
+    if (options.addExports) {
+      this.addExports();
+    }
 
     // Sync `package.json` in case it was modified
     await this.syncPackageJson();
@@ -261,5 +271,82 @@ export default class Package {
     }
 
     return result;
+  }
+
+  protected addEntryPoints() {
+    this.debug('Adding entry points to `package.json`');
+
+    let mainEntry = '';
+    let moduleEntry = '';
+
+    this.artifacts.forEach((artifact) => {
+      if (artifact instanceof BundleArtifact) {
+        if (artifact.outputName === 'index') {
+          if (!mainEntry || artifact.platform === 'node') {
+            mainEntry = artifact.findEntryPoint(['lib', 'cjs', 'mjs']);
+          }
+
+          if (!moduleEntry) {
+            moduleEntry = artifact.findEntryPoint(['esm', 'mjs']);
+          }
+        }
+
+        if (
+          artifact.outputName === 'bin' &&
+          artifact.platform === 'node' &&
+          !isObject(this.packageJson.bin)
+        ) {
+          this.packageJson.bin = artifact.findEntryPoint(['lib', 'cjs', 'mjs']);
+        }
+      } else if (artifact instanceof TypesArtifact) {
+        this.packageJson.types = './dts/index.d.ts';
+      }
+    });
+
+    if (mainEntry) {
+      this.packageJson.main = mainEntry;
+
+      if (mainEntry.endsWith('mjs')) {
+        this.packageJson.type = 'module';
+      } else if (mainEntry.endsWith('cjs')) {
+        this.packageJson.type = 'commonjs';
+      }
+    }
+
+    if (moduleEntry) {
+      this.packageJson.module = moduleEntry;
+    }
+  }
+
+  protected addExports() {
+    this.debug('Adding `exports` to `package.json`');
+
+    const exports: PackageExports = {
+      './package.json': './package.json',
+    };
+
+    const mapConditionsToPath = (basePath: string, conditions: PackageExportPaths | string) => {
+      const path = basePath.replace('/index', '');
+
+      if (!exports[path]) {
+        exports[path] = {};
+      }
+
+      Object.assign(exports[path], conditions);
+    };
+
+    this.artifacts.forEach((artifact) => {
+      if (artifact instanceof BundleArtifact) {
+        mapConditionsToPath(`./${artifact.outputName}`, artifact.getPackageExports());
+      }
+
+      if (artifact instanceof TypesArtifact) {
+        Object.entries(artifact.getPackageExports()).forEach(([path, conditions]) => {
+          mapConditionsToPath(path, conditions);
+        });
+      }
+    });
+
+    this.packageJson.exports = exports as PackageStructure['exports'];
   }
 }

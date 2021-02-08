@@ -1,10 +1,10 @@
 import { rollup, RollupCache } from 'rollup';
-import { isObject, Path, SettingMap, toArray } from '@boost/common';
+import { Path, toArray } from '@boost/common';
 import { createDebugger, Debugger } from '@boost/debug';
 import Artifact from './Artifact';
 import { DEFAULT_FORMAT, NODE_SUPPORTED_VERSIONS, NPM_SUPPORTED_VERSIONS } from './constants';
 import { getRollupConfig } from './rollup/config';
-import { BuildOptions, BundleBuild, Format, Platform, Support } from './types';
+import { BuildOptions, BundleBuild, Format, PackageExportPaths, Platform, Support } from './types';
 
 export default class BundleArtifact extends Artifact<BundleBuild> {
   cache?: RollupCache;
@@ -83,18 +83,21 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
         };
       }),
     );
-  }
 
-  postBuild({ addEngines, addExports }: BuildOptions): void {
-    this.addEntryPointsToPackageJson();
-
-    if (addEngines) {
+    if (options.addEngines) {
       this.addEnginesToPackageJson();
     }
+  }
 
-    if (addExports) {
-      this.addExportsToPackageJson();
+  findEntryPoint(formats: Format[]): string {
+    // eslint-disable-next-line no-restricted-syntax
+    for (const format of formats) {
+      if (this.builds.some((build) => build.format === format)) {
+        return this.getOutputMetadata(format).path;
+      }
     }
+
+    return '';
   }
 
   getLabel(): string {
@@ -133,6 +136,38 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
     };
   }
 
+  getPackageExports(): PackageExportPaths {
+    const paths: PackageExportPaths = {};
+    let libPath = '';
+
+    this.builds.forEach(({ format }) => {
+      const { path } = this.getOutputMetadata(format);
+
+      if (format === 'mjs' || format === 'esm') {
+        paths.import = path;
+      } else if (format === 'cjs') {
+        paths.require = path;
+      } else if (format === 'lib') {
+        libPath = path;
+      }
+
+      // Webpack and Rollup support
+      if (format === 'esm') {
+        paths.module = path;
+      }
+    });
+
+    // Must come after import/require
+    if (libPath) {
+      paths.default = libPath;
+    }
+
+    return {
+      [this.platform === 'native' ? 'react-native' : this.platform]:
+        Object.keys(paths).length === 1 && libPath ? paths.default : paths,
+    };
+  }
+
   getStatsFileName(): string {
     return `stats-${this.getStatsTitle().replace(/\//gu, '-')}.html`;
   }
@@ -160,71 +195,6 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
         npm: toArray(NPM_SUPPORTED_VERSIONS[this.support])
           .map((v) => `>=${v}`)
           .join(' || '),
-      });
-    }
-  }
-
-  protected addEntryPointsToPackageJson() {
-    this.debug('Adding entry points to `package.json`');
-
-    const pkg = this.package.packageJson;
-
-    this.builds.forEach(({ format }) => {
-      const { path } = this.getOutputMetadata(format);
-      const isNode = format === 'lib' || format === 'cjs' || format === 'mjs';
-
-      if (this.outputName === 'index') {
-        if (isNode) {
-          pkg.main = path;
-        } else if (format === 'esm') {
-          pkg.module = path;
-        } else if (format === 'umd') {
-          pkg.browser = path;
-        }
-      }
-
-      // Bin field may be an object
-      if (this.outputName === 'bin' && !isObject(pkg.bin) && isNode) {
-        pkg.bin = path;
-      }
-    });
-  }
-
-  protected addExportsToPackageJson() {
-    const pkg = this.package.packageJson;
-    const paths: SettingMap = {};
-    let libPath = '';
-
-    this.builds.forEach(({ format }) => {
-      const { path } = this.getOutputMetadata(format);
-
-      if (format === 'mjs' || format === 'esm') {
-        paths.import = path;
-      } else if (format === 'cjs') {
-        paths.require = path;
-      } else if (format === 'lib') {
-        libPath = path;
-      }
-    });
-
-    // Must come after import/require
-    if (libPath) {
-      paths.default = libPath;
-    }
-
-    const exportCount = Object.keys(paths).length;
-
-    if (exportCount > 0) {
-      this.debug('Adding `exports` to `package.json`');
-
-      if (!pkg.exports) {
-        pkg.exports = {};
-      }
-
-      Object.assign(pkg.exports, {
-        './package.json': './package.json',
-        [this.outputName === 'index' ? '.' : `./${this.outputName}`]:
-          exportCount === 1 && libPath ? paths.default : paths,
       });
     }
   }
