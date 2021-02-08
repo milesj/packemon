@@ -235,25 +235,6 @@ describe('TypesArtifact', () => {
     });
   });
 
-  describe('postBuild()', () => {
-    it('sets `types` field in `package.json`', () => {
-      expect(artifact.package.packageJson).toEqual({
-        name: 'project',
-        version: '0.0.0',
-        packemon: {},
-      });
-
-      artifact.postBuild();
-
-      expect(artifact.package.packageJson).toEqual({
-        name: 'project',
-        version: '0.0.0',
-        packemon: {},
-        types: './dts/index.d.ts',
-      });
-    });
-  });
-
   describe('getPackageExports()', () => {
     it('adds exports based on input file and output name builds', () => {
       expect(artifact.getPackageExports()).toEqual({

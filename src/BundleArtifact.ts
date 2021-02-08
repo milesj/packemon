@@ -1,5 +1,5 @@
 import { rollup, RollupCache } from 'rollup';
-import { isObject, Path, toArray } from '@boost/common';
+import { Path, toArray } from '@boost/common';
 import { createDebugger, Debugger } from '@boost/debug';
 import Artifact from './Artifact';
 import { DEFAULT_FORMAT, NODE_SUPPORTED_VERSIONS, NPM_SUPPORTED_VERSIONS } from './constants';
@@ -83,14 +83,21 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
         };
       }),
     );
-  }
 
-  postBuild({ addEngines }: BuildOptions): void {
-    this.addEntryPointsToPackageJson();
-
-    if (addEngines) {
+    if (options.addEngines) {
       this.addEnginesToPackageJson();
     }
+  }
+
+  findEntryPoint(formats: Format[]): string {
+    // eslint-disable-next-line no-restricted-syntax
+    for (const format of formats) {
+      if (this.builds.some((build) => build.format === format)) {
+        return this.getOutputMetadata(format).path;
+      }
+    }
+
+    return '';
   }
 
   getLabel(): string {
@@ -189,52 +196,6 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
           .map((v) => `>=${v}`)
           .join(' || '),
       });
-    }
-  }
-
-  protected addEntryPointsToPackageJson() {
-    this.debug('Adding entry points to `package.json`');
-
-    const pkg = this.package.packageJson;
-
-    const hasFormat = (format: Format) => {
-      if (
-        (format === 'mjs' && pkg.type !== 'module') ||
-        (format === 'cjs' && pkg.type !== 'commonjs')
-      ) {
-        return false;
-      }
-
-      return this.builds.some((build) => build.format === format);
-    };
-
-    const findOutputPath = (formats: Format[]) => {
-      // eslint-disable-next-line no-restricted-syntax
-      for (const format of formats) {
-        if (hasFormat(format)) {
-          return this.getOutputMetadata(format).path;
-        }
-      }
-
-      return '';
-    };
-
-    if (this.outputName === 'index') {
-      const mainPath = findOutputPath(['lib', 'cjs', 'mjs']);
-      const modulePath = findOutputPath(['mjs', 'esm']);
-
-      if (mainPath) {
-        pkg.main = mainPath;
-      }
-
-      if (modulePath && modulePath !== mainPath) {
-        pkg.module = modulePath;
-      }
-    }
-
-    // Bin field may be an object
-    if (this.outputName === 'bin' && !isObject(pkg.bin) && this.platform === 'node') {
-      pkg.bin = findOutputPath(['lib', 'cjs', 'mjs']);
     }
   }
 }

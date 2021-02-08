@@ -1,7 +1,7 @@
 /* eslint-disable require-atomic-updates, no-param-reassign, @typescript-eslint/member-ordering */
 
 import fs from 'fs-extra';
-import { Memoize, optimal, PackageStructure, Path, toArray } from '@boost/common';
+import { isObject, Memoize, optimal, PackageStructure, Path, toArray } from '@boost/common';
 import { createDebugger, Debugger } from '@boost/debug';
 import Artifact from './Artifact';
 import BundleArtifact from './BundleArtifact';
@@ -65,9 +65,7 @@ export default class Package {
         try {
           artifact.state = 'building';
 
-          await artifact.preBuild(options);
           await artifact.build(options);
-          await artifact.postBuild(options);
 
           artifact.state = 'passed';
         } catch (error) {
@@ -80,9 +78,12 @@ export default class Package {
       }),
     );
 
+    // Add package entry points based on artifacts
+    this.addEntryPoints();
+
     // Add package `exports` based on artifacts
     if (options.addExports) {
-      this.addPackageExports();
+      this.addExports();
     }
 
     // Sync `package.json` in case it was modified
@@ -272,7 +273,52 @@ export default class Package {
     return result;
   }
 
-  private addPackageExports() {
+  protected addEntryPoints() {
+    this.debug('Adding entry points to `package.json`');
+
+    let mainEntry = '';
+    let moduleEntry = '';
+
+    this.artifacts.forEach((artifact) => {
+      if (artifact instanceof BundleArtifact) {
+        if (artifact.outputName === 'index') {
+          if (!mainEntry || artifact.platform === 'node') {
+            mainEntry = artifact.findEntryPoint(['lib', 'cjs', 'mjs']);
+          }
+
+          if (!moduleEntry) {
+            moduleEntry = artifact.findEntryPoint(['esm', 'mjs']);
+          }
+        }
+
+        if (
+          artifact.outputName === 'bin' &&
+          artifact.platform === 'node' &&
+          !isObject(this.packageJson.bin)
+        ) {
+          this.packageJson.bin = artifact.findEntryPoint(['lib', 'cjs', 'mjs']);
+        }
+      } else if (artifact instanceof TypesArtifact) {
+        this.packageJson.types = './dts/index.d.ts';
+      }
+    });
+
+    if (mainEntry) {
+      this.packageJson.main = mainEntry;
+
+      if (mainEntry.endsWith('mjs')) {
+        this.packageJson.type = 'module';
+      } else if (mainEntry.endsWith('cjs')) {
+        this.packageJson.type = 'commonjs';
+      }
+    }
+
+    if (moduleEntry) {
+      this.packageJson.module = moduleEntry;
+    }
+  }
+
+  protected addExports() {
     this.debug('Adding `exports` to `package.json`');
 
     const exports: PackageExports = {

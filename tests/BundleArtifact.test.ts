@@ -117,203 +117,40 @@ describe('BundleArtifact', () => {
       expect(bundleWriteSpy).toHaveBeenCalledWith({ c: true });
       expect(artifact.builds[2].stats?.size).toBe(4);
     });
-  });
-
-  describe('postBuild()', () => {
-    describe('entry points', () => {
-      it('adds "main" for `lib` format', () => {
-        artifact.platform = 'browser';
-        artifact.builds.push({ format: 'lib', platform: 'browser', support: 'stable' });
-
-        expect(artifact.package.packageJson).toEqual(packageJson);
-
-        artifact.postBuild({});
-
-        expect(artifact.package.packageJson).toEqual({
-          ...packageJson,
-          main: './lib/index.js',
-        });
-      });
-
-      it('adds "main" for `lib` format and shared lib required', () => {
-        artifact.sharedLib = true;
-        artifact.platform = 'browser';
-        artifact.builds.push({ format: 'lib', platform: 'browser', support: 'stable' });
-
-        expect(artifact.package.packageJson).toEqual(packageJson);
-
-        artifact.postBuild({});
-
-        expect(artifact.package.packageJson).toEqual({
-          ...packageJson,
-          main: './lib/browser/index.js',
-        });
-      });
-
-      it('adds "main" for `cjs` format', () => {
-        artifact.builds.push({ format: 'cjs', platform: 'node', support: 'stable' });
-
-        expect(artifact.package.packageJson).toEqual(packageJson);
-
-        artifact.package.packageJson.type = 'commonjs';
-        artifact.postBuild({});
-
-        expect(artifact.package.packageJson).toEqual({
-          ...packageJson,
-          main: './cjs/index.cjs',
-          type: 'commonjs',
-        });
-      });
-
-      it('doesnt add "main" for `cjs` format if no package `type`', () => {
-        artifact.builds.push({ format: 'cjs', platform: 'node', support: 'stable' });
-
-        expect(artifact.package.packageJson).toEqual(packageJson);
-
-        artifact.postBuild({});
-
-        expect(artifact.package.packageJson).toEqual(packageJson);
-      });
-
-      it('adds "main" for `mjs` format', () => {
-        artifact.builds.push({ format: 'mjs', platform: 'node', support: 'stable' });
-
-        expect(artifact.package.packageJson).toEqual(packageJson);
-
-        artifact.package.packageJson.type = 'module';
-        artifact.postBuild({});
-
-        expect(artifact.package.packageJson).toEqual({
-          ...packageJson,
-          main: './mjs/index.mjs',
-          type: 'module',
-        });
-      });
-
-      it('doesnt add  "main" for `mjs` format if no package `type`', () => {
-        artifact.builds.push({ format: 'mjs', platform: 'node', support: 'stable' });
-
-        expect(artifact.package.packageJson).toEqual(packageJson);
-
-        artifact.postBuild({});
-
-        expect(artifact.package.packageJson).toEqual(packageJson);
-      });
-
-      it('adds "module" for `esm` format', () => {
-        artifact.builds.push({ format: 'esm', platform: 'browser', support: 'stable' });
-
-        expect(artifact.package.packageJson).toEqual(packageJson);
-
-        artifact.postBuild({});
-
-        expect(artifact.package.packageJson).toEqual({
-          ...packageJson,
-          module: './esm/index.js',
-        });
-      });
-
-      describe('binary files', () => {
-        beforeEach(() => {
-          artifact.outputName = 'bin';
-        });
-
-        it('adds "bin" for `lib` format', () => {
-          artifact.builds.push({ format: 'lib', platform: 'node', support: 'stable' });
-
-          artifact.postBuild({});
-
-          expect(artifact.package.packageJson).toEqual({
-            ...packageJson,
-            bin: './lib/bin.js',
-          });
-        });
-
-        it('adds "bin" for `lib` format when shared lib required', () => {
-          artifact.sharedLib = true;
-          artifact.builds.push({ format: 'lib', platform: 'node', support: 'stable' });
-
-          artifact.postBuild({});
-
-          expect(artifact.package.packageJson).toEqual({
-            ...packageJson,
-            bin: './lib/node/bin.js',
-          });
-        });
-
-        it('adds "bin" for `cjs` format', () => {
-          artifact.builds.push({ format: 'cjs', platform: 'node', support: 'stable' });
-
-          artifact.package.packageJson.type = 'commonjs';
-          artifact.postBuild({});
-
-          expect(artifact.package.packageJson).toEqual({
-            ...packageJson,
-            bin: './cjs/bin.cjs',
-            type: 'commonjs',
-          });
-        });
-
-        it('adds "bin" for `mjs` format', () => {
-          artifact.builds.push({ format: 'mjs', platform: 'node', support: 'stable' });
-
-          artifact.package.packageJson.type = 'module';
-          artifact.postBuild({});
-
-          expect(artifact.package.packageJson).toEqual({
-            ...packageJson,
-            bin: './mjs/bin.mjs',
-            type: 'module',
-          });
-        });
-
-        it('doesnt set "bin" if already defined as an object', () => {
-          artifact.builds.push({ format: 'lib', platform: 'node', support: 'stable' });
-          artifact.package.packageJson.bin = { example: './bin.js' };
-
-          artifact.postBuild({});
-
-          expect(artifact.package.packageJson).toEqual({
-            ...packageJson,
-            bin: { example: './bin.js' },
-          });
-        });
-      });
-    });
 
     describe('engines', () => {
-      it('does nothing if builds is not `node`', () => {
+      it('does nothing if builds is not `node`', async () => {
         artifact.platform = 'browser';
         artifact.builds.push({ format: 'lib', platform: 'browser', support: 'stable' });
 
         expect(artifact.package.packageJson.engines).toBeUndefined();
 
-        artifact.postBuild({ addEngines: true });
+        await artifact.build({ addEngines: true });
 
         expect(artifact.package.packageJson.engines).toBeUndefined();
       });
 
-      it('does nothing if `addEngines` is false', () => {
+      it('does nothing if `addEngines` is false', async () => {
         artifact.builds.push({ format: 'lib', platform: 'node', support: 'stable' });
 
         expect(artifact.package.packageJson.engines).toBeUndefined();
 
-        artifact.postBuild({ addEngines: false });
+        await artifact.build({ addEngines: false });
 
         expect(artifact.package.packageJson.engines).toBeUndefined();
       });
 
-      it('adds npm and node engines for `node` build', () => {
+      it('adds npm and node engines for `node` build', async () => {
         artifact.builds.push({ format: 'lib', platform: 'node', support: 'stable' });
 
         expect(artifact.package.packageJson.engines).toBeUndefined();
 
-        artifact.postBuild({ addEngines: true });
+        await artifact.build({ addEngines: true });
 
         expect(artifact.package.packageJson.engines).toEqual({ node: '>=10.3.0', npm: '>=6.1.0' });
       });
 
-      it('merges with existing engines', () => {
+      it('merges with existing engines', async () => {
         artifact.builds.push({ format: 'lib', platform: 'node', support: 'stable' });
 
         artifact.package.packageJson.engines = {
@@ -322,7 +159,7 @@ describe('BundleArtifact', () => {
 
         expect(artifact.package.packageJson.engines).toEqual({ packemon: '*' });
 
-        artifact.postBuild({ addEngines: true });
+        await artifact.build({ addEngines: true });
 
         expect(artifact.package.packageJson.engines).toEqual({
           packemon: '*',

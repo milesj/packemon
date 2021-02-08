@@ -132,14 +132,13 @@ describe('Package', () => {
     it('sets failed state and result time on error', async () => {
       const artifact = new TestArtifact(pkg, []);
 
-      jest.spyOn(artifact, 'postBuild').mockImplementation(() => {
+      jest.spyOn(artifact, 'build').mockImplementation(() => {
         throw new Error('Whoops');
       });
 
       pkg.addArtifact(artifact);
 
       expect(artifact.state).toBe('pending');
-      expect(artifact.buildResult.time).toBe(0);
 
       try {
         await pkg.build({});
@@ -148,7 +147,6 @@ describe('Package', () => {
       }
 
       expect(artifact.state).toBe('failed');
-      expect(artifact.buildResult.time).not.toBe(0);
     });
 
     it('syncs `package.json` when done building', async () => {
@@ -160,6 +158,240 @@ describe('Package', () => {
       await pkg.build({});
 
       expect(spy).toHaveBeenCalled();
+    });
+
+    describe('entries', () => {
+      describe('main', () => {
+        it('adds "main" for node `lib` format', async () => {
+          pkg.addArtifact(
+            createBundleArtifact([{ format: 'lib', platform: 'node', support: 'stable' }]),
+          );
+
+          await pkg.build({});
+
+          expect(pkg.packageJson).toEqual(
+            expect.objectContaining({
+              main: './lib/index.js',
+            }),
+          );
+        });
+
+        it('adds "main" for node `cjs` format', async () => {
+          pkg.addArtifact(
+            createBundleArtifact([{ format: 'cjs', platform: 'node', support: 'stable' }]),
+          );
+
+          await pkg.build({});
+
+          expect(pkg.packageJson).toEqual(
+            expect.objectContaining({
+              main: './cjs/index.cjs',
+              type: 'commonjs',
+            }),
+          );
+        });
+
+        it('adds "main" for node `mjs` format', async () => {
+          pkg.addArtifact(
+            createBundleArtifact([{ format: 'mjs', platform: 'node', support: 'stable' }]),
+          );
+
+          await pkg.build({});
+
+          expect(pkg.packageJson).toEqual(
+            expect.objectContaining({
+              main: './mjs/index.mjs',
+              type: 'module',
+            }),
+          );
+        });
+
+        it('adds "main" for browser `lib` format', async () => {
+          const a = createBundleArtifact([
+            { format: 'lib', platform: 'browser', support: 'stable' },
+          ]);
+          a.platform = 'browser';
+          pkg.addArtifact(a);
+
+          await pkg.build({});
+
+          expect(pkg.packageJson).toEqual(
+            expect.objectContaining({
+              main: './lib/index.js',
+            }),
+          );
+        });
+
+        it('adds "main" for native `lib` format', async () => {
+          const a = createBundleArtifact([
+            { format: 'lib', platform: 'native', support: 'stable' },
+          ]);
+          a.platform = 'native';
+          pkg.addArtifact(a);
+
+          await pkg.build({});
+
+          expect(pkg.packageJson).toEqual(
+            expect.objectContaining({
+              main: './lib/index.js',
+            }),
+          );
+        });
+
+        it('doesnt add "main" if output name is not "index"', async () => {
+          const a = createBundleArtifact([{ format: 'lib', platform: 'node', support: 'stable' }]);
+          a.outputName = 'server';
+          pkg.addArtifact(a);
+
+          await pkg.build({});
+
+          expect(pkg.packageJson.main).toBeUndefined();
+        });
+
+        it('adds "main" when using shared `lib` format', async () => {
+          const a = createBundleArtifact([{ format: 'lib', platform: 'node', support: 'stable' }]);
+          a.sharedLib = true;
+          pkg.addArtifact(a);
+
+          const b = createBundleArtifact([
+            { format: 'lib', platform: 'browser', support: 'stable' },
+          ]);
+          b.sharedLib = true;
+          b.platform = 'browser';
+          pkg.addArtifact(b);
+
+          await pkg.build({});
+
+          expect(pkg.packageJson).toEqual(
+            expect.objectContaining({
+              main: './lib/node/index.js',
+            }),
+          );
+        });
+
+        it('node "main" always takes precedence when multiple `lib` formats', async () => {
+          const b = createBundleArtifact([
+            { format: 'lib', platform: 'browser', support: 'stable' },
+          ]);
+          b.sharedLib = true;
+          b.platform = 'browser';
+          pkg.addArtifact(b);
+
+          const a = createBundleArtifact([{ format: 'lib', platform: 'node', support: 'stable' }]);
+          a.sharedLib = true;
+          pkg.addArtifact(a);
+
+          await pkg.build({});
+
+          expect(pkg.packageJson).toEqual(
+            expect.objectContaining({
+              main: './lib/node/index.js',
+            }),
+          );
+        });
+      });
+
+      describe('module', () => {
+        it('adds "module" for node `mjs` format', async () => {
+          pkg.addArtifact(
+            createBundleArtifact([{ format: 'mjs', platform: 'node', support: 'stable' }]),
+          );
+
+          await pkg.build({});
+
+          expect(pkg.packageJson).toEqual(
+            expect.objectContaining({
+              module: './mjs/index.mjs',
+            }),
+          );
+        });
+
+        it('adds "module" for browser `esm` format', async () => {
+          const a = createBundleArtifact([
+            { format: 'esm', platform: 'browser', support: 'stable' },
+          ]);
+          a.platform = 'browser';
+          pkg.addArtifact(a);
+
+          await pkg.build({});
+
+          expect(pkg.packageJson).toEqual(
+            expect.objectContaining({
+              module: './esm/index.js',
+            }),
+          );
+        });
+      });
+
+      describe('types', () => {
+        it('adds "types" when a types artifact exists', async () => {
+          pkg.addArtifact(createTypesArtifact([]));
+
+          await pkg.build({});
+
+          expect(pkg.packageJson).toEqual(
+            expect.objectContaining({
+              types: './dts/index.d.ts',
+            }),
+          );
+        });
+      });
+
+      describe('bin', () => {
+        it('adds "bin" for node `lib` format', async () => {
+          const a = createBundleArtifact([{ format: 'lib', platform: 'node', support: 'stable' }]);
+          a.outputName = 'bin';
+          pkg.addArtifact(a);
+
+          await pkg.build({});
+
+          expect(pkg.packageJson).toEqual(
+            expect.objectContaining({
+              bin: './lib/bin.js',
+            }),
+          );
+        });
+
+        it('adds "bin" for node `cjs` format', async () => {
+          const a = createBundleArtifact([{ format: 'cjs', platform: 'node', support: 'stable' }]);
+          a.outputName = 'bin';
+          pkg.addArtifact(a);
+
+          await pkg.build({});
+
+          expect(pkg.packageJson).toEqual(
+            expect.objectContaining({
+              bin: './cjs/bin.cjs',
+            }),
+          );
+        });
+
+        it('adds "bin" for node `mjs` format', async () => {
+          const a = createBundleArtifact([{ format: 'mjs', platform: 'node', support: 'stable' }]);
+          a.outputName = 'bin';
+          pkg.addArtifact(a);
+
+          await pkg.build({});
+
+          expect(pkg.packageJson).toEqual(
+            expect.objectContaining({
+              bin: './mjs/bin.mjs',
+            }),
+          );
+        });
+
+        it('doesnt add "bin" if value is an object', async () => {
+          pkg.addArtifact(
+            createBundleArtifact([{ format: 'lib', platform: 'node', support: 'stable' }]),
+          );
+
+          pkg.packageJson.bin = {};
+
+          await pkg.build({});
+
+          expect(pkg.packageJson.bin).toEqual({});
+        });
+      });
     });
 
     describe('exports', () => {
