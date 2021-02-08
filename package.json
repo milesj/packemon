@@ -23,7 +23,7 @@
     "test": "beemo jest",
     "type": "beemo typescript --noEmit",
     "prerelease": "yarn run clean && yarn run setup && yarn run pack && yarn run ci",
-    "pack": "NODE_ENV=production yarn run packemon pack --addEngines --declaration=api",
+    "pack": "NODE_ENV=production yarn run packemon pack --addEngines --addExports --declaration=api",
     "packemon": "node ./packemon.js"
   },
   "repository": "https://github.com/milesj/packemon.git",
@@ -32,6 +32,21 @@
   "main": "./lib/index.js",
   "types": "./dts/index.d.ts",
   "bin": "./lib/bin.js",
+  "exports": {
+    "./package.json": "./package.json",
+    "./babel": {
+      "node": "./lib/babel.js",
+      "types": "./dts/babel.d.ts"
+    },
+    "./bin": {
+      "node": "./lib/bin.js",
+      "types": "./dts/bin.d.ts"
+    },
+    ".": {
+      "node": "./lib/index.js",
+      "types": "./dts/index.d.ts"
+    }
+  },
   "sideEffects": false,
   "engines": {
     "node": ">=10.3.0",
