@@ -13,10 +13,13 @@ import {
   BuildOptions,
   FeatureFlags,
   PackageConfig,
+  PackageExportPaths,
+  PackageExports,
   PackemonPackage,
   PackemonPackageConfig,
   TSConfigStructure,
 } from './types';
+import TypesArtifact from './TypesArtifact';
 
 export default class Package {
   readonly artifacts: Artifact[] = [];
@@ -272,22 +275,32 @@ export default class Package {
   private addPackageExports() {
     this.debug('Adding `exports` to `package.json`');
 
-    const exports: PackageStructure['exports'] = {
+    const exports: PackageExports = {
       './package.json': './package.json',
+    };
+
+    const mapConditionsToPath = (basePath: string, conditions: PackageExportPaths | string) => {
+      const path = basePath.replace('/index', '');
+
+      if (!exports[path]) {
+        exports[path] = {};
+      }
+
+      Object.assign(exports[path], conditions);
     };
 
     this.artifacts.forEach((artifact) => {
       if (artifact instanceof BundleArtifact) {
-        const path = artifact.outputName === 'index' ? '.' : `./${artifact.outputName}`;
+        mapConditionsToPath(`./${artifact.outputName}`, artifact.getPackageExports());
+      }
 
-        if (!exports[path]) {
-          exports[path] = {};
-        }
-
-        Object.assign(exports[path], artifact.getPackageExports());
+      if (artifact instanceof TypesArtifact) {
+        Object.entries(artifact.getPackageExports()).forEach(([path, conditions]) => {
+          mapConditionsToPath(path, conditions);
+        });
       }
     });
 
-    this.packageJson.exports = exports;
+    this.packageJson.exports = exports as PackageStructure['exports'];
   }
 }

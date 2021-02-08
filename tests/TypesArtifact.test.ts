@@ -253,4 +253,17 @@ describe('TypesArtifact', () => {
       });
     });
   });
+
+  describe('getPackageExports()', () => {
+    it('adds exports based on input file and output name builds', () => {
+      expect(artifact.getPackageExports()).toEqual({
+        './index': {
+          types: './dts/index.d.ts',
+        },
+        './test': {
+          types: './dts/test.d.ts',
+        },
+      });
+    });
+  });
 });

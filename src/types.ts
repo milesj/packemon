@@ -77,6 +77,25 @@ export interface PackageConfig {
   support: Support;
 }
 
+// PACKAGE EXPORTS
+// https://webpack.js.org/guides/package-exports
+
+export type PackageExportConditions =
+  | 'browser'
+  | 'default'
+  | 'import'
+  | 'module'
+  | 'node'
+  | 'react-native'
+  | 'require'
+  | 'types';
+
+export type PackageExportPaths = {
+  [K in PackageExportConditions]?: PackageExportPaths | string;
+};
+
+export type PackageExports = Record<string, PackageExportPaths | string>;
+
 // BUILD
 
 export type ArtifactState = 'building' | 'failed' | 'passed' | 'pending';

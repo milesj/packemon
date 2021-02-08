@@ -1,10 +1,10 @@
 import { rollup, RollupCache } from 'rollup';
-import { isObject, Path, SettingMap, toArray } from '@boost/common';
+import { isObject, Path, toArray } from '@boost/common';
 import { createDebugger, Debugger } from '@boost/debug';
 import Artifact from './Artifact';
 import { DEFAULT_FORMAT, NODE_SUPPORTED_VERSIONS, NPM_SUPPORTED_VERSIONS } from './constants';
 import { getRollupConfig } from './rollup/config';
-import { BuildOptions, BundleBuild, Format, Platform, Support } from './types';
+import { BuildOptions, BundleBuild, Format, PackageExportPaths, Platform, Support } from './types';
 
 export default class BundleArtifact extends Artifact<BundleBuild> {
   cache?: RollupCache;
@@ -129,8 +129,8 @@ export default class BundleArtifact extends Artifact<BundleBuild> {
     };
   }
 
-  getPackageExports(): Record<string, SettingMap | string> {
-    const paths: SettingMap = {};
+  getPackageExports(): PackageExportPaths {
+    const paths: PackageExportPaths = {};
     let libPath = '';
 
     this.builds.forEach(({ format }) => {

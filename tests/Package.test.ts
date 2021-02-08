@@ -4,7 +4,8 @@ import { getFixturePath } from '@boost/test-utils';
 import BundleArtifact from '../src/BundleArtifact';
 import Package from '../src/Package';
 import Project from '../src/Project';
-import { BundleBuild } from '../src/types';
+import { BundleBuild, TypesBuild } from '../src/types';
+import TypesArtifact from '../src/TypesArtifact';
 import { TestArtifact } from './helpers';
 
 describe('Package', () => {
@@ -23,6 +24,14 @@ describe('Package', () => {
   function createBundleArtifact(builds: BundleBuild[]) {
     const artifact = new BundleArtifact(pkg, builds);
     artifact.outputName = 'index';
+
+    artifact.build = () => Promise.resolve();
+
+    return artifact;
+  }
+
+  function createTypesArtifact(builds: TypesBuild[]) {
+    const artifact = new TypesArtifact(pkg, builds);
 
     artifact.build = () => Promise.resolve();
 
@@ -320,6 +329,20 @@ describe('Package', () => {
               default: './lib/client.js',
             },
           },
+          './package.json': './package.json',
+        });
+      });
+
+      it('adds exports for bundle and types artifacts in parallel', async () => {
+        pkg.addArtifact(
+          createBundleArtifact([{ format: 'lib', platform: 'node', support: 'stable' }]),
+        );
+        pkg.addArtifact(createTypesArtifact([{ inputFile: '', outputName: 'index' }]));
+
+        await pkg.build({ addExports: true });
+
+        expect(pkg.packageJson.exports).toEqual({
+          '.': { node: './lib/index.js', types: './dts/index.d.ts' },
           './package.json': './package.json',
         });
       });
