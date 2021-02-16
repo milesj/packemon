@@ -37,5 +37,5 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
-      - run: yarn install --ignore-engines --frozen-lockfile
+      - run: cd website && yarn install --ignore-engines --frozen-lockfile
       - run: cd website && yarn run build
