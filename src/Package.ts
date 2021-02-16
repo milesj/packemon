@@ -252,9 +252,15 @@ export default class Package {
       fs.readFileSync(name, 'utf8'),
     );
 
+    const host = {
+      getCanonicalFileName: (fileName: string) => fileName,
+      getCurrentDirectory: () => ts.sys.getCurrentDirectory(),
+      getNewLine: () => ts.sys.newLine,
+    };
+
     // istanbul ignore next
     if (error) {
-      throw error;
+      throw new Error(ts.formatDiagnostic(error, host));
     }
 
     const result = ts.parseJsonConfigFileContent(
@@ -267,7 +273,7 @@ export default class Package {
 
     // istanbul ignore next
     if (result.errors.length > 0) {
-      throw result.errors[0];
+      throw new Error(ts.formatDiagnostics(result.errors, host));
     }
 
     return result;
