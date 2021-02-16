@@ -265,12 +265,17 @@ export default class PackageValidator {
   protected checkMetadata() {
     this.package.debug('Checking metadata');
 
-    const { name, version, description, keywords } = this.package.packageJson;
+    const { name, version, description, keywords, private: isPrivate } = this.package.packageJson;
 
     if (!name) {
       this.errors.push('Missing name.');
     } else if (!isModuleName(name)) {
       this.errors.push('Invalid name format. Must contain alphanumeric characters and dashes.');
+    }
+
+    // Only validate name when a private package
+    if (isPrivate) {
+      return;
     }
 
     if (!version) {

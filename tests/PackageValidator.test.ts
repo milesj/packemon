@@ -679,6 +679,15 @@ describe('PackageValidator', () => {
         expect(validator.warnings).toEqual([]);
         expect(validator.errors).toEqual(['Missing version.']);
       });
+
+      it('doesnt error if not defined but package is private', async () => {
+        validator.package.packageJson.private = true;
+
+        await validator.validate({ meta: true });
+
+        expect(validator.warnings).toEqual([]);
+        expect(validator.errors).toEqual([]);
+      });
     });
 
     describe('description', () => {
@@ -697,6 +706,15 @@ describe('PackageValidator', () => {
         await validator.validate({ meta: true });
 
         expect(validator.warnings).toEqual(['Missing description.']);
+        expect(validator.errors).toEqual([]);
+      });
+
+      it('doesnt warn if not defined but package is private', async () => {
+        validator.package.packageJson.private = true;
+
+        await validator.validate({ meta: true });
+
+        expect(validator.warnings).toEqual([]);
         expect(validator.errors).toEqual([]);
       });
     });
@@ -726,6 +744,15 @@ describe('PackageValidator', () => {
         await validator.validate({ meta: true });
 
         expect(validator.warnings).toEqual(['Missing keywords.']);
+        expect(validator.errors).toEqual([]);
+      });
+
+      it('doesnt warn if not defined but package is private', async () => {
+        validator.package.packageJson.private = true;
+
+        await validator.validate({ meta: true });
+
+        expect(validator.warnings).toEqual([]);
         expect(validator.errors).toEqual([]);
       });
     });
