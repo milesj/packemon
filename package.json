@@ -10,6 +10,8 @@
   ],
   "scripts": {
     "docs": "cd website && yarn run start",
+    "docs:build": "cd website && yarn run build",
+    "docs:deploy": "cd website && yarn run deploy",
     "prepare": "beemo create-config --silent",
     "setup": "beemo typescript",
     "build": "yarn run packemon build",
