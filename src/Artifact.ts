@@ -11,6 +11,8 @@ export default abstract class Artifact<T extends object = {}> {
 
   readonly package: Package;
 
+  sourceMaps: boolean = false;
+
   state: ArtifactState = 'pending';
 
   constructor(pkg: Package, builds: T[]) {

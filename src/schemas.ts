@@ -68,6 +68,7 @@ export const packemonBlueprint: Blueprint<PackemonPackageConfig> = {
   }),
   namespace: string(),
   platform: union([array(platform), platform], DEFAULT_PLATFORM),
+  sourceMaps: bool(),
   support,
 };
 

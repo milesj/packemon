@@ -140,7 +140,7 @@ describe('getRollupConfig()', () => {
           paths: {},
           plugins: [`babelOutput(${fixturePath}, *)`],
           preferConst: false,
-          sourcemap: true,
+          sourcemap: false,
           sourcemapExcludeSources: true,
         },
         {
@@ -154,7 +154,7 @@ describe('getRollupConfig()', () => {
           paths: {},
           plugins: [`babelOutput(${fixturePath}, *)`],
           preferConst: true,
-          sourcemap: true,
+          sourcemap: false,
           sourcemapExcludeSources: true,
         },
         {
@@ -593,8 +593,9 @@ describe('getRollupOutputConfig()', () => {
   });
 
   describe('sourcemaps', () => {
-    it('enables when platform is `browser`', () => {
+    it('enables when artifact `sourceMaps` is true', () => {
       artifact.platform = 'browser';
+      artifact.sourceMaps = true;
 
       expect(
         getRollupOutputConfig(
@@ -610,18 +611,15 @@ describe('getRollupOutputConfig()', () => {
       );
     });
 
-    it('enables when platform is `native`', () => {
-      artifact.platform = 'native';
+    it('disables when artifact `sourceMaps` is false', () => {
+      artifact.platform = 'node';
+      artifact.sourceMaps = false;
 
       expect(
-        getRollupOutputConfig(
-          artifact,
-          {},
-          { format: 'lib', platform: 'native', support: 'stable' },
-        ),
+        getRollupOutputConfig(artifact, {}, { format: 'lib', platform: 'node', support: 'stable' }),
       ).toEqual(
         expect.objectContaining({
-          sourcemap: true,
+          sourcemap: false,
           sourcemapExcludeSources: true,
         }),
       );
@@ -637,17 +635,6 @@ describe('getRollupOutputConfig()', () => {
       ).toEqual(
         expect.objectContaining({
           sourcemap: true,
-          sourcemapExcludeSources: true,
-        }),
-      );
-    });
-
-    it('disables when platform is `node`', () => {
-      expect(
-        getRollupOutputConfig(artifact, {}, { format: 'lib', platform: 'node', support: 'stable' }),
-      ).toEqual(
-        expect.objectContaining({
-          sourcemap: false,
           sourcemapExcludeSources: true,
         }),
       );
@@ -676,7 +663,7 @@ describe('getRollupOutputConfig()', () => {
       paths: {},
       plugins: [`babelOutput(${fixturePath}, FooBar)`],
       preferConst: true,
-      sourcemap: true,
+      sourcemap: false,
       sourcemapExcludeSources: true,
     });
   });

@@ -111,8 +111,7 @@ export function getRollupOutputConfig(
         sourceMaps: false,
       }),
     ],
-    // Only enable source maps for browsers
-    sourcemap: Boolean(features.analyze) || platform !== 'node',
+    sourcemap: Boolean(features.analyze) || artifact.sourceMaps,
     sourcemapExcludeSources: true,
   };
 

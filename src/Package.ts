@@ -224,6 +224,7 @@ export default class Package {
           inputs: config.inputs,
           namespace: config.namespace,
           platform,
+          sourceMaps: config.sourceMaps,
           support: config.support,
         });
       });
