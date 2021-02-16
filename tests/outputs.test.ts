@@ -117,6 +117,7 @@ describe('Outputs', () => {
     'async-await.ts': 'Async/Await',
     'generators.ts': 'Generators',
     'node-polyfills.ts': 'Node polyfills',
+    'source-maps.ts': 'Source maps',
   };
 
   FORMATS.forEach((format) => {
@@ -156,6 +157,7 @@ describe('Outputs', () => {
         artifact.support = build.support;
         artifact.outputName = `index-${build.platform}-${build.support}-${build.format}`;
         artifact.inputFile = file;
+        artifact.sourceMaps = file === 'source-maps.ts';
 
         pkg.addArtifact(artifact);
       });
