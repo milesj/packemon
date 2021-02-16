@@ -29,6 +29,7 @@ with caution.
     {
       "inputs": { "web": "src/web.ts" },
       "platform": "browser",
+      "sourceMaps": true,
       "support": "current"
     },
     {
@@ -159,6 +160,16 @@ need to configure this.
 
 > These inputs can be automatically mapped to `package.json` `exports` using the `--addExports` CLI
 > option. Do note that this feature is still experimental.
+
+## Source maps
+
+Enable source map generation for all formats within the current configuration block.
+
+```json
+{
+  "sourceMaps": true
+}
+```
 
 ## Namespace
 

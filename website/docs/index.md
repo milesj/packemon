@@ -20,7 +20,7 @@ provide sane defaults and configurations, verify package requirements, and much 
 - Transforms packages with Babel's `preset-env` and the configured platform targets. Only ship and
   polyfill what's truly necessary!
 - Generate and combine TypeScript declarations into a single public-only API representation.
-- Generates compact source maps for browser based builds.
+- Generates compact source maps for platform + format based builds.
 
 ## Requirements
 
