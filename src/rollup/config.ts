@@ -1,4 +1,3 @@
-import path from 'path';
 import { ModuleFormat, OutputOptions, RollupOptions } from 'rollup';
 import externals from 'rollup-plugin-node-externals';
 import nodePolyfills from 'rollup-plugin-polyfill-node';
@@ -137,7 +136,7 @@ export function getRollupOutputConfig(
 
 export function getRollupConfig(artifact: BundleArtifact, features: FeatureFlags): RollupOptions {
   const inputPath = artifact.getInputPath();
-  const packagePath = path.resolve(artifact.package.packageJsonPath.path());
+  const packagePath = artifact.package.packageJsonPath.path();
   const isNode = artifact.platform === 'node';
 
   const config: RollupOptions = {

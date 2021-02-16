@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/member-ordering */
 
-import path from 'path';
 import fs from 'fs-extra';
 import rimraf from 'rimraf';
 import { isObject, json, Memoize, optimal, Path, toArray, WorkspacePackage } from '@boost/common';
@@ -92,7 +91,7 @@ export default class Packemon {
 
     if (this.project.isWorkspacesEnabled()) {
       this.project.workspaces.forEach((ws) => {
-        pathsToRemove.push(path.join(ws, formatFolders));
+        pathsToRemove.push(new Path(ws, formatFolders).path());
       });
     } else {
       pathsToRemove.push(`./${formatFolders}`);
