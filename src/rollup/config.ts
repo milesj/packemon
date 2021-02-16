@@ -84,7 +84,7 @@ export function getRollupOutputConfig(
   features: FeatureFlags,
   build: BundleBuild,
 ): OutputOptions {
-  const { format, platform, support } = build;
+  const { format, platform, sourceMaps, support } = build;
   const name = artifact.outputName;
   const { ext, folder } = artifact.getOutputMetadata(format);
 
@@ -111,8 +111,7 @@ export function getRollupOutputConfig(
         sourceMaps: false,
       }),
     ],
-    // Only enable source maps for browsers
-    sourcemap: Boolean(features.analyze) || platform !== 'node',
+    sourcemap: Boolean(features.analyze) || sourceMaps,
     sourcemapExcludeSources: true,
   };
 

@@ -209,6 +209,7 @@ export default class Packemon {
             config.formats.map((format) => ({
               format,
               platform: config.platform,
+              sourceMaps: config.sourceMaps,
               support: config.support,
             })),
           );

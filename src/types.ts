@@ -62,6 +62,7 @@ export interface PackemonPackageConfig {
   inputs?: Record<string, string>;
   namespace?: string;
   platform?: Platform | Platform[];
+  sourceMaps?: boolean;
   support?: Support;
 }
 
@@ -74,6 +75,7 @@ export interface PackageConfig {
   inputs: Record<string, string>;
   namespace: string;
   platform: Platform;
+  sourceMaps: boolean;
   support: Support;
 }
 
@@ -118,6 +120,7 @@ export interface BuildResult {
 export interface BundleBuild {
   format: Format;
   platform: Platform;
+  sourceMaps: boolean;
   support: Support;
   stats?: { size: number };
 }
