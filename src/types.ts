@@ -120,7 +120,6 @@ export interface BuildResult {
 export interface BundleBuild {
   format: Format;
   platform: Platform;
-  sourceMaps: boolean;
   support: Support;
   stats?: { size: number };
 }

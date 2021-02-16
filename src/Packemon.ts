@@ -209,7 +209,6 @@ export default class Packemon {
             config.formats.map((format) => ({
               format,
               platform: config.platform,
-              sourceMaps: config.sourceMaps,
               support: config.support,
             })),
           );
@@ -219,6 +218,7 @@ export default class Packemon {
           artifact.namespace = config.namespace;
           artifact.platform = config.platform;
           artifact.sharedLib = sharedLib;
+          artifact.sourceMaps = config.sourceMaps;
           artifact.support = config.support;
 
           pkg.addArtifact(artifact);

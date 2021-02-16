@@ -467,6 +467,7 @@ describe('Packemon', () => {
           inputs: { index: 'src/index.ts' },
           namespace: '',
           platform: 'node',
+          sourceMaps: false,
           support: 'stable',
         },
         {
@@ -474,6 +475,7 @@ describe('Packemon', () => {
           inputs: { index: 'src/index.ts' },
           namespace: '',
           platform: 'browser',
+          sourceMaps: false,
           support: 'current',
         },
       ]);
@@ -485,6 +487,7 @@ describe('Packemon', () => {
           inputs: { core: './src/core.ts' },
           namespace: '',
           platform: 'node',
+          sourceMaps: false,
           support: 'stable',
         },
       ]);
@@ -496,6 +499,7 @@ describe('Packemon', () => {
           inputs: { index: 'src/index.ts' },
           namespace: 'Test',
           platform: 'browser',
+          sourceMaps: false,
           support: 'stable',
         },
       ]);

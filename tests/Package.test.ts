@@ -755,6 +755,7 @@ describe('Package', () => {
           inputs: {},
           platform: 'browser',
           namespace: '',
+          sourceMaps: false,
           support: 'stable',
         },
       ]);
@@ -777,6 +778,7 @@ describe('Package', () => {
           inputs: {},
           platform: 'browser',
           namespace: 'test',
+          sourceMaps: false,
           support: 'stable',
         },
       ]);
@@ -799,6 +801,7 @@ describe('Package', () => {
           inputs: {},
           platform: 'native',
           namespace: '',
+          sourceMaps: false,
           support: 'stable',
         },
       ]);
@@ -821,6 +824,7 @@ describe('Package', () => {
           inputs: {},
           platform: 'node',
           namespace: '',
+          sourceMaps: false,
           support: 'stable',
         },
       ]);
@@ -843,6 +847,7 @@ describe('Package', () => {
           inputs: {},
           platform: 'node',
           namespace: '',
+          sourceMaps: false,
           support: 'stable',
         },
       ]);
@@ -862,6 +867,7 @@ describe('Package', () => {
           inputs: {},
           platform: 'browser',
           namespace: '',
+          sourceMaps: false,
           support: 'stable',
         },
         {
@@ -869,6 +875,7 @@ describe('Package', () => {
           inputs: {},
           platform: 'node',
           namespace: '',
+          sourceMaps: false,
           support: 'stable',
         },
       ]);
@@ -889,6 +896,7 @@ describe('Package', () => {
           inputs: {},
           platform: 'browser',
           namespace: '',
+          sourceMaps: false,
           support: 'stable',
         },
         {
@@ -896,6 +904,7 @@ describe('Package', () => {
           inputs: {},
           platform: 'node',
           namespace: '',
+          sourceMaps: false,
           support: 'stable',
         },
         {
@@ -903,6 +912,41 @@ describe('Package', () => {
           inputs: {},
           platform: 'native',
           namespace: '',
+          sourceMaps: false,
+          support: 'stable',
+        },
+      ]);
+    });
+
+    it('can set separate source maps', () => {
+      pkg.setConfigs([
+        {
+          inputs: {},
+          platform: 'browser',
+          sourceMaps: true,
+        },
+        {
+          inputs: {},
+          platform: 'node',
+          sourceMaps: false,
+        },
+      ]);
+
+      expect(pkg.configs).toEqual([
+        {
+          formats: ['lib', 'esm'],
+          inputs: {},
+          platform: 'browser',
+          namespace: '',
+          sourceMaps: true,
+          support: 'stable',
+        },
+        {
+          formats: ['lib'],
+          inputs: {},
+          platform: 'node',
+          namespace: '',
+          sourceMaps: false,
           support: 'stable',
         },
       ]);
