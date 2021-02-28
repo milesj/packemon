@@ -97,6 +97,8 @@ export function getRollupOutputConfig(
     assetFileNames: '../assets/[name]-[hash][extname]',
     chunkFileNames: `${name}-[hash].${ext}`,
     entryFileNames: `${name}.${ext}`,
+    // Dont bundle to a single file when targeting node
+    preserveModules: platform === 'node',
     // Use const when not supporting new targets
     preferConst: support === 'current' || support === 'experimental',
     // Output specific plugins
