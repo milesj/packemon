@@ -4,10 +4,10 @@ import execa from 'execa';
 import semver from 'semver';
 import spdxLicenses from 'spdx-license-list';
 import { DependencyMap, isModuleName, isObject, PeopleSetting, toArray } from '@boost/common';
-import Package from './Package';
+import { Package } from './Package';
 import { ValidateOptions } from './types';
 
-export default class PackageValidator {
+export class PackageValidator {
   static entryPoints: string[] = ['main', 'module', 'browser', 'types', 'typings', 'bin', 'man'];
 
   errors: string[] = [];

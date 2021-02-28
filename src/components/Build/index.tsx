@@ -1,19 +1,19 @@
 import React, { useRef, useState } from 'react';
 import { Box, Static } from 'ink';
 import { Header, useProgram, useRenderLoop } from '@boost/cli';
-import Package from '../../Package';
-import Packemon from '../../Packemon';
+import { Package } from '../../Package';
+import { Packemon } from '../../Packemon';
 import { BuildOptions } from '../../types';
-import useOnMount from '../hooks/useOnMount';
-import PackageList from '../PackageList';
-import PackageRow from '../PackageRow';
+import { useOnMount } from '../hooks/useOnMount';
+import { PackageList } from '../PackageList';
+import { PackageRow } from '../PackageRow';
 
 export interface BuildProps extends BuildOptions {
   packemon: Packemon;
   onBuilt?: () => void;
 }
 
-export default function Build({ packemon, onBuilt, ...options }: BuildProps) {
+export function Build({ packemon, onBuilt, ...options }: BuildProps) {
   const { exit } = useProgram();
   const [packages, setPackages] = useState<Package[]>([]);
   const [staticPackages, setStaticPackages] = useState<Package[]>([]);

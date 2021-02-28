@@ -6,7 +6,7 @@ import { getBabelInputPlugin, getBabelOutputPlugin } from '@rollup/plugin-babel'
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import { getBabelInputConfig, getBabelOutputConfig } from '../babel/config';
-import type BundleArtifact from '../BundleArtifact';
+import type { BundleArtifact } from '../BundleArtifact';
 import { EXCLUDE, EXTENSIONS } from '../constants';
 import { BundleBuild, FeatureFlags, Format } from '../types';
 

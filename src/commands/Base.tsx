@@ -1,6 +1,6 @@
 import { Arg, Command, GlobalOptions, PrimitiveType } from '@boost/cli';
 import { Memoize } from '@boost/common';
-import Packemon from '../Packemon';
+import { Packemon } from '../Packemon';
 
 export interface CommonOptions {
   cwd: string;

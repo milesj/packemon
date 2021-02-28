@@ -1,11 +1,11 @@
 import fs from 'fs-extra';
 import { Path } from '@boost/common';
 import { getFixturePath } from '@boost/test-utils';
-import BundleArtifact from '../src/BundleArtifact';
-import Package from '../src/Package';
-import Project from '../src/Project';
+import { BundleArtifact } from '../src/BundleArtifact';
+import { Package } from '../src/Package';
+import { Project } from '../src/Project';
 import { BundleBuild, TypesBuild } from '../src/types';
-import TypesArtifact from '../src/TypesArtifact';
+import { TypesArtifact } from '../src/TypesArtifact';
 import { TestArtifact } from './helpers';
 
 describe('Package', () => {

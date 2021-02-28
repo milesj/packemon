@@ -6,7 +6,7 @@ const exprs = {
   TEST: ['===', 'test'],
 };
 
-export default function envExpressions() {
+export function envExpressionsPlugin() {
   return {
     visitor: {
       Identifier: {

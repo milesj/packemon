@@ -2,18 +2,18 @@ import React from 'react';
 import { Box } from 'ink';
 import Spinner from 'ink-spinner';
 import { Style } from '@boost/cli';
-import Artifact from '../Artifact';
-import BundleArtifact from '../BundleArtifact';
+import { Artifact } from '../Artifact';
+import { BundleArtifact } from '../BundleArtifact';
 import { STATE_LABELS } from '../constants';
-import BundleTarget from './BundleTarget';
-import Duration from './Duration';
-import Target from './Target';
+import { BundleTarget } from './BundleTarget';
+import { Duration } from './Duration';
+import { Target } from './Target';
 
 export interface ArtifactRowProps {
   artifact: Artifact;
 }
 
-export default function ArtifactRow({ artifact }: ArtifactRowProps) {
+export function ArtifactRow({ artifact }: ArtifactRowProps) {
   return (
     <Box flexDirection="row">
       <Box marginLeft={2}>

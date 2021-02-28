@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { useProgram } from '@boost/cli';
-import Packemon from '../../Packemon';
+import { Packemon } from '../../Packemon';
 import { BuildOptions } from '../../types';
-import Build from '../Build';
-import useOnMount from '../hooks/useOnMount';
-import Validate from '../Validate';
+import { Build } from '../Build';
+import { useOnMount } from '../hooks/useOnMount';
+import { Validate } from '../Validate';
 
 export interface PackProps extends BuildOptions {
   packemon: Packemon;
 }
 
-export default function Pack({ packemon, ...options }: PackProps) {
+export function Pack({ packemon, ...options }: PackProps) {
   const { exit } = useProgram();
   const [phase, setPhase] = useState('clean');
 

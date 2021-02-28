@@ -1,9 +1,9 @@
 import React from 'react';
 import { Arg, Config } from '@boost/cli';
 import { Path, WorkspacePackage } from '@boost/common';
-import Init from '../components/Init';
+import { Init } from '../components/Init';
 import { DEFAULT_FORMAT, DEFAULT_INPUT, DEFAULT_SUPPORT } from '../constants';
-import Package from '../Package';
+import { Package } from '../Package';
 import { PackemonPackage, PackemonPackageConfig } from '../types';
 import { BaseCommand } from './Base';
 

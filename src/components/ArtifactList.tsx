@@ -1,16 +1,16 @@
 import React from 'react';
 import { Box } from 'ink';
-import Artifact from '../Artifact';
+import { Artifact } from '../Artifact';
 import { Environment as EnvType } from '../types';
-import ArtifactRow from './ArtifactRow';
-import Environment from './Environment';
+import { ArtifactRow } from './ArtifactRow';
+import { Environment } from './Environment';
 
 export interface ArtifactListProps {
   artifacts?: Artifact[];
   environment?: EnvType;
 }
 
-export default function ArtifactList({ artifacts = [], environment }: ArtifactListProps) {
+export function ArtifactList({ artifacts = [], environment }: ArtifactListProps) {
   return (
     <>
       {!!environment && (

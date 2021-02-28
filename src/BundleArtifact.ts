@@ -1,12 +1,12 @@
 import { rollup, RollupCache } from 'rollup';
 import { Path, toArray } from '@boost/common';
 import { createDebugger, Debugger } from '@boost/debug';
-import Artifact from './Artifact';
+import { Artifact } from './Artifact';
 import { DEFAULT_FORMAT, NODE_SUPPORTED_VERSIONS, NPM_SUPPORTED_VERSIONS } from './constants';
 import { getRollupConfig } from './rollup/config';
 import { BuildOptions, BundleBuild, Format, PackageExportPaths, Platform, Support } from './types';
 
-export default class BundleArtifact extends Artifact<BundleBuild> {
+export class BundleArtifact extends Artifact<BundleBuild> {
   cache?: RollupCache;
 
   // Config object in which inputs are grouped in

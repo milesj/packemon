@@ -1,17 +1,17 @@
 import React from 'react';
 import { Box } from 'ink';
 import { Style } from '@boost/cli';
-import Package from '../Package';
+import { Package } from '../Package';
 import { Environment as EnvType } from '../types';
-import ArtifactList from './ArtifactList';
-import Environment from './Environment';
-import useGroupedArtifacts from './hooks/useGroupedArtifacts';
+import { ArtifactList } from './ArtifactList';
+import { Environment } from './Environment';
+import { useGroupedArtifacts } from './hooks/useGroupedArtifacts';
 
 export interface PackageRowProps {
   package: Package;
 }
 
-export default function PackageRow({ package: pkg }: PackageRowProps) {
+export function PackageRow({ package: pkg }: PackageRowProps) {
   const { envs, groups, ungrouped } = useGroupedArtifacts(pkg);
 
   return (

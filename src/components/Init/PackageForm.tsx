@@ -12,7 +12,7 @@ function getSupportVersions(platforms: Platform[], support: Support): string {
   return applyStyle(Array.from(getVersionsCombo(platforms, support)).sort().join(', '), 'muted');
 }
 
-export default function PackageForm({ onSubmit }: PackageFormProps) {
+export function PackageForm({ onSubmit }: PackageFormProps) {
   const [platform, setPlatform] = useState<Platform[]>([]);
   const [support, setSupport] = useState<Support>(DEFAULT_SUPPORT);
   const [format, setFormat] = useState<Format[]>([]);

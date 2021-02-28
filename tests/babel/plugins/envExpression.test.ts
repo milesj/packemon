@@ -1,5 +1,5 @@
 import { transformAsync, TransformOptions } from '@babel/core';
-import envExpressions from '../../../src/babel/plugins/envExpressions';
+import { envExpressionsPlugin } from '../../../src/babel/plugins/envExpressions';
 
 async function transform(code: string, options?: TransformOptions): Promise<string> {
   const result = await transformAsync(code, {
@@ -7,7 +7,7 @@ async function transform(code: string, options?: TransformOptions): Promise<stri
     comments: false,
     configFile: false,
     filename: 'file.js',
-    plugins: [envExpressions()],
+    plugins: [envExpressionsPlugin()],
     presets: ['@babel/preset-react'],
     generatorOpts: {
       quotes: 'single',

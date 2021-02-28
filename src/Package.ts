@@ -3,11 +3,11 @@
 import fs from 'fs-extra';
 import { isObject, Memoize, optimal, PackageStructure, Path, toArray } from '@boost/common';
 import { createDebugger, Debugger } from '@boost/debug';
-import Artifact from './Artifact';
-import BundleArtifact from './BundleArtifact';
+import { Artifact } from './Artifact';
+import { BundleArtifact } from './BundleArtifact';
 import { FORMATS_BROWSER, FORMATS_NATIVE, FORMATS_NODE } from './constants';
 import { loadModule } from './helpers/loadModule';
-import Project from './Project';
+import { Project } from './Project';
 import { packemonBlueprint } from './schemas';
 import {
   BuildOptions,
@@ -19,9 +19,9 @@ import {
   PackemonPackageConfig,
   TSConfigStructure,
 } from './types';
-import TypesArtifact from './TypesArtifact';
+import { TypesArtifact } from './TypesArtifact';
 
-export default class Package {
+export class Package {
   readonly artifacts: Artifact[] = [];
 
   readonly configs: PackageConfig[] = [];
