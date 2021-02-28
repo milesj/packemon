@@ -116,7 +116,7 @@ describe('getRollupConfig()', () => {
         {
           assetFileNames: '../assets/[name]-[hash][extname]',
           banner: expect.any(String),
-          chunkFileNames: '[name]-[hash].js',
+          chunkFileNames: 'index-[hash].js',
           dir: fixturePath.append('lib').path(),
           entryFileNames: 'index.js',
           exports: 'auto',
@@ -163,7 +163,7 @@ describe('getRollupConfig()', () => {
         {
           assetFileNames: '../assets/[name]-[hash][extname]',
           banner: expect.any(String),
-          chunkFileNames: '[name]-[hash].mjs',
+          chunkFileNames: 'index-[hash].mjs',
           dir: fixturePath.append('mjs').path(),
           entryFileNames: 'index.mjs',
           format: 'esm',
@@ -196,7 +196,7 @@ describe('getRollupConfig()', () => {
         {
           assetFileNames: '../assets/[name]-[hash][extname]',
           banner: expect.any(String),
-          chunkFileNames: '[name]-[hash].js',
+          chunkFileNames: 'server-[hash].js',
           dir: fixturePath.append('lib').path(),
           entryFileNames: 'server.js',
           exports: 'auto',
@@ -301,7 +301,7 @@ describe('getRollupOutputConfig()', () => {
     ).toEqual({
       assetFileNames: '../assets/[name]-[hash][extname]',
       banner: expect.any(String),
-      chunkFileNames: '[name]-[hash].js',
+      chunkFileNames: 'index-[hash].js',
       dir: fixturePath.append('lib').path(),
       entryFileNames: 'index.js',
       exports: 'auto',
@@ -409,7 +409,7 @@ describe('getRollupOutputConfig()', () => {
         getRollupOutputConfig(artifact, {}, { format: 'lib', platform: 'node', support: 'stable' }),
       ).toEqual(
         expect.objectContaining({
-          chunkFileNames: '[name]-[hash].js',
+          chunkFileNames: 'index-[hash].js',
           entryFileNames: 'index.js',
         }),
       );
@@ -454,7 +454,7 @@ describe('getRollupOutputConfig()', () => {
         getRollupOutputConfig(artifact, {}, { format: 'cjs', platform: 'node', support: 'stable' }),
       ).toEqual(
         expect.objectContaining({
-          chunkFileNames: '[name]-[hash].cjs',
+          chunkFileNames: 'index-[hash].cjs',
           entryFileNames: 'index.cjs',
         }),
       );
@@ -465,7 +465,7 @@ describe('getRollupOutputConfig()', () => {
         getRollupOutputConfig(artifact, {}, { format: 'mjs', platform: 'node', support: 'stable' }),
       ).toEqual(
         expect.objectContaining({
-          chunkFileNames: '[name]-[hash].mjs',
+          chunkFileNames: 'index-[hash].mjs',
           entryFileNames: 'index.mjs',
         }),
       );
