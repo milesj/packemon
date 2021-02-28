@@ -1,10 +1,10 @@
 import { useMemo } from 'react';
-import Artifact from '../../Artifact';
-import BundleArtifact from '../../BundleArtifact';
-import Package from '../../Package';
+import { Artifact } from '../../Artifact';
+import { BundleArtifact } from '../../BundleArtifact';
+import { Package } from '../../Package';
 import { Environment } from '../../types';
 
-export default function useGroupedArtifacts(pkg: Package) {
+export function useGroupedArtifacts(pkg: Package) {
   return useMemo(() => {
     const ungrouped: Artifact[] = [];
     let groups: Partial<Record<Environment, Set<Artifact>>> = {};

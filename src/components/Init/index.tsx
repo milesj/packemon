@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Box, Text } from 'ink';
 import { Header, Style, useProgram } from '@boost/cli';
 import { PackemonPackageConfig } from '../../types';
-import PackageForm from './PackageForm';
+import { PackageForm } from './PackageForm';
 
 export type InitPackageConfigs = Record<string, PackemonPackageConfig>;
 
@@ -11,7 +11,7 @@ export interface InitProps {
   onComplete: (configs: InitPackageConfigs) => Promise<unknown>;
 }
 
-export default function Init({ packageNames, onComplete }: InitProps) {
+export function Init({ packageNames, onComplete }: InitProps) {
   const { exit } = useProgram();
   const [pkgsToConfigure, setPkgsToConfigure] = useState(() => packageNames);
   const [pkgConfigs, setPkgConfigs] = useState<InitPackageConfigs>({});

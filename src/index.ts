@@ -3,15 +3,9 @@
  * @license     https://opensource.org/licenses/MIT
  */
 
-import Artifact from './Artifact';
-import { getBabelInputConfig, getBabelOutputConfig } from './babel/config';
-import BundleArtifact from './BundleArtifact';
-import Package from './Package';
-import PackageValidator from './PackageValidator';
-import Packemon from './Packemon';
-import Project from './Project';
-import TypesArtifact from './TypesArtifact';
-
+export * from './Artifact';
+export * from './babel/config';
+export * from './BundleArtifact';
 export * from './commands/Base';
 export * from './commands/Build';
 export * from './commands/Clean';
@@ -20,16 +14,10 @@ export * from './commands/Pack';
 export * from './commands/Validate';
 export * from './commands/Watch';
 export * from './constants';
+export * from './Package';
+export * from './PackageValidator';
+export * from './Packemon';
+export * from './Project';
+export * from './rollup/config';
 export * from './types';
-
-export {
-  Artifact,
-  BundleArtifact,
-  getBabelInputConfig,
-  getBabelOutputConfig,
-  Package,
-  PackageValidator,
-  Packemon,
-  Project,
-  TypesArtifact,
-};
+export * from './TypesArtifact';

@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Static } from 'ink';
 import { Header, useProgram, useRenderLoop } from '@boost/cli';
-import PackageValidator from '../../PackageValidator';
-import Packemon from '../../Packemon';
+import { PackageValidator } from '../../PackageValidator';
+import { Packemon } from '../../Packemon';
 import { ValidateOptions } from '../../types';
-import useOnMount from '../hooks/useOnMount';
-import ValidateRow from './ValidateRow';
+import { useOnMount } from '../hooks/useOnMount';
+import { ValidateRow } from './ValidateRow';
 
 export interface ValidateProps extends ValidateOptions {
   packemon: Packemon;
   onValidated?: () => void;
 }
 
-export default function Validate({ packemon, onValidated, ...options }: ValidateProps) {
+export function Validate({ packemon, onValidated, ...options }: ValidateProps) {
   const { exit } = useProgram();
   const clearLoop = useRenderLoop();
   const [isValidating, setIsValidating] = useState(true);

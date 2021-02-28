@@ -1,6 +1,6 @@
 import React from 'react';
 import { Arg, Config } from '@boost/cli';
-import Validate from '../components/Validate';
+import { Validate } from '../components/Validate';
 import { ValidateOptions } from '../types';
 import { BaseCommand } from './Base';
 

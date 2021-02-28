@@ -1,8 +1,8 @@
 import { PluginItem, TransformOptions as ConfigStructure } from '@babel/core';
-import BundleArtifact from '../BundleArtifact';
+import { BundleArtifact } from '../BundleArtifact';
 import { BROWSER_TARGETS, NATIVE_TARGETS, NODE_SUPPORTED_VERSIONS } from '../constants';
 import { BundleBuild, FeatureFlags, Format, Platform, Support } from '../types';
-import envExpressionsPlugin from './plugins/envExpressions';
+import { envExpressionsPlugin } from './plugins/envExpressions';
 import resolve from './resolve';
 
 // https://babeljs.io/docs/en/babel-preset-env

@@ -1,13 +1,13 @@
 import React from 'react';
 import { useDimensions } from '@boost/cli';
-import Package from '../Package';
-import PackageRow from './PackageRow';
+import { Package } from '../Package';
+import { PackageRow } from './PackageRow';
 
 export interface PackageListProps {
   packages: Package[];
 }
 
-export default function PackageList({ packages }: PackageListProps) {
+export function PackageList({ packages }: PackageListProps) {
   const { height } = useDimensions();
 
   // We dont want to show more packages than the amount of rows available in the terminal

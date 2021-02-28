@@ -1,7 +1,7 @@
 import os from 'os';
 import React from 'react';
 import { Arg, Config } from '@boost/cli';
-import Build from '../components/Build';
+import { Build } from '../components/Build';
 import { AnalyzeType, BuildOptions, DeclarationType } from '../types';
 import { BaseCommand } from './Base';
 

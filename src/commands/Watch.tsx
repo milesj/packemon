@@ -1,7 +1,7 @@
 import { applyStyle, Arg, Config } from '@boost/cli';
 import { Bind, formatMs } from '@boost/common';
 import { loadModule } from '../helpers/loadModule';
-import Package from '../Package';
+import { Package } from '../Package';
 import { BaseCommand } from './Base';
 
 export interface WatchOptions {

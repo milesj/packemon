@@ -11,7 +11,7 @@ export interface TargetProps {
   state?: ArtifactState;
 }
 
-export default function Target({ target, children, state = 'pending' }: TargetProps) {
+export function Target({ target, children, state = 'pending' }: TargetProps) {
   return (
     <Box marginLeft={1}>
       <Style bold type={STATE_COLORS[state] || 'default'}>

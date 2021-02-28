@@ -2,9 +2,9 @@ import fs from 'fs-extra';
 import { rollup } from 'rollup';
 import { Path } from '@boost/common';
 import { getFixturePath } from '@boost/test-utils';
-import BundleArtifact from '../src/BundleArtifact';
-import Package from '../src/Package';
-import Project from '../src/Project';
+import { BundleArtifact } from '../src/BundleArtifact';
+import { Package } from '../src/Package';
+import { Project } from '../src/Project';
 import { getRollupConfig } from '../src/rollup/config';
 import { mockSpy } from './helpers';
 

@@ -6,10 +6,10 @@ import { isObject, json, Memoize, optimal, Path, toArray, WorkspacePackage } fro
 import { createDebugger, Debugger } from '@boost/debug';
 import { Event } from '@boost/event';
 import { Context, PooledPipeline } from '@boost/pipeline';
-import BundleArtifact from './BundleArtifact';
-import Package from './Package';
-import PackageValidator from './PackageValidator';
-import Project from './Project';
+import { BundleArtifact } from './BundleArtifact';
+import { Package } from './Package';
+import { PackageValidator } from './PackageValidator';
+import { Project } from './Project';
 import { buildBlueprint, validateBlueprint } from './schemas';
 import {
   BuildOptions,
@@ -19,9 +19,9 @@ import {
   TypesBuild,
   ValidateOptions,
 } from './types';
-import TypesArtifact from './TypesArtifact';
+import { TypesArtifact } from './TypesArtifact';
 
-export default class Packemon {
+export class Packemon {
   readonly debug: Debugger;
 
   readonly onPackageBuilt = new Event<[Package]>('package-built');

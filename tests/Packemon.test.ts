@@ -2,18 +2,16 @@ import rimraf from 'rimraf';
 import { Path } from '@boost/common';
 import { getFixturePath } from '@boost/test-utils';
 import { BundleArtifact, TypesArtifact } from '../src';
-import Package from '../src/Package';
-import Packemon from '../src/Packemon';
+import { Package } from '../src/Package';
+import { Packemon } from '../src/Packemon';
 
 jest.mock('rimraf');
 
-jest.mock(
-  '../src/PackageValidator',
-  () =>
-    class MockValidator {
-      validate = jest.fn(() => this);
-    },
-);
+jest.mock('../src/PackageValidator', () => ({
+  PackageValidator: class MockValidator {
+    validate = jest.fn(() => this);
+  },
+}));
 
 describe('Packemon', () => {
   let packemon: Packemon;

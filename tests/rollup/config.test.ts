@@ -1,8 +1,8 @@
 import { Path } from '@boost/common';
 import { getFixturePath } from '@boost/test-utils';
-import BundleArtifact from '../../src/BundleArtifact';
-import Package from '../../src/Package';
-import Project from '../../src/Project';
+import { BundleArtifact } from '../../src/BundleArtifact';
+import { Package } from '../../src/Package';
+import { Project } from '../../src/Project';
 import {
   getRollupConfig,
   getRollupExternals,
@@ -125,6 +125,7 @@ describe('getRollupConfig()', () => {
           paths: {},
           plugins: [`babelOutput(${fixturePath}, *)`],
           preferConst: false,
+          preserveModules: true,
           sourcemap: false,
           sourcemapExcludeSources: true,
         },
@@ -140,6 +141,7 @@ describe('getRollupConfig()', () => {
           paths: {},
           plugins: [`babelOutput(${fixturePath}, *)`],
           preferConst: false,
+          preserveModules: false,
           sourcemap: false,
           sourcemapExcludeSources: true,
         },
@@ -154,6 +156,7 @@ describe('getRollupConfig()', () => {
           paths: {},
           plugins: [`babelOutput(${fixturePath}, *)`],
           preferConst: true,
+          preserveModules: false,
           sourcemap: false,
           sourcemapExcludeSources: true,
         },
@@ -168,6 +171,7 @@ describe('getRollupConfig()', () => {
           paths: {},
           plugins: [`babelOutput(${fixturePath}, *)`],
           preferConst: true,
+          preserveModules: true,
           sourcemap: false,
           sourcemapExcludeSources: true,
         },
@@ -201,6 +205,7 @@ describe('getRollupConfig()', () => {
           paths: {},
           plugins: [`babelOutput(${fixturePath}, *)`],
           preferConst: false,
+          preserveModules: true,
           sourcemap: false,
           sourcemapExcludeSources: true,
         },
@@ -305,6 +310,7 @@ describe('getRollupOutputConfig()', () => {
       paths: {},
       plugins: [`babelOutput(${fixturePath}, *)`],
       preferConst: false,
+      preserveModules: true,
       sourcemap: false,
       sourcemapExcludeSources: true,
     });
@@ -663,6 +669,7 @@ describe('getRollupOutputConfig()', () => {
       paths: {},
       plugins: [`babelOutput(${fixturePath}, FooBar)`],
       preferConst: true,
+      preserveModules: false,
       sourcemap: false,
       sourcemapExcludeSources: true,
     });

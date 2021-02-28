@@ -6,7 +6,7 @@ import { getBabelInputPlugin, getBabelOutputPlugin } from '@rollup/plugin-babel'
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import { getBabelInputConfig, getBabelOutputConfig } from '../babel/config';
-import type BundleArtifact from '../BundleArtifact';
+import type { BundleArtifact } from '../BundleArtifact';
 import { EXCLUDE, EXTENSIONS } from '../constants';
 import { BundleBuild, FeatureFlags, Format } from '../types';
 
@@ -86,6 +86,8 @@ export function getRollupOutputConfig(
   const { format, platform, support } = build;
   const name = artifact.outputName;
   const { ext, folder } = artifact.getOutputMetadata(format);
+  const isNode = platform === 'node';
+  const isTest = process.env.NODE_ENV === 'test';
 
   const output: OutputOptions = {
     dir: artifact.package.path.append(folder).path(),
@@ -95,8 +97,10 @@ export function getRollupOutputConfig(
     paths: getRollupPaths(artifact, ext),
     // Use our extension for file names
     assetFileNames: '../assets/[name]-[hash][extname]',
-    chunkFileNames: `${name}-[hash].${ext}`,
-    entryFileNames: `${name}.${ext}`,
+    chunkFileNames: isNode && !isTest ? `[name]-[hash].${ext}` : `${name}-[hash].${ext}`,
+    entryFileNames: isNode && !isTest ? `[name].${ext}` : `${name}.${ext}`,
+    // Dont bundle to a single file when targeting node
+    preserveModules: isNode,
     // Use const when not supporting new targets
     preferConst: support === 'current' || support === 'experimental',
     // Output specific plugins

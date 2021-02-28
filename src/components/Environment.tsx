@@ -40,7 +40,7 @@ export function getVersionsCombo(platforms: Platform[], support: Support): Set<s
   return versions;
 }
 
-export default function Environment(props: EnvironmentProps) {
+export function Environment(props: EnvironmentProps) {
   let platform: string;
   let support: string;
 

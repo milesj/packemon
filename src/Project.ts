@@ -3,9 +3,9 @@
 import execa from 'execa';
 import semver from 'semver';
 import { Memoize, Project as BaseProject } from '@boost/common';
-import Package from './Package';
+import { Package } from './Package';
 
-export default class Project extends BaseProject {
+export class Project extends BaseProject {
   workspaces: string[] = [];
 
   private buildPromise?: Promise<unknown>;

@@ -6,7 +6,7 @@ export interface DurationProps {
   time: number;
 }
 
-export default function Duration({ time }: DurationProps) {
+export function Duration({ time }: DurationProps) {
   const isFast = time <= 100;
 
   return (

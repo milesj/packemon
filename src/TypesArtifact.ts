@@ -4,7 +4,7 @@ import fs from 'fs-extra';
 import { Path } from '@boost/common';
 import { createDebugger, Debugger } from '@boost/debug';
 import { Extractor, ExtractorConfig } from '@microsoft/api-extractor';
-import Artifact from './Artifact';
+import { Artifact } from './Artifact';
 import {
   APIExtractorStructure,
   DeclarationType,
@@ -22,7 +22,7 @@ const extractorConfig = require(path.join(__dirname, '../api-extractor.json')) a
   };
 };
 
-export default class TypesArtifact extends Artifact<TypesBuild> {
+export class TypesArtifact extends Artifact<TypesBuild> {
   declarationType: DeclarationType = 'standard';
 
   protected debug!: Debugger;
