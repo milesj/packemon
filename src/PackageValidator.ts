@@ -1,9 +1,13 @@
 import http from 'http';
 import https from 'https';
 import execa from 'execa';
+import glob from 'fast-glob';
+import fs from 'fs-extra';
+import ignore from 'ignore';
 import semver from 'semver';
 import spdxLicenses from 'spdx-license-list';
-import { DependencyMap, isModuleName, isObject, PeopleSetting, toArray } from '@boost/common';
+import { DependencyMap, isModuleName, isObject, Path, PeopleSetting, toArray } from '@boost/common';
+import { FORMATS } from './constants';
 import { Package } from './Package';
 import { ValidateOptions } from './types';
 
@@ -45,6 +49,10 @@ export class PackageValidator {
 
     if (options.entries) {
       this.checkEntryPoints();
+    }
+
+    if (options.ignore) {
+      promises.push(this.checkIgnoredFiles());
     }
 
     if (options.license) {
@@ -211,6 +219,30 @@ export class PackageValidator {
           this.errors.push(`Manual "${path}" resolves to an invalid or missing file.`);
         }
       });
+    }
+  }
+
+  protected async checkIgnoredFiles() {
+    const npmignorePath = this.package.path.append('.npmignore');
+    const gitignorePath = this.package.path.append('.gitignore');
+    const ignoreList = ignore({ ignorecase: true }).add([
+      '.DS_Store',
+      '.git',
+      '.npmrc',
+      '.svn',
+      '.yarnrc',
+      'node_modules',
+      'npm-debug.log',
+      'yarn-debug.log',
+      'package-lock.json',
+    ]);
+
+    if (npmignorePath.exists()) {
+      ignoreList.add(await this.loadIgnoreFile(npmignorePath));
+    } else if (gitignorePath.exists()) {
+      ignoreList.add(await this.loadIgnoreFile(gitignorePath));
+    } else {
+      return;
     }
   }
 
@@ -381,6 +413,16 @@ export class PackageValidator {
     });
   }
 
+  protected async findDistributableFiles(): Promise<string[]> {
+    const patterns: string[] = ['LICENSE', 'LICENSE.md', 'README', 'README.md'];
+
+    FORMATS.forEach((format) => {
+      patterns.push(`${format}/**/*`);
+    });
+
+    return glob(patterns, { cwd: this.package.path.path(), ignore: ['node_modules'] });
+  }
+
   protected async getBinVersion(bin: string): Promise<string> {
     try {
       return (await execa(bin, ['-v'], { preferLocal: true })).stdout.trim();
@@ -388,5 +430,11 @@ export class PackageValidator {
       // istanbul ignore next
       return '';
     }
+  }
+
+  protected async loadIgnoreFile(path: Path): Promise<string[]> {
+    const contents = await fs.readFile(path.path(), 'utf8');
+
+    return contents.split('\n').filter((line) => line !== '' && !line.startsWith('#'));
   }
 }

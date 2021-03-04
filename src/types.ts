@@ -133,6 +133,7 @@ export interface ValidateOptions {
   deps?: boolean;
   engines?: boolean;
   entries?: boolean;
+  ignore?: boolean;
   license?: boolean;
   links?: boolean;
   meta?: boolean;
