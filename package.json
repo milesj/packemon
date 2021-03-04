@@ -14,7 +14,7 @@
     "setup": "beemo typescript",
     "build": "yarn run packemon build",
     "validate": "yarn run packemon validate",
-    "ci": "yarn run type && yarn run test && yarn run lint",
+    "check": "yarn run type && yarn run test && yarn run lint",
     "clean": "yarn run packemon clean",
     "coverage": "yarn run test --coverage",
     "format": "beemo prettier",
@@ -22,7 +22,7 @@
     "release": "npx np --yolo",
     "test": "beemo jest",
     "type": "beemo typescript --noEmit",
-    "prerelease": "yarn run clean && yarn run setup && yarn run pack && yarn run ci",
+    "prerelease": "yarn run clean && yarn run setup && yarn run pack && yarn run check",
     "pack": "NODE_ENV=production yarn run packemon pack --addEngines --addExports --declaration=api",
     "packemon": "node ./packemon.js"
   },
