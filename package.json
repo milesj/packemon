@@ -32,6 +32,13 @@
   "main": "./lib/index.js",
   "types": "./dts/index.d.ts",
   "bin": "./lib/bin.js",
+  "files": [
+    "api-extractor.json",
+    "babel.js",
+    "dts/",
+    "lib/",
+    "src/"
+  ],
   "exports": {
     "./package.json": "./package.json",
     "./babel": {
@@ -47,7 +54,6 @@
       "types": "./dts/index.d.ts"
     }
   },
-  "sideEffects": false,
   "engines": {
     "node": ">=10.3.0",
     "npm": ">=6.1.0"

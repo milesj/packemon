@@ -392,6 +392,48 @@ describe('Package', () => {
           expect(pkg.packageJson.bin).toEqual({});
         });
       });
+
+      describe('files', () => {
+        it('adds "files" folder for each format format', async () => {
+          pkg.addArtifact(
+            createBundleArtifact([
+              { format: 'cjs', platform: 'node', support: 'stable' },
+              { format: 'lib', platform: 'node', support: 'stable' },
+            ]),
+          );
+
+          pkg.addArtifact(
+            createBundleArtifact([{ format: 'umd', platform: 'browser', support: 'stable' }]),
+          );
+
+          await pkg.build({});
+
+          expect(pkg.packageJson).toEqual(
+            expect.objectContaining({
+              files: ['cjs/', 'lib/', 'src/', 'umd/'],
+            }),
+          );
+        });
+
+        it('merges with existing "files" list', async () => {
+          pkg.packageJson.files = ['lib/', 'test.js'];
+
+          pkg.addArtifact(
+            createBundleArtifact([
+              { format: 'lib', platform: 'browser', support: 'stable' },
+              { format: 'esm', platform: 'browser', support: 'stable' },
+            ]),
+          );
+
+          await pkg.build({});
+
+          expect(pkg.packageJson).toEqual(
+            expect.objectContaining({
+              files: ['esm/', 'lib/', 'src/', 'test.js'],
+            }),
+          );
+        });
+      });
     });
 
     describe('exports', () => {

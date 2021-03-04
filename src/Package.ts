@@ -285,6 +285,7 @@ export class Package {
 
     let mainEntry = '';
     let moduleEntry = '';
+    const files = new Set<string>(this.packageJson.files);
 
     this.artifacts.forEach((artifact) => {
       if (artifact instanceof BundleArtifact) {
@@ -305,8 +306,13 @@ export class Package {
         ) {
           this.packageJson.bin = artifact.findEntryPoint(['lib', 'cjs', 'mjs']);
         }
+
+        artifact.builds.forEach((build) => {
+          files.add(`${build.format}/`);
+        });
       } else if (artifact instanceof TypesArtifact) {
         this.packageJson.types = './dts/index.d.ts';
+        files.add('dts/');
       }
     });
 
@@ -323,6 +329,9 @@ export class Package {
     if (moduleEntry) {
       this.packageJson.module = moduleEntry;
     }
+
+    files.add('src/');
+    this.packageJson.files = Array.from(files).sort();
   }
 
   protected addExports() {
