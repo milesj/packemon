@@ -219,7 +219,6 @@ The following plugins are enabled per package.
   - Parses and transforms source code using Babel.
   - Excludes test related files from transformation.
   - Inlines runtime helpers in the output file.
-  - Generates source maps if `sourceMaps` is true.
 - `rollup-plugin-node-externals`
   - Defines `externals` based on `package.json` dependencies.
   - Includes `dependencies`, `devDependencies`, `peerDependencies`, and `optionalDependencies`.

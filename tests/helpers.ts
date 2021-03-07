@@ -119,7 +119,6 @@ export function testExampleOutput(file: string) {
       artifact.support = build.support;
       artifact.outputName = `index-${build.platform}-${build.support}-${build.format}`;
       artifact.inputFile = file;
-      artifact.sourceMaps = file === 'source-maps.ts';
 
       pkg.addArtifact(artifact);
     });

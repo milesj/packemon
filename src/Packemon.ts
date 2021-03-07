@@ -217,7 +217,6 @@ export class Packemon {
           artifact.namespace = config.namespace;
           artifact.platform = config.platform;
           artifact.sharedLib = sharedLib;
-          artifact.sourceMaps = config.sourceMaps;
           artifact.support = config.support;
 
           pkg.addArtifact(artifact);

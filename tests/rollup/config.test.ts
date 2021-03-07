@@ -598,55 +598,6 @@ describe('getRollupOutputConfig()', () => {
     ).toBe(true);
   });
 
-  describe('sourcemaps', () => {
-    it('enables when artifact `sourceMaps` is true', () => {
-      artifact.platform = 'browser';
-      artifact.sourceMaps = true;
-
-      expect(
-        getRollupOutputConfig(
-          artifact,
-          {},
-          { format: 'lib', platform: 'browser', support: 'stable' },
-        ),
-      ).toEqual(
-        expect.objectContaining({
-          sourcemap: true,
-          sourcemapExcludeSources: true,
-        }),
-      );
-    });
-
-    it('disables when artifact `sourceMaps` is false', () => {
-      artifact.platform = 'node';
-      artifact.sourceMaps = false;
-
-      expect(
-        getRollupOutputConfig(artifact, {}, { format: 'lib', platform: 'node', support: 'stable' }),
-      ).toEqual(
-        expect.objectContaining({
-          sourcemap: false,
-          sourcemapExcludeSources: true,
-        }),
-      );
-    });
-
-    it('enables when `analyze` feature flag is on', () => {
-      expect(
-        getRollupOutputConfig(
-          artifact,
-          { analyze: 'network' },
-          { format: 'lib', platform: 'node', support: 'stable' },
-        ),
-      ).toEqual(
-        expect.objectContaining({
-          sourcemap: true,
-          sourcemapExcludeSources: true,
-        }),
-      );
-    });
-  });
-
   it('passes `namespace` to Babel as UMD name', () => {
     artifact.platform = 'browser';
     artifact.support = 'experimental';
