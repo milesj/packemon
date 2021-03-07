@@ -126,7 +126,7 @@ describe('getRollupConfig()', () => {
           plugins: [`babelOutput(${fixturePath}, *)`],
           preferConst: false,
           preserveModules: true,
-          sourcemap: false,
+          sourcemap: true,
           sourcemapExcludeSources: true,
         },
         {
@@ -142,7 +142,7 @@ describe('getRollupConfig()', () => {
           plugins: [`babelOutput(${fixturePath}, *)`],
           preferConst: false,
           preserveModules: false,
-          sourcemap: false,
+          sourcemap: true,
           sourcemapExcludeSources: true,
         },
         {
@@ -157,7 +157,7 @@ describe('getRollupConfig()', () => {
           plugins: [`babelOutput(${fixturePath}, *)`],
           preferConst: true,
           preserveModules: false,
-          sourcemap: false,
+          sourcemap: true,
           sourcemapExcludeSources: true,
         },
         {
@@ -172,7 +172,7 @@ describe('getRollupConfig()', () => {
           plugins: [`babelOutput(${fixturePath}, *)`],
           preferConst: true,
           preserveModules: true,
-          sourcemap: false,
+          sourcemap: true,
           sourcemapExcludeSources: true,
         },
       ],
@@ -206,7 +206,7 @@ describe('getRollupConfig()', () => {
           plugins: [`babelOutput(${fixturePath}, *)`],
           preferConst: false,
           preserveModules: true,
-          sourcemap: false,
+          sourcemap: true,
           sourcemapExcludeSources: true,
         },
       ],
@@ -311,7 +311,7 @@ describe('getRollupOutputConfig()', () => {
       plugins: [`babelOutput(${fixturePath}, *)`],
       preferConst: false,
       preserveModules: true,
-      sourcemap: false,
+      sourcemap: true,
       sourcemapExcludeSources: true,
     });
   });
@@ -621,7 +621,7 @@ describe('getRollupOutputConfig()', () => {
       plugins: [`babelOutput(${fixturePath}, FooBar)`],
       preferConst: true,
       preserveModules: false,
-      sourcemap: false,
+      sourcemap: true,
       sourcemapExcludeSources: true,
     });
   });

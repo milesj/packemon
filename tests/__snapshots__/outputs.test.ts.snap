@@ -26,6 +26,7 @@ https__default['default'].createServer((req, res) => {
   res.write('Hello World!');
   res.end();
 }).listen(8080);
+//# sourceMappingURL=server.cjs.map
 ",
 ]
 `;
@@ -96,6 +97,7 @@ function gen() {
 }
 
 export { createClient };
+//# sourceMappingURL=client.js.map
 ",
 ]
 `;
@@ -172,6 +174,7 @@ function gen() {
 }
 
 exports.createClient = createClient;
+//# sourceMappingURL=client.js.map
 ",
 ]
 `;
@@ -188,6 +191,7 @@ Object.defineProperty(exports, '__esModule', {
 });
 const EXAMPLE = 'foo';
 exports.EXAMPLE = EXAMPLE;
+//# sourceMappingURL=index.js.map
 ",
 ]
 `;
@@ -225,6 +229,7 @@ async function wait() {}
 
 exports.spy = spy;
 exports.wait = wait;
+//# sourceMappingURL=test.js.map
 ",
 ]
 `;
@@ -305,6 +310,7 @@ Array [
     return new Client();
   }
 });
+//# sourceMappingURL=client.js.map
 ",
 ]
 `;

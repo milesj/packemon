@@ -950,8 +950,6 @@ describe('Package', () => {
       ]);
     });
 
-    });
-
     it('errors if invalid format is provided for `browser` platform', () => {
       expect(() => {
         pkg.setConfigs([
