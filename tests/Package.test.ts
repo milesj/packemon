@@ -439,7 +439,7 @@ describe('Package', () => {
               files: [
                 'esm/**/*.{js,map}',
                 'lib/**/*.{js,map}',
-                'src/**/*.{jsx,js,json}',
+                'src/**/*.{js,jsx,json}',
                 'templates/',
                 'test.js',
               ],
@@ -472,7 +472,7 @@ describe('Package', () => {
 
           expect(pkg.packageJson).toEqual(
             expect.objectContaining({
-              files: ['src/**/*.{jsx,js,json}'],
+              files: ['src/**/*.{js,jsx,json}'],
             }),
           );
         });
@@ -487,7 +487,7 @@ describe('Package', () => {
 
           expect(pkg.packageJson).toEqual(
             expect.objectContaining({
-              files: ['src/**/*.{cjs,js,json}'],
+              files: ['src/**/*.{js,cjs,json}'],
             }),
           );
         });
@@ -532,7 +532,7 @@ describe('Package', () => {
 
           expect(pkg.packageJson).toEqual(
             expect.objectContaining({
-              files: ['src/**/*.{tsx,ts,json}'],
+              files: ['src/**/*.{ts,tsx,json}'],
             }),
           );
         });

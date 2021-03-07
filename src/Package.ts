@@ -379,11 +379,11 @@ export class Package {
     if (sourceExt === 'js') {
       exts.push('jsx');
     } else if (sourceExt === 'jsx' || sourceExt === 'cjs') {
-      exts.push('js');
+      exts.unshift('js');
     } else if (sourceExt === 'ts') {
       exts.push('tsx');
     } else if (sourceExt === 'tsx') {
-      exts.push('ts');
+      exts.unshift('ts');
     }
 
     exts.push('json');
