@@ -48,6 +48,7 @@ export function createConfig(folder: string): ConfigStructure {
   const platforms = pkg.configs.map((config) => config.platform);
   let lowestPlatform: Platform = 'node';
 
+  // istanbul ignore next
   if (platforms.includes('browser')) {
     lowestPlatform = 'browser';
   } else if (platforms.includes('native')) {

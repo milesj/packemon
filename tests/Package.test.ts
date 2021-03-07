@@ -446,6 +446,96 @@ describe('Package', () => {
             }),
           );
         });
+
+        it('determines source "js" files', async () => {
+          const art = createBundleArtifact([]);
+          art.inputFile = 'src/index.js';
+
+          pkg.addArtifact(art);
+
+          await pkg.build({});
+
+          expect(pkg.packageJson).toEqual(
+            expect.objectContaining({
+              files: ['src/**/*.{js,jsx,json}'],
+            }),
+          );
+        });
+
+        it('determines source "jsx" files', async () => {
+          const art = createBundleArtifact([]);
+          art.inputFile = 'src/index.jsx';
+
+          pkg.addArtifact(art);
+
+          await pkg.build({});
+
+          expect(pkg.packageJson).toEqual(
+            expect.objectContaining({
+              files: ['src/**/*.{jsx,js,json}'],
+            }),
+          );
+        });
+
+        it('determines source "cjs" files', async () => {
+          const art = createBundleArtifact([]);
+          art.inputFile = 'src/index.cjs';
+
+          pkg.addArtifact(art);
+
+          await pkg.build({});
+
+          expect(pkg.packageJson).toEqual(
+            expect.objectContaining({
+              files: ['src/**/*.{cjs,js,json}'],
+            }),
+          );
+        });
+
+        it('determines source "mjs" files', async () => {
+          const art = createBundleArtifact([]);
+          art.inputFile = 'src/index.mjs';
+
+          pkg.addArtifact(art);
+
+          await pkg.build({});
+
+          expect(pkg.packageJson).toEqual(
+            expect.objectContaining({
+              files: ['src/**/*.{mjs,json}'],
+            }),
+          );
+        });
+
+        it('determines source "ts" files', async () => {
+          const art = createBundleArtifact([]);
+          art.inputFile = 'src/index.ts';
+
+          pkg.addArtifact(art);
+
+          await pkg.build({});
+
+          expect(pkg.packageJson).toEqual(
+            expect.objectContaining({
+              files: ['src/**/*.{ts,tsx,json}'],
+            }),
+          );
+        });
+
+        it('determines source "tsx" files', async () => {
+          const art = createBundleArtifact([]);
+          art.inputFile = 'src/index.tsx';
+
+          pkg.addArtifact(art);
+
+          await pkg.build({});
+
+          expect(pkg.packageJson).toEqual(
+            expect.objectContaining({
+              files: ['src/**/*.{tsx,ts,json}'],
+            }),
+          );
+        });
       });
     });
 

@@ -2,7 +2,7 @@ import http from 'http';
 import https from 'https';
 import execa from 'execa';
 import glob from 'fast-glob';
-import fileList from 'npm-packlist';
+import packList from 'npm-packlist';
 import semver from 'semver';
 import spdxLicenses from 'spdx-license-list';
 import { DependencyMap, isModuleName, isObject, PeopleSetting, toArray } from '@boost/common';
@@ -221,7 +221,7 @@ export class PackageValidator {
   }
 
   protected async checkFiles() {
-    const futureFiles = new Set(await fileList({ path: this.package.path.path() }));
+    const futureFiles = new Set(await packList({ path: this.package.path.path() }));
     const presentFiles = new Set(await this.findDistributableFiles());
 
     // First check that our files are in the potential NPM list
