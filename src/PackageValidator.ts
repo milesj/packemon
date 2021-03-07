@@ -431,7 +431,7 @@ export class PackageValidator {
 
     this.package.packageJson.files?.forEach((file) => {
       if (file.endsWith('/')) {
-        patterns.push(`${file}**/*.{js,json,cjs,mjs,ts,tsx,map}`);
+        patterns.push(`${file}**/*.{json,js,jsx,cjs,mjs,ts,tsx,map}`);
       } else {
         patterns.push(file);
       }

@@ -35,9 +35,9 @@
   "files": [
     "api-extractor.json",
     "babel.js",
-    "dts/",
-    "lib/",
-    "src/"
+    "dts/**/*.d.ts",
+    "lib/**/*.{js,map}",
+    "src/**/*.{ts,tsx,json}"
   ],
   "exports": {
     "./package.json": "./package.json",
