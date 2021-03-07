@@ -214,6 +214,8 @@ The following plugins are enabled per package.
   - Resolves imports using Node.js module resolution.
 - `@rollup/plugin-commonjs`
   - Converts CommonJS externals to ECMAScript for bundling capabilities.
+- `@rollup/plugin-json`
+  - Allows JSON files to be imported (default export only).
 - `@rollup/plugin-babel`
   - Parses and transforms source code using Babel.
   - Excludes test related files from transformation.
