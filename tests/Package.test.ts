@@ -23,6 +23,7 @@ describe('Package', () => {
 
   function createBundleArtifact(builds: BundleBuild[]) {
     const artifact = new BundleArtifact(pkg, builds);
+    artifact.inputFile = 'src/index.ts';
     artifact.outputName = 'index';
 
     artifact.build = () => Promise.resolve();
@@ -410,26 +411,38 @@ describe('Package', () => {
 
           expect(pkg.packageJson).toEqual(
             expect.objectContaining({
-              files: ['cjs/', 'lib/', 'src/', 'umd/'],
+              files: [
+                'cjs/**/*.{cjs,map}',
+                'lib/**/*.{js,map}',
+                'src/**/*.{ts,tsx,json}',
+                'umd/**/*.{js,map}',
+              ],
             }),
           );
         });
 
         it('merges with existing "files" list', async () => {
-          pkg.packageJson.files = ['lib/', 'test.js'];
+          pkg.packageJson.files = ['templates/', 'test.js'];
 
-          pkg.addArtifact(
-            createBundleArtifact([
-              { format: 'lib', platform: 'browser', support: 'stable' },
-              { format: 'esm', platform: 'browser', support: 'stable' },
-            ]),
-          );
+          const art = createBundleArtifact([
+            { format: 'lib', platform: 'browser', support: 'stable' },
+            { format: 'esm', platform: 'browser', support: 'stable' },
+          ]);
+          art.inputFile = 'src/index.jsx';
+
+          pkg.addArtifact(art);
 
           await pkg.build({});
 
           expect(pkg.packageJson).toEqual(
             expect.objectContaining({
-              files: ['esm/', 'lib/', 'src/', 'test.js'],
+              files: [
+                'esm/**/*.{js,map}',
+                'lib/**/*.{js,map}',
+                'src/**/*.{jsx,js,json}',
+                'templates/',
+                'test.js',
+              ],
             }),
           );
         });
