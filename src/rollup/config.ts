@@ -114,7 +114,8 @@ export function getRollupOutputConfig(
         sourceMaps: false,
       }),
     ],
-    sourcemap: Boolean(features.analyze) || artifact.sourceMaps,
+    // Always include source maps
+    sourcemap: true,
     sourcemapExcludeSources: true,
   };
 

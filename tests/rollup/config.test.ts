@@ -126,7 +126,7 @@ describe('getRollupConfig()', () => {
           plugins: [`babelOutput(${fixturePath}, *)`],
           preferConst: false,
           preserveModules: true,
-          sourcemap: false,
+          sourcemap: true,
           sourcemapExcludeSources: true,
         },
         {
@@ -142,7 +142,7 @@ describe('getRollupConfig()', () => {
           plugins: [`babelOutput(${fixturePath}, *)`],
           preferConst: false,
           preserveModules: false,
-          sourcemap: false,
+          sourcemap: true,
           sourcemapExcludeSources: true,
         },
         {
@@ -157,7 +157,7 @@ describe('getRollupConfig()', () => {
           plugins: [`babelOutput(${fixturePath}, *)`],
           preferConst: true,
           preserveModules: false,
-          sourcemap: false,
+          sourcemap: true,
           sourcemapExcludeSources: true,
         },
         {
@@ -172,7 +172,7 @@ describe('getRollupConfig()', () => {
           plugins: [`babelOutput(${fixturePath}, *)`],
           preferConst: true,
           preserveModules: true,
-          sourcemap: false,
+          sourcemap: true,
           sourcemapExcludeSources: true,
         },
       ],
@@ -206,7 +206,7 @@ describe('getRollupConfig()', () => {
           plugins: [`babelOutput(${fixturePath}, *)`],
           preferConst: false,
           preserveModules: true,
-          sourcemap: false,
+          sourcemap: true,
           sourcemapExcludeSources: true,
         },
       ],
@@ -311,7 +311,7 @@ describe('getRollupOutputConfig()', () => {
       plugins: [`babelOutput(${fixturePath}, *)`],
       preferConst: false,
       preserveModules: true,
-      sourcemap: false,
+      sourcemap: true,
       sourcemapExcludeSources: true,
     });
   });
@@ -598,55 +598,6 @@ describe('getRollupOutputConfig()', () => {
     ).toBe(true);
   });
 
-  describe('sourcemaps', () => {
-    it('enables when artifact `sourceMaps` is true', () => {
-      artifact.platform = 'browser';
-      artifact.sourceMaps = true;
-
-      expect(
-        getRollupOutputConfig(
-          artifact,
-          {},
-          { format: 'lib', platform: 'browser', support: 'stable' },
-        ),
-      ).toEqual(
-        expect.objectContaining({
-          sourcemap: true,
-          sourcemapExcludeSources: true,
-        }),
-      );
-    });
-
-    it('disables when artifact `sourceMaps` is false', () => {
-      artifact.platform = 'node';
-      artifact.sourceMaps = false;
-
-      expect(
-        getRollupOutputConfig(artifact, {}, { format: 'lib', platform: 'node', support: 'stable' }),
-      ).toEqual(
-        expect.objectContaining({
-          sourcemap: false,
-          sourcemapExcludeSources: true,
-        }),
-      );
-    });
-
-    it('enables when `analyze` feature flag is on', () => {
-      expect(
-        getRollupOutputConfig(
-          artifact,
-          { analyze: 'network' },
-          { format: 'lib', platform: 'node', support: 'stable' },
-        ),
-      ).toEqual(
-        expect.objectContaining({
-          sourcemap: true,
-          sourcemapExcludeSources: true,
-        }),
-      );
-    });
-  });
-
   it('passes `namespace` to Babel as UMD name', () => {
     artifact.platform = 'browser';
     artifact.support = 'experimental';
@@ -670,7 +621,7 @@ describe('getRollupOutputConfig()', () => {
       plugins: [`babelOutput(${fixturePath}, FooBar)`],
       preferConst: true,
       preserveModules: false,
-      sourcemap: false,
+      sourcemap: true,
       sourcemapExcludeSources: true,
     });
   });

@@ -58,7 +58,6 @@ contents (not exhaustive).
 |   ├── index.ts
 |   └── *.ts
 ├── tests/
-├── .npmignore
 ├── package.json
 ├── LICENSE
 └── README.md
@@ -74,12 +73,6 @@ contents (not exhaustive).
     "namespace": "Example"
   }
 }
-```
-
-```ini title=".npmignore"
-src/
-tests/
-*.log
 ```
 
 Based on the package configuration above, our build will target both Node.js and web browsers, while
@@ -93,22 +86,22 @@ like the following (when also using `--declaration`).
 ├── esm/
 |   └── index.js
 ├── lib/
-|   └── index.js
+|   └── browser/index.js
+|   └── node/index.js
 ├── src/
 |   ├── index.ts
 |   └── *.ts
 ├── tests/
 ├── umd/
 |   └── index.js
-├── .npmignore
 ├── package.json
 ├── LICENSE
 └── README.md
 ```
 
-Furthermore, the `package.json` will automatically be updated with our build artifact entry points,
-as demonstrated below. This can further be expanded upon using the `--addEngines` and `--addExports`
-options.
+Furthermore, the `package.json` will automatically be updated with our build artifact entry points
+and files list, as demonstrated below. This can further be expanded upon using the `--addEngines`
+and `--addExports` options.
 
 ```json title="package.json"
 {
@@ -117,6 +110,7 @@ options.
   "module": "./esm/index.js",
   "browser": "./umd/index.js",
   "types": "./dts/index.d.ts",
+  "files": ["dts/", "esm/", "lib/", "src/", "umd/"],
   "packemon": {
     "inputs": { "index": "src/index.ts" },
     "platform": ["node", "browser"],
@@ -127,19 +121,24 @@ options.
 ```
 
 Amazing, we now have self-contained and tree-shaken build artifacts for consumption. However, to
-ensure _only_ build artifacts are packaged and distributed to NPM, we rely on `.npmignore`. Based on
-the ignore contents above, the files published to NPM would be the following.
+ensure _only_ build artifacts are packaged and distributed to NPM, we rely on the `package.json`
+`files` property. Based on the list above, the files published to NPM would be the following (pretty
+much everything except tests).
 
 ```
 /
 ├── dts/
 ├── esm/
 ├── lib/
+├── src/
 ├── umd/
 ├── package.json
 ├── LICENSE
 └── README.md
 ```
+
+> Why are source files published? For source maps! Packemon will always generate source maps
+> regardless of format, and the `src` directory is necessary for proper linking.
 
 ## Babel configuration
 
@@ -219,7 +218,6 @@ The following plugins are enabled per package.
   - Parses and transforms source code using Babel.
   - Excludes test related files from transformation.
   - Inlines runtime helpers in the output file.
-  - Generates source maps if `sourceMaps` is true.
 - `rollup-plugin-node-externals`
   - Defines `externals` based on `package.json` dependencies.
   - Includes `dependencies`, `devDependencies`, `peerDependencies`, and `optionalDependencies`.
