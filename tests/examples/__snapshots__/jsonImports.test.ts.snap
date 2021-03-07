@@ -1,0 +1,942 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`JSON imports transforms example test case 1`] = `
+Array [
+  "/cjs/index-node-current-cjs.cjs",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: current, Format: cjs
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+const data = require('./index-node-current-cjs2.cjs'); // @ts-ignore
+
+
+const keys = Object.keys(data);
+exports.keys = keys;
+//# sourceMappingURL=index-node-current-cjs.cjs.map
+",
+]
+`;
+
+exports[`JSON imports transforms example test case 2`] = `
+Array [
+  "/cjs/index-node-current-cjs2.cjs",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: current, Format: cjs
+'use strict';
+
+const data = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+};
+module.exports = data;
+//# sourceMappingURL=index-node-current-cjs2.cjs.map
+",
+]
+`;
+
+exports[`JSON imports transforms example test case 3`] = `
+Array [
+  "/cjs/index-node-experimental-cjs.cjs",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: experimental, Format: cjs
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+const data = require('./index-node-experimental-cjs2.cjs'); // @ts-ignore
+
+
+const keys = Object.keys(data);
+exports.keys = keys;
+//# sourceMappingURL=index-node-experimental-cjs.cjs.map
+",
+]
+`;
+
+exports[`JSON imports transforms example test case 4`] = `
+Array [
+  "/cjs/index-node-experimental-cjs2.cjs",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: experimental, Format: cjs
+'use strict';
+
+const data = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+};
+module.exports = data;
+//# sourceMappingURL=index-node-experimental-cjs2.cjs.map
+",
+]
+`;
+
+exports[`JSON imports transforms example test case 5`] = `
+Array [
+  "/cjs/index-node-legacy-cjs.cjs",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: legacy, Format: cjs
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var data = require('./index-node-legacy-cjs2.cjs'); // @ts-ignore
+
+
+const keys = Object.keys(data);
+exports.keys = keys;
+//# sourceMappingURL=index-node-legacy-cjs.cjs.map
+",
+]
+`;
+
+exports[`JSON imports transforms example test case 6`] = `
+Array [
+  "/cjs/index-node-legacy-cjs2.cjs",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: legacy, Format: cjs
+'use strict';
+
+var data = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+};
+module.exports = data;
+//# sourceMappingURL=index-node-legacy-cjs2.cjs.map
+",
+]
+`;
+
+exports[`JSON imports transforms example test case 7`] = `
+Array [
+  "/cjs/index-node-stable-cjs.cjs",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: cjs
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var data = require('./index-node-stable-cjs2.cjs'); // @ts-ignore
+
+
+const keys = Object.keys(data);
+exports.keys = keys;
+//# sourceMappingURL=index-node-stable-cjs.cjs.map
+",
+]
+`;
+
+exports[`JSON imports transforms example test case 8`] = `
+Array [
+  "/cjs/index-node-stable-cjs2.cjs",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: cjs
+'use strict';
+
+var data = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+};
+module.exports = data;
+//# sourceMappingURL=index-node-stable-cjs2.cjs.map
+",
+]
+`;
+
+exports[`JSON imports transforms example test case 9`] = `
+Array [
+  "/esm/index-browser-current-esm.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: browser, Support: current, Format: esm
+var data = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+}; // @ts-ignore
+
+var keys = Object.keys(data);
+export { keys };
+//# sourceMappingURL=index-browser-current-esm.js.map
+",
+]
+`;
+
+exports[`JSON imports transforms example test case 10`] = `
+Array [
+  "/esm/index-browser-experimental-esm.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: browser, Support: experimental, Format: esm
+const data = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+}; // @ts-ignore
+
+const keys = Object.keys(data);
+export { keys };
+//# sourceMappingURL=index-browser-experimental-esm.js.map
+",
+]
+`;
+
+exports[`JSON imports transforms example test case 11`] = `
+Array [
+  "/esm/index-browser-legacy-esm.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: browser, Support: legacy, Format: esm
+var data = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+}; // @ts-ignore
+
+var keys = Object.keys(data);
+export { keys };
+//# sourceMappingURL=index-browser-legacy-esm.js.map
+",
+]
+`;
+
+exports[`JSON imports transforms example test case 12`] = `
+Array [
+  "/esm/index-browser-stable-esm.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: browser, Support: stable, Format: esm
+var data = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+}; // @ts-ignore
+
+var keys = Object.keys(data);
+export { keys };
+//# sourceMappingURL=index-browser-stable-esm.js.map
+",
+]
+`;
+
+exports[`JSON imports transforms example test case 13`] = `
+Array [
+  "/lib/index-browser-current-lib.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: browser, Support: current, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var data = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+}; // @ts-ignore
+
+var keys = Object.keys(data);
+exports.keys = keys;
+//# sourceMappingURL=index-browser-current-lib.js.map
+",
+]
+`;
+
+exports[`JSON imports transforms example test case 14`] = `
+Array [
+  "/lib/index-browser-experimental-lib.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: browser, Support: experimental, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+const data = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+}; // @ts-ignore
+
+const keys = Object.keys(data);
+exports.keys = keys;
+//# sourceMappingURL=index-browser-experimental-lib.js.map
+",
+]
+`;
+
+exports[`JSON imports transforms example test case 15`] = `
+Array [
+  "/lib/index-browser-legacy-lib.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: browser, Support: legacy, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var data = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+}; // @ts-ignore
+
+var keys = Object.keys(data);
+exports.keys = keys;
+//# sourceMappingURL=index-browser-legacy-lib.js.map
+",
+]
+`;
+
+exports[`JSON imports transforms example test case 16`] = `
+Array [
+  "/lib/index-browser-stable-lib.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: browser, Support: stable, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var data = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+}; // @ts-ignore
+
+var keys = Object.keys(data);
+exports.keys = keys;
+//# sourceMappingURL=index-browser-stable-lib.js.map
+",
+]
+`;
+
+exports[`JSON imports transforms example test case 17`] = `
+Array [
+  "/lib/index-native-current-lib.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: native, Support: current, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+const data = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+}; // @ts-ignore
+
+const keys = Object.keys(data);
+exports.keys = keys;
+//# sourceMappingURL=index-native-current-lib.js.map
+",
+]
+`;
+
+exports[`JSON imports transforms example test case 18`] = `
+Array [
+  "/lib/index-native-experimental-lib.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: native, Support: experimental, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+const data = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+}; // @ts-ignore
+
+const keys = Object.keys(data);
+exports.keys = keys;
+//# sourceMappingURL=index-native-experimental-lib.js.map
+",
+]
+`;
+
+exports[`JSON imports transforms example test case 19`] = `
+Array [
+  "/lib/index-native-legacy-lib.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: native, Support: legacy, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var data = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+}; // @ts-ignore
+
+var keys = Object.keys(data);
+exports.keys = keys;
+//# sourceMappingURL=index-native-legacy-lib.js.map
+",
+]
+`;
+
+exports[`JSON imports transforms example test case 20`] = `
+Array [
+  "/lib/index-native-stable-lib.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: native, Support: stable, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var data = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+}; // @ts-ignore
+
+const keys = Object.keys(data);
+exports.keys = keys;
+//# sourceMappingURL=index-native-stable-lib.js.map
+",
+]
+`;
+
+exports[`JSON imports transforms example test case 21`] = `
+Array [
+  "/lib/index-node-current-lib.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: current, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+const data = require('./index-node-current-lib2.js'); // @ts-ignore
+
+
+const keys = Object.keys(data);
+exports.keys = keys;
+//# sourceMappingURL=index-node-current-lib.js.map
+",
+]
+`;
+
+exports[`JSON imports transforms example test case 22`] = `
+Array [
+  "/lib/index-node-current-lib2.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: current, Format: lib
+'use strict';
+
+const data = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+};
+module.exports = data;
+//# sourceMappingURL=index-node-current-lib2.js.map
+",
+]
+`;
+
+exports[`JSON imports transforms example test case 23`] = `
+Array [
+  "/lib/index-node-experimental-lib.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: experimental, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+const data = require('./index-node-experimental-lib2.js'); // @ts-ignore
+
+
+const keys = Object.keys(data);
+exports.keys = keys;
+//# sourceMappingURL=index-node-experimental-lib.js.map
+",
+]
+`;
+
+exports[`JSON imports transforms example test case 24`] = `
+Array [
+  "/lib/index-node-experimental-lib2.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: experimental, Format: lib
+'use strict';
+
+const data = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+};
+module.exports = data;
+//# sourceMappingURL=index-node-experimental-lib2.js.map
+",
+]
+`;
+
+exports[`JSON imports transforms example test case 25`] = `
+Array [
+  "/lib/index-node-legacy-lib.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: legacy, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var data = require('./index-node-legacy-lib2.js'); // @ts-ignore
+
+
+const keys = Object.keys(data);
+exports.keys = keys;
+//# sourceMappingURL=index-node-legacy-lib.js.map
+",
+]
+`;
+
+exports[`JSON imports transforms example test case 26`] = `
+Array [
+  "/lib/index-node-legacy-lib2.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: legacy, Format: lib
+'use strict';
+
+var data = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+};
+module.exports = data;
+//# sourceMappingURL=index-node-legacy-lib2.js.map
+",
+]
+`;
+
+exports[`JSON imports transforms example test case 27`] = `
+Array [
+  "/lib/index-node-stable-lib.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var data = require('./index-node-stable-lib2.js'); // @ts-ignore
+
+
+const keys = Object.keys(data);
+exports.keys = keys;
+//# sourceMappingURL=index-node-stable-lib.js.map
+",
+]
+`;
+
+exports[`JSON imports transforms example test case 28`] = `
+Array [
+  "/lib/index-node-stable-lib2.js",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: lib
+'use strict';
+
+var data = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+};
+module.exports = data;
+//# sourceMappingURL=index-node-stable-lib2.js.map
+",
+]
+`;
+
+exports[`JSON imports transforms example test case 29`] = `
+Array [
+  "/mjs/index-node-current-mjs.mjs",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: current, Format: mjs
+import data from './index-node-current-mjs2.mjs'; // @ts-ignore
+
+const keys = Object.keys(data);
+export { keys };
+//# sourceMappingURL=index-node-current-mjs.mjs.map
+",
+]
+`;
+
+exports[`JSON imports transforms example test case 30`] = `
+Array [
+  "/mjs/index-node-current-mjs2.mjs",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: current, Format: mjs
+const data = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+};
+export default data;
+//# sourceMappingURL=index-node-current-mjs2.mjs.map
+",
+]
+`;
+
+exports[`JSON imports transforms example test case 31`] = `
+Array [
+  "/mjs/index-node-experimental-mjs.mjs",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: experimental, Format: mjs
+import data from './index-node-experimental-mjs2.mjs'; // @ts-ignore
+
+const keys = Object.keys(data);
+export { keys };
+//# sourceMappingURL=index-node-experimental-mjs.mjs.map
+",
+]
+`;
+
+exports[`JSON imports transforms example test case 32`] = `
+Array [
+  "/mjs/index-node-experimental-mjs2.mjs",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: experimental, Format: mjs
+const data = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+};
+export default data;
+//# sourceMappingURL=index-node-experimental-mjs2.mjs.map
+",
+]
+`;
+
+exports[`JSON imports transforms example test case 33`] = `
+Array [
+  "/mjs/index-node-legacy-mjs.mjs",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: legacy, Format: mjs
+import data from './index-node-legacy-mjs2.mjs'; // @ts-ignore
+
+const keys = Object.keys(data);
+export { keys };
+//# sourceMappingURL=index-node-legacy-mjs.mjs.map
+",
+]
+`;
+
+exports[`JSON imports transforms example test case 34`] = `
+Array [
+  "/mjs/index-node-legacy-mjs2.mjs",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: legacy, Format: mjs
+var data = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+};
+export default data;
+//# sourceMappingURL=index-node-legacy-mjs2.mjs.map
+",
+]
+`;
+
+exports[`JSON imports transforms example test case 35`] = `
+Array [
+  "/mjs/index-node-stable-mjs.mjs",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: mjs
+import data from './index-node-stable-mjs2.mjs'; // @ts-ignore
+
+const keys = Object.keys(data);
+export { keys };
+//# sourceMappingURL=index-node-stable-mjs.mjs.map
+",
+]
+`;
+
+exports[`JSON imports transforms example test case 36`] = `
+Array [
+  "/mjs/index-node-stable-mjs2.mjs",
+  "// Generated with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: mjs
+var data = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+};
+export default data;
+//# sourceMappingURL=index-node-stable-mjs2.mjs.map
+",
+]
+`;
+
+exports[`JSON imports transforms example test case 37`] = `
+Array [
+  "/package.json",
+  Object {
+    "files": Array [
+      "cjs/**/*.{cjs,map}",
+      "esm/**/*.{js,map}",
+      "lib/**/*.{js,map}",
+      "mjs/**/*.{mjs,map}",
+      "src/**/*.{ts,tsx,json}",
+      "umd/**/*.{js,map}",
+    ],
+    "name": "examples",
+  },
+]
+`;
+
+exports[`JSON imports transforms example test case 38`] = `
+Array [
+  "/umd/index-browser-current-umd.js",
+  "(function (global, factory) {
+  if (typeof define === \\"function\\" && define.amd) {
+    define([\\"exports\\"], factory);
+  } else if (typeof exports !== \\"undefined\\") {
+    factory(exports);
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports);
+    global.examples = mod.exports;
+  }
+})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports) {
+  \\"use strict\\";
+
+  Object.defineProperty(_exports, \\"__esModule\\", {
+    value: true
+  });
+  _exports.keys = void 0;
+  // Generated with Packemon: https://packemon.dev
+  // Platform: browser, Support: current, Format: umd
+  var data = {
+    list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+    number: 123,
+    string: \\"abc\\",
+    object: {
+      foo: true
+    }
+  }; // @ts-ignore
+
+  var keys = Object.keys(data);
+  _exports.keys = keys;
+});
+//# sourceMappingURL=index-browser-current-umd.js.map
+",
+]
+`;
+
+exports[`JSON imports transforms example test case 39`] = `
+Array [
+  "/umd/index-browser-experimental-umd.js",
+  "(function (global, factory) {
+  if (typeof define === \\"function\\" && define.amd) {
+    define([\\"exports\\"], factory);
+  } else if (typeof exports !== \\"undefined\\") {
+    factory(exports);
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports);
+    global.examples = mod.exports;
+  }
+})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports) {
+  \\"use strict\\";
+
+  Object.defineProperty(_exports, \\"__esModule\\", {
+    value: true
+  });
+  _exports.keys = void 0;
+  // Generated with Packemon: https://packemon.dev
+  // Platform: browser, Support: experimental, Format: umd
+  const data = {
+    list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+    number: 123,
+    string: \\"abc\\",
+    object: {
+      foo: true
+    }
+  }; // @ts-ignore
+
+  const keys = Object.keys(data);
+  _exports.keys = keys;
+});
+//# sourceMappingURL=index-browser-experimental-umd.js.map
+",
+]
+`;
+
+exports[`JSON imports transforms example test case 40`] = `
+Array [
+  "/umd/index-browser-legacy-umd.js",
+  "(function (global, factory) {
+  if (typeof define === \\"function\\" && define.amd) {
+    define([\\"exports\\"], factory);
+  } else if (typeof exports !== \\"undefined\\") {
+    factory(exports);
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports);
+    global.examples = mod.exports;
+  }
+})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports) {
+  \\"use strict\\";
+
+  Object.defineProperty(_exports, \\"__esModule\\", {
+    value: true
+  });
+  _exports.keys = void 0;
+  // Generated with Packemon: https://packemon.dev
+  // Platform: browser, Support: legacy, Format: umd
+  var data = {
+    list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+    number: 123,
+    string: \\"abc\\",
+    object: {
+      foo: true
+    }
+  }; // @ts-ignore
+
+  var keys = Object.keys(data);
+  _exports.keys = keys;
+});
+//# sourceMappingURL=index-browser-legacy-umd.js.map
+",
+]
+`;
+
+exports[`JSON imports transforms example test case 41`] = `
+Array [
+  "/umd/index-browser-stable-umd.js",
+  "(function (global, factory) {
+  if (typeof define === \\"function\\" && define.amd) {
+    define([\\"exports\\"], factory);
+  } else if (typeof exports !== \\"undefined\\") {
+    factory(exports);
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports);
+    global.examples = mod.exports;
+  }
+})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports) {
+  \\"use strict\\";
+
+  Object.defineProperty(_exports, \\"__esModule\\", {
+    value: true
+  });
+  _exports.keys = void 0;
+  // Generated with Packemon: https://packemon.dev
+  // Platform: browser, Support: stable, Format: umd
+  var data = {
+    list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+    number: 123,
+    string: \\"abc\\",
+    object: {
+      foo: true
+    }
+  }; // @ts-ignore
+
+  var keys = Object.keys(data);
+  _exports.keys = keys;
+});
+//# sourceMappingURL=index-browser-stable-umd.js.map
+",
+]
+`;

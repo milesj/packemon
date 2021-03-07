@@ -1,3 +1,4 @@
+// @ts-ignore
 import data from './data.json';
 
-console.log(data);
+export const keys = Object.keys(data);
