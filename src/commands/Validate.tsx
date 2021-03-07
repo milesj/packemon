@@ -15,8 +15,8 @@ export class ValidateCommand extends BaseCommand<Required<ValidateOptions>> {
   @Arg.Flag('Check that `main`, `module`, and other entry points are valid paths')
   entries: boolean = true;
 
-  @Arg.Flag('Check that `.npmignore` is not ignoring unexpected files')
-  ignore: boolean = true;
+  @Arg.Flag('Check that distributable files are not being accidentally ignored')
+  files: boolean = true;
 
   @Arg.Flag('Check that a SPDX license is provided')
   license: boolean = true;
@@ -40,7 +40,7 @@ export class ValidateCommand extends BaseCommand<Required<ValidateOptions>> {
         deps={this.deps}
         engines={this.engines}
         entries={this.engines}
-        ignore={this.ignore}
+        files={this.files}
         license={this.license}
         links={this.links}
         meta={this.meta}

@@ -85,6 +85,7 @@ export const validateBlueprint: Blueprint<ValidateOptions> = {
   deps: bool(true),
   engines: bool(true),
   entries: bool(true),
+  files: bool(true),
   license: bool(true),
   links: bool(true),
   meta: bool(true),

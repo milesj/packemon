@@ -2,12 +2,10 @@ import http from 'http';
 import https from 'https';
 import execa from 'execa';
 import glob from 'fast-glob';
-import fs from 'fs-extra';
-import ignore from 'ignore';
+import fileList from 'npm-packlist';
 import semver from 'semver';
 import spdxLicenses from 'spdx-license-list';
-import { DependencyMap, isModuleName, isObject, Path, PeopleSetting, toArray } from '@boost/common';
-import { FORMATS } from './constants';
+import { DependencyMap, isModuleName, isObject, PeopleSetting, toArray } from '@boost/common';
 import { Package } from './Package';
 import { ValidateOptions } from './types';
 
@@ -51,8 +49,8 @@ export class PackageValidator {
       this.checkEntryPoints();
     }
 
-    if (options.ignore) {
-      promises.push(this.checkIgnoredFiles());
+    if (options.files) {
+      promises.push(this.checkFiles());
     }
 
     if (options.license) {
@@ -222,27 +220,38 @@ export class PackageValidator {
     }
   }
 
-  protected async checkIgnoredFiles() {
-    const npmignorePath = this.package.path.append('.npmignore');
-    const gitignorePath = this.package.path.append('.gitignore');
-    const ignoreList = ignore({ ignorecase: true }).add([
-      '.DS_Store',
-      '.git',
-      '.npmrc',
-      '.svn',
-      '.yarnrc',
-      'node_modules',
-      'npm-debug.log',
-      'yarn-debug.log',
-      'package-lock.json',
-    ]);
+  protected async checkFiles() {
+    const futureFiles = new Set(await fileList({ path: this.package.path.path() }));
+    const presentFiles = new Set(await this.findDistributableFiles());
 
-    if (npmignorePath.exists()) {
-      ignoreList.add(await this.loadIgnoreFile(npmignorePath));
-    } else if (gitignorePath.exists()) {
-      ignoreList.add(await this.loadIgnoreFile(gitignorePath));
-    } else {
-      return;
+    // First check that our files are in the potential NPM list
+    const ignored = new Set<string>();
+
+    presentFiles.forEach((file) => {
+      if (!futureFiles.has(file)) {
+        ignored.add(file);
+      }
+    });
+
+    if (ignored.size > 0) {
+      this.errors.push(
+        `The following files are being ignored from publishing: ${Array.from(ignored).join(', ')}`,
+      );
+    }
+
+    // Then check that NPM isnt adding something unwanted
+    const unwanted = new Set<string>();
+
+    futureFiles.forEach((file) => {
+      if (!presentFiles.has(file)) {
+        unwanted.add(file);
+      }
+    });
+
+    if (unwanted.size > 0) {
+      this.warnings.push(
+        `The following files are being inadvertently published: ${Array.from(unwanted).join(', ')}`,
+      );
     }
   }
 
@@ -414,13 +423,25 @@ export class PackageValidator {
   }
 
   protected async findDistributableFiles(): Promise<string[]> {
-    const patterns: string[] = ['LICENSE', 'LICENSE.md', 'README', 'README.md'];
+    // https://github.com/npm/npm-packlist/blob/master/index.js#L29
+    const patterns: string[] = [
+      '(readme|copying|license|licence|notice|changes|changelog|history)*',
+      'package.json',
+    ];
 
-    FORMATS.forEach((format) => {
-      patterns.push(`${format}/**/*`);
+    this.package.packageJson.files?.forEach((file) => {
+      if (file.endsWith('/')) {
+        patterns.push(`${file}**/*.{js,json,cjs,mjs,ts,tsx,map}`);
+      } else {
+        patterns.push(file);
+      }
     });
 
-    return glob(patterns, { cwd: this.package.path.path(), ignore: ['node_modules'] });
+    return glob(patterns, {
+      caseSensitiveMatch: false,
+      cwd: this.package.path.path(),
+      ignore: ['node_modules'],
+    });
   }
 
   protected async getBinVersion(bin: string): Promise<string> {
@@ -430,11 +451,5 @@ export class PackageValidator {
       // istanbul ignore next
       return '';
     }
-  }
-
-  protected async loadIgnoreFile(path: Path): Promise<string[]> {
-    const contents = await fs.readFile(path.path(), 'utf8');
-
-    return contents.split('\n').filter((line) => line !== '' && !line.startsWith('#'));
   }
 }
