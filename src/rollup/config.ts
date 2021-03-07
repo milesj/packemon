@@ -4,13 +4,18 @@ import nodePolyfills from 'rollup-plugin-polyfill-node';
 import visualizer from 'rollup-plugin-visualizer';
 import { getBabelInputPlugin, getBabelOutputPlugin } from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
+import json from '@rollup/plugin-json';
 import resolve from '@rollup/plugin-node-resolve';
 import { getBabelInputConfig, getBabelOutputConfig } from '../babel/config';
 import type { BundleArtifact } from '../BundleArtifact';
 import { EXCLUDE, EXTENSIONS } from '../constants';
 import { BundleBuild, FeatureFlags, Format } from '../types';
 
-const sharedPlugins = [resolve({ extensions: EXTENSIONS, preferBuiltins: true }), commonjs()];
+const sharedPlugins = [
+  resolve({ extensions: EXTENSIONS, preferBuiltins: true }),
+  commonjs(),
+  json({ compact: true, namedExports: false }),
+];
 
 function getRollupModuleFormat(format: Format): ModuleFormat {
   if (

@@ -10,6 +10,7 @@ import {
 } from '../../src/rollup/config';
 
 jest.mock('@rollup/plugin-commonjs', () => () => 'commonjs()');
+jest.mock('@rollup/plugin-json', () => () => 'json()');
 jest.mock('@rollup/plugin-node-resolve', () => () => 'resolve()');
 jest.mock('@rollup/plugin-babel', () => ({
   getBabelInputPlugin: (options: any) => `babelInput(${options.filename})`,
@@ -50,6 +51,7 @@ describe('getRollupConfig()', () => {
     `externals(${fixturePath.append('package.json')})`,
     'resolve()',
     'commonjs()',
+    'json()',
     `babelInput(${fixturePath})`,
   ];
 
