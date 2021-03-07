@@ -69,6 +69,7 @@ export function createRootConfig(): ConfigStructure {
   return {
     ...config,
     babelrc: true,
+    babelrcRoots: project.getWorkspaceGlobs({ relative: true }),
     // Support React Native libraries by default
     overrides: [
       {
