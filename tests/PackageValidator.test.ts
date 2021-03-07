@@ -1,5 +1,6 @@
 import execa from 'execa';
 import fs from 'fs-extra';
+import packList from 'npm-packlist';
 import { Path } from '@boost/common';
 import { getFixturePath } from '@boost/test-utils';
 import { Package } from '../src/Package';
@@ -8,6 +9,7 @@ import { Project } from '../src/Project';
 import { mockSpy } from './helpers';
 
 jest.mock('execa');
+jest.mock('npm-packlist');
 
 function createValidator(fixture: string) {
   const root = new Path(getFixturePath(fixture));
@@ -429,6 +431,44 @@ describe('PackageValidator', () => {
       expect(validator.errors).toEqual([
         'Missing primary entry point. Provide a `main` or `exports` field.',
       ]);
+    });
+  });
+
+  describe('checkFiles()', () => {
+    beforeEach(() => {
+      validator = createValidator('validate-files');
+    });
+
+    it('errors when local build files are being ignored', async () => {
+      ((packList as unknown) as jest.Mock).mockReturnValueOnce([
+        'package.json',
+        'esm/index.js',
+        'lib/index.js',
+      ]);
+
+      await validator.validate({ files: true });
+
+      expect(validator.warnings).toEqual([]);
+      expect(validator.errors).toEqual([
+        'The following files are being ignored from publishing: src/index.ts',
+      ]);
+    });
+
+    it('warns when npm packed files includes unwanted', async () => {
+      ((packList as unknown) as jest.Mock).mockReturnValueOnce([
+        'package.json',
+        'esm/index.js',
+        'lib/index.js',
+        'src/index.ts',
+        'umd/index.js',
+      ]);
+
+      await validator.validate({ files: true });
+
+      expect(validator.warnings).toEqual([
+        'The following files are being inadvertently published: umd/index.js',
+      ]);
+      expect(validator.errors).toEqual([]);
     });
   });
 

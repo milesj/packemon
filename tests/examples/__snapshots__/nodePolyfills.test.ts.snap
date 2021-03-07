@@ -8993,12 +8993,12 @@ Array [
   "/package.json",
   Object {
     "files": Array [
-      "cjs/",
-      "esm/",
-      "lib/",
-      "mjs/",
-      "src/",
-      "umd/",
+      "cjs/**/*.{cjs,map}",
+      "esm/**/*.{js,map}",
+      "lib/**/*.{js,map}",
+      "mjs/**/*.{mjs,map}",
+      "src/**/*.{ts,tsx,json}",
+      "umd/**/*.{js,map}",
     ],
     "name": "examples",
   },

@@ -1,6 +1,8 @@
 import http from 'http';
 import https from 'https';
 import execa from 'execa';
+import glob from 'fast-glob';
+import packList from 'npm-packlist';
 import semver from 'semver';
 import spdxLicenses from 'spdx-license-list';
 import { DependencyMap, isModuleName, isObject, PeopleSetting, toArray } from '@boost/common';
@@ -45,6 +47,10 @@ export class PackageValidator {
 
     if (options.entries) {
       this.checkEntryPoints();
+    }
+
+    if (options.files) {
+      promises.push(this.checkFiles());
     }
 
     if (options.license) {
@@ -214,6 +220,41 @@ export class PackageValidator {
     }
   }
 
+  protected async checkFiles() {
+    const futureFiles = new Set(await packList({ path: this.package.path.path() }));
+    const presentFiles = new Set(await this.findDistributableFiles());
+
+    // First check that our files are in the potential NPM list
+    const ignored = new Set<string>();
+
+    presentFiles.forEach((file) => {
+      if (!futureFiles.has(file)) {
+        ignored.add(file);
+      }
+    });
+
+    if (ignored.size > 0) {
+      this.errors.push(
+        `The following files are being ignored from publishing: ${Array.from(ignored).join(', ')}`,
+      );
+    }
+
+    // Then check that NPM isnt adding something unwanted
+    const unwanted = new Set<string>();
+
+    futureFiles.forEach((file) => {
+      if (!presentFiles.has(file)) {
+        unwanted.add(file);
+      }
+    });
+
+    if (unwanted.size > 0) {
+      this.warnings.push(
+        `The following files are being inadvertently published: ${Array.from(unwanted).join(', ')}`,
+      );
+    }
+  }
+
   protected checkLicense() {
     this.package.debug('Checking license');
 
@@ -378,6 +419,28 @@ export class PackageValidator {
 
       ping.write('');
       ping.end();
+    });
+  }
+
+  protected async findDistributableFiles(): Promise<string[]> {
+    // https://github.com/npm/npm-packlist/blob/master/index.js#L29
+    const patterns: string[] = [
+      '(readme|copying|license|licence|notice|changes|changelog|history)*',
+      'package.json',
+    ];
+
+    this.package.packageJson.files?.forEach((file) => {
+      if (file.endsWith('/')) {
+        patterns.push(`${file}**/*.{json,js,jsx,cjs,mjs,ts,tsx,map}`);
+      } else {
+        patterns.push(file);
+      }
+    });
+
+    return glob(patterns, {
+      caseSensitiveMatch: false,
+      cwd: this.package.path.path(),
+      ignore: ['node_modules'],
     });
   }
 

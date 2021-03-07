@@ -287,7 +287,9 @@ export class Package {
     const files = new Set<string>(this.packageJson.files);
 
     this.artifacts.forEach((artifact) => {
+      // Build files
       if (artifact instanceof BundleArtifact) {
+        // Generate `main` and `module` fields
         if (artifact.outputName === 'index') {
           if (!mainEntry || artifact.platform === 'node') {
             mainEntry = artifact.findEntryPoint(['lib', 'cjs', 'mjs']);
@@ -298,6 +300,7 @@ export class Package {
           }
         }
 
+        // Generate `bin` field
         if (
           artifact.outputName === 'bin' &&
           artifact.platform === 'node' &&
@@ -306,12 +309,17 @@ export class Package {
           this.packageJson.bin = artifact.findEntryPoint(['lib', 'cjs', 'mjs']);
         }
 
-        artifact.builds.forEach((build) => {
-          files.add(`${build.format}/`);
+        // Generate `files` list
+        artifact.builds.forEach(({ format }) => {
+          files.add(`${format}/**/*.{${artifact.getOutputMetadata(format).ext},map}`);
         });
+
+        files.add(`src/**/*.{${this.getSourceFileExts(artifact.inputFile)}}`);
+
+        // Type declarations
       } else if (artifact instanceof TypesArtifact) {
         this.packageJson.types = './dts/index.d.ts';
-        files.add('dts/');
+        files.add('dts/**/*.d.ts');
       }
     });
 
@@ -329,7 +337,6 @@ export class Package {
       this.packageJson.module = moduleEntry;
     }
 
-    files.add('src/');
     this.packageJson.files = Array.from(files).sort();
   }
 
@@ -363,5 +370,24 @@ export class Package {
     });
 
     this.packageJson.exports = exports as PackageStructure['exports'];
+  }
+
+  protected getSourceFileExts(inputFile: string): string[] {
+    const sourceExt = new Path(inputFile).ext(true);
+    const exts: string[] = [sourceExt];
+
+    if (sourceExt === 'js') {
+      exts.push('jsx');
+    } else if (sourceExt === 'jsx' || sourceExt === 'cjs') {
+      exts.push('js');
+    } else if (sourceExt === 'ts') {
+      exts.push('tsx');
+    } else if (sourceExt === 'tsx') {
+      exts.push('ts');
+    }
+
+    exts.push('json');
+
+    return exts;
   }
 }
