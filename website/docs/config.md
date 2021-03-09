@@ -63,7 +63,7 @@ To support multiple platforms, pass an array.
 }
 ```
 
-> In the future, we hope to support other platforms like Electron and React Native.
+> In the future, we hope to support other platforms like Electron.
 
 ## Support
 
