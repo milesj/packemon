@@ -184,6 +184,7 @@ export class Package {
       });
 
       toArray(config.platform).forEach((platform) => {
+        let bundle = true;
         let formats = [...toArray(config.format)];
         const isEmpty = formats.length === 0;
 
@@ -197,6 +198,8 @@ export class Package {
             break;
 
           case 'node':
+            bundle = false;
+
             if (isEmpty) {
               formats.push('lib');
             } else {
@@ -220,6 +223,7 @@ export class Package {
         }
 
         this.configs.push({
+          bundle: cfg.bundle === undefined ? bundle : config.bundle,
           formats,
           inputs: config.inputs,
           namespace: config.namespace,

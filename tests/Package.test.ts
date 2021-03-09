@@ -896,6 +896,7 @@ describe('Package', () => {
 
       expect(pkg.configs).toEqual([
         {
+          bundle: true,
           formats: ['lib', 'esm'],
           inputs: {},
           platform: 'browser',
@@ -918,6 +919,7 @@ describe('Package', () => {
 
       expect(pkg.configs).toEqual([
         {
+          bundle: true,
           formats: ['lib', 'esm', 'umd'],
           inputs: {},
           platform: 'browser',
@@ -940,6 +942,7 @@ describe('Package', () => {
 
       expect(pkg.configs).toEqual([
         {
+          bundle: true,
           formats: ['lib'],
           inputs: {},
           platform: 'native',
@@ -962,6 +965,7 @@ describe('Package', () => {
 
       expect(pkg.configs).toEqual([
         {
+          bundle: false,
           formats: ['lib'],
           inputs: {},
           platform: 'node',
@@ -984,6 +988,7 @@ describe('Package', () => {
 
       expect(pkg.configs).toEqual([
         {
+          bundle: false,
           formats: ['cjs', 'mjs'],
           inputs: {},
           platform: 'node',
@@ -1003,6 +1008,7 @@ describe('Package', () => {
 
       expect(pkg.configs).toEqual([
         {
+          bundle: true,
           formats: ['lib', 'esm'],
           inputs: {},
           platform: 'browser',
@@ -1010,6 +1016,7 @@ describe('Package', () => {
           support: 'stable',
         },
         {
+          bundle: false,
           formats: ['lib'],
           inputs: {},
           platform: 'node',
@@ -1030,6 +1037,7 @@ describe('Package', () => {
 
       expect(pkg.configs).toEqual([
         {
+          bundle: true,
           formats: ['lib', 'esm'],
           inputs: {},
           platform: 'browser',
@@ -1037,6 +1045,7 @@ describe('Package', () => {
           support: 'stable',
         },
         {
+          bundle: false,
           formats: ['lib', 'cjs'],
           inputs: {},
           platform: 'node',
@@ -1044,9 +1053,42 @@ describe('Package', () => {
           support: 'stable',
         },
         {
+          bundle: true,
           formats: ['lib'],
           inputs: {},
           platform: 'native',
+          namespace: '',
+          support: 'stable',
+        },
+      ]);
+    });
+
+    it('can override `bundle` defaults', () => {
+      pkg.setConfigs([
+        {
+          bundle: true,
+          platform: 'node',
+        },
+        {
+          bundle: false,
+          platform: 'browser',
+        },
+      ]);
+
+      expect(pkg.configs).toEqual([
+        {
+          bundle: true,
+          formats: ['lib'],
+          inputs: { index: 'src/index.ts' },
+          platform: 'node',
+          namespace: '',
+          support: 'stable',
+        },
+        {
+          bundle: false,
+          formats: ['lib', 'esm'],
+          inputs: { index: 'src/index.ts' },
+          platform: 'browser',
           namespace: '',
           support: 'stable',
         },

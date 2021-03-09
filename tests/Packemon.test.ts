@@ -463,6 +463,7 @@ describe('Packemon', () => {
       expect(one.getName()).toBe('pkg-valid-array');
       expect(one.configs).toEqual([
         {
+          bundle: false,
           formats: ['lib'],
           inputs: { index: 'src/index.ts' },
           namespace: '',
@@ -470,6 +471,7 @@ describe('Packemon', () => {
           support: 'stable',
         },
         {
+          bundle: true,
           formats: ['lib', 'esm'],
           inputs: { index: 'src/index.ts' },
           namespace: '',
@@ -481,6 +483,7 @@ describe('Packemon', () => {
       expect(two.getName()).toBe('pkg-valid-object');
       expect(two.configs).toEqual([
         {
+          bundle: false,
           formats: ['lib'],
           inputs: { core: './src/core.ts' },
           namespace: '',
@@ -492,6 +495,7 @@ describe('Packemon', () => {
       expect(three.getName()).toBe('pkg-valid-object-private');
       expect(three.configs).toEqual([
         {
+          bundle: true,
           formats: ['lib', 'esm', 'umd'],
           inputs: { index: 'src/index.ts' },
           namespace: 'Test',
