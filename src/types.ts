@@ -118,6 +118,7 @@ export interface BuildResult {
 }
 
 export interface BundleBuild {
+  bundle?: boolean;
   format: Format;
   platform: Platform;
   support: Support;

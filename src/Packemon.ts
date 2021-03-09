@@ -206,6 +206,7 @@ export class Packemon {
             pkg,
             // Pass platform and support here for convenience
             config.formats.map((format) => ({
+              bundle: config.bundle,
               format,
               platform: config.platform,
               support: config.support,

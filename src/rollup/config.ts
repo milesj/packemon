@@ -88,11 +88,11 @@ export function getRollupOutputConfig(
   features: FeatureFlags,
   build: BundleBuild,
 ): OutputOptions {
-  const { format, platform, support } = build;
+  const { bundle = true, format, platform, support } = build;
   const name = artifact.outputName;
   const { ext, folder } = artifact.getOutputMetadata(format);
-  const isNode = platform === 'node';
   const isTest = process.env.NODE_ENV === 'test';
+  const preserve = !bundle;
 
   const output: OutputOptions = {
     dir: artifact.package.path.append(folder).path(),
@@ -102,10 +102,9 @@ export function getRollupOutputConfig(
     paths: getRollupPaths(artifact, ext),
     // Use our extension for file names
     assetFileNames: '../assets/[name]-[hash][extname]',
-    chunkFileNames: isNode && !isTest ? `[name]-[hash].${ext}` : `${name}-[hash].${ext}`,
-    entryFileNames: isNode && !isTest ? `[name].${ext}` : `${name}.${ext}`,
-    // Dont bundle to a single file when targeting node
-    preserveModules: isNode,
+    chunkFileNames: preserve && !isTest ? `[name]-[hash].${ext}` : `${name}-[hash].${ext}`,
+    entryFileNames: preserve && !isTest ? `[name].${ext}` : `${name}.${ext}`,
+    preserveModules: preserve,
     // Use const when not supporting new targets
     preferConst: support === 'current' || support === 'experimental',
     // Output specific plugins
