@@ -94,6 +94,7 @@ FORMATS.forEach((format) => {
       }
 
       builds.set(key, {
+        bundle: platform !== 'node',
         format,
         platform,
         support,

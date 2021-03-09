@@ -25,4 +25,4 @@ aborted.
 ## Options
 
 Pack supports all the same command line options as [`build`](./build.md). The validation step cannot
-be customized and will vaidate _everything_ by default.
+be customized and will validate _everything_ by default.

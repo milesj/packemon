@@ -326,30 +326,30 @@ describe('Packemon', () => {
       expect((packages[0].artifacts[0] as BundleArtifact).outputName).toBe('index');
       expect((packages[0].artifacts[0] as BundleArtifact).inputFile).toBe('src/index.ts');
       expect(packages[0].artifacts[0].builds).toEqual([
-        { format: 'lib', platform: 'node', support: 'stable' },
+        { bundle: false, format: 'lib', platform: 'node', support: 'stable' },
       ]);
 
       expect((packages[0].artifacts[1] as BundleArtifact).outputName).toBe('index');
       expect((packages[0].artifacts[1] as BundleArtifact).inputFile).toBe('src/index.ts');
       expect(packages[0].artifacts[1].builds).toEqual([
-        { format: 'lib', platform: 'browser', support: 'current' },
-        { format: 'esm', platform: 'browser', support: 'current' },
+        { bundle: true, format: 'lib', platform: 'browser', support: 'current' },
+        { bundle: true, format: 'esm', platform: 'browser', support: 'current' },
       ]);
 
       expect(packages[1].artifacts).toHaveLength(1);
       expect((packages[1].artifacts[0] as BundleArtifact).outputName).toBe('core');
       expect((packages[1].artifacts[0] as BundleArtifact).inputFile).toBe('./src/core.ts');
       expect(packages[1].artifacts[0].builds).toEqual([
-        { format: 'lib', platform: 'node', support: 'stable' },
+        { bundle: false, format: 'lib', platform: 'node', support: 'stable' },
       ]);
 
       expect(packages[2].artifacts).toHaveLength(1);
       expect((packages[2].artifacts[0] as BundleArtifact).outputName).toBe('index');
       expect((packages[2].artifacts[0] as BundleArtifact).inputFile).toBe('src/index.ts');
       expect(packages[2].artifacts[0].builds).toEqual([
-        { format: 'lib', platform: 'browser', support: 'stable' },
-        { format: 'esm', platform: 'browser', support: 'stable' },
-        { format: 'umd', platform: 'browser', support: 'stable' },
+        { bundle: true, format: 'lib', platform: 'browser', support: 'stable' },
+        { bundle: true, format: 'esm', platform: 'browser', support: 'stable' },
+        { bundle: true, format: 'umd', platform: 'browser', support: 'stable' },
       ]);
     });
 
@@ -427,12 +427,12 @@ describe('Packemon', () => {
       packemon.generateArtifacts(packages);
 
       expect(packages[0].artifacts[0].builds).toEqual([
-        { format: 'lib', platform: 'browser', support: 'stable' },
-        { format: 'esm', platform: 'browser', support: 'stable' },
+        { bundle: true, format: 'lib', platform: 'browser', support: 'stable' },
+        { bundle: true, format: 'esm', platform: 'browser', support: 'stable' },
       ]);
 
       expect(packages[0].artifacts[1].builds).toEqual([
-        { format: 'lib', platform: 'node', support: 'stable' },
+        { bundle: false, format: 'lib', platform: 'node', support: 'stable' },
       ]);
     });
   });
@@ -463,6 +463,7 @@ describe('Packemon', () => {
       expect(one.getName()).toBe('pkg-valid-array');
       expect(one.configs).toEqual([
         {
+          bundle: false,
           formats: ['lib'],
           inputs: { index: 'src/index.ts' },
           namespace: '',
@@ -470,6 +471,7 @@ describe('Packemon', () => {
           support: 'stable',
         },
         {
+          bundle: true,
           formats: ['lib', 'esm'],
           inputs: { index: 'src/index.ts' },
           namespace: '',
@@ -481,6 +483,7 @@ describe('Packemon', () => {
       expect(two.getName()).toBe('pkg-valid-object');
       expect(two.configs).toEqual([
         {
+          bundle: false,
           formats: ['lib'],
           inputs: { core: './src/core.ts' },
           namespace: '',
@@ -492,6 +495,7 @@ describe('Packemon', () => {
       expect(three.getName()).toBe('pkg-valid-object-private');
       expect(three.configs).toEqual([
         {
+          bundle: true,
           formats: ['lib', 'esm', 'umd'],
           inputs: { index: 'src/index.ts' },
           namespace: 'Test',

@@ -63,7 +63,7 @@ To support multiple platforms, pass an array.
 }
 ```
 
-> In the future, we hope to support other platforms like Electron and React Native.
+> In the future, we hope to support other platforms like Electron.
 
 ## Support
 
@@ -159,6 +159,20 @@ need to configure this.
 
 > These inputs can be automatically mapped to `package.json` `exports` using the `--addExports` CLI
 > option. Do note that this feature is still experimental.
+
+## Bundle
+
+Whether to bundle the source code into a single file by input. If not provided, is `false` for
+`node` platform, but `true` for all other platforms.
+
+```json
+{
+  "bundle": false
+}
+```
+
+> Prefer the defaults as much as possible. The only time this setting should change is if the
+> package should allow deep imports. For example, a component library.
 
 ## Namespace
 

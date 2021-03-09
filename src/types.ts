@@ -58,6 +58,7 @@ export type DeclarationType = 'api' | 'none' | 'standard';
 // PACKAGES
 
 export interface PackemonPackageConfig {
+  bundle?: boolean;
   format?: Format | Format[];
   inputs?: Record<string, string>;
   namespace?: string;
@@ -70,6 +71,7 @@ export interface PackemonPackage extends PackageStructure {
 }
 
 export interface PackageConfig {
+  bundle: boolean;
   formats: Format[];
   inputs: Record<string, string>;
   namespace: string;
@@ -116,6 +118,7 @@ export interface BuildResult {
 }
 
 export interface BundleBuild {
+  bundle?: boolean;
   format: Format;
   platform: Platform;
   support: Support;
