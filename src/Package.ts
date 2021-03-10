@@ -288,12 +288,14 @@ export class Package {
 
     let mainEntry = '';
     let moduleEntry = '';
+    let browserEntry = '';
     const files = new Set<string>(this.packageJson.files);
 
+    // eslint-disable-next-line complexity
     this.artifacts.forEach((artifact) => {
       // Build files
       if (artifact instanceof BundleArtifact) {
-        // Generate `main` and `module` fields
+        // Generate `main`, `module`, and `browser` fields
         if (artifact.outputName === 'index') {
           if (!mainEntry || artifact.platform === 'node') {
             mainEntry = artifact.findEntryPoint(['lib', 'cjs', 'mjs']);
@@ -301,6 +303,11 @@ export class Package {
 
           if (!moduleEntry) {
             moduleEntry = artifact.findEntryPoint(['esm', 'mjs']);
+          }
+
+          // Only include when we share a lib with another platform
+          if (!browserEntry && artifact.platform === 'browser' && artifact.sharedLib) {
+            browserEntry = artifact.findEntryPoint(['lib']);
           }
         }
 
@@ -319,9 +326,10 @@ export class Package {
         });
 
         files.add(`src/**/*.{${this.getSourceFileExts(artifact.inputFile)}}`);
+      }
 
-        // Type declarations
-      } else if (artifact instanceof TypesArtifact) {
+      // Type declarations
+      if (artifact instanceof TypesArtifact) {
         this.packageJson.types = './dts/index.d.ts';
         files.add('dts/**/*.d.ts');
       }
@@ -339,6 +347,10 @@ export class Package {
 
     if (moduleEntry) {
       this.packageJson.module = moduleEntry;
+    }
+
+    if (browserEntry && !isObject(this.packageJson.browser)) {
+      this.packageJson.browser = browserEntry;
     }
 
     this.packageJson.files = Array.from(files).sort();

@@ -324,6 +324,34 @@ describe('Package', () => {
         });
       });
 
+      describe('browser', () => {
+        it('adds "browser" when browser and node are sharing a lib', async () => {
+          const node = createBundleArtifact([
+            { format: 'lib', platform: 'node', support: 'stable' },
+          ]);
+          node.platform = 'node';
+          node.sharedLib = true;
+
+          const browser = createBundleArtifact([
+            { format: 'lib', platform: 'browser', support: 'stable' },
+          ]);
+          browser.platform = 'browser';
+          browser.sharedLib = true;
+
+          pkg.addArtifact(node);
+          pkg.addArtifact(browser);
+
+          await pkg.build({});
+
+          expect(pkg.packageJson).toEqual(
+            expect.objectContaining({
+              main: './lib/node/index.js',
+              browser: './lib/browser/index.js',
+            }),
+          );
+        });
+      });
+
       describe('types', () => {
         it('adds "types" when a types artifact exists', async () => {
           pkg.addArtifact(createTypesArtifact([]));
