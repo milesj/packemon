@@ -324,6 +324,50 @@ describe('Package', () => {
         });
       });
 
+      describe('browser', () => {
+        beforeEach(() => {
+          const node = createBundleArtifact([
+            { format: 'lib', platform: 'node', support: 'stable' },
+          ]);
+          node.platform = 'node';
+          node.sharedLib = true;
+
+          const browser = createBundleArtifact([
+            { format: 'lib', platform: 'browser', support: 'stable' },
+          ]);
+          browser.platform = 'browser';
+          browser.sharedLib = true;
+
+          pkg.addArtifact(node);
+          pkg.addArtifact(browser);
+        });
+
+        it('adds "browser" when browser and node are sharing a lib', async () => {
+          await pkg.build({});
+
+          expect(pkg.packageJson).toEqual(
+            expect.objectContaining({
+              main: './lib/node/index.js',
+              browser: './lib/browser/index.js',
+            }),
+          );
+        });
+
+        it('doesnt override "browser" field if its an object', async () => {
+          // @ts-expect-error Types are wrong
+          pkg.packageJson.browser = { module: 'foo' };
+
+          await pkg.build({});
+
+          expect(pkg.packageJson).toEqual(
+            expect.objectContaining({
+              main: './lib/node/index.js',
+              browser: { module: 'foo' },
+            }),
+          );
+        });
+      });
+
       describe('types', () => {
         it('adds "types" when a types artifact exists', async () => {
           pkg.addArtifact(createTypesArtifact([]));
