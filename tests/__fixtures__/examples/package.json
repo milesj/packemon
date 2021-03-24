@@ -1,3 +1,11 @@
 {
-  "name": "examples"
+  "name": "examples",
+  "files": [
+    "cjs/**/*.{cjs,map}",
+    "esm/**/*.{js,map}",
+    "lib/**/*.{js,map}",
+    "mjs/**/*.{mjs,map}",
+    "src/**/*.{ts,tsx,json}",
+    "umd/**/*.{js,map}"
+  ]
 }
