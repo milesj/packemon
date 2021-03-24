@@ -269,7 +269,8 @@ function resolve() {
     return !!p;
   }), !resolvedAbsolute).join('/');
   return (resolvedAbsolute ? '/' : '') + resolvedPath || '.';
-} // posix version
+} // path.normalize(path)
+// posix version
 
 
 function normalize(path) {
@@ -289,7 +290,8 @@ function normalize(path) {
   }
 
   return (isPathAbsolute ? '/' : '') + path;
-}
+} // posix version
+
 
 function isAbsolute(path) {
   return path.charAt(0) === '/';
@@ -428,7 +430,8 @@ EventHandlers.prototype = Object.create(null);
 
 function EventEmitter() {
   EventEmitter.init.call(this);
-} // require('events') === require('events').EventEmitter
+} // nodejs oddity
+// require('events') === require('events').EventEmitter
 
 
 EventEmitter.EventEmitter = EventEmitter;
@@ -743,6 +746,12 @@ EventEmitter.prototype.removeListener = function removeListener(type, listener) 
   }
 
   return this;
+}; // Alias for removeListener added in NodeJS 10.0
+// https://nodejs.org/api/events.html#events_emitter_off_eventname_listener
+
+
+EventEmitter.prototype.off = function (type, listener) {
+  return this.removeListener(type, listener);
 };
 
 EventEmitter.prototype.removeAllListeners = function removeAllListeners(type) {
@@ -980,7 +989,8 @@ function resolve() {
     return !!p;
   }), !resolvedAbsolute).join('/');
   return (resolvedAbsolute ? '/' : '') + resolvedPath || '.';
-} // posix version
+} // path.normalize(path)
+// posix version
 
 
 function normalize(path) {
@@ -1000,7 +1010,8 @@ function normalize(path) {
   }
 
   return (isPathAbsolute ? '/' : '') + path;
-}
+} // posix version
+
 
 function isAbsolute(path) {
   return path.charAt(0) === '/';
@@ -1139,7 +1150,8 @@ EventHandlers.prototype = Object.create(null);
 
 function EventEmitter() {
   EventEmitter.init.call(this);
-} // require('events') === require('events').EventEmitter
+} // nodejs oddity
+// require('events') === require('events').EventEmitter
 
 
 EventEmitter.EventEmitter = EventEmitter;
@@ -1442,6 +1454,12 @@ EventEmitter.prototype.removeListener = function removeListener(type, listener) 
   }
 
   return this;
+}; // Alias for removeListener added in NodeJS 10.0
+// https://nodejs.org/api/events.html#events_emitter_off_eventname_listener
+
+
+EventEmitter.prototype.off = function (type, listener) {
+  return this.removeListener(type, listener);
 };
 
 EventEmitter.prototype.removeAllListeners = function removeAllListeners(type) {
@@ -1683,7 +1701,8 @@ function resolve() {
     return !!p;
   }), !resolvedAbsolute).join('/');
   return (resolvedAbsolute ? '/' : '') + resolvedPath || '.';
-} // posix version
+} // path.normalize(path)
+// posix version
 
 
 function normalize(path) {
@@ -1703,7 +1722,8 @@ function normalize(path) {
   }
 
   return (isPathAbsolute ? '/' : '') + path;
-}
+} // posix version
+
 
 function isAbsolute(path) {
   return path.charAt(0) === '/';
@@ -1842,7 +1862,8 @@ EventHandlers.prototype = Object.create(null);
 
 function EventEmitter() {
   EventEmitter.init.call(this);
-} // require('events') === require('events').EventEmitter
+} // nodejs oddity
+// require('events') === require('events').EventEmitter
 
 
 EventEmitter.EventEmitter = EventEmitter;
@@ -2157,6 +2178,12 @@ EventEmitter.prototype.removeListener = function removeListener(type, listener) 
   }
 
   return this;
+}; // Alias for removeListener added in NodeJS 10.0
+// https://nodejs.org/api/events.html#events_emitter_off_eventname_listener
+
+
+EventEmitter.prototype.off = function (type, listener) {
+  return this.removeListener(type, listener);
 };
 
 EventEmitter.prototype.removeAllListeners = function removeAllListeners(type) {
@@ -2416,7 +2443,8 @@ function resolve() {
     return !!p;
   }), !resolvedAbsolute).join('/');
   return (resolvedAbsolute ? '/' : '') + resolvedPath || '.';
-} // posix version
+} // path.normalize(path)
+// posix version
 
 
 function normalize(path) {
@@ -2436,7 +2464,8 @@ function normalize(path) {
   }
 
   return (isPathAbsolute ? '/' : '') + path;
-}
+} // posix version
+
 
 function isAbsolute(path) {
   return path.charAt(0) === '/';
@@ -2575,7 +2604,8 @@ EventHandlers.prototype = Object.create(null);
 
 function EventEmitter() {
   EventEmitter.init.call(this);
-} // require('events') === require('events').EventEmitter
+} // nodejs oddity
+// require('events') === require('events').EventEmitter
 
 
 EventEmitter.EventEmitter = EventEmitter;
@@ -2890,6 +2920,12 @@ EventEmitter.prototype.removeListener = function removeListener(type, listener) 
   }
 
   return this;
+}; // Alias for removeListener added in NodeJS 10.0
+// https://nodejs.org/api/events.html#events_emitter_off_eventname_listener
+
+
+EventEmitter.prototype.off = function (type, listener) {
+  return this.removeListener(type, listener);
 };
 
 EventEmitter.prototype.removeAllListeners = function removeAllListeners(type) {
@@ -3154,7 +3190,8 @@ function resolve() {
     return !!p;
   }), !resolvedAbsolute).join('/');
   return (resolvedAbsolute ? '/' : '') + resolvedPath || '.';
-} // posix version
+} // path.normalize(path)
+// posix version
 
 
 function normalize(path) {
@@ -3174,7 +3211,8 @@ function normalize(path) {
   }
 
   return (isPathAbsolute ? '/' : '') + path;
-}
+} // posix version
+
 
 function isAbsolute(path) {
   return path.charAt(0) === '/';
@@ -3313,7 +3351,8 @@ EventHandlers.prototype = Object.create(null);
 
 function EventEmitter() {
   EventEmitter.init.call(this);
-} // require('events') === require('events').EventEmitter
+} // nodejs oddity
+// require('events') === require('events').EventEmitter
 
 
 EventEmitter.EventEmitter = EventEmitter;
@@ -3628,6 +3667,12 @@ EventEmitter.prototype.removeListener = function removeListener(type, listener) 
   }
 
   return this;
+}; // Alias for removeListener added in NodeJS 10.0
+// https://nodejs.org/api/events.html#events_emitter_off_eventname_listener
+
+
+EventEmitter.prototype.off = function (type, listener) {
+  return this.removeListener(type, listener);
 };
 
 EventEmitter.prototype.removeAllListeners = function removeAllListeners(type) {
@@ -3872,7 +3917,8 @@ function resolve() {
     return !!p;
   }), !resolvedAbsolute).join('/');
   return (resolvedAbsolute ? '/' : '') + resolvedPath || '.';
-} // posix version
+} // path.normalize(path)
+// posix version
 
 
 function normalize(path) {
@@ -3892,7 +3938,8 @@ function normalize(path) {
   }
 
   return (isPathAbsolute ? '/' : '') + path;
-}
+} // posix version
+
 
 function isAbsolute(path) {
   return path.charAt(0) === '/';
@@ -4031,7 +4078,8 @@ EventHandlers.prototype = Object.create(null);
 
 function EventEmitter() {
   EventEmitter.init.call(this);
-} // require('events') === require('events').EventEmitter
+} // nodejs oddity
+// require('events') === require('events').EventEmitter
 
 
 EventEmitter.EventEmitter = EventEmitter;
@@ -4334,6 +4382,12 @@ EventEmitter.prototype.removeListener = function removeListener(type, listener) 
   }
 
   return this;
+}; // Alias for removeListener added in NodeJS 10.0
+// https://nodejs.org/api/events.html#events_emitter_off_eventname_listener
+
+
+EventEmitter.prototype.off = function (type, listener) {
+  return this.removeListener(type, listener);
 };
 
 EventEmitter.prototype.removeAllListeners = function removeAllListeners(type) {
@@ -4582,7 +4636,8 @@ function resolve() {
     return !!p;
   }), !resolvedAbsolute).join('/');
   return (resolvedAbsolute ? '/' : '') + resolvedPath || '.';
-} // posix version
+} // path.normalize(path)
+// posix version
 
 
 function normalize(path) {
@@ -4602,7 +4657,8 @@ function normalize(path) {
   }
 
   return (isPathAbsolute ? '/' : '') + path;
-}
+} // posix version
+
 
 function isAbsolute(path) {
   return path.charAt(0) === '/';
@@ -4741,7 +4797,8 @@ EventHandlers.prototype = Object.create(null);
 
 function EventEmitter() {
   EventEmitter.init.call(this);
-} // require('events') === require('events').EventEmitter
+} // nodejs oddity
+// require('events') === require('events').EventEmitter
 
 
 EventEmitter.EventEmitter = EventEmitter;
@@ -5056,6 +5113,12 @@ EventEmitter.prototype.removeListener = function removeListener(type, listener) 
   }
 
   return this;
+}; // Alias for removeListener added in NodeJS 10.0
+// https://nodejs.org/api/events.html#events_emitter_off_eventname_listener
+
+
+EventEmitter.prototype.off = function (type, listener) {
+  return this.removeListener(type, listener);
 };
 
 EventEmitter.prototype.removeAllListeners = function removeAllListeners(type) {
@@ -5322,7 +5385,8 @@ function resolve() {
     return !!p;
   }), !resolvedAbsolute).join('/');
   return (resolvedAbsolute ? '/' : '') + resolvedPath || '.';
-} // posix version
+} // path.normalize(path)
+// posix version
 
 
 function normalize(path) {
@@ -5342,7 +5406,8 @@ function normalize(path) {
   }
 
   return (isPathAbsolute ? '/' : '') + path;
-}
+} // posix version
+
 
 function isAbsolute(path) {
   return path.charAt(0) === '/';
@@ -5481,7 +5546,8 @@ EventHandlers.prototype = Object.create(null);
 
 function EventEmitter() {
   EventEmitter.init.call(this);
-} // require('events') === require('events').EventEmitter
+} // nodejs oddity
+// require('events') === require('events').EventEmitter
 
 
 EventEmitter.EventEmitter = EventEmitter;
@@ -5796,6 +5862,12 @@ EventEmitter.prototype.removeListener = function removeListener(type, listener) 
   }
 
   return this;
+}; // Alias for removeListener added in NodeJS 10.0
+// https://nodejs.org/api/events.html#events_emitter_off_eventname_listener
+
+
+EventEmitter.prototype.off = function (type, listener) {
+  return this.removeListener(type, listener);
 };
 
 EventEmitter.prototype.removeAllListeners = function removeAllListeners(type) {
@@ -6040,7 +6112,8 @@ function resolve() {
     return !!p;
   }), !resolvedAbsolute).join('/');
   return (resolvedAbsolute ? '/' : '') + resolvedPath || '.';
-} // posix version
+} // path.normalize(path)
+// posix version
 
 
 function normalize(path) {
@@ -6060,7 +6133,8 @@ function normalize(path) {
   }
 
   return (isPathAbsolute ? '/' : '') + path;
-}
+} // posix version
+
 
 function isAbsolute(path) {
   return path.charAt(0) === '/';
@@ -6199,7 +6273,8 @@ EventHandlers.prototype = Object.create(null);
 
 function EventEmitter() {
   EventEmitter.init.call(this);
-} // require('events') === require('events').EventEmitter
+} // nodejs oddity
+// require('events') === require('events').EventEmitter
 
 
 EventEmitter.EventEmitter = EventEmitter;
@@ -6502,6 +6577,12 @@ EventEmitter.prototype.removeListener = function removeListener(type, listener) 
   }
 
   return this;
+}; // Alias for removeListener added in NodeJS 10.0
+// https://nodejs.org/api/events.html#events_emitter_off_eventname_listener
+
+
+EventEmitter.prototype.off = function (type, listener) {
+  return this.removeListener(type, listener);
 };
 
 EventEmitter.prototype.removeAllListeners = function removeAllListeners(type) {
@@ -6728,7 +6809,8 @@ function resolve() {
     return !!p;
   }), !resolvedAbsolute).join('/');
   return (resolvedAbsolute ? '/' : '') + resolvedPath || '.';
-} // posix version
+} // path.normalize(path)
+// posix version
 
 
 function normalize(path) {
@@ -6748,7 +6830,8 @@ function normalize(path) {
   }
 
   return (isPathAbsolute ? '/' : '') + path;
-}
+} // posix version
+
 
 function isAbsolute(path) {
   return path.charAt(0) === '/';
@@ -6887,7 +6970,8 @@ EventHandlers.prototype = Object.create(null);
 
 function EventEmitter() {
   EventEmitter.init.call(this);
-} // require('events') === require('events').EventEmitter
+} // nodejs oddity
+// require('events') === require('events').EventEmitter
 
 
 EventEmitter.EventEmitter = EventEmitter;
@@ -7190,6 +7274,12 @@ EventEmitter.prototype.removeListener = function removeListener(type, listener) 
   }
 
   return this;
+}; // Alias for removeListener added in NodeJS 10.0
+// https://nodejs.org/api/events.html#events_emitter_off_eventname_listener
+
+
+EventEmitter.prototype.off = function (type, listener) {
+  return this.removeListener(type, listener);
 };
 
 EventEmitter.prototype.removeAllListeners = function removeAllListeners(type) {
@@ -7438,7 +7528,8 @@ function resolve() {
     return !!p;
   }), !resolvedAbsolute).join('/');
   return (resolvedAbsolute ? '/' : '') + resolvedPath || '.';
-} // posix version
+} // path.normalize(path)
+// posix version
 
 
 function normalize(path) {
@@ -7458,7 +7549,8 @@ function normalize(path) {
   }
 
   return (isPathAbsolute ? '/' : '') + path;
-}
+} // posix version
+
 
 function isAbsolute(path) {
   return path.charAt(0) === '/';
@@ -7597,7 +7689,8 @@ EventHandlers.prototype = Object.create(null);
 
 function EventEmitter() {
   EventEmitter.init.call(this);
-} // require('events') === require('events').EventEmitter
+} // nodejs oddity
+// require('events') === require('events').EventEmitter
 
 
 EventEmitter.EventEmitter = EventEmitter;
@@ -7912,6 +8005,12 @@ EventEmitter.prototype.removeListener = function removeListener(type, listener) 
   }
 
   return this;
+}; // Alias for removeListener added in NodeJS 10.0
+// https://nodejs.org/api/events.html#events_emitter_off_eventname_listener
+
+
+EventEmitter.prototype.off = function (type, listener) {
+  return this.removeListener(type, listener);
 };
 
 EventEmitter.prototype.removeAllListeners = function removeAllListeners(type) {
@@ -8156,7 +8255,8 @@ function resolve() {
     return !!p;
   }), !resolvedAbsolute).join('/');
   return (resolvedAbsolute ? '/' : '') + resolvedPath || '.';
-} // posix version
+} // path.normalize(path)
+// posix version
 
 
 function normalize(path) {
@@ -8176,7 +8276,8 @@ function normalize(path) {
   }
 
   return (isPathAbsolute ? '/' : '') + path;
-}
+} // posix version
+
 
 function isAbsolute(path) {
   return path.charAt(0) === '/';
@@ -8315,7 +8416,8 @@ EventHandlers.prototype = Object.create(null);
 
 function EventEmitter() {
   EventEmitter.init.call(this);
-} // require('events') === require('events').EventEmitter
+} // nodejs oddity
+// require('events') === require('events').EventEmitter
 
 
 EventEmitter.EventEmitter = EventEmitter;
@@ -8618,6 +8720,12 @@ EventEmitter.prototype.removeListener = function removeListener(type, listener) 
   }
 
   return this;
+}; // Alias for removeListener added in NodeJS 10.0
+// https://nodejs.org/api/events.html#events_emitter_off_eventname_listener
+
+
+EventEmitter.prototype.off = function (type, listener) {
+  return this.removeListener(type, listener);
 };
 
 EventEmitter.prototype.removeAllListeners = function removeAllListeners(type) {
@@ -9138,7 +9246,8 @@ Array [
       return !!p;
     }), !resolvedAbsolute).join('/');
     return (resolvedAbsolute ? '/' : '') + resolvedPath || '.';
-  } // posix version
+  } // path.normalize(path)
+  // posix version
 
 
   function normalize(path) {
@@ -9158,7 +9267,8 @@ Array [
     }
 
     return (isPathAbsolute ? '/' : '') + path;
-  }
+  } // posix version
+
 
   function isAbsolute(path) {
     return path.charAt(0) === '/';
@@ -9297,7 +9407,8 @@ Array [
 
   function EventEmitter() {
     EventEmitter.init.call(this);
-  } // require('events') === require('events').EventEmitter
+  } // nodejs oddity
+  // require('events') === require('events').EventEmitter
 
 
   EventEmitter.EventEmitter = EventEmitter;
@@ -9612,6 +9723,12 @@ Array [
     }
 
     return this;
+  }; // Alias for removeListener added in NodeJS 10.0
+  // https://nodejs.org/api/events.html#events_emitter_off_eventname_listener
+
+
+  EventEmitter.prototype.off = function (type, listener) {
+    return this.removeListener(type, listener);
   };
 
   EventEmitter.prototype.removeAllListeners = function removeAllListeners(type) {
@@ -9872,7 +9989,8 @@ Array [
       return !!p;
     }), !resolvedAbsolute).join('/');
     return (resolvedAbsolute ? '/' : '') + resolvedPath || '.';
-  } // posix version
+  } // path.normalize(path)
+  // posix version
 
 
   function normalize(path) {
@@ -9892,7 +10010,8 @@ Array [
     }
 
     return (isPathAbsolute ? '/' : '') + path;
-  }
+  } // posix version
+
 
   function isAbsolute(path) {
     return path.charAt(0) === '/';
@@ -10031,7 +10150,8 @@ Array [
 
   function EventEmitter() {
     EventEmitter.init.call(this);
-  } // require('events') === require('events').EventEmitter
+  } // nodejs oddity
+  // require('events') === require('events').EventEmitter
 
 
   EventEmitter.EventEmitter = EventEmitter;
@@ -10334,6 +10454,12 @@ Array [
     }
 
     return this;
+  }; // Alias for removeListener added in NodeJS 10.0
+  // https://nodejs.org/api/events.html#events_emitter_off_eventname_listener
+
+
+  EventEmitter.prototype.off = function (type, listener) {
+    return this.removeListener(type, listener);
   };
 
   EventEmitter.prototype.removeAllListeners = function removeAllListeners(type) {
@@ -10598,7 +10724,8 @@ Array [
       return !!p;
     }), !resolvedAbsolute).join('/');
     return (resolvedAbsolute ? '/' : '') + resolvedPath || '.';
-  } // posix version
+  } // path.normalize(path)
+  // posix version
 
 
   function normalize(path) {
@@ -10618,7 +10745,8 @@ Array [
     }
 
     return (isPathAbsolute ? '/' : '') + path;
-  }
+  } // posix version
+
 
   function isAbsolute(path) {
     return path.charAt(0) === '/';
@@ -10757,7 +10885,8 @@ Array [
 
   function EventEmitter() {
     EventEmitter.init.call(this);
-  } // require('events') === require('events').EventEmitter
+  } // nodejs oddity
+  // require('events') === require('events').EventEmitter
 
 
   EventEmitter.EventEmitter = EventEmitter;
@@ -11072,6 +11201,12 @@ Array [
     }
 
     return this;
+  }; // Alias for removeListener added in NodeJS 10.0
+  // https://nodejs.org/api/events.html#events_emitter_off_eventname_listener
+
+
+  EventEmitter.prototype.off = function (type, listener) {
+    return this.removeListener(type, listener);
   };
 
   EventEmitter.prototype.removeAllListeners = function removeAllListeners(type) {
@@ -11354,7 +11489,8 @@ Array [
       return !!p;
     }), !resolvedAbsolute).join('/');
     return (resolvedAbsolute ? '/' : '') + resolvedPath || '.';
-  } // posix version
+  } // path.normalize(path)
+  // posix version
 
 
   function normalize(path) {
@@ -11374,7 +11510,8 @@ Array [
     }
 
     return (isPathAbsolute ? '/' : '') + path;
-  }
+  } // posix version
+
 
   function isAbsolute(path) {
     return path.charAt(0) === '/';
@@ -11513,7 +11650,8 @@ Array [
 
   function EventEmitter() {
     EventEmitter.init.call(this);
-  } // require('events') === require('events').EventEmitter
+  } // nodejs oddity
+  // require('events') === require('events').EventEmitter
 
 
   EventEmitter.EventEmitter = EventEmitter;
@@ -11828,6 +11966,12 @@ Array [
     }
 
     return this;
+  }; // Alias for removeListener added in NodeJS 10.0
+  // https://nodejs.org/api/events.html#events_emitter_off_eventname_listener
+
+
+  EventEmitter.prototype.off = function (type, listener) {
+    return this.removeListener(type, listener);
   };
 
   EventEmitter.prototype.removeAllListeners = function removeAllListeners(type) {
