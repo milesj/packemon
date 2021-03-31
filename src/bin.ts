@@ -19,6 +19,9 @@ async function run() {
   });
 
   program
+    .categories({
+      filter: 'Filtering',
+    })
     .middleware(checkPackageOutdated('packemon', version))
     .register(new BuildCommand())
     .register(new CleanCommand())

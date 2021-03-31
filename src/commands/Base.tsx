@@ -14,10 +14,10 @@ export abstract class BaseCommand<
   @Arg.String('Current working directory to run in', { category: 'global' })
   cwd: string = '';
 
-  @Arg.String('Filter packages to build using a pattern', { category: 'global', short: 'f' })
+  @Arg.String('Filter packages using a pattern', { category: 'filter', short: 'p' })
   filterPackages: string = '';
 
-  @Arg.Flag('Skip `private` packages', { category: 'global' })
+  @Arg.Flag('Skip `private` packages', { category: 'filter' })
   skipPrivate: boolean = false;
 
   @Memoize()
