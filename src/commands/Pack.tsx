@@ -14,6 +14,7 @@ export class PackCommand extends BuildCommand {
         analyze={this.analyze}
         concurrency={this.concurrency}
         declaration={this.declaration}
+        filterFormats={this.filterFormats}
         filterPackages={this.filterPackages}
         skipPrivate={this.skipPrivate}
         timeout={this.timeout}
