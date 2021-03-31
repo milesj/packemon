@@ -78,6 +78,7 @@ export const buildBlueprint: Blueprint<BuildOptions> = {
   analyze: string('none').oneOf<AnalyzeType>(['none', 'sunburst', 'treemap', 'network']),
   concurrency: number(1).gte(1),
   declaration: string('none').oneOf<DeclarationType>(['none', 'standard', 'api']),
+  filterPackages: string(),
   skipPrivate: bool(),
   timeout: number().gte(0),
 };

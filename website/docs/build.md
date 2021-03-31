@@ -40,6 +40,8 @@ Build supports the following command line options.
   - `api` - Generates a single `d.ts` file for each input. Uses
     [@microsoft/api-extractor](https://www.npmjs.com/package/@microsoft/api-extractor) to _only_
     generate the public API. _(NOTE: this is quite slow)_
+- `--filterPackages`, `-p` - Filter packages to build based on their name in `package.json`.
+  Supports standard patterns (`foo-*`) and comma separated lists (`foo,bar`).
 - `--skipPrivate` - Skip `private` packages from being built.
 - `--timeout` - Timeout in milliseconds before a build is cancelled. Defaults to no timeout.
 

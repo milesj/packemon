@@ -102,13 +102,17 @@ export type PackageExports = Record<string, PackageExportPaths | string>;
 
 export type ArtifactState = 'building' | 'failed' | 'passed' | 'pending';
 
-export interface BuildOptions {
+export interface FilterOptions {
+  filterPackages?: string;
+  skipPrivate?: boolean;
+}
+
+export interface BuildOptions extends FilterOptions {
   addEngines?: boolean;
   addExports?: boolean;
   analyze?: AnalyzeType;
   concurrency?: number;
   declaration?: DeclarationType;
-  skipPrivate?: boolean;
   timeout?: number;
 }
 
