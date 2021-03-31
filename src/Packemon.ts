@@ -191,10 +191,13 @@ export class Packemon {
     // Filter packages based on a pattern
     if (filterPackages) {
       const filteredPackageNames: string[] = [];
+      const pattern = filterPackages.split(',');
 
       packages = packages.filter((pkg) => {
-        if (!micromatch.isMatch(pkg.package.name, filterPackages)) {
-          filteredPackageNames.push(pkg.package.name);
+        const { name } = pkg.package;
+
+        if (!micromatch.isMatch(name, pattern) && !pattern.includes(name)) {
+          filteredPackageNames.push(name);
 
           return false;
         }

@@ -35,7 +35,10 @@ export class WatchCommand extends BaseCommand<WatchOptions> {
     packemon.debug('Starting `watch` process');
 
     // Generate all our build artifacts
-    this.packages = await packemon.loadConfiguredPackages(this.skipPrivate);
+    this.packages = await packemon.loadConfiguredPackages({
+      filterPackages: this.filterPackages,
+      skipPrivate: this.skipPrivate,
+    });
 
     packemon.generateArtifacts(this.packages);
 

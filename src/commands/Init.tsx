@@ -18,7 +18,11 @@ export class InitCommand extends BaseCommand<InitOptions> {
   force: boolean = false;
 
   async run() {
-    const packages = await this.packemon.findPackagesInProject(this.skipPrivate);
+    const packages = await this.packemon.findPackagesInProject({
+      filterPackages: this.filterPackages,
+      skipPrivate: this.skipPrivate,
+    });
+
     const unconfiguredPackages = this.force
       ? packages
       : packages.filter((pkg) => !pkg.package.packemon);

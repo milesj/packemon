@@ -58,6 +58,7 @@ describe('Packemon', () => {
         analyze: 'none',
         concurrency: 3,
         declaration: 'none',
+        filterPackages: '',
         skipPrivate: false,
         timeout: 0,
       };
@@ -168,7 +169,7 @@ describe('Packemon', () => {
 
       await packemon.validate({ skipPrivate: true });
 
-      expect(spy).toHaveBeenCalledWith(true);
+      expect(spy).toHaveBeenCalledWith(expect.objectContaining({ skipPrivate: true }));
 
       spy.mockRestore();
     });
@@ -229,7 +230,7 @@ describe('Packemon', () => {
     it('errors if no packages are found', async () => {
       packemon = new Packemon(getFixturePath('workspace-private'));
 
-      await expect(packemon.findPackagesInProject(true)).rejects.toThrow(
+      await expect(packemon.findPackagesInProject({ skipPrivate: true })).rejects.toThrow(
         'No packages found in project.',
       );
     });
@@ -304,7 +305,7 @@ describe('Packemon', () => {
       it('filters private packages when `skipPrivate` is true', async () => {
         const root = getFixturePath('workspaces-not-configured');
         packemon = new Packemon(root);
-        const packages = await packemon.findPackagesInProject(true);
+        const packages = await packemon.findPackagesInProject({ skipPrivate: true });
 
         expect(packages).toHaveLength(3);
         expect(packages.find((pkg) => pkg.package.name === 'qux')).toBeUndefined();
@@ -506,22 +507,44 @@ describe('Packemon', () => {
     });
 
     it('filters private packages when `skipPrivate` is true', async () => {
-      const packages = await packemon.loadConfiguredPackages(true);
+      const packages = await packemon.loadConfiguredPackages({ skipPrivate: true });
 
-      expect(packages).toHaveLength(2);
-      expect(packages.find((pkg) => pkg.getName() === 'valid-object-private')).toBeUndefined();
+      expect(packages.map((pkg) => pkg.getName())).toEqual(['pkg-valid-array', 'pkg-valid-object']);
+    });
+
+    it('filters packages using a pattern with `filterPackages`', async () => {
+      const packages = await packemon.loadConfiguredPackages({ filterPackages: 'pkg-*-object' });
+
+      expect(packages.map((pkg) => pkg.getName())).toEqual(['pkg-valid-object']);
+    });
+
+    it('filters packages using a comma separate list with `filterPackages`', async () => {
+      const packages = await packemon.loadConfiguredPackages({
+        filterPackages: 'pkg-valid-obj*,pkg-*-config',
+        skipPrivate: true,
+      });
+
+      expect(packages.map((pkg) => pkg.getName())).toEqual(['pkg-valid-object']);
     });
 
     it('filters packages that are missing a `packemon` config', async () => {
       const packages = await packemon.loadConfiguredPackages();
 
-      expect(packages.find((pkg) => pkg.getName() === 'no-config')).toBeUndefined();
+      expect(packages.map((pkg) => pkg.getName())).toEqual([
+        'pkg-valid-array',
+        'pkg-valid-object',
+        'pkg-valid-object-private',
+      ]);
     });
 
     it('filters packages where `packemon` config is invalid', async () => {
       const packages = await packemon.loadConfiguredPackages();
 
-      expect(packages.find((pkg) => pkg.getName() === 'invalid-config')).toBeUndefined();
+      expect(packages.map((pkg) => pkg.getName())).toEqual([
+        'pkg-valid-array',
+        'pkg-valid-object',
+        'pkg-valid-object-private',
+      ]);
     });
 
     it('emits `onPackagesLoaded` event', async () => {
