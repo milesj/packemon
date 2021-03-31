@@ -247,6 +247,10 @@ export class Packemon {
             builds = builds.filter((build) => matchesPattern(build.format, filterFormats));
           }
 
+          if (builds.length === 0) {
+            return;
+          }
+
           const artifact = new BundleArtifact(pkg, builds);
           artifact.configGroup = index;
           artifact.inputFile = inputFile;

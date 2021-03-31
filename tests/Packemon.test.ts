@@ -58,6 +58,7 @@ describe('Packemon', () => {
         analyze: 'none',
         concurrency: 3,
         declaration: 'none',
+        filterFormats: '',
         filterPackages: '',
         skipPrivate: false,
         timeout: 0,
@@ -357,7 +358,7 @@ describe('Packemon', () => {
     it('generates "standard" type artifacts for each config in a package', async () => {
       const packages = await packemon.loadConfiguredPackages();
 
-      packemon.generateArtifacts(packages, 'standard');
+      packemon.generateArtifacts(packages, { declaration: 'standard' });
 
       expect(packages[0].artifacts).toHaveLength(3);
       expect((packages[0].artifacts[2] as TypesArtifact).declarationType).toBe('standard');
@@ -390,7 +391,7 @@ describe('Packemon', () => {
     it('generates "api" type artifacts for each config in a package', async () => {
       const packages = await packemon.loadConfiguredPackages();
 
-      packemon.generateArtifacts(packages, 'api');
+      packemon.generateArtifacts(packages, { declaration: 'api' });
 
       expect(packages[0].artifacts).toHaveLength(3);
       expect((packages[0].artifacts[2] as TypesArtifact).declarationType).toBe('api');
@@ -435,6 +436,22 @@ describe('Packemon', () => {
       expect(packages[0].artifacts[1].builds).toEqual([
         { bundle: false, format: 'lib', platform: 'node', support: 'stable' },
       ]);
+    });
+
+    it('filters formats using `filterFormats`', async () => {
+      packemon = new Packemon(getFixturePath('project-multi-platform'));
+
+      const packages = await packemon.loadConfiguredPackages();
+
+      packemon.generateArtifacts(packages, {
+        filterFormats: 'esm',
+      });
+
+      expect(packages[0].artifacts[0].builds).toEqual([
+        { bundle: true, format: 'esm', platform: 'browser', support: 'stable' },
+      ]);
+
+      expect(packages[0].artifacts[1]).toBeUndefined();
     });
   });
 
