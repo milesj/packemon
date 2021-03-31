@@ -47,9 +47,15 @@ export class Packemon {
     this.debug('Starting `build` process');
 
     const options = optimal(baseOptions, buildBlueprint);
-    const packages = await this.loadConfiguredPackages(options);
+    let packages = await this.loadConfiguredPackages(options);
 
-    this.generateArtifacts(packages, options);
+    // Generate artifacts
+    packages = this.generateArtifacts(packages, options);
+
+    // Error if no packages are found
+    if (packages.length === 0) {
+      throw new Error('No packages to build.');
+    }
 
     // Build packages in parallel using a pool
     const pipeline = new PooledPipeline(new Context());
@@ -224,7 +230,7 @@ export class Packemon {
   generateArtifacts(
     packages: Package[],
     { declaration = 'none', filterFormats }: BuildOptions = {},
-  ) {
+  ): Package[] {
     this.debug('Generating artifacts for packages');
 
     packages.forEach((pkg) => {
@@ -276,6 +282,9 @@ export class Packemon {
 
       this.debug(' - %s: %s', pkg.getName(), pkg.artifacts.join(', '));
     });
+
+    // Remove packages that have no artifacts
+    return packages.filter((pkg) => pkg.artifacts.length > 0);
   }
 
   /**
