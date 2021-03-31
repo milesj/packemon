@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/member-ordering */
 
 import fs from 'fs-extra';
+import micromatch from 'micromatch';
 import rimraf from 'rimraf';
 import { isObject, json, Memoize, optimal, Path, toArray, WorkspacePackage } from '@boost/common';
 import { createDebugger, Debugger } from '@boost/debug';
@@ -14,6 +15,7 @@ import { buildBlueprint, validateBlueprint } from './schemas';
 import {
   BuildOptions,
   DeclarationType,
+  FilterOptions,
   PackemonPackage,
   Platform,
   TypesBuild,
@@ -46,7 +48,7 @@ export class Packemon {
     this.debug('Starting `build` process');
 
     const options = optimal(baseOptions, buildBlueprint);
-    const packages = await this.loadConfiguredPackages(options.skipPrivate);
+    const packages = await this.loadConfiguredPackages(options);
 
     this.generateArtifacts(packages, options.declaration);
 
@@ -119,7 +121,7 @@ export class Packemon {
     this.debug('Starting `validate` process');
 
     const options = optimal(baseOptions, validateBlueprint);
-    const packages = await this.loadConfiguredPackages(options.skipPrivate);
+    const packages = await this.loadConfiguredPackages(options);
 
     return Promise.all(packages.map((pkg) => new PackageValidator(pkg).validate(options)));
   }
@@ -128,7 +130,7 @@ export class Packemon {
    * Find all packages within a project. If using workspaces, return a list of packages
    * from each workspace glob. If not using workspaces, assume project is a package.
    */
-  async findPackagesInProject(skipPrivate: boolean = false) {
+  async findPackagesInProject({ filterPackages, skipPrivate }: FilterOptions = {}) {
     this.debug('Finding packages in project');
 
     const pkgPaths: Path[] = [];
@@ -152,8 +154,6 @@ export class Packemon {
 
     this.debug('Found %d package(s)', pkgPaths.length);
 
-    const privatePackageNames: string[] = [];
-
     let packages: WorkspacePackage<PackemonPackage>[] = await Promise.all(
       pkgPaths.map(async (pkgPath) => {
         const contents = json.parse<PackemonPackage>(await fs.readFile(pkgPath.path(), 'utf8'));
@@ -164,10 +164,6 @@ export class Packemon {
           pkgPath.path().replace(this.root.path(), '').replace('package.json', ''),
         );
 
-        if (contents.private) {
-          privatePackageNames.push(contents.name);
-        }
-
         return {
           metadata: this.project.createWorkspaceMetadata(pkgPath),
           package: contents,
@@ -177,9 +173,40 @@ export class Packemon {
 
     // Skip `private` packages
     if (skipPrivate) {
-      packages = packages.filter((pkg) => !pkg.package.private);
+      const privatePackageNames: string[] = [];
+
+      packages = packages.filter((pkg) => {
+        if (pkg.package.private) {
+          privatePackageNames.push(pkg.package.name);
+
+          return false;
+        }
+
+        return true;
+      });
 
       this.debug('Filtering private packages: %s', privatePackageNames.join(', '));
+    }
+
+    // Filter packages based on a pattern
+    if (filterPackages) {
+      const filteredPackageNames: string[] = [];
+
+      packages = packages.filter((pkg) => {
+        if (!micromatch.isMatch(pkg.package.name, filterPackages)) {
+          filteredPackageNames.push(pkg.package.name);
+
+          return false;
+        }
+
+        return true;
+      });
+
+      this.debug(
+        'Filtering packages with pattern %s: %s',
+        filterPackages,
+        filteredPackageNames.join(', '),
+      );
     }
 
     // Error if no packages are found
@@ -243,8 +270,8 @@ export class Packemon {
    * block in their `package.json`. Once loaded, validate the configuration.
    */
   @Memoize()
-  async loadConfiguredPackages(skipPrivate: boolean = false): Promise<Package[]> {
-    const packages = this.validateAndPreparePackages(await this.findPackagesInProject(skipPrivate));
+  async loadConfiguredPackages(options?: FilterOptions): Promise<Package[]> {
+    const packages = this.validateAndPreparePackages(await this.findPackagesInProject(options));
 
     this.onPackagesLoaded.emit([packages]);
 

@@ -14,6 +14,9 @@ export abstract class BaseCommand<
   @Arg.String('Current working directory to run in', { category: 'global' })
   cwd: string = '';
 
+  @Arg.String('Filter packages to build using a pattern', { category: 'global', short: 'f' })
+  filterPackages: string = '';
+
   @Arg.Flag('Skip `private` packages', { category: 'global' })
   skipPrivate: boolean = false;
 
