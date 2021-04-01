@@ -19,9 +19,9 @@ export class InitCommand extends BaseCommand<InitOptions> {
 
   async run() {
     const packages = await this.packemon.findPackagesInProject({
-      filterFormats: this.filterFormats,
-      filterPackages: this.filterPackages,
-      filterPlatforms: this.filterPlatforms,
+      filter: this.filter,
+      filterFormats: this.formats,
+      filterPlatforms: this.platforms,
       skipPrivate: this.skipPrivate,
     });
 

@@ -36,9 +36,9 @@ export class WatchCommand extends BaseCommand<WatchOptions> {
 
     // Generate all our build artifacts
     this.packages = await packemon.loadConfiguredPackages({
-      filterFormats: this.filterFormats,
-      filterPackages: this.filterPackages,
-      filterPlatforms: this.filterPlatforms,
+      filter: this.filter,
+      filterFormats: this.formats,
+      filterPlatforms: this.platforms,
       skipPrivate: this.skipPrivate,
     });
 
