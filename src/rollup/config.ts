@@ -195,7 +195,7 @@ export function getRollupConfig(artifact: BundleArtifact, features: FeatureFlags
         gzipSize: true,
         open: true,
         sourcemap: true,
-        template: features.analyze,
+        template: features.analyze as 'treemap',
         title: artifact.getStatsTitle(),
       }),
     );
