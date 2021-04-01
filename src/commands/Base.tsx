@@ -1,6 +1,7 @@
 import { Arg, Command, GlobalOptions, PrimitiveType } from '@boost/cli';
 import { Memoize } from '@boost/common';
 import { Packemon } from '../Packemon';
+import { BuildOptions } from '../types';
 
 export interface CommonOptions {
   cwd: string;
@@ -29,5 +30,14 @@ export abstract class BaseCommand<
   @Memoize()
   protected get packemon() {
     return new Packemon(this.cwd || process.cwd());
+  }
+
+  protected getBuildOptions(): BuildOptions {
+    return {
+      filter: this.filter,
+      filterFormats: this.formats,
+      filterPlatforms: this.platforms,
+      skipPrivate: this.skipPrivate,
+    };
   }
 }
