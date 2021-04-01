@@ -1,20 +1,19 @@
 /* eslint-disable @typescript-eslint/member-ordering */
 
 import fs from 'fs-extra';
-import micromatch from 'micromatch';
 import rimraf from 'rimraf';
 import { isObject, json, Memoize, optimal, Path, toArray, WorkspacePackage } from '@boost/common';
 import { createDebugger, Debugger } from '@boost/debug';
 import { Event } from '@boost/event';
 import { Context, PooledPipeline } from '@boost/pipeline';
 import { BundleArtifact } from './BundleArtifact';
+import { matchesPattern } from './helpers/matchesPattern';
 import { Package } from './Package';
 import { PackageValidator } from './PackageValidator';
 import { Project } from './Project';
 import { buildBlueprint, validateBlueprint } from './schemas';
 import {
   BuildOptions,
-  DeclarationType,
   FilterOptions,
   PackemonPackage,
   Platform,
@@ -48,9 +47,15 @@ export class Packemon {
     this.debug('Starting `build` process');
 
     const options = optimal(baseOptions, buildBlueprint);
-    const packages = await this.loadConfiguredPackages(options);
+    let packages = await this.loadConfiguredPackages(options);
 
-    this.generateArtifacts(packages, options.declaration);
+    // Generate artifacts
+    packages = this.generateArtifacts(packages, options);
+
+    // Error if no packages are found
+    if (packages.length === 0) {
+      throw new Error('No packages to build.');
+    }
 
     // Build packages in parallel using a pool
     const pipeline = new PooledPipeline(new Context());
@@ -191,12 +196,11 @@ export class Packemon {
     // Filter packages based on a pattern
     if (filterPackages) {
       const filteredPackageNames: string[] = [];
-      const pattern = filterPackages.split(',');
 
       packages = packages.filter((pkg) => {
         const { name } = pkg.package;
 
-        if (!micromatch.isMatch(name, pattern) && !pattern.includes(name)) {
+        if (!matchesPattern(name, filterPackages)) {
           filteredPackageNames.push(name);
 
           return false;
@@ -223,7 +227,10 @@ export class Packemon {
   /**
    * Generate build and optional types artifacts for each package in the list.
    */
-  generateArtifacts(packages: Package[], declarationType: DeclarationType = 'none') {
+  generateArtifacts(
+    packages: Package[],
+    { declaration = 'none', filterFormats }: BuildOptions = {},
+  ): Package[] {
     this.debug('Generating artifacts for packages');
 
     packages.forEach((pkg) => {
@@ -232,16 +239,25 @@ export class Packemon {
 
       pkg.configs.forEach((config, index) => {
         Object.entries(config.inputs).forEach(([outputName, inputFile]) => {
-          const artifact = new BundleArtifact(
-            pkg,
-            // Pass platform and support here for convenience
-            config.formats.map((format) => ({
-              bundle: config.bundle,
-              format,
-              platform: config.platform,
-              support: config.support,
-            })),
-          );
+          // Pass platform and support here for convenience
+          let builds = config.formats.map((format) => ({
+            bundle: config.bundle,
+            format,
+            platform: config.platform,
+            support: config.support,
+          }));
+
+          if (filterFormats) {
+            this.debug('Filtering formats with pattern: %s', filterFormats);
+
+            builds = builds.filter((build) => matchesPattern(build.format, filterFormats));
+          }
+
+          if (builds.length === 0) {
+            return;
+          }
+
+          const artifact = new BundleArtifact(pkg, builds);
           artifact.configGroup = index;
           artifact.inputFile = inputFile;
           artifact.outputName = outputName;
@@ -256,16 +272,19 @@ export class Packemon {
         });
       });
 
-      if (declarationType !== 'none') {
+      if (declaration !== 'none') {
         const artifact = new TypesArtifact(pkg, Object.values(typesBuilds));
 
-        artifact.declarationType = declarationType;
+        artifact.declarationType = declaration;
 
         pkg.addArtifact(artifact);
       }
 
       this.debug(' - %s: %s', pkg.getName(), pkg.artifacts.join(', '));
     });
+
+    // Remove packages that have no artifacts
+    return packages.filter((pkg) => pkg.artifacts.length > 0);
   }
 
   /**

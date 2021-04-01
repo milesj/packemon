@@ -14,6 +14,9 @@ export abstract class BaseCommand<
   @Arg.String('Current working directory to run in', { category: 'global' })
   cwd: string = '';
 
+  @Arg.String('Filter formats using a pattern', { category: 'filter', short: 'f' })
+  filterFormats: string = '';
+
   @Arg.String('Filter packages using a pattern', { category: 'filter', short: 'p' })
   filterPackages: string = '';
 

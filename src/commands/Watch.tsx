@@ -36,11 +36,12 @@ export class WatchCommand extends BaseCommand<WatchOptions> {
 
     // Generate all our build artifacts
     this.packages = await packemon.loadConfiguredPackages({
+      filterFormats: this.filterFormats,
       filterPackages: this.filterPackages,
       skipPrivate: this.skipPrivate,
     });
 
-    packemon.generateArtifacts(this.packages);
+    this.packages = packemon.generateArtifacts(this.packages);
 
     // Instantiate the watcher for each package source
     const watchPaths = this.packages.map((pkg) => pkg.path.append('src/**/*').path());
