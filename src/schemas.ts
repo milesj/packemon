@@ -80,6 +80,7 @@ export const buildBlueprint: Blueprint<BuildOptions> = {
   declaration: string('none').oneOf<DeclarationType>(['none', 'standard', 'api']),
   filterFormats: string(),
   filterPackages: string(),
+  filterPlatforms: string(),
   skipPrivate: bool(),
   timeout: number().gte(0),
 };

@@ -38,6 +38,7 @@ export class WatchCommand extends BaseCommand<WatchOptions> {
     this.packages = await packemon.loadConfiguredPackages({
       filterFormats: this.filterFormats,
       filterPackages: this.filterPackages,
+      filterPlatforms: this.filterPlatforms,
       skipPrivate: this.skipPrivate,
     });
 

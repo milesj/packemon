@@ -16,6 +16,7 @@ export class PackCommand extends BuildCommand {
         declaration={this.declaration}
         filterFormats={this.filterFormats}
         filterPackages={this.filterPackages}
+        filterPlatforms={this.filterPlatforms}
         skipPrivate={this.skipPrivate}
         timeout={this.timeout}
       />

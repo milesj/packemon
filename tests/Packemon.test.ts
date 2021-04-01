@@ -60,6 +60,7 @@ describe('Packemon', () => {
         declaration: 'none',
         filterFormats: '',
         filterPackages: '',
+        filterPlatforms: '',
         skipPrivate: false,
         timeout: 0,
       };
