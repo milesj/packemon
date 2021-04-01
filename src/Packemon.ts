@@ -229,7 +229,7 @@ export class Packemon {
    */
   generateArtifacts(
     packages: Package[],
-    { declaration = 'none', filterFormats }: BuildOptions = {},
+    { declaration = 'none', filterFormats, filterPlatforms }: BuildOptions = {},
   ): Package[] {
     this.debug('Generating artifacts for packages');
 
@@ -251,6 +251,12 @@ export class Packemon {
             this.debug('Filtering formats with pattern: %s', filterFormats);
 
             builds = builds.filter((build) => matchesPattern(build.format, filterFormats));
+          }
+
+          if (filterPlatforms) {
+            this.debug('Filtering platforms with pattern: %s', filterPlatforms);
+
+            builds = builds.filter((build) => matchesPattern(build.platform, filterPlatforms));
           }
 
           if (builds.length === 0) {

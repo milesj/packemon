@@ -105,6 +105,7 @@ export type ArtifactState = 'building' | 'failed' | 'passed' | 'pending';
 export interface FilterOptions {
   filterFormats?: string;
   filterPackages?: string;
+  filterPlatforms?: string;
   skipPrivate?: boolean;
 }
 

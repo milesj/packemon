@@ -17,8 +17,11 @@ export abstract class BaseCommand<
   @Arg.String('Filter formats using a pattern', { category: 'filter', short: 'f' })
   filterFormats: string = '';
 
-  @Arg.String('Filter packages using a pattern', { category: 'filter', short: 'p' })
+  @Arg.String('Filter packages using a pattern', { category: 'filter' })
   filterPackages: string = '';
+
+  @Arg.String('Filter platforms using a pattern', { category: 'filter', short: 'p' })
+  filterPlatforms: string = '';
 
   @Arg.Flag('Skip `private` packages', { category: 'filter' })
   skipPrivate: boolean = false;

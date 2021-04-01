@@ -60,6 +60,7 @@ describe('Packemon', () => {
         declaration: 'none',
         filterFormats: '',
         filterPackages: '',
+        filterPlatforms: '',
         skipPrivate: false,
         timeout: 0,
       };
@@ -449,6 +450,22 @@ describe('Packemon', () => {
 
       expect(packages[0].artifacts[0].builds).toEqual([
         { bundle: true, format: 'esm', platform: 'browser', support: 'stable' },
+      ]);
+
+      expect(packages[0].artifacts[1]).toBeUndefined();
+    });
+
+    it('filters platforms using `filterPlatforms`', async () => {
+      packemon = new Packemon(getFixturePath('project-multi-platform'));
+
+      const packages = await packemon.loadConfiguredPackages();
+
+      packemon.generateArtifacts(packages, {
+        filterPlatforms: 'node',
+      });
+
+      expect(packages[0].artifacts[0].builds).toEqual([
+        { bundle: false, format: 'lib', platform: 'node', support: 'stable' },
       ]);
 
       expect(packages[0].artifacts[1]).toBeUndefined();

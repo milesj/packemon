@@ -40,6 +40,7 @@ export class BuildCommand extends BaseCommand<Required<BuildOptions>> {
         declaration={this.declaration}
         filterFormats={this.filterFormats}
         filterPackages={this.filterPackages}
+        filterPlatforms={this.filterPlatforms}
         skipPrivate={this.skipPrivate}
         timeout={this.timeout}
       />
