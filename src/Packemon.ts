@@ -49,10 +49,8 @@ export class Packemon {
     const options = optimal(baseOptions, buildBlueprint);
     let packages = await this.loadConfiguredPackages(options);
 
-    // Generate artifacts
     packages = this.generateArtifacts(packages, options);
 
-    // Error if no packages are found
     if (packages.length === 0) {
       throw new Error('No packages to build.');
     }
@@ -135,7 +133,7 @@ export class Packemon {
    * Find all packages within a project. If using workspaces, return a list of packages
    * from each workspace glob. If not using workspaces, assume project is a package.
    */
-  async findPackagesInProject({ filterPackages, skipPrivate }: FilterOptions = {}) {
+  async findPackagesInProject({ filter, skipPrivate }: FilterOptions = {}) {
     this.debug('Finding packages in project');
 
     const pkgPaths: Path[] = [];
@@ -194,13 +192,13 @@ export class Packemon {
     }
 
     // Filter packages based on a pattern
-    if (filterPackages) {
+    if (filter) {
       const filteredPackageNames: string[] = [];
 
       packages = packages.filter((pkg) => {
         const { name } = pkg.package;
 
-        if (!matchesPattern(name, filterPackages)) {
+        if (!matchesPattern(name, filter)) {
           filteredPackageNames.push(name);
 
           return false;
@@ -209,11 +207,7 @@ export class Packemon {
         return true;
       });
 
-      this.debug(
-        'Filtering packages with pattern %s: %s',
-        filterPackages,
-        filteredPackageNames.join(', '),
-      );
+      this.debug('Filtering packages with pattern %s: %s', filter, filteredPackageNames.join(', '));
     }
 
     // Error if no packages are found

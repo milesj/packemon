@@ -1,6 +1,7 @@
 import { Arg, Command, GlobalOptions, PrimitiveType } from '@boost/cli';
 import { Memoize } from '@boost/common';
 import { Packemon } from '../Packemon';
+import { BuildOptions } from '../types';
 
 export interface CommonOptions {
   cwd: string;
@@ -14,14 +15,14 @@ export abstract class BaseCommand<
   @Arg.String('Current working directory to run in', { category: 'global' })
   cwd: string = '';
 
-  @Arg.String('Filter formats using a pattern', { category: 'filter', short: 'f' })
-  filterFormats: string = '';
+  @Arg.String('Filter packages to build', { category: 'filter' })
+  filter: string = '';
 
-  @Arg.String('Filter packages using a pattern', { category: 'filter' })
-  filterPackages: string = '';
+  @Arg.String('Only generate specific output formats', { category: 'filter', short: 'f' })
+  formats: string = '';
 
-  @Arg.String('Filter platforms using a pattern', { category: 'filter', short: 'p' })
-  filterPlatforms: string = '';
+  @Arg.String('Only target specific platforms', { category: 'filter', short: 'p' })
+  platforms: string = '';
 
   @Arg.Flag('Skip `private` packages', { category: 'filter' })
   skipPrivate: boolean = false;
@@ -29,5 +30,14 @@ export abstract class BaseCommand<
   @Memoize()
   protected get packemon() {
     return new Packemon(this.cwd || process.cwd());
+  }
+
+  protected getBuildOptions(): BuildOptions {
+    return {
+      filter: this.filter,
+      filterFormats: this.formats,
+      filterPlatforms: this.platforms,
+      skipPrivate: this.skipPrivate,
+    };
   }
 }

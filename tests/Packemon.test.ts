@@ -58,8 +58,8 @@ describe('Packemon', () => {
         analyze: 'none',
         concurrency: 3,
         declaration: 'none',
+        filter: '',
         filterFormats: '',
-        filterPackages: '',
         filterPlatforms: '',
         skipPrivate: false,
         timeout: 0,
@@ -547,14 +547,14 @@ describe('Packemon', () => {
     });
 
     it('filters packages using a pattern with `filterPackages`', async () => {
-      const packages = await packemon.loadConfiguredPackages({ filterPackages: 'pkg-*-object' });
+      const packages = await packemon.loadConfiguredPackages({ filter: 'pkg-*-object' });
 
       expect(packages.map((pkg) => pkg.getName())).toEqual(['pkg-valid-object']);
     });
 
     it('filters packages using a comma separate list with `filterPackages`', async () => {
       const packages = await packemon.loadConfiguredPackages({
-        filterPackages: 'pkg-valid-obj*,pkg-*-config',
+        filter: 'pkg-valid-obj*,pkg-*-config',
         skipPrivate: true,
       });
 
