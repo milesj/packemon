@@ -177,8 +177,9 @@ export function getRollupConfig(artifact: BundleArtifact, features: FeatureFlags
         sourceMaps: true,
       }),
     ],
-    // Always treeshake for smaller builds
-    treeshake: true,
+    // Treeshake for smaller builds
+    // Only apply when not bundling so we dont lose information
+    treeshake: artifact.builds.every((build) => !build.bundle),
   };
 
   // Polyfill node modules when platform is not node

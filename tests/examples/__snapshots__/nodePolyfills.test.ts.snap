@@ -269,9 +269,10 @@ function resolve() {
     return !!p;
   }), !resolvedAbsolute).join('/');
   return (resolvedAbsolute ? '/' : '') + resolvedPath || '.';
-} // path.normalize(path)
-// posix version
+}
 
+; // path.normalize(path)
+// posix version
 
 function normalize(path) {
   var isPathAbsolute = isAbsolute(path),
@@ -290,8 +291,9 @@ function normalize(path) {
   }
 
   return (isPathAbsolute ? '/' : '') + path;
-} // posix version
+}
 
+; // posix version
 
 function isAbsolute(path) {
   return path.charAt(0) === '/';
@@ -420,6 +422,8 @@ var substr = 'ab'.substr(-1) === 'b' ? function (str, start, len) {
   if (start < 0) start = str.length + start;
   return str.substr(start, len);
 };
+'use strict';
+
 var domain; // This constructor is used to store event handlers. Instantiating this is
 // faster than explicitly calling \`Object.create(null)\` to get a \\"clean\\" empty
 // object (tested with v8 v4.9).
@@ -448,7 +452,9 @@ EventEmitter.init = function () {
 
   if (EventEmitter.usingDomains) {
     // if there is an active domain, then attach to it.
-    if (domain.active) ;
+    if (domain.active && !(this instanceof domain.Domain)) {
+      this.domain = domain.active;
+    }
   }
 
   if (!this._events || this._events === Object.getPrototypeOf(this)._events) {
@@ -538,6 +544,7 @@ function emitMany(handler, isFn, self, args) {
 
 EventEmitter.prototype.emit = function emit(type) {
   var er, handler, len, args, i, events, domain;
+  var needDomainExit = false;
   var doError = type === 'error';
   events = this._events;
   if (events) doError = doError && events.error == null;else if (!doError) return false;
@@ -598,6 +605,7 @@ EventEmitter.prototype.emit = function emit(type) {
       emitMany(handler, isFn, this, args);
   }
 
+  if (needDomainExit) domain.exit();
   return true;
 };
 
@@ -989,9 +997,10 @@ function resolve() {
     return !!p;
   }), !resolvedAbsolute).join('/');
   return (resolvedAbsolute ? '/' : '') + resolvedPath || '.';
-} // path.normalize(path)
-// posix version
+}
 
+; // path.normalize(path)
+// posix version
 
 function normalize(path) {
   var isPathAbsolute = isAbsolute(path),
@@ -1010,8 +1019,9 @@ function normalize(path) {
   }
 
   return (isPathAbsolute ? '/' : '') + path;
-} // posix version
+}
 
+; // posix version
 
 function isAbsolute(path) {
   return path.charAt(0) === '/';
@@ -1140,6 +1150,8 @@ var substr = 'ab'.substr(-1) === 'b' ? function (str, start, len) {
   if (start < 0) start = str.length + start;
   return str.substr(start, len);
 };
+'use strict';
+
 var domain; // This constructor is used to store event handlers. Instantiating this is
 // faster than explicitly calling \`Object.create(null)\` to get a \\"clean\\" empty
 // object (tested with v8 v4.9).
@@ -1168,7 +1180,9 @@ EventEmitter.init = function () {
 
   if (EventEmitter.usingDomains) {
     // if there is an active domain, then attach to it.
-    if (domain.active) ;
+    if (domain.active && !(this instanceof domain.Domain)) {
+      this.domain = domain.active;
+    }
   }
 
   if (!this._events || this._events === Object.getPrototypeOf(this)._events) {
@@ -1248,6 +1262,7 @@ function emitMany(handler, isFn, self, args) {
 
 EventEmitter.prototype.emit = function emit(type) {
   var er, handler, len, args, i, events, domain;
+  var needDomainExit = false;
   var doError = type === 'error';
   events = this._events;
   if (events) doError = doError && events.error == null;else if (!doError) return false;
@@ -1306,6 +1321,7 @@ EventEmitter.prototype.emit = function emit(type) {
       emitMany(handler, isFn, this, args);
   }
 
+  if (needDomainExit) domain.exit();
   return true;
 };
 
@@ -1701,9 +1717,10 @@ function resolve() {
     return !!p;
   }), !resolvedAbsolute).join('/');
   return (resolvedAbsolute ? '/' : '') + resolvedPath || '.';
-} // path.normalize(path)
-// posix version
+}
 
+; // path.normalize(path)
+// posix version
 
 function normalize(path) {
   var isPathAbsolute = isAbsolute(path),
@@ -1722,8 +1739,9 @@ function normalize(path) {
   }
 
   return (isPathAbsolute ? '/' : '') + path;
-} // posix version
+}
 
+; // posix version
 
 function isAbsolute(path) {
   return path.charAt(0) === '/';
@@ -1852,6 +1870,8 @@ var substr = 'ab'.substr(-1) === 'b' ? function (str, start, len) {
   if (start < 0) start = str.length + start;
   return str.substr(start, len);
 };
+'use strict';
+
 var domain; // This constructor is used to store event handlers. Instantiating this is
 // faster than explicitly calling \`Object.create(null)\` to get a \\"clean\\" empty
 // object (tested with v8 v4.9).
@@ -1880,7 +1900,9 @@ EventEmitter.init = function () {
 
   if (EventEmitter.usingDomains) {
     // if there is an active domain, then attach to it.
-    if (domain.active) ;
+    if (domain.active && !(this instanceof domain.Domain)) {
+      this.domain = domain.active;
+    }
   }
 
   if (!this._events || this._events === Object.getPrototypeOf(this)._events) {
@@ -1970,6 +1992,7 @@ function emitMany(handler, isFn, self, args) {
 
 EventEmitter.prototype.emit = function emit(type) {
   var er, handler, len, args, i, events, domain;
+  var needDomainExit = false;
   var doError = type === 'error';
   events = this._events;
   if (events) doError = doError && events.error == null;else if (!doError) return false;
@@ -2030,6 +2053,7 @@ EventEmitter.prototype.emit = function emit(type) {
       emitMany(handler, isFn, this, args);
   }
 
+  if (needDomainExit) domain.exit();
   return true;
 };
 
@@ -2443,9 +2467,10 @@ function resolve() {
     return !!p;
   }), !resolvedAbsolute).join('/');
   return (resolvedAbsolute ? '/' : '') + resolvedPath || '.';
-} // path.normalize(path)
-// posix version
+}
 
+; // path.normalize(path)
+// posix version
 
 function normalize(path) {
   var isPathAbsolute = isAbsolute(path),
@@ -2464,8 +2489,9 @@ function normalize(path) {
   }
 
   return (isPathAbsolute ? '/' : '') + path;
-} // posix version
+}
 
+; // posix version
 
 function isAbsolute(path) {
   return path.charAt(0) === '/';
@@ -2594,6 +2620,8 @@ var substr = 'ab'.substr(-1) === 'b' ? function (str, start, len) {
   if (start < 0) start = str.length + start;
   return str.substr(start, len);
 };
+'use strict';
+
 var domain; // This constructor is used to store event handlers. Instantiating this is
 // faster than explicitly calling \`Object.create(null)\` to get a \\"clean\\" empty
 // object (tested with v8 v4.9).
@@ -2622,7 +2650,9 @@ EventEmitter.init = function () {
 
   if (EventEmitter.usingDomains) {
     // if there is an active domain, then attach to it.
-    if (domain.active) ;
+    if (domain.active && !(this instanceof domain.Domain)) {
+      this.domain = domain.active;
+    }
   }
 
   if (!this._events || this._events === Object.getPrototypeOf(this)._events) {
@@ -2712,6 +2742,7 @@ function emitMany(handler, isFn, self, args) {
 
 EventEmitter.prototype.emit = function emit(type) {
   var er, handler, len, args, i, events, domain;
+  var needDomainExit = false;
   var doError = type === 'error';
   events = this._events;
   if (events) doError = doError && events.error == null;else if (!doError) return false;
@@ -2772,6 +2803,7 @@ EventEmitter.prototype.emit = function emit(type) {
       emitMany(handler, isFn, this, args);
   }
 
+  if (needDomainExit) domain.exit();
   return true;
 };
 
@@ -3190,9 +3222,10 @@ function resolve() {
     return !!p;
   }), !resolvedAbsolute).join('/');
   return (resolvedAbsolute ? '/' : '') + resolvedPath || '.';
-} // path.normalize(path)
-// posix version
+}
 
+; // path.normalize(path)
+// posix version
 
 function normalize(path) {
   var isPathAbsolute = isAbsolute(path),
@@ -3211,8 +3244,9 @@ function normalize(path) {
   }
 
   return (isPathAbsolute ? '/' : '') + path;
-} // posix version
+}
 
+; // posix version
 
 function isAbsolute(path) {
   return path.charAt(0) === '/';
@@ -3341,6 +3375,8 @@ var substr = 'ab'.substr(-1) === 'b' ? function (str, start, len) {
   if (start < 0) start = str.length + start;
   return str.substr(start, len);
 };
+'use strict';
+
 var domain; // This constructor is used to store event handlers. Instantiating this is
 // faster than explicitly calling \`Object.create(null)\` to get a \\"clean\\" empty
 // object (tested with v8 v4.9).
@@ -3369,7 +3405,9 @@ EventEmitter.init = function () {
 
   if (EventEmitter.usingDomains) {
     // if there is an active domain, then attach to it.
-    if (domain.active) ;
+    if (domain.active && !(this instanceof domain.Domain)) {
+      this.domain = domain.active;
+    }
   }
 
   if (!this._events || this._events === Object.getPrototypeOf(this)._events) {
@@ -3459,6 +3497,7 @@ function emitMany(handler, isFn, self, args) {
 
 EventEmitter.prototype.emit = function emit(type) {
   var er, handler, len, args, i, events, domain;
+  var needDomainExit = false;
   var doError = type === 'error';
   events = this._events;
   if (events) doError = doError && events.error == null;else if (!doError) return false;
@@ -3519,6 +3558,7 @@ EventEmitter.prototype.emit = function emit(type) {
       emitMany(handler, isFn, this, args);
   }
 
+  if (needDomainExit) domain.exit();
   return true;
 };
 
@@ -3917,9 +3957,10 @@ function resolve() {
     return !!p;
   }), !resolvedAbsolute).join('/');
   return (resolvedAbsolute ? '/' : '') + resolvedPath || '.';
-} // path.normalize(path)
-// posix version
+}
 
+; // path.normalize(path)
+// posix version
 
 function normalize(path) {
   var isPathAbsolute = isAbsolute(path),
@@ -3938,8 +3979,9 @@ function normalize(path) {
   }
 
   return (isPathAbsolute ? '/' : '') + path;
-} // posix version
+}
 
+; // posix version
 
 function isAbsolute(path) {
   return path.charAt(0) === '/';
@@ -4068,6 +4110,8 @@ var substr = 'ab'.substr(-1) === 'b' ? function (str, start, len) {
   if (start < 0) start = str.length + start;
   return str.substr(start, len);
 };
+'use strict';
+
 var domain; // This constructor is used to store event handlers. Instantiating this is
 // faster than explicitly calling \`Object.create(null)\` to get a \\"clean\\" empty
 // object (tested with v8 v4.9).
@@ -4096,7 +4140,9 @@ EventEmitter.init = function () {
 
   if (EventEmitter.usingDomains) {
     // if there is an active domain, then attach to it.
-    if (domain.active) ;
+    if (domain.active && !(this instanceof domain.Domain)) {
+      this.domain = domain.active;
+    }
   }
 
   if (!this._events || this._events === Object.getPrototypeOf(this)._events) {
@@ -4176,6 +4222,7 @@ function emitMany(handler, isFn, self, args) {
 
 EventEmitter.prototype.emit = function emit(type) {
   var er, handler, len, args, i, events, domain;
+  var needDomainExit = false;
   var doError = type === 'error';
   events = this._events;
   if (events) doError = doError && events.error == null;else if (!doError) return false;
@@ -4234,6 +4281,7 @@ EventEmitter.prototype.emit = function emit(type) {
       emitMany(handler, isFn, this, args);
   }
 
+  if (needDomainExit) domain.exit();
   return true;
 };
 
@@ -4636,9 +4684,10 @@ function resolve() {
     return !!p;
   }), !resolvedAbsolute).join('/');
   return (resolvedAbsolute ? '/' : '') + resolvedPath || '.';
-} // path.normalize(path)
-// posix version
+}
 
+; // path.normalize(path)
+// posix version
 
 function normalize(path) {
   var isPathAbsolute = isAbsolute(path),
@@ -4657,8 +4706,9 @@ function normalize(path) {
   }
 
   return (isPathAbsolute ? '/' : '') + path;
-} // posix version
+}
 
+; // posix version
 
 function isAbsolute(path) {
   return path.charAt(0) === '/';
@@ -4787,6 +4837,8 @@ var substr = 'ab'.substr(-1) === 'b' ? function (str, start, len) {
   if (start < 0) start = str.length + start;
   return str.substr(start, len);
 };
+'use strict';
+
 var domain; // This constructor is used to store event handlers. Instantiating this is
 // faster than explicitly calling \`Object.create(null)\` to get a \\"clean\\" empty
 // object (tested with v8 v4.9).
@@ -4815,7 +4867,9 @@ EventEmitter.init = function () {
 
   if (EventEmitter.usingDomains) {
     // if there is an active domain, then attach to it.
-    if (domain.active) ;
+    if (domain.active && !(this instanceof domain.Domain)) {
+      this.domain = domain.active;
+    }
   }
 
   if (!this._events || this._events === Object.getPrototypeOf(this)._events) {
@@ -4905,6 +4959,7 @@ function emitMany(handler, isFn, self, args) {
 
 EventEmitter.prototype.emit = function emit(type) {
   var er, handler, len, args, i, events, domain;
+  var needDomainExit = false;
   var doError = type === 'error';
   events = this._events;
   if (events) doError = doError && events.error == null;else if (!doError) return false;
@@ -4965,6 +5020,7 @@ EventEmitter.prototype.emit = function emit(type) {
       emitMany(handler, isFn, this, args);
   }
 
+  if (needDomainExit) domain.exit();
   return true;
 };
 
@@ -5385,9 +5441,10 @@ function resolve() {
     return !!p;
   }), !resolvedAbsolute).join('/');
   return (resolvedAbsolute ? '/' : '') + resolvedPath || '.';
-} // path.normalize(path)
-// posix version
+}
 
+; // path.normalize(path)
+// posix version
 
 function normalize(path) {
   var isPathAbsolute = isAbsolute(path),
@@ -5406,8 +5463,9 @@ function normalize(path) {
   }
 
   return (isPathAbsolute ? '/' : '') + path;
-} // posix version
+}
 
+; // posix version
 
 function isAbsolute(path) {
   return path.charAt(0) === '/';
@@ -5536,6 +5594,8 @@ var substr = 'ab'.substr(-1) === 'b' ? function (str, start, len) {
   if (start < 0) start = str.length + start;
   return str.substr(start, len);
 };
+'use strict';
+
 var domain; // This constructor is used to store event handlers. Instantiating this is
 // faster than explicitly calling \`Object.create(null)\` to get a \\"clean\\" empty
 // object (tested with v8 v4.9).
@@ -5564,7 +5624,9 @@ EventEmitter.init = function () {
 
   if (EventEmitter.usingDomains) {
     // if there is an active domain, then attach to it.
-    if (domain.active) ;
+    if (domain.active && !(this instanceof domain.Domain)) {
+      this.domain = domain.active;
+    }
   }
 
   if (!this._events || this._events === Object.getPrototypeOf(this)._events) {
@@ -5654,6 +5716,7 @@ function emitMany(handler, isFn, self, args) {
 
 EventEmitter.prototype.emit = function emit(type) {
   var er, handler, len, args, i, events, domain;
+  var needDomainExit = false;
   var doError = type === 'error';
   events = this._events;
   if (events) doError = doError && events.error == null;else if (!doError) return false;
@@ -5714,6 +5777,7 @@ EventEmitter.prototype.emit = function emit(type) {
       emitMany(handler, isFn, this, args);
   }
 
+  if (needDomainExit) domain.exit();
   return true;
 };
 
@@ -6112,9 +6176,10 @@ function resolve() {
     return !!p;
   }), !resolvedAbsolute).join('/');
   return (resolvedAbsolute ? '/' : '') + resolvedPath || '.';
-} // path.normalize(path)
-// posix version
+}
 
+; // path.normalize(path)
+// posix version
 
 function normalize(path) {
   var isPathAbsolute = isAbsolute(path),
@@ -6133,8 +6198,9 @@ function normalize(path) {
   }
 
   return (isPathAbsolute ? '/' : '') + path;
-} // posix version
+}
 
+; // posix version
 
 function isAbsolute(path) {
   return path.charAt(0) === '/';
@@ -6263,6 +6329,8 @@ var substr = 'ab'.substr(-1) === 'b' ? function (str, start, len) {
   if (start < 0) start = str.length + start;
   return str.substr(start, len);
 };
+'use strict';
+
 var domain; // This constructor is used to store event handlers. Instantiating this is
 // faster than explicitly calling \`Object.create(null)\` to get a \\"clean\\" empty
 // object (tested with v8 v4.9).
@@ -6291,7 +6359,9 @@ EventEmitter.init = function () {
 
   if (EventEmitter.usingDomains) {
     // if there is an active domain, then attach to it.
-    if (domain.active) ;
+    if (domain.active && !(this instanceof domain.Domain)) {
+      this.domain = domain.active;
+    }
   }
 
   if (!this._events || this._events === Object.getPrototypeOf(this)._events) {
@@ -6371,6 +6441,7 @@ function emitMany(handler, isFn, self, args) {
 
 EventEmitter.prototype.emit = function emit(type) {
   var er, handler, len, args, i, events, domain;
+  var needDomainExit = false;
   var doError = type === 'error';
   events = this._events;
   if (events) doError = doError && events.error == null;else if (!doError) return false;
@@ -6429,6 +6500,7 @@ EventEmitter.prototype.emit = function emit(type) {
       emitMany(handler, isFn, this, args);
   }
 
+  if (needDomainExit) domain.exit();
   return true;
 };
 
@@ -6809,9 +6881,10 @@ function resolve() {
     return !!p;
   }), !resolvedAbsolute).join('/');
   return (resolvedAbsolute ? '/' : '') + resolvedPath || '.';
-} // path.normalize(path)
-// posix version
+}
 
+; // path.normalize(path)
+// posix version
 
 function normalize(path) {
   var isPathAbsolute = isAbsolute(path),
@@ -6830,8 +6903,9 @@ function normalize(path) {
   }
 
   return (isPathAbsolute ? '/' : '') + path;
-} // posix version
+}
 
+; // posix version
 
 function isAbsolute(path) {
   return path.charAt(0) === '/';
@@ -6960,6 +7034,8 @@ var substr = 'ab'.substr(-1) === 'b' ? function (str, start, len) {
   if (start < 0) start = str.length + start;
   return str.substr(start, len);
 };
+'use strict';
+
 var domain; // This constructor is used to store event handlers. Instantiating this is
 // faster than explicitly calling \`Object.create(null)\` to get a \\"clean\\" empty
 // object (tested with v8 v4.9).
@@ -6988,7 +7064,9 @@ EventEmitter.init = function () {
 
   if (EventEmitter.usingDomains) {
     // if there is an active domain, then attach to it.
-    if (domain.active) ;
+    if (domain.active && !(this instanceof domain.Domain)) {
+      this.domain = domain.active;
+    }
   }
 
   if (!this._events || this._events === Object.getPrototypeOf(this)._events) {
@@ -7068,6 +7146,7 @@ function emitMany(handler, isFn, self, args) {
 
 EventEmitter.prototype.emit = function emit(type) {
   var er, handler, len, args, i, events, domain;
+  var needDomainExit = false;
   var doError = type === 'error';
   events = this._events;
   if (events) doError = doError && events.error == null;else if (!doError) return false;
@@ -7126,6 +7205,7 @@ EventEmitter.prototype.emit = function emit(type) {
       emitMany(handler, isFn, this, args);
   }
 
+  if (needDomainExit) domain.exit();
   return true;
 };
 
@@ -7528,9 +7608,10 @@ function resolve() {
     return !!p;
   }), !resolvedAbsolute).join('/');
   return (resolvedAbsolute ? '/' : '') + resolvedPath || '.';
-} // path.normalize(path)
-// posix version
+}
 
+; // path.normalize(path)
+// posix version
 
 function normalize(path) {
   var isPathAbsolute = isAbsolute(path),
@@ -7549,8 +7630,9 @@ function normalize(path) {
   }
 
   return (isPathAbsolute ? '/' : '') + path;
-} // posix version
+}
 
+; // posix version
 
 function isAbsolute(path) {
   return path.charAt(0) === '/';
@@ -7679,6 +7761,8 @@ var substr = 'ab'.substr(-1) === 'b' ? function (str, start, len) {
   if (start < 0) start = str.length + start;
   return str.substr(start, len);
 };
+'use strict';
+
 var domain; // This constructor is used to store event handlers. Instantiating this is
 // faster than explicitly calling \`Object.create(null)\` to get a \\"clean\\" empty
 // object (tested with v8 v4.9).
@@ -7707,7 +7791,9 @@ EventEmitter.init = function () {
 
   if (EventEmitter.usingDomains) {
     // if there is an active domain, then attach to it.
-    if (domain.active) ;
+    if (domain.active && !(this instanceof domain.Domain)) {
+      this.domain = domain.active;
+    }
   }
 
   if (!this._events || this._events === Object.getPrototypeOf(this)._events) {
@@ -7797,6 +7883,7 @@ function emitMany(handler, isFn, self, args) {
 
 EventEmitter.prototype.emit = function emit(type) {
   var er, handler, len, args, i, events, domain;
+  var needDomainExit = false;
   var doError = type === 'error';
   events = this._events;
   if (events) doError = doError && events.error == null;else if (!doError) return false;
@@ -7857,6 +7944,7 @@ EventEmitter.prototype.emit = function emit(type) {
       emitMany(handler, isFn, this, args);
   }
 
+  if (needDomainExit) domain.exit();
   return true;
 };
 
@@ -8255,9 +8343,10 @@ function resolve() {
     return !!p;
   }), !resolvedAbsolute).join('/');
   return (resolvedAbsolute ? '/' : '') + resolvedPath || '.';
-} // path.normalize(path)
-// posix version
+}
 
+; // path.normalize(path)
+// posix version
 
 function normalize(path) {
   var isPathAbsolute = isAbsolute(path),
@@ -8276,8 +8365,9 @@ function normalize(path) {
   }
 
   return (isPathAbsolute ? '/' : '') + path;
-} // posix version
+}
 
+; // posix version
 
 function isAbsolute(path) {
   return path.charAt(0) === '/';
@@ -8406,6 +8496,8 @@ var substr = 'ab'.substr(-1) === 'b' ? function (str, start, len) {
   if (start < 0) start = str.length + start;
   return str.substr(start, len);
 };
+'use strict';
+
 var domain; // This constructor is used to store event handlers. Instantiating this is
 // faster than explicitly calling \`Object.create(null)\` to get a \\"clean\\" empty
 // object (tested with v8 v4.9).
@@ -8434,7 +8526,9 @@ EventEmitter.init = function () {
 
   if (EventEmitter.usingDomains) {
     // if there is an active domain, then attach to it.
-    if (domain.active) ;
+    if (domain.active && !(this instanceof domain.Domain)) {
+      this.domain = domain.active;
+    }
   }
 
   if (!this._events || this._events === Object.getPrototypeOf(this)._events) {
@@ -8514,6 +8608,7 @@ function emitMany(handler, isFn, self, args) {
 
 EventEmitter.prototype.emit = function emit(type) {
   var er, handler, len, args, i, events, domain;
+  var needDomainExit = false;
   var doError = type === 'error';
   events = this._events;
   if (events) doError = doError && events.error == null;else if (!doError) return false;
@@ -8572,6 +8667,7 @@ EventEmitter.prototype.emit = function emit(type) {
       emitMany(handler, isFn, this, args);
   }
 
+  if (needDomainExit) domain.exit();
   return true;
 };
 
@@ -9246,9 +9342,10 @@ Array [
       return !!p;
     }), !resolvedAbsolute).join('/');
     return (resolvedAbsolute ? '/' : '') + resolvedPath || '.';
-  } // path.normalize(path)
-  // posix version
+  }
 
+  ; // path.normalize(path)
+  // posix version
 
   function normalize(path) {
     var isPathAbsolute = isAbsolute(path),
@@ -9267,8 +9364,9 @@ Array [
     }
 
     return (isPathAbsolute ? '/' : '') + path;
-  } // posix version
+  }
 
+  ; // posix version
 
   function isAbsolute(path) {
     return path.charAt(0) === '/';
@@ -9397,6 +9495,8 @@ Array [
     if (start < 0) start = str.length + start;
     return str.substr(start, len);
   };
+  'use strict';
+
   var domain; // This constructor is used to store event handlers. Instantiating this is
   // faster than explicitly calling \`Object.create(null)\` to get a \\"clean\\" empty
   // object (tested with v8 v4.9).
@@ -9425,7 +9525,9 @@ Array [
 
     if (EventEmitter.usingDomains) {
       // if there is an active domain, then attach to it.
-      if (domain.active) ;
+      if (domain.active && !(this instanceof domain.Domain)) {
+        this.domain = domain.active;
+      }
     }
 
     if (!this._events || this._events === Object.getPrototypeOf(this)._events) {
@@ -9515,6 +9617,7 @@ Array [
 
   EventEmitter.prototype.emit = function emit(type) {
     var er, handler, len, args, i, events, domain;
+    var needDomainExit = false;
     var doError = type === 'error';
     events = this._events;
     if (events) doError = doError && events.error == null;else if (!doError) return false;
@@ -9575,6 +9678,7 @@ Array [
         emitMany(handler, isFn, this, args);
     }
 
+    if (needDomainExit) domain.exit();
     return true;
   };
 
@@ -9989,9 +10093,10 @@ Array [
       return !!p;
     }), !resolvedAbsolute).join('/');
     return (resolvedAbsolute ? '/' : '') + resolvedPath || '.';
-  } // path.normalize(path)
-  // posix version
+  }
 
+  ; // path.normalize(path)
+  // posix version
 
   function normalize(path) {
     var isPathAbsolute = isAbsolute(path),
@@ -10010,8 +10115,9 @@ Array [
     }
 
     return (isPathAbsolute ? '/' : '') + path;
-  } // posix version
+  }
 
+  ; // posix version
 
   function isAbsolute(path) {
     return path.charAt(0) === '/';
@@ -10140,6 +10246,8 @@ Array [
     if (start < 0) start = str.length + start;
     return str.substr(start, len);
   };
+  'use strict';
+
   var domain; // This constructor is used to store event handlers. Instantiating this is
   // faster than explicitly calling \`Object.create(null)\` to get a \\"clean\\" empty
   // object (tested with v8 v4.9).
@@ -10168,7 +10276,9 @@ Array [
 
     if (EventEmitter.usingDomains) {
       // if there is an active domain, then attach to it.
-      if (domain.active) ;
+      if (domain.active && !(this instanceof domain.Domain)) {
+        this.domain = domain.active;
+      }
     }
 
     if (!this._events || this._events === Object.getPrototypeOf(this)._events) {
@@ -10248,6 +10358,7 @@ Array [
 
   EventEmitter.prototype.emit = function emit(type) {
     var er, handler, len, args, i, events, domain;
+    var needDomainExit = false;
     var doError = type === 'error';
     events = this._events;
     if (events) doError = doError && events.error == null;else if (!doError) return false;
@@ -10306,6 +10417,7 @@ Array [
         emitMany(handler, isFn, this, args);
     }
 
+    if (needDomainExit) domain.exit();
     return true;
   };
 
@@ -10724,9 +10836,10 @@ Array [
       return !!p;
     }), !resolvedAbsolute).join('/');
     return (resolvedAbsolute ? '/' : '') + resolvedPath || '.';
-  } // path.normalize(path)
-  // posix version
+  }
 
+  ; // path.normalize(path)
+  // posix version
 
   function normalize(path) {
     var isPathAbsolute = isAbsolute(path),
@@ -10745,8 +10858,9 @@ Array [
     }
 
     return (isPathAbsolute ? '/' : '') + path;
-  } // posix version
+  }
 
+  ; // posix version
 
   function isAbsolute(path) {
     return path.charAt(0) === '/';
@@ -10875,6 +10989,8 @@ Array [
     if (start < 0) start = str.length + start;
     return str.substr(start, len);
   };
+  'use strict';
+
   var domain; // This constructor is used to store event handlers. Instantiating this is
   // faster than explicitly calling \`Object.create(null)\` to get a \\"clean\\" empty
   // object (tested with v8 v4.9).
@@ -10903,7 +11019,9 @@ Array [
 
     if (EventEmitter.usingDomains) {
       // if there is an active domain, then attach to it.
-      if (domain.active) ;
+      if (domain.active && !(this instanceof domain.Domain)) {
+        this.domain = domain.active;
+      }
     }
 
     if (!this._events || this._events === Object.getPrototypeOf(this)._events) {
@@ -10993,6 +11111,7 @@ Array [
 
   EventEmitter.prototype.emit = function emit(type) {
     var er, handler, len, args, i, events, domain;
+    var needDomainExit = false;
     var doError = type === 'error';
     events = this._events;
     if (events) doError = doError && events.error == null;else if (!doError) return false;
@@ -11053,6 +11172,7 @@ Array [
         emitMany(handler, isFn, this, args);
     }
 
+    if (needDomainExit) domain.exit();
     return true;
   };
 
@@ -11489,9 +11609,10 @@ Array [
       return !!p;
     }), !resolvedAbsolute).join('/');
     return (resolvedAbsolute ? '/' : '') + resolvedPath || '.';
-  } // path.normalize(path)
-  // posix version
+  }
 
+  ; // path.normalize(path)
+  // posix version
 
   function normalize(path) {
     var isPathAbsolute = isAbsolute(path),
@@ -11510,8 +11631,9 @@ Array [
     }
 
     return (isPathAbsolute ? '/' : '') + path;
-  } // posix version
+  }
 
+  ; // posix version
 
   function isAbsolute(path) {
     return path.charAt(0) === '/';
@@ -11640,6 +11762,8 @@ Array [
     if (start < 0) start = str.length + start;
     return str.substr(start, len);
   };
+  'use strict';
+
   var domain; // This constructor is used to store event handlers. Instantiating this is
   // faster than explicitly calling \`Object.create(null)\` to get a \\"clean\\" empty
   // object (tested with v8 v4.9).
@@ -11668,7 +11792,9 @@ Array [
 
     if (EventEmitter.usingDomains) {
       // if there is an active domain, then attach to it.
-      if (domain.active) ;
+      if (domain.active && !(this instanceof domain.Domain)) {
+        this.domain = domain.active;
+      }
     }
 
     if (!this._events || this._events === Object.getPrototypeOf(this)._events) {
@@ -11758,6 +11884,7 @@ Array [
 
   EventEmitter.prototype.emit = function emit(type) {
     var er, handler, len, args, i, events, domain;
+    var needDomainExit = false;
     var doError = type === 'error';
     events = this._events;
     if (events) doError = doError && events.error == null;else if (!doError) return false;
@@ -11818,6 +11945,7 @@ Array [
         emitMany(handler, isFn, this, args);
     }
 
+    if (needDomainExit) domain.exit();
     return true;
   };
 

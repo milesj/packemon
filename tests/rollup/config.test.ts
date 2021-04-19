@@ -179,7 +179,7 @@ describe('getRollupConfig()', () => {
         },
       ],
       plugins: sharedPlugins,
-      treeshake: true,
+      treeshake: false,
     });
   });
 
