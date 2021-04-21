@@ -2,7 +2,7 @@
 
 import execa from 'execa';
 import semver from 'semver';
-import { Memoize, Project as BaseProject } from '@boost/common';
+import { Memoize, PackageStructure, Project as BaseProject } from '@boost/common';
 import { Package } from './Package';
 
 export class Project extends BaseProject {
@@ -11,8 +11,8 @@ export class Project extends BaseProject {
   private buildPromise?: Promise<unknown>;
 
   checkEngineVersionConstraint() {
-    // eslint-disable-next-line
-    const { version } = require('../package.json');
+    // eslint-disable-next-line global-require
+    const { version } = require('../package.json') as PackageStructure;
     const versionConstraint = this.rootPackage.packageJson.engines?.packemon;
 
     if (version && versionConstraint && !semver.satisfies(version, versionConstraint)) {

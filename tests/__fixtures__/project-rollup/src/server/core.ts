@@ -1,5 +1,3 @@
-/* eslint-disable no-magic-numbers */
-
 import https from 'https';
 
 https

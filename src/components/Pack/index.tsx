@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useProgram } from '@boost/cli';
 import { Packemon } from '../../Packemon';
 import { BuildOptions } from '../../types';
@@ -14,36 +14,35 @@ export function Pack({ packemon, ...options }: PackProps) {
   const { exit } = useProgram();
   const [phase, setPhase] = useState('clean');
 
+  const handleBuilt = useCallback(() => {
+    setPhase('validate');
+  }, []);
+
+  const handleValidated = useCallback(() => {
+    setPhase('packed');
+  }, []);
+
   // Start the clean process first
   useOnMount(() => {
-    void packemon
-      .clean()
-      .then(() => {
+    async function clean() {
+      try {
+        await packemon.clean();
         setPhase('build');
-      })
-      .catch(exit);
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          exit(error);
+        }
+      }
+    }
+
+    void clean();
   });
 
   return (
     <>
-      {phase === 'build' && (
-        <Build
-          {...options}
-          packemon={packemon}
-          onBuilt={() => {
-            setPhase('validate');
-          }}
-        />
-      )}
+      {phase === 'build' && <Build {...options} packemon={packemon} onBuilt={handleBuilt} />}
 
-      {phase === 'validate' && (
-        <Validate
-          packemon={packemon}
-          onValidated={() => {
-            setPhase('packed');
-          }}
-        />
-      )}
+      {phase === 'validate' && <Validate packemon={packemon} onValidated={handleValidated} />}
     </>
   );
 }

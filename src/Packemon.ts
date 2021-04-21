@@ -345,7 +345,7 @@ export class Packemon {
         this.debug('No `packemon` configuration found for %s, skipping', contents.name);
 
         return;
-      } else if (!isObject(contents.packemon) && !Array.isArray(contents.packemon)) {
+      } if (!isObject(contents.packemon) && !Array.isArray(contents.packemon)) {
         this.debug(
           'Invalid `packemon` configuration for %s, must be an object or array of objects',
           contents.name,

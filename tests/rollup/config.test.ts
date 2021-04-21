@@ -30,7 +30,7 @@ const srcInputFile = fixturePath.append('src/index.ts').path();
 
 function createArtifact(outputName: string, inputFile: string, pkg?: Package) {
   const artifact = new BundleArtifact(
-    pkg ||
+    pkg ??
       new Package(new Project(fixturePath), fixturePath, {
         name: 'project',
         version: '0.0.0',
@@ -277,8 +277,8 @@ describe('getRollupConfig()', () => {
 
       try {
         getRollupExternals(artifact)(child, parent);
-      } catch (error) {
-        expect(error.message).toContain('Unexpected foreign input import.');
+      } catch (error: unknown) {
+        expect((error as Error).message).toContain('Unexpected foreign input import.');
       }
 
       expect(() => getRollupExternals(artifact)(child, srcInputFile)).toThrow(

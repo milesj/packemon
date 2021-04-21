@@ -79,7 +79,7 @@ export abstract class Artifact<T extends object = {}> {
     console[level](msg);
   }
 
-  protected removeFiles(files: PortablePath[]): Promise<unknown> {
+  protected async removeFiles(files: PortablePath[]): Promise<unknown> {
     return Promise.all(files.map((file) => fs.remove(String(file))));
   }
 

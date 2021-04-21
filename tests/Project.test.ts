@@ -13,8 +13,8 @@ describe('Project', () => {
 
       try {
         project.checkEngineVersionConstraint();
-      } catch (error) {
-        expect(error.message).toContain(
+      } catch (error: unknown) {
+        expect((error as Error).message).toContain(
           'Project requires a packemon version compatible with 0.0.0, found',
         );
       }

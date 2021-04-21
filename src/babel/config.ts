@@ -3,7 +3,7 @@ import { BundleArtifact } from '../BundleArtifact';
 import { BROWSER_TARGETS, NATIVE_TARGETS, NODE_SUPPORTED_VERSIONS } from '../constants';
 import { BundleBuild, FeatureFlags, Format, Platform, Support } from '../types';
 import { envExpressionsPlugin } from './plugins/envExpressions';
-import resolve from './resolve';
+import { resolve } from './resolve';
 
 // https://babeljs.io/docs/en/babel-preset-env
 export interface PresetEnvOptions {
@@ -19,7 +19,7 @@ export interface PresetEnvOptions {
   modules?: 'amd' | 'auto' | 'cjs' | 'commonjs' | 'systemjs' | 'umd' | false;
   shippedProposals?: boolean;
   spec?: boolean;
-  targets?: string[] | string | { [key: string]: string[] | string };
+  targets?: Record<string, string[] | string> | string[] | string;
   useBuiltIns?: 'entry' | 'usage' | false;
 }
 
@@ -175,17 +175,16 @@ export function getBabelOutputConfig(
   }
 
   if ((platform === 'browser' || platform === 'native') && support !== 'experimental') {
-    // Transform async/await into Promises
-    plugins.push([
-      resolve('babel-plugin-transform-async-to-promises'),
-      { inlineHelpers: true, target: 'es5' },
-    ]);
+    plugins.push(
+      // Transform async/await into Promises
+      [resolve('babel-plugin-transform-async-to-promises'), { inlineHelpers: true, target: 'es5' }],
 
-    // Transform generators to Regenerator
-    plugins.push([
-      resolve('@babel/plugin-transform-runtime'),
-      { helpers: false, regenerator: true, useESModules: format === 'esm' },
-    ]);
+      // Transform generators to Regenerator
+      [
+        resolve('@babel/plugin-transform-runtime'),
+        { helpers: false, regenerator: true, useESModules: format === 'esm' },
+      ],
+    );
   }
 
   // Support env expression shortcuts

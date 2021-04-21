@@ -32,7 +32,6 @@ export class BuildCommand extends BaseCommand<Required<BuildOptions>> {
   run() {
     return (
       <Build
-        packemon={this.packemon}
         addEngines={this.addEngines}
         addExports={this.addExports}
         analyze={this.analyze}
@@ -41,6 +40,7 @@ export class BuildCommand extends BaseCommand<Required<BuildOptions>> {
         filter={this.filter}
         filterFormats={this.formats}
         filterPlatforms={this.platforms}
+        packemon={this.packemon}
         skipPrivate={this.skipPrivate}
         timeout={this.timeout}
       />

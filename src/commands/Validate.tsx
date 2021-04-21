@@ -36,7 +36,6 @@ export class ValidateCommand extends BaseCommand<Required<ValidateOptions>> {
   run() {
     return (
       <Validate
-        packemon={this.packemon}
         deps={this.deps}
         engines={this.engines}
         entries={this.engines}
@@ -44,9 +43,10 @@ export class ValidateCommand extends BaseCommand<Required<ValidateOptions>> {
         license={this.license}
         links={this.links}
         meta={this.meta}
+        packemon={this.packemon}
         people={this.people}
-        skipPrivate={this.skipPrivate}
         repo={this.repo}
+        skipPrivate={this.skipPrivate}
       />
     );
   }

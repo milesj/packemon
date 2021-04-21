@@ -73,7 +73,7 @@ export function getRollupExternals(artifact: BundleArtifact) {
   return (id: string, parent: string = '<unknown>') => {
     if (siblingInputs.has(id)) {
       return true;
-    } else if (foreignInputs.has(id)) {
+    } if (foreignInputs.has(id)) {
       throw new Error(
         `Unexpected foreign input import. May only import sibling files within the same \`inputs\` configuration group. File "${parent}" attempted to import "${id}".`,
       );
@@ -129,11 +129,7 @@ export function getRollupOutputConfig(
   }
 
   // Automatically prepend a shebang for binaries
-  if (artifact.outputName === 'bin') {
-    output.banner = '#!/usr/bin/env node\n\n';
-  } else {
-    output.banner = '';
-  }
+  output.banner = artifact.outputName === 'bin' ? '#!/usr/bin/env node\n\n' : '';
 
   output.banner += [
     '// Generated with Packemon: https://packemon.dev\n',

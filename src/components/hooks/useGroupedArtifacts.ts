@@ -13,7 +13,7 @@ export function useGroupedArtifacts(pkg: Package) {
     pkg.artifacts.forEach((artifact) => {
       if (artifact instanceof BundleArtifact) {
         const key = `${artifact.platform}:${artifact.support}` as Environment;
-        const set = groups[key] || new Set();
+        const set = groups[key] ?? new Set();
 
         set.add(artifact);
         groups[key] = set;
@@ -26,7 +26,7 @@ export function useGroupedArtifacts(pkg: Package) {
     const envs = Object.keys(groups) as Environment[];
 
     if (envs.length === 1) {
-      ungrouped.unshift(...Array.from(groups[envs[0]]!));
+      ungrouped.unshift(...[...groups[envs[0]]!]);
       groups = {};
     }
 

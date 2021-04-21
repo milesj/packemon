@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-no-bind, react-perf/jsx-no-new-function-as-prop */
+
 import React from 'react';
 import { Arg, Config } from '@boost/cli';
 import { Path, WorkspacePackage } from '@boost/common';
@@ -62,10 +64,8 @@ export class InitCommand extends BaseCommand<InitOptions> {
       }
     }
 
-    if (inputs) {
-      if (!(Object.keys(inputs).length === 1 && inputs.index === DEFAULT_INPUT)) {
-        config.inputs = inputs;
-      }
+    if (inputs && !(Object.keys(inputs).length === 1 && inputs.index === DEFAULT_INPUT)) {
+      config.inputs = inputs;
     }
 
     if (namespace) {

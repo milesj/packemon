@@ -13,7 +13,7 @@ import {
   TypesBuild,
 } from './types';
 
-// eslint-disable-next-line
+// eslint-disable-next-line global-require
 const extractorConfig = require(path.join(__dirname, '../api-extractor.json')) as {
   projectFolder: string;
   mainEntryPointFilePath: string;
@@ -58,7 +58,7 @@ export class TypesArtifact extends Artifact<TypesBuild> {
       // Workspaces use the tsconfig setting, while non-workspaces is hard-coded to "dts"
       if (tsConfig && this.package.project.isWorkspacesEnabled()) {
         dtsBuildPath = new Path(
-          tsConfig.options.declarationDir || tsConfig.options.outDir || dtsBuildPath,
+          tsConfig.options.declarationDir ?? tsConfig.options.outDir ?? dtsBuildPath,
         );
       }
 
@@ -85,15 +85,15 @@ export class TypesArtifact extends Artifact<TypesBuild> {
   }
 
   getPackageExports(): PackageExports {
-    const exports: PackageExports = {};
+    const exportMap: PackageExports = {};
 
     this.builds.forEach(({ outputName }) => {
-      exports[`./${outputName}`] = {
+      exportMap[`./${outputName}`] = {
         types: `./dts/${outputName}.d.ts`,
       };
     });
 
-    return exports;
+    return exportMap;
   }
 
   toString() {

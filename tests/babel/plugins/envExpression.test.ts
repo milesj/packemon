@@ -15,7 +15,7 @@ async function transform(code: string, options?: TransformOptions): Promise<stri
     ...options,
   });
 
-  return result?.code || '';
+  return result?.code ?? '';
 }
 
 describe('envExpressions()', () => {
