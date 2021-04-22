@@ -8,5 +8,5 @@ try {
   require('./lib/bin');
 } catch {
   // TypeScript built (initial setup)
-  require('./build/bin');
+  require('./build/src/bin');
 }
