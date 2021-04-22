@@ -11,7 +11,14 @@ export class Project extends BaseProject {
   private buildPromise?: Promise<unknown>;
 
   checkEngineVersionConstraint() {
-    const { version } = require('../package.json') as PackageStructure;
+    let version = '';
+
+    try {
+      ({ version } = require('../package.json') as PackageStructure);
+    } catch {
+      return;
+    }
+
     const versionConstraint = this.rootPackage.packageJson.engines?.packemon;
 
     if (version && versionConstraint && !semver.satisfies(version, versionConstraint)) {
