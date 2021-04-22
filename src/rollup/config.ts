@@ -168,7 +168,7 @@ export function getRollupConfig(artifact: BundleArtifact, features: FeatureFlags
       getBabelInputPlugin({
         ...getBabelInputConfig(artifact, features),
         babelHelpers: 'bundled',
-        exclude: __TEST__ ? [] : EXCLUDE,
+        exclude: process.env.NODE_ENV === 'test' ? [] : EXCLUDE,
         extensions: EXTENSIONS,
         filename: artifact.package.path.path(),
         // Extract maps from the original source

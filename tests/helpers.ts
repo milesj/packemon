@@ -63,10 +63,6 @@ export function createSnapshotSpies(root: PortablePath) {
     jest.spyOn(fs, 'writeFile').mockImplementation(handler);
     jest.spyOn(fsx, 'writeJson').mockImplementation(handler);
     jest.spyOn(console, 'warn').mockImplementation();
-
-    // Required to avoid file exclusions
-    // @ts-expect-error Allow
-    global.__TEST__ = true;
   });
 
   afterEach(() => {

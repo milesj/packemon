@@ -2,7 +2,6 @@
 
 global.__DEV__ = true;
 global.__PROD__ = false;
-global.__TEST__ = false;
 
 try {
   // Packemon built

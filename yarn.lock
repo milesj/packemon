@@ -1027,47 +1027,47 @@
     ink "^3.0.8"
     react "^16.13.1"
 
-"@beemo/config-babel@^0.0.1-alpha.1":
-  version "0.0.1-alpha.1"
-  resolved "https://registry.yarnpkg.com/@beemo/config-babel/-/config-babel-0.0.1-alpha.1.tgz#a15e2d3d6e01ca9fd66f51182f42a24f9a1dd150"
-  integrity sha512-2BvRXtRnyzi21a836v9jfj1puc1/ihyuWRmcbQOTab8TVF9837cSD9ru2+2LrkiGGN33BkNrS4kgqjaoRcMhMg==
+"@beemo/config-babel@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@beemo/config-babel/-/config-babel-0.1.1.tgz#3f7f519d4c52da37c50936038d49ba5b2e2fa0a0"
+  integrity sha512-+XmNd6AIKlts54iGbJ1XF+tLr9XXmReQ5s9RHOKjA9HlcLpyOQYYUDiRVA9OnhgZ+A3LlkF8tP9cOI7Fa+Jg6w==
   dependencies:
-    babel-preset-beemo "^0.0.1-alpha.1"
+    babel-preset-beemo "^0.1.1"
 
-"@beemo/config-constants@^0.0.1-alpha.1":
-  version "0.0.1-alpha.1"
-  resolved "https://registry.yarnpkg.com/@beemo/config-constants/-/config-constants-0.0.1-alpha.1.tgz#72ffe18188cfaa78094758d9594efbb9a68913aa"
-  integrity sha512-TBolXVOE4P3L99oIePetm2IpJIPDaskdA6taFCKjHjK6EPhnc/TYjD/cH2ZNJ6aucV5JNm74nLXnbK1zujIPhg==
+"@beemo/config-constants@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@beemo/config-constants/-/config-constants-0.1.0.tgz#31754dd1e6105ebf62c9f5e0df996d3d5f3c5428"
+  integrity sha512-NErHaPJNcCxl+HPzSHZVeHeif3Lfvs/gJiIlYamCvq/7oKcp1YqWDfl6b25V1KQ681n6I5SJPHzrz1A4oqy42w==
 
-"@beemo/config-eslint@^0.0.1-alpha.4":
-  version "0.0.1-alpha.4"
-  resolved "https://registry.yarnpkg.com/@beemo/config-eslint/-/config-eslint-0.0.1-alpha.4.tgz#ddad021c20b1ba66e1b937d0ca16e12d31d772e0"
-  integrity sha512-Gr+iuZfP5STsHf2Vb2kKP4FNC76cQ8ebM4plKlCGKiCwXIuCLBeUE3RCT3npeRdYYf2lKtfraFzuulgjYES58A==
+"@beemo/config-eslint@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@beemo/config-eslint/-/config-eslint-0.1.0.tgz#d94ddd66a300525794be51025aed17a10f462984"
+  integrity sha512-vFqnaTBII4NEt2hRZyajLjKugyNYEtptPGxo4oLJ8Ef8QTHVi6PwBp5aZcIf0zAH3d0kOJhFvkHDtTwHJMUrgw==
   dependencies:
-    "@beemo/config-constants" "^0.0.1-alpha.1"
-    eslint-config-beemo "^0.0.1-alpha.4"
+    "@beemo/config-constants" "^0.1.0"
+    eslint-config-beemo "^0.1.0"
 
-"@beemo/config-jest@^0.0.1-alpha.1":
-  version "0.0.1-alpha.1"
-  resolved "https://registry.yarnpkg.com/@beemo/config-jest/-/config-jest-0.0.1-alpha.1.tgz#7b0169423d3dd5dcb8b919232eed5912d3ed5cb1"
-  integrity sha512-2yucz0wyUg7MphcHptspkxXn9jm+UxUTauJ/h9jT4O/1G5KNH8HkjzvscM4yJoIfVOI4oGpQJbnC/bTszsgaeA==
+"@beemo/config-jest@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@beemo/config-jest/-/config-jest-0.1.1.tgz#074675ba57eee70d52620cc628302433d1424a59"
+  integrity sha512-j/66LIoxaBAEieUDMzC8Q4MXpk056EPVTjTQZvGbTNXlEN+L4tjtJPsCPAfvUa/wYG10c/svFXqLslnQvmvDSA==
   dependencies:
-    jest-preset-beemo "^0.0.1-alpha.1"
+    jest-preset-beemo "^0.1.1"
 
-"@beemo/config-prettier@^0.0.1-alpha.1":
-  version "0.0.1-alpha.1"
-  resolved "https://registry.yarnpkg.com/@beemo/config-prettier/-/config-prettier-0.0.1-alpha.1.tgz#8d4d20f61b492efc1865193383c1033b72dee519"
-  integrity sha512-EuVe1UUqhLSFbpqi0gAacRCYe/X2rGD+wlvabYzqiI52yYcVaFGi/cBXd2No5XgJb0SojpQq48aoBesxwC2Gyg==
+"@beemo/config-prettier@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@beemo/config-prettier/-/config-prettier-0.1.0.tgz#ebf2eb0281edffafbaa76409615c7c3d8afc38a4"
+  integrity sha512-1BnTu2HeH9qAbenB5yH2tmrWCuj9aFrcpV8Sy8SaRc7674NuhkAzQ2ZZ6rQ5ZIJtOVQOKJeBIS5ypOtycSXe1A==
   dependencies:
-    "@beemo/config-constants" "^0.0.1-alpha.1"
-    prettier-config-beemo "^0.0.1-alpha.0"
+    "@beemo/config-constants" "^0.1.0"
+    prettier-config-beemo "^0.1.0"
 
-"@beemo/config-typescript@^0.0.1-alpha.2":
-  version "0.0.1-alpha.2"
-  resolved "https://registry.yarnpkg.com/@beemo/config-typescript/-/config-typescript-0.0.1-alpha.2.tgz#37c518a7876982af1bd8a0f15f0264336676f867"
-  integrity sha512-ZKOiph70M0QjsW4mlCOn2YlD67ba3MP8mhT389GVcdTsAeyz0EmRHK23/iyG9jzh1XJZ8zlCAJwTFZY4WF2HoQ==
+"@beemo/config-typescript@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@beemo/config-typescript/-/config-typescript-0.1.1.tgz#2ae9ec398188ad9f3e3887089a015602fddca523"
+  integrity sha512-wb8EDAs3ExXg9ZFrBxiOlF4iBIYXknagv83+zI4xuetgpGMfLOGkP1z/HfpJzlUxxLDkUkC4Mn+LgMTGnA4qqw==
   dependencies:
-    tsconfig-beemo "^0.0.1-alpha.0"
+    tsconfig-beemo "^0.1.1"
 
 "@beemo/core@^2.0.0-rc.1":
   version "2.0.0-rc.1"
@@ -1092,18 +1092,18 @@
     lodash "^4.17.21"
     micromatch "^4.0.4"
 
-"@beemo/dev@^0.0.1-alpha.4":
-  version "0.0.1-alpha.4"
-  resolved "https://registry.yarnpkg.com/@beemo/dev/-/dev-0.0.1-alpha.4.tgz#d6b0f6bd33119a7e3f4707d262e12d5717c33972"
-  integrity sha512-uWpQsAuyOLD5uLgUE4qGXNErwJPiCNv1HUcFoduZ+PvCHw2Gyo6gzm9rw81iREViBf6V3jfeoPLs6ByP9rcPSQ==
+"@beemo/dev@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@beemo/dev/-/dev-0.1.1.tgz#e7bcc658772e706b00932d7e567b0b4f350d82ee"
+  integrity sha512-WopHP8Iz7/QAQ1RlUIOY6Vaeswp5kXK3bQ97NsUibpMm+frlmOIXcn5utD95+vHyFRMtqnH1Y3DFY4aPnmPl6A==
   dependencies:
     "@babel/core" "^7.13.8"
     "@beemo/cli" "^2.0.0-rc.1"
-    "@beemo/config-babel" "^0.0.1-alpha.1"
-    "@beemo/config-eslint" "^0.0.1-alpha.4"
-    "@beemo/config-jest" "^0.0.1-alpha.1"
-    "@beemo/config-prettier" "^0.0.1-alpha.1"
-    "@beemo/config-typescript" "^0.0.1-alpha.2"
+    "@beemo/config-babel" "^0.1.1"
+    "@beemo/config-eslint" "^0.1.0"
+    "@beemo/config-jest" "^0.1.1"
+    "@beemo/config-prettier" "^0.1.0"
+    "@beemo/config-typescript" "^0.1.1"
     "@beemo/core" "^2.0.0-rc.1"
     "@beemo/driver-babel" "^2.0.0-rc.1"
     "@beemo/driver-eslint" "^2.0.0-rc.1"
@@ -2301,10 +2301,10 @@ babel-plugin-transform-dev@^2.0.1:
   resolved "https://registry.yarnpkg.com/babel-plugin-transform-dev/-/babel-plugin-transform-dev-2.0.1.tgz#fec5bbfb6b9576cd8413df5bd0ae7aca32b0a2d4"
   integrity sha512-Otu4LeO02yk+KIsDIwOPmI40TjOLT78NKmGlBxQRyq15Gqost9meZKszdi4LIrIWYAQ3plWXTLclK+IWv1DIQg==
 
-babel-preset-beemo@^0.0.1-alpha.1:
-  version "0.0.1-alpha.1"
-  resolved "https://registry.yarnpkg.com/babel-preset-beemo/-/babel-preset-beemo-0.0.1-alpha.1.tgz#73807f3801259f76d7e3fafe9b367eb1f0a71a91"
-  integrity sha512-IAQVkwPNhBv+YS/Wrkk9fKDJ1fLbsdiS2JtISAQS24RtTspJsuibGQdzHM/Of8fdeejHhOQZL9WIGeUSwd035Q==
+babel-preset-beemo@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/babel-preset-beemo/-/babel-preset-beemo-0.1.1.tgz#2b0e74ba656f617927bf9cdf7e6fbfb5d123be9b"
+  integrity sha512-/HNEr/Xq912PskTtDcaQlR4vqE46YkWlm2MSHZydkYIf8JmQDy1amjmKkh639S3FiRB9OQGi2UnRr3DjXi6YFA==
   dependencies:
     "@babel/plugin-proposal-class-properties" "^7.13.0"
     "@babel/plugin-proposal-decorators" "^7.13.15"
@@ -3101,12 +3101,12 @@ eslint-config-airbnb-base@^14.2.1:
     object.assign "^4.1.2"
     object.entries "^1.1.2"
 
-eslint-config-beemo@^0.0.1-alpha.4:
-  version "0.0.1-alpha.4"
-  resolved "https://registry.yarnpkg.com/eslint-config-beemo/-/eslint-config-beemo-0.0.1-alpha.4.tgz#4c2af4a31e15cb635bb253c68c26847354a0d1e2"
-  integrity sha512-iSTCl429wWzWffowFrGfDb6dSe2ghKAkIHGuv8swn+3+i7x4BpeGqLkmo8WSDPIV4x5ElfjiMYEZP4WtObeq/Q==
+eslint-config-beemo@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-beemo/-/eslint-config-beemo-0.1.0.tgz#33f77c01a44b8f196ef015db6f60cc64eaf017cc"
+  integrity sha512-k5bpA8xe3BFpgJSSAx3J5+JBw16zM/CrHA+jLCC/W2GxCieiCZIHCoEcwzK74bJmUaQ8EPNTagpja8R6lJ0n7Q==
   dependencies:
-    "@beemo/config-constants" "^0.0.1-alpha.1"
+    "@beemo/config-constants" "^0.1.0"
     "@typescript-eslint/eslint-plugin" "^4.22.0"
     "@typescript-eslint/parser" "^4.22.0"
     eslint-config-airbnb-base "^14.2.1"
@@ -4657,12 +4657,12 @@ jest-pnp-resolver@^1.2.2:
   resolved "https://registry.yarnpkg.com/jest-pnp-resolver/-/jest-pnp-resolver-1.2.2.tgz#b704ac0ae028a89108a4d040b3f919dfddc8e33c"
   integrity sha512-olV41bKSMm8BdnuMsewT4jqlZ8+3TCARAXjZGT9jcoSnrfUnRCqnMoF9XEeoWjbzObpqF9dRhHQj0Xb9QdF6/w==
 
-jest-preset-beemo@^0.0.1-alpha.1:
-  version "0.0.1-alpha.1"
-  resolved "https://registry.yarnpkg.com/jest-preset-beemo/-/jest-preset-beemo-0.0.1-alpha.1.tgz#0a04a04f89fad1d8358e8ea5b86bcbe5b35b5761"
-  integrity sha512-ZYuCcnpRM+xXRZ3wCacIR4tlVnzDXcdw/N0GnYhK7JQZwVik2+QMfHmAVBTHwfE34n3l/NpehkduxAsgn0JV+g==
+jest-preset-beemo@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/jest-preset-beemo/-/jest-preset-beemo-0.1.1.tgz#e110be8982d87d17949a27789eab14b3a95d3889"
+  integrity sha512-jm8EiYTvf2SnyDMfcBhkPzocNlQo5NYWaTiiKIkxITvX7kNKRzAtwYUImTPn/a4EVLWotAVcpHZD7wTmse6Gtg==
   dependencies:
-    "@beemo/config-constants" "^0.0.1-alpha.1"
+    "@beemo/config-constants" "^0.1.0"
     "@types/jest" "^26.0.20"
     jest-circus "^26.6.3"
 
@@ -5785,10 +5785,10 @@ prelude-ls@~1.1.2:
   resolved "https://registry.yarnpkg.com/prelude-ls/-/prelude-ls-1.1.2.tgz#21932a549f5e52ffd9a827f570e04be62a97da54"
   integrity sha1-IZMqVJ9eUv/ZqCf1cOBL5iqX2lQ=
 
-prettier-config-beemo@^0.0.1-alpha.0:
-  version "0.0.1-alpha.0"
-  resolved "https://registry.yarnpkg.com/prettier-config-beemo/-/prettier-config-beemo-0.0.1-alpha.0.tgz#3fa6497707e0744064a6f1a44735ffab43918db2"
-  integrity sha512-KsJaYQgQZqm0vFBRT/z7Z2wHf6moz1XemJh3YcmKda/YLd4VsPwFgKNPiZeisNamMlHVxkpbIcpIfo9K6+w7QQ==
+prettier-config-beemo@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/prettier-config-beemo/-/prettier-config-beemo-0.1.0.tgz#aecec3dff3e0124750162075924cd24230457e5e"
+  integrity sha512-ki2vZYsU1d8/8G7J7UJg0OvxXKKv6vx9YhMZXrlLwiPQOZBfYI2KwkWwaqCALo1rFZ9aY6LXjzVwbtNjni++fA==
 
 prettier@^2.2.1:
   version "2.2.1"
@@ -6814,10 +6814,10 @@ tr46@^2.0.2:
   dependencies:
     punycode "^2.1.1"
 
-tsconfig-beemo@^0.0.1-alpha.0:
-  version "0.0.1-alpha.0"
-  resolved "https://registry.yarnpkg.com/tsconfig-beemo/-/tsconfig-beemo-0.0.1-alpha.0.tgz#9ce8d1706448459cb7a9df7407028c636389572c"
-  integrity sha512-gSM15qkC1RcifDa5vS1f/3ihgEnTQ3HdCJZxJW1WDv4XlJfUID2BPKXmtwlkrzIeLx5FBdOKRt+UK/TxXDVuZA==
+tsconfig-beemo@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/tsconfig-beemo/-/tsconfig-beemo-0.1.1.tgz#2c82bd7b3e7e6e98d21ea59122a5af2d3e5cca04"
+  integrity sha512-WJPSJM0xR7Q91wtc9Uu18N45wG/Q4C3UzoZBlMODSWuzIxfXggzep1+Xk/Wnsdg7KdpD7vXO2j8ec44MJQDpZA==
 
 tsconfig-paths@^3.9.0:
   version "3.9.0"

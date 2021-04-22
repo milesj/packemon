@@ -58,7 +58,7 @@ function getPlatformEnvOptions(
         ],
         modules,
         targets: {
-          node: __TEST__ ? 'current' : NODE_SUPPORTED_VERSIONS[support],
+          node: NODE_SUPPORTED_VERSIONS[support],
         },
       };
 
