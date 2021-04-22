@@ -133,13 +133,13 @@ to `lib`, `build`, or some other variant. This is especially true if using proje
 
 ### Enable emitting
 
-The `noEmit` setting should only be used on the command line (via an NPM script) and should not be
+The `noEmit` setting should _only_ be used on the command line (via an NPM script) and should not be
 configured explicitly. We require emitting of declarations.
 
-```json title="tsconfig.json"
+```diff title="tsconfig.json"
 {
   "compilerOptions": {
-    "noEmit": false
+--    "noEmit": false
   }
 }
 ```
