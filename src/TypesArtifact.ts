@@ -1,4 +1,3 @@
-import path from 'path';
 import glob from 'fast-glob';
 import fs from 'fs-extra';
 import { Path } from '@boost/common';
@@ -12,14 +11,7 @@ import {
   TSConfigStructure,
   TypesBuild,
 } from './types';
-
-const extractorConfig = require(path.join(__dirname, '../api-extractor.json')) as {
-  projectFolder: string;
-  mainEntryPointFilePath: string;
-  dtsRollup: {
-    untrimmedFilePath: string;
-  };
-};
+import { apiExtractorConfig } from './typescript/apiExtractorConfig';
 
 export class TypesArtifact extends Artifact<TypesBuild> {
   declarationType: DeclarationType = 'standard';
@@ -119,11 +111,11 @@ export class TypesArtifact extends Artifact<TypesBuild> {
     // Create a fake config file
     const configPath = this.getApiExtractorConfigPath(outputName).path();
     const config: APIExtractorStructure = {
-      ...extractorConfig,
+      ...apiExtractorConfig,
       projectFolder: this.package.path.path(),
       mainEntryPointFilePath: dtsEntryPoint.path(),
       dtsRollup: {
-        ...extractorConfig.dtsRollup,
+        ...apiExtractorConfig.dtsRollup,
         untrimmedFilePath: `<projectFolder>/dts/${outputName}.d.ts`,
       },
     };
