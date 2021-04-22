@@ -31,7 +31,7 @@ describe('TypesArtifact', () => {
     artifact.startup();
 
     tsconfigSpy = jest
-      // @ts-expect-error
+      // @ts-expect-error Allow partial return
       .spyOn(artifact, 'loadTsconfigJson')
       .mockImplementation(() => ({ options: {} } as any));
 
@@ -67,7 +67,7 @@ describe('TypesArtifact', () => {
         .spyOn(artifact.package.project, 'generateDeclarations')
         .mockImplementation(() => Promise.resolve());
 
-      // @ts-expect-error
+      // @ts-expect-error Allow access
       apiSpy = jest.spyOn(artifact, 'generateApiDeclaration');
 
       mockSpy(Extractor.invoke).mockImplementation(() => ({ succeeded: true }));

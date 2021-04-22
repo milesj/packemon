@@ -68,7 +68,6 @@ export class WatchCommand extends BaseCommand<WatchOptions> {
     });
 
     // Rebuild when files change
-    // eslint-disable-next-line @typescript-eslint/unbound-method
     watcher.on('all', this.enqueueRebuild);
 
     this.log('Watching for changes...');

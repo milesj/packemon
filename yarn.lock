@@ -1039,13 +1039,13 @@
   resolved "https://registry.yarnpkg.com/@beemo/config-constants/-/config-constants-0.0.1-alpha.1.tgz#72ffe18188cfaa78094758d9594efbb9a68913aa"
   integrity sha512-TBolXVOE4P3L99oIePetm2IpJIPDaskdA6taFCKjHjK6EPhnc/TYjD/cH2ZNJ6aucV5JNm74nLXnbK1zujIPhg==
 
-"@beemo/config-eslint@^0.0.1-alpha.3":
-  version "0.0.1-alpha.3"
-  resolved "https://registry.yarnpkg.com/@beemo/config-eslint/-/config-eslint-0.0.1-alpha.3.tgz#d84fdf75f1eb760b975218e09255c726de7f1245"
-  integrity sha512-8uwR2PSx366NaSmN9orwd29DgP96/RKcXkpPbA+TFKY4Og7jUOY0O/U79JpG4nY87/dxzvHRmilZHeGUDI+7vg==
+"@beemo/config-eslint@^0.0.1-alpha.4":
+  version "0.0.1-alpha.4"
+  resolved "https://registry.yarnpkg.com/@beemo/config-eslint/-/config-eslint-0.0.1-alpha.4.tgz#ddad021c20b1ba66e1b937d0ca16e12d31d772e0"
+  integrity sha512-Gr+iuZfP5STsHf2Vb2kKP4FNC76cQ8ebM4plKlCGKiCwXIuCLBeUE3RCT3npeRdYYf2lKtfraFzuulgjYES58A==
   dependencies:
     "@beemo/config-constants" "^0.0.1-alpha.1"
-    eslint-config-beemo "^0.0.1-alpha.3"
+    eslint-config-beemo "^0.0.1-alpha.4"
 
 "@beemo/config-jest@^0.0.1-alpha.1":
   version "0.0.1-alpha.1"
@@ -1092,15 +1092,15 @@
     lodash "^4.17.21"
     micromatch "^4.0.4"
 
-"@beemo/dev@^0.0.1-alpha.2":
-  version "0.0.1-alpha.3"
-  resolved "https://registry.yarnpkg.com/@beemo/dev/-/dev-0.0.1-alpha.3.tgz#d40bf6f431e06cdc7f14a91b028750d704e686ce"
-  integrity sha512-lp/8+9vKODINXpj7Cr8MeoKnnBygfsQ2KO+uLEXeal1Ibq8KDm6MlYqafuCqINNvCrGolgK7n4y9U1z7ATn8aw==
+"@beemo/dev@^0.0.1-alpha.4":
+  version "0.0.1-alpha.4"
+  resolved "https://registry.yarnpkg.com/@beemo/dev/-/dev-0.0.1-alpha.4.tgz#d6b0f6bd33119a7e3f4707d262e12d5717c33972"
+  integrity sha512-uWpQsAuyOLD5uLgUE4qGXNErwJPiCNv1HUcFoduZ+PvCHw2Gyo6gzm9rw81iREViBf6V3jfeoPLs6ByP9rcPSQ==
   dependencies:
     "@babel/core" "^7.13.8"
     "@beemo/cli" "^2.0.0-rc.1"
     "@beemo/config-babel" "^0.0.1-alpha.1"
-    "@beemo/config-eslint" "^0.0.1-alpha.3"
+    "@beemo/config-eslint" "^0.0.1-alpha.4"
     "@beemo/config-jest" "^0.0.1-alpha.1"
     "@beemo/config-prettier" "^0.0.1-alpha.1"
     "@beemo/config-typescript" "^0.0.1-alpha.2"
@@ -3101,10 +3101,10 @@ eslint-config-airbnb-base@^14.2.1:
     object.assign "^4.1.2"
     object.entries "^1.1.2"
 
-eslint-config-beemo@^0.0.1-alpha.3:
-  version "0.0.1-alpha.3"
-  resolved "https://registry.yarnpkg.com/eslint-config-beemo/-/eslint-config-beemo-0.0.1-alpha.3.tgz#0c838cc7dc4e444b271b79cb816cb936c8aaa568"
-  integrity sha512-IS3Ftt1mQbkyJjY7nzT/7IsuHd1IHzQIr0YzoVMwCqK4YoNHWtsm5cE+YKusbShQDoomiw2CLZsqOI9O8JhkAg==
+eslint-config-beemo@^0.0.1-alpha.4:
+  version "0.0.1-alpha.4"
+  resolved "https://registry.yarnpkg.com/eslint-config-beemo/-/eslint-config-beemo-0.0.1-alpha.4.tgz#4c2af4a31e15cb635bb253c68c26847354a0d1e2"
+  integrity sha512-iSTCl429wWzWffowFrGfDb6dSe2ghKAkIHGuv8swn+3+i7x4BpeGqLkmo8WSDPIV4x5ElfjiMYEZP4WtObeq/Q==
   dependencies:
     "@beemo/config-constants" "^0.0.1-alpha.1"
     "@typescript-eslint/eslint-plugin" "^4.22.0"

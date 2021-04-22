@@ -125,8 +125,7 @@ export function testExampleOutput(file: string) {
 
     try {
       await pkg.build({});
-    } catch (error) {
-      // eslint-disable-next-line no-console
+    } catch (error: unknown) {
       console.error(error);
     }
 

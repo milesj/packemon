@@ -13,7 +13,6 @@ import {
   TypesBuild,
 } from './types';
 
-// eslint-disable-next-line global-require
 const extractorConfig = require(path.join(__dirname, '../api-extractor.json')) as {
   projectFolder: string;
   mainEntryPointFilePath: string;

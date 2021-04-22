@@ -11,7 +11,6 @@ export class Project extends BaseProject {
   private buildPromise?: Promise<unknown>;
 
   checkEngineVersionConstraint() {
-    // eslint-disable-next-line global-require
     const { version } = require('../package.json') as PackageStructure;
     const versionConstraint = this.rootPackage.packageJson.engines?.packemon;
 

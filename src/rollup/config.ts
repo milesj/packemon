@@ -73,7 +73,9 @@ export function getRollupExternals(artifact: BundleArtifact) {
   return (id: string, parent: string = '<unknown>') => {
     if (siblingInputs.has(id)) {
       return true;
-    } if (foreignInputs.has(id)) {
+    }
+
+    if (foreignInputs.has(id)) {
       throw new Error(
         `Unexpected foreign input import. May only import sibling files within the same \`inputs\` configuration group. File "${parent}" attempted to import "${id}".`,
       );

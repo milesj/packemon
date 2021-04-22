@@ -890,7 +890,7 @@ describe('PackageValidator', () => {
       });
 
       it('warns if defined and not an array', async () => {
-        // @ts-expect-error
+        // @ts-expect-error Allow invalid type
         validator.package.packageJson.contributors = {};
 
         await validator.validate({ people: true });

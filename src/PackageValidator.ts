@@ -289,14 +289,12 @@ export class PackageValidator {
     const bugsUrl = isObject(bugs) ? bugs.url : bugs;
 
     if (homepage && !(await this.doesUrlExist(homepage))) {
-        this.warnings.push(
-          'Homepage link is invalid. URL is either malformed or upstream is down.',
-        );
-      }
+      this.warnings.push('Homepage link is invalid. URL is either malformed or upstream is down.');
+    }
 
     if (bugsUrl && !(await this.doesUrlExist(bugsUrl))) {
-        this.warnings.push('Bugs link is invalid. URL is either malformed or upstream is down.');
-      }
+      this.warnings.push('Bugs link is invalid. URL is either malformed or upstream is down.');
+    }
   }
 
   protected checkMetadata() {
@@ -381,8 +379,8 @@ export class PackageValidator {
     if (!url) {
       this.errors.push('Missing repository.');
     } else if (url.startsWith('http') && !(await this.doesUrlExist(url))) {
-        this.warnings.push('Repository is invalid. URL is either malformed or upstream is down.');
-      }
+      this.warnings.push('Repository is invalid. URL is either malformed or upstream is down.');
+    }
 
     if (isObject(repo)) {
       const dir = repo.directory;

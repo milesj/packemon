@@ -9,7 +9,6 @@ import {
   WatchCommand,
 } from '.';
 
-// eslint-disable-next-line global-require
 const version = String((require('../package.json') as PackageStructure).version);
 
 async function run() {
