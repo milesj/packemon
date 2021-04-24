@@ -1,4 +1,3 @@
-import path from 'path';
 import glob from 'fast-glob';
 import fs from 'fs-extra';
 import { Path } from '@boost/common';
@@ -7,20 +6,13 @@ import { Extractor, ExtractorConfig } from '@microsoft/api-extractor';
 import { Artifact } from './Artifact';
 import {
   APIExtractorStructure,
+  BuildOptions,
   DeclarationType,
   PackageExports,
   TSConfigStructure,
   TypesBuild,
 } from './types';
-
-// eslint-disable-next-line
-const extractorConfig = require(path.join(__dirname, '../api-extractor.json')) as {
-  projectFolder: string;
-  mainEntryPointFilePath: string;
-  dtsRollup: {
-    untrimmedFilePath: string;
-  };
-};
+import { apiExtractorConfig } from './typescript/apiExtractorConfig';
 
 export class TypesArtifact extends Artifact<TypesBuild> {
   declarationType: DeclarationType = 'standard';
@@ -38,7 +30,7 @@ export class TypesArtifact extends Artifact<TypesBuild> {
     );
   }
 
-  async build(): Promise<void> {
+  async build(options: BuildOptions): Promise<void> {
     this.debug('Building "%s" types artifact with TypeScript', this.declarationType);
 
     const tsConfig = this.loadTsconfigJson();
@@ -46,7 +38,7 @@ export class TypesArtifact extends Artifact<TypesBuild> {
     // Compile the current projects declarations
     this.debug('Generating declarations at the root using `tsc`');
 
-    await this.package.project.generateDeclarations();
+    await this.package.project.generateDeclarations(options.declarationConfig);
 
     // Combine all DTS files into a single file for each input
     if (this.declarationType === 'api') {
@@ -58,7 +50,7 @@ export class TypesArtifact extends Artifact<TypesBuild> {
       // Workspaces use the tsconfig setting, while non-workspaces is hard-coded to "dts"
       if (tsConfig && this.package.project.isWorkspacesEnabled()) {
         dtsBuildPath = new Path(
-          tsConfig.options.declarationDir || tsConfig.options.outDir || dtsBuildPath,
+          tsConfig.options.declarationDir ?? tsConfig.options.outDir ?? dtsBuildPath,
         );
       }
 
@@ -85,15 +77,15 @@ export class TypesArtifact extends Artifact<TypesBuild> {
   }
 
   getPackageExports(): PackageExports {
-    const exports: PackageExports = {};
+    const exportMap: PackageExports = {};
 
     this.builds.forEach(({ outputName }) => {
-      exports[`./${outputName}`] = {
+      exportMap[`./${outputName}`] = {
         types: `./dts/${outputName}.d.ts`,
       };
     });
 
-    return exports;
+    return exportMap;
   }
 
   toString() {
@@ -120,11 +112,11 @@ export class TypesArtifact extends Artifact<TypesBuild> {
     // Create a fake config file
     const configPath = this.getApiExtractorConfigPath(outputName).path();
     const config: APIExtractorStructure = {
-      ...extractorConfig,
+      ...apiExtractorConfig,
       projectFolder: this.package.path.path(),
       mainEntryPointFilePath: dtsEntryPoint.path(),
       dtsRollup: {
-        ...extractorConfig.dtsRollup,
+        ...apiExtractorConfig.dtsRollup,
         untrimmedFilePath: `<projectFolder>/dts/${outputName}.d.ts`,
       },
     };

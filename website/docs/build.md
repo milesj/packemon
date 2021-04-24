@@ -40,6 +40,7 @@ Build supports the following command line options.
   - `api` - Generates a single `d.ts` file for each input. Uses
     [@microsoft/api-extractor](https://www.npmjs.com/package/@microsoft/api-extractor) to _only_
     generate the public API. _(NOTE: this is quite slow)_
+- `--declarationConfig` - Path to a custom `tsconfig` for declaration building.
 - `--filter` - Filter packages to build based on their name in `package.json`.
 - `--formats`, `-f` - Only generate specific output `format`s.
 - `--platforms`, `-p` - Only target specific `platform`s.

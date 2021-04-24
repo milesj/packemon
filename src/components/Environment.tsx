@@ -52,7 +52,7 @@ export function Environment(props: EnvironmentProps) {
 
   return (
     <Style type="muted">
-      {Array.from(getVersionsCombo([platform as Platform], support as Support)).join(', ')}
+      {[...getVersionsCombo([platform as Platform], support as Support)].join(', ')}
     </Style>
   );
 }

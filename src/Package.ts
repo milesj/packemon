@@ -68,7 +68,7 @@ export class Package {
           await artifact.build(options);
 
           artifact.state = 'passed';
-        } catch (error) {
+        } catch (error: unknown) {
           artifact.state = 'failed';
 
           throw error;
@@ -120,7 +120,7 @@ export class Package {
     }
 
     // TypeScript
-    const tsConfig = this.tsconfigJson || this.project.rootPackage.tsconfigJson;
+    const tsConfig = this.tsconfigJson ?? this.project.rootPackage.tsconfigJson;
 
     if (
       this.project.rootPackage.hasDependency('typescript') ||
@@ -162,9 +162,9 @@ export class Package {
     const pkg = this.packageJson;
 
     return Boolean(
-      pkg.dependencies?.[name] ||
-        pkg.devDependencies?.[name] ||
-        pkg.peerDependencies?.[name] ||
+      pkg.dependencies?.[name] ??
+        pkg.devDependencies?.[name] ??
+        pkg.peerDependencies?.[name] ??
         pkg.optionalDependencies?.[name],
     );
   }
@@ -210,8 +210,7 @@ export class Package {
           case 'browser':
           default:
             if (isEmpty) {
-              formats.push('lib');
-              formats.push('esm');
+              formats.push('lib', 'esm');
 
               if (config.namespace) {
                 formats.push('umd');
@@ -353,24 +352,24 @@ export class Package {
       this.packageJson.browser = browserEntry;
     }
 
-    this.packageJson.files = Array.from(files).sort();
+    this.packageJson.files = [...files].sort();
   }
 
   protected addExports() {
     this.debug('Adding `exports` to `package.json`');
 
-    const exports: PackageExports = {
+    const exportMap: PackageExports = {
       './package.json': './package.json',
     };
 
     const mapConditionsToPath = (basePath: string, conditions: PackageExportPaths | string) => {
       const path = basePath.replace('/index', '');
 
-      if (!exports[path]) {
-        exports[path] = {};
+      if (!exportMap[path]) {
+        exportMap[path] = {};
       }
 
-      Object.assign(exports[path], conditions);
+      Object.assign(exportMap[path], conditions);
     };
 
     this.artifacts.forEach((artifact) => {
@@ -385,7 +384,7 @@ export class Package {
       }
     });
 
-    this.packageJson.exports = exports as PackageStructure['exports'];
+    this.packageJson.exports = exportMap as PackageStructure['exports'];
   }
 
   protected getSourceFileExts(inputFile: string): string[] {

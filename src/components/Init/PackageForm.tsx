@@ -9,8 +9,10 @@ export interface PackageFormProps {
 }
 
 function getSupportVersions(platforms: Platform[], support: Support): string {
-  return applyStyle(Array.from(getVersionsCombo(platforms, support)).sort().join(', '), 'muted');
+  return applyStyle([...getVersionsCombo(platforms, support)].sort().join(', '), 'muted');
 }
+
+const FORMAT_LIST = [DEFAULT_FORMAT];
 
 export function PackageForm({ onSubmit }: PackageFormProps) {
   const [platform, setPlatform] = useState<Platform[]>([]);
@@ -149,35 +151,35 @@ export function PackageForm({ onSubmit }: PackageFormProps) {
       <MultiSelect<Platform>
         label="Platforms to target?"
         options={platformOptions}
-        onSubmit={setPlatform}
         validate={validatePlatform}
+        onSubmit={setPlatform}
       />
 
       <Select<Support>
-        label="Environment to support?"
         defaultSelected={DEFAULT_SUPPORT}
-        onSubmit={setSupport}
+        label="Environment to support?"
         options={supportOptions}
         validate={validateSupport}
+        onSubmit={setSupport}
       />
 
       <MultiSelect<Format>
+        defaultSelected={FORMAT_LIST}
         label="Formats to build?"
-        defaultSelected={[DEFAULT_FORMAT]}
-        onSubmit={setFormat}
         options={formatOptions}
         validate={validateFormat}
+        onSubmit={setFormat}
       />
 
       <Input
-        label="Main entry point?"
         defaultValue={DEFAULT_INPUT}
-        onSubmit={setInput}
+        label="Main entry point?"
         validate={validateInput}
+        onSubmit={setInput}
       />
 
       {format.includes('umd') && (
-        <Input label="UMD namespace?" onSubmit={setNamespace} validate={validateNamespace} />
+        <Input label="UMD namespace?" validate={validateNamespace} onSubmit={setNamespace} />
       )}
     </>
   );

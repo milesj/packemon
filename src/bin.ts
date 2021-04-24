@@ -1,4 +1,5 @@
 import { checkPackageOutdated, Program } from '@boost/cli';
+import { PackageStructure } from '@boost/common';
 import {
   BuildCommand,
   CleanCommand,
@@ -8,7 +9,13 @@ import {
   WatchCommand,
 } from '.';
 
-const version = String(require('../package.json').version);
+let version = 'internal';
+
+try {
+  version = String((require('../package.json') as PackageStructure).version);
+} catch {
+  // Ignore
+}
 
 async function run() {
   const program = new Program({

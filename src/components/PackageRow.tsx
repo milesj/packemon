@@ -1,3 +1,5 @@
+/* eslint-disable react-perf/jsx-no-new-array-as-prop */
+
 import React from 'react';
 import { Box } from 'ink';
 import { Style } from '@boost/cli';
@@ -33,7 +35,7 @@ export function PackageRow({ package: pkg }: PackageRowProps) {
       <ArtifactList artifacts={ungrouped} />
 
       {Object.entries(groups).map(([env, set]) => (
-        <ArtifactList key={env} artifacts={Array.from(set!)} environment={env as EnvType} />
+        <ArtifactList key={env} artifacts={[...set!]} environment={env as EnvType} />
       ))}
     </Box>
   );

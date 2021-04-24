@@ -12,7 +12,6 @@ import { PackageStructure } from '@boost/common';
 declare global {
   const __DEV__: boolean;
   const __PROD__: boolean;
-  const __TEST__: boolean;
 }
 
 export type Platform = 'browser' | 'native' | 'node'; // electron
@@ -115,6 +114,7 @@ export interface BuildOptions extends FilterOptions {
   analyze?: AnalyzeType;
   concurrency?: number;
   declaration?: DeclarationType;
+  declarationConfig?: string;
   timeout?: number;
 }
 

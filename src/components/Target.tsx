@@ -14,7 +14,7 @@ export interface TargetProps {
 export function Target({ target, children, state = 'pending' }: TargetProps) {
   return (
     <Box marginLeft={1}>
-      <Style bold type={STATE_COLORS[state] || 'default'}>
+      <Style bold type={STATE_COLORS[state] ?? 'default'}>
         {state === 'failed' ? figures.cross : figures.squareSmallFilled} {target.toLowerCase()}
       </Style>
 

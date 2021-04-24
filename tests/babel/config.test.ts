@@ -2,7 +2,7 @@ import { createConfig, createRootConfig } from '../../src/babel';
 import { getBabelInputConfig, getBabelOutputConfig } from '../../src/babel/config';
 import { Format, Platform, Support } from '../../src/types';
 
-jest.mock('../../src/babel/resolve', () => (name: string) => name);
+jest.mock('../../src/babel/resolve', () => ({ resolve: (name: string) => name }));
 
 const SUPPORTS: Support[] = ['legacy', 'stable', 'current', 'experimental'];
 
@@ -52,7 +52,7 @@ describe('getBabelInputConfig()', () => {
 
 function renderPresetEnv(platform: Platform, format: Format, support: Support) {
   // eslint-disable-next-line jest/require-top-level-describe
-  it(`handles preset-env: ${platform} + ${format} + ${support}`, () => {
+  test(`handles preset-env: ${platform} + ${format} + ${support}`, () => {
     expect(getBabelOutputConfig({ format, platform, support }, {})?.presets?.[0]).toMatchSnapshot();
   });
 }
@@ -72,7 +72,7 @@ describe('getBabelOutputConfig()', () => {
 
   it('errors for invalid platform', () => {
     expect(() =>
-      // @ts-expect-error
+      // @ts-expect-error Unknown platform
       getBabelOutputConfig({ format: 'lib', platform: 'unknown', support: 'stable' }, {}),
     ).toThrow('Unknown platform "unknown".');
   });

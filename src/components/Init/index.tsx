@@ -32,9 +32,19 @@ export function Init({ packageNames, onComplete }: InitProps) {
 
   // Complete once all packages have been configured
   useEffect(() => {
-    if (pkgsToConfigure.length === 0) {
-      void onComplete(pkgConfigs).finally(exit);
+    async function complete() {
+      if (pkgsToConfigure.length > 0) {
+        return;
+      }
+
+      try {
+        await onComplete(pkgConfigs);
+      } finally {
+        exit();
+      }
     }
+
+    void complete();
   }, [pkgsToConfigure, pkgConfigs, onComplete, exit]);
 
   // Exit when theres no packages
@@ -54,7 +64,7 @@ export function Init({ packageNames, onComplete }: InitProps) {
         </Text>
       </Box>
 
-      <Box marginTop={1} flexDirection="column">
+      <Box flexDirection="column" marginTop={1}>
         <PackageForm key={currentPkg} onSubmit={handleSubmit} />
       </Box>
     </Box>

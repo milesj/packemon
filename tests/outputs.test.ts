@@ -59,7 +59,7 @@ describe('Outputs', () => {
 
     try {
       await pkg.build({});
-    } catch (error) {
+    } catch (error: unknown) {
       console.log(error);
     }
 

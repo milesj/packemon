@@ -29,10 +29,9 @@ export function mockSpy(instance: unknown): jest.SpyInstance {
 }
 
 export class TestArtifact extends Artifact {
-  log = this.logWithSource;
+  log = this.logWithSource.bind(this);
 
   build() {
-    // eslint-disable-next-line no-magic-numbers
     return delay(50);
   }
 
@@ -64,10 +63,6 @@ export function createSnapshotSpies(root: PortablePath) {
     jest.spyOn(fs, 'writeFile').mockImplementation(handler);
     jest.spyOn(fsx, 'writeJson').mockImplementation(handler);
     jest.spyOn(console, 'warn').mockImplementation();
-
-    // Required to avoid file exclusions
-    // @ts-expect-error
-    global.__TEST__ = true;
   });
 
   afterEach(() => {
@@ -106,7 +101,7 @@ FORMATS.forEach((format) => {
 export function testExampleOutput(file: string) {
   const snapshots = createSnapshotSpies(exampleRoot);
 
-  it('transforms example test case', async () => {
+  test('transforms example test case', async () => {
     const project = new Project(exampleRoot);
     const pkg = new Package(
       project,
@@ -114,7 +109,7 @@ export function testExampleOutput(file: string) {
       JSON.parse(fs.readFileSync(exampleRoot.append('package.json').path(), 'utf8')),
     );
 
-    Array.from(builds.values()).forEach((build) => {
+    [...builds.values()].forEach((build) => {
       const artifact = new BundleArtifact(pkg, [build]);
       artifact.platform = build.platform;
       artifact.support = build.support;
@@ -126,8 +121,7 @@ export function testExampleOutput(file: string) {
 
     try {
       await pkg.build({});
-    } catch (error) {
-      // eslint-disable-next-line no-console
+    } catch (error: unknown) {
       console.error(error);
     }
 

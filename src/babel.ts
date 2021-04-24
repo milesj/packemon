@@ -1,7 +1,7 @@
 import fs from 'fs-extra';
 import { TransformOptions as ConfigStructure } from '@babel/core';
 import { Path, toArray } from '@boost/common';
-// eslint-disable-next-line unicorn/import-index
+import { FeatureFlags } from './types';
 import {
   BundleArtifact,
   DEFAULT_FORMAT,
@@ -14,11 +14,10 @@ import {
   Platform,
   Project,
   Support,
-} from './index';
-import { FeatureFlags } from './types';
+} from '.';
 
-const format = (process.env.PACKEMON_FORMAT || DEFAULT_FORMAT) as Format;
-const support = (process.env.PACKEMON_SUPPORT || DEFAULT_SUPPORT) as Support;
+const format = (process.env.PACKEMON_FORMAT ?? DEFAULT_FORMAT) as Format;
+const support = (process.env.PACKEMON_SUPPORT ?? DEFAULT_SUPPORT) as Support;
 const project = new Project(process.cwd());
 
 function getBabelConfig(artifact: BundleArtifact, featureFlags: FeatureFlags): ConfigStructure {

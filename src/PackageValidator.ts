@@ -235,7 +235,7 @@ export class PackageValidator {
 
     if (ignored.size > 0) {
       this.errors.push(
-        `The following files are being ignored from publishing: ${Array.from(ignored).join(', ')}`,
+        `The following files are being ignored from publishing: ${[...ignored].join(', ')}`,
       );
     }
 
@@ -250,7 +250,7 @@ export class PackageValidator {
 
     if (unwanted.size > 0) {
       this.warnings.push(
-        `The following files are being inadvertently published: ${Array.from(unwanted).join(', ')}`,
+        `The following files are being inadvertently published: ${[...unwanted].join(', ')}`,
       );
     }
   }
@@ -288,18 +288,12 @@ export class PackageValidator {
     const { bugs, homepage } = this.package.packageJson;
     const bugsUrl = isObject(bugs) ? bugs.url : bugs;
 
-    if (homepage) {
-      if (!(await this.doesUrlExist(homepage))) {
-        this.warnings.push(
-          'Homepage link is invalid. URL is either malformed or upstream is down.',
-        );
-      }
+    if (homepage && !(await this.doesUrlExist(homepage))) {
+      this.warnings.push('Homepage link is invalid. URL is either malformed or upstream is down.');
     }
 
-    if (bugsUrl) {
-      if (!(await this.doesUrlExist(bugsUrl))) {
-        this.warnings.push('Bugs link is invalid. URL is either malformed or upstream is down.');
-      }
+    if (bugsUrl && !(await this.doesUrlExist(bugsUrl))) {
+      this.warnings.push('Bugs link is invalid. URL is either malformed or upstream is down.');
     }
   }
 
@@ -384,10 +378,8 @@ export class PackageValidator {
 
     if (!url) {
       this.errors.push('Missing repository.');
-    } else if (url.startsWith('http')) {
-      if (!(await this.doesUrlExist(url))) {
-        this.warnings.push('Repository is invalid. URL is either malformed or upstream is down.');
-      }
+    } else if (url.startsWith('http') && !(await this.doesUrlExist(url))) {
+      this.warnings.push('Repository is invalid. URL is either malformed or upstream is down.');
     }
 
     if (isObject(repo)) {
@@ -404,7 +396,7 @@ export class PackageValidator {
   }
 
   // istanbul ignore next
-  protected doesUrlExist(url: string): Promise<boolean> {
+  protected async doesUrlExist(url: string): Promise<boolean> {
     return new Promise((resolve) => {
       const request = url.startsWith('https') ? https.request : http.request;
       const ping = request(url, () => {

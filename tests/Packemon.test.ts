@@ -58,6 +58,7 @@ describe('Packemon', () => {
         analyze: 'none',
         concurrency: 3,
         declaration: 'none',
+        declarationConfig: '',
         filter: '',
         filterFormats: '',
         filterPlatforms: '',

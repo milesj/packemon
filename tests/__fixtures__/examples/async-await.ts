@@ -8,6 +8,6 @@ export async function run() {
   try {
     await wait();
   } catch {
-    throw new Error();
+    throw new Error('Fail');
   }
 }

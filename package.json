@@ -10,8 +10,8 @@
   ],
   "scripts": {
     "docs": "cd website && yarn run start",
-    "prepare": "beemo create-config --silent",
-    "setup": "beemo typescript",
+    "prepare": "beemo create-config",
+    "setup": "beemo babel src/ --out-dir build/",
     "build": "yarn run packemon build",
     "validate": "yarn run packemon validate",
     "check": "yarn run type && yarn run test && yarn run lint",
@@ -23,7 +23,7 @@
     "test": "beemo jest",
     "type": "beemo typescript --noEmit",
     "prerelease": "yarn run clean && yarn run setup && yarn run pack && yarn run check",
-    "pack": "NODE_ENV=production yarn run packemon pack --addEngines --addExports --declaration=api",
+    "pack": "NODE_ENV=production yarn run packemon pack --addEngines --addExports --declaration=api --declarationConfig=tsconfig.build.json",
     "packemon": "node ./packemon.js"
   },
   "repository": "https://github.com/milesj/packemon.git",
@@ -33,7 +33,6 @@
   "types": "./dts/index.d.ts",
   "bin": "./lib/bin.js",
   "files": [
-    "api-extractor.json",
     "babel.js",
     "dts/**/*.d.ts",
     "lib/**/*.{js,map}",
@@ -66,24 +65,10 @@
     },
     "platform": "node"
   },
-  "beemo": {
-    "module": "@milesj/build-tools",
-    "drivers": [
-      "babel",
-      "eslint",
-      "jest",
-      "prettier",
-      "typescript"
-    ],
-    "settings": {
-      "decorators": true,
-      "node": true,
-      "react": true
-    }
-  },
   "devDependencies": {
+    "@babel/cli": "^7.13.16",
+    "@beemo/dev": "^0.1.2",
     "@boost/test-utils": "^2.3.1",
-    "@milesj/build-tools": "^2.17.1",
     "@types/fs-extra": "^9.0.11",
     "@types/micromatch": "^4.0.1",
     "@types/node": "^14.14.41",

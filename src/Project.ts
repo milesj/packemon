@@ -2,7 +2,7 @@
 
 import execa from 'execa';
 import semver from 'semver';
-import { Memoize, Project as BaseProject } from '@boost/common';
+import { Memoize, PackageStructure, Project as BaseProject } from '@boost/common';
 import { Package } from './Package';
 
 export class Project extends BaseProject {
@@ -11,8 +11,14 @@ export class Project extends BaseProject {
   private buildPromise?: Promise<unknown>;
 
   checkEngineVersionConstraint() {
-    // eslint-disable-next-line
-    const { version } = require('../package.json');
+    let version = '';
+
+    try {
+      ({ version } = require('../package.json') as PackageStructure);
+    } catch {
+      return;
+    }
+
     const versionConstraint = this.rootPackage.packageJson.engines?.packemon;
 
     if (version && versionConstraint && !semver.satisfies(version, versionConstraint)) {
@@ -31,7 +37,7 @@ export class Project extends BaseProject {
     return this.workspaces.length > 0;
   }
 
-  async generateDeclarations(): Promise<unknown> {
+  async generateDeclarations(declarationConfig?: string): Promise<unknown> {
     if (this.buildPromise) {
       return this.buildPromise;
     }
@@ -54,6 +60,10 @@ export class Project extends BaseProject {
         '--declarationMap',
         '--emitDeclarationOnly',
       );
+    }
+
+    if (declarationConfig) {
+      args.push('--project', declarationConfig);
     }
 
     // Store the promise so parallel artifacts can rely on the same build

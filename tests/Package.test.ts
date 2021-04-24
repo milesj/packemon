@@ -43,7 +43,7 @@ describe('Package', () => {
     const pkgPath = new Path(fixturePath, 'packages', name);
 
     return new Package(
-      customProject || project,
+      customProject ?? project,
       pkgPath,
       fs.readJsonSync(pkgPath.append('package.json').path()),
     );
@@ -143,7 +143,7 @@ describe('Package', () => {
 
       try {
         await pkg.build({});
-      } catch (error) {
+      } catch (error: unknown) {
         expect(error).toEqual(new Error('Whoops'));
       }
 

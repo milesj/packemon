@@ -90,7 +90,6 @@ export class BundleArtifact extends Artifact<BundleBuild> {
   }
 
   findEntryPoint(formats: Format[]): string {
-    // eslint-disable-next-line no-restricted-syntax
     for (const format of formats) {
       if (this.builds.some((build) => build.format === format)) {
         return this.getOutputMetadata(format).path;

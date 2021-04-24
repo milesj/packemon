@@ -10,12 +10,12 @@ async function transform(code: string, options?: TransformOptions): Promise<stri
     plugins: [envExpressionsPlugin()],
     presets: ['@babel/preset-react'],
     generatorOpts: {
-      quotes: 'single',
+      jsescOption: { quotes: 'single' },
     },
     ...options,
   });
 
-  return result?.code || '';
+  return result?.code ?? '';
 }
 
 describe('envExpressions()', () => {

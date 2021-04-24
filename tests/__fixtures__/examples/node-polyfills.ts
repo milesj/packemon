@@ -1,5 +1,5 @@
-import path from 'path';
 import { EventEmitter } from 'events';
+import path from 'path';
 
 export const test = path.join('foo', 'bar');
 

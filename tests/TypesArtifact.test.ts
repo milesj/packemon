@@ -31,7 +31,7 @@ describe('TypesArtifact', () => {
     artifact.startup();
 
     tsconfigSpy = jest
-      // @ts-expect-error
+      // @ts-expect-error Allow partial return
       .spyOn(artifact, 'loadTsconfigJson')
       .mockImplementation(() => ({ options: {} } as any));
 
@@ -67,7 +67,7 @@ describe('TypesArtifact', () => {
         .spyOn(artifact.package.project, 'generateDeclarations')
         .mockImplementation(() => Promise.resolve());
 
-      // @ts-expect-error
+      // @ts-expect-error Allow access
       apiSpy = jest.spyOn(artifact, 'generateApiDeclaration');
 
       mockSpy(Extractor.invoke).mockImplementation(() => ({ succeeded: true }));
@@ -80,7 +80,7 @@ describe('TypesArtifact', () => {
 
     describe('standard types', () => {
       it('generates types using `tsc`', async () => {
-        await artifact.build();
+        await artifact.build({});
 
         expect(declSpy).toHaveBeenCalled();
         expect(apiSpy).not.toHaveBeenCalled();
@@ -89,7 +89,7 @@ describe('TypesArtifact', () => {
       it('runs the same `tsc` when using workspaces', async () => {
         artifact.package.project.workspaces = ['packages/*'];
 
-        await artifact.build();
+        await artifact.build({});
 
         expect(declSpy).toHaveBeenCalled();
         expect(apiSpy).not.toHaveBeenCalled();
@@ -102,7 +102,7 @@ describe('TypesArtifact', () => {
       });
 
       it('generates a single file using api extractor', async () => {
-        await artifact.build();
+        await artifact.build({});
 
         expect(declSpy).toHaveBeenCalled();
         expect(apiSpy).toHaveBeenCalledWith('index', 'src/index.ts', fixturePath.append('dts'));
@@ -116,7 +116,7 @@ describe('TypesArtifact', () => {
           outputName: 'missing',
         });
 
-        await artifact.build();
+        await artifact.build({});
 
         expect(warnSpy).toHaveBeenCalledWith(
           `Unable to generate declaration for "missing". Declaration entry point "${fixturePath
@@ -131,7 +131,7 @@ describe('TypesArtifact', () => {
       });
 
       it('creates api extractor config files for each output', async () => {
-        await artifact.build();
+        await artifact.build({});
 
         expect(fs.writeJson).toHaveBeenCalledWith(
           fixturePath.append('api-extractor-index.json').path(),
@@ -156,7 +156,7 @@ describe('TypesArtifact', () => {
       });
 
       it('removes generated declarations that arent the output files', async () => {
-        await artifact.build();
+        await artifact.build({});
 
         // Remove happens in the background so we must wait manually
         await delay(100);
@@ -175,7 +175,7 @@ describe('TypesArtifact', () => {
           warningCount: 3,
         }));
 
-        await artifact.build();
+        await artifact.build({});
 
         expect(spy).toHaveBeenCalledWith(
           'Generated "index" types completed with 1 errors and 3 warnings!',
@@ -199,7 +199,7 @@ describe('TypesArtifact', () => {
               } as any),
           );
 
-          await artifact.build();
+          await artifact.build({});
 
           expect(apiSpy).toHaveBeenCalledWith('index', 'src/index.ts', new Path('declarationDir'));
           expect(apiSpy).toHaveBeenCalledWith(
@@ -219,14 +219,14 @@ describe('TypesArtifact', () => {
               } as any),
           );
 
-          await artifact.build();
+          await artifact.build({});
 
           expect(apiSpy).toHaveBeenCalledWith('index', 'src/index.ts', new Path('outDir'));
           expect(apiSpy).toHaveBeenCalledWith('test', 'src/sub/test.ts', new Path('outDir'));
         });
 
         it('uses hard-coded dts folder if neither compiler option is defined', async () => {
-          await artifact.build();
+          await artifact.build({});
 
           expect(apiSpy).toHaveBeenCalledWith('index', 'src/index.ts', fixturePath.append('dts'));
           expect(apiSpy).toHaveBeenCalledWith('test', 'src/sub/test.ts', fixturePath.append('dts'));

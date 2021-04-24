@@ -20,18 +20,26 @@ export function Validate({ packemon, onValidated, ...options }: ValidateProps) {
 
   // Run the validate process on mount
   useOnMount(() => {
-    void packemon
-      .validate(options)
-      .then((validators) => {
+    async function validate() {
+      try {
+        const validators = await packemon.validate(options);
+
         setIsValidating(false);
         setFailedValidators(
           validators.filter((validator) => validator.hasErrors() || validator.hasWarnings()),
         );
 
         onValidated?.();
-      })
-      .catch(exit)
-      .finally(clearLoop);
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          exit(error);
+        }
+      } finally {
+        clearLoop();
+      }
+    }
+
+    void validate();
 
     return clearLoop;
   });

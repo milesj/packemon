@@ -117,6 +117,9 @@ Integrating with TypeScript can sometimes be tricky, and with Packemon, that is 
 Since Packemon now handles the build process, TypeScript should be configured for type checking and
 declaration generation only.
 
+However, if that is not possible. You can supply a custom tsconfig for Packemon building only
+through the `--declarationConfig` option.
+
 ### Update output directories
 
 Both the `outDir` and `declarationDir` settings should be updated to `dts`, and should _not_ be set
@@ -133,13 +136,13 @@ to `lib`, `build`, or some other variant. This is especially true if using proje
 
 ### Enable emitting
 
-The `noEmit` setting should only be used on the command line (via an NPM script) and should not be
+The `noEmit` setting should _only_ be used on the command line (via an NPM script) and should not be
 configured explicitly. We require emitting of declarations.
 
-```json title="tsconfig.json"
+```diff title="tsconfig.json"
 {
   "compilerOptions": {
-    "noEmit": false
+--    "noEmit": false
   }
 }
 ```

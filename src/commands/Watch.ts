@@ -25,6 +25,22 @@ export class WatchCommand extends BaseCommand<WatchOptions> {
 
   protected rebuildTimer?: NodeJS.Timeout;
 
+  @Bind()
+  enqueueRebuild(event: string, path: string) {
+    if (event !== 'add' && event !== 'change' && event !== 'unlink') {
+      return;
+    }
+
+    this.log(applyStyle(' - %s', 'muted'), path.replace(`${this.packemon.root.path()}/`, ''));
+
+    const changedPkg = this.packages.find((pkg) => path.startsWith(pkg.path.path()));
+
+    if (changedPkg) {
+      this.packagesToRebuild.add(changedPkg);
+      this.triggerRebuilds();
+    }
+  }
+
   async run() {
     const { packemon } = this;
     const chokidar = loadModule(
@@ -57,22 +73,6 @@ export class WatchCommand extends BaseCommand<WatchOptions> {
     this.log('Watching for changes...');
   }
 
-  @Bind()
-  enqueueRebuild(event: string, path: string) {
-    if (event !== 'add' && event !== 'change' && event !== 'unlink') {
-      return;
-    }
-
-    this.log(applyStyle(' - %s', 'muted'), path.replace(`${this.packemon.root.path()}/`, ''));
-
-    const changedPkg = this.packages.find((pkg) => path.startsWith(pkg.path.path()));
-
-    if (changedPkg) {
-      this.packagesToRebuild.add(changedPkg);
-      this.triggerRebuilds();
-    }
-  }
-
   triggerRebuilds() {
     if (this.rebuildTimer) {
       clearTimeout(this.rebuildTimer);
@@ -90,7 +90,7 @@ export class WatchCommand extends BaseCommand<WatchOptions> {
       return;
     }
 
-    const pkgs = Array.from(this.packagesToRebuild);
+    const pkgs = [...this.packagesToRebuild];
     const pkgNames = pkgs.map((pkg) => pkg.getName());
 
     if (pkgs.length === 0) {
@@ -110,8 +110,10 @@ export class WatchCommand extends BaseCommand<WatchOptions> {
         pkgNames.join(', '),
         formatMs(Date.now() - start),
       );
-    } catch (error) {
-      this.log.error(error.message);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        this.log.error(error.message);
+      }
 
       this.log(applyStyle('Failed to build %s', 'failure'), pkgNames.join(', '));
     } finally {

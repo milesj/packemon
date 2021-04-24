@@ -26,21 +26,25 @@ export class BuildCommand extends BaseCommand<Required<BuildOptions>> {
   })
   declaration: DeclarationType = 'none';
 
+  @Arg.String('Path to a custom `tsconfig` for declaration building')
+  declarationConfig: string = 'tsconfig.json';
+
   @Arg.Number('Timeout in milliseconds before a build is cancelled')
   timeout: number = 0;
 
   run() {
     return (
       <Build
-        packemon={this.packemon}
         addEngines={this.addEngines}
         addExports={this.addExports}
         analyze={this.analyze}
         concurrency={this.concurrency}
         declaration={this.declaration}
+        declarationConfig={this.declarationConfig}
         filter={this.filter}
         filterFormats={this.formats}
         filterPlatforms={this.platforms}
+        packemon={this.packemon}
         skipPrivate={this.skipPrivate}
         timeout={this.timeout}
       />

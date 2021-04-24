@@ -3,6 +3,6 @@
 // This is also in a separate file so that we can mock in tests.
 
 // istanbul ignore next
-export default function resolve(path: string): string {
+export function resolve(path: string): string {
   return require.resolve(path);
 }
