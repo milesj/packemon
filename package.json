@@ -23,7 +23,7 @@
     "test": "beemo jest",
     "type": "beemo typescript --noEmit",
     "prerelease": "yarn run clean && yarn run setup && yarn run pack && yarn run check",
-    "pack": "NODE_ENV=production yarn run packemon pack --addEngines --addExports --declaration=api",
+    "pack": "NODE_ENV=production yarn run packemon pack --addEngines --addExports --declaration=api --declarationConfig=tsconfig.build.json",
     "packemon": "node ./packemon.js"
   },
   "repository": "https://github.com/milesj/packemon.git",

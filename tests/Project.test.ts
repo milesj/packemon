@@ -103,6 +103,29 @@ describe('Project', () => {
 
       expect(execa).toHaveBeenCalledTimes(1);
     });
+
+    it('can pass a custom tsconfig', async () => {
+      const project = new Project(getFixturePath('workspace-private'));
+
+      await project.generateDeclarations('tsconfig.custom.json');
+
+      expect(execa).toHaveBeenCalledWith(
+        'tsc',
+        [
+          '--declaration',
+          '--declarationDir',
+          'dts',
+          '--declarationMap',
+          '--emitDeclarationOnly',
+          '--project',
+          'tsconfig.custom.json',
+        ],
+        {
+          cwd: project.root.path(),
+          preferLocal: true,
+        },
+      );
+    });
   });
 
   describe('getWorkspacePackageNames()', () => {

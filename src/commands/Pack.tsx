@@ -13,6 +13,7 @@ export class PackCommand extends BuildCommand {
         analyze={this.analyze}
         concurrency={this.concurrency}
         declaration={this.declaration}
+        declarationConfig={this.declarationConfig}
         filter={this.filter}
         filterFormats={this.formats}
         filterPlatforms={this.platforms}

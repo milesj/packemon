@@ -43,7 +43,7 @@ export class Packemon {
     this.project.checkEngineVersionConstraint();
   }
 
-  async build(baseOptions: Partial<BuildOptions>) {
+  async build(baseOptions: BuildOptions) {
     this.debug('Starting `build` process');
 
     const options = optimal(baseOptions, buildBlueprint);

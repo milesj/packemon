@@ -117,6 +117,9 @@ Integrating with TypeScript can sometimes be tricky, and with Packemon, that is 
 Since Packemon now handles the build process, TypeScript should be configured for type checking and
 declaration generation only.
 
+However, if that is not possible. You can supply a custom tsconfig for Packemon building only
+through the `--declarationConfig` option.
+
 ### Update output directories
 
 Both the `outDir` and `declarationDir` settings should be updated to `dts`, and should _not_ be set

@@ -114,6 +114,7 @@ export interface BuildOptions extends FilterOptions {
   analyze?: AnalyzeType;
   concurrency?: number;
   declaration?: DeclarationType;
+  declarationConfig?: string;
   timeout?: number;
 }
 

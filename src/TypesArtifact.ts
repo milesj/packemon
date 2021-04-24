@@ -6,6 +6,7 @@ import { Extractor, ExtractorConfig } from '@microsoft/api-extractor';
 import { Artifact } from './Artifact';
 import {
   APIExtractorStructure,
+  BuildOptions,
   DeclarationType,
   PackageExports,
   TSConfigStructure,
@@ -29,7 +30,7 @@ export class TypesArtifact extends Artifact<TypesBuild> {
     );
   }
 
-  async build(): Promise<void> {
+  async build(options: BuildOptions): Promise<void> {
     this.debug('Building "%s" types artifact with TypeScript', this.declarationType);
 
     const tsConfig = this.loadTsconfigJson();
@@ -37,7 +38,7 @@ export class TypesArtifact extends Artifact<TypesBuild> {
     // Compile the current projects declarations
     this.debug('Generating declarations at the root using `tsc`');
 
-    await this.package.project.generateDeclarations();
+    await this.package.project.generateDeclarations(options.declarationConfig);
 
     // Combine all DTS files into a single file for each input
     if (this.declarationType === 'api') {
