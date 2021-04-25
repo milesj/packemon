@@ -35,7 +35,7 @@ export const NODE_SUPPORTED_VERSIONS: { [K in Support]: string } = {
   legacy: '8.10.0',
   stable: '10.3.0', // Requires NPM v6
   current: '12.0.0',
-  experimental: '15.0.0',
+  experimental: '16.0.0',
 };
 
 export const NPM_SUPPORTED_VERSIONS: { [K in Support]: string[] | string } = {
