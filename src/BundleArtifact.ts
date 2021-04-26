@@ -1,12 +1,26 @@
+import glob from 'fast-glob';
+import fs from 'fs-extra';
 import { rollup, RollupCache } from 'rollup';
+import { transformFileAsync } from '@babel/core';
 import { Path, toArray } from '@boost/common';
 import { createDebugger, Debugger } from '@boost/debug';
 import { Artifact } from './Artifact';
+import { getBabelInputConfig, getBabelOutputConfig } from './babel/config';
 import { DEFAULT_FORMAT, NODE_SUPPORTED_VERSIONS, NPM_SUPPORTED_VERSIONS } from './constants';
 import { getRollupConfig } from './rollup/config';
-import { BuildOptions, BundleBuild, Format, PackageExportPaths, Platform, Support } from './types';
+import {
+  BuildOptions,
+  BundleBuild,
+  FeatureFlags,
+  Format,
+  PackageExportPaths,
+  Platform,
+  Support,
+} from './types';
 
 export class BundleArtifact extends Artifact<BundleBuild> {
+  bundle: boolean = true;
+
   cache?: RollupCache;
 
   // Config object in which inputs are grouped in
@@ -44,13 +58,68 @@ export class BundleArtifact extends Artifact<BundleBuild> {
   }
 
   async build(options: BuildOptions): Promise<void> {
-    this.debug('Building bundle artifact with Rollup');
-
     const features = this.package.getFeatureFlags();
 
     if (options.analyze !== 'none') {
       features.analyze = options.analyze;
     }
+
+    await (this.bundle ? this.buildWithRollup(features) : this.buildWithBabel(features));
+
+    if (options.addEngines) {
+      this.addEnginesToPackageJson();
+    }
+  }
+
+  async buildWithBabel(features: FeatureFlags): Promise<void> {
+    this.debug('Building bundle artifact with Bable');
+
+    const inputConfig = getBabelInputConfig(this, features);
+    const packageRoot = this.package.path;
+    const sourceFiles = await glob('**/*.{js,jsx,ts,tsx}', {
+      cwd: packageRoot.append('src').path(),
+      onlyFiles: true,
+    });
+
+    await Promise.all(
+      this.builds.map(async (build, index) => {
+        const outputConfig = getBabelOutputConfig(build, features);
+        const config = {
+          ...inputConfig,
+          plugins: [...inputConfig.plugins!, ...outputConfig.plugins!],
+          presets: [...outputConfig.presets!, ...inputConfig.presets!],
+        };
+        let combinedCode = '';
+
+        await Promise.all(
+          sourceFiles.map(async (srcFile) => {
+            const srcPath = packageRoot.append('src', srcFile).path();
+            const dstPath = packageRoot.append(build.format, srcFile).path();
+
+            const result = await transformFileAsync(srcPath, config);
+
+            if (result?.code) {
+              combinedCode += result.code;
+              await fs.writeFile(dstPath, result.code, 'utf8');
+            }
+
+            if (result?.map) {
+              await fs.writeFile(`${dstPath}.map`, result.code, 'utf8');
+            }
+          }),
+        );
+
+        this.debug(' - Writing `%s` output', build.format);
+
+        this.builds[index].stats = {
+          size: Buffer.byteLength(combinedCode),
+        };
+      }),
+    );
+  }
+
+  async buildWithRollup(features: FeatureFlags): Promise<void> {
+    this.debug('Building bundle artifact with Rollup');
 
     const { output = [], ...input } = getRollupConfig(this, features);
     const bundle = await rollup({
@@ -83,10 +152,6 @@ export class BundleArtifact extends Artifact<BundleBuild> {
         };
       }),
     );
-
-    if (options.addEngines) {
-      this.addEnginesToPackageJson();
-    }
   }
 
   findEntryPoint(formats: Format[]): string {

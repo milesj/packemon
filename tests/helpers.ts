@@ -1,5 +1,3 @@
-/* eslint-disable no-underscore-dangle */
-
 import fs from 'fs';
 import fsx from 'fs-extra';
 import { Path, PortablePath } from '@boost/common';
@@ -89,7 +87,6 @@ FORMATS.forEach((format) => {
       }
 
       builds.set(key, {
-        bundle: platform !== 'node',
         format,
         platform,
         support,
