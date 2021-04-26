@@ -127,7 +127,6 @@ describe('getRollupConfig()', () => {
           paths: {},
           plugins: [`babelOutput(${fixturePath}, *)`],
           preferConst: false,
-          preserveModules: true,
           sourcemap: true,
           sourcemapExcludeSources: true,
         },
@@ -143,7 +142,6 @@ describe('getRollupConfig()', () => {
           paths: {},
           plugins: [`babelOutput(${fixturePath}, *)`],
           preferConst: false,
-          preserveModules: false,
           sourcemap: true,
           sourcemapExcludeSources: true,
         },
@@ -158,7 +156,6 @@ describe('getRollupConfig()', () => {
           paths: {},
           plugins: [`babelOutput(${fixturePath}, *)`],
           preferConst: true,
-          preserveModules: false,
           sourcemap: true,
           sourcemapExcludeSources: true,
         },
@@ -173,13 +170,12 @@ describe('getRollupConfig()', () => {
           paths: {},
           plugins: [`babelOutput(${fixturePath}, *)`],
           preferConst: true,
-          preserveModules: true,
           sourcemap: true,
           sourcemapExcludeSources: true,
         },
       ],
       plugins: sharedPlugins,
-      treeshake: false,
+      treeshake: true,
     });
   });
 
@@ -207,7 +203,6 @@ describe('getRollupConfig()', () => {
           paths: {},
           plugins: [`babelOutput(${fixturePath}, *)`],
           preferConst: false,
-          preserveModules: true,
           sourcemap: true,
           sourcemapExcludeSources: true,
         },
@@ -312,7 +307,6 @@ describe('getRollupOutputConfig()', () => {
       paths: {},
       plugins: [`babelOutput(${fixturePath}, *)`],
       preferConst: false,
-      preserveModules: true,
       sourcemap: true,
       sourcemapExcludeSources: true,
     });
@@ -622,7 +616,6 @@ describe('getRollupOutputConfig()', () => {
       paths: {},
       plugins: [`babelOutput(${fixturePath}, FooBar)`],
       preferConst: true,
-      preserveModules: false,
       sourcemap: true,
       sourcemapExcludeSources: true,
     });
