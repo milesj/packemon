@@ -169,8 +169,6 @@ export function getRollupConfig(artifact: BundleArtifact, features: FeatureFlags
         exclude: process.env.NODE_ENV === 'test' ? [] : EXCLUDE,
         extensions: EXTENSIONS,
         filename: artifact.package.path.path(),
-        // Extract maps from the original source
-        sourceMaps: true,
       }),
     ],
     // Treeshake for smaller builds

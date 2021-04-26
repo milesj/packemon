@@ -134,7 +134,12 @@ export function getBabelInputConfig(
     ]);
   }
 
-  return getSharedConfig(plugins, presets, features);
+  const config = getSharedConfig(plugins, presets, features);
+
+  // Extract maps from the original source
+  config.sourceMaps = true;
+
+  return config;
 }
 
 // The output config does all the transformation and downleveling through the preset-env.

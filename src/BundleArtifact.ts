@@ -1,3 +1,4 @@
+import path from 'path';
 import glob from 'fast-glob';
 import fs from 'fs-extra';
 import { rollup, RollupCache } from 'rollup';
@@ -76,8 +77,10 @@ export class BundleArtifact extends Artifact<BundleBuild> {
 
     const inputConfig = getBabelInputConfig(this, features);
     const packageRoot = this.package.path;
-    const sourceFiles = await glob('**/*.{js,jsx,ts,tsx}', {
-      cwd: packageRoot.append('src').path(),
+    const srcPath = packageRoot.append('src');
+    const srcFiles = await glob('**/*.{js,jsx,ts,tsx}', {
+      absolute: false,
+      cwd: srcPath.path(),
       onlyFiles: true,
     });
 
@@ -89,22 +92,39 @@ export class BundleArtifact extends Artifact<BundleBuild> {
           plugins: [...inputConfig.plugins!, ...outputConfig.plugins!],
           presets: [...outputConfig.presets!, ...inputConfig.presets!],
         };
+        const buildPath = packageRoot.append(build.format);
         let combinedCode = '';
 
         await Promise.all(
-          sourceFiles.map(async (srcFile) => {
-            const srcPath = packageRoot.append('src', srcFile).path();
-            const dstPath = packageRoot.append(build.format, srcFile).path();
+          srcFiles.map(async (file) => {
+            const result = await transformFileAsync(srcPath.append(file).path(), config);
 
-            const result = await transformFileAsync(srcPath, config);
-
-            if (result?.code) {
-              combinedCode += result.code;
-              await fs.writeFile(dstPath, result.code, 'utf8');
+            if (!result || !result.code) {
+              return;
             }
 
-            if (result?.map) {
-              await fs.writeFile(`${dstPath}.map`, result.code, 'utf8');
+            const outFile = buildPath
+              .append(file)
+              .path()
+              .replace(/(jsx|ts|tsx)$/, 'js');
+
+            await fs.ensureDir(path.dirname(outFile));
+
+            if (result.map) {
+              const map = {
+                ...result.map,
+                file: path.basename(outFile),
+                sourcesContent: null,
+              };
+
+              await fs.writeFile(`${outFile}.map`, JSON.stringify(map), 'utf8');
+
+              result.code += `\n//# sourceMappingURL=${path.basename(outFile)}.map`;
+            }
+
+            if (result.code) {
+              combinedCode += result.code;
+              await fs.writeFile(outFile, result.code, 'utf8');
             }
           }),
         );
@@ -190,13 +210,12 @@ export class BundleArtifact extends Artifact<BundleBuild> {
     const ext = format === 'cjs' || format === 'mjs' ? format : 'js';
     const folder = format === 'lib' && this.sharedLib ? `lib/${this.platform}` : format;
     const file = `${this.outputName}.${ext}`;
-    const path = `./${folder}/${file}`;
 
     return {
       ext,
       file,
       folder,
-      path,
+      path: `./${folder}/${file}`,
     };
   }
 
@@ -205,19 +224,19 @@ export class BundleArtifact extends Artifact<BundleBuild> {
     let libPath = '';
 
     this.builds.forEach(({ format }) => {
-      const { path } = this.getOutputMetadata(format);
+      const { path: filePath } = this.getOutputMetadata(format);
 
       if (format === 'mjs' || format === 'esm') {
-        paths.import = path;
+        paths.import = filePath;
       } else if (format === 'cjs') {
-        paths.require = path;
+        paths.require = filePath;
       } else if (format === 'lib') {
-        libPath = path;
+        libPath = filePath;
       }
 
       // Webpack and Rollup support
       if (format === 'esm') {
-        paths.module = path;
+        paths.module = filePath;
       }
     });
 
