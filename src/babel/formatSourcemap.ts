@@ -14,7 +14,7 @@ export function formatSourcemap(
 
   // Rollup sources are relative to the actual source file, while Babel
   // is just the name of the source file. Match Rollup's implementation.
-  if (data.sources.length > 0) {
+  if (data.sources?.length > 0) {
     data.sources = [path.relative(path.dirname(outFile), inFile)];
   }
 

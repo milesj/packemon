@@ -74,7 +74,7 @@ export class BundleArtifact extends Artifact<BundleBuild> {
   }
 
   async buildWithBabel(features: FeatureFlags): Promise<void> {
-    this.debug('Building bundle artifact with Bable');
+    this.debug('Building bundle artifact with Babel');
 
     const inputConfig = getBabelInputConfig(this, features);
     const packageRoot = this.package.path;
@@ -123,10 +123,9 @@ export class BundleArtifact extends Artifact<BundleBuild> {
               result.code += `\n//# sourceMappingURL=${path.basename(outFile)}.map`;
             }
 
-            if (result.code) {
-              combinedCode += result.code;
-              await fs.writeFile(outFile, result.code, 'utf8');
-            }
+            combinedCode += result.code;
+
+            await fs.writeFile(outFile, result.code, 'utf8');
           }),
         );
 

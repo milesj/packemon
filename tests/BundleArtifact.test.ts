@@ -1,12 +1,27 @@
 import fs from 'fs-extra';
 import { rollup } from 'rollup';
+import { transformFileAsync } from '@babel/core';
 import { Path } from '@boost/common';
 import { getFixturePath } from '@boost/test-utils';
+import { getBabelInputConfig, getBabelOutputConfig } from '../src/babel/config';
 import { BundleArtifact } from '../src/BundleArtifact';
 import { Package } from '../src/Package';
 import { Project } from '../src/Project';
 import { getRollupConfig } from '../src/rollup/config';
 import { mockSpy } from './helpers';
+
+jest.mock('../src/babel/config', () => ({
+  getBabelInputConfig: jest.fn(() => ({
+    input: true,
+    plugins: [],
+    presets: [],
+  })),
+  getBabelOutputConfig: jest.fn(() => ({
+    output: true,
+    plugins: [],
+    presets: [],
+  })),
+}));
 
 jest.mock('../src/rollup/config', () => ({
   getRollupConfig: jest.fn(() => ({
@@ -19,6 +34,7 @@ jest.mock('../src/rollup/config', () => ({
   })),
 }));
 
+jest.mock('@babel/core');
 jest.mock('fs-extra');
 jest.mock('rollup');
 
@@ -39,6 +55,8 @@ describe('BundleArtifact', () => {
     artifact.outputName = 'index';
     artifact.inputFile = 'src/index.ts';
     artifact.startup();
+
+    mockSpy(fs.writeFile).mockReset();
   });
 
   it('sets correct metadata', () => {
@@ -55,18 +73,7 @@ describe('BundleArtifact', () => {
   });
 
   describe('build()', () => {
-    let bundleWriteSpy: jest.SpyInstance;
-
     beforeEach(() => {
-      bundleWriteSpy = jest.fn(() => ({ output: [{ code: 'code' }] }));
-
-      mockSpy(rollup)
-        .mockReset()
-        .mockImplementation(() => ({
-          cache: { cache: true },
-          write: bundleWriteSpy,
-        }));
-
       jest
         .spyOn(artifact.package, 'getFeatureFlags')
         .mockImplementation(() => ({ typescript: true }));
@@ -78,44 +85,186 @@ describe('BundleArtifact', () => {
       );
     });
 
-    it('generates rollup config using input config', async () => {
-      await artifact.build({});
-
-      expect(getRollupConfig).toHaveBeenCalledWith(artifact, { typescript: true });
-      expect(rollup).toHaveBeenCalledWith({
+    describe('babel', () => {
+      const babelConfig = {
         input: true,
-        onwarn: expect.any(Function),
+        plugins: [],
+        presets: [],
+      };
+
+      beforeEach(() => {
+        artifact.bundle = false;
+
+        mockSpy(transformFileAsync).mockImplementation(() => ({ code: 'code' }));
+      });
+
+      it('generates babel config using input config', async () => {
+        await artifact.build({});
+
+        expect(getBabelInputConfig).toHaveBeenCalledWith(artifact, { typescript: true });
+        expect(getBabelOutputConfig).toHaveBeenCalledWith(artifact.builds[0], { typescript: true });
+        expect(getBabelOutputConfig).toHaveBeenCalledWith(artifact.builds[1], { typescript: true });
+        expect(getBabelOutputConfig).toHaveBeenCalledWith(artifact.builds[2], { typescript: true });
+        expect(transformFileAsync).toHaveBeenCalledWith(expect.any(String), babelConfig);
+      });
+
+      it('inherits `analyze` feature flag', async () => {
+        await artifact.build({ analyze: 'network' });
+
+        expect(getBabelInputConfig).toHaveBeenCalledWith(artifact, {
+          analyze: 'network',
+          typescript: true,
+        });
+      });
+
+      it('writes a file for every source file', async () => {
+        await artifact.build({});
+
+        expect(fs.writeFile).toHaveBeenCalledWith(
+          expect.stringContaining('lib/index.js'),
+          'code',
+          'utf8',
+        );
+        expect(transformFileAsync).toHaveBeenCalledWith(
+          expect.stringContaining('src/index.ts'),
+          babelConfig,
+        );
+        expect(artifact.builds[0].stats?.size).toBe(8);
+
+        expect(fs.writeFile).toHaveBeenCalledWith(
+          expect.stringContaining('cjs/index.cjs'),
+          'code',
+          'utf8',
+        );
+        expect(transformFileAsync).toHaveBeenCalledWith(
+          expect.stringContaining('src/index.ts'),
+          babelConfig,
+        );
+        expect(artifact.builds[1].stats?.size).toBe(8);
+
+        expect(fs.writeFile).toHaveBeenCalledWith(
+          expect.stringContaining('esm/index.js'),
+          'code',
+          'utf8',
+        );
+        expect(transformFileAsync).toHaveBeenCalledWith(
+          expect.stringContaining('src/index.ts'),
+          babelConfig,
+        );
+        expect(artifact.builds[2].stats?.size).toBe(8);
+      });
+
+      it('writes a source map for every file', async () => {
+        mockSpy(transformFileAsync).mockImplementation((file) => ({
+          code: 'code',
+          map: { sources: [file] },
+        }));
+
+        await artifact.build({});
+
+        expect(fs.writeFile).toHaveBeenCalledWith(
+          expect.stringMatching(/lib\/sub\/test\.js\.map$/),
+          JSON.stringify({
+            sources: ['../../src/sub/test.ts'],
+            file: 'test.js',
+            sourcesContent: null,
+          }),
+          'utf8',
+        );
+
+        expect(fs.writeFile).toHaveBeenCalledWith(
+          expect.stringMatching(/lib\/sub\/test\.js$/),
+          'code\n//# sourceMappingURL=test.js.map',
+          'utf8',
+        );
+      });
+
+      it('writes a file with the correct extension based on format', async () => {
+        artifact.builds.push({ format: 'mjs', platform: 'node', support: 'experimental' });
+
+        await artifact.build({});
+
+        expect(fs.writeFile).toHaveBeenCalledWith(
+          expect.stringContaining('lib/index.js'),
+          'code',
+          'utf8',
+        );
+
+        expect(fs.writeFile).toHaveBeenCalledWith(
+          expect.stringContaining('cjs/index.cjs'),
+          'code',
+          'utf8',
+        );
+
+        expect(fs.writeFile).toHaveBeenCalledWith(
+          expect.stringContaining('esm/index.js'),
+          'code',
+          'utf8',
+        );
+
+        expect(fs.writeFile).toHaveBeenCalledWith(
+          expect.stringContaining('mjs/index.mjs'),
+          'code',
+          'utf8',
+        );
       });
     });
 
-    it('inherits `analyze` feature flag', async () => {
-      await artifact.build({ analyze: 'network' });
+    describe('rollup', () => {
+      let bundleWriteSpy: jest.SpyInstance;
 
-      expect(getRollupConfig).toHaveBeenCalledWith(artifact, {
-        analyze: 'network',
-        typescript: true,
+      beforeEach(() => {
+        artifact.bundle = true;
+
+        bundleWriteSpy = jest.fn(() => ({ output: [{ code: 'code' }] }));
+
+        mockSpy(rollup)
+          .mockReset()
+          .mockImplementation(() => ({
+            cache: { cache: true },
+            write: bundleWriteSpy,
+          }));
       });
-    });
 
-    it('sets rollup cache on artifact', async () => {
-      expect(artifact.cache).toBeUndefined();
+      it('generates rollup config using input config', async () => {
+        await artifact.build({});
 
-      await artifact.build({});
+        expect(getRollupConfig).toHaveBeenCalledWith(artifact, { typescript: true });
+        expect(rollup).toHaveBeenCalledWith({
+          input: true,
+          onwarn: expect.any(Function),
+        });
+      });
 
-      expect(artifact.cache).toEqual({ cache: true });
-    });
+      it('inherits `analyze` feature flag', async () => {
+        await artifact.build({ analyze: 'network' });
 
-    it('writes a bundle and stats for each build', async () => {
-      await artifact.build({});
+        expect(getRollupConfig).toHaveBeenCalledWith(artifact, {
+          analyze: 'network',
+          typescript: true,
+        });
+      });
 
-      expect(bundleWriteSpy).toHaveBeenCalledWith({ a: true });
-      expect(artifact.builds[0].stats?.size).toBe(4);
+      it('sets rollup cache on artifact', async () => {
+        expect(artifact.cache).toBeUndefined();
 
-      expect(bundleWriteSpy).toHaveBeenCalledWith({ b: true });
-      expect(artifact.builds[1].stats?.size).toBe(4);
+        await artifact.build({});
 
-      expect(bundleWriteSpy).toHaveBeenCalledWith({ c: true });
-      expect(artifact.builds[2].stats?.size).toBe(4);
+        expect(artifact.cache).toEqual({ cache: true });
+      });
+
+      it('writes a bundle and stats for each build', async () => {
+        await artifact.build({});
+
+        expect(bundleWriteSpy).toHaveBeenCalledWith({ a: true });
+        expect(artifact.builds[0].stats?.size).toBe(4);
+
+        expect(bundleWriteSpy).toHaveBeenCalledWith({ b: true });
+        expect(artifact.builds[1].stats?.size).toBe(4);
+
+        expect(bundleWriteSpy).toHaveBeenCalledWith({ c: true });
+        expect(artifact.builds[2].stats?.size).toBe(4);
+      });
     });
 
     describe('engines', () => {

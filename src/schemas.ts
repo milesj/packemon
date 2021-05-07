@@ -58,7 +58,11 @@ const support = string<Support>(DEFAULT_SUPPORT).oneOf(SUPPORTS);
 // BLUEPRINTS
 
 export const packemonBlueprint: Blueprint<PackemonPackageConfig> = {
-  bundle: bool(true),
+  bundle: bool(true).custom<PackemonPackageConfig>((bundle, shape) => {
+    if (!bundle && toArray(shape.struct.format).includes('umd')) {
+      throw new Error('UMD format cannot be used unless `bundle` is true.');
+    }
+  }),
   format: union([array(format), format], []),
   inputs: object(string(), { index: DEFAULT_INPUT }).custom((obj) => {
     Object.keys(obj).forEach((key) => {
