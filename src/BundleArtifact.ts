@@ -7,6 +7,7 @@ import { Path, toArray } from '@boost/common';
 import { createDebugger, Debugger } from '@boost/debug';
 import { Artifact } from './Artifact';
 import { getBabelInputConfig, getBabelOutputConfig } from './babel/config';
+import { formatSourcemap } from './babel/formatSourcemap';
 import { DEFAULT_FORMAT, NODE_SUPPORTED_VERSIONS, NPM_SUPPORTED_VERSIONS } from './constants';
 import { getRollupConfig } from './rollup/config';
 import {
@@ -92,32 +93,32 @@ export class BundleArtifact extends Artifact<BundleBuild> {
           plugins: [...inputConfig.plugins!, ...outputConfig.plugins!],
           presets: [...outputConfig.presets!, ...inputConfig.presets!],
         };
-        const buildPath = packageRoot.append(build.format);
         let combinedCode = '';
 
         await Promise.all(
           srcFiles.map(async (file) => {
-            const result = await transformFileAsync(srcPath.append(file).path(), config);
+            const inFile = srcPath.append(file).path();
+            const result = await transformFileAsync(inFile, config);
 
             if (!result || !result.code) {
               return;
             }
 
-            const outFile = buildPath
+            const outMetadata = this.getOutputMetadata(build.format);
+            const outFile = packageRoot
+              .append(outMetadata.folder)
               .append(file)
               .path()
-              .replace(/(jsx|ts|tsx)$/, 'js');
+              .replace(/(js|jsx|ts|tsx)$/, outMetadata.ext);
 
             await fs.ensureDir(path.dirname(outFile));
 
             if (result.map) {
-              const map = {
-                ...result.map,
-                file: path.basename(outFile),
-                sourcesContent: null,
-              };
-
-              await fs.writeFile(`${outFile}.map`, JSON.stringify(map), 'utf8');
+              await fs.writeFile(
+                `${outFile}.map`,
+                formatSourcemap(result.map, inFile, outFile),
+                'utf8',
+              );
 
               result.code += `\n//# sourceMappingURL=${path.basename(outFile)}.map`;
             }

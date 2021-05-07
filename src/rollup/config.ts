@@ -9,6 +9,7 @@ import resolve from '@rollup/plugin-node-resolve';
 import { getBabelInputConfig, getBabelOutputConfig } from '../babel/config';
 import type { BundleArtifact } from '../BundleArtifact';
 import { EXCLUDE, EXTENSIONS } from '../constants';
+import { getOutputBanner } from '../helpers/getOutputBanner';
 import { BundleBuild, FeatureFlags, Format } from '../types';
 
 const sharedPlugins = [
@@ -90,7 +91,7 @@ export function getRollupOutputConfig(
   features: FeatureFlags,
   build: BundleBuild,
 ): OutputOptions {
-  const { format, platform, support } = build;
+  const { format, support } = build;
   const name = artifact.outputName;
   const { ext, folder } = artifact.getOutputMetadata(format);
   const isTest = process.env.NODE_ENV === 'test';
@@ -130,11 +131,7 @@ export function getRollupOutputConfig(
 
   // Automatically prepend a shebang for binaries
   output.banner = artifact.outputName === 'bin' ? '#!/usr/bin/env node\n\n' : '';
-
-  output.banner += [
-    '// Generated with Packemon: https://packemon.dev\n',
-    `// Platform: ${platform}, Support: ${support}, Format: ${format}\n\n`,
-  ].join('');
+  output.banner += getOutputBanner(build);
 
   return output;
 }
