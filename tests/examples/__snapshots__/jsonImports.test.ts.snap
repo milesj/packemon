@@ -10,9 +10,14 @@ Array [
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-
-const data = require('./index-node-current-cjs2.cjs'); // @ts-expect-error resolveJsonModule is not on
-
+const data = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+}; // @ts-expect-error resolveJsonModule is not on
 
 const keys = Object.keys(data);
 exports.keys = keys;
@@ -23,27 +28,6 @@ exports.keys = keys;
 
 exports[`JSON imports transforms example test case 2`] = `
 Array [
-  "/cjs/index-node-current-cjs2.cjs",
-  "// Generated with Packemon: https://packemon.dev
-// Platform: node, Support: current, Format: cjs
-'use strict';
-
-const data = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
-  number: 123,
-  string: \\"abc\\",
-  object: {
-    foo: true
-  }
-};
-module.exports = data;
-//# sourceMappingURL=index-node-current-cjs2.cjs.map
-",
-]
-`;
-
-exports[`JSON imports transforms example test case 3`] = `
-Array [
   "/cjs/index-node-experimental-cjs.cjs",
   "// Generated with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: cjs
@@ -52,9 +36,14 @@ Array [
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-
-const data = require('./index-node-experimental-cjs2.cjs'); // @ts-expect-error resolveJsonModule is not on
-
+const data = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+}; // @ts-expect-error resolveJsonModule is not on
 
 const keys = Object.keys(data);
 exports.keys = keys;
@@ -63,28 +52,7 @@ exports.keys = keys;
 ]
 `;
 
-exports[`JSON imports transforms example test case 4`] = `
-Array [
-  "/cjs/index-node-experimental-cjs2.cjs",
-  "// Generated with Packemon: https://packemon.dev
-// Platform: node, Support: experimental, Format: cjs
-'use strict';
-
-const data = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
-  number: 123,
-  string: \\"abc\\",
-  object: {
-    foo: true
-  }
-};
-module.exports = data;
-//# sourceMappingURL=index-node-experimental-cjs2.cjs.map
-",
-]
-`;
-
-exports[`JSON imports transforms example test case 5`] = `
+exports[`JSON imports transforms example test case 3`] = `
 Array [
   "/cjs/index-node-legacy-cjs.cjs",
   "// Generated with Packemon: https://packemon.dev
@@ -94,9 +62,14 @@ Array [
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-
-var data = require('./index-node-legacy-cjs2.cjs'); // @ts-expect-error resolveJsonModule is not on
-
+var data = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+}; // @ts-expect-error resolveJsonModule is not on
 
 const keys = Object.keys(data);
 exports.keys = keys;
@@ -105,28 +78,7 @@ exports.keys = keys;
 ]
 `;
 
-exports[`JSON imports transforms example test case 6`] = `
-Array [
-  "/cjs/index-node-legacy-cjs2.cjs",
-  "// Generated with Packemon: https://packemon.dev
-// Platform: node, Support: legacy, Format: cjs
-'use strict';
-
-var data = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
-  number: 123,
-  string: \\"abc\\",
-  object: {
-    foo: true
-  }
-};
-module.exports = data;
-//# sourceMappingURL=index-node-legacy-cjs2.cjs.map
-",
-]
-`;
-
-exports[`JSON imports transforms example test case 7`] = `
+exports[`JSON imports transforms example test case 4`] = `
 Array [
   "/cjs/index-node-stable-cjs.cjs",
   "// Generated with Packemon: https://packemon.dev
@@ -136,9 +88,14 @@ Array [
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-
-var data = require('./index-node-stable-cjs2.cjs'); // @ts-expect-error resolveJsonModule is not on
-
+var data = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+}; // @ts-expect-error resolveJsonModule is not on
 
 const keys = Object.keys(data);
 exports.keys = keys;
@@ -147,28 +104,7 @@ exports.keys = keys;
 ]
 `;
 
-exports[`JSON imports transforms example test case 8`] = `
-Array [
-  "/cjs/index-node-stable-cjs2.cjs",
-  "// Generated with Packemon: https://packemon.dev
-// Platform: node, Support: stable, Format: cjs
-'use strict';
-
-var data = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
-  number: 123,
-  string: \\"abc\\",
-  object: {
-    foo: true
-  }
-};
-module.exports = data;
-//# sourceMappingURL=index-node-stable-cjs2.cjs.map
-",
-]
-`;
-
-exports[`JSON imports transforms example test case 9`] = `
+exports[`JSON imports transforms example test case 5`] = `
 Array [
   "/esm/index-browser-current-esm.js",
   "// Generated with Packemon: https://packemon.dev
@@ -189,7 +125,7 @@ export { keys };
 ]
 `;
 
-exports[`JSON imports transforms example test case 10`] = `
+exports[`JSON imports transforms example test case 6`] = `
 Array [
   "/esm/index-browser-experimental-esm.js",
   "// Generated with Packemon: https://packemon.dev
@@ -210,7 +146,7 @@ export { keys };
 ]
 `;
 
-exports[`JSON imports transforms example test case 11`] = `
+exports[`JSON imports transforms example test case 7`] = `
 Array [
   "/esm/index-browser-legacy-esm.js",
   "// Generated with Packemon: https://packemon.dev
@@ -231,7 +167,7 @@ export { keys };
 ]
 `;
 
-exports[`JSON imports transforms example test case 12`] = `
+exports[`JSON imports transforms example test case 8`] = `
 Array [
   "/esm/index-browser-stable-esm.js",
   "// Generated with Packemon: https://packemon.dev
@@ -252,7 +188,7 @@ export { keys };
 ]
 `;
 
-exports[`JSON imports transforms example test case 13`] = `
+exports[`JSON imports transforms example test case 9`] = `
 Array [
   "/lib/index-browser-current-lib.js",
   "// Generated with Packemon: https://packemon.dev
@@ -278,7 +214,7 @@ exports.keys = keys;
 ]
 `;
 
-exports[`JSON imports transforms example test case 14`] = `
+exports[`JSON imports transforms example test case 10`] = `
 Array [
   "/lib/index-browser-experimental-lib.js",
   "// Generated with Packemon: https://packemon.dev
@@ -304,7 +240,7 @@ exports.keys = keys;
 ]
 `;
 
-exports[`JSON imports transforms example test case 15`] = `
+exports[`JSON imports transforms example test case 11`] = `
 Array [
   "/lib/index-browser-legacy-lib.js",
   "// Generated with Packemon: https://packemon.dev
@@ -330,7 +266,7 @@ exports.keys = keys;
 ]
 `;
 
-exports[`JSON imports transforms example test case 16`] = `
+exports[`JSON imports transforms example test case 12`] = `
 Array [
   "/lib/index-browser-stable-lib.js",
   "// Generated with Packemon: https://packemon.dev
@@ -356,7 +292,7 @@ exports.keys = keys;
 ]
 `;
 
-exports[`JSON imports transforms example test case 17`] = `
+exports[`JSON imports transforms example test case 13`] = `
 Array [
   "/lib/index-native-current-lib.js",
   "// Generated with Packemon: https://packemon.dev
@@ -382,7 +318,7 @@ exports.keys = keys;
 ]
 `;
 
-exports[`JSON imports transforms example test case 18`] = `
+exports[`JSON imports transforms example test case 14`] = `
 Array [
   "/lib/index-native-experimental-lib.js",
   "// Generated with Packemon: https://packemon.dev
@@ -408,7 +344,7 @@ exports.keys = keys;
 ]
 `;
 
-exports[`JSON imports transforms example test case 19`] = `
+exports[`JSON imports transforms example test case 15`] = `
 Array [
   "/lib/index-native-legacy-lib.js",
   "// Generated with Packemon: https://packemon.dev
@@ -434,7 +370,7 @@ exports.keys = keys;
 ]
 `;
 
-exports[`JSON imports transforms example test case 20`] = `
+exports[`JSON imports transforms example test case 16`] = `
 Array [
   "/lib/index-native-stable-lib.js",
   "// Generated with Packemon: https://packemon.dev
@@ -460,7 +396,7 @@ exports.keys = keys;
 ]
 `;
 
-exports[`JSON imports transforms example test case 21`] = `
+exports[`JSON imports transforms example test case 17`] = `
 Array [
   "/lib/index-node-current-lib.js",
   "// Generated with Packemon: https://packemon.dev
@@ -470,9 +406,14 @@ Array [
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-
-const data = require('./index-node-current-lib2.js'); // @ts-expect-error resolveJsonModule is not on
-
+const data = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+}; // @ts-expect-error resolveJsonModule is not on
 
 const keys = Object.keys(data);
 exports.keys = keys;
@@ -481,28 +422,7 @@ exports.keys = keys;
 ]
 `;
 
-exports[`JSON imports transforms example test case 22`] = `
-Array [
-  "/lib/index-node-current-lib2.js",
-  "// Generated with Packemon: https://packemon.dev
-// Platform: node, Support: current, Format: lib
-'use strict';
-
-const data = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
-  number: 123,
-  string: \\"abc\\",
-  object: {
-    foo: true
-  }
-};
-module.exports = data;
-//# sourceMappingURL=index-node-current-lib2.js.map
-",
-]
-`;
-
-exports[`JSON imports transforms example test case 23`] = `
+exports[`JSON imports transforms example test case 18`] = `
 Array [
   "/lib/index-node-experimental-lib.js",
   "// Generated with Packemon: https://packemon.dev
@@ -512,9 +432,14 @@ Array [
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-
-const data = require('./index-node-experimental-lib2.js'); // @ts-expect-error resolveJsonModule is not on
-
+const data = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+}; // @ts-expect-error resolveJsonModule is not on
 
 const keys = Object.keys(data);
 exports.keys = keys;
@@ -523,28 +448,7 @@ exports.keys = keys;
 ]
 `;
 
-exports[`JSON imports transforms example test case 24`] = `
-Array [
-  "/lib/index-node-experimental-lib2.js",
-  "// Generated with Packemon: https://packemon.dev
-// Platform: node, Support: experimental, Format: lib
-'use strict';
-
-const data = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
-  number: 123,
-  string: \\"abc\\",
-  object: {
-    foo: true
-  }
-};
-module.exports = data;
-//# sourceMappingURL=index-node-experimental-lib2.js.map
-",
-]
-`;
-
-exports[`JSON imports transforms example test case 25`] = `
+exports[`JSON imports transforms example test case 19`] = `
 Array [
   "/lib/index-node-legacy-lib.js",
   "// Generated with Packemon: https://packemon.dev
@@ -554,9 +458,14 @@ Array [
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-
-var data = require('./index-node-legacy-lib2.js'); // @ts-expect-error resolveJsonModule is not on
-
+var data = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+}; // @ts-expect-error resolveJsonModule is not on
 
 const keys = Object.keys(data);
 exports.keys = keys;
@@ -565,28 +474,7 @@ exports.keys = keys;
 ]
 `;
 
-exports[`JSON imports transforms example test case 26`] = `
-Array [
-  "/lib/index-node-legacy-lib2.js",
-  "// Generated with Packemon: https://packemon.dev
-// Platform: node, Support: legacy, Format: lib
-'use strict';
-
-var data = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
-  number: 123,
-  string: \\"abc\\",
-  object: {
-    foo: true
-  }
-};
-module.exports = data;
-//# sourceMappingURL=index-node-legacy-lib2.js.map
-",
-]
-`;
-
-exports[`JSON imports transforms example test case 27`] = `
+exports[`JSON imports transforms example test case 20`] = `
 Array [
   "/lib/index-node-stable-lib.js",
   "// Generated with Packemon: https://packemon.dev
@@ -596,9 +484,14 @@ Array [
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-
-var data = require('./index-node-stable-lib2.js'); // @ts-expect-error resolveJsonModule is not on
-
+var data = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+}; // @ts-expect-error resolveJsonModule is not on
 
 const keys = Object.keys(data);
 exports.keys = keys;
@@ -607,33 +500,19 @@ exports.keys = keys;
 ]
 `;
 
-exports[`JSON imports transforms example test case 28`] = `
+exports[`JSON imports transforms example test case 21`] = `
 Array [
-  "/lib/index-node-stable-lib2.js",
+  "/mjs/index-node-current-mjs.mjs",
   "// Generated with Packemon: https://packemon.dev
-// Platform: node, Support: stable, Format: lib
-'use strict';
-
-var data = {
+// Platform: node, Support: current, Format: mjs
+const data = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
   number: 123,
   string: \\"abc\\",
   object: {
     foo: true
   }
-};
-module.exports = data;
-//# sourceMappingURL=index-node-stable-lib2.js.map
-",
-]
-`;
-
-exports[`JSON imports transforms example test case 29`] = `
-Array [
-  "/mjs/index-node-current-mjs.mjs",
-  "// Generated with Packemon: https://packemon.dev
-// Platform: node, Support: current, Format: mjs
-import data from './index-node-current-mjs2.mjs'; // @ts-expect-error resolveJsonModule is not on
+}; // @ts-expect-error resolveJsonModule is not on
 
 const keys = Object.keys(data);
 export { keys };
@@ -642,11 +521,11 @@ export { keys };
 ]
 `;
 
-exports[`JSON imports transforms example test case 30`] = `
+exports[`JSON imports transforms example test case 22`] = `
 Array [
-  "/mjs/index-node-current-mjs2.mjs",
+  "/mjs/index-node-experimental-mjs.mjs",
   "// Generated with Packemon: https://packemon.dev
-// Platform: node, Support: current, Format: mjs
+// Platform: node, Support: experimental, Format: mjs
 const data = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
   number: 123,
@@ -654,19 +533,7 @@ const data = {
   object: {
     foo: true
   }
-};
-export default data;
-//# sourceMappingURL=index-node-current-mjs2.mjs.map
-",
-]
-`;
-
-exports[`JSON imports transforms example test case 31`] = `
-Array [
-  "/mjs/index-node-experimental-mjs.mjs",
-  "// Generated with Packemon: https://packemon.dev
-// Platform: node, Support: experimental, Format: mjs
-import data from './index-node-experimental-mjs2.mjs'; // @ts-expect-error resolveJsonModule is not on
+}; // @ts-expect-error resolveJsonModule is not on
 
 const keys = Object.keys(data);
 export { keys };
@@ -675,31 +542,19 @@ export { keys };
 ]
 `;
 
-exports[`JSON imports transforms example test case 32`] = `
+exports[`JSON imports transforms example test case 23`] = `
 Array [
-  "/mjs/index-node-experimental-mjs2.mjs",
+  "/mjs/index-node-legacy-mjs.mjs",
   "// Generated with Packemon: https://packemon.dev
-// Platform: node, Support: experimental, Format: mjs
-const data = {
+// Platform: node, Support: legacy, Format: mjs
+var data = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
   number: 123,
   string: \\"abc\\",
   object: {
     foo: true
   }
-};
-export default data;
-//# sourceMappingURL=index-node-experimental-mjs2.mjs.map
-",
-]
-`;
-
-exports[`JSON imports transforms example test case 33`] = `
-Array [
-  "/mjs/index-node-legacy-mjs.mjs",
-  "// Generated with Packemon: https://packemon.dev
-// Platform: node, Support: legacy, Format: mjs
-import data from './index-node-legacy-mjs2.mjs'; // @ts-expect-error resolveJsonModule is not on
+}; // @ts-expect-error resolveJsonModule is not on
 
 const keys = Object.keys(data);
 export { keys };
@@ -708,11 +563,11 @@ export { keys };
 ]
 `;
 
-exports[`JSON imports transforms example test case 34`] = `
+exports[`JSON imports transforms example test case 24`] = `
 Array [
-  "/mjs/index-node-legacy-mjs2.mjs",
+  "/mjs/index-node-stable-mjs.mjs",
   "// Generated with Packemon: https://packemon.dev
-// Platform: node, Support: legacy, Format: mjs
+// Platform: node, Support: stable, Format: mjs
 var data = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
   number: 123,
@@ -720,19 +575,7 @@ var data = {
   object: {
     foo: true
   }
-};
-export default data;
-//# sourceMappingURL=index-node-legacy-mjs2.mjs.map
-",
-]
-`;
-
-exports[`JSON imports transforms example test case 35`] = `
-Array [
-  "/mjs/index-node-stable-mjs.mjs",
-  "// Generated with Packemon: https://packemon.dev
-// Platform: node, Support: stable, Format: mjs
-import data from './index-node-stable-mjs2.mjs'; // @ts-expect-error resolveJsonModule is not on
+}; // @ts-expect-error resolveJsonModule is not on
 
 const keys = Object.keys(data);
 export { keys };
@@ -741,26 +584,7 @@ export { keys };
 ]
 `;
 
-exports[`JSON imports transforms example test case 36`] = `
-Array [
-  "/mjs/index-node-stable-mjs2.mjs",
-  "// Generated with Packemon: https://packemon.dev
-// Platform: node, Support: stable, Format: mjs
-var data = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
-  number: 123,
-  string: \\"abc\\",
-  object: {
-    foo: true
-  }
-};
-export default data;
-//# sourceMappingURL=index-node-stable-mjs2.mjs.map
-",
-]
-`;
-
-exports[`JSON imports transforms example test case 37`] = `
+exports[`JSON imports transforms example test case 25`] = `
 Array [
   "/package.json",
   Object {
@@ -777,7 +601,7 @@ Array [
 ]
 `;
 
-exports[`JSON imports transforms example test case 38`] = `
+exports[`JSON imports transforms example test case 26`] = `
 Array [
   "/umd/index-browser-current-umd.js",
   "(function (global, factory) {
@@ -818,7 +642,7 @@ Array [
 ]
 `;
 
-exports[`JSON imports transforms example test case 39`] = `
+exports[`JSON imports transforms example test case 27`] = `
 Array [
   "/umd/index-browser-experimental-umd.js",
   "(function (global, factory) {
@@ -859,7 +683,7 @@ Array [
 ]
 `;
 
-exports[`JSON imports transforms example test case 40`] = `
+exports[`JSON imports transforms example test case 28`] = `
 Array [
   "/umd/index-browser-legacy-umd.js",
   "(function (global, factory) {
@@ -900,7 +724,7 @@ Array [
 ]
 `;
 
-exports[`JSON imports transforms example test case 41`] = `
+exports[`JSON imports transforms example test case 29`] = `
 Array [
   "/umd/index-browser-stable-umd.js",
   "(function (global, factory) {

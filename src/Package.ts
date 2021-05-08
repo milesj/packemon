@@ -162,7 +162,7 @@ export class Package {
   @Memoize()
   getSourceFiles(): string[] {
     return glob.sync('src/**/*.{js,jsx,ts,tsx}', {
-      absolute: false,
+      absolute: true,
       cwd: this.path.path(),
       onlyFiles: true,
     });
@@ -234,7 +234,7 @@ export class Package {
         }
 
         if (!bundle && Object.keys(config.inputs).length > 1) {
-          throw new Error('Only 1 `input` can be defined when `bundle` is false.');
+          throw new Error('Only 1 `inputs` can be defined when `bundle` is false.');
         }
 
         this.configs.push({

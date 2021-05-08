@@ -30,6 +30,8 @@ To make use of this functionality, you must define an [input](./config.md#inputs
 The contents of the binary source file can be whatever you want, but do be aware that code in the
 module scope will be executed immediately when the file is executed by Node.js.
 
+> This functionality does _not_ work when `bundle` is false!
+
 ## Referencing sibling inputs
 
 Coming soon...

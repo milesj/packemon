@@ -127,7 +127,7 @@ describe('getRollupConfig()', () => {
           paths: {},
           plugins: [`babelOutput(${fixturePath}, *)`],
           preferConst: false,
-          preserveModules: true,
+          preserveModules: false,
           sourcemap: true,
           sourcemapExcludeSources: true,
         },
@@ -173,13 +173,13 @@ describe('getRollupConfig()', () => {
           paths: {},
           plugins: [`babelOutput(${fixturePath}, *)`],
           preferConst: true,
-          preserveModules: true,
+          preserveModules: false,
           sourcemap: true,
           sourcemapExcludeSources: true,
         },
       ],
       plugins: sharedPlugins,
-      treeshake: false,
+      treeshake: true,
     });
   });
 
@@ -207,13 +207,49 @@ describe('getRollupConfig()', () => {
           paths: {},
           plugins: [`babelOutput(${fixturePath}, *)`],
           preferConst: false,
-          preserveModules: true,
+          preserveModules: false,
           sourcemap: true,
           sourcemapExcludeSources: true,
         },
       ],
       plugins: sharedPlugins,
       treeshake: true,
+    });
+  });
+
+  it('when not bundling, globs all source files, preserves modules, and doesnt treeshake', () => {
+    artifact.bundle = false;
+    artifact.builds.push({ format: 'lib', platform: 'node', support: 'stable' });
+
+    expect(getRollupConfig(artifact, {})).toEqual({
+      cache: undefined,
+      external: expect.any(Function),
+      input: [
+        'src/index.ts',
+        'src/client/index.ts',
+        'src/other/index.ts',
+        'src/server/core.ts',
+        'src/test-utils/base.ts',
+      ].map((f) => fixturePath.append(f).path()),
+      output: [
+        {
+          assetFileNames: '../assets/[name]-[hash][extname]',
+          chunkFileNames: 'index-[hash].js',
+          dir: fixturePath.append('lib').path(),
+          entryFileNames: 'index.js',
+          exports: 'auto',
+          format: 'cjs',
+          originalFormat: 'lib',
+          paths: {},
+          plugins: [`babelOutput(${fixturePath}, *)`],
+          preferConst: false,
+          preserveModules: true,
+          sourcemap: true,
+          sourcemapExcludeSources: true,
+        },
+      ],
+      plugins: sharedPlugins,
+      treeshake: false,
     });
   });
 
@@ -312,7 +348,7 @@ describe('getRollupOutputConfig()', () => {
       paths: {},
       plugins: [`babelOutput(${fixturePath}, *)`],
       preferConst: false,
-      preserveModules: true,
+      preserveModules: false,
       sourcemap: true,
       sourcemapExcludeSources: true,
     });
