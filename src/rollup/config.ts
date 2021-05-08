@@ -1,9 +1,7 @@
-import glob from 'fast-glob';
 import { ModuleFormat, OutputOptions, RollupOptions } from 'rollup';
 import externals from 'rollup-plugin-node-externals';
 import nodePolyfills from 'rollup-plugin-polyfill-node';
 import visualizer from 'rollup-plugin-visualizer';
-import { Path } from '@boost/common';
 import { getBabelInputPlugin, getBabelOutputPlugin } from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
@@ -97,10 +95,9 @@ export function getRollupOutputConfig(
   build: BundleBuild,
 ): OutputOptions {
   const { format, platform, support } = build;
-  const name = artifact.outputName;
   const { ext, folder } = artifact.getOutputMetadata(format);
+  const name = artifact.outputName;
   const isTest = process.env.NODE_ENV === 'test';
-  const preserve = !artifact.bundle;
 
   const output: OutputOptions = {
     dir: artifact.package.path.append(folder).path(),
@@ -110,9 +107,9 @@ export function getRollupOutputConfig(
     paths: getRollupPaths(artifact, ext),
     // Use our extension for file names
     assetFileNames: '../assets/[name]-[hash][extname]',
-    chunkFileNames: preserve && !isTest ? `[name]-[hash].${ext}` : `${name}-[hash].${ext}`,
-    entryFileNames: preserve && !isTest ? `[name].${ext}` : `${name}.${ext}`,
-    preserveModules: preserve,
+    chunkFileNames: isTest ? `${name}-[hash].${ext}` : `[name]-[hash].${ext}`,
+    entryFileNames: isTest ? `${name}.${ext}` : `[name].${ext}`,
+    preserveModules: !artifact.bundle,
     // Use const when not supporting new targets
     preferConst: support === 'current' || support === 'experimental',
     // Output specific plugins
@@ -137,33 +134,26 @@ export function getRollupOutputConfig(
   }
 
   // Automatically prepend a shebang for binaries
-  output.banner = artifact.outputName === 'bin' ? '#!/usr/bin/env node\n\n' : '';
+  if (artifact.bundle) {
+    output.banner = artifact.outputName === 'bin' ? '#!/usr/bin/env node\n\n' : '';
 
-  output.banner += [
-    '// Generated with Packemon: https://packemon.dev\n',
-    `// Platform: ${platform}, Support: ${support}, Format: ${format}\n\n`,
-  ].join('');
+    output.banner += [
+      '// Generated with Packemon: https://packemon.dev\n',
+      `// Platform: ${platform}, Support: ${support}, Format: ${format}\n\n`,
+    ].join('');
+  }
 
   return output;
 }
 
-function globSourceFiles(packagePath: Path): string[] {
-  return glob.sync('src/**/*.{js,jsx,ts,tsx}', {
-    absolute: false,
-    cwd: packagePath.path(),
-    onlyFiles: true,
-  });
-}
-
 export function getRollupConfig(artifact: BundleArtifact, features: FeatureFlags): RollupOptions {
-  const inputPath = artifact.getInputPath();
   const packagePath = artifact.package.packageJsonPath.path();
   const isNode = artifact.platform === 'node';
 
   const config: RollupOptions = {
     cache: artifact.cache,
     external: getRollupExternals(artifact),
-    input: artifact.bundle ? inputPath.path() : globSourceFiles(artifact.package.path),
+    input: artifact.bundle ? artifact.getInputPath().path() : artifact.package.getSourceFiles(),
     output: [],
     // Shared output plugins
     plugins: [
@@ -190,8 +180,7 @@ export function getRollupConfig(artifact: BundleArtifact, features: FeatureFlags
       }),
     ],
     // Treeshake for smaller builds
-    // Only apply when not bundling so we dont lose information
-    treeshake: !artifact.bundle,
+    treeshake: artifact.bundle,
   };
 
   // Polyfill node modules when platform is not node
