@@ -767,6 +767,24 @@ describe('Package', () => {
           './package.json': './package.json',
         });
       });
+
+      it('merges with existing exports', async () => {
+        pkg.packageJson.exports = {
+          './foo': './lib/foo.js',
+        };
+
+        pkg.addArtifact(
+          createBundleArtifact([{ format: 'lib', platform: 'node', support: 'stable' }]),
+        );
+
+        await pkg.build({ addExports: true });
+
+        expect(pkg.packageJson.exports).toEqual({
+          '.': { node: './lib/index.js' },
+          './foo': './lib/foo.js',
+          './package.json': './package.json',
+        });
+      });
     });
   });
 
@@ -1191,6 +1209,21 @@ describe('Package', () => {
             inputs: {
               'foo bar': 'src/foo.ts',
             },
+          },
+        ]);
+      }).toThrowErrorMatchingSnapshot();
+    });
+
+    it('errors if multiple inputs are passed when `bundle` is false', () => {
+      expect(() => {
+        pkg.setConfigs([
+          {
+            bundle: false,
+            inputs: {
+              index: 'src/index.ts',
+              other: 'src/other.ts',
+            },
+            platform: 'node',
           },
         ]);
       }).toThrowErrorMatchingSnapshot();

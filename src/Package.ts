@@ -400,7 +400,11 @@ export class Package {
       }
     });
 
-    this.packageJson.exports = exportMap as PackageStructure['exports'];
+    if (isObject(this.packageJson.exports)) {
+      Object.assign(this.packageJson.exports, exportMap);
+    } else {
+      this.packageJson.exports = exportMap as PackageStructure['exports'];
+    }
   }
 
   protected getSourceFileExts(inputFile: string): string[] {

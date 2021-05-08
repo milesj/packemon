@@ -39,6 +39,7 @@
     "src/**/*.{ts,tsx,json}"
   ],
   "exports": {
+    "./babel": "./lib/babel.js",
     "./package.json": "./package.json",
     ".": {
       "node": "./lib/index.js",
