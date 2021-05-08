@@ -7,6 +7,8 @@ import { getRollupConfig } from './rollup/config';
 import { BuildOptions, BundleBuild, Format, PackageExportPaths, Platform, Support } from './types';
 
 export class BundleArtifact extends Artifact<BundleBuild> {
+  bundle: boolean = true;
+
   cache?: RollupCache;
 
   // Config object in which inputs are grouped in
