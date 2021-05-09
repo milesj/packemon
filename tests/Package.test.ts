@@ -6,7 +6,7 @@ import { Package } from '../src/Package';
 import { Project } from '../src/Project';
 import { BundleBuild, TypesBuild } from '../src/types';
 import { TypesArtifact } from '../src/TypesArtifact';
-import { TestArtifact } from './helpers';
+import { createProjectPackage, TestArtifact } from './helpers';
 
 describe('Package', () => {
   const fixturePath = getFixturePath('workspaces-feature-flags');
@@ -42,11 +42,7 @@ describe('Package', () => {
   function loadPackage(name: string, customProject?: Project): Package {
     const pkgPath = new Path(fixturePath, 'packages', name);
 
-    return new Package(
-      customProject ?? project,
-      pkgPath,
-      fs.readJsonSync(pkgPath.append('package.json').path()),
-    );
+    return createProjectPackage(pkgPath, customProject ?? project);
   }
 
   beforeEach(() => {
