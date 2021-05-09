@@ -25,15 +25,25 @@ export function getVersionsCombo(platforms: Platform[], support: Support): Set<s
   const versions = new Set<string>();
 
   platforms.forEach((platform) => {
-    if (platform === 'native') {
-      versions.add(`Native (${trimVersion(NATIVE_TARGETS[support])})`);
-    } else if (platform === 'node') {
-      versions.add(`Node v${trimVersion(NODE_SUPPORTED_VERSIONS[support])}`);
-    } else if (platform === 'browser') {
-      const targets =
-        support === 'experimental' ? ['last 2 versions'] : toArray(BROWSER_TARGETS[support]);
+    switch (platform) {
+      case 'native':
+        versions.add(`Native (${trimVersion(NATIVE_TARGETS[support])})`);
+        break;
 
-      versions.add(`Browser (${targets.join(', ')})`);
+      case 'node':
+        versions.add(`Node v${trimVersion(NODE_SUPPORTED_VERSIONS[support])}`);
+        break;
+
+      case 'browser': {
+        const targets =
+          support === 'experimental' ? ['last 2 versions'] : toArray(BROWSER_TARGETS[support]);
+
+        versions.add(`Browser (${targets.join(', ')})`);
+
+        break;
+      }
+
+      // no default
     }
   });
 

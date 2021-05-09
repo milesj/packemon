@@ -148,12 +148,22 @@ export class BundleArtifact extends Artifact<BundleBuild> {
     this.builds.forEach(({ format }) => {
       const { path } = this.getOutputMetadata(format);
 
-      if (format === 'mjs' || format === 'esm') {
-        paths.import = path;
-      } else if (format === 'cjs') {
-        paths.require = path;
-      } else if (format === 'lib') {
-        libPath = path;
+      switch (format) {
+        case 'mjs':
+        case 'esm':
+          paths.import = path;
+          break;
+
+        case 'cjs':
+          paths.require = path;
+          break;
+
+        case 'lib':
+          libPath = path;
+          break;
+
+        default:
+          break;
       }
 
       // Webpack and Rollup support

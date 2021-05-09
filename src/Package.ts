@@ -411,14 +411,25 @@ export class Package {
     const sourceExt = new Path(inputFile).ext(true);
     const exts: string[] = [sourceExt];
 
-    if (sourceExt === 'js') {
-      exts.push('jsx');
-    } else if (sourceExt === 'jsx' || sourceExt === 'cjs') {
-      exts.unshift('js');
-    } else if (sourceExt === 'ts') {
-      exts.push('tsx');
-    } else if (sourceExt === 'tsx') {
-      exts.unshift('ts');
+    switch (sourceExt) {
+      case 'js':
+        exts.push('jsx');
+        break;
+
+      case 'jsx':
+      case 'cjs':
+        exts.unshift('js');
+        break;
+
+      case 'ts':
+        exts.push('tsx');
+        break;
+
+      case 'tsx':
+        exts.unshift('ts');
+        break;
+
+      // no default
     }
 
     exts.push('json');
