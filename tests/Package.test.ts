@@ -6,7 +6,7 @@ import { Package } from '../src/Package';
 import { Project } from '../src/Project';
 import { BundleBuild, TypesBuild } from '../src/types';
 import { TypesArtifact } from '../src/TypesArtifact';
-import { TestArtifact } from './helpers';
+import { createProjectPackage, TestArtifact } from './helpers';
 
 describe('Package', () => {
   const fixturePath = getFixturePath('workspaces-feature-flags');
@@ -42,11 +42,7 @@ describe('Package', () => {
   function loadPackage(name: string, customProject?: Project): Package {
     const pkgPath = new Path(fixturePath, 'packages', name);
 
-    return new Package(
-      customProject ?? project,
-      pkgPath,
-      fs.readJsonSync(pkgPath.append('package.json').path()),
-    );
+    return createProjectPackage(pkgPath, customProject ?? project);
   }
 
   beforeEach(() => {
@@ -767,6 +763,24 @@ describe('Package', () => {
           './package.json': './package.json',
         });
       });
+
+      it('merges with existing exports', async () => {
+        pkg.packageJson.exports = {
+          './foo': './lib/foo.js',
+        };
+
+        pkg.addArtifact(
+          createBundleArtifact([{ format: 'lib', platform: 'node', support: 'stable' }]),
+        );
+
+        await pkg.build({ addExports: true });
+
+        expect(pkg.packageJson.exports).toEqual({
+          '.': { node: './lib/index.js' },
+          './foo': './lib/foo.js',
+          './package.json': './package.json',
+        });
+      });
     });
   });
 
@@ -1191,6 +1205,21 @@ describe('Package', () => {
             inputs: {
               'foo bar': 'src/foo.ts',
             },
+          },
+        ]);
+      }).toThrowErrorMatchingSnapshot();
+    });
+
+    it('errors if multiple inputs are passed when `bundle` is false', () => {
+      expect(() => {
+        pkg.setConfigs([
+          {
+            bundle: false,
+            inputs: {
+              index: 'src/index.ts',
+              other: 'src/other.ts',
+            },
+            platform: 'node',
           },
         ]);
       }).toThrowErrorMatchingSnapshot();

@@ -235,7 +235,6 @@ export class Packemon {
         Object.entries(config.inputs).forEach(([outputName, inputFile]) => {
           // Pass platform and support here for convenience
           let builds = config.formats.map((format) => ({
-            bundle: config.bundle,
             format,
             platform: config.platform,
             support: config.support,
@@ -258,6 +257,7 @@ export class Packemon {
           }
 
           const artifact = new BundleArtifact(pkg, builds);
+          artifact.bundle = config.bundle;
           artifact.configGroup = index;
           artifact.inputFile = inputFile;
           artifact.outputName = outputName;

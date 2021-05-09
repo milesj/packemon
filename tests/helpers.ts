@@ -1,5 +1,3 @@
-/* eslint-disable no-underscore-dangle */
-
 import fs from 'fs';
 import fsx from 'fs-extra';
 import { Path, PortablePath } from '@boost/common';
@@ -44,6 +42,14 @@ export class TestArtifact extends Artifact {
   }
 }
 
+export function createProjectPackage(root: Path, customProject?: Project): Package {
+  return new Package(
+    customProject ?? new Project(root),
+    root,
+    fsx.readJsonSync(root.append('package.json').path()),
+  );
+}
+
 export function createSnapshotSpies(root: PortablePath) {
   let snapshots: [string, unknown][] = [];
 
@@ -69,7 +75,7 @@ export function createSnapshotSpies(root: PortablePath) {
     snapshots = [];
   });
 
-  return snapshots;
+  return () => snapshots.sort((a, b) => a[0].localeCompare(b[0]));
 }
 
 const exampleRoot = new Path(getFixturePath('examples'));
@@ -89,7 +95,6 @@ FORMATS.forEach((format) => {
       }
 
       builds.set(key, {
-        bundle: platform !== 'node',
         format,
         platform,
         support,
@@ -102,12 +107,7 @@ export function testExampleOutput(file: string) {
   const snapshots = createSnapshotSpies(exampleRoot);
 
   test('transforms example test case', async () => {
-    const project = new Project(exampleRoot);
-    const pkg = new Package(
-      project,
-      exampleRoot,
-      JSON.parse(fs.readFileSync(exampleRoot.append('package.json').path(), 'utf8')),
-    );
+    const pkg = createProjectPackage(exampleRoot);
 
     [...builds.values()].forEach((build) => {
       const artifact = new BundleArtifact(pkg, [build]);
@@ -125,10 +125,8 @@ export function testExampleOutput(file: string) {
       console.error(error);
     }
 
-    snapshots
-      .sort((a, b) => a[0].localeCompare(b[0]))
-      .forEach((ss) => {
-        expect(ss).toMatchSnapshot();
-      });
+    snapshots().forEach((ss) => {
+      expect(ss).toMatchSnapshot();
+    });
   });
 }

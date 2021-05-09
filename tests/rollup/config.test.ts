@@ -104,10 +104,10 @@ describe('getRollupConfig()', () => {
 
   it('generates an output config for each build', () => {
     artifact.builds.push(
-      { bundle: false, format: 'lib', platform: 'node', support: 'stable' },
-      { bundle: true, format: 'lib', platform: 'browser', support: 'legacy' },
-      { bundle: true, format: 'esm', platform: 'browser', support: 'current' },
-      { bundle: false, format: 'mjs', platform: 'node', support: 'experimental' },
+      { format: 'lib', platform: 'node', support: 'stable' },
+      { format: 'lib', platform: 'browser', support: 'legacy' },
+      { format: 'esm', platform: 'browser', support: 'current' },
+      { format: 'mjs', platform: 'node', support: 'experimental' },
     );
 
     expect(getRollupConfig(artifact, {})).toEqual({
@@ -127,7 +127,7 @@ describe('getRollupConfig()', () => {
           paths: {},
           plugins: [`babelOutput(${fixturePath}, *)`],
           preferConst: false,
-          preserveModules: true,
+          preserveModules: false,
           sourcemap: true,
           sourcemapExcludeSources: true,
         },
@@ -173,13 +173,13 @@ describe('getRollupConfig()', () => {
           paths: {},
           plugins: [`babelOutput(${fixturePath}, *)`],
           preferConst: true,
-          preserveModules: true,
+          preserveModules: false,
           sourcemap: true,
           sourcemapExcludeSources: true,
         },
       ],
       plugins: sharedPlugins,
-      treeshake: false,
+      treeshake: true,
     });
   });
 
@@ -188,7 +188,7 @@ describe('getRollupConfig()', () => {
     artifact.outputName = 'server';
     artifact.platform = 'node';
     artifact.support = 'stable';
-    artifact.builds.push({ bundle: false, format: 'lib', platform: 'node', support: 'stable' });
+    artifact.builds.push({ format: 'lib', platform: 'node', support: 'stable' });
 
     expect(getRollupConfig(artifact, {})).toEqual({
       cache: undefined,
@@ -207,13 +207,49 @@ describe('getRollupConfig()', () => {
           paths: {},
           plugins: [`babelOutput(${fixturePath}, *)`],
           preferConst: false,
-          preserveModules: true,
+          preserveModules: false,
           sourcemap: true,
           sourcemapExcludeSources: true,
         },
       ],
       plugins: sharedPlugins,
       treeshake: true,
+    });
+  });
+
+  it('when not bundling, globs all source files, preserves modules, and doesnt treeshake', () => {
+    artifact.bundle = false;
+    artifact.builds.push({ format: 'lib', platform: 'node', support: 'stable' });
+
+    expect(getRollupConfig(artifact, {})).toEqual({
+      cache: undefined,
+      external: expect.any(Function),
+      input: [
+        'src/index.ts',
+        'src/client/index.ts',
+        'src/other/index.ts',
+        'src/server/core.ts',
+        'src/test-utils/base.ts',
+      ].map((f) => fixturePath.append(f).path()),
+      output: [
+        {
+          assetFileNames: '../assets/[name]-[hash][extname]',
+          chunkFileNames: 'index-[hash].js',
+          dir: fixturePath.append('lib').path(),
+          entryFileNames: 'index.js',
+          exports: 'auto',
+          format: 'cjs',
+          originalFormat: 'lib',
+          paths: {},
+          plugins: [`babelOutput(${fixturePath}, *)`],
+          preferConst: false,
+          preserveModules: true,
+          sourcemap: true,
+          sourcemapExcludeSources: true,
+        },
+      ],
+      plugins: sharedPlugins,
+      treeshake: false,
     });
   });
 
@@ -299,11 +335,7 @@ describe('getRollupOutputConfig()', () => {
 
   it('generates default output config', () => {
     expect(
-      getRollupOutputConfig(
-        artifact,
-        {},
-        { bundle: false, format: 'lib', platform: 'node', support: 'stable' },
-      ),
+      getRollupOutputConfig(artifact, {}, { format: 'lib', platform: 'node', support: 'stable' }),
     ).toEqual({
       assetFileNames: '../assets/[name]-[hash][extname]',
       banner: expect.any(String),
@@ -316,7 +348,7 @@ describe('getRollupOutputConfig()', () => {
       paths: {},
       plugins: [`babelOutput(${fixturePath}, *)`],
       preferConst: false,
-      preserveModules: true,
+      preserveModules: false,
       sourcemap: true,
       sourcemapExcludeSources: true,
     });

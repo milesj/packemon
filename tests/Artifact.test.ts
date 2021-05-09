@@ -1,15 +1,14 @@
 import { applyStyle } from '@boost/cli';
 import { Path } from '@boost/common';
 import { getFixturePath } from '@boost/test-utils';
-import { Package, Project } from '../src';
-import { TestArtifact } from './helpers';
+import { createProjectPackage, TestArtifact } from './helpers';
 
 describe('Artifact', () => {
   const root = new Path(getFixturePath('project'));
   let artifact: TestArtifact;
 
   beforeEach(() => {
-    artifact = new TestArtifact(new Package(new Project(root), root, { name: 'pkg' } as any), []);
+    artifact = new TestArtifact(createProjectPackage(root), []);
   });
 
   it('returns label when cast to string', () => {
@@ -22,7 +21,7 @@ describe('Artifact', () => {
 
       artifact.log('Hello', 'info');
 
-      expect(spy).toHaveBeenCalledWith('[pkg] Hello');
+      expect(spy).toHaveBeenCalledWith('[project] Hello');
 
       spy.mockRestore();
     });
@@ -32,7 +31,7 @@ describe('Artifact', () => {
 
       artifact.log('Hello', 'error', { id: 'id', output: 'index' });
 
-      expect(spy).toHaveBeenCalledWith(`[pkg:index] Hello${applyStyle(' (id=id)', 'muted')}`);
+      expect(spy).toHaveBeenCalledWith(`[project:index] Hello${applyStyle(' (id=id)', 'muted')}`);
 
       spy.mockRestore();
     });
@@ -47,7 +46,7 @@ describe('Artifact', () => {
       });
 
       expect(spy).toHaveBeenCalledWith(
-        `[pkg] Hello${applyStyle(' (file=test.js line=10:55)', 'muted')}`,
+        `[project] Hello${applyStyle(' (file=test.js line=10:55)', 'muted')}`,
       );
 
       spy.mockRestore();
@@ -60,7 +59,7 @@ describe('Artifact', () => {
         sourceLine: 10,
       });
 
-      expect(spy).toHaveBeenCalledWith(`[pkg] Hello${applyStyle(' (line=10:?)', 'muted')}`);
+      expect(spy).toHaveBeenCalledWith(`[project] Hello${applyStyle(' (line=10:?)', 'muted')}`);
 
       spy.mockRestore();
     });
@@ -72,7 +71,7 @@ describe('Artifact', () => {
         sourceColumn: 55,
       });
 
-      expect(spy).toHaveBeenCalledWith(`[pkg] Hello${applyStyle(' (line=?:55)', 'muted')}`);
+      expect(spy).toHaveBeenCalledWith(`[project] Hello${applyStyle(' (line=?:55)', 'muted')}`);
 
       spy.mockRestore();
     });

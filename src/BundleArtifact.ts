@@ -7,6 +7,8 @@ import { getRollupConfig } from './rollup/config';
 import { BuildOptions, BundleBuild, Format, PackageExportPaths, Platform, Support } from './types';
 
 export class BundleArtifact extends Artifact<BundleBuild> {
+  bundle: boolean = true;
+
   cache?: RollupCache;
 
   // Config object in which inputs are grouped in
@@ -77,9 +79,13 @@ export class BundleArtifact extends Artifact<BundleBuild> {
         this.debug(' - Writing `%s` output', originalFormat);
 
         const result = await bundle.write(outOptions);
+        const bundledCode = result.output.reduce(
+          (code, chunk) => code + ('code' in chunk ? chunk.code : ''),
+          '',
+        );
 
         this.builds[index].stats = {
-          size: Buffer.byteLength(result.output[0].code),
+          size: Buffer.byteLength(bundledCode),
         };
       }),
     );

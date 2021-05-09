@@ -39,15 +39,8 @@
     "src/**/*.{ts,tsx,json}"
   ],
   "exports": {
+    "./babel": "./lib/babel.js",
     "./package.json": "./package.json",
-    "./babel": {
-      "node": "./lib/babel.js",
-      "types": "./dts/babel.d.ts"
-    },
-    "./bin": {
-      "node": "./lib/bin.js",
-      "types": "./dts/bin.d.ts"
-    },
     ".": {
       "node": "./lib/index.js",
       "types": "./dts/index.d.ts"
@@ -58,11 +51,6 @@
     "npm": ">=6.1.0"
   },
   "packemon": {
-    "inputs": {
-      "babel": "src/babel.ts",
-      "bin": "src/bin.ts",
-      "index": "src/index.ts"
-    },
     "platform": "node"
   },
   "devDependencies": {

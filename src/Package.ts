@@ -1,5 +1,6 @@
 /* eslint-disable require-atomic-updates, no-param-reassign, @typescript-eslint/member-ordering */
 
+import glob from 'fast-glob';
 import fs from 'fs-extra';
 import { isObject, Memoize, optimal, PackageStructure, Path, toArray } from '@boost/common';
 import { createDebugger, Debugger } from '@boost/debug';
@@ -158,6 +159,15 @@ export class Package {
     return this.path.name(true);
   }
 
+  @Memoize()
+  getSourceFiles(): string[] {
+    return glob.sync('src/**/*.{js,jsx,ts,tsx}', {
+      absolute: true,
+      cwd: this.path.path(),
+      onlyFiles: true,
+    });
+  }
+
   hasDependency(name: string): boolean {
     const pkg = this.packageJson;
 
@@ -184,7 +194,7 @@ export class Package {
       });
 
       toArray(config.platform).forEach((platform) => {
-        let bundle = true;
+        let { bundle } = config;
         let formats = [...toArray(config.format)];
         const isEmpty = formats.length === 0;
 
@@ -198,7 +208,9 @@ export class Package {
             break;
 
           case 'node':
-            bundle = false;
+            if (cfg.bundle === undefined) {
+              bundle = false;
+            }
 
             if (isEmpty) {
               formats.push('lib');
@@ -221,8 +233,12 @@ export class Package {
             break;
         }
 
+        if (!bundle && Object.keys(config.inputs).length > 1) {
+          throw new Error('Only 1 `inputs` can be defined when `bundle` is false.');
+        }
+
         this.configs.push({
-          bundle: cfg.bundle === undefined ? bundle : config.bundle,
+          bundle,
           formats,
           inputs: config.inputs,
           namespace: config.namespace,
@@ -384,7 +400,11 @@ export class Package {
       }
     });
 
-    this.packageJson.exports = exportMap as PackageStructure['exports'];
+    if (isObject(this.packageJson.exports)) {
+      Object.assign(this.packageJson.exports, exportMap);
+    } else {
+      this.packageJson.exports = exportMap as PackageStructure['exports'];
+    }
   }
 
   protected getSourceFileExts(inputFile: string): string[] {
