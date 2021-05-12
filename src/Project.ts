@@ -60,10 +60,11 @@ export class Project extends BaseProject {
         '--declarationMap',
         '--emitDeclarationOnly',
       );
-    }
 
-    if (declarationConfig) {
-      args.push('--project', declarationConfig);
+      // This options isnt supported with project references
+      if (declarationConfig) {
+        args.push('--project', declarationConfig);
+      }
     }
 
     // Store the promise so parallel artifacts can rely on the same build

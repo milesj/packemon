@@ -126,6 +126,18 @@ describe('Project', () => {
         },
       );
     });
+
+    it('does not pass custom tsconfig when using workspaces', async () => {
+      const project = new Project(getFixturePath('workspaces'));
+      project.workspaces = ['packages/*'];
+
+      await project.generateDeclarations('tsconfig.custom.json');
+
+      expect(execa).toHaveBeenCalledWith('tsc', ['--build', '--force'], {
+        cwd: project.root.path(),
+        preferLocal: true,
+      });
+    });
   });
 
   describe('getWorkspacePackageNames()', () => {
