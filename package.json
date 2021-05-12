@@ -31,9 +31,10 @@
   "license": "MIT",
   "main": "./lib/index.js",
   "types": "./dts/index.d.ts",
-  "bin": "./lib/bin.js",
+  "bin": "./bin.js",
   "files": [
     "babel.js",
+    "bin.js",
     "dts/**/*.d.ts",
     "lib/**/*.{js,map}",
     "src/**/*.{ts,tsx,json}"
