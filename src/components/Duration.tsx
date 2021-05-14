@@ -9,9 +9,5 @@ export interface DurationProps {
 export function Duration({ time }: DurationProps) {
   const isFast = time <= 100;
 
-  return (
-    <Style bold type={isFast ? 'muted' : 'default'}>
-      {isFast ? '~' : formatMs(time)}
-    </Style>
-  );
+  return <Style type={isFast ? 'muted' : 'default'}>{isFast ? '~' : formatMs(time)}</Style>;
 }

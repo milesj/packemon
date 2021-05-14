@@ -5,7 +5,7 @@
 
 export * from './Artifact';
 export * from './babel/config';
-export * from './BundleArtifact';
+export * from './CodeArtifact';
 export * from './commands/Base';
 export * from './commands/Build';
 export * from './commands/Clean';

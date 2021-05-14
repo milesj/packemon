@@ -5,7 +5,7 @@ import fs from 'fs-extra';
 import { isObject, Memoize, optimal, PackageStructure, Path, toArray } from '@boost/common';
 import { createDebugger, Debugger } from '@boost/debug';
 import { Artifact } from './Artifact';
-import { BundleArtifact } from './BundleArtifact';
+import { BundleArtifact } from './BundleArtifactOLD';
 import { FORMATS_BROWSER, FORMATS_NATIVE, FORMATS_NODE } from './constants';
 import { loadModule } from './helpers/loadModule';
 import { Project } from './Project';
@@ -303,48 +303,48 @@ export class Package {
     const files = new Set<string>(this.packageJson.files);
 
     // eslint-disable-next-line complexity
-    this.artifacts.forEach((artifact) => {
-      // Build files
-      if (artifact instanceof BundleArtifact) {
-        // Generate `main`, `module`, and `browser` fields
-        if (artifact.outputName === 'index') {
-          if (!mainEntry || artifact.platform === 'node') {
-            mainEntry = artifact.findEntryPoint(['lib', 'cjs', 'mjs']);
-          }
+    // this.artifacts.forEach((artifact) => {
+    //   // Build files
+    //   if (artifact instanceof BundleArtifact) {
+    //     // Generate `main`, `module`, and `browser` fields
+    //     if (artifact.outputName === 'index') {
+    //       if (!mainEntry || artifact.platform === 'node') {
+    //         mainEntry = artifact.findEntryPoint(['lib', 'cjs', 'mjs']);
+    //       }
 
-          if (!moduleEntry) {
-            moduleEntry = artifact.findEntryPoint(['esm', 'mjs']);
-          }
+    //       if (!moduleEntry) {
+    //         moduleEntry = artifact.findEntryPoint(['esm', 'mjs']);
+    //       }
 
-          // Only include when we share a lib with another platform
-          if (!browserEntry && artifact.platform === 'browser' && artifact.sharedLib) {
-            browserEntry = artifact.findEntryPoint(['lib']);
-          }
-        }
+    //       // Only include when we share a lib with another platform
+    //       if (!browserEntry && artifact.platform === 'browser' && artifact.sharedLib) {
+    //         browserEntry = artifact.findEntryPoint(['lib']);
+    //       }
+    //     }
 
-        // Generate `bin` field
-        if (
-          artifact.outputName === 'bin' &&
-          artifact.platform === 'node' &&
-          !isObject(this.packageJson.bin)
-        ) {
-          this.packageJson.bin = artifact.findEntryPoint(['lib', 'cjs', 'mjs']);
-        }
+    //     // Generate `bin` field
+    //     if (
+    //       artifact.outputName === 'bin' &&
+    //       artifact.platform === 'node' &&
+    //       !isObject(this.packageJson.bin)
+    //     ) {
+    //       this.packageJson.bin = artifact.findEntryPoint(['lib', 'cjs', 'mjs']);
+    //     }
 
-        // Generate `files` list
-        artifact.builds.forEach(({ format }) => {
-          files.add(`${format}/**/*.{${artifact.getOutputMetadata(format).ext},map}`);
-        });
+    //     // Generate `files` list
+    //     artifact.builds.forEach(({ format }) => {
+    //       files.add(`${format}/**/*.{${artifact.getOutputMetadata(format).ext},map}`);
+    //     });
 
-        files.add(`src/**/*.{${this.getSourceFileExts(artifact.inputFile)}}`);
-      }
+    //     files.add(`src/**/*.{${this.getSourceFileExts(artifact.inputFile)}}`);
+    //   }
 
-      // Type declarations
-      if (artifact instanceof TypesArtifact) {
-        this.packageJson.types = './dts/index.d.ts';
-        files.add('dts/**/*.d.ts');
-      }
-    });
+    //   // Type declarations
+    //   if (artifact instanceof TypesArtifact) {
+    //     this.packageJson.types = './dts/index.d.ts';
+    //     files.add('dts/**/*.d.ts');
+    //   }
+    // });
 
     if (mainEntry) {
       this.packageJson.main = mainEntry;

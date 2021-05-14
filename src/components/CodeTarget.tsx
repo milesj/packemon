@@ -3,11 +3,11 @@ import fileSize from 'filesize';
 import { Style } from '@boost/cli';
 import { Target, TargetProps } from './Target';
 
-export interface BundleTargetProps extends TargetProps {
+export interface CodeTargetProps extends TargetProps {
   stats?: { size: number };
 }
 
-export function BundleTarget({ stats, ...props }: BundleTargetProps) {
+export function CodeTarget({ stats, ...props }: CodeTargetProps) {
   return (
     <Target {...props}>
       {stats?.size && <Style type="muted">{` (${fileSize(stats.size)})`}</Style>}

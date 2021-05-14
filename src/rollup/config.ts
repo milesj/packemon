@@ -140,9 +140,9 @@ export function getRollupOutputConfig(
   // Automatically prepend a shebang for binaries
   if (artifact.bundle) {
     // TODO
-    output.banner = ''; // artifact.outputName === 'bin' ? '#!/usr/bin/env node\n\n' : '';
+    // output.banner = ''; artifact.outputName === 'bin' ? '#!/usr/bin/env node\n\n' : '';
 
-    output.banner += [
+    output.banner = [
       '// Generated with Packemon: https://packemon.dev\n',
       `// Platform: ${platform}, Support: ${support}, Format: ${format}\n\n`,
     ].join('');

@@ -1,7 +1,7 @@
 import fs from 'fs-extra';
 import { Path } from '@boost/common';
 import { getFixturePath } from '@boost/test-utils';
-import { BundleArtifact } from '../src/BundleArtifact';
+import { BundleArtifact } from '../src/BundleArtifactOLD';
 import { Package } from '../src/Package';
 import { Project } from '../src/Project';
 import { BundleBuild, TypesBuild } from '../src/types';

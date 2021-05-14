@@ -6,7 +6,7 @@ import { isObject, json, Memoize, optimal, Path, toArray, WorkspacePackage } fro
 import { createDebugger, Debugger } from '@boost/debug';
 import { Event } from '@boost/event';
 import { Context, PooledPipeline } from '@boost/pipeline';
-import { BundleArtifact } from './BundleArtifact';
+import { CodeArtifact } from './CodeArtifact';
 import { matchesPattern } from './helpers/matchesPattern';
 import { Package } from './Package';
 import { PackageValidator } from './PackageValidator';
@@ -232,42 +232,41 @@ export class Packemon {
       const sharedLib = this.requiresSharedLib(pkg);
 
       pkg.configs.forEach((config, index) => {
+        // Pass platform and support here for convenience
+        let builds = config.formats.map((format) => ({
+          format,
+          platform: config.platform,
+          support: config.support,
+        }));
+
+        if (filterFormats) {
+          this.debug('Filtering formats with pattern: %s', filterFormats);
+
+          builds = builds.filter((build) => matchesPattern(build.format, filterFormats));
+        }
+
+        if (filterPlatforms) {
+          this.debug('Filtering platforms with pattern: %s', filterPlatforms);
+
+          builds = builds.filter((build) => matchesPattern(build.platform, filterPlatforms));
+        }
+
+        if (builds.length === 0) {
+          return;
+        }
+
+        const artifact = new CodeArtifact(pkg, builds);
+        artifact.bundle = config.bundle;
+        artifact.configGroup = index;
+        artifact.inputs = config.inputs;
+        artifact.namespace = config.namespace;
+        artifact.platform = config.platform;
+        artifact.sharedLib = sharedLib;
+        artifact.support = config.support;
+
+        pkg.addArtifact(artifact);
+
         Object.entries(config.inputs).forEach(([outputName, inputFile]) => {
-          // Pass platform and support here for convenience
-          let builds = config.formats.map((format) => ({
-            format,
-            platform: config.platform,
-            support: config.support,
-          }));
-
-          if (filterFormats) {
-            this.debug('Filtering formats with pattern: %s', filterFormats);
-
-            builds = builds.filter((build) => matchesPattern(build.format, filterFormats));
-          }
-
-          if (filterPlatforms) {
-            this.debug('Filtering platforms with pattern: %s', filterPlatforms);
-
-            builds = builds.filter((build) => matchesPattern(build.platform, filterPlatforms));
-          }
-
-          if (builds.length === 0) {
-            return;
-          }
-
-          const artifact = new BundleArtifact(pkg, builds);
-          artifact.bundle = config.bundle;
-          artifact.configGroup = index;
-          artifact.inputFile = inputFile;
-          artifact.outputName = outputName;
-          artifact.namespace = config.namespace;
-          artifact.platform = config.platform;
-          artifact.sharedLib = sharedLib;
-          artifact.support = config.support;
-
-          pkg.addArtifact(artifact);
-
           typesBuilds[outputName] = { inputFile, outputName };
         });
       });

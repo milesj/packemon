@@ -3,9 +3,9 @@ import { Box } from 'ink';
 import Spinner from 'ink-spinner';
 import { Style } from '@boost/cli';
 import { Artifact } from '../Artifact';
-import { BundleArtifact } from '../BundleArtifact';
+import { CodeArtifact } from '../CodeArtifact';
 import { STATE_LABELS } from '../constants';
-import { BundleTarget } from './BundleTarget';
+import { CodeTarget } from './CodeTarget';
 import { Duration } from './Duration';
 import { Target } from './Target';
 
@@ -15,19 +15,15 @@ export interface ArtifactRowProps {
 
 export function ArtifactRow({ artifact }: ArtifactRowProps) {
   return (
-    <Box flexDirection="row">
-      <Box marginLeft={2}>
-        <Style type="default">{artifact.getLabel()}</Style>
-      </Box>
-
+    <Box flexDirection="row" paddingLeft={2}>
       {artifact.getBuildTargets().map((target, index) => {
         const props = {
           target,
           state: artifact.state,
         };
 
-        if (artifact instanceof BundleArtifact) {
-          return <BundleTarget key={target} {...props} stats={artifact.builds[index].stats} />;
+        if (artifact instanceof CodeArtifact) {
+          return <CodeTarget key={target} {...props} stats={artifact.builds[index].stats} />;
         }
 
         return <Target key={target} {...props} />;
