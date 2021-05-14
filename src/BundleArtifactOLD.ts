@@ -113,19 +113,19 @@ export class BundleArtifact extends Artifact<BundleBuild> {
   //   return this.builds.map((build) => build.format);
   // }
 
-  getInputPath(): Path {
-    const inputPath = this.package.path.append(this.inputFile);
+  // getInputPath(): Path {
+  //   const inputPath = this.package.path.append(this.inputFile);
 
-    if (inputPath.exists()) {
-      return inputPath;
-    }
+  //   if (inputPath.exists()) {
+  //     return inputPath;
+  //   }
 
-    throw new Error(
-      `Cannot find input "${
-        this.inputFile
-      }" for package "${this.package.getName()}". Skipping package.`,
-    );
-  }
+  //   throw new Error(
+  //     `Cannot find input "${
+  //       this.inputFile
+  //     }" for package "${this.package.getName()}". Skipping package.`,
+  //   );
+  // }
 
   // getOutputMetadata(format: Format) {
   //   const ext = format === 'cjs' || format === 'mjs' ? format : 'js';

@@ -5,13 +5,14 @@ import fs from 'fs-extra';
 import { isObject, Memoize, optimal, PackageStructure, Path, toArray } from '@boost/common';
 import { createDebugger, Debugger } from '@boost/debug';
 import { Artifact } from './Artifact';
-import { BundleArtifact } from './BundleArtifactOLD';
+import { CodeArtifact } from './CodeArtifact';
 import {
   FORMATS_BROWSER,
   FORMATS_NATIVE,
   FORMATS_NODE,
   NODE_SUPPORTED_VERSIONS,
   NPM_SUPPORTED_VERSIONS,
+  SUPPORT_PRIORITY,
 } from './constants';
 import { loadModule } from './helpers/loadModule';
 import { Project } from './Project';
@@ -20,13 +21,11 @@ import {
   BuildOptions,
   FeatureFlags,
   PackageConfig,
-  PackageExportPaths,
   PackageExports,
   PackemonPackage,
   PackemonPackageConfig,
   TSConfigStructure,
 } from './types';
-import { TypesArtifact } from './TypesArtifact';
 
 export class Package {
   readonly artifacts: Artifact[] = [];
@@ -306,22 +305,31 @@ export class Package {
   }
 
   protected addEngines() {
+    const artifact = (this.artifacts as CodeArtifact[])
+      .filter((art) => art instanceof CodeArtifact)
+      .filter((art) => art.platform === 'node')
+      .reduce((oldest, art) =>
+        !oldest || SUPPORT_PRIORITY[art.support] < SUPPORT_PRIORITY[oldest.support] ? art : oldest,
+      );
+
+    if (!artifact) {
+      return;
+    }
+
+    this.debug('Adding `engines` to `package.json`');
+
     const pkg = this.packageJson;
 
-    if (this.platform === 'node') {
-      this.debug('Adding `engines` to `package.json`');
-
-      if (!pkg.engines) {
-        pkg.engines = {};
-      }
-
-      Object.assign(pkg.engines, {
-        node: `>=${NODE_SUPPORTED_VERSIONS[this.support]}`,
-        npm: toArray(NPM_SUPPORTED_VERSIONS[this.support])
-          .map((v) => `>=${v}`)
-          .join(' || '),
-      });
+    if (!pkg.engines) {
+      pkg.engines = {};
     }
+
+    Object.assign(pkg.engines, {
+      node: `>=${NODE_SUPPORTED_VERSIONS[artifact.support]}`,
+      npm: toArray(NPM_SUPPORTED_VERSIONS[artifact.support])
+        .map((v) => `>=${v}`)
+        .join(' || '),
+    });
   }
 
   protected addEntryPoints() {
@@ -404,21 +412,17 @@ export class Package {
       './package.json': './package.json',
     };
 
-    const mapConditionsToPath = (basePath: string, conditions: PackageExportPaths | string) => {
-      const path = basePath.replace('/index', '');
-
-      if (!exportMap[path]) {
-        exportMap[path] = {};
-      } else if (typeof exportMap[path] === 'string') {
-        exportMap[path] = { default: exportMap[path] };
-      }
-
-      Object.assign(exportMap[path], conditions);
-    };
-
     this.artifacts.forEach((artifact) => {
-      Object.entries(artifact.getPackageExports()).forEach(([path, conditions]) => {
-        mapConditionsToPath(path, conditions);
+      Object.entries(artifact.getPackageExports()).forEach(([basePath, conditions]) => {
+        const path = basePath.replace('/index', '');
+
+        if (!exportMap[path]) {
+          exportMap[path] = {};
+        } else if (typeof exportMap[path] === 'string') {
+          exportMap[path] = { default: exportMap[path] };
+        }
+
+        Object.assign(exportMap[path], conditions);
       });
     });
 

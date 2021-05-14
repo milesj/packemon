@@ -20,7 +20,7 @@ export class TypesArtifact extends Artifact<TypesBuild> {
   protected debug!: Debugger;
 
   startup() {
-    this.debug = createDebugger(['packemon', 'types', this.package.getSlug(), 'dts']);
+    this.debug = createDebugger(['packemon', 'types', this.package.getSlug(), this.getLabel()]);
   }
 
   async cleanup(): Promise<void> {
@@ -69,7 +69,7 @@ export class TypesArtifact extends Artifact<TypesBuild> {
   }
 
   getLabel(): string {
-    return 'types';
+    return 'dts';
   }
 
   getBuildTargets(): string[] {
@@ -89,7 +89,7 @@ export class TypesArtifact extends Artifact<TypesBuild> {
   }
 
   toString() {
-    return `types (dts)`;
+    return `types (${this.getLabel()})`;
   }
 
   protected async generateApiDeclaration(

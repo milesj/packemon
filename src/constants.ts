@@ -85,3 +85,10 @@ export const PLATFORMS: Platform[] = ['native', 'node', 'browser'];
 export const DEFAULT_SUPPORT: Support = 'stable';
 
 export const SUPPORTS: Support[] = ['legacy', 'stable', 'current', 'experimental'];
+
+export const SUPPORT_PRIORITY: Record<Support, number> = {
+  legacy: 0,
+  stable: 1,
+  current: 2,
+  experimental: 3,
+};

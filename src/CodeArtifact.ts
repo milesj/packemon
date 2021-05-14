@@ -41,18 +41,18 @@ export class CodeArtifact extends Artifact<CodeBuild> {
   protected debug!: Debugger;
 
   startup() {
-    this.debug = createDebugger(['packemon', 'bundle', this.package.getSlug(), this.getLabel()]);
+    this.debug = createDebugger(['packemon', 'code', this.package.getSlug(), this.getLabel()]);
   }
 
   async cleanup(): Promise<void> {
-    this.debug('Cleaning bundle artifacts');
+    this.debug('Cleaning code artifacts');
 
     // Visualizer stats
     await this.removeFiles([this.package.project.root.append(this.getStatsFileName())]);
   }
 
   async build(options: BuildOptions): Promise<void> {
-    this.debug('Building bundle artifact with Rollup');
+    this.debug('Building code artifact with Rollup');
 
     const features = this.package.getFeatureFlags();
 
