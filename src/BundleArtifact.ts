@@ -7,93 +7,93 @@ import { getRollupConfig } from './rollup/config';
 import { BuildOptions, BundleBuild, Format, PackageExportPaths, Platform, Support } from './types';
 
 export class BundleArtifact extends Artifact<BundleBuild> {
-  bundle: boolean = true;
+  // bundle: boolean = true;
 
-  cache?: RollupCache;
+  // cache?: RollupCache;
 
-  // Config object in which inputs are grouped in
-  configGroup: number = 0;
+  // // Config object in which inputs are grouped in
+  // configGroup: number = 0;
 
   // Input file path relative to the package root
   inputFile: string = '';
 
-  // Namespace for UMD bundles
-  namespace: string = '';
+  // // Namespace for UMD bundles
+  // namespace: string = '';
 
   // Output file name without extension
   outputName: string = '';
 
-  // Platform code will run on
-  platform: Platform = 'node';
+  // // Platform code will run on
+  // platform: Platform = 'node';
 
-  // Are multiple builds writing to the lib folder
-  sharedLib: boolean = false;
+  // // Are multiple builds writing to the lib folder
+  // sharedLib: boolean = false;
 
-  // Target version code will run in
-  support: Support = 'stable';
+  // // Target version code will run in
+  // support: Support = 'stable';
 
-  protected debug!: Debugger;
+  // protected debug!: Debugger;
 
-  startup() {
-    this.debug = createDebugger(['packemon', 'bundle', this.package.getSlug(), this.outputName]);
-  }
+  // startup() {
+  //   this.debug = createDebugger(['packemon', 'bundle', this.package.getSlug(), this.outputName]);
+  // }
 
-  async cleanup(): Promise<void> {
-    this.debug('Cleaning bundle artifacts');
+  // async cleanup(): Promise<void> {
+  //   this.debug('Cleaning bundle artifacts');
 
-    // Visualizer stats
-    await this.removeFiles([this.package.project.root.append(this.getStatsFileName())]);
-  }
+  //   // Visualizer stats
+  //   await this.removeFiles([this.package.project.root.append(this.getStatsFileName())]);
+  // }
 
-  async build(options: BuildOptions): Promise<void> {
-    this.debug('Building bundle artifact with Rollup');
+  // async build(options: BuildOptions): Promise<void> {
+  //   this.debug('Building bundle artifact with Rollup');
 
-    const features = this.package.getFeatureFlags();
+  //   const features = this.package.getFeatureFlags();
 
-    if (options.analyze !== 'none') {
-      features.analyze = options.analyze;
-    }
+  //   if (options.analyze !== 'none') {
+  //     features.analyze = options.analyze;
+  //   }
 
-    const { output = [], ...input } = getRollupConfig(this, features);
-    const bundle = await rollup({
-      ...input,
-      onwarn: /* istanbul ignore next */ ({ id, loc = {}, message }) => {
-        this.logWithSource(message, 'warn', {
-          id: id && id !== loc.file ? id : undefined,
-          output: this.outputName,
-          sourceColumn: loc.column,
-          sourceFile: loc.file,
-          sourceLine: loc.line,
-        });
-      },
-    });
+  //   const { output = [], ...input } = getRollupConfig(this, features);
+  //   const bundle = await rollup({
+  //     ...input,
+  //     onwarn: /* istanbul ignore next */ ({ id, loc = {}, message }) => {
+  //       this.logWithSource(message, 'warn', {
+  //         id: id && id !== loc.file ? id : undefined,
+  //         output: this.outputName,
+  //         sourceColumn: loc.column,
+  //         sourceFile: loc.file,
+  //         sourceLine: loc.line,
+  //       });
+  //     },
+  //   });
 
-    if (bundle.cache) {
-      this.cache = bundle.cache;
-    }
+  //   if (bundle.cache) {
+  //     this.cache = bundle.cache;
+  //   }
 
-    await Promise.all(
-      toArray(output).map(async (out, index) => {
-        const { originalFormat = DEFAULT_FORMAT, ...outOptions } = out;
+  //   await Promise.all(
+  //     toArray(output).map(async (out, index) => {
+  //       const { originalFormat = DEFAULT_FORMAT, ...outOptions } = out;
 
-        this.debug(' - Writing `%s` output', originalFormat);
+  //       this.debug(' - Writing `%s` output', originalFormat);
 
-        const result = await bundle.write(outOptions);
-        const bundledCode = result.output.reduce(
-          (code, chunk) => code + ('code' in chunk ? chunk.code : ''),
-          '',
-        );
+  //       const result = await bundle.write(outOptions);
+  //       const bundledCode = result.output.reduce(
+  //         (code, chunk) => code + ('code' in chunk ? chunk.code : ''),
+  //         '',
+  //       );
 
-        this.builds[index].stats = {
-          size: Buffer.byteLength(bundledCode),
-        };
-      }),
-    );
+  //       this.builds[index].stats = {
+  //         size: Buffer.byteLength(bundledCode),
+  //       };
+  //     }),
+  //   );
 
-    if (options.addEngines) {
-      this.addEnginesToPackageJson();
-    }
-  }
+  //   if (options.addEngines) {
+  //     this.addEnginesToPackageJson();
+  //   }
+  // }
 
   findEntryPoint(formats: Format[]): string {
     for (const format of formats) {
@@ -105,13 +105,13 @@ export class BundleArtifact extends Artifact<BundleBuild> {
     return '';
   }
 
-  getLabel(): string {
-    return this.outputName;
-  }
+  // getLabel(): string {
+  //   return this.outputName;
+  // }
 
-  getBuildTargets(): string[] {
-    return this.builds.map((build) => build.format);
-  }
+  // getBuildTargets(): string[] {
+  //   return this.builds.map((build) => build.format);
+  // }
 
   getInputPath(): Path {
     const inputPath = this.package.path.append(this.inputFile);
@@ -127,19 +127,19 @@ export class BundleArtifact extends Artifact<BundleBuild> {
     );
   }
 
-  getOutputMetadata(format: Format) {
-    const ext = format === 'cjs' || format === 'mjs' ? format : 'js';
-    const folder = format === 'lib' && this.sharedLib ? `lib/${this.platform}` : format;
-    const file = `${this.outputName}.${ext}`;
-    const path = `./${folder}/${file}`;
+  // getOutputMetadata(format: Format) {
+  //   const ext = format === 'cjs' || format === 'mjs' ? format : 'js';
+  //   const folder = format === 'lib' && this.sharedLib ? `lib/${this.platform}` : format;
+  //   const file = `${this.outputName}.${ext}`;
+  //   const path = `./${folder}/${file}`;
 
-    return {
-      ext,
-      file,
-      folder,
-      path,
-    };
-  }
+  //   return {
+  //     ext,
+  //     file,
+  //     folder,
+  //     path,
+  //   };
+  // }
 
   getPackageExports(): PackageExportPaths {
     const paths: PackageExportPaths = {};
@@ -183,34 +183,34 @@ export class BundleArtifact extends Artifact<BundleBuild> {
     };
   }
 
-  getStatsFileName(): string {
-    return `stats-${this.getStatsTitle().replace(/\//gu, '-')}.html`;
-  }
+  // getStatsFileName(): string {
+  //   return `stats-${this.getStatsTitle().replace(/\//gu, '-')}.html`;
+  // }
 
-  getStatsTitle(): string {
-    return `${this.package.getName()}/${this.outputName}`;
-  }
+  // getStatsTitle(): string {
+  //   return `${this.package.getName()}/${this.outputName}`;
+  // }
 
-  toString() {
-    return `bundle:${this.getLabel()} (${this.getBuildTargets().join(', ')})`;
-  }
+  // toString() {
+  //   return `bundle:${this.getLabel()} (${this.getBuildTargets().join(', ')})`;
+  // }
 
-  protected addEnginesToPackageJson() {
-    const pkg = this.package.packageJson;
+  // protected addEnginesToPackageJson() {
+  //   const pkg = this.package.packageJson;
 
-    if (this.platform === 'node') {
-      this.debug('Adding `engines` to `package.json`');
+  //   if (this.platform === 'node') {
+  //     this.debug('Adding `engines` to `package.json`');
 
-      if (!pkg.engines) {
-        pkg.engines = {};
-      }
+  //     if (!pkg.engines) {
+  //       pkg.engines = {};
+  //     }
 
-      Object.assign(pkg.engines, {
-        node: `>=${NODE_SUPPORTED_VERSIONS[this.support]}`,
-        npm: toArray(NPM_SUPPORTED_VERSIONS[this.support])
-          .map((v) => `>=${v}`)
-          .join(' || '),
-      });
-    }
-  }
+  //     Object.assign(pkg.engines, {
+  //       node: `>=${NODE_SUPPORTED_VERSIONS[this.support]}`,
+  //       npm: toArray(NPM_SUPPORTED_VERSIONS[this.support])
+  //         .map((v) => `>=${v}`)
+  //         .join(' || '),
+  //     });
+  //   }
+  // }
 }

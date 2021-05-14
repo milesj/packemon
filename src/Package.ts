@@ -233,10 +233,6 @@ export class Package {
             break;
         }
 
-        if (!bundle && Object.keys(config.inputs).length > 1) {
-          throw new Error('Only 1 `inputs` can be defined when `bundle` is false.');
-        }
-
         this.configs.push({
           bundle,
           formats,

@@ -1,7 +1,7 @@
 import { PluginItem, TransformOptions as ConfigStructure } from '@babel/core';
-import { BundleArtifact } from '../BundleArtifact';
+import { CodeArtifact } from '../CodeArtifact';
 import { BROWSER_TARGETS, NATIVE_TARGETS, NODE_SUPPORTED_VERSIONS } from '../constants';
-import { BundleBuild, FeatureFlags, Format, Platform, Support } from '../types';
+import { FeatureFlags, Format, Platform, Support } from '../types';
 import { envExpressionsPlugin } from './plugins/envExpressions';
 import { resolve } from './resolve';
 
@@ -94,7 +94,7 @@ function getSharedConfig(
 // The input config should only parse special syntax, not transform and downlevel.
 // This applies to all formats within a build target.
 export function getBabelInputConfig(
-  artifact: BundleArtifact,
+  artifact: CodeArtifact,
   features: FeatureFlags,
 ): Omit<ConfigStructure, 'exclude' | 'include'> {
   const plugins: PluginItem[] = [];
@@ -140,7 +140,9 @@ export function getBabelInputConfig(
 // The output config does all the transformation and downleveling through the preset-env.
 // This is handled per output since we need to configure based on target + format combinations.
 export function getBabelOutputConfig(
-  { format, platform, support }: BundleBuild,
+  platform: Platform,
+  support: Support,
+  format: Format,
   features: FeatureFlags,
 ): ConfigStructure {
   const plugins: PluginItem[] = [];
