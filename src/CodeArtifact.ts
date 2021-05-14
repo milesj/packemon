@@ -52,7 +52,7 @@ export class CodeArtifact extends Artifact<CodeBuild> {
   }
 
   async build(options: BuildOptions): Promise<void> {
-    this.debug('Building code artifact with Rollup');
+    this.debug('Building code artifacts with Rollup');
 
     const features = this.package.getFeatureFlags();
 
@@ -95,6 +95,16 @@ export class CodeArtifact extends Artifact<CodeBuild> {
         };
       }),
     );
+  }
+
+  findEntryPoint(formats: Format[], outputName: string): string {
+    for (const format of formats) {
+      if (this.builds.some((build) => build.format === format)) {
+        return this.getBuildOutput(format, outputName).path;
+      }
+    }
+
+    return '';
   }
 
   getLabel(): string {
