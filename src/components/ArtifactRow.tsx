@@ -15,7 +15,7 @@ export interface ArtifactRowProps {
 
 export function ArtifactRow({ artifact }: ArtifactRowProps) {
   return (
-    <Box flexDirection="row" paddingLeft={2}>
+    <Box flexDirection="row" paddingLeft={1}>
       {artifact.getBuildTargets().map((target, index) => {
         const props = {
           target,

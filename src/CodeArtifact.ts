@@ -107,10 +107,6 @@ export class CodeArtifact extends Artifact<CodeBuild> {
     return '';
   }
 
-  getLabel(): string {
-    return `${this.platform}:${this.support}:${this.getBuildTargets().join(',')}`;
-  }
-
   getBuildOutput(format: Format, outputName: string = '') {
     const ext = format === 'cjs' || format === 'mjs' ? format : 'js';
     const folder = format === 'lib' && this.sharedLib ? `lib/${this.platform}` : format;
@@ -127,6 +123,21 @@ export class CodeArtifact extends Artifact<CodeBuild> {
 
   getBuildTargets(): string[] {
     return this.builds.map((build) => build.format);
+  }
+
+  getInputPaths(): InputMap {
+    // Return absolute paths so that Rollup paths/externals resolve correctly
+    return Object.entries(this.inputs).reduce(
+      (map, [outputName, inputFile]) => ({
+        ...map,
+        [outputName]: this.package.path.append(inputFile).path(),
+      }),
+      {},
+    );
+  }
+
+  getLabel(): string {
+    return `${this.platform}:${this.support}:${this.getBuildTargets().join(',')}`;
   }
 
   getPackageExports(): PackageExports {

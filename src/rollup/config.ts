@@ -31,30 +31,22 @@ function getRollupModuleFormat(format: Format): ModuleFormat {
   return 'cjs';
 }
 
-function getSiblingArtifacts(artifact: CodeArtifact): CodeArtifact[] {
-  return artifact.package.artifacts.filter((art) => {
-    if (art === artifact) {
-      return false;
-    }
-
-    // Don't include non-code artifacts. We also can't use `instanceof`
-    // because of circular dependencies, boo!
-    return 'configGroup' in art;
-  }) as CodeArtifact[];
+function getCodeArtifacts(artifact: CodeArtifact): CodeArtifact[] {
+  // Don't include non-code artifacts. We also can't use `instanceof`
+  // because of circular dependencies, boo!
+  return artifact.package.artifacts.filter(
+    (art) => 'configGroup' in art && (art as CodeArtifact).configGroup !== artifact.configGroup,
+  ) as CodeArtifact[];
 }
 
 function getRollupPaths(artifact: CodeArtifact, ext: string): Record<string, string> {
   const paths: Record<string, string> = {};
 
   if (artifact.bundle) {
-    getSiblingArtifacts(artifact).forEach((art) => {
-      if (art.configGroup !== artifact.configGroup) {
-        return;
-      }
-
-      Object.entries(art.inputs).forEach(([outputName, inputFile]) => {
+    getCodeArtifacts(artifact).forEach((art) => {
+      Object.entries(art.getInputPaths()).forEach(([outputName, inputPath]) => {
         // All output files are in the same directory, so we can hard-code a relative path
-        paths[art.package.path.append(inputFile).path()] = `./${outputName}.${ext}`;
+        paths[inputPath] = `./${outputName}.${ext}`;
       });
     });
   }
@@ -63,27 +55,21 @@ function getRollupPaths(artifact: CodeArtifact, ext: string): Record<string, str
 }
 
 export function getRollupExternals(artifact: CodeArtifact) {
-  const siblingInputs = new Set<string>();
+  // const siblingInputs = new Set<string>();
   const foreignInputs = new Set<string>();
 
   if (artifact.bundle) {
-    getSiblingArtifacts(artifact).forEach((art) => {
-      Object.entries(art.inputs).forEach(([, inputFile]) => {
-        const inputPath = art.package.path.append(inputFile).path();
-
-        if (art.configGroup === artifact.configGroup) {
-          siblingInputs.add(inputPath);
-        } else {
-          foreignInputs.add(inputPath);
-        }
+    getCodeArtifacts(artifact).forEach((art) => {
+      Object.values(art.getInputPaths()).forEach((inputPath) => {
+        foreignInputs.add(inputPath);
       });
     });
   }
 
   return (id: string, parent: string = '<unknown>') => {
-    if (siblingInputs.has(id)) {
-      return true;
-    }
+    // if (siblingInputs.has(id)) {
+    //   return true;
+    // }
 
     if (foreignInputs.has(id)) {
       throw new Error(
@@ -111,7 +97,7 @@ export function getRollupOutputConfig(
     paths: getRollupPaths(artifact, ext),
     // Use our extension for file names
     assetFileNames: '../assets/[name]-[hash][extname]',
-    chunkFileNames: `[name]-[hash].${ext}`,
+    chunkFileNames: `${artifact.bundle ? 'bundle' : '[name]'}-[hash].${ext}`,
     entryFileNames: `[name].${ext}`,
     preserveModules: !artifact.bundle,
     // Use const when not supporting new targets
@@ -139,11 +125,8 @@ export function getRollupOutputConfig(
 
   // Automatically prepend a shebang for binaries
   if (artifact.bundle) {
-    // TODO
-    // output.banner = ''; artifact.outputName === 'bin' ? '#!/usr/bin/env node\n\n' : '';
-
     output.banner = [
-      '// Generated with Packemon: https://packemon.dev\n',
+      '// Bundled with Packemon: https://packemon.dev\n',
       `// Platform: ${platform}, Support: ${support}, Format: ${format}\n\n`,
     ].join('');
   }
@@ -159,7 +142,7 @@ export function getRollupConfig(artifact: CodeArtifact, features: FeatureFlags):
   const config: RollupOptions = {
     cache: artifact.cache,
     external: getRollupExternals(artifact),
-    input: artifact.bundle ? artifact.inputs : artifact.package.getSourceFiles(),
+    input: artifact.bundle ? artifact.getInputPaths() : artifact.package.getSourceFiles(),
     output: [],
     // Shared output plugins
     plugins: [
