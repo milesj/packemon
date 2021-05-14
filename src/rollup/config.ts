@@ -52,7 +52,7 @@ function getRollupPaths(artifact: CodeArtifact, ext: string): Record<string, str
         return;
       }
 
-      Object.entries(art.inputs ?? {}).forEach(([outputName, inputFile]) => {
+      Object.entries(art.inputs).forEach(([outputName, inputFile]) => {
         // All output files are in the same directory, so we can hard-code a relative path
         paths[art.package.path.append(inputFile).path()] = `./${outputName}.${ext}`;
       });
@@ -68,7 +68,7 @@ export function getRollupExternals(artifact: CodeArtifact) {
 
   if (artifact.bundle) {
     getSiblingArtifacts(artifact).forEach((art) => {
-      Object.entries(art.inputs ?? {}).forEach(([, inputFile]) => {
+      Object.entries(art.inputs).forEach(([, inputFile]) => {
         const inputPath = art.package.path.append(inputFile).path();
 
         if (art.configGroup === artifact.configGroup) {

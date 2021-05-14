@@ -141,47 +141,47 @@ export class BundleArtifact extends Artifact<BundleBuild> {
   //   };
   // }
 
-  getPackageExports(): PackageExportPaths {
-    const paths: PackageExportPaths = {};
-    let libPath = '';
+  // getPackageExports(): PackageExportPaths {
+  //   const paths: PackageExportPaths = {};
+  //   let libPath = '';
 
-    this.builds.forEach(({ format }) => {
-      const { path } = this.getOutputMetadata(format);
+  //   this.builds.forEach(({ format }) => {
+  //     const { path } = this.getOutputMetadata(format);
 
-      switch (format) {
-        case 'mjs':
-        case 'esm':
-          paths.import = path;
-          break;
+  //     switch (format) {
+  //       case 'mjs':
+  //       case 'esm':
+  //         paths.import = path;
+  //         break;
 
-        case 'cjs':
-          paths.require = path;
-          break;
+  //       case 'cjs':
+  //         paths.require = path;
+  //         break;
 
-        case 'lib':
-          libPath = path;
-          break;
+  //       case 'lib':
+  //         libPath = path;
+  //         break;
 
-        default:
-          break;
-      }
+  //       default:
+  //         break;
+  //     }
 
-      // Webpack and Rollup support
-      if (format === 'esm') {
-        paths.module = path;
-      }
-    });
+  //     // Webpack and Rollup support
+  //     if (format === 'esm') {
+  //       paths.module = path;
+  //     }
+  //   });
 
-    // Must come after import/require
-    if (libPath) {
-      paths.default = libPath;
-    }
+  //   // Must come after import/require
+  //   if (libPath) {
+  //     paths.default = libPath;
+  //   }
 
-    return {
-      [this.platform === 'native' ? 'react-native' : this.platform]:
-        Object.keys(paths).length === 1 && libPath ? paths.default : paths,
-    };
-  }
+  //   return {
+  //     [this.platform === 'native' ? 'react-native' : this.platform]:
+  //       Object.keys(paths).length === 1 && libPath ? paths.default : paths,
+  //   };
+  // }
 
   // getStatsFileName(): string {
   //   return `stats-${this.getStatsTitle().replace(/\//gu, '-')}.html`;

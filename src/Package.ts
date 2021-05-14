@@ -6,7 +6,13 @@ import { isObject, Memoize, optimal, PackageStructure, Path, toArray } from '@bo
 import { createDebugger, Debugger } from '@boost/debug';
 import { Artifact } from './Artifact';
 import { BundleArtifact } from './BundleArtifactOLD';
-import { FORMATS_BROWSER, FORMATS_NATIVE, FORMATS_NODE } from './constants';
+import {
+  FORMATS_BROWSER,
+  FORMATS_NATIVE,
+  FORMATS_NODE,
+  NODE_SUPPORTED_VERSIONS,
+  NPM_SUPPORTED_VERSIONS,
+} from './constants';
 import { loadModule } from './helpers/loadModule';
 import { Project } from './Project';
 import { packemonBlueprint } from './schemas';
@@ -81,6 +87,11 @@ export class Package {
 
     // Add package entry points based on artifacts
     this.addEntryPoints();
+
+    // Add package `engines` based on artifacts
+    if (options.addEngines) {
+      this.addEngines();
+    }
 
     // Add package `exports` based on artifacts
     if (options.addExports) {
@@ -294,6 +305,25 @@ export class Package {
     return result;
   }
 
+  protected addEngines() {
+    const pkg = this.packageJson;
+
+    if (this.platform === 'node') {
+      this.debug('Adding `engines` to `package.json`');
+
+      if (!pkg.engines) {
+        pkg.engines = {};
+      }
+
+      Object.assign(pkg.engines, {
+        node: `>=${NODE_SUPPORTED_VERSIONS[this.support]}`,
+        npm: toArray(NPM_SUPPORTED_VERSIONS[this.support])
+          .map((v) => `>=${v}`)
+          .join(' || '),
+      });
+    }
+  }
+
   protected addEntryPoints() {
     this.debug('Adding entry points to `package.json`');
 
@@ -379,21 +409,17 @@ export class Package {
 
       if (!exportMap[path]) {
         exportMap[path] = {};
+      } else if (typeof exportMap[path] === 'string') {
+        exportMap[path] = { default: exportMap[path] };
       }
 
       Object.assign(exportMap[path], conditions);
     };
 
     this.artifacts.forEach((artifact) => {
-      if (artifact instanceof BundleArtifact) {
-        mapConditionsToPath(`./${artifact.outputName}`, artifact.getPackageExports());
-      }
-
-      if (artifact instanceof TypesArtifact) {
-        Object.entries(artifact.getPackageExports()).forEach(([path, conditions]) => {
-          mapConditionsToPath(path, conditions);
-        });
-      }
+      Object.entries(artifact.getPackageExports()).forEach(([path, conditions]) => {
+        mapConditionsToPath(path, conditions);
+      });
     });
 
     if (isObject(this.packageJson.exports)) {

@@ -2,7 +2,7 @@ import fs from 'fs-extra';
 import { applyStyle } from '@boost/cli';
 import { Path, PortablePath } from '@boost/common';
 import { Package } from './Package';
-import { ArtifactState, Awaitable, BuildOptions, BuildResult } from './types';
+import { ArtifactState, Awaitable, BuildOptions, BuildResult, PackageExports } from './types';
 
 export abstract class Artifact<T extends object = {}> {
   readonly builds: T[] = [];
@@ -88,4 +88,6 @@ export abstract class Artifact<T extends object = {}> {
   abstract getLabel(): string;
 
   abstract getBuildTargets(): string[];
+
+  abstract getPackageExports(): PackageExports;
 }

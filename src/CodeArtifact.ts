@@ -1,8 +1,8 @@
 import { rollup, RollupCache } from 'rollup';
-import { Path, toArray } from '@boost/common';
+import { toArray } from '@boost/common';
 import { createDebugger, Debugger } from '@boost/debug';
 import { Artifact } from './Artifact';
-import { DEFAULT_FORMAT, NODE_SUPPORTED_VERSIONS, NPM_SUPPORTED_VERSIONS } from './constants';
+import { DEFAULT_FORMAT } from './constants';
 import { getRollupConfig } from './rollup/config';
 import {
   BuildOptions,
@@ -10,6 +10,7 @@ import {
   Format,
   InputMap,
   PackageExportPaths,
+  PackageExports,
   Platform,
   Support,
 } from './types';
@@ -23,7 +24,7 @@ export class CodeArtifact extends Artifact<CodeBuild> {
   configGroup: number = 0;
 
   // Mapping of output names to input paths
-  inputs?: InputMap;
+  inputs: InputMap = {};
 
   // Namespace for UMD bundles
   namespace: string = '';
@@ -94,10 +95,6 @@ export class CodeArtifact extends Artifact<CodeBuild> {
         };
       }),
     );
-
-    if (options.addEngines) {
-      this.addEnginesToPackageJson();
-    }
   }
 
   getLabel(): string {
@@ -122,6 +119,54 @@ export class CodeArtifact extends Artifact<CodeBuild> {
     return this.builds.map((build) => build.format);
   }
 
+  getPackageExports(): PackageExports {
+    const exportMap: PackageExports = {};
+
+    Object.keys(this.inputs).forEach((outputName) => {
+      const paths: PackageExportPaths = {};
+      let libPath = '';
+
+      this.builds.forEach(({ format }) => {
+        const { path } = this.getBuildOutput(format, outputName);
+
+        switch (format) {
+          case 'mjs':
+          case 'esm':
+            paths.import = path;
+
+            // Webpack and Rollup support
+            if (format === 'esm') {
+              paths.module = path;
+            }
+            break;
+
+          case 'cjs':
+            paths.require = path;
+            break;
+
+          case 'lib':
+            libPath = path;
+            break;
+
+          default:
+            break;
+        }
+      });
+
+      // Must come after import/require
+      if (libPath) {
+        paths.default = libPath;
+      }
+
+      exportMap[`./${outputName}`] = {
+        [this.platform === 'native' ? 'react-native' : this.platform]:
+          Object.keys(paths).length === 1 && libPath ? paths.default : paths,
+      };
+    });
+
+    return exportMap;
+  }
+
   getStatsFileName(): string {
     return `stats-${this.getStatsTitle().replace(/\//gu, '-')}.html`;
   }
@@ -132,24 +177,5 @@ export class CodeArtifact extends Artifact<CodeBuild> {
 
   toString() {
     return `code (${this.getLabel()})`;
-  }
-
-  protected addEnginesToPackageJson() {
-    const pkg = this.package.packageJson;
-
-    if (this.platform === 'node') {
-      this.debug('Adding `engines` to `package.json`');
-
-      if (!pkg.engines) {
-        pkg.engines = {};
-      }
-
-      Object.assign(pkg.engines, {
-        node: `>=${NODE_SUPPORTED_VERSIONS[this.support]}`,
-        npm: toArray(NPM_SUPPORTED_VERSIONS[this.support])
-          .map((v) => `>=${v}`)
-          .join(' || '),
-      });
-    }
   }
 }
