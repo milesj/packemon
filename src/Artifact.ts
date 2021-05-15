@@ -7,7 +7,7 @@ import type { ArtifactState, Awaitable, BuildOptions, BuildResult, PackageExport
 export abstract class Artifact<T extends object = {}> {
   readonly builds: T[] = [];
 
-  readonly buildResult: BuildResult = { time: 0 };
+  readonly buildResult: BuildResult = { files: [], time: 0 };
 
   readonly package: Package;
 

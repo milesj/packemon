@@ -64,8 +64,7 @@ export function createSnapshotSpies(root: PortablePath) {
 
   beforeEach(() => {
     const handler = (file: unknown, content: unknown, cb?: unknown) => {
-      console.log({ file });
-      const filePath = new Path(String(file)).path().replace(String(root), '');
+      const filePath = new Path(String(file)).path().replace(String(root), '').replace(/^\//, '');
 
       if (!filePath.endsWith('map')) {
         snapshots.push([filePath, content]);
@@ -88,7 +87,15 @@ export function createSnapshotSpies(root: PortablePath) {
     warnSpy.mockRestore();
   });
 
-  return () => snapshots.sort((a, b) => a[0].localeCompare(b[0]));
+  return (pkg: Package) => {
+    pkg.artifacts.forEach((artifact) => {
+      artifact.buildResult.files.forEach((file) => {
+        snapshots.push([file.file, file.code]);
+      });
+    });
+
+    return snapshots.sort((a, b) => a[0].localeCompare(b[0]));
+  };
 }
 
 const exampleRoot = new Path(getFixturePath('examples'));
@@ -139,7 +146,7 @@ export function testExampleOutput(file: string) {
       console.error(error);
     }
 
-    snapshots().forEach((ss) => {
+    snapshots(pkg).forEach((ss) => {
       expect(ss).toMatchSnapshot();
     });
   });

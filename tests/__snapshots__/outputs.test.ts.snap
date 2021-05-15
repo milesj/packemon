@@ -2,7 +2,7 @@
 
 exports[`Outputs artifacts builds all the artifacts with rollup 1`] = `
 Array [
-  "/cjs/server.cjs",
+  "cjs/server.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: cjs
 'use strict';
@@ -24,14 +24,13 @@ https__default['default'].createServer((req, res) => {
   res.write('Hello World!');
   res.end();
 }).listen(8080);
-//# sourceMappingURL=server.cjs.map
 ",
 ]
 `;
 
 exports[`Outputs artifacts builds all the artifacts with rollup 2`] = `
 Array [
-  "/esm/client.js",
+  "esm/client.js",
   "function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== \\"undefined\\" && o[Symbol.iterator] || o[\\"@@iterator\\"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === \\"number\\") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError(\\"Invalid attempt to iterate non-iterable instance.\\\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\\"); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \\"string\\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \\"Object\\" && o.constructor) n = o.constructor.name; if (n === \\"Map\\" || n === \\"Set\\") return Array.from(o); if (n === \\"Arguments\\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -95,14 +94,13 @@ function gen() {
 }
 
 export { createClient };
-//# sourceMappingURL=client.js.map
 ",
 ]
 `;
 
 exports[`Outputs artifacts builds all the artifacts with rollup 3`] = `
 Array [
-  "/lib/client.js",
+  "lib/client.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: lib
 'use strict';
@@ -172,14 +170,13 @@ function gen() {
 }
 
 exports.createClient = createClient;
-//# sourceMappingURL=client.js.map
 ",
 ]
 `;
 
 exports[`Outputs artifacts builds all the artifacts with rollup 4`] = `
 Array [
-  "/lib/index.js",
+  "lib/index.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: lib
 'use strict';
@@ -189,14 +186,13 @@ Object.defineProperty(exports, '__esModule', {
 });
 const EXAMPLE = 'foo';
 exports.EXAMPLE = EXAMPLE;
-//# sourceMappingURL=index.js.map
 ",
 ]
 `;
 
 exports[`Outputs artifacts builds all the artifacts with rollup 5`] = `
 Array [
-  "/lib/test.js",
+  "lib/test.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: experimental, Format: lib
 'use strict';
@@ -227,14 +223,13 @@ async function wait() {}
 
 exports.spy = spy;
 exports.wait = wait;
-//# sourceMappingURL=test.js.map
 ",
 ]
 `;
 
 exports[`Outputs artifacts builds all the artifacts with rollup 6`] = `
 Array [
-  "/package.json",
+  "package.json",
   Object {
     "dependencies": Object {
       "typescript": "*",
@@ -262,7 +257,7 @@ Array [
 
 exports[`Outputs artifacts builds all the artifacts with rollup 7`] = `
 Array [
-  "/umd/client.js",
+  "umd/client.js",
   "var _regeneratorRuntime2 = require(\\"@babel/runtime/regenerator\\");
 
 (function (global, factory) {
@@ -350,7 +345,6 @@ Array [
     }, _marked);
   }
 });
-//# sourceMappingURL=client.js.map
 ",
 ]
 `;
@@ -368,7 +362,7 @@ Array [
 
 exports[`Outputs bundle bundles all files into a single file with rollup 1`] = `
 Array [
-  "/lib/index.js",
+  "lib/index.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: lib
 'use strict';
@@ -383,14 +377,13 @@ function bar() {}
 
 exports.bar = bar;
 exports.foo = foo;
-//# sourceMappingURL=index.js.map
 ",
 ]
 `;
 
 exports[`Outputs bundle bundles all files into a single file with rollup 2`] = `
 Array [
-  "/package.json",
+  "package.json",
   Object {
     "files": Array [
       "lib/**/*.{js,map}",
@@ -408,7 +401,7 @@ Array [
 
 exports[`Outputs no bundle creates individual files for every source file 1`] = `
 Array [
-  "/lib/index.js",
+  "lib/index.js",
   "'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -421,14 +414,13 @@ function bar() {}
 
 exports.foo = other.foo;
 exports.bar = bar;
-//# sourceMappingURL=index.js.map
 ",
 ]
 `;
 
 exports[`Outputs no bundle creates individual files for every source file 2`] = `
 Array [
-  "/lib/not-imported.js",
+  "lib/not-imported.js",
   "'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -438,14 +430,13 @@ Object.defineProperty(exports, '__esModule', {
 function baz() {}
 
 exports.baz = baz;
-//# sourceMappingURL=not-imported.js.map
 ",
 ]
 `;
 
 exports[`Outputs no bundle creates individual files for every source file 3`] = `
 Array [
-  "/lib/other.js",
+  "lib/other.js",
   "'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -455,14 +446,13 @@ Object.defineProperty(exports, '__esModule', {
 function foo() {}
 
 exports.foo = foo;
-//# sourceMappingURL=other.js.map
 ",
 ]
 `;
 
 exports[`Outputs no bundle creates individual files for every source file 4`] = `
 Array [
-  "/package.json",
+  "package.json",
   Object {
     "files": Array [
       "lib/**/*.{js,map}",

@@ -60,6 +60,7 @@ describe('CodeArtifact', () => {
         .mockReset()
         .mockImplementation(() => ({
           cache: { cache: true },
+          generate: bundleWriteSpy,
           write: bundleWriteSpy,
         }));
 

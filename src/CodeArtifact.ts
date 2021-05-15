@@ -6,6 +6,7 @@ import { DEFAULT_FORMAT } from './constants';
 import { getRollupConfig } from './rollup/config';
 import {
   BuildOptions,
+  BuildResultFiles,
   CodeBuild,
   Format,
   InputMap,
@@ -78,23 +79,45 @@ export class CodeArtifact extends Artifact<CodeBuild> {
       this.cache = bundle.cache;
     }
 
+    const files: BuildResultFiles[] = [];
+
     await Promise.all(
       toArray(output).map(async (out, index) => {
         const { originalFormat = DEFAULT_FORMAT, ...outOptions } = out;
 
         this.debug(' - Writing `%s` output', originalFormat);
 
-        const result = await bundle.write(outOptions);
-        const bundledCode = result.output.reduce(
-          (code, chunk) => code + ('code' in chunk ? chunk.code : ''),
-          '',
-        );
+        // While testing we want to avoid writing files,
+        // so use generate() instead of write():
+        // https://github.com/rollup/rollup/issues/4082
+        const result =
+          process.env.NODE_ENV === 'test'
+            ? await bundle.generate(outOptions)
+            : await bundle.write(outOptions);
+
+        // Update build results and stats
+        const bundledCode = result.output.reduce((code, chunk) => {
+          if (chunk.type === 'chunk') {
+            files.push({
+              code: chunk.code,
+              file: `${originalFormat}/${chunk.fileName}`,
+            });
+
+            return code + chunk.code;
+          }
+
+          return code;
+        }, '');
 
         this.builds[index].stats = {
           size: Buffer.byteLength(bundledCode),
         };
+
+        return result;
       }),
     );
+
+    this.buildResult.files = files;
   }
 
   findEntryPoint(formats: Format[], outputName: string): string {
