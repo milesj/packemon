@@ -53,7 +53,7 @@ describe('getBabelInputConfig()', () => {
 function renderPresetEnv(platform: Platform, format: Format, support: Support) {
   // eslint-disable-next-line jest/require-top-level-describe
   test(`handles preset-env: ${platform} + ${format} + ${support}`, () => {
-    expect(getBabelOutputConfig({ format, platform, support }, {})?.presets?.[0]).toMatchSnapshot();
+    expect(getBabelOutputConfig(platform, support, format, {})?.presets?.[0]).toMatchSnapshot();
   });
 }
 
@@ -73,37 +73,24 @@ describe('getBabelOutputConfig()', () => {
   it('errors for invalid platform', () => {
     expect(() =>
       // @ts-expect-error Unknown platform
-      getBabelOutputConfig({ format: 'lib', platform: 'unknown', support: 'stable' }, {}),
+      getBabelOutputConfig('unknown', 'stable', 'lib', {}),
     ).toThrow('Unknown platform "unknown".');
   });
 
   it('transforms async/await to promises when `browser` or `native`', () => {
-    expect(
-      getBabelOutputConfig({ format: 'lib', platform: 'browser', support: 'stable' }, {}),
-    ).toMatchSnapshot();
+    expect(getBabelOutputConfig('browser', 'stable', 'lib', {})).toMatchSnapshot();
 
-    expect(
-      getBabelOutputConfig({ format: 'lib', platform: 'native', support: 'experimental' }, {}),
-    ).toMatchSnapshot();
+    expect(getBabelOutputConfig('native', 'experimental', 'lib', {})).toMatchSnapshot();
   });
 
   it('uses built-in destructuring and object spread when `current` or `experimental`', () => {
-    expect(
-      getBabelOutputConfig({ format: 'lib', platform: 'node', support: 'current' }, {}),
-    ).toMatchSnapshot();
+    expect(getBabelOutputConfig('node', 'current', 'lib', {})).toMatchSnapshot();
 
-    expect(
-      getBabelOutputConfig({ format: 'lib', platform: 'node', support: 'experimental' }, {}),
-    ).toMatchSnapshot();
+    expect(getBabelOutputConfig('node', 'experimental', 'lib', {})).toMatchSnapshot();
   });
 
   it('sets `parserOpts.strictMode` based on `strict` feature flag', () => {
-    expect(
-      getBabelOutputConfig(
-        { format: 'lib', platform: 'node', support: 'stable' },
-        { strict: true },
-      ),
-    ).toEqual(
+    expect(getBabelOutputConfig('node', 'stable', 'lib', { strict: true })).toEqual(
       expect.objectContaining({
         parserOpts: {
           sourceType: 'unambiguous',
@@ -114,12 +101,7 @@ describe('getBabelOutputConfig()', () => {
   });
 
   it('sets `babelrcRoots` based on `workspaces` feature flag', () => {
-    expect(
-      getBabelOutputConfig(
-        { format: 'lib', platform: 'node', support: 'stable' },
-        { workspaces: ['packages/*'] },
-      ),
-    ).toEqual(
+    expect(getBabelOutputConfig('node', 'stable', 'lib', { workspaces: ['packages/*'] })).toEqual(
       expect.objectContaining({
         babelrcRoots: ['packages/*'],
       }),

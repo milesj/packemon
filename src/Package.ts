@@ -310,8 +310,12 @@ export class Package {
     const artifact = (this.artifacts as CodeArtifact[])
       .filter((art) => art instanceof CodeArtifact)
       .filter((art) => art.platform === 'node')
-      .reduce((oldest, art) =>
-        !oldest || SUPPORT_PRIORITY[art.support] < SUPPORT_PRIORITY[oldest.support] ? art : oldest,
+      .reduce<CodeArtifact | null>(
+        (oldest, art) =>
+          !oldest || SUPPORT_PRIORITY[art.support] < SUPPORT_PRIORITY[oldest.support]
+            ? art
+            : oldest,
+        null,
       );
 
     if (!artifact) {
@@ -348,7 +352,7 @@ export class Package {
       if (artifact instanceof CodeArtifact) {
         // Generate `main`, `module`, and `browser` fields
         if (artifact.inputs.index) {
-          if (!mainEntry) {
+          if (!mainEntry || artifact.platform === 'node') {
             mainEntry = artifact.findEntryPoint(['lib', 'cjs', 'mjs'], 'index');
           }
 
@@ -463,8 +467,11 @@ export class Package {
       }
     });
 
-    exts.add('json');
+    const list = [...exts].sort();
 
-    return [...exts];
+    // Always be last
+    list.push('json');
+
+    return list;
   }
 }

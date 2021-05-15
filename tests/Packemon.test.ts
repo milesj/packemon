@@ -1,7 +1,7 @@
 import rimraf from 'rimraf';
 import { Path } from '@boost/common';
 import { getFixturePath } from '@boost/test-utils';
-import { BundleArtifact, TypesArtifact } from '../src';
+import { CodeArtifact, TypesArtifact } from '../src';
 import { Package } from '../src/Package';
 import { Packemon } from '../src/Packemon';
 
@@ -327,33 +327,22 @@ describe('Packemon', () => {
       packemon.generateArtifacts(packages);
 
       expect(packages[0].artifacts).toHaveLength(2);
-      expect((packages[0].artifacts[0] as BundleArtifact).outputName).toBe('index');
-      expect((packages[0].artifacts[0] as BundleArtifact).inputFile).toBe('src/index.ts');
-      expect(packages[0].artifacts[0].builds).toEqual([
-        { format: 'lib', platform: 'node', support: 'stable' },
-      ]);
+      expect((packages[0].artifacts[0] as CodeArtifact).inputs).toEqual({ index: 'src/index.ts' });
+      expect(packages[0].artifacts[0].builds).toEqual([{ format: 'lib' }]);
 
-      expect((packages[0].artifacts[1] as BundleArtifact).outputName).toBe('index');
-      expect((packages[0].artifacts[1] as BundleArtifact).inputFile).toBe('src/index.ts');
-      expect(packages[0].artifacts[1].builds).toEqual([
-        { format: 'lib', platform: 'browser', support: 'current' },
-        { format: 'esm', platform: 'browser', support: 'current' },
-      ]);
+      expect((packages[0].artifacts[1] as CodeArtifact).inputs).toEqual({ index: 'src/index.ts' });
+      expect(packages[0].artifacts[1].builds).toEqual([{ format: 'lib' }, { format: 'esm' }]);
 
       expect(packages[1].artifacts).toHaveLength(1);
-      expect((packages[1].artifacts[0] as BundleArtifact).outputName).toBe('core');
-      expect((packages[1].artifacts[0] as BundleArtifact).inputFile).toBe('./src/core.ts');
-      expect(packages[1].artifacts[0].builds).toEqual([
-        { format: 'lib', platform: 'node', support: 'stable' },
-      ]);
+      expect((packages[1].artifacts[0] as CodeArtifact).inputs).toEqual({ core: './src/core.ts' });
+      expect(packages[1].artifacts[0].builds).toEqual([{ format: 'lib' }]);
 
       expect(packages[2].artifacts).toHaveLength(1);
-      expect((packages[2].artifacts[0] as BundleArtifact).outputName).toBe('index');
-      expect((packages[2].artifacts[0] as BundleArtifact).inputFile).toBe('src/index.ts');
+      expect((packages[2].artifacts[0] as CodeArtifact).inputs).toEqual({ index: 'src/index.ts' });
       expect(packages[2].artifacts[0].builds).toEqual([
-        { format: 'lib', platform: 'browser', support: 'stable' },
-        { format: 'esm', platform: 'browser', support: 'stable' },
-        { format: 'umd', platform: 'browser', support: 'stable' },
+        { format: 'lib' },
+        { format: 'esm' },
+        { format: 'umd' },
       ]);
     });
 
@@ -430,14 +419,8 @@ describe('Packemon', () => {
 
       packemon.generateArtifacts(packages);
 
-      expect(packages[0].artifacts[0].builds).toEqual([
-        { format: 'lib', platform: 'browser', support: 'stable' },
-        { format: 'esm', platform: 'browser', support: 'stable' },
-      ]);
-
-      expect(packages[0].artifacts[1].builds).toEqual([
-        { format: 'lib', platform: 'node', support: 'stable' },
-      ]);
+      expect(packages[0].artifacts[0].builds).toEqual([{ format: 'lib' }, { format: 'esm' }]);
+      expect(packages[0].artifacts[1].builds).toEqual([{ format: 'lib' }]);
     });
 
     it('filters formats using `filterFormats`', async () => {
@@ -449,10 +432,7 @@ describe('Packemon', () => {
         filterFormats: 'esm',
       });
 
-      expect(packages[0].artifacts[0].builds).toEqual([
-        { format: 'esm', platform: 'browser', support: 'stable' },
-      ]);
-
+      expect(packages[0].artifacts[0].builds).toEqual([{ format: 'esm' }]);
       expect(packages[0].artifacts[1]).toBeUndefined();
     });
 
@@ -465,10 +445,7 @@ describe('Packemon', () => {
         filterPlatforms: 'node',
       });
 
-      expect(packages[0].artifacts[0].builds).toEqual([
-        { format: 'lib', platform: 'node', support: 'stable' },
-      ]);
-
+      expect(packages[0].artifacts[0].builds).toEqual([{ format: 'lib' }]);
       expect(packages[0].artifacts[1]).toBeUndefined();
     });
   });

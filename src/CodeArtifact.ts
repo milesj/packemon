@@ -193,7 +193,7 @@ export class CodeArtifact extends Artifact<CodeBuild> {
   }
 
   getStatsTitle(): string {
-    return `${this.package.getName()}/${this.getLabel()}`;
+    return `${this.package.getName()}/${this.platform}/${this.support}`;
   }
 
   toString() {

@@ -1,10 +1,10 @@
 import fs from 'fs-extra';
 import { Path } from '@boost/common';
 import { getFixturePath } from '@boost/test-utils';
-import { BundleArtifact } from '../src/BundleArtifactOLD';
+import { CodeArtifact } from '../src/CodeArtifact';
 import { Package } from '../src/Package';
 import { Project } from '../src/Project';
-import { BundleBuild, TypesBuild } from '../src/types';
+import { CodeBuild, Platform, Support, TypesBuild } from '../src/types';
 import { TypesArtifact } from '../src/TypesArtifact';
 import { createProjectPackage, TestArtifact } from './helpers';
 
@@ -21,10 +21,17 @@ describe('Package', () => {
     return [a, b, c];
   }
 
-  function createBundleArtifact(builds: BundleBuild[]) {
-    const artifact = new BundleArtifact(pkg, builds);
-    artifact.inputFile = 'src/index.ts';
-    artifact.outputName = 'index';
+  function createCodeArtifact(
+    builds: CodeBuild[],
+    platform: Platform = 'node',
+    support: Support = 'stable',
+  ) {
+    const artifact = new CodeArtifact(pkg, builds);
+    artifact.platform = platform;
+    artifact.support = support;
+    artifact.inputs = {
+      index: 'src/index.ts',
+    };
 
     artifact.build = () => Promise.resolve();
 
@@ -157,12 +164,66 @@ describe('Package', () => {
       expect(spy).toHaveBeenCalled();
     });
 
+    describe('engines', () => {
+      it('does nothing if `addEngines` is false', async () => {
+        pkg.addArtifact(createCodeArtifact([{ format: 'lib' }], 'browser'));
+
+        await pkg.build({ addEngines: false });
+
+        expect(pkg.packageJson.engines).toBeUndefined();
+      });
+
+      it('does nothing if builds is not `node`', async () => {
+        pkg.addArtifact(createCodeArtifact([{ format: 'lib' }], 'browser'));
+
+        await pkg.build({ addEngines: true });
+
+        expect(pkg.packageJson.engines).toBeUndefined();
+      });
+
+      it('adds npm and node engines for `node` build', async () => {
+        pkg.addArtifact(createCodeArtifact([{ format: 'lib' }]));
+
+        await pkg.build({ addEngines: true });
+
+        expect(pkg.packageJson.engines).toEqual({ node: '>=10.3.0', npm: '>=6.1.0' });
+      });
+
+      it('uses oldest `node` build', async () => {
+        pkg.addArtifact(createCodeArtifact([{ format: 'lib' }]));
+
+        const old = createCodeArtifact([{ format: 'lib' }]);
+        old.support = 'legacy';
+        pkg.addArtifact(old);
+
+        await pkg.build({ addEngines: true });
+
+        expect(pkg.packageJson.engines).toEqual({ node: '>=8.10.0', npm: '>=5.6.0 || >=6.0.0' });
+      });
+
+      it('merges with existing engines', async () => {
+        pkg.addArtifact(createCodeArtifact([{ format: 'lib' }]));
+
+        pkg.packageJson.engines = {
+          packemon: '*',
+        };
+
+        expect(pkg.packageJson.engines).toEqual({ packemon: '*' });
+
+        await pkg.build({ addEngines: true });
+
+        expect(pkg.packageJson.engines).toEqual({
+          packemon: '*',
+          node: '>=10.3.0',
+          npm: '>=6.1.0',
+        });
+      });
+    });
+
     describe('entries', () => {
       describe('main', () => {
         it('adds "main" for node `lib` format', async () => {
-          pkg.addArtifact(
-            createBundleArtifact([{ format: 'lib', platform: 'node', support: 'stable' }]),
-          );
+          pkg.addArtifact(createCodeArtifact([{ format: 'lib' }]));
 
           await pkg.build({});
 
@@ -174,9 +235,7 @@ describe('Package', () => {
         });
 
         it('adds "main" for node `cjs` format', async () => {
-          pkg.addArtifact(
-            createBundleArtifact([{ format: 'cjs', platform: 'node', support: 'stable' }]),
-          );
+          pkg.addArtifact(createCodeArtifact([{ format: 'cjs' }]));
 
           await pkg.build({});
 
@@ -189,9 +248,7 @@ describe('Package', () => {
         });
 
         it('adds "main" for node `mjs` format', async () => {
-          pkg.addArtifact(
-            createBundleArtifact([{ format: 'mjs', platform: 'node', support: 'stable' }]),
-          );
+          pkg.addArtifact(createCodeArtifact([{ format: 'mjs' }]));
 
           await pkg.build({});
 
@@ -204,10 +261,7 @@ describe('Package', () => {
         });
 
         it('adds "main" for browser `lib` format', async () => {
-          const a = createBundleArtifact([
-            { format: 'lib', platform: 'browser', support: 'stable' },
-          ]);
-          a.platform = 'browser';
+          const a = createCodeArtifact([{ format: 'lib' }], 'browser');
           pkg.addArtifact(a);
 
           await pkg.build({});
@@ -220,10 +274,7 @@ describe('Package', () => {
         });
 
         it('adds "main" for native `lib` format', async () => {
-          const a = createBundleArtifact([
-            { format: 'lib', platform: 'native', support: 'stable' },
-          ]);
-          a.platform = 'native';
+          const a = createCodeArtifact([{ format: 'lib' }], 'native');
           pkg.addArtifact(a);
 
           await pkg.build({});
@@ -236,8 +287,8 @@ describe('Package', () => {
         });
 
         it('doesnt add "main" if output name is not "index"', async () => {
-          const a = createBundleArtifact([{ format: 'lib', platform: 'node', support: 'stable' }]);
-          a.outputName = 'server';
+          const a = createCodeArtifact([{ format: 'lib' }]);
+          a.inputs = { server: 'src/index.ts' };
           pkg.addArtifact(a);
 
           await pkg.build({});
@@ -246,15 +297,12 @@ describe('Package', () => {
         });
 
         it('adds "main" when using shared `lib` format', async () => {
-          const a = createBundleArtifact([{ format: 'lib', platform: 'node', support: 'stable' }]);
+          const a = createCodeArtifact([{ format: 'lib' }]);
           a.sharedLib = true;
           pkg.addArtifact(a);
 
-          const b = createBundleArtifact([
-            { format: 'lib', platform: 'browser', support: 'stable' },
-          ]);
+          const b = createCodeArtifact([{ format: 'lib' }], 'browser');
           b.sharedLib = true;
-          b.platform = 'browser';
           pkg.addArtifact(b);
 
           await pkg.build({});
@@ -267,14 +315,11 @@ describe('Package', () => {
         });
 
         it('node "main" always takes precedence when multiple `lib` formats', async () => {
-          const b = createBundleArtifact([
-            { format: 'lib', platform: 'browser', support: 'stable' },
-          ]);
+          const b = createCodeArtifact([{ format: 'lib' }], 'browser');
           b.sharedLib = true;
-          b.platform = 'browser';
           pkg.addArtifact(b);
 
-          const a = createBundleArtifact([{ format: 'lib', platform: 'node', support: 'stable' }]);
+          const a = createCodeArtifact([{ format: 'lib' }]);
           a.sharedLib = true;
           pkg.addArtifact(a);
 
@@ -290,9 +335,7 @@ describe('Package', () => {
 
       describe('module', () => {
         it('adds "module" for node `mjs` format', async () => {
-          pkg.addArtifact(
-            createBundleArtifact([{ format: 'mjs', platform: 'node', support: 'stable' }]),
-          );
+          pkg.addArtifact(createCodeArtifact([{ format: 'mjs' }]));
 
           await pkg.build({});
 
@@ -304,10 +347,7 @@ describe('Package', () => {
         });
 
         it('adds "module" for browser `esm` format', async () => {
-          const a = createBundleArtifact([
-            { format: 'esm', platform: 'browser', support: 'stable' },
-          ]);
-          a.platform = 'browser';
+          const a = createCodeArtifact([{ format: 'esm' }], 'browser');
           pkg.addArtifact(a);
 
           await pkg.build({});
@@ -322,16 +362,10 @@ describe('Package', () => {
 
       describe('browser', () => {
         beforeEach(() => {
-          const node = createBundleArtifact([
-            { format: 'lib', platform: 'node', support: 'stable' },
-          ]);
-          node.platform = 'node';
+          const node = createCodeArtifact([{ format: 'lib' }]);
           node.sharedLib = true;
 
-          const browser = createBundleArtifact([
-            { format: 'lib', platform: 'browser', support: 'stable' },
-          ]);
-          browser.platform = 'browser';
+          const browser = createCodeArtifact([{ format: 'lib' }], 'browser');
           browser.sharedLib = true;
 
           pkg.addArtifact(node);
@@ -380,8 +414,8 @@ describe('Package', () => {
 
       describe('bin', () => {
         it('adds "bin" for node `lib` format', async () => {
-          const a = createBundleArtifact([{ format: 'lib', platform: 'node', support: 'stable' }]);
-          a.outputName = 'bin';
+          const a = createCodeArtifact([{ format: 'lib' }]);
+          a.inputs = { bin: 'src/bin.ts' };
           pkg.addArtifact(a);
 
           await pkg.build({});
@@ -394,8 +428,8 @@ describe('Package', () => {
         });
 
         it('adds "bin" for node `cjs` format', async () => {
-          const a = createBundleArtifact([{ format: 'cjs', platform: 'node', support: 'stable' }]);
-          a.outputName = 'bin';
+          const a = createCodeArtifact([{ format: 'cjs' }]);
+          a.inputs = { bin: 'src/bin.ts' };
           pkg.addArtifact(a);
 
           await pkg.build({});
@@ -408,8 +442,8 @@ describe('Package', () => {
         });
 
         it('adds "bin" for node `mjs` format', async () => {
-          const a = createBundleArtifact([{ format: 'mjs', platform: 'node', support: 'stable' }]);
-          a.outputName = 'bin';
+          const a = createCodeArtifact([{ format: 'mjs' }]);
+          a.inputs = { bin: 'src/bin.ts' };
           pkg.addArtifact(a);
 
           await pkg.build({});
@@ -422,9 +456,9 @@ describe('Package', () => {
         });
 
         it('doesnt add "bin" if value is an object', async () => {
-          pkg.addArtifact(
-            createBundleArtifact([{ format: 'lib', platform: 'node', support: 'stable' }]),
-          );
+          const a = createCodeArtifact([{ format: 'lib' }]);
+          a.inputs = { bin: 'src/bin.ts' };
+          pkg.addArtifact(a);
 
           pkg.packageJson.bin = {};
 
@@ -436,16 +470,8 @@ describe('Package', () => {
 
       describe('files', () => {
         it('adds "files" folder for each format format', async () => {
-          pkg.addArtifact(
-            createBundleArtifact([
-              { format: 'cjs', platform: 'node', support: 'stable' },
-              { format: 'lib', platform: 'node', support: 'stable' },
-            ]),
-          );
-
-          pkg.addArtifact(
-            createBundleArtifact([{ format: 'umd', platform: 'browser', support: 'stable' }]),
-          );
+          pkg.addArtifact(createCodeArtifact([{ format: 'cjs' }, { format: 'lib' }]));
+          pkg.addArtifact(createCodeArtifact([{ format: 'umd' }], 'browser'));
 
           await pkg.build({});
 
@@ -464,11 +490,8 @@ describe('Package', () => {
         it('merges with existing "files" list', async () => {
           pkg.packageJson.files = ['templates/', 'test.js'];
 
-          const art = createBundleArtifact([
-            { format: 'lib', platform: 'browser', support: 'stable' },
-            { format: 'esm', platform: 'browser', support: 'stable' },
-          ]);
-          art.inputFile = 'src/index.jsx';
+          const art = createCodeArtifact([{ format: 'lib' }, { format: 'esm' }], 'browser');
+          art.inputs.index = 'src/index.jsx';
 
           pkg.addArtifact(art);
 
@@ -488,8 +511,8 @@ describe('Package', () => {
         });
 
         it('determines source "js" files', async () => {
-          const art = createBundleArtifact([]);
-          art.inputFile = 'src/index.js';
+          const art = createCodeArtifact([]);
+          art.inputs.index = 'src/index.js';
 
           pkg.addArtifact(art);
 
@@ -503,8 +526,8 @@ describe('Package', () => {
         });
 
         it('determines source "jsx" files', async () => {
-          const art = createBundleArtifact([]);
-          art.inputFile = 'src/index.jsx';
+          const art = createCodeArtifact([]);
+          art.inputs.index = 'src/index.jsx';
 
           pkg.addArtifact(art);
 
@@ -518,8 +541,8 @@ describe('Package', () => {
         });
 
         it('determines source "cjs" files', async () => {
-          const art = createBundleArtifact([]);
-          art.inputFile = 'src/index.cjs';
+          const art = createCodeArtifact([]);
+          art.inputs.index = 'src/index.cjs';
 
           pkg.addArtifact(art);
 
@@ -527,14 +550,14 @@ describe('Package', () => {
 
           expect(pkg.packageJson).toEqual(
             expect.objectContaining({
-              files: ['src/**/*.{js,cjs,json}'],
+              files: ['src/**/*.{cjs,js,json}'],
             }),
           );
         });
 
         it('determines source "mjs" files', async () => {
-          const art = createBundleArtifact([]);
-          art.inputFile = 'src/index.mjs';
+          const art = createCodeArtifact([]);
+          art.inputs.index = 'src/index.mjs';
 
           pkg.addArtifact(art);
 
@@ -548,8 +571,8 @@ describe('Package', () => {
         });
 
         it('determines source "ts" files', async () => {
-          const art = createBundleArtifact([]);
-          art.inputFile = 'src/index.ts';
+          const art = createCodeArtifact([]);
+          art.inputs.index = 'src/index.ts';
 
           pkg.addArtifact(art);
 
@@ -563,8 +586,8 @@ describe('Package', () => {
         });
 
         it('determines source "tsx" files', async () => {
-          const art = createBundleArtifact([]);
-          art.inputFile = 'src/index.tsx';
+          const art = createCodeArtifact([]);
+          art.inputs.index = 'src/index.tsx';
 
           pkg.addArtifact(art);
 
@@ -597,9 +620,7 @@ describe('Package', () => {
       });
 
       it('adds exports for a single artifact and format', async () => {
-        pkg.addArtifact(
-          createBundleArtifact([{ format: 'lib', platform: 'node', support: 'stable' }]),
-        );
+        pkg.addArtifact(createCodeArtifact([{ format: 'lib' }]));
 
         await pkg.build({ addExports: true });
 
@@ -611,11 +632,7 @@ describe('Package', () => {
 
       it('adds exports for a single artifact and multiple format', async () => {
         pkg.addArtifact(
-          createBundleArtifact([
-            { format: 'lib', platform: 'node', support: 'stable' },
-            { format: 'mjs', platform: 'node', support: 'stable' },
-            { format: 'cjs', platform: 'node', support: 'stable' },
-          ]),
+          createCodeArtifact([{ format: 'lib' }, { format: 'mjs' }, { format: 'cjs' }]),
         );
 
         await pkg.build({ addExports: true });
@@ -633,18 +650,16 @@ describe('Package', () => {
       });
 
       it('adds exports for multiple artifacts of the same output name', async () => {
-        const a = createBundleArtifact([{ format: 'lib', platform: 'node', support: 'stable' }]);
+        const a = createCodeArtifact([{ format: 'lib' }]);
         a.sharedLib = true;
         pkg.addArtifact(a);
 
-        const b = createBundleArtifact([{ format: 'lib', platform: 'browser', support: 'stable' }]);
+        const b = createCodeArtifact([{ format: 'lib' }], 'browser');
         b.sharedLib = true;
-        b.platform = 'browser';
         pkg.addArtifact(b);
 
-        const c = createBundleArtifact([{ format: 'lib', platform: 'native', support: 'stable' }]);
+        const c = createCodeArtifact([{ format: 'lib' }], 'native');
         c.sharedLib = true;
-        c.platform = 'native';
         pkg.addArtifact(c);
 
         await pkg.build({ addExports: true });
@@ -660,19 +675,13 @@ describe('Package', () => {
       });
 
       it('adds exports for multiple artifacts + formats of the same output name', async () => {
-        const a = createBundleArtifact([
-          { format: 'lib', platform: 'node', support: 'stable' },
-          { format: 'mjs', platform: 'node', support: 'stable' },
-          { format: 'cjs', platform: 'node', support: 'stable' },
-        ]);
+        const a = createCodeArtifact([{ format: 'lib' }, { format: 'mjs' }, { format: 'cjs' }]);
         pkg.addArtifact(a);
 
-        const b = createBundleArtifact([
-          { format: 'lib', platform: 'browser', support: 'stable' },
-          { format: 'esm', platform: 'browser', support: 'stable' },
-          { format: 'umd', platform: 'browser', support: 'stable' },
-        ]);
-        b.platform = 'browser';
+        const b = createCodeArtifact(
+          [{ format: 'lib' }, { format: 'esm' }, { format: 'umd' }],
+          'browser',
+        );
         pkg.addArtifact(b);
 
         await pkg.build({ addExports: true });
@@ -695,12 +704,11 @@ describe('Package', () => {
       });
 
       it('adds exports for multiple artifacts of different output names', async () => {
-        const a = createBundleArtifact([{ format: 'lib', platform: 'node', support: 'stable' }]);
+        const a = createCodeArtifact([{ format: 'lib' }]);
         pkg.addArtifact(a);
 
-        const b = createBundleArtifact([{ format: 'lib', platform: 'browser', support: 'stable' }]);
-        b.platform = 'browser';
-        b.outputName = 'client';
+        const b = createCodeArtifact([{ format: 'lib' }], 'browser');
+        b.inputs = { client: 'src/index.ts' };
         pkg.addArtifact(b);
 
         await pkg.build({ addExports: true });
@@ -713,20 +721,14 @@ describe('Package', () => {
       });
 
       it('adds exports for multiple artifacts + formats of different output names', async () => {
-        const a = createBundleArtifact([
-          { format: 'lib', platform: 'node', support: 'stable' },
-          { format: 'mjs', platform: 'node', support: 'stable' },
-          { format: 'cjs', platform: 'node', support: 'stable' },
-        ]);
+        const a = createCodeArtifact([{ format: 'lib' }, { format: 'mjs' }, { format: 'cjs' }]);
         pkg.addArtifact(a);
 
-        const b = createBundleArtifact([
-          { format: 'lib', platform: 'browser', support: 'stable' },
-          { format: 'esm', platform: 'browser', support: 'stable' },
-          { format: 'umd', platform: 'browser', support: 'stable' },
-        ]);
-        b.platform = 'browser';
-        b.outputName = 'client';
+        const b = createCodeArtifact(
+          [{ format: 'lib' }, { format: 'esm' }, { format: 'umd' }],
+          'browser',
+        );
+        b.inputs = { client: 'src/index.ts' };
         pkg.addArtifact(b);
 
         await pkg.build({ addExports: true });
@@ -751,9 +753,7 @@ describe('Package', () => {
       });
 
       it('adds exports for bundle and types artifacts in parallel', async () => {
-        pkg.addArtifact(
-          createBundleArtifact([{ format: 'lib', platform: 'node', support: 'stable' }]),
-        );
+        pkg.addArtifact(createCodeArtifact([{ format: 'lib' }]));
         pkg.addArtifact(createTypesArtifact([{ inputFile: '', outputName: 'index' }]));
 
         await pkg.build({ addExports: true });
@@ -769,9 +769,7 @@ describe('Package', () => {
           './foo': './lib/foo.js',
         };
 
-        pkg.addArtifact(
-          createBundleArtifact([{ format: 'lib', platform: 'node', support: 'stable' }]),
-        );
+        pkg.addArtifact(createCodeArtifact([{ format: 'lib' }]));
 
         await pkg.build({ addExports: true });
 
@@ -1205,21 +1203,6 @@ describe('Package', () => {
             inputs: {
               'foo bar': 'src/foo.ts',
             },
-          },
-        ]);
-      }).toThrowErrorMatchingSnapshot();
-    });
-
-    it('errors if multiple inputs are passed when `bundle` is false', () => {
-      expect(() => {
-        pkg.setConfigs([
-          {
-            bundle: false,
-            inputs: {
-              index: 'src/index.ts',
-              other: 'src/other.ts',
-            },
-            platform: 'node',
           },
         ]);
       }).toThrowErrorMatchingSnapshot();

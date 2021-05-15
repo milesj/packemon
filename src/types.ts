@@ -125,13 +125,6 @@ export interface BuildResult {
   time: number;
 }
 
-export interface BundleBuild {
-  format: Format;
-  platform: Platform;
-  support: Support;
-  stats?: { size: number };
-}
-
 export interface CodeBuild {
   format: Format;
   stats?: { size: number };

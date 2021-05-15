@@ -232,11 +232,8 @@ export class Packemon {
       const sharedLib = this.requiresSharedLib(pkg);
 
       pkg.configs.forEach((config, index) => {
-        // Pass platform and support here for convenience
         let builds = config.formats.map((format) => ({
           format,
-          platform: config.platform,
-          support: config.support,
         }));
 
         if (filterFormats) {
@@ -248,7 +245,9 @@ export class Packemon {
         if (filterPlatforms) {
           this.debug('Filtering platforms with pattern: %s', filterPlatforms);
 
-          builds = builds.filter((build) => matchesPattern(build.platform, filterPlatforms));
+          if (!matchesPattern(config.platform, filterPlatforms)) {
+            return;
+          }
         }
 
         if (builds.length === 0) {

@@ -1,6 +1,6 @@
 import { Path } from '@boost/common';
 import { getFixturePath } from '@boost/test-utils';
-import { BundleArtifact } from '../../src/BundleArtifactOLD';
+import { CodeArtifact } from '../../src/CodeArtifact';
 import { Package } from '../../src/Package';
 import { Project } from '../../src/Project';
 import {
@@ -29,7 +29,7 @@ const fixturePath = new Path(getFixturePath('project-rollup'));
 const srcInputFile = fixturePath.append('src/index.ts').path();
 
 function createArtifact(outputName: string, inputFile: string, pkg?: Package) {
-  const artifact = new BundleArtifact(
+  const artifact = new CodeArtifact(
     pkg ??
       new Package(new Project(fixturePath), fixturePath, {
         name: 'project',
@@ -39,8 +39,9 @@ function createArtifact(outputName: string, inputFile: string, pkg?: Package) {
     [],
   );
   artifact.configGroup = 1;
-  artifact.outputName = outputName;
-  artifact.inputFile = inputFile;
+  artifact.inputs = {
+    [outputName]: inputFile,
+  };
   artifact.startup();
 
   return artifact;
@@ -57,7 +58,7 @@ describe('getRollupConfig()', () => {
 
   const sharedNonNodePlugins = ['polyfillNode()', ...sharedPlugins];
 
-  let artifact: BundleArtifact;
+  let artifact: CodeArtifact;
 
   beforeEach(() => {
     artifact = createArtifact('index', 'src/index.ts');
@@ -69,7 +70,7 @@ describe('getRollupConfig()', () => {
     expect(getRollupConfig(artifact, {})).toEqual({
       cache: undefined,
       external: expect.any(Function),
-      input: srcInputFile,
+      input: { index: srcInputFile },
       output: [],
       plugins: sharedNonNodePlugins,
       treeshake: true,
@@ -82,7 +83,7 @@ describe('getRollupConfig()', () => {
     expect(getRollupConfig(artifact, {})).toEqual({
       cache: undefined,
       external: expect.any(Function),
-      input: srcInputFile,
+      input: { index: srcInputFile },
       output: [],
       plugins: sharedNonNodePlugins,
       treeshake: true,
@@ -95,7 +96,7 @@ describe('getRollupConfig()', () => {
     expect(getRollupConfig(artifact, {})).toEqual({
       cache: undefined,
       external: expect.any(Function),
-      input: srcInputFile,
+      input: { index: srcInputFile },
       output: [],
       plugins: sharedPlugins,
       treeshake: true,
@@ -103,24 +104,21 @@ describe('getRollupConfig()', () => {
   });
 
   it('generates an output config for each build', () => {
-    artifact.builds.push(
-      { format: 'lib', platform: 'node', support: 'stable' },
-      { format: 'lib', platform: 'browser', support: 'legacy' },
-      { format: 'esm', platform: 'browser', support: 'current' },
-      { format: 'mjs', platform: 'node', support: 'experimental' },
-    );
+    artifact.builds.push({ format: 'lib' }, { format: 'esm' }, { format: 'mjs' });
 
     expect(getRollupConfig(artifact, {})).toEqual({
       cache: undefined,
       external: expect.any(Function),
-      input: srcInputFile,
+      input: {
+        index: srcInputFile,
+      },
       output: [
         {
           assetFileNames: '../assets/[name]-[hash][extname]',
           banner: expect.any(String),
-          chunkFileNames: 'index-[hash].js',
+          chunkFileNames: 'bundle-[hash].js',
           dir: fixturePath.append('lib').path(),
-          entryFileNames: 'index.js',
+          entryFileNames: '[name].js',
           exports: 'auto',
           format: 'cjs',
           originalFormat: 'lib',
@@ -134,30 +132,14 @@ describe('getRollupConfig()', () => {
         {
           assetFileNames: '../assets/[name]-[hash][extname]',
           banner: expect.any(String),
-          chunkFileNames: 'index-[hash].js',
-          dir: fixturePath.append('lib').path(),
-          entryFileNames: 'index.js',
-          exports: 'auto',
-          format: 'cjs',
-          originalFormat: 'lib',
-          paths: {},
-          plugins: [`babelOutput(${fixturePath}, *)`],
-          preferConst: false,
-          preserveModules: false,
-          sourcemap: true,
-          sourcemapExcludeSources: true,
-        },
-        {
-          assetFileNames: '../assets/[name]-[hash][extname]',
-          banner: expect.any(String),
-          chunkFileNames: 'index-[hash].js',
+          chunkFileNames: 'bundle-[hash].js',
           dir: fixturePath.append('esm').path(),
-          entryFileNames: 'index.js',
+          entryFileNames: '[name].js',
           format: 'esm',
           originalFormat: 'esm',
           paths: {},
           plugins: [`babelOutput(${fixturePath}, *)`],
-          preferConst: true,
+          preferConst: false,
           preserveModules: false,
           sourcemap: true,
           sourcemapExcludeSources: true,
@@ -165,14 +147,14 @@ describe('getRollupConfig()', () => {
         {
           assetFileNames: '../assets/[name]-[hash][extname]',
           banner: expect.any(String),
-          chunkFileNames: 'index-[hash].mjs',
+          chunkFileNames: 'bundle-[hash].mjs',
           dir: fixturePath.append('mjs').path(),
-          entryFileNames: 'index.mjs',
+          entryFileNames: '[name].mjs',
           format: 'esm',
           originalFormat: 'mjs',
           paths: {},
           plugins: [`babelOutput(${fixturePath}, *)`],
-          preferConst: true,
+          preferConst: false,
           preserveModules: false,
           sourcemap: true,
           sourcemapExcludeSources: true,
@@ -184,23 +166,24 @@ describe('getRollupConfig()', () => {
   });
 
   it('generates an accurate config if input/output are not "index"', () => {
-    artifact.inputFile = 'src/server/core.ts';
-    artifact.outputName = 'server';
-    artifact.platform = 'node';
-    artifact.support = 'stable';
-    artifact.builds.push({ format: 'lib', platform: 'node', support: 'stable' });
+    artifact.inputs = {
+      server: 'src/server/core.ts',
+    };
+    artifact.builds.push({ format: 'lib' });
 
     expect(getRollupConfig(artifact, {})).toEqual({
       cache: undefined,
       external: expect.any(Function),
-      input: fixturePath.append('src/server/core.ts').path(),
+      input: {
+        server: fixturePath.append('src/server/core.ts').path(),
+      },
       output: [
         {
           assetFileNames: '../assets/[name]-[hash][extname]',
           banner: expect.any(String),
-          chunkFileNames: 'server-[hash].js',
+          chunkFileNames: 'bundle-[hash].js',
           dir: fixturePath.append('lib').path(),
-          entryFileNames: 'server.js',
+          entryFileNames: '[name].js',
           exports: 'auto',
           format: 'cjs',
           originalFormat: 'lib',
@@ -219,7 +202,7 @@ describe('getRollupConfig()', () => {
 
   it('when not bundling, globs all source files, preserves modules, and doesnt treeshake', () => {
     artifact.bundle = false;
-    artifact.builds.push({ format: 'lib', platform: 'node', support: 'stable' });
+    artifact.builds.push({ format: 'lib' });
 
     expect(getRollupConfig(artifact, {})).toEqual({
       cache: undefined,
@@ -234,9 +217,9 @@ describe('getRollupConfig()', () => {
       output: [
         {
           assetFileNames: '../assets/[name]-[hash][extname]',
-          chunkFileNames: 'index-[hash].js',
+          chunkFileNames: '[name]-[hash].js',
           dir: fixturePath.append('lib').path(),
-          entryFileNames: 'index.js',
+          entryFileNames: '[name].js',
           exports: 'auto',
           format: 'cjs',
           originalFormat: 'lib',
@@ -262,9 +245,10 @@ describe('getRollupConfig()', () => {
   });
 
   it('includes analyzer plugin if `analyze` feature flag is on', () => {
+    artifact.builds.push({ format: 'lib' });
     expect(getRollupConfig(artifact, { analyze: 'treemap' }).plugins).toEqual([
       ...sharedPlugins,
-      'visualizer(treemap, stats-project-index.html, project/index)',
+      'visualizer(treemap, stats-project-node-stable.html, project/node/stable)',
     ]);
   });
 
@@ -280,26 +264,6 @@ describe('getRollupConfig()', () => {
 
     it('returns false for random files', () => {
       expect(getRollupExternals(artifact)('some/random/file.js')).toBe(false);
-    });
-
-    it('returns true for sibling inputs in the same artifact config', () => {
-      artifact.package.addArtifact(
-        createArtifact('client', 'src/client/index.ts', artifact.package),
-      );
-
-      artifact.package.addArtifact(
-        createArtifact('server', 'src/server/core.ts', artifact.package),
-      );
-
-      artifact.package.addArtifact(
-        createArtifact('test', 'src/test-utils/base.ts', artifact.package),
-      );
-
-      const ext = getRollupExternals(artifact);
-
-      expect(ext(fixturePath.append('src/client/index.ts').path())).toBe(true);
-      expect(ext(fixturePath.append('src/server/core.ts').path())).toBe(true);
-      expect(ext(fixturePath.append('src/test-utils/base.ts').path())).toBe(true);
     });
 
     it('errors for foreign inputs (not in the same artifact config)', () => {
@@ -325,7 +289,7 @@ describe('getRollupConfig()', () => {
 });
 
 describe('getRollupOutputConfig()', () => {
-  let artifact: BundleArtifact;
+  let artifact: CodeArtifact;
 
   beforeEach(() => {
     artifact = createArtifact('index', 'src/index.ts');
@@ -334,14 +298,12 @@ describe('getRollupOutputConfig()', () => {
   });
 
   it('generates default output config', () => {
-    expect(
-      getRollupOutputConfig(artifact, {}, { format: 'lib', platform: 'node', support: 'stable' }),
-    ).toEqual({
+    expect(getRollupOutputConfig(artifact, {}, 'lib')).toEqual({
       assetFileNames: '../assets/[name]-[hash][extname]',
       banner: expect.any(String),
-      chunkFileNames: 'index-[hash].js',
+      chunkFileNames: 'bundle-[hash].js',
       dir: fixturePath.append('lib').path(),
-      entryFileNames: 'index.js',
+      entryFileNames: '[name].js',
       exports: 'auto',
       format: 'cjs',
       originalFormat: 'lib',
@@ -358,25 +320,17 @@ describe('getRollupOutputConfig()', () => {
     artifact.platform = 'browser';
     artifact.support = 'stable';
 
-    expect(
-      getRollupOutputConfig(artifact, {}, { format: 'esm', platform: 'browser', support: 'stable' })
-        .dir,
-    ).toBe(fixturePath.append('esm').path());
+    expect(getRollupOutputConfig(artifact, {}, 'esm').dir).toBe(fixturePath.append('esm').path());
 
     artifact.platform = 'node';
     artifact.support = 'stable';
 
-    expect(
-      getRollupOutputConfig(artifact, {}, { format: 'mjs', platform: 'node', support: 'stable' })
-        .dir,
-    ).toBe(fixturePath.append('mjs').path());
+    expect(getRollupOutputConfig(artifact, {}, 'mjs').dir).toBe(fixturePath.append('mjs').path());
   });
 
   describe('formats', () => {
     it('converts `lib` format to rollup "cjs" format', () => {
-      expect(
-        getRollupOutputConfig(artifact, {}, { format: 'lib', platform: 'node', support: 'stable' }),
-      ).toEqual(
+      expect(getRollupOutputConfig(artifact, {}, 'lib')).toEqual(
         expect.objectContaining({
           format: 'cjs',
           originalFormat: 'lib',
@@ -385,9 +339,7 @@ describe('getRollupOutputConfig()', () => {
     });
 
     it('converts `cjs` format to rollup "cjs" format', () => {
-      expect(
-        getRollupOutputConfig(artifact, {}, { format: 'cjs', platform: 'node', support: 'stable' }),
-      ).toEqual(
+      expect(getRollupOutputConfig(artifact, {}, 'cjs')).toEqual(
         expect.objectContaining({
           format: 'cjs',
           originalFormat: 'cjs',
@@ -396,9 +348,7 @@ describe('getRollupOutputConfig()', () => {
     });
 
     it('converts `mjs` format to rollup "esm" format', () => {
-      expect(
-        getRollupOutputConfig(artifact, {}, { format: 'mjs', platform: 'node', support: 'stable' }),
-      ).toEqual(
+      expect(getRollupOutputConfig(artifact, {}, 'mjs')).toEqual(
         expect.objectContaining({
           format: 'esm',
           originalFormat: 'mjs',
@@ -409,13 +359,7 @@ describe('getRollupOutputConfig()', () => {
     it('converts `esm` format to rollup "esm" format', () => {
       artifact.platform = 'browser';
 
-      expect(
-        getRollupOutputConfig(
-          artifact,
-          {},
-          { format: 'esm', platform: 'browser', support: 'stable' },
-        ),
-      ).toEqual(
+      expect(getRollupOutputConfig(artifact, {}, 'esm')).toEqual(
         expect.objectContaining({
           format: 'esm',
           originalFormat: 'esm',
@@ -426,13 +370,7 @@ describe('getRollupOutputConfig()', () => {
     it('converts `umd` format to rollup "esm" format', () => {
       artifact.platform = 'browser';
 
-      expect(
-        getRollupOutputConfig(
-          artifact,
-          {},
-          { format: 'umd', platform: 'browser', support: 'stable' },
-        ),
-      ).toEqual(
+      expect(getRollupOutputConfig(artifact, {}, 'umd')).toEqual(
         expect.objectContaining({
           format: 'esm',
           originalFormat: 'umd',
@@ -443,12 +381,10 @@ describe('getRollupOutputConfig()', () => {
 
   describe('chunks', () => {
     it('uses ".js" chunk extension for `lib` format', () => {
-      expect(
-        getRollupOutputConfig(artifact, {}, { format: 'lib', platform: 'node', support: 'stable' }),
-      ).toEqual(
+      expect(getRollupOutputConfig(artifact, {}, 'lib')).toEqual(
         expect.objectContaining({
-          chunkFileNames: 'index-[hash].js',
-          entryFileNames: 'index.js',
+          chunkFileNames: 'bundle-[hash].js',
+          entryFileNames: '[name].js',
         }),
       );
     });
@@ -456,16 +392,10 @@ describe('getRollupOutputConfig()', () => {
     it('uses ".js" chunk extension for `esm` format', () => {
       artifact.platform = 'browser';
 
-      expect(
-        getRollupOutputConfig(
-          artifact,
-          {},
-          { format: 'esm', platform: 'browser', support: 'stable' },
-        ),
-      ).toEqual(
+      expect(getRollupOutputConfig(artifact, {}, 'esm')).toEqual(
         expect.objectContaining({
-          chunkFileNames: 'index-[hash].js',
-          entryFileNames: 'index.js',
+          chunkFileNames: 'bundle-[hash].js',
+          entryFileNames: '[name].js',
         }),
       );
     });
@@ -473,167 +403,87 @@ describe('getRollupOutputConfig()', () => {
     it('uses ".js" chunk extension for `umd` format', () => {
       artifact.platform = 'browser';
 
-      expect(
-        getRollupOutputConfig(
-          artifact,
-          {},
-          { format: 'umd', platform: 'browser', support: 'stable' },
-        ),
-      ).toEqual(
+      expect(getRollupOutputConfig(artifact, {}, 'umd')).toEqual(
         expect.objectContaining({
-          chunkFileNames: 'index-[hash].js',
-          entryFileNames: 'index.js',
+          chunkFileNames: 'bundle-[hash].js',
+          entryFileNames: '[name].js',
         }),
       );
     });
 
     it('uses ".cjs" chunk extension for `cjs` format', () => {
-      expect(
-        getRollupOutputConfig(artifact, {}, { format: 'cjs', platform: 'node', support: 'stable' }),
-      ).toEqual(
+      expect(getRollupOutputConfig(artifact, {}, 'cjs')).toEqual(
         expect.objectContaining({
-          chunkFileNames: 'index-[hash].cjs',
-          entryFileNames: 'index.cjs',
+          chunkFileNames: 'bundle-[hash].cjs',
+          entryFileNames: '[name].cjs',
         }),
       );
     });
 
     it('uses ".mjs" chunk extension for `mjs` format', () => {
-      expect(
-        getRollupOutputConfig(artifact, {}, { format: 'mjs', platform: 'node', support: 'stable' }),
-      ).toEqual(
+      expect(getRollupOutputConfig(artifact, {}, 'mjs')).toEqual(
         expect.objectContaining({
-          chunkFileNames: 'index-[hash].mjs',
-          entryFileNames: 'index.mjs',
+          chunkFileNames: 'bundle-[hash].mjs',
+          entryFileNames: '[name].mjs',
         }),
       );
     });
   });
 
-  describe('externals', () => {
-    beforeEach(() => {
-      // Add self
-      artifact.package.addArtifact(artifact);
-    });
-
-    it('adds externals for sibling artifacts', () => {
-      artifact.package.addArtifact(
-        createArtifact('client', 'src/client/index.ts', artifact.package),
-      );
-
-      artifact.package.addArtifact(
-        createArtifact('server', 'src/server/core.ts', artifact.package),
-      );
-
-      artifact.package.addArtifact(
-        createArtifact('test', 'src/test-utils/base.ts', artifact.package),
-      );
-
-      expect(
-        getRollupOutputConfig(artifact, {}, { format: 'lib', platform: 'node', support: 'stable' })
-          .paths,
-      ).toEqual({
-        [fixturePath.append('src/client/index.ts').path()]: './client.js',
-        [fixturePath.append('src/server/core.ts').path()]: './server.js',
-        [fixturePath.append('src/test-utils/base.ts').path()]: './test.js',
-      });
-    });
-  });
-
   describe('exports', () => {
     it('enables auto-exports for `lib` format', () => {
-      expect(
-        getRollupOutputConfig(artifact, {}, { format: 'lib', platform: 'node', support: 'stable' })
-          .exports,
-      ).toBe('auto');
+      expect(getRollupOutputConfig(artifact, {}, 'lib').exports).toBe('auto');
     });
 
     it('enables auto-exports for `cjs` format', () => {
-      expect(
-        getRollupOutputConfig(artifact, {}, { format: 'cjs', platform: 'node', support: 'stable' })
-          .exports,
-      ).toBe('auto');
+      expect(getRollupOutputConfig(artifact, {}, 'cjs').exports).toBe('auto');
     });
 
     it('disables auto-exports for `mjs` format', () => {
-      expect(
-        getRollupOutputConfig(artifact, {}, { format: 'mjs', platform: 'node', support: 'stable' })
-          .exports,
-      ).toBeUndefined();
+      expect(getRollupOutputConfig(artifact, {}, 'mjs').exports).toBeUndefined();
     });
 
     it('disables auto-exports for `esm` format', () => {
       artifact.platform = 'browser';
 
-      expect(
-        getRollupOutputConfig(
-          artifact,
-          {},
-          { format: 'esm', platform: 'browser', support: 'stable' },
-        ).exports,
-      ).toBeUndefined();
+      expect(getRollupOutputConfig(artifact, {}, 'esm').exports).toBeUndefined();
     });
 
     it('disables auto-exports for `umd` format', () => {
       artifact.platform = 'browser';
 
-      expect(
-        getRollupOutputConfig(
-          artifact,
-          {},
-          { format: 'umd', platform: 'browser', support: 'stable' },
-        ).exports,
-      ).toBeUndefined();
+      expect(getRollupOutputConfig(artifact, {}, 'umd').exports).toBeUndefined();
     });
   });
 
-  it('defines a shebang banner when output name is "bin"', () => {
+  it.skip('defines a shebang banner when output name is "bin"', () => {
     artifact.outputName = 'bin';
 
-    expect(
-      getRollupOutputConfig(artifact, {}, { format: 'lib', platform: 'node', support: 'stable' })
-        .banner,
-    ).toContain('#!/usr/bin/env node\n');
+    expect(getRollupOutputConfig(artifact, {}, 'lib').banner).toContain('#!/usr/bin/env node\n');
 
     artifact.outputName = 'index';
 
-    expect(
-      getRollupOutputConfig(artifact, {}, { format: 'lib', platform: 'node', support: 'stable' })
-        .banner,
-    ).not.toContain('#!/usr/bin/env node\n');
+    expect(getRollupOutputConfig(artifact, {}, 'lib').banner).not.toContain(
+      '#!/usr/bin/env node\n',
+    );
   });
 
   it('enables `const` for future versions', () => {
     artifact.support = 'legacy';
 
-    expect(
-      getRollupOutputConfig(artifact, {}, { format: 'lib', platform: 'node', support: 'legacy' })
-        .preferConst,
-    ).toBe(false);
+    expect(getRollupOutputConfig(artifact, {}, 'lib').preferConst).toBe(false);
 
     artifact.support = 'stable';
 
-    expect(
-      getRollupOutputConfig(artifact, {}, { format: 'lib', platform: 'node', support: 'stable' })
-        .preferConst,
-    ).toBe(false);
+    expect(getRollupOutputConfig(artifact, {}, 'lib').preferConst).toBe(false);
 
     artifact.support = 'current';
 
-    expect(
-      getRollupOutputConfig(artifact, {}, { format: 'lib', platform: 'node', support: 'current' })
-        .preferConst,
-    ).toBe(true);
+    expect(getRollupOutputConfig(artifact, {}, 'lib').preferConst).toBe(true);
 
     artifact.support = 'experimental';
 
-    expect(
-      getRollupOutputConfig(
-        artifact,
-        {},
-        { format: 'lib', platform: 'node', support: 'experimental' },
-      ).preferConst,
-    ).toBe(true);
+    expect(getRollupOutputConfig(artifact, {}, 'lib').preferConst).toBe(true);
   });
 
   it('passes `namespace` to Babel as UMD name', () => {
@@ -641,18 +491,12 @@ describe('getRollupOutputConfig()', () => {
     artifact.support = 'experimental';
     artifact.namespace = 'FooBar';
 
-    expect(
-      getRollupOutputConfig(
-        artifact,
-        {},
-        { format: 'umd', platform: 'browser', support: 'experimental' },
-      ),
-    ).toEqual({
+    expect(getRollupOutputConfig(artifact, {}, 'umd')).toEqual({
       assetFileNames: '../assets/[name]-[hash][extname]',
       banner: expect.any(String),
-      chunkFileNames: 'index-[hash].js',
+      chunkFileNames: 'bundle-[hash].js',
       dir: fixturePath.append('umd').path(),
-      entryFileNames: 'index.js',
+      entryFileNames: '[name].js',
       format: 'esm',
       originalFormat: 'umd',
       paths: {},
