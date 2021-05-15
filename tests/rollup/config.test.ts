@@ -456,17 +456,18 @@ describe('getRollupOutputConfig()', () => {
     });
   });
 
-  it.skip('defines a shebang banner when output name is "bin"', () => {
-    artifact.outputName = 'bin';
+  // TODO
+  // it.skip('defines a shebang banner when output name is "bin"', () => {
+  //   artifact.inputs = { bin: 'src/bin.ts' };
 
-    expect(getRollupOutputConfig(artifact, {}, 'lib').banner).toContain('#!/usr/bin/env node\n');
+  //   expect(getRollupOutputConfig(artifact, {}, 'lib').banner).toContain('#!/usr/bin/env node\n');
 
-    artifact.outputName = 'index';
+  //   artifact.inputs = { index: 'src/index.ts' };
 
-    expect(getRollupOutputConfig(artifact, {}, 'lib').banner).not.toContain(
-      '#!/usr/bin/env node\n',
-    );
-  });
+  //   expect(getRollupOutputConfig(artifact, {}, 'lib').banner).not.toContain(
+  //     '#!/usr/bin/env node\n',
+  //   );
+  // });
 
   it('enables `const` for future versions', () => {
     artifact.support = 'legacy';

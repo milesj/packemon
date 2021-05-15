@@ -44,7 +44,7 @@ describe('TypesArtifact', () => {
   });
 
   it('sets correct metadata', () => {
-    expect(artifact.getLabel()).toBe('types');
+    expect(artifact.getLabel()).toBe('dts');
     expect(artifact.getBuildTargets()).toEqual(['dts']);
     expect(artifact.toString()).toBe('types (dts)');
   });
