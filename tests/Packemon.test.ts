@@ -129,7 +129,7 @@ describe('Packemon', () => {
       it('cleans build folders from project', async () => {
         await packemon.clean();
 
-        expect(rimraf).toHaveBeenCalledWith('./{cjs,esm,lib,mjs,umd}', expect.any(Function));
+        expect(rimraf).toHaveBeenCalledWith('./{cjs,dts,esm,lib,mjs,umd}', expect.any(Function));
       });
     });
 
@@ -155,11 +155,14 @@ describe('Packemon', () => {
         await packemon.clean();
 
         expect(rimraf).toHaveBeenCalledWith(
-          'packages/*/{cjs,esm,lib,mjs,umd}',
+          'packages/*/{cjs,dts,esm,lib,mjs,umd}',
           expect.any(Function),
         );
-        expect(rimraf).toHaveBeenCalledWith('other/{cjs,esm,lib,mjs,umd}', expect.any(Function));
-        expect(rimraf).toHaveBeenCalledWith('misc/{cjs,esm,lib,mjs,umd}', expect.any(Function));
+        expect(rimraf).toHaveBeenCalledWith(
+          'other/{cjs,dts,esm,lib,mjs,umd}',
+          expect.any(Function),
+        );
+        expect(rimraf).toHaveBeenCalledWith('misc/{cjs,dts,esm,lib,mjs,umd}', expect.any(Function));
       });
     });
   });

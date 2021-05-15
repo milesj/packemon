@@ -234,6 +234,8 @@ The following plugins are enabled per package.
   - Polyfills Node.js built-in modules when platform is `browser` or `native`.
 - `rollup-plugin-visualizer`
   - Analyzes and generates a bundle size visualizer.
+- _Custom_
+  - Prepend a Node.js shebang to `bin.*` output files.
 
 [babel]: https://babeljs.io
 [rollup]: https://rollupjs.org

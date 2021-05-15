@@ -141,8 +141,9 @@ To support multiple formats, or cross-platform formats, pass an array.
 
 ## Inputs
 
-A mapping of entry points for the library, where the object key is the name of the output file to be
-built (without extension), and the value is an input source file relative to the package root.
+A mapping of entry points for the library (only when [bundling](#bundle)), where the object key is
+the name of the output file to be built (without extension), and the value is an input source file
+relative to the package root.
 
 ```json
 {
@@ -162,8 +163,8 @@ need to configure this.
 
 ## Bundle
 
-Whether to bundle the source code into a single file by input. If not provided, is `false` for
-`node` platform, but `true` for all other platforms.
+Whether to bundle the source code into a single file for each [input](#inputs). If not provided, is
+`false` for `node` platform, but `true` for all other platforms.
 
 ```json
 {
