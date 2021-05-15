@@ -3,7 +3,7 @@
 exports[`Outputs artifacts builds all the artifacts with rollup 1`] = `
 Array [
   "/cjs/server.cjs",
-  "// Generated with Packemon: https://packemon.dev
+  "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: cjs
 'use strict';
 
@@ -74,8 +74,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-// Generated with Packemon: https://packemon.dev
-// Platform: browser, Support: stable, Format: esm
+// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: legacy, Format: esm
 var Client = function Client() {
   _classCallCheck(this, Client);
 
@@ -103,7 +103,7 @@ export { createClient };
 exports[`Outputs artifacts builds all the artifacts with rollup 3`] = `
 Array [
   "/lib/client.js",
-  "// Generated with Packemon: https://packemon.dev
+  "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: lib
 'use strict';
 
@@ -180,7 +180,7 @@ exports.createClient = createClient;
 exports[`Outputs artifacts builds all the artifacts with rollup 4`] = `
 Array [
   "/lib/index.js",
-  "// Generated with Packemon: https://packemon.dev
+  "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: lib
 'use strict';
 
@@ -197,7 +197,7 @@ exports.EXAMPLE = EXAMPLE;
 exports[`Outputs artifacts builds all the artifacts with rollup 5`] = `
 Array [
   "/lib/test.js",
-  "// Generated with Packemon: https://packemon.dev
+  "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: experimental, Format: lib
 'use strict';
 
@@ -263,49 +263,91 @@ Array [
 exports[`Outputs artifacts builds all the artifacts with rollup 7`] = `
 Array [
   "/umd/client.js",
-  "(function (global, factory) {
+  "var _regeneratorRuntime2 = require(\\"@babel/runtime/regenerator\\");
+
+(function (global, factory) {
   if (typeof define === \\"function\\" && define.amd) {
-    define(\\"Packemon\\", [\\"exports\\"], factory);
+    define(\\"Packemon\\", [\\"exports\\", \\"@babel/runtime/regenerator\\"], factory);
   } else if (typeof exports !== \\"undefined\\") {
-    factory(exports);
+    factory(exports, require(\\"@babel/runtime/regenerator\\"));
   } else {
     var mod = {
       exports: {}
     };
-    factory(mod.exports);
+    factory(mod.exports, global.regenerator);
     global.Packemon = mod.exports;
   }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports) {
+})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports, _regenerator) {
   \\"use strict\\";
 
   Object.defineProperty(_exports, \\"__esModule\\", {
     value: true
   });
+  _exports.createClient = void 0;
+  _regenerator = _interopRequireDefault(_regenerator);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== \\"undefined\\" && o[Symbol.iterator] || o[\\"@@iterator\\"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === \\"number\\") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError(\\"Invalid attempt to iterate non-iterable instance.\\\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\\"); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+
+  function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \\"string\\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \\"Object\\" && o.constructor) n = o.constructor.name; if (n === \\"Map\\" || n === \\"Set\\") return Array.from(o); if (n === \\"Arguments\\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+  function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+  var createClient = function createClient() {
+    try {
+      return Promise.resolve(wait()).then(function () {
+        var _iterator = _createForOfIteratorHelper(gen()),
+            _step;
+
+        try {
+          for (_iterator.s(); !(_step = _iterator.n()).done;) {
+            var iterator = _step.value;
+            console.log(iterator);
+          }
+        } catch (err) {
+          _iterator.e(err);
+        } finally {
+          _iterator.f();
+        }
+
+        return new Client();
+      });
+    } catch (e) {
+      return Promise.reject(e);
+    }
+  };
+
   _exports.createClient = createClient;
+
+  var wait = function wait() {
+    return Promise.resolve();
+  };
+
+  var _marked = /*#__PURE__*/_regeneratorRuntime2.mark(gen);
+
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\\"Cannot call a class as a function\\"); } }
 
   function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-  // Generated with Packemon: https://packemon.dev
-  // Platform: browser, Support: experimental, Format: umd
-  class Client {
-    constructor() {
-      _defineProperty(this, \\"prop\\", 123);
-    }
+  // Bundled with Packemon: https://packemon.dev
+  // Platform: browser, Support: legacy, Format: umd
+  var Client = function Client() {
+    _classCallCheck(this, Client);
 
-  }
+    _defineProperty(this, \\"prop\\", 123);
+  };
 
-  function* gen() {}
-
-  async function wait() {}
-
-  async function createClient() {
-    await wait();
-
-    for (const iterator of gen()) {
-      console.log(iterator);
-    }
-
-    return new Client();
+  function gen() {
+    return _regenerator.default.wrap(function gen$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+          case \\"end\\":
+            return _context.stop();
+        }
+      }
+    }, _marked);
   }
 });
 //# sourceMappingURL=client.js.map
@@ -317,11 +359,9 @@ exports[`Outputs artifacts builds all the artifacts with rollup 8`] = `
 Array [
   Object {
     "format": "lib",
-    "platform": "node",
     "stats": Object {
-      "size": 227,
+      "size": 225,
     },
-    "support": "stable",
   },
 ]
 `;
@@ -329,7 +369,7 @@ Array [
 exports[`Outputs bundle bundles all files into a single file with rollup 1`] = `
 Array [
   "/lib/index.js",
-  "// Generated with Packemon: https://packemon.dev
+  "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: lib
 'use strict';
 

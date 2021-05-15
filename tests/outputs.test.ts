@@ -1,7 +1,7 @@
 import fs from 'fs';
 import { Path } from '@boost/common';
 import { getFixturePath } from '@boost/test-utils';
-import { BundleArtifact, Package, Project } from '../src';
+import { CodeArtifact, Package, Project } from '../src';
 import { createProjectPackage, createSnapshotSpies } from './helpers';
 
 describe('Outputs', () => {
@@ -12,45 +12,36 @@ describe('Outputs', () => {
     it('builds all the artifacts with rollup', async () => {
       const pkg = createProjectPackage(root);
 
-      const index = new BundleArtifact(pkg, [
-        { format: 'lib', platform: 'node', support: 'stable' },
-      ]);
+      const index = new CodeArtifact(pkg, [{ format: 'lib' }]);
       index.platform = 'node';
       index.support = 'stable';
-      index.outputName = 'index';
-      index.inputFile = 'src/index.ts';
+      index.inputs = { index: 'src/index.ts' };
 
       pkg.addArtifact(index);
 
-      const client = new BundleArtifact(pkg, [
-        { format: 'lib', platform: 'browser', support: 'legacy' },
-        { format: 'esm', platform: 'browser', support: 'stable' },
-        { format: 'umd', platform: 'browser', support: 'experimental' },
+      const client = new CodeArtifact(pkg, [
+        { format: 'lib' },
+        { format: 'esm' },
+        { format: 'umd' },
       ]);
       client.platform = 'browser';
-      client.outputName = 'client';
-      client.inputFile = 'src/client/index.ts';
+      client.support = 'legacy';
+      client.inputs = { client: 'src/client/index.ts' };
       client.namespace = 'Packemon';
 
       pkg.addArtifact(client);
 
-      const server = new BundleArtifact(pkg, [
-        { format: 'cjs', platform: 'node', support: 'current' },
-      ]);
+      const server = new CodeArtifact(pkg, [{ format: 'cjs' }]);
       server.platform = 'node';
       server.support = 'current';
-      server.outputName = 'server';
-      server.inputFile = 'src/server/core.ts';
+      server.inputs = { server: 'src/server/core.ts' };
 
       pkg.addArtifact(server);
 
-      const test = new BundleArtifact(pkg, [
-        { format: 'lib', platform: 'native', support: 'experimental' },
-      ]);
+      const test = new CodeArtifact(pkg, [{ format: 'lib' }]);
       test.platform = 'native';
       test.support = 'experimental';
-      test.outputName = 'test';
-      test.inputFile = 'src/test-utils/base.ts';
+      test.inputs = { test: 'src/test-utils/base.ts' };
 
       pkg.addArtifact(test);
 
@@ -75,14 +66,11 @@ describe('Outputs', () => {
     it('bundles all files into a single file with rollup', async () => {
       const pkg = createProjectPackage(root);
 
-      const index = new BundleArtifact(pkg, [
-        { format: 'lib', platform: 'node', support: 'stable' },
-      ]);
+      const index = new CodeArtifact(pkg, [{ format: 'lib' }]);
       index.bundle = true;
       index.platform = 'node';
       index.support = 'stable';
-      index.outputName = 'index';
-      index.inputFile = 'src/index.ts';
+      index.inputs = { index: 'src/index.ts' };
 
       pkg.addArtifact(index);
 
@@ -105,14 +93,11 @@ describe('Outputs', () => {
     it('creates individual files for every source file', async () => {
       const pkg = createProjectPackage(root);
 
-      const index = new BundleArtifact(pkg, [
-        { format: 'lib', platform: 'node', support: 'stable' },
-      ]);
+      const index = new CodeArtifact(pkg, [{ format: 'lib' }]);
       index.bundle = false;
       index.platform = 'node';
       index.support = 'stable';
-      index.outputName = 'index';
-      index.inputFile = 'src/index.ts';
+      index.inputs = { index: 'src/index.ts' };
 
       pkg.addArtifact(index);
 
