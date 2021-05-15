@@ -31,17 +31,23 @@
   "license": "MIT",
   "main": "./lib/index.js",
   "types": "./dts/index.d.ts",
-  "bin": "./bin.js",
+  "bin": "./lib/bin.js",
   "files": [
     "babel.js",
-    "bin.js",
     "dts/**/*.d.ts",
     "lib/**/*.{js,map}",
     "src/**/*.{ts,tsx,json}"
   ],
   "exports": {
     "./package.json": "./package.json",
-    "./babel": "./lib/babel.js",
+    "./babel": {
+      "node": "./lib/babel.js",
+      "types": "./dts/babel.d.ts"
+    },
+    "./bin": {
+      "node": "./lib/bin.js",
+      "types": "./dts/bin.d.ts"
+    },
     ".": {
       "node": "./lib/index.js",
       "types": "./dts/index.d.ts"
@@ -52,7 +58,11 @@
     "npm": ">=6.1.0"
   },
   "packemon": {
-    "bundle": true,
+    "inputs": {
+      "index": "src/index.ts",
+      "babel": "src/babel.ts",
+      "bin": "src/bin.ts"
+    },
     "platform": "node"
   },
   "devDependencies": {
