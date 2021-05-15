@@ -47,6 +47,8 @@ function createArtifact(outputName: string, inputFile: string, pkg?: Package) {
   return artifact;
 }
 
+const binPlugin = expect.objectContaining({ name: 'packemon-add-bin-shebang' });
+
 describe('getRollupConfig()', () => {
   const sharedPlugins = [
     `externals(${fixturePath.append('package.json')})`,
@@ -123,7 +125,7 @@ describe('getRollupConfig()', () => {
           format: 'cjs',
           originalFormat: 'lib',
           paths: {},
-          plugins: [`babelOutput(${fixturePath}, *)`],
+          plugins: [`babelOutput(${fixturePath}, *)`, binPlugin],
           preferConst: false,
           preserveModules: false,
           sourcemap: true,
@@ -138,7 +140,7 @@ describe('getRollupConfig()', () => {
           format: 'esm',
           originalFormat: 'esm',
           paths: {},
-          plugins: [`babelOutput(${fixturePath}, *)`],
+          plugins: [`babelOutput(${fixturePath}, *)`, binPlugin],
           preferConst: false,
           preserveModules: false,
           sourcemap: true,
@@ -153,7 +155,7 @@ describe('getRollupConfig()', () => {
           format: 'esm',
           originalFormat: 'mjs',
           paths: {},
-          plugins: [`babelOutput(${fixturePath}, *)`],
+          plugins: [`babelOutput(${fixturePath}, *)`, binPlugin],
           preferConst: false,
           preserveModules: false,
           sourcemap: true,
@@ -188,7 +190,7 @@ describe('getRollupConfig()', () => {
           format: 'cjs',
           originalFormat: 'lib',
           paths: {},
-          plugins: [`babelOutput(${fixturePath}, *)`],
+          plugins: [`babelOutput(${fixturePath}, *)`, binPlugin],
           preferConst: false,
           preserveModules: false,
           sourcemap: true,
@@ -224,7 +226,7 @@ describe('getRollupConfig()', () => {
           format: 'cjs',
           originalFormat: 'lib',
           paths: {},
-          plugins: [`babelOutput(${fixturePath}, *)`],
+          plugins: [`babelOutput(${fixturePath}, *)`, binPlugin],
           preferConst: false,
           preserveModules: true,
           sourcemap: true,
@@ -308,7 +310,7 @@ describe('getRollupOutputConfig()', () => {
       format: 'cjs',
       originalFormat: 'lib',
       paths: {},
-      plugins: [`babelOutput(${fixturePath}, *)`],
+      plugins: [`babelOutput(${fixturePath}, *)`, binPlugin],
       preferConst: false,
       preserveModules: false,
       sourcemap: true,
@@ -456,19 +458,6 @@ describe('getRollupOutputConfig()', () => {
     });
   });
 
-  // TODO
-  // it.skip('defines a shebang banner when output name is "bin"', () => {
-  //   artifact.inputs = { bin: 'src/bin.ts' };
-
-  //   expect(getRollupOutputConfig(artifact, {}, 'lib').banner).toContain('#!/usr/bin/env node\n');
-
-  //   artifact.inputs = { index: 'src/index.ts' };
-
-  //   expect(getRollupOutputConfig(artifact, {}, 'lib').banner).not.toContain(
-  //     '#!/usr/bin/env node\n',
-  //   );
-  // });
-
   it('enables `const` for future versions', () => {
     artifact.support = 'legacy';
 
@@ -501,7 +490,7 @@ describe('getRollupOutputConfig()', () => {
       format: 'esm',
       originalFormat: 'umd',
       paths: {},
-      plugins: [`babelOutput(${fixturePath}, FooBar)`],
+      plugins: [`babelOutput(${fixturePath}, FooBar)`, binPlugin],
       preferConst: true,
       preserveModules: false,
       sourcemap: true,

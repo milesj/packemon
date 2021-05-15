@@ -10,6 +10,7 @@ import { getBabelInputConfig, getBabelOutputConfig } from '../babel/config';
 import type { CodeArtifact } from '../CodeArtifact';
 import { EXCLUDE, EXTENSIONS } from '../constants';
 import { FeatureFlags, Format } from '../types';
+import { addBinShebang } from './plugins/addBinShebang';
 
 const sharedPlugins = [
   resolve({ extensions: EXTENSIONS, preferBuiltins: true }),
@@ -112,6 +113,7 @@ export function getRollupOutputConfig(
         // Maps are extracted above before transformation
         sourceMaps: false,
       }),
+      addBinShebang(),
     ],
     // Always include source maps
     sourcemap: true,
