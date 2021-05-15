@@ -2,7 +2,7 @@
 
 exports[`JSON imports transforms example test case 1`] = `
 Array [
-  "/cjs/index-node-current-cjs.cjs",
+  "cjs/index-node-current-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: cjs
 'use strict';
@@ -21,14 +21,13 @@ const data = {
 
 const keys = Object.keys(data);
 exports.keys = keys;
-//# sourceMappingURL=index-node-current-cjs.cjs.map
 ",
 ]
 `;
 
 exports[`JSON imports transforms example test case 2`] = `
 Array [
-  "/cjs/index-node-experimental-cjs.cjs",
+  "cjs/index-node-experimental-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: cjs
 'use strict';
@@ -47,14 +46,13 @@ const data = {
 
 const keys = Object.keys(data);
 exports.keys = keys;
-//# sourceMappingURL=index-node-experimental-cjs.cjs.map
 ",
 ]
 `;
 
 exports[`JSON imports transforms example test case 3`] = `
 Array [
-  "/cjs/index-node-legacy-cjs.cjs",
+  "cjs/index-node-legacy-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: cjs
 'use strict';
@@ -73,14 +71,13 @@ var data = {
 
 const keys = Object.keys(data);
 exports.keys = keys;
-//# sourceMappingURL=index-node-legacy-cjs.cjs.map
 ",
 ]
 `;
 
 exports[`JSON imports transforms example test case 4`] = `
 Array [
-  "/cjs/index-node-stable-cjs.cjs",
+  "cjs/index-node-stable-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: cjs
 'use strict';
@@ -99,14 +96,13 @@ var data = {
 
 const keys = Object.keys(data);
 exports.keys = keys;
-//# sourceMappingURL=index-node-stable-cjs.cjs.map
 ",
 ]
 `;
 
 exports[`JSON imports transforms example test case 5`] = `
 Array [
-  "/esm/index-browser-current-esm.js",
+  "esm/index-browser-current-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: esm
 var data = {
@@ -120,14 +116,13 @@ var data = {
 
 var keys = Object.keys(data);
 export { keys };
-//# sourceMappingURL=index-browser-current-esm.js.map
 ",
 ]
 `;
 
 exports[`JSON imports transforms example test case 6`] = `
 Array [
-  "/esm/index-browser-experimental-esm.js",
+  "esm/index-browser-experimental-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: experimental, Format: esm
 const data = {
@@ -141,14 +136,13 @@ const data = {
 
 const keys = Object.keys(data);
 export { keys };
-//# sourceMappingURL=index-browser-experimental-esm.js.map
 ",
 ]
 `;
 
 exports[`JSON imports transforms example test case 7`] = `
 Array [
-  "/esm/index-browser-legacy-esm.js",
+  "esm/index-browser-legacy-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: esm
 var data = {
@@ -162,14 +156,13 @@ var data = {
 
 var keys = Object.keys(data);
 export { keys };
-//# sourceMappingURL=index-browser-legacy-esm.js.map
 ",
 ]
 `;
 
 exports[`JSON imports transforms example test case 8`] = `
 Array [
-  "/esm/index-browser-stable-esm.js",
+  "esm/index-browser-stable-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: esm
 var data = {
@@ -183,14 +176,13 @@ var data = {
 
 var keys = Object.keys(data);
 export { keys };
-//# sourceMappingURL=index-browser-stable-esm.js.map
 ",
 ]
 `;
 
 exports[`JSON imports transforms example test case 9`] = `
 Array [
-  "/lib/index-browser-current-lib.js",
+  "lib/index-browser-current-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: lib
 'use strict';
@@ -209,14 +201,13 @@ var data = {
 
 var keys = Object.keys(data);
 exports.keys = keys;
-//# sourceMappingURL=index-browser-current-lib.js.map
 ",
 ]
 `;
 
 exports[`JSON imports transforms example test case 10`] = `
 Array [
-  "/lib/index-browser-experimental-lib.js",
+  "lib/index-browser-experimental-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: experimental, Format: lib
 'use strict';
@@ -235,14 +226,13 @@ const data = {
 
 const keys = Object.keys(data);
 exports.keys = keys;
-//# sourceMappingURL=index-browser-experimental-lib.js.map
 ",
 ]
 `;
 
 exports[`JSON imports transforms example test case 11`] = `
 Array [
-  "/lib/index-browser-legacy-lib.js",
+  "lib/index-browser-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: lib
 'use strict';
@@ -261,14 +251,13 @@ var data = {
 
 var keys = Object.keys(data);
 exports.keys = keys;
-//# sourceMappingURL=index-browser-legacy-lib.js.map
 ",
 ]
 `;
 
 exports[`JSON imports transforms example test case 12`] = `
 Array [
-  "/lib/index-browser-stable-lib.js",
+  "lib/index-browser-stable-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: lib
 'use strict';
@@ -287,14 +276,13 @@ var data = {
 
 var keys = Object.keys(data);
 exports.keys = keys;
-//# sourceMappingURL=index-browser-stable-lib.js.map
 ",
 ]
 `;
 
 exports[`JSON imports transforms example test case 13`] = `
 Array [
-  "/lib/index-native-current-lib.js",
+  "lib/index-native-current-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: current, Format: lib
 'use strict';
@@ -313,14 +301,13 @@ const data = {
 
 const keys = Object.keys(data);
 exports.keys = keys;
-//# sourceMappingURL=index-native-current-lib.js.map
 ",
 ]
 `;
 
 exports[`JSON imports transforms example test case 14`] = `
 Array [
-  "/lib/index-native-experimental-lib.js",
+  "lib/index-native-experimental-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: experimental, Format: lib
 'use strict';
@@ -339,14 +326,13 @@ const data = {
 
 const keys = Object.keys(data);
 exports.keys = keys;
-//# sourceMappingURL=index-native-experimental-lib.js.map
 ",
 ]
 `;
 
 exports[`JSON imports transforms example test case 15`] = `
 Array [
-  "/lib/index-native-legacy-lib.js",
+  "lib/index-native-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: legacy, Format: lib
 'use strict';
@@ -365,14 +351,13 @@ var data = {
 
 var keys = Object.keys(data);
 exports.keys = keys;
-//# sourceMappingURL=index-native-legacy-lib.js.map
 ",
 ]
 `;
 
 exports[`JSON imports transforms example test case 16`] = `
 Array [
-  "/lib/index-native-stable-lib.js",
+  "lib/index-native-stable-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: stable, Format: lib
 'use strict';
@@ -391,14 +376,13 @@ var data = {
 
 const keys = Object.keys(data);
 exports.keys = keys;
-//# sourceMappingURL=index-native-stable-lib.js.map
 ",
 ]
 `;
 
 exports[`JSON imports transforms example test case 17`] = `
 Array [
-  "/lib/index-node-current-lib.js",
+  "lib/index-node-current-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: lib
 'use strict';
@@ -417,14 +401,13 @@ const data = {
 
 const keys = Object.keys(data);
 exports.keys = keys;
-//# sourceMappingURL=index-node-current-lib.js.map
 ",
 ]
 `;
 
 exports[`JSON imports transforms example test case 18`] = `
 Array [
-  "/lib/index-node-experimental-lib.js",
+  "lib/index-node-experimental-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: lib
 'use strict';
@@ -443,14 +426,13 @@ const data = {
 
 const keys = Object.keys(data);
 exports.keys = keys;
-//# sourceMappingURL=index-node-experimental-lib.js.map
 ",
 ]
 `;
 
 exports[`JSON imports transforms example test case 19`] = `
 Array [
-  "/lib/index-node-legacy-lib.js",
+  "lib/index-node-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: lib
 'use strict';
@@ -469,14 +451,13 @@ var data = {
 
 const keys = Object.keys(data);
 exports.keys = keys;
-//# sourceMappingURL=index-node-legacy-lib.js.map
 ",
 ]
 `;
 
 exports[`JSON imports transforms example test case 20`] = `
 Array [
-  "/lib/index-node-stable-lib.js",
+  "lib/index-node-stable-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: lib
 'use strict';
@@ -495,14 +476,13 @@ var data = {
 
 const keys = Object.keys(data);
 exports.keys = keys;
-//# sourceMappingURL=index-node-stable-lib.js.map
 ",
 ]
 `;
 
 exports[`JSON imports transforms example test case 21`] = `
 Array [
-  "/mjs/index-node-current-mjs.mjs",
+  "mjs/index-node-current-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: mjs
 const data = {
@@ -516,14 +496,13 @@ const data = {
 
 const keys = Object.keys(data);
 export { keys };
-//# sourceMappingURL=index-node-current-mjs.mjs.map
 ",
 ]
 `;
 
 exports[`JSON imports transforms example test case 22`] = `
 Array [
-  "/mjs/index-node-experimental-mjs.mjs",
+  "mjs/index-node-experimental-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: mjs
 const data = {
@@ -537,14 +516,13 @@ const data = {
 
 const keys = Object.keys(data);
 export { keys };
-//# sourceMappingURL=index-node-experimental-mjs.mjs.map
 ",
 ]
 `;
 
 exports[`JSON imports transforms example test case 23`] = `
 Array [
-  "/mjs/index-node-legacy-mjs.mjs",
+  "mjs/index-node-legacy-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: mjs
 var data = {
@@ -558,14 +536,13 @@ var data = {
 
 const keys = Object.keys(data);
 export { keys };
-//# sourceMappingURL=index-node-legacy-mjs.mjs.map
 ",
 ]
 `;
 
 exports[`JSON imports transforms example test case 24`] = `
 Array [
-  "/mjs/index-node-stable-mjs.mjs",
+  "mjs/index-node-stable-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: mjs
 var data = {
@@ -579,14 +556,13 @@ var data = {
 
 const keys = Object.keys(data);
 export { keys };
-//# sourceMappingURL=index-node-stable-mjs.mjs.map
 ",
 ]
 `;
 
 exports[`JSON imports transforms example test case 25`] = `
 Array [
-  "/package.json",
+  "package.json",
   Object {
     "files": Array [
       "cjs/**/*.{cjs,map}",
@@ -603,7 +579,7 @@ Array [
 
 exports[`JSON imports transforms example test case 26`] = `
 Array [
-  "/umd/index-browser-current-umd.js",
+  "umd/index-browser-current-umd.js",
   "(function (global, factory) {
   if (typeof define === \\"function\\" && define.amd) {
     define([\\"exports\\"], factory);
@@ -637,14 +613,13 @@ Array [
   var keys = Object.keys(data);
   _exports.keys = keys;
 });
-//# sourceMappingURL=index-browser-current-umd.js.map
 ",
 ]
 `;
 
 exports[`JSON imports transforms example test case 27`] = `
 Array [
-  "/umd/index-browser-experimental-umd.js",
+  "umd/index-browser-experimental-umd.js",
   "(function (global, factory) {
   if (typeof define === \\"function\\" && define.amd) {
     define([\\"exports\\"], factory);
@@ -678,14 +653,13 @@ Array [
   const keys = Object.keys(data);
   _exports.keys = keys;
 });
-//# sourceMappingURL=index-browser-experimental-umd.js.map
 ",
 ]
 `;
 
 exports[`JSON imports transforms example test case 28`] = `
 Array [
-  "/umd/index-browser-legacy-umd.js",
+  "umd/index-browser-legacy-umd.js",
   "(function (global, factory) {
   if (typeof define === \\"function\\" && define.amd) {
     define([\\"exports\\"], factory);
@@ -719,14 +693,13 @@ Array [
   var keys = Object.keys(data);
   _exports.keys = keys;
 });
-//# sourceMappingURL=index-browser-legacy-umd.js.map
 ",
 ]
 `;
 
 exports[`JSON imports transforms example test case 29`] = `
 Array [
-  "/umd/index-browser-stable-umd.js",
+  "umd/index-browser-stable-umd.js",
   "(function (global, factory) {
   if (typeof define === \\"function\\" && define.amd) {
     define([\\"exports\\"], factory);
@@ -760,7 +733,6 @@ Array [
   var keys = Object.keys(data);
   _exports.keys = keys;
 });
-//# sourceMappingURL=index-browser-stable-umd.js.map
 ",
 ]
 `;
