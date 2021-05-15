@@ -1,7 +1,6 @@
-import fs from 'fs';
 import { Path } from '@boost/common';
 import { getFixturePath } from '@boost/test-utils';
-import { CodeArtifact, Package, Project } from '../src';
+import { CodeArtifact } from '../src';
 import { createProjectPackage, createSnapshotSpies } from './helpers';
 
 describe('Outputs', () => {
@@ -45,13 +44,9 @@ describe('Outputs', () => {
 
       pkg.addArtifact(test);
 
-      try {
-        await pkg.build({});
-      } catch (error: unknown) {
-        console.log(error);
-      }
+      await pkg.build({});
 
-      snapshots().forEach((ss) => {
+      snapshots(pkg).forEach((ss) => {
         expect(ss).toMatchSnapshot();
       });
 
@@ -74,13 +69,9 @@ describe('Outputs', () => {
 
       pkg.addArtifact(index);
 
-      try {
-        await pkg.build({});
-      } catch (error: unknown) {
-        console.log(error);
-      }
+      await pkg.build({});
 
-      snapshots().forEach((ss) => {
+      snapshots(pkg).forEach((ss) => {
         expect(ss).toMatchSnapshot();
       });
     });
@@ -101,18 +92,9 @@ describe('Outputs', () => {
 
       pkg.addArtifact(index);
 
-      try {
-        // We need to reset to avoid the `entryFileNames` conditional
-        process.env.NODE_ENV = 'development';
+      await pkg.build({});
 
-        await pkg.build({});
-      } catch (error: unknown) {
-        console.log(error);
-      } finally {
-        process.env.NODE_ENV = 'test';
-      }
-
-      snapshots().forEach((ss) => {
+      snapshots(pkg).forEach((ss) => {
         expect(ss).toMatchSnapshot();
       });
     });

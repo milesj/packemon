@@ -120,8 +120,13 @@ export interface BuildOptions extends FilterOptions {
   timeout?: number;
 }
 
+export interface BuildResultFiles {
+  code: string;
+  file: string;
+}
+
 export interface BuildResult {
-  [key: string]: unknown;
+  files: BuildResultFiles[];
   time: number;
 }
 

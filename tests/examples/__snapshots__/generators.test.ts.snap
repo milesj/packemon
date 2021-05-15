@@ -2,7 +2,7 @@
 
 exports[`Generators transforms example test case 1`] = `
 Array [
-  "/cjs/index-node-current-cjs.cjs",
+  "cjs/index-node-current-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: cjs
 'use strict';
@@ -21,14 +21,13 @@ function runGen() {
 
 exports.gen = gen;
 exports.runGen = runGen;
-//# sourceMappingURL=index-node-current-cjs.cjs.map
 ",
 ]
 `;
 
 exports[`Generators transforms example test case 2`] = `
 Array [
-  "/cjs/index-node-experimental-cjs.cjs",
+  "cjs/index-node-experimental-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: cjs
 'use strict';
@@ -47,14 +46,13 @@ function runGen() {
 
 exports.gen = gen;
 exports.runGen = runGen;
-//# sourceMappingURL=index-node-experimental-cjs.cjs.map
 ",
 ]
 `;
 
 exports[`Generators transforms example test case 3`] = `
 Array [
-  "/cjs/index-node-legacy-cjs.cjs",
+  "cjs/index-node-legacy-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: cjs
 'use strict';
@@ -73,14 +71,13 @@ function runGen() {
 
 exports.gen = gen;
 exports.runGen = runGen;
-//# sourceMappingURL=index-node-legacy-cjs.cjs.map
 ",
 ]
 `;
 
 exports[`Generators transforms example test case 4`] = `
 Array [
-  "/cjs/index-node-stable-cjs.cjs",
+  "cjs/index-node-stable-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: cjs
 'use strict';
@@ -99,14 +96,13 @@ function runGen() {
 
 exports.gen = gen;
 exports.runGen = runGen;
-//# sourceMappingURL=index-node-stable-cjs.cjs.map
 ",
 ]
 `;
 
 exports[`Generators transforms example test case 5`] = `
 Array [
-  "/esm/index-browser-current-esm.js",
+  "esm/index-browser-current-esm.js",
   "function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== \\"undefined\\" && o[Symbol.iterator] || o[\\"@@iterator\\"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === \\"number\\") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError(\\"Invalid attempt to iterate non-iterable instance.\\\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\\"); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \\"string\\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \\"Object\\" && o.constructor) n = o.constructor.name; if (n === \\"Map\\" || n === \\"Set\\") return Array.from(o); if (n === \\"Arguments\\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -148,14 +144,13 @@ function runGen() {
 }
 
 export { gen, runGen };
-//# sourceMappingURL=index-browser-current-esm.js.map
 ",
 ]
 `;
 
 exports[`Generators transforms example test case 6`] = `
 Array [
-  "/esm/index-browser-experimental-esm.js",
+  "esm/index-browser-experimental-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: experimental, Format: esm
 function* gen() {}
@@ -167,14 +162,13 @@ function runGen() {
 }
 
 export { gen, runGen };
-//# sourceMappingURL=index-browser-experimental-esm.js.map
 ",
 ]
 `;
 
 exports[`Generators transforms example test case 7`] = `
 Array [
-  "/esm/index-browser-legacy-esm.js",
+  "esm/index-browser-legacy-esm.js",
   "function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== \\"undefined\\" && o[Symbol.iterator] || o[\\"@@iterator\\"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === \\"number\\") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError(\\"Invalid attempt to iterate non-iterable instance.\\\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\\"); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \\"string\\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \\"Object\\" && o.constructor) n = o.constructor.name; if (n === \\"Map\\" || n === \\"Set\\") return Array.from(o); if (n === \\"Arguments\\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -216,14 +210,13 @@ function runGen() {
 }
 
 export { gen, runGen };
-//# sourceMappingURL=index-browser-legacy-esm.js.map
 ",
 ]
 `;
 
 exports[`Generators transforms example test case 8`] = `
 Array [
-  "/esm/index-browser-stable-esm.js",
+  "esm/index-browser-stable-esm.js",
   "function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== \\"undefined\\" && o[Symbol.iterator] || o[\\"@@iterator\\"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === \\"number\\") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError(\\"Invalid attempt to iterate non-iterable instance.\\\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\\"); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \\"string\\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \\"Object\\" && o.constructor) n = o.constructor.name; if (n === \\"Map\\" || n === \\"Set\\") return Array.from(o); if (n === \\"Arguments\\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -265,14 +258,13 @@ function runGen() {
 }
 
 export { gen, runGen };
-//# sourceMappingURL=index-browser-stable-esm.js.map
 ",
 ]
 `;
 
 exports[`Generators transforms example test case 9`] = `
 Array [
-  "/lib/index-browser-current-lib.js",
+  "lib/index-browser-current-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: lib
 'use strict';
@@ -321,14 +313,13 @@ function runGen() {
 
 exports.gen = gen;
 exports.runGen = runGen;
-//# sourceMappingURL=index-browser-current-lib.js.map
 ",
 ]
 `;
 
 exports[`Generators transforms example test case 10`] = `
 Array [
-  "/lib/index-browser-experimental-lib.js",
+  "lib/index-browser-experimental-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: experimental, Format: lib
 'use strict';
@@ -347,14 +338,13 @@ function runGen() {
 
 exports.gen = gen;
 exports.runGen = runGen;
-//# sourceMappingURL=index-browser-experimental-lib.js.map
 ",
 ]
 `;
 
 exports[`Generators transforms example test case 11`] = `
 Array [
-  "/lib/index-browser-legacy-lib.js",
+  "lib/index-browser-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: lib
 'use strict';
@@ -403,14 +393,13 @@ function runGen() {
 
 exports.gen = gen;
 exports.runGen = runGen;
-//# sourceMappingURL=index-browser-legacy-lib.js.map
 ",
 ]
 `;
 
 exports[`Generators transforms example test case 12`] = `
 Array [
-  "/lib/index-browser-stable-lib.js",
+  "lib/index-browser-stable-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: lib
 'use strict';
@@ -459,14 +448,13 @@ function runGen() {
 
 exports.gen = gen;
 exports.runGen = runGen;
-//# sourceMappingURL=index-browser-stable-lib.js.map
 ",
 ]
 `;
 
 exports[`Generators transforms example test case 13`] = `
 Array [
-  "/lib/index-native-current-lib.js",
+  "lib/index-native-current-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: current, Format: lib
 'use strict';
@@ -485,14 +473,13 @@ function runGen() {
 
 exports.gen = gen;
 exports.runGen = runGen;
-//# sourceMappingURL=index-native-current-lib.js.map
 ",
 ]
 `;
 
 exports[`Generators transforms example test case 14`] = `
 Array [
-  "/lib/index-native-experimental-lib.js",
+  "lib/index-native-experimental-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: experimental, Format: lib
 'use strict';
@@ -511,14 +498,13 @@ function runGen() {
 
 exports.gen = gen;
 exports.runGen = runGen;
-//# sourceMappingURL=index-native-experimental-lib.js.map
 ",
 ]
 `;
 
 exports[`Generators transforms example test case 15`] = `
 Array [
-  "/lib/index-native-legacy-lib.js",
+  "lib/index-native-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: legacy, Format: lib
 'use strict';
@@ -567,14 +553,13 @@ function runGen() {
 
 exports.gen = gen;
 exports.runGen = runGen;
-//# sourceMappingURL=index-native-legacy-lib.js.map
 ",
 ]
 `;
 
 exports[`Generators transforms example test case 16`] = `
 Array [
-  "/lib/index-native-stable-lib.js",
+  "lib/index-native-stable-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: stable, Format: lib
 'use strict';
@@ -593,14 +578,13 @@ function runGen() {
 
 exports.gen = gen;
 exports.runGen = runGen;
-//# sourceMappingURL=index-native-stable-lib.js.map
 ",
 ]
 `;
 
 exports[`Generators transforms example test case 17`] = `
 Array [
-  "/lib/index-node-current-lib.js",
+  "lib/index-node-current-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: lib
 'use strict';
@@ -619,14 +603,13 @@ function runGen() {
 
 exports.gen = gen;
 exports.runGen = runGen;
-//# sourceMappingURL=index-node-current-lib.js.map
 ",
 ]
 `;
 
 exports[`Generators transforms example test case 18`] = `
 Array [
-  "/lib/index-node-experimental-lib.js",
+  "lib/index-node-experimental-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: lib
 'use strict';
@@ -645,14 +628,13 @@ function runGen() {
 
 exports.gen = gen;
 exports.runGen = runGen;
-//# sourceMappingURL=index-node-experimental-lib.js.map
 ",
 ]
 `;
 
 exports[`Generators transforms example test case 19`] = `
 Array [
-  "/lib/index-node-legacy-lib.js",
+  "lib/index-node-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: lib
 'use strict';
@@ -671,14 +653,13 @@ function runGen() {
 
 exports.gen = gen;
 exports.runGen = runGen;
-//# sourceMappingURL=index-node-legacy-lib.js.map
 ",
 ]
 `;
 
 exports[`Generators transforms example test case 20`] = `
 Array [
-  "/lib/index-node-stable-lib.js",
+  "lib/index-node-stable-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: lib
 'use strict';
@@ -697,14 +678,13 @@ function runGen() {
 
 exports.gen = gen;
 exports.runGen = runGen;
-//# sourceMappingURL=index-node-stable-lib.js.map
 ",
 ]
 `;
 
 exports[`Generators transforms example test case 21`] = `
 Array [
-  "/mjs/index-node-current-mjs.mjs",
+  "mjs/index-node-current-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: mjs
 function* gen() {}
@@ -716,14 +696,13 @@ function runGen() {
 }
 
 export { gen, runGen };
-//# sourceMappingURL=index-node-current-mjs.mjs.map
 ",
 ]
 `;
 
 exports[`Generators transforms example test case 22`] = `
 Array [
-  "/mjs/index-node-experimental-mjs.mjs",
+  "mjs/index-node-experimental-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: mjs
 function* gen() {}
@@ -735,14 +714,13 @@ function runGen() {
 }
 
 export { gen, runGen };
-//# sourceMappingURL=index-node-experimental-mjs.mjs.map
 ",
 ]
 `;
 
 exports[`Generators transforms example test case 23`] = `
 Array [
-  "/mjs/index-node-legacy-mjs.mjs",
+  "mjs/index-node-legacy-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: mjs
 function* gen() {}
@@ -754,14 +732,13 @@ function runGen() {
 }
 
 export { gen, runGen };
-//# sourceMappingURL=index-node-legacy-mjs.mjs.map
 ",
 ]
 `;
 
 exports[`Generators transforms example test case 24`] = `
 Array [
-  "/mjs/index-node-stable-mjs.mjs",
+  "mjs/index-node-stable-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: mjs
 function* gen() {}
@@ -773,14 +750,13 @@ function runGen() {
 }
 
 export { gen, runGen };
-//# sourceMappingURL=index-node-stable-mjs.mjs.map
 ",
 ]
 `;
 
 exports[`Generators transforms example test case 25`] = `
 Array [
-  "/package.json",
+  "package.json",
   Object {
     "files": Array [
       "cjs/**/*.{cjs,map}",
@@ -797,7 +773,7 @@ Array [
 
 exports[`Generators transforms example test case 26`] = `
 Array [
-  "/umd/index-browser-current-umd.js",
+  "umd/index-browser-current-umd.js",
   "(function (global, factory) {
   if (typeof define === \\"function\\" && define.amd) {
     define([\\"exports\\", \\"@babel/runtime/regenerator\\"], factory);
@@ -860,14 +836,13 @@ Array [
     }
   }
 });
-//# sourceMappingURL=index-browser-current-umd.js.map
 ",
 ]
 `;
 
 exports[`Generators transforms example test case 27`] = `
 Array [
-  "/umd/index-browser-experimental-umd.js",
+  "umd/index-browser-experimental-umd.js",
   "(function (global, factory) {
   if (typeof define === \\"function\\" && define.amd) {
     define([\\"exports\\"], factory);
@@ -899,14 +874,13 @@ Array [
     }
   }
 });
-//# sourceMappingURL=index-browser-experimental-umd.js.map
 ",
 ]
 `;
 
 exports[`Generators transforms example test case 28`] = `
 Array [
-  "/umd/index-browser-legacy-umd.js",
+  "umd/index-browser-legacy-umd.js",
   "(function (global, factory) {
   if (typeof define === \\"function\\" && define.amd) {
     define([\\"exports\\", \\"@babel/runtime/regenerator\\"], factory);
@@ -969,14 +943,13 @@ Array [
     }
   }
 });
-//# sourceMappingURL=index-browser-legacy-umd.js.map
 ",
 ]
 `;
 
 exports[`Generators transforms example test case 29`] = `
 Array [
-  "/umd/index-browser-stable-umd.js",
+  "umd/index-browser-stable-umd.js",
   "(function (global, factory) {
   if (typeof define === \\"function\\" && define.amd) {
     define([\\"exports\\", \\"@babel/runtime/regenerator\\"], factory);
@@ -1039,7 +1012,6 @@ Array [
     }
   }
 });
-//# sourceMappingURL=index-browser-stable-umd.js.map
 ",
 ]
 `;
