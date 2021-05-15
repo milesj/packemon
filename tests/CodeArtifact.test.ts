@@ -54,7 +54,7 @@ describe('CodeArtifact', () => {
     let bundleWriteSpy: jest.SpyInstance;
 
     beforeEach(() => {
-      bundleWriteSpy = jest.fn(() => ({ output: [{ code: 'code' }] }));
+      bundleWriteSpy = jest.fn(() => ({ output: [{ type: 'chunk', code: 'code' }] }));
 
       mockSpy(rollup)
         .mockReset()
