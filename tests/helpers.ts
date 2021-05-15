@@ -4,15 +4,18 @@ import { Path, PortablePath } from '@boost/common';
 import { getFixturePath } from '@boost/test-utils';
 import {
   Artifact,
-  BundleArtifact,
-  BundleBuild,
+  CodeArtifact,
+  CodeBuild,
+  Format,
   FORMATS,
   FORMATS_BROWSER,
   FORMATS_NATIVE,
   FORMATS_NODE,
   Package,
+  Platform,
   PLATFORMS,
   Project,
+  Support,
   SUPPORTS,
 } from '../src';
 
@@ -39,6 +42,10 @@ export class TestArtifact extends Artifact {
 
   getLabel() {
     return 'test';
+  }
+
+  getPackageExports() {
+    return {};
   }
 }
 
@@ -79,7 +86,7 @@ export function createSnapshotSpies(root: PortablePath) {
 }
 
 const exampleRoot = new Path(getFixturePath('examples'));
-const builds = new Map<string, BundleBuild>();
+const builds = new Map<string, { format: Format; platform: Platform; support: Support }>();
 
 FORMATS.forEach((format) => {
   PLATFORMS.forEach((platform) => {
@@ -110,11 +117,12 @@ export function testExampleOutput(file: string) {
     const pkg = createProjectPackage(exampleRoot);
 
     [...builds.values()].forEach((build) => {
-      const artifact = new BundleArtifact(pkg, [build]);
+      const artifact = new CodeArtifact(pkg, [build]);
       artifact.platform = build.platform;
       artifact.support = build.support;
-      artifact.outputName = `index-${build.platform}-${build.support}-${build.format}`;
-      artifact.inputFile = file;
+      artifact.inputs = {
+        [`index-${build.platform}-${build.support}-${build.format}`]: file,
+      };
 
       pkg.addArtifact(artifact);
     });

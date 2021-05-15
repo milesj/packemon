@@ -7,9 +7,10 @@ import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
 import resolve from '@rollup/plugin-node-resolve';
 import { getBabelInputConfig, getBabelOutputConfig } from '../babel/config';
-import type { BundleArtifact } from '../BundleArtifact';
+import type { CodeArtifact } from '../CodeArtifact';
 import { EXCLUDE, EXTENSIONS } from '../constants';
-import { BundleBuild, FeatureFlags, Format } from '../types';
+import { FeatureFlags, Format } from '../types';
+import { addBinShebang } from './plugins/addBinShebang';
 
 const sharedPlugins = [
   resolve({ extensions: EXTENSIONS, preferBuiltins: true }),
@@ -31,53 +32,45 @@ function getRollupModuleFormat(format: Format): ModuleFormat {
   return 'cjs';
 }
 
-function getSiblingArtifacts(artifact: BundleArtifact): BundleArtifact[] {
-  return artifact.package.artifacts.filter((bundle) => {
-    if (bundle === artifact) {
-      return false;
-    }
-
-    // Don't include non-bundle artifacts. We also can't use `instanceof`
-    // because of circular dependencies, boo!
-    return 'configGroup' in bundle;
-  }) as BundleArtifact[];
+function getCodeArtifacts(artifact: CodeArtifact): CodeArtifact[] {
+  // Don't include non-code artifacts. We also can't use `instanceof`
+  // because of circular dependencies, boo!
+  return artifact.package.artifacts.filter(
+    (art) => 'configGroup' in art && (art as CodeArtifact).configGroup !== artifact.configGroup,
+  ) as CodeArtifact[];
 }
 
-function getRollupPaths(artifact: BundleArtifact, ext: string): Record<string, string> {
+function getRollupPaths(artifact: CodeArtifact, ext: string): Record<string, string> {
   const paths: Record<string, string> = {};
 
   if (artifact.bundle) {
-    getSiblingArtifacts(artifact).forEach((bundle) => {
-      if (bundle.configGroup === artifact.configGroup) {
+    getCodeArtifacts(artifact).forEach((art) => {
+      Object.entries(art.getInputPaths()).forEach(([outputName, inputPath]) => {
         // All output files are in the same directory, so we can hard-code a relative path
-        paths[bundle.getInputPath().path()] = `./${bundle.outputName}.${ext}`;
-      }
+        paths[inputPath] = `./${outputName}.${ext}`;
+      });
     });
   }
 
   return paths;
 }
 
-export function getRollupExternals(artifact: BundleArtifact) {
-  const siblingInputs = new Set<string>();
+export function getRollupExternals(artifact: CodeArtifact) {
+  // const siblingInputs = new Set<string>();
   const foreignInputs = new Set<string>();
 
   if (artifact.bundle) {
-    getSiblingArtifacts(artifact).forEach((bundle) => {
-      const inputPath = bundle.getInputPath().path();
-
-      if (bundle.configGroup === artifact.configGroup) {
-        siblingInputs.add(inputPath);
-      } else {
+    getCodeArtifacts(artifact).forEach((art) => {
+      Object.values(art.getInputPaths()).forEach((inputPath) => {
         foreignInputs.add(inputPath);
-      }
+      });
     });
   }
 
   return (id: string, parent: string = '<unknown>') => {
-    if (siblingInputs.has(id)) {
-      return true;
-    }
+    // if (siblingInputs.has(id)) {
+    //   return true;
+    // }
 
     if (foreignInputs.has(id)) {
       throw new Error(
@@ -90,14 +83,12 @@ export function getRollupExternals(artifact: BundleArtifact) {
 }
 
 export function getRollupOutputConfig(
-  artifact: BundleArtifact,
+  artifact: CodeArtifact,
   features: FeatureFlags,
-  build: BundleBuild,
+  format: Format,
 ): OutputOptions {
-  const { format, platform, support } = build;
-  const { ext, folder } = artifact.getOutputMetadata(format);
-  const name = artifact.outputName;
-  const isTest = process.env.NODE_ENV === 'test';
+  const { platform, support } = artifact;
+  const { ext, folder } = artifact.getBuildOutput(format);
 
   const output: OutputOptions = {
     dir: artifact.package.path.append(folder).path(),
@@ -107,21 +98,22 @@ export function getRollupOutputConfig(
     paths: getRollupPaths(artifact, ext),
     // Use our extension for file names
     assetFileNames: '../assets/[name]-[hash][extname]',
-    chunkFileNames: isTest ? `${name}-[hash].${ext}` : `[name]-[hash].${ext}`,
-    entryFileNames: isTest ? `${name}.${ext}` : `[name].${ext}`,
+    chunkFileNames: `${artifact.bundle ? 'bundle' : '[name]'}-[hash].${ext}`,
+    entryFileNames: `[name].${ext}`,
     preserveModules: !artifact.bundle,
     // Use const when not supporting new targets
     preferConst: support === 'current' || support === 'experimental',
     // Output specific plugins
     plugins: [
       getBabelOutputPlugin({
-        ...getBabelOutputConfig(build, features),
+        ...getBabelOutputConfig(platform, support, format, features),
         filename: artifact.package.path.path(),
         // Provide a custom name for the UMD global
         moduleId: format === 'umd' ? artifact.namespace : undefined,
         // Maps are extracted above before transformation
         sourceMaps: false,
       }),
+      addBinShebang(),
     ],
     // Always include source maps
     sourcemap: true,
@@ -135,10 +127,8 @@ export function getRollupOutputConfig(
 
   // Automatically prepend a shebang for binaries
   if (artifact.bundle) {
-    output.banner = artifact.outputName === 'bin' ? '#!/usr/bin/env node\n\n' : '';
-
-    output.banner += [
-      '// Generated with Packemon: https://packemon.dev\n',
+    output.banner = [
+      '// Bundled with Packemon: https://packemon.dev\n',
       `// Platform: ${platform}, Support: ${support}, Format: ${format}\n\n`,
     ].join('');
   }
@@ -146,14 +136,15 @@ export function getRollupOutputConfig(
   return output;
 }
 
-export function getRollupConfig(artifact: BundleArtifact, features: FeatureFlags): RollupOptions {
+export function getRollupConfig(artifact: CodeArtifact, features: FeatureFlags): RollupOptions {
   const packagePath = artifact.package.packageJsonPath.path();
   const isNode = artifact.platform === 'node';
+  const isTest = process.env.NODE_ENV === 'test';
 
   const config: RollupOptions = {
     cache: artifact.cache,
     external: getRollupExternals(artifact),
-    input: artifact.bundle ? artifact.getInputPath().path() : artifact.package.getSourceFiles(),
+    input: artifact.bundle ? artifact.getInputPaths() : artifact.package.getSourceFiles(),
     output: [],
     // Shared output plugins
     plugins: [
@@ -172,7 +163,7 @@ export function getRollupConfig(artifact: BundleArtifact, features: FeatureFlags
       getBabelInputPlugin({
         ...getBabelInputConfig(artifact, features),
         babelHelpers: 'bundled',
-        exclude: process.env.NODE_ENV === 'test' ? [] : EXCLUDE,
+        exclude: isTest ? [] : EXCLUDE,
         extensions: EXTENSIONS,
         filename: artifact.package.path.path(),
         // Extract maps from the original source
@@ -204,7 +195,9 @@ export function getRollupConfig(artifact: BundleArtifact, features: FeatureFlags
   }
 
   // Add an output for each format
-  config.output = artifact.builds.map((build) => getRollupOutputConfig(artifact, features, build));
+  config.output = artifact.builds.map((build) =>
+    getRollupOutputConfig(artifact, features, build.format),
+  );
 
   return config;
 }

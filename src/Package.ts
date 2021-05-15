@@ -5,16 +5,23 @@ import fs from 'fs-extra';
 import { isObject, Memoize, optimal, PackageStructure, Path, toArray } from '@boost/common';
 import { createDebugger, Debugger } from '@boost/debug';
 import { Artifact } from './Artifact';
-import { BundleArtifact } from './BundleArtifact';
-import { FORMATS_BROWSER, FORMATS_NATIVE, FORMATS_NODE } from './constants';
+import { CodeArtifact } from './CodeArtifact';
+import {
+  FORMATS_BROWSER,
+  FORMATS_NATIVE,
+  FORMATS_NODE,
+  NODE_SUPPORTED_VERSIONS,
+  NPM_SUPPORTED_VERSIONS,
+  SUPPORT_PRIORITY,
+} from './constants';
 import { loadModule } from './helpers/loadModule';
 import { Project } from './Project';
 import { packemonBlueprint } from './schemas';
 import {
   BuildOptions,
   FeatureFlags,
+  InputMap,
   PackageConfig,
-  PackageExportPaths,
   PackageExports,
   PackemonPackage,
   PackemonPackageConfig,
@@ -81,6 +88,11 @@ export class Package {
 
     // Add package entry points based on artifacts
     this.addEntryPoints();
+
+    // Add package `engines` based on artifacts
+    if (options.addEngines) {
+      this.addEngines();
+    }
 
     // Add package `exports` based on artifacts
     if (options.addExports) {
@@ -233,10 +245,6 @@ export class Package {
             break;
         }
 
-        if (!bundle && Object.keys(config.inputs).length > 1) {
-          throw new Error('Only 1 `inputs` can be defined when `bundle` is false.');
-        }
-
         this.configs.push({
           bundle,
           formats,
@@ -298,6 +306,38 @@ export class Package {
     return result;
   }
 
+  protected addEngines() {
+    const artifact = (this.artifacts as CodeArtifact[])
+      .filter((art) => art instanceof CodeArtifact)
+      .filter((art) => art.platform === 'node')
+      .reduce<CodeArtifact | null>(
+        (oldest, art) =>
+          !oldest || SUPPORT_PRIORITY[art.support] < SUPPORT_PRIORITY[oldest.support]
+            ? art
+            : oldest,
+        null,
+      );
+
+    if (!artifact) {
+      return;
+    }
+
+    this.debug('Adding `engines` to `package.json`');
+
+    const pkg = this.packageJson;
+
+    if (!pkg.engines) {
+      pkg.engines = {};
+    }
+
+    Object.assign(pkg.engines, {
+      node: `>=${NODE_SUPPORTED_VERSIONS[artifact.support]}`,
+      npm: toArray(NPM_SUPPORTED_VERSIONS[artifact.support])
+        .map((v) => `>=${v}`)
+        .join(' || '),
+    });
+  }
+
   protected addEntryPoints() {
     this.debug('Adding entry points to `package.json`');
 
@@ -309,38 +349,38 @@ export class Package {
     // eslint-disable-next-line complexity
     this.artifacts.forEach((artifact) => {
       // Build files
-      if (artifact instanceof BundleArtifact) {
+      if (artifact instanceof CodeArtifact) {
         // Generate `main`, `module`, and `browser` fields
-        if (artifact.outputName === 'index') {
+        if (artifact.inputs.index) {
           if (!mainEntry || artifact.platform === 'node') {
-            mainEntry = artifact.findEntryPoint(['lib', 'cjs', 'mjs']);
+            mainEntry = artifact.findEntryPoint(['lib', 'cjs', 'mjs'], 'index');
           }
 
           if (!moduleEntry) {
-            moduleEntry = artifact.findEntryPoint(['esm', 'mjs']);
+            moduleEntry = artifact.findEntryPoint(['esm', 'mjs'], 'index');
           }
 
           // Only include when we share a lib with another platform
           if (!browserEntry && artifact.platform === 'browser' && artifact.sharedLib) {
-            browserEntry = artifact.findEntryPoint(['lib']);
+            browserEntry = artifact.findEntryPoint(['lib'], 'index');
           }
         }
 
         // Generate `bin` field
         if (
-          artifact.outputName === 'bin' &&
+          artifact.inputs.bin &&
           artifact.platform === 'node' &&
           !isObject(this.packageJson.bin)
         ) {
-          this.packageJson.bin = artifact.findEntryPoint(['lib', 'cjs', 'mjs']);
+          this.packageJson.bin = artifact.findEntryPoint(['lib', 'cjs', 'mjs'], 'bin');
         }
 
         // Generate `files` list
         artifact.builds.forEach(({ format }) => {
-          files.add(`${format}/**/*.{${artifact.getOutputMetadata(format).ext},map}`);
+          files.add(`${format}/**/*.{${artifact.getBuildOutput(format).ext},map}`);
         });
 
-        files.add(`src/**/*.{${this.getSourceFileExts(artifact.inputFile)}}`);
+        files.add(`src/**/*.{${this.getSourceFileExts(artifact.inputs)}}`);
       }
 
       // Type declarations
@@ -378,26 +418,18 @@ export class Package {
       './package.json': './package.json',
     };
 
-    const mapConditionsToPath = (basePath: string, conditions: PackageExportPaths | string) => {
-      const path = basePath.replace('/index', '');
-
-      if (!exportMap[path]) {
-        exportMap[path] = {};
-      }
-
-      Object.assign(exportMap[path], conditions);
-    };
-
     this.artifacts.forEach((artifact) => {
-      if (artifact instanceof BundleArtifact) {
-        mapConditionsToPath(`./${artifact.outputName}`, artifact.getPackageExports());
-      }
+      Object.entries(artifact.getPackageExports()).forEach(([basePath, conditions]) => {
+        const path = basePath.replace('/index', '');
 
-      if (artifact instanceof TypesArtifact) {
-        Object.entries(artifact.getPackageExports()).forEach(([path, conditions]) => {
-          mapConditionsToPath(path, conditions);
-        });
-      }
+        if (!exportMap[path]) {
+          exportMap[path] = {};
+        } else if (typeof exportMap[path] === 'string') {
+          exportMap[path] = { default: exportMap[path] };
+        }
+
+        Object.assign(exportMap[path], conditions);
+      });
     });
 
     if (isObject(this.packageJson.exports)) {
@@ -407,33 +439,39 @@ export class Package {
     }
   }
 
-  protected getSourceFileExts(inputFile: string): string[] {
-    const sourceExt = new Path(inputFile).ext(true);
-    const exts: string[] = [sourceExt];
+  protected getSourceFileExts(inputs: InputMap): string[] {
+    const sourceExts = Object.values(inputs).map((inputFile) => new Path(inputFile).ext(true));
+    const exts = new Set(sourceExts);
 
-    switch (sourceExt) {
-      case 'js':
-        exts.push('jsx');
-        break;
+    // Include sibling file extensions
+    sourceExts.forEach((sourceExt) => {
+      switch (sourceExt) {
+        case 'js':
+          exts.add('jsx');
+          break;
 
-      case 'jsx':
-      case 'cjs':
-        exts.unshift('js');
-        break;
+        case 'jsx':
+        case 'cjs':
+          exts.add('js');
+          break;
 
-      case 'ts':
-        exts.push('tsx');
-        break;
+        case 'ts':
+          exts.add('tsx');
+          break;
 
-      case 'tsx':
-        exts.unshift('ts');
-        break;
+        case 'tsx':
+          exts.add('ts');
+          break;
 
-      // no default
-    }
+        // no default
+      }
+    });
 
-    exts.push('json');
+    const list = [...exts].sort();
 
-    return exts;
+    // Always be last
+    list.push('json');
+
+    return list;
   }
 }

@@ -3,7 +3,7 @@ import { TransformOptions as ConfigStructure } from '@babel/core';
 import { Path, toArray } from '@boost/common';
 import { FeatureFlags } from './types';
 import {
-  BundleArtifact,
+  CodeArtifact,
   DEFAULT_FORMAT,
   DEFAULT_SUPPORT,
   Format,
@@ -20,9 +20,14 @@ const format = (process.env.PACKEMON_FORMAT ?? DEFAULT_FORMAT) as Format;
 const support = (process.env.PACKEMON_SUPPORT ?? DEFAULT_SUPPORT) as Support;
 const project = new Project(process.cwd());
 
-function getBabelConfig(artifact: BundleArtifact, featureFlags: FeatureFlags): ConfigStructure {
+function getBabelConfig(artifact: CodeArtifact, featureFlags: FeatureFlags): ConfigStructure {
   const inputConfig = getBabelInputConfig(artifact, featureFlags);
-  const outputConfig = getBabelOutputConfig(artifact.builds[0], featureFlags);
+  const outputConfig = getBabelOutputConfig(
+    artifact.platform,
+    artifact.support,
+    artifact.builds[0].format,
+    featureFlags,
+  );
 
   return {
     // Input must come first
@@ -55,7 +60,8 @@ export function createConfig(folder: string): ConfigStructure {
   }
 
   // Generate artifact and builds
-  const artifact = new BundleArtifact(pkg, [{ format, platform: lowestPlatform, support }]);
+  const artifact = new CodeArtifact(pkg, [{ format }]);
+  artifact.bundle = false;
   artifact.platform = lowestPlatform;
   artifact.support = support;
 

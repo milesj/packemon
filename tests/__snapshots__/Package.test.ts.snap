@@ -18,5 +18,3 @@ exports[`Package setConfigs() errors if invalid format is provided for \`node\` 
 "Invalid flag-common field \\"format\\". Received array but must be a union of: array<string>, string
  - Invalid flag-common field \\"format[0]\\". Invalid field \\"format[0]\\". String must be one of: lib, mjs, cjs"
 `;
-
-exports[`Package setConfigs() errors if multiple inputs are passed when \`bundle\` is false 1`] = `"Only 1 \`inputs\` can be defined when \`bundle\` is false."`;

@@ -56,10 +56,12 @@ export type DeclarationType = 'api' | 'none' | 'standard';
 
 // PACKAGES
 
+export type InputMap = Record<string, string>;
+
 export interface PackemonPackageConfig {
   bundle?: boolean;
   format?: Format | Format[];
-  inputs?: Record<string, string>;
+  inputs?: InputMap;
   namespace?: string;
   platform?: Platform | Platform[];
   support?: Support;
@@ -72,7 +74,7 @@ export interface PackemonPackage extends PackageStructure {
 export interface PackageConfig {
   bundle: boolean;
   formats: Format[];
-  inputs: Record<string, string>;
+  inputs: InputMap;
   namespace: string;
   platform: Platform;
   support: Support;
@@ -123,10 +125,8 @@ export interface BuildResult {
   time: number;
 }
 
-export interface BundleBuild {
+export interface CodeBuild {
   format: Format;
-  platform: Platform;
-  support: Support;
   stats?: { size: number };
 }
 

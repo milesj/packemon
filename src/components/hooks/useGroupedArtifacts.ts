@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { Artifact } from '../../Artifact';
-import { BundleArtifact } from '../../BundleArtifact';
+import { CodeArtifact } from '../../CodeArtifact';
 import { Package } from '../../Package';
 import { Environment } from '../../types';
 
@@ -11,7 +11,7 @@ export function useGroupedArtifacts(pkg: Package) {
 
     // Group artifacts by platform and support
     pkg.artifacts.forEach((artifact) => {
-      if (artifact instanceof BundleArtifact) {
+      if (artifact instanceof CodeArtifact) {
         const key = `${artifact.platform}:${artifact.support}` as Environment;
         const set = groups[key] ?? new Set();
 

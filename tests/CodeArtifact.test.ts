@@ -2,7 +2,7 @@ import fs from 'fs-extra';
 import { rollup } from 'rollup';
 import { Path } from '@boost/common';
 import { getFixturePath } from '@boost/test-utils';
-import { BundleArtifact } from '../src/BundleArtifact';
+import { CodeArtifact } from '../src/CodeArtifact';
 import { Package } from '../src/Package';
 import { Project } from '../src/Project';
 import { getRollupConfig } from '../src/rollup/config';
@@ -22,36 +22,32 @@ jest.mock('../src/rollup/config', () => ({
 jest.mock('fs-extra');
 jest.mock('rollup');
 
-describe('BundleArtifact', () => {
+describe('CodeArtifact', () => {
   const fixturePath = new Path(getFixturePath('project'));
   const packageJson = {
     name: 'project',
     version: '0.0.0',
     packemon: {},
   };
-  let artifact: BundleArtifact;
+  let artifact: CodeArtifact;
 
   beforeEach(() => {
-    artifact = new BundleArtifact(
+    artifact = new CodeArtifact(
       new Package(new Project(fixturePath), fixturePath, { ...packageJson }),
       [],
     );
-    artifact.outputName = 'index';
-    artifact.inputFile = 'src/index.ts';
+    artifact.inputs = { index: 'src/index.ts' };
     artifact.startup();
   });
 
   it('sets correct metadata', () => {
-    artifact.builds.push(
-      { format: 'lib', platform: 'browser', support: 'stable' },
-      { format: 'cjs', platform: 'node', support: 'legacy' },
-    );
+    artifact.builds.push({ format: 'lib' }, { format: 'cjs' });
 
-    expect(artifact.getLabel()).toBe('index');
+    expect(artifact.getLabel()).toBe('node:stable:lib,cjs');
     expect(artifact.getBuildTargets()).toEqual(['lib', 'cjs']);
-    expect(artifact.toString()).toBe('bundle:index (lib, cjs)');
-    expect(artifact.getStatsTitle()).toBe('project/index');
-    expect(artifact.getStatsFileName()).toBe('stats-project-index.html');
+    expect(artifact.toString()).toBe('code (node:stable:lib,cjs)');
+    expect(artifact.getStatsTitle()).toBe('project/node/stable');
+    expect(artifact.getStatsFileName()).toBe('stats-project-node-stable.html');
   });
 
   describe('build()', () => {
@@ -71,11 +67,7 @@ describe('BundleArtifact', () => {
         .spyOn(artifact.package, 'getFeatureFlags')
         .mockImplementation(() => ({ typescript: true }));
 
-      artifact.builds.push(
-        { format: 'lib', platform: 'browser', support: 'stable' },
-        { format: 'cjs', platform: 'node', support: 'legacy' },
-        { format: 'esm', platform: 'browser', support: 'current' },
-      );
+      artifact.builds.push({ format: 'lib' }, { format: 'cjs' }, { format: 'esm' });
     });
 
     it('generates rollup config using input config', async () => {
@@ -117,88 +109,33 @@ describe('BundleArtifact', () => {
       expect(bundleWriteSpy).toHaveBeenCalledWith({ c: true });
       expect(artifact.builds[2].stats?.size).toBe(4);
     });
-
-    describe('engines', () => {
-      it('does nothing if builds is not `node`', async () => {
-        artifact.platform = 'browser';
-        artifact.builds.push({ format: 'lib', platform: 'browser', support: 'stable' });
-
-        expect(artifact.package.packageJson.engines).toBeUndefined();
-
-        await artifact.build({ addEngines: true });
-
-        expect(artifact.package.packageJson.engines).toBeUndefined();
-      });
-
-      it('does nothing if `addEngines` is false', async () => {
-        artifact.builds.push({ format: 'lib', platform: 'node', support: 'stable' });
-
-        expect(artifact.package.packageJson.engines).toBeUndefined();
-
-        await artifact.build({ addEngines: false });
-
-        expect(artifact.package.packageJson.engines).toBeUndefined();
-      });
-
-      it('adds npm and node engines for `node` build', async () => {
-        artifact.builds.push({ format: 'lib', platform: 'node', support: 'stable' });
-
-        expect(artifact.package.packageJson.engines).toBeUndefined();
-
-        await artifact.build({ addEngines: true });
-
-        expect(artifact.package.packageJson.engines).toEqual({ node: '>=10.3.0', npm: '>=6.1.0' });
-      });
-
-      it('merges with existing engines', async () => {
-        artifact.builds.push({ format: 'lib', platform: 'node', support: 'stable' });
-
-        artifact.package.packageJson.engines = {
-          packemon: '*',
-        };
-
-        expect(artifact.package.packageJson.engines).toEqual({ packemon: '*' });
-
-        await artifact.build({ addEngines: true });
-
-        expect(artifact.package.packageJson.engines).toEqual({
-          packemon: '*',
-          node: '>=10.3.0',
-          npm: '>=6.1.0',
-        });
-      });
-    });
   });
 
   describe('cleanup()', () => {
     it('removes visualizer HTML files', async () => {
       await artifact.cleanup();
 
-      expect(fs.remove).toHaveBeenCalledWith(fixturePath.append('stats-project-index.html').path());
-    });
-  });
-
-  describe('getInputPath()', () => {
-    it('returns a `Path` to the input file', () => {
-      expect(artifact.getInputPath()).toEqual(fixturePath.append('src/index.ts'));
-    });
-
-    it('errors if input file does not exist', () => {
-      artifact.inputFile = 'src/missing.ts';
-
-      expect(() => artifact.getInputPath()).toThrow(
-        'Cannot find input "src/missing.ts" for package "project". Skipping package.',
+      expect(fs.remove).toHaveBeenCalledWith(
+        fixturePath.append('stats-project-node-stable.html').path(),
       );
     });
   });
 
-  describe('getOutputMetadata()', () => {
+  describe('getInputPaths()', () => {
+    it('returns an absolute path for every input', () => {
+      expect(artifact.getInputPaths()).toEqual({
+        index: fixturePath.append('src/index.ts').path(),
+      });
+    });
+  });
+
+  describe('getBuildOutput()', () => {
     beforeEach(() => {
       artifact.platform = 'node';
     });
 
     it('returns metadata for `lib` format', () => {
-      expect(artifact.getOutputMetadata('lib')).toEqual({
+      expect(artifact.getBuildOutput('lib', 'index')).toEqual({
         ext: 'js',
         file: 'index.js',
         folder: 'lib',
@@ -207,7 +144,7 @@ describe('BundleArtifact', () => {
     });
 
     it('returns metadata for `esm` format', () => {
-      expect(artifact.getOutputMetadata('esm')).toEqual({
+      expect(artifact.getBuildOutput('esm', 'index')).toEqual({
         ext: 'js',
         file: 'index.js',
         folder: 'esm',
@@ -216,7 +153,7 @@ describe('BundleArtifact', () => {
     });
 
     it('returns metadata for `umd` format', () => {
-      expect(artifact.getOutputMetadata('umd')).toEqual({
+      expect(artifact.getBuildOutput('umd', 'index')).toEqual({
         ext: 'js',
         file: 'index.js',
         folder: 'umd',
@@ -225,7 +162,7 @@ describe('BundleArtifact', () => {
     });
 
     it('returns metadata for `cjs` format', () => {
-      expect(artifact.getOutputMetadata('cjs')).toEqual({
+      expect(artifact.getBuildOutput('cjs', 'index')).toEqual({
         ext: 'cjs',
         file: 'index.cjs',
         folder: 'cjs',
@@ -234,7 +171,7 @@ describe('BundleArtifact', () => {
     });
 
     it('returns metadata for `mjs` format', () => {
-      expect(artifact.getOutputMetadata('mjs')).toEqual({
+      expect(artifact.getBuildOutput('mjs', 'index')).toEqual({
         ext: 'mjs',
         file: 'index.mjs',
         folder: 'mjs',
@@ -246,7 +183,7 @@ describe('BundleArtifact', () => {
       it('includes platform in folder when shared lib required', () => {
         artifact.sharedLib = true;
 
-        expect(artifact.getOutputMetadata('lib')).toEqual({
+        expect(artifact.getBuildOutput('lib', 'index')).toEqual({
           ext: 'js',
           file: 'index.js',
           folder: 'lib/node',
@@ -257,7 +194,7 @@ describe('BundleArtifact', () => {
       it('ignores shared lib if not `lib` format', () => {
         artifact.sharedLib = true;
 
-        expect(artifact.getOutputMetadata('esm')).toEqual({
+        expect(artifact.getBuildOutput('esm', 'index')).toEqual({
           ext: 'js',
           file: 'index.js',
           folder: 'esm',
@@ -269,77 +206,84 @@ describe('BundleArtifact', () => {
 
   describe('getPackageExports()', () => {
     it('adds exports based on input file and output name', () => {
-      artifact.builds.push({ format: 'lib', platform: 'node', support: 'stable' });
+      artifact.builds.push({ format: 'lib' });
 
       expect(artifact.getPackageExports()).toEqual({
-        node: './lib/index.js',
+        './index': {
+          node: './lib/index.js',
+        },
       });
     });
 
     it('adds exports based on input file and output name when shared lib required', () => {
       artifact.sharedLib = true;
-      artifact.builds.push({ format: 'lib', platform: 'node', support: 'stable' });
+      artifact.builds.push({ format: 'lib' });
 
       expect(artifact.getPackageExports()).toEqual({
-        node: './lib/node/index.js',
+        './index': {
+          node: './lib/node/index.js',
+        },
       });
     });
 
     it('supports subpath file exports when output name is not "index"', () => {
-      artifact.outputName = 'sub';
-      artifact.builds.push({ format: 'lib', platform: 'node', support: 'stable' });
+      artifact.inputs = { sub: './src/sub.ts' };
+      artifact.builds.push({ format: 'lib' });
 
       expect(artifact.getPackageExports()).toEqual({
-        node: './lib/sub.js',
+        './sub': {
+          node: './lib/sub.js',
+        },
       });
     });
 
     it('supports conditional exports when there are multiple builds', () => {
-      artifact.builds.push(
-        { format: 'lib', platform: 'node', support: 'stable' },
-        { format: 'mjs', platform: 'node', support: 'stable' },
-        { format: 'cjs', platform: 'node', support: 'stable' },
-      );
+      artifact.builds.push({ format: 'lib' }, { format: 'mjs' }, { format: 'cjs' });
 
       expect(artifact.getPackageExports()).toEqual({
-        node: {
-          import: './mjs/index.mjs',
-          require: './cjs/index.cjs',
-          default: './lib/index.js',
+        './index': {
+          node: {
+            import: './mjs/index.mjs',
+            require: './cjs/index.cjs',
+            default: './lib/index.js',
+          },
         },
       });
     });
 
     it('skips `default` export when there is no `lib` build', () => {
-      artifact.outputName = 'sub';
-      artifact.builds.push(
-        { format: 'mjs', platform: 'node', support: 'stable' },
-        { format: 'cjs', platform: 'node', support: 'stable' },
-      );
+      artifact.inputs = { sub: './src/sub.ts' };
+      artifact.builds.push({ format: 'mjs' }, { format: 'cjs' });
 
       expect(artifact.getPackageExports()).toEqual({
-        node: {
-          import: './mjs/sub.mjs',
-          require: './cjs/sub.cjs',
+        './sub': {
+          node: {
+            import: './mjs/sub.mjs',
+            require: './cjs/sub.cjs',
+          },
         },
       });
     });
 
     it('changes export namespace to "browser" when a `browser` platform', () => {
       artifact.platform = 'browser';
-      artifact.builds.push({ format: 'lib', platform: 'browser', support: 'stable' });
+      artifact.builds.push({ format: 'lib' });
 
       expect(artifact.getPackageExports()).toEqual({
-        browser: './lib/index.js',
+        './index': {
+          browser: './lib/index.js',
+        },
       });
     });
 
     it('changes export namespace to "react-native" when a `native` platform', () => {
       artifact.platform = 'native';
-      artifact.builds.push({ format: 'lib', platform: 'native', support: 'stable' });
+      artifact.builds.push({ format: 'lib' });
 
       expect(artifact.getPackageExports()).toEqual({
-        'react-native': './lib/index.js',
+        './index': {
+          'react-native': './lib/index.js',
+        },
       });
     });
   });
