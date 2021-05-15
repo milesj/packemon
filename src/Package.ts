@@ -79,6 +79,8 @@ export class Package {
         } catch (error: unknown) {
           artifact.state = 'failed';
 
+          console.log('ERROR', error);
+
           throw error;
         } finally {
           artifact.buildResult.time = Date.now() - start;

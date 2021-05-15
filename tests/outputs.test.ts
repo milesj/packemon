@@ -1,7 +1,6 @@
-import fs from 'fs';
 import { Path } from '@boost/common';
 import { getFixturePath } from '@boost/test-utils';
-import { CodeArtifact, Package, Project } from '../src';
+import { CodeArtifact } from '../src';
 import { createProjectPackage, createSnapshotSpies } from './helpers';
 
 describe('Outputs', () => {

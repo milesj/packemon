@@ -5,7 +5,6 @@ import { getFixturePath } from '@boost/test-utils';
 import {
   Artifact,
   CodeArtifact,
-  CodeBuild,
   Format,
   FORMATS,
   FORMATS_BROWSER,
@@ -59,9 +58,13 @@ export function createProjectPackage(root: Path, customProject?: Project): Packa
 
 export function createSnapshotSpies(root: PortablePath) {
   let snapshots: [string, unknown][] = [];
+  let fsSpy: jest.SpyInstance;
+  let fsxSpy: jest.SpyInstance;
+  let warnSpy: jest.SpyInstance;
 
   beforeEach(() => {
     const handler = (file: unknown, content: unknown, cb?: unknown) => {
+      console.log({ file });
       const filePath = new Path(String(file)).path().replace(String(root), '');
 
       if (!filePath.endsWith('map')) {
@@ -73,13 +76,16 @@ export function createSnapshotSpies(root: PortablePath) {
       }
     };
 
-    jest.spyOn(fs, 'writeFile').mockImplementation(handler);
-    jest.spyOn(fsx, 'writeJson').mockImplementation(handler);
-    jest.spyOn(console, 'warn').mockImplementation();
+    fsSpy = jest.spyOn(fs, 'writeFile').mockImplementation(handler);
+    fsxSpy = jest.spyOn(fsx, 'writeJson').mockImplementation(handler);
+    warnSpy = jest.spyOn(console, 'warn').mockImplementation();
   });
 
   afterEach(() => {
     snapshots = [];
+    fsSpy.mockRestore();
+    fsxSpy.mockRestore();
+    warnSpy.mockRestore();
   });
 
   return () => snapshots.sort((a, b) => a[0].localeCompare(b[0]));
