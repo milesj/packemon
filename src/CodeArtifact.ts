@@ -67,7 +67,7 @@ export class CodeArtifact extends Artifact<CodeBuild> {
       onwarn: /* istanbul ignore next */ ({ id, loc = {}, message }) => {
         this.logWithSource(message, 'warn', {
           id: id && id !== loc.file ? id : undefined,
-          output: this.getLabel(),
+          output: this.package.getSlug(),
           sourceColumn: loc.column,
           sourceFile: loc.file,
           sourceLine: loc.line,

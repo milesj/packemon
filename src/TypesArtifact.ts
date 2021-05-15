@@ -149,7 +149,7 @@ export class TypesArtifact extends Artifact<TypesBuild> {
 
         this.logWithSource(warn.text, level as 'info', {
           id: warn.messageId,
-          output: outputName,
+          output: `${this.package.getSlug()}:${outputName}`,
           sourceColumn: warn.sourceFileColumn,
           sourceFile: warn.sourceFilePath,
           sourceLine: warn.sourceFileLine,
