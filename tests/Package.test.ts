@@ -600,56 +600,6 @@ describe('Package', () => {
           );
         });
       });
-
-      // https://github.com/milesj/packemon/issues/42#issuecomment-808793241
-      it('supports all in parallel', async () => {
-        const a = createBundleArtifact([{ format: 'cjs', platform: 'node', support: 'stable' }]);
-        a.outputName = 'index';
-        a.inputFile = 'src/node.ts';
-
-        const b = createBundleArtifact([{ format: 'lib', platform: 'node', support: 'stable' }]);
-        b.outputName = 'bin';
-        b.inputFile = 'src/cli.ts';
-
-        const c = createBundleArtifact([
-          { format: 'lib', platform: 'browser', support: 'current' },
-          { format: 'esm', platform: 'browser', support: 'current' },
-        ]);
-        c.outputName = 'web';
-        c.inputFile = 'src/web.ts';
-
-        const d = createBundleArtifact([{ format: 'mjs', platform: 'node', support: 'current' }]);
-        d.outputName = 'import';
-        d.inputFile = 'src/web.ts';
-
-        pkg.addArtifact(a);
-        pkg.addArtifact(b);
-        pkg.addArtifact(c);
-        pkg.addArtifact(d);
-
-        await pkg.build({ addExports: true });
-
-        expect(pkg.packageJson).toEqual(
-          expect.objectContaining({
-            type: 'commonjs',
-            main: './cjs/index.cjs',
-            bin: './lib/bin.js',
-            exports: {
-              './package.json': './package.json',
-              '.': { node: { require: './cjs/index.cjs' } },
-              './bin': { node: './lib/bin.js' },
-              './web': {
-                node: {
-                  import: './esm/web.js',
-                  module: './esm/web.js',
-                  default: './lib/web.js',
-                },
-              },
-              './import': { node: { import: './mjs/import.mjs' } },
-            },
-          }),
-        );
-      });
     });
 
     describe('exports', () => {
@@ -829,6 +779,94 @@ describe('Package', () => {
           './package.json': './package.json',
         });
       });
+    });
+
+    // https://github.com/milesj/packemon/issues/42#issuecomment-808793241
+    it('when bundling, supports all mutations in parallel', async () => {
+      const a = createCodeArtifact([{ format: 'cjs' }]);
+      a.inputs = { index: 'src/node.ts' };
+
+      const b = createCodeArtifact([{ format: 'lib' }]);
+      b.inputs = { bin: 'src/cli.ts' };
+
+      const c = createCodeArtifact([{ format: 'lib' }, { format: 'esm' }], 'browser', 'current');
+      c.inputs = { web: 'src/web.ts' };
+
+      const d = createCodeArtifact([{ format: 'mjs' }], 'node', 'current');
+      d.inputs = { import: 'src/web.ts' };
+
+      pkg.addArtifact(a);
+      pkg.addArtifact(b);
+      pkg.addArtifact(c);
+      pkg.addArtifact(d);
+
+      await pkg.build({ addExports: true });
+
+      expect(pkg.packageJson).toEqual(
+        expect.objectContaining({
+          type: 'commonjs',
+          main: './cjs/index.cjs',
+          bin: './lib/bin.js',
+          exports: {
+            './package.json': './package.json',
+            '.': { node: { require: './cjs/index.cjs' } },
+            './bin': { node: './lib/bin.js' },
+            './web': {
+              browser: {
+                import: './esm/web.js',
+                module: './esm/web.js',
+                default: './lib/web.js',
+              },
+            },
+            './import': { node: { import: './mjs/import.mjs' } },
+          },
+        }),
+      );
+    });
+
+    it('when NOT bundling, supports all mutations in parallel', async () => {
+      const a = createCodeArtifact([{ format: 'cjs' }]);
+      a.bundle = false;
+      a.inputs = { index: 'src/node.ts' };
+
+      const b = createCodeArtifact([{ format: 'lib' }]);
+      a.bundle = false;
+      b.inputs = { bin: 'src/cli.ts' };
+
+      const c = createCodeArtifact([{ format: 'lib' }, { format: 'esm' }], 'browser', 'current');
+      c.inputs = { web: 'src/web.ts' };
+
+      const d = createCodeArtifact([{ format: 'mjs' }], 'node', 'current');
+      a.bundle = false;
+      d.inputs = { import: 'src/web.ts' };
+
+      pkg.addArtifact(a);
+      pkg.addArtifact(b);
+      pkg.addArtifact(c);
+      pkg.addArtifact(d);
+
+      await pkg.build({ addExports: true });
+
+      expect(pkg.packageJson).toEqual(
+        expect.objectContaining({
+          type: 'commonjs',
+          main: './cjs/node.cjs',
+          bin: './lib/bin.js',
+          exports: {
+            './package.json': './package.json',
+            '.': { node: { require: './cjs/node.cjs' } },
+            './bin': { node: './lib/bin.js' },
+            './web': {
+              browser: {
+                import: './esm/web.js',
+                module: './esm/web.js',
+                default: './lib/web.js',
+              },
+            },
+            './import': { node: { import: './mjs/import.mjs' } },
+          },
+        }),
+      );
     });
   });
 
