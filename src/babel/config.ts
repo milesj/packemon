@@ -113,14 +113,8 @@ export function getBabelInputConfig(
         [resolve('@babel/plugin-proposal-decorators'), { legacy: true }],
         [resolve('@babel/plugin-proposal-class-properties'), { loose: true }],
         [resolve('@babel/plugin-proposal-private-methods'), { loose: true }],
+        [resolve('@babel/plugin-proposal-private-property-in-object'), { loose: true }],
       );
-
-      if (artifact.package.hasDependency('@babel/plugin-proposal-private-property-in-object')) {
-        plugins.push([
-          resolve('@babel/plugin-proposal-private-property-in-object'),
-          { loose: true },
-        ]);
-      }
     }
   }
 
