@@ -203,6 +203,18 @@ describe('CodeArtifact', () => {
         });
       });
     });
+
+    it('when not bundling, uses original source file path', () => {
+      artifact.bundle = false;
+      artifact.inputs = { index: 'src/some/other/file.ts' };
+
+      expect(artifact.getBuildOutput('mjs', 'index')).toEqual({
+        ext: 'mjs',
+        file: 'some/other/file.mjs',
+        folder: 'mjs',
+        path: './mjs/some/other/file.mjs',
+      });
+    });
   });
 
   describe('getPackageExports()', () => {

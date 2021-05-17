@@ -67,7 +67,7 @@ export class CodeArtifact extends Artifact<CodeBuild> {
       onwarn: /* istanbul ignore next */ ({ id, loc = {}, message }) => {
         this.logWithSource(message, 'warn', {
           id: id && id !== loc.file ? id : undefined,
-          output: this.getLabel(),
+          output: this.package.getSlug(),
           sourceColumn: loc.column,
           sourceFile: loc.file,
           sourceLine: loc.line,
@@ -131,9 +131,17 @@ export class CodeArtifact extends Artifact<CodeBuild> {
   }
 
   getBuildOutput(format: Format, outputName: string = '') {
+    let name = outputName;
+
+    // When not bundling, we do not create output files based on the input map.
+    // Instead files mirror the source file structure, so we need to take that into account!
+    if (!this.bundle && this.inputs[outputName]) {
+      name = this.inputs[outputName].replace(/src\//, '').replace(/\.[a-z]{2,3}$/, '');
+    }
+
     const ext = format === 'cjs' || format === 'mjs' ? format : 'js';
     const folder = format === 'lib' && this.sharedLib ? `lib/${this.platform}` : format;
-    const file = `${outputName}.${ext}`;
+    const file = `${name}.${ext}`;
     const path = `./${folder}/${file}`;
 
     return {
