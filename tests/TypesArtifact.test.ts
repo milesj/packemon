@@ -235,6 +235,26 @@ describe('TypesArtifact', () => {
     });
   });
 
+  describe('findEntryPoint()', () => {
+    describe('standard types', () => {
+      it('returns mirrored source path', () => {
+        artifact.declarationType = 'standard';
+
+        expect(artifact.findEntryPoint('index')).toBe('./dts/index.d.ts');
+        expect(artifact.findEntryPoint('test')).toBe('./dts/sub/test.d.ts');
+      });
+    });
+
+    describe('api types', () => {
+      it('returns top level output file', () => {
+        artifact.declarationType = 'api';
+
+        expect(artifact.findEntryPoint('index')).toBe('./dts/index.d.ts');
+        expect(artifact.findEntryPoint('test')).toBe('./dts/test.d.ts');
+      });
+    });
+  });
+
   describe('getPackageExports()', () => {
     it('adds exports based on input file and output name builds', () => {
       expect(artifact.getPackageExports()).toEqual({
@@ -242,7 +262,7 @@ describe('TypesArtifact', () => {
           types: './dts/index.d.ts',
         },
         './test': {
-          types: './dts/test.d.ts',
+          types: './dts/sub/test.d.ts',
         },
       });
     });

@@ -385,7 +385,7 @@ export class Package {
 
       // Type declarations
       if (artifact instanceof TypesArtifact) {
-        this.packageJson.types = './dts/index.d.ts';
+        this.packageJson.types = artifact.findEntryPoint('index');
         files.add('dts/**/*.d.ts');
       }
     });

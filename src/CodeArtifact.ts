@@ -1,8 +1,10 @@
+import path from 'path';
 import { rollup, RollupCache } from 'rollup';
 import { toArray } from '@boost/common';
 import { createDebugger, Debugger } from '@boost/debug';
 import { Artifact } from './Artifact';
 import { DEFAULT_FORMAT } from './constants';
+import { removeSourcePath } from './helpers/removeSourcePath';
 import { getRollupConfig } from './rollup/config';
 import {
   BuildOptions,
@@ -136,19 +138,18 @@ export class CodeArtifact extends Artifact<CodeBuild> {
     // When not bundling, we do not create output files based on the input map.
     // Instead files mirror the source file structure, so we need to take that into account!
     if (!this.bundle && this.inputs[outputName]) {
-      name = this.inputs[outputName].replace(/src\//, '').replace(/\.[a-z]{2,3}$/, '');
+      name = removeSourcePath(this.inputs[outputName]);
     }
 
     const ext = format === 'cjs' || format === 'mjs' ? format : 'js';
     const folder = format === 'lib' && this.sharedLib ? `lib/${this.platform}` : format;
     const file = `${name}.${ext}`;
-    const path = `./${folder}/${file}`;
 
     return {
       ext,
       file,
       folder,
-      path,
+      path: `./${path.join(folder, file)}`,
     };
   }
 
@@ -179,25 +180,25 @@ export class CodeArtifact extends Artifact<CodeBuild> {
       let libPath = '';
 
       this.builds.forEach(({ format }) => {
-        const { path } = this.getBuildOutput(format, outputName);
+        const entry = this.findEntryPoint([format], outputName);
 
         switch (format) {
           case 'mjs':
           case 'esm':
-            paths.import = path;
+            paths.import = entry;
 
             // Webpack and Rollup support
             if (format === 'esm') {
-              paths.module = path;
+              paths.module = entry;
             }
             break;
 
           case 'cjs':
-            paths.require = path;
+            paths.require = entry;
             break;
 
           case 'lib':
-            libPath = path;
+            libPath = entry;
             break;
 
           default:

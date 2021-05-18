@@ -1,9 +1,11 @@
+import path from 'path';
 import glob from 'fast-glob';
 import fs from 'fs-extra';
 import { Path } from '@boost/common';
 import { createDebugger, Debugger } from '@boost/debug';
 import { Extractor, ExtractorConfig } from '@microsoft/api-extractor';
 import { Artifact } from './Artifact';
+import { removeSourcePath } from './helpers/removeSourcePath';
 import {
   APIExtractorStructure,
   BuildOptions,
@@ -68,6 +70,20 @@ export class TypesArtifact extends Artifact<TypesBuild> {
     }
   }
 
+  findEntryPoint(outputName: string): string {
+    const output = this.builds.find((build) => build.outputName === outputName);
+
+    if (!output) {
+      return '';
+    }
+
+    // When not generating individual API declarations, we need to mirror the source structure
+    const entry =
+      this.declarationType === 'standard' ? removeSourcePath(output.inputFile) : outputName;
+
+    return `./${path.join('dts', entry)}.d.ts`;
+  }
+
   getLabel(): string {
     return 'dts';
   }
@@ -81,7 +97,7 @@ export class TypesArtifact extends Artifact<TypesBuild> {
 
     this.builds.forEach(({ outputName }) => {
       exportMap[`./${outputName}`] = {
-        types: `./dts/${outputName}.d.ts`,
+        types: this.findEntryPoint(outputName),
       };
     });
 
@@ -97,9 +113,7 @@ export class TypesArtifact extends Artifact<TypesBuild> {
     inputFile: string,
     dtsBuildPath: Path,
   ): Promise<unknown> {
-    const dtsEntryPoint = dtsBuildPath.append(
-      inputFile.replace('src/', '').replace('.ts', '.d.ts'),
-    );
+    const dtsEntryPoint = dtsBuildPath.append(`${removeSourcePath(inputFile)}.d.ts`);
 
     if (!dtsEntryPoint.exists()) {
       console.warn(

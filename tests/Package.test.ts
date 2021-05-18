@@ -400,13 +400,15 @@ describe('Package', () => {
 
       describe('types', () => {
         it('adds "types" when a types artifact exists', async () => {
-          pkg.addArtifact(createTypesArtifact([]));
+          pkg.addArtifact(
+            createTypesArtifact([{ outputName: 'index', inputFile: 'src/some/path.ts' }]),
+          );
 
           await pkg.build({});
 
           expect(pkg.packageJson).toEqual(
             expect.objectContaining({
-              types: './dts/index.d.ts',
+              types: './dts/some/path.d.ts',
             }),
           );
         });
@@ -754,7 +756,7 @@ describe('Package', () => {
 
       it('adds exports for bundle and types artifacts in parallel', async () => {
         pkg.addArtifact(createCodeArtifact([{ format: 'lib' }]));
-        pkg.addArtifact(createTypesArtifact([{ inputFile: '', outputName: 'index' }]));
+        pkg.addArtifact(createTypesArtifact([{ inputFile: 'src/index.ts', outputName: 'index' }]));
 
         await pkg.build({ addExports: true });
 
