@@ -415,11 +415,8 @@ export class PackageValidator {
   }
 
   protected async findDistributableFiles(): Promise<string[]> {
-    // https://github.com/npm/npm-packlist/blob/master/index.js#L29
-    const patterns: string[] = [
-      '(readme|copying|license|licence|notice|changes|changelog|history)*',
-      'package.json',
-    ];
+    // https://github.com/npm/npm-packlist/blob/main/index.js#L29
+    const patterns: string[] = ['(readme|copying|license|licence)*', 'package.json'];
 
     this.package.packageJson.files?.forEach((file) => {
       if (file.endsWith('/')) {
