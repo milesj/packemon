@@ -5,89 +5,89 @@ import type { Package } from './Package';
 import type { ArtifactState, Awaitable, BuildOptions, BuildResult, PackageExports } from './types';
 
 export abstract class Artifact<T extends object = {}> {
-  readonly builds: T[] = [];
+	readonly builds: T[] = [];
 
-  readonly buildResult: BuildResult = { files: [], time: 0 };
+	readonly buildResult: BuildResult = { files: [], time: 0 };
 
-  readonly package: Package;
+	readonly package: Package;
 
-  state: ArtifactState = 'pending';
+	state: ArtifactState = 'pending';
 
-  constructor(pkg: Package, builds: T[]) {
-    this.package = pkg;
-    this.builds = builds;
-  }
+	constructor(pkg: Package, builds: T[]) {
+		this.package = pkg;
+		this.builds = builds;
+	}
 
-  cleanup(): Awaitable {}
+	cleanup(): Awaitable {}
 
-  isComplete(): boolean {
-    return this.state === 'passed' || this.state === 'failed';
-  }
+	isComplete(): boolean {
+		return this.state === 'passed' || this.state === 'failed';
+	}
 
-  isRunning(): boolean {
-    return this.state === 'building';
-  }
+	isRunning(): boolean {
+		return this.state === 'building';
+	}
 
-  startup() {}
+	startup() {}
 
-  toString(): string {
-    return this.getLabel();
-  }
+	toString(): string {
+		return this.getLabel();
+	}
 
-  protected logWithSource(
-    message: string,
-    level: 'error' | 'info' | 'warn',
-    {
-      id,
-      output,
-      sourceColumn,
-      sourceFile,
-      sourceLine,
-    }: {
-      id?: string;
-      output?: string;
-      sourceColumn?: number;
-      sourceFile?: string;
-      sourceLine?: number;
-    } = {},
-  ) {
-    let msg = `[${this.package.getName()}${output ? `:${output}` : ''}] ${message}`;
+	protected logWithSource(
+		message: string,
+		level: 'error' | 'info' | 'warn',
+		{
+			id,
+			output,
+			sourceColumn,
+			sourceFile,
+			sourceLine,
+		}: {
+			id?: string;
+			output?: string;
+			sourceColumn?: number;
+			sourceFile?: string;
+			sourceLine?: number;
+		} = {},
+	) {
+		let msg = `[${this.package.getName()}${output ? `:${output}` : ''}] ${message}`;
 
-    const meta: string[] = [];
+		const meta: string[] = [];
 
-    if (id) {
-      meta.push(`id=${id}`);
-    }
+		if (id) {
+			meta.push(`id=${id}`);
+		}
 
-    if (sourceFile) {
-      meta.push(
-        `file=${new Path(sourceFile)
-          .path()
-          .replace(this.package.project.root.path(), '')
-          .slice(1)}`,
-      );
-    }
+		if (sourceFile) {
+			meta.push(
+				`file=${new Path(sourceFile)
+					.path()
+					.replace(this.package.project.root.path(), '')
+					.slice(1)}`,
+			);
+		}
 
-    if (sourceLine || sourceColumn) {
-      meta.push(`line=${sourceLine ?? '?'}:${sourceColumn ?? '?'}`);
-    }
+		if (sourceLine || sourceColumn) {
+			meta.push(`line=${sourceLine ?? '?'}:${sourceColumn ?? '?'}`);
+		}
 
-    if (meta.length > 0) {
-      msg += applyStyle(` (${meta.join(' ')})`, 'muted');
-    }
+		if (meta.length > 0) {
+			msg += applyStyle(` (${meta.join(' ')})`, 'muted');
+		}
 
-    console[level](msg);
-  }
+		console[level](msg);
+	}
 
-  protected async removeFiles(files: PortablePath[]): Promise<unknown> {
-    return Promise.all(files.map((file) => fs.remove(String(file))));
-  }
+	protected async removeFiles(files: PortablePath[]): Promise<unknown> {
+		return Promise.all(files.map((file) => fs.remove(String(file))));
+	}
 
-  abstract build(options: BuildOptions): Awaitable;
+	abstract build(options: BuildOptions): Awaitable;
 
-  abstract getLabel(): string;
+	abstract getLabel(): string;
 
-  abstract getBuildTargets(): string[];
+	abstract getBuildTargets(): string[];
 
-  abstract getPackageExports(): PackageExports;
+	abstract getPackageExports(): PackageExports;
 }

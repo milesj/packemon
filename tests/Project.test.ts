@@ -7,169 +7,169 @@ import { delay, mockSpy } from './helpers';
 jest.mock('execa');
 
 describe('Project', () => {
-  describe('checkEngineVersionConstraint()', () => {
-    it('errors if packemon version does not match defined engine constraint', () => {
-      const project = new Project(getFixturePath('project-constraint'));
+	describe('checkEngineVersionConstraint()', () => {
+		it('errors if packemon version does not match defined engine constraint', () => {
+			const project = new Project(getFixturePath('project-constraint'));
 
-      try {
-        project.checkEngineVersionConstraint();
-      } catch (error: unknown) {
-        expect((error as Error).message).toContain(
-          'Project requires a packemon version compatible with 0.0.0, found',
-        );
-      }
-    });
-  });
+			try {
+				project.checkEngineVersionConstraint();
+			} catch (error: unknown) {
+				expect((error as Error).message).toContain(
+					'Project requires a packemon version compatible with 0.0.0, found',
+				);
+			}
+		});
+	});
 
-  describe('isLernaManaged()', () => {
-    it('returns true if a monorepo and has lerna.json', () => {
-      const project = new Project(getFixturePath('workspaces'));
-      project.workspaces = ['packages/*'];
+	describe('isLernaManaged()', () => {
+		it('returns true if a monorepo and has lerna.json', () => {
+			const project = new Project(getFixturePath('workspaces'));
+			project.workspaces = ['packages/*'];
 
-      expect(project.isLernaManaged()).toBe(true);
-    });
+			expect(project.isLernaManaged()).toBe(true);
+		});
 
-    it('returns false if a not a monorepo but has lerna.json', () => {
-      const project = new Project(getFixturePath('workspaces'));
-      project.workspaces = [];
+		it('returns false if a not a monorepo but has lerna.json', () => {
+			const project = new Project(getFixturePath('workspaces'));
+			project.workspaces = [];
 
-      expect(project.isLernaManaged()).toBe(false);
-    });
+			expect(project.isLernaManaged()).toBe(false);
+		});
 
-    it('returns false if a monorepo but no lerna.json', () => {
-      const project = new Project(getFixturePath('workspaces-not-configured'));
-      project.workspaces = ['packages/*'];
+		it('returns false if a monorepo but no lerna.json', () => {
+			const project = new Project(getFixturePath('workspaces-not-configured'));
+			project.workspaces = ['packages/*'];
 
-      expect(project.isLernaManaged()).toBe(false);
-    });
-  });
+			expect(project.isLernaManaged()).toBe(false);
+		});
+	});
 
-  describe('isWorkspacesEnabled()', () => {
-    it('returns true if globs are defined', () => {
-      const project = new Project(getFixturePath('workspaces'));
-      project.workspaces = ['packages/*'];
+	describe('isWorkspacesEnabled()', () => {
+		it('returns true if globs are defined', () => {
+			const project = new Project(getFixturePath('workspaces'));
+			project.workspaces = ['packages/*'];
 
-      expect(project.isWorkspacesEnabled()).toBe(true);
-    });
+			expect(project.isWorkspacesEnabled()).toBe(true);
+		});
 
-    it('returns false if no globs are defined', () => {
-      const project = new Project(getFixturePath('workspaces'));
-      project.workspaces = [];
+		it('returns false if no globs are defined', () => {
+			const project = new Project(getFixturePath('workspaces'));
+			project.workspaces = [];
 
-      expect(project.isWorkspacesEnabled()).toBe(false);
-    });
-  });
+			expect(project.isWorkspacesEnabled()).toBe(false);
+		});
+	});
 
-  describe('generateDeclarations()', () => {
-    it('generates declarations with `tsc`', async () => {
-      const project = new Project(getFixturePath('workspace-private'));
+	describe('generateDeclarations()', () => {
+		it('generates declarations with `tsc`', async () => {
+			const project = new Project(getFixturePath('workspace-private'));
 
-      await project.generateDeclarations();
+			await project.generateDeclarations();
 
-      expect(execa).toHaveBeenCalledWith(
-        'tsc',
-        ['--declaration', '--declarationDir', 'dts', '--declarationMap', '--emitDeclarationOnly'],
-        {
-          cwd: project.root.path(),
-          preferLocal: true,
-        },
-      );
-    });
+			expect(execa).toHaveBeenCalledWith(
+				'tsc',
+				['--declaration', '--declarationDir', 'dts', '--declarationMap', '--emitDeclarationOnly'],
+				{
+					cwd: project.root.path(),
+					preferLocal: true,
+				},
+			);
+		});
 
-    it('generates declarations with `tsc --build` when using workspaces', async () => {
-      const project = new Project(getFixturePath('workspaces'));
-      project.workspaces = ['packages/*'];
+		it('generates declarations with `tsc --build` when using workspaces', async () => {
+			const project = new Project(getFixturePath('workspaces'));
+			project.workspaces = ['packages/*'];
 
-      await project.generateDeclarations();
+			await project.generateDeclarations();
 
-      expect(execa).toHaveBeenCalledWith('tsc', ['--build', '--force'], {
-        cwd: project.root.path(),
-        preferLocal: true,
-      });
-    });
+			expect(execa).toHaveBeenCalledWith('tsc', ['--build', '--force'], {
+				cwd: project.root.path(),
+				preferLocal: true,
+			});
+		});
 
-    it('reuses the same promise while building', async () => {
-      mockSpy(execa)
-        .mockReset()
-        .mockImplementation(() => delay(200));
+		it('reuses the same promise while building', async () => {
+			mockSpy(execa)
+				.mockReset()
+				.mockImplementation(() => delay(200));
 
-      const project = new Project(getFixturePath('workspace-private'));
+			const project = new Project(getFixturePath('workspace-private'));
 
-      await Promise.all([
-        project.generateDeclarations(),
-        project.generateDeclarations(),
-        project.generateDeclarations(),
-      ]);
+			await Promise.all([
+				project.generateDeclarations(),
+				project.generateDeclarations(),
+				project.generateDeclarations(),
+			]);
 
-      expect(execa).toHaveBeenCalledTimes(1);
-    });
+			expect(execa).toHaveBeenCalledTimes(1);
+		});
 
-    it('can pass a custom tsconfig', async () => {
-      const project = new Project(getFixturePath('workspace-private'));
+		it('can pass a custom tsconfig', async () => {
+			const project = new Project(getFixturePath('workspace-private'));
 
-      await project.generateDeclarations('tsconfig.custom.json');
+			await project.generateDeclarations('tsconfig.custom.json');
 
-      expect(execa).toHaveBeenCalledWith(
-        'tsc',
-        [
-          '--declaration',
-          '--declarationDir',
-          'dts',
-          '--declarationMap',
-          '--emitDeclarationOnly',
-          '--project',
-          'tsconfig.custom.json',
-        ],
-        {
-          cwd: project.root.path(),
-          preferLocal: true,
-        },
-      );
-    });
+			expect(execa).toHaveBeenCalledWith(
+				'tsc',
+				[
+					'--declaration',
+					'--declarationDir',
+					'dts',
+					'--declarationMap',
+					'--emitDeclarationOnly',
+					'--project',
+					'tsconfig.custom.json',
+				],
+				{
+					cwd: project.root.path(),
+					preferLocal: true,
+				},
+			);
+		});
 
-    it('does not pass custom tsconfig when using workspaces', async () => {
-      const project = new Project(getFixturePath('workspaces'));
-      project.workspaces = ['packages/*'];
+		it('does not pass custom tsconfig when using workspaces', async () => {
+			const project = new Project(getFixturePath('workspaces'));
+			project.workspaces = ['packages/*'];
 
-      await project.generateDeclarations('tsconfig.custom.json');
+			await project.generateDeclarations('tsconfig.custom.json');
 
-      expect(execa).toHaveBeenCalledWith('tsc', ['--build', '--force'], {
-        cwd: project.root.path(),
-        preferLocal: true,
-      });
-    });
-  });
+			expect(execa).toHaveBeenCalledWith('tsc', ['--build', '--force'], {
+				cwd: project.root.path(),
+				preferLocal: true,
+			});
+		});
+	});
 
-  describe('getWorkspacePackageNames()', () => {
-    it('returns empty array when not using workspaces', () => {
-      expect(new Project(getFixturePath('workspace-private')).getWorkspacePackageNames()).toEqual(
-        [],
-      );
-    });
+	describe('getWorkspacePackageNames()', () => {
+		it('returns empty array when not using workspaces', () => {
+			expect(new Project(getFixturePath('workspace-private')).getWorkspacePackageNames()).toEqual(
+				[],
+			);
+		});
 
-    it('returns package names when using workspaces', () => {
-      expect(new Project(getFixturePath('workspaces')).getWorkspacePackageNames()).toEqual([
-        'pkg-invalid-config',
-        'pkg-no-config',
-        'pkg-valid-array',
-        'pkg-valid-object',
-        'pkg-valid-object-private',
-      ]);
-    });
-  });
+		it('returns package names when using workspaces', () => {
+			expect(new Project(getFixturePath('workspaces')).getWorkspacePackageNames()).toEqual([
+				'pkg-invalid-config',
+				'pkg-no-config',
+				'pkg-valid-array',
+				'pkg-valid-object',
+				'pkg-valid-object-private',
+			]);
+		});
+	});
 
-  describe('rootPackage()', () => {
-    const project = new Project(getFixturePath('workspaces'));
+	describe('rootPackage()', () => {
+		const project = new Project(getFixturePath('workspaces'));
 
-    it('returns an instance of `Package`', () => {
-      expect(project.rootPackage).toBeInstanceOf(Package);
-    });
+		it('returns an instance of `Package`', () => {
+			expect(project.rootPackage).toBeInstanceOf(Package);
+		});
 
-    it('loads `package.json` contents', () => {
-      expect(project.rootPackage.packageJson).toEqual({
-        private: true,
-        workspaces: ['packages/*', 'other/', 'misc'],
-      });
-    });
-  });
+		it('loads `package.json` contents', () => {
+			expect(project.rootPackage.packageJson).toEqual({
+				private: true,
+				workspaces: ['packages/*', 'other/', 'misc'],
+			});
+		});
+	});
 });

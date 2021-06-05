@@ -12,10 +12,10 @@ aborted.
 
 ```json title="package.json"
 {
-  "scripts": {
-    "pack": "NODE_ENV=production packemon pack --addEngines --declaration=api",
-    "release": "yarn run pack && yarn publish"
-  }
+	"scripts": {
+		"pack": "NODE_ENV=production packemon pack --addEngines --declaration=api",
+		"release": "yarn run pack && yarn publish"
+	}
 }
 ```
 

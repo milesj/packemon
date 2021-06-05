@@ -13,9 +13,9 @@ pre-publish step. It accomplishes this by inspecting each package's `package.jso
 
 ```json title="package.json"
 {
-  "scripts": {
-    "validate": "packemon validate"
-  }
+	"scripts": {
+		"validate": "packemon validate"
+	}
 }
 ```
 

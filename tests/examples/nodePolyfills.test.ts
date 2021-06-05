@@ -1,5 +1,5 @@
 import { testExampleOutput } from '../helpers';
 
 describe('Node polyfills', () => {
-  testExampleOutput('node-polyfills.ts');
+	testExampleOutput('node-polyfills.ts');
 });

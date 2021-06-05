@@ -4,5 +4,5 @@
 
 // istanbul ignore next
 export function resolve(path: string): string {
-  return require.resolve(path);
+	return require.resolve(path);
 }

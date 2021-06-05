@@ -4,76 +4,76 @@ import { getFixturePath } from '@boost/test-utils';
 import { createProjectPackage, TestArtifact } from './helpers';
 
 describe('Artifact', () => {
-  const root = new Path(getFixturePath('project'));
-  let artifact: TestArtifact;
+	const root = new Path(getFixturePath('project'));
+	let artifact: TestArtifact;
 
-  beforeEach(() => {
-    artifact = new TestArtifact(createProjectPackage(root), []);
-  });
+	beforeEach(() => {
+		artifact = new TestArtifact(createProjectPackage(root), []);
+	});
 
-  it('returns label when cast to string', () => {
-    expect(String(artifact)).toBe('test');
-  });
+	it('returns label when cast to string', () => {
+		expect(String(artifact)).toBe('test');
+	});
 
-  describe('logWithSource()', () => {
-    it('logs a message to level', () => {
-      const spy = jest.spyOn(console, 'info').mockImplementation();
+	describe('logWithSource()', () => {
+		it('logs a message to level', () => {
+			const spy = jest.spyOn(console, 'info').mockImplementation();
 
-      artifact.log('Hello', 'info');
+			artifact.log('Hello', 'info');
 
-      expect(spy).toHaveBeenCalledWith('[project] Hello');
+			expect(spy).toHaveBeenCalledWith('[project] Hello');
 
-      spy.mockRestore();
-    });
+			spy.mockRestore();
+		});
 
-    it('includes output name and ID', () => {
-      const spy = jest.spyOn(console, 'error').mockImplementation();
+		it('includes output name and ID', () => {
+			const spy = jest.spyOn(console, 'error').mockImplementation();
 
-      artifact.log('Hello', 'error', { id: 'id', output: 'index' });
+			artifact.log('Hello', 'error', { id: 'id', output: 'index' });
 
-      expect(spy).toHaveBeenCalledWith(`[project:index] Hello${applyStyle(' (id=id)', 'muted')}`);
+			expect(spy).toHaveBeenCalledWith(`[project:index] Hello${applyStyle(' (id=id)', 'muted')}`);
 
-      spy.mockRestore();
-    });
+			spy.mockRestore();
+		});
 
-    it('includes source information', () => {
-      const spy = jest.spyOn(console, 'warn').mockImplementation();
+		it('includes source information', () => {
+			const spy = jest.spyOn(console, 'warn').mockImplementation();
 
-      artifact.log('Hello', 'warn', {
-        sourceFile: root.append('test.js').path(),
-        sourceLine: 10,
-        sourceColumn: 55,
-      });
+			artifact.log('Hello', 'warn', {
+				sourceFile: root.append('test.js').path(),
+				sourceLine: 10,
+				sourceColumn: 55,
+			});
 
-      expect(spy).toHaveBeenCalledWith(
-        `[project] Hello${applyStyle(' (file=test.js line=10:55)', 'muted')}`,
-      );
+			expect(spy).toHaveBeenCalledWith(
+				`[project] Hello${applyStyle(' (file=test.js line=10:55)', 'muted')}`,
+			);
 
-      spy.mockRestore();
-    });
+			spy.mockRestore();
+		});
 
-    it('includes source line without column', () => {
-      const spy = jest.spyOn(console, 'warn').mockImplementation();
+		it('includes source line without column', () => {
+			const spy = jest.spyOn(console, 'warn').mockImplementation();
 
-      artifact.log('Hello', 'warn', {
-        sourceLine: 10,
-      });
+			artifact.log('Hello', 'warn', {
+				sourceLine: 10,
+			});
 
-      expect(spy).toHaveBeenCalledWith(`[project] Hello${applyStyle(' (line=10:?)', 'muted')}`);
+			expect(spy).toHaveBeenCalledWith(`[project] Hello${applyStyle(' (line=10:?)', 'muted')}`);
 
-      spy.mockRestore();
-    });
+			spy.mockRestore();
+		});
 
-    it('includes source column without line', () => {
-      const spy = jest.spyOn(console, 'info').mockImplementation();
+		it('includes source column without line', () => {
+			const spy = jest.spyOn(console, 'info').mockImplementation();
 
-      artifact.log('Hello', 'info', {
-        sourceColumn: 55,
-      });
+			artifact.log('Hello', 'info', {
+				sourceColumn: 55,
+			});
 
-      expect(spy).toHaveBeenCalledWith(`[project] Hello${applyStyle(' (line=?:55)', 'muted')}`);
+			expect(spy).toHaveBeenCalledWith(`[project] Hello${applyStyle(' (line=?:55)', 'muted')}`);
 
-      spy.mockRestore();
-    });
-  });
+			spy.mockRestore();
+		});
+	});
 });

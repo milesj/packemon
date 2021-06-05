@@ -5,41 +5,41 @@ import { Artifact } from './Artifact';
 import { removeSourcePath } from './helpers/removeSourcePath';
 import { getRollupConfig } from './rollup/config';
 import {
-  BuildOptions,
-  BuildResultFiles,
-  CodeBuild,
-  Format,
-  InputMap,
-  PackageExportPaths,
-  PackageExports,
-  Platform,
-  Support,
+	BuildOptions,
+	BuildResultFiles,
+	CodeBuild,
+	Format,
+	InputMap,
+	PackageExportPaths,
+	PackageExports,
+	Platform,
+	Support,
 } from './types';
 
 export class CodeArtifact extends Artifact<CodeBuild> {
-  bundle: boolean = true;
+	bundle: boolean = true;
 
-  cache?: RollupCache;
+	cache?: RollupCache;
 
-  // Config object in which inputs are grouped in
-  configGroup: number = 0;
+	// Config object in which inputs are grouped in
+	configGroup: number = 0;
 
-  // Mapping of output names to input paths
-  inputs: InputMap = {};
+	// Mapping of output names to input paths
+	inputs: InputMap = {};
 
-  // Namespace for UMD bundles
-  namespace: string = '';
+	// Namespace for UMD bundles
+	namespace: string = '';
 
-  // Platform code will run on
-  platform: Platform = 'node';
+	// Platform code will run on
+	platform: Platform = 'node';
 
-  // Are multiple builds writing to the lib folder
-  sharedLib: boolean = false;
+	// Are multiple builds writing to the lib folder
+	sharedLib: boolean = false;
 
-  // Target version code will run in
-  support: Support = 'stable';
+	// Target version code will run in
+	support: Support = 'stable';
 
-  protected debug!: Debugger;
+	protected debug!: Debugger;
 
   override startup() {
     this.debug = createDebugger(['packemon', 'code', this.package.getSlug(), this.getLabel()]);
@@ -48,12 +48,12 @@ export class CodeArtifact extends Artifact<CodeBuild> {
   override async cleanup(): Promise<void> {
     this.debug('Cleaning code artifacts');
 
-    // Visualizer stats
-    await this.removeFiles([this.package.project.root.append(this.getStatsFileName())]);
-  }
+		// Visualizer stats
+		await this.removeFiles([this.package.project.root.append(this.getStatsFileName())]);
+	}
 
-  async build(options: BuildOptions): Promise<void> {
-    this.debug('Building code artifacts with Rollup');
+	async build(options: BuildOptions): Promise<void> {
+		this.debug('Building code artifacts with Rollup');
 
     const features = this.package.getFeatureFlags();
 

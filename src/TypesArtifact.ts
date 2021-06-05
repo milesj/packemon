@@ -6,19 +6,19 @@ import { Extractor, ExtractorConfig } from '@microsoft/api-extractor';
 import { Artifact } from './Artifact';
 import { removeSourcePath } from './helpers/removeSourcePath';
 import {
-  APIExtractorStructure,
-  BuildOptions,
-  DeclarationType,
-  PackageExports,
-  TSConfigStructure,
-  TypesBuild,
+	APIExtractorStructure,
+	BuildOptions,
+	DeclarationType,
+	PackageExports,
+	TSConfigStructure,
+	TypesBuild,
 } from './types';
 import { apiExtractorConfig } from './typescript/apiExtractorConfig';
 
 export class TypesArtifact extends Artifact<TypesBuild> {
-  declarationType: DeclarationType = 'standard';
+	declarationType: DeclarationType = 'standard';
 
-  protected debug!: Debugger;
+	protected debug!: Debugger;
 
   override startup() {
     this.debug = createDebugger(['packemon', 'types', this.package.getSlug(), this.getLabel()]);
