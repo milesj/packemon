@@ -17,12 +17,14 @@ jest.mock('@rollup/plugin-babel', () => ({
   getBabelOutputPlugin: (options: any) =>
     `babelOutput(${options.filename}, ${options.moduleId || '*'})`,
 }));
-jest.mock('rollup-plugin-node-externals', () => (options: any) =>
-  `externals(${options.packagePath})`,
+jest.mock(
+  'rollup-plugin-node-externals',
+  () => (options: any) => `externals(${options.packagePath})`,
 );
 jest.mock('rollup-plugin-polyfill-node', () => () => `polyfillNode()`);
-jest.mock('rollup-plugin-visualizer', () => (options: any) =>
-  `visualizer(${options.template}, ${options.filename}, ${options.title})`,
+jest.mock(
+  'rollup-plugin-visualizer',
+  () => (options: any) => `visualizer(${options.template}, ${options.filename}, ${options.title})`,
 );
 
 const fixturePath = new Path(getFixturePath('project-rollup'));
@@ -268,24 +270,38 @@ describe('getRollupConfig()', () => {
       expect(getRollupExternals(artifact)('some/random/file.js')).toBe(false);
     });
 
-    it('errors for foreign inputs (not in the same artifact config)', () => {
-      const foreignArtifact = createArtifact('other', 'src/other/index.ts', artifact.package);
-      foreignArtifact.configGroup = 10;
+    describe('foreign inputs (not in the same artifact config)', () => {
+      it('errors for different paths', () => {
+        const foreignArtifact = createArtifact('other', 'src/other/index.ts', artifact.package);
+        foreignArtifact.configGroup = 10;
 
-      artifact.package.addArtifact(foreignArtifact);
+        artifact.package.addArtifact(foreignArtifact);
 
-      const parent = srcInputFile;
-      const child = fixturePath.append('src/other/index.ts').path();
+        const parent = srcInputFile;
+        const child = fixturePath.append('src/other/index.ts').path();
 
-      try {
-        getRollupExternals(artifact)(child, parent);
-      } catch (error: unknown) {
-        expect((error as Error).message).toContain('Unexpected foreign input import.');
-      }
+        try {
+          getRollupExternals(artifact)(child, parent);
+        } catch (error: unknown) {
+          expect((error as Error).message).toContain('Unexpected foreign input import.');
+        }
 
-      expect(() => getRollupExternals(artifact)(child, srcInputFile)).toThrow(
-        `Unexpected foreign input import. May only import sibling files within the same \`inputs\` configuration group. File "${parent}" attempted to import "${child}".`,
-      );
+        expect(() => getRollupExternals(artifact)(child, srcInputFile)).toThrow(
+          `Unexpected foreign input import. May only import sibling files within the same \`inputs\` configuration group. File "${parent}" attempted to import "${child}".`,
+        );
+      });
+
+      it('doesnt error if paths are the same in both configs', () => {
+        const foreignArtifact = createArtifact('other', 'src/index.ts', artifact.package);
+        foreignArtifact.configGroup = 10;
+
+        artifact.package.addArtifact(foreignArtifact);
+
+        const parent = srcInputFile;
+        const child = fixturePath.append('src/index.ts').path();
+
+        expect(() => getRollupExternals(artifact)(child, parent)).not.toThrow();
+      });
     });
   });
 });

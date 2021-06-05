@@ -56,22 +56,21 @@ function getRollupPaths(artifact: CodeArtifact, ext: string): Record<string, str
 }
 
 export function getRollupExternals(artifact: CodeArtifact) {
-  // const siblingInputs = new Set<string>();
   const foreignInputs = new Set<string>();
 
   if (artifact.bundle) {
+    const sameInputPaths = new Set(Object.values(artifact.getInputPaths()));
+
     getCodeArtifacts(artifact).forEach((art) => {
       Object.values(art.getInputPaths()).forEach((inputPath) => {
-        foreignInputs.add(inputPath);
+        if (!sameInputPaths.has(inputPath)) {
+          foreignInputs.add(inputPath);
+        }
       });
     });
   }
 
   return (id: string, parent: string = '<unknown>') => {
-    // if (siblingInputs.has(id)) {
-    //   return true;
-    // }
-
     if (foreignInputs.has(id)) {
       throw new Error(
         `Unexpected foreign input import. May only import sibling files within the same \`inputs\` configuration group. File "${parent}" attempted to import "${id}".`,
