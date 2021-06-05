@@ -35,7 +35,7 @@ export function PackageRow({ package: pkg }: PackageRowProps) {
       <ArtifactList artifacts={ungrouped} />
 
       {Object.entries(groups).map(([env, set]) => (
-        <ArtifactList key={env} artifacts={[...set!]} environment={env as EnvType} />
+        <ArtifactList key={env} artifacts={[...set]} environment={env as EnvType} />
       ))}
     </Box>
   );

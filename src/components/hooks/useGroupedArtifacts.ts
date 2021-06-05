@@ -12,11 +12,11 @@ export function useGroupedArtifacts(pkg: Package) {
     // Group artifacts by platform and support
     pkg.artifacts.forEach((artifact) => {
       if (artifact instanceof CodeArtifact) {
-        const key = `${artifact.platform}:${artifact.support}` as Environment;
-        const set = groups[key] ?? new Set();
+        const key = `${artifact.platform}:${artifact.support}`;
+        const set = groups[key as Environment] ?? new Set();
 
         set.add(artifact);
-        groups[key] = set;
+        groups[key as Environment] = set;
       } else {
         ungrouped.push(artifact);
       }
