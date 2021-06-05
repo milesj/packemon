@@ -145,9 +145,9 @@ export function getBabelOutputConfig(
   // ENVIRONMENT
 
   const envOptions: PresetEnvOptions = {
-    // Prefer speed and smaller filesize in prod
+    // Prefer spec compliance in prod
     spec: __DEV__,
-    loose: __PROD__,
+    loose: false,
     // Consumers must polyfill accordingly
     useBuiltIns: false,
     // Transform features accordingly
