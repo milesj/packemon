@@ -440,7 +440,7 @@ describe('PackageValidator', () => {
     });
 
     it('errors when local build files are being ignored', async () => {
-      ((packList as unknown) as jest.Mock).mockReturnValueOnce([
+      (packList as unknown as jest.Mock).mockReturnValueOnce([
         'package.json',
         'esm/index.js',
         'lib/index.js',
@@ -455,7 +455,7 @@ describe('PackageValidator', () => {
     });
 
     it('warns when npm packed files includes unwanted', async () => {
-      ((packList as unknown) as jest.Mock).mockReturnValueOnce([
+      (packList as unknown as jest.Mock).mockReturnValueOnce([
         'package.json',
         'esm/index.js',
         'lib/index.js',

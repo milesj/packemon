@@ -17,7 +17,7 @@ describe('Packemon', () => {
   let packemon: Packemon;
 
   beforeEach(() => {
-    ((rimraf as unknown) as jest.Mock).mockImplementation((path: string, cb: Function) => {
+    (rimraf as unknown as jest.Mock).mockImplementation((path: string, cb: Function) => {
       cb();
     });
   });
@@ -103,7 +103,7 @@ describe('Packemon', () => {
 
   describe('clean()', () => {
     it('handles file system failures', async () => {
-      ((rimraf as unknown) as jest.Mock).mockImplementation((path, cb) => {
+      (rimraf as unknown as jest.Mock).mockImplementation((path, cb) => {
         cb(new Error('Missing'));
       });
 
