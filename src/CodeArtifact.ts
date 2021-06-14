@@ -43,11 +43,11 @@ export class CodeArtifact extends Artifact<CodeBuild> {
 
   protected debug!: Debugger;
 
-  startup() {
+  override startup() {
     this.debug = createDebugger(['packemon', 'code', this.package.getSlug(), this.getLabel()]);
   }
 
-  async cleanup(): Promise<void> {
+  override async cleanup(): Promise<void> {
     this.debug('Cleaning code artifacts');
 
     // Visualizer stats
@@ -228,7 +228,7 @@ export class CodeArtifact extends Artifact<CodeBuild> {
     return `${this.package.getName()}/${this.platform}/${this.support}`;
   }
 
-  toString() {
+  override toString() {
     return `code (${this.getLabel()})`;
   }
 }

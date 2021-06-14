@@ -5,7 +5,7 @@ import { BuildCommand } from './Build';
 
 @Config('pack', 'Clean, build, and validate packages for distribution')
 export class PackCommand extends BuildCommand {
-  run() {
+  override run() {
     return (
       <Pack
         addEngines={this.addEngines}

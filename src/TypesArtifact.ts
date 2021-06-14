@@ -21,11 +21,11 @@ export class TypesArtifact extends Artifact<TypesBuild> {
 
   protected debug!: Debugger;
 
-  startup() {
+  override startup() {
     this.debug = createDebugger(['packemon', 'types', this.package.getSlug(), this.getLabel()]);
   }
 
-  async cleanup(): Promise<void> {
+  override async cleanup(): Promise<void> {
     // API extractor config files
     await this.removeFiles(
       this.builds.map(({ outputName }) => this.getApiExtractorConfigPath(outputName)),
@@ -104,7 +104,7 @@ export class TypesArtifact extends Artifact<TypesBuild> {
     return exportMap;
   }
 
-  toString() {
+  override toString() {
     return `types (${this.getLabel()})`;
   }
 
