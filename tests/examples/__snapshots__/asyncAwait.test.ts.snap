@@ -82,7 +82,7 @@ async function wait() {
 async function run() {
   try {
     await wait();
-  } catch (_unused) {
+  } catch {
     throw new Error('Fail');
   }
 }
@@ -141,9 +141,7 @@ Array [
   return result;
 }
 
-function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError(\\"Cannot instantiate an arrow function\\"); } }
-
-var run = function run() {
+const run = function () {
   try {
     return Promise.resolve(_catch(function () {
       return Promise.resolve(wait()).then(function () {});
@@ -157,15 +155,11 @@ var run = function run() {
 
 // Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: esm
-var wait = function wait() {
-  var _this = this;
-
+const wait = function () {
   try {
-    return Promise.resolve(new Promise(function (resolve) {
-      _newArrowCheck(this, _this);
-
+    return Promise.resolve(new Promise(resolve => {
       setTimeout(resolve, 100);
-    }.bind(this)));
+    }));
   } catch (e) {
     return Promise.reject(e);
   }
@@ -269,9 +263,7 @@ Array [
   return result;
 }
 
-function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError(\\"Cannot instantiate an arrow function\\"); } }
-
-var run = function run() {
+const run = function () {
   try {
     return Promise.resolve(_catch(function () {
       return Promise.resolve(wait()).then(function () {});
@@ -285,15 +277,11 @@ var run = function run() {
 
 // Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: esm
-var wait = function wait() {
-  var _this = this;
-
+const wait = function () {
   try {
-    return Promise.resolve(new Promise(function (resolve) {
-      _newArrowCheck(this, _this);
-
+    return Promise.resolve(new Promise(resolve => {
       setTimeout(resolve, 100);
-    }.bind(this)));
+    }));
   } catch (e) {
     return Promise.reject(e);
   }
@@ -325,9 +313,7 @@ function _catch(body, recover) {
   return result;
 }
 
-function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError(\\"Cannot instantiate an arrow function\\"); } }
-
-var run = function run() {
+const run = function () {
   try {
     return Promise.resolve(_catch(function () {
       return Promise.resolve(wait()).then(function () {});
@@ -339,15 +325,11 @@ var run = function run() {
   }
 };
 
-var wait = function wait() {
-  var _this = this;
-
+const wait = function () {
   try {
-    return Promise.resolve(new Promise(function (resolve) {
-      _newArrowCheck(this, _this);
-
+    return Promise.resolve(new Promise(resolve => {
       setTimeout(resolve, 100);
-    }.bind(this)));
+    }));
   } catch (e) {
     return Promise.reject(e);
   }
@@ -472,9 +454,7 @@ function _catch(body, recover) {
   return result;
 }
 
-function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError(\\"Cannot instantiate an arrow function\\"); } }
-
-var run = function run() {
+const run = function () {
   try {
     return Promise.resolve(_catch(function () {
       return Promise.resolve(wait()).then(function () {});
@@ -486,15 +466,11 @@ var run = function run() {
   }
 };
 
-var wait = function wait() {
-  var _this = this;
-
+const wait = function () {
   try {
-    return Promise.resolve(new Promise(function (resolve) {
-      _newArrowCheck(this, _this);
-
+    return Promise.resolve(new Promise(resolve => {
       setTimeout(resolve, 100);
-    }.bind(this)));
+    }));
   } catch (e) {
     return Promise.reject(e);
   }
@@ -784,7 +760,7 @@ async function wait() {
 async function run() {
   try {
     await wait();
-  } catch (_unused) {
+  } catch {
     throw new Error('Fail');
   }
 }
@@ -888,7 +864,7 @@ async function wait() {
 async function run() {
   try {
     await wait();
-  } catch (_unused) {
+  } catch {
     throw new Error('Fail');
   }
 }
@@ -976,9 +952,7 @@ Array [
   });
   _exports.wait = _exports.run = void 0;
 
-  function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError(\\"Cannot instantiate an arrow function\\"); } }
-
-  var run = function run() {
+  const run = function () {
     try {
       return Promise.resolve(_catch(function () {
         return Promise.resolve(wait()).then(function () {});
@@ -994,15 +968,11 @@ Array [
 
   // Bundled with Packemon: https://packemon.dev
   // Platform: browser, Support: current, Format: umd
-  var wait = function wait() {
-    var _this = this;
-
+  const wait = function () {
     try {
-      return Promise.resolve(new Promise(function (resolve) {
-        _newArrowCheck(this, _this);
-
+      return Promise.resolve(new Promise(resolve => {
         setTimeout(resolve, 100);
-      }.bind(this)));
+      }));
     } catch (e) {
       return Promise.reject(e);
     }
@@ -1170,9 +1140,7 @@ Array [
   });
   _exports.wait = _exports.run = void 0;
 
-  function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError(\\"Cannot instantiate an arrow function\\"); } }
-
-  var run = function run() {
+  const run = function () {
     try {
       return Promise.resolve(_catch(function () {
         return Promise.resolve(wait()).then(function () {});
@@ -1188,15 +1156,11 @@ Array [
 
   // Bundled with Packemon: https://packemon.dev
   // Platform: browser, Support: stable, Format: umd
-  var wait = function wait() {
-    var _this = this;
-
+  const wait = function () {
     try {
-      return Promise.resolve(new Promise(function (resolve) {
-        _newArrowCheck(this, _this);
-
+      return Promise.resolve(new Promise(resolve => {
         setTimeout(resolve, 100);
-      }.bind(this)));
+      }));
     } catch (e) {
       return Promise.reject(e);
     }
