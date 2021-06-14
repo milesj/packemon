@@ -47,9 +47,9 @@ export const NPM_SUPPORTED_VERSIONS: { [K in Support]: string[] | string } = {
 
 // Based on browserslist: https://github.com/browserslist/browserslist
 export const BROWSER_TARGETS: { [K in Support]: string[] | string } = {
-  legacy: 'IE 10',
-  stable: 'IE 11',
-  current: 'defaults',
+  legacy: 'IE 11',
+  stable: ['defaults', 'not IE 11'],
+  current: ['> 1%', 'not dead'],
   experimental: ['last 2 chrome versions', 'last 2 firefox versions'],
 };
 
