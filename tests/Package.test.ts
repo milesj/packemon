@@ -273,6 +273,19 @@ describe('Package', () => {
 					);
 				});
 
+				it('adds "main" for browser `esm` format', async () => {
+					pkg.addArtifact(createCodeArtifact([{ format: 'esm' }], 'browser'));
+
+					await pkg.build({});
+
+					expect(pkg.packageJson).toEqual(
+						expect.objectContaining({
+							main: './esm/index.js',
+							type: 'module',
+						}),
+					);
+				});
+
 				it('adds "main" for native `lib` format', async () => {
 					const a = createCodeArtifact([{ format: 'lib' }], 'native');
 					pkg.addArtifact(a);
@@ -342,6 +355,7 @@ describe('Package', () => {
 					expect(pkg.packageJson).toEqual(
 						expect.objectContaining({
 							module: './mjs/index.mjs',
+							type: 'module',
 						}),
 					);
 				});
@@ -355,6 +369,7 @@ describe('Package', () => {
 					expect(pkg.packageJson).toEqual(
 						expect.objectContaining({
 							module: './esm/index.js',
+							type: 'module',
 						}),
 					);
 				});
@@ -379,6 +394,19 @@ describe('Package', () => {
 						expect.objectContaining({
 							main: './lib/node/index.js',
 							browser: './lib/browser/index.js',
+						}),
+					);
+				});
+
+				it('adds "browser" for umd builds', async () => {
+					pkg.artifacts[1] = createCodeArtifact([{ format: 'umd' }], 'browser');
+
+					await pkg.build({});
+
+					expect(pkg.packageJson).toEqual(
+						expect.objectContaining({
+							main: './lib/node/index.js',
+							browser: './umd/index.js',
 						}),
 					);
 				});

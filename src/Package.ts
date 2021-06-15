@@ -361,8 +361,11 @@ export class Package {
 					}
 
 					// Only include when we share a lib with another platform
-					if (!browserEntry && artifact.platform === 'browser' && artifact.sharedLib) {
-						browserEntry = artifact.findEntryPoint(['lib'], 'index');
+					if (!browserEntry && artifact.platform === 'browser') {
+						browserEntry = artifact.findEntryPoint(
+							artifact.sharedLib ? ['lib', 'umd'] : ['umd'],
+							'index',
+						);
 					}
 				}
 
@@ -393,9 +396,9 @@ export class Package {
 		if (mainEntry) {
 			this.packageJson.main = mainEntry;
 
-			if (mainEntry.endsWith('mjs')) {
+			if (mainEntry.includes('mjs/') || mainEntry.includes('esm/')) {
 				this.packageJson.type = 'module';
-			} else if (mainEntry.endsWith('cjs')) {
+			} else if (mainEntry.includes('cjs/')) {
 				this.packageJson.type = 'commonjs';
 			}
 		}
