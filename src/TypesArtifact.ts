@@ -1,4 +1,3 @@
-import path from 'path';
 import glob from 'fast-glob';
 import fs from 'fs-extra';
 import { Path } from '@boost/common';
@@ -81,7 +80,7 @@ export class TypesArtifact extends Artifact<TypesBuild> {
     const entry =
       this.declarationType === 'standard' ? removeSourcePath(output.inputFile) : outputName;
 
-    return `./${path.join('dts', entry)}.d.ts`;
+    return `./${new Path('dts', entry)}.d.ts`;
   }
 
   getLabel(): string {

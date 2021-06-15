@@ -1,6 +1,5 @@
-import path from 'path';
 import { rollup, RollupCache } from 'rollup';
-import { toArray } from '@boost/common';
+import { Path, toArray } from '@boost/common';
 import { createDebugger, Debugger } from '@boost/debug';
 import { Artifact } from './Artifact';
 import { DEFAULT_FORMAT } from './constants';
@@ -149,7 +148,7 @@ export class CodeArtifact extends Artifact<CodeBuild> {
       ext,
       file,
       folder,
-      path: `./${path.join(folder, file)}`,
+      path: `./${new Path(folder, file)}`,
     };
   }
 
