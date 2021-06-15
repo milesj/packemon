@@ -12,14 +12,13 @@ Forget that headache and let Packemon do the heavy lifting for you. No need to f
 Rollup configurations!
 
 Packemon will prepare each package for distribution by building with the proper tooling and plugins,
-provide sane defaults and configurations, verify package requirements, and much more!
-
-![Packemon](https://raw.githubusercontent.com/milesj/packemon/master/website/static/img/cli.png)
+provide sane defaults and configurations, verify package requirements, and much more! By default
+Packemon will generate ECMAScript modules, but can be configured to support all formats.
 
 ## Features
 
 - Configure packages for Node.js, Web browsers, or React Native, with multiple output formats like
-  CommonJS and ECMAScript.
+  CommonJS and ECMAScript (default).
 - Builds packages with Rollup to create self-contained and tree-shaken entry points. Provide the
   smallest file sizes possible!
 - Transforms packages with Babel's `preset-env` and the configured platform targets. Only ship and
@@ -30,7 +29,7 @@ provide sane defaults and configurations, verify package requirements, and much 
 ## Requirements
 
 - Linux, OSX, Windows
-- Node 10.3+
+- Node 12.17+
 
 ## Documentation
 

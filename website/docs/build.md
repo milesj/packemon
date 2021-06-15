@@ -161,7 +161,6 @@ The environment preset is always enabled and configures the following.
   - Defines `modules` and `targets` based on the chosen [platform](./config.md#platforms) and
     [format](./config.md#formats).
   - Enables `spec` in development for testing compliance.
-  - Enables `loose` in production for smaller file sizes.
   - Enables `bugfixes` and `shippedProposals` for smaller file sizes.
   - Disables `useBuiltIns` as consumers of the package should polyfill accordingly.
 
