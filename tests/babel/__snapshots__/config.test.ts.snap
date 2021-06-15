@@ -27,6 +27,18 @@ Object {
         "loose": true,
       },
     ],
+    Array [
+      "@babel/plugin-transform-destructuring",
+      Object {
+        "useBuiltIns": true,
+      },
+    ],
+    Array [
+      "@babel/plugin-proposal-object-rest-spread",
+      Object {
+        "useBuiltIns": true,
+      },
+    ],
     Object {
       "visitor": Object {
         "Identifier": Object {
@@ -106,6 +118,18 @@ Object {
       "@babel/plugin-proposal-private-property-in-object",
       Object {
         "loose": true,
+      },
+    ],
+    Array [
+      "@babel/plugin-transform-destructuring",
+      Object {
+        "useBuiltIns": true,
+      },
+    ],
+    Array [
+      "@babel/plugin-proposal-object-rest-spread",
+      Object {
+        "useBuiltIns": true,
       },
     ],
     Object {
@@ -888,18 +912,15 @@ Object {
   },
   "plugins": Array [
     Array [
-      "babel-plugin-transform-async-to-promises",
+      "@babel/plugin-transform-destructuring",
       Object {
-        "inlineHelpers": true,
-        "target": "es5",
+        "useBuiltIns": true,
       },
     ],
     Array [
-      "@babel/plugin-transform-runtime",
+      "@babel/plugin-proposal-object-rest-spread",
       Object {
-        "helpers": false,
-        "regenerator": true,
-        "useESModules": false,
+        "useBuiltIns": true,
       },
     ],
     Object {
