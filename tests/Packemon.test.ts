@@ -338,15 +338,11 @@ describe('Packemon', () => {
 
       expect(packages[1].artifacts).toHaveLength(1);
       expect((packages[1].artifacts[0] as CodeArtifact).inputs).toEqual({ core: './src/core.ts' });
-      expect(packages[1].artifacts[0].builds).toEqual([{ format: 'lib' }]);
+      expect(packages[1].artifacts[0].builds).toEqual([{ format: 'mjs' }]);
 
       expect(packages[2].artifacts).toHaveLength(1);
       expect((packages[2].artifacts[0] as CodeArtifact).inputs).toEqual({ index: 'src/index.ts' });
-      expect(packages[2].artifacts[0].builds).toEqual([
-        { format: 'lib' },
-        { format: 'esm' },
-        { format: 'umd' },
-      ]);
+      expect(packages[2].artifacts[0].builds).toEqual([{ format: 'esm' }, { format: 'umd' }]);
     });
 
     it('generates "standard" type artifacts for each config in a package', async () => {
@@ -422,8 +418,8 @@ describe('Packemon', () => {
 
       packemon.generateArtifacts(packages);
 
-      expect(packages[0].artifacts[0].builds).toEqual([{ format: 'lib' }, { format: 'esm' }]);
-      expect(packages[0].artifacts[1].builds).toEqual([{ format: 'lib' }]);
+      expect(packages[0].artifacts[0].builds).toEqual([{ format: 'esm' }]);
+      expect(packages[0].artifacts[1].builds).toEqual([{ format: 'mjs' }]);
     });
 
     it('filters formats using `filterFormats`', async () => {
@@ -448,7 +444,7 @@ describe('Packemon', () => {
         filterPlatforms: 'node',
       });
 
-      expect(packages[0].artifacts[0].builds).toEqual([{ format: 'lib' }]);
+      expect(packages[0].artifacts[0].builds).toEqual([{ format: 'mjs' }]);
       expect(packages[0].artifacts[1]).toBeUndefined();
     });
   });
@@ -500,7 +496,7 @@ describe('Packemon', () => {
       expect(two.configs).toEqual([
         {
           bundle: false,
-          formats: ['lib'],
+          formats: ['mjs'],
           inputs: { core: './src/core.ts' },
           namespace: '',
           platform: 'node',
@@ -512,7 +508,7 @@ describe('Packemon', () => {
       expect(three.configs).toEqual([
         {
           bundle: true,
-          formats: ['lib', 'esm', 'umd'],
+          formats: ['esm', 'umd'],
           inputs: { index: 'src/index.ts' },
           namespace: 'Test',
           platform: 'browser',
