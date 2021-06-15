@@ -2,7 +2,6 @@ import { rollup, RollupCache } from 'rollup';
 import { Path, toArray } from '@boost/common';
 import { createDebugger, Debugger } from '@boost/debug';
 import { Artifact } from './Artifact';
-import { DEFAULT_FORMAT } from './constants';
 import { removeSourcePath } from './helpers/removeSourcePath';
 import { getRollupConfig } from './rollup/config';
 import {
@@ -84,7 +83,7 @@ export class CodeArtifact extends Artifact<CodeBuild> {
 
     await Promise.all(
       toArray(output).map(async (out, index) => {
-        const { originalFormat = DEFAULT_FORMAT, ...outOptions } = out;
+        const { originalFormat = 'lib', ...outOptions } = out;
 
         this.debug(' - Writing `%s` output', originalFormat);
 
