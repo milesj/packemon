@@ -100,10 +100,12 @@ The supported environments above map to the following platform targets.
 The output format for each platform build target. Each format will create a folder relative to the
 project root that will house the built files.
 
+> Packemon defaults to an ECMAScript format if available.
+
 ### Browser
 
-- `lib` _(default)_ - [CommonJS](https://nodejs.org/api/modules.html) output using `.js` file
-  extension. For standard JavaScript and TypeScript projects.
+- `lib` - [CommonJS](https://nodejs.org/api/modules.html) output using `.js` file extension. For
+  standard JavaScript and TypeScript projects.
 - `esm` _(default)_ - ECMAScript module output using `.js` file extension. The same as `lib`, but
   uses `import/export` instead of `require`.
 - `umd` - Universal Module Definition output using `.js` file extension. Meant to be used directly
@@ -118,12 +120,13 @@ project root that will house the built files.
 
 ### Node
 
-- `lib` _(default)_ - [CommonJS](https://nodejs.org/api/modules.html) output using `.js` file
-  extension. For standard JavaScript and TypeScript projects.
+- `lib` - [CommonJS](https://nodejs.org/api/modules.html) output using `.js` file extension. For
+  standard JavaScript and TypeScript projects.
 - `cjs` - [CommonJS](https://nodejs.org/api/modules.html) output using `.cjs` file extension. Source
   files must be written in CommonJS (`.cjs`) and `require` paths must use trailing extensions.
-- `mjs` - [ECMAScript module](https://nodejs.org/api/esm.html) output using `.mjs` file extension.
-  Source files must be written in ESM (`.mjs`) and `import` paths must use trailing extensions.
+- `mjs` _(default)_ - [ECMAScript module](https://nodejs.org/api/esm.html) output using `.mjs` file
+  extension. Source files must be written in ESM (`.mjs`) and `import` paths must use trailing
+  extensions.
 
 ```json
 {

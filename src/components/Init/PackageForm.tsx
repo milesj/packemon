@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { applyStyle, Input, MultiSelect, Select, SelectOptionLike } from '@boost/cli';
-import { DEFAULT_FORMAT, DEFAULT_INPUT, DEFAULT_SUPPORT } from '../../constants';
+import { DEFAULT_INPUT, DEFAULT_SUPPORT } from '../../constants';
 import { Format, PackemonPackageConfig, Platform, Support } from '../../types';
 import { getVersionsCombo } from '../Environment';
 
@@ -12,7 +12,11 @@ function getSupportVersions(platforms: Platform[], support: Support): string {
   return applyStyle([...getVersionsCombo(platforms, support)].sort().join(', '), 'muted');
 }
 
-const FORMAT_LIST = [DEFAULT_FORMAT];
+const DEFAULT_FORMATS: Record<Platform, Format[]> = {
+  browser: ['esm'],
+  native: ['lib'],
+  node: ['mjs'],
+};
 
 export function PackageForm({ onSubmit }: PackageFormProps) {
   const [platform, setPlatform] = useState<Platform[]>([]);
@@ -164,7 +168,7 @@ export function PackageForm({ onSubmit }: PackageFormProps) {
       />
 
       <MultiSelect<Format>
-        defaultSelected={FORMAT_LIST}
+        defaultSelected={DEFAULT_FORMATS[platform[0]]}
         label="Formats to build?"
         options={formatOptions}
         validate={validateFormat}

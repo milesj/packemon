@@ -1,6 +1,5 @@
 import { Blueprint, predicates, toArray } from '@boost/common';
 import {
-  DEFAULT_FORMAT,
   DEFAULT_INPUT,
   DEFAULT_PLATFORM,
   DEFAULT_SUPPORT,
@@ -33,11 +32,11 @@ const platform = string<Platform>(DEFAULT_PLATFORM).oneOf(PLATFORMS);
 
 // FORMATS
 
-const nativeFormat = string<NativeFormat>(DEFAULT_FORMAT).oneOf(FORMATS_NATIVE);
-const nodeFormat = string<NodeFormat>(DEFAULT_FORMAT).oneOf(FORMATS_NODE);
-const browserFormat = string<BrowserFormat>(DEFAULT_FORMAT).oneOf(FORMATS_BROWSER);
+const nativeFormat = string<NativeFormat>('lib').oneOf(FORMATS_NATIVE);
+const nodeFormat = string<NodeFormat>('mjs').oneOf(FORMATS_NODE);
+const browserFormat = string<BrowserFormat>('esm').oneOf(FORMATS_BROWSER);
 
-const format = string<Format>(DEFAULT_FORMAT)
+const format = string<Format>('lib')
   .oneOf(FORMATS)
   .custom<PackemonPackageConfig>((value, schema) => {
     const platforms = new Set(toArray(schema.struct.platform));

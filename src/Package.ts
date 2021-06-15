@@ -225,7 +225,7 @@ export class Package {
             }
 
             if (isEmpty) {
-              formats.push('lib');
+              formats.push('mjs');
             } else {
               formats = formats.filter((format) => (FORMATS_NODE as string[]).includes(format));
             }
@@ -234,7 +234,7 @@ export class Package {
           case 'browser':
           default:
             if (isEmpty) {
-              formats.push('lib', 'esm');
+              formats.push('esm');
 
               if (config.namespace) {
                 formats.push('umd');
@@ -353,7 +353,7 @@ export class Package {
         // Generate `main`, `module`, and `browser` fields
         if (artifact.inputs.index) {
           if (!mainEntry || artifact.platform === 'node') {
-            mainEntry = artifact.findEntryPoint(['lib', 'cjs', 'mjs'], 'index');
+            mainEntry = artifact.findEntryPoint(['lib', 'cjs', 'mjs', 'esm'], 'index');
           }
 
           if (!moduleEntry) {

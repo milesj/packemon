@@ -4,7 +4,7 @@ import React from 'react';
 import { Arg, Config } from '@boost/cli';
 import { Path, WorkspacePackage } from '@boost/common';
 import { Init } from '../components/Init';
-import { DEFAULT_FORMAT, DEFAULT_INPUT, DEFAULT_SUPPORT } from '../constants';
+import { DEFAULT_INPUT, DEFAULT_SUPPORT } from '../constants';
 import { Package } from '../Package';
 import { PackemonPackage, PackemonPackageConfig } from '../types';
 import { BaseCommand } from './Base';
@@ -56,9 +56,7 @@ export class InitCommand extends BaseCommand<InitOptions> {
 
     if (format) {
       if (Array.isArray(format) && format.length === 1) {
-        if (format[0] !== DEFAULT_FORMAT) {
-          [config.format] = format;
-        }
+        [config.format] = format;
       } else {
         config.format = format;
       }

@@ -4,7 +4,6 @@ import { Path, toArray } from '@boost/common';
 import { FeatureFlags } from './types';
 import {
   CodeArtifact,
-  DEFAULT_FORMAT,
   DEFAULT_SUPPORT,
   Format,
   getBabelInputConfig,
@@ -16,7 +15,7 @@ import {
   Support,
 } from '.';
 
-const format = (process.env.PACKEMON_FORMAT ?? DEFAULT_FORMAT) as Format;
+const format = (process.env.PACKEMON_FORMAT ?? 'lib') as Format;
 const support = (process.env.PACKEMON_SUPPORT ?? DEFAULT_SUPPORT) as Support;
 const project = new Project(process.cwd());
 
