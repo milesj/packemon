@@ -1,106 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`JSON imports transforms example test case 1`] = `
-Array [
-  "cjs/index-node-current-cjs.cjs",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: node, Support: current, Format: cjs
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-const data = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
-  number: 123,
-  string: \\"abc\\",
-  object: {
-    foo: true
-  }
-}; // @ts-expect-error resolveJsonModule is not on
-
-const keys = Object.keys(data);
-exports.keys = keys;
-",
-]
-`;
-
-exports[`JSON imports transforms example test case 2`] = `
-Array [
-  "cjs/index-node-experimental-cjs.cjs",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: node, Support: experimental, Format: cjs
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-const data = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
-  number: 123,
-  string: \\"abc\\",
-  object: {
-    foo: true
-  }
-}; // @ts-expect-error resolveJsonModule is not on
-
-const keys = Object.keys(data);
-exports.keys = keys;
-",
-]
-`;
-
-exports[`JSON imports transforms example test case 3`] = `
-Array [
-  "cjs/index-node-legacy-cjs.cjs",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: node, Support: legacy, Format: cjs
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-var data = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
-  number: 123,
-  string: \\"abc\\",
-  object: {
-    foo: true
-  }
-}; // @ts-expect-error resolveJsonModule is not on
-
-const keys = Object.keys(data);
-exports.keys = keys;
-",
-]
-`;
-
-exports[`JSON imports transforms example test case 4`] = `
-Array [
-  "cjs/index-node-stable-cjs.cjs",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: node, Support: stable, Format: cjs
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-var data = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
-  number: 123,
-  string: \\"abc\\",
-  object: {
-    foo: true
-  }
-}; // @ts-expect-error resolveJsonModule is not on
-
-const keys = Object.keys(data);
-exports.keys = keys;
-",
-]
-`;
-
-exports[`JSON imports transforms example test case 5`] = `
+exports[`JSON imports transforms example test case: browser-current-esm 1`] = `
 Array [
   "esm/index-browser-current-esm.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -120,67 +20,24 @@ export { keys };
 ]
 `;
 
-exports[`JSON imports transforms example test case 6`] = `
+exports[`JSON imports transforms example test case: browser-current-esm 2`] = `
 Array [
-  "esm/index-browser-experimental-esm.js",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: browser, Support: experimental, Format: esm
-const data = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
-  number: 123,
-  string: \\"abc\\",
-  object: {
-    foo: true
-  }
-}; // @ts-expect-error resolveJsonModule is not on
-
-const keys = Object.keys(data);
-export { keys };
-",
+  "package.json",
+  Object {
+    "files": Array [
+      "cjs/**/*.{cjs,map}",
+      "esm/**/*.{js,map}",
+      "lib/**/*.{js,map}",
+      "mjs/**/*.{mjs,map}",
+      "src/**/*.{ts,tsx,json}",
+      "umd/**/*.{js,map}",
+    ],
+    "name": "examples",
+  },
 ]
 `;
 
-exports[`JSON imports transforms example test case 7`] = `
-Array [
-  "esm/index-browser-legacy-esm.js",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: browser, Support: legacy, Format: esm
-var data = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
-  number: 123,
-  string: \\"abc\\",
-  object: {
-    foo: true
-  }
-}; // @ts-expect-error resolveJsonModule is not on
-
-var keys = Object.keys(data);
-export { keys };
-",
-]
-`;
-
-exports[`JSON imports transforms example test case 8`] = `
-Array [
-  "esm/index-browser-stable-esm.js",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: browser, Support: stable, Format: esm
-var data = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
-  number: 123,
-  string: \\"abc\\",
-  object: {
-    foo: true
-  }
-}; // @ts-expect-error resolveJsonModule is not on
-
-const keys = Object.keys(data);
-export { keys };
-",
-]
-`;
-
-exports[`JSON imports transforms example test case 9`] = `
+exports[`JSON imports transforms example test case: browser-current-lib 1`] = `
 Array [
   "lib/index-browser-current-lib.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -205,362 +62,7 @@ exports.keys = keys;
 ]
 `;
 
-exports[`JSON imports transforms example test case 10`] = `
-Array [
-  "lib/index-browser-experimental-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: browser, Support: experimental, Format: lib
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-const data = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
-  number: 123,
-  string: \\"abc\\",
-  object: {
-    foo: true
-  }
-}; // @ts-expect-error resolveJsonModule is not on
-
-const keys = Object.keys(data);
-exports.keys = keys;
-",
-]
-`;
-
-exports[`JSON imports transforms example test case 11`] = `
-Array [
-  "lib/index-browser-legacy-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: browser, Support: legacy, Format: lib
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-var data = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
-  number: 123,
-  string: \\"abc\\",
-  object: {
-    foo: true
-  }
-}; // @ts-expect-error resolveJsonModule is not on
-
-var keys = Object.keys(data);
-exports.keys = keys;
-",
-]
-`;
-
-exports[`JSON imports transforms example test case 12`] = `
-Array [
-  "lib/index-browser-stable-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: browser, Support: stable, Format: lib
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-var data = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
-  number: 123,
-  string: \\"abc\\",
-  object: {
-    foo: true
-  }
-}; // @ts-expect-error resolveJsonModule is not on
-
-const keys = Object.keys(data);
-exports.keys = keys;
-",
-]
-`;
-
-exports[`JSON imports transforms example test case 13`] = `
-Array [
-  "lib/index-native-current-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: native, Support: current, Format: lib
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-const data = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
-  number: 123,
-  string: \\"abc\\",
-  object: {
-    foo: true
-  }
-}; // @ts-expect-error resolveJsonModule is not on
-
-const keys = Object.keys(data);
-exports.keys = keys;
-",
-]
-`;
-
-exports[`JSON imports transforms example test case 14`] = `
-Array [
-  "lib/index-native-experimental-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: native, Support: experimental, Format: lib
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-const data = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
-  number: 123,
-  string: \\"abc\\",
-  object: {
-    foo: true
-  }
-}; // @ts-expect-error resolveJsonModule is not on
-
-const keys = Object.keys(data);
-exports.keys = keys;
-",
-]
-`;
-
-exports[`JSON imports transforms example test case 15`] = `
-Array [
-  "lib/index-native-legacy-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: native, Support: legacy, Format: lib
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-var data = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
-  number: 123,
-  string: \\"abc\\",
-  object: {
-    foo: true
-  }
-}; // @ts-expect-error resolveJsonModule is not on
-
-var keys = Object.keys(data);
-exports.keys = keys;
-",
-]
-`;
-
-exports[`JSON imports transforms example test case 16`] = `
-Array [
-  "lib/index-native-stable-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: native, Support: stable, Format: lib
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-var data = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
-  number: 123,
-  string: \\"abc\\",
-  object: {
-    foo: true
-  }
-}; // @ts-expect-error resolveJsonModule is not on
-
-const keys = Object.keys(data);
-exports.keys = keys;
-",
-]
-`;
-
-exports[`JSON imports transforms example test case 17`] = `
-Array [
-  "lib/index-node-current-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: node, Support: current, Format: lib
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-const data = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
-  number: 123,
-  string: \\"abc\\",
-  object: {
-    foo: true
-  }
-}; // @ts-expect-error resolveJsonModule is not on
-
-const keys = Object.keys(data);
-exports.keys = keys;
-",
-]
-`;
-
-exports[`JSON imports transforms example test case 18`] = `
-Array [
-  "lib/index-node-experimental-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: node, Support: experimental, Format: lib
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-const data = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
-  number: 123,
-  string: \\"abc\\",
-  object: {
-    foo: true
-  }
-}; // @ts-expect-error resolveJsonModule is not on
-
-const keys = Object.keys(data);
-exports.keys = keys;
-",
-]
-`;
-
-exports[`JSON imports transforms example test case 19`] = `
-Array [
-  "lib/index-node-legacy-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: node, Support: legacy, Format: lib
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-var data = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
-  number: 123,
-  string: \\"abc\\",
-  object: {
-    foo: true
-  }
-}; // @ts-expect-error resolveJsonModule is not on
-
-const keys = Object.keys(data);
-exports.keys = keys;
-",
-]
-`;
-
-exports[`JSON imports transforms example test case 20`] = `
-Array [
-  "lib/index-node-stable-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: node, Support: stable, Format: lib
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-var data = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
-  number: 123,
-  string: \\"abc\\",
-  object: {
-    foo: true
-  }
-}; // @ts-expect-error resolveJsonModule is not on
-
-const keys = Object.keys(data);
-exports.keys = keys;
-",
-]
-`;
-
-exports[`JSON imports transforms example test case 21`] = `
-Array [
-  "mjs/index-node-current-mjs.mjs",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: node, Support: current, Format: mjs
-const data = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
-  number: 123,
-  string: \\"abc\\",
-  object: {
-    foo: true
-  }
-}; // @ts-expect-error resolveJsonModule is not on
-
-const keys = Object.keys(data);
-export { keys };
-",
-]
-`;
-
-exports[`JSON imports transforms example test case 22`] = `
-Array [
-  "mjs/index-node-experimental-mjs.mjs",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: node, Support: experimental, Format: mjs
-const data = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
-  number: 123,
-  string: \\"abc\\",
-  object: {
-    foo: true
-  }
-}; // @ts-expect-error resolveJsonModule is not on
-
-const keys = Object.keys(data);
-export { keys };
-",
-]
-`;
-
-exports[`JSON imports transforms example test case 23`] = `
-Array [
-  "mjs/index-node-legacy-mjs.mjs",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: node, Support: legacy, Format: mjs
-var data = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
-  number: 123,
-  string: \\"abc\\",
-  object: {
-    foo: true
-  }
-}; // @ts-expect-error resolveJsonModule is not on
-
-const keys = Object.keys(data);
-export { keys };
-",
-]
-`;
-
-exports[`JSON imports transforms example test case 24`] = `
-Array [
-  "mjs/index-node-stable-mjs.mjs",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: node, Support: stable, Format: mjs
-var data = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
-  number: 123,
-  string: \\"abc\\",
-  object: {
-    foo: true
-  }
-}; // @ts-expect-error resolveJsonModule is not on
-
-const keys = Object.keys(data);
-export { keys };
-",
-]
-`;
-
-exports[`JSON imports transforms example test case 25`] = `
+exports[`JSON imports transforms example test case: browser-current-lib 2`] = `
 Array [
   "package.json",
   Object {
@@ -577,7 +79,24 @@ Array [
 ]
 `;
 
-exports[`JSON imports transforms example test case 26`] = `
+exports[`JSON imports transforms example test case: browser-current-umd 1`] = `
+Array [
+  "package.json",
+  Object {
+    "files": Array [
+      "cjs/**/*.{cjs,map}",
+      "esm/**/*.{js,map}",
+      "lib/**/*.{js,map}",
+      "mjs/**/*.{mjs,map}",
+      "src/**/*.{ts,tsx,json}",
+      "umd/**/*.{js,map}",
+    ],
+    "name": "examples",
+  },
+]
+`;
+
+exports[`JSON imports transforms example test case: browser-current-umd 2`] = `
 Array [
   "umd/index-browser-current-umd.js",
   "(function (global, factory) {
@@ -617,7 +136,103 @@ Array [
 ]
 `;
 
-exports[`JSON imports transforms example test case 27`] = `
+exports[`JSON imports transforms example test case: browser-experimental-esm 1`] = `
+Array [
+  "esm/index-browser-experimental-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: experimental, Format: esm
+const data = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+}; // @ts-expect-error resolveJsonModule is not on
+
+const keys = Object.keys(data);
+export { keys };
+",
+]
+`;
+
+exports[`JSON imports transforms example test case: browser-experimental-esm 2`] = `
+Array [
+  "package.json",
+  Object {
+    "files": Array [
+      "cjs/**/*.{cjs,map}",
+      "esm/**/*.{js,map}",
+      "lib/**/*.{js,map}",
+      "mjs/**/*.{mjs,map}",
+      "src/**/*.{ts,tsx,json}",
+      "umd/**/*.{js,map}",
+    ],
+    "name": "examples",
+  },
+]
+`;
+
+exports[`JSON imports transforms example test case: browser-experimental-lib 1`] = `
+Array [
+  "lib/index-browser-experimental-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: experimental, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+const data = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+}; // @ts-expect-error resolveJsonModule is not on
+
+const keys = Object.keys(data);
+exports.keys = keys;
+",
+]
+`;
+
+exports[`JSON imports transforms example test case: browser-experimental-lib 2`] = `
+Array [
+  "package.json",
+  Object {
+    "files": Array [
+      "cjs/**/*.{cjs,map}",
+      "esm/**/*.{js,map}",
+      "lib/**/*.{js,map}",
+      "mjs/**/*.{mjs,map}",
+      "src/**/*.{ts,tsx,json}",
+      "umd/**/*.{js,map}",
+    ],
+    "name": "examples",
+  },
+]
+`;
+
+exports[`JSON imports transforms example test case: browser-experimental-umd 1`] = `
+Array [
+  "package.json",
+  Object {
+    "files": Array [
+      "cjs/**/*.{cjs,map}",
+      "esm/**/*.{js,map}",
+      "lib/**/*.{js,map}",
+      "mjs/**/*.{mjs,map}",
+      "src/**/*.{ts,tsx,json}",
+      "umd/**/*.{js,map}",
+    ],
+    "name": "examples",
+  },
+]
+`;
+
+exports[`JSON imports transforms example test case: browser-experimental-umd 2`] = `
 Array [
   "umd/index-browser-experimental-umd.js",
   "(function (global, factory) {
@@ -657,7 +272,103 @@ Array [
 ]
 `;
 
-exports[`JSON imports transforms example test case 28`] = `
+exports[`JSON imports transforms example test case: browser-legacy-esm 1`] = `
+Array [
+  "esm/index-browser-legacy-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: legacy, Format: esm
+var data = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+}; // @ts-expect-error resolveJsonModule is not on
+
+var keys = Object.keys(data);
+export { keys };
+",
+]
+`;
+
+exports[`JSON imports transforms example test case: browser-legacy-esm 2`] = `
+Array [
+  "package.json",
+  Object {
+    "files": Array [
+      "cjs/**/*.{cjs,map}",
+      "esm/**/*.{js,map}",
+      "lib/**/*.{js,map}",
+      "mjs/**/*.{mjs,map}",
+      "src/**/*.{ts,tsx,json}",
+      "umd/**/*.{js,map}",
+    ],
+    "name": "examples",
+  },
+]
+`;
+
+exports[`JSON imports transforms example test case: browser-legacy-lib 1`] = `
+Array [
+  "lib/index-browser-legacy-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: legacy, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var data = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+}; // @ts-expect-error resolveJsonModule is not on
+
+var keys = Object.keys(data);
+exports.keys = keys;
+",
+]
+`;
+
+exports[`JSON imports transforms example test case: browser-legacy-lib 2`] = `
+Array [
+  "package.json",
+  Object {
+    "files": Array [
+      "cjs/**/*.{cjs,map}",
+      "esm/**/*.{js,map}",
+      "lib/**/*.{js,map}",
+      "mjs/**/*.{mjs,map}",
+      "src/**/*.{ts,tsx,json}",
+      "umd/**/*.{js,map}",
+    ],
+    "name": "examples",
+  },
+]
+`;
+
+exports[`JSON imports transforms example test case: browser-legacy-umd 1`] = `
+Array [
+  "package.json",
+  Object {
+    "files": Array [
+      "cjs/**/*.{cjs,map}",
+      "esm/**/*.{js,map}",
+      "lib/**/*.{js,map}",
+      "mjs/**/*.{mjs,map}",
+      "src/**/*.{ts,tsx,json}",
+      "umd/**/*.{js,map}",
+    ],
+    "name": "examples",
+  },
+]
+`;
+
+exports[`JSON imports transforms example test case: browser-legacy-umd 2`] = `
 Array [
   "umd/index-browser-legacy-umd.js",
   "(function (global, factory) {
@@ -697,7 +408,103 @@ Array [
 ]
 `;
 
-exports[`JSON imports transforms example test case 29`] = `
+exports[`JSON imports transforms example test case: browser-stable-esm 1`] = `
+Array [
+  "esm/index-browser-stable-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: stable, Format: esm
+const data = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+}; // @ts-expect-error resolveJsonModule is not on
+
+const keys = Object.keys(data);
+export { keys };
+",
+]
+`;
+
+exports[`JSON imports transforms example test case: browser-stable-esm 2`] = `
+Array [
+  "package.json",
+  Object {
+    "files": Array [
+      "cjs/**/*.{cjs,map}",
+      "esm/**/*.{js,map}",
+      "lib/**/*.{js,map}",
+      "mjs/**/*.{mjs,map}",
+      "src/**/*.{ts,tsx,json}",
+      "umd/**/*.{js,map}",
+    ],
+    "name": "examples",
+  },
+]
+`;
+
+exports[`JSON imports transforms example test case: browser-stable-lib 1`] = `
+Array [
+  "lib/index-browser-stable-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: stable, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+const data = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+}; // @ts-expect-error resolveJsonModule is not on
+
+const keys = Object.keys(data);
+exports.keys = keys;
+",
+]
+`;
+
+exports[`JSON imports transforms example test case: browser-stable-lib 2`] = `
+Array [
+  "package.json",
+  Object {
+    "files": Array [
+      "cjs/**/*.{cjs,map}",
+      "esm/**/*.{js,map}",
+      "lib/**/*.{js,map}",
+      "mjs/**/*.{mjs,map}",
+      "src/**/*.{ts,tsx,json}",
+      "umd/**/*.{js,map}",
+    ],
+    "name": "examples",
+  },
+]
+`;
+
+exports[`JSON imports transforms example test case: browser-stable-umd 1`] = `
+Array [
+  "package.json",
+  Object {
+    "files": Array [
+      "cjs/**/*.{cjs,map}",
+      "esm/**/*.{js,map}",
+      "lib/**/*.{js,map}",
+      "mjs/**/*.{mjs,map}",
+      "src/**/*.{ts,tsx,json}",
+      "umd/**/*.{js,map}",
+    ],
+    "name": "examples",
+  },
+]
+`;
+
+exports[`JSON imports transforms example test case: browser-stable-umd 2`] = `
 Array [
   "umd/index-browser-stable-umd.js",
   "(function (global, factory) {
@@ -721,7 +528,7 @@ Array [
   _exports.keys = void 0;
   // Bundled with Packemon: https://packemon.dev
   // Platform: browser, Support: stable, Format: umd
-  var data = {
+  const data = {
     list: [\\"foo\\", \\"bar\\", \\"baz\\"],
     number: 123,
     string: \\"abc\\",
@@ -734,5 +541,657 @@ Array [
   _exports.keys = keys;
 });
 ",
+]
+`;
+
+exports[`JSON imports transforms example test case: native-current-lib 1`] = `
+Array [
+  "lib/index-native-current-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: current, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+const data = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+}; // @ts-expect-error resolveJsonModule is not on
+
+const keys = Object.keys(data);
+exports.keys = keys;
+",
+]
+`;
+
+exports[`JSON imports transforms example test case: native-current-lib 2`] = `
+Array [
+  "package.json",
+  Object {
+    "files": Array [
+      "cjs/**/*.{cjs,map}",
+      "esm/**/*.{js,map}",
+      "lib/**/*.{js,map}",
+      "mjs/**/*.{mjs,map}",
+      "src/**/*.{ts,tsx,json}",
+      "umd/**/*.{js,map}",
+    ],
+    "name": "examples",
+  },
+]
+`;
+
+exports[`JSON imports transforms example test case: native-experimental-lib 1`] = `
+Array [
+  "lib/index-native-experimental-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: experimental, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+const data = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+}; // @ts-expect-error resolveJsonModule is not on
+
+const keys = Object.keys(data);
+exports.keys = keys;
+",
+]
+`;
+
+exports[`JSON imports transforms example test case: native-experimental-lib 2`] = `
+Array [
+  "package.json",
+  Object {
+    "files": Array [
+      "cjs/**/*.{cjs,map}",
+      "esm/**/*.{js,map}",
+      "lib/**/*.{js,map}",
+      "mjs/**/*.{mjs,map}",
+      "src/**/*.{ts,tsx,json}",
+      "umd/**/*.{js,map}",
+    ],
+    "name": "examples",
+  },
+]
+`;
+
+exports[`JSON imports transforms example test case: native-legacy-lib 1`] = `
+Array [
+  "lib/index-native-legacy-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: legacy, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var data = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+}; // @ts-expect-error resolveJsonModule is not on
+
+var keys = Object.keys(data);
+exports.keys = keys;
+",
+]
+`;
+
+exports[`JSON imports transforms example test case: native-legacy-lib 2`] = `
+Array [
+  "package.json",
+  Object {
+    "files": Array [
+      "cjs/**/*.{cjs,map}",
+      "esm/**/*.{js,map}",
+      "lib/**/*.{js,map}",
+      "mjs/**/*.{mjs,map}",
+      "src/**/*.{ts,tsx,json}",
+      "umd/**/*.{js,map}",
+    ],
+    "name": "examples",
+  },
+]
+`;
+
+exports[`JSON imports transforms example test case: native-stable-lib 1`] = `
+Array [
+  "lib/index-native-stable-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: stable, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+const data = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+}; // @ts-expect-error resolveJsonModule is not on
+
+const keys = Object.keys(data);
+exports.keys = keys;
+",
+]
+`;
+
+exports[`JSON imports transforms example test case: native-stable-lib 2`] = `
+Array [
+  "package.json",
+  Object {
+    "files": Array [
+      "cjs/**/*.{cjs,map}",
+      "esm/**/*.{js,map}",
+      "lib/**/*.{js,map}",
+      "mjs/**/*.{mjs,map}",
+      "src/**/*.{ts,tsx,json}",
+      "umd/**/*.{js,map}",
+    ],
+    "name": "examples",
+  },
+]
+`;
+
+exports[`JSON imports transforms example test case: node-current-cjs 1`] = `
+Array [
+  "cjs/index-node-current-cjs.cjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: current, Format: cjs
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+const data = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+}; // @ts-expect-error resolveJsonModule is not on
+
+const keys = Object.keys(data);
+exports.keys = keys;
+",
+]
+`;
+
+exports[`JSON imports transforms example test case: node-current-cjs 2`] = `
+Array [
+  "package.json",
+  Object {
+    "files": Array [
+      "cjs/**/*.{cjs,map}",
+      "esm/**/*.{js,map}",
+      "lib/**/*.{js,map}",
+      "mjs/**/*.{mjs,map}",
+      "src/**/*.{ts,tsx,json}",
+      "umd/**/*.{js,map}",
+    ],
+    "name": "examples",
+  },
+]
+`;
+
+exports[`JSON imports transforms example test case: node-current-lib 1`] = `
+Array [
+  "lib/index-node-current-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: current, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+const data = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+}; // @ts-expect-error resolveJsonModule is not on
+
+const keys = Object.keys(data);
+exports.keys = keys;
+",
+]
+`;
+
+exports[`JSON imports transforms example test case: node-current-lib 2`] = `
+Array [
+  "package.json",
+  Object {
+    "files": Array [
+      "cjs/**/*.{cjs,map}",
+      "esm/**/*.{js,map}",
+      "lib/**/*.{js,map}",
+      "mjs/**/*.{mjs,map}",
+      "src/**/*.{ts,tsx,json}",
+      "umd/**/*.{js,map}",
+    ],
+    "name": "examples",
+  },
+]
+`;
+
+exports[`JSON imports transforms example test case: node-current-mjs 1`] = `
+Array [
+  "mjs/index-node-current-mjs.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: current, Format: mjs
+const data = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+}; // @ts-expect-error resolveJsonModule is not on
+
+const keys = Object.keys(data);
+export { keys };
+",
+]
+`;
+
+exports[`JSON imports transforms example test case: node-current-mjs 2`] = `
+Array [
+  "package.json",
+  Object {
+    "files": Array [
+      "cjs/**/*.{cjs,map}",
+      "esm/**/*.{js,map}",
+      "lib/**/*.{js,map}",
+      "mjs/**/*.{mjs,map}",
+      "src/**/*.{ts,tsx,json}",
+      "umd/**/*.{js,map}",
+    ],
+    "name": "examples",
+  },
+]
+`;
+
+exports[`JSON imports transforms example test case: node-experimental-cjs 1`] = `
+Array [
+  "cjs/index-node-experimental-cjs.cjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: experimental, Format: cjs
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+const data = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+}; // @ts-expect-error resolveJsonModule is not on
+
+const keys = Object.keys(data);
+exports.keys = keys;
+",
+]
+`;
+
+exports[`JSON imports transforms example test case: node-experimental-cjs 2`] = `
+Array [
+  "package.json",
+  Object {
+    "files": Array [
+      "cjs/**/*.{cjs,map}",
+      "esm/**/*.{js,map}",
+      "lib/**/*.{js,map}",
+      "mjs/**/*.{mjs,map}",
+      "src/**/*.{ts,tsx,json}",
+      "umd/**/*.{js,map}",
+    ],
+    "name": "examples",
+  },
+]
+`;
+
+exports[`JSON imports transforms example test case: node-experimental-lib 1`] = `
+Array [
+  "lib/index-node-experimental-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: experimental, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+const data = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+}; // @ts-expect-error resolveJsonModule is not on
+
+const keys = Object.keys(data);
+exports.keys = keys;
+",
+]
+`;
+
+exports[`JSON imports transforms example test case: node-experimental-lib 2`] = `
+Array [
+  "package.json",
+  Object {
+    "files": Array [
+      "cjs/**/*.{cjs,map}",
+      "esm/**/*.{js,map}",
+      "lib/**/*.{js,map}",
+      "mjs/**/*.{mjs,map}",
+      "src/**/*.{ts,tsx,json}",
+      "umd/**/*.{js,map}",
+    ],
+    "name": "examples",
+  },
+]
+`;
+
+exports[`JSON imports transforms example test case: node-experimental-mjs 1`] = `
+Array [
+  "mjs/index-node-experimental-mjs.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: experimental, Format: mjs
+const data = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+}; // @ts-expect-error resolveJsonModule is not on
+
+const keys = Object.keys(data);
+export { keys };
+",
+]
+`;
+
+exports[`JSON imports transforms example test case: node-experimental-mjs 2`] = `
+Array [
+  "package.json",
+  Object {
+    "files": Array [
+      "cjs/**/*.{cjs,map}",
+      "esm/**/*.{js,map}",
+      "lib/**/*.{js,map}",
+      "mjs/**/*.{mjs,map}",
+      "src/**/*.{ts,tsx,json}",
+      "umd/**/*.{js,map}",
+    ],
+    "name": "examples",
+  },
+]
+`;
+
+exports[`JSON imports transforms example test case: node-legacy-cjs 1`] = `
+Array [
+  "cjs/index-node-legacy-cjs.cjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: legacy, Format: cjs
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var data = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+}; // @ts-expect-error resolveJsonModule is not on
+
+const keys = Object.keys(data);
+exports.keys = keys;
+",
+]
+`;
+
+exports[`JSON imports transforms example test case: node-legacy-cjs 2`] = `
+Array [
+  "package.json",
+  Object {
+    "files": Array [
+      "cjs/**/*.{cjs,map}",
+      "esm/**/*.{js,map}",
+      "lib/**/*.{js,map}",
+      "mjs/**/*.{mjs,map}",
+      "src/**/*.{ts,tsx,json}",
+      "umd/**/*.{js,map}",
+    ],
+    "name": "examples",
+  },
+]
+`;
+
+exports[`JSON imports transforms example test case: node-legacy-lib 1`] = `
+Array [
+  "lib/index-node-legacy-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: legacy, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var data = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+}; // @ts-expect-error resolveJsonModule is not on
+
+const keys = Object.keys(data);
+exports.keys = keys;
+",
+]
+`;
+
+exports[`JSON imports transforms example test case: node-legacy-lib 2`] = `
+Array [
+  "package.json",
+  Object {
+    "files": Array [
+      "cjs/**/*.{cjs,map}",
+      "esm/**/*.{js,map}",
+      "lib/**/*.{js,map}",
+      "mjs/**/*.{mjs,map}",
+      "src/**/*.{ts,tsx,json}",
+      "umd/**/*.{js,map}",
+    ],
+    "name": "examples",
+  },
+]
+`;
+
+exports[`JSON imports transforms example test case: node-legacy-mjs 1`] = `
+Array [
+  "mjs/index-node-legacy-mjs.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: legacy, Format: mjs
+var data = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+}; // @ts-expect-error resolveJsonModule is not on
+
+const keys = Object.keys(data);
+export { keys };
+",
+]
+`;
+
+exports[`JSON imports transforms example test case: node-legacy-mjs 2`] = `
+Array [
+  "package.json",
+  Object {
+    "files": Array [
+      "cjs/**/*.{cjs,map}",
+      "esm/**/*.{js,map}",
+      "lib/**/*.{js,map}",
+      "mjs/**/*.{mjs,map}",
+      "src/**/*.{ts,tsx,json}",
+      "umd/**/*.{js,map}",
+    ],
+    "name": "examples",
+  },
+]
+`;
+
+exports[`JSON imports transforms example test case: node-stable-cjs 1`] = `
+Array [
+  "cjs/index-node-stable-cjs.cjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: cjs
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+const data = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+}; // @ts-expect-error resolveJsonModule is not on
+
+const keys = Object.keys(data);
+exports.keys = keys;
+",
+]
+`;
+
+exports[`JSON imports transforms example test case: node-stable-cjs 2`] = `
+Array [
+  "package.json",
+  Object {
+    "files": Array [
+      "cjs/**/*.{cjs,map}",
+      "esm/**/*.{js,map}",
+      "lib/**/*.{js,map}",
+      "mjs/**/*.{mjs,map}",
+      "src/**/*.{ts,tsx,json}",
+      "umd/**/*.{js,map}",
+    ],
+    "name": "examples",
+  },
+]
+`;
+
+exports[`JSON imports transforms example test case: node-stable-lib 1`] = `
+Array [
+  "lib/index-node-stable-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+const data = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+}; // @ts-expect-error resolveJsonModule is not on
+
+const keys = Object.keys(data);
+exports.keys = keys;
+",
+]
+`;
+
+exports[`JSON imports transforms example test case: node-stable-lib 2`] = `
+Array [
+  "package.json",
+  Object {
+    "files": Array [
+      "cjs/**/*.{cjs,map}",
+      "esm/**/*.{js,map}",
+      "lib/**/*.{js,map}",
+      "mjs/**/*.{mjs,map}",
+      "src/**/*.{ts,tsx,json}",
+      "umd/**/*.{js,map}",
+    ],
+    "name": "examples",
+  },
+]
+`;
+
+exports[`JSON imports transforms example test case: node-stable-mjs 1`] = `
+Array [
+  "mjs/index-node-stable-mjs.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: mjs
+const data = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+}; // @ts-expect-error resolveJsonModule is not on
+
+const keys = Object.keys(data);
+export { keys };
+",
+]
+`;
+
+exports[`JSON imports transforms example test case: node-stable-mjs 2`] = `
+Array [
+  "package.json",
+  Object {
+    "files": Array [
+      "cjs/**/*.{cjs,map}",
+      "esm/**/*.{js,map}",
+      "lib/**/*.{js,map}",
+      "mjs/**/*.{mjs,map}",
+      "src/**/*.{ts,tsx,json}",
+      "umd/**/*.{js,map}",
+    ],
+    "name": "examples",
+  },
 ]
 `;

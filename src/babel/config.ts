@@ -161,7 +161,7 @@ export function getBabelOutputConfig(
 
 	// PLUGINS
 
-	if (platform === 'browser' && support === 'legacy') {
+	if ((platform === 'browser' || platform === 'native') && support === 'legacy') {
 		plugins.push(
 			// Transform async/await into Promises
 			[resolve('babel-plugin-transform-async-to-promises'), { inlineHelpers: true, target: 'es5' }],
