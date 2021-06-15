@@ -49,7 +49,7 @@ Object {
         "shippedProposals": true,
         "spec": true,
         "targets": Object {
-          "node": "10.3.0",
+          "node": "12.17.0",
         },
         "useBuiltIns": false,
       },
@@ -130,7 +130,7 @@ Object {
         "shippedProposals": true,
         "spec": true,
         "targets": Object {
-          "node": "10.3.0",
+          "node": "12.17.0",
         },
         "useBuiltIns": false,
       },
@@ -332,7 +332,10 @@ Array [
     "shippedProposals": true,
     "spec": true,
     "targets": Object {
-      "browsers": "defaults",
+      "browsers": Array [
+        "> 1%",
+        "not dead",
+      ],
     },
     "useBuiltIns": false,
   },
@@ -369,7 +372,7 @@ Array [
     "shippedProposals": true,
     "spec": true,
     "targets": Object {
-      "browsers": "IE 10",
+      "browsers": "IE 11",
     },
     "useBuiltIns": false,
   },
@@ -386,7 +389,10 @@ Array [
     "shippedProposals": true,
     "spec": true,
     "targets": Object {
-      "browsers": "IE 11",
+      "browsers": Array [
+        "defaults",
+        "not IE 11",
+      ],
     },
     "useBuiltIns": false,
   },
@@ -403,7 +409,10 @@ Array [
     "shippedProposals": true,
     "spec": true,
     "targets": Object {
-      "browsers": "defaults",
+      "browsers": Array [
+        "> 1%",
+        "not dead",
+      ],
     },
     "useBuiltIns": false,
   },
@@ -440,7 +449,7 @@ Array [
     "shippedProposals": true,
     "spec": true,
     "targets": Object {
-      "browsers": "IE 10",
+      "browsers": "IE 11",
     },
     "useBuiltIns": false,
   },
@@ -457,7 +466,10 @@ Array [
     "shippedProposals": true,
     "spec": true,
     "targets": Object {
-      "browsers": "IE 11",
+      "browsers": Array [
+        "defaults",
+        "not IE 11",
+      ],
     },
     "useBuiltIns": false,
   },
@@ -474,7 +486,10 @@ Array [
     "shippedProposals": true,
     "spec": true,
     "targets": Object {
-      "browsers": "defaults",
+      "browsers": Array [
+        "> 1%",
+        "not dead",
+      ],
     },
     "useBuiltIns": false,
   },
@@ -511,7 +526,7 @@ Array [
     "shippedProposals": true,
     "spec": true,
     "targets": Object {
-      "browsers": "IE 10",
+      "browsers": "IE 11",
     },
     "useBuiltIns": false,
   },
@@ -528,7 +543,10 @@ Array [
     "shippedProposals": true,
     "spec": true,
     "targets": Object {
-      "browsers": "IE 11",
+      "browsers": Array [
+        "defaults",
+        "not IE 11",
+      ],
     },
     "useBuiltIns": false,
   },
@@ -617,7 +635,7 @@ Array [
     "shippedProposals": true,
     "spec": true,
     "targets": Object {
-      "node": "12.0.0",
+      "node": "14.16.0",
     },
     "useBuiltIns": false,
   },
@@ -659,7 +677,7 @@ Array [
     "shippedProposals": true,
     "spec": true,
     "targets": Object {
-      "node": "8.10.0",
+      "node": "10.3.0",
     },
     "useBuiltIns": false,
   },
@@ -680,7 +698,7 @@ Array [
     "shippedProposals": true,
     "spec": true,
     "targets": Object {
-      "node": "10.3.0",
+      "node": "12.17.0",
     },
     "useBuiltIns": false,
   },
@@ -701,7 +719,7 @@ Array [
     "shippedProposals": true,
     "spec": true,
     "targets": Object {
-      "node": "12.0.0",
+      "node": "14.16.0",
     },
     "useBuiltIns": false,
   },
@@ -743,7 +761,7 @@ Array [
     "shippedProposals": true,
     "spec": true,
     "targets": Object {
-      "node": "8.10.0",
+      "node": "10.3.0",
     },
     "useBuiltIns": false,
   },
@@ -764,7 +782,7 @@ Array [
     "shippedProposals": true,
     "spec": true,
     "targets": Object {
-      "node": "10.3.0",
+      "node": "12.17.0",
     },
     "useBuiltIns": false,
   },
@@ -785,7 +803,7 @@ Array [
     "shippedProposals": true,
     "spec": true,
     "targets": Object {
-      "node": "12.0.0",
+      "node": "14.16.0",
     },
     "useBuiltIns": false,
   },
@@ -827,7 +845,7 @@ Array [
     "shippedProposals": true,
     "spec": true,
     "targets": Object {
-      "node": "8.10.0",
+      "node": "10.3.0",
     },
     "useBuiltIns": false,
   },
@@ -848,7 +866,7 @@ Array [
     "shippedProposals": true,
     "spec": true,
     "targets": Object {
-      "node": "10.3.0",
+      "node": "12.17.0",
     },
     "useBuiltIns": false,
   },
@@ -902,7 +920,10 @@ Object {
         "shippedProposals": true,
         "spec": true,
         "targets": Object {
-          "browsers": "IE 11",
+          "browsers": Array [
+            "defaults",
+            "not IE 11",
+          ],
         },
         "useBuiltIns": false,
       },
@@ -1012,7 +1033,7 @@ Object {
         "shippedProposals": true,
         "spec": true,
         "targets": Object {
-          "node": "12.0.0",
+          "node": "14.16.0",
         },
         "useBuiltIns": false,
       },

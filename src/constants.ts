@@ -32,24 +32,24 @@ export const NATIVE_TARGETS: { [K in Support]: string } = {
 
 // Based on LTS schedule: https://nodejs.org/en/about/releases/
 export const NODE_SUPPORTED_VERSIONS: { [K in Support]: string } = {
-  legacy: '8.10.0',
-  stable: '10.3.0', // Requires NPM v6
-  current: '12.0.0',
+  legacy: '10.3.0',
+  stable: '12.17.0', // ESM support not behind a flag
+  current: '14.16.0', // Includes security fixes
   experimental: '16.0.0',
 };
 
 export const NPM_SUPPORTED_VERSIONS: { [K in Support]: string[] | string } = {
-  legacy: ['5.6.0', '6.0.0'],
-  stable: '6.1.0',
-  current: '6.9.0',
+  legacy: '6.1.0',
+  stable: '6.13.0',
+  current: ['6.14.0', '7.0.0'],
   experimental: '7.0.0',
 };
 
 // Based on browserslist: https://github.com/browserslist/browserslist
 export const BROWSER_TARGETS: { [K in Support]: string[] | string } = {
-  legacy: 'IE 10',
-  stable: 'IE 11',
-  current: 'defaults',
+  legacy: 'IE 11',
+  stable: ['defaults', 'not IE 11'],
+  current: ['> 1%', 'not dead'],
   experimental: ['last 2 chrome versions', 'last 2 firefox versions'],
 };
 

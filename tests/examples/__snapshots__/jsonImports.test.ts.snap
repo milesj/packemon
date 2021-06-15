@@ -105,7 +105,7 @@ Array [
   "esm/index-browser-current-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: esm
-var data = {
+const data = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
   number: 123,
   string: \\"abc\\",
@@ -114,7 +114,7 @@ var data = {
   }
 }; // @ts-expect-error resolveJsonModule is not on
 
-var keys = Object.keys(data);
+const keys = Object.keys(data);
 export { keys };
 ",
 ]
@@ -174,7 +174,7 @@ var data = {
   }
 }; // @ts-expect-error resolveJsonModule is not on
 
-var keys = Object.keys(data);
+const keys = Object.keys(data);
 export { keys };
 ",
 ]
@@ -190,7 +190,7 @@ Array [
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var data = {
+const data = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
   number: 123,
   string: \\"abc\\",
@@ -199,7 +199,7 @@ var data = {
   }
 }; // @ts-expect-error resolveJsonModule is not on
 
-var keys = Object.keys(data);
+const keys = Object.keys(data);
 exports.keys = keys;
 ",
 ]
@@ -274,7 +274,7 @@ var data = {
   }
 }; // @ts-expect-error resolveJsonModule is not on
 
-var keys = Object.keys(data);
+const keys = Object.keys(data);
 exports.keys = keys;
 ",
 ]
@@ -601,7 +601,7 @@ Array [
   _exports.keys = void 0;
   // Bundled with Packemon: https://packemon.dev
   // Platform: browser, Support: current, Format: umd
-  var data = {
+  const data = {
     list: [\\"foo\\", \\"bar\\", \\"baz\\"],
     number: 123,
     string: \\"abc\\",
@@ -610,7 +610,7 @@ Array [
     }
   }; // @ts-expect-error resolveJsonModule is not on
 
-  var keys = Object.keys(data);
+  const keys = Object.keys(data);
   _exports.keys = keys;
 });
 ",
@@ -730,7 +730,7 @@ Array [
     }
   }; // @ts-expect-error resolveJsonModule is not on
 
-  var keys = Object.keys(data);
+  const keys = Object.keys(data);
   _exports.keys = keys;
 });
 ",

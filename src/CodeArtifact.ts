@@ -1,6 +1,5 @@
-import path from 'path';
 import { rollup, RollupCache } from 'rollup';
-import { toArray } from '@boost/common';
+import { Path, toArray } from '@boost/common';
 import { createDebugger, Debugger } from '@boost/debug';
 import { Artifact } from './Artifact';
 import { DEFAULT_FORMAT } from './constants';
@@ -43,11 +42,11 @@ export class CodeArtifact extends Artifact<CodeBuild> {
 
   protected debug!: Debugger;
 
-  startup() {
+  override startup() {
     this.debug = createDebugger(['packemon', 'code', this.package.getSlug(), this.getLabel()]);
   }
 
-  async cleanup(): Promise<void> {
+  override async cleanup(): Promise<void> {
     this.debug('Cleaning code artifacts');
 
     // Visualizer stats
@@ -149,7 +148,7 @@ export class CodeArtifact extends Artifact<CodeBuild> {
       ext,
       file,
       folder,
-      path: `./${path.join(folder, file)}`,
+      path: `./${new Path(folder, file)}`,
     };
   }
 
@@ -228,7 +227,7 @@ export class CodeArtifact extends Artifact<CodeBuild> {
     return `${this.package.getName()}/${this.platform}/${this.support}`;
   }
 
-  toString() {
+  override toString() {
     return `code (${this.getLabel()})`;
   }
 }

@@ -1,4 +1,3 @@
-import path from 'path';
 import glob from 'fast-glob';
 import fs from 'fs-extra';
 import { Path } from '@boost/common';
@@ -21,11 +20,11 @@ export class TypesArtifact extends Artifact<TypesBuild> {
 
   protected debug!: Debugger;
 
-  startup() {
+  override startup() {
     this.debug = createDebugger(['packemon', 'types', this.package.getSlug(), this.getLabel()]);
   }
 
-  async cleanup(): Promise<void> {
+  override async cleanup(): Promise<void> {
     // API extractor config files
     await this.removeFiles(
       this.builds.map(({ outputName }) => this.getApiExtractorConfigPath(outputName)),
@@ -81,7 +80,7 @@ export class TypesArtifact extends Artifact<TypesBuild> {
     const entry =
       this.declarationType === 'standard' ? removeSourcePath(output.inputFile) : outputName;
 
-    return `./${path.join('dts', entry)}.d.ts`;
+    return `./${new Path('dts', entry)}.d.ts`;
   }
 
   getLabel(): string {
@@ -104,7 +103,7 @@ export class TypesArtifact extends Artifact<TypesBuild> {
     return exportMap;
   }
 
-  toString() {
+  override toString() {
     return `types (${this.getLabel()})`;
   }
 
