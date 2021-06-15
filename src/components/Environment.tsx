@@ -5,64 +5,64 @@ import { BROWSER_TARGETS, NATIVE_TARGETS, NODE_SUPPORTED_VERSIONS } from '../con
 import { Environment as EnvType, Platform, Support } from '../types';
 
 export type EnvironmentProps =
-  | {
-      platform: Platform;
-      support: Support;
-    }
-  | { type: EnvType };
+	| {
+			platform: Platform;
+			support: Support;
+	  }
+	| { type: EnvType };
 
 function trimVersion(version: string) {
-  const parts = version.split('.');
+	const parts = version.split('.');
 
-  while (parts[parts.length - 1] === '0') {
-    parts.pop();
-  }
+	while (parts[parts.length - 1] === '0') {
+		parts.pop();
+	}
 
-  return parts.join('.');
+	return parts.join('.');
 }
 
 export function getVersionsCombo(platforms: Platform[], support: Support): Set<string> {
-  const versions = new Set<string>();
+	const versions = new Set<string>();
 
-  platforms.forEach((platform) => {
-    switch (platform) {
-      case 'native':
-        versions.add(`Native (${trimVersion(NATIVE_TARGETS[support])})`);
-        break;
+	platforms.forEach((platform) => {
+		switch (platform) {
+			case 'native':
+				versions.add(`Native (${trimVersion(NATIVE_TARGETS[support])})`);
+				break;
 
-      case 'node':
-        versions.add(`Node v${trimVersion(NODE_SUPPORTED_VERSIONS[support])}`);
-        break;
+			case 'node':
+				versions.add(`Node v${trimVersion(NODE_SUPPORTED_VERSIONS[support])}`);
+				break;
 
-      case 'browser': {
-        const targets =
-          support === 'experimental' ? ['last 2 versions'] : toArray(BROWSER_TARGETS[support]);
+			case 'browser': {
+				const targets =
+					support === 'experimental' ? ['last 2 versions'] : toArray(BROWSER_TARGETS[support]);
 
-        versions.add(`Browser (${targets.join(', ')})`);
+				versions.add(`Browser (${targets.join(', ')})`);
 
-        break;
-      }
+				break;
+			}
 
-      // no default
-    }
-  });
+			// no default
+		}
+	});
 
-  return versions;
+	return versions;
 }
 
 export function Environment(props: EnvironmentProps) {
-  let platform: string;
-  let support: string;
+	let platform: string;
+	let support: string;
 
-  if ('type' in props) {
-    [platform, support] = props.type.split(':');
-  } else {
-    ({ platform, support } = props);
-  }
+	if ('type' in props) {
+		[platform, support] = props.type.split(':');
+	} else {
+		({ platform, support } = props);
+	}
 
-  return (
-    <Style type="muted">
-      {[...getVersionsCombo([platform as Platform], support as Support)].join(', ')}
-    </Style>
-  );
+	return (
+		<Style type="muted">
+			{[...getVersionsCombo([platform as Platform], support as Support)].join(', ')}
+		</Style>
+	);
 }

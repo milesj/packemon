@@ -5,228 +5,228 @@ import { Artifact } from './Artifact';
 import { removeSourcePath } from './helpers/removeSourcePath';
 import { getRollupConfig } from './rollup/config';
 import {
-  BuildOptions,
-  BuildResultFiles,
-  CodeBuild,
-  Format,
-  InputMap,
-  PackageExportPaths,
-  PackageExports,
-  Platform,
-  Support,
+	BuildOptions,
+	BuildResultFiles,
+	CodeBuild,
+	Format,
+	InputMap,
+	PackageExportPaths,
+	PackageExports,
+	Platform,
+	Support,
 } from './types';
 
 export class CodeArtifact extends Artifact<CodeBuild> {
-  bundle: boolean = true;
+	bundle: boolean = true;
 
-  cache?: RollupCache;
+	cache?: RollupCache;
 
-  // Config object in which inputs are grouped in
-  configGroup: number = 0;
+	// Config object in which inputs are grouped in
+	configGroup: number = 0;
 
-  // Mapping of output names to input paths
-  inputs: InputMap = {};
+	// Mapping of output names to input paths
+	inputs: InputMap = {};
 
-  // Namespace for UMD bundles
-  namespace: string = '';
+	// Namespace for UMD bundles
+	namespace: string = '';
 
-  // Platform code will run on
-  platform: Platform = 'node';
+	// Platform code will run on
+	platform: Platform = 'node';
 
-  // Are multiple builds writing to the lib folder
-  sharedLib: boolean = false;
+	// Are multiple builds writing to the lib folder
+	sharedLib: boolean = false;
 
-  // Target version code will run in
-  support: Support = 'stable';
+	// Target version code will run in
+	support: Support = 'stable';
 
-  protected debug!: Debugger;
+	protected debug!: Debugger;
 
-  override startup() {
-    this.debug = createDebugger(['packemon', 'code', this.package.getSlug(), this.getLabel()]);
-  }
+	override startup() {
+		this.debug = createDebugger(['packemon', 'code', this.package.getSlug(), this.getLabel()]);
+	}
 
-  override async cleanup(): Promise<void> {
-    this.debug('Cleaning code artifacts');
+	override async cleanup(): Promise<void> {
+		this.debug('Cleaning code artifacts');
 
-    // Visualizer stats
-    await this.removeFiles([this.package.project.root.append(this.getStatsFileName())]);
-  }
+		// Visualizer stats
+		await this.removeFiles([this.package.project.root.append(this.getStatsFileName())]);
+	}
 
-  async build(options: BuildOptions): Promise<void> {
-    this.debug('Building code artifacts with Rollup');
+	async build(options: BuildOptions): Promise<void> {
+		this.debug('Building code artifacts with Rollup');
 
-    const features = this.package.getFeatureFlags();
+		const features = this.package.getFeatureFlags();
 
-    if (options.analyze !== 'none') {
-      features.analyze = options.analyze;
-    }
+		if (options.analyze !== 'none') {
+			features.analyze = options.analyze;
+		}
 
-    const { output = [], ...input } = getRollupConfig(this, features);
-    const bundle = await rollup({
-      ...input,
-      onwarn: /* istanbul ignore next */ ({ id, loc = {}, message }) => {
-        this.logWithSource(message, 'warn', {
-          id: id && id !== loc.file ? id : undefined,
-          output: this.package.getSlug(),
-          sourceColumn: loc.column,
-          sourceFile: loc.file,
-          sourceLine: loc.line,
-        });
-      },
-    });
+		const { output = [], ...input } = getRollupConfig(this, features);
+		const bundle = await rollup({
+			...input,
+			onwarn: /* istanbul ignore next */ ({ id, loc = {}, message }) => {
+				this.logWithSource(message, 'warn', {
+					id: id && id !== loc.file ? id : undefined,
+					output: this.package.getSlug(),
+					sourceColumn: loc.column,
+					sourceFile: loc.file,
+					sourceLine: loc.line,
+				});
+			},
+		});
 
-    if (bundle.cache) {
-      this.cache = bundle.cache;
-    }
+		if (bundle.cache) {
+			this.cache = bundle.cache;
+		}
 
-    const files: BuildResultFiles[] = [];
+		const files: BuildResultFiles[] = [];
 
-    await Promise.all(
-      toArray(output).map(async (out, index) => {
-        const { originalFormat = 'lib', ...outOptions } = out;
+		await Promise.all(
+			toArray(output).map(async (out, index) => {
+				const { originalFormat = 'lib', ...outOptions } = out;
 
-        this.debug(' - Writing `%s` output', originalFormat);
+				this.debug(' - Writing `%s` output', originalFormat);
 
-        // While testing we want to avoid writing files,
-        // so use generate() instead of write():
-        // https://github.com/rollup/rollup/issues/4082
-        const result =
-          process.env.NODE_ENV === 'test'
-            ? await bundle.generate(outOptions)
-            : await bundle.write(outOptions);
+				// While testing we want to avoid writing files,
+				// so use generate() instead of write():
+				// https://github.com/rollup/rollup/issues/4082
+				const result =
+					process.env.NODE_ENV === 'test'
+						? await bundle.generate(outOptions)
+						: await bundle.write(outOptions);
 
-        // Update build results and stats
-        const bundledCode = result.output.reduce((code, chunk) => {
-          if (chunk.type === 'chunk') {
-            files.push({
-              code: chunk.code,
-              file: `${originalFormat}/${chunk.fileName}`,
-            });
+				// Update build results and stats
+				const bundledCode = result.output.reduce((code, chunk) => {
+					if (chunk.type === 'chunk') {
+						files.push({
+							code: chunk.code,
+							file: `${originalFormat}/${chunk.fileName}`,
+						});
 
-            return code + chunk.code;
-          }
+						return code + chunk.code;
+					}
 
-          return code;
-        }, '');
+					return code;
+				}, '');
 
-        this.builds[index].stats = {
-          size: Buffer.byteLength(bundledCode),
-        };
+				this.builds[index].stats = {
+					size: Buffer.byteLength(bundledCode),
+				};
 
-        return result;
-      }),
-    );
+				return result;
+			}),
+		);
 
-    this.buildResult.files = files;
-  }
+		this.buildResult.files = files;
+	}
 
-  findEntryPoint(formats: Format[], outputName: string): string {
-    for (const format of formats) {
-      if (this.builds.some((build) => build.format === format)) {
-        return this.getBuildOutput(format, outputName).path;
-      }
-    }
+	findEntryPoint(formats: Format[], outputName: string): string {
+		for (const format of formats) {
+			if (this.builds.some((build) => build.format === format)) {
+				return this.getBuildOutput(format, outputName).path;
+			}
+		}
 
-    return '';
-  }
+		return '';
+	}
 
-  getBuildOutput(format: Format, outputName: string = '') {
-    let name = outputName;
+	getBuildOutput(format: Format, outputName: string = '') {
+		let name = outputName;
 
-    // When not bundling, we do not create output files based on the input map.
-    // Instead files mirror the source file structure, so we need to take that into account!
-    if (!this.bundle && this.inputs[outputName]) {
-      name = removeSourcePath(this.inputs[outputName]);
-    }
+		// When not bundling, we do not create output files based on the input map.
+		// Instead files mirror the source file structure, so we need to take that into account!
+		if (!this.bundle && this.inputs[outputName]) {
+			name = removeSourcePath(this.inputs[outputName]);
+		}
 
-    const ext = format === 'cjs' || format === 'mjs' ? format : 'js';
-    const folder = format === 'lib' && this.sharedLib ? `lib/${this.platform}` : format;
-    const file = `${name}.${ext}`;
+		const ext = format === 'cjs' || format === 'mjs' ? format : 'js';
+		const folder = format === 'lib' && this.sharedLib ? `lib/${this.platform}` : format;
+		const file = `${name}.${ext}`;
 
-    return {
-      ext,
-      file,
-      folder,
-      path: `./${new Path(folder, file)}`,
-    };
-  }
+		return {
+			ext,
+			file,
+			folder,
+			path: `./${new Path(folder, file)}`,
+		};
+	}
 
-  getBuildTargets(): string[] {
-    return this.builds.map((build) => build.format);
-  }
+	getBuildTargets(): string[] {
+		return this.builds.map((build) => build.format);
+	}
 
-  getInputPaths(): InputMap {
-    // Return absolute paths so that Rollup paths/externals resolve correctly
-    return Object.entries(this.inputs).reduce(
-      (map, [outputName, inputFile]) => ({
-        ...map,
-        [outputName]: this.package.path.append(inputFile).path(),
-      }),
-      {},
-    );
-  }
+	getInputPaths(): InputMap {
+		// Return absolute paths so that Rollup paths/externals resolve correctly
+		return Object.entries(this.inputs).reduce(
+			(map, [outputName, inputFile]) => ({
+				...map,
+				[outputName]: this.package.path.append(inputFile).path(),
+			}),
+			{},
+		);
+	}
 
-  getLabel(): string {
-    return `${this.platform}:${this.support}:${this.getBuildTargets().join(',')}`;
-  }
+	getLabel(): string {
+		return `${this.platform}:${this.support}:${this.getBuildTargets().join(',')}`;
+	}
 
-  getPackageExports(): PackageExports {
-    const exportMap: PackageExports = {};
+	getPackageExports(): PackageExports {
+		const exportMap: PackageExports = {};
 
-    Object.keys(this.inputs).forEach((outputName) => {
-      const paths: PackageExportPaths = {};
-      let libPath = '';
+		Object.keys(this.inputs).forEach((outputName) => {
+			const paths: PackageExportPaths = {};
+			let libPath = '';
 
-      this.builds.forEach(({ format }) => {
-        const entry = this.findEntryPoint([format], outputName);
+			this.builds.forEach(({ format }) => {
+				const entry = this.findEntryPoint([format], outputName);
 
-        switch (format) {
-          case 'mjs':
-          case 'esm':
-            paths.import = entry;
+				switch (format) {
+					case 'mjs':
+					case 'esm':
+						paths.import = entry;
 
-            // Webpack and Rollup support
-            if (format === 'esm') {
-              paths.module = entry;
-            }
-            break;
+						// Webpack and Rollup support
+						if (format === 'esm') {
+							paths.module = entry;
+						}
+						break;
 
-          case 'cjs':
-            paths.require = entry;
-            break;
+					case 'cjs':
+						paths.require = entry;
+						break;
 
-          case 'lib':
-            libPath = entry;
-            break;
+					case 'lib':
+						libPath = entry;
+						break;
 
-          default:
-            break;
-        }
-      });
+					default:
+						break;
+				}
+			});
 
-      // Must come after import/require
-      if (libPath) {
-        paths.default = libPath;
-      }
+			// Must come after import/require
+			if (libPath) {
+				paths.default = libPath;
+			}
 
-      exportMap[`./${outputName}`] = {
-        [this.platform === 'native' ? 'react-native' : this.platform]:
-          Object.keys(paths).length === 1 && libPath ? paths.default : paths,
-      };
-    });
+			exportMap[`./${outputName}`] = {
+				[this.platform === 'native' ? 'react-native' : this.platform]:
+					Object.keys(paths).length === 1 && libPath ? paths.default : paths,
+			};
+		});
 
-    return exportMap;
-  }
+		return exportMap;
+	}
 
-  getStatsFileName(): string {
-    return `stats-${this.getStatsTitle().replace(/\//gu, '-')}.html`;
-  }
+	getStatsFileName(): string {
+		return `stats-${this.getStatsTitle().replace(/\//gu, '-')}.html`;
+	}
 
-  getStatsTitle(): string {
-    return `${this.package.getName()}/${this.platform}/${this.support}`;
-  }
+	getStatsTitle(): string {
+		return `${this.package.getName()}/${this.platform}/${this.support}`;
+	}
 
-  override toString() {
-    return `code (${this.getLabel()})`;
-  }
+	override toString() {
+		return `code (${this.getLabel()})`;
+	}
 }

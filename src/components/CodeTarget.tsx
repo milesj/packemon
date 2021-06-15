@@ -4,13 +4,13 @@ import { Style } from '@boost/cli';
 import { Target, TargetProps } from './Target';
 
 export interface CodeTargetProps extends TargetProps {
-  stats?: { size: number };
+	stats?: { size: number };
 }
 
 export function CodeTarget({ stats, ...props }: CodeTargetProps) {
-  return (
-    <Target {...props}>
-      {stats?.size && <Style type="muted">{` (${fileSize(stats.size)})`}</Style>}
-    </Target>
-  );
+	return (
+		<Target {...props}>
+			{stats?.size && <Style type="muted">{` (${fileSize(stats.size)})`}</Style>}
+		</Target>
+	);
 }

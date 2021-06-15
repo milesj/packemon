@@ -1,15 +1,15 @@
 class Spy {
-  called: boolean = false;
+	called: boolean = false;
 
-  mock = () => {};
+	mock = () => {};
 
-  method() {}
+	method() {}
 }
 
 export function spy() {
-  const inst = new Spy();
+	const inst = new Spy();
 
-  return jest.fn(inst.mock);
+	return jest.fn(inst.mock);
 }
 
 export async function wait(): Promise<void> {}

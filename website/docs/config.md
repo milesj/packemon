@@ -7,10 +7,10 @@ optional options. We suggest defining a platform at minimum.
 
 ```json title="package.json"
 {
-  "name": "package",
-  "packemon": {
-    "platform": "node"
-  }
+	"name": "package",
+	"packemon": {
+		"platform": "node"
+	}
 }
 ```
 
@@ -20,24 +20,24 @@ with caution.
 
 ```json title="package.json"
 {
-  "name": "package",
-  "packemon": [
-    {
-      "inputs": { "index": "src/index.ts" },
-      "platform": "node"
-    },
-    {
-      "inputs": { "web": "src/web.ts" },
-      "platform": "browser",
-      "support": "current"
-    },
-    {
-      "inputs": { "node": "src/node.mjs" },
-      "format": "mjs",
-      "platform": "node",
-      "support": "experimental"
-    }
-  ]
+	"name": "package",
+	"packemon": [
+		{
+			"inputs": { "index": "src/index.ts" },
+			"platform": "node"
+		},
+		{
+			"inputs": { "web": "src/web.ts" },
+			"platform": "browser",
+			"support": "current"
+		},
+		{
+			"inputs": { "node": "src/node.mjs" },
+			"format": "mjs",
+			"platform": "node",
+			"support": "experimental"
+		}
+	]
 }
 ```
 
@@ -51,7 +51,7 @@ The platform in which built code will be ran.
 
 ```json
 {
-  "platform": "browser"
+	"platform": "browser"
 }
 ```
 
@@ -59,7 +59,7 @@ To support multiple platforms, pass an array.
 
 ```json
 {
-  "platform": ["browser", "node"]
+	"platform": ["browser", "node"]
 }
 ```
 
@@ -77,7 +77,7 @@ The supported environment and or version for the configured platform(s).
 
 ```json
 {
-  "support": "current"
+	"support": "current"
 }
 ```
 
@@ -130,7 +130,7 @@ project root that will house the built files.
 
 ```json
 {
-  "format": "lib"
+	"format": "lib"
 }
 ```
 
@@ -138,7 +138,7 @@ To support multiple formats, or cross-platform formats, pass an array.
 
 ```json
 {
-  "format": ["lib", "cjs", "esm", "umd"]
+	"format": ["lib", "cjs", "esm", "umd"]
 }
 ```
 
@@ -150,11 +150,11 @@ relative to the package root.
 
 ```json
 {
-  "inputs": {
-    "index": "src/index.ts",
-    "client": "src/client/index.ts",
-    "server": "src/server.ts"
-  }
+	"inputs": {
+		"index": "src/index.ts",
+		"client": "src/client/index.ts",
+		"server": "src/server.ts"
+	}
 }
 ```
 
@@ -171,7 +171,7 @@ Whether to bundle the source code into a single file for each [input](#inputs). 
 
 ```json
 {
-  "bundle": false
+	"bundle": false
 }
 ```
 
@@ -184,6 +184,6 @@ For browsers only, this would be the name of the UMD global variable.
 
 ```json
 {
-  "namespace": "Packemon"
+	"namespace": "Packemon"
 }
 ```

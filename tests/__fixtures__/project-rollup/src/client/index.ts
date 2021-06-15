@@ -1,5 +1,5 @@
 class Client {
-  prop: number = 123;
+	prop: number = 123;
 }
 
 function* gen() {}
@@ -7,11 +7,11 @@ function* gen() {}
 async function wait() {}
 
 export async function createClient() {
-  await wait();
+	await wait();
 
-  for (const iterator of gen()) {
-    console.log(iterator);
-  }
+	for (const iterator of gen()) {
+		console.log(iterator);
+	}
 
-  return new Client();
+	return new Client();
 }

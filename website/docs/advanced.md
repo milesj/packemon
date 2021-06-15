@@ -17,13 +17,13 @@ To make use of this functionality, you must define an [input](./config.md#inputs
 
 ```json title="package.json"
 {
-  "name": "package",
-  "packemon": {
-    "inputs": {
-      "bin": "src/bin.ts"
-    },
-    "platform": "node"
-  }
+	"name": "package",
+	"packemon": {
+		"inputs": {
+			"bin": "src/bin.ts"
+		},
+		"platform": "node"
+	}
 }
 ```
 
@@ -42,9 +42,9 @@ are using the correct packemon version, you can provide an `engines` constraint 
 
 ```json title="package.json"
 {
-  "name": "package",
-  "engines": {
-    "packemon": "^1.0.0"
-  }
+	"name": "package",
+	"engines": {
+		"packemon": "^1.0.0"
+	}
 }
 ```

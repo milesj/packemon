@@ -3,11 +3,11 @@ import { Style } from '@boost/cli';
 import { formatMs } from '@boost/common';
 
 export interface DurationProps {
-  time: number;
+	time: number;
 }
 
 export function Duration({ time }: DurationProps) {
-  const isFast = time <= 100;
+	const isFast = time <= 100;
 
-  return <Style type={isFast ? 'muted' : 'default'}>{isFast ? '~' : formatMs(time)}</Style>;
+	return <Style type={isFast ? 'muted' : 'default'}>{isFast ? '~' : formatMs(time)}</Style>;
 }

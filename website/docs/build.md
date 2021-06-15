@@ -13,9 +13,9 @@ to their configured build targets (platform, formats, etc).
 
 ```json title="package.json"
 {
-  "scripts": {
-    "build": "packemon build --addEngines"
-  }
+	"scripts": {
+		"build": "packemon build --addEngines"
+	}
 }
 ```
 
@@ -72,13 +72,13 @@ contents (not exhaustive).
 
 ```json title="package.json"
 {
-  "name": "package",
-  "packemon": {
-    "inputs": { "index": "src/index.ts" },
-    "platform": ["node", "browser"],
-    "formats": ["lib", "esm", "umd"],
-    "namespace": "Example"
-  }
+	"name": "package",
+	"packemon": {
+		"inputs": { "index": "src/index.ts" },
+		"platform": ["node", "browser"],
+		"formats": ["lib", "esm", "umd"],
+		"namespace": "Example"
+	}
 }
 ```
 
@@ -112,18 +112,18 @@ and `--addExports` options.
 
 ```json title="package.json"
 {
-  "name": "package",
-  "main": "./lib/index.js",
-  "module": "./esm/index.js",
-  "browser": "./umd/index.js",
-  "types": "./dts/index.d.ts",
-  "files": ["dts/", "esm/", "lib/", "src/", "umd/"],
-  "packemon": {
-    "inputs": { "index": "src/index.ts" },
-    "platform": ["node", "browser"],
-    "formats": ["lib", "esm", "umd"],
-    "namespace": "Example"
-  }
+	"name": "package",
+	"main": "./lib/index.js",
+	"module": "./esm/index.js",
+	"browser": "./umd/index.js",
+	"types": "./dts/index.d.ts",
+	"files": ["dts/", "esm/", "lib/", "src/", "umd/"],
+	"packemon": {
+		"inputs": { "index": "src/index.ts" },
+		"platform": ["node", "browser"],
+		"formats": ["lib", "esm", "umd"],
+		"namespace": "Example"
+	}
 }
 ```
 
