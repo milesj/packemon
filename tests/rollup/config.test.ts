@@ -128,7 +128,7 @@ describe('getRollupConfig()', () => {
 					originalFormat: 'lib',
 					paths: {},
 					plugins: [`babelOutput(${fixturePath}, *)`, binPlugin],
-					preferConst: false,
+					preferConst: true,
 					preserveModules: false,
 					sourcemap: true,
 					sourcemapExcludeSources: true,
@@ -143,7 +143,7 @@ describe('getRollupConfig()', () => {
 					originalFormat: 'esm',
 					paths: {},
 					plugins: [`babelOutput(${fixturePath}, *)`, binPlugin],
-					preferConst: false,
+					preferConst: true,
 					preserveModules: false,
 					sourcemap: true,
 					sourcemapExcludeSources: true,
@@ -158,7 +158,7 @@ describe('getRollupConfig()', () => {
 					originalFormat: 'mjs',
 					paths: {},
 					plugins: [`babelOutput(${fixturePath}, *)`, binPlugin],
-					preferConst: false,
+					preferConst: true,
 					preserveModules: false,
 					sourcemap: true,
 					sourcemapExcludeSources: true,
@@ -193,7 +193,7 @@ describe('getRollupConfig()', () => {
 					originalFormat: 'lib',
 					paths: {},
 					plugins: [`babelOutput(${fixturePath}, *)`, binPlugin],
-					preferConst: false,
+					preferConst: true,
 					preserveModules: false,
 					sourcemap: true,
 					sourcemapExcludeSources: true,
@@ -229,7 +229,7 @@ describe('getRollupConfig()', () => {
 					originalFormat: 'lib',
 					paths: {},
 					plugins: [`babelOutput(${fixturePath}, *)`, binPlugin],
-					preferConst: false,
+					preferConst: true,
 					preserveModules: true,
 					sourcemap: true,
 					sourcemapExcludeSources: true,
@@ -327,7 +327,7 @@ describe('getRollupOutputConfig()', () => {
 			originalFormat: 'lib',
 			paths: {},
 			plugins: [`babelOutput(${fixturePath}, *)`, binPlugin],
-			preferConst: false,
+			preferConst: true,
 			preserveModules: false,
 			sourcemap: true,
 			sourcemapExcludeSources: true,
@@ -474,14 +474,14 @@ describe('getRollupOutputConfig()', () => {
 		});
 	});
 
-	it('enables `const` for future versions', () => {
+	it('enables `const` for non-legacy versions', () => {
 		artifact.support = 'legacy';
 
 		expect(getRollupOutputConfig(artifact, {}, 'lib').preferConst).toBe(false);
 
 		artifact.support = 'stable';
 
-		expect(getRollupOutputConfig(artifact, {}, 'lib').preferConst).toBe(false);
+		expect(getRollupOutputConfig(artifact, {}, 'lib').preferConst).toBe(true);
 
 		artifact.support = 'current';
 

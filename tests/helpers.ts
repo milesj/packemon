@@ -126,28 +126,27 @@ FORMATS.forEach((format) => {
 export function testExampleOutput(file: string) {
 	const snapshots = createSnapshotSpies(exampleRoot);
 
-	test('transforms example test case', async () => {
+	[...builds.values()].forEach((build) => {
 		const pkg = createProjectPackage(exampleRoot);
+		const env = `${build.platform}-${build.support}-${build.format}`;
 
-		[...builds.values()].forEach((build) => {
+		test(`transforms example test case: ${env}`, async () => {
 			const artifact = new CodeArtifact(pkg, [build]);
 			artifact.platform = build.platform;
 			artifact.support = build.support;
-			artifact.inputs = {
-				[`index-${build.platform}-${build.support}-${build.format}`]: file,
-			};
+			artifact.inputs = { [`index-${env}`]: file };
 
 			pkg.addArtifact(artifact);
-		});
 
-		try {
-			await pkg.build({});
-		} catch (error: unknown) {
-			console.error(error);
-		}
+			try {
+				await pkg.build({});
+			} catch (error: unknown) {
+				console.error(error);
+			}
 
-		snapshots(pkg).forEach((ss) => {
-			expect(ss).toMatchSnapshot();
+			snapshots(pkg).forEach((ss) => {
+				expect(ss).toMatchSnapshot();
+			});
 		});
 	});
 }

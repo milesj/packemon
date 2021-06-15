@@ -101,7 +101,7 @@ export function getRollupOutputConfig(
 		entryFileNames: `[name].${ext}`,
 		preserveModules: !artifact.bundle,
 		// Use const when not supporting new targets
-		preferConst: support === 'current' || support === 'experimental',
+		preferConst: support !== 'legacy',
 		// Output specific plugins
 		plugins: [
 			getBabelOutputPlugin({

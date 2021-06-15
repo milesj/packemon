@@ -161,16 +161,7 @@ export function getBabelOutputConfig(
 
 	// PLUGINS
 
-	// Use `Object.assign` when available
-	// https://babeljs.io/docs/en/babel-plugin-transform-destructuring#usebuiltins
-	if (support === 'current' || support === 'experimental') {
-		plugins.push(
-			[resolve('@babel/plugin-transform-destructuring'), { useBuiltIns: true }],
-			[resolve('@babel/plugin-proposal-object-rest-spread'), { useBuiltIns: true }],
-		);
-	}
-
-	if ((platform === 'browser' || platform === 'native') && support !== 'experimental') {
+	if ((platform === 'browser' || platform === 'native') && support === 'legacy') {
 		plugins.push(
 			// Transform async/await into Promises
 			[resolve('babel-plugin-transform-async-to-promises'), { inlineHelpers: true, target: 'es5' }],
@@ -180,6 +171,12 @@ export function getBabelOutputConfig(
 				resolve('@babel/plugin-transform-runtime'),
 				{ helpers: false, regenerator: true, useESModules: format === 'esm' },
 			],
+		);
+	} else {
+		// Use `Object.assign` when available
+		plugins.push(
+			[resolve('@babel/plugin-transform-destructuring'), { useBuiltIns: true }],
+			[resolve('@babel/plugin-proposal-object-rest-spread'), { useBuiltIns: true }],
 		);
 	}
 
