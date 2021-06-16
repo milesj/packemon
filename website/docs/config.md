@@ -104,8 +104,8 @@ project root that will house the built files.
 
 ### Browser
 
-- `lib` - [CommonJS](https://nodejs.org/api/modules.html) output using `.js` file extension. For
-  standard JavaScript and TypeScript projects.
+- `lib` _(default)_ - [CommonJS](https://nodejs.org/api/modules.html) output using `.js` file
+  extension. For standard JavaScript and TypeScript projects.
 - `esm` _(default)_ - ECMAScript module output using `.js` file extension. The same as `lib`, but
   uses `import/export` instead of `require`.
 - `umd` - Universal Module Definition output using `.js` file extension. Meant to be used directly
