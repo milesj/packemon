@@ -234,7 +234,7 @@ export class Package {
 					case 'browser':
 					default:
 						if (isEmpty) {
-							formats.push('esm');
+							formats.push('lib', 'esm');
 
 							if (config.namespace) {
 								formats.push('umd');

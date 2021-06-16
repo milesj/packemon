@@ -1071,7 +1071,7 @@ describe('Package', () => {
 			expect(pkg.configs).toEqual([
 				{
 					bundle: true,
-					formats: ['esm'],
+					formats: ['lib', 'esm'],
 					inputs: {},
 					platform: 'browser',
 					namespace: '',
@@ -1094,7 +1094,7 @@ describe('Package', () => {
 			expect(pkg.configs).toEqual([
 				{
 					bundle: true,
-					formats: ['esm', 'umd'],
+					formats: ['lib', 'esm', 'umd'],
 					inputs: {},
 					platform: 'browser',
 					namespace: 'test',
@@ -1183,7 +1183,7 @@ describe('Package', () => {
 			expect(pkg.configs).toEqual([
 				{
 					bundle: true,
-					formats: ['esm'],
+					formats: ['lib', 'esm'],
 					inputs: {},
 					platform: 'browser',
 					namespace: '',
@@ -1260,7 +1260,7 @@ describe('Package', () => {
 				},
 				{
 					bundle: false,
-					formats: ['esm'],
+					formats: ['lib', 'esm'],
 					inputs: { index: 'src/index.ts' },
 					platform: 'browser',
 					namespace: '',
