@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { applyStyle, Input, MultiSelect, Select, SelectOptionLike } from '@boost/cli';
-import { DEFAULT_INPUT, DEFAULT_SUPPORT } from '../../constants';
+import { DEFAULT_FORMATS, DEFAULT_INPUT, DEFAULT_SUPPORT } from '../../constants';
 import { Format, PackemonPackageConfig, Platform, Support } from '../../types';
 import { getVersionsCombo } from '../Environment';
 
@@ -11,12 +11,6 @@ export interface PackageFormProps {
 function getSupportVersions(platforms: Platform[], support: Support): string {
 	return applyStyle([...getVersionsCombo(platforms, support)].sort().join(', '), 'muted');
 }
-
-const DEFAULT_FORMATS: Record<Platform, Format[]> = {
-	browser: ['esm'],
-	native: ['lib'],
-	node: ['mjs'],
-};
 
 export function PackageForm({ onSubmit }: PackageFormProps) {
 	const [platform, setPlatform] = useState<Platform[]>([]);

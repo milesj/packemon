@@ -7,6 +7,7 @@ import { createDebugger, Debugger } from '@boost/debug';
 import { Artifact } from './Artifact';
 import { CodeArtifact } from './CodeArtifact';
 import {
+	DEFAULT_FORMATS,
 	FORMATS_BROWSER,
 	FORMATS_NATIVE,
 	FORMATS_NODE,
@@ -213,7 +214,7 @@ export class Package {
 				switch (platform) {
 					case 'native':
 						if (isEmpty) {
-							formats.push('lib');
+							formats.push(...DEFAULT_FORMATS.native);
 						} else {
 							formats = formats.filter((format) => (FORMATS_NATIVE as string[]).includes(format));
 						}
@@ -225,7 +226,7 @@ export class Package {
 						}
 
 						if (isEmpty) {
-							formats.push('mjs');
+							formats.push(...DEFAULT_FORMATS.node);
 						} else {
 							formats = formats.filter((format) => (FORMATS_NODE as string[]).includes(format));
 						}
@@ -234,7 +235,7 @@ export class Package {
 					case 'browser':
 					default:
 						if (isEmpty) {
-							formats.push('lib', 'esm');
+							formats.push(...DEFAULT_FORMATS.browser);
 
 							if (config.namespace) {
 								formats.push('umd');
