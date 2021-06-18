@@ -17,26 +17,6 @@ export { foo, nullCoalesc, optionalChain };
 ]
 `;
 
-exports[`New syntax transforms example test case: browser-current-esm 2`] = `
-Array [
-  "package.json",
-  Object {
-    "files": Array [
-      "cjs/**/*.{cjs,map}",
-      "esm/**/*.{js,map}",
-      "lib/**/*.{js,map}",
-      "mjs/**/*.{mjs,map}",
-      "src/**/*.{ts,tsx,json}",
-      "umd/**/*.{js,map}",
-    ],
-    "name": "examples",
-    "peerDependencies": Object {
-      "typescript": "*",
-    },
-  },
-]
-`;
-
 exports[`New syntax transforms example test case: browser-current-lib 1`] = `
 Array [
   "lib/index-browser-current-lib.js",
@@ -61,47 +41,7 @@ exports.optionalChain = optionalChain;
 ]
 `;
 
-exports[`New syntax transforms example test case: browser-current-lib 2`] = `
-Array [
-  "package.json",
-  Object {
-    "files": Array [
-      "cjs/**/*.{cjs,map}",
-      "esm/**/*.{js,map}",
-      "lib/**/*.{js,map}",
-      "mjs/**/*.{mjs,map}",
-      "src/**/*.{ts,tsx,json}",
-      "umd/**/*.{js,map}",
-    ],
-    "name": "examples",
-    "peerDependencies": Object {
-      "typescript": "*",
-    },
-  },
-]
-`;
-
 exports[`New syntax transforms example test case: browser-current-umd 1`] = `
-Array [
-  "package.json",
-  Object {
-    "files": Array [
-      "cjs/**/*.{cjs,map}",
-      "esm/**/*.{js,map}",
-      "lib/**/*.{js,map}",
-      "mjs/**/*.{mjs,map}",
-      "src/**/*.{ts,tsx,json}",
-      "umd/**/*.{js,map}",
-    ],
-    "name": "examples",
-    "peerDependencies": Object {
-      "typescript": "*",
-    },
-  },
-]
-`;
-
-exports[`New syntax transforms example test case: browser-current-umd 2`] = `
 Array [
   "umd/index-browser-current-umd.js",
   "(function (global, factory) {
@@ -158,26 +98,6 @@ export { foo, nullCoalesc, optionalChain };
 ]
 `;
 
-exports[`New syntax transforms example test case: browser-experimental-esm 2`] = `
-Array [
-  "package.json",
-  Object {
-    "files": Array [
-      "cjs/**/*.{cjs,map}",
-      "esm/**/*.{js,map}",
-      "lib/**/*.{js,map}",
-      "mjs/**/*.{mjs,map}",
-      "src/**/*.{ts,tsx,json}",
-      "umd/**/*.{js,map}",
-    ],
-    "name": "examples",
-    "peerDependencies": Object {
-      "typescript": "*",
-    },
-  },
-]
-`;
-
 exports[`New syntax transforms example test case: browser-experimental-lib 1`] = `
 Array [
   "lib/index-browser-experimental-lib.js",
@@ -202,47 +122,7 @@ exports.optionalChain = optionalChain;
 ]
 `;
 
-exports[`New syntax transforms example test case: browser-experimental-lib 2`] = `
-Array [
-  "package.json",
-  Object {
-    "files": Array [
-      "cjs/**/*.{cjs,map}",
-      "esm/**/*.{js,map}",
-      "lib/**/*.{js,map}",
-      "mjs/**/*.{mjs,map}",
-      "src/**/*.{ts,tsx,json}",
-      "umd/**/*.{js,map}",
-    ],
-    "name": "examples",
-    "peerDependencies": Object {
-      "typescript": "*",
-    },
-  },
-]
-`;
-
 exports[`New syntax transforms example test case: browser-experimental-umd 1`] = `
-Array [
-  "package.json",
-  Object {
-    "files": Array [
-      "cjs/**/*.{cjs,map}",
-      "esm/**/*.{js,map}",
-      "lib/**/*.{js,map}",
-      "mjs/**/*.{mjs,map}",
-      "src/**/*.{ts,tsx,json}",
-      "umd/**/*.{js,map}",
-    ],
-    "name": "examples",
-    "peerDependencies": Object {
-      "typescript": "*",
-    },
-  },
-]
-`;
-
-exports[`New syntax transforms example test case: browser-experimental-umd 2`] = `
 Array [
   "umd/index-browser-experimental-umd.js",
   "(function (global, factory) {
@@ -299,26 +179,6 @@ export { foo, nullCoalesc, optionalChain };
 ]
 `;
 
-exports[`New syntax transforms example test case: browser-legacy-esm 2`] = `
-Array [
-  "package.json",
-  Object {
-    "files": Array [
-      "cjs/**/*.{cjs,map}",
-      "esm/**/*.{js,map}",
-      "lib/**/*.{js,map}",
-      "mjs/**/*.{mjs,map}",
-      "src/**/*.{ts,tsx,json}",
-      "umd/**/*.{js,map}",
-    ],
-    "name": "examples",
-    "peerDependencies": Object {
-      "typescript": "*",
-    },
-  },
-]
-`;
-
 exports[`New syntax transforms example test case: browser-legacy-lib 1`] = `
 Array [
   "lib/index-browser-legacy-lib.js",
@@ -343,47 +203,7 @@ exports.optionalChain = optionalChain;
 ]
 `;
 
-exports[`New syntax transforms example test case: browser-legacy-lib 2`] = `
-Array [
-  "package.json",
-  Object {
-    "files": Array [
-      "cjs/**/*.{cjs,map}",
-      "esm/**/*.{js,map}",
-      "lib/**/*.{js,map}",
-      "mjs/**/*.{mjs,map}",
-      "src/**/*.{ts,tsx,json}",
-      "umd/**/*.{js,map}",
-    ],
-    "name": "examples",
-    "peerDependencies": Object {
-      "typescript": "*",
-    },
-  },
-]
-`;
-
 exports[`New syntax transforms example test case: browser-legacy-umd 1`] = `
-Array [
-  "package.json",
-  Object {
-    "files": Array [
-      "cjs/**/*.{cjs,map}",
-      "esm/**/*.{js,map}",
-      "lib/**/*.{js,map}",
-      "mjs/**/*.{mjs,map}",
-      "src/**/*.{ts,tsx,json}",
-      "umd/**/*.{js,map}",
-    ],
-    "name": "examples",
-    "peerDependencies": Object {
-      "typescript": "*",
-    },
-  },
-]
-`;
-
-exports[`New syntax transforms example test case: browser-legacy-umd 2`] = `
 Array [
   "umd/index-browser-legacy-umd.js",
   "(function (global, factory) {
@@ -440,26 +260,6 @@ export { foo, nullCoalesc, optionalChain };
 ]
 `;
 
-exports[`New syntax transforms example test case: browser-stable-esm 2`] = `
-Array [
-  "package.json",
-  Object {
-    "files": Array [
-      "cjs/**/*.{cjs,map}",
-      "esm/**/*.{js,map}",
-      "lib/**/*.{js,map}",
-      "mjs/**/*.{mjs,map}",
-      "src/**/*.{ts,tsx,json}",
-      "umd/**/*.{js,map}",
-    ],
-    "name": "examples",
-    "peerDependencies": Object {
-      "typescript": "*",
-    },
-  },
-]
-`;
-
 exports[`New syntax transforms example test case: browser-stable-lib 1`] = `
 Array [
   "lib/index-browser-stable-lib.js",
@@ -484,47 +284,7 @@ exports.optionalChain = optionalChain;
 ]
 `;
 
-exports[`New syntax transforms example test case: browser-stable-lib 2`] = `
-Array [
-  "package.json",
-  Object {
-    "files": Array [
-      "cjs/**/*.{cjs,map}",
-      "esm/**/*.{js,map}",
-      "lib/**/*.{js,map}",
-      "mjs/**/*.{mjs,map}",
-      "src/**/*.{ts,tsx,json}",
-      "umd/**/*.{js,map}",
-    ],
-    "name": "examples",
-    "peerDependencies": Object {
-      "typescript": "*",
-    },
-  },
-]
-`;
-
 exports[`New syntax transforms example test case: browser-stable-umd 1`] = `
-Array [
-  "package.json",
-  Object {
-    "files": Array [
-      "cjs/**/*.{cjs,map}",
-      "esm/**/*.{js,map}",
-      "lib/**/*.{js,map}",
-      "mjs/**/*.{mjs,map}",
-      "src/**/*.{ts,tsx,json}",
-      "umd/**/*.{js,map}",
-    ],
-    "name": "examples",
-    "peerDependencies": Object {
-      "typescript": "*",
-    },
-  },
-]
-`;
-
-exports[`New syntax transforms example test case: browser-stable-umd 2`] = `
 Array [
   "umd/index-browser-stable-umd.js",
   "(function (global, factory) {
@@ -588,26 +348,6 @@ exports.optionalChain = optionalChain;
 ]
 `;
 
-exports[`New syntax transforms example test case: native-current-lib 2`] = `
-Array [
-  "package.json",
-  Object {
-    "files": Array [
-      "cjs/**/*.{cjs,map}",
-      "esm/**/*.{js,map}",
-      "lib/**/*.{js,map}",
-      "mjs/**/*.{mjs,map}",
-      "src/**/*.{ts,tsx,json}",
-      "umd/**/*.{js,map}",
-    ],
-    "name": "examples",
-    "peerDependencies": Object {
-      "typescript": "*",
-    },
-  },
-]
-`;
-
 exports[`New syntax transforms example test case: native-experimental-lib 1`] = `
 Array [
   "lib/index-native-experimental-lib.js",
@@ -629,26 +369,6 @@ exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
 ",
-]
-`;
-
-exports[`New syntax transforms example test case: native-experimental-lib 2`] = `
-Array [
-  "package.json",
-  Object {
-    "files": Array [
-      "cjs/**/*.{cjs,map}",
-      "esm/**/*.{js,map}",
-      "lib/**/*.{js,map}",
-      "mjs/**/*.{mjs,map}",
-      "src/**/*.{ts,tsx,json}",
-      "umd/**/*.{js,map}",
-    ],
-    "name": "examples",
-    "peerDependencies": Object {
-      "typescript": "*",
-    },
-  },
 ]
 `;
 
@@ -676,26 +396,6 @@ exports.optionalChain = optionalChain;
 ]
 `;
 
-exports[`New syntax transforms example test case: native-legacy-lib 2`] = `
-Array [
-  "package.json",
-  Object {
-    "files": Array [
-      "cjs/**/*.{cjs,map}",
-      "esm/**/*.{js,map}",
-      "lib/**/*.{js,map}",
-      "mjs/**/*.{mjs,map}",
-      "src/**/*.{ts,tsx,json}",
-      "umd/**/*.{js,map}",
-    ],
-    "name": "examples",
-    "peerDependencies": Object {
-      "typescript": "*",
-    },
-  },
-]
-`;
-
 exports[`New syntax transforms example test case: native-stable-lib 1`] = `
 Array [
   "lib/index-native-stable-lib.js",
@@ -717,26 +417,6 @@ exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
 ",
-]
-`;
-
-exports[`New syntax transforms example test case: native-stable-lib 2`] = `
-Array [
-  "package.json",
-  Object {
-    "files": Array [
-      "cjs/**/*.{cjs,map}",
-      "esm/**/*.{js,map}",
-      "lib/**/*.{js,map}",
-      "mjs/**/*.{mjs,map}",
-      "src/**/*.{ts,tsx,json}",
-      "umd/**/*.{js,map}",
-    ],
-    "name": "examples",
-    "peerDependencies": Object {
-      "typescript": "*",
-    },
-  },
 ]
 `;
 
@@ -762,26 +442,6 @@ exports.optionalChain = optionalChain;
 ]
 `;
 
-exports[`New syntax transforms example test case: node-current-cjs 2`] = `
-Array [
-  "package.json",
-  Object {
-    "files": Array [
-      "cjs/**/*.{cjs,map}",
-      "esm/**/*.{js,map}",
-      "lib/**/*.{js,map}",
-      "mjs/**/*.{mjs,map}",
-      "src/**/*.{ts,tsx,json}",
-      "umd/**/*.{js,map}",
-    ],
-    "name": "examples",
-    "peerDependencies": Object {
-      "typescript": "*",
-    },
-  },
-]
-`;
-
 exports[`New syntax transforms example test case: node-current-lib 1`] = `
 Array [
   "lib/index-node-current-lib.js",
@@ -804,26 +464,6 @@ exports.optionalChain = optionalChain;
 ]
 `;
 
-exports[`New syntax transforms example test case: node-current-lib 2`] = `
-Array [
-  "package.json",
-  Object {
-    "files": Array [
-      "cjs/**/*.{cjs,map}",
-      "esm/**/*.{js,map}",
-      "lib/**/*.{js,map}",
-      "mjs/**/*.{mjs,map}",
-      "src/**/*.{ts,tsx,json}",
-      "umd/**/*.{js,map}",
-    ],
-    "name": "examples",
-    "peerDependencies": Object {
-      "typescript": "*",
-    },
-  },
-]
-`;
-
 exports[`New syntax transforms example test case: node-current-mjs 1`] = `
 Array [
   "mjs/index-node-current-mjs.mjs",
@@ -836,26 +476,6 @@ foo.bar ?? (foo.bar = 'bar');
 foo.baz || (foo.baz = 'baz');
 export { foo, nullCoalesc, optionalChain };
 ",
-]
-`;
-
-exports[`New syntax transforms example test case: node-current-mjs 2`] = `
-Array [
-  "package.json",
-  Object {
-    "files": Array [
-      "cjs/**/*.{cjs,map}",
-      "esm/**/*.{js,map}",
-      "lib/**/*.{js,map}",
-      "mjs/**/*.{mjs,map}",
-      "src/**/*.{ts,tsx,json}",
-      "umd/**/*.{js,map}",
-    ],
-    "name": "examples",
-    "peerDependencies": Object {
-      "typescript": "*",
-    },
-  },
 ]
 `;
 
@@ -881,26 +501,6 @@ exports.optionalChain = optionalChain;
 ]
 `;
 
-exports[`New syntax transforms example test case: node-experimental-cjs 2`] = `
-Array [
-  "package.json",
-  Object {
-    "files": Array [
-      "cjs/**/*.{cjs,map}",
-      "esm/**/*.{js,map}",
-      "lib/**/*.{js,map}",
-      "mjs/**/*.{mjs,map}",
-      "src/**/*.{ts,tsx,json}",
-      "umd/**/*.{js,map}",
-    ],
-    "name": "examples",
-    "peerDependencies": Object {
-      "typescript": "*",
-    },
-  },
-]
-`;
-
 exports[`New syntax transforms example test case: node-experimental-lib 1`] = `
 Array [
   "lib/index-node-experimental-lib.js",
@@ -923,26 +523,6 @@ exports.optionalChain = optionalChain;
 ]
 `;
 
-exports[`New syntax transforms example test case: node-experimental-lib 2`] = `
-Array [
-  "package.json",
-  Object {
-    "files": Array [
-      "cjs/**/*.{cjs,map}",
-      "esm/**/*.{js,map}",
-      "lib/**/*.{js,map}",
-      "mjs/**/*.{mjs,map}",
-      "src/**/*.{ts,tsx,json}",
-      "umd/**/*.{js,map}",
-    ],
-    "name": "examples",
-    "peerDependencies": Object {
-      "typescript": "*",
-    },
-  },
-]
-`;
-
 exports[`New syntax transforms example test case: node-experimental-mjs 1`] = `
 Array [
   "mjs/index-node-experimental-mjs.mjs",
@@ -955,26 +535,6 @@ foo.bar ??= 'bar';
 foo.baz ||= 'baz';
 export { foo, nullCoalesc, optionalChain };
 ",
-]
-`;
-
-exports[`New syntax transforms example test case: node-experimental-mjs 2`] = `
-Array [
-  "package.json",
-  Object {
-    "files": Array [
-      "cjs/**/*.{cjs,map}",
-      "esm/**/*.{js,map}",
-      "lib/**/*.{js,map}",
-      "mjs/**/*.{mjs,map}",
-      "src/**/*.{ts,tsx,json}",
-      "umd/**/*.{js,map}",
-    ],
-    "name": "examples",
-    "peerDependencies": Object {
-      "typescript": "*",
-    },
-  },
 ]
 `;
 
@@ -1002,26 +562,6 @@ exports.optionalChain = optionalChain;
 ]
 `;
 
-exports[`New syntax transforms example test case: node-legacy-cjs 2`] = `
-Array [
-  "package.json",
-  Object {
-    "files": Array [
-      "cjs/**/*.{cjs,map}",
-      "esm/**/*.{js,map}",
-      "lib/**/*.{js,map}",
-      "mjs/**/*.{mjs,map}",
-      "src/**/*.{ts,tsx,json}",
-      "umd/**/*.{js,map}",
-    ],
-    "name": "examples",
-    "peerDependencies": Object {
-      "typescript": "*",
-    },
-  },
-]
-`;
-
 exports[`New syntax transforms example test case: node-legacy-lib 1`] = `
 Array [
   "lib/index-node-legacy-lib.js",
@@ -1046,26 +586,6 @@ exports.optionalChain = optionalChain;
 ]
 `;
 
-exports[`New syntax transforms example test case: node-legacy-lib 2`] = `
-Array [
-  "package.json",
-  Object {
-    "files": Array [
-      "cjs/**/*.{cjs,map}",
-      "esm/**/*.{js,map}",
-      "lib/**/*.{js,map}",
-      "mjs/**/*.{mjs,map}",
-      "src/**/*.{ts,tsx,json}",
-      "umd/**/*.{js,map}",
-    ],
-    "name": "examples",
-    "peerDependencies": Object {
-      "typescript": "*",
-    },
-  },
-]
-`;
-
 exports[`New syntax transforms example test case: node-legacy-mjs 1`] = `
 Array [
   "mjs/index-node-legacy-mjs.mjs",
@@ -1080,26 +600,6 @@ const nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
 foo.baz || (foo.baz = 'baz');
 export { foo, nullCoalesc, optionalChain };
 ",
-]
-`;
-
-exports[`New syntax transforms example test case: node-legacy-mjs 2`] = `
-Array [
-  "package.json",
-  Object {
-    "files": Array [
-      "cjs/**/*.{cjs,map}",
-      "esm/**/*.{js,map}",
-      "lib/**/*.{js,map}",
-      "mjs/**/*.{mjs,map}",
-      "src/**/*.{ts,tsx,json}",
-      "umd/**/*.{js,map}",
-    ],
-    "name": "examples",
-    "peerDependencies": Object {
-      "typescript": "*",
-    },
-  },
 ]
 `;
 
@@ -1127,26 +627,6 @@ exports.optionalChain = optionalChain;
 ]
 `;
 
-exports[`New syntax transforms example test case: node-stable-cjs 2`] = `
-Array [
-  "package.json",
-  Object {
-    "files": Array [
-      "cjs/**/*.{cjs,map}",
-      "esm/**/*.{js,map}",
-      "lib/**/*.{js,map}",
-      "mjs/**/*.{mjs,map}",
-      "src/**/*.{ts,tsx,json}",
-      "umd/**/*.{js,map}",
-    ],
-    "name": "examples",
-    "peerDependencies": Object {
-      "typescript": "*",
-    },
-  },
-]
-`;
-
 exports[`New syntax transforms example test case: node-stable-lib 1`] = `
 Array [
   "lib/index-node-stable-lib.js",
@@ -1171,26 +651,6 @@ exports.optionalChain = optionalChain;
 ]
 `;
 
-exports[`New syntax transforms example test case: node-stable-lib 2`] = `
-Array [
-  "package.json",
-  Object {
-    "files": Array [
-      "cjs/**/*.{cjs,map}",
-      "esm/**/*.{js,map}",
-      "lib/**/*.{js,map}",
-      "mjs/**/*.{mjs,map}",
-      "src/**/*.{ts,tsx,json}",
-      "umd/**/*.{js,map}",
-    ],
-    "name": "examples",
-    "peerDependencies": Object {
-      "typescript": "*",
-    },
-  },
-]
-`;
-
 exports[`New syntax transforms example test case: node-stable-mjs 1`] = `
 Array [
   "mjs/index-node-stable-mjs.mjs",
@@ -1205,25 +665,5 @@ const nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
 foo.baz || (foo.baz = 'baz');
 export { foo, nullCoalesc, optionalChain };
 ",
-]
-`;
-
-exports[`New syntax transforms example test case: node-stable-mjs 2`] = `
-Array [
-  "package.json",
-  Object {
-    "files": Array [
-      "cjs/**/*.{cjs,map}",
-      "esm/**/*.{js,map}",
-      "lib/**/*.{js,map}",
-      "mjs/**/*.{mjs,map}",
-      "src/**/*.{ts,tsx,json}",
-      "umd/**/*.{js,map}",
-    ],
-    "name": "examples",
-    "peerDependencies": Object {
-      "typescript": "*",
-    },
-  },
 ]
 `;

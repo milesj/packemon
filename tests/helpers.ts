@@ -56,7 +56,7 @@ export function createProjectPackage(root: Path, customProject?: Project): Packa
 	);
 }
 
-export function createSnapshotSpies(root: PortablePath) {
+export function createSnapshotSpies(root: PortablePath, captureJson: boolean = false) {
 	let snapshots: [string, unknown][] = [];
 	let fsSpy: jest.SpyInstance;
 	let fsxSpy: jest.SpyInstance;
@@ -66,7 +66,12 @@ export function createSnapshotSpies(root: PortablePath) {
 		const handler = (file: unknown, content: unknown, cb?: unknown) => {
 			const filePath = new Path(String(file)).path().replace(String(root), '').replace(/^\//, '');
 
-			if (!filePath.endsWith('map')) {
+			if (
+				filePath.endsWith('.js') ||
+				filePath.endsWith('.cjs') ||
+				filePath.endsWith('.mjs') ||
+				(captureJson && filePath.endsWith('.json'))
+			) {
 				snapshots.push([filePath, content]);
 			}
 

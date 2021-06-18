@@ -6,7 +6,7 @@ import { createProjectPackage, createSnapshotSpies } from './helpers';
 describe('Outputs', () => {
 	describe('artifacts', () => {
 		const root = new Path(getFixturePath('project-rollup'));
-		const snapshots = createSnapshotSpies(root);
+		const snapshots = createSnapshotSpies(root, true);
 
 		it('builds all the artifacts with rollup', async () => {
 			const pkg = createProjectPackage(root);
@@ -56,7 +56,7 @@ describe('Outputs', () => {
 
 	describe('bundle', () => {
 		const root = new Path(getFixturePath('project-bundle'));
-		const snapshots = createSnapshotSpies(root);
+		const snapshots = createSnapshotSpies(root, true);
 
 		it('bundles all files into a single file with rollup', async () => {
 			const pkg = createProjectPackage(root);
@@ -79,7 +79,7 @@ describe('Outputs', () => {
 
 	describe('no bundle', () => {
 		const root = new Path(getFixturePath('project-bundle'));
-		const snapshots = createSnapshotSpies(root);
+		const snapshots = createSnapshotSpies(root, true);
 
 		it('creates individual files for every source file', async () => {
 			const pkg = createProjectPackage(root);
