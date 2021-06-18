@@ -38,7 +38,7 @@ export function getVersionsCombo(platforms: Platform[], support: Support): Set<s
 				const targets =
 					support === 'experimental' ? ['last 2 versions'] : toArray(BROWSER_TARGETS[support]);
 
-				versions.add(`Browser (${targets.join(', ')})`);
+				versions.add(`Browser (${targets[0]})`);
 
 				break;
 			}
