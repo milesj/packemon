@@ -161,17 +161,28 @@ export function getBabelOutputConfig(
 
 	// PLUGINS
 
-	if ((platform === 'browser' || platform === 'native') && support === 'legacy') {
+	if (platform === 'browser' || platform === 'native') {
+		// While modern browsers support these features, Node.js <= 12 does not,
+		// which results in failing builds trying to parse the syntax
 		plugins.push(
-			// Transform async/await into Promises
-			[resolve('babel-plugin-transform-async-to-promises'), { inlineHelpers: true, target: 'es5' }],
-
-			// Transform generators to Regenerator
-			[
-				resolve('@babel/plugin-transform-runtime'),
-				{ helpers: false, regenerator: true, useESModules: format === 'esm' },
-			],
+			resolve('@babel/plugin-proposal-logical-assignment-operators'),
+			resolve('@babel/plugin-proposal-nullish-coalescing-operator'),
+			resolve('@babel/plugin-proposal-optional-chaining'),
 		);
+
+		// Both browsers and Node.js supports these features outside of legacy targets
+		if (support === 'legacy') {
+			plugins.push(
+				[
+					resolve('babel-plugin-transform-async-to-promises'),
+					{ inlineHelpers: true, target: 'es5' },
+				],
+				[
+					resolve('@babel/plugin-transform-runtime'),
+					{ helpers: false, regenerator: true, useESModules: format === 'esm' },
+				],
+			);
+		}
 	} else {
 		// Use `Object.assign` when available
 		plugins.push(

@@ -911,18 +911,9 @@ Object {
     "strictMode": undefined,
   },
   "plugins": Array [
-    Array [
-      "@babel/plugin-transform-destructuring",
-      Object {
-        "useBuiltIns": true,
-      },
-    ],
-    Array [
-      "@babel/plugin-proposal-object-rest-spread",
-      Object {
-        "useBuiltIns": true,
-      },
-    ],
+    "@babel/plugin-proposal-logical-assignment-operators",
+    "@babel/plugin-proposal-nullish-coalescing-operator",
+    "@babel/plugin-proposal-optional-chaining",
     Object {
       "visitor": Object {
         "Identifier": Object {
@@ -967,18 +958,9 @@ Object {
     "strictMode": undefined,
   },
   "plugins": Array [
-    Array [
-      "@babel/plugin-transform-destructuring",
-      Object {
-        "useBuiltIns": true,
-      },
-    ],
-    Array [
-      "@babel/plugin-proposal-object-rest-spread",
-      Object {
-        "useBuiltIns": true,
-      },
-    ],
+    "@babel/plugin-proposal-logical-assignment-operators",
+    "@babel/plugin-proposal-nullish-coalescing-operator",
+    "@babel/plugin-proposal-optional-chaining",
     Object {
       "visitor": Object {
         "Identifier": Object {
