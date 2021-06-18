@@ -163,14 +163,17 @@ export function getBabelOutputConfig(
 
 	if (platform === 'browser' || platform === 'native') {
 		// While modern browsers support these features, Node.js <= 12 does not,
-		// which results in failing builds trying to parse the syntax
-		plugins.push(
-			resolve('@babel/plugin-proposal-logical-assignment-operators'),
-			resolve('@babel/plugin-proposal-nullish-coalescing-operator'),
-			resolve('@babel/plugin-proposal-optional-chaining'),
-		);
+		// which results in failing builds trying to parse the syntax.
+		// Let's only apply this for the lib format, but allow it for esm.
+		if (format === 'lib') {
+			plugins.push(
+				resolve('@babel/plugin-proposal-logical-assignment-operators'),
+				resolve('@babel/plugin-proposal-nullish-coalescing-operator'),
+				resolve('@babel/plugin-proposal-optional-chaining'),
+			);
+		}
 
-		// Both browsers and Node.js supports these features outside of legacy targets
+		// Both browsers and Node.js support these features outside of legacy targets
 		if (support === 'legacy') {
 			plugins.push(
 				[
