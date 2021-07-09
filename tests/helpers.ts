@@ -29,7 +29,6 @@ export function mockSpy(instance: unknown): jest.SpyInstance {
 }
 
 export class TestArtifact extends Artifact {
-	// eslint-disable-next-line unicorn/prefer-prototype-methods
 	log = this.logWithSource.bind(this);
 
 	build() {

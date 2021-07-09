@@ -11,7 +11,7 @@ Object.entries(envs).forEach(([name, bool]) => {
 
 if (!global.setImmediate) {
 	// @ts-expect-error Missing from Jest
-	global.setImmediate = (cb) => setTimeout(cb, 0);
+	global.setImmediate = (cb: Function) => setTimeout(cb, 0);
 }
 
 export {};
