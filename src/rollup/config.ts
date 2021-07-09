@@ -93,6 +93,7 @@ export function getRollupOutputConfig(
 		dir: artifact.package.path.append(folder).path(),
 		format: getRollupModuleFormat(format),
 		originalFormat: format,
+		interop: 'auto',
 		// Map our externals to local paths with trailing extension
 		paths: getRollupPaths(artifact, ext),
 		// Use our extension for file names
