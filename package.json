@@ -19,7 +19,7 @@
     "coverage": "yarn run test --coverage",
     "format": "beemo prettier",
     "lint": "beemo eslint",
-    "release": "npx np --yolo",
+    "release": "yarn prerelease && npx np --yolo",
     "test": "beemo jest",
     "type": "beemo typescript --noEmit",
     "prerelease": "yarn run clean && yarn run setup && yarn run pack && yarn run check",
