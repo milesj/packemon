@@ -1071,20 +1071,20 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@beemo/cli@^2.0.0-rc.3":
-  version "2.0.0-rc.3"
-  resolved "https://registry.yarnpkg.com/@beemo/cli/-/cli-2.0.0-rc.3.tgz#7ad1977ad608b84e678655f6d652cd938d0325dc"
-  integrity sha512-J0aq+ta7Nd+2q7t2bCX/MTW8AwrEDmrgtuZJxyMbNrqpwghTxnL18JOKFrnHS2PL4MBXpGxsot5QdByuTNmkRQ==
+"@beemo/cli@^2.0.0-rc.4":
+  version "2.0.0-rc.4"
+  resolved "https://registry.yarnpkg.com/@beemo/cli/-/cli-2.0.0-rc.4.tgz#4f803ba2efdf55cc852f05eb8ba7e2208294c207"
+  integrity sha512-qhjzPM0tQQmzWytBlhRij+lJVp0B5XJd4GY5t589q6J+5AZBFjYerYsZlVGoewSlc65GC5mGYZn92tEljwy1Ag==
   dependencies:
     "@boost/cli" "^2.10.4"
     debug "^4.3.2"
     ink "^3.0.8"
     react "^16.14.0"
 
-"@beemo/config-babel@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@beemo/config-babel/-/config-babel-1.0.0.tgz#0cc419b47d3544e52629e2a32a81d8bac26ca528"
-  integrity sha512-0+EsuUQL1Mqo27aPfRLazU0XDIo86RQoiOGDCQkbdfROEYa9lhTywKjQ3td8iWNBz6WlrKJS5+4D1todxYnoxg==
+"@beemo/config-babel@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@beemo/config-babel/-/config-babel-1.0.1.tgz#bb1551b9e029cc040659196f58452e50df7d7f88"
+  integrity sha512-9d+MNlnBfq03/KrfpTFgZ0fIp3AU1CQpGhOTjxafQQ8vlnqU47CLGqVtZNkwdiinuvA7IBU9Wl3fQaUjsggwvw==
   dependencies:
     babel-preset-beemo "^1.0.0"
 
@@ -1093,40 +1093,40 @@
   resolved "https://registry.yarnpkg.com/@beemo/config-constants/-/config-constants-1.0.0.tgz#c4a996cd6820d45adc32d2d51806df74603fa7be"
   integrity sha512-2SH0OSTlOvcStWoALFiEWRnuLjLNR0KW0Bkt1pHxnnPHJkC4LhwdXB8oiPqaq8FwtWuDBzposcyfYN7Aw++nlA==
 
-"@beemo/config-eslint@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@beemo/config-eslint/-/config-eslint-1.0.1.tgz#2bc663e628f68e415a331b4753e3e4096058e7ca"
-  integrity sha512-FQcgYiHWTeSeGD6BxXl8O5YeykLCadicIktQy5wSRwN8hmjgqHkNdGxrhCVyCSGPbIGy1fCDZuB5Uyy0bVuKPQ==
+"@beemo/config-eslint@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@beemo/config-eslint/-/config-eslint-1.0.2.tgz#b3bd2190db5cf4d2b78cb88a542d9274981df3fb"
+  integrity sha512-ayiKCvXmKDifbXBmEjYZWe08yALvAWGgKettqMQpOFnoLTHDD5+aaZ6+jPz+Z1qELxLtFxEHzFsB+Ljj/TMjng==
   dependencies:
     "@beemo/config-constants" "^1.0.0"
-    eslint-config-beemo "^1.0.1"
+    eslint-config-beemo "^1.0.2"
 
-"@beemo/config-jest@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@beemo/config-jest/-/config-jest-1.0.1.tgz#6582a8698d1090b26bf78ce7a2a2bdcf353b443c"
-  integrity sha512-krmg5e2/FXAWcMmyItGNAqo56pH/oLyOvemyHYZl5YJhUhMWj1wIvEdIkWr5DZBUs2iPc5pvDHHnoq/o8PWnJQ==
+"@beemo/config-jest@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@beemo/config-jest/-/config-jest-1.0.2.tgz#8273376abe05daaf9cbd339c74d6701b25ddaf83"
+  integrity sha512-MPF3Hq7PbUuBfXYU4AGPErNQH8IU7hsMDK3ysgsZ8XgsT2vrb70BfjDaZ3+nXdxpNvepWHkQdqpYqnLDq7aUtw==
   dependencies:
     jest-preset-beemo "^1.0.1"
 
-"@beemo/config-prettier@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@beemo/config-prettier/-/config-prettier-1.0.0.tgz#ab100ea55f791a2c689a29368505449a13f96383"
-  integrity sha512-Ux7zH4kAblTsAuwJOBqJjaNKEPuOgThm8WO4gwga0+nOF+qm91SIpRGsIxT7TyR6KXYR6tAqPO71fYcvaMuSHA==
+"@beemo/config-prettier@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@beemo/config-prettier/-/config-prettier-1.0.1.tgz#e6026a51045865a4c659c834d672d2b3e17a05a1"
+  integrity sha512-27I4dI2q2pmXsnRF+MTXNiKJWZerISNxEjrbIfaleM9QJxQNdUqoaHoh58YjgPEaNyvsg2yRjXh/VRXVRRJrig==
   dependencies:
     "@beemo/config-constants" "^1.0.0"
     prettier-config-beemo "^1.0.0"
 
-"@beemo/config-typescript@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@beemo/config-typescript/-/config-typescript-1.0.0.tgz#c136bbeb3858c46480f24ffb4687dac80b246d76"
-  integrity sha512-fQldOGawLidpYFGxZHSudz1UnuQNMEv9JnbCTOsWBFN8SpdQMp6giidYQAm3Alhw8sMXwVBDtcDHJdV4XU5fNw==
+"@beemo/config-typescript@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@beemo/config-typescript/-/config-typescript-1.0.1.tgz#4badf8a527e7335dced759c4e1112e86e14993b2"
+  integrity sha512-EJcqE3Y9sCMGFphmqyaY2aUeLECTMRLRCClDtOkqyoK+5LKdKQTXZoscosr4/K6RbewrbYXc0+OM9SJwyRJ45Q==
   dependencies:
     tsconfig-beemo "^1.0.0"
 
-"@beemo/core@^2.0.0-rc.3":
-  version "2.0.0-rc.3"
-  resolved "https://registry.yarnpkg.com/@beemo/core/-/core-2.0.0-rc.3.tgz#b8c7af07ce33774170d57ae128ab2764a8e4cab3"
-  integrity sha512-FHRTUcnDbtTnvUfhEqQ5U64R2wcHElkBQzAoYl2XIFGdsQBcPYVc0GccE4HsBYsDUY45xIgiZfKC266NcAS2BQ==
+"@beemo/core@^2.0.0-rc.4":
+  version "2.0.0-rc.4"
+  resolved "https://registry.yarnpkg.com/@beemo/core/-/core-2.0.0-rc.4.tgz#7558b035a2a8d5965a96c27f491dbf3bcf46c45a"
+  integrity sha512-RavZnfRTllYcICp+1mP9PW2PdhLa8A1OjTeYG8lu+Je+wj/QMPR2rFJTODKLdx1Yr4BRDOp+iX9ZFHbJJl9SmQ==
   dependencies:
     "@boost/args" "^2.3.2"
     "@boost/common" "^2.7.2"
@@ -1134,76 +1134,77 @@
     "@boost/debug" "^2.2.5"
     "@boost/event" "^2.3.2"
     "@boost/internal" "^2.2.2"
+    "@boost/log" "^2.2.5"
     "@boost/pipeline" "^2.2.5"
     "@boost/plugin" "^2.3.3"
     "@boost/terminal" "^2.2.1"
     "@boost/translate" "^2.2.5"
     execa "^5.1.1"
-    fast-glob "^3.2.5"
-    fs-extra "^9.1.0"
+    fast-glob "^3.2.7"
+    fs-extra "^10.0.0"
     hygen "^6.1.0"
     is-glob "^4.0.1"
     lodash "^4.17.21"
     micromatch "^4.0.4"
 
-"@beemo/dev@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@beemo/dev/-/dev-1.1.0.tgz#e87f620410441a0c949d304f4070477f1c17fc07"
-  integrity sha512-ZnG5g741WATxWN7EQTNhIMuhIY/F6zgQJko21d6Fgz5U3rcrJEye7J/gqo8+9ihzgN9S8X7Qh0G/Cg7twBaLCw==
+"@beemo/dev@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@beemo/dev/-/dev-1.2.0.tgz#7536567c2fc0fe0e611be52e43b3cf39563152f5"
+  integrity sha512-lZaM1uDJX/r/JRbxEcsCT6djjfSsU/IdXkywxe9ZZh8SYjRlFsxhuC54n+0Gpczh+XxufmvPO7PJ8fp2ipe+lQ==
   dependencies:
     "@babel/cli" "^7.14.5"
     "@babel/core" "^7.14.6"
-    "@beemo/cli" "^2.0.0-rc.3"
-    "@beemo/config-babel" "^1.0.0"
-    "@beemo/config-eslint" "^1.0.1"
-    "@beemo/config-jest" "^1.0.1"
-    "@beemo/config-prettier" "^1.0.0"
-    "@beemo/config-typescript" "^1.0.0"
-    "@beemo/core" "^2.0.0-rc.3"
-    "@beemo/driver-babel" "^2.0.0-rc.3"
-    "@beemo/driver-eslint" "^2.0.0-rc.3"
-    "@beemo/driver-jest" "^2.0.0-rc.2"
-    "@beemo/driver-prettier" "^2.0.0-rc.3"
-    "@beemo/driver-typescript" "^2.0.0-rc.3"
+    "@beemo/cli" "^2.0.0-rc.4"
+    "@beemo/config-babel" "^1.0.1"
+    "@beemo/config-eslint" "^1.0.2"
+    "@beemo/config-jest" "^1.0.2"
+    "@beemo/config-prettier" "^1.0.1"
+    "@beemo/config-typescript" "^1.0.1"
+    "@beemo/core" "^2.0.0-rc.4"
+    "@beemo/driver-babel" "^2.0.0-rc.4"
+    "@beemo/driver-eslint" "^2.0.0-rc.4"
+    "@beemo/driver-jest" "^2.0.0-rc.3"
+    "@beemo/driver-prettier" "^2.0.0-rc.4"
+    "@beemo/driver-typescript" "^2.0.0-rc.4"
     eslint "^7.30.0"
     jest "^27.0.6"
     prettier "^2.3.2"
     typescript "^4.3.5"
 
-"@beemo/driver-babel@^2.0.0-rc.3":
-  version "2.0.0-rc.3"
-  resolved "https://registry.yarnpkg.com/@beemo/driver-babel/-/driver-babel-2.0.0-rc.3.tgz#5d620e395722a74c105b1a844e60da1b70d46ca9"
-  integrity sha512-Vl2qquL1x0ppGfXRbXKOtz7cHBAAytiqpEjNK6gWNXn4Ysu45QCUgRLaEqVzeTkfcqDtScqTGOY1dJcA3vIbwQ==
+"@beemo/driver-babel@^2.0.0-rc.4":
+  version "2.0.0-rc.4"
+  resolved "https://registry.yarnpkg.com/@beemo/driver-babel/-/driver-babel-2.0.0-rc.4.tgz#da650ca69749f9fa732786ad79637cdebf7f77a7"
+  integrity sha512-FoOkMdKey0JHFhi9A9yhPUEVXnPLBdFel9pRy+AC62veeh+bE2eEnoUall5ZX9NNPJBmytHTZgdkzXR13QrI9A==
   dependencies:
     rimraf "^3.0.2"
 
-"@beemo/driver-eslint@^2.0.0-rc.3":
-  version "2.0.0-rc.3"
-  resolved "https://registry.yarnpkg.com/@beemo/driver-eslint/-/driver-eslint-2.0.0-rc.3.tgz#e1b09078c2d1f575e8e31e3b5bfd9e4662728359"
-  integrity sha512-SLq6CfL/un80e5m/hTw+EoQqiWimzMlr1rbV59gg1ZggN8wlBrV+C51qo/0rqmnuVugB0mZIVFlzKaBthN+1gA==
+"@beemo/driver-eslint@^2.0.0-rc.4":
+  version "2.0.0-rc.4"
+  resolved "https://registry.yarnpkg.com/@beemo/driver-eslint/-/driver-eslint-2.0.0-rc.4.tgz#0e2e7cafaaa061f91d94d99bb2425adf14d43bed"
+  integrity sha512-RjO3/0M7lryO41WWMXtEozd0Jy0ki6C3LRSuAm+a5qdJvegrnIJ92WSXQlb6ClwfI8bSTglyqsBVZMJ8PaTP6Q==
   dependencies:
     "@boost/event" "^2.3.2"
     "@types/eslint" "*"
 
-"@beemo/driver-jest@^2.0.0-rc.2":
-  version "2.0.0-rc.2"
-  resolved "https://registry.yarnpkg.com/@beemo/driver-jest/-/driver-jest-2.0.0-rc.2.tgz#5a3c7053567f3c38861d54a287963c1aa488e0e2"
-  integrity sha512-OVPab/8Ym4sIVGKAkq8U9mOONvtqfymmif+KZ7m4DfSt57a/0jLd+BkODADM9elVxnKZoAGYFjuU6ISQpesMcA==
-  dependencies:
-    "@jest/types" "^26.6.2"
-
-"@beemo/driver-prettier@^2.0.0-rc.3":
+"@beemo/driver-jest@^2.0.0-rc.3":
   version "2.0.0-rc.3"
-  resolved "https://registry.yarnpkg.com/@beemo/driver-prettier/-/driver-prettier-2.0.0-rc.3.tgz#b89a3986f5a121c1fbc941707dccfe003b2e9c0c"
-  integrity sha512-5bZxYZnPFU80vOWsscJJPKxtrWi3+45Y/FyN8JZV56YRWxyRF0GPRo8l7Tr1/o6QlABLVomyrwFmSMylZfAY8g==
+  resolved "https://registry.yarnpkg.com/@beemo/driver-jest/-/driver-jest-2.0.0-rc.3.tgz#559cad612ad140c7c42b16844b597133da7eec45"
+  integrity sha512-/cKdUeUl3HpXmtn1FykdQrJ5aFgy1fLuiC5RduqWnRgvehWNqszjqDK+4lDS7XAdSNAQ38TUn2e6DiY4vcnUKw==
+  dependencies:
+    "@jest/types" "^27.0.6"
+
+"@beemo/driver-prettier@^2.0.0-rc.4":
+  version "2.0.0-rc.4"
+  resolved "https://registry.yarnpkg.com/@beemo/driver-prettier/-/driver-prettier-2.0.0-rc.4.tgz#e2367123f640af0c8f73e92d355f9d8437526b18"
+  integrity sha512-MUCXGwkv5Iq5GwebPqBgMNsmIWn/iz9WhQ7/KcLQTyK3s1BkBKGJNEt1OPhgMGJwtjUWAaUd5v1gbLohlvK+GQ==
   dependencies:
     "@boost/event" "^2.3.2"
     "@types/prettier" "*"
 
-"@beemo/driver-typescript@^2.0.0-rc.3":
-  version "2.0.0-rc.3"
-  resolved "https://registry.yarnpkg.com/@beemo/driver-typescript/-/driver-typescript-2.0.0-rc.3.tgz#46feecdf0326c5956c9605692600aad0bf2c6068"
-  integrity sha512-nbbyaMCECJVlM0q0eSAWDY24dfNF+RayN4QIApZqBdaYDTTTpDVvO61YdIgE8OGWOth25+J2xrzyfUR68plfNw==
+"@beemo/driver-typescript@^2.0.0-rc.4":
+  version "2.0.0-rc.4"
+  resolved "https://registry.yarnpkg.com/@beemo/driver-typescript/-/driver-typescript-2.0.0-rc.4.tgz#8be36ea8f0dd2aad734d5ec65e0d331565496e9c"
+  integrity sha512-gOyX4vG2QByBRy6Duuq3M+gDtuOJZdjAyPywLXyZ33FE20VzQ6tK6YQBaXIPEgWNh27e2pPOnuwiVtZ71kWZrQ==
   dependencies:
     "@boost/event" "^2.3.2"
     rimraf "^3.0.2"
@@ -1921,10 +1922,10 @@
   resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-3.0.3.tgz#3dca0e3f33b200fc7d1139c0cd96c1268cadfd9d"
   integrity sha512-tHq6qdbT9U1IRSGf14CL0pUlULksvY9OZ+5eEgl1N7t+OA3tGvNpxJCzuKQlsNgCVwbAs670L1vcVQi8j9HjnA==
 
-"@types/node@*", "@types/node@^16.3.0":
-  version "16.3.0"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.3.0.tgz#1836664e4fad13b51b07eb6e882a53925e6543c4"
-  integrity sha512-OydMCocGMGqw/1BnWbhtK+AtwyWTOigtrQlRe57OQmTNcI3HKlVI5FGlh+c4mSqInMPLynFrTlYjfajPu9O/eQ==
+"@types/node@*", "@types/node@^16.3.1":
+  version "16.3.1"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.3.1.tgz#24691fa2b0c3ec8c0d34bfcfd495edac5593ebb4"
+  integrity sha512-N87VuQi7HEeRJkhzovao/JviiqKjDKMVKxKMfUvSKw+MbkbW8R0nA3fi/MQhhlxV2fQ+2ReM+/Nt4efdrJx3zA==
 
 "@types/node@10.17.13":
   version "10.17.13"
@@ -3166,10 +3167,10 @@ eslint-config-airbnb-base@^14.2.1:
     object.assign "^4.1.2"
     object.entries "^1.1.2"
 
-eslint-config-beemo@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/eslint-config-beemo/-/eslint-config-beemo-1.0.1.tgz#f03e8f5fbf49a77befff6caebba47e96615fcdef"
-  integrity sha512-6mIN7nd1KPLG/1wohND9fYFM0vjz1sPUko5/n0b6J8ZuT2XdcbTyuPmF/XUmbAQfB5423pmfZQbDju0QTpS4WA==
+eslint-config-beemo@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/eslint-config-beemo/-/eslint-config-beemo-1.0.2.tgz#bc6c88dcec48c860f5f44e8998aaa770ee41296c"
+  integrity sha512-QF47fKOH8dvwkU8ECWtAQuhwBRBXMpZZMVZgyRXvpL7/FPpRUHaj5NzO87gBXZKzLQ0xdLUOYnwdrrTc28ubcA==
   dependencies:
     "@beemo/config-constants" "^1.0.0"
     "@typescript-eslint/eslint-plugin" "^4.28.2"
@@ -3585,7 +3586,7 @@ fast-deep-equal@^3.1.1, fast-deep-equal@^3.1.3:
   resolved "https://registry.yarnpkg.com/fast-deep-equal/-/fast-deep-equal-3.1.3.tgz#3a7d56b559d6cbc3eb512325244e619a65c6c525"
   integrity sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q==
 
-fast-glob@^3.1.1, fast-glob@^3.2.4, fast-glob@^3.2.5, fast-glob@^3.2.7:
+fast-glob@^3.1.1, fast-glob@^3.2.4, fast-glob@^3.2.7:
   version "3.2.7"
   resolved "https://registry.yarnpkg.com/fast-glob/-/fast-glob-3.2.7.tgz#fd6cb7a2d7e9aa7a7846111e85a196d6b2f766a1"
   integrity sha512-rYGMRwip6lUMvYD3BTScMwT1HtAs2d71SMv66Vrxs0IekGZEjhM0pcMfjQPnknBt2zeCwQMEupiN02ZP4DiT1Q==
@@ -3641,10 +3642,10 @@ filelist@^1.0.1:
   dependencies:
     minimatch "^3.0.4"
 
-filesize@^6.4.0:
-  version "6.4.0"
-  resolved "https://registry.yarnpkg.com/filesize/-/filesize-6.4.0.tgz#914f50471dd66fdca3cefe628bd0cde4ef769bcd"
-  integrity sha512-mjFIpOHC4jbfcTfoh4rkWpI31mF7viw9ikj/JyLoKzqlwG/YsefKfvYlYhdYdg/9mtK2z1AzgN/0LvVQ3zdlSQ==
+filesize@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/filesize/-/filesize-7.0.0.tgz#9d4b3ce384ec7731a9e68c64ee29fb4934ad657d"
+  integrity sha512-Wsstw+O1lZ9gVmOI1thyeQvODsaoId2qw14lCqIzUhoHKXX7T2hVpB7BR6SvgodMBgWccrx/y2eyV8L7tDmY6A==
 
 fill-range@^4.0.0:
   version "4.0.0"
