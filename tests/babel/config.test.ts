@@ -2,7 +2,10 @@ import { createConfig, createRootConfig } from '../../src/babel';
 import { getBabelInputConfig, getBabelOutputConfig } from '../../src/babel/config';
 import { Format, Platform, Support } from '../../src/types';
 
-jest.mock('../../src/babel/resolve', () => ({ resolve: (name: string) => name }));
+jest.mock('../../src/babel/resolve', () => ({
+	resolve: (name: string) => name,
+	resolveFromBabel: (name: string) => name,
+}));
 
 const SUPPORTS: Support[] = ['legacy', 'stable', 'current', 'experimental'];
 

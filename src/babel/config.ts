@@ -3,7 +3,7 @@ import { CodeArtifact } from '../CodeArtifact';
 import { BROWSER_TARGETS, NATIVE_TARGETS, NODE_SUPPORTED_VERSIONS } from '../constants';
 import { FeatureFlags, Format, Platform, Support } from '../types';
 import { envExpressionsPlugin } from './plugins/envExpressions';
-import { resolve } from './resolve';
+import { resolve, resolveFromBabel } from './resolve';
 
 // https://babeljs.io/docs/en/babel-preset-env
 export interface PresetEnvOptions {
@@ -111,9 +111,9 @@ export function getBabelInputConfig(
 		if (features.decorators) {
 			plugins.push(
 				[resolve('@babel/plugin-proposal-decorators'), { legacy: true }],
-				[resolve('@babel/plugin-proposal-class-properties'), { loose: true }],
-				[resolve('@babel/plugin-proposal-private-methods'), { loose: true }],
-				[resolve('@babel/plugin-proposal-private-property-in-object'), { loose: true }],
+				[resolveFromBabel('@babel/plugin-proposal-class-properties'), { loose: true }],
+				[resolveFromBabel('@babel/plugin-proposal-private-methods'), { loose: true }],
+				[resolveFromBabel('@babel/plugin-proposal-private-property-in-object'), { loose: true }],
 			);
 		}
 	}
@@ -167,9 +167,9 @@ export function getBabelOutputConfig(
 		// Let's only apply this for the lib format, but allow it for esm.
 		if (format === 'lib') {
 			plugins.push(
-				resolve('@babel/plugin-proposal-logical-assignment-operators'),
-				resolve('@babel/plugin-proposal-nullish-coalescing-operator'),
-				resolve('@babel/plugin-proposal-optional-chaining'),
+				resolveFromBabel('@babel/plugin-proposal-logical-assignment-operators'),
+				resolveFromBabel('@babel/plugin-proposal-nullish-coalescing-operator'),
+				resolveFromBabel('@babel/plugin-proposal-optional-chaining'),
 			);
 		}
 
@@ -189,8 +189,8 @@ export function getBabelOutputConfig(
 	} else {
 		// Use `Object.assign` when available
 		plugins.push(
-			[resolve('@babel/plugin-transform-destructuring'), { useBuiltIns: true }],
-			[resolve('@babel/plugin-proposal-object-rest-spread'), { useBuiltIns: true }],
+			[resolveFromBabel('@babel/plugin-transform-destructuring'), { useBuiltIns: true }],
+			[resolveFromBabel('@babel/plugin-proposal-object-rest-spread'), { useBuiltIns: true }],
 		);
 	}
 
