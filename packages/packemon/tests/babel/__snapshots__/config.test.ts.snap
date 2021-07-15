@@ -72,13 +72,6 @@ Object {
         "allowDeclareFields": true,
       },
     ],
-    Array [
-      "@babel/preset-react",
-      Object {
-        "development": true,
-        "throwIfNamespace": true,
-      },
-    ],
   ],
 }
 `;
@@ -86,7 +79,10 @@ Object {
 exports[`createRootConfig() returns the correct config 1`] = `
 Object {
   "babelrc": true,
-  "babelrcRoots": Array [],
+  "babelrcRoots": Array [
+    "packages/*",
+    "website",
+  ],
   "overrides": Array [
     Object {
       "presets": Array [
@@ -163,13 +159,6 @@ Object {
       "@babel/preset-typescript",
       Object {
         "allowDeclareFields": true,
-      },
-    ],
-    Array [
-      "@babel/preset-react",
-      Object {
-        "development": true,
-        "throwIfNamespace": true,
       },
     ],
   ],
