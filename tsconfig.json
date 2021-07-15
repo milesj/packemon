@@ -1,36 +1,17 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "display": "Beemo",
-  "compilerOptions": {
-    "allowJs": false,
-    "allowSyntheticDefaultImports": true,
-    "declaration": false,
-    "esModuleInterop": true,
-    "experimentalDecorators": true,
-    "forceConsistentCasingInFileNames": true,
-    "isolatedModules": true,
-    "lib": [
-      "esnext",
-      "dom"
-    ],
-    "module": "esnext",
-    "moduleResolution": "node",
-    "noEmitOnError": true,
-    "noImplicitOverride": true,
-    "noImplicitReturns": true,
-    "pretty": true,
-    "removeComments": false,
-    "resolveJsonModule": false,
-    "skipLibCheck": true,
-    "sourceMap": false,
-    "strict": true,
-    "target": "es2020",
-    "jsx": "react",
-    "outDir": "build"
-  },
-  "include": [
-    "src/**/*",
-    "tests/**/*",
-    "types/**/*"
+  "extends": "./tsconfig.options.json",
+  "files": [],
+  "references": [
+    {
+      "path": "website"
+    },
+    {
+      "path": "packages/packemon"
+    },
+    {
+      "path": "packages/packemon/tests"
+    }
   ]
 }

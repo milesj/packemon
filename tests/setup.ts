@@ -5,7 +5,6 @@ const envs = {
 };
 
 Object.entries(envs).forEach(([name, bool]) => {
-	// @ts-expect-error Allow setting to global
 	global[`__${name}__`] = bool;
 });
 
