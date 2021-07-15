@@ -1,9 +1,11 @@
+/* eslint-disable react/no-array-index-key */
+
 import React from 'react';
 import clsx from 'clsx';
-import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import useBaseUrl from '@docusaurus/useBaseUrl';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import Layout from '@theme/Layout';
 import styles from './styles.module.css';
 
 interface FeatureProps {
@@ -65,8 +67,8 @@ const features: FeatureProps[][] = [
 			title: '🚀 Distribution checks',
 			description: (
 				<>
-					We provide safety checks to ensure your package's contain valid licenses, entry points,
-					metadata, and much more!
+					We provide safety checks to ensure your package&apos;s contain valid licenses, entry
+					points, metadata, and much more!
 				</>
 			),
 		},
@@ -80,7 +82,7 @@ function Feature({ imageUrl, title, description }: FeatureProps) {
 		<div className={clsx('col col--4', styles.feature)}>
 			{imgUrl && (
 				<div className="text--center">
-					<img className={styles.featureImage} src={imgUrl} alt={title} />
+					<img alt={title} className={styles.featureImage} src={imgUrl} />
 				</div>
 			)}
 
@@ -95,7 +97,7 @@ export default function Home() {
 	const { siteConfig = {} } = context;
 
 	return (
-		<Layout title="Gotta pack 'em all!" description={siteConfig.tagline}>
+		<Layout description={siteConfig.tagline} title="Gotta pack 'em all!">
 			<header className={clsx('hero hero--primary', styles.heroBanner)}>
 				<div className="container">
 					<h1 className="hero__title">{siteConfig.title}</h1>
@@ -109,11 +111,11 @@ export default function Home() {
 						</Link>
 
 						<iframe
-							src="https://ghbtns.com/github-btn.html?user=milesj&repo=packemon&type=star&count=true&size=large"
 							frameBorder="0"
 							scrolling="0"
+							src="https://ghbtns.com/github-btn.html?user=milesj&repo=packemon&type=star&count=true&size=large"
 							title="GitHub"
-						></iframe>
+						/>
 					</div>
 				</div>
 			</header>
