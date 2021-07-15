@@ -152,6 +152,23 @@ describe('PackageValidator', () => {
 			expect(validator.errors).toEqual([]);
 		});
 
+		it('doesnt warn if a dep defined as a peer without a dev, but is optional', async () => {
+			validator.package.packageJson.peerDependencies = {
+				foo: '1.0.0',
+			};
+
+			validator.package.packageJson.peerDependenciesMeta = {
+				foo: {
+					optional: true,
+				},
+			};
+
+			await validator.validate({ deps: true });
+
+			expect(validator.warnings).toEqual([]);
+			expect(validator.errors).toEqual([]);
+		});
+
 		it('errors if a dep defined as a peer without a dev satisfying version', async () => {
 			validator.package.packageJson.peerDependencies = {
 				foo: '^1.0.0',

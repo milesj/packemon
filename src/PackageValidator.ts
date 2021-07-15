@@ -83,6 +83,7 @@ export class PackageValidator {
 			dependencies = {},
 			devDependencies = {},
 			peerDependencies = {},
+			peerDependenciesMeta = {},
 			optionalDependencies = {},
 		} = this.package.packageJson;
 
@@ -118,9 +119,11 @@ export class PackageValidator {
 			}
 
 			if (!devVersion) {
-				this.warnings.push(
-					`Peer dependency "${peerName}" is missing a version satisfying dev dependency.`,
-				);
+				if (!peerDependenciesMeta[peerName]?.optional) {
+					this.warnings.push(
+						`Peer dependency "${peerName}" is missing a version satisfying dev dependency.`,
+					);
+				}
 			} else if (!semver.satisfies(devVersion.version, versionConstraint)) {
 				this.errors.push(
 					`Dev dependency "${peerName}" does not satisfy version constraint of its peer. Found ${devVersion.version}, requires ${versionConstraint}.`,
