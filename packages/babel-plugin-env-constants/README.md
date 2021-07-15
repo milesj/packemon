@@ -32,6 +32,16 @@ module.exports = {
 };
 ```
 
+And if you are using TypeScript, you'll most likely need to declare the globals.
+
+```ts
+declare global {
+	const __DEV__: boolean;
+	const __PROD__: boolean;
+	const __TEST__: boolean;
+}
+```
+
 ## Requirements
 
 - Linux, OSX, Windows

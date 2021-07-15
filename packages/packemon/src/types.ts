@@ -1,5 +1,3 @@
-/* eslint-disable no-underscore-dangle */
-
 import { PackageStructure } from '@boost/common';
 
 // Platform = The runtime or operating system the code will run in.
@@ -10,8 +8,8 @@ import { PackageStructure } from '@boost/common';
 // Build target = Individual units of a build (typically the format).
 
 declare global {
+	// eslint-disable-next-line no-underscore-dangle
 	const __DEV__: boolean;
-	const __PROD__: boolean;
 }
 
 export type Platform = 'browser' | 'native' | 'node'; // electron
