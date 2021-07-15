@@ -5,7 +5,7 @@ global.__PROD__ = false;
 
 try {
 	// Packemon built
-	require('./lib/bin');
+	require('./packages/packemon/lib/bin');
 } catch {
 	// TypeScript built (initial setup)
 	require('./build/bin');
