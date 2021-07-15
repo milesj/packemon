@@ -8,7 +8,11 @@
     "pack",
     "package"
   ],
-  "repository": "https://github.com/milesj/packemon.git",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:milesj/packemon.git",
+    "directory": "packages/packemon"
+  },
   "author": "Miles Johnson",
   "license": "MIT",
   "main": "./lib/index.js",

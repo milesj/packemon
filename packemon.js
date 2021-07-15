@@ -7,6 +7,6 @@ try {
 	// Packemon built
 	require('./packages/packemon/lib/bin');
 } catch {
-	// TypeScript built (initial setup)
+	// Babel built (initial setup)
 	require('./build/bin');
 }

@@ -6,7 +6,7 @@
   "scripts": {
     "docs": "cd website && yarn run start",
     "prepare": "beemo create-config",
-    "setup": "beemo babel src/ --out-dir build/",
+    "setup": "beemo babel packages/packemon/src/ --out-dir build/",
     "build": "yarn run packemon build",
     "validate": "yarn run packemon validate",
     "check": "yarn run type && yarn run test && yarn run lint",
@@ -18,7 +18,7 @@
     "test": "beemo jest",
     "type": "beemo typescript --build",
     "prerelease": "yarn run clean && yarn run setup && yarn run pack && yarn run check",
-    "pack": "NODE_ENV=production yarn run packemon pack --addEngines --addExports --declaration=api --declarationConfig=tsconfig.build.json",
+    "pack": "NODE_ENV=production yarn run packemon pack --addEngines --addExports --declaration=standard",
     "packemon": "node ./packemon.js"
   },
   "workspaces": [
