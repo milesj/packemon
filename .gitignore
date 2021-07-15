@@ -23,6 +23,12 @@ tmp/
 umd/
 node_modules/
 
+# Required for testing
+!tests/__fixtures__/project/dts
+!tests/__fixtures__/validate-files/cjs
+!tests/__fixtures__/validate-files/esm
+!tests/__fixtures__/validate-files/lib
+
 # Custom
 *.min.js
 *.map
