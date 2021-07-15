@@ -1,0 +1,43 @@
+{
+  "name": "babel-plugin-env-constants",
+  "version": "0.0.0",
+  "description": "Transform __DEV__, __PROD__, and __TEST__ constants to NODE_ENV conditionals.",
+  "keywords": [
+    "babel",
+    "plugin",
+    "env",
+    "constants",
+    "conditionals",
+    "expressions"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:milesj/packemon.git",
+    "directory": "packages/babel-plugin-env-constants"
+  },
+  "author": "Miles Johnson",
+  "license": "MIT",
+  "main": "./lib/index.js",
+  "types": "./dts/index.d.ts",
+  "bin": "./lib/bin.js",
+  "files": [
+    "dts/**/*.d.ts",
+    "lib/**/*.{js,map}",
+    "src/**/*.{ts,tsx,json}"
+  ],
+  "engines": {
+    "node": ">=12.17.0",
+    "npm": ">=6.13.0"
+  },
+  "packemon": {
+    "format": "lib",
+    "platform": "node"
+  },
+  "peerDependencies": {
+    "@babel/core": "^7.0.0"
+  },
+  "funding": {
+    "type": "ko-fi",
+    "url": "https://ko-fi.com/milesjohnson"
+  }
+}
