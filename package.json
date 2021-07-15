@@ -16,7 +16,7 @@
     "lint": "beemo eslint",
     "release": "npx np --yolo",
     "test": "beemo jest",
-    "type": "beemo typescript --noEmit",
+    "type": "beemo typescript --build",
     "prerelease": "yarn run clean && yarn run setup && yarn run pack && yarn run check",
     "pack": "NODE_ENV=production yarn run packemon pack --addEngines --addExports --declaration=api --declarationConfig=tsconfig.build.json",
     "packemon": "node ./packemon.js"
