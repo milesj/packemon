@@ -14,10 +14,11 @@
     "coverage": "yarn run test --coverage",
     "format": "beemo prettier",
     "lint": "beemo eslint",
-    "release": "npx np --yolo",
     "test": "beemo jest",
     "type": "beemo typescript --build",
     "prerelease": "yarn run clean && yarn run setup && yarn run pack && yarn run check",
+    "release": "yarn prerelease && lerna version --conventional-commits --changelog-preset conventional-changelog-beemo --create-release github --push && lerna publish from-git",
+    "version": "yarn install && git add yarn.lock",
     "pack": "NODE_ENV=production yarn run packemon pack --addEngines --addExports --declaration=standard",
     "packemon": "node ./packemon.js"
   },
@@ -41,6 +42,7 @@
     "@types/rimraf": "^3.0.1",
     "@types/semver": "^7.3.7",
     "chokidar": "^3.5.2",
+    "lerna": "^4.0.0",
     "typescript": "^4.3.5"
   },
   "funding": {
