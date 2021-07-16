@@ -12,10 +12,16 @@ if (__DEV__) {
 	console.log('Some message in development!');
 }
 
+const value = __TEST__ ? 0 : 100;
+```
+
+```ts
 // Output
-if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV !== 'production') {
 	console.log('Some message in development!');
 }
+
+const value = process.env.NODE_ENV === 'test' ? 0 : 100;
 ```
 
 ## Installation
@@ -32,7 +38,7 @@ module.exports = {
 };
 ```
 
-And if you are using TypeScript, you'll most likely need to declare the globals.
+And if you are using TypeScript, you'll most likely need to declare the globals yourself.
 
 ```ts
 declare global {
