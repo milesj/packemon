@@ -6,7 +6,7 @@
   "scripts": {
     "docs": "cd website && yarn run start",
     "prepare": "beemo create-config",
-    "setup": "beemo babel --workspaces=* ./src --out-dir ./lib",
+    "setup": "node ./scripts/setup.mjs",
     "build": "yarn run packemon build",
     "validate": "yarn run packemon validate",
     "check": "yarn run type && yarn run test && yarn run lint",
@@ -32,9 +32,12 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.14.3",
+    "@beemo/cli": "^2.0.0-rc.4",
+    "@beemo/core": "^2.0.0-rc.4",
     "@beemo/dev": "^1.2.0",
     "@boost/test-utils": "^2.3.2",
     "@types/fs-extra": "^9.0.12",
+    "@types/jest": "^26.0.24",
     "@types/micromatch": "^4.0.2",
     "@types/node": "^16.3.1",
     "@types/npm-packlist": "^1.1.2",
