@@ -1,6 +1,6 @@
 /* eslint-disable sort-keys */
 
-const pkg = require('../package.json');
+const pkg = require('../packages/packemon/package.json');
 
 module.exports = {
 	title: 'Packemon',
