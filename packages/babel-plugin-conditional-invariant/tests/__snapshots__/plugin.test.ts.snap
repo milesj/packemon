@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`conditionalInvariantPlugin() will not transform if wrapped in a matching conditional 1`] = `
+"if (process.env.NODE_ENV !== 'production') {
+  invariant();
+}"
+`;
+
+exports[`conditionalInvariantPlugin() will not transform if wrapped in a matching conditional that is layers deep 1`] = `
+"if (process.env.NODE_ENV !== 'production') {
+  if (true) {
+    if (false) {
+      invariant();
+    }
+  }
+}"
+`;
+
+exports[`conditionalInvariantPlugin() will transform if wrapped in a non-matching conditional 1`] = `
+"if (process.env.NODE_ENV === 'development') {
+  if (process.env.NODE_ENV !== 'production') {
+    invariant();
+  }
+}"
+`;
+
+exports[`conditionalInvariantPlugin() will transform if wrapped in a non-matching conditional that is layers deep 1`] = `
+"if (process.env.NODE_ENV === 'development') {
+  if (true) {
+    if (false) {
+      if (process.env.NODE_ENV !== 'production') {
+        invariant();
+      }
+    }
+  }
+}"
+`;
+
+exports[`conditionalInvariantPlugin() will transform valid expressions 1`] = `
+"if (process.env.NODE_ENV !== 'production') {
+  invariant();
+}
+
+if (process.env.NODE_ENV !== 'production') {
+  invariant(false);
+}
+
+while (true) {
+  if (process.env.NODE_ENV !== 'production') {
+    invariant(true);
+  }
+}
+
+do {
+  if (process.env.NODE_ENV !== 'production') {
+    invariant(value === false, 'Some message');
+  }
+} while (true);
+
+switch (value) {
+  case 1:
+    if (process.env.NODE_ENV !== 'production') {
+      invariant(value === true, 'Some message');
+    }
+
+    break;
+
+  case 2:
+    {
+      if (process.env.NODE_ENV !== 'production') {
+        invariant(value === true, 'Some message');
+      }
+
+      break;
+    }
+}
+
+if (1) {
+  if (process.env.NODE_ENV !== 'production') {
+    invariant(!value, 'Some message', 'another arg');
+  }
+} else if (2) {
+  if (process.env.NODE_ENV !== 'production') {
+    invariant(!value, 'Some message', 123);
+  }
+} else {
+  if (process.env.NODE_ENV !== 'production') {
+    invariant(!!value, 'Some message', true, 456);
+  }
+}"
+`;
