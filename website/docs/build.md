@@ -190,7 +190,10 @@ The following plugins are enabled when one of their conditions are met.
     Will transform async/await to promises for legacy versions.
 - _Custom_
   - Always enabled. Will transform `__DEV__`, `__PROD__`, and `__TEST__` to `process.env.NODE_ENV`
-    conditionals.
+    conditionals using
+    [babel-plugin-env-constants](https://npmjs.com/package/babel-plugin-env-constants).
+  - Always enabled. Will wrap `invariant()` calls with `process.env.NODE_ENV` conditionals using
+    [babel-plugin-conditional-invariant](https://npmjs.com/package/babel-plugin-conditional-invariant).
 
 ## Rollup configuration
 

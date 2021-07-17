@@ -1,0 +1,52 @@
+{
+  "name": "babel-plugin-conditional-invariant",
+  "version": "0.0.0",
+  "description": "Wrap invariant checks in NODE_ENV conditionals.",
+  "keywords": [
+    "babel",
+    "plugin",
+    "env",
+    "invariant",
+    "conditionals",
+    "expressions"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:milesj/packemon.git",
+    "directory": "packages/babel-plugin-conditional-invariant"
+  },
+  "author": "Miles Johnson",
+  "license": "MIT",
+  "main": "./lib/index.js",
+  "types": "./dts/index.d.ts",
+  "files": [
+    "dts/**/*.d.ts",
+    "lib/**/*.{js,map}",
+    "src/**/*.{ts,tsx,json}"
+  ],
+  "engines": {
+    "node": ">=12.17.0",
+    "npm": ">=6.13.0"
+  },
+  "packemon": {
+    "format": "lib",
+    "platform": "node"
+  },
+  "peerDependencies": {
+    "@babel/core": "^7.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.14.3"
+  },
+  "funding": {
+    "type": "ko-fi",
+    "url": "https://ko-fi.com/milesjohnson"
+  },
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "node": "./lib/index.js",
+      "types": "./dts/index.d.ts"
+    }
+  }
+}

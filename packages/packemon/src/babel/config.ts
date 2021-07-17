@@ -193,8 +193,11 @@ export function getBabelOutputConfig(
 		);
 	}
 
-	// Support env expression shortcuts
-	plugins.push(resolve('babel-plugin-env-constants'));
+	// Support our custom plugins
+	plugins.push(
+		resolve('babel-plugin-conditional-invariant'),
+		resolve('babel-plugin-env-constants'),
+	);
 
 	return getSharedConfig(plugins, presets, features);
 }
