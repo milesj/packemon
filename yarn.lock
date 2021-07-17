@@ -3734,7 +3734,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@microsoft/api-extractor@npm:^7.18.2":
+"@microsoft/api-extractor@npm:^7.18.4":
   version: 7.18.4
   resolution: "@microsoft/api-extractor@npm:7.18.4"
   dependencies:
@@ -4057,9 +4057,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/plugin-commonjs@npm:^19.0.0":
-  version: 19.0.0
-  resolution: "@rollup/plugin-commonjs@npm:19.0.0"
+"@rollup/plugin-commonjs@npm:^19.0.1":
+  version: 19.0.1
+  resolution: "@rollup/plugin-commonjs@npm:19.0.1"
   dependencies:
     "@rollup/pluginutils": ^3.1.0
     commondir: ^1.0.1
@@ -4070,7 +4070,7 @@ __metadata:
     resolve: ^1.17.0
   peerDependencies:
     rollup: ^2.38.3
-  checksum: e6dd7c68f5256482f97e2aeef4fc7621c990d18c8ddf7f6d1a3de052f88f837507886d345a6d12c35290ed8dd3ce5cb9bf31ac1c5ea74d4a10bada297d53a251
+  checksum: 34058a0d444f74cb7cfc422473a50b3ad488e084adb34947bbecc5ddaecc8f3bca69c18c970e797806a59285a4ece67bcce92c3cf0fb73d860ca99d4977dc933
   languageName: node
   linkType: hard
 
@@ -4098,9 +4098,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/plugin-node-resolve@npm:^13.0.0":
-  version: 13.0.0
-  resolution: "@rollup/plugin-node-resolve@npm:13.0.0"
+"@rollup/plugin-node-resolve@npm:^13.0.2":
+  version: 13.0.2
+  resolution: "@rollup/plugin-node-resolve@npm:13.0.2"
   dependencies:
     "@rollup/pluginutils": ^3.1.0
     "@types/resolve": 1.17.1
@@ -4110,7 +4110,7 @@ __metadata:
     resolve: ^1.19.0
   peerDependencies:
     rollup: ^2.42.0
-  checksum: 4b323e8ad5f1245449cd44b4857ed94a8dd3b998178ce139e74542c216a5abeb5a9e44885f3809ac747296a108f0562f986f9561055e76d1b0b268cf788a5c83
+  checksum: 7f3397e32e4e73e7bf7682c7e8de02abe87bec0acc8923cc2b93f6cebe6b07afa50aee934b3dd0a9a5cacdca3a7f1ed6dd8ee809f53d5fec9ce5e96b818e52fa
   languageName: node
   linkType: hard
 
@@ -14691,11 +14691,11 @@ fsevents@^1.2.7:
     "@boost/event": ^2.3.3
     "@boost/pipeline": ^2.2.7
     "@boost/terminal": ^2.2.2
-    "@microsoft/api-extractor": ^7.18.2
+    "@microsoft/api-extractor": ^7.18.4
     "@rollup/plugin-babel": ^5.3.0
-    "@rollup/plugin-commonjs": ^19.0.0
+    "@rollup/plugin-commonjs": ^19.0.1
     "@rollup/plugin-json": ^4.1.0
-    "@rollup/plugin-node-resolve": ^13.0.0
+    "@rollup/plugin-node-resolve": ^13.0.2
     babel-plugin-conditional-invariant: ^0.0.0
     babel-plugin-env-constants: ^0.0.0
     babel-plugin-transform-async-to-promises: ^0.8.15
@@ -14711,7 +14711,7 @@ fsevents@^1.2.7:
     npm-packlist: ^2.2.2
     react: ^16.14.0
     rimraf: ^3.0.2
-    rollup: ^2.53.1
+    rollup: ^2.53.2
     rollup-plugin-node-externals: ^2.2.0
     rollup-plugin-polyfill-node: ^0.6.2
     rollup-plugin-visualizer: ^5.5.2
@@ -17019,9 +17019,9 @@ resolve@~1.19.0:
   languageName: node
   linkType: hard
 
-"rollup@npm:^2.53.1":
-  version: 2.53.1
-  resolution: "rollup@npm:2.53.1"
+"rollup@npm:^2.53.2":
+  version: 2.53.2
+  resolution: "rollup@npm:2.53.2"
   dependencies:
     fsevents: ~2.3.2
   dependenciesMeta:
@@ -17029,7 +17029,7 @@ resolve@~1.19.0:
       optional: true
   bin:
     rollup: dist/bin/rollup
-  checksum: 7c63a7251e87715795a4141371f4f7b31ce46c7dd8273a0f4b5240977eb7ecaddd1e8d0fdaf8eabfc7cf73075cc9d83e03c67b89e56f31a2e85cf1089e9fc34f
+  checksum: 41d32b1d44066f3e8eeb5239013397e3df74dbb37489aaa77f8357059b5998cb4af0108fb72b048d265ae5d88de933b0732007c07e5d5687f5ee3ae44fab9eee
   languageName: node
   linkType: hard
 
