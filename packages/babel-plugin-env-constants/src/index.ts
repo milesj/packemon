@@ -1,3 +1,4 @@
+import './types';
 import { NodePath, types as t } from '@babel/core';
 
 const exprs = {
@@ -6,7 +7,7 @@ const exprs = {
 	TEST: ['===', 'test'],
 };
 
-export function envExpressionsPlugin() {
+export default function envConstantsPlugin() {
 	return {
 		visitor: {
 			Identifier: {

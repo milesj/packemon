@@ -2,7 +2,6 @@ import { PluginItem, TransformOptions as ConfigStructure } from '@babel/core';
 import { CodeArtifact } from '../CodeArtifact';
 import { BROWSER_TARGETS, NATIVE_TARGETS, NODE_SUPPORTED_VERSIONS } from '../constants';
 import { FeatureFlags, Format, Platform, Support } from '../types';
-import { envExpressionsPlugin } from './plugins/envExpressions';
 import { resolve, resolveFromBabel } from './resolve';
 
 // https://babeljs.io/docs/en/babel-preset-env
@@ -195,7 +194,7 @@ export function getBabelOutputConfig(
 	}
 
 	// Support env expression shortcuts
-	plugins.push(envExpressionsPlugin());
+	plugins.push(resolve('babel-plugin-env-constants'));
 
 	return getSharedConfig(plugins, presets, features);
 }

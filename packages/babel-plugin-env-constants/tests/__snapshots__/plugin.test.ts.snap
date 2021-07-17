@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`envExpressions() transforms __DEV__ expressions 1`] = `
+exports[`envConstantsPlugin() transforms __DEV__ expressions 1`] = `
 "if (process.env.NODE_ENV !== 'production') {} else if (process.env.NODE_ENV !== 'production' && 123) {} else if (true || process.env.NODE_ENV !== 'production') {} else if (!(process.env.NODE_ENV !== 'production')) {} else {}
 
 switch (process.env.NODE_ENV !== 'production') {}
@@ -17,7 +17,7 @@ const arrayValue = [process.env.NODE_ENV !== 'production'];
 React.createElement(Foo, null, process.env.NODE_ENV !== 'production' ? 'Child' : null);"
 `;
 
-exports[`envExpressions() transforms __PROD__ expressions 1`] = `
+exports[`envConstantsPlugin() transforms __PROD__ expressions 1`] = `
 "if (process.env.NODE_ENV === 'production') {} else if (process.env.NODE_ENV === 'production' && 123) {} else if (true || process.env.NODE_ENV === 'production') {} else if (!(process.env.NODE_ENV === 'production')) {} else {}
 
 switch (process.env.NODE_ENV === 'production') {}
@@ -34,7 +34,7 @@ const arrayValue = [process.env.NODE_ENV === 'production'];
 React.createElement(Foo, null, process.env.NODE_ENV === 'production' ? 'Child' : null);"
 `;
 
-exports[`envExpressions() transforms __TEST__ expressions 1`] = `
+exports[`envConstantsPlugin() transforms __TEST__ expressions 1`] = `
 "if (process.env.NODE_ENV === 'test') {} else if (process.env.NODE_ENV === 'test' && 123) {} else if (true || process.env.NODE_ENV === 'test') {} else if (!(process.env.NODE_ENV === 'test')) {} else {}
 
 switch (process.env.NODE_ENV === 'test') {}
@@ -51,7 +51,7 @@ const arrayValue = [process.env.NODE_ENV === 'test'];
 React.createElement(Foo, null, process.env.NODE_ENV === 'test' ? 'Child' : null);"
 `;
 
-exports[`envExpressions() will not transform invalid __DEV__ expressions 1`] = `
+exports[`envConstantsPlugin() will not transform invalid __DEV__ expressions 1`] = `
 "const __DEV__ = 123;
 const objectProperty = {
   __DEV__: true
@@ -65,7 +65,7 @@ const arrayIndex = [];
 arrayIndex[__DEV__] = 1;"
 `;
 
-exports[`envExpressions() will not transform invalid __PROD__ expressions 1`] = `
+exports[`envConstantsPlugin() will not transform invalid __PROD__ expressions 1`] = `
 "const __PROD__ = 123;
 const objectProperty = {
   __PROD__: true
@@ -79,7 +79,7 @@ const arrayIndex = [];
 arrayIndex[__PROD__] = 1;"
 `;
 
-exports[`envExpressions() will not transform invalid __TEST__ expressions 1`] = `
+exports[`envConstantsPlugin() will not transform invalid __TEST__ expressions 1`] = `
 "const __TEST__ = 123;
 const objectProperty = {
   __TEST__: true

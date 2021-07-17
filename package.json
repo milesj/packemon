@@ -6,7 +6,7 @@
   "scripts": {
     "docs": "cd website && yarn run start",
     "prepare": "beemo create-config",
-    "setup": "beemo babel packages/packemon/src/ --out-dir build/",
+    "setup": "beemo babel --workspaces=* ./src --out-dir ./lib",
     "build": "yarn run packemon build",
     "validate": "yarn run packemon validate",
     "check": "yarn run type && yarn run test && yarn run lint",
@@ -19,8 +19,8 @@
     "prerelease": "yarn run clean && yarn run setup && yarn run pack && yarn run check",
     "release": "yarn prerelease && lerna version --conventional-commits --changelog-preset conventional-changelog-beemo --create-release github --push && lerna publish from-git",
     "version": "yarn install && git add yarn.lock",
-    "pack": "NODE_ENV=production yarn run packemon pack --addEngines --addExports --declaration=standard",
-    "packemon": "node ./packemon.js"
+    "pack": "NODE_ENV=production yarn run packemon build --addEngines --addExports --declaration=standard",
+    "packemon": "node ./packages/packemon/lib/bin.js"
   },
   "workspaces": [
     "packages/*",
