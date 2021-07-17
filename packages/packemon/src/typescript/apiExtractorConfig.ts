@@ -2,7 +2,7 @@ export const apiExtractorConfig = {
 	$schema:
 		'https://developer.microsoft.com/json-schemas/api-extractor/v7/api-extractor.schema.json',
 	projectFolder: '.',
-	mainEntryPointFilePath: '<projectFolder>/build/index.d.ts',
+	mainEntryPointFilePath: '<projectFolder>/dts/index.d.ts',
 	bundledPackages: [],
 	compiler: {
 		tsconfigFilePath: '<projectFolder>/tsconfig.json',
