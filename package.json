@@ -6,7 +6,7 @@
   "scripts": {
     "docs": "cd website && yarn run start",
     "prepare": "beemo create-config",
-    "setup": "beemo babel --workspaces=* ./src --out-dir ./lib",
+    "setup": "beemo babel --workspaces='*' ./src --out-dir ./lib",
     "build": "yarn run packemon build",
     "validate": "yarn run packemon validate",
     "check": "yarn run type && yarn run test && yarn run lint",
