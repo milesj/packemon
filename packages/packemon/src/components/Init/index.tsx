@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Box, Text } from 'ink';
-import { Header, Style, useProgram } from '@boost/cli';
+import { Header, Style, useProgram } from '@boost/cli/react';
 import { PackemonPackageConfig } from '../../types';
 import { PackageForm } from './PackageForm';
 

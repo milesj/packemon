@@ -1,5 +1,5 @@
 import React from 'react';
-import { Style } from '@boost/cli';
+import { Style } from '@boost/cli/react';
 import { formatMs } from '@boost/common';
 
 export interface DurationProps {

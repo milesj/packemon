@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDimensions } from '@boost/cli';
+import { useDimensions } from '@boost/cli/react';
 import { Package } from '../Package';
 import { PackageRow } from './PackageRow';
 

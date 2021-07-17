@@ -1,6 +1,5 @@
 import React from 'react';
 import { Arg, Config } from '@boost/cli';
-import { Validate } from '../components/Validate';
 import { ValidateOptions } from '../types';
 import { BaseCommand } from './Base';
 
@@ -33,7 +32,9 @@ export class ValidateCommand extends BaseCommand<Required<ValidateOptions>> {
 	@Arg.Flag('Check that `repository` exists and is a valid URL')
 	repo: boolean = true;
 
-	run() {
+	async run() {
+		const { Validate } = await import('../components/Validate');
+
 		return (
 			<Validate
 				deps={this.deps}

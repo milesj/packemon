@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Box } from 'ink';
-import { Style } from '@boost/cli';
+import { Style } from '@boost/cli/react';
 import { Package } from '../Package';
 import { Environment as EnvType } from '../types';
 import { ArtifactList } from './ArtifactList';

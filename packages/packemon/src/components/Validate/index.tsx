@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Static } from 'ink';
-import { Header, useProgram, useRenderLoop } from '@boost/cli';
+import { Header, useProgram, useRenderLoop } from '@boost/cli/react';
 import { PackageValidator } from '../../PackageValidator';
 import { Packemon } from '../../Packemon';
 import { ValidateOptions } from '../../types';

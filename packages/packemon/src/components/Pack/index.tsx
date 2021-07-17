@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { useProgram } from '@boost/cli';
+import { useProgram } from '@boost/cli/react';
 import { Packemon } from '../../Packemon';
 import { BuildOptions } from '../../types';
 import { Build } from '../Build';

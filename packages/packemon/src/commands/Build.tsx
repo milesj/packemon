@@ -1,7 +1,6 @@
 import os from 'os';
 import React from 'react';
 import { Arg, Config } from '@boost/cli';
-import { Build } from '../components/Build';
 import { AnalyzeType, BuildOptions, DeclarationType } from '../types';
 import { BaseCommand } from './Base';
 
@@ -32,7 +31,9 @@ export class BuildCommand extends BaseCommand<Required<BuildOptions>> {
 	@Arg.Number('Timeout in milliseconds before a build is cancelled')
 	timeout: number = 0;
 
-	run() {
+	async run() {
+		const { Build } = await import('../components/Build');
+
 		return (
 			<Build
 				addEngines={this.addEngines}

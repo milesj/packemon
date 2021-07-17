@@ -165,7 +165,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/cli@npm:^7.14.3, @babel/cli@npm:^7.14.5":
+"@babel/cli@npm:^7.14.5":
   version: 7.14.5
   resolution: "@babel/cli@npm:7.14.5"
   dependencies:
@@ -250,7 +250,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/core@npm:7.14.6, @babel/core@npm:^7.1.0, @babel/core@npm:^7.12.16, @babel/core@npm:^7.12.3, @babel/core@npm:^7.14.3, @babel/core@npm:^7.14.6, @babel/core@npm:^7.7.2, @babel/core@npm:^7.7.5":
+"@babel/core@npm:7.14.6, @babel/core@npm:^7.1.0, @babel/core@npm:^7.12.16, @babel/core@npm:^7.12.3, @babel/core@npm:^7.14.6, @babel/core@npm:^7.7.2, @babel/core@npm:^7.7.5":
   version: 7.14.6
   resolution: "@babel/core@npm:7.14.6"
   dependencies:
@@ -630,7 +630,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/plugin-proposal-decorators@npm:^7.14.2, @babel/plugin-proposal-decorators@npm:^7.14.5":
+"@babel/plugin-proposal-decorators@npm:^7.14.5":
   version: 7.14.5
   resolution: "@babel/plugin-proposal-decorators@npm:7.14.5"
   dependencies:
@@ -1857,7 +1857,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@beemo/dev@npm:^1.2.0":
+"@beemo/dev@npm:^1.2.1":
   version: 1.2.1
   resolution: "@beemo/dev@npm:1.2.1"
   dependencies:
@@ -1956,7 +1956,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@boost/cli@npm:^2.10.4, @boost/cli@npm:^2.10.5":
+"@boost/cli@npm:^2.10.4, @boost/cli@npm:^2.11.1":
   version: 2.11.1
   resolution: "@boost/cli@npm:2.11.1"
   dependencies:
@@ -1977,7 +1977,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@boost/common@npm:^2.7.2, @boost/common@npm:^2.8.0, @boost/common@npm:^2.8.1":
+"@boost/common@npm:^2.7.2, @boost/common@npm:^2.8.1":
   version: 2.8.1
   resolution: "@boost/common@npm:2.8.1"
   dependencies:
@@ -2010,7 +2010,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@boost/debug@npm:^2.2.5, @boost/debug@npm:^2.2.6, @boost/debug@npm:^2.2.7":
+"@boost/debug@npm:^2.2.5, @boost/debug@npm:^2.2.7":
   version: 2.2.7
   resolution: "@boost/debug@npm:2.2.7"
   dependencies:
@@ -2061,7 +2061,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@boost/pipeline@npm:^2.2.5, @boost/pipeline@npm:^2.2.6":
+"@boost/pipeline@npm:^2.2.5, @boost/pipeline@npm:^2.2.7":
   version: 2.2.7
   resolution: "@boost/pipeline@npm:2.2.7"
   dependencies:
@@ -4611,10 +4611,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^16.3.1":
-  version: 16.3.2
-  resolution: "@types/node@npm:16.3.2"
-  checksum: 11896edc7022a40f8938e64f57e497b3110ca732bdef785f86f0a0a819609e9b78ad0c950dcaa59177bc299f2793489b605a3e713cdf7900a39031f0018e2134
+"@types/node@npm:*, @types/node@npm:^16.3.3":
+  version: 16.3.3
+  resolution: "@types/node@npm:16.3.3"
+  checksum: e597a54070815170d8f541c778900023f2522c27be9c56b2b8411d663da1ef5226f9d16ec158c5d9c84ddcc85551e3d02aa68046aa108b4c6085bc7c95a5bebb
   languageName: node
   linkType: hard
 
@@ -4688,7 +4688,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:^16.9.56":
+"@types/react@npm:^16.14.11":
   version: 16.14.11
   resolution: "@types/react@npm:16.14.11"
   dependencies:
@@ -5795,7 +5795,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "babel-plugin-conditional-invariant@workspace:packages/babel-plugin-conditional-invariant"
   dependencies:
-    "@babel/core": ^7.14.3
+    "@babel/core": ^7.14.6
   peerDependencies:
     "@babel/core": ^7.0.0
   languageName: unknown
@@ -5823,7 +5823,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "babel-plugin-env-constants@workspace:packages/babel-plugin-env-constants"
   dependencies:
-    "@babel/core": ^7.14.3
+    "@babel/core": ^7.14.6
   peerDependencies:
     "@babel/core": ^7.0.0
   languageName: unknown
@@ -14655,17 +14655,17 @@ fsevents@^1.2.7:
   version: 0.0.0-use.local
   resolution: "packemon-root@workspace:."
   dependencies:
-    "@babel/cli": ^7.14.3
+    "@babel/cli": ^7.14.5
     "@beemo/cli": ^2.0.0-rc.4
     "@beemo/core": ^2.0.0-rc.4
-    "@beemo/dev": ^1.2.0
+    "@beemo/dev": ^1.2.1
     "@boost/test-utils": ^2.3.2
     "@types/fs-extra": ^9.0.12
     "@types/jest": ^26.0.24
     "@types/micromatch": ^4.0.2
-    "@types/node": ^16.3.1
+    "@types/node": ^16.3.3
     "@types/npm-packlist": ^1.1.2
-    "@types/react": ^16.9.56
+    "@types/react": ^16.14.11
     "@types/rimraf": ^3.0.1
     "@types/semver": ^7.3.7
     chokidar: ^3.5.2
@@ -14678,18 +14678,18 @@ fsevents@^1.2.7:
   version: 0.0.0-use.local
   resolution: "packemon@workspace:packages/packemon"
   dependencies:
-    "@babel/core": ^7.14.3
-    "@babel/plugin-proposal-decorators": ^7.14.2
+    "@babel/core": ^7.14.6
+    "@babel/plugin-proposal-decorators": ^7.14.5
     "@babel/plugin-transform-runtime": ^7.14.5
     "@babel/preset-env": ^7.14.7
     "@babel/preset-flow": ^7.14.5
     "@babel/preset-react": ^7.14.5
     "@babel/preset-typescript": ^7.14.5
-    "@boost/cli": ^2.10.5
-    "@boost/common": ^2.8.0
-    "@boost/debug": ^2.2.6
+    "@boost/cli": ^2.11.1
+    "@boost/common": ^2.8.1
+    "@boost/debug": ^2.2.7
     "@boost/event": ^2.3.3
-    "@boost/pipeline": ^2.2.6
+    "@boost/pipeline": ^2.2.7
     "@boost/terminal": ^2.2.2
     "@microsoft/api-extractor": ^7.18.2
     "@rollup/plugin-babel": ^5.3.0

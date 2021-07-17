@@ -3,7 +3,6 @@
 import React from 'react';
 import { Arg, Config } from '@boost/cli';
 import { Path, WorkspacePackage } from '@boost/common';
-import { Init } from '../components/Init';
 import { DEFAULT_INPUT, DEFAULT_SUPPORT } from '../constants';
 import { Package } from '../Package';
 import { PackemonPackage, PackemonPackageConfig } from '../types';
@@ -35,6 +34,8 @@ export class InitCommand extends BaseCommand<InitOptions> {
 
 			return Promise.resolve();
 		}
+
+		const { Init } = await import('../components/Init');
 
 		return (
 			<Init

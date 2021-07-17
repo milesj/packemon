@@ -1,6 +1,6 @@
 import React from 'react';
 import fileSize from 'filesize';
-import { Style } from '@boost/cli';
+import { Style } from '@boost/cli/react';
 import { Target, TargetProps } from './Target';
 
 export interface CodeTargetProps extends TargetProps {
