@@ -4063,9 +4063,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/plugin-commonjs@npm:^19.0.1":
-  version: 19.0.1
-  resolution: "@rollup/plugin-commonjs@npm:19.0.1"
+"@rollup/plugin-commonjs@npm:^20.0.0":
+  version: 20.0.0
+  resolution: "@rollup/plugin-commonjs@npm:20.0.0"
   dependencies:
     "@rollup/pluginutils": ^3.1.0
     commondir: ^1.0.1
@@ -4076,7 +4076,7 @@ __metadata:
     resolve: ^1.17.0
   peerDependencies:
     rollup: ^2.38.3
-  checksum: 49942cec59876a5ab3b576fe8ade861123c55d76e538fc43f225bb034dbc3c94934aba6df284350af19e50838fa0e3f8a239d9f6284e3b090bd0f4a708d097f3
+  checksum: fefc4b5ab1509ff64e26dfee3eca2f23cea204bf20f3dc76c616d3aa3faf4b1035166287518a64ba07faaaea1621a0af5b94b8f8199371ca67db905562e7e619
   languageName: node
   linkType: hard
 
@@ -4104,9 +4104,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/plugin-node-resolve@npm:^13.0.2":
-  version: 13.0.2
-  resolution: "@rollup/plugin-node-resolve@npm:13.0.2"
+"@rollup/plugin-node-resolve@npm:^13.0.4":
+  version: 13.0.4
+  resolution: "@rollup/plugin-node-resolve@npm:13.0.4"
   dependencies:
     "@rollup/pluginutils": ^3.1.0
     "@types/resolve": 1.17.1
@@ -4116,7 +4116,7 @@ __metadata:
     resolve: ^1.19.0
   peerDependencies:
     rollup: ^2.42.0
-  checksum: c4860734d5969076a5b26dc86a8f26ef1400fdd5ae54ef1ea565a728642cc25c80ca08d0027ca222fac824a992477769d3d81d761c165ac2a56392727eb1b94a
+  checksum: 9013d3b2c2e5a31be12e74fdf1ade209d3ce8c52cc47c2bb724ba67727efec7275a4e987874c5b6d6a3f9f25c5364df95bfba5b2f8b874a9dbb33c3fcb927731
   languageName: node
   linkType: hard
 
@@ -14703,9 +14703,9 @@ fsevents@^1.2.7:
     "@boost/terminal": ^2.2.2
     "@microsoft/api-extractor": ^7.18.4
     "@rollup/plugin-babel": ^5.3.0
-    "@rollup/plugin-commonjs": ^19.0.1
+    "@rollup/plugin-commonjs": ^20.0.0
     "@rollup/plugin-json": ^4.1.0
-    "@rollup/plugin-node-resolve": ^13.0.2
+    "@rollup/plugin-node-resolve": ^13.0.4
     babel-plugin-conditional-invariant: ^1.0.0
     babel-plugin-env-constants: ^1.0.0
     babel-plugin-transform-async-to-promises: ^0.8.15
@@ -14721,9 +14721,9 @@ fsevents@^1.2.7:
     npm-packlist: ^2.2.2
     react: ^16.14.0
     rimraf: ^3.0.2
-    rollup: ^2.53.2
+    rollup: ^2.55.1
     rollup-plugin-node-externals: ^2.2.0
-    rollup-plugin-polyfill-node: ^0.6.2
+    rollup-plugin-polyfill-node: ^0.7.0
     rollup-plugin-visualizer: ^5.5.2
     semver: ^7.3.5
     spdx-license-list: ^6.4.0
@@ -17004,12 +17004,12 @@ resolve@~1.19.0:
   languageName: node
   linkType: hard
 
-"rollup-plugin-polyfill-node@npm:^0.6.2":
-  version: 0.6.2
-  resolution: "rollup-plugin-polyfill-node@npm:0.6.2"
+"rollup-plugin-polyfill-node@npm:^0.7.0":
+  version: 0.7.0
+  resolution: "rollup-plugin-polyfill-node@npm:0.7.0"
   dependencies:
     "@rollup/plugin-inject": ^4.0.0
-  checksum: ab54c237be140b814ac178bafe4f6e9518e893d52f8ed8399ade979f335e0d41d6aebf23b16e39aa24ecc6e7146e476903518c234f038d8e07920ed9e2c6dcb7
+  checksum: 579029a104cd5a8e2593db720cb15023e3e6d0f90c969db68baca54174a99aee297b46639f69b44cc6833ceedb95047ba146e3eec3a8b832b77e226e86d18a8f
   languageName: node
   linkType: hard
 
@@ -17029,9 +17029,9 @@ resolve@~1.19.0:
   languageName: node
   linkType: hard
 
-"rollup@npm:^2.53.2":
-  version: 2.53.2
-  resolution: "rollup@npm:2.53.2"
+"rollup@npm:^2.55.1":
+  version: 2.55.1
+  resolution: "rollup@npm:2.55.1"
   dependencies:
     fsevents: ~2.3.2
   dependenciesMeta:
@@ -17039,7 +17039,7 @@ resolve@~1.19.0:
       optional: true
   bin:
     rollup: dist/bin/rollup
-  checksum: 0b64def8f0a6e16abff59397e21328ec0605c2f5f2623a5d276603c696e244593f86773b0dd965aa7aae8970f72bf3c723b5bc50f9b3e800c105290e6c62c690
+  checksum: 504f293723b98431cbd57341d6bbfe5388fcbfa7c34046885f81b51329a9316a08641945051857e05623e72b9b1ceb529a6e60275593d2710fe27f353c194962
   languageName: node
   linkType: hard
 
