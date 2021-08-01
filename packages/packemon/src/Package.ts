@@ -248,6 +248,7 @@ export class Package {
 
 				this.configs.push({
 					bundle,
+					externals: toArray(config.externals),
 					formats,
 					inputs: config.inputs,
 					namespace: config.namespace,

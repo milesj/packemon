@@ -164,6 +164,26 @@ need to configure this.
 > These inputs can be automatically mapped to `package.json` `exports` using the `--addExports` CLI
 > option. Do note that this feature is still experimental.
 
+## Externals
+
+By default, Packemon will denote all `package.json` dependencies (peer, dev, and prod) as Rollup
+externals. If you need to define custom externals (path aliases, etc), you can utilize the
+`externals` option, which accepts a string or an array of strings.
+
+```json
+{
+	"externals": "some-module-name"
+}
+```
+
+Externals can also be provided as regex-strings that will be used with string `match()`.
+
+```json
+{
+	"externals": ["@scope/\\*"]
+}
+```
+
 ## Bundle
 
 Whether to bundle the source code into a single file for each [input](#inputs). If not provided, is

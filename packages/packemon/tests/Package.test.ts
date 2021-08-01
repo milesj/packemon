@@ -1071,6 +1071,7 @@ describe('Package', () => {
 			expect(pkg.configs).toEqual([
 				{
 					bundle: true,
+					externals: [],
 					formats: ['lib', 'esm'],
 					inputs: {},
 					platform: 'browser',
@@ -1094,6 +1095,7 @@ describe('Package', () => {
 			expect(pkg.configs).toEqual([
 				{
 					bundle: true,
+					externals: [],
 					formats: ['lib', 'esm', 'umd'],
 					inputs: {},
 					platform: 'browser',
@@ -1117,6 +1119,7 @@ describe('Package', () => {
 			expect(pkg.configs).toEqual([
 				{
 					bundle: true,
+					externals: [],
 					formats: ['lib'],
 					inputs: {},
 					platform: 'native',
@@ -1140,6 +1143,7 @@ describe('Package', () => {
 			expect(pkg.configs).toEqual([
 				{
 					bundle: false,
+					externals: [],
 					formats: ['mjs'],
 					inputs: {},
 					platform: 'node',
@@ -1163,6 +1167,7 @@ describe('Package', () => {
 			expect(pkg.configs).toEqual([
 				{
 					bundle: false,
+					externals: [],
 					formats: ['cjs', 'mjs'],
 					inputs: {},
 					platform: 'node',
@@ -1183,6 +1188,7 @@ describe('Package', () => {
 			expect(pkg.configs).toEqual([
 				{
 					bundle: true,
+					externals: [],
 					formats: ['lib', 'esm'],
 					inputs: {},
 					platform: 'browser',
@@ -1191,6 +1197,7 @@ describe('Package', () => {
 				},
 				{
 					bundle: false,
+					externals: [],
 					formats: ['mjs'],
 					inputs: {},
 					platform: 'node',
@@ -1212,6 +1219,7 @@ describe('Package', () => {
 			expect(pkg.configs).toEqual([
 				{
 					bundle: true,
+					externals: [],
 					formats: ['lib', 'esm'],
 					inputs: {},
 					platform: 'browser',
@@ -1220,6 +1228,7 @@ describe('Package', () => {
 				},
 				{
 					bundle: false,
+					externals: [],
 					formats: ['lib', 'cjs'],
 					inputs: {},
 					platform: 'node',
@@ -1228,6 +1237,7 @@ describe('Package', () => {
 				},
 				{
 					bundle: true,
+					externals: [],
 					formats: ['lib'],
 					inputs: {},
 					platform: 'native',
@@ -1252,6 +1262,7 @@ describe('Package', () => {
 			expect(pkg.configs).toEqual([
 				{
 					bundle: true,
+					externals: [],
 					formats: ['mjs'],
 					inputs: { index: 'src/index.ts' },
 					platform: 'node',
@@ -1260,6 +1271,47 @@ describe('Package', () => {
 				},
 				{
 					bundle: false,
+					externals: [],
+					formats: ['lib', 'esm'],
+					inputs: { index: 'src/index.ts' },
+					platform: 'browser',
+					namespace: '',
+					support: 'stable',
+				},
+			]);
+		});
+
+		it('sets `externals` option', () => {
+			pkg.setConfigs([
+				{
+					externals: ['foo', 'bar'],
+				},
+			]);
+
+			expect(pkg.configs).toEqual([
+				{
+					bundle: true,
+					externals: ['foo', 'bar'],
+					formats: ['lib', 'esm'],
+					inputs: { index: 'src/index.ts' },
+					platform: 'browser',
+					namespace: '',
+					support: 'stable',
+				},
+			]);
+		});
+
+		it('sets `externals` option with a string', () => {
+			pkg.setConfigs([
+				{
+					externals: 'foo',
+				},
+			]);
+
+			expect(pkg.configs).toEqual([
+				{
+					bundle: true,
+					externals: ['foo'],
 					formats: ['lib', 'esm'],
 					inputs: { index: 'src/index.ts' },
 					platform: 'browser',

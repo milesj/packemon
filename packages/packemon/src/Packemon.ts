@@ -257,6 +257,7 @@ export class Packemon {
 				const artifact = new CodeArtifact(pkg, builds);
 				artifact.bundle = config.bundle;
 				artifact.configGroup = index;
+				artifact.externals = config.externals;
 				artifact.inputs = config.inputs;
 				artifact.namespace = config.namespace;
 				artifact.platform = config.platform;

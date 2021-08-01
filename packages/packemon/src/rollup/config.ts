@@ -77,6 +77,12 @@ export function getRollupExternals(artifact: CodeArtifact) {
 			);
 		}
 
+		for (const pattern of artifact.externals) {
+			if (id.match(pattern)) {
+				return true;
+			}
+		}
+
 		return false;
 	};
 }
