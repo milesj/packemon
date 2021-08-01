@@ -58,6 +58,7 @@ export type InputMap = Record<string, string>;
 
 export interface PackemonPackageConfig {
 	bundle?: boolean;
+	externals?: string[] | string;
 	format?: Format | Format[];
 	inputs?: InputMap;
 	namespace?: string;
@@ -71,6 +72,7 @@ export interface PackemonPackage extends PackageStructure {
 
 export interface PackageConfig {
 	bundle: boolean;
+	externals: string[];
 	formats: Format[];
 	inputs: InputMap;
 	namespace: string;

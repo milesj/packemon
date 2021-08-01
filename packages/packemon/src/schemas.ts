@@ -58,6 +58,7 @@ const support = string<Support>(DEFAULT_SUPPORT).oneOf(SUPPORTS);
 
 export const packemonBlueprint: Blueprint<PackemonPackageConfig> = {
 	bundle: bool(true),
+	externals: union([string(), array(string())], []),
 	format: union([array(format), format], []),
 	inputs: object(string(), { index: DEFAULT_INPUT }).custom((obj) => {
 		Object.keys(obj).forEach((key) => {

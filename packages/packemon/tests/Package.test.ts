@@ -1269,6 +1269,46 @@ describe('Package', () => {
 			]);
 		});
 
+		it('sets `externals` option', () => {
+			pkg.setConfigs([
+				{
+					externals: ['foo', 'bar'],
+				},
+			]);
+
+			expect(pkg.configs).toEqual([
+				{
+					bundle: false,
+					externals: ['foo', 'bar'],
+					formats: ['cjs', 'mjs'],
+					inputs: {},
+					platform: 'node',
+					namespace: '',
+					support: 'stable',
+				},
+			]);
+		});
+
+		it('sets `externals` option with a string', () => {
+			pkg.setConfigs([
+				{
+					externals: 'foo',
+				},
+			]);
+
+			expect(pkg.configs).toEqual([
+				{
+					bundle: false,
+					externals: ['foo'],
+					formats: ['cjs', 'mjs'],
+					inputs: {},
+					platform: 'node',
+					namespace: '',
+					support: 'stable',
+				},
+			]);
+		});
+
 		it('errors if invalid format is provided for `browser` platform', () => {
 			expect(() => {
 				pkg.setConfigs([
