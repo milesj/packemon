@@ -90,7 +90,6 @@ export class InitCommand extends BaseCommand<InitOptions> {
 		packages: WorkspacePackage<PackemonPackage>[],
 		configs: Record<string, PackemonPackageConfig>,
 	) {
-		// eslint-disable-next-line compat/compat
 		await Promise.all(
 			packages.map((item) => {
 				const pkg = new Package(this.packemon.project, new Path(item.metadata.packagePath), {
