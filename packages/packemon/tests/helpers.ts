@@ -11,6 +11,7 @@ import {
 	FORMATS_NATIVE,
 	FORMATS_NODE,
 	Package,
+	PackageConfig,
 	Platform,
 	PLATFORMS,
 	Project,
@@ -128,7 +129,7 @@ FORMATS.forEach((format) => {
 	});
 });
 
-export function testExampleOutput(file: string) {
+export function testExampleOutput(file: string, options?: Partial<PackageConfig>) {
 	const snapshots = createSnapshotSpies(exampleRoot);
 
 	[...builds.values()].forEach((build) => {
@@ -140,6 +141,11 @@ export function testExampleOutput(file: string) {
 			artifact.platform = build.platform;
 			artifact.support = build.support;
 			artifact.inputs = { [`index-${env}`]: file };
+
+			// eslint-disable-next-line jest/no-if
+			if (options) {
+				Object.assign(artifact, options);
+			}
 
 			pkg.addArtifact(artifact);
 

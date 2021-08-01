@@ -502,6 +502,7 @@ describe('Packemon', () => {
 			expect(two.configs).toEqual([
 				{
 					bundle: false,
+					externals: [],
 					formats: ['mjs'],
 					inputs: { core: './src/core.ts' },
 					namespace: '',
@@ -514,6 +515,7 @@ describe('Packemon', () => {
 			expect(three.configs).toEqual([
 				{
 					bundle: true,
+					externals: [],
 					formats: ['lib', 'esm', 'umd'],
 					inputs: { index: 'src/index.ts' },
 					namespace: 'Test',

@@ -24,6 +24,9 @@ export class CodeArtifact extends Artifact<CodeBuild> {
 	// Config object in which inputs are grouped in
 	configGroup: number = 0;
 
+	// List of custom Rollup externals
+	externals: string[] = [];
+
 	// Mapping of output names to input paths
 	inputs: InputMap = {};
 
