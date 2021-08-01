@@ -480,6 +480,7 @@ describe('Packemon', () => {
 			expect(one.configs).toEqual([
 				{
 					bundle: false,
+					externals: [],
 					formats: ['lib'],
 					inputs: { index: 'src/index.ts' },
 					namespace: '',
@@ -488,6 +489,7 @@ describe('Packemon', () => {
 				},
 				{
 					bundle: true,
+					externals: [],
 					formats: ['lib', 'esm'],
 					inputs: { index: 'src/index.ts' },
 					namespace: '',
