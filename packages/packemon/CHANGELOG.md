@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.3.0 - 2021-08-02
+
+#### 🚀 Updates
+
+- Support a new `externals` option. (#80) ([c935e35](https://github.com/milesj/packemon/commit/c935e35)), closes [#80](https://github.com/milesj/packemon/issues/80)
+
+#### 📦 Dependencies
+
+- **[beemo]** Update to v2 latest. ([6534d5b](https://github.com/milesj/packemon/commit/6534d5b))
+- **[rollup]** Update to v2.55. ([41e35b6](https://github.com/milesj/packemon/commit/41e35b6))
+
+**Note:** Version bump only for package packemon
+
+
+
+
+
 ## 1.2.0 - 2021-07-17
 
 #### 🚀 Updates

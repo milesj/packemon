@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 1.0.1 - 2021-08-02
+
+#### 📦 Dependencies
+
+- **[beemo]** Update to v2 latest. ([6534d5b](https://github.com/milesj/packemon/commit/6534d5b))
+
+**Note:** Version bump only for package babel-plugin-env-constants
+
+
+
+
+
 # 1.0.0 - 2021-07-17
 
 #### 🎉 Release

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.2.0 - 2021-08-02
+
+#### 🚀 Updates
+
+- Support a new `externals` option. (#80) ([c935e35](https://github.com/milesj/packemon/commit/c935e35)), closes [#80](https://github.com/milesj/packemon/issues/80)
+
+#### 📘 Docs
+
+- **[docusaurus]** Update to beta.4. ([b8cb57b](https://github.com/milesj/packemon/commit/b8cb57b))
+
+**Note:** Version bump only for package website
+
+
+
+
+
 # 0.1.0 - 2021-07-17
 
 #### 💥 Breaking
