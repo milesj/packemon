@@ -17,7 +17,7 @@
     "test": "beemo jest",
     "type": "beemo typescript --build",
     "prerelease": "yarn run clean && yarn run setup && yarn run pack && yarn run check",
-    "release": "yarn prerelease && lerna version --conventional-commits --changelog-preset conventional-changelog-beemo --create-release github --push && lerna publish from-git",
+    "release": "yarn prerelease && beemo run-script lerna-release",
     "version": "yarn install && git add yarn.lock",
     "pack": "NODE_ENV=production yarn run packemon build --addEngines --addExports --declaration=standard",
     "packemon": "node ./packages/packemon/lib/bin.js"
