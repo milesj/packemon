@@ -160,13 +160,9 @@ export class CodeArtifact extends Artifact<CodeBuild> {
 
 	getInputPaths(): InputMap {
 		// Return absolute paths so that Rollup paths/externals resolve correctly
-		return Object.entries(this.inputs).reduce(
-			(map, [outputName, inputFile]) => ({
-				...map,
-				[outputName]: this.package.path.append(inputFile).path(),
-			}),
-			{},
-		);
+		return Object.fromEntries(Object.entries(this.inputs).map(
+			( [outputName, inputFile]) => [outputName, this.package.path.append(inputFile).path()],
+		));
 	}
 
 	getLabel(): string {

@@ -26,7 +26,7 @@ export function useGroupedArtifacts(pkg: Package) {
 		const envs = Object.keys(groups) as Environment[];
 
 		if (envs.length === 1) {
-			ungrouped.unshift(...[...groups[envs[0]]!]);
+			ungrouped.unshift(...groups[envs[0]]!);
 			groups = {};
 		}
 
