@@ -158,22 +158,10 @@ describe('cjsEsmBridge()', () => {
 			).toMatchInlineSnapshot(`"const file = import.meta.url;"`);
 		});
 
-		it('doesnt transform from .ts -> .cjs', async () => {
-			expect(
-				await transform('const file = __filename;', { filename: 'file.ts' }, { format: 'cjs' }),
-			).toMatchInlineSnapshot(`"const file = __filename;"`);
-		});
-
 		it('transforms from .mjs -> .mjs', async () => {
 			expect(
 				await transform('const file = __filename;', { filename: 'file.mjs' }, { format: 'mjs' }),
 			).toMatchInlineSnapshot(`"const file = import.meta.url;"`);
-		});
-
-		it('doesnt transform from .mjs -> .cjs', async () => {
-			expect(
-				await transform('const file = __filename;', { filename: 'file.mjs' }, { format: 'cjs' }),
-			).toMatchInlineSnapshot(`"const file = __filename;"`);
 		});
 
 		it('transforms from .js -> .mjs', async () => {
@@ -182,16 +170,28 @@ describe('cjsEsmBridge()', () => {
 			).toMatchInlineSnapshot(`"const file = import.meta.url;"`);
 		});
 
-		it('doesnt transform from .js -> .cjs', async () => {
-			expect(
-				await transform('const file = __filename;', { filename: 'file.js' }, { format: 'cjs' }),
-			).toMatchInlineSnapshot(`"const file = __filename;"`);
-		});
-
 		it('transforms from .cjs -> .mjs', async () => {
 			expect(
 				await transform('const file = __filename;', { filename: 'file.cjs' }, { format: 'mjs' }),
 			).toMatchInlineSnapshot(`"const file = import.meta.url;"`);
+		});
+
+		it('doesnt transform from .ts -> .cjs', async () => {
+			expect(
+				await transform('const file = __filename;', { filename: 'file.ts' }, { format: 'cjs' }),
+			).toMatchInlineSnapshot(`"const file = __filename;"`);
+		});
+
+		it('doesnt transform from .mjs -> .cjs', async () => {
+			expect(
+				await transform('const file = __filename;', { filename: 'file.mjs' }, { format: 'cjs' }),
+			).toMatchInlineSnapshot(`"const file = __filename;"`);
+		});
+
+		it('doesnt transform from .js -> .cjs', async () => {
+			expect(
+				await transform('const file = __filename;', { filename: 'file.js' }, { format: 'cjs' }),
+			).toMatchInlineSnapshot(`"const file = __filename;"`);
 		});
 
 		it('doesnt transform from .cjs -> .cjs', async () => {
@@ -211,12 +211,6 @@ describe('cjsEsmBridge()', () => {
 		`);
 		});
 
-		it('doesnt transform from .ts -> .cjs', async () => {
-			expect(
-				await transform('const dir = __dirname;', { filename: 'file.ts' }, { format: 'cjs' }),
-			).toMatchInlineSnapshot(`"const dir = __dirname;"`);
-		});
-
 		it('transforms from .mjs -> .mjs', async () => {
 			expect(await transform('const dir = __dirname;', { filename: 'file.mjs' }, { format: 'mjs' }))
 				.toMatchInlineSnapshot(`
@@ -224,12 +218,6 @@ describe('cjsEsmBridge()', () => {
 
 			const dir = _path.dirname(import.meta.url);"
 		`);
-		});
-
-		it('doesnt transform from .mjs -> .cjs', async () => {
-			expect(
-				await transform('const dir = __dirname;', { filename: 'file.mjs' }, { format: 'cjs' }),
-			).toMatchInlineSnapshot(`"const dir = __dirname;"`);
 		});
 
 		it('transforms from .js -> .mjs', async () => {
@@ -241,12 +229,6 @@ describe('cjsEsmBridge()', () => {
 		`);
 		});
 
-		it('doesnt transform from .js -> .cjs', async () => {
-			expect(
-				await transform('const dir = __dirname;', { filename: 'file.js' }, { format: 'cjs' }),
-			).toMatchInlineSnapshot(`"const dir = __dirname;"`);
-		});
-
 		it('transforms from .cjs -> .mjs', async () => {
 			expect(await transform('const dir = __dirname;', { filename: 'file.cjs' }, { format: 'mjs' }))
 				.toMatchInlineSnapshot(`
@@ -254,6 +236,24 @@ describe('cjsEsmBridge()', () => {
 
 			const dir = _path.dirname(import.meta.url);"
 		`);
+		});
+
+		it('doesnt transform from .ts -> .cjs', async () => {
+			expect(
+				await transform('const dir = __dirname;', { filename: 'file.ts' }, { format: 'cjs' }),
+			).toMatchInlineSnapshot(`"const dir = __dirname;"`);
+		});
+
+		it('doesnt transform from .mjs -> .cjs', async () => {
+			expect(
+				await transform('const dir = __dirname;', { filename: 'file.mjs' }, { format: 'cjs' }),
+			).toMatchInlineSnapshot(`"const dir = __dirname;"`);
+		});
+
+		it('doesnt transform from .js -> .cjs', async () => {
+			expect(
+				await transform('const dir = __dirname;', { filename: 'file.js' }, { format: 'cjs' }),
+			).toMatchInlineSnapshot(`"const dir = __dirname;"`);
 		});
 
 		it('doesnt transform from .cjs -> .cjs', async () => {
@@ -264,16 +264,6 @@ describe('cjsEsmBridge()', () => {
 	});
 
 	describe('import.meta.url', () => {
-		it('doesnt transform from .ts -> .mjs', async () => {
-			expect(
-				await transform(
-					'const file = import.meta.url;',
-					{ filename: 'file.ts' },
-					{ format: 'mjs' },
-				),
-			).toMatchInlineSnapshot(`"const file = import.meta.url;"`);
-		});
-
 		it('transforms from .ts -> .cjs', async () => {
 			expect(
 				await transform(
@@ -282,16 +272,6 @@ describe('cjsEsmBridge()', () => {
 					{ format: 'cjs' },
 				),
 			).toMatchInlineSnapshot(`"const file = __filename;"`);
-		});
-
-		it('doesnt transform from .mjs -> .mjs', async () => {
-			expect(
-				await transform(
-					'const file = import.meta.url;',
-					{ filename: 'file.mjs' },
-					{ format: 'mjs' },
-				),
-			).toMatchInlineSnapshot(`"const file = import.meta.url;"`);
 		});
 
 		it('transforms from .mjs -> .cjs', async () => {
@@ -304,16 +284,6 @@ describe('cjsEsmBridge()', () => {
 			).toMatchInlineSnapshot(`"const file = __filename;"`);
 		});
 
-		it('doesnt transform from .js -> .mjs', async () => {
-			expect(
-				await transform(
-					'const file = import.meta.url;',
-					{ filename: 'file.js' },
-					{ format: 'mjs' },
-				),
-			).toMatchInlineSnapshot(`"const file = import.meta.url;"`);
-		});
-
 		it('transforms from .js -> .cjs', async () => {
 			expect(
 				await transform(
@@ -322,16 +292,6 @@ describe('cjsEsmBridge()', () => {
 					{ format: 'cjs' },
 				),
 			).toMatchInlineSnapshot(`"const file = __filename;"`);
-		});
-
-		it('doesnt transform from .cjs -> .mjs', async () => {
-			expect(
-				await transform(
-					'const file = import.meta.url;',
-					{ filename: 'file.cjs' },
-					{ format: 'mjs' },
-				),
-			).toMatchInlineSnapshot(`"const file = import.meta.url;"`);
 		});
 
 		it('transforms from .cjs -> .cjs', async () => {
@@ -344,6 +304,46 @@ describe('cjsEsmBridge()', () => {
 			).toMatchInlineSnapshot(`"const file = __filename;"`);
 		});
 
+		it('doesnt transform from .ts -> .mjs', async () => {
+			expect(
+				await transform(
+					'const file = import.meta.url;',
+					{ filename: 'file.ts' },
+					{ format: 'mjs' },
+				),
+			).toMatchInlineSnapshot(`"const file = import.meta.url;"`);
+		});
+
+		it('doesnt transform from .mjs -> .mjs', async () => {
+			expect(
+				await transform(
+					'const file = import.meta.url;',
+					{ filename: 'file.mjs' },
+					{ format: 'mjs' },
+				),
+			).toMatchInlineSnapshot(`"const file = import.meta.url;"`);
+		});
+
+		it('doesnt transform from .js -> .mjs', async () => {
+			expect(
+				await transform(
+					'const file = import.meta.url;',
+					{ filename: 'file.js' },
+					{ format: 'mjs' },
+				),
+			).toMatchInlineSnapshot(`"const file = import.meta.url;"`);
+		});
+
+		it('doesnt transform from .cjs -> .mjs', async () => {
+			expect(
+				await transform(
+					'const file = import.meta.url;',
+					{ filename: 'file.cjs' },
+					{ format: 'mjs' },
+				),
+			).toMatchInlineSnapshot(`"const file = import.meta.url;"`);
+		});
+
 		it('doesnt transform to cjs when wrapped with dirname', async () => {
 			expect(
 				await transform(
@@ -352,9 +352,167 @@ describe('cjsEsmBridge()', () => {
 					{ format: 'cjs' },
 				),
 			).toMatchInlineSnapshot(`
-			"const dir1 = path.dirname(__filename);
+			"const dir1 = path.dirname(import.meta.url);
 			const dir2 = dirname(import.meta.url);"
 		`);
+		});
+	});
+
+	describe('NODE_PATH', () => {
+		it('errors if .ts -> .mjs', async () => {
+			await expect(
+				transform('process.env.NODE_PATH', { filename: 'file.ts' }, { format: 'mjs' }),
+			).rejects.toThrow(
+				'Environment variable `process.env.NODE_PATH` is not available in modules.',
+			);
+		});
+
+		it('errors if .mjs -> .mjs', async () => {
+			await expect(
+				transform('process.env.NODE_PATH', { filename: 'file.mjs' }, { format: 'mjs' }),
+			).rejects.toThrow(
+				'Environment variable `process.env.NODE_PATH` is not available in modules.',
+			);
+		});
+
+		it('errors if .js -> .mjs', async () => {
+			await expect(
+				transform('process.env.NODE_PATH', { filename: 'file.js' }, { format: 'mjs' }),
+			).rejects.toThrow(
+				'Environment variable `process.env.NODE_PATH` is not available in modules.',
+			);
+		});
+
+		it('errors if .cjs -> .mjs', async () => {
+			await expect(
+				transform('process.env.NODE_PATH', { filename: 'file.cjs' }, { format: 'mjs' }),
+			).rejects.toThrow(
+				'Environment variable `process.env.NODE_PATH` is not available in modules.',
+			);
+		});
+
+		it('doesnt error if .ts -> .cjs', async () => {
+			await expect(
+				transform('process.env.NODE_PATH', { filename: 'file.ts' }, { format: 'cjs' }),
+			).resolves.not.toThrow();
+		});
+
+		it('doesnt error if .mjs -> .cjs', async () => {
+			await expect(
+				transform('process.env.NODE_PATH', { filename: 'file.mjs' }, { format: 'cjs' }),
+			).resolves.not.toThrow();
+		});
+
+		it('doesnt error if .js -> .cjs', async () => {
+			await expect(
+				transform('process.env.NODE_PATH', { filename: 'file.js' }, { format: 'cjs' }),
+			).resolves.not.toThrow();
+		});
+
+		it('doesnt error if .cjs -> .cjs', async () => {
+			await expect(
+				transform('process.env.NODE_PATH', { filename: 'file.cjs' }, { format: 'cjs' }),
+			).resolves.not.toThrow();
+		});
+	});
+
+	describe('require.extensions', () => {
+		it('errors if .ts -> .mjs', async () => {
+			await expect(
+				transform('require.extensions[".js"] = {};', { filename: 'file.ts' }, { format: 'mjs' }),
+			).rejects.toThrow('API `require.extensions` is not available in modules.');
+		});
+
+		it('errors if .mjs -> .mjs', async () => {
+			await expect(
+				transform('require.extensions[".js"] = {};', { filename: 'file.mjs' }, { format: 'mjs' }),
+			).rejects.toThrow('API `require.extensions` is not available in modules.');
+		});
+
+		it('errors if .js -> .mjs', async () => {
+			await expect(
+				transform('require.extensions[".js"] = {};', { filename: 'file.js' }, { format: 'mjs' }),
+			).rejects.toThrow('API `require.extensions` is not available in modules.');
+		});
+
+		it('errors if .cjs -> .mjs', async () => {
+			await expect(
+				transform('require.extensions[".js"] = {};', { filename: 'file.cjs' }, { format: 'mjs' }),
+			).rejects.toThrow('API `require.extensions` is not available in modules.');
+		});
+
+		it('doesnt error if .ts -> .cjs', async () => {
+			await expect(
+				transform('require.extensions[".js"] = {};', { filename: 'file.ts' }, { format: 'cjs' }),
+			).resolves.not.toThrow();
+		});
+
+		it('doesnt error if .mjs -> .cjs', async () => {
+			await expect(
+				transform('require.extensions[".js"] = {};', { filename: 'file.mjs' }, { format: 'cjs' }),
+			).resolves.not.toThrow();
+		});
+
+		it('doesnt error if .js -> .cjs', async () => {
+			await expect(
+				transform('require.extensions[".js"] = {};', { filename: 'file.js' }, { format: 'cjs' }),
+			).resolves.not.toThrow();
+		});
+
+		it('doesnt error if .cjs -> .cjs', async () => {
+			await expect(
+				transform('require.extensions[".js"] = {};', { filename: 'file.cjs' }, { format: 'cjs' }),
+			).resolves.not.toThrow();
+		});
+	});
+
+	describe('require.cache', () => {
+		it('errors if .ts -> .mjs', async () => {
+			await expect(
+				transform('require.cache["foo"] = {};', { filename: 'file.ts' }, { format: 'mjs' }),
+			).rejects.toThrow('API `require.cache` is not available in modules.');
+		});
+
+		it('errors if .mjs -> .mjs', async () => {
+			await expect(
+				transform('require.cache["foo"] = {};', { filename: 'file.mjs' }, { format: 'mjs' }),
+			).rejects.toThrow('API `require.cache` is not available in modules.');
+		});
+
+		it('errors if .js -> .mjs', async () => {
+			await expect(
+				transform('require.cache["foo"] = {};', { filename: 'file.js' }, { format: 'mjs' }),
+			).rejects.toThrow('API `require.cache` is not available in modules.');
+		});
+
+		it('errors if .cjs -> .mjs', async () => {
+			await expect(
+				transform('require.cache["foo"] = {};', { filename: 'file.cjs' }, { format: 'mjs' }),
+			).rejects.toThrow('API `require.cache` is not available in modules.');
+		});
+
+		it('doesnt error if .ts -> .cjs', async () => {
+			await expect(
+				transform('require.cache["foo"] = {};', { filename: 'file.ts' }, { format: 'cjs' }),
+			).resolves.not.toThrow();
+		});
+
+		it('doesnt error if .mjs -> .cjs', async () => {
+			await expect(
+				transform('require.cache["foo"] = {};', { filename: 'file.mjs' }, { format: 'cjs' }),
+			).resolves.not.toThrow();
+		});
+
+		it('doesnt error if .js -> .cjs', async () => {
+			await expect(
+				transform('require.cache["foo"] = {};', { filename: 'file.js' }, { format: 'cjs' }),
+			).resolves.not.toThrow();
+		});
+
+		it('doesnt error if .cjs -> .cjs', async () => {
+			await expect(
+				transform('require.cache["foo"] = {};', { filename: 'file.cjs' }, { format: 'cjs' }),
+			).resolves.not.toThrow();
 		});
 	});
 });

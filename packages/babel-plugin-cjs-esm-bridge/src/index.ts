@@ -18,7 +18,17 @@ function isPathDirname(path: NodePath): boolean {
 		path.isCallExpression() &&
 			path.get('callee').isMemberExpression() &&
 			(path.get('callee.object') as NodePath).isIdentifier() &&
-			(path.get('callee.object') as NodePath).isIdentifier({ name: 'dirname' }),
+			(path.get('callee.property') as NodePath).isIdentifier({ name: 'dirname' }),
+	);
+}
+
+function isProcessEnv(path: NodePath): boolean {
+	// process.env
+	return Boolean(
+		path.isMemberExpression() &&
+			(path.get('object') as NodePath).isMemberExpression() &&
+			(path.get('object.object') as NodePath).isIdentifier({ name: 'process' }) &&
+			(path.get('object.property') as NodePath).isIdentifier({ name: 'env' }),
 	);
 }
 
@@ -78,6 +88,18 @@ export default function cjsEsmBridge({ format = 'mjs' }: CjsEsmBridgeOptions = {
 
 					path.replaceWith(call);
 				}
+
+				// `NODE_PATH` is not allowed in esm files
+				// https://nodejs.org/api/esm.html#esm_no_node_path
+				if (
+					format === 'mjs' &&
+					path.isIdentifier({ name: 'NODE_PATH' }) &&
+					isProcessEnv(path.parentPath)
+				) {
+					throw new Error(
+						'Environment variable `process.env.NODE_PATH` is not available in modules.',
+					);
+				}
 			},
 
 			MemberExpression(path: NodePath<t.MemberExpression>, state) {
@@ -121,6 +143,26 @@ export default function cjsEsmBridge({ format = 'mjs' }: CjsEsmBridgeOptions = {
 					!isPathDirname(path.parentPath)
 				) {
 					path.replaceWith(t.identifier('__filename'));
+				}
+
+				// `require.extensions` is not allowed in esm files
+				// https://nodejs.org/api/esm.html#esm_no_require_extensions
+				if (
+					format === 'mjs' &&
+					path.get('object').isIdentifier({ name: 'require' }) &&
+					path.get('property').isIdentifier({ name: 'extensions' })
+				) {
+					throw new Error('API `require.extensions` is not available in modules.');
+				}
+
+				// `require.cache` is not allowed in esm files
+				// https://nodejs.org/api/esm.html#esm_no_require_cache
+				if (
+					format === 'mjs' &&
+					path.get('object').isIdentifier({ name: 'require' }) &&
+					path.get('property').isIdentifier({ name: 'cache' })
+				) {
+					throw new Error('API `require.cache` is not available in modules.');
 				}
 			},
 		},
