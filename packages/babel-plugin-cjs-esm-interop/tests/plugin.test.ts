@@ -1,17 +1,17 @@
 import { transformAsync, TransformOptions } from '@babel/core';
-import cjsEsmBridge, { CjsEsmBridgeOptions } from '../src';
+import cjsEsmInterop, { CjsEsmInteropOptions } from '../src';
 
 async function transform(
 	code: string,
 	options?: TransformOptions,
-	pluginOptions?: CjsEsmBridgeOptions,
+	pluginOptions?: CjsEsmInteropOptions,
 ): Promise<string> {
 	const result = await transformAsync(code, {
 		babelrc: false,
 		comments: false,
 		configFile: false,
 		filename: 'file.js',
-		plugins: [[cjsEsmBridge, pluginOptions]],
+		plugins: [[cjsEsmInterop, pluginOptions]],
 		presets: ['@babel/preset-react'],
 		generatorOpts: {
 			jsescOption: { quotes: 'single' },
@@ -22,7 +22,7 @@ async function transform(
 	return result?.code ?? '';
 }
 
-describe('cjsEsmBridge()', () => {
+describe('cjsEsmInterop()', () => {
 	describe('require()', () => {
 		it('errors if .ts -> .mjs', async () => {
 			await expect(

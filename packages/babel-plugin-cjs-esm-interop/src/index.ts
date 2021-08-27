@@ -5,7 +5,7 @@ import { NodePath, PluginObj, PluginPass, types as t } from '@babel/core';
 // @ts-expect-error Not typed
 import { addDefault } from '@babel/helper-module-imports';
 
-export interface CjsEsmBridgeOptions {
+export interface CjsEsmInteropOptions {
 	// The output format
 	format?: 'cjs' | 'mjs';
 }
@@ -40,10 +40,10 @@ function isProcessEnv(path: NodePath): boolean {
 }
 
 function getFormat(state: PluginPass): 'cjs' | 'mjs' {
-	return (state.opts as CjsEsmBridgeOptions)?.format ?? 'mjs';
+	return (state.opts as CjsEsmInteropOptions)?.format ?? 'mjs';
 }
 
-export default function cjsEsmBridge(): PluginObj {
+export default function cjsEsmInterop(): PluginObj {
 	return {
 		visitor: {
 			CallExpression(path: NodePath<t.CallExpression>, state) {

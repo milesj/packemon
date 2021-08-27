@@ -1,8 +1,8 @@
-# babel-plugin-cjs-esm-bridge
+# babel-plugin-cjs-esm-interop
 
 [![Build Status](https://github.com/milesj/packemon/workflows/Build/badge.svg)](https://github.com/milesj/packemon/actions?query=branch%3Amaster)
-[![npm version](https://badge.fury.io/js/babel-plugin-cjs-esm-bridge.svg)](https://www.npmjs.com/package/babel-plugin-cjs-esm-bridge)
-[![npm deps](https://david-dm.org/milesj/packemon.svg?path=packages/babel-plugin-cjs-esm-bridge)](https://www.npmjs.com/package/babel-plugin-cjs-esm-bridge)
+[![npm version](https://badge.fury.io/js/babel-plugin-cjs-esm-interop.svg)](https://www.npmjs.com/package/babel-plugin-cjs-esm-interop)
+[![npm deps](https://david-dm.org/milesj/packemon.svg?path=packages/babel-plugin-cjs-esm-interop)](https://www.npmjs.com/package/babel-plugin-cjs-esm-interop)
 
 Transform the differences between CommonJS code (`.js`, `.cjs`) and ECMAScript module code (`.mjs`),
 based on the
@@ -25,7 +25,7 @@ const self = import.meta.url;
 ## Installation
 
 ```
-yarn add --dev babel-plugin-cjs-esm-bridge
+yarn add --dev babel-plugin-cjs-esm-interop
 ```
 
 Add the plugin to your root `babel.config.*` file and configure the output `format` option with
@@ -33,7 +33,7 @@ either `mjs` (default) or `cjs`.
 
 ```js
 module.exports = {
-	plugins: [['babel-plugin-cjs-esm-bridge', { format: 'mjs' }]],
+	plugins: [['babel-plugin-cjs-esm-interop', { format: 'mjs' }]],
 };
 ```
 
