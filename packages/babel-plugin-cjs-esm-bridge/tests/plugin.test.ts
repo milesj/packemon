@@ -1,13 +1,17 @@
 import { transformAsync, TransformOptions } from '@babel/core';
-import cjsEsmBridge from '../src';
+import cjsEsmBridge, { CjsEsmBridgeOptions } from '../src';
 
-async function transform(code: string, options?: TransformOptions): Promise<string> {
+async function transform(
+	code: string,
+	options?: TransformOptions,
+	pluginOptions?: CjsEsmBridgeOptions,
+): Promise<string> {
 	const result = await transformAsync(code, {
 		babelrc: false,
 		comments: false,
 		configFile: false,
 		filename: 'file.js',
-		plugins: [cjsEsmBridge()],
+		plugins: [cjsEsmBridge(pluginOptions)],
 		presets: ['@babel/preset-react'],
 		generatorOpts: {
 			jsescOption: { quotes: 'single' },
@@ -20,30 +24,60 @@ async function transform(code: string, options?: TransformOptions): Promise<stri
 
 describe('cjsEsmBridge()', () => {
 	describe('require()', () => {
-		it('errors if in a .ts file', async () => {
-			await expect(transform("require('foo');", { filename: 'file.ts' })).rejects.toThrow(
+		it('errors if .ts -> .mjs', async () => {
+			await expect(
+				transform("require('foo');", { filename: 'file.ts' }, { format: 'mjs' }),
+			).rejects.toThrow(
 				'Found a `require()` call in non-module file "file.ts". Use dynamic `import()` instead.',
 			);
 		});
 
-		it('errors if in a .tsx file', async () => {
-			await expect(transform("require('foo');", { filename: 'file.tsx' })).rejects.toThrow(
+		it('errors if .tsx -> .mjs', async () => {
+			await expect(
+				transform("require('foo');", { filename: 'file.tsx' }, { format: 'mjs' }),
+			).rejects.toThrow(
 				'Found a `require()` call in non-module file "file.tsx". Use dynamic `import()` instead.',
 			);
 		});
 
-		it('errors if in a .mjs file', async () => {
-			await expect(transform("require('foo');", { filename: 'file.mjs' })).rejects.toThrow(
+		it('errors if .mjs -> .mjs', async () => {
+			await expect(
+				transform("require('foo');", { filename: 'file.mjs' }, { format: 'mjs' }),
+			).rejects.toThrow(
 				'Found a `require()` call in non-module file "file.mjs". Use dynamic `import()` instead.',
 			);
 		});
 
-		it('doesnt error if in a .js file', async () => {
-			await expect(transform("require('foo');", { filename: 'file.js' })).resolves.not.toThrow();
+		it('errors if .cjs -> .mjs', async () => {
+			await expect(
+				transform("require('foo');", { filename: 'file.cjs' }, { format: 'mjs' }),
+			).rejects.toThrow(
+				'Found a `require()` call in non-module file "file.cjs". Use dynamic `import()` instead.',
+			);
 		});
 
-		it('doesnt error if in a .cjs file', async () => {
-			await expect(transform("require('foo');", { filename: 'file.cjs' })).resolves.not.toThrow();
+		it('doesnt error if .ts -> .cjs', async () => {
+			await expect(
+				transform("require('foo');", { filename: 'file.ts' }, { format: 'cjs' }),
+			).resolves.not.toThrow();
+		});
+
+		it('doesnt error if .mjs -> .cjs', async () => {
+			await expect(
+				transform("require('foo');", { filename: 'file.mjs' }, { format: 'cjs' }),
+			).resolves.not.toThrow();
+		});
+
+		it('doesnt error if .js -> .cjs', async () => {
+			await expect(
+				transform("require('foo');", { filename: 'file.js' }, { format: 'cjs' }),
+			).resolves.not.toThrow();
+		});
+
+		it('doesnt error if .cjs -> .cjs', async () => {
+			await expect(
+				transform("require('foo');", { filename: 'file.cjs' }, { format: 'cjs' }),
+			).resolves.not.toThrow();
 		});
 	});
 
@@ -114,6 +148,138 @@ describe('cjsEsmBridge()', () => {
 
 		it('doesnt error for other member expressions', async () => {
 			await expect(transform('obj.prop = 123', { filename: 'file.mjs' })).resolves.not.toThrow();
+		});
+	});
+
+	describe('__filename', () => {
+		it('transforms from .ts -> .mjs', async () => {
+			expect(
+				await transform('const file = __filename;', { filename: 'file.ts' }, { format: 'mjs' }),
+			).toMatchInlineSnapshot(`"const file = import.meta.url;"`);
+		});
+
+		it('doesnt transform from .ts -> .cjs', async () => {
+			expect(
+				await transform('const file = __filename;', { filename: 'file.ts' }, { format: 'cjs' }),
+			).toMatchInlineSnapshot(`"const file = __filename;"`);
+		});
+
+		it('transforms from .mjs -> .mjs', async () => {
+			expect(
+				await transform('const file = __filename;', { filename: 'file.mjs' }, { format: 'mjs' }),
+			).toMatchInlineSnapshot(`"const file = import.meta.url;"`);
+		});
+
+		it('doesnt transform from .mjs -> .cjs', async () => {
+			expect(
+				await transform('const file = __filename;', { filename: 'file.mjs' }, { format: 'cjs' }),
+			).toMatchInlineSnapshot(`"const file = __filename;"`);
+		});
+
+		it('transforms from .js -> .mjs', async () => {
+			expect(
+				await transform('const file = __filename;', { filename: 'file.js' }, { format: 'mjs' }),
+			).toMatchInlineSnapshot(`"const file = import.meta.url;"`);
+		});
+
+		it('doesnt transform from .js -> .cjs', async () => {
+			expect(
+				await transform('const file = __filename;', { filename: 'file.js' }, { format: 'cjs' }),
+			).toMatchInlineSnapshot(`"const file = __filename;"`);
+		});
+
+		it('transforms from .cjs -> .mjs', async () => {
+			expect(
+				await transform('const file = __filename;', { filename: 'file.cjs' }, { format: 'mjs' }),
+			).toMatchInlineSnapshot(`"const file = import.meta.url;"`);
+		});
+
+		it('doesnt transform from .cjs -> .cjs', async () => {
+			expect(
+				await transform('const file = __filename;', { filename: 'file.cjs' }, { format: 'cjs' }),
+			).toMatchInlineSnapshot(`"const file = __filename;"`);
+		});
+	});
+
+	describe('import.meta.url', () => {
+		it('doesnt transform from .ts -> .mjs', async () => {
+			expect(
+				await transform(
+					'const file = import.meta.url;',
+					{ filename: 'file.ts' },
+					{ format: 'mjs' },
+				),
+			).toMatchInlineSnapshot(`"const file = import.meta.url;"`);
+		});
+
+		it('transforms from .ts -> .cjs', async () => {
+			expect(
+				await transform(
+					'const file = import.meta.url;',
+					{ filename: 'file.ts' },
+					{ format: 'cjs' },
+				),
+			).toMatchInlineSnapshot(`"const file = __filename;"`);
+		});
+
+		it('doesnt transform from .mjs -> .mjs', async () => {
+			expect(
+				await transform(
+					'const file = import.meta.url;',
+					{ filename: 'file.mjs' },
+					{ format: 'mjs' },
+				),
+			).toMatchInlineSnapshot(`"const file = import.meta.url;"`);
+		});
+
+		it('transforms from .mjs -> .cjs', async () => {
+			expect(
+				await transform(
+					'const file = import.meta.url;',
+					{ filename: 'file.mjs' },
+					{ format: 'cjs' },
+				),
+			).toMatchInlineSnapshot(`"const file = __filename;"`);
+		});
+
+		it('doesnt transform from .js -> .mjs', async () => {
+			expect(
+				await transform(
+					'const file = import.meta.url;',
+					{ filename: 'file.js' },
+					{ format: 'mjs' },
+				),
+			).toMatchInlineSnapshot(`"const file = import.meta.url;"`);
+		});
+
+		it('transforms from .js -> .cjs', async () => {
+			expect(
+				await transform(
+					'const file = import.meta.url;',
+					{ filename: 'file.js' },
+					{ format: 'cjs' },
+				),
+			).toMatchInlineSnapshot(`"const file = __filename;"`);
+		});
+
+		it('doesnt transform from .cjs -> .mjs', async () => {
+			expect(
+				await transform(
+					'const file = import.meta.url;',
+					{ filename: 'file.cjs' },
+					{ format: 'mjs' },
+				),
+			).toMatchInlineSnapshot(`"const file = import.meta.url;"`);
+		});
+
+		it('transforms from .cjs -> .cjs', async () => {
+			expect(
+				await transform(
+					'const file = import.meta.url;',
+					{ filename: 'file.cjs' },
+					{ format: 'cjs' },
+				),
+			).toMatchInlineSnapshot(`"const file = __filename;"`);
 		});
 	});
 });
