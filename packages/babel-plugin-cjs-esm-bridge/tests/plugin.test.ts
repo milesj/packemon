@@ -11,7 +11,7 @@ async function transform(
 		comments: false,
 		configFile: false,
 		filename: 'file.js',
-		plugins: [cjsEsmBridge(pluginOptions)],
+		plugins: [[cjsEsmBridge, pluginOptions]],
 		presets: ['@babel/preset-react'],
 		generatorOpts: {
 			jsescOption: { quotes: 'single' },
@@ -352,9 +352,101 @@ describe('cjsEsmBridge()', () => {
 					{ format: 'cjs' },
 				),
 			).toMatchInlineSnapshot(`
-			"const dir1 = path.dirname(import.meta.url);
-			const dir2 = dirname(import.meta.url);"
+			"const dir1 = __dirname;
+			const dir2 = __dirname;"
 		`);
+		});
+	});
+
+	describe('path.dirname(import.meta.url)', () => {
+		it('transforms from .ts -> .cjs', async () => {
+			expect(
+				await transform(
+					'const dir = path.dirname(import.meta.url);',
+					{ filename: 'file.ts' },
+					{ format: 'cjs' },
+				),
+			).toMatchInlineSnapshot(`"const dir = __dirname;"`);
+		});
+
+		it('transforms from .mjs -> .cjs', async () => {
+			expect(
+				await transform(
+					'const dir = path.dirname(import.meta.url);',
+					{ filename: 'file.mjs' },
+					{ format: 'cjs' },
+				),
+			).toMatchInlineSnapshot(`"const dir = __dirname;"`);
+		});
+
+		it('transforms from .js -> .cjs', async () => {
+			expect(
+				await transform(
+					'const dir = path.dirname(import.meta.url);',
+					{ filename: 'file.js' },
+					{ format: 'cjs' },
+				),
+			).toMatchInlineSnapshot(`"const dir = __dirname;"`);
+		});
+
+		it('transforms from .cjs -> .cjs', async () => {
+			expect(
+				await transform(
+					'const dir = path.dirname(import.meta.url);',
+					{ filename: 'file.cjs' },
+					{ format: 'cjs' },
+				),
+			).toMatchInlineSnapshot(`"const dir = __dirname;"`);
+		});
+
+		it('doesnt transform from .ts -> .mjs', async () => {
+			expect(
+				await transform(
+					'const dir = path.dirname(import.meta.url);',
+					{ filename: 'file.ts' },
+					{ format: 'mjs' },
+				),
+			).toMatchInlineSnapshot(`"const dir = path.dirname(import.meta.url);"`);
+		});
+
+		it('doesnt transform from .mjs -> .mjs', async () => {
+			expect(
+				await transform(
+					'const dir = path.dirname(import.meta.url);',
+					{ filename: 'file.mjs' },
+					{ format: 'mjs' },
+				),
+			).toMatchInlineSnapshot(`"const dir = path.dirname(import.meta.url);"`);
+		});
+
+		it('doesnt transform from .js -> .mjs', async () => {
+			expect(
+				await transform(
+					'const dir = path.dirname(import.meta.url);',
+					{ filename: 'file.js' },
+					{ format: 'mjs' },
+				),
+			).toMatchInlineSnapshot(`"const dir = path.dirname(import.meta.url);"`);
+		});
+
+		it('doesnt transform from .cjs -> .mjs', async () => {
+			expect(
+				await transform(
+					'const dir = path.dirname(import.meta.url);',
+					{ filename: 'file.cjs' },
+					{ format: 'mjs' },
+				),
+			).toMatchInlineSnapshot(`"const dir = path.dirname(import.meta.url);"`);
+		});
+
+		it('doesnt transform to cjs when not wrapped with dirname', async () => {
+			expect(
+				await transform(
+					'const file = import.meta.url;',
+					{ filename: 'file.ts' },
+					{ format: 'cjs' },
+				),
+			).toMatchInlineSnapshot(`"const file = __filename;"`);
 		});
 	});
 

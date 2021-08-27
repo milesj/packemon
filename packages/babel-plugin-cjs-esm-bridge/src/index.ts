@@ -1,7 +1,14 @@
+/* eslint-disable complexity */
+
 import paths from 'path';
-import { NodePath, PluginObj, types as t } from '@babel/core';
+import { NodePath, PluginObj, PluginPass, types as t } from '@babel/core';
 // @ts-expect-error Not typed
 import { addDefault } from '@babel/helper-module-imports';
+
+export interface CjsEsmBridgeOptions {
+	// The output format
+	format?: 'cjs' | 'mjs';
+}
 
 function isEsmFile(file: string) {
 	return /\.(ts|tsx|mjs)$/.test(file);
@@ -32,34 +39,29 @@ function isProcessEnv(path: NodePath): boolean {
 	);
 }
 
-export interface CjsEsmBridgeOptions {
-	// The output format
-	format?: 'cjs' | 'mjs';
+function getFormat(state: PluginPass): 'cjs' | 'mjs' {
+	return (state.opts as CjsEsmBridgeOptions)?.format ?? 'mjs';
 }
 
-export default function cjsEsmBridge({ format = 'mjs' }: CjsEsmBridgeOptions = {}): PluginObj {
+export default function cjsEsmBridge(): PluginObj {
 	return {
 		visitor: {
 			CallExpression(path: NodePath<t.CallExpression>, state) {
 				// `require()` not allowed in esm files
 				// https://nodejs.org/api/esm.html#esm_no_require_exports_or_module_exports
-				if (format === 'mjs' && path.get('callee').isIdentifier({ name: 'require' })) {
+				if (getFormat(state) === 'mjs' && path.get('callee').isIdentifier({ name: 'require' })) {
 					throw new Error(
 						`Found a \`require()\` call in non-module file "${paths.basename(
 							state.filename,
 						)}". Use dynamic \`import()\` instead.`,
 					);
 				}
-
-				// path.dirname(import.meta.url) -> __dirname
-				// https://nodejs.org/api/esm.html#esm_no_filename_or_dirname
-				// TODO: Is this needed?
 			},
 
 			Identifier(path: NodePath<t.Identifier>, state) {
 				// __filename -> import.meta.url
 				// https://nodejs.org/api/esm.html#esm_no_filename_or_dirname
-				if (format === 'mjs' && path.isIdentifier({ name: '__filename' })) {
+				if (getFormat(state) === 'mjs' && path.isIdentifier({ name: '__filename' })) {
 					path.replaceWith(
 						t.memberExpression(
 							t.metaProperty(t.identifier('import'), t.identifier('meta')),
@@ -70,7 +72,8 @@ export default function cjsEsmBridge({ format = 'mjs' }: CjsEsmBridgeOptions = {
 
 				// __dirname -> path.dirname(import.meta.url)
 				// https://nodejs.org/api/esm.html#esm_no_filename_or_dirname
-				if (format === 'mjs' && path.isIdentifier({ name: '__dirname' })) {
+				if (getFormat(state) === 'mjs' && path.isIdentifier({ name: '__dirname' })) {
+					// eslint-disable-next-line @typescript-eslint/no-unsafe-call
 					this.pathImport ??= addDefault(path, 'path', { nameHint: '_path' });
 
 					const call = t.callExpression(
@@ -92,7 +95,7 @@ export default function cjsEsmBridge({ format = 'mjs' }: CjsEsmBridgeOptions = {
 				// `NODE_PATH` is not allowed in esm files
 				// https://nodejs.org/api/esm.html#esm_no_node_path
 				if (
-					format === 'mjs' &&
+					getFormat(state) === 'mjs' &&
 					path.isIdentifier({ name: 'NODE_PATH' }) &&
 					isProcessEnv(path.parentPath)
 				) {
@@ -133,22 +136,26 @@ export default function cjsEsmBridge({ format = 'mjs' }: CjsEsmBridgeOptions = {
 				}
 
 				// import.meta.url -> __filename
+				// path.dirname(import.meta.url) -> __dirname
 				// https://nodejs.org/api/esm.html#esm_no_filename_or_dirname
 				if (
-					format === 'cjs' &&
+					getFormat(state) === 'cjs' &&
 					path.get('object').isMetaProperty() &&
 					(path.get('object.meta') as NodePath).isIdentifier({ name: 'import' }) &&
 					(path.get('object.property') as NodePath).isIdentifier({ name: 'meta' }) &&
-					path.get('property').isIdentifier({ name: 'url' }) &&
-					!isPathDirname(path.parentPath)
+					path.get('property').isIdentifier({ name: 'url' })
 				) {
-					path.replaceWith(t.identifier('__filename'));
+					if (isPathDirname(path.parentPath)) {
+						path.parentPath.replaceWith(t.identifier('__dirname'));
+					} else {
+						path.replaceWith(t.identifier('__filename'));
+					}
 				}
 
 				// `require.extensions` is not allowed in esm files
 				// https://nodejs.org/api/esm.html#esm_no_require_extensions
 				if (
-					format === 'mjs' &&
+					getFormat(state) === 'mjs' &&
 					path.get('object').isIdentifier({ name: 'require' }) &&
 					path.get('property').isIdentifier({ name: 'extensions' })
 				) {
@@ -158,7 +165,7 @@ export default function cjsEsmBridge({ format = 'mjs' }: CjsEsmBridgeOptions = {
 				// `require.cache` is not allowed in esm files
 				// https://nodejs.org/api/esm.html#esm_no_require_cache
 				if (
-					format === 'mjs' &&
+					getFormat(state) === 'mjs' &&
 					path.get('object').isIdentifier({ name: 'require' }) &&
 					path.get('property').isIdentifier({ name: 'cache' })
 				) {
