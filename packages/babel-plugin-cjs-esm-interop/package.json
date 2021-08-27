@@ -1,0 +1,56 @@
+{
+  "name": "babel-plugin-cjs-esm-interop",
+  "version": "1.0.0-alpha.0",
+  "description": "Transform CJS to ESM and vice versa.",
+  "keywords": [
+    "babel",
+    "plugin",
+    "cjs",
+    "mjs",
+    "interop",
+    "convert",
+    "transform"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:milesj/packemon.git",
+    "directory": "babel-plugin-cjs-esm-interop"
+  },
+  "author": "Miles Johnson",
+  "license": "MIT",
+  "main": "./lib/index.js",
+  "types": "./dts/index.d.ts",
+  "files": [
+    "dts/**/*.d.ts",
+    "lib/**/*.{js,map}",
+    "src/**/*.{ts,tsx,json}"
+  ],
+  "engines": {
+    "node": ">=12.17.0",
+    "npm": ">=6.13.0"
+  },
+  "packemon": {
+    "format": "lib",
+    "platform": "node"
+  },
+  "peerDependencies": {
+    "@babel/core": "^7.0.0"
+  },
+  "dependencies": {
+    "@babel/helper-module-imports": "^7.14.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.0"
+  },
+  "funding": {
+    "type": "ko-fi",
+    "url": "https://ko-fi.com/milesjohnson"
+  },
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "node": "./lib/index.js",
+      "types": "./dts/index.d.ts"
+    }
+  }
+}
