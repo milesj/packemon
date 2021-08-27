@@ -56,6 +56,21 @@ export default function cjsEsmBridge(): PluginObj {
 						)}". Use dynamic \`import()\` instead.`,
 					);
 				}
+
+				// `require.resolve()` not allowed in esm files
+				// https://nodejs.org/api/esm.html#esm_no_require_resolve
+				if (
+					getFormat(state) === 'mjs' &&
+					path.get('callee').isMemberExpression() &&
+					(path.get('callee.object') as NodePath).isIdentifier({ name: 'require' }) &&
+					(path.get('callee.property') as NodePath).isIdentifier({ name: 'resolve' })
+				) {
+					throw new Error(
+						`Found a \`require.resolve()\` call in non-module file "${paths.basename(
+							state.filename,
+						)}". Use the \`resolve\` npm package instead.`,
+					);
+				}
 			},
 
 			Identifier(path: NodePath<t.Identifier>, state) {

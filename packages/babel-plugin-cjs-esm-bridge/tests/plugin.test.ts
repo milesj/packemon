@@ -81,6 +81,64 @@ describe('cjsEsmBridge()', () => {
 		});
 	});
 
+	describe('require.resolve()', () => {
+		it('errors if .ts -> .mjs', async () => {
+			await expect(
+				transform("require.resolve('foo');", { filename: 'file.ts' }, { format: 'mjs' }),
+			).rejects.toThrow(
+				'Found a `require.resolve()` call in non-module file "file.ts". Use the `resolve` npm package instead.',
+			);
+		});
+
+		it('errors if .tsx -> .mjs', async () => {
+			await expect(
+				transform("require.resolve('foo');", { filename: 'file.tsx' }, { format: 'mjs' }),
+			).rejects.toThrow(
+				'Found a `require.resolve()` call in non-module file "file.tsx". Use the `resolve` npm package instead.',
+			);
+		});
+
+		it('errors if .mjs -> .mjs', async () => {
+			await expect(
+				transform("require.resolve('foo');", { filename: 'file.mjs' }, { format: 'mjs' }),
+			).rejects.toThrow(
+				'Found a `require.resolve()` call in non-module file "file.mjs". Use the `resolve` npm package instead.',
+			);
+		});
+
+		it('errors if .cjs -> .mjs', async () => {
+			await expect(
+				transform("require.resolve('foo');", { filename: 'file.cjs' }, { format: 'mjs' }),
+			).rejects.toThrow(
+				'Found a `require.resolve()` call in non-module file "file.cjs". Use the `resolve` npm package instead.',
+			);
+		});
+
+		it('doesnt error if .ts -> .cjs', async () => {
+			await expect(
+				transform("require.resolve('foo');", { filename: 'file.ts' }, { format: 'cjs' }),
+			).resolves.not.toThrow();
+		});
+
+		it('doesnt error if .mjs -> .cjs', async () => {
+			await expect(
+				transform("require.resolve('foo');", { filename: 'file.mjs' }, { format: 'cjs' }),
+			).resolves.not.toThrow();
+		});
+
+		it('doesnt error if .js -> .cjs', async () => {
+			await expect(
+				transform("require.resolve('foo');", { filename: 'file.js' }, { format: 'cjs' }),
+			).resolves.not.toThrow();
+		});
+
+		it('doesnt error if .cjs -> .cjs', async () => {
+			await expect(
+				transform("require.resolve('foo');", { filename: 'file.cjs' }, { format: 'cjs' }),
+			).resolves.not.toThrow();
+		});
+	});
+
 	describe('exports.<name>', () => {
 		it('errors if in a .ts file', async () => {
 			await expect(transform('exports.foo = 123;', { filename: 'file.ts' })).rejects.toThrow(
