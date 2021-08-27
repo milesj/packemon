@@ -1,0 +1,53 @@
+{
+  "name": "babel-plugin-cjs-esm-bridge",
+  "version": "1.0.0-alpha.0",
+  "description": "Transform CJS to ESM and vice versa.",
+  "keywords": [
+    "babel",
+    "plugin",
+    "cjs",
+    "mjs",
+    "bridge",
+    "convert",
+    "transform"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:milesj/packemon.git",
+    "directory": "babel-plugin-cjs-esm-bridge"
+  },
+  "author": "Miles Johnson",
+  "license": "MIT",
+  "main": "./lib/index.js",
+  "types": "./dts/index.d.ts",
+  "files": [
+    "dts/**/*.d.ts",
+    "lib/**/*.{js,map}",
+    "src/**/*.{ts,tsx,json}"
+  ],
+  "engines": {
+    "node": ">=12.17.0",
+    "npm": ">=6.13.0"
+  },
+  "packemon": {
+    "format": "lib",
+    "platform": "node"
+  },
+  "peerDependencies": {
+    "@babel/core": "^7.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.0"
+  },
+  "funding": {
+    "type": "ko-fi",
+    "url": "https://ko-fi.com/milesjohnson"
+  },
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "node": "./lib/index.js",
+      "types": "./dts/index.d.ts"
+    }
+  }
+}
