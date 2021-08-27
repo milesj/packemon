@@ -80,4 +80,40 @@ describe('cjsEsmBridge()', () => {
 			await expect(transform('obj.prop = 123', { filename: 'file.mjs' })).resolves.not.toThrow();
 		});
 	});
+
+	describe('module.exports', () => {
+		it('errors if in a .ts file', async () => {
+			await expect(transform('module.exports = 123;', { filename: 'file.ts' })).rejects.toThrow(
+				'Found a `module.exports =` expression in non-module file "file.ts". Use `export default` instead.',
+			);
+		});
+
+		it('errors if in a .tsx file', async () => {
+			await expect(transform("module.exports = 'abc';", { filename: 'file.tsx' })).rejects.toThrow(
+				'Found a `module.exports =` expression in non-module file "file.tsx". Use `export default` instead.',
+			);
+		});
+
+		it('errors if in a .mjs file', async () => {
+			await expect(transform('module.exports = true', { filename: 'file.mjs' })).rejects.toThrow(
+				'Found a `module.exports =` expression in non-module file "file.mjs". Use `export default` instead.',
+			);
+		});
+
+		it('doesnt error if in a .js file', async () => {
+			await expect(
+				transform('module.exports = 123;', { filename: 'file.js' }),
+			).resolves.not.toThrow();
+		});
+
+		it('doesnt error if in a .cjs file', async () => {
+			await expect(
+				transform('module.exports = true', { filename: 'file.cjs' }),
+			).resolves.not.toThrow();
+		});
+
+		it('doesnt error for other member expressions', async () => {
+			await expect(transform('obj.prop = 123', { filename: 'file.mjs' })).resolves.not.toThrow();
+		});
+	});
 });

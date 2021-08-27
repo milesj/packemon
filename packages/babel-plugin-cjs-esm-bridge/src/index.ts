@@ -24,8 +24,9 @@ export default function cjsEsmBridge(): PluginObj {
 
 			MemberExpression(path: NodePath<t.MemberExpression>, state) {
 				const isEsm = isEsmFile(state.filename);
+				const file = paths.basename(state.filename);
 
-				// `exports.name` not allowed in esm files
+				// `exports.<name>` not allowed in esm files
 				// https://nodejs.org/api/esm.html#esm_no_require_exports_or_module_exports
 				if (
 					isEsm &&
@@ -35,9 +36,19 @@ export default function cjsEsmBridge(): PluginObj {
 					const { name } = path.node.property as t.Identifier;
 
 					throw new Error(
-						`Found an \`exports.${name} =\` expression in non-module file "${paths.basename(
-							state.filename,
-						)}". Use \`export const ${name} =\` instead.`,
+						`Found an \`exports.${name} =\` expression in non-module file "${file}". Use \`export const ${name} =\` instead.`,
+					);
+				}
+
+				// `module.exports` not allowed in esm files
+				// https://nodejs.org/api/esm.html#esm_no_require_exports_or_module_exports
+				if (
+					isEsm &&
+					path.get('object').isIdentifier({ name: 'module' }) &&
+					path.get('property').isIdentifier({ name: 'exports' })
+				) {
+					throw new Error(
+						`Found a \`module.exports =\` expression in non-module file "${file}". Use \`export default\` instead.`,
 					);
 				}
 			},
