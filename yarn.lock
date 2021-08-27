@@ -4604,10 +4604,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^16.7.2":
-  version: 16.7.2
-  resolution: "@types/node@npm:16.7.2"
-  checksum: aef77c109e2fd93b5dc6ec0a57a0878aaaa58adf0e63d9618d67b116ad3f2a3eb2589a99deaf9fda4a0805068b2533e3d2cf8e8dc3572251c498ec3dc929a76c
+"@types/node@npm:*, @types/node@npm:^16.7.4":
+  version: 16.7.4
+  resolution: "@types/node@npm:16.7.4"
+  checksum: da7813e6c37e7813645a9d40de6d9f803fbadb2975748d307ec31d8e4f9baabccf49b667a39e4b1288d477ec7d34a339e8a41d8703a1d7ab0ec8eb2516073f27
   languageName: node
   linkType: hard
 
@@ -10689,6 +10689,15 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"ignore-walk@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "ignore-walk@npm:4.0.1"
+  dependencies:
+    minimatch: ^3.0.4
+  checksum: 903cd5cb68d57b2e70fddb83d885aea55f137a44636254a29b08037797376d8d3e09d1c58935778f3a271bf6a2b41ecc54fc22260ac07190e09e1ec7253b49f3
+  languageName: node
+  linkType: hard
+
 "ignore@npm:^4.0.6":
   version: 4.0.6
   resolution: "ignore@npm:4.0.6"
@@ -14037,7 +14046,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"npm-packlist@npm:^2.1.4, npm-packlist@npm:^2.2.2":
+"npm-packlist@npm:^2.1.4":
   version: 2.2.2
   resolution: "npm-packlist@npm:2.2.2"
   dependencies:
@@ -14048,6 +14057,20 @@ fsevents@^1.2.7:
   bin:
     npm-packlist: bin/index.js
   checksum: 799ce94b077e4dc366a9a5bcc5f006669263bb1a48d6948161aed915fd2f11dea8a7cf516a63fc78e5df059915591dade5928f0738baadc99a8ab4685d8b58c3
+  languageName: node
+  linkType: hard
+
+"npm-packlist@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "npm-packlist@npm:3.0.0"
+  dependencies:
+    glob: ^7.1.6
+    ignore-walk: ^4.0.1
+    npm-bundled: ^1.1.1
+    npm-normalize-package-bin: ^1.0.1
+  bin:
+    npm-packlist: bin/index.js
+  checksum: 8550ecdec5feb2708aa8289e71c3e9ed72dd792642dd3d2c871955504c0e460bc1c2106483a164eb405b3cdfcfddf311315d4a647fca1a511f710654c015a91e
   languageName: node
   linkType: hard
 
@@ -14645,7 +14668,7 @@ fsevents@^1.2.7:
     "@types/fs-extra": ^9.0.12
     "@types/jest": ^27.0.1
     "@types/micromatch": ^4.0.2
-    "@types/node": ^16.7.2
+    "@types/node": ^16.7.4
     "@types/npm-packlist": ^1.1.2
     "@types/react": ^16.14.14
     "@types/rimraf": ^3.0.2
@@ -14691,7 +14714,7 @@ fsevents@^1.2.7:
     ink-progress-bar: ^3.0.0
     ink-spinner: ^4.0.2
     micromatch: ^4.0.4
-    npm-packlist: ^2.2.2
+    npm-packlist: ^3.0.0
     react: ^16.14.0
     resolve: ^1.20.0
     rimraf: ^3.0.2
