@@ -34,3 +34,8 @@ module.exports = {
 
 - Linux, OSX, Windows
 - Node 12.17+
+
+## Caveats
+
+- When output format is `cjs`:
+  - Does not convert `path.dirname(import.meta.url)` to `__dirname`

@@ -201,6 +201,68 @@ describe('cjsEsmBridge()', () => {
 		});
 	});
 
+	describe('__dirname', () => {
+		it('transforms from .ts -> .mjs', async () => {
+			expect(await transform('const dir = __dirname;', { filename: 'file.ts' }, { format: 'mjs' }))
+				.toMatchInlineSnapshot(`
+			"import _path from 'path';
+
+			const dir = _path.dirname(import.meta.url);"
+		`);
+		});
+
+		it('doesnt transform from .ts -> .cjs', async () => {
+			expect(
+				await transform('const dir = __dirname;', { filename: 'file.ts' }, { format: 'cjs' }),
+			).toMatchInlineSnapshot(`"const dir = __dirname;"`);
+		});
+
+		it('transforms from .mjs -> .mjs', async () => {
+			expect(await transform('const dir = __dirname;', { filename: 'file.mjs' }, { format: 'mjs' }))
+				.toMatchInlineSnapshot(`
+			"import _path from 'path';
+
+			const dir = _path.dirname(import.meta.url);"
+		`);
+		});
+
+		it('doesnt transform from .mjs -> .cjs', async () => {
+			expect(
+				await transform('const dir = __dirname;', { filename: 'file.mjs' }, { format: 'cjs' }),
+			).toMatchInlineSnapshot(`"const dir = __dirname;"`);
+		});
+
+		it('transforms from .js -> .mjs', async () => {
+			expect(await transform('const dir = __dirname;', { filename: 'file.js' }, { format: 'mjs' }))
+				.toMatchInlineSnapshot(`
+			"import _path from 'path';
+
+			const dir = _path.dirname(import.meta.url);"
+		`);
+		});
+
+		it('doesnt transform from .js -> .cjs', async () => {
+			expect(
+				await transform('const dir = __dirname;', { filename: 'file.js' }, { format: 'cjs' }),
+			).toMatchInlineSnapshot(`"const dir = __dirname;"`);
+		});
+
+		it('transforms from .cjs -> .mjs', async () => {
+			expect(await transform('const dir = __dirname;', { filename: 'file.cjs' }, { format: 'mjs' }))
+				.toMatchInlineSnapshot(`
+			"import _path from 'path';
+
+			const dir = _path.dirname(import.meta.url);"
+		`);
+		});
+
+		it('doesnt transform from .cjs -> .cjs', async () => {
+			expect(
+				await transform('const dir = __dirname;', { filename: 'file.cjs' }, { format: 'cjs' }),
+			).toMatchInlineSnapshot(`"const dir = __dirname;"`);
+		});
+	});
+
 	describe('import.meta.url', () => {
 		it('doesnt transform from .ts -> .mjs', async () => {
 			expect(
@@ -280,6 +342,19 @@ describe('cjsEsmBridge()', () => {
 					{ format: 'cjs' },
 				),
 			).toMatchInlineSnapshot(`"const file = __filename;"`);
+		});
+
+		it('doesnt transform to cjs when wrapped with dirname', async () => {
+			expect(
+				await transform(
+					'const dir1 = path.dirname(import.meta.url); const dir2 = dirname(import.meta.url);',
+					{ filename: 'file.ts' },
+					{ format: 'cjs' },
+				),
+			).toMatchInlineSnapshot(`
+			"const dir1 = path.dirname(__filename);
+			const dir2 = dirname(import.meta.url);"
+		`);
 		});
 	});
 });

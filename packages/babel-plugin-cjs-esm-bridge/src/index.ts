@@ -1,8 +1,25 @@
 import paths from 'path';
 import { NodePath, PluginObj, types as t } from '@babel/core';
+// @ts-expect-error Not typed
+import { addDefault } from '@babel/helper-module-imports';
 
 function isEsmFile(file: string) {
 	return /\.(ts|tsx|mjs)$/.test(file);
+}
+
+function isPathDirname(path: NodePath): boolean {
+	// dirname(foo)
+	if (path.isCallExpression() && path.get('callee').isIdentifier({ name: 'dirname' })) {
+		return true;
+	}
+
+	// path.dirname(foo)
+	return Boolean(
+		path.isCallExpression() &&
+			path.get('callee').isMemberExpression() &&
+			(path.get('callee.object') as NodePath).isIdentifier() &&
+			(path.get('callee.object') as NodePath).isIdentifier({ name: 'dirname' }),
+	);
 }
 
 export interface CjsEsmBridgeOptions {
@@ -23,6 +40,10 @@ export default function cjsEsmBridge({ format = 'mjs' }: CjsEsmBridgeOptions = {
 						)}". Use dynamic \`import()\` instead.`,
 					);
 				}
+
+				// path.dirname(import.meta.url) -> __dirname
+				// https://nodejs.org/api/esm.html#esm_no_filename_or_dirname
+				// TODO: Is this needed?
 			},
 
 			Identifier(path: NodePath<t.Identifier>, state) {
@@ -35,6 +56,27 @@ export default function cjsEsmBridge({ format = 'mjs' }: CjsEsmBridgeOptions = {
 							t.identifier('url'),
 						),
 					);
+				}
+
+				// __dirname -> path.dirname(import.meta.url)
+				// https://nodejs.org/api/esm.html#esm_no_filename_or_dirname
+				if (format === 'mjs' && path.isIdentifier({ name: '__dirname' })) {
+					this.pathImport ??= addDefault(path, 'path', { nameHint: '_path' });
+
+					const call = t.callExpression(
+						t.memberExpression(
+							t.identifier((this.pathImport as { name: string }).name),
+							t.identifier('dirname'),
+						),
+						[
+							t.memberExpression(
+								t.metaProperty(t.identifier('import'), t.identifier('meta')),
+								t.identifier('url'),
+							),
+						],
+					);
+
+					path.replaceWith(call);
 				}
 			},
 
@@ -75,7 +117,8 @@ export default function cjsEsmBridge({ format = 'mjs' }: CjsEsmBridgeOptions = {
 					path.get('object').isMetaProperty() &&
 					(path.get('object.meta') as NodePath).isIdentifier({ name: 'import' }) &&
 					(path.get('object.property') as NodePath).isIdentifier({ name: 'meta' }) &&
-					path.get('property').isIdentifier({ name: 'url' })
+					path.get('property').isIdentifier({ name: 'url' }) &&
+					!isPathDirname(path.parentPath)
 				) {
 					path.replaceWith(t.identifier('__filename'));
 				}
