@@ -2,8 +2,9 @@
 
 import execa from 'execa';
 import semver from 'semver';
-import { Memoize, PackageStructure, Project as BaseProject } from '@boost/common';
+import { Memoize, Project as BaseProject } from '@boost/common';
 import { Package } from './Package';
+import { getVersion } from './helpers/getVersion';
 
 export class Project extends BaseProject {
 	workspaces: string[] = [];
@@ -14,7 +15,7 @@ export class Project extends BaseProject {
 		let version = '';
 
 		try {
-			({ version } = require('../package.json') as PackageStructure);
+			version = getVersion();
 		} catch {
 			return;
 		}

@@ -140,6 +140,7 @@ export function getBabelOutputConfig(
 ): ConfigStructure {
 	const plugins: PluginItem[] = [];
 	const presets: PluginItem[] = [];
+	const isESM = format === 'esm' || format === 'mjs';
 
 	// ENVIRONMENT
 
@@ -181,7 +182,7 @@ export function getBabelOutputConfig(
 				],
 				[
 					resolve('@babel/plugin-transform-runtime'),
-					{ helpers: false, regenerator: true, useESModules: format === 'esm' },
+					{ helpers: false, regenerator: true, useESModules: isESM },
 				],
 			);
 		}
@@ -194,6 +195,10 @@ export function getBabelOutputConfig(
 	}
 
 	// Support our custom plugins
+	if (platform === 'node') {
+		plugins.push([resolve('babel-plugin-cjs-esm-interop'), { format: isESM ? 'mjs' : 'cjs' }]);
+	}
+
 	plugins.push(
 		resolve('babel-plugin-conditional-invariant'),
 		resolve('babel-plugin-env-constants'),

@@ -139,75 +139,75 @@ describe('cjsEsmInterop()', () => {
 		});
 	});
 
-	describe('exports.<name>', () => {
-		it('errors if in a .ts file', async () => {
-			await expect(transform('exports.foo = 123;', { filename: 'file.ts' })).rejects.toThrow(
-				'Found an `exports.foo =` expression in non-module file "file.ts". Use `export const foo =` instead.',
-			);
-		});
+	// describe('exports.<name>', () => {
+	// 	it('errors if in a .ts file', async () => {
+	// 		await expect(transform('exports.foo = 123;', { filename: 'file.ts' })).rejects.toThrow(
+	// 			'Found an `exports.foo =` expression in non-module file "file.ts". Use `export const foo =` instead.',
+	// 		);
+	// 	});
 
-		it('errors if in a .tsx file', async () => {
-			await expect(transform("exports.bar = 'abc';", { filename: 'file.tsx' })).rejects.toThrow(
-				'Found an `exports.bar =` expression in non-module file "file.tsx". Use `export const bar =` instead.',
-			);
-		});
+	// 	it('errors if in a .tsx file', async () => {
+	// 		await expect(transform("exports.bar = 'abc';", { filename: 'file.tsx' })).rejects.toThrow(
+	// 			'Found an `exports.bar =` expression in non-module file "file.tsx". Use `export const bar =` instead.',
+	// 		);
+	// 	});
 
-		it('errors if in a .mjs file', async () => {
-			await expect(transform('exports.baz = true', { filename: 'file.mjs' })).rejects.toThrow(
-				'Found an `exports.baz =` expression in non-module file "file.mjs". Use `export const baz =` instead.',
-			);
-		});
+	// 	it('errors if in a .mjs file', async () => {
+	// 		await expect(transform('exports.baz = true', { filename: 'file.mjs' })).rejects.toThrow(
+	// 			'Found an `exports.baz =` expression in non-module file "file.mjs". Use `export const baz =` instead.',
+	// 		);
+	// 	});
 
-		it('doesnt error if in a .js file', async () => {
-			await expect(transform('exports.foo = 123;', { filename: 'file.js' })).resolves.not.toThrow();
-		});
+	// 	it('doesnt error if in a .js file', async () => {
+	// 		await expect(transform('exports.foo = 123;', { filename: 'file.js' })).resolves.not.toThrow();
+	// 	});
 
-		it('doesnt error if in a .cjs file', async () => {
-			await expect(
-				transform('exports.baz = true', { filename: 'file.cjs' }),
-			).resolves.not.toThrow();
-		});
+	// 	it('doesnt error if in a .cjs file', async () => {
+	// 		await expect(
+	// 			transform('exports.baz = true', { filename: 'file.cjs' }),
+	// 		).resolves.not.toThrow();
+	// 	});
 
-		it('doesnt error for other member expressions', async () => {
-			await expect(transform('obj.prop = 123', { filename: 'file.mjs' })).resolves.not.toThrow();
-		});
-	});
+	// 	it('doesnt error for other member expressions', async () => {
+	// 		await expect(transform('obj.prop = 123', { filename: 'file.mjs' })).resolves.not.toThrow();
+	// 	});
+	// });
 
-	describe('module.exports', () => {
-		it('errors if in a .ts file', async () => {
-			await expect(transform('module.exports = 123;', { filename: 'file.ts' })).rejects.toThrow(
-				'Found a `module.exports =` expression in non-module file "file.ts". Use `export default` instead.',
-			);
-		});
+	// describe('module.exports', () => {
+	// 	it('errors if in a .ts file', async () => {
+	// 		await expect(transform('module.exports = 123;', { filename: 'file.ts' })).rejects.toThrow(
+	// 			'Found a `module.exports =` expression in non-module file "file.ts". Use `export default` instead.',
+	// 		);
+	// 	});
 
-		it('errors if in a .tsx file', async () => {
-			await expect(transform("module.exports = 'abc';", { filename: 'file.tsx' })).rejects.toThrow(
-				'Found a `module.exports =` expression in non-module file "file.tsx". Use `export default` instead.',
-			);
-		});
+	// 	it('errors if in a .tsx file', async () => {
+	// 		await expect(transform("module.exports = 'abc';", { filename: 'file.tsx' })).rejects.toThrow(
+	// 			'Found a `module.exports =` expression in non-module file "file.tsx". Use `export default` instead.',
+	// 		);
+	// 	});
 
-		it('errors if in a .mjs file', async () => {
-			await expect(transform('module.exports = true', { filename: 'file.mjs' })).rejects.toThrow(
-				'Found a `module.exports =` expression in non-module file "file.mjs". Use `export default` instead.',
-			);
-		});
+	// 	it('errors if in a .mjs file', async () => {
+	// 		await expect(transform('module.exports = true', { filename: 'file.mjs' })).rejects.toThrow(
+	// 			'Found a `module.exports =` expression in non-module file "file.mjs". Use `export default` instead.',
+	// 		);
+	// 	});
 
-		it('doesnt error if in a .js file', async () => {
-			await expect(
-				transform('module.exports = 123;', { filename: 'file.js' }),
-			).resolves.not.toThrow();
-		});
+	// 	it('doesnt error if in a .js file', async () => {
+	// 		await expect(
+	// 			transform('module.exports = 123;', { filename: 'file.js' }),
+	// 		).resolves.not.toThrow();
+	// 	});
 
-		it('doesnt error if in a .cjs file', async () => {
-			await expect(
-				transform('module.exports = true', { filename: 'file.cjs' }),
-			).resolves.not.toThrow();
-		});
+	// 	it('doesnt error if in a .cjs file', async () => {
+	// 		await expect(
+	// 			transform('module.exports = true', { filename: 'file.cjs' }),
+	// 		).resolves.not.toThrow();
+	// 	});
 
-		it('doesnt error for other member expressions', async () => {
-			await expect(transform('obj.prop = 123', { filename: 'file.mjs' })).resolves.not.toThrow();
-		});
-	});
+	// 	it('doesnt error for other member expressions', async () => {
+	// 		await expect(transform('obj.prop = 123', { filename: 'file.mjs' })).resolves.not.toThrow();
+	// 	});
+	// });
 
 	describe('__filename', () => {
 		it('transforms from .ts -> .mjs', async () => {
@@ -360,6 +360,16 @@ describe('cjsEsmInterop()', () => {
 					{ format: 'cjs' },
 				),
 			).toMatchInlineSnapshot(`"const file = __filename;"`);
+		});
+
+		it('includes file:// protocol when in a URL', async () => {
+			expect(
+				await transform(
+					'const url = new URL("", import.meta.url);',
+					{ filename: 'file.ts' },
+					{ format: 'cjs' },
+				),
+			).toMatchInlineSnapshot(`"const url = new URL(\\"\\", 'file://' + __filename);"`);
 		});
 
 		it('doesnt transform from .ts -> .mjs', async () => {

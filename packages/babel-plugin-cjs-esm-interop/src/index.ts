@@ -43,6 +43,17 @@ function getFormat(state: PluginPass): 'cjs' | 'mjs' {
 	return (state.opts as CjsEsmInteropOptions)?.format ?? 'mjs';
 }
 
+function wrapWithFileProto(path: NodePath, id: string) {
+	if (
+		path.parentPath?.isNewExpression() &&
+		path.parentPath?.get('callee').isIdentifier({ name: 'URL' })
+	) {
+		return t.binaryExpression('+', t.stringLiteral('file://'), t.identifier(id));
+	}
+
+	return t.identifier(id);
+}
+
 export default function cjsEsmInterop(): PluginObj {
 	return {
 		visitor: {
@@ -121,34 +132,38 @@ export default function cjsEsmInterop(): PluginObj {
 			},
 
 			MemberExpression(path: NodePath<t.MemberExpression>, state) {
-				const isEsm = isEsmFile(state.filename);
-				const file = paths.basename(state.filename);
+				// const isEsm = isEsmFile(state.filename);
+				// const file = paths.basename(state.filename);
 
-				// `exports.<name>` not allowed in esm files
-				// https://nodejs.org/api/esm.html#esm_no_require_exports_or_module_exports
-				if (
-					isEsm &&
-					path.get('object').isIdentifier({ name: 'exports' }) &&
-					path.get('property').isIdentifier()
-				) {
-					const { name } = path.node.property as t.Identifier;
+				// // `exports.<name>` not allowed in esm files
+				// // https://nodejs.org/api/esm.html#esm_no_require_exports_or_module_exports
+				// if (
+				// 	isEsm &&
+				// 	getFormat(state) === 'mjs' &&
+				// 	path.get('object').isIdentifier({ name: 'exports' }) &&
+				// 	path.get('property').isIdentifier()
+				// ) {
+				// 	console.log(state, this);
+				// 	const { name } = path.node.property as t.Identifier;
 
-					throw new Error(
-						`Found an \`exports.${name} =\` expression in non-module file "${file}". Use \`export const ${name} =\` instead.`,
-					);
-				}
+				// 	throw new Error(
+				// 		`Found an \`exports.${name} =\` expression in non-module file "${file}". Use \`export const ${name} =\` instead.`,
+				// 	);
+				// }
 
-				// `module.exports` not allowed in esm files
-				// https://nodejs.org/api/esm.html#esm_no_require_exports_or_module_exports
-				if (
-					isEsm &&
-					path.get('object').isIdentifier({ name: 'module' }) &&
-					path.get('property').isIdentifier({ name: 'exports' })
-				) {
-					throw new Error(
-						`Found a \`module.exports =\` expression in non-module file "${file}". Use \`export default\` instead.`,
-					);
-				}
+				// // `module.exports` not allowed in esm files
+				// // https://nodejs.org/api/esm.html#esm_no_require_exports_or_module_exports
+				// if (
+				// 	isEsm &&
+				// 	getFormat(state) === 'mjs' &&
+				// 	path.get('object').isIdentifier({ name: 'module' }) &&
+				// 	path.get('property').isIdentifier({ name: 'exports' })
+				// ) {
+				// 	console.log(state, this);
+				// 	throw new Error(
+				// 		`Found a \`module.exports =\` expression in non-module file "${file}". Use \`export default\` instead.`,
+				// 	);
+				// }
 
 				// import.meta.url -> __filename
 				// path.dirname(import.meta.url) -> __dirname
@@ -161,9 +176,9 @@ export default function cjsEsmInterop(): PluginObj {
 					path.get('property').isIdentifier({ name: 'url' })
 				) {
 					if (isPathDirname(path.parentPath)) {
-						path.parentPath.replaceWith(t.identifier('__dirname'));
+						path.parentPath.replaceWith(wrapWithFileProto(path.parentPath, '__dirname'));
 					} else {
-						path.replaceWith(t.identifier('__filename'));
+						path.replaceWith(wrapWithFileProto(path, '__filename'));
 					}
 				}
 

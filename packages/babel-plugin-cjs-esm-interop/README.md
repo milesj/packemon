@@ -50,8 +50,8 @@ The following transforms and error handling are applied.
 
 - `export`, `export default`
   - Will throw an error if used.
-- `import.meta.url` -> `__filename`
-- `path.dirname(import.meta.url)` -> `__dirname`
+- `import.meta.url` -> `__filename` (with `file://` for `URL`)
+- `path.dirname(import.meta.url)` -> `__dirname` (with `file://` for `URL`)
 
 ### MJS output
 
