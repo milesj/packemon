@@ -1,5 +1,5 @@
 import { checkPackageOutdated, Program } from '@boost/cli';
-import { PackageStructure } from '@boost/common';
+import { getVersion } from './helpers/getVersion';
 import {
 	BuildCommand,
 	CleanCommand,
@@ -9,10 +9,10 @@ import {
 	WatchCommand,
 } from '.';
 
-let version = 'internal';
+let version = '0.0.0-internal';
 
 try {
-	version = String((require('../package.json') as PackageStructure).version);
+	version = getVersion();
 } catch {
 	// Ignore
 }
