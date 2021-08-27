@@ -23,63 +23,63 @@ async function transform(
 }
 
 describe('cjsEsmInterop()', () => {
-	describe('require()', () => {
-		it('errors if .ts -> .mjs', async () => {
-			await expect(
-				transform("require('foo');", { filename: 'file.ts' }, { format: 'mjs' }),
-			).rejects.toThrow(
-				'Found a `require()` call in non-module file "file.ts". Use dynamic `import()` instead.',
-			);
-		});
+	// describe('require()', () => {
+	// 	it('errors if .ts -> .mjs', async () => {
+	// 		await expect(
+	// 			transform("require('foo');", { filename: 'file.ts' }, { format: 'mjs' }),
+	// 		).rejects.toThrow(
+	// 			'Found a `require()` call in non-module file "file.ts". Use dynamic `import()` instead.',
+	// 		);
+	// 	});
 
-		it('errors if .tsx -> .mjs', async () => {
-			await expect(
-				transform("require('foo');", { filename: 'file.tsx' }, { format: 'mjs' }),
-			).rejects.toThrow(
-				'Found a `require()` call in non-module file "file.tsx". Use dynamic `import()` instead.',
-			);
-		});
+	// 	it('errors if .tsx -> .mjs', async () => {
+	// 		await expect(
+	// 			transform("require('foo');", { filename: 'file.tsx' }, { format: 'mjs' }),
+	// 		).rejects.toThrow(
+	// 			'Found a `require()` call in non-module file "file.tsx". Use dynamic `import()` instead.',
+	// 		);
+	// 	});
 
-		it('errors if .mjs -> .mjs', async () => {
-			await expect(
-				transform("require('foo');", { filename: 'file.mjs' }, { format: 'mjs' }),
-			).rejects.toThrow(
-				'Found a `require()` call in non-module file "file.mjs". Use dynamic `import()` instead.',
-			);
-		});
+	// 	it('errors if .mjs -> .mjs', async () => {
+	// 		await expect(
+	// 			transform("require('foo');", { filename: 'file.mjs' }, { format: 'mjs' }),
+	// 		).rejects.toThrow(
+	// 			'Found a `require()` call in non-module file "file.mjs". Use dynamic `import()` instead.',
+	// 		);
+	// 	});
 
-		it('errors if .cjs -> .mjs', async () => {
-			await expect(
-				transform("require('foo');", { filename: 'file.cjs' }, { format: 'mjs' }),
-			).rejects.toThrow(
-				'Found a `require()` call in non-module file "file.cjs". Use dynamic `import()` instead.',
-			);
-		});
+	// 	it('errors if .cjs -> .mjs', async () => {
+	// 		await expect(
+	// 			transform("require('foo');", { filename: 'file.cjs' }, { format: 'mjs' }),
+	// 		).rejects.toThrow(
+	// 			'Found a `require()` call in non-module file "file.cjs". Use dynamic `import()` instead.',
+	// 		);
+	// 	});
 
-		it('doesnt error if .ts -> .cjs', async () => {
-			await expect(
-				transform("require('foo');", { filename: 'file.ts' }, { format: 'cjs' }),
-			).resolves.not.toThrow();
-		});
+	// 	it('doesnt error if .ts -> .cjs', async () => {
+	// 		await expect(
+	// 			transform("require('foo');", { filename: 'file.ts' }, { format: 'cjs' }),
+	// 		).resolves.not.toThrow();
+	// 	});
 
-		it('doesnt error if .mjs -> .cjs', async () => {
-			await expect(
-				transform("require('foo');", { filename: 'file.mjs' }, { format: 'cjs' }),
-			).resolves.not.toThrow();
-		});
+	// 	it('doesnt error if .mjs -> .cjs', async () => {
+	// 		await expect(
+	// 			transform("require('foo');", { filename: 'file.mjs' }, { format: 'cjs' }),
+	// 		).resolves.not.toThrow();
+	// 	});
 
-		it('doesnt error if .js -> .cjs', async () => {
-			await expect(
-				transform("require('foo');", { filename: 'file.js' }, { format: 'cjs' }),
-			).resolves.not.toThrow();
-		});
+	// 	it('doesnt error if .js -> .cjs', async () => {
+	// 		await expect(
+	// 			transform("require('foo');", { filename: 'file.js' }, { format: 'cjs' }),
+	// 		).resolves.not.toThrow();
+	// 	});
 
-		it('doesnt error if .cjs -> .cjs', async () => {
-			await expect(
-				transform("require('foo');", { filename: 'file.cjs' }, { format: 'cjs' }),
-			).resolves.not.toThrow();
-		});
-	});
+	// 	it('doesnt error if .cjs -> .cjs', async () => {
+	// 		await expect(
+	// 			transform("require('foo');", { filename: 'file.cjs' }, { format: 'cjs' }),
+	// 		).resolves.not.toThrow();
+	// 	});
+	// });
 
 	describe('require.resolve()', () => {
 		it('errors if .ts -> .mjs', async () => {

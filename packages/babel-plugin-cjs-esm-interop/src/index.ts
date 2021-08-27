@@ -58,15 +58,15 @@ export default function cjsEsmInterop(): PluginObj {
 	return {
 		visitor: {
 			CallExpression(path: NodePath<t.CallExpression>, state) {
-				// `require()` not allowed in esm files
-				// https://nodejs.org/api/esm.html#esm_no_require_exports_or_module_exports
-				if (getFormat(state) === 'mjs' && path.get('callee').isIdentifier({ name: 'require' })) {
-					throw new Error(
-						`Found a \`require()\` call in non-module file "${paths.basename(
-							state.filename,
-						)}". Use dynamic \`import()\` instead.`,
-					);
-				}
+				// // `require()` not allowed in esm files
+				// // https://nodejs.org/api/esm.html#esm_no_require_exports_or_module_exports
+				// if (getFormat(state) === 'mjs' && path.get('callee').isIdentifier({ name: 'require' })) {
+				// 	throw new Error(
+				// 		`Found a \`require()\` call in non-module file "${paths.basename(
+				// 			state.filename,
+				// 		)}". Use dynamic \`import()\` instead.`,
+				// 	);
+				// }
 
 				// `require.resolve()` not allowed in esm files
 				// https://nodejs.org/api/esm.html#esm_no_require_resolve
