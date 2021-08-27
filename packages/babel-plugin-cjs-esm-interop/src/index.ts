@@ -186,6 +186,20 @@ export default function cjsEsmInterop(): PluginObj {
 				) {
 					throw new Error('API `require.cache` is not available in modules.');
 				}
+
+				// `require.resolve` is not allowed in esm files
+				// https://nodejs.org/api/esm.html#esm_no_require_resolve
+				if (
+					getFormat(state) === 'mjs' &&
+					path.get('object').isIdentifier({ name: 'require' }) &&
+					path.get('property').isIdentifier({ name: 'resolve' })
+				) {
+					throw new Error(
+						`Found a \`require.resolve()\` call in non-module file "${paths.basename(
+							state.filename,
+						)}". Use the \`resolve\` npm package instead.`,
+					);
+				}
 			},
 		},
 	};
