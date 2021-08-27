@@ -5754,6 +5754,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"babel-plugin-cjs-esm-bridge@workspace:packages/babel-plugin-cjs-esm-bridge":
+  version: 0.0.0-use.local
+  resolution: "babel-plugin-cjs-esm-bridge@workspace:packages/babel-plugin-cjs-esm-bridge"
+  dependencies:
+    "@babel/core": ^7.15.0
+  peerDependencies:
+    "@babel/core": ^7.0.0
+  languageName: unknown
+  linkType: soft
+
 "babel-plugin-conditional-invariant@^1.0.1, babel-plugin-conditional-invariant@workspace:packages/babel-plugin-conditional-invariant":
   version: 0.0.0-use.local
   resolution: "babel-plugin-conditional-invariant@workspace:packages/babel-plugin-conditional-invariant"

@@ -1,5 +1,5 @@
 import { transformAsync, TransformOptions } from '@babel/core';
-import envConstantsPlugin from '../src';
+import cjsEsmBridge from '../src';
 
 async function transform(code: string, options?: TransformOptions): Promise<string> {
 	const result = await transformAsync(code, {
@@ -7,7 +7,7 @@ async function transform(code: string, options?: TransformOptions): Promise<stri
 		comments: false,
 		configFile: false,
 		filename: 'file.js',
-		plugins: [envConstantsPlugin()],
+		plugins: [cjsEsmBridge()],
 		presets: ['@babel/preset-react'],
 		generatorOpts: {
 			jsescOption: { quotes: 'single' },
@@ -18,52 +18,32 @@ async function transform(code: string, options?: TransformOptions): Promise<stri
 	return result?.code ?? '';
 }
 
-describe('envConstantsPlugin()', () => {
-	['DEV', 'PROD', 'TEST'].forEach((name) => {
-		const expr = `__${name}__`;
-
-		it(`transforms ${expr} expressions`, async () => {
-			expect(
-				await transform(`
-if (${expr}) {
-} else if (${expr} && 123) {
-} else if (true || ${expr}) {
-} else if (!${expr}) {
-} else {}
-
-switch (${expr}) {}
-
-while (${expr}) {}
-
-do {} while (${expr});
-
-const ternary = ${expr} ? true : false;
-
-const objectValue = {
-  foo: ${expr},
-};
-
-const arrayValue = [${expr}];
-
-<Foo>{${expr} ? 'Child' : null}</Foo>;`),
-			).toMatchSnapshot();
+describe('cjsEsmBridge()', () => {
+	describe('require()', () => {
+		it('errors if in a .ts file', async () => {
+			await expect(transform("require('foo');", { filename: 'file.ts' })).rejects.toThrow(
+				'Found a `require()` call in "file.ts", this is not allowed in ".mjs" files. Use dynamic `import()` instead.',
+			);
 		});
 
-		it(`will not transform invalid ${expr} expressions`, async () => {
-			expect(
-				await transform(`
-const ${expr} = 123;
+		it('errors if in a .tsx file', async () => {
+			await expect(transform("require('foo');", { filename: 'file.tsx' })).rejects.toThrow(
+				'Found a `require()` call in "file.tsx", this is not allowed in ".mjs" files. Use dynamic `import()` instead.',
+			);
+		});
 
-const objectProperty = { ${expr}: true };
+		it('errors if in a .mjs file', async () => {
+			await expect(transform("require('foo');", { filename: 'file.mjs' })).rejects.toThrow(
+				'Found a `require()` call in "file.mjs", this is not allowed in ".mjs" files. Use dynamic `import()` instead.',
+			);
+		});
 
-const objectComputed = { [${expr}]: false };
+		it('doesnt error if in a .js file', async () => {
+			await expect(transform("require('foo');", { filename: 'file.js' })).resolves.toBeDefined();
+		});
 
-objectProperty.${expr} = false;
-objectComputed[${expr}] = false;
-
-const arrayIndex = [];
-arrayIndex[${expr}] = 1;`),
-			).toMatchSnapshot();
+		it('doesnt error if in a .cjs file', async () => {
+			await expect(transform("require('foo');", { filename: 'file.cjs' })).resolves.toBeDefined();
 		});
 	});
 });
