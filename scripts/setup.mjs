@@ -6,8 +6,18 @@ import glob from 'fast-glob';
 async function setup() {
 	const pkgs = await glob('./packages/*', { onlyDirectories: true });
 
+	// We need `babel-plugin-cjs-esm-interop` to build first since all
+	// other packages rely on it!
+	pkgs.sort();
+
 	await Promise.all(
-		pkgs.map((pkg) => execa('yarn', ['beemo', 'babel', `${pkg}/src`, '--out-dir', `${pkg}/lib`])),
+		pkgs.map((pkg) =>
+			execa('yarn', ['beemo', 'babel', `${pkg}/src`, '--out-dir', `${pkg}/lib`], {
+				env: {
+					NO_INTEROP: pkg.includes('cjs-esm-interop') ? 'true' : undefined,
+				},
+			}),
+		),
 	);
 }
 

@@ -1,5 +1,5 @@
-import { PackageStructure } from '@boost/common';
 import fs from 'fs';
+import { PackageStructure } from '@boost/common';
 
 export function getVersion(): string {
 	return (

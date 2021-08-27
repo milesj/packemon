@@ -3,8 +3,8 @@
 import execa from 'execa';
 import semver from 'semver';
 import { Memoize, Project as BaseProject } from '@boost/common';
-import { Package } from './Package';
 import { getVersion } from './helpers/getVersion';
+import { Package } from './Package';
 
 export class Project extends BaseProject {
 	workspaces: string[] = [];

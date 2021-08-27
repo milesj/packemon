@@ -9,7 +9,7 @@ import {
 	WatchCommand,
 } from '.';
 
-let version = 'internal';
+let version = '0.0.0-internal';
 
 try {
 	version = getVersion();

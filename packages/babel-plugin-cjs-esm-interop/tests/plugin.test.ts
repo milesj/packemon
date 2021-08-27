@@ -467,6 +467,16 @@ describe('cjsEsmInterop()', () => {
 			).toMatchInlineSnapshot(`"const dir = __dirname;"`);
 		});
 
+		it('includes file:// protocol when in a URL', async () => {
+			expect(
+				await transform(
+					'const url = new URL("", path.dirname(import.meta.url));',
+					{ filename: 'file.ts' },
+					{ format: 'cjs' },
+				),
+			).toMatchInlineSnapshot(`"const url = new URL(\\"\\", 'file://' + __dirname);"`);
+		});
+
 		it('doesnt transform from .ts -> .mjs', async () => {
 			expect(
 				await transform(

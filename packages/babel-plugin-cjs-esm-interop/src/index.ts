@@ -10,9 +10,9 @@ export interface CjsEsmInteropOptions {
 	format?: 'cjs' | 'mjs';
 }
 
-function isEsmFile(file: string) {
-	return /\.(ts|tsx|mjs)$/.test(file);
-}
+// function isEsmFile(file: string) {
+// 	return /\.(ts|tsx|mjs)$/.test(file);
+// }
 
 function isPathDirname(path: NodePath): boolean {
 	// dirname(foo)
