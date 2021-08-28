@@ -30,10 +30,6 @@ To make use of this functionality, you must define an [input](./config.md#inputs
 The contents of the binary source file can be whatever you want, but do be aware that code in the
 module scope will be executed immediately when the file is executed by Node.js.
 
-## Referencing sibling inputs
-
-Coming soon...
-
 ## Version constraints
 
 If you're using packemon as a global dependency and want to ensure all contributors of your project

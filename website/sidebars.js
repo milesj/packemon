@@ -6,6 +6,7 @@ module.exports = {
 		'install',
 		'setup',
 		'config',
+		'esm',
 		{
 			type: 'category',
 			label: 'Commands',

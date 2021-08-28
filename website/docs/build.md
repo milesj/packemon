@@ -188,12 +188,14 @@ The following plugins are enabled when one of their conditions are met.
 - `babel-plugin-transform-async-to-promises`
   - Enabled when package [platform](./config.md#platforms) is configured to `browser` or `native`.
     Will transform async/await to promises for legacy versions.
-- _Custom_
+- [`babel-plugin-env-constants`](https://npmjs.com/package/babel-plugin-env-constants)
   - Always enabled. Will transform `__DEV__`, `__PROD__`, and `__TEST__` to `process.env.NODE_ENV`
-    conditionals using
-    [babel-plugin-env-constants](https://npmjs.com/package/babel-plugin-env-constants).
-  - Always enabled. Will wrap `invariant()` calls with `process.env.NODE_ENV` conditionals using
-    [babel-plugin-conditional-invariant](https://npmjs.com/package/babel-plugin-conditional-invariant).
+    expressions.
+- [`babel-plugin-conditional-invariant`](https://npmjs.com/package/babel-plugin-conditional-invariant)
+  - Always enabled. Will wrap `invariant()` calls with `process.env.NODE_ENV` conditionals.
+- [`babel-plugin-cjs-esm-interop`](https://npmjs.com/package/babel-plugin-cjs-esm-interop)
+  - Enabled when package [platform](./config.md#platforms) is configured to `node`. Will convert ESM
+    code to CJS and vice-versa.
 
 ## Rollup configuration
 
