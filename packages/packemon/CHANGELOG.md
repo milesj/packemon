@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 1.4.1 - 2021-08-28
+
+#### 🐞 Fixes
+
+- Add missing babel-plugin-cjs-esm-interop dep. ([77af564](https://github.com/milesj/packemon/commit/77af564))
+
+**Note:** Version bump only for package packemon
+
+
+
+
+
 ## 1.4.0 - 2021-08-28
 
 #### 🚀 Updates
