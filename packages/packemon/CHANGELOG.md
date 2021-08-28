@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.4.0 - 2021-08-28
+
+#### 🚀 Updates
+
+- Migrate to ESM-first source code. (#83) ([50ee442](https://github.com/milesj/packemon/commit/50ee442)), closes [#83](https://github.com/milesj/packemon/issues/83)
+
+#### 📦 Dependencies
+
+- **[babel]** Update to v7.15. ([2b8d592](https://github.com/milesj/packemon/commit/2b8d592))
+- **[beemo-dev]** Update to latest configs. ([db6947e](https://github.com/milesj/packemon/commit/db6947e))
+- **[boost]** Update to v2 latest. ([bff29df](https://github.com/milesj/packemon/commit/bff29df))
+- **[filesize]** Update to v8. ([b78c4d9](https://github.com/milesj/packemon/commit/b78c4d9))
+- **[npm-packlist]** Update to v3. ([384edf2](https://github.com/milesj/packemon/commit/384edf2))
+- **[rollup]** Update to v2.56. ([222283c](https://github.com/milesj/packemon/commit/222283c))
+
+#### 🛠 Internals
+
+- Upgrade to TypeScript v4.4. ([ff41b61](https://github.com/milesj/packemon/commit/ff41b61))
+
+**Note:** Version bump only for package packemon
+
+
+
+
+
 ## 1.3.0 - 2021-08-02
 
 #### 🚀 Updates

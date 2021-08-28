@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 1.0.2 - 2021-08-28
+
+#### 📦 Dependencies
+
+- **[babel]** Update to v7.15. ([2b8d592](https://github.com/milesj/packemon/commit/2b8d592))
+
+#### 📘 Docs
+
+- Add API integration. ([2afcdd9](https://github.com/milesj/packemon/commit/2afcdd9))
+
+**Note:** Version bump only for package babel-plugin-conditional-invariant
+
+
+
+
+
 ### 1.0.1 - 2021-08-02
 
 #### 📦 Dependencies

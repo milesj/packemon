@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 0.2.1 - 2021-08-28
+
+#### 📘 Docs
+
+- Add API integration. ([2afcdd9](https://github.com/milesj/packemon/commit/2afcdd9))
+- Add ESM first docs. ([aa99b27](https://github.com/milesj/packemon/commit/aa99b27))
+
+**Note:** Version bump only for package website
+
+
+
+
+
 ## 0.2.0 - 2021-08-02
 
 #### 🚀 Updates
