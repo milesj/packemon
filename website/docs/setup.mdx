@@ -128,6 +128,7 @@ to `lib`, `build`, or some other variant. This is especially true if using proje
 ```json title="tsconfig.json"
 {
 	"compilerOptions": {
+		"declaration": true,
 		"declarationDir": "dts",
 		"outDir": "dts"
 	}
@@ -171,6 +172,7 @@ should be updated to only emit declarations to `dts`, like so.
 ```json title="tsconfig.json"
 {
 	"compilerOptions": {
+		"declaration": true,
 		"declarationDir": "dts",
 		"outDir": "dts",
 		"rootDir": "src",
