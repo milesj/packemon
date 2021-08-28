@@ -1,5 +1,5 @@
 import './types';
-import { NodePath, types as t } from '@babel/core';
+import { NodePath, PluginObj, types as t } from '@babel/core';
 
 const exprs = {
 	DEV: ['!==', 'production'],
@@ -7,7 +7,7 @@ const exprs = {
 	TEST: ['===', 'test'],
 };
 
-export default function envConstantsPlugin() {
+export default function envConstantsPlugin(): PluginObj {
 	return {
 		visitor: {
 			Identifier: {

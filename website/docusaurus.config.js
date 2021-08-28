@@ -1,5 +1,7 @@
 /* eslint-disable sort-keys */
 
+const path = require('path');
+
 const pkg = require('../packages/packemon/package.json');
 
 module.exports = {
@@ -34,6 +36,11 @@ module.exports = {
 					position: 'left',
 				},
 				{
+					to: 'api',
+					label: 'API',
+					position: 'left',
+				},
+				{
 					href: 'https://github.com/milesj/packemon',
 					label: 'GitHub',
 					position: 'right',
@@ -61,6 +68,22 @@ module.exports = {
 				theme: {
 					customCss: require.resolve('./src/css/custom.css'),
 				},
+			},
+		],
+	],
+	plugins: [
+		[
+			'docusaurus-plugin-typedoc-api',
+			{
+				projectRoot: path.join(__dirname, '..'),
+				packages: [
+					'packages/babel-plugin-cjs-esm-interop',
+					'packages/babel-plugin-conditional-invariant',
+					'packages/babel-plugin-env-constants',
+					'packages/packemon',
+				],
+				minimal: true,
+				readmes: true,
 			},
 		],
 	],

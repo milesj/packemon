@@ -1,4 +1,4 @@
-import { NodePath, types as t } from '@babel/core';
+import { NodePath, PluginObj, types as t } from '@babel/core';
 
 function isWrappedWithConditional(path: NodePath<t.ExpressionStatement>): boolean {
 	let currentPath: NodePath<t.Node> | null = path;
@@ -34,7 +34,7 @@ function isWrappedWithConditional(path: NodePath<t.ExpressionStatement>): boolea
 	return wrapped;
 }
 
-export default function conditionalInvariantPlugin() {
+export default function conditionalInvariantPlugin(): PluginObj {
 	return {
 		visitor: {
 			ExpressionStatement: {

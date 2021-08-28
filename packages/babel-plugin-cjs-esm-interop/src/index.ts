@@ -6,7 +6,7 @@ import { NodePath, PluginObj, PluginPass, types as t } from '@babel/core';
 import { addDefault } from '@babel/helper-module-imports';
 
 export interface CjsEsmInteropOptions {
-	// The output format
+	/** The output file format. */
 	format?: 'cjs' | 'mjs';
 }
 
