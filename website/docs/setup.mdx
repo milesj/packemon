@@ -92,7 +92,7 @@ are compiled to `regenerator-runtime`
   defaultValue="yarn"
   values={[
     { label: 'Yarn', value: 'yarn' },
-    { label: 'NPM', value: 'npm' },
+    { label: 'npm', value: 'npm' },
   ]}
 >
   <TabItem value="yarn">
@@ -137,7 +137,7 @@ to `lib`, `build`, or some other variant. This is especially true if using proje
 
 ### Enable emitting
 
-The `noEmit` setting should _only_ be used on the command line (via an NPM script) and should not be
+The `noEmit` setting should _only_ be used on the command line (via an npm script) and should not be
 configured explicitly. We require emitting of declarations.
 
 ```diff title="tsconfig.json"

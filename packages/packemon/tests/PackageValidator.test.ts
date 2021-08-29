@@ -300,7 +300,7 @@ describe('PackageValidator', () => {
 				await validator.validate({ engines: true });
 
 				expect(validator.warnings).toEqual([
-					'NPM does not satisfy engine constraints. Found 8.0.0, requires ^7.0.0.',
+					'npm does not satisfy engine constraints. Found 8.0.0, requires ^7.0.0.',
 				]);
 				expect(validator.errors).toEqual([]);
 			});

@@ -169,7 +169,7 @@ export class PackageValidator {
 
 			if (npmVersion && !semver.satisfies(npmVersion.version, npmConstraint)) {
 				this.warnings.push(
-					`NPM does not satisfy engine constraints. Found ${npmVersion.version}, requires ${npmConstraint}.`,
+					`npm does not satisfy engine constraints. Found ${npmVersion.version}, requires ${npmConstraint}.`,
 				);
 			}
 		}
@@ -227,7 +227,7 @@ export class PackageValidator {
 		const futureFiles = new Set(await packList({ path: this.package.path.path() }));
 		const presentFiles = new Set(await this.findDistributableFiles());
 
-		// First check that our files are in the potential NPM list
+		// First check that our files are in the potential npm list
 		const ignored = new Set<string>();
 
 		presentFiles.forEach((file) => {
@@ -242,7 +242,7 @@ export class PackageValidator {
 			);
 		}
 
-		// Then check that NPM isnt adding something unwanted
+		// Then check that npm isnt adding something unwanted
 		const unwanted = new Set<string>();
 
 		futureFiles.forEach((file) => {

@@ -4,7 +4,7 @@ title: Advanced
 
 ## Creating binary files
 
-A binary is an executable file distributed in an NPM package via the
+A binary is an executable file distributed in an npm package via the
 [bin](https://docs.npmjs.com/files/package.json#bin) field. Packemon offers first class support for
 binary files by:
 

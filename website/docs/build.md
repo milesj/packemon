@@ -5,7 +5,7 @@ sidebar_label: build
 
 Packemon was primarily designed and engineered for building packages. But what is building you ask?
 Building is the process of parsing, transforming, and bundling a package's source code into
-distributable and consumable files for NPM, using community favorite tools like [Babel][babel] and
+distributable and consumable files for npm, using community favorite tools like [Babel][babel] and
 [Rollup][rollup].
 
 With that being said, the `build` command can be used to build all packages in a project according
@@ -23,7 +23,7 @@ to their configured build targets (platform, formats, etc).
 
 Build supports the following command line options.
 
-- `--addEngines` - Add Node.js and NPM `engine` versions to each `package.json` when `platform` is
+- `--addEngines` - Add Node.js and npm `engine` versions to each `package.json` when `platform` is
   `node`. Uses the `support` setting to determine the version range.
 - `--addExports` - Add `exports` fields to each `package.json` according to the respective `inputs`
   setting. This is an experimental Node.js feature and may not work correctly
@@ -53,7 +53,7 @@ Build supports the following command line options.
 ## How it works
 
 When the build process is ran, Packemon will find all viable packages within the current project and
-generate build artifacts. A build artifact is an output file that _will be_ distributed with the NPM
+generate build artifacts. A build artifact is an output file that _will be_ distributed with the npm
 package, but _will **not** be_ committed to the project (ideally git ignored).
 
 To demonstrate this, let's assume we have a package with the following folder structure and file
@@ -128,8 +128,8 @@ and `--addExports` options.
 ```
 
 Amazing, we now have self-contained and tree-shaken build artifacts for consumption. However, to
-ensure _only_ build artifacts are packaged and distributed to NPM, we rely on the `package.json`
-`files` property. Based on the list above, the files published to NPM would be the following (pretty
+ensure _only_ build artifacts are packaged and distributed to npm, we rely on the `package.json`
+`files` property. Based on the list above, the files published to npm would be the following (pretty
 much everything except tests).
 
 ```
