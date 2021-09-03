@@ -369,7 +369,10 @@ describe('cjsEsmInterop()', () => {
 					{ filename: 'file.ts' },
 					{ format: 'cjs' },
 				),
-			).toMatchInlineSnapshot(`"const url = new URL(\\"\\", 'file://' + __filename);"`);
+			).toMatchInlineSnapshot(`
+			"import _url from 'url';
+			const url = new URL(\\"\\", _url.pathToFileURL(__filename));"
+		`);
 		});
 
 		it('doesnt transform from .ts -> .mjs', async () => {
@@ -474,7 +477,10 @@ describe('cjsEsmInterop()', () => {
 					{ filename: 'file.ts' },
 					{ format: 'cjs' },
 				),
-			).toMatchInlineSnapshot(`"const url = new URL(\\"\\", 'file://' + __dirname);"`);
+			).toMatchInlineSnapshot(`
+			"import _url from 'url';
+			const url = new URL(\\"\\", _url.pathToFileURL(__dirname));"
+		`);
 		});
 
 		it('doesnt transform from .ts -> .mjs', async () => {

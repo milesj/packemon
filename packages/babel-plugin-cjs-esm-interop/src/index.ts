@@ -43,12 +43,15 @@ function getFormat(state: PluginPass): 'cjs' | 'mjs' {
 	return (state.opts as CjsEsmInteropOptions)?.format ?? 'mjs';
 }
 
-function wrapWithFileProto(path: NodePath, id: string) {
+function wrapWithFileProto(path: NodePath, id: string, importFactory: () => string) {
 	if (
 		path.parentPath?.isNewExpression() &&
 		path.parentPath?.get('callee').isIdentifier({ name: 'URL' })
 	) {
-		return t.binaryExpression('+', t.stringLiteral('file://'), t.identifier(id));
+		return t.callExpression(
+			t.memberExpression(t.identifier(importFactory()), t.identifier('pathToFileURL')),
+			[t.identifier(id)],
+		);
 	}
 
 	return t.identifier(id);
@@ -175,10 +178,19 @@ export default function cjsEsmInterop(): PluginObj {
 					(path.get('object.property') as NodePath).isIdentifier({ name: 'meta' }) &&
 					path.get('property').isIdentifier({ name: 'url' })
 				) {
+					const addUrlImport = () => {
+						// eslint-disable-next-line @typescript-eslint/no-unsafe-call
+						this.urlImport ??= addDefault(path, 'url', { nameHint: '_url' });
+
+						return (this.urlImport as { name: string }).name;
+					};
+
 					if (isPathDirname(path.parentPath)) {
-						path.parentPath.replaceWith(wrapWithFileProto(path.parentPath, '__dirname'));
+						path.parentPath.replaceWith(
+							wrapWithFileProto(path.parentPath, '__dirname', addUrlImport),
+						);
 					} else {
-						path.replaceWith(wrapWithFileProto(path, '__filename'));
+						path.replaceWith(wrapWithFileProto(path, '__filename', addUrlImport));
 					}
 				}
 
