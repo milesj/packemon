@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.0 - 2021-09-03
+
+#### 🚀 Updates
+
+- Update downleveling to use pathToFileURL. ([72f61ef](https://github.com/milesj/packemon/commit/72f61ef))
+
+#### 📦 Dependencies
+
+- Update dev dependencies. ([1e995f7](https://github.com/milesj/packemon/commit/1e995f7))
+
+**Note:** Version bump only for package babel-plugin-cjs-esm-interop
+
+
+
+
+
 # 1.0.0 - 2021-08-28
 
 #### 🎉 Release

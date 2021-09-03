@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 0.2.2 - 2021-09-03
+
+#### 📘 Docs
+
+- Add "declaration" to TypeScript integration (#84) ([bb15312](https://github.com/milesj/packemon/commit/bb15312)), closes [#84](https://github.com/milesj/packemon/issues/84)
+- Lowercase npm name. ([5f38644](https://github.com/milesj/packemon/commit/5f38644))
+
+**Note:** Version bump only for package website
+
+
+
+
+
 ### 0.2.1 - 2021-08-28
 
 #### 📘 Docs

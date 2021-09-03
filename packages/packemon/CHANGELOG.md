@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 1.4.2 - 2021-09-03
+
+#### 📦 Dependencies
+
+- Update dev dependencies. ([1e995f7](https://github.com/milesj/packemon/commit/1e995f7))
+
+#### 📘 Docs
+
+- Lowercase npm name. ([5f38644](https://github.com/milesj/packemon/commit/5f38644))
+
+**Note:** Version bump only for package packemon
+
+
+
+
+
 ### 1.4.1 - 2021-08-28
 
 #### 🐞 Fixes
