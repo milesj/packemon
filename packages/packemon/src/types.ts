@@ -173,6 +173,10 @@ declare module 'rollup' {
 	}
 }
 
+// SCAFFOLD
+
+export type Template = 'monorepo-package' | 'monorepo' | 'polyrepo-package' | 'polyrepo';
+
 // OTHER
 
 export type Awaitable = Promise<void> | void;
