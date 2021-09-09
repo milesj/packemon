@@ -3,11 +3,11 @@ module.exports = {
 	root: true,
 	extends: [
 		'beemo',
-		// When targeting browsers
-		// 'beemo/browser',
-		// When targeting Node.js
+		// Uncomment when targeting Node.js
 		// 'beemo/node',
-		// React support
+		// Uncomment when targeting browsers
+		// 'beemo/browser',
+		// Uncomment if using React/JSX
 		// 'beemo/react',
 	],
 };

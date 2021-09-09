@@ -9,10 +9,10 @@ export interface TemplateSelectProps {
 export function TemplateSelect({ onSelect }: TemplateSelectProps) {
 	const options = useMemo<SelectOptionLike<Template>[]>(
 		() => [
-			{ label: 'Monorepo (many packages)', value: 'monorepo' },
+			{ label: 'Monorepo infrastructure (many packages)', value: 'monorepo' },
 			{ label: 'Monorepo package', value: 'monorepo-package' },
-			{ label: 'Polyrepo (single package)', value: 'polyrepo' },
-			{ label: 'Polyrepo package', value: 'monorepo-package' },
+			{ label: 'Polyrepo infrastructure (single package)', value: 'polyrepo' },
+			{ label: 'Polyrepo package', value: 'polyrepo-package' },
 		],
 		[],
 	);
@@ -26,7 +26,7 @@ export function TemplateSelect({ onSelect }: TemplateSelectProps) {
 	return (
 		<Select<Template>
 			defaultSelected="monorepo"
-			label="Which template to scaffold?"
+			label="Template to scaffold?"
 			options={options}
 			validate={validate}
 			onSubmit={onSelect}

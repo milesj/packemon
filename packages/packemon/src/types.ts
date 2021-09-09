@@ -177,6 +177,20 @@ declare module 'rollup' {
 
 export type Template = 'monorepo-package' | 'monorepo' | 'polyrepo-package' | 'polyrepo';
 
+export interface ScaffoldParams {
+	author: string;
+	template: Template;
+	projectName: string;
+	packageName: string;
+	repoUrl: string;
+	year: number;
+}
+
+export interface ScaffoldPreparedParams extends ScaffoldParams {
+	org: string;
+	repo: string;
+}
+
 // OTHER
 
 export type Awaitable = Promise<void> | void;

@@ -1,7 +1,7 @@
 // https://www.npmjs.com/package/tsconfig-beemo
 {
   "extends": "tsconfig-beemo/tsconfig.json",
-  // React support
+  // Uncomment if using React/JSX
   // "extends": "tsconfig-beemo/tsconfig.react.json",
   "include": ["src/**/*", "tests/**/*"]
 }
