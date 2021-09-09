@@ -175,11 +175,13 @@ declare module 'rollup' {
 
 // SCAFFOLD
 
-export type Template = 'monorepo-package' | 'monorepo' | 'polyrepo-package' | 'polyrepo';
+export type InfraType = 'monorepo' | 'polyrepo';
+
+export type TemplateType = 'monorepo-package' | 'monorepo' | 'polyrepo-package' | 'polyrepo';
 
 export interface ScaffoldParams {
 	author: string;
-	template: Template;
+	template: TemplateType;
 	projectName: string;
 	packageName: string;
 	packagePath?: string;

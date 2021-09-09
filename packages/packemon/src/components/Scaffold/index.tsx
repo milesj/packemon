@@ -2,16 +2,17 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { Box } from 'ink';
 import { Input, useProgram } from '@boost/cli/react';
 import { isModuleName } from '@boost/common';
-import { ScaffoldParams, Template } from '../../types';
+import { ScaffoldParams, TemplateType } from '../../types';
 import { TemplateSelect } from './TemplateSelect';
 
 export interface ScaffoldProps {
+	defaultTemplate?: TemplateType;
 	onComplete: (params: ScaffoldParams) => Promise<unknown>;
 }
 
-export function Scaffold({ onComplete }: ScaffoldProps) {
+export function Scaffold({ defaultTemplate, onComplete }: ScaffoldProps) {
 	const { exit } = useProgram();
-	const [template, setTemplate] = useState<Template>();
+	const [template, setTemplate] = useState<TemplateType>();
 	const [packageName, setPackageName] = useState<string>('');
 	const [projectName, setProjectName] = useState<string>('');
 	const [repoUrl, setRepoUrl] = useState<string>('');
@@ -84,7 +85,7 @@ export function Scaffold({ onComplete }: ScaffoldProps) {
 
 	return (
 		<Box flexDirection="column">
-			<TemplateSelect onSelect={setTemplate} />
+			<TemplateSelect defaultTemplate={defaultTemplate} onSelect={setTemplate} />
 
 			<Input
 				label="Author?"

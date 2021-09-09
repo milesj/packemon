@@ -7,15 +7,25 @@ import glob from 'fast-glob';
 import fs from 'fs-extra';
 import { Arg, Command, Config } from '@boost/cli';
 import { json } from '@boost/common';
-import { ScaffoldParams } from '../types';
+import { InfraType, ScaffoldParams, TemplateType } from '../types';
 
 @Config('scaffold', 'Scaffold projects and packages with ease')
 export class ScaffoldCommand extends Command {
 	@Arg.Flag('Overwrite files if they already exist', { short: 'f' })
 	force: boolean = false;
 
+	@Arg.String('Package manager to install dependencies with', {
+		choices: ['npm', 'pnpm', 'yarn'],
+	})
+	packageManager: string = 'yarn';
+
 	@Arg.Flag('Skip installation of npm dependencies')
 	skipInstall: boolean = false;
+
+	@Arg.String('Default template to scaffold', {
+		choices: ['monorepo', 'monorepo-package', 'polyrepo', 'polyrepo-package'],
+	})
+	template?: TemplateType;
 
 	dest: string = '';
 
@@ -33,7 +43,9 @@ export class ScaffoldCommand extends Command {
 
 		const { Scaffold } = await import('../components/Scaffold');
 
-		return <Scaffold onComplete={(params) => this.scaffold(params)} />;
+		return (
+			<Scaffold defaultTemplate={this.template} onComplete={(params) => this.scaffold(params)} />
+		);
 	}
 
 	async scaffold(params: ScaffoldParams) {
@@ -54,7 +66,7 @@ export class ScaffoldCommand extends Command {
 		await this.checkExistingInfrastructure('monorepo');
 		await this.copyFilesFromTemplate('base', this.destDir, params);
 		await this.copyFilesFromTemplate('monorepo', this.destDir, params);
-		await this.installDependencies();
+		await this.installDependencies('monorepo');
 
 		try {
 			await fs.mkdir(path.join(this.destDir, 'packages'));
@@ -90,7 +102,7 @@ export class ScaffoldCommand extends Command {
 		await this.checkExistingInfrastructure('polyrepo');
 		await this.copyFilesFromTemplate('base', this.destDir, params);
 		await this.copyFilesFromTemplate('polyrepo', this.destDir, params);
-		await this.installDependencies();
+		await this.installDependencies('polyrepo');
 	}
 
 	async scaffoldPolyrepoPackage(params: ScaffoldParams) {
@@ -116,33 +128,44 @@ export class ScaffoldCommand extends Command {
 		await fs.writeJson(tsconfigPath, tsconfig, { spaces: 2 });
 	}
 
-	async installDependencies() {
+	async installDependencies(type: InfraType) {
 		if (this.skipInstall) {
 			return;
 		}
 
-		await this.executeCommand(
-			'yarn',
-			[
-				'add',
-				'--dev',
-				'eslint-config-beemo',
-				'eslint',
-				'jest-preset-beemo',
-				'jest',
-				'packemon',
-				'prettier-config-beemo',
-				'prettier',
-				'tsconfig-beemo',
-				'typescript',
-			],
-			{
-				cwd: this.destDir,
-			},
-		);
+		const args = [
+			'eslint-config-beemo',
+			'eslint',
+			'jest-preset-beemo',
+			'jest',
+			'packemon',
+			'prettier-config-beemo',
+			'prettier',
+			'tsconfig-beemo',
+			'typescript',
+		];
+
+		switch (this.packageManager) {
+			default:
+			case 'yarn':
+				args.unshift('add', '--dev', type === 'monorepo' ? '-W' : '');
+				break;
+
+			case 'pnpm':
+				args.unshift('add', '--save-dev', type === 'monorepo' ? '-W' : '');
+				break;
+
+			case 'npm':
+				args.unshift('install', '--save-dev');
+				break;
+		}
+
+		await this.executeCommand(this.packageManager, args.filter(Boolean), {
+			cwd: this.destDir,
+		});
 	}
 
-	async checkExistingInfrastructure(type: string) {
+	async checkExistingInfrastructure(type: InfraType) {
 		const packagePath = path.join(this.destDir, 'package.json');
 
 		if (!fs.existsSync(packagePath)) {
@@ -158,37 +181,37 @@ export class ScaffoldCommand extends Command {
 		}
 	}
 
-	async copyFile(from: string, to: string, params: Record<string, number | string>) {
-		const isPackage = from.endsWith('package.json') && to.endsWith('package.json');
+	async copyFile(fromTemplate: string, toDest: string, params: Record<string, number | string>) {
+		const isPackage = fromTemplate.endsWith('package.json') && toDest.endsWith('package.json');
 
 		// Dont overwrite existing files (except package.json)
-		if (fs.existsSync(to) && !this.force && !isPackage) {
+		if (fs.existsSync(toDest) && !this.force && !isPackage) {
 			return;
 		}
 
-		const toDir = path.dirname(to);
+		const toDir = path.dirname(toDest);
 
 		if (!fs.existsSync(toDir)) {
 			await fs.ensureDir(toDir);
 		}
 
 		// Interpolate params into string content
-		let content = await fs.readFile(from, 'utf8');
+		let content = await fs.readFile(fromTemplate, 'utf8');
 
 		Object.entries(params).forEach(([key, value]) => {
 			content = content.replace(new RegExp(`<${key}>`, 'g'), String(value));
 		});
 
 		// Instead of overwriting package.json, we want to merge them
-		if (isPackage) {
-			const prevContent = await this.loadJsonConfig<object>(to);
+		if (fs.existsSync(toDest) && isPackage) {
+			const prevContent = await this.loadJsonConfig<object>(toDest);
 			const nextContent = json.parse(content);
 
-			await fs.writeJson(to, { ...prevContent, ...nextContent }, { spaces: 2 });
+			await fs.writeJson(toDest, { ...prevContent, ...nextContent }, { spaces: 2 });
 
 			// Otherwise write content as a string
 		} else {
-			await fs.writeFile(to, content, 'utf8');
+			await fs.writeFile(toDest, content, 'utf8');
 		}
 	}
 
