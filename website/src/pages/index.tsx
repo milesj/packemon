@@ -94,7 +94,7 @@ function Feature({ imageUrl, title, description }: FeatureProps) {
 
 export default function Home() {
 	const context = useDocusaurusContext();
-	const { siteConfig = {} } = context;
+	const { siteConfig } = context;
 
 	return (
 		<Layout description={siteConfig.tagline} title="Gotta pack 'em all!">
