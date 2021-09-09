@@ -182,13 +182,9 @@ export interface ScaffoldParams {
 	template: Template;
 	projectName: string;
 	packageName: string;
+	packagePath?: string;
 	repoUrl: string;
 	year: number;
-}
-
-export interface ScaffoldPreparedParams extends ScaffoldParams {
-	org: string;
-	repo: string;
 }
 
 // OTHER

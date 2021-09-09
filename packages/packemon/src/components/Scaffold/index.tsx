@@ -66,6 +66,8 @@ export function Scaffold({ onComplete }: ScaffoldProps) {
 		}
 	}, []);
 
+	const isPackage = template === 'monorepo-package' || template === 'polyrepo-package';
+
 	return (
 		<Box flexDirection="column">
 			<TemplateSelect onSelect={setTemplate} />
@@ -77,13 +79,15 @@ export function Scaffold({ onComplete }: ScaffoldProps) {
 				onSubmit={setAuthor}
 			/>
 
-			{template === 'monorepo-package' || template === 'polyrepo-package' ? (
+			{isPackage ? (
 				<Input label="Package name?" validate={validatePackageName} onSubmit={setPackageName} />
 			) : (
 				<Input label="Project name?" validate={validateProjectName} onSubmit={setProjectName} />
 			)}
 
-			<Input label="Repository URL?" validate={validateRepoUrl} onSubmit={setRepoUrl} />
+			{isPackage && (
+				<Input label="Repository URL?" validate={validateRepoUrl} onSubmit={setRepoUrl} />
+			)}
 		</Box>
 	);
 }

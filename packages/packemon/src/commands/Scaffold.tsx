@@ -6,10 +6,17 @@ import React from 'react';
 import glob from 'fast-glob';
 import fs from 'fs-extra';
 import { Arg, Command, Config } from '@boost/cli';
+import { json } from '@boost/common';
 import { ScaffoldParams } from '../types';
 
 @Config('scaffold', 'Scaffold projects and packages with ease')
 export class ScaffoldCommand extends Command {
+	@Arg.Flag('Overwrite files if they already exist', { short: 'f' })
+	force: boolean = false;
+
+	@Arg.Flag('Skip installation of npm dependencies')
+	skipInstall: boolean = false;
+
 	dest: string = '';
 
 	destDir: string = '';
@@ -67,10 +74,15 @@ export class ScaffoldCommand extends Command {
 		const { packageName } = params;
 		const folderName = packageName.startsWith('@') ? packageName.split('/')[1] : packageName;
 		const packageDir = path.join(packagesDir, folderName);
+		const packagePath = `packages/${folderName}`;
 
 		await this.copyFilesFromTemplate('package', packageDir, params);
-		await this.copyFilesFromTemplate('monorepo-package', packageDir, params);
-		await this.addProjectReference(folderName);
+		await this.copyFilesFromTemplate('monorepo-package', packageDir, {
+			...params,
+			packagePath,
+		});
+
+		await this.addProjectReference(packagePath);
 	}
 
 	async scaffoldPolyrepo(params: ScaffoldParams) {
@@ -81,20 +93,20 @@ export class ScaffoldCommand extends Command {
 
 	scaffoldPolyrepoPackage(params: ScaffoldParams) {}
 
-	async addProjectReference(folderName: string) {
+	async addProjectReference(packagePath: string) {
 		this.log('Adding project reference to root tsconfig.json');
 
 		const tsconfigPath = path.join(this.destDir, 'tsconfig.json');
-		const tsconfig = JSON.parse(await fs.readFile(tsconfigPath, 'utf8')) as {
-			references?: { path: string }[];
-		};
+		const tsconfig = json.parse<{ references?: { path: string }[] }>(
+			await fs.readFile(tsconfigPath, 'utf8'),
+		);
 
 		if (!Array.isArray(tsconfig.references)) {
 			tsconfig.references = [];
 		}
 
 		tsconfig.references.push({
-			path: `packages/${folderName}`,
+			path: packagePath,
 		});
 
 		tsconfig.references.sort((a, b) => a.path.localeCompare(b.path));
@@ -103,6 +115,10 @@ export class ScaffoldCommand extends Command {
 	}
 
 	async installDependencies() {
+		if (this.skipInstall) {
+			return;
+		}
+
 		this.log('Installing dependencies');
 
 		await this.executeCommand(
@@ -126,8 +142,8 @@ export class ScaffoldCommand extends Command {
 		);
 	}
 
-	async copyFile(from: string, to: string, params: ScaffoldParams) {
-		if (fs.existsSync(to)) {
+	async copyFile(from: string, to: string, params: Record<string, number | string>) {
+		if (fs.existsSync(to) && !this.force) {
 			return;
 		}
 
@@ -159,7 +175,7 @@ export class ScaffoldCommand extends Command {
 
 		return Promise.all(
 			files.map((file) =>
-				this.copyFile(path.join(templateDir, file), path.join(destDir, file), params),
+				this.copyFile(path.join(templateDir, file), path.join(destDir, file), { ...params }),
 			),
 		);
 	}
