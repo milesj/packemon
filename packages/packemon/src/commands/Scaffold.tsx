@@ -51,8 +51,6 @@ export class ScaffoldCommand extends Command {
 	}
 
 	async scaffoldMonorepo(params: ScaffoldParams) {
-		// this.log('Scaffolding monorepo');
-
 		await this.checkExistingInfrastructure('monorepo');
 		await this.copyFilesFromTemplate('base', this.destDir, params);
 		await this.copyFilesFromTemplate('monorepo', this.destDir, params);
@@ -102,12 +100,8 @@ export class ScaffoldCommand extends Command {
 	}
 
 	async addProjectReference(packagePath: string) {
-		// this.log('Adding project reference to root tsconfig.json');
-
 		const tsconfigPath = path.join(this.destDir, 'tsconfig.json');
-		const tsconfig = json.parse<{ references?: { path: string }[] }>(
-			await fs.readFile(tsconfigPath, 'utf8'),
-		);
+		const tsconfig = await this.loadJsonConfig<{ references?: { path: string }[] }>(tsconfigPath);
 
 		if (!Array.isArray(tsconfig.references)) {
 			tsconfig.references = [];
@@ -126,8 +120,6 @@ export class ScaffoldCommand extends Command {
 		if (this.skipInstall) {
 			return;
 		}
-
-		// this.log('Installing dependencies');
 
 		await this.executeCommand(
 			'yarn',
@@ -157,7 +149,7 @@ export class ScaffoldCommand extends Command {
 			return;
 		}
 
-		const pkg = (await fs.readJson(packagePath)) as { infra: string };
+		const pkg = await this.loadJsonConfig<{ infra: string }>(packagePath);
 
 		if (pkg.infra !== type) {
 			throw new Error(
@@ -167,7 +159,10 @@ export class ScaffoldCommand extends Command {
 	}
 
 	async copyFile(from: string, to: string, params: Record<string, number | string>) {
-		if (fs.existsSync(to) && !this.force) {
+		const isPackage = from.endsWith('package.json') && to.endsWith('package.json');
+
+		// Dont overwrite existing files (except package.json)
+		if (fs.existsSync(to) && !this.force && !isPackage) {
 			return;
 		}
 
@@ -177,13 +172,24 @@ export class ScaffoldCommand extends Command {
 			await fs.ensureDir(toDir);
 		}
 
+		// Interpolate params into string content
 		let content = await fs.readFile(from, 'utf8');
 
 		Object.entries(params).forEach(([key, value]) => {
 			content = content.replace(new RegExp(`<${key}>`, 'g'), String(value));
 		});
 
-		await fs.writeFile(to, content, 'utf8');
+		// Instead of overwriting package.json, we want to merge them
+		if (isPackage) {
+			const prevContent = await this.loadJsonConfig<object>(to);
+			const nextContent = json.parse(content);
+
+			await fs.writeJson(to, { ...prevContent, ...nextContent }, { spaces: 2 });
+
+			// Otherwise write content as a string
+		} else {
+			await fs.writeFile(to, content, 'utf8');
+		}
 	}
 
 	async copyFilesFromTemplate(template: string, destDir: string, params: ScaffoldParams) {
@@ -200,5 +206,10 @@ export class ScaffoldCommand extends Command {
 				this.copyFile(path.join(templateDir, file), path.join(destDir, file), { ...params }),
 			),
 		);
+	}
+
+	async loadJsonConfig<T>(filePath: string) {
+		// Supports comments
+		return json.parse<T>(await fs.readFile(filePath, 'utf8'));
 	}
 }
