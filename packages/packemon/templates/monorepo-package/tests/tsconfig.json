@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "composite": false,
+    "emitDeclarationOnly": false,
+    "noEmit": true,
+    "rootDir": "."
+  },
+  "extends": "tsconfig-beemo/tsconfig.json",
+  // Uncomment if using React/JSX
+  // "extends": "tsconfig-beemo/tsconfig.react.json",
+  "include": [
+    "**/*",
+    "../types/**/*",
+    "../../../types/**/*"
+  ],
+  "references": [
+    {
+      "path": ".."
+    }
+  ]
+}

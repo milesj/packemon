@@ -32,6 +32,8 @@ export function Scaffold({ onComplete }: ScaffoldProps) {
 					projectName: projectName ?? `${packageName}-root`,
 					year: new Date().getFullYear(),
 				});
+			} catch (error: unknown) {
+				exit(error as Error);
 			} finally {
 				exit();
 			}
@@ -60,7 +62,7 @@ export function Scaffold({ onComplete }: ScaffoldProps) {
 
 	const validateAuthor = useCallback((value: string) => {
 		if (!value || !value.trim()) {
-			throw new Error('Please provide an author name');
+			throw new Error('Please provide an author or company name');
 		}
 	}, []);
 
@@ -68,7 +70,12 @@ export function Scaffold({ onComplete }: ScaffoldProps) {
 		<Box flexDirection="column">
 			<TemplateSelect onSelect={setTemplate} />
 
-			<Input label="Your name?" validate={validateAuthor} onSubmit={setAuthor} />
+			<Input
+				label="Author?"
+				placeholder="Your name, company name, ..."
+				validate={validateAuthor}
+				onSubmit={setAuthor}
+			/>
 
 			{template === 'monorepo-package' || template === 'polyrepo-package' ? (
 				<Input label="Package name?" validate={validatePackageName} onSubmit={setPackageName} />

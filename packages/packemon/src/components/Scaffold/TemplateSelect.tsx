@@ -25,7 +25,6 @@ export function TemplateSelect({ onSelect }: TemplateSelectProps) {
 
 	return (
 		<Select<Template>
-			defaultSelected="monorepo"
 			label="Template to scaffold?"
 			options={options}
 			validate={validate}

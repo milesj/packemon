@@ -1,15 +1,17 @@
 /* eslint-disable react/jsx-no-bind, react-perf/jsx-no-new-function-as-prop */
 
-import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import React from 'react';
 import glob from 'fast-glob';
+import fs from 'fs-extra';
 import { Arg, Command, Config } from '@boost/cli';
 import { ScaffoldParams } from '../types';
 
 @Config('scaffold', 'Scaffold projects and packages with ease')
 export class ScaffoldCommand extends Command {
+	dest: string = '';
+
 	destDir: string = '';
 
 	@Arg.Params({
@@ -19,6 +21,7 @@ export class ScaffoldCommand extends Command {
 		required: true,
 	})
 	async run(dest: string) {
+		this.dest = dest;
 		this.destDir = path.join(process.cwd(), dest);
 
 		const { Scaffold } = await import('../components/Scaffold');
@@ -34,27 +37,93 @@ export class ScaffoldCommand extends Command {
 			case 'monorepo':
 				return this.scaffoldMonorepo(params);
 			case 'monorepo-package':
-				return this.scaffoldMonorepo(params);
+				return this.scaffoldMonorepoPackage(params);
 			case 'polyrepo':
 				return this.scaffoldPolyrepo(params);
 			case 'polyrepo-package':
-				return this.scaffoldPolyrepo(params);
+				return void this.scaffoldPolyrepoPackage(params);
 		}
 	}
 
-	async scaffoldBase(params: ScaffoldParams) {
+	async scaffoldMonorepo(params: ScaffoldParams) {
+		this.log('Scaffolding monorepo');
+
 		await this.copyFilesFromTemplate('base', this.destDir, params);
+		await this.copyFilesFromTemplate('monorepo', this.destDir, params);
+		await this.installDependencies();
+
+		await fs.mkdir(path.join(this.destDir, 'packages'));
 	}
 
-	async scaffoldMonorepo(params: ScaffoldParams) {
-		await this.scaffoldBase(params);
-		await this.copyFilesFromTemplate('monorepo', this.destDir, params);
-		await fs.promises.mkdir(path.join(this.destDir, 'packages'));
+	async scaffoldMonorepoPackage(params: ScaffoldParams) {
+		const packagesDir = path.join(this.destDir, 'packages');
+
+		if (!fs.existsSync(packagesDir)) {
+			throw new Error(
+				`Cannot create a monorepo package as the monorepo infrastructure has not been scaffolded. Please run \`packemon scaffold --template monorepo ${this.dest}\`.`,
+			);
+		}
+
+		const { packageName } = params;
+		const folderName = packageName.startsWith('@') ? packageName.split('/')[1] : packageName;
+		const packageDir = path.join(packagesDir, folderName);
+
+		await this.copyFilesFromTemplate('package', packageDir, params);
+		await this.copyFilesFromTemplate('monorepo-package', packageDir, params);
+		await this.addProjectReference(folderName);
 	}
 
 	async scaffoldPolyrepo(params: ScaffoldParams) {
-		await this.scaffoldBase(params);
+		await this.copyFilesFromTemplate('base', this.destDir, params);
 		await this.copyFilesFromTemplate('polyrepo', this.destDir, params);
+		await this.installDependencies();
+	}
+
+	scaffoldPolyrepoPackage(params: ScaffoldParams) {}
+
+	async addProjectReference(folderName: string) {
+		this.log('Adding project reference to root tsconfig.json');
+
+		const tsconfigPath = path.join(this.destDir, 'tsconfig.json');
+		const tsconfig = JSON.parse(await fs.readFile(tsconfigPath, 'utf8')) as {
+			references?: { path: string }[];
+		};
+
+		if (!Array.isArray(tsconfig.references)) {
+			tsconfig.references = [];
+		}
+
+		tsconfig.references.push({
+			path: `packages/${folderName}`,
+		});
+
+		tsconfig.references.sort((a, b) => a.path.localeCompare(b.path));
+
+		await fs.writeJson(tsconfigPath, tsconfig, { spaces: 2 });
+	}
+
+	async installDependencies() {
+		this.log('Installing dependencies');
+
+		await this.executeCommand(
+			'yarn',
+			[
+				'add',
+				'--dev',
+				'eslint-config-beemo',
+				'eslint',
+				'jest-preset-beemo',
+				'jest',
+				'packemon',
+				'prettier-config-beemo',
+				'prettier',
+				'tsconfig-beemo',
+				'typescript',
+			],
+			{
+				cwd: this.destDir,
+			},
+		);
 	}
 
 	async copyFile(from: string, to: string, params: ScaffoldParams) {
@@ -62,19 +131,19 @@ export class ScaffoldCommand extends Command {
 			return;
 		}
 
-		const dir = path.dirname(from);
+		const toDir = path.dirname(to);
 
-		if (!fs.existsSync(dir)) {
-			await fs.promises.mkdir(dir, { recursive: true });
+		if (!fs.existsSync(toDir)) {
+			await fs.ensureDir(toDir);
 		}
 
-		let content = await fs.promises.readFile(from, 'utf8');
+		let content = await fs.readFile(from, 'utf8');
 
 		Object.entries(params).forEach(([key, value]) => {
 			content = content.replace(new RegExp(`<${key}>`, 'g'), String(value));
 		});
 
-		await fs.promises.writeFile(to, content, 'utf8');
+		await fs.writeFile(to, content, 'utf8');
 	}
 
 	async copyFilesFromTemplate(template: string, destDir: string, params: ScaffoldParams) {
@@ -85,6 +154,8 @@ export class ScaffoldCommand extends Command {
 			dot: true,
 			cwd: templateDir,
 		});
+
+		console.log({ template, templateDir, destDir }, files);
 
 		return Promise.all(
 			files.map((file) =>
