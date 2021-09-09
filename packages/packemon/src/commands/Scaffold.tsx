@@ -37,8 +37,6 @@ export class ScaffoldCommand extends Command {
 	}
 
 	async scaffold(params: ScaffoldParams) {
-		console.log(params, this.destDir);
-
 		switch (params.template) {
 			default:
 			case 'monorepo':
@@ -48,18 +46,23 @@ export class ScaffoldCommand extends Command {
 			case 'polyrepo':
 				return this.scaffoldPolyrepo(params);
 			case 'polyrepo-package':
-				return void this.scaffoldPolyrepoPackage(params);
+				return this.scaffoldPolyrepoPackage(params);
 		}
 	}
 
 	async scaffoldMonorepo(params: ScaffoldParams) {
-		this.log('Scaffolding monorepo');
+		// this.log('Scaffolding monorepo');
 
+		await this.checkExistingInfrastructure('monorepo');
 		await this.copyFilesFromTemplate('base', this.destDir, params);
 		await this.copyFilesFromTemplate('monorepo', this.destDir, params);
 		await this.installDependencies();
 
-		await fs.mkdir(path.join(this.destDir, 'packages'));
+		try {
+			await fs.mkdir(path.join(this.destDir, 'packages'));
+		} catch {
+			// Ignore
+		}
 	}
 
 	async scaffoldMonorepoPackage(params: ScaffoldParams) {
@@ -86,15 +89,20 @@ export class ScaffoldCommand extends Command {
 	}
 
 	async scaffoldPolyrepo(params: ScaffoldParams) {
+		await this.checkExistingInfrastructure('polyrepo');
 		await this.copyFilesFromTemplate('base', this.destDir, params);
 		await this.copyFilesFromTemplate('polyrepo', this.destDir, params);
 		await this.installDependencies();
 	}
 
-	scaffoldPolyrepoPackage(params: ScaffoldParams) {}
+	async scaffoldPolyrepoPackage(params: ScaffoldParams) {
+		// Since a polyrepo and package are the same thing, scaffold the infra automatically
+		await this.scaffoldPolyrepo(params);
+		await this.copyFilesFromTemplate('package', this.destDir, params);
+	}
 
 	async addProjectReference(packagePath: string) {
-		this.log('Adding project reference to root tsconfig.json');
+		// this.log('Adding project reference to root tsconfig.json');
 
 		const tsconfigPath = path.join(this.destDir, 'tsconfig.json');
 		const tsconfig = json.parse<{ references?: { path: string }[] }>(
@@ -119,7 +127,7 @@ export class ScaffoldCommand extends Command {
 			return;
 		}
 
-		this.log('Installing dependencies');
+		// this.log('Installing dependencies');
 
 		await this.executeCommand(
 			'yarn',
@@ -140,6 +148,22 @@ export class ScaffoldCommand extends Command {
 				cwd: this.destDir,
 			},
 		);
+	}
+
+	async checkExistingInfrastructure(type: string) {
+		const packagePath = path.join(this.destDir, 'package.json');
+
+		if (!fs.existsSync(packagePath)) {
+			return;
+		}
+
+		const pkg = (await fs.readJson(packagePath)) as { infra: string };
+
+		if (pkg.infra !== type) {
+			throw new Error(
+				`Cannot scaffold ${type} infrastructure, as destination has already been setup as a ${pkg.infra}.`,
+			);
+		}
 	}
 
 	async copyFile(from: string, to: string, params: Record<string, number | string>) {
@@ -170,8 +194,6 @@ export class ScaffoldCommand extends Command {
 			dot: true,
 			cwd: templateDir,
 		});
-
-		console.log({ template, templateDir, destDir }, files);
 
 		return Promise.all(
 			files.map((file) =>

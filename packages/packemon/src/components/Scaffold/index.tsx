@@ -18,8 +18,22 @@ export function Scaffold({ onComplete }: ScaffoldProps) {
 	const [author, setAuthor] = useState<string>('');
 
 	useEffect(() => {
+		// eslint-disable-next-line complexity
 		async function complete() {
-			if (!template || !repoUrl || !(packageName || projectName) || !author) {
+			if (!template) {
+				return;
+			}
+
+			// Project validation
+			if ((template === 'monorepo' || template === 'polyrepo') && (!projectName || !author)) {
+				return;
+			}
+
+			// Package validation
+			if (
+				(template === 'monorepo-package' || template === 'polyrepo-package') &&
+				(!packageName || !author || !repoUrl)
+			) {
 				return;
 			}
 

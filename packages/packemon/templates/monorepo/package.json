@@ -1,6 +1,7 @@
 {
   "private": true,
   "name": "<projectName>",
+  "infra": "monorepo",
   "scripts": {
     "build": "packemon build",
     "check": "yarn run type && yarn run test && yarn run lint",
