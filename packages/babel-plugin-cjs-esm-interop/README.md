@@ -13,13 +13,13 @@ based on the
 > etc!
 
 ```ts
-// Input: cjs
-const self = __filename;
+// Input: mjs
+const self = import.meta.url;
 ```
 
 ```ts
-// Output: mjs
-const self = import.meta.url;
+// Output: cjs
+const self = __filename;
 ```
 
 ## Installation

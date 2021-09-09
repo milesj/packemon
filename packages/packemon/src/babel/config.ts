@@ -145,7 +145,7 @@ export function getBabelOutputConfig(
 	// ENVIRONMENT
 
 	const envOptions: PresetEnvOptions = {
-		// Prefer spec compliance in prod
+		// Prefer spec compliance in development
 		spec: __DEV__,
 		loose: false,
 		// Consumers must polyfill accordingly

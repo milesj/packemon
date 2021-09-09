@@ -4,6 +4,7 @@ module.exports = {
 	docs: [
 		'index',
 		'install',
+		'features',
 		'setup',
 		'config',
 		'esm',
