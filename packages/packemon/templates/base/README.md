@@ -1,4 +1,4 @@
-# <projectName>
+# <packageName>
 
 Congrats on your new project, powered by Packemon! Here are a few things to know:
 

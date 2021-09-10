@@ -140,6 +140,8 @@ export class ScaffoldCommand extends Command {
 		}
 
 		const args = [
+			'@types/jest',
+			'@types/node',
 			'eslint-config-beemo',
 			'eslint',
 			'jest-preset-beemo',
@@ -153,9 +155,12 @@ export class ScaffoldCommand extends Command {
 
 		switch (this.packageManager) {
 			default:
-			case 'yarn':
-				args.unshift('add', '--dev', type === 'monorepo' ? '-W' : '');
+			case 'yarn': {
+				const version = Number.parseFloat((await this.executeCommand('yarn', ['-v'])).stdout);
+
+				args.unshift('add', '--dev', type === 'monorepo' && version < 2 ? '-W' : '');
 				break;
+			}
 
 			case 'pnpm':
 				args.unshift('add', '--save-dev', type === 'monorepo' ? '-W' : '');

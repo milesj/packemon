@@ -43,8 +43,8 @@ export function Scaffold({ defaultTemplate, onComplete }: ScaffoldProps) {
 					author,
 					template,
 					repoUrl,
-					packageName,
-					projectName: projectName ?? `${packageName}-root`,
+					packageName: packageName || projectName,
+					projectName: projectName || `${packageName}-root`,
 					year: new Date().getFullYear(),
 				});
 			} catch (error: unknown) {
