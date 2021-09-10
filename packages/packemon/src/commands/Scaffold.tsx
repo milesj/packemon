@@ -125,9 +125,14 @@ export class ScaffoldCommand extends Command {
 			tsconfig.references = [];
 		}
 
-		tsconfig.references.push({
-			path: packagePath,
-		});
+		tsconfig.references.push(
+			{
+				path: packagePath,
+			},
+			{
+				path: path.join(packagePath, 'tests'),
+			},
+		);
 
 		tsconfig.references.sort((a, b) => a.path.localeCompare(b.path));
 

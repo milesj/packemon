@@ -9,9 +9,7 @@
     "dts",
     "tests"
   ],
-  "extends": "tsconfig-beemo/tsconfig.json",
-  // Uncomment if using React/JSX
-  // "extends": "tsconfig-beemo/tsconfig.react.json",
+  "extends": "../../tsconfig.options.json",
   "include": [
     "src/**/*",
     "types/**/*",
