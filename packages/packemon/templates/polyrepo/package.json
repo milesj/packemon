@@ -9,6 +9,8 @@
     "format": "prettier --write .",
     "lint": "eslint --cache --fix ./src ./tests",
     "pack": "NODE_ENV=production packemon pack --addEngines --declaration=standard",
+    "prelease": "yarn run pack && yarn run check",
+    "release": "echo 'Customize your own release script!'",
     "test": "jest",
     "type": "tsc --noEmit",
     "validate": "packemon validate",
