@@ -39,6 +39,8 @@ export function Init({ packageNames, onComplete }: InitProps) {
 
 			try {
 				await onComplete(pkgConfigs);
+			} catch (error: unknown) {
+				exit(error as Error);
 			} finally {
 				exit();
 			}

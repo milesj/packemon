@@ -5,7 +5,67 @@ title: Installation
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Packemon can either be installed as a development or global dependency.
+Despite all the recent advancements in the npm ecosystem, setting up a TypeScript (or JavaScript)
+package is still quite tedious and non-trivial. Packemon hopes to alleviate this problem, and can be
+integrated into [existing projects](#add-to-an-existing-project), or used to
+[scaffold a new project](scaffold-a-new-project).
+
+A project in the context of Packemon is either a package (polyrepo), or a collection of packages
+(monorepo). Choose the option that best suits your needs.
+
+## Scaffold a new project
+
+Starting from scratch? Let Packemon scaffold the entire project structure for you! Run the
+[`packemon scaffold`](./scaffold.md) command below, select a template, answers some questions, and
+let Packemon work its magic.
+
+<Tabs
+  groupId="package-manager"
+  defaultValue="yarn"
+  values={[
+    { label: 'Yarn 2+', value: 'yarn2' },
+    { label: 'Yarn 1', value: 'yarn' },
+    { label: 'npm', value: 'npm' },
+  ]}
+>
+  <TabItem value="yarn2">
+
+```bash
+yarn dlx packemon scaffold ./mylib
+```
+
+  </TabItem>
+  <TabItem value="yarn">
+
+```bash
+npx packemon scaffold ./mylib
+```
+
+  </TabItem>
+  <TabItem value="npm">
+
+```bash
+npx packemon scaffold --packageManager npm ./mylib
+```
+
+  </TabItem>
+</Tabs>
+
+Scaffolding a new project will...
+
+- Align with the [defined file structure](./setup.mdx#package-structure).
+- Create config files for common developer tools (Babel, ESLint, Jest, TypeScript, etc), based on
+  [Beemo presets](https://github.com/beemojs/dev).
+- Create package specific files like `package.json`, readme's, and licenses.
+- Create example source and test files.
+- Install dependencies with the chosen package manager.
+
+## Add to an existing project
+
+To add Packemon to an existing project, install `packemon` as either a development or global
+dependency. Once installed, you will need to [configure each package](./config.md) by running the
+[`packemon init`](./init.md) command. Be sure your project abides the
+[defined requirements](./setup.mdx)!
 
 <Tabs
   groupId="package-manager"
@@ -19,6 +79,7 @@ Packemon can either be installed as a development or global dependency.
 
 ```bash
 yarn add --dev packemon
+yarn packemon init
 ```
 
   </TabItem>
@@ -26,23 +87,26 @@ yarn add --dev packemon
 
 ```bash
 npm install --save-dev packemon
+npx packemon init
 ```
 
   </TabItem>
 </Tabs>
 
-Once installed, you can reference the `packemon` binary within a `package.json` script.
+Furthermore, you can now reference the `packemon` binary within a `package.json` script. We suggest
+the following `build` (for development) and `pack` (for production) scripts.
 
 ```json title="package.json"
 {
 	"name": "package",
 	"scripts": {
-		"build": "packemon build"
+		"build": "packemon build",
+		"pack": "NODE_ENV=production packemon pack --addEngines --declaration=standard"
 	}
 }
 ```
 
-## Babel
+## Configure Babel
 
 Packemon relies on its own internal Babel configuration for building packages, but if you want to
 use the same configuration for local development and testing, update your root `babel.config.js` to

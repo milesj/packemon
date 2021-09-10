@@ -19,6 +19,9 @@ export class ScaffoldCommand extends Command {
 	})
 	packageManager: string = 'yarn';
 
+	@Arg.String('Folder in which packages will be located (monorepo only)')
+	packagesFolder: string = 'packages';
+
 	@Arg.Flag('Skip installation of npm dependencies')
 	skipInstall: boolean = false;
 
@@ -65,18 +68,21 @@ export class ScaffoldCommand extends Command {
 	async scaffoldMonorepo(params: ScaffoldParams) {
 		await this.checkExistingInfrastructure('monorepo');
 		await this.copyFilesFromTemplate('base', this.destDir, params);
-		await this.copyFilesFromTemplate('monorepo', this.destDir, params);
+		await this.copyFilesFromTemplate('monorepo', this.destDir, {
+			...params,
+			packagesFolder: this.packagesFolder,
+		});
 		await this.installDependencies('monorepo');
 
 		try {
-			await fs.mkdir(path.join(this.destDir, 'packages'));
+			await fs.mkdir(path.join(this.destDir, this.packagesFolder));
 		} catch {
 			// Ignore
 		}
 	}
 
 	async scaffoldMonorepoPackage(params: ScaffoldParams) {
-		const packagesDir = path.join(this.destDir, 'packages');
+		const packagesDir = path.join(this.destDir, this.packagesFolder);
 
 		if (!fs.existsSync(packagesDir)) {
 			throw new Error(
@@ -87,7 +93,7 @@ export class ScaffoldCommand extends Command {
 		const { packageName } = params;
 		const folderName = packageName.startsWith('@') ? packageName.split('/')[1] : packageName;
 		const packageDir = path.join(packagesDir, folderName);
-		const packagePath = `packages/${folderName}`;
+		const packagePath = `${this.packagesFolder}/${folderName}`;
 
 		await this.copyFilesFromTemplate('package', packageDir, params);
 		await this.copyFilesFromTemplate('monorepo-package', packageDir, {
@@ -215,7 +221,11 @@ export class ScaffoldCommand extends Command {
 		}
 	}
 
-	async copyFilesFromTemplate(template: string, destDir: string, params: ScaffoldParams) {
+	async copyFilesFromTemplate(
+		template: string,
+		destDir: string,
+		params: Record<string, number | string> | ScaffoldParams,
+	) {
 		// @ts-expect-error URL type mismatch
 		const templateDir = fileURLToPath(new URL(`../../templates/${template}`, import.meta.url));
 		const files = await glob('**/*', {

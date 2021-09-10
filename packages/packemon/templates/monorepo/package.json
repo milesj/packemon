@@ -7,8 +7,8 @@
     "check": "yarn run type && yarn run test && yarn run lint",
     "clean": "packemon clean",
     "coverage": "yarn run test --coverage",
-    "format": "prettier --write ./packages",
-    "lint": "eslint --cache --fix ./packages",
+    "format": "prettier --write ./<packagesFolder>",
+    "lint": "eslint --cache --fix ./<packagesFolder>",
     "pack": "NODE_ENV=production packemon pack --addEngines --declaration=standard",
     "test": "jest",
     "type": "tsc --build",
@@ -16,6 +16,6 @@
     "watch": "packemon watch"
   },
   "workspaces": [
-    "packages/*"
+    "<packagesFolder>/*"
   ]
 }
