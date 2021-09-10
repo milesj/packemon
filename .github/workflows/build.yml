@@ -20,11 +20,11 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: yarn install --immutable
       - run: yarn run setup
-      - run: yarn run type
+      # - run: yarn run type
       - run: node -v
       - run: yarn -v
       - run: yarn beemo create-config jest
-      - run: yarn jest
+      - run: node ./node_modules/.bin/jest
       # - run: yarn run coverage
       - run: yarn run lint
   pack:
