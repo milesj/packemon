@@ -21,6 +21,7 @@ jobs:
       - run: yarn install --immutable
       - run: yarn run setup
       - run: yarn run type
+      - run: yarn -v
       - run: yarn run coverage
       - run: yarn run lint
   pack:
