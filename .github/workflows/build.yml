@@ -24,7 +24,7 @@ jobs:
       - run: node -v
       - run: yarn -v
       - run: yarn beemo create-config jest
-      - run: yarn dlx jest@27.0.0
+      - run: yarn dlx jest@26.6.3
       # - run: node ./node_modules/.bin/jest
       # - run: yarn run coverage
       - run: yarn run lint
