@@ -21,8 +21,11 @@ jobs:
       - run: yarn install --immutable
       - run: yarn run setup
       - run: yarn run type
+      - run: node -v
       - run: yarn -v
-      - run: yarn run coverage
+      - run: yarn beemo create-config jest
+      - run: yarn jest
+      # - run: yarn run coverage
       - run: yarn run lint
   pack:
     name: Pack
