@@ -13,6 +13,8 @@ with the proper tooling and plugins, provide sane defaults and configurations, v
 requirements, and much more! By default Packemon will generate ECMAScript modules, but can be
 configured to support all formats.
 
+[Sound great? Let's get started!](./install.mdx)
+
 ## Features
 
 - Scaffold TypeScript packages, in either a monorepo or polyrepo project setup.

@@ -7,7 +7,7 @@ const pkg = require('../packages/packemon/package.json');
 module.exports = {
 	title: 'Packemon',
 	tagline:
-		'Scaffold, build, and prepare packages for npm distribution using standardized configurations and practices.',
+		'Scaffold, build, and maintain npm packages using standardized configurations and practices. Supports JavaScript and TypeScript.',
 	url: 'https://packemon.dev',
 	baseUrl: '/',
 	onBrokenLinks: 'throw',

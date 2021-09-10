@@ -30,6 +30,13 @@ To make use of this functionality, you must define an [input](./config.md#inputs
 The contents of the binary source file can be whatever you want, but do be aware that code in the
 module scope will be executed immediately when the file is executed by Node.js.
 
+## Customizing Babel and Rollup
+
+This is currently _not_ possible, as it breaks the deterministic guarantee that Packemon aims for:
+all Packemon packages should be built with the same patterns.
+
+If you would like this functionality, please create an issue outlining your requirements.
+
 ## Version constraints
 
 If you're using packemon as a global dependency and want to ensure all contributors of your project
