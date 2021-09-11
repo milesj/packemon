@@ -1,0 +1,14 @@
+// https://www.npmjs.com/package/tsconfig-beemo
+{
+  "extends": "tsconfig-beemo/tsconfig.json",
+  // Uncomment if using React/JSX
+  // "extends": "tsconfig-beemo/tsconfig.react.json",
+  "include": ["src/**/*", "types/**/*"],
+  "compilerOptions": {
+    "declaration": true,
+    "declarationDir": "dts",
+    "emitDeclarationOnly": true,
+    "outDir": "dts",
+    "rootDir": "src"
+  }
+}

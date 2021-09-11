@@ -4,15 +4,15 @@ module.exports = {
 	docs: [
 		'index',
 		'install',
-		'features',
 		'setup',
+		'features',
 		'config',
 		'esm',
 		{
 			type: 'category',
 			label: 'Commands',
 			collapsed: false,
-			items: ['build', 'clean', 'init', 'pack', 'validate', 'watch'],
+			items: ['build', 'clean', 'init', 'pack', 'scaffold', 'validate', 'watch'],
 		},
 		'advanced',
 		{

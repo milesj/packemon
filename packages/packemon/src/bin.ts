@@ -5,6 +5,7 @@ import {
 	CleanCommand,
 	InitCommand,
 	PackCommand,
+	ScaffoldCommand,
 	ValidateCommand,
 	WatchCommand,
 } from '.';
@@ -34,6 +35,7 @@ async function run() {
 		.register(new CleanCommand())
 		.register(new InitCommand())
 		.register(new PackCommand())
+		.register(new ScaffoldCommand())
 		.register(new ValidateCommand())
 		.register(new WatchCommand());
 

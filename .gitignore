@@ -21,6 +21,7 @@ mjs/
 tmp/
 umd/
 node_modules/
+test/
 
 # Required for testing
 !tests/__fixtures__/project/dts
@@ -35,13 +36,13 @@ node_modules/
 # Configs
 .babelrc
 .eslintignore
-.eslintrc.js
+/.eslintrc.js
 .flowconfig
-.prettierignore
-babel.config.js
-jest.config.js
-prettier.config.js
-webpack.config.js
+/.prettierignore
+/babel.config.js
+/jest.config.js
+/prettier.config.js
+/webpack.config.js
 *.tsbuildinfo
 
 # Yarn

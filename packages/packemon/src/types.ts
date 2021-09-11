@@ -173,6 +173,22 @@ declare module 'rollup' {
 	}
 }
 
+// SCAFFOLD
+
+export type InfraType = 'monorepo' | 'polyrepo';
+
+export type TemplateType = 'monorepo-package' | 'monorepo' | 'polyrepo-package' | 'polyrepo';
+
+export interface ScaffoldParams {
+	author: string;
+	template: TemplateType;
+	projectName: string;
+	packageName: string;
+	packagePath?: string;
+	repoUrl: string;
+	year: number;
+}
+
 // OTHER
 
 export type Awaitable = Promise<void> | void;
