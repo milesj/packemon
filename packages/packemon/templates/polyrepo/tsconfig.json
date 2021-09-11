@@ -3,10 +3,12 @@
   "extends": "tsconfig-beemo/tsconfig.json",
   // Uncomment if using React/JSX
   // "extends": "tsconfig-beemo/tsconfig.react.json",
-  "include": ["src/**/*", "tests/**/*", "types/**/*"],
+  "include": ["src/**/*", "types/**/*"],
   "compilerOptions": {
     "declaration": true,
     "declarationDir": "dts",
-    "outDir": "dts"
+    "emitDeclarationOnly": true,
+    "outDir": "dts",
+    "rootDir": "src"
   }
 }

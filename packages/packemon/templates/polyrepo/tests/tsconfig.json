@@ -1,0 +1,10 @@
+{
+  "extends": "tsconfig-beemo/tsconfig.json",
+  // Uncomment if using React/JSX
+  // "extends": "tsconfig-beemo/tsconfig.react.json",
+  "include": ["**/*"],
+  "compilerOptions": {
+    "noEmit": true,
+    "rootDir": ".."
+  }
+}

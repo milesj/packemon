@@ -35,7 +35,8 @@ surrounding comments.
 
 - root `.eslintrc.js` (also replace `beemo/node` with `beemo/browser`)
 - root `jest.config.js`
-- root `tsconfig.json` and `tsconfig.options.json`
+- every `tsconfig.json`
+- root `tsconfig.options.json`
 
 Don't forget to install the dependencies also!
 
