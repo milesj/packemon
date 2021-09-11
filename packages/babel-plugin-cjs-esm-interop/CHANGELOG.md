@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 1.1.1 - 2021-09-11
+
+#### 📘 Docs
+
+- Add features section. ([59b71cb](https://github.com/milesj/packemon/commit/59b71cb))
+- Update Docusaurus API. ([d6b2b28](https://github.com/milesj/packemon/commit/d6b2b28))
+
+**Note:** Version bump only for package babel-plugin-cjs-esm-interop
+
+
+
+
+
 ## 1.1.0 - 2021-09-03
 
 #### 🚀 Updates

@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.5.0 - 2021-09-11
+
+#### 🚀 Updates
+
+- Add `scaffold` command and associated templates. (#85) ([c9f22af](https://github.com/milesj/packemon/commit/c9f22af)), closes [#85](https://github.com/milesj/packemon/issues/85)
+
+#### 📦 Dependencies
+
+- Update dev dependencies. ([c725613](https://github.com/milesj/packemon/commit/c725613))
+
+#### 📘 Docs
+
+- Add features section. ([59b71cb](https://github.com/milesj/packemon/commit/59b71cb))
+- Update Docusaurus API. ([d6b2b28](https://github.com/milesj/packemon/commit/d6b2b28))
+
+**Note:** Version bump only for package packemon
+
+
+
+
+
 ### 1.4.2 - 2021-09-03
 
 #### 📦 Dependencies
