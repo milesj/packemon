@@ -36,7 +36,13 @@ function getBabelConfig(artifact: CodeArtifact, featureFlags: FeatureFlags): Con
 	};
 }
 
-export function createConfig(folder: string): ConfigStructure {
+export interface ConfigOptions {
+	format?: Format;
+	platform?: Platform;
+	support?: Support;
+}
+
+export function createConfig(folder: string, options: ConfigOptions = {}): ConfigStructure {
 	const path = new Path(folder);
 	const contents = fs.readJsonSync(path.append('package.json').path()) as PackemonPackage;
 
@@ -59,16 +65,16 @@ export function createConfig(folder: string): ConfigStructure {
 	}
 
 	// Generate artifact and builds
-	const artifact = new CodeArtifact(pkg, [{ format }]);
+	const artifact = new CodeArtifact(pkg, [{ format: options.format ?? format }]);
 	artifact.bundle = false;
-	artifact.platform = lowestPlatform;
-	artifact.support = support;
+	artifact.platform = options.platform ?? lowestPlatform;
+	artifact.support = options.support ?? support;
 
 	return getBabelConfig(artifact, pkg.getFeatureFlags());
 }
 
-export function createRootConfig(): ConfigStructure {
-	const config = createConfig(process.cwd());
+export function createRootConfig(options?: ConfigOptions): ConfigStructure {
+	const config = createConfig(process.cwd(), options);
 
 	return {
 		...config,
