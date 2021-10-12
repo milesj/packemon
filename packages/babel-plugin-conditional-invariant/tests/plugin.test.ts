@@ -20,8 +20,8 @@ async function transform(code: string, options?: TransformOptions): Promise<stri
 
 describe('conditionalInvariantPlugin()', () => {
 	it(`will transform valid expressions`, async () => {
-		expect(
-			await transform(`
+		await expect(
+			transform(`
 invariant();
 
 invariant(false);
@@ -53,22 +53,22 @@ if (1) {
 	invariant(!!value, 'Some message', true, 456);
 }
 `),
-		).toMatchSnapshot();
+		).resolves.toMatchSnapshot();
 	});
 
 	it(`will transform if wrapped in a non-matching conditional`, async () => {
-		expect(
-			await transform(`
+		await expect(
+			transform(`
 if (process.env.NODE_ENV === 'development') {
 	invariant();
 }
 `),
-		).toMatchSnapshot();
+		).resolves.toMatchSnapshot();
 	});
 
 	it(`will transform if wrapped in a non-matching conditional that is layers deep`, async () => {
-		expect(
-			await transform(`
+		await expect(
+			transform(`
 if (process.env.NODE_ENV === 'development') {
 	if (true) {
 		if (false) {
@@ -77,22 +77,22 @@ if (process.env.NODE_ENV === 'development') {
 	}
 }
 `),
-		).toMatchSnapshot();
+		).resolves.toMatchSnapshot();
 	});
 
 	it(`will not transform if wrapped in a matching conditional`, async () => {
-		expect(
-			await transform(`
+		await expect(
+			transform(`
 if (process.env.NODE_ENV !== 'production') {
 	invariant();
 }
 `),
-		).toMatchSnapshot();
+		).resolves.toMatchSnapshot();
 	});
 
 	it(`will not transform if wrapped in a matching conditional that is layers deep`, async () => {
-		expect(
-			await transform(`
+		await expect(
+			transform(`
 if (process.env.NODE_ENV !== 'production') {
 	if (true) {
 		if (false) {
@@ -101,6 +101,6 @@ if (process.env.NODE_ENV !== 'production') {
 	}
 }
 `),
-		).toMatchSnapshot();
+		).resolves.toMatchSnapshot();
 	});
 });

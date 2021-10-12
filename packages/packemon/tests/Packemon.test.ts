@@ -459,7 +459,7 @@ describe('Packemon', () => {
 		});
 
 		it('returns the same reference because of memoization', async () => {
-			expect(await packemon.loadConfiguredPackages()).toBe(await packemon.loadConfiguredPackages());
+			await expect(packemon.loadConfiguredPackages()).resolves.toBe(await packemon.loadConfiguredPackages());
 		});
 
 		it('returns all configured packages', async () => {

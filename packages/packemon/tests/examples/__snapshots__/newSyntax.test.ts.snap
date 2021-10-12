@@ -236,12 +236,14 @@ Array [
 exports[`New syntax transforms example test case: browser-stable-esm 1`] = `
 Array [
   "esm/index-browser-stable-esm.js",
-  "// Bundled with Packemon: https://packemon.dev
+  "var _foo$bar;
+
+// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: esm
 const foo = {};
-const optionalChain = foo?.bar;
-const nullCoalesc = foo ?? 0;
-foo.bar ?? (foo.bar = 'bar');
+const optionalChain = foo === null || foo === void 0 ? void 0 : foo.bar;
+const nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
+(_foo$bar = foo.bar) !== null && _foo$bar !== void 0 ? _foo$bar : foo.bar = 'bar';
 foo.baz || (foo.baz = 'baz');
 export { foo, nullCoalesc, optionalChain };
 ",
@@ -294,15 +296,18 @@ Array [
     value: true
   });
   _exports.optionalChain = _exports.nullCoalesc = _exports.foo = void 0;
+
+  var _foo$bar;
+
   // Bundled with Packemon: https://packemon.dev
   // Platform: browser, Support: stable, Format: umd
   const foo = {};
   _exports.foo = foo;
-  const optionalChain = foo?.bar;
+  const optionalChain = foo === null || foo === void 0 ? void 0 : foo.bar;
   _exports.optionalChain = optionalChain;
-  const nullCoalesc = foo ?? 0;
+  const nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
   _exports.nullCoalesc = nullCoalesc;
-  foo.bar ?? (foo.bar = 'bar');
+  (_foo$bar = foo.bar) !== null && _foo$bar !== void 0 ? _foo$bar : foo.bar = 'bar';
   foo.baz || (foo.baz = 'baz');
 });
 ",

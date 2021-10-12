@@ -23,8 +23,8 @@ describe('envConstantsPlugin()', () => {
 		const expr = `__${name}__`;
 
 		it(`transforms ${expr} expressions`, async () => {
-			expect(
-				await transform(`
+			await expect(
+				transform(`
 if (${expr}) {
 } else if (${expr} && 123) {
 } else if (true || ${expr}) {
@@ -46,12 +46,12 @@ const objectValue = {
 const arrayValue = [${expr}];
 
 <Foo>{${expr} ? 'Child' : null}</Foo>;`),
-			).toMatchSnapshot();
+			).resolves.toMatchSnapshot();
 		});
 
 		it(`will not transform invalid ${expr} expressions`, async () => {
-			expect(
-				await transform(`
+			await expect(
+				transform(`
 const ${expr} = 123;
 
 const objectProperty = { ${expr}: true };
@@ -63,7 +63,7 @@ objectComputed[${expr}] = false;
 
 const arrayIndex = [];
 arrayIndex[${expr}] = 1;`),
-			).toMatchSnapshot();
+			).resolves.toMatchSnapshot();
 		});
 	});
 });
