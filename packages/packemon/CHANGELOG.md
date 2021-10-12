@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.6.0 - 2021-10-12
+
+#### 🚀 Updates
+
+- Support format/platform/support for Babel configs. ([7b75b09](https://github.com/milesj/packemon/commit/7b75b09))
+- Upgrade Rollup to generate smaller code and utilize ES2015 features. ([e6d492a](https://github.com/milesj/packemon/commit/e6d492a))
+
+#### 🐞 Fixes
+
+- Resolve module lookup failures for yarn dlx. ([140d3e1](https://github.com/milesj/packemon/commit/140d3e1))
+
+#### 📦 Dependencies
+
+- **[ink]** Update to v3.2. ([c676fa5](https://github.com/milesj/packemon/commit/c676fa5))
+
+**Note:** Version bump only for package packemon
+
+
+
+
+
 ## 1.5.0 - 2021-09-11
 
 #### 🚀 Updates
