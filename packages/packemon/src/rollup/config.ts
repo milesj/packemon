@@ -107,7 +107,8 @@ export function getRollupOutputConfig(
 		chunkFileNames: `${artifact.bundle ? 'bundle' : '[name]'}-[hash].${ext}`,
 		entryFileNames: `[name].${ext}`,
 		preserveModules: !artifact.bundle,
-		// Use const when not supporting new targets
+		// Use ESM features when not supporting old targets
+		generatedCode: support === 'legacy' ? 'es5' : 'es2015',
 		preferConst: support !== 'legacy',
 		// Output specific plugins
 		plugins: [

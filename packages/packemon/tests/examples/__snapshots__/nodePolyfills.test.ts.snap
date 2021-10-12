@@ -11392,15 +11392,13 @@ const events = require('events');
 
 const path = require('path');
 
-function _interopDefault(e) {
-  return e && e.__esModule ? e : {
-    'default': e
-  };
-}
+const _interopDefault = e => e && e.__esModule ? e : {
+  default: e
+};
 
 const path__default = /*#__PURE__*/_interopDefault(path);
 
-const test = path__default['default'].join('foo', 'bar');
+const test = path__default.default.join('foo', 'bar');
 const emitter = new events.EventEmitter();
 
 class Example extends events.EventEmitter {
@@ -11430,15 +11428,13 @@ const events = require('events');
 
 const path = require('path');
 
-function _interopDefault(e) {
-  return e && e.__esModule ? e : {
-    'default': e
-  };
-}
+const _interopDefault = e => e && e.__esModule ? e : {
+  default: e
+};
 
 const path__default = /*#__PURE__*/_interopDefault(path);
 
-const test = path__default['default'].join('foo', 'bar');
+const test = path__default.default.join('foo', 'bar');
 const emitter = new events.EventEmitter();
 
 class Example extends events.EventEmitter {
@@ -11488,15 +11484,13 @@ const events = require('events');
 
 const path = require('path');
 
-function _interopDefault(e) {
-  return e && e.__esModule ? e : {
-    'default': e
-  };
-}
+const _interopDefault = e => e && e.__esModule ? e : {
+  default: e
+};
 
 const path__default = /*#__PURE__*/_interopDefault(path);
 
-const test = path__default['default'].join('foo', 'bar');
+const test = path__default.default.join('foo', 'bar');
 const emitter = new events.EventEmitter();
 
 class Example extends events.EventEmitter {
@@ -11526,15 +11520,13 @@ const events = require('events');
 
 const path = require('path');
 
-function _interopDefault(e) {
-  return e && e.__esModule ? e : {
-    'default': e
-  };
-}
+const _interopDefault = e => e && e.__esModule ? e : {
+  default: e
+};
 
 const path__default = /*#__PURE__*/_interopDefault(path);
 
-const test = path__default['default'].join('foo', 'bar');
+const test = path__default.default.join('foo', 'bar');
 const emitter = new events.EventEmitter();
 
 class Example extends events.EventEmitter {
@@ -11586,13 +11578,13 @@ var path = require('path');
 
 function _interopDefault(e) {
   return e && e.__esModule ? e : {
-    'default': e
+    default: e
   };
 }
 
 var path__default = /*#__PURE__*/_interopDefault(path);
 
-const test = path__default['default'].join('foo', 'bar');
+const test = path__default.default.join('foo', 'bar');
 const emitter = new events.EventEmitter();
 
 class Example extends events.EventEmitter {
@@ -11624,13 +11616,13 @@ var path = require('path');
 
 function _interopDefault(e) {
   return e && e.__esModule ? e : {
-    'default': e
+    default: e
   };
 }
 
 var path__default = /*#__PURE__*/_interopDefault(path);
 
-const test = path__default['default'].join('foo', 'bar');
+const test = path__default.default.join('foo', 'bar');
 const emitter = new events.EventEmitter();
 
 class Example extends events.EventEmitter {
@@ -11680,15 +11672,13 @@ const events = require('events');
 
 const path = require('path');
 
-function _interopDefault(e) {
-  return e && e.__esModule ? e : {
-    'default': e
-  };
-}
+const _interopDefault = e => e && e.__esModule ? e : {
+  default: e
+};
 
 const path__default = /*#__PURE__*/_interopDefault(path);
 
-const test = path__default['default'].join('foo', 'bar');
+const test = path__default.default.join('foo', 'bar');
 const emitter = new events.EventEmitter();
 
 class Example extends events.EventEmitter {
@@ -11718,15 +11708,13 @@ const events = require('events');
 
 const path = require('path');
 
-function _interopDefault(e) {
-  return e && e.__esModule ? e : {
-    'default': e
-  };
-}
+const _interopDefault = e => e && e.__esModule ? e : {
+  default: e
+};
 
 const path__default = /*#__PURE__*/_interopDefault(path);
 
-const test = path__default['default'].join('foo', 'bar');
+const test = path__default.default.join('foo', 'bar');
 const emitter = new events.EventEmitter();
 
 class Example extends events.EventEmitter {
