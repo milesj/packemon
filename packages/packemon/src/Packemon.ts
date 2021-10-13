@@ -2,7 +2,8 @@
 
 import fs from 'fs-extra';
 import rimraf from 'rimraf';
-import { isObject, json, Memoize, optimal, Path, toArray, WorkspacePackage } from '@boost/common';
+import { isObject, json, Memoize, Path, toArray, WorkspacePackage } from '@boost/common';
+import { optimal } from '@boost/common/optimal';
 import { createDebugger, Debugger } from '@boost/debug';
 import { Event } from '@boost/event';
 import { Context, PooledPipeline } from '@boost/pipeline';
@@ -46,7 +47,7 @@ export class Packemon {
 	async build(baseOptions: BuildOptions) {
 		this.debug('Starting `build` process');
 
-		const options = optimal(baseOptions, buildBlueprint);
+		const options = optimal(buildBlueprint).validate(baseOptions);
 		let packages = await this.loadConfiguredPackages(options);
 
 		packages = this.generateArtifacts(packages, options);
@@ -123,7 +124,7 @@ export class Packemon {
 	async validate(baseOptions: Partial<ValidateOptions>): Promise<PackageValidator[]> {
 		this.debug('Starting `validate` process');
 
-		const options = optimal(baseOptions, validateBlueprint);
+		const options = optimal(validateBlueprint).validate(baseOptions);
 		const packages = await this.loadConfiguredPackages(options);
 
 		return Promise.all(packages.map((pkg) => new PackageValidator(pkg).validate(options)));

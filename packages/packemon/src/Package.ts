@@ -2,7 +2,8 @@
 
 import glob from 'fast-glob';
 import fs from 'fs-extra';
-import { isObject, Memoize, optimal, PackageStructure, Path, toArray } from '@boost/common';
+import { isObject, Memoize, PackageStructure, Path, toArray } from '@boost/common';
+import { optimal } from '@boost/common/optimal';
 import { createDebugger, Debugger } from '@boost/debug';
 import { Artifact } from './Artifact';
 import { CodeArtifact } from './CodeArtifact';
@@ -221,9 +222,9 @@ export class Package {
 
 	setConfigs(configs: PackemonPackageConfig[]) {
 		configs.forEach((cfg) => {
-			const config = optimal(cfg, packemonBlueprint, {
+			const config = optimal(packemonBlueprint, {
 				name: this.getName(),
-			});
+			}).validate(cfg);
 
 			toArray(config.platform).forEach((platform) => {
 				let { bundle } = config;

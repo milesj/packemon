@@ -1959,6 +1959,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@boost/args@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@boost/args@npm:3.0.0"
+  dependencies:
+    "@boost/internal": ^3.0.0
+    levenary: ^1.1.1
+  checksum: 5a9c9a60b5baf5e2472bb489b172130fa27fd44d44a8af033438cac8a72daa470c1a519f06971bfb509bbc2661eca370f6e5870b1a9d85c65b59e3524cc165c4
+  languageName: node
+  linkType: hard
+
 "@boost/cli@npm:^2.11.2":
   version: 2.11.2
   resolution: "@boost/cli@npm:2.11.2"
@@ -1980,6 +1990,27 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@boost/cli@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@boost/cli@npm:3.0.0"
+  dependencies:
+    "@boost/args": ^3.0.0
+    "@boost/common": ^3.0.0
+    "@boost/event": ^3.0.0
+    "@boost/internal": ^3.0.0
+    "@boost/log": ^3.0.0
+    "@boost/terminal": ^3.0.0
+    "@boost/translate": ^3.0.0
+    execa: ^5.1.1
+    levenary: ^1.1.1
+    semver: ^7.3.5
+  peerDependencies:
+    ink: ^3.0.0
+    react: ^16.8.0 || ^17.0.0
+  checksum: 9abd9c8077f2bf2b9f3178626416aafd1808c46a29d60df9b1ddf460eee25c59f6ce8303a7fe2c240db02af02646626abe7ec4b7d8d95703ed5e13d49f2cca8d
+  languageName: node
+  linkType: hard
+
 "@boost/common@npm:^2.8.2":
   version: 2.8.2
   resolution: "@boost/common@npm:2.8.2"
@@ -1997,6 +2028,27 @@ __metadata:
     typescript:
       optional: true
   checksum: 4b2c40796c496a04280a8494ce2bdd6bd35bded1208c9fe371226111f1ef7fb8c233a1c5f09efce9777c8c1bc8c2dd98b8ef22b333f21ac1576e85e55f47d778
+  languageName: node
+  linkType: hard
+
+"@boost/common@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@boost/common@npm:3.0.0"
+  dependencies:
+    "@boost/decorators": ^3.0.0
+    "@boost/internal": ^3.0.0
+    fast-glob: ^3.2.7
+    json5: ^2.2.0
+    optimal: ^5.1.0
+    pretty-ms: ^7.0.1
+    resolve: ^1.20.0
+    yaml: ^1.10.2
+  peerDependencies:
+    typescript: ^4.0.0
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: 47f40a02102b8c0960d243b7919f346bddbfac9acc36306aef9bcc8f9b584ad598ed44dba336ea7b664e199e41dff8ff4a348098b1cd7c4b68c49a8ab4ee86eb
   languageName: node
   linkType: hard
 
@@ -2027,10 +2079,31 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@boost/debug@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@boost/debug@npm:3.0.0"
+  dependencies:
+    "@boost/common": ^3.0.0
+    "@boost/internal": ^3.0.0
+    "@types/debug": ^4.1.7
+    debug: ^4.3.2
+    execa: ^5.1.1
+    fast-glob: ^3.2.7
+  checksum: 42f62ed37b5f42c1f6bc0cb3967be82dd087301d17fcc1922b1b94ee1832bfb807d0d60df66bac18cb417a5ae57fd2d1ba790736489660b24c5b6f3a4c1af2a0
+  languageName: node
+  linkType: hard
+
 "@boost/decorators@npm:^2.1.4":
   version: 2.1.4
   resolution: "@boost/decorators@npm:2.1.4"
   checksum: 647f3b0a8a1530eeaec20a11edaefa4d90f368524f24a8f9883659e076d700bad9949e5d7257f956d8f6f97cc181f9885abcedd039e35aa71fb238ad0d4380b2
+  languageName: node
+  linkType: hard
+
+"@boost/decorators@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@boost/decorators@npm:3.0.0"
+  checksum: a01844642c70cbe2938922ffee23d3f1ef491f19154479168d7ffa83939c3b29442f53f7b5201c99a5516baaa4fb8947a96921f3eeef0e57a361f97616b04aab
   languageName: node
   linkType: hard
 
@@ -2043,12 +2116,30 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@boost/event@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@boost/event@npm:3.0.0"
+  dependencies:
+    "@boost/internal": ^3.0.0
+  checksum: 36fda219a41af2d3ea7c090978e1905802882617e088b88cfa58ce15b340f67dadc6d8887ed8fa2d777d3e671d58210a62a89fdd2f31a3019b02578264781da2
+  languageName: node
+  linkType: hard
+
 "@boost/internal@npm:^2.2.3":
   version: 2.2.3
   resolution: "@boost/internal@npm:2.2.3"
   dependencies:
     debug: ^4.3.2
   checksum: f12615c42da617ff02152ae2161ca1d5dd2971b783a8f5f01ec30cef22d41fed23d7fb3396c145864da5483dfa1c253b3494d3f37860da8fd28e37d68f06a24f
+  languageName: node
+  linkType: hard
+
+"@boost/internal@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@boost/internal@npm:3.0.0"
+  dependencies:
+    debug: ^4.3.2
+  checksum: f137ce052aca267142ad24b13e6f350c304be7cc4ed173c672125a18b84a6ae93e47b12cc95b891278ceb101503c2060f7c5b9d06f470f073693a36a62279fc3
   languageName: node
   linkType: hard
 
@@ -2061,6 +2152,18 @@ __metadata:
     "@boost/translate": ^2.2.8
     chalk: ^4.1.1
   checksum: 42e5d89c05b26e84899edef26231c29bdf9c14dac413951f7ac69e5c4bdcaa03e20bb76953ca3e7f6535a860d12e3ce9825d93f3e16ba00391d8c55258d3b690
+  languageName: node
+  linkType: hard
+
+"@boost/log@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@boost/log@npm:3.0.0"
+  dependencies:
+    "@boost/common": ^3.0.0
+    "@boost/internal": ^3.0.0
+    "@boost/translate": ^3.0.0
+    chalk: ^4.1.2
+  checksum: 394e925b38d52d7f1ce9d2d652ae3a207705f18148d51a0d1dd76c0522d1e6d55373819e77e0808f0bbbbb48b85277592333ca213dd5e9a3785546c041a2bbf4
   languageName: node
   linkType: hard
 
@@ -2089,6 +2192,22 @@ __metadata:
     lodash: ^4.17.21
     split: ^1.0.1
   checksum: d9e91a16226b8e1fe8b2025a9b10b67caaca8ede70e33e79c3c77a0f529d3443f62e9a487f0b3bc07b00e5551424e703ff4d38d9e3f199d024ccd7599a743919
+  languageName: node
+  linkType: hard
+
+"@boost/pipeline@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@boost/pipeline@npm:3.0.0"
+  dependencies:
+    "@boost/common": ^3.0.0
+    "@boost/debug": ^3.0.0
+    "@boost/event": ^3.0.0
+    "@boost/internal": ^3.0.0
+    "@boost/translate": ^3.0.0
+    execa: ^5.1.1
+    lodash: ^4.17.21
+    split: ^1.0.1
+  checksum: aff757d52e3c4b1acb6cb7d660ab978c26068a4d7f608aa2bd23b081a192999fd53f0da8abb6742294fc6b0a5370c44752b6230e5bb9c75786f556a65fd6733d
   languageName: node
   linkType: hard
 
@@ -2125,12 +2244,31 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@boost/test-utils@npm:^2.3.2":
-  version: 2.3.2
-  resolution: "@boost/test-utils@npm:2.3.2"
+"@boost/terminal@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@boost/terminal@npm:3.0.0"
+  dependencies:
+    ansi-escapes: ^4.3.2
+    ansi-regex: ^5.0.1
+    chalk: ^4.1.2
+    cli-truncate: ^2.1.0
+    figures: ^3.2.0
+    slice-ansi: ^4.0.0
+    string-width: ^4.2.3
+    strip-ansi: ^6.0.1
+    supports-hyperlinks: ^2.2.0
+    term-size: ^2.2.1
+    wrap-ansi: ^7.0.0
+  checksum: 0fe82964906505d9566e7319cd2b7c0ccdfb36e5da1a277e7d5acfa85853d4a60feb40cf4c562480aebf947f4e6db6a4a3e6be036466e5f023a8999bbfe396c2
+  languageName: node
+  linkType: hard
+
+"@boost/test-utils@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@boost/test-utils@npm:3.0.0"
   dependencies:
     fs-extra: ^9.1.0
-  checksum: 6a810d069f094481b9c13ea4b34196098da1f69a2550ffa1377e4dfeea43c7fe2f3733b412aa70a63dcd6a37df1c16c94c15f42a22d6bb177405a1129d46c6b7
+  checksum: f812cd4381f7d6bd8ebd49658eefa217970e782e648c5f2af049ea2d51caed5017b057c0c2f00b0a97fda7ecf6c6b20ed24798c5f383599f0f8661a60244c5fd
   languageName: node
   linkType: hard
 
@@ -2143,6 +2281,18 @@ __metadata:
     i18next: ^20.3.2
     os-locale: ^5.0.0
   checksum: bce77328cfb0fa22f21bb0efc45b44b5663096bf55fadb70acbc80066648ac0af22cd8abe9608efc0c687f2fc1a29162341ae25a864c9af11dd7e6fe7908a5b8
+  languageName: node
+  linkType: hard
+
+"@boost/translate@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@boost/translate@npm:3.0.0"
+  dependencies:
+    "@boost/common": ^3.0.0
+    "@boost/internal": ^3.0.0
+    i18next: ^21.2.6
+    os-locale: ^5.0.0
+  checksum: 6b9f10aa9c22ac349bde5562e595fcfe5a9e4997464af300b9f5719a3588787dde03931be1645e26aca7ad4168748fba8a9fce18921f47a4b79a429ca9260ced
   languageName: node
   linkType: hard
 
@@ -10364,6 +10514,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"i18next@npm:^21.2.6":
+  version: 21.3.0
+  resolution: "i18next@npm:21.3.0"
+  dependencies:
+    "@babel/runtime": ^7.12.0
+  checksum: 2527bbbfc604f7a234938ddcfee674405a085e64aec84a6d1b8f4a8de87ddfae9677afcad8bf6c75cdb419da1ce31e83c7bb2f693f5912ae8db811405ec24015
+  languageName: node
+  linkType: hard
+
 "iconv-lite@npm:0.4.24, iconv-lite@npm:^0.4.24":
   version: 0.4.24
   resolution: "iconv-lite@npm:0.4.24"
@@ -13784,6 +13943,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"optimal@npm:^5.1.0":
+  version: 5.1.0
+  resolution: "optimal@npm:5.1.0"
+  checksum: 001dabd82bbd9bd75a822b32d77929d963d4d77839758d39afc7299bd2b3eb460c32147bd93526818f33d9fce0d67b4f96f2d1521cbd1e5b7a7eb0010fceae9a
+  languageName: node
+  linkType: hard
+
 "optionator@npm:^0.8.1":
   version: 0.8.3
   resolution: "optionator@npm:0.8.3"
@@ -14050,7 +14216,7 @@ __metadata:
     "@beemo/cli": ^2.0.3
     "@beemo/core": ^2.1.1
     "@beemo/dev": ^1.7.2
-    "@boost/test-utils": ^2.3.2
+    "@boost/test-utils": ^3.0.0
     "@types/fs-extra": ^9.0.13
     "@types/jest": ^27.0.2
     "@types/micromatch": ^4.0.2
@@ -14077,12 +14243,12 @@ __metadata:
     "@babel/preset-flow": ^7.16.0
     "@babel/preset-react": ^7.16.0
     "@babel/preset-typescript": ^7.16.0
-    "@boost/cli": ^2.11.2
-    "@boost/common": ^2.8.2
-    "@boost/debug": ^2.2.8
-    "@boost/event": ^2.3.3
-    "@boost/pipeline": ^2.2.8
-    "@boost/terminal": ^2.2.3
+    "@boost/cli": ^3.0.0
+    "@boost/common": ^3.0.0
+    "@boost/debug": ^3.0.0
+    "@boost/event": ^3.0.0
+    "@boost/pipeline": ^3.0.0
+    "@boost/terminal": ^3.0.0
     "@microsoft/api-extractor": ^7.18.19
     "@rollup/plugin-babel": ^5.3.0
     "@rollup/plugin-commonjs": ^21.0.1
@@ -17095,14 +17261,14 @@ resolve@~1.19.0:
   languageName: node
   linkType: hard
 
-"string-width@npm:^4.0.0, string-width@npm:^4.1.0, string-width@npm:^4.2.0, string-width@npm:^4.2.2":
-  version: 4.2.2
-  resolution: "string-width@npm:4.2.2"
+"string-width@npm:^4.0.0, string-width@npm:^4.1.0, string-width@npm:^4.2.0, string-width@npm:^4.2.2, string-width@npm:^4.2.3":
+  version: 4.2.3
+  resolution: "string-width@npm:4.2.3"
   dependencies:
     emoji-regex: ^8.0.0
     is-fullwidth-code-point: ^3.0.0
-    strip-ansi: ^6.0.0
-  checksum: 343e089b0e66e0f72aab4ad1d9b6f2c9cc5255844b0c83fd9b53f2a3b3fd0421bdd6cb05be96a73117eb012db0887a6c1d64ca95aaa50c518e48980483fea0ab
+    strip-ansi: ^6.0.1
+  checksum: e52c10dc3fbfcd6c3a15f159f54a90024241d0f149cf8aed2982a2d801d2e64df0bf1dc351cf8e95c3319323f9f220c16e740b06faecd53e2462df1d2b5443fb
   languageName: node
   linkType: hard
 
