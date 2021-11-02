@@ -162,7 +162,7 @@ export function getBabelOutputConfig(
 	// PLUGINS
 
 	if (platform === 'browser' || platform === 'native') {
-		// While modern browsers support these features, Node.js <= 12 does not,
+		// While modern browsers support these features, Node.js does not,
 		// which results in failing builds trying to parse the syntax.
 		// Let's only apply this for the lib format, but allow it for esm.
 		if (format === 'lib') {
