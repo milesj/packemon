@@ -1,7 +1,6 @@
 import http from 'http';
 import https from 'https';
 import execa from 'execa';
-import glob from 'fast-glob';
 import packList from 'npm-packlist';
 import semver from 'semver';
 import spdxLicenses from 'spdx-license-list';
@@ -225,7 +224,7 @@ export class PackageValidator {
 
 	protected async checkFiles() {
 		const futureFiles = new Set(await packList({ path: this.package.path.path() }));
-		const presentFiles = new Set(await this.findDistributableFiles());
+		const presentFiles = new Set(await this.package.findDistributableFiles());
 
 		// First check that our files are in the potential npm list
 		const ignored = new Set<string>();
@@ -414,25 +413,6 @@ export class PackageValidator {
 
 			ping.write('');
 			ping.end();
-		});
-	}
-
-	protected async findDistributableFiles(): Promise<string[]> {
-		// https://github.com/npm/npm-packlist/blob/main/index.js#L29
-		const patterns: string[] = ['(readme|copying|license|licence)*', 'package.json'];
-
-		this.package.packageJson.files?.forEach((file) => {
-			if (file.endsWith('/')) {
-				patterns.push(`${file}**/*`);
-			} else {
-				patterns.push(file);
-			}
-		});
-
-		return glob(patterns, {
-			caseSensitiveMatch: false,
-			cwd: this.package.path.path(),
-			ignore: ['node_modules'],
 		});
 	}
 

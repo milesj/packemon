@@ -9,6 +9,7 @@ export * from './CodeArtifact';
 export * from './commands/Base';
 export * from './commands/Build';
 export * from './commands/Clean';
+export * from './commands/Files';
 export * from './commands/Init';
 export * from './commands/Pack';
 export * from './commands/Scaffold';
