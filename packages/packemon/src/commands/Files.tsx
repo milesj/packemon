@@ -3,11 +3,17 @@
 import React from 'react';
 import packList from 'npm-packlist';
 import { Arg, Config } from '@boost/cli';
+import type { FileFormat } from '../components/Files';
 import type { FileTree } from '../components/Files/Tree';
 import { BaseCommand } from './Base';
 
 @Config('files', 'List all files that will be distributed within a package')
 export class FilesCommand extends BaseCommand {
+	@Arg.String('Format to display files in', {
+		choices: ['list', 'tree'],
+	})
+	format: FileFormat = 'tree';
+
 	@Arg.Params({
 		label: 'pkg',
 		description: 'Name of package to inspect',
@@ -27,7 +33,7 @@ export class FilesCommand extends BaseCommand {
 
 		const { Files } = await import('../components/Files');
 
-		return <Files name={pkg.getName()} tree={tree} />;
+		return <Files format={this.format} list={files} name={pkg.getName()} tree={tree} />;
 	}
 
 	protected convertFilesToTree(files: string[]): FileTree {

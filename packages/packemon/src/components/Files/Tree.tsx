@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import { Box, Text } from 'ink';
 import { Style, StyleType } from '@boost/cli';
+import { Symbol } from './Symbol';
 import { TreeContext, useTree } from './TreeContext';
 
 const FOLDER_COLOR: Record<string, StyleType> = {
@@ -19,20 +20,6 @@ const FOLDER_COLOR: Record<string, StyleType> = {
 export interface FileTree {
 	files?: string[];
 	folders?: Record<string, FileTree>;
-}
-
-interface SymbolProps {
-	depth: number;
-	last: boolean;
-}
-
-function Symbol({ depth, last }: SymbolProps) {
-	return (
-		<Style type="muted">
-			{'│ '.repeat(depth)}
-			{last ? '└─ ' : '├─ '}
-		</Style>
-	);
 }
 
 interface FileListProps {
