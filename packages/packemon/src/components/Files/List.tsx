@@ -14,7 +14,7 @@ export function List({ items }: ListProps) {
 	items
 		.sort((a, b) => a.localeCompare(b))
 		.forEach((item) => {
-			if (item.includes('/')) {
+			if (item.includes('/') || item.includes('\\')) {
 				folders.push(item);
 			} else {
 				files.push(item);

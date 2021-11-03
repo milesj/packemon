@@ -43,7 +43,11 @@ export class FilesCommand extends BaseCommand {
 		};
 
 		const convert = (file: string, tree: FileTree) => {
-			const slashIndex = file.indexOf('/');
+			let slashIndex = file.indexOf('/');
+
+			if (slashIndex === -1) {
+				slashIndex = file.indexOf('\\');
+			}
 
 			if (slashIndex === -1) {
 				(tree.files ||= []).push(file);
