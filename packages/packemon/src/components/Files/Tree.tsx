@@ -1,3 +1,5 @@
+/* eslint-disable react-perf/jsx-no-new-array-as-prop */
+
 import React, { useMemo } from 'react';
 import { Box, Text } from 'ink';
 import { Style, StyleType } from '@boost/cli';
@@ -17,13 +19,15 @@ const FOLDER_COLOR: Record<string, StyleType> = {
 	dts: 'info',
 };
 
+type Depth = boolean[];
+
 export interface FileTree {
 	files?: string[];
 	folders?: Record<string, FileTree>;
 }
 
 interface FileListProps {
-	depth: number;
+	depth: Depth;
 	files: string[];
 }
 
@@ -43,12 +47,14 @@ function FileList({ depth, files }: FileListProps) {
 }
 
 interface FolderListProps {
-	depth: number;
+	depth: Depth;
 	folders: [string, FileTree][];
+	hasFiles?: boolean;
 }
 
-function FolderList({ depth, folders }: FolderListProps) {
+function FolderList({ depth, folders, hasFiles = false }: FolderListProps) {
 	const { folderStyle, lastIndex } = useTree()!;
+	const lastFolderIndex = folders.length - 1;
 
 	return (
 		<>
@@ -66,7 +72,11 @@ function FolderList({ depth, folders }: FolderListProps) {
 						</Box>
 
 						{/* eslint-disable-next-line @typescript-eslint/no-use-before-define */}
-						<Tree depth={depth + 1} style={style} tree={tree} />
+						<Tree
+							depth={[...depth, index === lastFolderIndex ? hasFiles : true]}
+							style={style}
+							tree={tree}
+						/>
 					</Box>
 				);
 			})}
@@ -75,12 +85,12 @@ function FolderList({ depth, folders }: FolderListProps) {
 }
 
 export interface TreeProps {
-	depth: number;
+	depth?: boolean[];
 	tree: FileTree;
 	style?: StyleType;
 }
 
-export function Tree({ depth, tree, style }: TreeProps) {
+export function Tree({ depth = [], tree, style }: TreeProps) {
 	const files = (tree.files ?? []).sort((a, b) => a.localeCompare(b));
 	const folders = Object.entries(tree.folders ?? {}).sort((a, b) => a[0].localeCompare(b[0]));
 
@@ -97,7 +107,9 @@ export function Tree({ depth, tree, style }: TreeProps) {
 	return (
 		<TreeContext.Provider value={value}>
 			<Box flexDirection="column">
-				{folders.length > 0 && <FolderList depth={depth} folders={folders} />}
+				{folders.length > 0 && (
+					<FolderList depth={depth} folders={folders} hasFiles={files.length > 0} />
+				)}
 
 				{files.length > 0 && <FileList depth={depth} files={files} />}
 			</Box>

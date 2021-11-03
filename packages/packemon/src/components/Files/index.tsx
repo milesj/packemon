@@ -34,7 +34,7 @@ export function Files({ format, list, name, tree }: FilesProps) {
 			{(root) => (
 				<Box key="root" flexDirection="column">
 					<Header label={name} />
-					<Tree depth={0} tree={root} />
+					<Tree tree={root} />
 				</Box>
 			)}
 		</Static>

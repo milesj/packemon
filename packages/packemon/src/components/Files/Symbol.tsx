@@ -2,14 +2,14 @@ import React from 'react';
 import { Style } from '@boost/cli';
 
 export interface SymbolProps {
-	depth: number;
+	depth?: boolean[];
 	last: boolean;
 }
 
-export function Symbol({ depth, last }: SymbolProps) {
+export function Symbol({ depth = [], last }: SymbolProps) {
 	return (
 		<Style type="muted">
-			{'│ '.repeat(depth)}
+			{depth.map((d) => (d ? '│ ' : '  ')).join('')}
 			{last ? '└─ ' : '├─ '}
 		</Style>
 	);
