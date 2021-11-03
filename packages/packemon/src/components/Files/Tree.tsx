@@ -29,9 +29,10 @@ export interface FileTree {
 interface FileListProps {
 	depth: Depth;
 	files: string[];
+	hasFolders?: boolean;
 }
 
-function FileList({ depth, files }: FileListProps) {
+function FileList({ depth, files, hasFolders }: FileListProps) {
 	const { lastIndex } = useTree()!;
 
 	return (
@@ -40,7 +41,7 @@ function FileList({ depth, files }: FileListProps) {
 				<Box key={file + String(depth)}>
 					<Symbol
 						depth={depth}
-						first={index === 0}
+						first={depth.length === 0 && index === 0 && !hasFolders}
 						last={lastIndex[0] === 'file' && lastIndex[1] === index}
 					/>
 					<Text>{file}</Text>
@@ -70,7 +71,7 @@ function FolderList({ depth, folders, hasFiles = false }: FolderListProps) {
 						<Box>
 							<Symbol
 								depth={depth}
-								first={index === 0}
+								first={depth.length === 0 && index === 0}
 								last={lastIndex[0] === 'folder' && lastIndex[1] === index}
 							/>
 
@@ -119,7 +120,9 @@ export function Tree({ depth = [], tree, style }: TreeProps) {
 					<FolderList depth={depth} folders={folders} hasFiles={files.length > 0} />
 				)}
 
-				{files.length > 0 && <FileList depth={depth} files={files} />}
+				{files.length > 0 && (
+					<FileList depth={depth} files={files} hasFolders={folders.length > 0} />
+				)}
 			</Box>
 		</TreeContext.Provider>
 	);
