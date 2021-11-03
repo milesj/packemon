@@ -25,7 +25,7 @@ export function List({ items }: ListProps) {
 		<>
 			{[...folders, ...files].map((file, index) => (
 				<Box key={file}>
-					<Symbol last={index === lastIndex} />
+					<Symbol first={index === 0} last={index === lastIndex} />
 					<Text>{file}</Text>
 				</Box>
 			))}

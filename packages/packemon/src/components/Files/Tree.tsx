@@ -38,7 +38,11 @@ function FileList({ depth, files }: FileListProps) {
 		<>
 			{files.map((file, index) => (
 				<Box key={file + String(depth)}>
-					<Symbol depth={depth} last={lastIndex[0] === 'file' && lastIndex[1] === index} />
+					<Symbol
+						depth={depth}
+						first={index === 0}
+						last={lastIndex[0] === 'file' && lastIndex[1] === index}
+					/>
 					<Text>{file}</Text>
 				</Box>
 			))}
@@ -64,7 +68,11 @@ function FolderList({ depth, folders, hasFiles = false }: FolderListProps) {
 				return (
 					<Box key={folder + String(depth)} flexDirection="column">
 						<Box>
-							<Symbol depth={depth} last={lastIndex[0] === 'folder' && lastIndex[1] === index} />
+							<Symbol
+								depth={depth}
+								first={index === 0}
+								last={lastIndex[0] === 'folder' && lastIndex[1] === index}
+							/>
 
 							<Style bold type={style}>
 								{folder}

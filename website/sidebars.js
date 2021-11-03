@@ -12,7 +12,7 @@ module.exports = {
 			type: 'category',
 			label: 'Commands',
 			collapsed: false,
-			items: ['build', 'clean', 'init', 'pack', 'scaffold', 'validate', 'watch'],
+			items: ['build', 'clean', 'files', 'init', 'pack', 'scaffold', 'validate', 'watch'],
 		},
 		'advanced',
 		{
