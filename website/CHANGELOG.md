@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.4.0 - 2021-11-04
+
+#### 🚀 Updates
+
+- Add a `files` command. (#89) ([42107bd](https://github.com/milesj/packemon/commit/42107bd)), closes [#89](https://github.com/milesj/packemon/issues/89)
+
+#### 📦 Dependencies
+
+- **[docusaurus]** Update to beta.8. ([adee282](https://github.com/milesj/packemon/commit/adee282))
+
+**Note:** Version bump only for package website
+
+
+
+
+
 ### 0.3.1 - 2021-10-12
 
 #### 📦 Dependencies

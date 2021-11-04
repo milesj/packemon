@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.7.0 - 2021-11-04
+
+#### 🚀 Updates
+
+- Add a `files` command. (#89) ([42107bd](https://github.com/milesj/packemon/commit/42107bd)), closes [#89](https://github.com/milesj/packemon/issues/89)
+
+#### 📦 Dependencies
+
+- **[babel]** Update to v7.16 latest. ([26de0eb](https://github.com/milesj/packemon/commit/26de0eb))
+- **[rollup]** Update to v2.59. ([6614760](https://github.com/milesj/packemon/commit/6614760))
+- Update minor and patch versions. ([65408c3](https://github.com/milesj/packemon/commit/65408c3))
+
+**Note:** Version bump only for package packemon
+
+
+
+
+
 ## 1.6.0 - 2021-10-12
 
 #### 🚀 Updates
