@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkwebsite=self.webpackChunkwebsite||[]).push([[9170],{2033:function(e){e.exports=JSON.parse('{"id":10,"name":"default","permalink":"/api/babel-plugin-env-constants/function/default"}')}}]);

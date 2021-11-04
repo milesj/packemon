@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkwebsite=self.webpackChunkwebsite||[]).push([[7708],{1768:function(e){e.exports=JSON.parse('{"id":689,"name":"TSConfigStructure","nextId":656,"permalink":"/api/packemon/interface/TSConfigStructure","previousId":680}')}}]);
