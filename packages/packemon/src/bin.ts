@@ -3,6 +3,7 @@ import { getVersion } from './helpers/getVersion';
 import {
 	BuildCommand,
 	CleanCommand,
+	FilesCommand,
 	InitCommand,
 	PackCommand,
 	ScaffoldCommand,
@@ -33,6 +34,7 @@ async function run() {
 		.middleware(checkPackageOutdated('packemon', version))
 		.register(new BuildCommand())
 		.register(new CleanCommand())
+		.register(new FilesCommand())
 		.register(new InitCommand())
 		.register(new PackCommand())
 		.register(new ScaffoldCommand())

@@ -110,6 +110,25 @@ export class Package {
 		await Promise.all(this.artifacts.map((artifact) => artifact.cleanup()));
 	}
 
+	async findDistributableFiles(): Promise<string[]> {
+		// https://github.com/npm/npm-packlist/blob/main/index.js#L29
+		const patterns: string[] = ['(readme|copying|license|licence)*', 'package.json'];
+
+		this.packageJson.files?.forEach((file) => {
+			if (file.endsWith('/')) {
+				patterns.push(`${file}**/*`);
+			} else {
+				patterns.push(file);
+			}
+		});
+
+		return glob(patterns, {
+			caseSensitiveMatch: false,
+			cwd: this.path.path(),
+			ignore: ['node_modules'],
+		});
+	}
+
 	getName(): string {
 		return this.packageJson.name;
 	}
