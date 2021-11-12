@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 0.4.1 - 2021-11-12
+
+#### 📦 Dependencies
+
+- **[docusaurus]** Update to beta.9. ([68b23f0](https://github.com/milesj/packemon/commit/68b23f0))
+- **[react]** Update to v17. ([de2de45](https://github.com/milesj/packemon/commit/de2de45))
+
+**Note:** Version bump only for package website
+
+
+
+
+
 ## 0.4.0 - 2021-11-04
 
 #### 🚀 Updates
