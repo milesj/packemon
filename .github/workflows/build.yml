@@ -32,7 +32,7 @@ jobs:
       - run: yarn install --immutable
       - run: yarn run setup
       - run: yarn run pack
-  docs:
+  scaffold:
     name: Scaffold
     runs-on: ubuntu-latest
     steps:

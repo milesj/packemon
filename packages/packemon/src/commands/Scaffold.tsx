@@ -53,15 +53,15 @@ export class ScaffoldCommand extends Command {
 
 	async scaffold(params: ScaffoldParams) {
 		switch (params.template) {
-			default:
-			case 'monorepo':
-				return this.scaffoldMonorepo(params);
-			case 'monorepo-package':
-				return this.scaffoldMonorepoPackage(params);
-			case 'polyrepo':
-				return this.scaffoldPolyrepo(params);
 			case 'polyrepo-package':
 				return this.scaffoldPolyrepoPackage(params);
+			case 'polyrepo':
+				return this.scaffoldPolyrepo(params);
+			case 'monorepo-package':
+				return this.scaffoldMonorepoPackage(params);
+			case 'monorepo':
+			default:
+				return this.scaffoldMonorepo(params);
 		}
 	}
 
@@ -159,21 +159,21 @@ export class ScaffoldCommand extends Command {
 		];
 
 		switch (this.packageManager) {
-			default:
-			case 'yarn': {
-				const version = Number.parseFloat((await this.executeCommand('yarn', ['-v'])).stdout);
-
-				args.unshift('add', '--dev', type === 'monorepo' && version < 2 ? '-W' : '');
+			case 'npm':
+				args.unshift('install', '--save-dev');
 				break;
-			}
 
 			case 'pnpm':
 				args.unshift('add', '--save-dev', type === 'monorepo' ? '-W' : '');
 				break;
 
-			case 'npm':
-				args.unshift('install', '--save-dev');
+			case 'yarn':
+			default: {
+				const version = Number.parseFloat((await this.executeCommand('yarn', ['-v'])).stdout);
+
+				args.unshift('add', '--dev', type === 'monorepo' && version < 2 ? '-W' : '');
 				break;
+			}
 		}
 
 		await this.executeCommand(this.packageManager, args.filter(Boolean), {

@@ -55,6 +55,7 @@ export function Environment(props: EnvironmentProps) {
 	let support: string;
 
 	if ('type' in props) {
+		// eslint-disable-next-line react/destructuring-assignment
 		[platform, support] = props.type.split(':');
 	} else {
 		({ platform, support } = props);
