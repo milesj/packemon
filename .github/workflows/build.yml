@@ -33,6 +33,15 @@ jobs:
       - run: yarn run setup
       - run: yarn run pack
   docs:
+    name: Scaffold
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+      - run: yarn dlx packemon scaffold ./yarn2
+      - run: npx packemon scaffold ./yarn1
+      - run: npx packemon scaffold --packageManager npm ./npm
+  docs:
     name: Docs
     runs-on: ubuntu-latest
     steps:
