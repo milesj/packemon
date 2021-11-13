@@ -1,6 +1,6 @@
 import glob from 'fast-glob';
 import fs from 'fs-extra';
-import { Path } from '@boost/common';
+import { Path, VirtualPath } from '@boost/common';
 import { createDebugger, Debugger } from '@boost/debug';
 import { Extractor, ExtractorConfig } from '@microsoft/api-extractor';
 import { Artifact } from './Artifact';
@@ -126,8 +126,8 @@ export class TypesArtifact extends Artifact<TypesBuild> {
 		const configPath = this.getApiExtractorConfigPath(outputName).path();
 		const config: APIExtractorStructure = {
 			...apiExtractorConfig,
-			projectFolder: this.package.path.path(),
-			mainEntryPointFilePath: dtsEntryPoint.path(),
+			projectFolder: VirtualPath.create(this.package.path).path(),
+			mainEntryPointFilePath: VirtualPath.create(dtsEntryPoint).path(),
 			dtsRollup: {
 				...apiExtractorConfig.dtsRollup,
 				untrimmedFilePath: `<projectFolder>/dts/${outputName}.d.ts`,

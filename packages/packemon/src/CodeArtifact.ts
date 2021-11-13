@@ -1,5 +1,5 @@
 import { rollup, RollupCache } from 'rollup';
-import { Path, toArray } from '@boost/common';
+import { toArray, VirtualPath } from '@boost/common';
 import { createDebugger, Debugger } from '@boost/debug';
 import { Artifact } from './Artifact';
 import { removeSourcePath } from './helpers/removeSourcePath';
@@ -150,7 +150,7 @@ export class CodeArtifact extends Artifact<CodeBuild> {
 			ext,
 			file,
 			folder,
-			path: `./${new Path(folder, file)}`,
+			path: `./${new VirtualPath(folder, file)}`,
 		};
 	}
 
@@ -160,9 +160,12 @@ export class CodeArtifact extends Artifact<CodeBuild> {
 
 	getInputPaths(): InputMap {
 		// Return absolute paths so that Rollup paths/externals resolve correctly
-		return Object.fromEntries(Object.entries(this.inputs).map(
-			( [outputName, inputFile]) => [outputName, this.package.path.append(inputFile).path()],
-		));
+		return Object.fromEntries(
+			Object.entries(this.inputs).map(([outputName, inputFile]) => [
+				outputName,
+				this.package.path.append(inputFile).path(),
+			]),
+		);
 	}
 
 	getLabel(): string {

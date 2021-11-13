@@ -2,7 +2,15 @@
 
 import fs from 'fs-extra';
 import rimraf from 'rimraf';
-import { isObject, json, Memoize, Path, toArray, WorkspacePackage } from '@boost/common';
+import {
+	isObject,
+	json,
+	Memoize,
+	Path,
+	toArray,
+	VirtualPath,
+	WorkspacePackage,
+} from '@boost/common';
 import { optimal } from '@boost/common/optimal';
 import { createDebugger, Debugger } from '@boost/debug';
 import { Event } from '@boost/event';
@@ -97,7 +105,7 @@ export class Packemon {
 
 		if (this.project.isWorkspacesEnabled()) {
 			this.project.workspaces.forEach((ws) => {
-				pathsToRemove.push(new Path(ws, formatFolders).path());
+				pathsToRemove.push(new VirtualPath(ws, formatFolders).path());
 			});
 		} else {
 			pathsToRemove.push(`./${formatFolders}`);
