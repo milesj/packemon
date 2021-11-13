@@ -1,5 +1,6 @@
 import fs from 'fs-extra';
 import { Path } from '@boost/common';
+import { mockNormalizedFilePath } from '@boost/common/test';
 import { getFixturePath } from '@boost/test-utils';
 import { Extractor } from '@microsoft/api-extractor';
 import { Package } from '../src/Package';
@@ -105,8 +106,16 @@ describe('TypesArtifact', () => {
 				await artifact.build({});
 
 				expect(declSpy).toHaveBeenCalled();
-				expect(apiSpy).toHaveBeenCalledWith('index', 'src/index.ts', fixturePath.append('dts'));
-				expect(apiSpy).toHaveBeenCalledWith('test', 'src/sub/test.ts', fixturePath.append('dts'));
+				expect(apiSpy).toHaveBeenCalledWith(
+					'index',
+					'src/index.ts',
+					mockNormalizedFilePath(fixturePath.append('dts')),
+				);
+				expect(apiSpy).toHaveBeenCalledWith(
+					'test',
+					'src/sub/test.ts',
+					mockNormalizedFilePath(fixturePath.append('dts')),
+				);
 				expect(Extractor.invoke).toHaveBeenCalledTimes(2);
 			});
 
@@ -159,7 +168,7 @@ describe('TypesArtifact', () => {
 				await artifact.build({});
 
 				// Remove happens in the background so we must wait manually
-				await delay(100);
+				await delay(250);
 
 				expect(fs.remove).not.toHaveBeenCalledWith(fixturePath.append('dts/index.d.ts').path());
 				expect(fs.remove).toHaveBeenCalledWith(fixturePath.append('dts/extra.d.ts').path());
@@ -201,11 +210,15 @@ describe('TypesArtifact', () => {
 
 					await artifact.build({});
 
-					expect(apiSpy).toHaveBeenCalledWith('index', 'src/index.ts', new Path('declarationDir'));
+					expect(apiSpy).toHaveBeenCalledWith(
+						'index',
+						'src/index.ts',
+						mockNormalizedFilePath('declarationDir'),
+					);
 					expect(apiSpy).toHaveBeenCalledWith(
 						'test',
 						'src/sub/test.ts',
-						new Path('declarationDir'),
+						mockNormalizedFilePath('declarationDir'),
 					);
 				});
 
@@ -221,15 +234,31 @@ describe('TypesArtifact', () => {
 
 					await artifact.build({});
 
-					expect(apiSpy).toHaveBeenCalledWith('index', 'src/index.ts', new Path('outDir'));
-					expect(apiSpy).toHaveBeenCalledWith('test', 'src/sub/test.ts', new Path('outDir'));
+					expect(apiSpy).toHaveBeenCalledWith(
+						'index',
+						'src/index.ts',
+						mockNormalizedFilePath('outDir'),
+					);
+					expect(apiSpy).toHaveBeenCalledWith(
+						'test',
+						'src/sub/test.ts',
+						mockNormalizedFilePath('outDir'),
+					);
 				});
 
 				it('uses hard-coded dts folder if neither compiler option is defined', async () => {
 					await artifact.build({});
 
-					expect(apiSpy).toHaveBeenCalledWith('index', 'src/index.ts', fixturePath.append('dts'));
-					expect(apiSpy).toHaveBeenCalledWith('test', 'src/sub/test.ts', fixturePath.append('dts'));
+					expect(apiSpy).toHaveBeenCalledWith(
+						'index',
+						'src/index.ts',
+						mockNormalizedFilePath(fixturePath.append('dts')),
+					);
+					expect(apiSpy).toHaveBeenCalledWith(
+						'test',
+						'src/sub/test.ts',
+						mockNormalizedFilePath(fixturePath.append('dts')),
+					);
 				});
 			});
 		});

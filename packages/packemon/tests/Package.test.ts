@@ -1,5 +1,6 @@
 import fs from 'fs-extra';
-import { Path } from '@boost/common';
+import { Path, VirtualPath } from '@boost/common';
+import { mockNormalizedFilePath } from '@boost/common/test';
 import { getFixturePath } from '@boost/test-utils';
 import { CodeArtifact } from '../src/CodeArtifact';
 import { Package } from '../src/Package';
@@ -59,7 +60,7 @@ describe('Package', () => {
 
 	it('sets properties on instantiation', () => {
 		expect(pkg.project).toBe(project);
-		expect(pkg.path).toEqual(new Path(fixturePath, 'packages/common'));
+		expect(pkg.path).toEqual(mockNormalizedFilePath(fixturePath, 'packages/common'));
 		expect(pkg.packageJsonPath).toEqual(new Path(fixturePath, 'packages/common/package.json'));
 		expect(pkg.packageJson).toEqual({
 			name: 'flag-common',
@@ -1404,7 +1405,7 @@ describe('Package', () => {
 			expect(pkg.tsconfigJson).toEqual(
 				expect.objectContaining({
 					options: {
-						configFilePath: pkg.path.append('tsconfig.json').path(),
+						configFilePath: new VirtualPath(pkg.path.append('tsconfig.json')).path(),
 						experimentalDecorators: true,
 						lib: ['lib.esnext.d.ts'],
 						strict: true,

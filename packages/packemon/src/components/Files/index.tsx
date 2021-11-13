@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Box, Static } from 'ink';
-import { Header } from '@boost/cli';
+import { Header } from '@boost/cli/react';
 import { List } from './List';
 import { FileTree, Tree } from './Tree';
 

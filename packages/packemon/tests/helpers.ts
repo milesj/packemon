@@ -65,7 +65,10 @@ export function createSnapshotSpies(root: PortablePath, captureJson: boolean = f
 
 	beforeEach(() => {
 		const handler = (file: unknown, content: unknown, cb?: unknown) => {
-			const filePath = new Path(String(file)).path().replace(String(root), '').replace(/^\//, '');
+			const filePath = new Path(String(file))
+				.path()
+				.replace(String(root), '')
+				.replace(/^(\/|\\)/, '');
 
 			if (
 				filePath.endsWith('.js') ||

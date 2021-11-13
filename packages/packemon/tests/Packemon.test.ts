@@ -1,5 +1,6 @@
 import rimraf from 'rimraf';
 import { Path } from '@boost/common';
+import { mockNormalizedFilePath } from '@boost/common/test';
 import { getFixturePath } from '@boost/test-utils';
 import { CodeArtifact, TypesArtifact } from '../src';
 import { Package } from '../src/Package';
@@ -25,7 +26,7 @@ describe('Packemon', () => {
 	it('runs on cwd by default', () => {
 		packemon = new Packemon();
 
-		expect(packemon.root).toEqual(new Path(process.cwd()));
+		expect(packemon.root).toEqual(mockNormalizedFilePath(process.cwd()));
 	});
 
 	it('errors with engine version constraint', () => {
@@ -459,7 +460,9 @@ describe('Packemon', () => {
 		});
 
 		it('returns the same reference because of memoization', async () => {
-			await expect(packemon.loadConfiguredPackages()).resolves.toBe(await packemon.loadConfiguredPackages());
+			await expect(packemon.loadConfiguredPackages()).resolves.toBe(
+				await packemon.loadConfiguredPackages(),
+			);
 		});
 
 		it('returns all configured packages', async () => {
