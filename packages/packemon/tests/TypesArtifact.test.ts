@@ -168,7 +168,7 @@ describe('TypesArtifact', () => {
 				await artifact.build({});
 
 				// Remove happens in the background so we must wait manually
-				await delay(100);
+				await delay(250);
 
 				expect(fs.remove).not.toHaveBeenCalledWith(fixturePath.append('dts/index.d.ts').path());
 				expect(fs.remove).toHaveBeenCalledWith(fixturePath.append('dts/extra.d.ts').path());
