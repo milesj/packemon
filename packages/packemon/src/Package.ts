@@ -194,11 +194,13 @@ export class Package {
 
 	@Memoize()
 	getSourceFiles(): string[] {
-		return glob.sync('src/**/*.{js,jsx,ts,tsx}', {
-			absolute: true,
-			cwd: this.path.path(),
-			onlyFiles: true,
-		});
+		return glob
+			.sync('src/**/*.{js,jsx,ts,tsx}', {
+				absolute: true,
+				cwd: this.path.path(),
+				onlyFiles: true,
+			})
+			.map((file) => new Path(file).path());
 	}
 
 	hasDependency(name: string): boolean {

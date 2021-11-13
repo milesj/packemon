@@ -80,7 +80,7 @@ export class TypesArtifact extends Artifact<TypesBuild> {
 		const entry =
 			this.declarationType === 'standard' ? removeSourcePath(output.inputFile) : outputName;
 
-		return `./${new Path('dts', entry)}.d.ts`;
+		return `./${new VirtualPath('dts', entry)}.d.ts`;
 	}
 
 	getLabel(): string {
