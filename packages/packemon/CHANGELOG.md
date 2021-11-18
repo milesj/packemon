@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 1.7.2 - 2021-11-18
+
+#### 📦 Dependencies
+
+- **[boost]** Update to v3. (#87) ([5ba2eec](https://github.com/milesj/packemon/commit/5ba2eec)), closes [#87](https://github.com/milesj/packemon/issues/87)
+
+**Note:** Version bump only for package packemon
+
+
+
+
+
 ### 1.7.1 - 2021-11-12
 
 #### 📦 Dependencies
