@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkwebsite=self.webpackChunkwebsite||[]).push([[1213],{3742:function(e){e.exports=JSON.parse('{"id":291,"name":"ScaffoldCommand","nextId":702,"permalink":"/api/packemon/class/ScaffoldCommand","previousId":560}')}}]);

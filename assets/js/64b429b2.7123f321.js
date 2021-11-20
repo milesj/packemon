@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkwebsite=self.webpackChunkwebsite||[]).push([[7459],{3188:function(e){e.exports=JSON.parse('{"id":63,"name":"getBabelOutputConfig","nextId":593,"permalink":"/api/packemon/function/getBabelOutputConfig","previousId":59}')}}]);
