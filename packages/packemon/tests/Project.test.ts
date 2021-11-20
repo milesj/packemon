@@ -64,7 +64,7 @@ describe('Project', () => {
 		it('generates declarations with `tsc`', async () => {
 			const project = new Project(getFixturePath('workspace-private'));
 
-			await project.generateDeclarations();
+			await project.generateDeclarations('standard');
 
 			expect(execa).toHaveBeenCalledWith(
 				'tsc',
@@ -80,9 +80,21 @@ describe('Project', () => {
 			const project = new Project(getFixturePath('workspaces'));
 			project.workspaces = ['packages/*'];
 
-			await project.generateDeclarations();
+			await project.generateDeclarations('standard');
 
-			expect(execa).toHaveBeenCalledWith('tsc', ['--build', '--force'], {
+			expect(execa).toHaveBeenCalledWith('tsc', ['--build'], {
+				cwd: project.root.path(),
+				preferLocal: true,
+			});
+		});
+
+		it('generates declarations with `tsc --build` for a specific project', async () => {
+			const project = new Project(getFixturePath('workspaces'));
+			project.workspaces = ['packages/*'];
+
+			await project.generateDeclarations('standard', project.root.append('packages/foo'));
+
+			expect(execa).toHaveBeenCalledWith('tsc', ['--build', 'packages/foo'], {
 				cwd: project.root.path(),
 				preferLocal: true,
 			});
@@ -96,9 +108,9 @@ describe('Project', () => {
 			const project = new Project(getFixturePath('workspace-private'));
 
 			await Promise.all([
-				project.generateDeclarations(),
-				project.generateDeclarations(),
-				project.generateDeclarations(),
+				project.generateDeclarations('standard'),
+				project.generateDeclarations('standard'),
+				project.generateDeclarations('standard'),
 			]);
 
 			expect(execa).toHaveBeenCalledTimes(1);
@@ -107,7 +119,7 @@ describe('Project', () => {
 		it('can pass a custom tsconfig', async () => {
 			const project = new Project(getFixturePath('workspace-private'));
 
-			await project.generateDeclarations('tsconfig.custom.json');
+			await project.generateDeclarations('standard', undefined, 'tsconfig.custom.json');
 
 			expect(execa).toHaveBeenCalledWith(
 				'tsc',
@@ -127,11 +139,39 @@ describe('Project', () => {
 			);
 		});
 
-		it('does not pass custom tsconfig when using workspaces', async () => {
+		it('can pass a custom tsconfig when using workspaces', async () => {
 			const project = new Project(getFixturePath('workspaces'));
 			project.workspaces = ['packages/*'];
 
-			await project.generateDeclarations('tsconfig.custom.json');
+			await project.generateDeclarations(
+				'standard',
+				project.root.append('packages/foo'),
+				'tsconfig.custom.json',
+			);
+
+			expect(execa).toHaveBeenCalledWith('tsc', ['--build', 'packages/foo/tsconfig.custom.json'], {
+				cwd: project.root.path(),
+				preferLocal: true,
+			});
+		});
+
+		it('does not pass custom tsconfig when using workspaces and no package', async () => {
+			const project = new Project(getFixturePath('workspaces'));
+			project.workspaces = ['packages/*'];
+
+			await project.generateDeclarations('standard', undefined, 'tsconfig.custom.json');
+
+			expect(execa).toHaveBeenCalledWith('tsc', ['--build'], {
+				cwd: project.root.path(),
+				preferLocal: true,
+			});
+		});
+
+		it('force builds when type is api', async () => {
+			const project = new Project(getFixturePath('workspaces'));
+			project.workspaces = ['packages/*'];
+
+			await project.generateDeclarations('api');
 
 			expect(execa).toHaveBeenCalledWith('tsc', ['--build', '--force'], {
 				cwd: project.root.path(),

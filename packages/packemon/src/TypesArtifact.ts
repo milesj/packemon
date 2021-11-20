@@ -39,7 +39,11 @@ export class TypesArtifact extends Artifact<TypesBuild> {
 		// Compile the current projects declarations
 		this.debug('Generating declarations at the root using `tsc`');
 
-		await this.package.project.generateDeclarations(options.declarationConfig);
+		await this.package.project.generateDeclarations(
+			this.declarationType,
+			this.package.path,
+			options.declarationConfig,
+		);
 
 		// Combine all DTS files into a single file for each input
 		if (this.declarationType === 'api') {

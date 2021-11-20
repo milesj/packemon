@@ -2,9 +2,10 @@
 
 import execa from 'execa';
 import semver from 'semver';
-import { Memoize, Project as BaseProject } from '@boost/common';
+import { Memoize, Path, Project as BaseProject } from '@boost/common';
 import { getVersion } from './helpers/getVersion';
 import { Package } from './Package';
+import { DeclarationType } from './types';
 
 export class Project extends BaseProject {
 	workspaces: string[] = [];
@@ -38,21 +39,44 @@ export class Project extends BaseProject {
 		return this.workspaces.length > 0;
 	}
 
-	async generateDeclarations(declarationConfig?: string): Promise<unknown> {
+	async generateDeclarations(
+		declarationType: DeclarationType,
+		pkgPath?: Path,
+		declarationConfig?: string,
+	): Promise<unknown> {
 		if (this.buildPromise) {
 			return this.buildPromise;
 		}
 
 		const args: string[] = [];
+		const isNonStandardTsConfig = declarationConfig && declarationConfig !== 'tsconfig.json';
+		let persistBuild = false;
 
 		if (this.isWorkspacesEnabled()) {
-			args.push(
-				'--build',
-				// Since we collapse all DTS into a single file,
-				// we need to force build to overwrite the types,
-				// since they're not what the TS build expects.
-				'--force',
-			);
+			args.push('--build');
+
+			// Since we collapse all DTS into a single file,
+			// we need to force build to overwrite the types,
+			// since they're not what the TS build expects.
+			if (declarationType === 'api') {
+				args.push('--force');
+			}
+
+			// Only build the specific project when applicable
+			if (pkgPath) {
+				let projectPath = this.root.relativeTo(pkgPath);
+
+				if (isNonStandardTsConfig) {
+					projectPath = projectPath.append(declarationConfig);
+				}
+
+				args.push(projectPath.path());
+
+				// Persist when we're building the entire monorepo,
+				// otherwise we'll have overlapping builds!
+			} else {
+				persistBuild = true;
+			}
 		} else {
 			args.push(
 				'--declaration',
@@ -62,19 +86,25 @@ export class Project extends BaseProject {
 				'--emitDeclarationOnly',
 			);
 
-			// This options isnt supported with project references
-			if (declarationConfig) {
+			// This options isn't supported with project references
+			if (isNonStandardTsConfig) {
 				args.push('--project', declarationConfig);
 			}
+
+			persistBuild = true;
 		}
 
 		// Store the promise so parallel artifacts can rely on the same build
-		this.buildPromise = execa('tsc', args, {
+		const promise = execa('tsc', args, {
 			cwd: this.root.path(),
 			preferLocal: true,
 		});
 
-		return this.buildPromise;
+		if (persistBuild) {
+			this.buildPromise = promise;
+		}
+
+		return promise;
 	}
 
 	@Memoize()
