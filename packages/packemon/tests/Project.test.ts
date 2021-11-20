@@ -82,7 +82,7 @@ describe('Project', () => {
 
 			await project.generateDeclarations('standard');
 
-			expect(execa).toHaveBeenCalledWith('tsc', ['--build'], {
+			expect(execa).toHaveBeenCalledWith('tsc', ['--build', '--force'], {
 				cwd: project.root.path(),
 				preferLocal: true,
 			});
@@ -94,7 +94,7 @@ describe('Project', () => {
 
 			await project.generateDeclarations('standard', project.root.append('packages/foo'));
 
-			expect(execa).toHaveBeenCalledWith('tsc', ['--build', 'packages/foo'], {
+			expect(execa).toHaveBeenCalledWith('tsc', ['--build', '--force', 'packages/foo'], {
 				cwd: project.root.path(),
 				preferLocal: true,
 			});
@@ -149,10 +149,14 @@ describe('Project', () => {
 				'tsconfig.custom.json',
 			);
 
-			expect(execa).toHaveBeenCalledWith('tsc', ['--build', 'packages/foo/tsconfig.custom.json'], {
-				cwd: project.root.path(),
-				preferLocal: true,
-			});
+			expect(execa).toHaveBeenCalledWith(
+				'tsc',
+				['--build', '--force', 'packages/foo/tsconfig.custom.json'],
+				{
+					cwd: project.root.path(),
+					preferLocal: true,
+				},
+			);
 		});
 
 		it('does not pass custom tsconfig when using workspaces and no package', async () => {
@@ -161,7 +165,7 @@ describe('Project', () => {
 
 			await project.generateDeclarations('standard', undefined, 'tsconfig.custom.json');
 
-			expect(execa).toHaveBeenCalledWith('tsc', ['--build'], {
+			expect(execa).toHaveBeenCalledWith('tsc', ['--build', '--force'], {
 				cwd: project.root.path(),
 				preferLocal: true,
 			});

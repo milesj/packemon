@@ -58,7 +58,8 @@ export class Project extends BaseProject {
 			// Since we collapse all DTS into a single file,
 			// we need to force build to overwrite the types,
 			// since they're not what the TS build expects.
-			if (declarationType === 'api') {
+			if (declarationType) {
+				// TODO: This seems to always be required??
 				args.push('--force');
 			}
 
