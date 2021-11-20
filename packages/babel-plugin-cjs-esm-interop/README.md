@@ -2,7 +2,6 @@
 
 [![Build Status](https://github.com/milesj/packemon/workflows/Build/badge.svg)](https://github.com/milesj/packemon/actions?query=branch%3Amaster)
 [![npm version](https://badge.fury.io/js/babel-plugin-cjs-esm-interop.svg)](https://www.npmjs.com/package/babel-plugin-cjs-esm-interop)
-[![npm deps](https://david-dm.org/milesj/packemon.svg?path=packages/babel-plugin-cjs-esm-interop)](https://www.npmjs.com/package/babel-plugin-cjs-esm-interop)
 
 Transform the differences between CommonJS code (`.js`, `.cjs`) and ECMAScript module code (`.mjs`),
 based on the

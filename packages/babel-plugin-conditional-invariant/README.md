@@ -2,7 +2,6 @@
 
 [![Build Status](https://github.com/milesj/packemon/workflows/Build/badge.svg)](https://github.com/milesj/packemon/actions?query=branch%3Amaster)
 [![npm version](https://badge.fury.io/js/babel-plugin-conditional-invariant.svg)](https://www.npmjs.com/package/babel-plugin-conditional-invariant)
-[![npm deps](https://david-dm.org/milesj/packemon.svg?path=packages/babel-plugin-conditional-invariant)](https://www.npmjs.com/package/babel-plugin-conditional-invariant)
 
 Wrap invariant function checks in `process.env.NODE_ENV` conditionals that only run in development.
 

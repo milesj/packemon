@@ -2,7 +2,6 @@
 
 [![Build Status](https://github.com/milesj/packemon/workflows/Build/badge.svg)](https://github.com/milesj/packemon/actions?query=branch%3Amaster)
 [![npm version](https://badge.fury.io/js/packemon.svg)](https://www.npmjs.com/package/packemon)
-[![npm deps](https://david-dm.org/milesj/packemon.svg?path=packages/packemon)](https://www.npmjs.com/package/packemon)
 
 > Gotta pack 'em all!
 
