@@ -2,7 +2,7 @@
 
 import execa from 'execa';
 import semver from 'semver';
-import { Memoize, Path, Project as BaseProject } from '@boost/common';
+import { Memoize, Path, Project as BaseProject, VirtualPath } from '@boost/common';
 import { getVersion } from './helpers/getVersion';
 import { Package } from './Package';
 import { DeclarationType } from './types';
@@ -71,7 +71,7 @@ export class Project extends BaseProject {
 					projectPath = projectPath.append(declarationConfig);
 				}
 
-				args.push(projectPath.path());
+				args.push(new VirtualPath(projectPath).path());
 
 				// Persist when we're building the entire monorepo,
 				// otherwise we'll have overlapping builds!
