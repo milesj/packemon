@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.8.0 - 2021-11-23
+
+#### 🚀 Updates
+
+- Only generate TS declarations when necessary, and per project. ([5c72f8a](https://github.com/milesj/packemon/commit/5c72f8a))
+
+#### 📦 Dependencies
+
+- Update to latest. ([2c95abe](https://github.com/milesj/packemon/commit/2c95abe))
+
+#### 📘 Docs
+
+- Remove broken badges. ([a962e24](https://github.com/milesj/packemon/commit/a962e24))
+
+#### 🛠 Internals
+
+- Undo force changes. ([0c5ec48](https://github.com/milesj/packemon/commit/0c5ec48))
+- Use forward slashes for path args. ([5121036](https://github.com/milesj/packemon/commit/5121036))
+
+**Note:** Version bump only for package packemon
+
+
+
+
+
 ### 1.7.2 - 2021-11-18
 
 #### 📦 Dependencies
