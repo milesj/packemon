@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkwebsite=self.webpackChunkwebsite||[]).push([[3394],{1975:function(e){e.exports=JSON.parse('{"id":657,"name":"CodeBuild","nextId":162,"permalink":"/api/packemon/interface/CodeBuild","previousId":651}')}}]);

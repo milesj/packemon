@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkwebsite=self.webpackChunkwebsite||[]).push([[5759],{148:function(e){e.exports=JSON.parse('{"id":181,"name":"BuildCommand","nextId":204,"permalink":"/api/packemon/class/BuildCommand","previousId":161}')}}]);

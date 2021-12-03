@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkwebsite=self.webpackChunkwebsite||[]).push([[351],{5324:function(e){e.exports=JSON.parse('{"id":647,"name":"BuildResultFiles","nextId":653,"permalink":"/api/packemon/interface/BuildResultFiles","previousId":650}')}}]);

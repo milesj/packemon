@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkwebsite=self.webpackChunkwebsite||[]).push([[3439],{5670:function(e){e.exports=JSON.parse('{"id":658,"name":"TypesBuild","nextId":661,"permalink":"/api/packemon/interface/TypesBuild","previousId":691}')}}]);
