@@ -175,47 +175,15 @@ export class CodeArtifact extends Artifact<CodeBuild> {
 	getPackageExports(): PackageExports {
 		const exportMap: PackageExports = {};
 
-		Object.keys(this.inputs).forEach((outputName) => {
-			const paths: PackageExportPaths = {};
-			let libPath = '';
-
-			this.builds.forEach(({ format }) => {
-				const entry = this.findEntryPoint([format], outputName);
-
-				switch (format) {
-					case 'mjs':
-					case 'esm':
-						paths.import = entry;
-
-						// Webpack and Rollup support
-						if (format === 'esm') {
-							paths.module = entry;
-						}
-						break;
-
-					case 'cjs':
-						paths.require = entry;
-						break;
-
-					case 'lib':
-						libPath = entry;
-						break;
-
-					default:
-						break;
-				}
+		if (this.bundle) {
+			Object.keys(this.inputs).forEach((outputName) => {
+				this.mapPackageExportsFromBuilds(outputName, exportMap);
 			});
-
-			// Must come after import/require
-			if (libPath) {
-				paths.default = libPath;
-			}
-
-			exportMap[`./${outputName}`] = {
-				[this.platform === 'native' ? 'react-native' : this.platform]:
-					Object.keys(paths).length === 1 && libPath ? paths.default : paths,
-			};
-		});
+		} else {
+			// Use subpath exports when not bundling
+			// https://nodejs.org/api/packages.html#subpath-patterns
+			this.mapPackageExportsFromBuilds('*', exportMap);
+		}
 
 		return exportMap;
 	}
@@ -230,5 +198,54 @@ export class CodeArtifact extends Artifact<CodeBuild> {
 
 	override toString() {
 		return `code (${this.getLabel()})`;
+	}
+
+	protected mapPackageExportsFromBuilds(outputName: string, exportMap: PackageExports) {
+		const paths: PackageExportPaths = {};
+		let libPath: PackageExportPaths | string = '';
+
+		this.builds.forEach(({ format }) => {
+			const entry = this.findEntryPoint([format], outputName);
+
+			// Must come after import/require
+			if (paths.default) {
+				libPath = paths.default;
+				delete paths.default;
+			}
+
+			switch (format) {
+				case 'mjs':
+				case 'esm':
+					paths.import = entry;
+
+					// Webpack and Rollup support
+					if (format === 'esm') {
+						paths.module = entry;
+					}
+					break;
+
+				case 'cjs':
+					paths.require = entry;
+					break;
+
+				case 'lib':
+					libPath = entry;
+					break;
+
+				default:
+					break;
+			}
+		});
+
+		// Must come after import/require
+		if (libPath) {
+			paths.default = libPath;
+		}
+
+		// eslint-disable-next-line no-param-reassign
+		exportMap[`./${outputName}`] = {
+			[this.platform === 'native' ? 'react-native' : this.platform]:
+				Object.keys(paths).length === 1 && libPath ? libPath : paths,
+		};
 	}
 }

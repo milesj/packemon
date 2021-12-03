@@ -861,14 +861,15 @@ describe('Package', () => {
 			a.inputs = { index: 'src/node.ts' };
 
 			const b = createCodeArtifact([{ format: 'lib' }]);
-			a.bundle = false;
+			b.bundle = false;
 			b.inputs = { bin: 'src/cli.ts' };
 
 			const c = createCodeArtifact([{ format: 'lib' }, { format: 'esm' }], 'browser', 'current');
+			c.bundle = false;
 			c.inputs = { web: 'src/web.ts' };
 
 			const d = createCodeArtifact([{ format: 'mjs' }], 'node', 'current');
-			a.bundle = false;
+			d.bundle = false;
 			d.inputs = { import: 'src/web.ts' };
 
 			pkg.addArtifact(a);
@@ -882,19 +883,13 @@ describe('Package', () => {
 				expect.objectContaining({
 					type: 'commonjs',
 					main: './cjs/node.cjs',
-					bin: './lib/bin.js',
+					bin: './lib/cli.js',
 					exports: {
 						'./package.json': './package.json',
-						'.': { node: { require: './cjs/node.cjs' } },
-						'./bin': { node: './lib/bin.js' },
-						'./web': {
-							browser: {
-								import: './esm/web.js',
-								module: './esm/web.js',
-								default: './lib/web.js',
-							},
+						'./*': {
+							browser: { import: './esm/*.js', module: './esm/*.js', default: './lib/*.js' },
+							node: { import: './mjs/*.mjs' },
 						},
-						'./import': { node: { import: './mjs/import.mjs' } },
 					},
 				}),
 			);
