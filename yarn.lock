@@ -3758,25 +3758,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@microsoft/api-extractor-model@npm:7.13.16":
-  version: 7.13.16
-  resolution: "@microsoft/api-extractor-model@npm:7.13.16"
+"@microsoft/api-extractor-model@npm:7.13.17":
+  version: 7.13.17
+  resolution: "@microsoft/api-extractor-model@npm:7.13.17"
   dependencies:
     "@microsoft/tsdoc": 0.13.2
     "@microsoft/tsdoc-config": ~0.15.2
-    "@rushstack/node-core-library": 3.43.2
-  checksum: 7066cecc24c7e66d6018fa23ea109c375e9d0f1f58f8858872ff8fea2d479c6e99f6569fd452718507cf05ee901b2e5370e18b02aee2c525a6efb445269684b7
+    "@rushstack/node-core-library": 3.44.0
+  checksum: 765b2a5dde61d55b72d8a1561aaef53eabd7e9ad86ecbf57789a55ac2d9de8efc9e0d1f75c6c00c27cfcd30776784e30fef88fc6355791df28fde433e9b779ed
   languageName: node
   linkType: hard
 
-"@microsoft/api-extractor@npm:^7.18.19":
-  version: 7.18.19
-  resolution: "@microsoft/api-extractor@npm:7.18.19"
+"@microsoft/api-extractor@npm:^7.18.20":
+  version: 7.18.20
+  resolution: "@microsoft/api-extractor@npm:7.18.20"
   dependencies:
-    "@microsoft/api-extractor-model": 7.13.16
+    "@microsoft/api-extractor-model": 7.13.17
     "@microsoft/tsdoc": 0.13.2
     "@microsoft/tsdoc-config": ~0.15.2
-    "@rushstack/node-core-library": 3.43.2
+    "@rushstack/node-core-library": 3.44.0
     "@rushstack/rig-package": 0.3.5
     "@rushstack/ts-command-line": 4.10.4
     colors: ~1.2.1
@@ -3787,7 +3787,7 @@ __metadata:
     typescript: ~4.4.2
   bin:
     api-extractor: bin/api-extractor
-  checksum: ef5d181f33483e53b94177e41f3f325cc0b2f6f445a9f697a49f28640717024fb8ee0bb600604ab157cf50aa7fbb04520b302207a084bdd19996314d28eb509f
+  checksum: b165304f6936706316d1d3fcd1b093104e3e823eb5e960483a468568f3378b62f909d2cc8b540daecd6a5e0ab82b425503d1c11be17176db231dc42f61a3ccc1
   languageName: node
   linkType: hard
 
@@ -4150,9 +4150,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rushstack/node-core-library@npm:3.43.2":
-  version: 3.43.2
-  resolution: "@rushstack/node-core-library@npm:3.43.2"
+"@rushstack/node-core-library@npm:3.44.0":
+  version: 3.44.0
+  resolution: "@rushstack/node-core-library@npm:3.44.0"
   dependencies:
     "@types/node": 12.20.24
     colors: ~1.2.1
@@ -4163,7 +4163,7 @@ __metadata:
     semver: ~7.3.0
     timsort: ~0.3.0
     z-schema: ~3.18.3
-  checksum: a3aa5bf7ce07a547469827c14cf53057dcb6bdff47461a991a4e52076d1f36287814a46045cae1597bbc878061ac6d2e5097157c4d281fcbc5a8a769481511b6
+  checksum: 39b26cda7341dde5207fd0bb79ae22eb3a320967a3e5e84155695a24cf06699a48b9635876085f79dfe9f84dab5418b14555db34b18d114548708e0d2988b448
   languageName: node
   linkType: hard
 
@@ -4666,10 +4666,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^16.11.9":
-  version: 16.11.9
-  resolution: "@types/node@npm:16.11.9"
-  checksum: baec2e6471ee58fd1e9874e6f47ab95a918a0f46b42424392e4c13e3e07f078f8b72b6b48073b0b14f710ed66c5f1b2e497df43f28151000f11f5f299382cfe2
+"@types/node@npm:*, @types/node@npm:^16.11.11":
+  version: 16.11.11
+  resolution: "@types/node@npm:16.11.11"
+  checksum: 1c472bd63f23ca0e4effc96e6e0c693b83b027f613a1f41b6d1bd7791f65ce171a351e0a5c92575cb59e84ad0a930875397bfbbb91a7c925ddbbb558f7461af8
   languageName: node
   linkType: hard
 
@@ -4784,14 +4784,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:^17.0.35":
-  version: 17.0.35
-  resolution: "@types/react@npm:17.0.35"
+"@types/react@npm:*, @types/react@npm:^17.0.37":
+  version: 17.0.37
+  resolution: "@types/react@npm:17.0.37"
   dependencies:
     "@types/prop-types": "*"
     "@types/scheduler": "*"
     csstype: ^3.0.2
-  checksum: 33e2bf8068ccc5330f089f5d4bee54649c2d5b512edee4a9e44c113271a69ea8c71ddbd3103b205eb971fd4c358e9f69d707df08bec90b3c33492db374614eb7
+  checksum: e68b0d59aa69577fc6a6d654b25d5d8408625498f4c483f160b557fac21e840f6e8807cbde93e9f039949b6d624a019b1990d18499c1d65aecf3605c25e30242
   languageName: node
   linkType: hard
 
@@ -5928,10 +5928,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"babel-plugin-transform-async-to-promises@npm:^0.8.15":
-  version: 0.8.15
-  resolution: "babel-plugin-transform-async-to-promises@npm:0.8.15"
-  checksum: d3a2e9fd125b1ecf0acb34d4b3f2a5fae4d9888ed83fc071498154dd9479aac34e739c0cae7b1c928e9840a9dc612412456cf1c9474f70c9293fcefe621f43bf
+"babel-plugin-transform-async-to-promises@npm:^0.8.16":
+  version: 0.8.16
+  resolution: "babel-plugin-transform-async-to-promises@npm:0.8.16"
+  checksum: a0efe0a9d384273c3acf3e131e6a87a8dbcde299e0618dbf3d4c2d8159eabbc454fb20ea2be58084e8f067e712b030d9360023bfa05c299190f83f5dab4afa94
   languageName: node
   linkType: hard
 
@@ -14058,9 +14058,9 @@ __metadata:
     "@types/fs-extra": ^9.0.13
     "@types/jest": ^27.0.3
     "@types/micromatch": ^4.0.2
-    "@types/node": ^16.11.9
+    "@types/node": ^16.11.11
     "@types/npm-packlist": ^1.1.2
-    "@types/react": ^17.0.35
+    "@types/react": ^17.0.37
     "@types/rimraf": ^3.0.2
     "@types/semver": ^7.3.9
     chokidar: ^3.5.2
@@ -14087,7 +14087,7 @@ __metadata:
     "@boost/event": ^3.0.0
     "@boost/pipeline": ^3.2.0
     "@boost/terminal": ^3.0.0
-    "@microsoft/api-extractor": ^7.18.19
+    "@microsoft/api-extractor": ^7.18.20
     "@rollup/plugin-babel": ^5.3.0
     "@rollup/plugin-commonjs": ^21.0.1
     "@rollup/plugin-json": ^4.1.0
@@ -14095,7 +14095,7 @@ __metadata:
     babel-plugin-cjs-esm-interop: ^1.1.3
     babel-plugin-conditional-invariant: ^1.0.6
     babel-plugin-env-constants: ^1.0.6
-    babel-plugin-transform-async-to-promises: ^0.8.15
+    babel-plugin-transform-async-to-promises: ^0.8.16
     builtin-modules: ^3.2.0
     execa: ^5.1.1
     fast-glob: ^3.2.7
