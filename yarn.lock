@@ -14109,9 +14109,9 @@ __metadata:
     react: ^17.0.2
     resolve: ^1.20.0
     rimraf: ^3.0.2
-    rollup: ^2.60.0
+    rollup: ^2.60.2
     rollup-plugin-node-externals: ^2.2.0
-    rollup-plugin-polyfill-node: ^0.7.0
+    rollup-plugin-polyfill-node: ^0.8.0
     rollup-plugin-visualizer: ^5.5.2
     semver: ^7.3.5
     spdx-license-list: ^6.4.0
@@ -16226,12 +16226,14 @@ resolve@~1.19.0:
   languageName: node
   linkType: hard
 
-"rollup-plugin-polyfill-node@npm:^0.7.0":
-  version: 0.7.0
-  resolution: "rollup-plugin-polyfill-node@npm:0.7.0"
+"rollup-plugin-polyfill-node@npm:^0.8.0":
+  version: 0.8.0
+  resolution: "rollup-plugin-polyfill-node@npm:0.8.0"
   dependencies:
     "@rollup/plugin-inject": ^4.0.0
-  checksum: 579029a104cd5a8e2593db720cb15023e3e6d0f90c969db68baca54174a99aee297b46639f69b44cc6833ceedb95047ba146e3eec3a8b832b77e226e86d18a8f
+  peerDependencies:
+    rollup: ^1.20.0 || ^2.0.0
+  checksum: ad6e451b1ae91f7b4370ab7b5dd03f578a67ebd42bcd3eec198ae6d4cd7caa1c454bd020ff8e80f3dcb02cdd9357da2b752c0aac3f84c56a28c23a6c0ffeffd5
   languageName: node
   linkType: hard
 
@@ -16251,9 +16253,9 @@ resolve@~1.19.0:
   languageName: node
   linkType: hard
 
-"rollup@npm:^2.60.0":
-  version: 2.60.0
-  resolution: "rollup@npm:2.60.0"
+"rollup@npm:^2.60.2":
+  version: 2.60.2
+  resolution: "rollup@npm:2.60.2"
   dependencies:
     fsevents: ~2.3.2
   dependenciesMeta:
@@ -16261,7 +16263,7 @@ resolve@~1.19.0:
       optional: true
   bin:
     rollup: dist/bin/rollup
-  checksum: ef267b49a203f3db86d6db8c63de8737d6e3995d988dadf35c1922964c21cafbb95990543cfc716356d31bf6ca3975e58d9195df85b28721ecdc9acd3693acca
+  checksum: bcd41dfe8afb7e0d97ce2237752165bdda689bcce6321d96821d565de3e0c865a49b544923f315985be2bfde086f72b54aae4ae7c87f798b3cb9558a5bec4e65
   languageName: node
   linkType: hard
 

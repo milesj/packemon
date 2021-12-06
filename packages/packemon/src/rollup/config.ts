@@ -183,7 +183,6 @@ export function getRollupConfig(artifact: CodeArtifact, features: FeatureFlags):
 
 	// Polyfill node modules when platform is not node
 	if (!isNode) {
-		// @ts-expect-error Types dont match
 		config.plugins!.unshift(nodePolyfills());
 	}
 
