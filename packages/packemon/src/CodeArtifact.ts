@@ -175,7 +175,7 @@ export class CodeArtifact extends Artifact<CodeBuild> {
 	getPackageExports(): PackageExports {
 		const exportMap: PackageExports = {};
 
-		if (this.api === 'private') {
+		if (this.api === 'private' || this.bundle) {
 			Object.keys(this.inputs).forEach((outputName) => {
 				this.mapPackageExportsFromBuilds(outputName, exportMap);
 			});
