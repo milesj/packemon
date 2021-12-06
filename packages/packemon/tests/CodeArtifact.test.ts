@@ -222,7 +222,7 @@ describe('CodeArtifact', () => {
 			artifact.builds.push({ format: 'lib' });
 
 			expect(artifact.getPackageExports()).toEqual({
-				'./index': {
+				'.': {
 					node: './lib/index.js',
 				},
 			});
@@ -233,7 +233,7 @@ describe('CodeArtifact', () => {
 			artifact.builds.push({ format: 'lib' });
 
 			expect(artifact.getPackageExports()).toEqual({
-				'./index': {
+				'.': {
 					node: './lib/node/index.js',
 				},
 			});
@@ -254,7 +254,7 @@ describe('CodeArtifact', () => {
 			artifact.builds.push({ format: 'lib' }, { format: 'mjs' }, { format: 'cjs' });
 
 			expect(artifact.getPackageExports()).toEqual({
-				'./index': {
+				'.': {
 					node: {
 						import: './mjs/index.mjs',
 						require: './cjs/index.cjs',
@@ -283,7 +283,7 @@ describe('CodeArtifact', () => {
 			artifact.builds.push({ format: 'lib' });
 
 			expect(artifact.getPackageExports()).toEqual({
-				'./index': {
+				'.': {
 					browser: './lib/index.js',
 				},
 			});
@@ -294,7 +294,7 @@ describe('CodeArtifact', () => {
 			artifact.builds.push({ format: 'lib' });
 
 			expect(artifact.getPackageExports()).toEqual({
-				'./index': {
+				'.': {
 					'react-native': './lib/index.js',
 				},
 			});

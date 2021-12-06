@@ -9,6 +9,8 @@ export abstract class Artifact<T extends object = {}> {
 
 	readonly buildResult: BuildResult = { files: [], time: 0 };
 
+	bundle: boolean = true;
+
 	readonly package: Package;
 
 	state: ArtifactState = 'pending';

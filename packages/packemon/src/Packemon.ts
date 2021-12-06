@@ -239,6 +239,7 @@ export class Packemon {
 		packages.forEach((pkg) => {
 			const typesBuilds: Record<string, TypesBuild> = {};
 			const sharedLib = this.requiresSharedLib(pkg);
+			const bundleFiles = this.shouldBundleFiles(pkg);
 
 			pkg.configs.forEach((config, index) => {
 				let builds = config.formats.map((format) => ({
@@ -264,7 +265,7 @@ export class Packemon {
 				}
 
 				const artifact = new CodeArtifact(pkg, builds);
-				artifact.bundle = config.bundle;
+				artifact.bundle = bundleFiles;
 				artifact.configGroup = index;
 				artifact.externals = config.externals;
 				artifact.inputs = config.inputs;
@@ -282,7 +283,7 @@ export class Packemon {
 
 			if (declaration !== 'none') {
 				const artifact = new TypesArtifact(pkg, Object.values(typesBuilds));
-
+				artifact.bundle = bundleFiles;
 				artifact.declarationType = declaration;
 
 				pkg.addArtifact(artifact);
@@ -337,6 +338,14 @@ export class Packemon {
 		});
 
 		return platformsToCheck.size > 1 && libFormatCount > 1;
+	}
+
+	/**
+	 * When 1 config needs to bundle, all other configs should bundle,
+	 * otherwise we will have conflicting output structures and exports.
+	 */
+	protected shouldBundleFiles(pkg: Package): boolean {
+		return pkg.configs.some((cfg) => cfg.bundle);
 	}
 
 	/**

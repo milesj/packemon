@@ -890,6 +890,14 @@ describe('Package', () => {
 							browser: { import: './esm/*.js', module: './esm/*.js', default: './lib/*.js' },
 							node: { import: './mjs/*.mjs' },
 						},
+						'.': {
+							browser: {
+								import: './esm/index.js',
+								module: './esm/index.js',
+								default: './lib/index.js',
+							},
+							node: { import: './mjs/index.mjs' },
+						},
 					},
 				}),
 			);

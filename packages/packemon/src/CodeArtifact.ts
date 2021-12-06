@@ -17,8 +17,6 @@ import {
 } from './types';
 
 export class CodeArtifact extends Artifact<CodeBuild> {
-	bundle: boolean = true;
-
 	cache?: RollupCache;
 
 	// Config object in which inputs are grouped in
@@ -183,6 +181,7 @@ export class CodeArtifact extends Artifact<CodeBuild> {
 			// Use subpath exports when not bundling
 			// https://nodejs.org/api/packages.html#subpath-patterns
 			this.mapPackageExportsFromBuilds('*', exportMap);
+			this.mapPackageExportsFromBuilds('index', exportMap);
 		}
 
 		return exportMap;
@@ -243,7 +242,7 @@ export class CodeArtifact extends Artifact<CodeBuild> {
 		}
 
 		// eslint-disable-next-line no-param-reassign
-		exportMap[`./${outputName}`] = {
+		exportMap[outputName === 'index' ? '.' : `./${outputName}`] = {
 			[this.platform === 'native' ? 'react-native' : this.platform]:
 				Object.keys(paths).length === 1 && libPath ? libPath : paths,
 		};

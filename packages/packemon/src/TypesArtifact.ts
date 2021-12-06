@@ -98,11 +98,16 @@ export class TypesArtifact extends Artifact<TypesBuild> {
 	getPackageExports(): PackageExports {
 		const exportMap: PackageExports = {};
 
-		this.builds.forEach(({ outputName }) => {
-			exportMap[`./${outputName}`] = {
-				types: this.findEntryPoint(outputName),
-			};
-		});
+		if (this.bundle) {
+			this.builds.forEach(({ outputName }) => {
+				exportMap[`./${outputName}`] = {
+					types: this.findEntryPoint(outputName),
+				};
+			});
+		} else {
+			exportMap['./*'] = { types: './dts/*.d.ts' };
+			exportMap['.'] = { types: './dts/index.d.ts' };
+		}
 
 		return exportMap;
 	}
