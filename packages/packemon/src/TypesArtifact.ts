@@ -100,7 +100,7 @@ export class TypesArtifact extends Artifact<TypesBuild> {
 
 		if (this.bundle) {
 			this.builds.forEach(({ outputName }) => {
-				exportMap[`./${outputName}`] = {
+				exportMap[outputName === 'index' ? '.' : `./${outputName}`] = {
 					types: this.findEntryPoint(outputName),
 				};
 			});
