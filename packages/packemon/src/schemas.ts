@@ -13,6 +13,7 @@ import {
 } from './constants';
 import {
 	AnalyzeType,
+	ApiType,
 	BrowserFormat,
 	BuildOptions,
 	DeclarationType,
@@ -59,6 +60,7 @@ const support = string<Support>(DEFAULT_SUPPORT).oneOf(SUPPORTS);
 // BLUEPRINTS
 
 export const packemonBlueprint: Blueprint<PackemonPackageConfig> = {
+	api: string('private').oneOf<ApiType>(['public', 'private']),
 	bundle: bool(true),
 	externals: union([]).of([string(), array().of(string())]),
 	format: union([]).of([array().of(format), format]),

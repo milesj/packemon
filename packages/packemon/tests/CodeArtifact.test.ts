@@ -204,8 +204,8 @@ describe('CodeArtifact', () => {
 			});
 		});
 
-		it('when not bundling, uses original source file path', () => {
-			artifact.bundle = false;
+		it('public api: uses original source file path', () => {
+			artifact.api = 'public';
 			artifact.inputs = { index: 'src/some/other/file.ts' };
 
 			expect(artifact.getBuildOutput('mjs', 'index')).toEqual({

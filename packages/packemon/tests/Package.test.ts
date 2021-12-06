@@ -813,17 +813,21 @@ describe('Package', () => {
 		});
 
 		// https://github.com/milesj/packemon/issues/42#issuecomment-808793241
-		it('when bundling, supports all mutations in parallel', async () => {
+		it('private api: uses inputs as subpath imports', async () => {
 			const a = createCodeArtifact([{ format: 'cjs' }]);
+			a.api = 'private';
 			a.inputs = { index: 'src/node.ts' };
 
 			const b = createCodeArtifact([{ format: 'lib' }]);
+			b.api = 'private';
 			b.inputs = { bin: 'src/cli.ts' };
 
 			const c = createCodeArtifact([{ format: 'lib' }, { format: 'esm' }], 'browser', 'current');
+			c.api = 'private';
 			c.inputs = { web: 'src/web.ts' };
 
 			const d = createCodeArtifact([{ format: 'mjs' }], 'node', 'current');
+			d.api = 'private';
 			d.inputs = { import: 'src/web.ts' };
 
 			pkg.addArtifact(a);
@@ -855,21 +859,21 @@ describe('Package', () => {
 			);
 		});
 
-		it('when NOT bundling, supports all mutations in parallel', async () => {
+		it('public api: uses patterns as subpath imports (deep imports)', async () => {
 			const a = createCodeArtifact([{ format: 'cjs' }]);
-			a.bundle = false;
+			a.api = 'public';
 			a.inputs = { index: 'src/node.ts' };
 
 			const b = createCodeArtifact([{ format: 'lib' }]);
-			b.bundle = false;
+			b.api = 'public';
 			b.inputs = { bin: 'src/cli.ts' };
 
 			const c = createCodeArtifact([{ format: 'lib' }, { format: 'esm' }], 'browser', 'current');
-			c.bundle = false;
+			c.api = 'public';
 			c.inputs = { web: 'src/web.ts' };
 
 			const d = createCodeArtifact([{ format: 'mjs' }], 'node', 'current');
-			d.bundle = false;
+			d.api = 'public';
 			d.inputs = { import: 'src/web.ts' };
 
 			pkg.addArtifact(a);
@@ -1074,6 +1078,7 @@ describe('Package', () => {
 
 			expect(pkg.configs).toEqual([
 				{
+					api: 'private',
 					bundle: true,
 					externals: [],
 					formats: ['lib', 'esm'],
@@ -1098,6 +1103,7 @@ describe('Package', () => {
 
 			expect(pkg.configs).toEqual([
 				{
+					api: 'private',
 					bundle: true,
 					externals: [],
 					formats: ['lib', 'esm', 'umd'],
@@ -1122,6 +1128,7 @@ describe('Package', () => {
 
 			expect(pkg.configs).toEqual([
 				{
+					api: 'private',
 					bundle: true,
 					externals: [],
 					formats: ['lib'],
@@ -1146,6 +1153,7 @@ describe('Package', () => {
 
 			expect(pkg.configs).toEqual([
 				{
+					api: 'public',
 					bundle: false,
 					externals: [],
 					formats: ['mjs'],
@@ -1170,6 +1178,7 @@ describe('Package', () => {
 
 			expect(pkg.configs).toEqual([
 				{
+					api: 'public',
 					bundle: false,
 					externals: [],
 					formats: ['cjs', 'mjs'],
@@ -1191,6 +1200,7 @@ describe('Package', () => {
 
 			expect(pkg.configs).toEqual([
 				{
+					api: 'private',
 					bundle: true,
 					externals: [],
 					formats: ['lib', 'esm'],
@@ -1200,6 +1210,7 @@ describe('Package', () => {
 					support: 'stable',
 				},
 				{
+					api: 'public',
 					bundle: false,
 					externals: [],
 					formats: ['mjs'],
@@ -1222,6 +1233,7 @@ describe('Package', () => {
 
 			expect(pkg.configs).toEqual([
 				{
+					api: 'private',
 					bundle: true,
 					externals: [],
 					formats: ['lib', 'esm'],
@@ -1231,6 +1243,7 @@ describe('Package', () => {
 					support: 'stable',
 				},
 				{
+					api: 'public',
 					bundle: false,
 					externals: [],
 					formats: ['lib', 'cjs'],
@@ -1240,6 +1253,7 @@ describe('Package', () => {
 					support: 'stable',
 				},
 				{
+					api: 'private',
 					bundle: true,
 					externals: [],
 					formats: ['lib'],
@@ -1254,10 +1268,12 @@ describe('Package', () => {
 		it('can override `bundle` defaults', () => {
 			pkg.setConfigs([
 				{
+					api: 'private',
 					bundle: true,
 					platform: 'node',
 				},
 				{
+					api: 'public',
 					bundle: false,
 					platform: 'browser',
 				},
@@ -1265,6 +1281,7 @@ describe('Package', () => {
 
 			expect(pkg.configs).toEqual([
 				{
+					api: 'private',
 					bundle: true,
 					externals: [],
 					formats: ['mjs'],
@@ -1274,6 +1291,7 @@ describe('Package', () => {
 					support: 'stable',
 				},
 				{
+					api: 'public',
 					bundle: false,
 					externals: [],
 					formats: ['lib', 'esm'],
@@ -1294,6 +1312,7 @@ describe('Package', () => {
 
 			expect(pkg.configs).toEqual([
 				{
+					api: 'private',
 					bundle: true,
 					externals: ['foo', 'bar'],
 					formats: ['lib', 'esm'],
@@ -1314,6 +1333,7 @@ describe('Package', () => {
 
 			expect(pkg.configs).toEqual([
 				{
+					api: 'private',
 					bundle: true,
 					externals: ['foo'],
 					formats: ['lib', 'esm'],

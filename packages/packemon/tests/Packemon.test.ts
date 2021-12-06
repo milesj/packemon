@@ -482,6 +482,7 @@ describe('Packemon', () => {
 			expect(one.getName()).toBe('pkg-valid-array');
 			expect(one.configs).toEqual([
 				{
+					api: 'public',
 					bundle: false,
 					externals: [],
 					formats: ['lib'],
@@ -491,6 +492,7 @@ describe('Packemon', () => {
 					support: 'stable',
 				},
 				{
+					api: 'private',
 					bundle: true,
 					externals: [],
 					formats: ['lib', 'esm'],
@@ -504,6 +506,7 @@ describe('Packemon', () => {
 			expect(two.getName()).toBe('pkg-valid-object');
 			expect(two.configs).toEqual([
 				{
+					api: 'public',
 					bundle: false,
 					externals: [],
 					formats: ['mjs'],
@@ -517,6 +520,7 @@ describe('Packemon', () => {
 			expect(three.getName()).toBe('pkg-valid-object-private');
 			expect(three.configs).toEqual([
 				{
+					api: 'private',
 					bundle: true,
 					externals: [],
 					formats: ['lib', 'esm', 'umd'],

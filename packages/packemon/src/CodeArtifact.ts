@@ -17,6 +17,8 @@ import {
 } from './types';
 
 export class CodeArtifact extends Artifact<CodeBuild> {
+	bundle: boolean = true;
+
 	cache?: RollupCache;
 
 	// Config object in which inputs are grouped in
@@ -134,9 +136,9 @@ export class CodeArtifact extends Artifact<CodeBuild> {
 	getBuildOutput(format: Format, outputName: string = '') {
 		let name = outputName;
 
-		// When not bundling, we do not create output files based on the input map.
+		// When using a public API, we do not create output files based on the input map.
 		// Instead files mirror the source file structure, so we need to take that into account!
-		if (!this.bundle && this.inputs[outputName]) {
+		if (this.api === 'public' && this.inputs[outputName]) {
 			name = removeSourcePath(this.inputs[outputName]);
 		}
 
@@ -173,7 +175,7 @@ export class CodeArtifact extends Artifact<CodeBuild> {
 	getPackageExports(): PackageExports {
 		const exportMap: PackageExports = {};
 
-		if (this.bundle) {
+		if (this.api === 'private') {
 			Object.keys(this.inputs).forEach((outputName) => {
 				this.mapPackageExportsFromBuilds(outputName, exportMap);
 			});

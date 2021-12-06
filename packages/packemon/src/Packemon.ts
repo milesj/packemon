@@ -21,7 +21,8 @@ import { Package } from './Package';
 import { PackageValidator } from './PackageValidator';
 import { Project } from './Project';
 import { buildBlueprint, validateBlueprint } from './schemas';
-import {
+import type {
+	ApiType,
 	BuildOptions,
 	FilterOptions,
 	PackemonPackage,
@@ -239,7 +240,7 @@ export class Packemon {
 		packages.forEach((pkg) => {
 			const typesBuilds: Record<string, TypesBuild> = {};
 			const sharedLib = this.requiresSharedLib(pkg);
-			const bundleFiles = this.shouldBundleFiles(pkg);
+			const apiType = this.determineApiType(pkg);
 
 			pkg.configs.forEach((config, index) => {
 				let builds = config.formats.map((format) => ({
@@ -265,7 +266,8 @@ export class Packemon {
 				}
 
 				const artifact = new CodeArtifact(pkg, builds);
-				artifact.bundle = bundleFiles;
+				artifact.api = apiType;
+				artifact.bundle = config.bundle;
 				artifact.configGroup = index;
 				artifact.externals = config.externals;
 				artifact.inputs = config.inputs;
@@ -283,7 +285,7 @@ export class Packemon {
 
 			if (declaration !== 'none') {
 				const artifact = new TypesArtifact(pkg, Object.values(typesBuilds));
-				artifact.bundle = bundleFiles;
+				artifact.api = apiType;
 				artifact.declarationType = declaration;
 
 				pkg.addArtifact(artifact);
@@ -319,6 +321,14 @@ export class Packemon {
 	}
 
 	/**
+	 * When 1 config needs a private API, all other configs should be private,
+	 * otherwise we will have conflicting output structures and exports.
+	 */
+	protected determineApiType(pkg: Package): ApiType {
+		return pkg.configs.some((cfg) => cfg.api === 'private') ? 'private' : 'public';
+	}
+
+	/**
 	 * Format "lib" is a shared format across all platforms,
 	 * and when a package wants to support multiple platforms,
 	 * we must account for this and alter the output paths.
@@ -338,14 +348,6 @@ export class Packemon {
 		});
 
 		return platformsToCheck.size > 1 && libFormatCount > 1;
-	}
-
-	/**
-	 * When 1 config needs to bundle, all other configs should bundle,
-	 * otherwise we will have conflicting output structures and exports.
-	 */
-	protected shouldBundleFiles(pkg: Package): boolean {
-		return pkg.configs.some((cfg) => cfg.bundle);
 	}
 
 	/**
