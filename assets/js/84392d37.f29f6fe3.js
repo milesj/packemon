@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkwebsite=self.webpackChunkwebsite||[]).push([[7430],{7161:function(e){e.exports=JSON.parse('{"id":592,"name":"getRollupOutputConfig","nextId":702,"permalink":"/api/packemon/function/getRollupOutputConfig","previousId":585}')}}]);

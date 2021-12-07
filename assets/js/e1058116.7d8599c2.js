@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkwebsite=self.webpackChunkwebsite||[]).push([[8308],{9382:function(e){e.exports=JSON.parse('{"id":673,"name":"ValidateOptions","nextId":375,"permalink":"/api/packemon/interface/ValidateOptions","previousId":670}')}}]);

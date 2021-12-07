@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkwebsite=self.webpackChunkwebsite||[]).push([[698],{6560:function(e){e.exports=JSON.parse('{"id":629,"name":"PackageConfig","nextId":627,"permalink":"/api/packemon/interface/PackageConfig","previousId":247}')}}]);

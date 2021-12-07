@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkwebsite=self.webpackChunkwebsite||[]).push([[2991],{1387:function(e){e.exports=JSON.parse('{"id":70,"name":"PresetEnvOptions","nextId":694,"permalink":"/api/packemon/interface/PresetEnvOptions","previousId":618}')}}]);
