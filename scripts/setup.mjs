@@ -23,4 +23,7 @@ async function setup() {
 	await Promise.all(pkgs.map((pkg) => build(pkg, false)));
 }
 
-setup();
+setup().catch((error) => {
+	console.error(error);
+	process.exit(1);
+});
