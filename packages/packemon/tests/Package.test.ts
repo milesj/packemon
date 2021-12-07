@@ -859,21 +859,71 @@ describe('Package', () => {
 			);
 		});
 
-		it('public api: uses patterns as subpath imports (deep imports)', async () => {
+		it('public api + bundle: uses inputs as subpath imports (non-deep imports)', async () => {
 			const a = createCodeArtifact([{ format: 'cjs' }]);
 			a.api = 'public';
+			a.bundle = true;
 			a.inputs = { index: 'src/node.ts' };
 
 			const b = createCodeArtifact([{ format: 'lib' }]);
 			b.api = 'public';
+			b.bundle = true;
 			b.inputs = { bin: 'src/cli.ts' };
 
 			const c = createCodeArtifact([{ format: 'lib' }, { format: 'esm' }], 'browser', 'current');
 			c.api = 'public';
+			c.bundle = true;
 			c.inputs = { web: 'src/web.ts' };
 
 			const d = createCodeArtifact([{ format: 'mjs' }], 'node', 'current');
 			d.api = 'public';
+			d.bundle = true;
+			d.inputs = { import: 'src/web.ts' };
+
+			pkg.addArtifact(a);
+			pkg.addArtifact(b);
+			pkg.addArtifact(c);
+			pkg.addArtifact(d);
+
+			await pkg.build({ addExports: true });
+
+			expect(pkg.packageJson).toEqual(
+				expect.objectContaining({
+					type: 'commonjs',
+					main: './cjs/node.cjs',
+					bin: './lib/cli.js',
+					exports: {
+						'./package.json': './package.json',
+						'./bin': { node: './lib/cli.js' },
+						'./import': { node: { import: './mjs/web.mjs' } },
+						'./web': {
+							browser: { default: './lib/web.js', import: './esm/web.js', module: './esm/web.js' },
+						},
+						'.': { node: { require: './cjs/node.cjs' } },
+					},
+				}),
+			);
+		});
+
+		it('public api + no bundle: uses patterns as subpath imports (deep imports)', async () => {
+			const a = createCodeArtifact([{ format: 'cjs' }]);
+			a.api = 'public';
+			a.bundle = false;
+			a.inputs = { index: 'src/node.ts' };
+
+			const b = createCodeArtifact([{ format: 'lib' }]);
+			b.api = 'public';
+			b.bundle = false;
+			b.inputs = { bin: 'src/cli.ts' };
+
+			const c = createCodeArtifact([{ format: 'lib' }, { format: 'esm' }], 'browser', 'current');
+			c.api = 'public';
+			c.bundle = false;
+			c.inputs = { web: 'src/web.ts' };
+
+			const d = createCodeArtifact([{ format: 'mjs' }], 'node', 'current');
+			d.api = 'public';
+			d.bundle = false;
 			d.inputs = { import: 'src/web.ts' };
 
 			pkg.addArtifact(a);
