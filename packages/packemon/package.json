@@ -25,7 +25,17 @@
     "src/**/*.{ts,tsx,json}",
     "templates/**/*"
   ],
-  "exports": {},
+  "exports": {
+    "./package.json": "./package.json",
+    "./*": {
+      "node": "./lib/*.js",
+      "types": "./dts/*.d.ts"
+    },
+    ".": {
+      "node": "./lib/index.js",
+      "types": "./dts/index.d.ts"
+    }
+  },
   "engines": {
     "node": ">=12.17.0",
     "npm": ">=6.13.0"
