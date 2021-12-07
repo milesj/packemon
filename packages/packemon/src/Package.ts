@@ -229,7 +229,7 @@ export class Package {
 			}).validate(cfg);
 
 			toArray(config.platform).forEach((platform) => {
-				let { bundle } = config;
+				let { api, bundle } = config;
 				let formats = [...toArray(config.format)];
 				const isEmpty = formats.length === 0;
 
@@ -243,6 +243,10 @@ export class Package {
 						break;
 
 					case 'node':
+						if (cfg.api === undefined) {
+							api = 'public';
+						}
+
 						if (cfg.bundle === undefined) {
 							bundle = false;
 						}
@@ -269,6 +273,7 @@ export class Package {
 				}
 
 				this.configs.push({
+					api,
 					bundle,
 					externals: toArray(config.externals),
 					formats,

@@ -48,6 +48,8 @@ export type NodeFormat =
 
 export type Format = BrowserFormat | NodeFormat;
 
+export type ApiType = 'private' | 'public';
+
 export type AnalyzeType = 'network' | 'none' | 'sunburst' | 'treemap';
 
 export type DeclarationType = 'api' | 'none' | 'standard';
@@ -57,6 +59,7 @@ export type DeclarationType = 'api' | 'none' | 'standard';
 export type InputMap = Record<string, string>;
 
 export interface PackemonPackageConfig {
+	api?: ApiType;
 	bundle?: boolean;
 	externals?: string[] | string;
 	format?: Format | Format[];
@@ -71,6 +74,7 @@ export interface PackemonPackage extends PackageStructure {
 }
 
 export interface PackageConfig {
+	api: ApiType;
 	bundle: boolean;
 	externals: string[];
 	formats: Format[];

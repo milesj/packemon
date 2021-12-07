@@ -25,8 +25,8 @@ Build supports the following command line options.
 
 - `--addEngines` - Add Node.js and npm `engine` versions to each `package.json` when `platform` is
   `node`. Uses the `support` setting to determine the version range.
-- `--addExports` - Add `exports` fields to each `package.json` according to the respective `inputs`
-  setting. This is an experimental Node.js feature and may not work correctly
+- `--addExports` - Add `exports` fields to each `package.json`, based on `api`, `bundle`, and
+  `inputs`. This is an experimental Node.js feature and may not work correctly
   ([more information](https://nodejs.org/api/packages.html#packages_package_entry_points)).
 - `--analyze` - Analyze and visualize all generated builds. Will open a browser visualization for
   each bundle in one of the following formats.

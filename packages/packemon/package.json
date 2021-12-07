@@ -27,13 +27,9 @@
   ],
   "exports": {
     "./package.json": "./package.json",
-    "./babel": {
-      "node": "./lib/babel.js",
-      "types": "./dts/babel.d.ts"
-    },
-    "./bin": {
-      "node": "./lib/bin.js",
-      "types": "./dts/bin.d.ts"
+    "./*": {
+      "node": "./lib/*.js",
+      "types": "./dts/*.d.ts"
     },
     ".": {
       "node": "./lib/index.js",

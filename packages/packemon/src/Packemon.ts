@@ -21,7 +21,8 @@ import { Package } from './Package';
 import { PackageValidator } from './PackageValidator';
 import { Project } from './Project';
 import { buildBlueprint, validateBlueprint } from './schemas';
-import {
+import type {
+	ApiType,
 	BuildOptions,
 	FilterOptions,
 	PackemonPackage,
@@ -239,6 +240,7 @@ export class Packemon {
 		packages.forEach((pkg) => {
 			const typesBuilds: Record<string, TypesBuild> = {};
 			const sharedLib = this.requiresSharedLib(pkg);
+			const apiType = this.determineApiType(pkg);
 
 			pkg.configs.forEach((config, index) => {
 				let builds = config.formats.map((format) => ({
@@ -264,6 +266,7 @@ export class Packemon {
 				}
 
 				const artifact = new CodeArtifact(pkg, builds);
+				artifact.api = apiType;
 				artifact.bundle = config.bundle;
 				artifact.configGroup = index;
 				artifact.externals = config.externals;
@@ -282,7 +285,7 @@ export class Packemon {
 
 			if (declaration !== 'none') {
 				const artifact = new TypesArtifact(pkg, Object.values(typesBuilds));
-
+				artifact.api = apiType;
 				artifact.declarationType = declaration;
 
 				pkg.addArtifact(artifact);
@@ -315,6 +318,14 @@ export class Packemon {
 		this.debug('Cleaning temporary build files');
 
 		await Promise.all(packages.map((pkg) => pkg.cleanup()));
+	}
+
+	/**
+	 * When 1 config needs a private API, all other configs should be private,
+	 * otherwise we will have conflicting output structures and exports.
+	 */
+	protected determineApiType(pkg: Package): ApiType {
+		return pkg.configs.some((cfg) => cfg.api === 'private') ? 'private' : 'public';
 	}
 
 	/**

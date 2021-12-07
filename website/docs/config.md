@@ -184,6 +184,26 @@ Externals can also be provided as regex-strings that will be used with string `m
 }
 ```
 
+## API
+
+Declares the type of import/export API this package is providing, either `public` or `private`. If
+not provided, is `public` for `node` platform, but `private` for all other platforms.
+
+- **Public** - Allows deep imports, where the import path is a 1:1 to a file system path within the
+  package. When adding `exports`, will use
+  [subpath export patterns](https://nodejs.org/api/packages.html#subpath-patterns) that will
+  wildcard match any file in the output format.
+- **Private** - Disallows deep imports, and _only_ allows index and [inputs](#inputs) imports. When
+  using `exports`, inputs will use
+  [subpath exports](https://nodejs.org/api/packages.html#subpath-exports) that are relative from the
+  package index.
+
+```json
+{
+	"api": "public"
+}
+```
+
 ## Bundle
 
 Whether to bundle the source code into a single file for each [input](#inputs). If not provided, is

@@ -48,6 +48,10 @@
   },
   "exports": {
     "./package.json": "./package.json",
+    "./*": {
+      "node": "./lib/*.js",
+      "types": "./dts/*.d.ts"
+    },
     ".": {
       "node": "./lib/index.js",
       "types": "./dts/index.d.ts"

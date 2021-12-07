@@ -136,9 +136,9 @@ export class CodeArtifact extends Artifact<CodeBuild> {
 	getBuildOutput(format: Format, outputName: string = '') {
 		let name = outputName;
 
-		// When not bundling, we do not create output files based on the input map.
+		// When using a public API, we do not create output files based on the input map.
 		// Instead files mirror the source file structure, so we need to take that into account!
-		if (!this.bundle && this.inputs[outputName]) {
+		if (this.api === 'public' && this.inputs[outputName]) {
 			name = removeSourcePath(this.inputs[outputName]);
 		}
 
@@ -175,7 +175,7 @@ export class CodeArtifact extends Artifact<CodeBuild> {
 	getPackageExports(): PackageExports {
 		const exportMap: PackageExports = {};
 
-		if (this.bundle) {
+		if (this.api === 'private' || this.bundle) {
 			Object.keys(this.inputs).forEach((outputName) => {
 				this.mapPackageExportsFromBuilds(outputName, exportMap);
 			});
@@ -183,6 +183,7 @@ export class CodeArtifact extends Artifact<CodeBuild> {
 			// Use subpath exports when not bundling
 			// https://nodejs.org/api/packages.html#subpath-patterns
 			this.mapPackageExportsFromBuilds('*', exportMap);
+			this.mapPackageExportsFromBuilds('index', exportMap);
 		}
 
 		return exportMap;
@@ -243,7 +244,7 @@ export class CodeArtifact extends Artifact<CodeBuild> {
 		}
 
 		// eslint-disable-next-line no-param-reassign
-		exportMap[`./${outputName}`] = {
+		exportMap[outputName === 'index' ? '.' : `./${outputName}`] = {
 			[this.platform === 'native' ? 'react-native' : this.platform]:
 				Object.keys(paths).length === 1 && libPath ? libPath : paths,
 		};

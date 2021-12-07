@@ -2,9 +2,18 @@ import fs from 'fs-extra';
 import { applyStyle } from '@boost/cli';
 import { Path, PortablePath } from '@boost/common';
 import type { Package } from './Package';
-import type { ArtifactState, Awaitable, BuildOptions, BuildResult, PackageExports } from './types';
+import type {
+	ApiType,
+	ArtifactState,
+	Awaitable,
+	BuildOptions,
+	BuildResult,
+	PackageExports,
+} from './types';
 
 export abstract class Artifact<T extends object = {}> {
+	api: ApiType = 'private';
+
 	readonly builds: T[] = [];
 
 	readonly buildResult: BuildResult = { files: [], time: 0 };
