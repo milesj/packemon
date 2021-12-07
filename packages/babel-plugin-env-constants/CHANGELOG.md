@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.0 - 2021-12-07
+
+#### 🚀 Updates
+
+- Add `api` config setting. (#92) ([2686012](https://github.com/milesj/packemon/commit/2686012)), closes [#92](https://github.com/milesj/packemon/issues/92)
+
+#### 📘 Docs
+
+- Remove broken badges. ([a962e24](https://github.com/milesj/packemon/commit/a962e24))
+
+**Note:** Version bump only for package babel-plugin-env-constants
+
+
+
+
+
 ### 1.0.6 - 2021-11-04
 
 #### 📦 Dependencies

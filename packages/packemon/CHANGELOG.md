@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.9.0 - 2021-12-07
+
+#### 🚀 Updates
+
+- Add `api` config setting. (#92) ([2686012](https://github.com/milesj/packemon/commit/2686012)), closes [#92](https://github.com/milesj/packemon/issues/92)
+- Use subpath patterns for non-bundled exports. (#91) ([545409d](https://github.com/milesj/packemon/commit/545409d)), closes [#91](https://github.com/milesj/packemon/issues/91)
+
+#### 📦 Dependencies
+
+- **[rollup]** Update to v2.60 latest. ([e73d949](https://github.com/milesj/packemon/commit/e73d949))
+- Update to latest. ([e398eef](https://github.com/milesj/packemon/commit/e398eef))
+
+**Note:** Version bump only for package packemon
+
+
+
+
+
 ## 1.8.0 - 2021-11-23
 
 #### 🚀 Updates
