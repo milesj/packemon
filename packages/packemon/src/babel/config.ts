@@ -4,6 +4,15 @@ import { BROWSER_TARGETS, NATIVE_TARGETS, NODE_SUPPORTED_VERSIONS } from '../con
 import { FeatureFlags, Format, Platform, Support } from '../types';
 import { resolve, resolveFromBabel } from './resolve';
 
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#browser_compatibility
+function shouldKeepDynamicImport(platform: Platform, support: Support): boolean {
+	if (platform === 'node') {
+		return support === 'current' || support === 'experimental';
+	}
+
+	return support !== 'legacy';
+}
+
 // https://babeljs.io/docs/en/babel-preset-env
 export interface PresetEnvOptions {
 	browserslistEnv?: string;
@@ -35,23 +44,32 @@ function getPlatformEnvOptions(
 		modules = 'cjs'; // Babel CommonJS
 	}
 
+	const exclude = [];
+
+	if (shouldKeepDynamicImport(platform, support)) {
+		exclude.push('@babel/plugin-proposal-dynamic-import');
+	}
+
 	switch (platform) {
 		case 'browser':
 			return {
+				exclude,
 				modules,
 				targets: { browsers: BROWSER_TARGETS[support] },
 			};
 
 		case 'native':
 			return {
+				exclude,
 				modules,
 				targets: { browsers: NATIVE_TARGETS[support] },
 			};
 
 		case 'node':
 			return {
-				// Async/await has been available since v7
 				exclude: [
+					...exclude,
+					// Async/await has been available since v7
 					'@babel/plugin-transform-regenerator',
 					'@babel/plugin-transform-async-to-generator',
 				],

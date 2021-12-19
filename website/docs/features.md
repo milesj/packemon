@@ -114,6 +114,12 @@ When a package is [bundled](./config.md#bundle), tree-shaking and pure annotatio
 enabled through the Rollup build. This feature also takes multiple inputs (entry points) into
 account and chunks the bundled code accordingly.
 
+## Code-splitting aware
+
+Make use of `import()` and Packemon will ensure proper code-splitting for consumers. Packemon will
+persist dynamic imports when the the target platform and supported version can utilize the feature
+natively, otherwise it is transpiled down.
+
 ## Environment constants
 
 The [babel-plugin-env-constants](https://www.npmjs.com/package/babel-plugin-env-constants) plugin is
