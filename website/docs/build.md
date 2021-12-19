@@ -28,6 +28,7 @@ Build supports the following command line options.
 - `--addExports` - Add `exports` fields to each `package.json`, based on `api`, `bundle`, and
   `inputs`. This is an experimental Node.js feature and may not work correctly
   ([more information](https://nodejs.org/api/packages.html#packages_package_entry_points)).
+- `--addFiles` - Add `files` whitelist entries to each `package.json`.
 - `--analyze` - Analyze and visualize all generated builds. Will open a browser visualization for
   each bundle in one of the following formats.
   - `sunburst` - Displays an inner circle surrounded by rings of deeper hierarchy levels.
@@ -107,8 +108,8 @@ like the following (when also using `--declaration`).
 ```
 
 Furthermore, the `package.json` will automatically be updated with our build artifact entry points
-and files list, as demonstrated below. This can further be expanded upon using the `--addEngines`
-and `--addExports` options.
+and files list, as demonstrated below. This can further be expanded upon using the `--addEngines`,
+`--addExports`, and `--addFiles` options.
 
 ```json title="package.json"
 {

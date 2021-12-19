@@ -240,13 +240,6 @@ Array [
     "dependencies": Object {
       "typescript": "*",
     },
-    "files": Array [
-      "cjs/**/*.{cjs,map}",
-      "esm/**/*.{js,map}",
-      "lib/**/*.{js,map}",
-      "src/**/*.{ts,tsx,json}",
-      "umd/**/*.{js,map}",
-    ],
     "main": "./lib/index.js",
     "name": "project-rollup",
     "packemon": Object {
@@ -395,10 +388,6 @@ exports[`Outputs bundle bundles all files into a single file with rollup 2`] = `
 Array [
   "package.json",
   Object {
-    "files": Array [
-      "lib/**/*.{js,map}",
-      "src/**/*.{ts,tsx,json}",
-    ],
     "main": "./lib/index.js",
     "name": "project-bundle",
     "packemon": Object {
@@ -464,10 +453,6 @@ exports[`Outputs no bundle creates individual files for every source file 4`] = 
 Array [
   "package.json",
   Object {
-    "files": Array [
-      "lib/**/*.{js,map}",
-      "src/**/*.{ts,tsx,json}",
-    ],
     "main": "./lib/index.js",
     "name": "project-bundle",
     "packemon": Object {

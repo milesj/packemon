@@ -11,6 +11,7 @@ export class PackCommand extends BuildCommand {
 			<Pack
 				addEngines={this.addEngines}
 				addExports={this.addExports}
+				addFiles={this.addFiles}
 				analyze={this.analyze}
 				concurrency={this.concurrency}
 				declaration={this.declaration}
