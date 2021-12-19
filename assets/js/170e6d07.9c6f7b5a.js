@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkwebsite=self.webpackChunkwebsite||[]).push([[7433],{8773:function(e){e.exports=JSON.parse('{"id":210,"name":"CleanCommand","nextId":88,"permalink":"/api/packemon/class/CleanCommand","previousId":187}')}}]);
