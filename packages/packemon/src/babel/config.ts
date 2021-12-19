@@ -4,6 +4,15 @@ import { BROWSER_TARGETS, NATIVE_TARGETS, NODE_SUPPORTED_VERSIONS } from '../con
 import { FeatureFlags, Format, Platform, Support } from '../types';
 import { resolve, resolveFromBabel } from './resolve';
 
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#browser_compatibility
+function shouldKeepDynamicImport(platform: Platform, support: Support): boolean {
+	if (platform === 'node') {
+		return support === 'current' || support === 'experimental';
+	}
+
+	return support !== 'legacy';
+}
+
 // https://babeljs.io/docs/en/babel-preset-env
 export interface PresetEnvOptions {
 	browserslistEnv?: string;
@@ -35,10 +44,11 @@ function getPlatformEnvOptions(
 		modules = 'cjs'; // Babel CommonJS
 	}
 
-	const exclude = [
-		// Allow dynamic import for code splitting
-		'@babel/plugin-syntax-dynamic-import',
-	];
+	const exclude = [];
+
+	if (shouldKeepDynamicImport(platform, support)) {
+		exclude.push('@babel/plugin-proposal-dynamic-import');
+	}
 
 	switch (platform) {
 		case 'browser':
