@@ -35,23 +35,31 @@ function getPlatformEnvOptions(
 		modules = 'cjs'; // Babel CommonJS
 	}
 
+	const exclude = [
+		// Allow dynamic import for code splitting
+		'@babel/plugin-syntax-dynamic-import',
+	];
+
 	switch (platform) {
 		case 'browser':
 			return {
+				exclude,
 				modules,
 				targets: { browsers: BROWSER_TARGETS[support] },
 			};
 
 		case 'native':
 			return {
+				exclude,
 				modules,
 				targets: { browsers: NATIVE_TARGETS[support] },
 			};
 
 		case 'node':
 			return {
-				// Async/await has been available since v7
 				exclude: [
+					...exclude,
+					// Async/await has been available since v7
 					'@babel/plugin-transform-regenerator',
 					'@babel/plugin-transform-async-to-generator',
 				],
