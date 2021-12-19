@@ -101,6 +101,11 @@ export class Package {
 			this.addExports();
 		}
 
+		// Add package `files` whitelist
+		if (options.addFiles) {
+			this.addFiles();
+		}
+
 		// Sync `package.json` in case it was modified
 		await this.syncPackageJson();
 	}
@@ -373,7 +378,6 @@ export class Package {
 		let mainEntry = '';
 		let moduleEntry = '';
 		let browserEntry = '';
-		const files = new Set<string>(this.packageJson.files);
 
 		// eslint-disable-next-line complexity
 		this.artifacts.forEach((artifact) => {
@@ -406,19 +410,11 @@ export class Package {
 				) {
 					this.packageJson.bin = artifact.findEntryPoint(['lib', 'cjs', 'mjs'], 'bin');
 				}
-
-				// Generate `files` list
-				artifact.builds.forEach(({ format }) => {
-					files.add(`${format}/**/*.{${artifact.getBuildOutput(format).ext},map}`);
-				});
-
-				files.add(`src/**/*.{${this.getSourceFileExts(artifact.inputs)}}`);
 			}
 
 			// Type declarations
 			if (artifact instanceof TypesArtifact) {
 				this.packageJson.types = artifact.findEntryPoint('index');
-				files.add('dts/**/*.d.ts');
 			}
 		});
 
@@ -439,8 +435,6 @@ export class Package {
 		if (browserEntry && !isObject(this.packageJson.browser)) {
 			this.packageJson.browser = browserEntry;
 		}
-
-		this.packageJson.files = [...files].sort();
 	}
 
 	protected addExports() {
@@ -469,6 +463,30 @@ export class Package {
 		} else {
 			this.packageJson.exports = exportMap as PackageStructure['exports'];
 		}
+	}
+
+	protected addFiles() {
+		this.debug('Adding files to `package.json`');
+
+		const files = new Set<string>(this.packageJson.files);
+
+		this.artifacts.forEach((artifact) => {
+			// Build files
+			if (artifact instanceof CodeArtifact) {
+				artifact.builds.forEach(({ format }) => {
+					files.add(`${format}/**/*.{${artifact.getBuildOutput(format).ext},map}`);
+				});
+
+				files.add(`src/**/*.{${this.getSourceFileExts(artifact.inputs)}}`);
+			}
+
+			// Type declarations
+			if (artifact instanceof TypesArtifact) {
+				files.add('dts/**/*.d.ts');
+			}
+		});
+
+		this.packageJson.files = [...files].sort();
 	}
 
 	protected getSourceFileExts(inputs: InputMap): string[] {

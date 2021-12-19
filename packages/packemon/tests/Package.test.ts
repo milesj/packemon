@@ -498,139 +498,6 @@ describe('Package', () => {
 					expect(pkg.packageJson.bin).toEqual({});
 				});
 			});
-
-			describe('files', () => {
-				it('adds "files" folder for each format format', async () => {
-					pkg.addArtifact(createCodeArtifact([{ format: 'cjs' }, { format: 'lib' }]));
-					pkg.addArtifact(createCodeArtifact([{ format: 'umd' }], 'browser'));
-
-					await pkg.build({});
-
-					expect(pkg.packageJson).toEqual(
-						expect.objectContaining({
-							files: [
-								'cjs/**/*.{cjs,map}',
-								'lib/**/*.{js,map}',
-								'src/**/*.{ts,tsx,json}',
-								'umd/**/*.{js,map}',
-							],
-						}),
-					);
-				});
-
-				it('merges with existing "files" list', async () => {
-					pkg.packageJson.files = ['templates/', 'test.js'];
-
-					const art = createCodeArtifact([{ format: 'lib' }, { format: 'esm' }], 'browser');
-					art.inputs.index = 'src/index.jsx';
-
-					pkg.addArtifact(art);
-
-					await pkg.build({});
-
-					expect(pkg.packageJson).toEqual(
-						expect.objectContaining({
-							files: [
-								'esm/**/*.{js,map}',
-								'lib/**/*.{js,map}',
-								'src/**/*.{js,jsx,json}',
-								'templates/',
-								'test.js',
-							],
-						}),
-					);
-				});
-
-				it('determines source "js" files', async () => {
-					const art = createCodeArtifact([]);
-					art.inputs.index = 'src/index.js';
-
-					pkg.addArtifact(art);
-
-					await pkg.build({});
-
-					expect(pkg.packageJson).toEqual(
-						expect.objectContaining({
-							files: ['src/**/*.{js,jsx,json}'],
-						}),
-					);
-				});
-
-				it('determines source "jsx" files', async () => {
-					const art = createCodeArtifact([]);
-					art.inputs.index = 'src/index.jsx';
-
-					pkg.addArtifact(art);
-
-					await pkg.build({});
-
-					expect(pkg.packageJson).toEqual(
-						expect.objectContaining({
-							files: ['src/**/*.{js,jsx,json}'],
-						}),
-					);
-				});
-
-				it('determines source "cjs" files', async () => {
-					const art = createCodeArtifact([]);
-					art.inputs.index = 'src/index.cjs';
-
-					pkg.addArtifact(art);
-
-					await pkg.build({});
-
-					expect(pkg.packageJson).toEqual(
-						expect.objectContaining({
-							files: ['src/**/*.{cjs,js,json}'],
-						}),
-					);
-				});
-
-				it('determines source "mjs" files', async () => {
-					const art = createCodeArtifact([]);
-					art.inputs.index = 'src/index.mjs';
-
-					pkg.addArtifact(art);
-
-					await pkg.build({});
-
-					expect(pkg.packageJson).toEqual(
-						expect.objectContaining({
-							files: ['src/**/*.{mjs,json}'],
-						}),
-					);
-				});
-
-				it('determines source "ts" files', async () => {
-					const art = createCodeArtifact([]);
-					art.inputs.index = 'src/index.ts';
-
-					pkg.addArtifact(art);
-
-					await pkg.build({});
-
-					expect(pkg.packageJson).toEqual(
-						expect.objectContaining({
-							files: ['src/**/*.{ts,tsx,json}'],
-						}),
-					);
-				});
-
-				it('determines source "tsx" files', async () => {
-					const art = createCodeArtifact([]);
-					art.inputs.index = 'src/index.tsx';
-
-					pkg.addArtifact(art);
-
-					await pkg.build({});
-
-					expect(pkg.packageJson).toEqual(
-						expect.objectContaining({
-							files: ['src/**/*.{ts,tsx,json}'],
-						}),
-					);
-				});
-			});
 		});
 
 		describe('exports', () => {
@@ -809,6 +676,139 @@ describe('Package', () => {
 					'./foo': './lib/foo.js',
 					'./package.json': './package.json',
 				});
+			});
+		});
+
+		describe('files', () => {
+			it('adds "files" folder for each format format', async () => {
+				pkg.addArtifact(createCodeArtifact([{ format: 'cjs' }, { format: 'lib' }]));
+				pkg.addArtifact(createCodeArtifact([{ format: 'umd' }], 'browser'));
+
+				await pkg.build({ addFiles: true });
+
+				expect(pkg.packageJson).toEqual(
+					expect.objectContaining({
+						files: [
+							'cjs/**/*.{cjs,map}',
+							'lib/**/*.{js,map}',
+							'src/**/*.{ts,tsx,json}',
+							'umd/**/*.{js,map}',
+						],
+					}),
+				);
+			});
+
+			it('merges with existing "files" list', async () => {
+				pkg.packageJson.files = ['templates/', 'test.js'];
+
+				const art = createCodeArtifact([{ format: 'lib' }, { format: 'esm' }], 'browser');
+				art.inputs.index = 'src/index.jsx';
+
+				pkg.addArtifact(art);
+
+				await pkg.build({ addFiles: true });
+
+				expect(pkg.packageJson).toEqual(
+					expect.objectContaining({
+						files: [
+							'esm/**/*.{js,map}',
+							'lib/**/*.{js,map}',
+							'src/**/*.{js,jsx,json}',
+							'templates/',
+							'test.js',
+						],
+					}),
+				);
+			});
+
+			it('determines source "js" files', async () => {
+				const art = createCodeArtifact([]);
+				art.inputs.index = 'src/index.js';
+
+				pkg.addArtifact(art);
+
+				await pkg.build({ addFiles: true });
+
+				expect(pkg.packageJson).toEqual(
+					expect.objectContaining({
+						files: ['src/**/*.{js,jsx,json}'],
+					}),
+				);
+			});
+
+			it('determines source "jsx" files', async () => {
+				const art = createCodeArtifact([]);
+				art.inputs.index = 'src/index.jsx';
+
+				pkg.addArtifact(art);
+
+				await pkg.build({ addFiles: true });
+
+				expect(pkg.packageJson).toEqual(
+					expect.objectContaining({
+						files: ['src/**/*.{js,jsx,json}'],
+					}),
+				);
+			});
+
+			it('determines source "cjs" files', async () => {
+				const art = createCodeArtifact([]);
+				art.inputs.index = 'src/index.cjs';
+
+				pkg.addArtifact(art);
+
+				await pkg.build({ addFiles: true });
+
+				expect(pkg.packageJson).toEqual(
+					expect.objectContaining({
+						files: ['src/**/*.{cjs,js,json}'],
+					}),
+				);
+			});
+
+			it('determines source "mjs" files', async () => {
+				const art = createCodeArtifact([]);
+				art.inputs.index = 'src/index.mjs';
+
+				pkg.addArtifact(art);
+
+				await pkg.build({ addFiles: true });
+
+				expect(pkg.packageJson).toEqual(
+					expect.objectContaining({
+						files: ['src/**/*.{mjs,json}'],
+					}),
+				);
+			});
+
+			it('determines source "ts" files', async () => {
+				const art = createCodeArtifact([]);
+				art.inputs.index = 'src/index.ts';
+
+				pkg.addArtifact(art);
+
+				await pkg.build({ addFiles: true });
+
+				expect(pkg.packageJson).toEqual(
+					expect.objectContaining({
+						files: ['src/**/*.{ts,tsx,json}'],
+					}),
+				);
+			});
+
+			it('determines source "tsx" files', async () => {
+				const art = createCodeArtifact([]);
+				art.inputs.index = 'src/index.tsx';
+
+				pkg.addArtifact(art);
+
+				await pkg.build({ addFiles: true });
+
+				expect(pkg.packageJson).toEqual(
+					expect.objectContaining({
+						files: ['src/**/*.{ts,tsx,json}'],
+					}),
+				);
 			});
 		});
 
