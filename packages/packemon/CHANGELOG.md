@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.10.0 - 2021-12-19
+
+#### 🚀 Updates
+
+- Support an `addFiles` option. (#93) ([12e203b](https://github.com/milesj/packemon/commit/12e203b)), closes [#93](https://github.com/milesj/packemon/issues/93)
+- Support code-splitting and dynamic imports. (#94) ([6b446fb](https://github.com/milesj/packemon/commit/6b446fb)), closes [#94](https://github.com/milesj/packemon/issues/94)
+
+#### 📦 Dependencies
+
+- **[beemo-dev]** Update to latest configs. ([c1bebdd](https://github.com/milesj/packemon/commit/c1bebdd))
+- **[boost]** Update to v3 latest. ([2061ef9](https://github.com/milesj/packemon/commit/2061ef9))
+- **[rollup]** Update to v2.61. ([b8bf42b](https://github.com/milesj/packemon/commit/b8bf42b))
+
+**Note:** Version bump only for package packemon
+
+
+
+
+
 ## 1.9.0 - 2021-12-07
 
 #### 🚀 Updates

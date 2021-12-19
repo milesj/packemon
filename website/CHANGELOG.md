@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.5.0 - 2021-12-19
+
+#### 🚀 Updates
+
+- Add `api` config setting. (#92) ([2686012](https://github.com/milesj/packemon/commit/2686012)), closes [#92](https://github.com/milesj/packemon/issues/92)
+- Support an `addFiles` option. (#93) ([12e203b](https://github.com/milesj/packemon/commit/12e203b)), closes [#93](https://github.com/milesj/packemon/issues/93)
+- Support code-splitting and dynamic imports. (#94) ([6b446fb](https://github.com/milesj/packemon/commit/6b446fb)), closes [#94](https://github.com/milesj/packemon/issues/94)
+
+#### 📘 Docs
+
+- Update to latest. ([4b057e4](https://github.com/milesj/packemon/commit/4b057e4))
+
+**Note:** Version bump only for package website
+
+
+
+
+
 ### 0.4.1 - 2021-11-12
 
 #### 📦 Dependencies
