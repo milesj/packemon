@@ -117,6 +117,7 @@ export interface FilterOptions {
 export interface BuildOptions extends FilterOptions {
 	addEngines?: boolean;
 	addExports?: boolean;
+	addFiles?: boolean;
 	analyze?: AnalyzeType;
 	concurrency?: number;
 	declaration?: DeclarationType;

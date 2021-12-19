@@ -12,6 +12,9 @@ export class BuildCommand extends BaseCommand<Required<BuildOptions>> {
 	@Arg.Flag('Add `exports` fields to each `package.json`')
 	addExports: boolean = false;
 
+	@Arg.Flag('Add `files` whitelist to each `package.json`')
+	addFiles: boolean = true;
+
 	@Arg.String('Visualize and analyze all generated builds', {
 		choices: ['none', 'sunburst', 'treemap', 'network'],
 	})
@@ -38,6 +41,7 @@ export class BuildCommand extends BaseCommand<Required<BuildOptions>> {
 			<Build
 				addEngines={this.addEngines}
 				addExports={this.addExports}
+				addFiles={this.addFiles}
 				analyze={this.analyze}
 				concurrency={this.concurrency}
 				declaration={this.declaration}
