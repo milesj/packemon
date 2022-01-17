@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkwebsite=self.webpackChunkwebsite||[]).push([[2086],{2742:function(e){e.exports=JSON.parse('{"id":721,"name":"TypesArtifact","nextId":352,"permalink":"/api/packemon/class/TypesArtifact","previousId":299}')}}]);

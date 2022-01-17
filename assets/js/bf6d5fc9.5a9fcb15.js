@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkwebsite=self.webpackChunkwebsite||[]).push([[9805],{7124:function(e){e.exports=JSON.parse('{"id":489,"name":"PackageValidator","nextId":534,"permalink":"/api/packemon/class/PackageValidator","previousId":429}')}}]);

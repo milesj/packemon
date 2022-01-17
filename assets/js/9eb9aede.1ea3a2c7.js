@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkwebsite=self.webpackChunkwebsite||[]).push([[4340],{2477:function(e){e.exports=JSON.parse('{"id":60,"name":"getBabelInputConfig","nextId":64,"permalink":"/api/packemon/function/getBabelInputConfig","previousId":380}')}}]);

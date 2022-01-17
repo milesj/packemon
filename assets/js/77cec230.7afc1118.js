@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkwebsite=self.webpackChunkwebsite||[]).push([[8326],{3422:function(e){e.exports=JSON.parse('{"id":352,"name":"ValidateCommand","nextId":380,"permalink":"/api/packemon/class/ValidateCommand","previousId":721}')}}]);

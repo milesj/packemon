@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkwebsite=self.webpackChunkwebsite||[]).push([[2254],{6728:function(e){e.exports=JSON.parse('{"id":4,"name":"default","nextId":2,"permalink":"/api/babel-plugin-cjs-esm-interop/function/default"}')}}]);
