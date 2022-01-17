@@ -38,27 +38,23 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 import _regeneratorRuntime from \\"@babel/runtime/regenerator\\";
 
 var createClient = function createClient() {
-  try {
-    return Promise.resolve(wait()).then(function () {
-      var _iterator = _createForOfIteratorHelper(gen()),
-          _step;
+  return Promise.resolve(wait()).then(function () {
+    var _iterator = _createForOfIteratorHelper(gen()),
+        _step;
 
-      try {
-        for (_iterator.s(); !(_step = _iterator.n()).done;) {
-          var iterator = _step.value;
-          console.log(iterator);
-        }
-      } catch (err) {
-        _iterator.e(err);
-      } finally {
-        _iterator.f();
+    try {
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+        var iterator = _step.value;
+        console.log(iterator);
       }
+    } catch (err) {
+      _iterator.e(err);
+    } finally {
+      _iterator.f();
+    }
 
-      return new Client();
-    });
-  } catch (e) {
-    return Promise.reject(e);
-  }
+    return new Client();
+  });
 };
 
 var wait = function wait() {
@@ -116,27 +112,23 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 var createClient = function createClient() {
-  try {
-    return Promise.resolve(wait()).then(function () {
-      var _iterator = _createForOfIteratorHelper(gen()),
-          _step;
+  return Promise.resolve(wait()).then(function () {
+    var _iterator = _createForOfIteratorHelper(gen()),
+        _step;
 
-      try {
-        for (_iterator.s(); !(_step = _iterator.n()).done;) {
-          var iterator = _step.value;
-          console.log(iterator);
-        }
-      } catch (err) {
-        _iterator.e(err);
-      } finally {
-        _iterator.f();
+    try {
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+        var iterator = _step.value;
+        console.log(iterator);
       }
+    } catch (err) {
+      _iterator.e(err);
+    } finally {
+      _iterator.f();
+    }
 
-      return new Client();
-    });
-  } catch (e) {
-    return Promise.reject(e);
-  }
+    return new Client();
+  });
 };
 
 var wait = function wait() {
@@ -289,27 +281,23 @@ Array [
   function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
   var createClient = function createClient() {
-    try {
-      return Promise.resolve(wait()).then(function () {
-        var _iterator = _createForOfIteratorHelper(gen()),
-            _step;
+    return Promise.resolve(wait()).then(function () {
+      var _iterator = _createForOfIteratorHelper(gen()),
+          _step;
 
-        try {
-          for (_iterator.s(); !(_step = _iterator.n()).done;) {
-            var iterator = _step.value;
-            console.log(iterator);
-          }
-        } catch (err) {
-          _iterator.e(err);
-        } finally {
-          _iterator.f();
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var iterator = _step.value;
+          console.log(iterator);
         }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
 
-        return new Client();
-      });
-    } catch (e) {
-      return Promise.reject(e);
-    }
+      return new Client();
+    });
   };
 
   _exports.createClient = createClient;

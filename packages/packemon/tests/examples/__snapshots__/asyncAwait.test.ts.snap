@@ -201,21 +201,7 @@ Array [
 exports[`Async/await transforms example test case: browser-legacy-esm 1`] = `
 Array [
   "esm/index-browser-legacy-esm.js",
-  "function _catch(body, recover) {
-  try {
-    var result = body();
-  } catch (e) {
-    return recover(e);
-  }
-
-  if (result && result.then) {
-    return result.then(void 0, recover);
-  }
-
-  return result;
-}
-
-function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError(\\"Cannot instantiate an arrow function\\"); } }
+  "function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError(\\"Cannot instantiate an arrow function\\"); } }
 
 var run = function run() {
   try {
@@ -311,21 +297,7 @@ exports.wait = wait;
 exports[`Async/await transforms example test case: browser-legacy-umd 1`] = `
 Array [
   "umd/index-browser-legacy-umd.js",
-  "function _catch(body, recover) {
-  try {
-    var result = body();
-  } catch (e) {
-    return recover(e);
-  }
-
-  if (result && result.then) {
-    return result.then(void 0, recover);
-  }
-
-  return result;
-}
-
-(function (global, factory) {
+  "(function (global, factory) {
   if (typeof define === \\"function\\" && define.amd) {
     define([\\"exports\\"], factory);
   } else if (typeof exports !== \\"undefined\\") {
