@@ -32,7 +32,7 @@ export class InitCommand extends BaseCommand<InitOptions> {
 				this.log.info('All packages have been configured. Pass --force to override.');
 			}
 
-			return Promise.resolve();
+			return undefined;
 		}
 
 		const { Init } = await import('../components/Init');

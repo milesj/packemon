@@ -120,7 +120,7 @@ export class TypesArtifact extends Artifact<TypesBuild> {
 		outputName: string,
 		inputFile: string,
 		dtsBuildPath: Path,
-	): Promise<unknown> {
+	): Promise<void> {
 		const dtsEntryPoint = dtsBuildPath.append(`${removeSourcePath(inputFile)}.d.ts`);
 
 		if (!dtsEntryPoint.exists()) {
@@ -128,7 +128,7 @@ export class TypesArtifact extends Artifact<TypesBuild> {
 				`Unable to generate declaration for "${outputName}". Declaration entry point "${dtsEntryPoint}" does not exist.`,
 			);
 
-			return Promise.resolve();
+			return;
 		}
 
 		// Create a fake config file
@@ -184,8 +184,6 @@ export class TypesArtifact extends Artifact<TypesBuild> {
 				`Generated "${outputName}" types completed with ${result.errorCount} errors and ${result.warningCount} warnings!`,
 			);
 		}
-
-		return result;
 	}
 
 	protected getApiExtractorConfigPath(outputName: string): Path {
