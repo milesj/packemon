@@ -6187,6 +6187,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"big.js@npm:^6.1.1":
+  version: 6.1.1
+  resolution: "big.js@npm:6.1.1"
+  checksum: ba5db278e7d6700d7f92b7421e851bb65b6336d90b882869696c50574623c6be31f81500c3195fb1b391045163ffe62745e1c2bc30b35cb15e1b3e3ed135266b
+  languageName: node
+  linkType: hard
+
 "binary-extensions@npm:^2.0.0":
   version: 2.2.0
   resolution: "binary-extensions@npm:2.2.0"
@@ -8874,6 +8881,13 @@ __metadata:
   version: 5.3.0
   resolution: "estraverse@npm:5.3.0"
   checksum: 072780882dc8416ad144f8fe199628d2b3e7bbc9989d9ed43795d2c90309a2047e6bc5979d7e2322a341163d22cfad9e21f4110597fe487519697389497e4e2b
+  languageName: node
+  linkType: hard
+
+"estree-walker@npm:^0.6.1":
+  version: 0.6.1
+  resolution: "estree-walker@npm:0.6.1"
+  checksum: 9d6f82a4921f11eec18f8089fb3cce6e53bcf45a8e545c42a2674d02d055fb30f25f90495f8be60803df6c39680c80dcee7f944526867eb7aa1fc9254883b23d
   languageName: node
   linkType: hard
 
@@ -12930,12 +12944,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mime@npm:^2.3.1":
-  version: 2.5.2
-  resolution: "mime@npm:2.5.2"
+"mime@npm:^2.3.1, mime@npm:^2.5.2":
+  version: 2.6.0
+  resolution: "mime@npm:2.6.0"
   bin:
     mime: cli.js
-  checksum: dd3c93d433d41a09f6a1cfa969b653b769899f3bd573e7bfcea33bdc8b0cc4eba57daa2f95937369c2bd2b6d39d62389b11a4309fe40d1d3a1b736afdedad0ff
+  checksum: 1497ba7b9f6960694268a557eae24b743fd2923da46ec392b042469f4b901721ba0adcf8b0d3c2677839d0e243b209d76e5edcbd09cfdeffa2dfb6bb4df4b862
   languageName: node
   linkType: hard
 
@@ -14134,6 +14148,7 @@ __metadata:
     rollup: ^2.64.0
     rollup-plugin-node-externals: ^2.2.0
     rollup-plugin-polyfill-node: ^0.8.0
+    rollup-plugin-smart-asset: ^2.1.2
     rollup-plugin-visualizer: ^5.5.4
     semver: ^7.3.5
     spdx-license-list: ^6.4.0
@@ -16253,6 +16268,21 @@ resolve@~1.19.0:
   languageName: node
   linkType: hard
 
+"rollup-plugin-smart-asset@npm:^2.1.2":
+  version: 2.1.2
+  resolution: "rollup-plugin-smart-asset@npm:2.1.2"
+  dependencies:
+    big.js: ^6.1.1
+    magic-string: ^0.25.7
+    mime: ^2.5.2
+    mkdirp: ^1.0.4
+    rollup-pluginutils: ^2.8.2
+  peerDependencies:
+    rollup: ">0.60"
+  checksum: c92b12cb6d64132c62a8b64ab8c36275d469caa61ecf7c197c9884fe9477df2a5b4d58cecc72a502490d51b0f65575314c81dd5959f63cc374b10b693c96fd64
+  languageName: node
+  linkType: hard
+
 "rollup-plugin-visualizer@npm:^5.5.4":
   version: 5.5.4
   resolution: "rollup-plugin-visualizer@npm:5.5.4"
@@ -16266,6 +16296,15 @@ resolve@~1.19.0:
   bin:
     rollup-plugin-visualizer: dist/bin/cli.js
   checksum: 440d765fb1f8c58fb84bca0f83c23ccf2412d1138af57d9e72848a1ea7fad5ff3f3e29ef335a0662d3152668fbb90eff7abda3eb928cc04da83d6079d5e5404f
+  languageName: node
+  linkType: hard
+
+"rollup-pluginutils@npm:^2.8.2":
+  version: 2.8.2
+  resolution: "rollup-pluginutils@npm:2.8.2"
+  dependencies:
+    estree-walker: ^0.6.1
+  checksum: 339fdf866d8f4ff6e408fa274c0525412f7edb01dc46b5ccda51f575b7e0d20ad72965773376fb5db95a77a7fcfcab97bf841ec08dbadf5d6b08af02b7a2cf5e
   languageName: node
   linkType: hard
 
