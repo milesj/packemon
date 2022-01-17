@@ -1,6 +1,7 @@
 import { ModuleFormat, OutputOptions, RollupOptions } from 'rollup';
 import externals from 'rollup-plugin-node-externals';
 import nodePolyfills from 'rollup-plugin-polyfill-node';
+import smartAsset from 'rollup-plugin-smart-asset';
 import visualizer from 'rollup-plugin-visualizer';
 import { getBabelInputPlugin, getBabelOutputPlugin } from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
@@ -8,7 +9,7 @@ import json from '@rollup/plugin-json';
 import resolve from '@rollup/plugin-node-resolve';
 import { getBabelInputConfig, getBabelOutputConfig } from '../babel/config';
 import type { CodeArtifact } from '../CodeArtifact';
-import { EXCLUDE, EXTENSIONS } from '../constants';
+import { ASSETS, EXCLUDE, EXTENSIONS } from '../constants';
 import { FeatureFlags, Format } from '../types';
 import { addBinShebang } from './plugins/addBinShebang';
 
@@ -103,7 +104,7 @@ export function getRollupOutputConfig(
 		// Map our externals to local paths with trailing extension
 		paths: getRollupPaths(artifact, ext),
 		// Use our extension for file names
-		assetFileNames: '../assets/[name]-[hash][extname]',
+		assetFileNames: '../assets/[name][ext]',
 		chunkFileNames: `${artifact.bundle ? 'bundle' : '[name]'}-[hash].${ext}`,
 		entryFileNames: `[name].${ext}`,
 		preserveModules: !artifact.bundle,
@@ -175,6 +176,16 @@ export function getRollupConfig(artifact: CodeArtifact, features: FeatureFlags):
 				filename: artifact.package.path.path(),
 				// Extract maps from the original source
 				sourceMaps: true,
+			}),
+			// Copy assets and reference imports
+			smartAsset({
+				url: 'copy',
+				assetsPath: '../assets',
+				useHash: false,
+				keepImport: true,
+				keepName: true,
+				sourceMap: true,
+				extensions: ASSETS,
 			}),
 		],
 		// Treeshake for smaller builds
