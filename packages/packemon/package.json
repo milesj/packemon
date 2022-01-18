@@ -80,6 +80,7 @@
     "ink": "^3.2.0",
     "ink-progress-bar": "^3.0.0",
     "ink-spinner": "^4.0.3",
+    "magic-string": "^0.25.7",
     "micromatch": "^4.0.4",
     "npm-packlist": "^3.0.0",
     "react": "^17.0.2",
@@ -88,10 +89,12 @@
     "rollup": "^2.64.0",
     "rollup-plugin-node-externals": "^2.2.0",
     "rollup-plugin-polyfill-node": "^0.8.0",
-    "rollup-plugin-smart-asset": "^2.1.2",
     "rollup-plugin-visualizer": "^5.5.4",
     "semver": "^7.3.5",
     "spdx-license-list": "^6.4.0"
+  },
+  "devDependencies": {
+    "@types/acorn": "^4.0.6"
   },
   "peerDependencies": {
     "chokidar": "^3.5.1",
