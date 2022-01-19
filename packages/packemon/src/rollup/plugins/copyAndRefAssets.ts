@@ -35,7 +35,7 @@ export function copyAndRefAssets({ dir }: CopyAssetsPlugin): Plugin {
 	const assetsToCopy: Record<string, string> = {};
 
 	return {
-		name: 'package-assets',
+		name: 'packemon-copy-and-ref-assets',
 
 		// Delete old assets to remove any possible stale assets
 		async buildStart() {
