@@ -470,8 +470,12 @@ export class Package {
 
 		const files = new Set<string>(this.packageJson.files);
 
-		if (this.path.append('assets').exists()) {
-			files.add('assets/**/*');
+		try {
+			if (this.path.append('assets').exists()) {
+				files.add('assets/**/*');
+			}
+		} catch {
+			// May throw ENOENT
 		}
 
 		this.artifacts.forEach((artifact) => {
