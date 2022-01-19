@@ -104,7 +104,7 @@ export function getRollupOutputConfig(
 		// Map our externals to local paths with trailing extension
 		paths: getRollupPaths(artifact, ext),
 		// Use our extension for file names
-		assetFileNames: 'assets/[name][ext]',
+		assetFileNames: 'assets/[name].[ext]',
 		chunkFileNames: `${artifact.bundle ? 'bundle' : '[name]'}-[hash].${ext}`,
 		entryFileNames: `[name].${ext}`,
 		preserveModules: !artifact.bundle,

@@ -278,40 +278,6 @@ console.log(json);
 ]
 `;
 
-exports[`Assets transforms example test case: browser-stable-umd 1`] = `
-Array [
-  "umd/index-browser-stable-umd.js",
-  "(function (global, factory) {
-  if (typeof define === \\"function\\" && define.amd) {
-    define([\\"../assets/styles-173c885b.css\\", \\"../assets/logo-073ed8f7.svg\\"], factory);
-  } else if (typeof exports !== \\"undefined\\") {
-    factory(require(\\"../assets/styles-173c885b.css\\"), require(\\"../assets/logo-073ed8f7.svg\\"));
-  } else {
-    var mod = {
-      exports: {}
-    };
-    factory(global.styles173c885b, global.logo073ed8f7);
-    global.examples = mod.exports;
-  }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_styles173c885b, _logo073ed8f) {
-  \\"use strict\\";
-
-  // Bundled with Packemon: https://packemon.dev
-  // Platform: browser, Support: stable, Format: umd
-  const json = {
-    list: [\\"foo\\", \\"bar\\", \\"baz\\"],
-    number: 123,
-    string: \\"abc\\",
-    object: {
-      foo: true
-    }
-  };
-  console.log(json);
-});
-",
-]
-`;
-
 exports[`Assets transforms example test case: native-current-lib 1`] = `
 Array [
   "lib/index-native-current-lib.js",
@@ -348,30 +314,6 @@ require('../assets/styles-173c885b.css');
 require('../assets/logo-073ed8f7.svg');
 
 const json = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
-  number: 123,
-  string: \\"abc\\",
-  object: {
-    foo: true
-  }
-};
-console.log(json);
-",
-]
-`;
-
-exports[`Assets transforms example test case: native-legacy-lib 1`] = `
-Array [
-  "lib/index-native-legacy-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: native, Support: legacy, Format: lib
-'use strict';
-
-require('../assets/styles-173c885b.css');
-
-require('../assets/logo-073ed8f7.svg');
-
-var json = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
   number: 123,
   string: \\"abc\\",
@@ -476,30 +418,6 @@ console.log(json);
 ]
 `;
 
-exports[`Assets transforms example test case: node-experimental-cjs 1`] = `
-Array [
-  "cjs/index-node-experimental-cjs.cjs",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: node, Support: experimental, Format: cjs
-'use strict';
-
-require('../assets/styles-173c885b.css');
-
-require('../assets/logo-073ed8f7.svg');
-
-const json = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
-  number: 123,
-  string: \\"abc\\",
-  object: {
-    foo: true
-  }
-};
-console.log(json);
-",
-]
-`;
-
 exports[`Assets transforms example test case: node-experimental-lib 1`] = `
 Array [
   "lib/index-node-experimental-lib.js",
@@ -532,30 +450,6 @@ Array [
 import '../assets/styles-173c885b.css';
 import '../assets/logo-073ed8f7.svg';
 const json = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
-  number: 123,
-  string: \\"abc\\",
-  object: {
-    foo: true
-  }
-};
-console.log(json);
-",
-]
-`;
-
-exports[`Assets transforms example test case: node-legacy-cjs 1`] = `
-Array [
-  "cjs/index-node-legacy-cjs.cjs",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: node, Support: legacy, Format: cjs
-'use strict';
-
-require('../assets/styles-173c885b.css');
-
-require('../assets/logo-073ed8f7.svg');
-
-var json = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
   number: 123,
   string: \\"abc\\",

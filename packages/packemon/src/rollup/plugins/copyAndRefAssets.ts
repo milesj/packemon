@@ -53,7 +53,14 @@ export function copyAndRefAssets({ dir }: CopyAssetsPlugin): Plugin {
 
 		// Update import declarations to new asset paths
 		transform(code, id) {
-			const ast = this.parse(code) as ProgramNode;
+			let ast: ProgramNode;
+
+			try {
+				ast = this.parse(code) as ProgramNode;
+			} catch {
+				// Unknown syntax may fail parsing, not much we can do here?
+				return undefined;
+			}
 
 			if (!ast) {
 				return undefined;
