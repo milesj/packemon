@@ -5,6 +5,7 @@ import fs from 'fs-extra';
 import MagicString from 'magic-string';
 import rimraf from 'rimraf';
 import { Plugin } from 'rollup';
+import { VirtualPath } from '@boost/common';
 import { ASSETS } from '../../constants';
 
 function isAsset(id: string): boolean {
@@ -27,24 +28,24 @@ export interface CopyAssetsPlugin {
 }
 
 export function copyAndRefAssets({ dir }: CopyAssetsPlugin): Plugin {
-	const assetsToCopy: Record<string, string> = {};
+	const assetsToCopy: Record<string, VirtualPath> = {};
 
-	function determineNewAsset(source: string, importer?: string): string {
-		const id = path.resolve(importer ? path.dirname(importer) : '', source);
-		const ext = path.extname(id);
-		const name = path.basename(id, ext);
+	function determineNewAsset(source: string, importer?: string): VirtualPath {
+		const id = new VirtualPath(importer ? path.dirname(importer) : '', source);
+		const ext = id.ext();
+		const name = id.name(true);
 
 		// Generate a hash of the source file path,
 		// and have it match between nix and windows
 		const hash = createHash('sha256')
-			.update(id.replace(path.dirname(dir), '').replace(/\\/g, '/'))
+			.update(id.path().replace(new VirtualPath(path.dirname(dir)).path(), ''))
 			.digest('hex')
 			.slice(0, 8);
 
 		// Create a new path that points to the assets folder
-		const newId = path.join(dir, `${name}-${hash}${ext}`);
+		const newId = new VirtualPath(dir, `${name}-${hash}${ext}`);
 
-		assetsToCopy[id] = newId;
+		assetsToCopy[id.path()] = newId;
 
 		return newId;
 	}
@@ -114,8 +115,8 @@ export function copyAndRefAssets({ dir }: CopyAssetsPlugin): Plugin {
 					const newId = determineNewAsset(source.value, parentId);
 
 					const importPath = options.preserveModules
-						? path.relative(path.dirname(parentId), newId)
-						: `../assets/${path.basename(newId)}`;
+						? new VirtualPath(path.relative(path.dirname(parentId), newId.path())).path()
+						: `../assets/${newId.name()}`;
 
 					hasChanged = true;
 					magicString.overwrite(source.start, source.end, `'${importPath}'`);
@@ -146,8 +147,8 @@ export function copyAndRefAssets({ dir }: CopyAssetsPlugin): Plugin {
 			// multiple asset folders within each format!
 			await Promise.all(
 				Object.entries(assetsToCopy).map(async ([oldId, newId]) => {
-					if (!fs.existsSync(newId)) {
-						await fs.copyFile(oldId, newId);
+					if (!newId.exists()) {
+						await fs.copyFile(oldId, newId.path());
 					}
 				}),
 			);

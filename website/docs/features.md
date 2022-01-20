@@ -120,6 +120,30 @@ Make use of `import()` and Packemon will ensure proper code-splitting for consum
 persist dynamic imports when the the target platform and supported version can utilize the feature
 natively, otherwise it is transpiled down.
 
+## Asset imports
+
+When a file imports an asset (styles, images, audio, video), the import remains in-tact so any
+bundlers can handle accordingly. However, assets are moved to a shared `assets` folder, are hashed
+for uniqueness, and any imports are modified to this new path.
+
+An example of this as follows:
+
+```ts
+// Input:
+//  src/components/Button/index.ts
+//  src/components/Button/button.css
+import './button.css';
+```
+
+```ts
+// Output:
+//  src/components/Button/index.ts
+//  assets/button-as172k9.css
+import '../../../assets/button-as172k9.css';
+```
+
+> [View full list of supported assets.](https://github.com/milesj/packemon/blob/asset/packages/packemon/src/constants.ts#L12)
+
 ## Environment constants
 
 The [babel-plugin-env-constants](https://www.npmjs.com/package/babel-plugin-env-constants) plugin is
