@@ -42,13 +42,13 @@ export const ASSETS = [
 export const EXTENSIONS = ['.ts', '.tsx', '.js', '.jsx', '.cjs', '.mjs'];
 
 export const EXCLUDE = [
-	'node_modules/**',
-	'tests/**',
-	'__fixtures__/**',
-	'__mocks__/**',
-	'__tests__/**',
-	'*.config.(c|m)?js',
-	'*.(test|spec).(js|ts)x?',
+	'**/node_modules/**',
+	'**/tests/**',
+	'**/__fixtures__/**',
+	'**/__mocks__/**',
+	'**/__tests__/**',
+	'**/*.(config|test|spec).*',
+	'**/*-(test|spec).*',
 ];
 
 // https://reactnative.dev/docs/javascript-environment

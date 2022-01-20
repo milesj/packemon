@@ -9,6 +9,7 @@ import { Artifact } from './Artifact';
 import { CodeArtifact } from './CodeArtifact';
 import {
 	DEFAULT_FORMATS,
+	EXCLUDE,
 	FORMATS_BROWSER,
 	FORMATS_NATIVE,
 	FORMATS_NODE,
@@ -204,6 +205,8 @@ export class Package {
 				absolute: true,
 				cwd: this.path.path(),
 				onlyFiles: true,
+				// This breaks our own fixtures, so this is hard to test...
+				ignore: process.env.NODE_ENV === 'test' ? [] : EXCLUDE,
 			})
 			.map((file) => new Path(file).path());
 	}
