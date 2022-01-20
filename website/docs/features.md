@@ -142,7 +142,7 @@ import './button.css';
 import '../../../assets/button-as172k9.css';
 ```
 
-> [View full list of supported assets.](https://github.com/milesj/packemon/blob/asset/packages/packemon/src/constants.ts#L12)
+> [View full list of supported assets.](https://github.com/milesj/packemon/blob/master/packages/packemon/src/constants.ts#L12)
 
 ## Environment constants
 
