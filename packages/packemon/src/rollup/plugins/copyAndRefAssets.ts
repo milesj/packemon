@@ -32,7 +32,12 @@ export function copyAndRefAssets({ dir }: CopyAssetsPlugin): Plugin {
 		const id = path.resolve(importer ? path.dirname(importer) : '', source);
 		const ext = path.extname(id);
 		const name = path.basename(id, ext);
-		const hash = createHash('sha256').update(id).digest('hex').slice(0, 8);
+
+		// Generate a hash of the source file path,
+		// and have it match between nix and windows
+		const hash = createHash('sha256').update(id.replace(/\\/g, '/')).digest('hex').slice(0, 8);
+
+		// Create a new path that points to the assets folder
 		const newId = path.join(dir, `${name}-${hash}${ext}`);
 
 		assetsToCopy[id] = newId;
