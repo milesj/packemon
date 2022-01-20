@@ -31,7 +31,6 @@ async function run() {
 		.categories({
 			filter: 'Filtering',
 		})
-		.middleware(checkPackageOutdated('packemon', version))
 		.register(new BuildCommand())
 		.register(new CleanCommand())
 		.register(new FilesCommand())
@@ -40,6 +39,10 @@ async function run() {
 		.register(new ScaffoldCommand())
 		.register(new ValidateCommand())
 		.register(new WatchCommand());
+
+	if (!process.env.CI) {
+		program.middleware(checkPackageOutdated('packemon', version));
+	}
 
 	await program.runAndExit(process.argv);
 }
