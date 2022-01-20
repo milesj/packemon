@@ -57,6 +57,7 @@ describe('getRollupConfig()', () => {
 		'resolve()',
 		'commonjs()',
 		'json()',
+		expect.any(Object),
 		`babelInput(${fixturePath})`,
 	];
 
@@ -118,7 +119,7 @@ describe('getRollupConfig()', () => {
 			},
 			output: [
 				{
-					assetFileNames: '../assets/[name]-[hash][extname]',
+					assetFileNames: 'assets/[name].[ext]',
 					banner: expect.any(String),
 					chunkFileNames: 'bundle-[hash].js',
 					dir: fixturePath.append('lib').path(),
@@ -136,7 +137,7 @@ describe('getRollupConfig()', () => {
 					sourcemapExcludeSources: true,
 				},
 				{
-					assetFileNames: '../assets/[name]-[hash][extname]',
+					assetFileNames: 'assets/[name].[ext]',
 					banner: expect.any(String),
 					chunkFileNames: 'bundle-[hash].js',
 					dir: fixturePath.append('esm').path(),
@@ -153,7 +154,7 @@ describe('getRollupConfig()', () => {
 					sourcemapExcludeSources: true,
 				},
 				{
-					assetFileNames: '../assets/[name]-[hash][extname]',
+					assetFileNames: 'assets/[name].[ext]',
 					banner: expect.any(String),
 					chunkFileNames: 'bundle-[hash].mjs',
 					dir: fixturePath.append('mjs').path(),
@@ -189,7 +190,7 @@ describe('getRollupConfig()', () => {
 			},
 			output: [
 				{
-					assetFileNames: '../assets/[name]-[hash][extname]',
+					assetFileNames: 'assets/[name].[ext]',
 					banner: expect.any(String),
 					chunkFileNames: 'bundle-[hash].js',
 					dir: fixturePath.append('lib').path(),
@@ -228,7 +229,7 @@ describe('getRollupConfig()', () => {
 			].map((f) => fixturePath.append(f).path()),
 			output: [
 				{
-					assetFileNames: '../assets/[name]-[hash][extname]',
+					assetFileNames: 'assets/[name].[ext]',
 					chunkFileNames: '[name]-[hash].js',
 					dir: fixturePath.append('lib').path(),
 					entryFileNames: '[name].js',
@@ -327,7 +328,7 @@ describe('getRollupOutputConfig()', () => {
 
 	it('generates default output config', () => {
 		expect(getRollupOutputConfig(artifact, {}, 'lib')).toEqual({
-			assetFileNames: '../assets/[name]-[hash][extname]',
+			assetFileNames: 'assets/[name].[ext]',
 			banner: expect.any(String),
 			chunkFileNames: 'bundle-[hash].js',
 			dir: fixturePath.append('lib').path(),
@@ -510,7 +511,7 @@ describe('getRollupOutputConfig()', () => {
 		artifact.namespace = 'FooBar';
 
 		expect(getRollupOutputConfig(artifact, {}, 'umd')).toEqual({
-			assetFileNames: '../assets/[name]-[hash][extname]',
+			assetFileNames: 'assets/[name].[ext]',
 			banner: expect.any(String),
 			chunkFileNames: 'bundle-[hash].js',
 			dir: fixturePath.append('umd').path(),

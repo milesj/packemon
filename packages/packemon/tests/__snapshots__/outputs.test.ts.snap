@@ -386,6 +386,207 @@ Array [
 ]
 `;
 
+exports[`Outputs bundle with assets bundles all files and references assets 1`] = `
+Array [
+  "lib/index.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+require('../assets/globals-107ab52e.css');
+
+require('../assets/fonts-4e5dc96c.css');
+
+require('../assets/styles-b11c3a83.css');
+
+function button() {}
+
+exports.button = button;
+",
+]
+`;
+
+exports[`Outputs bundle with assets bundles all files and references assets 2`] = `
+Array [
+  "package.json",
+  Object {
+    "main": "./lib/index.js",
+    "name": "project-assets",
+    "packemon": Object {
+      "bundle": true,
+      "platform": "node",
+    },
+  },
+]
+`;
+
+exports[`Outputs bundle with assets bundles all files and references assets 3`] = `
+Array [
+  "src/button/styles.css",
+  "assets/styles-b11c3a83.css",
+]
+`;
+
+exports[`Outputs bundle with assets bundles all files and references assets 4`] = `
+Array [
+  "src/globals.css",
+  "assets/globals-107ab52e.css",
+]
+`;
+
+exports[`Outputs bundle with assets bundles all files and references assets 5`] = `
+Array [
+  "src/shared/fonts.css",
+  "assets/fonts-4e5dc96c.css",
+]
+`;
+
+exports[`Outputs bundle with assets uses same assets across multiple formats 1`] = `
+Array [
+  "cjs/index.cjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: cjs
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+require('../assets/globals-107ab52e.css');
+
+require('../assets/fonts-4e5dc96c.css');
+
+require('../assets/styles-b11c3a83.css');
+
+function button() {}
+
+exports.button = button;
+",
+]
+`;
+
+exports[`Outputs bundle with assets uses same assets across multiple formats 2`] = `
+Array [
+  "esm/index.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: esm
+import '../assets/globals-107ab52e.css';
+import '../assets/fonts-4e5dc96c.css';
+import '../assets/styles-b11c3a83.css';
+
+function button() {}
+
+export { button };
+",
+]
+`;
+
+exports[`Outputs bundle with assets uses same assets across multiple formats 3`] = `
+Array [
+  "lib/index.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+require('../assets/globals-107ab52e.css');
+
+require('../assets/fonts-4e5dc96c.css');
+
+require('../assets/styles-b11c3a83.css');
+
+function button() {}
+
+exports.button = button;
+",
+]
+`;
+
+exports[`Outputs bundle with assets uses same assets across multiple formats 4`] = `
+Array [
+  "package.json",
+  Object {
+    "main": "./lib/index.js",
+    "module": "./esm/index.js",
+    "name": "project-assets",
+    "packemon": Object {
+      "bundle": true,
+      "platform": "node",
+    },
+  },
+]
+`;
+
+exports[`Outputs bundle with assets uses same assets across multiple formats 5`] = `
+Array [
+  "src/button/styles.css",
+  "assets/styles-b11c3a83.css",
+]
+`;
+
+exports[`Outputs bundle with assets uses same assets across multiple formats 6`] = `
+Array [
+  "src/button/styles.css",
+  "assets/styles-b11c3a83.css",
+]
+`;
+
+exports[`Outputs bundle with assets uses same assets across multiple formats 7`] = `
+Array [
+  "src/button/styles.css",
+  "assets/styles-b11c3a83.css",
+]
+`;
+
+exports[`Outputs bundle with assets uses same assets across multiple formats 8`] = `
+Array [
+  "src/globals.css",
+  "assets/globals-107ab52e.css",
+]
+`;
+
+exports[`Outputs bundle with assets uses same assets across multiple formats 9`] = `
+Array [
+  "src/globals.css",
+  "assets/globals-107ab52e.css",
+]
+`;
+
+exports[`Outputs bundle with assets uses same assets across multiple formats 10`] = `
+Array [
+  "src/globals.css",
+  "assets/globals-107ab52e.css",
+]
+`;
+
+exports[`Outputs bundle with assets uses same assets across multiple formats 11`] = `
+Array [
+  "src/shared/fonts.css",
+  "assets/fonts-4e5dc96c.css",
+]
+`;
+
+exports[`Outputs bundle with assets uses same assets across multiple formats 12`] = `
+Array [
+  "src/shared/fonts.css",
+  "assets/fonts-4e5dc96c.css",
+]
+`;
+
+exports[`Outputs bundle with assets uses same assets across multiple formats 13`] = `
+Array [
+  "src/shared/fonts.css",
+  "assets/fonts-4e5dc96c.css",
+]
+`;
+
 exports[`Outputs no bundle creates individual files for every source file 1`] = `
 Array [
   "lib/index.js",
@@ -448,5 +649,78 @@ Array [
       "platform": "node",
     },
   },
+]
+`;
+
+exports[`Outputs no bundle with assets creates individual files and references assets 1`] = `
+Array [
+  "lib/button/index.js",
+  "'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+require('../../assets/styles-b11c3a83.css');
+
+function button() {}
+
+exports.button = button;
+",
+]
+`;
+
+exports[`Outputs no bundle with assets creates individual files and references assets 2`] = `
+Array [
+  "lib/index.js",
+  "'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+require('../assets/globals-107ab52e.css');
+
+require('../assets/fonts-4e5dc96c.css');
+
+const index = require('./button/index.js');
+
+exports.button = index.button;
+",
+]
+`;
+
+exports[`Outputs no bundle with assets creates individual files and references assets 3`] = `
+Array [
+  "package.json",
+  Object {
+    "main": "./lib/index.js",
+    "name": "project-assets",
+    "packemon": Object {
+      "bundle": true,
+      "platform": "node",
+    },
+  },
+]
+`;
+
+exports[`Outputs no bundle with assets creates individual files and references assets 4`] = `
+Array [
+  "src/button/styles.css",
+  "assets/styles-b11c3a83.css",
+]
+`;
+
+exports[`Outputs no bundle with assets creates individual files and references assets 5`] = `
+Array [
+  "src/globals.css",
+  "assets/globals-107ab52e.css",
+]
+`;
+
+exports[`Outputs no bundle with assets creates individual files and references assets 6`] = `
+Array [
+  "src/shared/fonts.css",
+  "assets/fonts-4e5dc96c.css",
 ]
 `;

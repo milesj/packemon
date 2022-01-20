@@ -11,6 +11,7 @@ import type { CodeArtifact } from '../CodeArtifact';
 import { EXCLUDE, EXTENSIONS } from '../constants';
 import { FeatureFlags, Format } from '../types';
 import { addBinShebang } from './plugins/addBinShebang';
+import { copyAndRefAssets } from './plugins/copyAndRefAssets';
 
 const sharedPlugins = [
 	resolve({ extensions: EXTENSIONS, preferBuiltins: true }),
@@ -103,7 +104,7 @@ export function getRollupOutputConfig(
 		// Map our externals to local paths with trailing extension
 		paths: getRollupPaths(artifact, ext),
 		// Use our extension for file names
-		assetFileNames: '../assets/[name]-[hash][extname]',
+		assetFileNames: 'assets/[name].[ext]',
 		chunkFileNames: `${artifact.bundle ? 'bundle' : '[name]'}-[hash].${ext}`,
 		entryFileNames: `[name].${ext}`,
 		preserveModules: !artifact.bundle,
@@ -166,6 +167,10 @@ export function getRollupConfig(artifact: CodeArtifact, features: FeatureFlags):
 			}),
 			// Externals MUST be listed before shared plugins
 			...sharedPlugins,
+			// Copy assets and update import references
+			copyAndRefAssets({
+				dir: artifact.package.path.append('assets').path(),
+			}),
 			// Declare Babel here so we can parse TypeScript/Flow
 			getBabelInputPlugin({
 				...getBabelInputConfig(artifact, features),

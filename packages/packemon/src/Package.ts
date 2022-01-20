@@ -470,6 +470,14 @@ export class Package {
 
 		const files = new Set<string>(this.packageJson.files);
 
+		try {
+			if (this.path.append('assets').exists()) {
+				files.add('assets/**/*');
+			}
+		} catch {
+			// May throw ENOENT
+		}
+
 		this.artifacts.forEach((artifact) => {
 			// Build files
 			if (artifact instanceof CodeArtifact) {

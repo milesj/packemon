@@ -9,6 +9,36 @@ import {
 	Support,
 } from './types';
 
+export const ASSETS = [
+	// Styles
+	'.css',
+	'.scss',
+	'.sass',
+	'.less',
+	// Images
+	'.svg',
+	'.png',
+	'.jpg',
+	'.jpeg',
+	'.gif',
+	'.webp',
+	// Audio
+	'.ogg',
+	'.mp3',
+	'.mpe',
+	'.mpeg',
+	'.wav',
+	// Video
+	'.mp4',
+	'.mov',
+	'.avi',
+	'.webm',
+	// Fonts
+	'.woff',
+	'.woff2',
+	'.ttf',
+];
+
 export const EXTENSIONS = ['.ts', '.tsx', '.js', '.jsx', '.cjs', '.mjs'];
 
 export const EXCLUDE = [
