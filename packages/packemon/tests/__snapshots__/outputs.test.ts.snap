@@ -386,6 +386,123 @@ Array [
 ]
 `;
 
+exports[`Outputs bundle with assets bundles all files and references assets 1`] = `
+Array [
+  "lib/index.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+require('../assets/globals-6791a666.css');
+
+require('../assets/fonts-c6e38a2d.css');
+
+require('../assets/styles-7ca1a3f0.css');
+
+function button() {}
+
+exports.button = button;
+",
+]
+`;
+
+exports[`Outputs bundle with assets bundles all files and references assets 2`] = `
+Array [
+  "package.json",
+  Object {
+    "main": "./lib/index.js",
+    "name": "project-assets",
+    "packemon": Object {
+      "bundle": true,
+      "platform": "node",
+    },
+  },
+]
+`;
+
+exports[`Outputs bundle with assets uses same assets across multiple formats 1`] = `
+Array [
+  "cjs/index.cjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: cjs
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+require('../assets/globals-6791a666.css');
+
+require('../assets/fonts-c6e38a2d.css');
+
+require('../assets/styles-7ca1a3f0.css');
+
+function button() {}
+
+exports.button = button;
+",
+]
+`;
+
+exports[`Outputs bundle with assets uses same assets across multiple formats 2`] = `
+Array [
+  "esm/index.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: esm
+import '../assets/globals-6791a666.css';
+import '../assets/fonts-c6e38a2d.css';
+import '../assets/styles-7ca1a3f0.css';
+
+function button() {}
+
+export { button };
+",
+]
+`;
+
+exports[`Outputs bundle with assets uses same assets across multiple formats 3`] = `
+Array [
+  "lib/index.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+require('../assets/globals-6791a666.css');
+
+require('../assets/fonts-c6e38a2d.css');
+
+require('../assets/styles-7ca1a3f0.css');
+
+function button() {}
+
+exports.button = button;
+",
+]
+`;
+
+exports[`Outputs bundle with assets uses same assets across multiple formats 4`] = `
+Array [
+  "package.json",
+  Object {
+    "main": "./lib/index.js",
+    "module": "./esm/index.js",
+    "name": "project-assets",
+    "packemon": Object {
+      "bundle": true,
+      "platform": "node",
+    },
+  },
+]
+`;
+
 exports[`Outputs no bundle creates individual files for every source file 1`] = `
 Array [
   "lib/index.js",
@@ -443,6 +560,58 @@ Array [
   Object {
     "main": "./lib/index.js",
     "name": "project-bundle",
+    "packemon": Object {
+      "bundle": true,
+      "platform": "node",
+    },
+  },
+]
+`;
+
+exports[`Outputs no bundle with assets creates individual files and references assets 1`] = `
+Array [
+  "lib/button/index.js",
+  "'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+require('../../assets/styles-7ca1a3f0.css');
+
+function button() {}
+
+exports.button = button;
+",
+]
+`;
+
+exports[`Outputs no bundle with assets creates individual files and references assets 2`] = `
+Array [
+  "lib/index.js",
+  "'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+require('../assets/globals-6791a666.css');
+
+require('../assets/fonts-c6e38a2d.css');
+
+const index = require('./button/index.js');
+
+exports.button = index.button;
+",
+]
+`;
+
+exports[`Outputs no bundle with assets creates individual files and references assets 3`] = `
+Array [
+  "package.json",
+  Object {
+    "main": "./lib/index.js",
+    "name": "project-assets",
     "packemon": Object {
       "bundle": true,
       "platform": "node",

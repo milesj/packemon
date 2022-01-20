@@ -520,31 +520,6 @@ exports.runGen = runGen;
 ]
 `;
 
-exports[`Generators transforms example test case: native-stable-lib 1`] = `
-Array [
-  "lib/index-native-stable-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: native, Support: stable, Format: lib
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-function* gen() {}
-
-function runGen() {
-  for (const iterator of gen()) {
-    console.log(iterator);
-  }
-}
-
-exports.gen = gen;
-exports.runGen = runGen;
-",
-]
-`;
-
 exports[`Generators transforms example test case: node-current-cjs 1`] = `
 Array [
   "cjs/index-node-current-cjs.cjs",
@@ -681,31 +656,6 @@ export { gen, runGen };
 ]
 `;
 
-exports[`Generators transforms example test case: node-legacy-cjs 1`] = `
-Array [
-  "cjs/index-node-legacy-cjs.cjs",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: node, Support: legacy, Format: cjs
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-function* gen() {}
-
-function runGen() {
-  for (const iterator of gen()) {
-    console.log(iterator);
-  }
-}
-
-exports.gen = gen;
-exports.runGen = runGen;
-",
-]
-`;
-
 exports[`Generators transforms example test case: node-legacy-lib 1`] = `
 Array [
   "lib/index-node-legacy-lib.js",
@@ -745,31 +695,6 @@ function runGen() {
 }
 
 export { gen, runGen };
-",
-]
-`;
-
-exports[`Generators transforms example test case: node-stable-cjs 1`] = `
-Array [
-  "cjs/index-node-stable-cjs.cjs",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: node, Support: stable, Format: cjs
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-function* gen() {}
-
-function runGen() {
-  for (const iterator of gen()) {
-    console.log(iterator);
-  }
-}
-
-exports.gen = gen;
-exports.runGen = runGen;
 ",
 ]
 `;

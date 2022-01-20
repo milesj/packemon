@@ -411,20 +411,6 @@ import '@packemon/bar';
 ]
 `;
 
-exports[`Rollup externals transforms example test case: browser-current-lib 1`] = `
-Array [
-  "lib/index-browser-current-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: browser, Support: current, Format: lib
-'use strict';
-
-require('@packemon/foo');
-
-require('@packemon/bar');
-",
-]
-`;
-
 exports[`Rollup externals transforms example test case: browser-current-umd 1`] = `
 Array [
   "umd/index-browser-current-umd.js",
@@ -468,28 +454,6 @@ Array [
 require('@packemon/foo');
 
 require('@packemon/bar');
-",
-]
-`;
-
-exports[`Rollup externals transforms example test case: browser-experimental-umd 1`] = `
-Array [
-  "umd/index-browser-experimental-umd.js",
-  "(function (global, factory) {
-  if (typeof define === \\"function\\" && define.amd) {
-    define([\\"@packemon/foo\\", \\"@packemon/bar\\"], factory);
-  } else if (typeof exports !== \\"undefined\\") {
-    factory(require(\\"@packemon/foo\\"), require(\\"@packemon/bar\\"));
-  } else {
-    var mod = {
-      exports: {}
-    };
-    factory(global.foo, global.bar);
-    global.examples = mod.exports;
-  }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_foo, _bar) {
-  \\"use strict\\";
-});
 ",
 ]
 `;
@@ -707,17 +671,6 @@ Array [
 require('@packemon/foo');
 
 require('@packemon/bar');
-",
-]
-`;
-
-exports[`Rollup externals transforms example test case: node-experimental-mjs 1`] = `
-Array [
-  "mjs/index-node-experimental-mjs.mjs",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: node, Support: experimental, Format: mjs
-import '@packemon/foo';
-import '@packemon/bar';
 ",
 ]
 `;

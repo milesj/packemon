@@ -21,6 +21,7 @@ export const ASSETS = [
 	'.jpg',
 	'.jpeg',
 	'.gif',
+	'.webp',
 	// Audio
 	'.ogg',
 	'.mp3',

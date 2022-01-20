@@ -236,64 +236,6 @@ export { run, wait };
 ]
 `;
 
-exports[`Async/await transforms example test case: browser-legacy-lib 1`] = `
-Array [
-  "lib/index-browser-legacy-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: browser, Support: legacy, Format: lib
-'use strict';
-
-function _catch(body, recover) {
-  try {
-    var result = body();
-  } catch (e) {
-    return recover(e);
-  }
-
-  if (result && result.then) {
-    return result.then(void 0, recover);
-  }
-
-  return result;
-}
-
-function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError(\\"Cannot instantiate an arrow function\\"); } }
-
-var run = function run() {
-  try {
-    return Promise.resolve(_catch(function () {
-      return Promise.resolve(wait()).then(function () {});
-    }, function () {
-      throw new Error('Fail');
-    }));
-  } catch (e) {
-    return Promise.reject(e);
-  }
-};
-
-var wait = function wait() {
-  var _this = this;
-
-  try {
-    return Promise.resolve(new Promise(function (resolve) {
-      _newArrowCheck(this, _this);
-
-      setTimeout(resolve, 100);
-    }.bind(this)));
-  } catch (e) {
-    return Promise.reject(e);
-  }
-};
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-exports.run = run;
-exports.wait = wait;
-",
-]
-`;
-
 exports[`Async/await transforms example test case: browser-legacy-umd 1`] = `
 Array [
   "umd/index-browser-legacy-umd.js",
@@ -450,37 +392,6 @@ Array [
     }
   }
 });
-",
-]
-`;
-
-exports[`Async/await transforms example test case: native-current-lib 1`] = `
-Array [
-  "lib/index-native-current-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: native, Support: current, Format: lib
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-async function wait() {
-  return new Promise(resolve => {
-    setTimeout(resolve, 100);
-  });
-}
-
-async function run() {
-  try {
-    await wait();
-  } catch {
-    throw new Error('Fail');
-  }
-}
-
-exports.run = run;
-exports.wait = wait;
 ",
 ]
 `;

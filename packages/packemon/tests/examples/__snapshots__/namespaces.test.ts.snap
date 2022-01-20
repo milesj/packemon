@@ -300,72 +300,6 @@ exports.ns2 = helpers;
 ]
 `;
 
-exports[`Namespaces transforms example test case: browser-stable-umd 1`] = `
-Array [
-  "umd/index-browser-stable-umd.js",
-  "(function (global, factory) {
-  if (typeof define === \\"function\\" && define.amd) {
-    define([\\"exports\\"], factory);
-  } else if (typeof exports !== \\"undefined\\") {
-    factory(exports);
-  } else {
-    var mod = {
-      exports: {}
-    };
-    factory(mod.exports);
-    global.examples = mod.exports;
-  }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports) {
-  \\"use strict\\";
-
-  Object.defineProperty(_exports, \\"__esModule\\", {
-    value: true
-  });
-  _exports.ns2 = _exports.ns1 = void 0;
-
-  // Bundled with Packemon: https://packemon.dev
-  // Platform: browser, Support: stable, Format: umd
-  function foo() {}
-
-  function bar() {}
-
-  const helpers = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    foo,
-    bar
-  });
-  _exports.ns2 = _exports.ns1 = helpers;
-});
-",
-]
-`;
-
-exports[`Namespaces transforms example test case: native-current-lib 1`] = `
-Array [
-  "lib/index-native-current-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: native, Support: current, Format: lib
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-function foo() {}
-
-function bar() {}
-
-const helpers = /*#__PURE__*/Object.freeze({
-  __proto__: null,
-  foo,
-  bar
-});
-exports.ns1 = helpers;
-exports.ns2 = helpers;
-",
-]
-`;
-
 exports[`Namespaces transforms example test case: native-experimental-lib 1`] = `
 Array [
   "lib/index-native-experimental-lib.js",
@@ -449,32 +383,6 @@ Array [
   "cjs/index-node-current-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: cjs
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-function foo() {}
-
-function bar() {}
-
-const helpers = /*#__PURE__*/Object.freeze({
-  __proto__: null,
-  foo,
-  bar
-});
-exports.ns1 = helpers;
-exports.ns2 = helpers;
-",
-]
-`;
-
-exports[`Namespaces transforms example test case: node-current-lib 1`] = `
-Array [
-  "lib/index-node-current-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: node, Support: current, Format: lib
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -608,51 +516,6 @@ var helpers = /*#__PURE__*/Object.freeze({
 });
 exports.ns1 = helpers;
 exports.ns2 = helpers;
-",
-]
-`;
-
-exports[`Namespaces transforms example test case: node-legacy-lib 1`] = `
-Array [
-  "lib/index-node-legacy-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: node, Support: legacy, Format: lib
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-function foo() {}
-
-function bar() {}
-
-var helpers = /*#__PURE__*/Object.freeze({
-  __proto__: null,
-  foo: foo,
-  bar: bar
-});
-exports.ns1 = helpers;
-exports.ns2 = helpers;
-",
-]
-`;
-
-exports[`Namespaces transforms example test case: node-legacy-mjs 1`] = `
-Array [
-  "mjs/index-node-legacy-mjs.mjs",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: node, Support: legacy, Format: mjs
-function foo() {}
-
-function bar() {}
-
-var helpers = /*#__PURE__*/Object.freeze({
-  __proto__: null,
-  foo: foo,
-  bar: bar
-});
-export { helpers as ns1, helpers as ns2 };
 ",
 ]
 `;

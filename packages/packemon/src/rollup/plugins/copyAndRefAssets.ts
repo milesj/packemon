@@ -10,21 +10,15 @@ function isAsset(id: string): boolean {
 	return ASSETS.some((ext) => id.endsWith(ext));
 }
 
-function determineNewAsset(dir: string, source: string, importer?: string): string {
-	const id = path.resolve(importer ? path.dirname(importer) : '', source);
-	const ext = path.extname(id);
-	const name = path.basename(id, ext);
-	const hash = createHash('sha256').update(source).digest('hex').slice(0, 8);
-
-	return path.join(dir, `${name}-${hash}${ext}`);
-}
-
-// We don't use `assetFileNames` as we want a single assets folder
-// at the root of the package, which Rollup does not allow. It wants
-// multiple asset folders within each format!
-async function copyAsset(from: string, to: string) {
-	await fs.promises.mkdir(path.dirname(to), { recursive: true });
-	await fs.promises.copyFile(from, to);
+function isRequireStatement(node: CallExpression): boolean {
+	return (
+		node &&
+		node.type === 'CallExpression' &&
+		node.callee &&
+		node.callee.type === 'Identifier' &&
+		node.callee.name === 'require' &&
+		node.arguments.length > 0
+	);
 }
 
 export interface CopyAssetsPlugin {
@@ -33,6 +27,18 @@ export interface CopyAssetsPlugin {
 
 export function copyAndRefAssets({ dir }: CopyAssetsPlugin): Plugin {
 	const assetsToCopy: Record<string, string> = {};
+
+	function determineNewAsset(source: string, importer?: string): string {
+		const id = path.resolve(importer ? path.dirname(importer) : '', source);
+		const ext = path.extname(id);
+		const name = path.basename(id, ext);
+		const hash = createHash('sha256').update(id).digest('hex').slice(0, 8);
+		const newId = path.join(dir, `${name}-${hash}${ext}`);
+
+		assetsToCopy[id] = newId;
+
+		return newId;
+	}
 
 	return {
 		name: 'packemon-copy-and-ref-assets',
@@ -44,54 +50,63 @@ export function copyAndRefAssets({ dir }: CopyAssetsPlugin): Plugin {
 
 		// Find assets and mark as external
 		resolveId(source, importer) {
-			if (!isAsset(source)) {
-				return null;
+			if (isAsset(source)) {
+				return { id: source, external: true };
 			}
 
-			return { id: path.resolve(importer ? path.dirname(importer) : '', source), external: true };
+			return null;
 		},
 
-		// Update import declarations to new asset paths
-		transform(code, id) {
+		// Update import/require declarations to new asset paths
+		renderChunk(code, chunk, options) {
 			let ast: ProgramNode;
 
 			try {
 				ast = this.parse(code) as ProgramNode;
 			} catch {
 				// Unknown syntax may fail parsing, not much we can do here?
-				return undefined;
+				return null;
 			}
 
-			if (!ast) {
-				return undefined;
-			}
-
-			let hasChanged = false;
+			const parentId = chunk.facadeModuleId!; // This correct?
 			const magicString = new MagicString(code);
+			let hasChanged = false;
 
 			ast.body.forEach((node) => {
+				let source: Literal | undefined;
+
+				// import './styles.css';
 				if (node.type === 'ImportDeclaration') {
-					const source = node.source.value;
+					({ source } = node);
 
-					if (isAsset(source)) {
-						const oldId = path.resolve(path.dirname(id), source);
-						const newId = determineNewAsset(dir, source, id);
+					// require('./styles.css');
+				} else if (node.type === 'ExpressionStatement' && isRequireStatement(node.expression)) {
+					source = node.expression.arguments[0];
 
-						assetsToCopy[oldId] = newId;
+					// const foo = require('./styles.css');
+				} else if (
+					node.type === 'VariableDeclaration' &&
+					node.declarations.length > 0 &&
+					isRequireStatement(node.declarations[0].init)
+				) {
+					source = node.declarations[0].init.arguments[0];
+				}
 
-						hasChanged = true;
+				// Update to new path
+				if (source?.value && isAsset(source.value)) {
+					const newId = determineNewAsset(source.value, parentId);
 
-						magicString.overwrite(
-							node.source.start,
-							node.source.end,
-							JSON.stringify(path.relative(id, newId)),
-						);
-					}
+					const importPath = options.preserveModules
+						? path.relative(path.dirname(parentId), newId)
+						: `../assets/${path.basename(newId)}`;
+
+					hasChanged = true;
+					magicString.overwrite(source.start, source.end, `'${importPath}'`);
 				}
 			});
 
 			if (!hasChanged) {
-				return undefined;
+				return null;
 			}
 
 			return {
@@ -103,20 +118,58 @@ export function copyAndRefAssets({ dir }: CopyAssetsPlugin): Plugin {
 
 		// Copy all found assets
 		async generateBundle() {
+			await fs.promises.mkdir(dir, { recursive: true });
+
+			// We don't use `assetFileNames` as we want a single assets folder
+			// at the root of the package, which Rollup does not allow. It wants
+			// multiple asset folders within each format!
 			await Promise.all(
 				Object.entries(assetsToCopy).map(async ([oldId, newId]) => {
-					await copyAsset(oldId, newId);
+					if (!fs.existsSync(newId)) {
+						await fs.promises.copyFile(oldId, newId);
+					}
 				}),
 			);
 		},
 	};
 }
 
+interface Literal extends Node {
+	value: string;
+}
+
+interface Identifier extends Node {
+	type: 'Identifier';
+	name: string;
+}
+
 interface ImportDeclaration extends Node {
 	type: 'ImportDeclaration';
-	source: Node & { value: string };
+	source: Literal;
+}
+
+interface ExpressionStatement extends Node {
+	type: 'ExpressionStatement';
+	expression: CallExpression;
+}
+
+interface CallExpression extends Node {
+	type: 'CallExpression';
+	callee: Identifier;
+	arguments: Literal[];
+}
+
+interface VariableDeclaration extends Node {
+	type: 'VariableDeclaration';
+	declarations: VariableDeclarator[];
+}
+
+interface VariableDeclarator extends Node {
+	type: 'VariableDeclarator';
+	id: Identifier;
+	init: CallExpression;
 }
 
 interface ProgramNode extends Node {
-	body: ImportDeclaration[];
+	body: (ExpressionStatement | ImportDeclaration | VariableDeclaration)[];
 }

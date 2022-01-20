@@ -5,8 +5,8 @@ Array [
   "esm/index-browser-current-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: esm
-import '../assets/styles-173c885b.css';
-import '../assets/logo-073ed8f7.svg';
+import '../assets/styles-62cb33c6.css';
+import '../assets/logo-5ea1b5b2.svg';
 const json = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
   number: 123,
@@ -27,9 +27,9 @@ Array [
 // Platform: browser, Support: current, Format: lib
 'use strict';
 
-require('../assets/styles-173c885b.css');
+require('../assets/styles-62cb33c6.css');
 
-require('../assets/logo-073ed8f7.svg');
+require('../assets/logo-5ea1b5b2.svg');
 
 const json = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
@@ -49,17 +49,17 @@ Array [
   "umd/index-browser-current-umd.js",
   "(function (global, factory) {
   if (typeof define === \\"function\\" && define.amd) {
-    define([\\"../assets/styles-173c885b.css\\", \\"../assets/logo-073ed8f7.svg\\"], factory);
+    define([\\"./styles.css\\", \\"./logo.svg\\"], factory);
   } else if (typeof exports !== \\"undefined\\") {
-    factory(require(\\"../assets/styles-173c885b.css\\"), require(\\"../assets/logo-073ed8f7.svg\\"));
+    factory(require(\\"./styles.css\\"), require(\\"./logo.svg\\"));
   } else {
     var mod = {
       exports: {}
     };
-    factory(global.styles173c885b, global.logo073ed8f7);
+    factory(global.styles, global.logo);
     global.examples = mod.exports;
   }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_styles173c885b, _logo073ed8f) {
+})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_styles, _logo) {
   \\"use strict\\";
 
   // Bundled with Packemon: https://packemon.dev
@@ -83,8 +83,8 @@ Array [
   "esm/index-browser-experimental-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: experimental, Format: esm
-import '../assets/styles-173c885b.css';
-import '../assets/logo-073ed8f7.svg';
+import '../assets/styles-62cb33c6.css';
+import '../assets/logo-5ea1b5b2.svg';
 const json = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
   number: 123,
@@ -103,17 +103,17 @@ Array [
   "umd/index-browser-experimental-umd.js",
   "(function (global, factory) {
   if (typeof define === \\"function\\" && define.amd) {
-    define([\\"../assets/styles-173c885b.css\\", \\"../assets/logo-073ed8f7.svg\\"], factory);
+    define([\\"./styles.css\\", \\"./logo.svg\\"], factory);
   } else if (typeof exports !== \\"undefined\\") {
-    factory(require(\\"../assets/styles-173c885b.css\\"), require(\\"../assets/logo-073ed8f7.svg\\"));
+    factory(require(\\"./styles.css\\"), require(\\"./logo.svg\\"));
   } else {
     var mod = {
       exports: {}
     };
-    factory(global.styles173c885b, global.logo073ed8f7);
+    factory(global.styles, global.logo);
     global.examples = mod.exports;
   }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_styles173c885b, _logo073ed8f) {
+})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_styles, _logo) {
   \\"use strict\\";
 
   // Bundled with Packemon: https://packemon.dev
@@ -132,42 +132,22 @@ Array [
 ]
 `;
 
-exports[`Assets transforms example test case: browser-legacy-esm 1`] = `
-Array [
-  "esm/index-browser-legacy-esm.js",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: browser, Support: legacy, Format: esm
-import '../assets/styles-173c885b.css';
-import '../assets/logo-073ed8f7.svg';
-var json = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
-  number: 123,
-  string: \\"abc\\",
-  object: {
-    foo: true
-  }
-};
-console.log(json);
-",
-]
-`;
-
 exports[`Assets transforms example test case: browser-legacy-umd 1`] = `
 Array [
   "umd/index-browser-legacy-umd.js",
   "(function (global, factory) {
   if (typeof define === \\"function\\" && define.amd) {
-    define([\\"../assets/styles-173c885b.css\\", \\"../assets/logo-073ed8f7.svg\\"], factory);
+    define([\\"./styles.css\\", \\"./logo.svg\\"], factory);
   } else if (typeof exports !== \\"undefined\\") {
-    factory(require(\\"../assets/styles-173c885b.css\\"), require(\\"../assets/logo-073ed8f7.svg\\"));
+    factory(require(\\"./styles.css\\"), require(\\"./logo.svg\\"));
   } else {
     var mod = {
       exports: {}
     };
-    factory(global.styles173c885b, global.logo073ed8f7);
+    factory(global.styles, global.logo);
     global.examples = mod.exports;
   }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_styles173c885b, _logo073ed8f) {
+})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_styles, _logo) {
   \\"use strict\\";
 
   // Bundled with Packemon: https://packemon.dev
@@ -186,6 +166,26 @@ Array [
 ]
 `;
 
+exports[`Assets transforms example test case: browser-stable-esm 1`] = `
+Array [
+  "esm/index-browser-stable-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: stable, Format: esm
+import '../assets/styles-62cb33c6.css';
+import '../assets/logo-5ea1b5b2.svg';
+const json = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+};
+console.log(json);
+",
+]
+`;
+
 exports[`Assets transforms example test case: browser-stable-lib 1`] = `
 Array [
   "lib/index-browser-stable-lib.js",
@@ -193,9 +193,9 @@ Array [
 // Platform: browser, Support: stable, Format: lib
 'use strict';
 
-require('../assets/styles-173c885b.css');
+require('../assets/styles-62cb33c6.css');
 
-require('../assets/logo-073ed8f7.svg');
+require('../assets/logo-5ea1b5b2.svg');
 
 const json = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
@@ -215,17 +215,17 @@ Array [
   "umd/index-browser-stable-umd.js",
   "(function (global, factory) {
   if (typeof define === \\"function\\" && define.amd) {
-    define([\\"../assets/styles-173c885b.css\\", \\"../assets/logo-073ed8f7.svg\\"], factory);
+    define([\\"./styles.css\\", \\"./logo.svg\\"], factory);
   } else if (typeof exports !== \\"undefined\\") {
-    factory(require(\\"../assets/styles-173c885b.css\\"), require(\\"../assets/logo-073ed8f7.svg\\"));
+    factory(require(\\"./styles.css\\"), require(\\"./logo.svg\\"));
   } else {
     var mod = {
       exports: {}
     };
-    factory(global.styles173c885b, global.logo073ed8f7);
+    factory(global.styles, global.logo);
     global.examples = mod.exports;
   }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_styles173c885b, _logo073ed8f) {
+})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_styles, _logo) {
   \\"use strict\\";
 
   // Bundled with Packemon: https://packemon.dev
@@ -244,30 +244,6 @@ Array [
 ]
 `;
 
-exports[`Assets transforms example test case: native-current-lib 1`] = `
-Array [
-  "lib/index-native-current-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: native, Support: current, Format: lib
-'use strict';
-
-require('../assets/styles-173c885b.css');
-
-require('../assets/logo-073ed8f7.svg');
-
-const json = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
-  number: 123,
-  string: \\"abc\\",
-  object: {
-    foo: true
-  }
-};
-console.log(json);
-",
-]
-`;
-
 exports[`Assets transforms example test case: native-experimental-lib 1`] = `
 Array [
   "lib/index-native-experimental-lib.js",
@@ -275,9 +251,9 @@ Array [
 // Platform: native, Support: experimental, Format: lib
 'use strict';
 
-require('../assets/styles-173c885b.css');
+require('../assets/styles-62cb33c6.css');
 
-require('../assets/logo-073ed8f7.svg');
+require('../assets/logo-5ea1b5b2.svg');
 
 const json = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
@@ -299,9 +275,9 @@ Array [
 // Platform: native, Support: legacy, Format: lib
 'use strict';
 
-require('../assets/styles-173c885b.css');
+require('../assets/styles-62cb33c6.css');
 
-require('../assets/logo-073ed8f7.svg');
+require('../assets/logo-5ea1b5b2.svg');
 
 var json = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
@@ -323,9 +299,9 @@ Array [
 // Platform: native, Support: stable, Format: lib
 'use strict';
 
-require('../assets/styles-173c885b.css');
+require('../assets/styles-62cb33c6.css');
 
-require('../assets/logo-073ed8f7.svg');
+require('../assets/logo-5ea1b5b2.svg');
 
 const json = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
@@ -347,9 +323,33 @@ Array [
 // Platform: node, Support: current, Format: cjs
 'use strict';
 
-require('../assets/styles-173c885b.css');
+require('../assets/styles-62cb33c6.css');
 
-require('../assets/logo-073ed8f7.svg');
+require('../assets/logo-5ea1b5b2.svg');
+
+const json = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+};
+console.log(json);
+",
+]
+`;
+
+exports[`Assets transforms example test case: node-current-lib 1`] = `
+Array [
+  "lib/index-node-current-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: current, Format: lib
+'use strict';
+
+require('../assets/styles-62cb33c6.css');
+
+require('../assets/logo-5ea1b5b2.svg');
 
 const json = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
@@ -369,8 +369,8 @@ Array [
   "mjs/index-node-current-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: mjs
-import '../assets/styles-173c885b.css';
-import '../assets/logo-073ed8f7.svg';
+import '../assets/styles-62cb33c6.css';
+import '../assets/logo-5ea1b5b2.svg';
 const json = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
   number: 123,
@@ -391,9 +391,33 @@ Array [
 // Platform: node, Support: experimental, Format: cjs
 'use strict';
 
-require('../assets/styles-173c885b.css');
+require('../assets/styles-62cb33c6.css');
 
-require('../assets/logo-073ed8f7.svg');
+require('../assets/logo-5ea1b5b2.svg');
+
+const json = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+};
+console.log(json);
+",
+]
+`;
+
+exports[`Assets transforms example test case: node-experimental-lib 1`] = `
+Array [
+  "lib/index-node-experimental-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: experimental, Format: lib
+'use strict';
+
+require('../assets/styles-62cb33c6.css');
+
+require('../assets/logo-5ea1b5b2.svg');
 
 const json = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
@@ -413,9 +437,33 @@ Array [
   "mjs/index-node-experimental-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: mjs
-import '../assets/styles-173c885b.css';
-import '../assets/logo-073ed8f7.svg';
+import '../assets/styles-62cb33c6.css';
+import '../assets/logo-5ea1b5b2.svg';
 const json = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+};
+console.log(json);
+",
+]
+`;
+
+exports[`Assets transforms example test case: node-legacy-cjs 1`] = `
+Array [
+  "cjs/index-node-legacy-cjs.cjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: legacy, Format: cjs
+'use strict';
+
+require('../assets/styles-62cb33c6.css');
+
+require('../assets/logo-5ea1b5b2.svg');
+
+var json = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
   number: 123,
   string: \\"abc\\",
@@ -435,10 +483,30 @@ Array [
 // Platform: node, Support: legacy, Format: lib
 'use strict';
 
-require('../assets/styles-173c885b.css');
+require('../assets/styles-62cb33c6.css');
 
-require('../assets/logo-073ed8f7.svg');
+require('../assets/logo-5ea1b5b2.svg');
 
+var json = {
+  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  number: 123,
+  string: \\"abc\\",
+  object: {
+    foo: true
+  }
+};
+console.log(json);
+",
+]
+`;
+
+exports[`Assets transforms example test case: node-legacy-mjs 1`] = `
+Array [
+  "mjs/index-node-legacy-mjs.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: legacy, Format: mjs
+import '../assets/styles-62cb33c6.css';
+import '../assets/logo-5ea1b5b2.svg';
 var json = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
   number: 123,
@@ -459,9 +527,9 @@ Array [
 // Platform: node, Support: stable, Format: cjs
 'use strict';
 
-require('../assets/styles-173c885b.css');
+require('../assets/styles-62cb33c6.css');
 
-require('../assets/logo-073ed8f7.svg');
+require('../assets/logo-5ea1b5b2.svg');
 
 const json = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
@@ -483,9 +551,9 @@ Array [
 // Platform: node, Support: stable, Format: lib
 'use strict';
 
-require('../assets/styles-173c885b.css');
+require('../assets/styles-62cb33c6.css');
 
-require('../assets/logo-073ed8f7.svg');
+require('../assets/logo-5ea1b5b2.svg');
 
 const json = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
@@ -505,8 +573,8 @@ Array [
   "mjs/index-node-stable-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: mjs
-import '../assets/styles-173c885b.css';
-import '../assets/logo-073ed8f7.svg';
+import '../assets/styles-62cb33c6.css';
+import '../assets/logo-5ea1b5b2.svg';
 const json = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
   number: 123,
