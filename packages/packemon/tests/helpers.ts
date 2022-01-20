@@ -61,7 +61,8 @@ function formatSnapshotFilePath(file: string, root: string): string {
 	return new Path(String(file))
 		.path()
 		.replace(String(root), '')
-		.replace(/^(\/|\\)/, '');
+		.replace(/^(\/|\\)/, '')
+		.replace(/\\/g, '/');
 }
 
 export function createSnapshotSpies(root: PortablePath, captureJson: boolean = false) {
