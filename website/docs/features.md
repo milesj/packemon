@@ -137,9 +137,9 @@ import './button.css';
 
 ```ts
 // Output:
-//  src/components/Button/index.ts
-//  assets/button-as172k9.css
-import '../../../assets/button-as172k9.css';
+//  esm/components/Button/index.js
+//  assets/button-as17p2k9.css
+import '../../../assets/button-as17p2k9.css';
 ```
 
 > [View full list of supported assets.](https://github.com/milesj/packemon/blob/master/packages/packemon/src/constants.ts#L12)
