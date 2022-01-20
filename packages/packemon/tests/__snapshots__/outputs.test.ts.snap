@@ -424,6 +424,27 @@ Array [
 ]
 `;
 
+exports[`Outputs bundle with assets bundles all files and references assets 3`] = `
+Array [
+  "src/button/styles.css",
+  "assets/styles-7ca1a3f0.css",
+]
+`;
+
+exports[`Outputs bundle with assets bundles all files and references assets 4`] = `
+Array [
+  "src/globals.css",
+  "assets/globals-6791a666.css",
+]
+`;
+
+exports[`Outputs bundle with assets bundles all files and references assets 5`] = `
+Array [
+  "src/shared/fonts.css",
+  "assets/fonts-c6e38a2d.css",
+]
+`;
+
 exports[`Outputs bundle with assets uses same assets across multiple formats 1`] = `
 Array [
   "cjs/index.cjs",
@@ -500,6 +521,69 @@ Array [
       "platform": "node",
     },
   },
+]
+`;
+
+exports[`Outputs bundle with assets uses same assets across multiple formats 5`] = `
+Array [
+  "src/button/styles.css",
+  "assets/styles-7ca1a3f0.css",
+]
+`;
+
+exports[`Outputs bundle with assets uses same assets across multiple formats 6`] = `
+Array [
+  "src/button/styles.css",
+  "assets/styles-7ca1a3f0.css",
+]
+`;
+
+exports[`Outputs bundle with assets uses same assets across multiple formats 7`] = `
+Array [
+  "src/button/styles.css",
+  "assets/styles-7ca1a3f0.css",
+]
+`;
+
+exports[`Outputs bundle with assets uses same assets across multiple formats 8`] = `
+Array [
+  "src/globals.css",
+  "assets/globals-6791a666.css",
+]
+`;
+
+exports[`Outputs bundle with assets uses same assets across multiple formats 9`] = `
+Array [
+  "src/globals.css",
+  "assets/globals-6791a666.css",
+]
+`;
+
+exports[`Outputs bundle with assets uses same assets across multiple formats 10`] = `
+Array [
+  "src/globals.css",
+  "assets/globals-6791a666.css",
+]
+`;
+
+exports[`Outputs bundle with assets uses same assets across multiple formats 11`] = `
+Array [
+  "src/shared/fonts.css",
+  "assets/fonts-c6e38a2d.css",
+]
+`;
+
+exports[`Outputs bundle with assets uses same assets across multiple formats 12`] = `
+Array [
+  "src/shared/fonts.css",
+  "assets/fonts-c6e38a2d.css",
+]
+`;
+
+exports[`Outputs bundle with assets uses same assets across multiple formats 13`] = `
+Array [
+  "src/shared/fonts.css",
+  "assets/fonts-c6e38a2d.css",
 ]
 `;
 
@@ -617,5 +701,26 @@ Array [
       "platform": "node",
     },
   },
+]
+`;
+
+exports[`Outputs no bundle with assets creates individual files and references assets 4`] = `
+Array [
+  "src/button/styles.css",
+  "assets/styles-7ca1a3f0.css",
+]
+`;
+
+exports[`Outputs no bundle with assets creates individual files and references assets 5`] = `
+Array [
+  "src/globals.css",
+  "assets/globals-6791a666.css",
+]
+`;
+
+exports[`Outputs no bundle with assets creates individual files and references assets 6`] = `
+Array [
+  "src/shared/fonts.css",
+  "assets/fonts-c6e38a2d.css",
 ]
 `;

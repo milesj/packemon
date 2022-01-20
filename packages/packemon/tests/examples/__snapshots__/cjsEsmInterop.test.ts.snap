@@ -192,6 +192,19 @@ __filename;
 ]
 `;
 
+exports[`CJS/ESM interop transforms example test case: node-current-cjs 1`] = `
+Array [
+  "cjs/index-node-current-cjs.cjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: current, Format: cjs
+'use strict';
+
+__dirname;
+__filename;
+",
+]
+`;
+
 exports[`CJS/ESM interop transforms example test case: node-current-lib 1`] = `
 Array [
   "lib/index-node-current-lib.js",
@@ -285,6 +298,22 @@ Array [
 
 __dirname;
 __filename;
+",
+]
+`;
+
+exports[`CJS/ESM interop transforms example test case: node-legacy-mjs 1`] = `
+Array [
+  "mjs/index-node-legacy-mjs.mjs",
+  "var _path = _interopRequireDefault(require(\\"path\\")).default;
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: legacy, Format: mjs
+_path.dirname(import.meta.url);
+
+import.meta.url;
 ",
 ]
 `;

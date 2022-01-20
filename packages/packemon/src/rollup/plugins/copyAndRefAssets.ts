@@ -1,8 +1,9 @@
 import { createHash } from 'crypto';
-import fs from 'fs';
 import path from 'path';
 import type { Node } from 'acorn';
+import fs from 'fs-extra';
 import MagicString from 'magic-string';
+import rimraf from 'rimraf';
 import { Plugin } from 'rollup';
 import { ASSETS } from '../../constants';
 
@@ -50,11 +51,19 @@ export function copyAndRefAssets({ dir }: CopyAssetsPlugin): Plugin {
 
 		// Delete old assets to remove any possible stale assets
 		async buildStart() {
-			await fs.promises.rmdir(dir, { recursive: true });
+			await new Promise((resolve, reject) => {
+				rimraf(dir, (error) => {
+					if (error) {
+						reject(error);
+					} else {
+						resolve(undefined);
+					}
+				});
+			});
 		},
 
 		// Find assets and mark as external
-		resolveId(source, importer) {
+		resolveId(source) {
 			if (isAsset(source)) {
 				return { id: source, external: true };
 			}
@@ -123,7 +132,11 @@ export function copyAndRefAssets({ dir }: CopyAssetsPlugin): Plugin {
 
 		// Copy all found assets
 		async generateBundle() {
-			await fs.promises.mkdir(dir, { recursive: true });
+			// Only create the folder if we have assets to copy,
+			// otherwise it throws off `files` and other detection!
+			if (Object.keys(assetsToCopy).length > 0) {
+				await fs.mkdir(dir, { recursive: true });
+			}
 
 			// We don't use `assetFileNames` as we want a single assets folder
 			// at the root of the package, which Rollup does not allow. It wants
@@ -131,7 +144,7 @@ export function copyAndRefAssets({ dir }: CopyAssetsPlugin): Plugin {
 			await Promise.all(
 				Object.entries(assetsToCopy).map(async ([oldId, newId]) => {
 					if (!fs.existsSync(newId)) {
-						await fs.promises.copyFile(oldId, newId);
+						await fs.copyFile(oldId, newId);
 					}
 				}),
 			);

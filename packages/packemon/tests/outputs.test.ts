@@ -104,11 +104,6 @@ describe('Outputs', () => {
 					expect(String(ss[1])).toContain("'../assets/styles-7ca1a3f0.css'");
 				}
 			});
-
-			// Check files exist
-			expect(root.append('assets/globals-6791a666.css').exists()).toBe(true);
-			expect(root.append('assets/fonts-c6e38a2d.css').exists()).toBe(true);
-			expect(root.append('assets/styles-7ca1a3f0.css').exists()).toBe(true);
 		});
 
 		it('uses same assets across multiple formats', async () => {
@@ -187,11 +182,6 @@ describe('Outputs', () => {
 					expect(String(ss[1])).toContain("'../../assets/styles-7ca1a3f0.css'");
 				}
 			});
-
-			// Check files exist
-			expect(root.append('assets/globals-6791a666.css').exists()).toBe(true);
-			expect(root.append('assets/fonts-c6e38a2d.css').exists()).toBe(true);
-			expect(root.append('assets/styles-7ca1a3f0.css').exists()).toBe(true);
 		});
 	});
 });

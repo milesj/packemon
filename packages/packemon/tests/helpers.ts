@@ -57,18 +57,20 @@ export function createProjectPackage(root: Path, customProject?: Project): Packa
 	);
 }
 
+function formatSnapshotFilePath(file: string, root: string): string {
+	return new Path(String(file))
+		.path()
+		.replace(String(root), '')
+		.replace(/^(\/|\\)/, '');
+}
+
 export function createSnapshotSpies(root: PortablePath, captureJson: boolean = false) {
 	let snapshots: [string, unknown][] = [];
-	let fsSpy: jest.SpyInstance;
-	let fsxSpy: jest.SpyInstance;
-	let warnSpy: jest.SpyInstance;
+	const spies: jest.SpyInstance[] = [];
 
 	beforeEach(() => {
 		const handler = (file: unknown, content: unknown, cb?: unknown) => {
-			const filePath = new Path(String(file))
-				.path()
-				.replace(String(root), '')
-				.replace(/^(\/|\\)/, '');
+			const filePath = formatSnapshotFilePath(String(file), String(root));
 
 			if (
 				filePath.endsWith('.js') ||
@@ -79,21 +81,27 @@ export function createSnapshotSpies(root: PortablePath, captureJson: boolean = f
 				snapshots.push([filePath, content]);
 			}
 
+			if (filePath.endsWith('.css')) {
+				snapshots.push([filePath, formatSnapshotFilePath(String(content), String(root))]);
+			}
+
 			if (typeof cb === 'function') {
 				cb(null);
 			}
 		};
 
-		fsSpy = jest.spyOn(fs, 'writeFile').mockImplementation(handler);
-		fsxSpy = jest.spyOn(fsx, 'writeJson').mockImplementation(handler);
-		warnSpy = jest.spyOn(console, 'warn').mockImplementation();
+		spies.push(
+			jest.spyOn(fs, 'writeFile').mockImplementation(handler),
+			jest.spyOn(fsx, 'writeJson').mockImplementation(handler),
+			jest.spyOn(fsx, 'copyFile').mockImplementation(handler),
+			jest.spyOn(fsx, 'mkdir'),
+			jest.spyOn(console, 'warn').mockImplementation(),
+		);
 	});
 
 	afterEach(() => {
 		snapshots = [];
-		fsSpy.mockRestore();
-		fsxSpy.mockRestore();
-		warnSpy.mockRestore();
+		spies.forEach((spy) => void spy.mockRestore());
 	});
 
 	return (pkg: Package) => {

@@ -521,6 +521,44 @@ import(
 ]
 `;
 
+exports[`Dynamic imports transforms example test case: native-current-lib 1`] = `
+Array [
+  "lib/bundle-99524a7a.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: current, Format: lib
+'use strict';
+
+function foo() {}
+
+function bar() {}
+
+exports.bar = bar;
+exports.foo = foo;
+",
+]
+`;
+
+exports[`Dynamic imports transforms example test case: native-current-lib 2`] = `
+Array [
+  "lib/index-native-current-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: current, Format: lib
+'use strict';
+
+Promise.resolve().then(() => require('./bundle-99524a7a.js')).then(result => {
+  result.foo();
+});
+Promise.resolve().then(() => require(
+/* webpackChunkName: \\"helpers\\" */
+'./bundle-99524a7a.js')).then(({
+  bar
+}) => {
+  bar();
+});
+",
+]
+`;
+
 exports[`Dynamic imports transforms example test case: native-experimental-lib 1`] = `
 Array [
   "lib/bundle-c8d5fd50.js",

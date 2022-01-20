@@ -11693,6 +11693,42 @@ exports.test = test;
 ]
 `;
 
+exports[`Node polyfills transforms example test case: node-stable-lib 1`] = `
+Array [
+  "lib/index-node-stable-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+const events = require('events');
+
+const path = require('path');
+
+const _interopDefault = e => e && e.__esModule ? e : {
+  default: e
+};
+
+const path__default = /*#__PURE__*/_interopDefault(path);
+
+const test = path__default.default.join('foo', 'bar');
+const emitter = new events.EventEmitter();
+
+class Example extends events.EventEmitter {
+  log() {}
+
+}
+
+exports.Example = Example;
+exports.emitter = emitter;
+exports.test = test;
+",
+]
+`;
+
 exports[`Node polyfills transforms example test case: node-stable-mjs 1`] = `
 Array [
   "mjs/index-node-stable-mjs.mjs",
