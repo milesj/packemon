@@ -99,9 +99,9 @@ describe('Outputs', () => {
 
 				// Check import paths are correct
 				if (ss[0].endsWith('index.js')) {
-					expect(String(ss[1])).toContain("'../assets/globals-6791a666.css'");
-					expect(String(ss[1])).toContain("'../assets/fonts-c6e38a2d.css'");
-					expect(String(ss[1])).toContain("'../assets/styles-7ca1a3f0.css'");
+					expect(String(ss[1])).toContain("'../assets/globals-107ab52e.css'");
+					expect(String(ss[1])).toContain("'../assets/fonts-4e5dc96c.css'");
+					expect(String(ss[1])).toContain("'../assets/styles-b11c3a83.css'");
 				}
 			});
 		});
@@ -174,12 +174,12 @@ describe('Outputs', () => {
 
 				// Check import paths are correct
 				if (ss[0].endsWith('lib/index.js')) {
-					expect(String(ss[1])).toContain("'../assets/globals-6791a666.css'");
-					expect(String(ss[1])).toContain("'../assets/fonts-c6e38a2d.css'");
+					expect(String(ss[1])).toContain("'../assets/globals-107ab52e.css'");
+					expect(String(ss[1])).toContain("'../assets/fonts-4e5dc96c.css'");
 				}
 
 				if (ss[0].endsWith('lib/button/index.js')) {
-					expect(String(ss[1])).toContain("'../../assets/styles-7ca1a3f0.css'");
+					expect(String(ss[1])).toContain("'../../assets/styles-b11c3a83.css'");
 				}
 			});
 		});
