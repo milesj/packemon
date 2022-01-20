@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 1.1.2 - 2022-01-20
+
+#### 📦 Dependencies
+
+- **[babel]** Update to v7.16 latest. ([f8d02e5](https://github.com/milesj/packemon/commit/f8d02e5))
+
+**Note:** Version bump only for package babel-plugin-env-constants
+
+
+
+
+
 ### 1.1.1 - 2021-12-19
 
 #### 📦 Dependencies

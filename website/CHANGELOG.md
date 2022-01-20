@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.6.0 - 2022-01-20
+
+#### 🚀 Updates
+
+- Support asset importing. (#97) ([836190a](https://github.com/milesj/packemon/commit/836190a)), closes [#97](https://github.com/milesj/packemon/issues/97)
+
+#### 📘 Docs
+
+- **[docusaurus]** Update to beta.14. ([7fd86bb](https://github.com/milesj/packemon/commit/7fd86bb))
+- Fix asset example. ([a370df1](https://github.com/milesj/packemon/commit/a370df1))
+
+**Note:** Version bump only for package website
+
+
+
+
+
 ## 0.5.0 - 2021-12-19
 
 #### 🚀 Updates

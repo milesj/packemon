@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.11.0 - 2022-01-20
+
+#### 🚀 Updates
+
+- Support asset importing. (#97) ([836190a](https://github.com/milesj/packemon/commit/836190a)), closes [#97](https://github.com/milesj/packemon/issues/97)
+
+#### 🐞 Fixes
+
+- Dont show package outdated in CI. ([d54b3a9](https://github.com/milesj/packemon/commit/d54b3a9))
+- Ignore test files when not bundling. ([d723786](https://github.com/milesj/packemon/commit/d723786))
+
+#### 📦 Dependencies
+
+- **[api-extractor]** Update to latest version. ([57c5899](https://github.com/milesj/packemon/commit/57c5899))
+- **[babel]** Update to v7.16 latest. ([f8d02e5](https://github.com/milesj/packemon/commit/f8d02e5))
+- **[beemo-dev]** Update to latest configs. ([ad4807d](https://github.com/milesj/packemon/commit/ad4807d))
+- **[rollup]** Update to v2.64. ([e3b8e44](https://github.com/milesj/packemon/commit/e3b8e44))
+
+**Note:** Version bump only for package packemon
+
+
+
+
+
 ## 1.10.0 - 2021-12-19
 
 #### 🚀 Updates
