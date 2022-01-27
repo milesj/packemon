@@ -7,6 +7,7 @@ Array [
 // Platform: browser, Support: current, Format: esm
 import '../assets/styles-17df299b.css';
 import '../assets/logo-c21f559f.svg';
+import 'website/src/css/custom.css';
 const json = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
   number: 123,
@@ -38,6 +39,8 @@ require('../assets/styles-17df299b.css');
 
 require('../assets/logo-c21f559f.svg');
 
+require('website/src/css/custom.css');
+
 const json = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
   number: 123,
@@ -63,17 +66,17 @@ Array [
   "umd/index-browser-current-umd.js",
   "(function (global, factory) {
   if (typeof define === \\"function\\" && define.amd) {
-    define([\\"./styles.css\\", \\"./logo.svg\\"], factory);
+    define([\\"./styles.css\\", \\"./logo.svg\\", \\"website/src/css/custom.css\\"], factory);
   } else if (typeof exports !== \\"undefined\\") {
-    factory(require(\\"./styles.css\\"), require(\\"./logo.svg\\"));
+    factory(require(\\"./styles.css\\"), require(\\"./logo.svg\\"), require(\\"website/src/css/custom.css\\"));
   } else {
     var mod = {
       exports: {}
     };
-    factory(global.styles, global.logo);
+    factory(global.styles, global.logo, global.custom);
     global.examples = mod.exports;
   }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_styles, _logo) {
+})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_styles, _logo, _custom) {
   \\"use strict\\";
 
   // Bundled with Packemon: https://packemon.dev
@@ -99,6 +102,7 @@ Array [
 // Platform: browser, Support: experimental, Format: esm
 import '../assets/styles-17df299b.css';
 import '../assets/logo-c21f559f.svg';
+import 'website/src/css/custom.css';
 const json = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
   number: 123,
@@ -130,6 +134,8 @@ require('../assets/styles-17df299b.css');
 
 require('../assets/logo-c21f559f.svg');
 
+require('website/src/css/custom.css');
+
 const json = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
   number: 123,
@@ -155,17 +161,17 @@ Array [
   "umd/index-browser-experimental-umd.js",
   "(function (global, factory) {
   if (typeof define === \\"function\\" && define.amd) {
-    define([\\"./styles.css\\", \\"./logo.svg\\"], factory);
+    define([\\"./styles.css\\", \\"./logo.svg\\", \\"website/src/css/custom.css\\"], factory);
   } else if (typeof exports !== \\"undefined\\") {
-    factory(require(\\"./styles.css\\"), require(\\"./logo.svg\\"));
+    factory(require(\\"./styles.css\\"), require(\\"./logo.svg\\"), require(\\"website/src/css/custom.css\\"));
   } else {
     var mod = {
       exports: {}
     };
-    factory(global.styles, global.logo);
+    factory(global.styles, global.logo, global.custom);
     global.examples = mod.exports;
   }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_styles, _logo) {
+})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_styles, _logo, _custom) {
   \\"use strict\\";
 
   // Bundled with Packemon: https://packemon.dev
@@ -191,6 +197,7 @@ Array [
 // Platform: browser, Support: legacy, Format: esm
 import '../assets/styles-17df299b.css';
 import '../assets/logo-c21f559f.svg';
+import 'website/src/css/custom.css';
 var json = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
   number: 123,
@@ -222,6 +229,8 @@ require('../assets/styles-17df299b.css');
 
 require('../assets/logo-c21f559f.svg');
 
+require('website/src/css/custom.css');
+
 var json = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
   number: 123,
@@ -247,17 +256,17 @@ Array [
   "umd/index-browser-legacy-umd.js",
   "(function (global, factory) {
   if (typeof define === \\"function\\" && define.amd) {
-    define([\\"./styles.css\\", \\"./logo.svg\\"], factory);
+    define([\\"./styles.css\\", \\"./logo.svg\\", \\"website/src/css/custom.css\\"], factory);
   } else if (typeof exports !== \\"undefined\\") {
-    factory(require(\\"./styles.css\\"), require(\\"./logo.svg\\"));
+    factory(require(\\"./styles.css\\"), require(\\"./logo.svg\\"), require(\\"website/src/css/custom.css\\"));
   } else {
     var mod = {
       exports: {}
     };
-    factory(global.styles, global.logo);
+    factory(global.styles, global.logo, global.custom);
     global.examples = mod.exports;
   }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_styles, _logo) {
+})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_styles, _logo, _custom) {
   \\"use strict\\";
 
   // Bundled with Packemon: https://packemon.dev
@@ -283,6 +292,7 @@ Array [
 // Platform: browser, Support: stable, Format: esm
 import '../assets/styles-17df299b.css';
 import '../assets/logo-c21f559f.svg';
+import 'website/src/css/custom.css';
 const json = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
   number: 123,
@@ -314,6 +324,8 @@ require('../assets/styles-17df299b.css');
 
 require('../assets/logo-c21f559f.svg');
 
+require('website/src/css/custom.css');
+
 const json = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
   number: 123,
@@ -339,17 +351,17 @@ Array [
   "umd/index-browser-stable-umd.js",
   "(function (global, factory) {
   if (typeof define === \\"function\\" && define.amd) {
-    define([\\"./styles.css\\", \\"./logo.svg\\"], factory);
+    define([\\"./styles.css\\", \\"./logo.svg\\", \\"website/src/css/custom.css\\"], factory);
   } else if (typeof exports !== \\"undefined\\") {
-    factory(require(\\"./styles.css\\"), require(\\"./logo.svg\\"));
+    factory(require(\\"./styles.css\\"), require(\\"./logo.svg\\"), require(\\"website/src/css/custom.css\\"));
   } else {
     var mod = {
       exports: {}
     };
-    factory(global.styles, global.logo);
+    factory(global.styles, global.logo, global.custom);
     global.examples = mod.exports;
   }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_styles, _logo) {
+})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_styles, _logo, _custom) {
   \\"use strict\\";
 
   // Bundled with Packemon: https://packemon.dev
@@ -378,6 +390,8 @@ Array [
 require('../assets/styles-17df299b.css');
 
 require('../assets/logo-c21f559f.svg');
+
+require('website/src/css/custom.css');
 
 const json = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
@@ -410,6 +424,8 @@ require('../assets/styles-17df299b.css');
 
 require('../assets/logo-c21f559f.svg');
 
+require('website/src/css/custom.css');
+
 const json = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
   number: 123,
@@ -440,6 +456,8 @@ Array [
 require('../assets/styles-17df299b.css');
 
 require('../assets/logo-c21f559f.svg');
+
+require('website/src/css/custom.css');
 
 var json = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
@@ -472,6 +490,8 @@ require('../assets/styles-17df299b.css');
 
 require('../assets/logo-c21f559f.svg');
 
+require('website/src/css/custom.css');
+
 const json = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
   number: 123,
@@ -502,6 +522,8 @@ Array [
 require('../assets/styles-17df299b.css');
 
 require('../assets/logo-c21f559f.svg');
+
+require('website/src/css/custom.css');
 
 const json = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
@@ -534,6 +556,8 @@ require('../assets/styles-17df299b.css');
 
 require('../assets/logo-c21f559f.svg');
 
+require('website/src/css/custom.css');
+
 const json = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
   number: 123,
@@ -561,6 +585,7 @@ Array [
 // Platform: node, Support: current, Format: mjs
 import '../assets/styles-17df299b.css';
 import '../assets/logo-c21f559f.svg';
+import 'website/src/css/custom.css';
 const json = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
   number: 123,
@@ -591,6 +616,8 @@ Array [
 require('../assets/styles-17df299b.css');
 
 require('../assets/logo-c21f559f.svg');
+
+require('website/src/css/custom.css');
 
 const json = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
@@ -623,6 +650,8 @@ require('../assets/styles-17df299b.css');
 
 require('../assets/logo-c21f559f.svg');
 
+require('website/src/css/custom.css');
+
 const json = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
   number: 123,
@@ -650,6 +679,7 @@ Array [
 // Platform: node, Support: experimental, Format: mjs
 import '../assets/styles-17df299b.css';
 import '../assets/logo-c21f559f.svg';
+import 'website/src/css/custom.css';
 const json = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
   number: 123,
@@ -680,6 +710,8 @@ Array [
 require('../assets/styles-17df299b.css');
 
 require('../assets/logo-c21f559f.svg');
+
+require('website/src/css/custom.css');
 
 var json = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
@@ -712,6 +744,8 @@ require('../assets/styles-17df299b.css');
 
 require('../assets/logo-c21f559f.svg');
 
+require('website/src/css/custom.css');
+
 var json = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
   number: 123,
@@ -739,6 +773,7 @@ Array [
 // Platform: node, Support: legacy, Format: mjs
 import '../assets/styles-17df299b.css';
 import '../assets/logo-c21f559f.svg';
+import 'website/src/css/custom.css';
 var json = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
   number: 123,
@@ -769,6 +804,8 @@ Array [
 require('../assets/styles-17df299b.css');
 
 require('../assets/logo-c21f559f.svg');
+
+require('website/src/css/custom.css');
 
 const json = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
@@ -801,6 +838,8 @@ require('../assets/styles-17df299b.css');
 
 require('../assets/logo-c21f559f.svg');
 
+require('website/src/css/custom.css');
+
 const json = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
   number: 123,
@@ -828,6 +867,7 @@ Array [
 // Platform: node, Support: stable, Format: mjs
 import '../assets/styles-17df299b.css';
 import '../assets/logo-c21f559f.svg';
+import 'website/src/css/custom.css';
 const json = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
   number: 123,

@@ -122,9 +122,10 @@ natively, otherwise it is transpiled down.
 
 ## Asset imports
 
-When a file imports an asset (styles, images, audio, video), the import remains in-tact so any
-bundlers can handle accordingly. However, assets are moved to a shared `assets` folder, are hashed
-for uniqueness, and any imports are modified to this new path.
+When a file imports an asset
+([styles, images, audio, video](https://github.com/milesj/packemon/blob/master/packages/packemon/src/constants.ts#L12)),
+the import remains in-tact so any bundlers can handle accordingly. However, assets are moved to a
+shared `assets` folder, are hashed for uniqueness, and any imports are modified to this new path.
 
 An example of this as follows:
 
@@ -142,7 +143,7 @@ import './button.css';
 import '../../../assets/button-as17p2k9.css';
 ```
 
-> [View full list of supported assets.](https://github.com/milesj/packemon/blob/master/packages/packemon/src/constants.ts#L12)
+> UMD builds do not support asset imports!
 
 ## Environment constants
 

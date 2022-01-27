@@ -110,8 +110,8 @@ export function copyAndRefAssets({ dir }: CopyAssetsPlugin): Plugin {
 					source = node.declarations[0].init.arguments[0];
 				}
 
-				// Update to new path
-				if (source?.value && isAsset(source.value)) {
+				// Update to new path (ignore files coming from node modules)
+				if (source?.value && isAsset(source.value) && source.value.startsWith('.')) {
 					const newId = determineNewAsset(source.value, parentId);
 
 					const importPath = options.preserveModules
