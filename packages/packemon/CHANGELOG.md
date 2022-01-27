@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 1.11.1 - 2022-01-27
+
+#### 🐞 Fixes
+
+- Dont copy assets that come from node modules. ([8282550](https://github.com/milesj/packemon/commit/8282550))
+
+#### 📦 Dependencies
+
+- **[babel]** Update to v7.16 latest. ([fcad842](https://github.com/milesj/packemon/commit/fcad842))
+- **[rollup]** Update to v2.66. ([38fa6ec](https://github.com/milesj/packemon/commit/38fa6ec))
+
+**Note:** Version bump only for package packemon
+
+
+
+
+
 ## 1.11.0 - 2022-01-20
 
 #### 🚀 Updates

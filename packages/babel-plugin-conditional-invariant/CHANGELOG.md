@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 1.1.3 - 2022-01-27
+
+#### 📦 Dependencies
+
+- **[babel]** Update to v7.16 latest. ([fcad842](https://github.com/milesj/packemon/commit/fcad842))
+
+**Note:** Version bump only for package babel-plugin-conditional-invariant
+
+
+
+
+
 ### 1.1.2 - 2022-01-20
 
 #### 📦 Dependencies
