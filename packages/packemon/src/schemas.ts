@@ -81,6 +81,7 @@ export const buildBlueprint: Blueprint<BuildOptions> = {
 	filter: string(),
 	filterFormats: string(),
 	filterPlatforms: string(),
+	quiet: bool(false),
 	skipPrivate: bool(),
 	timeout: number().gte(0),
 };
@@ -94,6 +95,7 @@ export const validateBlueprint: Blueprint<ValidateOptions> = {
 	links: bool(true),
 	meta: bool(true),
 	people: bool(true),
+	quiet: bool(false),
 	skipPrivate: bool(false),
 	repo: bool(true),
 };

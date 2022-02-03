@@ -10,7 +10,7 @@ export interface PackProps extends BuildOptions {
 	packemon: Packemon;
 }
 
-export function Pack({ packemon, ...options }: PackProps) {
+export function Pack({ packemon, quiet, ...options }: PackProps) {
 	const { exit } = useProgram();
 	const [phase, setPhase] = useState('clean');
 
@@ -40,9 +40,13 @@ export function Pack({ packemon, ...options }: PackProps) {
 
 	return (
 		<>
-			{phase === 'build' && <Build {...options} packemon={packemon} onBuilt={handleBuilt} />}
+			{phase === 'build' && (
+				<Build {...options} packemon={packemon} quiet={quiet} onBuilt={handleBuilt} />
+			)}
 
-			{phase === 'validate' && <Validate packemon={packemon} onValidated={handleValidated} />}
+			{phase === 'validate' && (
+				<Validate packemon={packemon} quiet={quiet} onValidated={handleValidated} />
+			)}
 		</>
 	);
 }

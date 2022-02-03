@@ -64,6 +64,7 @@ describe('Packemon', () => {
 				filter: '',
 				filterFormats: '',
 				filterPlatforms: '',
+				quiet: false,
 				skipPrivate: false,
 				timeout: 0,
 			};
@@ -206,6 +207,7 @@ describe('Packemon', () => {
 					links: true,
 					meta: true,
 					people: false,
+					quiet: false,
 					repo: true,
 					skipPrivate: false,
 				});
@@ -228,6 +230,7 @@ describe('Packemon', () => {
 					links: true,
 					meta: true,
 					people: true,
+					quiet: false,
 					repo: true,
 					skipPrivate: false,
 				};

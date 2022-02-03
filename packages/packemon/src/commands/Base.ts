@@ -25,7 +25,7 @@ export abstract class BaseCommand<
 	platforms: string = '';
 
 	@Arg.Flag('Display less or no output while running', { category: 'global' })
-	quiet: boolean = false;
+	quiet: boolean = !!process.env.CI;
 
 	@Arg.Flag('Skip `private` packages', { category: 'filter' })
 	skipPrivate: boolean = false;

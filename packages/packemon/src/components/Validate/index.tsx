@@ -57,10 +57,6 @@ export function Validate({ packemon, onValidated, ...options }: ValidateProps) {
 		}
 	}, [failedValidators, exit]);
 
-	if (options.quiet) {
-		return null;
-	}
-
 	return (
 		<>
 			<Static items={failedValidators}>
@@ -69,9 +65,11 @@ export function Validate({ packemon, onValidated, ...options }: ValidateProps) {
 				)}
 			</Static>
 
-			<Box flexDirection="column" margin={0}>
-				{isValidating && <Header label="Validating packages" marginBottom={0} />}
-			</Box>
+			{!options.quiet && (
+				<Box flexDirection="column" margin={0}>
+					{isValidating && <Header label="Validating packages" marginBottom={0} />}
+				</Box>
+			)}
 		</>
 	);
 }

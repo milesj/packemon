@@ -123,6 +123,7 @@ export interface BuildOptions extends FilterOptions {
 	declaration?: DeclarationType;
 	declarationConfig?: string;
 	timeout?: number;
+	quiet?: boolean;
 }
 
 export interface BuildResultFiles {

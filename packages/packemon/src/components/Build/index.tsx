@@ -67,7 +67,7 @@ export function Build({ packemon, onBuilt, ...options }: BuildProps) {
         {(pkg) => <PackageRow key={`static-build-${pkg.getName()}`} package={pkg} />}
       </Static>
 
-      {runningPackages.length > 0 && (
+      {!options.quiet && runningPackages.length > 0 && (
         <Box flexDirection="column">
           <Header label="Building packages for distribution" marginBottom={0} />
           <PackageList packages={runningPackages} />
