@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.12.0 - 2022-02-03
+
+#### 🚀 Updates
+
+- Add a `--quiet` option. (#98) ([78d1ab3](https://github.com/milesj/packemon/commit/78d1ab3)), closes [#98](https://github.com/milesj/packemon/issues/98)
+
+#### 🐞 Fixes
+
+- Add plus sign to platform environment. ([68d4f71](https://github.com/milesj/packemon/commit/68d4f71))
+
+#### 📦 Dependencies
+
+- **[babel]** Update to v7.17. ([db31640](https://github.com/milesj/packemon/commit/db31640))
+- **[boost]** Update to v3 latest. ([78b0e9c](https://github.com/milesj/packemon/commit/78b0e9c))
+- **[rollup]** Update to v2.67. ([230237f](https://github.com/milesj/packemon/commit/230237f))
+
+**Note:** Version bump only for package packemon
+
+
+
+
+
 ### 1.11.1 - 2022-01-27
 
 #### 🐞 Fixes

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 1.2.4 - 2022-02-03
+
+#### 🐞 Fixes
+
+- Fix invalid repository directory. ([18611da](https://github.com/milesj/packemon/commit/18611da))
+
+#### 📦 Dependencies
+
+- **[babel]** Update to v7.17. ([db31640](https://github.com/milesj/packemon/commit/db31640))
+
+**Note:** Version bump only for package babel-plugin-cjs-esm-interop
+
+
+
+
+
 ### 1.2.3 - 2022-01-27
 
 #### 📦 Dependencies
