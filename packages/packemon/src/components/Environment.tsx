@@ -27,11 +27,11 @@ export function getVersionsCombo(platforms: Platform[], support: Support): Set<s
 	platforms.forEach((platform) => {
 		switch (platform) {
 			case 'native':
-				versions.add(`Native (${trimVersion(NATIVE_TARGETS[support])})`);
+				versions.add(`Native (${trimVersion(NATIVE_TARGETS[support])}+)`);
 				break;
 
 			case 'node':
-				versions.add(`Node v${trimVersion(NODE_SUPPORTED_VERSIONS[support])}`);
+				versions.add(`Node v${trimVersion(NODE_SUPPORTED_VERSIONS[support])}+`);
 				break;
 
 			case 'browser': {
