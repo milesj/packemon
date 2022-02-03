@@ -65,9 +65,11 @@ export function Validate({ packemon, onValidated, ...options }: ValidateProps) {
 				)}
 			</Static>
 
-			<Box flexDirection="column" margin={0}>
-				{isValidating && <Header label="Validating packages" marginBottom={0} />}
-			</Box>
+			{!options.quiet && (
+				<Box flexDirection="column" margin={0}>
+					{isValidating && <Header label="Validating packages" marginBottom={0} />}
+				</Box>
+			)}
 		</>
 	);
 }

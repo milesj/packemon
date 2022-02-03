@@ -15,7 +15,7 @@ export class FilesCommand extends BaseCommand {
 	format: FileFormat = 'tree';
 
 	@Arg.Params({
-		label: 'pkg',
+		label: 'package',
 		description: 'Name of package to inspect',
 		type: 'string',
 		required: true,

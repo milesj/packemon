@@ -46,6 +46,7 @@ export class ValidateCommand extends BaseCommand<Required<ValidateOptions>> {
 				meta={this.meta}
 				packemon={this.packemon}
 				people={this.people}
+				quiet={this.quiet}
 				repo={this.repo}
 				skipPrivate={this.skipPrivate}
 			/>

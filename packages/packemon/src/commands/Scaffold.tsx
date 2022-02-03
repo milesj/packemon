@@ -35,7 +35,7 @@ export class ScaffoldCommand extends Command {
 	destDir: string = '';
 
 	@Arg.Params({
-		label: 'dest',
+		label: 'destination',
 		description: 'Destination to copy template to',
 		type: 'string',
 		required: true,
@@ -86,7 +86,7 @@ export class ScaffoldCommand extends Command {
 
 		if (!fs.existsSync(packagesDir)) {
 			throw new Error(
-				`Cannot create a monorepo package as the monorepo infrastructure has not been scaffolded. Please run \`packemon scaffold --template monorepo ${this.dest}\`.`,
+				`Cannot create a monorepo package as the monorepo infrastructure has not been scaffolded, or the ${this.packagesFolder} folder is missing. Please run \`packemon scaffold --template monorepo ${this.dest}\`.`,
 			);
 		}
 

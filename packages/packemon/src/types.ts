@@ -123,6 +123,7 @@ export interface BuildOptions extends FilterOptions {
 	declaration?: DeclarationType;
 	declarationConfig?: string;
 	timeout?: number;
+	quiet?: boolean;
 }
 
 export interface BuildResultFiles {
@@ -156,6 +157,7 @@ export interface ValidateOptions {
 	links?: boolean;
 	meta?: boolean;
 	people?: boolean;
+	quiet?: boolean;
 	skipPrivate?: boolean;
 	repo?: boolean;
 }
