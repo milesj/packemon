@@ -156,6 +156,7 @@ export interface ValidateOptions {
 	links?: boolean;
 	meta?: boolean;
 	people?: boolean;
+	quiet?: boolean;
 	skipPrivate?: boolean;
 	repo?: boolean;
 }

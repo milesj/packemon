@@ -24,6 +24,9 @@ export abstract class BaseCommand<
 	@Arg.String('Only target specific platforms', { category: 'filter', short: 'p' })
 	platforms: string = '';
 
+	@Arg.Flag('Display less or no output while running', { category: 'global' })
+	quiet: boolean = false;
+
 	@Arg.Flag('Skip `private` packages', { category: 'filter' })
 	skipPrivate: boolean = false;
 

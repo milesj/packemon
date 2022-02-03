@@ -57,6 +57,10 @@ export function Validate({ packemon, onValidated, ...options }: ValidateProps) {
 		}
 	}, [failedValidators, exit]);
 
+	if (options.quiet) {
+		return null;
+	}
+
 	return (
 		<>
 			<Static items={failedValidators}>
