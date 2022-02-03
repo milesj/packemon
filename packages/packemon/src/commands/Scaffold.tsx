@@ -236,7 +236,6 @@ export class ScaffoldCommand extends Command {
 		destDir: string,
 		params: Record<string, number | string> | ScaffoldParams,
 	) {
-		// @ts-expect-error URL type mismatch
 		const templateDir = fileURLToPath(new URL(`../../templates/${template}`, import.meta.url));
 		const files = await glob('**/*', {
 			absolute: false,
