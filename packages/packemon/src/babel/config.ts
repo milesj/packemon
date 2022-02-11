@@ -1,5 +1,6 @@
 import { PluginItem, TransformOptions as ConfigStructure } from '@babel/core';
 import { CodeArtifact } from '../CodeArtifact';
+import { Config } from '../Config';
 import { BROWSER_TARGETS, NATIVE_TARGETS, NODE_SUPPORTED_VERSIONS } from '../constants';
 import { FeatureFlags, Format, Platform, Support } from '../types';
 import { resolve, resolveFromBabel } from './resolve';
@@ -88,8 +89,9 @@ function getSharedConfig(
 	plugins: PluginItem[],
 	presets: PluginItem[],
 	features: FeatureFlags,
+	packemonConfig: Config,
 ): ConfigStructure {
-	return {
+	const babelConfig: ConfigStructure = {
 		caller: {
 			name: 'packemon',
 		},
@@ -106,6 +108,12 @@ function getSharedConfig(
 		babelrc: true,
 		babelrcRoots: features.workspaces,
 	};
+
+	if (packemonConfig.options.babel) {
+		packemonConfig.options.babel(babelConfig);
+	}
+
+	return babelConfig;
 }
 
 // The input config should only parse special syntax, not transform and downlevel.
@@ -113,6 +121,7 @@ function getSharedConfig(
 export function getBabelInputConfig(
 	artifact: CodeArtifact,
 	features: FeatureFlags,
+	packemonConfig: Config,
 ): Omit<ConfigStructure, 'exclude' | 'include'> {
 	const plugins: PluginItem[] = [];
 	const presets: PluginItem[] = [];
@@ -145,7 +154,7 @@ export function getBabelInputConfig(
 		]);
 	}
 
-	return getSharedConfig(plugins, presets, features);
+	return getSharedConfig(plugins, presets, features, packemonConfig);
 }
 
 // The output config does all the transformation and downleveling through the preset-env.
@@ -155,6 +164,7 @@ export function getBabelOutputConfig(
 	support: Support,
 	format: Format,
 	features: FeatureFlags,
+	packemonConfig: Config,
 ): ConfigStructure {
 	const plugins: PluginItem[] = [];
 	const presets: PluginItem[] = [];
@@ -222,5 +232,5 @@ export function getBabelOutputConfig(
 		resolve('babel-plugin-env-constants'),
 	);
 
-	return getSharedConfig(plugins, presets, features);
+	return getSharedConfig(plugins, presets, features, packemonConfig);
 }

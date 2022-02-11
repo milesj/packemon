@@ -78,7 +78,7 @@ export class Packemon {
 
 		packages.forEach((pkg) => {
 			pipeline.add(pkg.getName(), async () => {
-				await pkg.build(options);
+				await pkg.build(options, this.config);
 
 				this.onPackageBuilt.emit([pkg]);
 			});

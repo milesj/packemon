@@ -4,6 +4,7 @@ import { Path, toArray } from '@boost/common';
 import { FeatureFlags } from './types';
 import {
 	CodeArtifact,
+	Config,
 	DEFAULT_SUPPORT,
 	Format,
 	getBabelInputConfig,
@@ -19,13 +20,21 @@ const format = (process.env.PACKEMON_FORMAT ?? 'lib') as Format;
 const support = (process.env.PACKEMON_SUPPORT ?? DEFAULT_SUPPORT) as Support;
 const project = new Project(process.cwd());
 
-function getBabelConfig(artifact: CodeArtifact, featureFlags: FeatureFlags): ConfigStructure {
-	const inputConfig = getBabelInputConfig(artifact, featureFlags);
+function getBabelConfig(
+	artifact: CodeArtifact,
+	featureFlags: FeatureFlags,
+	pathToConfigFile: string,
+): ConfigStructure {
+	const packemonConfig = new Config();
+	packemonConfig.load(Path.create(pathToConfigFile));
+
+	const inputConfig = getBabelInputConfig(artifact, featureFlags, packemonConfig);
 	const outputConfig = getBabelOutputConfig(
 		artifact.platform,
 		artifact.support,
 		artifact.builds[0].format,
 		featureFlags,
+		packemonConfig,
 	);
 
 	return {
@@ -42,7 +51,11 @@ export interface ConfigOptions {
 	support?: Support;
 }
 
-export function createConfig(folder: string, options: ConfigOptions = {}): ConfigStructure {
+export function createConfig(
+	folder: string,
+	options: ConfigOptions = {},
+	pathToConfigFile?: string,
+): ConfigStructure {
 	const path = new Path(folder);
 	const contents = fs.readJsonSync(path.append('package.json').path()) as PackemonPackage;
 
@@ -70,11 +83,14 @@ export function createConfig(folder: string, options: ConfigOptions = {}): Confi
 	artifact.platform = options.platform ?? lowestPlatform;
 	artifact.support = options.support ?? support;
 
-	return getBabelConfig(artifact, pkg.getFeatureFlags());
+	return getBabelConfig(artifact, pkg.getFeatureFlags(), pathToConfigFile ?? process.cwd());
 }
 
-export function createRootConfig(options?: ConfigOptions): ConfigStructure {
-	const config = createConfig(process.cwd(), options);
+export function createRootConfig(
+	options?: ConfigOptions,
+	pathToConfigFile?: string,
+): ConfigStructure {
+	const config = createConfig(process.cwd(), options, pathToConfigFile);
 
 	return {
 		...config,

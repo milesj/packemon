@@ -1,6 +1,7 @@
 import fs from 'fs-extra';
 import { applyStyle } from '@boost/cli';
 import { Path, PortablePath } from '@boost/common';
+import { Config } from './Config';
 import type { Package } from './Package';
 import type {
 	ApiType,
@@ -92,7 +93,7 @@ export abstract class Artifact<T extends object = {}> {
 		return Promise.all(files.map((file) => fs.remove(String(file))));
 	}
 
-	abstract build(options: BuildOptions): Awaitable;
+	abstract build(options: BuildOptions, packemonConfig: Config): Awaitable;
 
 	abstract getLabel(): string;
 

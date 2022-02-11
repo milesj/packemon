@@ -7,6 +7,7 @@ import { optimal } from '@boost/common/optimal';
 import { createDebugger, Debugger } from '@boost/debug';
 import { Artifact } from './Artifact';
 import { CodeArtifact } from './CodeArtifact';
+import { Config } from './Config';
 import {
 	DEFAULT_FORMATS,
 	EXCLUDE,
@@ -65,7 +66,7 @@ export class Package {
 		return artifact;
 	}
 
-	async build(options: BuildOptions): Promise<void> {
+	async build(options: BuildOptions, packemonConfig: Config): Promise<void> {
 		this.debug('Building artifacts');
 
 		// Build artifacts in parallel
@@ -76,7 +77,7 @@ export class Package {
 				try {
 					artifact.state = 'building';
 
-					await artifact.build(options);
+					await artifact.build(options, packemonConfig);
 
 					artifact.state = 'passed';
 				} catch (error: unknown) {

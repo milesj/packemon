@@ -15,6 +15,7 @@ export * from './commands/Pack';
 export * from './commands/Scaffold';
 export * from './commands/Validate';
 export * from './commands/Watch';
+export * from './Config';
 export * from './constants';
 export * from './Package';
 export * from './PackageValidator';

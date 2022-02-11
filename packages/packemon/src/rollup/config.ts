@@ -8,6 +8,7 @@ import json from '@rollup/plugin-json';
 import resolve from '@rollup/plugin-node-resolve';
 import { getBabelInputConfig, getBabelOutputConfig } from '../babel/config';
 import type { CodeArtifact } from '../CodeArtifact';
+import { Config } from '../Config';
 import { EXCLUDE, EXTENSIONS } from '../constants';
 import { FeatureFlags, Format } from '../types';
 import { addBinShebang } from './plugins/addBinShebang';
@@ -92,6 +93,7 @@ export function getRollupOutputConfig(
 	artifact: CodeArtifact,
 	features: FeatureFlags,
 	format: Format,
+	packemonConfig: Config,
 ): OutputOptions {
 	const { platform, support } = artifact;
 	const { ext, folder } = artifact.getBuildOutput(format);
@@ -114,7 +116,7 @@ export function getRollupOutputConfig(
 		// Output specific plugins
 		plugins: [
 			getBabelOutputPlugin({
-				...getBabelOutputConfig(platform, support, format, features),
+				...getBabelOutputConfig(platform, support, format, features, packemonConfig),
 				filename: artifact.package.path.path(),
 				// Provide a custom name for the UMD global
 				moduleId: format === 'umd' ? artifact.namespace : undefined,
@@ -144,7 +146,11 @@ export function getRollupOutputConfig(
 	return output;
 }
 
-export function getRollupConfig(artifact: CodeArtifact, features: FeatureFlags): RollupOptions {
+export function getRollupConfig(
+	artifact: CodeArtifact,
+	features: FeatureFlags,
+	packemonConfig: Config,
+): RollupOptions {
 	const packagePath = artifact.package.packageJsonPath.path();
 	const isNode = artifact.platform === 'node';
 	const isTest = process.env.NODE_ENV === 'test';
@@ -173,7 +179,7 @@ export function getRollupConfig(artifact: CodeArtifact, features: FeatureFlags):
 			}),
 			// Declare Babel here so we can parse TypeScript/Flow
 			getBabelInputPlugin({
-				...getBabelInputConfig(artifact, features),
+				...getBabelInputConfig(artifact, features, packemonConfig),
 				babelHelpers: 'bundled',
 				exclude: isTest ? [] : EXCLUDE,
 				extensions: EXTENSIONS,
@@ -207,8 +213,12 @@ export function getRollupConfig(artifact: CodeArtifact, features: FeatureFlags):
 
 	// Add an output for each format
 	config.output = artifact.builds.map((build) =>
-		getRollupOutputConfig(artifact, features, build.format),
+		getRollupOutputConfig(artifact, features, build.format, packemonConfig),
 	);
+
+	if (packemonConfig.options.rollup) {
+		packemonConfig.options.rollup(config);
+	}
 
 	return config;
 }
