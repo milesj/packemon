@@ -2,6 +2,7 @@ import fs from 'fs-extra';
 import { rollup } from 'rollup';
 import { Path } from '@boost/common';
 import { getFixturePath } from '@boost/test-utils';
+import { Config } from '../src';
 import { CodeArtifact } from '../src/CodeArtifact';
 import { Package } from '../src/Package';
 import { Project } from '../src/Project';
@@ -72,7 +73,7 @@ describe('CodeArtifact', () => {
 		});
 
 		it('generates rollup config using input config', async () => {
-			await artifact.build({});
+			await artifact.build({}, new Config());
 
 			expect(getRollupConfig).toHaveBeenCalledWith(artifact, { typescript: true });
 			expect(rollup).toHaveBeenCalledWith({
@@ -82,7 +83,7 @@ describe('CodeArtifact', () => {
 		});
 
 		it('inherits `analyze` feature flag', async () => {
-			await artifact.build({ analyze: 'network' });
+			await artifact.build({ analyze: 'network' }, new Config());
 
 			expect(getRollupConfig).toHaveBeenCalledWith(artifact, {
 				analyze: 'network',
@@ -93,13 +94,13 @@ describe('CodeArtifact', () => {
 		it('sets rollup cache on artifact', async () => {
 			expect(artifact.cache).toBeUndefined();
 
-			await artifact.build({});
+			await artifact.build({}, new Config());
 
 			expect(artifact.cache).toEqual({ cache: true });
 		});
 
 		it('writes a bundle and stats for each build', async () => {
-			await artifact.build({});
+			await artifact.build({}, new Config());
 
 			expect(bundleWriteSpy).toHaveBeenCalledWith({ a: true });
 			expect(artifact.builds[0].stats?.size).toBe(4);
