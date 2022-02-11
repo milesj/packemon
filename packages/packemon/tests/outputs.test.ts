@@ -1,3 +1,5 @@
+/* eslint-disable jest/no-conditional-in-test */
+
 import { Path } from '@boost/common';
 import { getFixturePath } from '@boost/test-utils';
 import { CodeArtifact } from '../src';

@@ -154,7 +154,7 @@ export function testExampleOutput(file: string, options?: Partial<PackageConfig>
 			artifact.support = build.support;
 			artifact.inputs = { [`index-${env}`]: file };
 
-			// eslint-disable-next-line jest/no-if
+			// eslint-disable-next-line jest/no-conditional-in-test
 			if (options) {
 				Object.assign(artifact, options);
 			}
