@@ -16,6 +16,7 @@ import { createDebugger, Debugger } from '@boost/debug';
 import { Event } from '@boost/event';
 import { Context, PooledPipeline } from '@boost/pipeline';
 import { CodeArtifact } from './CodeArtifact';
+import { Config } from './Config';
 import { matchesPattern } from './helpers/matchesPattern';
 import { Package } from './Package';
 import { PackageValidator } from './PackageValidator';
@@ -33,6 +34,8 @@ import type {
 import { TypesArtifact } from './TypesArtifact';
 
 export class Packemon {
+	readonly config: Config = new Config();
+
 	readonly debug: Debugger;
 
 	readonly onPackageBuilt = new Event<[Package]>('package-built');

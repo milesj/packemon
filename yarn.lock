@@ -2089,6 +2089,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@boost/module@npm:^3.1.0":
+  version: 3.1.0
+  resolution: "@boost/module@npm:3.1.0"
+  peerDependencies:
+    typescript: ^4.0.0
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: 321dc5e67d5e1cc1030597471ee73351f4c71150238b34e7aa88996f5b7da29a8bb8e6a008ae218144f723ac143c3091b7be6c036f6c196ea27ce5cfa8e0036f
+  languageName: node
+  linkType: hard
+
 "@boost/pipeline@npm:^3.2.0, @boost/pipeline@npm:^3.2.2":
   version: 3.2.2
   resolution: "@boost/pipeline@npm:3.2.2"
@@ -14105,6 +14117,7 @@ __metadata:
     "@boost/common": ^3.2.1
     "@boost/debug": ^3.0.3
     "@boost/event": ^3.0.1
+    "@boost/module": ^3.1.0
     "@boost/pipeline": ^3.2.2
     "@boost/terminal": ^3.0.0
     "@microsoft/api-extractor": ^7.19.4
