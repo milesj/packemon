@@ -1,0 +1,168 @@
+---
+title: Advanced
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+## Creating binary files
+
+A binary is an executable file distributed in an npm package via the
+[bin](https://docs.npmjs.com/files/package.json#bin) field. Packemon offers first class support for
+binary files by:
+
+- Prepending a `#!/usr/bin/env node` shebang to the output file. Do not include this in the source
+  file!
+- Updating the `bin` field in `package.json` to the output file (if not already defined).
+
+To make use of this functionality, you must define an [input](./config.md#inputs) with the name
+`bin`, like so.
+
+```json title="package.json"
+{
+	"name": "package",
+	"packemon": {
+		"inputs": {
+			"bin": "src/bin.ts"
+		},
+		"platform": "node"
+	}
+}
+```
+
+The contents of the binary source file can be whatever you want, but do be aware that code in the
+module scope will be executed immediately when the file is executed by Node.js.
+
+## Customizing Babel and Rollup
+
+> This is an advanced escape hatch and should be avoided unless absolutely necessary, for example,
+> processing CSS files in a way that Packemon does not support.
+
+Customizing the Babel and Rollup configs are an _opt-in feature_, and require the following
+conditions to be met:
+
+- A `--configs` option is passed on the command line. This enables searching and loading of config
+  files, otherwise, we want to avoid the filesystem lookups.
+- A `packemon.config.{ts,js}` file at the monorepo/polyrepo root, which applies customizations to
+  all packages. Or _optional_ `.packemon.{ts,js}` files within each package, which applies
+  customizations to that package individually. An example of this is found below.
+
+<Tabs
+  groupId="package-structure"
+  defaultValue="poly"
+  values={[
+    { label: 'Polyrepo', value: 'poly' },
+    { label: 'Monorepo', value: 'mono' },
+  ]}
+>
+  <TabItem value="poly">
+
+```
+/
+├── src/
+├── package.json
+├── packemon.config.js
+├── LICENSE
+└── README.md
+```
+
+  </TabItem>
+  <TabItem value="mono">
+
+```
+/
+├── packages/
+│   ├── foo/
+│   |   ├── src/
+│   |   ├── .packemon.js
+│   |   ├── package.json
+│   |   ├── LICENSE
+│   |   └── README.md
+│   ├── bar/
+│   |   ├── src/
+│   |   ├── .packemon.js
+│   |   ├── package.json
+│   |   ├── LICENSE
+│   |   └── README.md
+│   └── baz/
+│       ├── src/
+│       ├── .packemon.js
+│       ├── package.json
+│       ├── LICENSE
+│       └── README.md
+├── lerna.json
+├── package.json
+├── packemon.config.js
+├── LICENSE
+└── README.md
+```
+
+  </TabItem>
+</Tabs>
+
+Both of these config files have the same structure, and may return `babel` and/or `rollup` fields.
+Both of these fields require a function, which is passed the finalized config as an argument. This
+config can then be mutated in place.
+
+<Tabs
+  groupId="configs"
+  defaultValue="ts"
+  values={[
+    { label: 'TypeScript', value: 'ts' },
+    { label: 'JavaScript', value: 'js' },
+  ]}
+>
+  <TabItem value="ts">
+
+```ts
+import type { ConfigFile } from 'packemon';
+import linaria from '@linaria/rollup';
+
+const config: ConfigFile = {
+	babel(config) {
+		config.presets.push('@linaria/babel-preset');
+	},
+	rollup(config) {
+		config.plugins.unshift(linaria());
+	},
+};
+
+export default config;
+```
+
+  </TabItem>
+  <TabItem value="js">
+
+```js
+const linaria = require('@linaria/rollup');
+
+module.exports = {
+	babel(config) {
+		config.presets.push('@linaria/babel-preset');
+	},
+	rollup(config) {
+		config.plugins.unshift(linaria());
+	},
+};
+```
+
+  </TabItem>
+</Tabs>
+
+> We suggest _not mutating_ the config that Packemon generates, as it may break our assumptions.
+> Instead, prefer to only apply additions that add new functionality.
+
+## Version constraints
+
+If you're using packemon as a global dependency and want to ensure all contributors of your project
+are using the correct packemon version, you can provide an `engines` constraint to your root
+`package.json`.
+
+```json title="package.json"
+{
+	"name": "package",
+	"engines": {
+		"packemon": "^1.0.0"
+	}
+}
+```
