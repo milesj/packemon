@@ -1,14 +1,16 @@
 import { RollupOptions } from 'rollup';
 import { TransformOptions } from '@babel/core';
-import { Blueprint, Contract, Path, Schemas } from '@boost/common';
-import { requireModule } from '@boost/module';
+import { Blueprint, Schemas } from '@boost/common';
+import { Configuration } from '@boost/config';
+
+export type ConfigMutator<T> = (config: T) => void;
 
 export interface ConfigFile {
-	babel?: (config: TransformOptions) => void;
-	rollup?: (config: RollupOptions) => void;
+	babel?: ConfigMutator<TransformOptions>;
+	rollup?: ConfigMutator<RollupOptions>;
 }
 
-export class Config extends Contract<ConfigFile> {
+export class Config extends Configuration<ConfigFile> {
 	blueprint({ func }: Schemas): Blueprint<ConfigFile> {
 		return {
 			babel: func(),
@@ -16,31 +18,19 @@ export class Config extends Contract<ConfigFile> {
 		};
 	}
 
-	loadFromPath(file: Path): ConfigFile {
-		if (!file.exists()) {
-			throw new Error(`Configuration file \`${file}\` does not exist.`);
-		}
+	override bootstrap() {
+		this.configureFinder({
+			errorIfNoRootFound: false,
+		});
 
-		const config = requireModule<ConfigFile>(file).default;
-
-		this.configure(config);
-
-		return this.options;
+		this.addProcessHandler('babel', this.wrapMutator);
+		this.addProcessHandler('rollup', this.wrapMutator);
 	}
 
-	load(root: Path): ConfigFile {
-		const tsConfig = root.append('packemon.config.ts');
-
-		if (tsConfig.exists()) {
-			return this.loadFromPath(tsConfig);
-		}
-
-		const jsConfig = root.append('packemon.config.js');
-
-		if (jsConfig.exists()) {
-			return this.loadFromPath(jsConfig);
-		}
-
-		return this.options;
+	wrapMutator<T>(prev?: ConfigMutator<T>, next?: ConfigMutator<T>) {
+		return (options: T) => {
+			prev?.(options);
+			next?.(options);
+		};
 	}
 }

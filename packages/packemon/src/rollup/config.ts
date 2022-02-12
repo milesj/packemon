@@ -8,7 +8,7 @@ import json from '@rollup/plugin-json';
 import resolve from '@rollup/plugin-node-resolve';
 import { getBabelInputConfig, getBabelOutputConfig } from '../babel/config';
 import type { CodeArtifact } from '../CodeArtifact';
-import { Config } from '../Config';
+import { ConfigFile } from '../Config';
 import { EXCLUDE, EXTENSIONS } from '../constants';
 import { FeatureFlags, Format } from '../types';
 import { addBinShebang } from './plugins/addBinShebang';
@@ -93,7 +93,7 @@ export function getRollupOutputConfig(
 	artifact: CodeArtifact,
 	features: FeatureFlags,
 	format: Format,
-	packemonConfig: Config,
+	packemonConfig: ConfigFile,
 ): OutputOptions {
 	const { platform, support } = artifact;
 	const { ext, folder } = artifact.getBuildOutput(format);
@@ -149,7 +149,7 @@ export function getRollupOutputConfig(
 export function getRollupConfig(
 	artifact: CodeArtifact,
 	features: FeatureFlags,
-	packemonConfig: Config,
+	packemonConfig: ConfigFile,
 ): RollupOptions {
 	const packagePath = artifact.package.packageJsonPath.path();
 	const isNode = artifact.platform === 'node';
@@ -216,9 +216,8 @@ export function getRollupConfig(
 		getRollupOutputConfig(artifact, features, build.format, packemonConfig),
 	);
 
-	if (packemonConfig.options.rollup) {
-		packemonConfig.options.rollup(config);
-	}
+	// Allow consumers to mutate
+	packemonConfig.rollup?.(config);
 
 	return config;
 }

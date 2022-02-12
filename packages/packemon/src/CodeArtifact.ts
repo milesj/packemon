@@ -2,7 +2,7 @@ import { rollup, RollupCache } from 'rollup';
 import { toArray, VirtualPath } from '@boost/common';
 import { createDebugger, Debugger } from '@boost/debug';
 import { Artifact } from './Artifact';
-import { Config } from './Config';
+import { ConfigFile } from './Config';
 import { removeSourcePath } from './helpers/removeSourcePath';
 import { getRollupConfig } from './rollup/config';
 import {
@@ -56,7 +56,7 @@ export class CodeArtifact extends Artifact<CodeBuild> {
 		await this.removeFiles([this.package.project.root.append(this.getStatsFileName())]);
 	}
 
-	async build(options: BuildOptions, packemonConfig: Config): Promise<void> {
+	async build(options: BuildOptions, packemonConfig: ConfigFile): Promise<void> {
 		this.debug('Building code artifacts with Rollup');
 
 		const features = this.package.getFeatureFlags();

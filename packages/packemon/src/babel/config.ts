@@ -1,6 +1,6 @@
 import { PluginItem, TransformOptions as ConfigStructure } from '@babel/core';
 import { CodeArtifact } from '../CodeArtifact';
-import { Config } from '../Config';
+import { ConfigFile } from '../Config';
 import { BROWSER_TARGETS, NATIVE_TARGETS, NODE_SUPPORTED_VERSIONS } from '../constants';
 import { FeatureFlags, Format, Platform, Support } from '../types';
 import { resolve, resolveFromBabel } from './resolve';
@@ -89,7 +89,7 @@ function getSharedConfig(
 	plugins: PluginItem[],
 	presets: PluginItem[],
 	features: FeatureFlags,
-	packemonConfig: Config,
+	packemonConfig: ConfigFile,
 ): ConfigStructure {
 	const babelConfig: ConfigStructure = {
 		caller: {
@@ -109,9 +109,8 @@ function getSharedConfig(
 		babelrcRoots: features.workspaces,
 	};
 
-	if (packemonConfig.options.babel) {
-		packemonConfig.options.babel(babelConfig);
-	}
+	// Allow consumers to mutate
+	packemonConfig.babel?.(babelConfig);
 
 	return babelConfig;
 }
@@ -121,7 +120,7 @@ function getSharedConfig(
 export function getBabelInputConfig(
 	artifact: CodeArtifact,
 	features: FeatureFlags,
-	packemonConfig: Config,
+	packemonConfig: ConfigFile,
 ): Omit<ConfigStructure, 'exclude' | 'include'> {
 	const plugins: PluginItem[] = [];
 	const presets: PluginItem[] = [];
@@ -164,7 +163,7 @@ export function getBabelOutputConfig(
 	support: Support,
 	format: Format,
 	features: FeatureFlags,
-	packemonConfig: Config,
+	packemonConfig: ConfigFile,
 ): ConfigStructure {
 	const plugins: PluginItem[] = [];
 	const presets: PluginItem[] = [];

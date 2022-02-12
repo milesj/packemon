@@ -103,7 +103,11 @@ export class WatchCommand extends BaseCommand<WatchOptions> {
 		try {
 			const start = Date.now();
 
-			await Promise.all(pkgs.map((pkg) => pkg.build({}, this.packemon.config)));
+			await Promise.all(
+				pkgs.map(async (pkg) =>
+					pkg.build({}, (await this.packemon.config.loadConfigFromBranchToRoot(pkg.path)).config),
+				),
+			);
 
 			this.log(
 				applyStyle('Built %s in %s', 'success'),

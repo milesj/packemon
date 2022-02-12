@@ -34,7 +34,7 @@ import type {
 import { TypesArtifact } from './TypesArtifact';
 
 export class Packemon {
-	readonly config: Config = new Config();
+	readonly config: Config = new Config('packemon');
 
 	readonly debug: Debugger;
 
@@ -78,7 +78,9 @@ export class Packemon {
 
 		packages.forEach((pkg) => {
 			pipeline.add(pkg.getName(), async () => {
-				await pkg.build(options, this.config);
+				const { config } = await this.config.loadConfigFromBranchToRoot(pkg.path);
+
+				await pkg.build(options, config);
 
 				this.onPackageBuilt.emit([pkg]);
 			});

@@ -2026,6 +2026,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@boost/config@npm:^3.1.0":
+  version: 3.1.0
+  resolution: "@boost/config@npm:3.1.0"
+  dependencies:
+    "@boost/common": ^3.2.1
+    "@boost/debug": ^3.0.3
+    "@boost/event": ^3.0.1
+    "@boost/internal": ^3.0.1
+    "@boost/module": ^3.1.0
+    minimatch: ^3.0.4
+  checksum: 051c930c969aadd80c6dc5a675c4ca7f2159194c29962c039ad88498013c56bf5315f6736301902399f642ccda3ab7eb0ddb9a2f8ab08dabb846f8785370d3b0
+  languageName: node
+  linkType: hard
+
 "@boost/debug@npm:^3.0.1, @boost/debug@npm:^3.0.3":
   version: 3.0.3
   resolution: "@boost/debug@npm:3.0.3"
@@ -14115,6 +14129,7 @@ __metadata:
     "@babel/preset-typescript": ^7.16.7
     "@boost/cli": ^3.0.3
     "@boost/common": ^3.2.1
+    "@boost/config": ^3.1.0
     "@boost/debug": ^3.0.3
     "@boost/event": ^3.0.1
     "@boost/module": ^3.1.0
