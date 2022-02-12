@@ -76,6 +76,7 @@ export const buildBlueprint: Blueprint<BuildOptions> = {
 	addFiles: bool(),
 	analyze: string('none').oneOf<AnalyzeType>(['none', 'sunburst', 'treemap', 'network']),
 	concurrency: number(1).gte(1),
+	configs: bool(),
 	declaration: string('none').oneOf<DeclarationType>(['none', 'standard', 'api']),
 	declarationConfig: string(),
 	filter: string(),

@@ -78,9 +78,13 @@ export class Packemon {
 
 		packages.forEach((pkg) => {
 			pipeline.add(pkg.getName(), async () => {
-				const { config } = await this.config.loadConfigFromBranchToRoot(pkg.path);
+				if (options.configs) {
+					const { config } = await this.config.loadConfigFromBranchToRoot(pkg.path);
 
-				await pkg.build(options, config);
+					await pkg.build(options, config);
+				} else {
+					await pkg.build(options, {});
+				}
 
 				this.onPackageBuilt.emit([pkg]);
 			});

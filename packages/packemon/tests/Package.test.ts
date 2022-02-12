@@ -2,8 +2,8 @@ import fs from 'fs-extra';
 import { Path, VirtualPath } from '@boost/common';
 import { mockNormalizedFilePath } from '@boost/common/test';
 import { getFixturePath } from '@boost/test-utils';
-import { Config } from '../src';
 import { CodeArtifact } from '../src/CodeArtifact';
+import { ConfigFile } from '../src/Config';
 import { Package } from '../src/Package';
 import { Project } from '../src/Project';
 import { CodeBuild, Platform, Support, TypesBuild } from '../src/types';
@@ -82,11 +82,11 @@ describe('Package', () => {
 
 	describe('build()', () => {
 		let writeSpy: jest.SpyInstance;
-		let config: Config;
+		let config: ConfigFile;
 
 		beforeEach(() => {
 			writeSpy = jest.spyOn(fs, 'writeJson').mockImplementation();
-			config = new Config();
+			config = {};
 		});
 
 		afterEach(() => {

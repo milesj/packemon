@@ -93,7 +93,7 @@ export function getRollupOutputConfig(
 	artifact: CodeArtifact,
 	features: FeatureFlags,
 	format: Format,
-	packemonConfig: ConfigFile,
+	packemonConfig: ConfigFile = {},
 ): OutputOptions {
 	const { platform, support } = artifact;
 	const { ext, folder } = artifact.getBuildOutput(format);
@@ -149,7 +149,7 @@ export function getRollupOutputConfig(
 export function getRollupConfig(
 	artifact: CodeArtifact,
 	features: FeatureFlags,
-	packemonConfig: ConfigFile,
+	packemonConfig: ConfigFile = {},
 ): RollupOptions {
 	const packagePath = artifact.package.packageJsonPath.path();
 	const isNode = artifact.platform === 'node';

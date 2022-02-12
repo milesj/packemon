@@ -120,7 +120,7 @@ function getSharedConfig(
 export function getBabelInputConfig(
 	artifact: CodeArtifact,
 	features: FeatureFlags,
-	packemonConfig: ConfigFile,
+	packemonConfig: ConfigFile = {},
 ): Omit<ConfigStructure, 'exclude' | 'include'> {
 	const plugins: PluginItem[] = [];
 	const presets: PluginItem[] = [];
@@ -163,7 +163,7 @@ export function getBabelOutputConfig(
 	support: Support,
 	format: Format,
 	features: FeatureFlags,
-	packemonConfig: ConfigFile,
+	packemonConfig: ConfigFile = {},
 ): ConfigStructure {
 	const plugins: PluginItem[] = [];
 	const presets: PluginItem[] = [];

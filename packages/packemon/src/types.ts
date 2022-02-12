@@ -120,6 +120,7 @@ export interface BuildOptions extends FilterOptions {
 	addFiles?: boolean;
 	analyze?: AnalyzeType;
 	concurrency?: number;
+	configs?: boolean;
 	declaration?: DeclarationType;
 	declarationConfig?: string;
 	timeout?: number;

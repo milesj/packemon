@@ -1,6 +1,5 @@
 import { Path } from '@boost/common';
 import { getFixturePath } from '@boost/test-utils';
-import { Config } from '../../src';
 import { CodeArtifact } from '../../src/CodeArtifact';
 import { Package } from '../../src/Package';
 import { Project } from '../../src/Project';
@@ -65,17 +64,15 @@ describe('getRollupConfig()', () => {
 	const sharedNonNodePlugins = ['polyfillNode()', ...sharedPlugins];
 
 	let artifact: CodeArtifact;
-	let config: Config;
 
 	beforeEach(() => {
 		artifact = createArtifact('index', 'src/index.ts');
-		config = new Config();
 	});
 
 	it('generates default input config for `browser` platform', () => {
 		artifact.platform = 'browser';
 
-		expect(getRollupConfig(artifact, {}, config)).toEqual({
+		expect(getRollupConfig(artifact, {})).toEqual({
 			cache: undefined,
 			external: expect.any(Function),
 			input: { index: srcInputFile },
@@ -88,7 +85,7 @@ describe('getRollupConfig()', () => {
 	it('generates default input config for `native` platform', () => {
 		artifact.platform = 'native';
 
-		expect(getRollupConfig(artifact, {}, config)).toEqual({
+		expect(getRollupConfig(artifact, {})).toEqual({
 			cache: undefined,
 			external: expect.any(Function),
 			input: { index: srcInputFile },
@@ -101,7 +98,7 @@ describe('getRollupConfig()', () => {
 	it('generates default input config for `node` platform', () => {
 		artifact.platform = 'node';
 
-		expect(getRollupConfig(artifact, {}, config)).toEqual({
+		expect(getRollupConfig(artifact, {})).toEqual({
 			cache: undefined,
 			external: expect.any(Function),
 			input: { index: srcInputFile },
@@ -114,7 +111,7 @@ describe('getRollupConfig()', () => {
 	it('generates an output config for each build', () => {
 		artifact.builds.push({ format: 'lib' }, { format: 'esm' }, { format: 'mjs' });
 
-		expect(getRollupConfig(artifact, {}, config)).toEqual({
+		expect(getRollupConfig(artifact, {})).toEqual({
 			cache: undefined,
 			external: expect.any(Function),
 			input: {
@@ -185,7 +182,7 @@ describe('getRollupConfig()', () => {
 		};
 		artifact.builds.push({ format: 'lib' });
 
-		expect(getRollupConfig(artifact, {}, config)).toEqual({
+		expect(getRollupConfig(artifact, {})).toEqual({
 			cache: undefined,
 			external: expect.any(Function),
 			input: {
@@ -220,7 +217,7 @@ describe('getRollupConfig()', () => {
 		artifact.bundle = false;
 		artifact.builds.push({ format: 'lib' });
 
-		expect(getRollupConfig(artifact, {}, config)).toEqual({
+		expect(getRollupConfig(artifact, {})).toEqual({
 			cache: undefined,
 			external: expect.any(Function),
 			input: [
@@ -257,14 +254,14 @@ describe('getRollupConfig()', () => {
 	it('inherits artifact rollup cache', () => {
 		artifact.cache = { modules: [] };
 
-		expect(getRollupConfig(artifact, {}, config).cache).toEqual({
+		expect(getRollupConfig(artifact, {}).cache).toEqual({
 			modules: [],
 		});
 	});
 
 	it('includes analyzer plugin if `analyze` feature flag is on', () => {
 		artifact.builds.push({ format: 'lib' });
-		expect(getRollupConfig(artifact, { analyze: 'treemap' }, config).plugins).toEqual([
+		expect(getRollupConfig(artifact, { analyze: 'treemap' }).plugins).toEqual([
 			...sharedPlugins,
 			'visualizer(treemap, stats-project-node-stable.html, project/node/stable)',
 		]);
@@ -322,17 +319,15 @@ describe('getRollupConfig()', () => {
 
 describe('getRollupOutputConfig()', () => {
 	let artifact: CodeArtifact;
-	let config: Config;
 
 	beforeEach(() => {
 		artifact = createArtifact('index', 'src/index.ts');
 		artifact.platform = 'node';
 		artifact.support = 'stable';
-		config = new Config();
 	});
 
 	it('generates default output config', () => {
-		expect(getRollupOutputConfig(artifact, {}, 'lib', config)).toEqual({
+		expect(getRollupOutputConfig(artifact, {}, 'lib')).toEqual({
 			assetFileNames: 'assets/[name].[ext]',
 			banner: expect.any(String),
 			chunkFileNames: 'bundle-[hash].js',
@@ -356,21 +351,17 @@ describe('getRollupOutputConfig()', () => {
 		artifact.platform = 'browser';
 		artifact.support = 'stable';
 
-		expect(getRollupOutputConfig(artifact, {}, 'esm', config).dir).toBe(
-			fixturePath.append('esm').path(),
-		);
+		expect(getRollupOutputConfig(artifact, {}, 'esm').dir).toBe(fixturePath.append('esm').path());
 
 		artifact.platform = 'node';
 		artifact.support = 'stable';
 
-		expect(getRollupOutputConfig(artifact, {}, 'mjs', config).dir).toBe(
-			fixturePath.append('mjs').path(),
-		);
+		expect(getRollupOutputConfig(artifact, {}, 'mjs').dir).toBe(fixturePath.append('mjs').path());
 	});
 
 	describe('formats', () => {
 		it('converts `lib` format to rollup "cjs" format', () => {
-			expect(getRollupOutputConfig(artifact, {}, 'lib', config)).toEqual(
+			expect(getRollupOutputConfig(artifact, {}, 'lib')).toEqual(
 				expect.objectContaining({
 					format: 'cjs',
 					originalFormat: 'lib',
@@ -379,7 +370,7 @@ describe('getRollupOutputConfig()', () => {
 		});
 
 		it('converts `cjs` format to rollup "cjs" format', () => {
-			expect(getRollupOutputConfig(artifact, {}, 'cjs', config)).toEqual(
+			expect(getRollupOutputConfig(artifact, {}, 'cjs')).toEqual(
 				expect.objectContaining({
 					format: 'cjs',
 					originalFormat: 'cjs',
@@ -388,7 +379,7 @@ describe('getRollupOutputConfig()', () => {
 		});
 
 		it('converts `mjs` format to rollup "esm" format', () => {
-			expect(getRollupOutputConfig(artifact, {}, 'mjs', config)).toEqual(
+			expect(getRollupOutputConfig(artifact, {}, 'mjs')).toEqual(
 				expect.objectContaining({
 					format: 'esm',
 					originalFormat: 'mjs',
@@ -399,7 +390,7 @@ describe('getRollupOutputConfig()', () => {
 		it('converts `esm` format to rollup "esm" format', () => {
 			artifact.platform = 'browser';
 
-			expect(getRollupOutputConfig(artifact, {}, 'esm', config)).toEqual(
+			expect(getRollupOutputConfig(artifact, {}, 'esm')).toEqual(
 				expect.objectContaining({
 					format: 'esm',
 					originalFormat: 'esm',
@@ -410,7 +401,7 @@ describe('getRollupOutputConfig()', () => {
 		it('converts `umd` format to rollup "esm" format', () => {
 			artifact.platform = 'browser';
 
-			expect(getRollupOutputConfig(artifact, {}, 'umd', config)).toEqual(
+			expect(getRollupOutputConfig(artifact, {}, 'umd')).toEqual(
 				expect.objectContaining({
 					format: 'esm',
 					originalFormat: 'umd',
@@ -421,7 +412,7 @@ describe('getRollupOutputConfig()', () => {
 
 	describe('chunks', () => {
 		it('uses ".js" chunk extension for `lib` format', () => {
-			expect(getRollupOutputConfig(artifact, {}, 'lib', config)).toEqual(
+			expect(getRollupOutputConfig(artifact, {}, 'lib')).toEqual(
 				expect.objectContaining({
 					chunkFileNames: 'bundle-[hash].js',
 					entryFileNames: '[name].js',
@@ -432,7 +423,7 @@ describe('getRollupOutputConfig()', () => {
 		it('uses ".js" chunk extension for `esm` format', () => {
 			artifact.platform = 'browser';
 
-			expect(getRollupOutputConfig(artifact, {}, 'esm', config)).toEqual(
+			expect(getRollupOutputConfig(artifact, {}, 'esm')).toEqual(
 				expect.objectContaining({
 					chunkFileNames: 'bundle-[hash].js',
 					entryFileNames: '[name].js',
@@ -443,7 +434,7 @@ describe('getRollupOutputConfig()', () => {
 		it('uses ".js" chunk extension for `umd` format', () => {
 			artifact.platform = 'browser';
 
-			expect(getRollupOutputConfig(artifact, {}, 'umd', config)).toEqual(
+			expect(getRollupOutputConfig(artifact, {}, 'umd')).toEqual(
 				expect.objectContaining({
 					chunkFileNames: 'bundle-[hash].js',
 					entryFileNames: '[name].js',
@@ -452,7 +443,7 @@ describe('getRollupOutputConfig()', () => {
 		});
 
 		it('uses ".cjs" chunk extension for `cjs` format', () => {
-			expect(getRollupOutputConfig(artifact, {}, 'cjs', config)).toEqual(
+			expect(getRollupOutputConfig(artifact, {}, 'cjs')).toEqual(
 				expect.objectContaining({
 					chunkFileNames: 'bundle-[hash].cjs',
 					entryFileNames: '[name].cjs',
@@ -461,7 +452,7 @@ describe('getRollupOutputConfig()', () => {
 		});
 
 		it('uses ".mjs" chunk extension for `mjs` format', () => {
-			expect(getRollupOutputConfig(artifact, {}, 'mjs', config)).toEqual(
+			expect(getRollupOutputConfig(artifact, {}, 'mjs')).toEqual(
 				expect.objectContaining({
 					chunkFileNames: 'bundle-[hash].mjs',
 					entryFileNames: '[name].mjs',
@@ -472,46 +463,46 @@ describe('getRollupOutputConfig()', () => {
 
 	describe('exports', () => {
 		it('enables auto-exports for `lib` format', () => {
-			expect(getRollupOutputConfig(artifact, {}, 'lib', config).exports).toBe('auto');
+			expect(getRollupOutputConfig(artifact, {}, 'lib').exports).toBe('auto');
 		});
 
 		it('enables auto-exports for `cjs` format', () => {
-			expect(getRollupOutputConfig(artifact, {}, 'cjs', config).exports).toBe('auto');
+			expect(getRollupOutputConfig(artifact, {}, 'cjs').exports).toBe('auto');
 		});
 
 		it('disables auto-exports for `mjs` format', () => {
-			expect(getRollupOutputConfig(artifact, {}, 'mjs', config).exports).toBeUndefined();
+			expect(getRollupOutputConfig(artifact, {}, 'mjs').exports).toBeUndefined();
 		});
 
 		it('disables auto-exports for `esm` format', () => {
 			artifact.platform = 'browser';
 
-			expect(getRollupOutputConfig(artifact, {}, 'esm', config).exports).toBeUndefined();
+			expect(getRollupOutputConfig(artifact, {}, 'esm').exports).toBeUndefined();
 		});
 
 		it('disables auto-exports for `umd` format', () => {
 			artifact.platform = 'browser';
 
-			expect(getRollupOutputConfig(artifact, {}, 'umd', config).exports).toBeUndefined();
+			expect(getRollupOutputConfig(artifact, {}, 'umd').exports).toBeUndefined();
 		});
 	});
 
 	it('enables `const` for non-legacy versions', () => {
 		artifact.support = 'legacy';
 
-		expect(getRollupOutputConfig(artifact, {}, 'lib', config).preferConst).toBe(false);
+		expect(getRollupOutputConfig(artifact, {}, 'lib').preferConst).toBe(false);
 
 		artifact.support = 'stable';
 
-		expect(getRollupOutputConfig(artifact, {}, 'lib', config).preferConst).toBe(true);
+		expect(getRollupOutputConfig(artifact, {}, 'lib').preferConst).toBe(true);
 
 		artifact.support = 'current';
 
-		expect(getRollupOutputConfig(artifact, {}, 'lib', config).preferConst).toBe(true);
+		expect(getRollupOutputConfig(artifact, {}, 'lib').preferConst).toBe(true);
 
 		artifact.support = 'experimental';
 
-		expect(getRollupOutputConfig(artifact, {}, 'lib', config).preferConst).toBe(true);
+		expect(getRollupOutputConfig(artifact, {}, 'lib').preferConst).toBe(true);
 	});
 
 	it('passes `namespace` to Babel as UMD name', () => {
@@ -519,7 +510,7 @@ describe('getRollupOutputConfig()', () => {
 		artifact.support = 'experimental';
 		artifact.namespace = 'FooBar';
 
-		expect(getRollupOutputConfig(artifact, {}, 'umd', config)).toEqual({
+		expect(getRollupOutputConfig(artifact, {}, 'umd')).toEqual({
 			assetFileNames: 'assets/[name].[ext]',
 			banner: expect.any(String),
 			chunkFileNames: 'bundle-[hash].js',

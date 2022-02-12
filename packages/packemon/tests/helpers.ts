@@ -5,7 +5,6 @@ import { getFixturePath } from '@boost/test-utils';
 import {
 	Artifact,
 	CodeArtifact,
-	Config,
 	Format,
 	FORMATS,
 	FORMATS_BROWSER,
@@ -163,7 +162,7 @@ export function testExampleOutput(file: string, options?: Partial<PackageConfig>
 			pkg.addArtifact(artifact);
 
 			try {
-				await pkg.build({}, new Config());
+				await pkg.build({}, {});
 			} catch (error: unknown) {
 				console.error(error);
 			}

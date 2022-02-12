@@ -1,4 +1,3 @@
-import { Config } from '../../src';
 import { createConfig, createRootConfig } from '../../src/babel';
 import { getBabelInputConfig, getBabelOutputConfig } from '../../src/babel/config';
 import { Format, Platform, Support } from '../../src/types';
@@ -15,39 +14,31 @@ describe('getBabelInputConfig()', () => {
 		package: { hasDependency: () => false },
 	};
 
-	let config: Config;
-
-	beforeEach(() => {
-		config = new Config();
-	});
-
 	it('includes no plugins or presets by default', () => {
-		expect(getBabelInputConfig(bundleArtifact, {}, config)).toMatchSnapshot();
+		expect(getBabelInputConfig(bundleArtifact, {})).toMatchSnapshot();
 	});
 
 	it('includes react preset if `react` feature flag is true', () => {
-		expect(getBabelInputConfig(bundleArtifact, { react: true }, config).presets).toMatchSnapshot();
+		expect(getBabelInputConfig(bundleArtifact, { react: true }).presets).toMatchSnapshot();
 	});
 
 	it('includes flow preset if `flow` feature flag is true', () => {
-		expect(getBabelInputConfig(bundleArtifact, { flow: true }, config).presets).toMatchSnapshot();
+		expect(getBabelInputConfig(bundleArtifact, { flow: true }).presets).toMatchSnapshot();
 	});
 
 	it('includes typescript preset if `typescript` feature flag is true', () => {
-		expect(
-			getBabelInputConfig(bundleArtifact, { typescript: true }, config).presets,
-		).toMatchSnapshot();
+		expect(getBabelInputConfig(bundleArtifact, { typescript: true }).presets).toMatchSnapshot();
 	});
 
 	it('includes typescript decorators if `typescript` and `decorators` feature flag is true', () => {
 		expect(
-			getBabelInputConfig(bundleArtifact, { decorators: true, typescript: true }, config),
+			getBabelInputConfig(bundleArtifact, { decorators: true, typescript: true }),
 		).toMatchSnapshot();
 	});
 
 	it('doesnt include typescript decorators if `typescript` feature flag is false', () => {
 		expect(
-			getBabelInputConfig(bundleArtifact, { decorators: true, typescript: false }, config),
+			getBabelInputConfig(bundleArtifact, { decorators: true, typescript: false }),
 		).toMatchSnapshot();
 	});
 
@@ -55,7 +46,7 @@ describe('getBabelInputConfig()', () => {
 		const spy = jest.spyOn(bundleArtifact.package, 'hasDependency').mockImplementation(() => true);
 
 		expect(
-			getBabelInputConfig(bundleArtifact, { decorators: true, typescript: true }, config),
+			getBabelInputConfig(bundleArtifact, { decorators: true, typescript: true }),
 		).toMatchSnapshot();
 
 		spy.mockRestore();
@@ -65,19 +56,11 @@ describe('getBabelInputConfig()', () => {
 function renderPresetEnv(platform: Platform, format: Format, support: Support) {
 	// eslint-disable-next-line jest/require-top-level-describe
 	test(`handles preset-env: ${platform} + ${format} + ${support}`, () => {
-		expect(
-			getBabelOutputConfig(platform, support, format, {}, new Config())?.presets?.[0],
-		).toMatchSnapshot();
+		expect(getBabelOutputConfig(platform, support, format, {})?.presets?.[0]).toMatchSnapshot();
 	});
 }
 
 describe('getBabelOutputConfig()', () => {
-	let config: Config;
-
-	beforeEach(() => {
-		config = new Config();
-	});
-
 	SUPPORTS.forEach((support) => {
 		renderPresetEnv('native', 'lib', support);
 
@@ -98,19 +81,19 @@ describe('getBabelOutputConfig()', () => {
 	});
 
 	it('transforms async/await to promises when `browser` or `native`', () => {
-		expect(getBabelOutputConfig('browser', 'stable', 'lib', {}, config)).toMatchSnapshot();
+		expect(getBabelOutputConfig('browser', 'stable', 'lib', {})).toMatchSnapshot();
 
-		expect(getBabelOutputConfig('native', 'experimental', 'lib', {}, config)).toMatchSnapshot();
+		expect(getBabelOutputConfig('native', 'experimental', 'lib', {})).toMatchSnapshot();
 	});
 
 	it('uses built-in destructuring and object spread when `current` or `experimental`', () => {
-		expect(getBabelOutputConfig('node', 'current', 'lib', {}, config)).toMatchSnapshot();
+		expect(getBabelOutputConfig('node', 'current', 'lib', {})).toMatchSnapshot();
 
-		expect(getBabelOutputConfig('node', 'experimental', 'lib', {}, config)).toMatchSnapshot();
+		expect(getBabelOutputConfig('node', 'experimental', 'lib', {})).toMatchSnapshot();
 	});
 
 	it('sets `parserOpts.strictMode` based on `strict` feature flag', () => {
-		expect(getBabelOutputConfig('node', 'stable', 'lib', { strict: true }, config)).toEqual(
+		expect(getBabelOutputConfig('node', 'stable', 'lib', { strict: true })).toEqual(
 			expect.objectContaining({
 				parserOpts: {
 					sourceType: 'unambiguous',
@@ -121,9 +104,7 @@ describe('getBabelOutputConfig()', () => {
 	});
 
 	it('sets `babelrcRoots` based on `workspaces` feature flag', () => {
-		expect(
-			getBabelOutputConfig('node', 'stable', 'lib', { workspaces: ['packages/*'] }, config),
-		).toEqual(
+		expect(getBabelOutputConfig('node', 'stable', 'lib', { workspaces: ['packages/*'] })).toEqual(
 			expect.objectContaining({
 				babelrcRoots: ['packages/*'],
 			}),
