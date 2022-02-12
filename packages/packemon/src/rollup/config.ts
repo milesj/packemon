@@ -8,9 +8,8 @@ import json from '@rollup/plugin-json';
 import resolve from '@rollup/plugin-node-resolve';
 import { getBabelInputConfig, getBabelOutputConfig } from '../babel/config';
 import type { CodeArtifact } from '../CodeArtifact';
-import { ConfigFile } from '../Config';
 import { EXCLUDE, EXTENSIONS } from '../constants';
-import { FeatureFlags, Format } from '../types';
+import { ConfigFile, FeatureFlags, Format } from '../types';
 import { addBinShebang } from './plugins/addBinShebang';
 import { copyAndRefAssets } from './plugins/copyAndRefAssets';
 

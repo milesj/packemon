@@ -1,3 +1,5 @@
+import { RollupOptions } from 'rollup';
+import { TransformOptions } from '@babel/core';
 import { PackageStructure } from '@boost/common';
 
 // Platform = The runtime or operating system the code will run in.
@@ -195,6 +197,15 @@ export interface ScaffoldParams {
 	packagePath?: string;
 	repoUrl: string;
 	year: number;
+}
+
+// CONFIGS
+
+export type ConfigMutator<T> = (config: T) => void;
+
+export interface ConfigFile {
+	babel?: ConfigMutator<TransformOptions>;
+	rollup?: ConfigMutator<RollupOptions>;
 }
 
 // OTHER

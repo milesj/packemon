@@ -1,8 +1,7 @@
 import { PluginItem, TransformOptions as ConfigStructure } from '@babel/core';
 import { CodeArtifact } from '../CodeArtifact';
-import { ConfigFile } from '../Config';
 import { BROWSER_TARGETS, NATIVE_TARGETS, NODE_SUPPORTED_VERSIONS } from '../constants';
-import { FeatureFlags, Format, Platform, Support } from '../types';
+import { ConfigFile, FeatureFlags, Format, Platform, Support } from '../types';
 import { resolve, resolveFromBabel } from './resolve';
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#browser_compatibility

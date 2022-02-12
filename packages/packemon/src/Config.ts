@@ -1,14 +1,6 @@
-import { RollupOptions } from 'rollup';
-import { TransformOptions } from '@babel/core';
 import { Blueprint, Schemas } from '@boost/common';
 import { Configuration } from '@boost/config';
-
-export type ConfigMutator<T> = (config: T) => void;
-
-export interface ConfigFile {
-	babel?: ConfigMutator<TransformOptions>;
-	rollup?: ConfigMutator<RollupOptions>;
-}
+import { ConfigFile, ConfigMutator } from './types';
 
 export class Config extends Configuration<ConfigFile> {
 	blueprint({ func }: Schemas): Blueprint<ConfigFile> {
@@ -21,6 +13,7 @@ export class Config extends Configuration<ConfigFile> {
 	override bootstrap() {
 		this.configureFinder({
 			errorIfNoRootFound: false,
+			extensions: ['js', 'ts'],
 		});
 
 		this.addProcessHandler('babel', this.wrapMutator);

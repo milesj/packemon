@@ -7,7 +7,6 @@ import { optimal } from '@boost/common/optimal';
 import { createDebugger, Debugger } from '@boost/debug';
 import { Artifact } from './Artifact';
 import { CodeArtifact } from './CodeArtifact';
-import { ConfigFile } from './Config';
 import {
 	DEFAULT_FORMATS,
 	EXCLUDE,
@@ -23,6 +22,7 @@ import { Project } from './Project';
 import { packemonBlueprint } from './schemas';
 import {
 	BuildOptions,
+	ConfigFile,
 	FeatureFlags,
 	InputMap,
 	PackageConfig,

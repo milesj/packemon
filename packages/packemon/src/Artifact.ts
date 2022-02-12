@@ -1,7 +1,6 @@
 import fs from 'fs-extra';
 import { applyStyle } from '@boost/cli';
 import { Path, PortablePath } from '@boost/common';
-import { ConfigFile } from './Config';
 import type { Package } from './Package';
 import type {
 	ApiType,
@@ -9,6 +8,7 @@ import type {
 	Awaitable,
 	BuildOptions,
 	BuildResult,
+	ConfigFile,
 	PackageExports,
 } from './types';
 

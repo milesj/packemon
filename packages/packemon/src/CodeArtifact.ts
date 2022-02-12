@@ -2,13 +2,13 @@ import { rollup, RollupCache } from 'rollup';
 import { toArray, VirtualPath } from '@boost/common';
 import { createDebugger, Debugger } from '@boost/debug';
 import { Artifact } from './Artifact';
-import { ConfigFile } from './Config';
 import { removeSourcePath } from './helpers/removeSourcePath';
 import { getRollupConfig } from './rollup/config';
 import {
 	BuildOptions,
 	BuildResultFiles,
 	CodeBuild,
+	ConfigFile,
 	Format,
 	InputMap,
 	PackageExportPaths,
