@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+
 import { createConfig, createRootConfig } from '../../src/babel';
 import { getBabelInputConfig, getBabelOutputConfig } from '../../src/babel/config';
 import { Format, Platform, Support } from '../../src/types';
@@ -50,6 +52,24 @@ describe('getBabelInputConfig()', () => {
 		).toMatchSnapshot();
 
 		spy.mockRestore();
+	});
+
+	it('can mutate config', () => {
+		expect(
+			getBabelInputConfig(
+				bundleArtifact,
+				{},
+				{
+					babelInput(config) {
+						config.rootMode = 'upward';
+						config.plugins?.push('babel-plugin-example');
+					},
+					babelOutput(config) {
+						config.plugins?.push('babel-plugin-shouldnt-show-up');
+					},
+				},
+			),
+		).toMatchSnapshot();
 	});
 });
 
@@ -109,6 +129,47 @@ describe('getBabelOutputConfig()', () => {
 				babelrcRoots: ['packages/*'],
 			}),
 		);
+	});
+
+	it('can mutate config', () => {
+		expect(
+			getBabelOutputConfig(
+				'browser',
+				'stable',
+				'lib',
+				{},
+				{
+					babelInput(config) {
+						config.plugins?.push('babel-plugin-shouldnt-show-up');
+					},
+					babelOutput(config) {
+						config.rootMode = 'upward';
+						config.plugins?.push('babel-plugin-example');
+					},
+				},
+			),
+		).toMatchSnapshot();
+	});
+
+	it('passes build params to config', () => {
+		const spy = jest.fn();
+
+		getBabelOutputConfig(
+			'browser',
+			'stable',
+			'lib',
+			{},
+			{
+				babelOutput: spy,
+			},
+		);
+
+		expect(spy).toHaveBeenCalledWith(expect.any(Object), {
+			features: {},
+			format: 'lib',
+			platform: 'browser',
+			support: 'stable',
+		});
 	});
 });
 

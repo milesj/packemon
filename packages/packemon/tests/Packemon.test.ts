@@ -59,6 +59,7 @@ describe('Packemon', () => {
 				addFiles: false,
 				analyze: 'none',
 				concurrency: 3,
+				configs: false,
 				declaration: 'none',
 				declarationConfig: '',
 				filter: '',
@@ -69,9 +70,9 @@ describe('Packemon', () => {
 				timeout: 0,
 			};
 
-			expect(packages[0].build).toHaveBeenCalledWith(options);
-			expect(packages[1].build).toHaveBeenCalledWith(options);
-			expect(packages[2].build).toHaveBeenCalledWith(options);
+			expect(packages[0].build).toHaveBeenCalledWith(options, expect.any(Object));
+			expect(packages[1].build).toHaveBeenCalledWith(options, expect.any(Object));
+			expect(packages[2].build).toHaveBeenCalledWith(options, expect.any(Object));
 		});
 
 		it('emits `onPackageBuilt` for each package', async () => {

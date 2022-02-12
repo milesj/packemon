@@ -1,4 +1,4 @@
-import { RollupOptions } from 'rollup';
+import { OutputOptions as RollupOutputOptions, RollupOptions } from 'rollup';
 import { TransformOptions } from '@babel/core';
 import { PackageStructure } from '@boost/common';
 
@@ -129,6 +129,13 @@ export interface BuildOptions extends FilterOptions {
 	quiet?: boolean;
 }
 
+export interface BuildParams {
+	features: FeatureFlags;
+	format: Format;
+	platform: Platform;
+	support: Support;
+}
+
 export interface BuildResultFiles {
 	code: string;
 	file: string;
@@ -203,9 +210,13 @@ export interface ScaffoldParams {
 
 export type ConfigMutator<T> = (config: T) => void;
 
+export type ConfigMutatorWithBuild<T> = (config: T, build: BuildParams) => void;
+
 export interface ConfigFile {
-	babel?: ConfigMutator<TransformOptions>;
-	rollup?: ConfigMutator<RollupOptions>;
+	babelInput?: ConfigMutator<TransformOptions>;
+	babelOutput?: ConfigMutatorWithBuild<TransformOptions>;
+	rollupInput?: ConfigMutator<RollupOptions>;
+	rollupOutput?: ConfigMutatorWithBuild<RollupOutputOptions>;
 }
 
 // OTHER

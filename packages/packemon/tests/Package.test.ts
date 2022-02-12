@@ -3,10 +3,9 @@ import { Path, VirtualPath } from '@boost/common';
 import { mockNormalizedFilePath } from '@boost/common/test';
 import { getFixturePath } from '@boost/test-utils';
 import { CodeArtifact } from '../src/CodeArtifact';
-import { ConfigFile } from '../src/Config';
 import { Package } from '../src/Package';
 import { Project } from '../src/Project';
-import { CodeBuild, Platform, Support, TypesBuild } from '../src/types';
+import { CodeBuild, ConfigFile, Platform, Support, TypesBuild } from '../src/types';
 import { TypesArtifact } from '../src/TypesArtifact';
 import { createProjectPackage, TestArtifact } from './helpers';
 
@@ -105,9 +104,9 @@ describe('Package', () => {
 
 			await pkg.build({ concurrency: 1 }, config);
 
-			expect(aSpy).toHaveBeenCalledWith({ concurrency: 1 });
-			expect(bSpy).toHaveBeenCalledWith({ concurrency: 1 });
-			expect(cSpy).toHaveBeenCalledWith({ concurrency: 1 });
+			expect(aSpy).toHaveBeenCalledWith({ concurrency: 1 }, expect.any(Object));
+			expect(bSpy).toHaveBeenCalledWith({ concurrency: 1 }, expect.any(Object));
+			expect(cSpy).toHaveBeenCalledWith({ concurrency: 1 }, expect.any(Object));
 		});
 
 		it('calls `preBuild` and `postBuild` when building', async () => {
@@ -119,8 +118,8 @@ describe('Package', () => {
 
 			await pkg.build({ addEngines: true }, config);
 
-			expect(preSpy).toHaveBeenCalledWith({ addEngines: true });
-			expect(postSpy).toHaveBeenCalledWith({ addEngines: true });
+			expect(preSpy).toHaveBeenCalledWith({ addEngines: true }, expect.any(Object));
+			expect(postSpy).toHaveBeenCalledWith({ addEngines: true }, expect.any(Object));
 		});
 
 		it('sets passed state and result time', async () => {

@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import { Path } from '@boost/common';
 import { getFixturePath } from '@boost/test-utils';
 import { CodeArtifact } from '../../src/CodeArtifact';
@@ -267,6 +268,37 @@ describe('getRollupConfig()', () => {
 		]);
 	});
 
+	it('can mutate config', () => {
+		artifact.platform = 'browser';
+
+		expect(
+			getRollupConfig(
+				artifact,
+				{},
+				{
+					rollupInput(config) {
+						config.treeshake = false;
+						config.output = {
+							inlineDynamicImports: true,
+						};
+					},
+					rollupOutput(output) {
+						output.strict = false; // Shouldnt show up
+					},
+				},
+			),
+		).toEqual({
+			cache: undefined,
+			external: expect.any(Function),
+			input: { index: srcInputFile },
+			output: {
+				inlineDynamicImports: true,
+			},
+			plugins: sharedNonNodePlugins,
+			treeshake: false,
+		});
+	});
+
 	describe('externals', () => {
 		beforeEach(() => {
 			// Add self
@@ -357,6 +389,54 @@ describe('getRollupOutputConfig()', () => {
 		artifact.support = 'stable';
 
 		expect(getRollupOutputConfig(artifact, {}, 'mjs').dir).toBe(fixturePath.append('mjs').path());
+	});
+
+	it('can mutate config', () => {
+		artifact.platform = 'browser';
+
+		expect(
+			getRollupOutputConfig(artifact, {}, 'lib', {
+				rollupInput(config) {
+					config.treeshake = false; // Shouldnt show up
+				},
+				rollupOutput(output) {
+					output.sourcemap = false;
+					output.generatedCode = 'es5';
+				},
+			}),
+		).toEqual({
+			assetFileNames: 'assets/[name].[ext]',
+			banner: expect.any(String),
+			chunkFileNames: 'bundle-[hash].js',
+			dir: fixturePath.append('lib').path(),
+			entryFileNames: '[name].js',
+			exports: 'auto',
+			format: 'cjs',
+			generatedCode: 'es5',
+			interop: 'auto',
+			originalFormat: 'lib',
+			paths: {},
+			plugins: [`babelOutput(${fixturePath}, *)`, binPlugin],
+			preferConst: true,
+			preserveModules: false,
+			sourcemap: false,
+			sourcemapExcludeSources: true,
+		});
+	});
+
+	it('passes build params to config', () => {
+		const spy = jest.fn();
+
+		getRollupOutputConfig(artifact, {}, 'lib', {
+			rollupOutput: spy,
+		});
+
+		expect(spy).toHaveBeenCalledWith(expect.any(Object), {
+			features: {},
+			format: 'lib',
+			platform: 'node',
+			support: 'stable',
+		});
 	});
 
 	describe('formats', () => {

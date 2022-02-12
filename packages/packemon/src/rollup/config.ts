@@ -142,6 +142,9 @@ export function getRollupOutputConfig(
 		].join('');
 	}
 
+	// Allow consumers to mutate
+	packemonConfig.rollupOutput?.(output, { features, format, platform, support });
+
 	return output;
 }
 
@@ -216,7 +219,7 @@ export function getRollupConfig(
 	);
 
 	// Allow consumers to mutate
-	packemonConfig.rollup?.(config);
+	packemonConfig.rollupInput?.(config);
 
 	return config;
 }

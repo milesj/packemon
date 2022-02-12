@@ -74,7 +74,11 @@ describe('CodeArtifact', () => {
 		it('generates rollup config using input config', async () => {
 			await artifact.build({}, {});
 
-			expect(getRollupConfig).toHaveBeenCalledWith(artifact, { typescript: true });
+			expect(getRollupConfig).toHaveBeenCalledWith(
+				artifact,
+				{ typescript: true },
+				expect.any(Object),
+			);
 			expect(rollup).toHaveBeenCalledWith({
 				input: true,
 				onwarn: expect.any(Function),
@@ -84,10 +88,14 @@ describe('CodeArtifact', () => {
 		it('inherits `analyze` feature flag', async () => {
 			await artifact.build({ analyze: 'network' }, {});
 
-			expect(getRollupConfig).toHaveBeenCalledWith(artifact, {
-				analyze: 'network',
-				typescript: true,
-			});
+			expect(getRollupConfig).toHaveBeenCalledWith(
+				artifact,
+				{
+					analyze: 'network',
+					typescript: true,
+				},
+				expect.any(Object),
+			);
 		});
 
 		it('sets rollup cache on artifact', async () => {

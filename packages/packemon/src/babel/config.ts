@@ -88,9 +88,8 @@ function getSharedConfig(
 	plugins: PluginItem[],
 	presets: PluginItem[],
 	features: FeatureFlags,
-	packemonConfig: ConfigFile,
 ): ConfigStructure {
-	const babelConfig: ConfigStructure = {
+	return {
 		caller: {
 			name: 'packemon',
 		},
@@ -107,11 +106,6 @@ function getSharedConfig(
 		babelrc: true,
 		babelrcRoots: features.workspaces,
 	};
-
-	// Allow consumers to mutate
-	packemonConfig.babel?.(babelConfig);
-
-	return babelConfig;
 }
 
 // The input config should only parse special syntax, not transform and downlevel.
@@ -152,7 +146,12 @@ export function getBabelInputConfig(
 		]);
 	}
 
-	return getSharedConfig(plugins, presets, features, packemonConfig);
+	const config = getSharedConfig(plugins, presets, features);
+
+	// Allow consumers to mutate
+	packemonConfig.babelInput?.(config);
+
+	return config;
 }
 
 // The output config does all the transformation and downleveling through the preset-env.
@@ -230,5 +229,10 @@ export function getBabelOutputConfig(
 		resolve('babel-plugin-env-constants'),
 	);
 
-	return getSharedConfig(plugins, presets, features, packemonConfig);
+	const config = getSharedConfig(plugins, presets, features);
+
+	// Allow consumers to mutate
+	packemonConfig.babelOutput?.(config, { features, format, platform, support });
+
+	return config;
 }

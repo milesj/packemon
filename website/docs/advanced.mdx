@@ -100,9 +100,14 @@ conditions to be met:
   </TabItem>
 </Tabs>
 
-Both of these config files have the same structure, and may return `babel` and/or `rollup` fields.
-Both of these fields require a function, which is passed the finalized config as an argument. This
-config can then be mutated in place.
+Both of these config files have the same structure, and may define the fields below. All of these
+fields require a function, which is passed the finalized config as an argument (with output fields
+also accepting the current build as the 2nd argument). This config can then be mutated in place.
+
+- `babelInput` - For parsing syntax into an AST (TypeScript, JSX, etc).
+- `babelOutput` - For applying transformations.
+- `rollupInput` - For defining inputs, outputs, and more.
+- `rollupOutput` - For customizing each output.
 
 <Tabs
   groupId="configs"
@@ -119,10 +124,10 @@ import type { ConfigFile } from 'packemon';
 import linaria from '@linaria/rollup';
 
 const config: ConfigFile = {
-	babel(config) {
+	babelOutput(config, build) {
 		config.presets.push('@linaria/babel-preset');
 	},
-	rollup(config) {
+	rollupInput(config) {
 		config.plugins.unshift(linaria());
 	},
 };
@@ -137,10 +142,10 @@ export default config;
 const linaria = require('@linaria/rollup');
 
 module.exports = {
-	babel(config) {
+	babelOutput(config) {
 		config.presets.push('@linaria/babel-preset');
 	},
-	rollup(config) {
+	rollupInput(config) {
 		config.plugins.unshift(linaria());
 	},
 };
