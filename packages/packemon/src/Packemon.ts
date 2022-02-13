@@ -55,6 +55,7 @@ export class Packemon {
 		this.debug('Initializing packemon in project %s', this.root);
 
 		this.project.checkEngineVersionConstraint();
+		this.config.setRootDir(this.root);
 	}
 
 	async build(baseOptions: BuildOptions) {
@@ -79,7 +80,7 @@ export class Packemon {
 
 		packages.forEach((pkg) => {
 			pipeline.add(pkg.getName(), async () => {
-				if (options.configs) {
+				if (options.loadConfigs) {
 					const { config } = await this.config.loadConfigFromBranchToRoot(pkg.path);
 
 					await pkg.build(options, config);

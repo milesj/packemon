@@ -2012,31 +2012,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@boost/config@npm:^3.0.2":
-  version: 3.0.2
-  resolution: "@boost/config@npm:3.0.2"
-  dependencies:
-    "@boost/common": ^3.1.0
-    "@boost/debug": ^3.0.1
-    "@boost/event": ^3.0.0
-    "@boost/internal": ^3.0.0
-    "@boost/module": ^3.0.1
-    minimatch: ^3.0.4
-  checksum: c9382dbf9312de4b1c8c1b70aeb16f2365f74ac2e34c23a43f461cbd924b79d854f3126b844b0cf38156fee5ecd4b31e09a0883635fc09cd4507789c893a6fc2
-  languageName: node
-  linkType: hard
-
-"@boost/config@npm:^3.1.0":
-  version: 3.1.0
-  resolution: "@boost/config@npm:3.1.0"
+"@boost/config@npm:^3.0.2, @boost/config@npm:^3.2.0":
+  version: 3.2.0
+  resolution: "@boost/config@npm:3.2.0"
   dependencies:
     "@boost/common": ^3.2.1
     "@boost/debug": ^3.0.3
     "@boost/event": ^3.0.1
     "@boost/internal": ^3.0.1
     "@boost/module": ^3.1.0
-    minimatch: ^3.0.4
-  checksum: 051c930c969aadd80c6dc5a675c4ca7f2159194c29962c039ad88498013c56bf5315f6736301902399f642ccda3ab7eb0ddb9a2f8ab08dabb846f8785370d3b0
+    minimatch: ^3.0.5
+  checksum: 0653312664285c6386b4535e68fc0e90df12f5295679c36c0cfa9816d33694fd342280c795614e6bbc1b7bf792048240fa18ff53323a7e1fab8944b1b96d79ed
   languageName: node
   linkType: hard
 
@@ -2091,19 +2077,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@boost/module@npm:^3.0.1":
-  version: 3.0.1
-  resolution: "@boost/module@npm:3.0.1"
-  peerDependencies:
-    typescript: ^4.0.0
-  peerDependenciesMeta:
-    typescript:
-      optional: true
-  checksum: 42855a57a552052f01d0968edbcc21a78b859c3acfc60dd71fd0aa126099cd681be56cee1e40dc553c6bd7ee11cef38a511a855382d6389dfa6a55ced49b0b04
-  languageName: node
-  linkType: hard
-
-"@boost/module@npm:^3.1.0":
+"@boost/module@npm:^3.0.1, @boost/module@npm:^3.1.0":
   version: 3.1.0
   resolution: "@boost/module@npm:3.1.0"
   peerDependencies:
@@ -13017,12 +12991,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"minimatch@npm:3.0.4, minimatch@npm:^3.0.4":
+"minimatch@npm:3.0.4":
   version: 3.0.4
   resolution: "minimatch@npm:3.0.4"
   dependencies:
     brace-expansion: ^1.1.7
   checksum: 66ac295f8a7b59788000ea3749938b0970344c841750abd96694f80269b926ebcafad3deeb3f1da2522978b119e6ae3a5869b63b13a7859a456b3408bd18a078
+  languageName: node
+  linkType: hard
+
+"minimatch@npm:^3.0.4, minimatch@npm:^3.0.5":
+  version: 3.0.6
+  resolution: "minimatch@npm:3.0.6"
+  dependencies:
+    brace-expansion: ^1.1.7
+  checksum: 95140c3bb5b0aab6d84ef8c20de66629bb4c37174b388a6266a3b9f0cdcd01cc01cc4cce8c351dec3938e802aad5ec6a691349489ee6e7fc1f270f2372736ee6
   languageName: node
   linkType: hard
 
@@ -14129,10 +14112,9 @@ __metadata:
     "@babel/preset-typescript": ^7.16.7
     "@boost/cli": ^3.0.3
     "@boost/common": ^3.2.1
-    "@boost/config": ^3.1.0
+    "@boost/config": ^3.2.0
     "@boost/debug": ^3.0.3
     "@boost/event": ^3.0.1
-    "@boost/module": ^3.1.0
     "@boost/pipeline": ^3.2.2
     "@boost/terminal": ^3.0.0
     "@microsoft/api-extractor": ^7.19.4
@@ -14159,7 +14141,7 @@ __metadata:
     react: ^17.0.2
     resolve: ^1.22.0
     rimraf: ^3.0.2
-    rollup: ^2.67.0
+    rollup: ^2.67.2
     rollup-plugin-node-externals: ^2.2.0
     rollup-plugin-polyfill-node: ^0.8.0
     rollup-plugin-visualizer: ^5.5.4
@@ -16297,9 +16279,9 @@ resolve@~1.19.0:
   languageName: node
   linkType: hard
 
-"rollup@npm:^2.67.0":
-  version: 2.67.0
-  resolution: "rollup@npm:2.67.0"
+"rollup@npm:^2.67.2":
+  version: 2.67.2
+  resolution: "rollup@npm:2.67.2"
   dependencies:
     fsevents: ~2.3.2
   dependenciesMeta:
@@ -16307,7 +16289,7 @@ resolve@~1.19.0:
       optional: true
   bin:
     rollup: dist/bin/rollup
-  checksum: 300ddb6c63f1bcaadaac98f705e3804d8d22ddbc595e34c0582850dc1f464bde3edc3312a7cdc5f1544e35df80300d7bc7bf81f56575b24c4124924d140ec947
+  checksum: 9aca5251ba4b441064183cde2394b91567259002d68086bdd3906db66d55dd148ab27e57c51eb53830d7b9b813c2d4e834b7735d65e2a869780bc639d4a20c38
   languageName: node
   linkType: hard
 

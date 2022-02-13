@@ -41,8 +41,8 @@ module scope will be executed immediately when the file is executed by Node.js.
 Customizing the Babel and Rollup configs are an _opt-in feature_, and require the following
 conditions to be met:
 
-- A `--configs` option is passed on the command line. This enables searching and loading of config
-  files, otherwise, we want to avoid the filesystem lookups.
+- A `--loadConfigs` option is passed on the command line. This enables searching and loading of
+  config files, otherwise, we want to avoid the filesystem lookups.
 - A `packemon.config.{ts,js}` file at the monorepo/polyrepo root, which applies customizations to
   all packages. Or _optional_ `.packemon.{ts,js}` files within each package, which applies
   customizations to that package individually. An example of this is found below, or view the

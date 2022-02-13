@@ -33,7 +33,7 @@ describe('Config files', () => {
 		it('inherits config from root and branches', async () => {
 			const packemon = new Packemon(root);
 
-			await packemon.build({ configs: true });
+			await packemon.build({ loadConfigs: true });
 
 			// bar (using push)
 			expect(rollupSpy).toHaveBeenCalledWith(
@@ -168,7 +168,7 @@ describe('Config files', () => {
 		it('doesnt inherit config if option is false', async () => {
 			const packemon = new Packemon(root);
 
-			await packemon.build({ configs: false });
+			await packemon.build({ loadConfigs: false });
 
 			// bar (using push)
 			expect(rollupSpy).not.toHaveBeenCalledWith(
@@ -308,7 +308,7 @@ describe('Config files', () => {
 		it('inherits config from root and branches', async () => {
 			const packemon = new Packemon(root);
 
-			await packemon.build({ configs: true });
+			await packemon.build({ loadConfigs: true });
 
 			// input
 			expect(rollupSpy).toHaveBeenCalledWith(
@@ -356,7 +356,7 @@ describe('Config files', () => {
 		it('doesnt inherit config if option is false', async () => {
 			const packemon = new Packemon(root);
 
-			await packemon.build({ configs: false });
+			await packemon.build({ loadConfigs: false });
 
 			// input
 			expect(rollupSpy).not.toHaveBeenCalledWith(

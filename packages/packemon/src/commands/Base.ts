@@ -12,9 +12,6 @@ export abstract class BaseCommand<
 	O extends object = {},
 	P extends PrimitiveType[] = string[],
 > extends Command<CommonOptions & GlobalOptions & O, P> {
-	@Arg.String('Search and load local config files', { category: 'global' })
-	configs: boolean = false;
-
 	@Arg.String('Current working directory to run in', { category: 'global' })
 	cwd: string = '';
 
@@ -23,6 +20,9 @@ export abstract class BaseCommand<
 
 	@Arg.String('Only generate specific output formats', { category: 'filter', short: 'f' })
 	formats: string = '';
+
+	@Arg.Flag('Search and load local config files', { category: 'global' })
+	loadConfigs: boolean = false;
 
 	@Arg.String('Only target specific platforms', { category: 'filter', short: 'p' })
 	platforms: string = '';
@@ -40,10 +40,10 @@ export abstract class BaseCommand<
 
 	protected getBuildOptions(): BuildOptions {
 		return {
-			configs: this.configs,
 			filter: this.filter,
 			filterFormats: this.formats,
 			filterPlatforms: this.platforms,
+			loadConfigs: this.loadConfigs,
 			skipPrivate: this.skipPrivate,
 		};
 	}
