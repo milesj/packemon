@@ -1010,13 +1010,12 @@ describe('Package', () => {
 				react: true,
 				strict: true,
 				typescript: true,
-				workspaces: [],
 			});
 		});
 
 		describe('react', () => {
 			it('returns true if a package dependency (normal)', () => {
-				expect(loadPackage('react').getFeatureFlags()).toEqual({ react: true, workspaces: [] });
+				expect(loadPackage('react').getFeatureFlags()).toEqual({ react: true });
 			});
 		});
 
@@ -1026,7 +1025,6 @@ describe('Package', () => {
 					decorators: false,
 					strict: false,
 					typescript: true,
-					workspaces: [],
 				});
 			});
 
@@ -1035,7 +1033,6 @@ describe('Package', () => {
 					decorators: true,
 					strict: true,
 					typescript: true,
-					workspaces: [],
 				});
 			});
 
@@ -1044,14 +1041,13 @@ describe('Package', () => {
 					decorators: true,
 					strict: true,
 					typescript: true,
-					workspaces: [],
 				});
 			});
 		});
 
 		describe('flow', () => {
 			it('returns true if a package dependency (dev)', () => {
-				expect(loadPackage('flow').getFeatureFlags()).toEqual({ flow: true, workspaces: [] });
+				expect(loadPackage('flow').getFeatureFlags()).toEqual({ flow: true });
 			});
 		});
 	});
