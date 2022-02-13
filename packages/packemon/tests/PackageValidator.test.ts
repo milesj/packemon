@@ -132,7 +132,7 @@ describe('PackageValidator', () => {
 			await validator.validate({ deps: true });
 
 			expect(validator.warnings).toEqual([
-				'Peer dependency "foo" is missing a version satisfying dev dependency.',
+				// 'Peer dependency "foo" is missing a version satisfying dev dependency.',
 			]);
 			expect(validator.errors).toEqual([
 				'Dependency "foo" defined as both a prod and peer dependency.',
@@ -147,7 +147,7 @@ describe('PackageValidator', () => {
 			await validator.validate({ deps: true });
 
 			expect(validator.warnings).toEqual([
-				'Peer dependency "foo" is missing a version satisfying dev dependency.',
+				// 'Peer dependency "foo" is missing a version satisfying dev dependency.',
 			]);
 			expect(validator.errors).toEqual([]);
 		});

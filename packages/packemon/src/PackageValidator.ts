@@ -82,7 +82,7 @@ export class PackageValidator {
 			dependencies = {},
 			devDependencies = {},
 			peerDependencies = {},
-			peerDependenciesMeta = {},
+			// peerDependenciesMeta = {},
 			optionalDependencies = {},
 		} = this.package.packageJson;
 
@@ -118,11 +118,13 @@ export class PackageValidator {
 			}
 
 			if (!devVersion) {
-				if (!peerDependenciesMeta[peerName]?.optional) {
-					this.warnings.push(
-						`Peer dependency "${peerName}" is missing a version satisfying dev dependency.`,
-					);
-				}
+				// NOTE: This is useful but causes unnecessary "package changes" when using semantic
+				// releases or changesets. Best approach forward?
+				// if (!peerDependenciesMeta[peerName]?.optional) {
+				// 	this.warnings.push(
+				// 		`Peer dependency "${peerName}" is missing a version satisfying dev dependency.`,
+				// 	);
+				// }
 			} else if (!semver.satisfies(devVersion.version, versionConstraint)) {
 				this.errors.push(
 					`Dev dependency "${peerName}" does not satisfy version constraint of its peer. Found ${devVersion.version}, requires ${versionConstraint}.`,

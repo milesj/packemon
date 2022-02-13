@@ -5944,7 +5944,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "babel-plugin-cjs-esm-interop@workspace:packages/babel-plugin-cjs-esm-interop"
   dependencies:
-    "@babel/core": ^7.17.2
     "@babel/helper-module-imports": ^7.16.7
   peerDependencies:
     "@babel/core": ^7.0.0
@@ -5954,8 +5953,6 @@ __metadata:
 "babel-plugin-conditional-invariant@^1.1.4, babel-plugin-conditional-invariant@workspace:packages/babel-plugin-conditional-invariant":
   version: 0.0.0-use.local
   resolution: "babel-plugin-conditional-invariant@workspace:packages/babel-plugin-conditional-invariant"
-  dependencies:
-    "@babel/core": ^7.17.2
   peerDependencies:
     "@babel/core": ^7.0.0
   languageName: unknown
@@ -5982,8 +5979,6 @@ __metadata:
 "babel-plugin-env-constants@^1.1.4, babel-plugin-env-constants@workspace:packages/babel-plugin-env-constants":
   version: 0.0.0-use.local
   resolution: "babel-plugin-env-constants@workspace:packages/babel-plugin-env-constants"
-  dependencies:
-    "@babel/core": ^7.17.2
   peerDependencies:
     "@babel/core": ^7.0.0
   languageName: unknown
