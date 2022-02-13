@@ -162,7 +162,7 @@ export function testExampleOutput(file: string, options?: Partial<PackageConfig>
 			pkg.addArtifact(artifact);
 
 			try {
-				await pkg.build({});
+				await pkg.build({}, {});
 			} catch (error: unknown) {
 				console.error(error);
 			}

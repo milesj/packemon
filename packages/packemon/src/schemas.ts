@@ -81,6 +81,7 @@ export const buildBlueprint: Blueprint<BuildOptions> = {
 	filter: string(),
 	filterFormats: string(),
 	filterPlatforms: string(),
+	loadConfigs: bool(),
 	quiet: bool(false),
 	skipPrivate: bool(),
 	timeout: number().gte(0),

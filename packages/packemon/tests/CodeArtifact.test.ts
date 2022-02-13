@@ -72,9 +72,13 @@ describe('CodeArtifact', () => {
 		});
 
 		it('generates rollup config using input config', async () => {
-			await artifact.build({});
+			await artifact.build({}, {});
 
-			expect(getRollupConfig).toHaveBeenCalledWith(artifact, { typescript: true });
+			expect(getRollupConfig).toHaveBeenCalledWith(
+				artifact,
+				{ typescript: true },
+				expect.any(Object),
+			);
 			expect(rollup).toHaveBeenCalledWith({
 				input: true,
 				onwarn: expect.any(Function),
@@ -82,24 +86,28 @@ describe('CodeArtifact', () => {
 		});
 
 		it('inherits `analyze` feature flag', async () => {
-			await artifact.build({ analyze: 'network' });
+			await artifact.build({ analyze: 'network' }, {});
 
-			expect(getRollupConfig).toHaveBeenCalledWith(artifact, {
-				analyze: 'network',
-				typescript: true,
-			});
+			expect(getRollupConfig).toHaveBeenCalledWith(
+				artifact,
+				{
+					analyze: 'network',
+					typescript: true,
+				},
+				expect.any(Object),
+			);
 		});
 
 		it('sets rollup cache on artifact', async () => {
 			expect(artifact.cache).toBeUndefined();
 
-			await artifact.build({});
+			await artifact.build({}, {});
 
 			expect(artifact.cache).toEqual({ cache: true });
 		});
 
 		it('writes a bundle and stats for each build', async () => {
-			await artifact.build({});
+			await artifact.build({}, {});
 
 			expect(bundleWriteSpy).toHaveBeenCalledWith({ a: true });
 			expect(artifact.builds[0].stats?.size).toBe(4);

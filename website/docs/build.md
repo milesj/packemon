@@ -44,6 +44,7 @@ Build supports the following command line options.
 - `--declarationConfig` - Path to a custom `tsconfig` for declaration building.
 - `--filter` - Filter packages to build based on their name in `package.json`.
 - `--formats`, `-f` - Only generate specific output `format`s.
+- `--loadConfigs` - Search and load config files for customizing Babel and Rollup.
 - `--platforms`, `-p` - Only target specific `platform`s.
 - `--skipPrivate` - Skip `private` packages from being built.
 - `--timeout` - Timeout in milliseconds before a build is cancelled. Defaults to no timeout.

@@ -2,7 +2,7 @@ import rimraf from 'rimraf';
 import { Path } from '@boost/common';
 import { mockNormalizedFilePath } from '@boost/common/test';
 import { getFixturePath } from '@boost/test-utils';
-import { CodeArtifact, TypesArtifact } from '../src';
+import { BuildOptions, CodeArtifact, TypesArtifact } from '../src';
 import { Package } from '../src/Package';
 import { Packemon } from '../src/Packemon';
 
@@ -53,7 +53,7 @@ describe('Packemon', () => {
 		it('calls `build` on each package', async () => {
 			await packemon.build({ addEngines: true, concurrency: 3 });
 
-			const options = {
+			const options: BuildOptions = {
 				addEngines: true,
 				addExports: false,
 				addFiles: false,
@@ -64,14 +64,15 @@ describe('Packemon', () => {
 				filter: '',
 				filterFormats: '',
 				filterPlatforms: '',
+				loadConfigs: false,
 				quiet: false,
 				skipPrivate: false,
 				timeout: 0,
 			};
 
-			expect(packages[0].build).toHaveBeenCalledWith(options);
-			expect(packages[1].build).toHaveBeenCalledWith(options);
-			expect(packages[2].build).toHaveBeenCalledWith(options);
+			expect(packages[0].build).toHaveBeenCalledWith(options, expect.any(Object));
+			expect(packages[1].build).toHaveBeenCalledWith(options, expect.any(Object));
+			expect(packages[2].build).toHaveBeenCalledWith(options, expect.any(Object));
 		});
 
 		it('emits `onPackageBuilt` for each package', async () => {

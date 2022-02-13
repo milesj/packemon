@@ -5,7 +5,7 @@ import { getFixturePath } from '@boost/test-utils';
 import { CodeArtifact } from '../src/CodeArtifact';
 import { Package } from '../src/Package';
 import { Project } from '../src/Project';
-import { CodeBuild, Platform, Support, TypesBuild } from '../src/types';
+import { CodeBuild, ConfigFile, Platform, Support, TypesBuild } from '../src/types';
 import { TypesArtifact } from '../src/TypesArtifact';
 import { createProjectPackage, TestArtifact } from './helpers';
 
@@ -81,9 +81,11 @@ describe('Package', () => {
 
 	describe('build()', () => {
 		let writeSpy: jest.SpyInstance;
+		let config: ConfigFile;
 
 		beforeEach(() => {
 			writeSpy = jest.spyOn(fs, 'writeJson').mockImplementation();
+			config = {};
 		});
 
 		afterEach(() => {
@@ -100,11 +102,11 @@ describe('Package', () => {
 			pkg.addArtifact(b);
 			pkg.addArtifact(c);
 
-			await pkg.build({ concurrency: 1 });
+			await pkg.build({ concurrency: 1 }, config);
 
-			expect(aSpy).toHaveBeenCalledWith({ concurrency: 1 });
-			expect(bSpy).toHaveBeenCalledWith({ concurrency: 1 });
-			expect(cSpy).toHaveBeenCalledWith({ concurrency: 1 });
+			expect(aSpy).toHaveBeenCalledWith({ concurrency: 1 }, expect.any(Object));
+			expect(bSpy).toHaveBeenCalledWith({ concurrency: 1 }, expect.any(Object));
+			expect(cSpy).toHaveBeenCalledWith({ concurrency: 1 }, expect.any(Object));
 		});
 
 		it('calls `preBuild` and `postBuild` when building', async () => {
@@ -114,10 +116,10 @@ describe('Package', () => {
 
 			pkg.addArtifact(artifact);
 
-			await pkg.build({ addEngines: true });
+			await pkg.build({ addEngines: true }, config);
 
-			expect(preSpy).toHaveBeenCalledWith({ addEngines: true });
-			expect(postSpy).toHaveBeenCalledWith({ addEngines: true });
+			expect(preSpy).toHaveBeenCalledWith({ addEngines: true }, expect.any(Object));
+			expect(postSpy).toHaveBeenCalledWith({ addEngines: true }, expect.any(Object));
 		});
 
 		it('sets passed state and result time', async () => {
@@ -128,7 +130,7 @@ describe('Package', () => {
 			expect(artifact.state).toBe('pending');
 			expect(artifact.buildResult.time).toBe(0);
 
-			await pkg.build({});
+			await pkg.build({}, config);
 
 			expect(artifact.state).toBe('passed');
 			expect(artifact.buildResult.time).not.toBe(0);
@@ -146,7 +148,7 @@ describe('Package', () => {
 			expect(artifact.state).toBe('pending');
 
 			try {
-				await pkg.build({});
+				await pkg.build({}, config);
 			} catch (error: unknown) {
 				expect(error).toEqual(new Error('Whoops'));
 			}
@@ -160,7 +162,7 @@ describe('Package', () => {
 
 			pkg.addArtifact(artifact);
 
-			await pkg.build({});
+			await pkg.build({}, config);
 
 			expect(spy).toHaveBeenCalled();
 		});
@@ -169,7 +171,7 @@ describe('Package', () => {
 			it('does nothing if `addEngines` is false', async () => {
 				pkg.addArtifact(createCodeArtifact([{ format: 'lib' }], 'browser'));
 
-				await pkg.build({ addEngines: false });
+				await pkg.build({ addEngines: false }, config);
 
 				expect(pkg.packageJson.engines).toBeUndefined();
 			});
@@ -177,7 +179,7 @@ describe('Package', () => {
 			it('does nothing if builds is not `node`', async () => {
 				pkg.addArtifact(createCodeArtifact([{ format: 'lib' }], 'browser'));
 
-				await pkg.build({ addEngines: true });
+				await pkg.build({ addEngines: true }, config);
 
 				expect(pkg.packageJson.engines).toBeUndefined();
 			});
@@ -185,7 +187,7 @@ describe('Package', () => {
 			it('adds npm and node engines for `node` build', async () => {
 				pkg.addArtifact(createCodeArtifact([{ format: 'lib' }]));
 
-				await pkg.build({ addEngines: true });
+				await pkg.build({ addEngines: true }, config);
 
 				expect(pkg.packageJson.engines).toEqual({ node: '>=12.17.0', npm: '>=6.13.0' });
 			});
@@ -197,7 +199,7 @@ describe('Package', () => {
 				old.support = 'legacy';
 				pkg.addArtifact(old);
 
-				await pkg.build({ addEngines: true });
+				await pkg.build({ addEngines: true }, config);
 
 				expect(pkg.packageJson.engines).toEqual({ node: '>=10.3.0', npm: '>=6.1.0' });
 			});
@@ -211,7 +213,7 @@ describe('Package', () => {
 
 				expect(pkg.packageJson.engines).toEqual({ packemon: '*' });
 
-				await pkg.build({ addEngines: true });
+				await pkg.build({ addEngines: true }, config);
 
 				expect(pkg.packageJson.engines).toEqual({
 					packemon: '*',
@@ -226,7 +228,7 @@ describe('Package', () => {
 				it('adds "main" for node `lib` format', async () => {
 					pkg.addArtifact(createCodeArtifact([{ format: 'lib' }]));
 
-					await pkg.build({});
+					await pkg.build({}, config);
 
 					expect(pkg.packageJson).toEqual(
 						expect.objectContaining({
@@ -238,7 +240,7 @@ describe('Package', () => {
 				it('adds "main" for node `cjs` format', async () => {
 					pkg.addArtifact(createCodeArtifact([{ format: 'cjs' }]));
 
-					await pkg.build({});
+					await pkg.build({}, config);
 
 					expect(pkg.packageJson).toEqual(
 						expect.objectContaining({
@@ -251,7 +253,7 @@ describe('Package', () => {
 				it('adds "main" for node `mjs` format', async () => {
 					pkg.addArtifact(createCodeArtifact([{ format: 'mjs' }]));
 
-					await pkg.build({});
+					await pkg.build({}, config);
 
 					expect(pkg.packageJson).toEqual(
 						expect.objectContaining({
@@ -265,7 +267,7 @@ describe('Package', () => {
 					const a = createCodeArtifact([{ format: 'lib' }], 'browser');
 					pkg.addArtifact(a);
 
-					await pkg.build({});
+					await pkg.build({}, config);
 
 					expect(pkg.packageJson).toEqual(
 						expect.objectContaining({
@@ -277,7 +279,7 @@ describe('Package', () => {
 				it('adds "main" for browser `esm` format', async () => {
 					pkg.addArtifact(createCodeArtifact([{ format: 'esm' }], 'browser'));
 
-					await pkg.build({});
+					await pkg.build({}, config);
 
 					expect(pkg.packageJson).toEqual(
 						expect.objectContaining({
@@ -291,7 +293,7 @@ describe('Package', () => {
 					const a = createCodeArtifact([{ format: 'lib' }], 'native');
 					pkg.addArtifact(a);
 
-					await pkg.build({});
+					await pkg.build({}, config);
 
 					expect(pkg.packageJson).toEqual(
 						expect.objectContaining({
@@ -305,7 +307,7 @@ describe('Package', () => {
 					a.inputs = { server: 'src/index.ts' };
 					pkg.addArtifact(a);
 
-					await pkg.build({});
+					await pkg.build({}, config);
 
 					expect(pkg.packageJson.main).toBeUndefined();
 				});
@@ -319,7 +321,7 @@ describe('Package', () => {
 					b.sharedLib = true;
 					pkg.addArtifact(b);
 
-					await pkg.build({});
+					await pkg.build({}, config);
 
 					expect(pkg.packageJson).toEqual(
 						expect.objectContaining({
@@ -337,7 +339,7 @@ describe('Package', () => {
 					a.sharedLib = true;
 					pkg.addArtifact(a);
 
-					await pkg.build({});
+					await pkg.build({}, config);
 
 					expect(pkg.packageJson).toEqual(
 						expect.objectContaining({
@@ -351,7 +353,7 @@ describe('Package', () => {
 				it('adds "module" for node `mjs` format', async () => {
 					pkg.addArtifact(createCodeArtifact([{ format: 'mjs' }]));
 
-					await pkg.build({});
+					await pkg.build({}, config);
 
 					expect(pkg.packageJson).toEqual(
 						expect.objectContaining({
@@ -365,7 +367,7 @@ describe('Package', () => {
 					const a = createCodeArtifact([{ format: 'esm' }], 'browser');
 					pkg.addArtifact(a);
 
-					await pkg.build({});
+					await pkg.build({}, config);
 
 					expect(pkg.packageJson).toEqual(
 						expect.objectContaining({
@@ -389,7 +391,7 @@ describe('Package', () => {
 				});
 
 				it('adds "browser" when browser and node are sharing a lib', async () => {
-					await pkg.build({});
+					await pkg.build({}, config);
 
 					expect(pkg.packageJson).toEqual(
 						expect.objectContaining({
@@ -402,7 +404,7 @@ describe('Package', () => {
 				it('adds "browser" for umd builds', async () => {
 					pkg.artifacts[1] = createCodeArtifact([{ format: 'umd' }], 'browser');
 
-					await pkg.build({});
+					await pkg.build({}, config);
 
 					expect(pkg.packageJson).toEqual(
 						expect.objectContaining({
@@ -416,7 +418,7 @@ describe('Package', () => {
 					// @ts-expect-error Types are wrong
 					pkg.packageJson.browser = { module: 'foo' };
 
-					await pkg.build({});
+					await pkg.build({}, config);
 
 					expect(pkg.packageJson).toEqual(
 						expect.objectContaining({
@@ -433,7 +435,7 @@ describe('Package', () => {
 						createTypesArtifact([{ outputName: 'index', inputFile: 'src/some/path.ts' }]),
 					);
 
-					await pkg.build({});
+					await pkg.build({}, config);
 
 					expect(pkg.packageJson).toEqual(
 						expect.objectContaining({
@@ -449,7 +451,7 @@ describe('Package', () => {
 					a.inputs = { bin: 'src/bin.ts' };
 					pkg.addArtifact(a);
 
-					await pkg.build({});
+					await pkg.build({}, config);
 
 					expect(pkg.packageJson).toEqual(
 						expect.objectContaining({
@@ -463,7 +465,7 @@ describe('Package', () => {
 					a.inputs = { bin: 'src/bin.ts' };
 					pkg.addArtifact(a);
 
-					await pkg.build({});
+					await pkg.build({}, config);
 
 					expect(pkg.packageJson).toEqual(
 						expect.objectContaining({
@@ -477,7 +479,7 @@ describe('Package', () => {
 					a.inputs = { bin: 'src/bin.ts' };
 					pkg.addArtifact(a);
 
-					await pkg.build({});
+					await pkg.build({}, config);
 
 					expect(pkg.packageJson).toEqual(
 						expect.objectContaining({
@@ -493,7 +495,7 @@ describe('Package', () => {
 
 					pkg.packageJson.bin = {};
 
-					await pkg.build({});
+					await pkg.build({}, config);
 
 					expect(pkg.packageJson.bin).toEqual({});
 				});
@@ -504,7 +506,7 @@ describe('Package', () => {
 			it('does nothing if no builds', async () => {
 				pkg.addArtifact(new TestArtifact(pkg, []));
 
-				await pkg.build({});
+				await pkg.build({}, config);
 
 				expect(pkg.packageJson.exports).toBeUndefined();
 			});
@@ -512,7 +514,7 @@ describe('Package', () => {
 			it('does nothing if `addExports` is false', async () => {
 				pkg.addArtifact(new TestArtifact(pkg, []));
 
-				await pkg.build({ addExports: false });
+				await pkg.build({ addExports: false }, config);
 
 				expect(pkg.packageJson.exports).toBeUndefined();
 			});
@@ -520,7 +522,7 @@ describe('Package', () => {
 			it('adds exports for a single artifact and format', async () => {
 				pkg.addArtifact(createCodeArtifact([{ format: 'lib' }]));
 
-				await pkg.build({ addExports: true });
+				await pkg.build({ addExports: true }, config);
 
 				expect(pkg.packageJson.exports).toEqual({
 					'.': { node: './lib/index.js' },
@@ -533,7 +535,7 @@ describe('Package', () => {
 					createCodeArtifact([{ format: 'lib' }, { format: 'mjs' }, { format: 'cjs' }]),
 				);
 
-				await pkg.build({ addExports: true });
+				await pkg.build({ addExports: true }, config);
 
 				expect(pkg.packageJson.exports).toEqual({
 					'.': {
@@ -560,7 +562,7 @@ describe('Package', () => {
 				c.sharedLib = true;
 				pkg.addArtifact(c);
 
-				await pkg.build({ addExports: true });
+				await pkg.build({ addExports: true }, config);
 
 				expect(pkg.packageJson.exports).toEqual({
 					'.': {
@@ -582,7 +584,7 @@ describe('Package', () => {
 				);
 				pkg.addArtifact(b);
 
-				await pkg.build({ addExports: true });
+				await pkg.build({ addExports: true }, config);
 
 				expect(pkg.packageJson.exports).toEqual({
 					'.': {
@@ -609,7 +611,7 @@ describe('Package', () => {
 				b.inputs = { client: 'src/index.ts' };
 				pkg.addArtifact(b);
 
-				await pkg.build({ addExports: true });
+				await pkg.build({ addExports: true }, config);
 
 				expect(pkg.packageJson.exports).toEqual({
 					'.': { node: './lib/index.js' },
@@ -629,7 +631,7 @@ describe('Package', () => {
 				b.inputs = { client: 'src/index.ts' };
 				pkg.addArtifact(b);
 
-				await pkg.build({ addExports: true });
+				await pkg.build({ addExports: true }, config);
 
 				expect(pkg.packageJson.exports).toEqual({
 					'.': {
@@ -654,7 +656,7 @@ describe('Package', () => {
 				pkg.addArtifact(createCodeArtifact([{ format: 'lib' }]));
 				pkg.addArtifact(createTypesArtifact([{ inputFile: 'src/index.ts', outputName: 'index' }]));
 
-				await pkg.build({ addExports: true });
+				await pkg.build({ addExports: true }, config);
 
 				expect(pkg.packageJson.exports).toEqual({
 					'.': { node: './lib/index.js', types: './dts/index.d.ts' },
@@ -669,7 +671,7 @@ describe('Package', () => {
 
 				pkg.addArtifact(createCodeArtifact([{ format: 'lib' }]));
 
-				await pkg.build({ addExports: true });
+				await pkg.build({ addExports: true }, config);
 
 				expect(pkg.packageJson.exports).toEqual({
 					'.': { node: './lib/index.js' },
@@ -684,7 +686,7 @@ describe('Package', () => {
 				pkg.addArtifact(createCodeArtifact([{ format: 'cjs' }, { format: 'lib' }]));
 				pkg.addArtifact(createCodeArtifact([{ format: 'umd' }], 'browser'));
 
-				await pkg.build({ addFiles: true });
+				await pkg.build({ addFiles: true }, config);
 
 				expect(pkg.packageJson).toEqual(
 					expect.objectContaining({
@@ -706,7 +708,7 @@ describe('Package', () => {
 
 				pkg.addArtifact(art);
 
-				await pkg.build({ addFiles: true });
+				await pkg.build({ addFiles: true }, config);
 
 				expect(pkg.packageJson).toEqual(
 					expect.objectContaining({
@@ -727,7 +729,7 @@ describe('Package', () => {
 
 				pkg.addArtifact(art);
 
-				await pkg.build({ addFiles: true });
+				await pkg.build({ addFiles: true }, config);
 
 				expect(pkg.packageJson).toEqual(
 					expect.objectContaining({
@@ -742,7 +744,7 @@ describe('Package', () => {
 
 				pkg.addArtifact(art);
 
-				await pkg.build({ addFiles: true });
+				await pkg.build({ addFiles: true }, config);
 
 				expect(pkg.packageJson).toEqual(
 					expect.objectContaining({
@@ -757,7 +759,7 @@ describe('Package', () => {
 
 				pkg.addArtifact(art);
 
-				await pkg.build({ addFiles: true });
+				await pkg.build({ addFiles: true }, config);
 
 				expect(pkg.packageJson).toEqual(
 					expect.objectContaining({
@@ -772,7 +774,7 @@ describe('Package', () => {
 
 				pkg.addArtifact(art);
 
-				await pkg.build({ addFiles: true });
+				await pkg.build({ addFiles: true }, config);
 
 				expect(pkg.packageJson).toEqual(
 					expect.objectContaining({
@@ -787,7 +789,7 @@ describe('Package', () => {
 
 				pkg.addArtifact(art);
 
-				await pkg.build({ addFiles: true });
+				await pkg.build({ addFiles: true }, config);
 
 				expect(pkg.packageJson).toEqual(
 					expect.objectContaining({
@@ -802,7 +804,7 @@ describe('Package', () => {
 
 				pkg.addArtifact(art);
 
-				await pkg.build({ addFiles: true });
+				await pkg.build({ addFiles: true }, config);
 
 				expect(pkg.packageJson).toEqual(
 					expect.objectContaining({
@@ -835,7 +837,7 @@ describe('Package', () => {
 			pkg.addArtifact(c);
 			pkg.addArtifact(d);
 
-			await pkg.build({ addExports: true });
+			await pkg.build({ addExports: true }, config);
 
 			expect(pkg.packageJson).toEqual(
 				expect.objectContaining({
@@ -885,7 +887,7 @@ describe('Package', () => {
 			pkg.addArtifact(c);
 			pkg.addArtifact(d);
 
-			await pkg.build({ addExports: true });
+			await pkg.build({ addExports: true }, config);
 
 			expect(pkg.packageJson).toEqual(
 				expect.objectContaining({
@@ -931,7 +933,7 @@ describe('Package', () => {
 			pkg.addArtifact(c);
 			pkg.addArtifact(d);
 
-			await pkg.build({ addExports: true });
+			await pkg.build({ addExports: true }, config);
 
 			expect(pkg.packageJson).toEqual(
 				expect.objectContaining({
@@ -1008,13 +1010,12 @@ describe('Package', () => {
 				react: true,
 				strict: true,
 				typescript: true,
-				workspaces: [],
 			});
 		});
 
 		describe('react', () => {
 			it('returns true if a package dependency (normal)', () => {
-				expect(loadPackage('react').getFeatureFlags()).toEqual({ react: true, workspaces: [] });
+				expect(loadPackage('react').getFeatureFlags()).toEqual({ react: true });
 			});
 		});
 
@@ -1024,7 +1025,6 @@ describe('Package', () => {
 					decorators: false,
 					strict: false,
 					typescript: true,
-					workspaces: [],
 				});
 			});
 
@@ -1033,7 +1033,6 @@ describe('Package', () => {
 					decorators: true,
 					strict: true,
 					typescript: true,
-					workspaces: [],
 				});
 			});
 
@@ -1042,14 +1041,13 @@ describe('Package', () => {
 					decorators: true,
 					strict: true,
 					typescript: true,
-					workspaces: [],
 				});
 			});
 		});
 
 		describe('flow', () => {
 			it('returns true if a package dependency (dev)', () => {
-				expect(loadPackage('flow').getFeatureFlags()).toEqual({ flow: true, workspaces: [] });
+				expect(loadPackage('flow').getFeatureFlags()).toEqual({ flow: true });
 			});
 		});
 	});

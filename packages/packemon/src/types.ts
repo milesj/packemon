@@ -1,3 +1,5 @@
+import { OutputOptions as RollupOutputOptions, RollupOptions } from 'rollup';
+import { TransformOptions } from '@babel/core';
 import { PackageStructure } from '@boost/common';
 
 // Platform = The runtime or operating system the code will run in.
@@ -122,8 +124,16 @@ export interface BuildOptions extends FilterOptions {
 	concurrency?: number;
 	declaration?: DeclarationType;
 	declarationConfig?: string;
+	loadConfigs?: boolean;
 	timeout?: number;
 	quiet?: boolean;
+}
+
+export interface BuildParams {
+	features: FeatureFlags;
+	format: Format;
+	platform: Platform;
+	support: Support;
 }
 
 export interface BuildResultFiles {
@@ -194,6 +204,19 @@ export interface ScaffoldParams {
 	packagePath?: string;
 	repoUrl: string;
 	year: number;
+}
+
+// CONFIGS
+
+export type ConfigMutator<T> = (config: T) => void;
+
+export type ConfigMutatorWithBuild<T> = (config: T, build: BuildParams) => void;
+
+export interface ConfigFile {
+	babelInput?: ConfigMutator<TransformOptions>;
+	babelOutput?: ConfigMutatorWithBuild<TransformOptions>;
+	rollupInput?: ConfigMutator<RollupOptions>;
+	rollupOutput?: ConfigMutatorWithBuild<RollupOutputOptions>;
 }
 
 // OTHER

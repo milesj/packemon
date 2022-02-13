@@ -22,6 +22,7 @@ import { Project } from './Project';
 import { packemonBlueprint } from './schemas';
 import {
 	BuildOptions,
+	ConfigFile,
 	FeatureFlags,
 	InputMap,
 	PackageConfig,
@@ -65,7 +66,7 @@ export class Package {
 		return artifact;
 	}
 
-	async build(options: BuildOptions): Promise<void> {
+	async build(options: BuildOptions, packemonConfig: ConfigFile): Promise<void> {
 		this.debug('Building artifacts');
 
 		// Build artifacts in parallel
@@ -76,7 +77,7 @@ export class Package {
 				try {
 					artifact.state = 'building';
 
-					await artifact.build(options);
+					await artifact.build(options, packemonConfig);
 
 					artifact.state = 'passed';
 				} catch (error: unknown) {
@@ -150,7 +151,9 @@ export class Package {
 				? {}
 				: this.project.rootPackage.getFeatureFlags();
 
-		flags.workspaces = this.project.workspaces;
+		if (this.project.workspaces.length > 0) {
+			flags.workspaces = this.project.workspaces;
+		}
 
 		// React
 		if (this.project.rootPackage.hasDependency('react') || this.hasDependency('react')) {

@@ -8,6 +8,7 @@ import {
 	BuildOptions,
 	BuildResultFiles,
 	CodeBuild,
+	ConfigFile,
 	Format,
 	InputMap,
 	PackageExportPaths,
@@ -55,7 +56,7 @@ export class CodeArtifact extends Artifact<CodeBuild> {
 		await this.removeFiles([this.package.project.root.append(this.getStatsFileName())]);
 	}
 
-	async build(options: BuildOptions): Promise<void> {
+	async build(options: BuildOptions, packemonConfig: ConfigFile): Promise<void> {
 		this.debug('Building code artifacts with Rollup');
 
 		const features = this.package.getFeatureFlags();
@@ -64,7 +65,7 @@ export class CodeArtifact extends Artifact<CodeBuild> {
 			features.analyze = options.analyze;
 		}
 
-		const { output = [], ...input } = getRollupConfig(this, features);
+		const { output = [], ...input } = getRollupConfig(this, features, packemonConfig);
 		const bundle = await rollup({
 			...input,
 			onwarn: /* istanbul ignore next */ ({ id, loc = {}, message }) => {

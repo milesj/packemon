@@ -8,6 +8,7 @@ import type {
 	Awaitable,
 	BuildOptions,
 	BuildResult,
+	ConfigFile,
 	PackageExports,
 } from './types';
 
@@ -92,7 +93,7 @@ export abstract class Artifact<T extends object = {}> {
 		return Promise.all(files.map((file) => fs.remove(String(file))));
 	}
 
-	abstract build(options: BuildOptions): Awaitable;
+	abstract build(options: BuildOptions, packemonConfig: ConfigFile): Awaitable;
 
 	abstract getLabel(): string;
 

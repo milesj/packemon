@@ -1,7 +1,7 @@
 import { PluginItem, TransformOptions as ConfigStructure } from '@babel/core';
 import { CodeArtifact } from '../CodeArtifact';
 import { BROWSER_TARGETS, NATIVE_TARGETS, NODE_SUPPORTED_VERSIONS } from '../constants';
-import { FeatureFlags, Format, Platform, Support } from '../types';
+import { ConfigFile, FeatureFlags, Format, Platform, Support } from '../types';
 import { resolve, resolveFromBabel } from './resolve';
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#browser_compatibility
@@ -113,6 +113,7 @@ function getSharedConfig(
 export function getBabelInputConfig(
 	artifact: CodeArtifact,
 	features: FeatureFlags,
+	packemonConfig: ConfigFile = {},
 ): Omit<ConfigStructure, 'exclude' | 'include'> {
 	const plugins: PluginItem[] = [];
 	const presets: PluginItem[] = [];
@@ -145,7 +146,12 @@ export function getBabelInputConfig(
 		]);
 	}
 
-	return getSharedConfig(plugins, presets, features);
+	const config = getSharedConfig(plugins, presets, features);
+
+	// Allow consumers to mutate
+	packemonConfig.babelInput?.(config);
+
+	return config;
 }
 
 // The output config does all the transformation and downleveling through the preset-env.
@@ -155,6 +161,7 @@ export function getBabelOutputConfig(
 	support: Support,
 	format: Format,
 	features: FeatureFlags,
+	packemonConfig: ConfigFile = {},
 ): ConfigStructure {
 	const plugins: PluginItem[] = [];
 	const presets: PluginItem[] = [];
@@ -222,5 +229,10 @@ export function getBabelOutputConfig(
 		resolve('babel-plugin-env-constants'),
 	);
 
-	return getSharedConfig(plugins, presets, features);
+	const config = getSharedConfig(plugins, presets, features);
+
+	// Allow consumers to mutate
+	packemonConfig.babelOutput?.(config, { features, format, platform, support });
+
+	return config;
 }

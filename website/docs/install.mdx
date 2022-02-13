@@ -10,7 +10,7 @@ package is still quite tedious and non-trivial. Packemon hopes to alleviate this
 integrated into [existing projects](#add-to-an-existing-project), or used to
 [scaffold a new project](#scaffold-a-new-project).
 
-> For future referene, a project in the context of Packemon is either a package (polyrepo), or a
+> For future reference, a project in the context of Packemon is either a package (polyrepo), or a
 > collection of packages (monorepo). Choose the option that best suits your needs.
 
 ## Scaffold a new project
@@ -110,7 +110,8 @@ the following `build` (for development) and `pack` (for production) scripts.
 
 Packemon relies on its own internal Babel configuration for building packages, but if you want to
 use the same configuration for local development and testing, update your root `babel.config.js` to
-the following.
+the following. With that being said, we do offer an
+[escape hatch for advanced scenarios](./advanced#customizing-babel-and-rollup).
 
 ```js title="babel.config.js"
 const { createRootConfig } = require('packemon/babel');

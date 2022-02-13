@@ -46,7 +46,7 @@ describe('Outputs', () => {
 
 			pkg.addArtifact(test);
 
-			await pkg.build({});
+			await pkg.build({}, {});
 
 			snapshots(pkg).forEach((ss) => {
 				expect(ss).toMatchSnapshot();
@@ -71,7 +71,7 @@ describe('Outputs', () => {
 
 			pkg.addArtifact(index);
 
-			await pkg.build({});
+			await pkg.build({}, {});
 
 			snapshots(pkg).forEach((ss) => {
 				expect(ss).toMatchSnapshot();
@@ -94,7 +94,7 @@ describe('Outputs', () => {
 
 			pkg.addArtifact(index);
 
-			await pkg.build({});
+			await pkg.build({}, {});
 
 			snapshots(pkg).forEach((ss) => {
 				expect(ss).toMatchSnapshot();
@@ -123,7 +123,7 @@ describe('Outputs', () => {
 
 			pkg.addArtifact(index);
 
-			await pkg.build({});
+			await pkg.build({}, {});
 
 			snapshots(pkg).forEach((ss) => {
 				expect(ss).toMatchSnapshot();
@@ -146,7 +146,7 @@ describe('Outputs', () => {
 
 			pkg.addArtifact(index);
 
-			await pkg.build({});
+			await pkg.build({}, {});
 
 			snapshots(pkg).forEach((ss) => {
 				expect(ss).toMatchSnapshot();
@@ -169,7 +169,7 @@ describe('Outputs', () => {
 
 			pkg.addArtifact(index);
 
-			await pkg.build({});
+			await pkg.build({}, {});
 
 			snapshots(pkg).forEach((ss) => {
 				expect(ss).toMatchSnapshot();

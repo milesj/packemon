@@ -7,6 +7,7 @@ import {
 	json,
 	Memoize,
 	Path,
+	PortablePath,
 	toArray,
 	VirtualPath,
 	WorkspacePackage,
@@ -16,6 +17,7 @@ import { createDebugger, Debugger } from '@boost/debug';
 import { Event } from '@boost/event';
 import { Context, PooledPipeline } from '@boost/pipeline';
 import { CodeArtifact } from './CodeArtifact';
+import { Config } from './Config';
 import { matchesPattern } from './helpers/matchesPattern';
 import { Package } from './Package';
 import { PackageValidator } from './PackageValidator';
@@ -33,6 +35,8 @@ import type {
 import { TypesArtifact } from './TypesArtifact';
 
 export class Packemon {
+	readonly config: Config = new Config('packemon');
+
 	readonly debug: Debugger;
 
 	readonly onPackageBuilt = new Event<[Package]>('package-built');
@@ -43,7 +47,7 @@ export class Packemon {
 
 	readonly root: Path;
 
-	constructor(cwd: string = process.cwd()) {
+	constructor(cwd: PortablePath = process.cwd()) {
 		this.root = Path.resolve(cwd);
 		this.project = new Project(this.root);
 		this.debug = createDebugger('packemon:core');
@@ -51,6 +55,7 @@ export class Packemon {
 		this.debug('Initializing packemon in project %s', this.root);
 
 		this.project.checkEngineVersionConstraint();
+		this.config.setRootDir(this.root);
 	}
 
 	async build(baseOptions: BuildOptions) {
@@ -75,7 +80,13 @@ export class Packemon {
 
 		packages.forEach((pkg) => {
 			pipeline.add(pkg.getName(), async () => {
-				await pkg.build(options);
+				if (options.loadConfigs) {
+					const { config } = await this.config.loadConfigFromBranchToRoot(pkg.path);
+
+					await pkg.build(options, config);
+				} else {
+					await pkg.build(options, {});
+				}
 
 				this.onPackageBuilt.emit([pkg]);
 			});
