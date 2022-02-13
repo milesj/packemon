@@ -7,6 +7,7 @@ import {
 	json,
 	Memoize,
 	Path,
+	PortablePath,
 	toArray,
 	VirtualPath,
 	WorkspacePackage,
@@ -46,7 +47,7 @@ export class Packemon {
 
 	readonly root: Path;
 
-	constructor(cwd: string = process.cwd()) {
+	constructor(cwd: PortablePath = process.cwd()) {
 		this.root = Path.resolve(cwd);
 		this.project = new Project(this.root);
 		this.debug = createDebugger('packemon:core');

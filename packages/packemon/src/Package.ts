@@ -151,7 +151,9 @@ export class Package {
 				? {}
 				: this.project.rootPackage.getFeatureFlags();
 
-		flags.workspaces = this.project.workspaces;
+		if (this.project.workspaces.length > 0) {
+			flags.workspaces = this.project.workspaces;
+		}
 
 		// React
 		if (this.project.rootPackage.hasDependency('react') || this.hasDependency('react')) {
