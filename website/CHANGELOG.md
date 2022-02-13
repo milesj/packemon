@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.7.0 - 2022-02-13
+
+#### 🚀 Updates
+
+- Support Babel/Rollup mutation through a custom Packemon config. (#99) ([c1a8d70](https://github.com/milesj/packemon/commit/c1a8d70)), closes [#99](https://github.com/milesj/packemon/issues/99)
+
+#### 🐞 Fixes
+
+- Dont copy assets that come from node modules. ([8282550](https://github.com/milesj/packemon/commit/8282550))
+
+**Note:** Version bump only for package website
+
+
+
+
+
 ## 0.6.0 - 2022-01-20
 
 #### 🚀 Updates

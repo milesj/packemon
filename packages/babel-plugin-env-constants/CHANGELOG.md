@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 1.1.5 - 2022-02-13
+
+#### 🐞 Fixes
+
+- Temporarily disable peer + dev dependency check. ([33a12ba](https://github.com/milesj/packemon/commit/33a12ba))
+
+#### 📦 Dependencies
+
+- **[beemo-dev]** Update to latest configs. ([bb59cda](https://github.com/milesj/packemon/commit/bb59cda))
+
+**Note:** Version bump only for package babel-plugin-env-constants
+
+
+
+
+
 ### 1.1.4 - 2022-02-03
 
 #### 📦 Dependencies

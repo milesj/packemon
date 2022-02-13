@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.13.0 - 2022-02-13
+
+#### 🚀 Updates
+
+- Support Babel/Rollup mutation through a custom Packemon config. (#99) ([c1a8d70](https://github.com/milesj/packemon/commit/c1a8d70)), closes [#99](https://github.com/milesj/packemon/issues/99)
+
+#### 🐞 Fixes
+
+- Check for dot files when gathering file pack list. ([9233d08](https://github.com/milesj/packemon/commit/9233d08))
+- Dont show outdated message if quiet. ([007fbad](https://github.com/milesj/packemon/commit/007fbad))
+- Temporarily disable peer + dev dependency check. ([33a12ba](https://github.com/milesj/packemon/commit/33a12ba))
+
+#### 📦 Dependencies
+
+- **[beemo-dev]** Update to latest configs. ([bb59cda](https://github.com/milesj/packemon/commit/bb59cda))
+
+**Note:** Version bump only for package packemon
+
+
+
+
+
 ## 1.12.0 - 2022-02-03
 
 #### 🚀 Updates
