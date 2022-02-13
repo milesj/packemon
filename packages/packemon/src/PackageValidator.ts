@@ -225,7 +225,8 @@ export class PackageValidator {
 	}
 
 	protected async checkFiles() {
-		const futureFiles = new Set(await packList({ path: this.package.path.path() }));
+		const packListFiles = await packList({ path: this.package.path.path() });
+		const futureFiles = new Set(packListFiles.map((file) => file.replace(/^\.\//, '')));
 		const presentFiles = new Set(await this.package.findDistributableFiles());
 
 		// First check that our files are in the potential npm list

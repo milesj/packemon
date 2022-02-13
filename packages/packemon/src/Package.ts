@@ -133,6 +133,7 @@ export class Package {
 		return glob(patterns, {
 			caseSensitiveMatch: false,
 			cwd: this.path.path(),
+			dot: true,
 			ignore: ['node_modules'],
 		});
 	}
