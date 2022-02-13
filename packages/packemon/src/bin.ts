@@ -40,7 +40,7 @@ async function run() {
 		.register(new ValidateCommand())
 		.register(new WatchCommand());
 
-	if (!process.env.CI) {
+	if (!process.env.CI && !process.argv.includes('--quiet')) {
 		program.middleware(checkPackageOutdated('packemon', version));
 	}
 
