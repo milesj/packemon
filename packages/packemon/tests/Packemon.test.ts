@@ -67,6 +67,7 @@ describe('Packemon', () => {
 				loadConfigs: false,
 				quiet: false,
 				skipPrivate: false,
+				stamp: false,
 				timeout: 0,
 			};
 

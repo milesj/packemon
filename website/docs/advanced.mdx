@@ -158,6 +158,13 @@ module.exports = {
 > We suggest _not mutating_ the config that Packemon generates, as it may break our assumptions.
 > Instead, prefer to only apply additions that add new functionality.
 
+## Stamping releases
+
+For situations where you update Packemon and want to release _every_ package, even those that have
+not been modified since the last release, you can use stamping. Stamping is a very simple concept
+where we modify the `package.json` of each package with a `release` timestamp, and can be achieved
+by passing `--stamp` to the `build` or `pack` commands.
+
 ## Version constraints
 
 If you're using packemon as a global dependency and want to ensure all contributors of your project
