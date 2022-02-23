@@ -73,6 +73,7 @@ export interface PackemonPackageConfig {
 
 export interface PackemonPackage extends PackageStructure {
 	packemon: PackemonPackageConfig | PackemonPackageConfig[];
+	release?: string;
 }
 
 export interface PackageConfig {
