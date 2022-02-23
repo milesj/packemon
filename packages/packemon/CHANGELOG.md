@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.14.0 - 2022-02-23
+
+#### 🚀 Updates
+
+- Add a --stamp option. (#101) ([6b11bb4](https://github.com/milesj/packemon/commit/6b11bb4)), closes [#101](https://github.com/milesj/packemon/issues/101)
+
+#### 📦 Dependencies
+
+- **[beemo-dev]** Update to latest configs. ([327cd01](https://github.com/milesj/packemon/commit/327cd01))
+- **[rollup]** Update to v2.68. ([33db641](https://github.com/milesj/packemon/commit/33db641))
+
+**Note:** Version bump only for package packemon
+
+
+
+
+
 ## 1.13.0 - 2022-02-13
 
 #### 🚀 Updates

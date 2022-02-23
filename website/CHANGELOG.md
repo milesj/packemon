@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.8.0 - 2022-02-23
+
+#### 🚀 Updates
+
+- Add a --stamp option. (#101) ([6b11bb4](https://github.com/milesj/packemon/commit/6b11bb4)), closes [#101](https://github.com/milesj/packemon/issues/101)
+
+**Note:** Version bump only for package website
+
+
+
+
+
 ## 0.7.0 - 2022-02-13
 
 #### 🚀 Updates
