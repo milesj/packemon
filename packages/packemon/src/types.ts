@@ -125,6 +125,7 @@ export interface BuildOptions extends FilterOptions {
 	declaration?: DeclarationType;
 	declarationConfig?: string;
 	loadConfigs?: boolean;
+	stamp?: boolean;
 	timeout?: number;
 	quiet?: boolean;
 }

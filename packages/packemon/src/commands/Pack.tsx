@@ -21,6 +21,7 @@ export class PackCommand extends BuildCommand {
 				filterPlatforms={this.platforms}
 				packemon={this.packemon}
 				skipPrivate={this.skipPrivate}
+				stamp={this.stamp}
 				timeout={this.timeout}
 			/>
 		);
