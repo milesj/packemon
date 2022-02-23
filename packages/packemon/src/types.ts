@@ -73,6 +73,7 @@ export interface PackemonPackageConfig {
 
 export interface PackemonPackage extends PackageStructure {
 	packemon: PackemonPackageConfig | PackemonPackageConfig[];
+	release?: string;
 }
 
 export interface PackageConfig {
@@ -125,6 +126,7 @@ export interface BuildOptions extends FilterOptions {
 	declaration?: DeclarationType;
 	declarationConfig?: string;
 	loadConfigs?: boolean;
+	stamp?: boolean;
 	timeout?: number;
 	quiet?: boolean;
 }

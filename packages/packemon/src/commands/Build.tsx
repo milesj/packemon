@@ -34,6 +34,9 @@ export class BuildCommand extends BaseCommand<Required<BuildOptions>> {
 	@Arg.Number('Timeout in milliseconds before a build is cancelled')
 	timeout: number = 0;
 
+	@Arg.Flag('Stamp all `package.json`s with a release timestamp')
+	stamp: boolean = false;
+
 	async run() {
 		const { Build } = await import('../components/Build');
 
@@ -52,6 +55,7 @@ export class BuildCommand extends BaseCommand<Required<BuildOptions>> {
 				packemon={this.packemon}
 				quiet={this.quiet}
 				skipPrivate={this.skipPrivate}
+				stamp={this.stamp}
 				timeout={this.timeout}
 			/>
 		);

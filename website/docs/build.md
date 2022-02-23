@@ -47,6 +47,7 @@ Build supports the following command line options.
 - `--loadConfigs` - Search and load config files for customizing Babel and Rollup.
 - `--platforms`, `-p` - Only target specific `platform`s.
 - `--skipPrivate` - Skip `private` packages from being built.
+- `--stamp` - Stamp all `package.json`s with a release timestamp.
 - `--timeout` - Timeout in milliseconds before a build is cancelled. Defaults to no timeout.
 
 > All filtering options support standard patterns (`foo-*`), comma separated lists (`foo,bar`), or

@@ -167,6 +167,24 @@ describe('Package', () => {
 			expect(spy).toHaveBeenCalled();
 		});
 
+		describe('stamp', () => {
+			it('does nothing if `stamp` is false', async () => {
+				pkg.addArtifact(createCodeArtifact([{ format: 'lib' }], 'browser'));
+
+				await pkg.build({ stamp: false }, config);
+
+				expect(pkg.packageJson.release).toBeUndefined();
+			});
+
+			it('adds if `stamp` is true', async () => {
+				pkg.addArtifact(createCodeArtifact([{ format: 'lib' }], 'browser'));
+
+				await pkg.build({ stamp: true }, config);
+
+				expect(pkg.packageJson.release).toBeDefined();
+			});
+		});
+
 		describe('engines', () => {
 			it('does nothing if `addEngines` is false', async () => {
 				pkg.addArtifact(createCodeArtifact([{ format: 'lib' }], 'browser'));

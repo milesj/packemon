@@ -108,6 +108,11 @@ export class Package {
 			this.addFiles();
 		}
 
+		// Stamp with a timestamp
+		if (options.stamp) {
+			this.packageJson.release = String(Date.now());
+		}
+
 		// Sync `package.json` in case it was modified
 		await this.syncPackageJson();
 	}
