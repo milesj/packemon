@@ -34,7 +34,7 @@ export class BuildCommand extends BaseCommand<Required<BuildOptions>> {
 	@Arg.Number('Timeout in milliseconds before a build is cancelled')
 	timeout: number = 0;
 
-	@Arg.Flag('Stamp all `package.json`s with a release date')
+	@Arg.Flag('Stamp all `package.json`s with a release timestamp')
 	stamp: boolean = false;
 
 	async run() {
