@@ -1,3 +1,4 @@
+import path from 'path';
 import { ModuleFormat, OutputOptions, RollupOptions } from 'rollup';
 import externals from 'rollup-plugin-node-externals';
 import nodePolyfills from 'rollup-plugin-polyfill-node';
@@ -202,14 +203,14 @@ export function getRollupConfig(
 	// Analyze the bundle for debugging purposes
 	if (features.analyze) {
 		config.plugins!.push(
-			visualizer({
-				filename: artifact.getStatsFileName(),
+			visualizer((outputOptions) => ({
+				filename: path.join(outputOptions.dir as string, artifact.getStatsFileName()),
 				gzipSize: true,
 				open: true,
 				sourcemap: true,
 				template: features.analyze as 'treemap',
 				title: artifact.getStatsTitle(),
-			}),
+			})),
 		);
 	}
 
