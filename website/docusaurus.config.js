@@ -16,7 +16,11 @@ module.exports = {
 	organizationName: 'milesj',
 	projectName: 'packemon',
 	themeConfig: {
-		algolia: { apiKey: 'd58bfe352c9b26d2fcee66851b00910b', indexName: 'packemon' },
+		algolia: {
+			apiKey: 'd58bfe352c9b26d2fcee66851b00910b',
+			appId: 'packemon',
+			indexName: 'packemon',
+		},
 		navbar: {
 			title: 'Packemon',
 			logo: {
