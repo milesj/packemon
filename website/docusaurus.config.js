@@ -17,8 +17,8 @@ module.exports = {
 	projectName: 'packemon',
 	themeConfig: {
 		algolia: {
-			apiKey: 'd58bfe352c9b26d2fcee66851b00910b',
-			appId: 'packemon',
+			apiKey: '1bdfdc84f4fad4dcccaaf93794d25e30',
+			appId: '0O9Q3LT8SM',
 			indexName: 'packemon',
 		},
 		navbar: {
