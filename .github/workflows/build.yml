@@ -14,8 +14,8 @@ jobs:
         node-version: [12, 14, 16, 17]
       fail-fast: true
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           cache: yarn
           node-version: ${{ matrix.node-version }}
@@ -28,8 +28,8 @@ jobs:
     name: Pack
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           cache: yarn
       - run: yarn install --immutable
@@ -39,8 +39,8 @@ jobs:
     name: Docs
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           cache: yarn
       - run: yarn install --immutable
