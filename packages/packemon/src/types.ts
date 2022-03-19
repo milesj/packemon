@@ -231,11 +231,3 @@ export interface TSConfigStructure {
 		strict?: boolean;
 	};
 }
-
-export interface APIExtractorStructure {
-	projectFolder: string;
-	mainEntryPointFilePath: string;
-	dtsRollup: {
-		untrimmedFilePath: string;
-	};
-}
