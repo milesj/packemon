@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>0.8.1 (2022-03-19)</small>
+
+* deps(docusaurus): Update to beta.16. ([c8eeb33](https://github.com/milesj/packemon/commit/c8eeb33))
+* deps(docusaurus): Update to beta.17. ([2729f5a](https://github.com/milesj/packemon/commit/2729f5a))
+* docs: Update algolia keys. ([c2b0c50](https://github.com/milesj/packemon/commit/c2b0c50))
+
+
+
+
+
 ## 0.8.0 - 2022-02-23
 
 #### 🚀 Updates
