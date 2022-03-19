@@ -1,4 +1,3 @@
-import fs from 'fs-extra';
 import { rollup } from 'rollup';
 import { Path } from '@boost/common';
 import { getFixturePath } from '@boost/test-utils';
