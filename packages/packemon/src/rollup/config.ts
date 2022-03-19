@@ -204,7 +204,7 @@ export function getRollupConfig(
 	if (features.analyze) {
 		config.plugins!.push(
 			visualizer((outputOptions) => ({
-				filename: path.join(outputOptions.dir as string, artifact.getStatsFileName()),
+				filename: path.join(outputOptions.dir!, artifact.getStatsFileName()),
 				gzipSize: true,
 				open: true,
 				sourcemap: true,
