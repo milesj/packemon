@@ -8,7 +8,7 @@
     "coverage": "yarn run test --coverage",
     "format": "prettier --write ./src ./tests",
     "lint": "eslint --cache --fix ./src ./tests",
-    "pack": "NODE_ENV=production packemon pack --addEngines --declaration=standard",
+    "pack": "NODE_ENV=production packemon pack --addEngines --declaration",
     "prelease": "yarn run pack && yarn run check",
     "release": "echo 'Customize your own release script!'",
     "test": "jest",

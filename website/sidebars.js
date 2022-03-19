@@ -16,10 +16,14 @@ module.exports = {
 		},
 		'advanced',
 		{
+			type: 'category',
+			label: 'Migration',
+			items: ['migrate/2.0'],
+		},
+		{
 			type: 'link',
 			label: 'Changelog',
 			href: 'https://github.com/milesj/packemon/releases',
-			// href: 'https://github.com/milesj/packemon/blob/master/CHANGELOG.md',
 		},
 	],
 };
