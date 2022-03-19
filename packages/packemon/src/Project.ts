@@ -5,7 +5,6 @@ import semver from 'semver';
 import { Memoize, Path, Project as BaseProject, VirtualPath } from '@boost/common';
 import { getVersion } from './helpers/getVersion';
 import { Package } from './Package';
-import { DeclarationType } from './types';
 
 export class Project extends BaseProject {
 	workspaces: string[] = [];
@@ -39,11 +38,7 @@ export class Project extends BaseProject {
 		return this.workspaces.length > 0;
 	}
 
-	async generateDeclarations(
-		declarationType: DeclarationType,
-		pkgPath?: Path,
-		declarationConfig?: string,
-	): Promise<unknown> {
+	async generateDeclarations(pkgPath?: Path, declarationConfig?: string): Promise<unknown> {
 		if (this.buildPromise) {
 			return this.buildPromise;
 		}
@@ -54,14 +49,6 @@ export class Project extends BaseProject {
 
 		if (this.isWorkspacesEnabled()) {
 			args.push('--build');
-
-			// Since we collapse all DTS into a single file,
-			// we need to force build to overwrite the types,
-			// since they're not what the TS build expects.
-			if (declarationType) {
-				// TODO: This seems to always be required??
-				args.push('--force');
-			}
 
 			// Only build the specific project when applicable
 			if (pkgPath) {

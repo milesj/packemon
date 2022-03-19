@@ -1,6 +1,6 @@
 import os from 'os';
 import { Arg, Config } from '@boost/cli';
-import { AnalyzeType, BuildOptions, DeclarationType } from '../types';
+import { AnalyzeType, BuildOptions } from '../types';
 import { BaseCommand } from './Base';
 
 @Config('build', 'Build standardized packages for distribution')
@@ -22,10 +22,8 @@ export class BuildCommand extends BaseCommand<Required<BuildOptions>> {
 	@Arg.Number('Number of builds to run in parallel')
 	concurrency: number = os.cpus().length;
 
-	@Arg.String('Generate TypeScript declarations for each package', {
-		choices: ['none', 'standard', 'api'],
-	})
-	declaration: DeclarationType = 'none';
+	@Arg.Flag('Generate TypeScript declarations for each package')
+	declaration: boolean = false;
 
 	@Arg.String('Path to a custom `tsconfig` for declaration building')
 	declarationConfig: string = 'tsconfig.json';

@@ -13,7 +13,7 @@ aborted.
 ```json title="package.json"
 {
 	"scripts": {
-		"pack": "NODE_ENV=production packemon pack --addEngines --declaration=api",
+		"pack": "NODE_ENV=production packemon pack --addEngines --declaration",
 		"release": "yarn run pack && yarn publish"
 	}
 }

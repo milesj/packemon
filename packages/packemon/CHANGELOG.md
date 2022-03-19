@@ -20,21 +20,16 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 **Note:** Version bump only for package packemon
 
 
+## 1.14.1 - 2022-03-19
 
+#### 📦 Dependencies
 
-
-## <small>1.14.1 (2022-03-19)</small>
-
-* deps: Update internals. ([3aba5ac](https://github.com/milesj/packemon/commit/3aba5ac))
-* deps(beemo): Update to v2 latest. ([d6aeac1](https://github.com/milesj/packemon/commit/d6aeac1))
-* deps(magic-string): Update to v0.26. ([dde44a1](https://github.com/milesj/packemon/commit/dde44a1))
-* deps(npm-packlist): Update to v4. ([263013e](https://github.com/milesj/packemon/commit/263013e))
-* deps(rollup-plugin-visualizer): Update to v5.6. ([0ed1404](https://github.com/milesj/packemon/commit/0ed1404))
-* deps(rollup): Update to v2.70. (#103) ([a1af6ef](https://github.com/milesj/packemon/commit/a1af6ef)), closes [#103](https://github.com/milesj/packemon/issues/103)
-* tests: Fix failing visualizer test. ([828ea38](https://github.com/milesj/packemon/commit/828ea38))
-
-
-
+- Update internals. ([3aba5ac](https://github.com/milesj/packemon/commit/3aba5ac))
+- **[beemo]** Update to v2 latest. ([d6aeac1](https://github.com/milesj/packemon/commit/d6aeac1))
+- **[magic-string]** Update to v0.26. ([dde44a1](https://github.com/milesj/packemon/commit/dde44a1))
+- **[npm-packlist]** Update to v4. ([263013e](https://github.com/milesj/packemon/commit/263013e))
+- **[rollup-plugin-visualizer]** Update to v5.6. ([0ed1404](https://github.com/milesj/packemon/commit/0ed1404))
+- **[rollup]** Update to v2.70. (#103) ([a1af6ef](https://github.com/milesj/packemon/commit/a1af6ef)), closes [#103](https://github.com/milesj/packemon/issues/103)
 
 
 ## 1.14.0 - 2022-02-23
