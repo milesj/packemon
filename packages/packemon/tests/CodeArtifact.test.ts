@@ -20,7 +20,7 @@ jest.mock('../src/rollup/config', () => ({
 }));
 
 jest.mock('fs-extra');
-jest.mock('rollup');
+jest.mock('rollup', () => ({ rollup: jest.fn() }));
 
 describe('CodeArtifact', () => {
 	const fixturePath = new Path(getFixturePath('project'));
