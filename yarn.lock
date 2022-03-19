@@ -3800,27 +3800,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@microsoft/api-extractor-model@npm:7.15.3":
-  version: 7.15.3
-  resolution: "@microsoft/api-extractor-model@npm:7.15.3"
+"@microsoft/api-extractor-model@npm:7.15.4":
+  version: 7.15.4
+  resolution: "@microsoft/api-extractor-model@npm:7.15.4"
   dependencies:
     "@microsoft/tsdoc": 0.13.2
     "@microsoft/tsdoc-config": ~0.15.2
-    "@rushstack/node-core-library": 3.45.0
-  checksum: dfa706b1b2acac93c68afe0c7e119e45a95ab40e75b0d70fdb687ce263e22fd1a491a4f4ee1151d0ef059dfb35daef909b27f3608c67f542666623af6e953127
+    "@rushstack/node-core-library": 3.45.1
+  checksum: 9e4cce0d2575da97413c7df8a26da39ed1d73e654035f811cbc001d231650647dd0692881f46cdfd3a08b53c89589960464347050953a8dfe8f4172367104273
   languageName: node
   linkType: hard
 
-"@microsoft/api-extractor@npm:^7.19.4":
-  version: 7.19.4
-  resolution: "@microsoft/api-extractor@npm:7.19.4"
+"@microsoft/api-extractor@npm:^7.19.5":
+  version: 7.19.5
+  resolution: "@microsoft/api-extractor@npm:7.19.5"
   dependencies:
-    "@microsoft/api-extractor-model": 7.15.3
+    "@microsoft/api-extractor-model": 7.15.4
     "@microsoft/tsdoc": 0.13.2
     "@microsoft/tsdoc-config": ~0.15.2
-    "@rushstack/node-core-library": 3.45.0
-    "@rushstack/rig-package": 0.3.7
-    "@rushstack/ts-command-line": 4.10.6
+    "@rushstack/node-core-library": 3.45.1
+    "@rushstack/rig-package": 0.3.8
+    "@rushstack/ts-command-line": 4.10.7
     colors: ~1.2.1
     lodash: ~4.17.15
     resolve: ~1.17.0
@@ -3829,7 +3829,7 @@ __metadata:
     typescript: ~4.5.2
   bin:
     api-extractor: bin/api-extractor
-  checksum: 15d1749e02053a7d70b43b87067b31055995bbe80acc888016612b8d61b6788e9f2619774982f7271c9c5271b512d1340fea609e4b001ab9e2347411d3c63fa2
+  checksum: 96fa1cff560f3e8c86db89389eb7a966657164b29532d0d8973ad5313dd375d1271b1eacec66e6a449b761e79df874be96cf7dd508dc19a5a3bd30c31e5f68aa
   languageName: node
   linkType: hard
 
@@ -4192,9 +4192,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rushstack/node-core-library@npm:3.45.0":
-  version: 3.45.0
-  resolution: "@rushstack/node-core-library@npm:3.45.0"
+"@rushstack/node-core-library@npm:3.45.1":
+  version: 3.45.1
+  resolution: "@rushstack/node-core-library@npm:3.45.1"
   dependencies:
     "@types/node": 12.20.24
     colors: ~1.2.1
@@ -4205,29 +4205,29 @@ __metadata:
     semver: ~7.3.0
     timsort: ~0.3.0
     z-schema: ~5.0.2
-  checksum: 1dc9dd7a042b33d891d4174369f8a63e70c76a2a502ef0a2d49993639d9722ff34eb149da7f06cd16ad069aa0d6045df8df9be27ab38fdad0fbc0349787d08b3
+  checksum: 2001e1acda14e75dc3cc4aa988c2ec9609c2ed7a59ef27a5b97ce9a0380c534ad9eb96074821a52e52e34c06cc1f4a011c15f6e5d17bbf830430e739c6d185ce
   languageName: node
   linkType: hard
 
-"@rushstack/rig-package@npm:0.3.7":
-  version: 0.3.7
-  resolution: "@rushstack/rig-package@npm:0.3.7"
+"@rushstack/rig-package@npm:0.3.8":
+  version: 0.3.8
+  resolution: "@rushstack/rig-package@npm:0.3.8"
   dependencies:
     resolve: ~1.17.0
     strip-json-comments: ~3.1.1
-  checksum: 3dceb4dbed159a9c54f97d91a38a4f0ec3219d9e33c3f3cad903a56bc20385849749b460168687334611d3af7bf210da05d794af97c665dfbf5b95aba56dd3cc
+  checksum: 375788eae1c18fa4807bbe96541ebddc65bcc44113f186fae2cfbf0b355deb376e20fa8a014f40a6babdcde86d446234dcbaf5d3df4fdca5bf196ec5d4c41f0b
   languageName: node
   linkType: hard
 
-"@rushstack/ts-command-line@npm:4.10.6":
-  version: 4.10.6
-  resolution: "@rushstack/ts-command-line@npm:4.10.6"
+"@rushstack/ts-command-line@npm:4.10.7":
+  version: 4.10.7
+  resolution: "@rushstack/ts-command-line@npm:4.10.7"
   dependencies:
     "@types/argparse": 1.0.38
     argparse: ~1.0.9
     colors: ~1.2.1
     string-argv: ~0.3.1
-  checksum: a618104fa5076fa1d67163638d6741784dc298fc4768a126c9d0cc17801baca903ed712b42cd3f530ca25402d219bdfa1c880ed0e82d3b0a419c1cbd02589d9b
+  checksum: 0c57867e5ea14b9296db403c2979995fe4bdeae3787331fc2d8faa18ee612b5fbcf989afcf5e30bc7f01cfe62003d451b29fc65fdda0790b95f3aacd72d41918
   languageName: node
   linkType: hard
 
@@ -4829,10 +4829,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/npm-packlist@npm:^1.1.2":
-  version: 1.1.2
-  resolution: "@types/npm-packlist@npm:1.1.2"
-  checksum: 063388922077e670a7e6f35bff9a116d1e8ade23e3be516deb5f369dceec978802b9aac0f14db0dae304c949604975e362ae5b4b98762a15174aada0bf7bd10c
+"@types/npm-packlist@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@types/npm-packlist@npm:3.0.0"
+  checksum: db73f0590ecd5c5091d0306b52f294a448a3e3972b345901410d4deb8fa3221eeeca2751224840f4f830812505a1f9082da3574c9609064aa70377515a40ab9f
   languageName: node
   linkType: hard
 
@@ -4910,7 +4910,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:^17.0.40":
+"@types/react@npm:*":
   version: 17.0.40
   resolution: "@types/react@npm:17.0.40"
   dependencies:
@@ -4918,6 +4918,17 @@ __metadata:
     "@types/scheduler": "*"
     csstype: ^3.0.2
   checksum: 24d1b210b5bf3c7d49f9a7fe5490db02e005a1d989045a2d67528347557dd0bcb0d7bcf96088152697e97521ac4c9506d1357ee48a2b7d4e701c70d838dc7284
+  languageName: node
+  linkType: hard
+
+"@types/react@npm:^17.0.41":
+  version: 17.0.41
+  resolution: "@types/react@npm:17.0.41"
+  dependencies:
+    "@types/prop-types": "*"
+    "@types/scheduler": "*"
+    csstype: ^3.0.2
+  checksum: 1b086ec0ea5d666f05e19e0724e41278d27a2ca29a2cd71b9d9ab3fe27dba233806eb728d744e092c9fe9637ac738d8c5a05983cde84d215342949b47ecba2ef
   languageName: node
   linkType: hard
 
@@ -7238,13 +7249,6 @@ __metadata:
     compare-func: ^2.0.0
     q: ^1.5.1
   checksum: 552db8762d210a5172b1ad8cd95312e2e2a0483ba43f8d30b075a56ccf05231fdca1d4d5843028d43bec6bc7f903f480005efc5386587321a15a1fc4d2b73016
-  languageName: node
-  linkType: hard
-
-"conventional-changelog-beemo@npm:^2.1.0":
-  version: 2.1.0
-  resolution: "conventional-changelog-beemo@npm:2.1.0"
-  checksum: 76df24df558c41b71eaa539237bf12fa0341693949714d8d859b556184c7d3b872d924176769c7584e205ebc115b2ec9d738b4601fe436d1856b8569281c252f
   languageName: node
   linkType: hard
 
@@ -14214,12 +14218,12 @@ __metadata:
     "@types/jest": ^27.4.1
     "@types/micromatch": ^4.0.2
     "@types/node": ^16.11.26
-    "@types/npm-packlist": ^1.1.2
-    "@types/react": ^17.0.40
+    "@types/npm-packlist": ^3.0.0
+    "@types/react": ^17.0.41
     "@types/rimraf": ^3.0.2
     "@types/semver": ^7.3.9
     chokidar: ^3.5.3
-    conventional-changelog-beemo: ^2.1.0
+    conventional-changelog-beemo: ^3.0.0
     lerna: ^4.0.0
     typescript: ^4.6.2
   languageName: unknown
@@ -14243,7 +14247,7 @@ __metadata:
     "@boost/event": ^3.0.1
     "@boost/pipeline": ^3.2.2
     "@boost/terminal": ^3.0.0
-    "@microsoft/api-extractor": ^7.19.4
+    "@microsoft/api-extractor": ^7.19.5
     "@rollup/plugin-babel": ^5.3.1
     "@rollup/plugin-commonjs": ^21.0.1
     "@rollup/plugin-json": ^4.1.0
