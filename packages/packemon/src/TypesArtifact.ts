@@ -2,17 +2,9 @@ import { VirtualPath } from '@boost/common';
 import { createDebugger, Debugger } from '@boost/debug';
 import { Artifact } from './Artifact';
 import { removeSourcePath } from './helpers/removeSourcePath';
-import {
-	BuildOptions,
-	DeclarationType,
-	PackageExports,
-	TSConfigStructure,
-	TypesBuild,
-} from './types';
+import { BuildOptions, PackageExports, TSConfigStructure, TypesBuild } from './types';
 
 export class TypesArtifact extends Artifact<TypesBuild> {
-	declarationType: DeclarationType = 'standard';
-
 	protected debug!: Debugger;
 
 	override startup() {
@@ -20,16 +12,9 @@ export class TypesArtifact extends Artifact<TypesBuild> {
 	}
 
 	async build(options: BuildOptions): Promise<void> {
-		this.debug('Building "%s" types artifact with TypeScript', this.declarationType);
+		this.debug('Building types artifact with TypeScript');
 
-		// Compile the current projects declarations
-		this.debug('Generating declarations at the root using `tsc`');
-
-		await this.package.project.generateDeclarations(
-			this.declarationType,
-			this.package.path,
-			options.declarationConfig,
-		);
+		await this.package.project.generateDeclarations(this.package.path, options.declarationConfig);
 	}
 
 	findEntryPoint(outputName: string): string {
@@ -39,11 +24,7 @@ export class TypesArtifact extends Artifact<TypesBuild> {
 			return '';
 		}
 
-		// When not generating individual API declarations, we need to mirror the source structure
-		const entry =
-			this.declarationType === 'standard' ? removeSourcePath(output.inputFile) : outputName;
-
-		return `./${new VirtualPath('dts', entry)}.d.ts`;
+		return `./${new VirtualPath('dts', removeSourcePath(output.inputFile))}.d.ts`;
 	}
 
 	getLabel(): string {
@@ -57,7 +38,7 @@ export class TypesArtifact extends Artifact<TypesBuild> {
 	getPackageExports(): PackageExports {
 		const exportMap: PackageExports = {};
 
-		if (this.api === 'private' || this.declarationType === 'api') {
+		if (this.api === 'private') {
 			this.builds.forEach(({ outputName }) => {
 				exportMap[outputName === 'index' ? '.' : `./${outputName}`] = {
 					types: this.findEntryPoint(outputName),
