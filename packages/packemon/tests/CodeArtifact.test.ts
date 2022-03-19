@@ -85,19 +85,6 @@ describe('CodeArtifact', () => {
 			});
 		});
 
-		it('inherits `analyze` feature flag', async () => {
-			await artifact.build({ analyze: 'network' }, {});
-
-			expect(getRollupConfig).toHaveBeenCalledWith(
-				artifact,
-				{
-					analyze: 'network',
-					typescript: true,
-				},
-				expect.any(Object),
-			);
-		});
-
 		it('sets rollup cache on artifact', async () => {
 			expect(artifact.cache).toBeUndefined();
 
