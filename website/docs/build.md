@@ -35,12 +35,7 @@ Build supports the following command line options.
   - `treemap` - Displays hierarchy levels as top-level and nested rectangles of varying size.
   - `network` - Displays files as nodes with the relationship between files.
 - `--concurrency` - Number of builds to run in parallel. Defaults to operating system CPU count.
-- `--declaration` - Generate TypeScript declarations for each package. Accepts one of the following
-  values.
-  - `standard` - Generates multiple `d.ts` files with `tsc`.
-  - `api` - Generates a single `d.ts` file for each input. Uses
-    [@microsoft/api-extractor](https://www.npmjs.com/package/@microsoft/api-extractor) to _only_
-    generate the public API. _(NOTE: this is quite slow)_
+- `--declaration` - Generate TypeScript declarations for each package.
 - `--declarationConfig` - Path to a custom `tsconfig` for declaration building.
 - `--filter` - Filter packages to build based on their name in `package.json`.
 - `--formats`, `-f` - Only generate specific output `format`s.

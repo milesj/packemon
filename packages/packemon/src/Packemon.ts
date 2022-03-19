@@ -244,7 +244,7 @@ export class Packemon {
 	 */
 	generateArtifacts(
 		packages: Package[],
-		{ declaration = 'none', filterFormats, filterPlatforms }: BuildOptions = {},
+		{ declaration, filterFormats, filterPlatforms }: BuildOptions = {},
 	): Package[] {
 		this.debug('Generating artifacts for packages');
 
@@ -294,10 +294,9 @@ export class Packemon {
 				});
 			});
 
-			if (declaration !== 'none') {
+			if (declaration) {
 				const artifact = new TypesArtifact(pkg, Object.values(typesBuilds));
 				artifact.api = apiType;
-				artifact.declarationType = declaration;
 
 				pkg.addArtifact(artifact);
 			}

@@ -59,7 +59,7 @@ describe('Packemon', () => {
 				addFiles: false,
 				analyze: 'none',
 				concurrency: 3,
-				declaration: 'none',
+				declaration: false,
 				declarationConfig: '',
 				filter: '',
 				filterFormats: '',
@@ -362,13 +362,12 @@ describe('Packemon', () => {
 			]);
 		});
 
-		it('generates "standard" type artifacts for each config in a package', async () => {
+		it('generates type artifacts for each config in a package', async () => {
 			const packages = await packemon.loadConfiguredPackages();
 
-			packemon.generateArtifacts(packages, { declaration: 'standard' });
+			packemon.generateArtifacts(packages, { declaration: true });
 
 			expect(packages[0].artifacts).toHaveLength(3);
-			expect((packages[0].artifacts[2] as TypesArtifact).declarationType).toBe('standard');
 			expect((packages[0].artifacts[2] as TypesArtifact).builds).toEqual([
 				{
 					inputFile: 'src/index.ts',
@@ -377,7 +376,6 @@ describe('Packemon', () => {
 			]);
 
 			expect(packages[1].artifacts).toHaveLength(2);
-			expect((packages[1].artifacts[1] as TypesArtifact).declarationType).toBe('standard');
 			expect((packages[1].artifacts[1] as TypesArtifact).builds).toEqual([
 				{
 					inputFile: './src/core.ts',
@@ -386,40 +384,6 @@ describe('Packemon', () => {
 			]);
 
 			expect(packages[2].artifacts).toHaveLength(2);
-			expect((packages[2].artifacts[1] as TypesArtifact).declarationType).toBe('standard');
-			expect((packages[2].artifacts[1] as TypesArtifact).builds).toEqual([
-				{
-					inputFile: 'src/index.ts',
-					outputName: 'index',
-				},
-			]);
-		});
-
-		it('generates "api" type artifacts for each config in a package', async () => {
-			const packages = await packemon.loadConfiguredPackages();
-
-			packemon.generateArtifacts(packages, { declaration: 'api' });
-
-			expect(packages[0].artifacts).toHaveLength(3);
-			expect((packages[0].artifacts[2] as TypesArtifact).declarationType).toBe('api');
-			expect((packages[0].artifacts[2] as TypesArtifact).builds).toEqual([
-				{
-					inputFile: 'src/index.ts',
-					outputName: 'index',
-				},
-			]);
-
-			expect(packages[1].artifacts).toHaveLength(2);
-			expect((packages[1].artifacts[1] as TypesArtifact).declarationType).toBe('api');
-			expect((packages[1].artifacts[1] as TypesArtifact).builds).toEqual([
-				{
-					inputFile: './src/core.ts',
-					outputName: 'core',
-				},
-			]);
-
-			expect(packages[2].artifacts).toHaveLength(2);
-			expect((packages[2].artifacts[1] as TypesArtifact).declarationType).toBe('api');
 			expect((packages[2].artifacts[1] as TypesArtifact).builds).toEqual([
 				{
 					inputFile: 'src/index.ts',

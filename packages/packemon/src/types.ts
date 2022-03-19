@@ -54,8 +54,6 @@ export type ApiType = 'private' | 'public';
 
 export type AnalyzeType = 'network' | 'none' | 'sunburst' | 'treemap';
 
-export type DeclarationType = 'api' | 'none' | 'standard';
-
 // PACKAGES
 
 export type InputMap = Record<string, string>;
@@ -123,7 +121,7 @@ export interface BuildOptions extends FilterOptions {
 	addFiles?: boolean;
 	analyze?: AnalyzeType;
 	concurrency?: number;
-	declaration?: DeclarationType;
+	declaration?: boolean;
 	declarationConfig?: string;
 	loadConfigs?: boolean;
 	stamp?: boolean;
@@ -231,13 +229,5 @@ export interface TSConfigStructure {
 		experimentalDecorators?: boolean;
 		outDir?: string;
 		strict?: boolean;
-	};
-}
-
-export interface APIExtractorStructure {
-	projectFolder: string;
-	mainEntryPointFilePath: string;
-	dtsRollup: {
-		untrimmedFilePath: string;
 	};
 }
