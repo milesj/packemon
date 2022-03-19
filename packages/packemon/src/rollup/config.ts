@@ -2,7 +2,6 @@ import path from 'path';
 import { ModuleFormat, OutputOptions, RollupOptions } from 'rollup';
 import externals from 'rollup-plugin-node-externals';
 import nodePolyfills from 'rollup-plugin-polyfill-node';
-import visualizer from 'rollup-plugin-visualizer';
 import { getBabelInputPlugin, getBabelOutputPlugin } from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
@@ -201,20 +200,6 @@ export function getRollupConfig(
 	// Polyfill node modules when platform is not node
 	if (!isNode) {
 		config.plugins!.unshift(nodePolyfills());
-	}
-
-	// Analyze the bundle for debugging purposes
-	if (features.analyze) {
-		config.plugins!.push(
-			visualizer((outputOptions) => ({
-				filename: path.join(outputOptions.dir!, artifact.getStatsFileName()),
-				gzipSize: true,
-				open: true,
-				sourcemap: true,
-				template: features.analyze as 'treemap',
-				title: artifact.getStatsTitle(),
-			})),
-		);
 	}
 
 	// Add an output for each format

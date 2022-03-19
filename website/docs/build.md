@@ -29,11 +29,6 @@ Build supports the following command line options.
   `inputs`. This is an experimental Node.js feature and may not work correctly
   ([more information](https://nodejs.org/api/packages.html#packages_package_entry_points)).
 - `--addFiles` - Add `files` whitelist entries to each `package.json`.
-- `--analyze` - Analyze and visualize all generated builds. Will open a browser visualization for
-  each bundle in one of the following formats.
-  - `sunburst` - Displays an inner circle surrounded by rings of deeper hierarchy levels.
-  - `treemap` - Displays hierarchy levels as top-level and nested rectangles of varying size.
-  - `network` - Displays files as nodes with the relationship between files.
 - `--concurrency` - Number of builds to run in parallel. Defaults to operating system CPU count.
 - `--declaration` - Generate TypeScript declarations for each package.
 - `--declarationConfig` - Path to a custom `tsconfig` for declaration building.

@@ -120,16 +120,6 @@ describe('CodeArtifact', () => {
 		});
 	});
 
-	describe('cleanup()', () => {
-		it('removes visualizer HTML files', async () => {
-			await artifact.cleanup();
-
-			expect(fs.remove).toHaveBeenCalledWith(
-				fixturePath.append('stats-project-node-stable.html').path(),
-			);
-		});
-	});
-
 	describe('getInputPaths()', () => {
 		it('returns an absolute path for every input', () => {
 			expect(artifact.getInputPaths()).toEqual({
