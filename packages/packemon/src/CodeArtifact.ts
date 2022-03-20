@@ -60,11 +60,6 @@ export class CodeArtifact extends Artifact<CodeBuild> {
 		this.debug('Building code artifacts with Rollup');
 
 		const features = this.package.getFeatureFlags();
-
-		if (options.analyze !== 'none') {
-			features.analyze = options.analyze;
-		}
-
 		const { output = [], ...input } = getRollupConfig(this, features, packemonConfig);
 		const bundle = await rollup({
 			...input,

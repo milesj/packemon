@@ -23,7 +23,6 @@ jest.mock(
 	() => (options: any) => `externals(${options.packagePath})`,
 );
 jest.mock('rollup-plugin-polyfill-node', () => () => `polyfillNode()`);
-jest.mock('rollup-plugin-visualizer', () => (options: any) => `visualizer(${typeof options})`);
 
 const fixturePath = new Path(getFixturePath('project-rollup'));
 const srcInputFile = fixturePath.append('src/index.ts').path();
@@ -270,14 +269,6 @@ describe('getRollupConfig()', () => {
 		expect(getRollupConfig(artifact, {}).cache).toEqual({
 			modules: [],
 		});
-	});
-
-	it('includes analyzer plugin if `analyze` feature flag is on', () => {
-		artifact.builds.push({ format: 'lib' });
-		expect(getRollupConfig(artifact, { analyze: 'treemap' }).plugins).toEqual([
-			...sharedPlugins,
-			'visualizer(function)',
-		]);
 	});
 
 	it('can mutate config', () => {
