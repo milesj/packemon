@@ -52,8 +52,6 @@ export type Format = BrowserFormat | NodeFormat;
 
 export type ApiType = 'private' | 'public';
 
-export type AnalyzeType = 'network' | 'none' | 'sunburst' | 'treemap';
-
 // PACKAGES
 
 export type InputMap = Record<string, string>;
@@ -119,7 +117,6 @@ export interface BuildOptions extends FilterOptions {
 	addEngines?: boolean;
 	addExports?: boolean;
 	addFiles?: boolean;
-	analyze?: AnalyzeType;
 	concurrency?: number;
 	declaration?: boolean;
 	declarationConfig?: string;
@@ -175,7 +172,6 @@ export interface ValidateOptions {
 // CONFIG
 
 export interface FeatureFlags {
-	analyze?: AnalyzeType;
 	decorators?: boolean;
 	flow?: boolean;
 	react?: boolean;

@@ -91,8 +91,6 @@ The following plugins are enabled per package.
   - Includes `dependencies`, `devDependencies`, `peerDependencies`, and `optionalDependencies`.
 - `rollup-plugin-polyfill-node`
   - Polyfills Node.js built-in modules when platform is `browser` or `native`.
-- `rollup-plugin-visualizer`
-  - Analyzes and generates a bundle size visualizer.
 - _Custom_
   - Prepend a Node.js shebang to `bin.*` output files.
 
