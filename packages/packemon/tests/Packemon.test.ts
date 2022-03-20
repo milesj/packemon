@@ -133,10 +133,7 @@ describe('Packemon', () => {
 			it('cleans build folders from project', async () => {
 				await packemon.clean();
 
-				expect(rimraf).toHaveBeenCalledWith(
-					'./{assets,cjs,dts,esm,lib,mjs,umd}',
-					expect.any(Function),
-				);
+				expect(rimraf).toHaveBeenCalledWith('./{assets,cjs,dts,esm,lib,mjs}', expect.any(Function));
 			});
 		});
 
@@ -162,15 +159,15 @@ describe('Packemon', () => {
 				await packemon.clean();
 
 				expect(rimraf).toHaveBeenCalledWith(
-					'packages/*/{assets,cjs,dts,esm,lib,mjs,umd}',
+					'packages/*/{assets,cjs,dts,esm,lib,mjs}',
 					expect.any(Function),
 				);
 				expect(rimraf).toHaveBeenCalledWith(
-					'other/{assets,cjs,dts,esm,lib,mjs,umd}',
+					'other/{assets,cjs,dts,esm,lib,mjs}',
 					expect.any(Function),
 				);
 				expect(rimraf).toHaveBeenCalledWith(
-					'misc/{assets,cjs,dts,esm,lib,mjs,umd}',
+					'misc/{assets,cjs,dts,esm,lib,mjs}',
 					expect.any(Function),
 				);
 			});
@@ -354,11 +351,7 @@ describe('Packemon', () => {
 
 			expect(packages[2].artifacts).toHaveLength(1);
 			expect((packages[2].artifacts[0] as CodeArtifact).inputs).toEqual({ index: 'src/index.ts' });
-			expect(packages[2].artifacts[0].builds).toEqual([
-				{ format: 'lib' },
-				{ format: 'esm' },
-				{ format: 'umd' },
-			]);
+			expect(packages[2].artifacts[0].builds).toEqual([{ format: 'lib' }, { format: 'esm' }]);
 		});
 
 		it('generates type artifacts for each config in a package', async () => {
@@ -498,7 +491,7 @@ describe('Packemon', () => {
 					api: 'private',
 					bundle: true,
 					externals: [],
-					formats: ['lib', 'esm', 'umd'],
+					formats: ['lib', 'esm'],
 					inputs: { index: 'src/index.ts' },
 					namespace: 'Test',
 					platform: 'browser',

@@ -483,17 +483,6 @@ describe('getRollupOutputConfig()', () => {
 				}),
 			);
 		});
-
-		it('converts `umd` format to rollup "esm" format', () => {
-			artifact.platform = 'browser';
-
-			expect(getRollupOutputConfig(artifact, {}, 'umd')).toEqual(
-				expect.objectContaining({
-					format: 'esm',
-					originalFormat: 'umd',
-				}),
-			);
-		});
 	});
 
 	describe('chunks', () => {
@@ -510,17 +499,6 @@ describe('getRollupOutputConfig()', () => {
 			artifact.platform = 'browser';
 
 			expect(getRollupOutputConfig(artifact, {}, 'esm')).toEqual(
-				expect.objectContaining({
-					chunkFileNames: 'bundle-[hash].js',
-					entryFileNames: '[name].js',
-				}),
-			);
-		});
-
-		it('uses ".js" chunk extension for `umd` format', () => {
-			artifact.platform = 'browser';
-
-			expect(getRollupOutputConfig(artifact, {}, 'umd')).toEqual(
 				expect.objectContaining({
 					chunkFileNames: 'bundle-[hash].js',
 					entryFileNames: '[name].js',
@@ -565,12 +543,6 @@ describe('getRollupOutputConfig()', () => {
 
 			expect(getRollupOutputConfig(artifact, {}, 'esm').exports).toBeUndefined();
 		});
-
-		it('disables auto-exports for `umd` format', () => {
-			artifact.platform = 'browser';
-
-			expect(getRollupOutputConfig(artifact, {}, 'umd').exports).toBeUndefined();
-		});
 	});
 
 	it('enables `const` for non-legacy versions', () => {
@@ -589,32 +561,5 @@ describe('getRollupOutputConfig()', () => {
 		artifact.support = 'experimental';
 
 		expect(getRollupOutputConfig(artifact, {}, 'lib').preferConst).toBe(true);
-	});
-
-	it('passes `namespace` to Babel as UMD name', () => {
-		artifact.platform = 'browser';
-		artifact.support = 'experimental';
-		artifact.namespace = 'FooBar';
-
-		expect(getRollupOutputConfig(artifact, {}, 'umd')).toEqual({
-			assetFileNames: 'assets/[name].[ext]',
-			banner: expect.any(String),
-			chunkFileNames: 'bundle-[hash].js',
-			dir: fixturePath.append('umd').path(),
-			entryFileNames: '[name].js',
-			format: 'esm',
-			generatedCode: {
-				preset: 'es2015',
-				symbols: false,
-			},
-			interop: 'auto',
-			originalFormat: 'umd',
-			paths: {},
-			plugins: [`babelOutput(${fixturePath}, FooBar)`, binPlugin],
-			preferConst: true,
-			preserveModules: false,
-			sourcemap: true,
-			sourcemapExcludeSources: true,
-		});
 	});
 });

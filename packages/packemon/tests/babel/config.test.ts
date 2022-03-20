@@ -88,7 +88,7 @@ describe('getBabelOutputConfig()', () => {
 			renderPresetEnv('node', format, support);
 		});
 
-		(['lib', 'esm', 'umd'] as const).forEach((format) => {
+		(['lib', 'esm'] as const).forEach((format) => {
 			renderPresetEnv('browser', format, support);
 		});
 	});

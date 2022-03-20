@@ -141,8 +141,6 @@ import './button.css';
 import '../../../assets/button-as17p2k9.css';
 ```
 
-> UMD builds do not support asset imports!
-
 ## Environment constants
 
 The [babel-plugin-env-constants](https://www.npmjs.com/package/babel-plugin-env-constants) plugin is

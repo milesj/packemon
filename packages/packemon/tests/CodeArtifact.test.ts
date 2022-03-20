@@ -137,15 +137,6 @@ describe('CodeArtifact', () => {
 			});
 		});
 
-		it('returns metadata for `umd` format', () => {
-			expect(artifact.getBuildOutput('umd', 'index')).toEqual({
-				ext: 'js',
-				file: 'index.js',
-				folder: 'umd',
-				path: './umd/index.js',
-			});
-		});
-
 		it('returns metadata for `cjs` format', () => {
 			expect(artifact.getBuildOutput('cjs', 'index')).toEqual({
 				ext: 'cjs',

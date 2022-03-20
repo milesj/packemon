@@ -102,13 +102,13 @@ export const DEFAULT_FORMATS: Record<Platform, Format[]> = {
 	node: ['mjs'],
 };
 
-export const FORMATS_BROWSER: BrowserFormat[] = ['lib', 'esm', 'umd'];
+export const FORMATS_BROWSER: BrowserFormat[] = ['lib', 'esm'];
 
 export const FORMATS_NATIVE: NativeFormat[] = ['lib'];
 
 export const FORMATS_NODE: NodeFormat[] = ['lib', 'mjs', 'cjs'];
 
-export const FORMATS: Format[] = ['lib', 'esm', 'umd', 'mjs', 'cjs'];
+export const FORMATS: Format[] = ['lib', 'esm', 'mjs', 'cjs'];
 
 export const DEFAULT_INPUT = 'src/index.ts';
 

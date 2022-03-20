@@ -112,7 +112,7 @@ export class Packemon {
 		await this.cleanTemporaryFiles(packages);
 
 		// Clean build formats
-		const formatFolders = '{assets,cjs,dts,esm,lib,mjs,umd}';
+		const formatFolders = '{assets,cjs,dts,esm,lib,mjs}';
 		const pathsToRemove: string[] = [];
 
 		if (this.project.isWorkspacesEnabled()) {

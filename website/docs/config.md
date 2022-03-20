@@ -108,9 +108,6 @@ project root that will house the built files.
   extension. For standard JavaScript and TypeScript projects.
 - `esm` _(default)_ - ECMAScript module output using `.js` file extension. The same as `lib`, but
   uses `import/export` instead of `require`.
-- `umd` - Universal Module Definition output using `.js` file extension. Meant to be used directly
-  in the browser (via CDN) instead of being bundled. Will be automatically enabled if
-  [namespace](#namespace) is provided and using default formats.
 
 ### Native
 
@@ -138,7 +135,7 @@ To support multiple formats, or cross-platform formats, pass an array.
 
 ```json
 {
-	"format": ["lib", "cjs", "esm", "umd"]
+	"format": ["lib", "cjs", "esm"]
 }
 ```
 
@@ -217,13 +214,3 @@ Whether to bundle the source code into a single file for each [input](#inputs). 
 
 > Prefer the defaults as much as possible. The only time this setting should change is if the
 > package should allow deep imports. For example, a component library.
-
-## Namespace
-
-For browsers only, this would be the name of the UMD global variable.
-
-```json
-{
-	"namespace": "Packemon"
-}
-```

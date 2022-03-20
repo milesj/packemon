@@ -23,12 +23,10 @@ describe('Outputs', () => {
 			const client = new CodeArtifact(pkg, [
 				{ format: 'lib' },
 				{ format: 'esm' },
-				{ format: 'umd' },
 			]);
 			client.platform = 'browser';
 			client.support = 'legacy';
 			client.inputs = { client: 'src/client/index.ts' };
-			client.namespace = 'Packemon';
 
 			pkg.addArtifact(client);
 

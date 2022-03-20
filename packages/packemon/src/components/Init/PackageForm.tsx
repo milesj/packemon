@@ -18,23 +18,13 @@ export function PackageForm({ onSubmit }: PackageFormProps) {
 	const [support, setSupport] = useState<Support>(DEFAULT_SUPPORT);
 	const [format, setFormat] = useState<Format[]>([]);
 	const [input, setInput] = useState<string>('');
-	const [namespace, setNamespace] = useState('');
 
 	// Submit once all values are acceptable
 	useEffect(() => {
-		const hasUMD = format.includes('umd');
-
-		if (
-			platform.length > 0 &&
-			format.length > 0 &&
-			support &&
-			input &&
-			((hasUMD && namespace) || (!hasUMD && !namespace))
-		) {
+		if (platform.length > 0 && format.length > 0 && support && input) {
 			const result = {
 				format,
 				inputs: { index: input },
-				namespace,
 				platform,
 				support,
 			};
@@ -50,9 +40,8 @@ export function PackageForm({ onSubmit }: PackageFormProps) {
 			setSupport(DEFAULT_SUPPORT);
 			setFormat([]);
 			setInput('');
-			setNamespace('');
 		}
-	}, [format, input, namespace, onSubmit, platform, support]);
+	}, [format, input, onSubmit, platform, support]);
 
 	// PLATFORM
 
@@ -114,10 +103,7 @@ export function PackageForm({ onSubmit }: PackageFormProps) {
 		}
 
 		if (platform.includes('browser')) {
-			options.push(
-				{ label: 'Browser - ECMAScript', value: 'esm' },
-				{ label: 'Browser - UMD', value: 'umd' },
-			);
+			options.push({ label: 'Browser - ECMAScript', value: 'esm' });
 		}
 
 		return options;
@@ -176,10 +162,6 @@ export function PackageForm({ onSubmit }: PackageFormProps) {
 				validate={validateInput}
 				onSubmit={setInput}
 			/>
-
-			{format.includes('umd') && (
-				<Input label="UMD namespace?" validate={validateNamespace} onSubmit={setNamespace} />
-			)}
 		</>
 	);
 }

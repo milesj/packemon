@@ -279,10 +279,6 @@ export class Package {
 					default:
 						if (isEmpty) {
 							formats.push(...DEFAULT_FORMATS.browser);
-
-							if (config.namespace) {
-								formats.push('umd');
-							}
 						} else {
 							formats = formats.filter((format) => (FORMATS_BROWSER as string[]).includes(format));
 						}
@@ -403,14 +399,6 @@ export class Package {
 
 					if (!moduleEntry) {
 						moduleEntry = artifact.findEntryPoint(['esm', 'mjs'], 'index');
-					}
-
-					// Only include when we share a lib with another platform
-					if (!browserEntry && artifact.platform === 'browser') {
-						browserEntry = artifact.findEntryPoint(
-							artifact.sharedLib ? ['lib', 'umd'] : ['umd'],
-							'index',
-						);
 					}
 				}
 

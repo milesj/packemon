@@ -419,19 +419,6 @@ describe('Package', () => {
 					);
 				});
 
-				it('adds "browser" for umd builds', async () => {
-					pkg.artifacts[1] = createCodeArtifact([{ format: 'umd' }], 'browser');
-
-					await pkg.build({}, config);
-
-					expect(pkg.packageJson).toEqual(
-						expect.objectContaining({
-							main: './lib/node/index.js',
-							browser: './umd/index.js',
-						}),
-					);
-				});
-
 				it('doesnt override "browser" field if its an object', async () => {
 					// @ts-expect-error Types are wrong
 					pkg.packageJson.browser = { module: 'foo' };
@@ -596,10 +583,7 @@ describe('Package', () => {
 				const a = createCodeArtifact([{ format: 'lib' }, { format: 'mjs' }, { format: 'cjs' }]);
 				pkg.addArtifact(a);
 
-				const b = createCodeArtifact(
-					[{ format: 'lib' }, { format: 'esm' }, { format: 'umd' }],
-					'browser',
-				);
+				const b = createCodeArtifact([{ format: 'lib' }, { format: 'esm' }], 'browser');
 				pkg.addArtifact(b);
 
 				await pkg.build({ addExports: true }, config);
@@ -642,10 +626,7 @@ describe('Package', () => {
 				const a = createCodeArtifact([{ format: 'lib' }, { format: 'mjs' }, { format: 'cjs' }]);
 				pkg.addArtifact(a);
 
-				const b = createCodeArtifact(
-					[{ format: 'lib' }, { format: 'esm' }, { format: 'umd' }],
-					'browser',
-				);
+				const b = createCodeArtifact([{ format: 'lib' }, { format: 'esm' }], 'browser');
 				b.inputs = { client: 'src/index.ts' };
 				pkg.addArtifact(b);
 
@@ -702,18 +683,12 @@ describe('Package', () => {
 		describe('files', () => {
 			it('adds "files" folder for each format format', async () => {
 				pkg.addArtifact(createCodeArtifact([{ format: 'cjs' }, { format: 'lib' }]));
-				pkg.addArtifact(createCodeArtifact([{ format: 'umd' }], 'browser'));
 
 				await pkg.build({ addFiles: true }, config);
 
 				expect(pkg.packageJson).toEqual(
 					expect.objectContaining({
-						files: [
-							'cjs/**/*.{cjs,map}',
-							'lib/**/*.{js,map}',
-							'src/**/*.{ts,tsx,json}',
-							'umd/**/*.{js,map}',
-						],
+						files: ['cjs/**/*.{cjs,map}', 'lib/**/*.{js,map}', 'src/**/*.{ts,tsx,json}'],
 					}),
 				);
 			});
@@ -1156,31 +1131,6 @@ describe('Package', () => {
 			]);
 		});
 
-		it('adds `umd` default format when `namespace` is provided for `browser` platform', () => {
-			pkg.setConfigs([
-				{
-					format: [],
-					inputs: {},
-					platform: 'browser',
-					namespace: 'test',
-					support: 'stable',
-				},
-			]);
-
-			expect(pkg.configs).toEqual([
-				{
-					api: 'private',
-					bundle: true,
-					externals: [],
-					formats: ['lib', 'esm', 'umd'],
-					inputs: {},
-					platform: 'browser',
-					namespace: 'test',
-					support: 'stable',
-				},
-			]);
-		});
-
 		it('sets default formats for `native` platform', () => {
 			pkg.setConfigs([
 				{
@@ -1437,7 +1387,7 @@ describe('Package', () => {
 			expect(() => {
 				pkg.setConfigs([
 					{
-						format: ['umd'],
+						format: ['esm'],
 						platform: 'node',
 					},
 				]);

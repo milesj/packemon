@@ -15,7 +15,6 @@ const FOLDER_COLOR: Record<string, StyleType> = {
 	// JavaScript
 	lib: 'warning',
 	esm: 'warning',
-	umd: 'warning',
 	// TypeScript
 	dts: 'info',
 };

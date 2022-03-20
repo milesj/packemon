@@ -19,13 +19,7 @@ const sharedPlugins = [
 ];
 
 function getRollupModuleFormat(format: Format): ModuleFormat {
-	if (
-		format === 'esm' ||
-		format === 'mjs' ||
-		// UMD needs to be compiled with Babel instead of Rollup,
-		// so we use ESM for better interoperability.
-		format === 'umd'
-	) {
+	if (format === 'esm' || format === 'mjs') {
 		return 'esm';
 	}
 
@@ -119,8 +113,6 @@ export function getRollupOutputConfig(
 			getBabelOutputPlugin({
 				...getBabelOutputConfig(platform, support, format, features, packemonConfig),
 				filename: artifact.package.path.path(),
-				// Provide a custom name for the UMD global
-				moduleId: format === 'umd' ? artifact.namespace : undefined,
 				// Maps are extracted above before transformation
 				sourceMaps: false,
 			}),

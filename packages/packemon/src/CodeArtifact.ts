@@ -31,9 +31,6 @@ export class CodeArtifact extends Artifact<CodeBuild> {
 	// Mapping of output names to input paths
 	inputs: InputMap = {};
 
-	// Namespace for UMD bundles
-	namespace: string = '';
-
 	// Platform code will run on
 	platform: Platform = 'node';
 

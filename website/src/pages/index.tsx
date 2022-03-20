@@ -58,8 +58,8 @@ const features: FeatureProps[][] = [
 			title: '⚡️ Runtime formats',
 			description: (
 				<>
-					Want to support ECMAScript (ESM)? CommonJS (CJS)? What about Universal Module Definition
-					(UMD)? Or maybe Node.js modules? Packemon supports all of them out of the box.
+					Want to support ECMAScript (ESM)? CommonJS (CJS)? Or maybe Node.js modules? Packemon
+					supports all of them out of the box.
 				</>
 			),
 		},

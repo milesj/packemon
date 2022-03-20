@@ -38,9 +38,7 @@ function getPlatformEnvOptions(
 ): PresetEnvOptions {
 	let modules: PresetEnvOptions['modules'] = false;
 
-	if (format === 'umd') {
-		modules = 'umd';
-	} else if (format === 'cjs' || format === 'lib') {
+	if (format === 'cjs' || format === 'lib') {
 		modules = 'cjs'; // Babel CommonJS
 	}
 

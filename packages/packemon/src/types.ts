@@ -35,9 +35,7 @@ export type CommonFormat =
 export type BrowserFormat =
 	| CommonFormat
 	// ECMAScript modules with ".js" file extension
-	| 'esm'
-	// Universal Module Definition with ".js" file extension
-	| 'umd';
+	| 'esm';
 
 export type NativeFormat = CommonFormat;
 
