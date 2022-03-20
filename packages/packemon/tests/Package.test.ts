@@ -396,44 +396,6 @@ describe('Package', () => {
 				});
 			});
 
-			describe('browser', () => {
-				beforeEach(() => {
-					const node = createCodeArtifact([{ format: 'lib' }]);
-					node.sharedLib = true;
-
-					const browser = createCodeArtifact([{ format: 'lib' }], 'browser');
-					browser.sharedLib = true;
-
-					pkg.addArtifact(node);
-					pkg.addArtifact(browser);
-				});
-
-				it('adds "browser" when browser and node are sharing a lib', async () => {
-					await pkg.build({}, config);
-
-					expect(pkg.packageJson).toEqual(
-						expect.objectContaining({
-							main: './lib/node/index.js',
-							browser: './lib/browser/index.js',
-						}),
-					);
-				});
-
-				it('doesnt override "browser" field if its an object', async () => {
-					// @ts-expect-error Types are wrong
-					pkg.packageJson.browser = { module: 'foo' };
-
-					await pkg.build({}, config);
-
-					expect(pkg.packageJson).toEqual(
-						expect.objectContaining({
-							main: './lib/node/index.js',
-							browser: { module: 'foo' },
-						}),
-					);
-				});
-			});
-
 			describe('types', () => {
 				it('adds "types" when a types artifact exists', async () => {
 					pkg.addArtifact(

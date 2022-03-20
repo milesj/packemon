@@ -12,7 +12,7 @@ exports[`Package setConfigs() errors if input name contains a space 1`] = `
 
 exports[`Package setConfigs() errors if invalid format is provided for \`browser\` platform 1`] = `
 "The following validations have failed for \`flag-common\`:
-  - Invalid member \\"format[0]\\". String must be one of: lib, esm, umd. Received \\"mjs\\"."
+  - Invalid member \\"format[0]\\". String must be one of: lib, esm. Received \\"mjs\\"."
 `;
 
 exports[`Package setConfigs() errors if invalid format is provided for \`native\` platform 1`] = `
@@ -22,5 +22,5 @@ exports[`Package setConfigs() errors if invalid format is provided for \`native\
 
 exports[`Package setConfigs() errors if invalid format is provided for \`node\` platform 1`] = `
 "The following validations have failed for \`flag-common\`:
-  - Invalid member \\"format[0]\\". String must be one of: lib, mjs, cjs. Received \\"umd\\"."
+  - Invalid member \\"format[0]\\". String must be one of: lib, mjs, cjs. Received \\"esm\\"."
 `;

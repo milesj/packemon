@@ -384,9 +384,9 @@ export class Package {
 
 		let mainEntry = '';
 		let moduleEntry = '';
-		let browserEntry = '';
+		const browserEntry = '';
 
-		// eslint-disable-next-line complexity
+		 
 		this.artifacts.forEach((artifact) => {
 			// Build files
 			if (artifact instanceof CodeArtifact) {

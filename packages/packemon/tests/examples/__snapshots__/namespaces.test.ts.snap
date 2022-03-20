@@ -45,46 +45,6 @@ exports.ns2 = helpers;
 ]
 `;
 
-exports[`Namespaces transforms example test case: browser-current-umd 1`] = `
-Array [
-  "umd/index-browser-current-umd.js",
-  "(function (global, factory) {
-  if (typeof define === \\"function\\" && define.amd) {
-    define([\\"exports\\"], factory);
-  } else if (typeof exports !== \\"undefined\\") {
-    factory(exports);
-  } else {
-    var mod = {
-      exports: {}
-    };
-    factory(mod.exports);
-    global.examples = mod.exports;
-  }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports) {
-  \\"use strict\\";
-
-  Object.defineProperty(_exports, \\"__esModule\\", {
-    value: true
-  });
-  _exports.ns2 = _exports.ns1 = void 0;
-
-  // Bundled with Packemon: https://packemon.dev
-  // Platform: browser, Support: current, Format: umd
-  function foo() {}
-
-  function bar() {}
-
-  const helpers = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    foo,
-    bar
-  });
-  _exports.ns2 = _exports.ns1 = helpers;
-});
-",
-]
-`;
-
 exports[`Namespaces transforms example test case: browser-experimental-esm 1`] = `
 Array [
   "esm/index-browser-experimental-esm.js",
@@ -126,46 +86,6 @@ const helpers = /*#__PURE__*/Object.freeze({
 });
 exports.ns1 = helpers;
 exports.ns2 = helpers;
-",
-]
-`;
-
-exports[`Namespaces transforms example test case: browser-experimental-umd 1`] = `
-Array [
-  "umd/index-browser-experimental-umd.js",
-  "(function (global, factory) {
-  if (typeof define === \\"function\\" && define.amd) {
-    define([\\"exports\\"], factory);
-  } else if (typeof exports !== \\"undefined\\") {
-    factory(exports);
-  } else {
-    var mod = {
-      exports: {}
-    };
-    factory(mod.exports);
-    global.examples = mod.exports;
-  }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports) {
-  \\"use strict\\";
-
-  Object.defineProperty(_exports, \\"__esModule\\", {
-    value: true
-  });
-  _exports.ns2 = _exports.ns1 = void 0;
-
-  // Bundled with Packemon: https://packemon.dev
-  // Platform: browser, Support: experimental, Format: umd
-  function foo() {}
-
-  function bar() {}
-
-  const helpers = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    foo,
-    bar
-  });
-  _exports.ns2 = _exports.ns1 = helpers;
-});
 ",
 ]
 `;
@@ -215,46 +135,6 @@ exports.ns2 = helpers;
 ]
 `;
 
-exports[`Namespaces transforms example test case: browser-legacy-umd 1`] = `
-Array [
-  "umd/index-browser-legacy-umd.js",
-  "(function (global, factory) {
-  if (typeof define === \\"function\\" && define.amd) {
-    define([\\"exports\\"], factory);
-  } else if (typeof exports !== \\"undefined\\") {
-    factory(exports);
-  } else {
-    var mod = {
-      exports: {}
-    };
-    factory(mod.exports);
-    global.examples = mod.exports;
-  }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports) {
-  \\"use strict\\";
-
-  Object.defineProperty(_exports, \\"__esModule\\", {
-    value: true
-  });
-  _exports.ns2 = _exports.ns1 = void 0;
-
-  // Bundled with Packemon: https://packemon.dev
-  // Platform: browser, Support: legacy, Format: umd
-  function foo() {}
-
-  function bar() {}
-
-  var helpers = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    foo: foo,
-    bar: bar
-  });
-  _exports.ns2 = _exports.ns1 = helpers;
-});
-",
-]
-`;
-
 exports[`Namespaces transforms example test case: browser-stable-esm 1`] = `
 Array [
   "esm/index-browser-stable-esm.js",
@@ -296,46 +176,6 @@ const helpers = /*#__PURE__*/Object.freeze({
 });
 exports.ns1 = helpers;
 exports.ns2 = helpers;
-",
-]
-`;
-
-exports[`Namespaces transforms example test case: browser-stable-umd 1`] = `
-Array [
-  "umd/index-browser-stable-umd.js",
-  "(function (global, factory) {
-  if (typeof define === \\"function\\" && define.amd) {
-    define([\\"exports\\"], factory);
-  } else if (typeof exports !== \\"undefined\\") {
-    factory(exports);
-  } else {
-    var mod = {
-      exports: {}
-    };
-    factory(mod.exports);
-    global.examples = mod.exports;
-  }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports) {
-  \\"use strict\\";
-
-  Object.defineProperty(_exports, \\"__esModule\\", {
-    value: true
-  });
-  _exports.ns2 = _exports.ns1 = void 0;
-
-  // Bundled with Packemon: https://packemon.dev
-  // Platform: browser, Support: stable, Format: umd
-  function foo() {}
-
-  function bar() {}
-
-  const helpers = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    foo,
-    bar
-  });
-  _exports.ns2 = _exports.ns1 = helpers;
-});
 ",
 ]
 `;

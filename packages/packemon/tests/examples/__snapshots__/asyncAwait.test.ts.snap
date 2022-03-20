@@ -55,50 +55,6 @@ exports.wait = wait;
 ]
 `;
 
-exports[`Async/await transforms example test case: browser-current-umd 1`] = `
-Array [
-  "umd/index-browser-current-umd.js",
-  "(function (global, factory) {
-  if (typeof define === \\"function\\" && define.amd) {
-    define([\\"exports\\"], factory);
-  } else if (typeof exports !== \\"undefined\\") {
-    factory(exports);
-  } else {
-    var mod = {
-      exports: {}
-    };
-    factory(mod.exports);
-    global.examples = mod.exports;
-  }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports) {
-  \\"use strict\\";
-
-  Object.defineProperty(_exports, \\"__esModule\\", {
-    value: true
-  });
-  _exports.run = run;
-  _exports.wait = wait;
-
-  // Bundled with Packemon: https://packemon.dev
-  // Platform: browser, Support: current, Format: umd
-  async function wait() {
-    return new Promise(resolve => {
-      setTimeout(resolve, 100);
-    });
-  }
-
-  async function run() {
-    try {
-      await wait();
-    } catch {
-      throw new Error('Fail');
-    }
-  }
-});
-",
-]
-`;
-
 exports[`Async/await transforms example test case: browser-experimental-esm 1`] = `
 Array [
   "esm/index-browser-experimental-esm.js",
@@ -150,50 +106,6 @@ async function run() {
 
 exports.run = run;
 exports.wait = wait;
-",
-]
-`;
-
-exports[`Async/await transforms example test case: browser-experimental-umd 1`] = `
-Array [
-  "umd/index-browser-experimental-umd.js",
-  "(function (global, factory) {
-  if (typeof define === \\"function\\" && define.amd) {
-    define([\\"exports\\"], factory);
-  } else if (typeof exports !== \\"undefined\\") {
-    factory(exports);
-  } else {
-    var mod = {
-      exports: {}
-    };
-    factory(mod.exports);
-    global.examples = mod.exports;
-  }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports) {
-  \\"use strict\\";
-
-  Object.defineProperty(_exports, \\"__esModule\\", {
-    value: true
-  });
-  _exports.run = run;
-  _exports.wait = wait;
-
-  // Bundled with Packemon: https://packemon.dev
-  // Platform: browser, Support: experimental, Format: umd
-  async function wait() {
-    return new Promise(resolve => {
-      setTimeout(resolve, 100);
-    });
-  }
-
-  async function run() {
-    try {
-      await wait();
-    } catch {
-      throw new Error('Fail');
-    }
-  }
-});
 ",
 ]
 `;
@@ -294,67 +206,6 @@ exports.wait = wait;
 ]
 `;
 
-exports[`Async/await transforms example test case: browser-legacy-umd 1`] = `
-Array [
-  "umd/index-browser-legacy-umd.js",
-  "(function (global, factory) {
-  if (typeof define === \\"function\\" && define.amd) {
-    define([\\"exports\\"], factory);
-  } else if (typeof exports !== \\"undefined\\") {
-    factory(exports);
-  } else {
-    var mod = {
-      exports: {}
-    };
-    factory(mod.exports);
-    global.examples = mod.exports;
-  }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports) {
-  \\"use strict\\";
-
-  Object.defineProperty(_exports, \\"__esModule\\", {
-    value: true
-  });
-  _exports.wait = _exports.run = void 0;
-
-  function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError(\\"Cannot instantiate an arrow function\\"); } }
-
-  var run = function run() {
-    try {
-      return Promise.resolve(_catch(function () {
-        return Promise.resolve(wait()).then(function () {});
-      }, function () {
-        throw new Error('Fail');
-      }));
-    } catch (e) {
-      return Promise.reject(e);
-    }
-  };
-
-  _exports.run = run;
-
-  // Bundled with Packemon: https://packemon.dev
-  // Platform: browser, Support: legacy, Format: umd
-  var wait = function wait() {
-    var _this = this;
-
-    try {
-      return Promise.resolve(new Promise(function (resolve) {
-        _newArrowCheck(this, _this);
-
-        setTimeout(resolve, 100);
-      }.bind(this)));
-    } catch (e) {
-      return Promise.reject(e);
-    }
-  };
-
-  _exports.wait = wait;
-});
-",
-]
-`;
-
 exports[`Async/await transforms example test case: browser-stable-esm 1`] = `
 Array [
   "esm/index-browser-stable-esm.js",
@@ -406,50 +257,6 @@ async function run() {
 
 exports.run = run;
 exports.wait = wait;
-",
-]
-`;
-
-exports[`Async/await transforms example test case: browser-stable-umd 1`] = `
-Array [
-  "umd/index-browser-stable-umd.js",
-  "(function (global, factory) {
-  if (typeof define === \\"function\\" && define.amd) {
-    define([\\"exports\\"], factory);
-  } else if (typeof exports !== \\"undefined\\") {
-    factory(exports);
-  } else {
-    var mod = {
-      exports: {}
-    };
-    factory(mod.exports);
-    global.examples = mod.exports;
-  }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports) {
-  \\"use strict\\";
-
-  Object.defineProperty(_exports, \\"__esModule\\", {
-    value: true
-  });
-  _exports.run = run;
-  _exports.wait = wait;
-
-  // Bundled with Packemon: https://packemon.dev
-  // Platform: browser, Support: stable, Format: umd
-  async function wait() {
-    return new Promise(resolve => {
-      setTimeout(resolve, 100);
-    });
-  }
-
-  async function run() {
-    try {
-      await wait();
-    } catch {
-      throw new Error('Fail');
-    }
-  }
-});
 ",
 ]
 `;

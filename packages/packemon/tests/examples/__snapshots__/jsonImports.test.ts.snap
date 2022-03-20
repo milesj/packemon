@@ -45,46 +45,6 @@ exports.keys = keys;
 ]
 `;
 
-exports[`JSON imports transforms example test case: browser-current-umd 1`] = `
-Array [
-  "umd/index-browser-current-umd.js",
-  "(function (global, factory) {
-  if (typeof define === \\"function\\" && define.amd) {
-    define([\\"exports\\"], factory);
-  } else if (typeof exports !== \\"undefined\\") {
-    factory(exports);
-  } else {
-    var mod = {
-      exports: {}
-    };
-    factory(mod.exports);
-    global.examples = mod.exports;
-  }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports) {
-  \\"use strict\\";
-
-  Object.defineProperty(_exports, \\"__esModule\\", {
-    value: true
-  });
-  _exports.keys = void 0;
-  // Bundled with Packemon: https://packemon.dev
-  // Platform: browser, Support: current, Format: umd
-  const data = {
-    list: [\\"foo\\", \\"bar\\", \\"baz\\"],
-    number: 123,
-    string: \\"abc\\",
-    object: {
-      foo: true
-    }
-  }; // @ts-expect-error resolveJsonModule is not on
-
-  const keys = Object.keys(data);
-  _exports.keys = keys;
-});
-",
-]
-`;
-
 exports[`JSON imports transforms example test case: browser-experimental-esm 1`] = `
 Array [
   "esm/index-browser-experimental-esm.js",
@@ -126,46 +86,6 @@ const data = {
 
 const keys = Object.keys(data);
 exports.keys = keys;
-",
-]
-`;
-
-exports[`JSON imports transforms example test case: browser-experimental-umd 1`] = `
-Array [
-  "umd/index-browser-experimental-umd.js",
-  "(function (global, factory) {
-  if (typeof define === \\"function\\" && define.amd) {
-    define([\\"exports\\"], factory);
-  } else if (typeof exports !== \\"undefined\\") {
-    factory(exports);
-  } else {
-    var mod = {
-      exports: {}
-    };
-    factory(mod.exports);
-    global.examples = mod.exports;
-  }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports) {
-  \\"use strict\\";
-
-  Object.defineProperty(_exports, \\"__esModule\\", {
-    value: true
-  });
-  _exports.keys = void 0;
-  // Bundled with Packemon: https://packemon.dev
-  // Platform: browser, Support: experimental, Format: umd
-  const data = {
-    list: [\\"foo\\", \\"bar\\", \\"baz\\"],
-    number: 123,
-    string: \\"abc\\",
-    object: {
-      foo: true
-    }
-  }; // @ts-expect-error resolveJsonModule is not on
-
-  const keys = Object.keys(data);
-  _exports.keys = keys;
-});
 ",
 ]
 `;
@@ -215,46 +135,6 @@ exports.keys = keys;
 ]
 `;
 
-exports[`JSON imports transforms example test case: browser-legacy-umd 1`] = `
-Array [
-  "umd/index-browser-legacy-umd.js",
-  "(function (global, factory) {
-  if (typeof define === \\"function\\" && define.amd) {
-    define([\\"exports\\"], factory);
-  } else if (typeof exports !== \\"undefined\\") {
-    factory(exports);
-  } else {
-    var mod = {
-      exports: {}
-    };
-    factory(mod.exports);
-    global.examples = mod.exports;
-  }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports) {
-  \\"use strict\\";
-
-  Object.defineProperty(_exports, \\"__esModule\\", {
-    value: true
-  });
-  _exports.keys = void 0;
-  // Bundled with Packemon: https://packemon.dev
-  // Platform: browser, Support: legacy, Format: umd
-  var data = {
-    list: [\\"foo\\", \\"bar\\", \\"baz\\"],
-    number: 123,
-    string: \\"abc\\",
-    object: {
-      foo: true
-    }
-  }; // @ts-expect-error resolveJsonModule is not on
-
-  var keys = Object.keys(data);
-  _exports.keys = keys;
-});
-",
-]
-`;
-
 exports[`JSON imports transforms example test case: browser-stable-esm 1`] = `
 Array [
   "esm/index-browser-stable-esm.js",
@@ -296,46 +176,6 @@ const data = {
 
 const keys = Object.keys(data);
 exports.keys = keys;
-",
-]
-`;
-
-exports[`JSON imports transforms example test case: browser-stable-umd 1`] = `
-Array [
-  "umd/index-browser-stable-umd.js",
-  "(function (global, factory) {
-  if (typeof define === \\"function\\" && define.amd) {
-    define([\\"exports\\"], factory);
-  } else if (typeof exports !== \\"undefined\\") {
-    factory(exports);
-  } else {
-    var mod = {
-      exports: {}
-    };
-    factory(mod.exports);
-    global.examples = mod.exports;
-  }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports) {
-  \\"use strict\\";
-
-  Object.defineProperty(_exports, \\"__esModule\\", {
-    value: true
-  });
-  _exports.keys = void 0;
-  // Bundled with Packemon: https://packemon.dev
-  // Platform: browser, Support: stable, Format: umd
-  const data = {
-    list: [\\"foo\\", \\"bar\\", \\"baz\\"],
-    number: 123,
-    string: \\"abc\\",
-    object: {
-      foo: true
-    }
-  }; // @ts-expect-error resolveJsonModule is not on
-
-  const keys = Object.keys(data);
-  _exports.keys = keys;
-});
 ",
 ]
 `;

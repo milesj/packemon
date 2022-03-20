@@ -71,59 +71,6 @@ Promise.resolve().then(() => require(
 ]
 `;
 
-exports[`Dynamic imports transforms example test case: browser-current-umd 1`] = `
-Array [
-  "umd/bundle-030a0739.js",
-  "(function (global, factory) {
-  if (typeof define === \\"function\\" && define.amd) {
-    define([\\"exports\\"], factory);
-  } else if (typeof exports !== \\"undefined\\") {
-    factory(exports);
-  } else {
-    var mod = {
-      exports: {}
-    };
-    factory(mod.exports);
-    global.examples = mod.exports;
-  }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports) {
-  \\"use strict\\";
-
-  Object.defineProperty(_exports, \\"__esModule\\", {
-    value: true
-  });
-  _exports.bar = bar;
-  _exports.foo = foo;
-
-  // Bundled with Packemon: https://packemon.dev
-  // Platform: browser, Support: current, Format: umd
-  function foo() {}
-
-  function bar() {}
-});
-",
-]
-`;
-
-exports[`Dynamic imports transforms example test case: browser-current-umd 2`] = `
-Array [
-  "umd/index-browser-current-umd.js",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: browser, Support: current, Format: umd
-import('./bundle-030a0739.js').then(result => {
-  result.foo();
-});
-import(
-/* webpackChunkName: \\"helpers\\" */
-'./bundle-030a0739.js').then(({
-  bar
-}) => {
-  bar();
-});
-",
-]
-`;
-
 exports[`Dynamic imports transforms example test case: browser-experimental-esm 1`] = `
 Array [
   "esm/bundle-e79ac686.js",
@@ -187,59 +134,6 @@ Promise.resolve().then(() => require('./bundle-c50d6f28.js')).then(result => {
 Promise.resolve().then(() => require(
 /* webpackChunkName: \\"helpers\\" */
 './bundle-c50d6f28.js')).then(({
-  bar
-}) => {
-  bar();
-});
-",
-]
-`;
-
-exports[`Dynamic imports transforms example test case: browser-experimental-umd 1`] = `
-Array [
-  "umd/bundle-4cd630b0.js",
-  "(function (global, factory) {
-  if (typeof define === \\"function\\" && define.amd) {
-    define([\\"exports\\"], factory);
-  } else if (typeof exports !== \\"undefined\\") {
-    factory(exports);
-  } else {
-    var mod = {
-      exports: {}
-    };
-    factory(mod.exports);
-    global.examples = mod.exports;
-  }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports) {
-  \\"use strict\\";
-
-  Object.defineProperty(_exports, \\"__esModule\\", {
-    value: true
-  });
-  _exports.bar = bar;
-  _exports.foo = foo;
-
-  // Bundled with Packemon: https://packemon.dev
-  // Platform: browser, Support: experimental, Format: umd
-  function foo() {}
-
-  function bar() {}
-});
-",
-]
-`;
-
-exports[`Dynamic imports transforms example test case: browser-experimental-umd 2`] = `
-Array [
-  "umd/index-browser-experimental-umd.js",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: browser, Support: experimental, Format: umd
-import('./bundle-4cd630b0.js').then(result => {
-  result.foo();
-});
-import(
-/* webpackChunkName: \\"helpers\\" */
-'./bundle-4cd630b0.js').then(({
   bar
 }) => {
   bar();
@@ -337,66 +231,6 @@ Promise.resolve().then(function () {
 ]
 `;
 
-exports[`Dynamic imports transforms example test case: browser-legacy-umd 1`] = `
-Array [
-  "umd/bundle-99a7a8e3.js",
-  "(function (global, factory) {
-  if (typeof define === \\"function\\" && define.amd) {
-    define([\\"exports\\"], factory);
-  } else if (typeof exports !== \\"undefined\\") {
-    factory(exports);
-  } else {
-    var mod = {
-      exports: {}
-    };
-    factory(mod.exports);
-    global.examples = mod.exports;
-  }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports) {
-  \\"use strict\\";
-
-  Object.defineProperty(_exports, \\"__esModule\\", {
-    value: true
-  });
-  _exports.bar = bar;
-  _exports.foo = foo;
-
-  // Bundled with Packemon: https://packemon.dev
-  // Platform: browser, Support: legacy, Format: umd
-  function foo() {}
-
-  function bar() {}
-});
-",
-]
-`;
-
-exports[`Dynamic imports transforms example test case: browser-legacy-umd 2`] = `
-Array [
-  "umd/index-browser-legacy-umd.js",
-  "var _this = this;
-
-function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError(\\"Cannot instantiate an arrow function\\"); } }
-
-// Bundled with Packemon: https://packemon.dev
-// Platform: browser, Support: legacy, Format: umd
-import('./bundle-99a7a8e3.js').then(function (result) {
-  _newArrowCheck(this, _this);
-
-  result.foo();
-}.bind(this));
-import(
-/* webpackChunkName: \\"helpers\\" */
-'./bundle-99a7a8e3.js').then(function (_ref) {
-  _newArrowCheck(this, _this);
-
-  var bar = _ref.bar;
-  bar();
-}.bind(this));
-",
-]
-`;
-
 exports[`Dynamic imports transforms example test case: browser-stable-esm 1`] = `
 Array [
   "esm/bundle-32c07aef.js",
@@ -460,59 +294,6 @@ Promise.resolve().then(() => require('./bundle-a1d8f7d2.js')).then(result => {
 Promise.resolve().then(() => require(
 /* webpackChunkName: \\"helpers\\" */
 './bundle-a1d8f7d2.js')).then(({
-  bar
-}) => {
-  bar();
-});
-",
-]
-`;
-
-exports[`Dynamic imports transforms example test case: browser-stable-umd 1`] = `
-Array [
-  "umd/bundle-adfd6fef.js",
-  "(function (global, factory) {
-  if (typeof define === \\"function\\" && define.amd) {
-    define([\\"exports\\"], factory);
-  } else if (typeof exports !== \\"undefined\\") {
-    factory(exports);
-  } else {
-    var mod = {
-      exports: {}
-    };
-    factory(mod.exports);
-    global.examples = mod.exports;
-  }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports) {
-  \\"use strict\\";
-
-  Object.defineProperty(_exports, \\"__esModule\\", {
-    value: true
-  });
-  _exports.bar = bar;
-  _exports.foo = foo;
-
-  // Bundled with Packemon: https://packemon.dev
-  // Platform: browser, Support: stable, Format: umd
-  function foo() {}
-
-  function bar() {}
-});
-",
-]
-`;
-
-exports[`Dynamic imports transforms example test case: browser-stable-umd 2`] = `
-Array [
-  "umd/index-browser-stable-umd.js",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: browser, Support: stable, Format: umd
-import('./bundle-adfd6fef.js').then(result => {
-  result.foo();
-});
-import(
-/* webpackChunkName: \\"helpers\\" */
-'./bundle-adfd6fef.js').then(({
   bar
 }) => {
   bar();

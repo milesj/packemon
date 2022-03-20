@@ -25,28 +25,6 @@ require('@packemon/bar');
 ]
 `;
 
-exports[`Rollup externals (regex) transforms example test case: browser-current-umd 1`] = `
-Array [
-  "umd/index-browser-current-umd.js",
-  "(function (global, factory) {
-  if (typeof define === \\"function\\" && define.amd) {
-    define([\\"@packemon/foo\\", \\"@packemon/bar\\"], factory);
-  } else if (typeof exports !== \\"undefined\\") {
-    factory(require(\\"@packemon/foo\\"), require(\\"@packemon/bar\\"));
-  } else {
-    var mod = {
-      exports: {}
-    };
-    factory(global.foo, global.bar);
-    global.examples = mod.exports;
-  }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_foo, _bar) {
-  \\"use strict\\";
-});
-",
-]
-`;
-
 exports[`Rollup externals (regex) transforms example test case: browser-experimental-esm 1`] = `
 Array [
   "esm/index-browser-experimental-esm.js",
@@ -68,28 +46,6 @@ Array [
 require('@packemon/foo');
 
 require('@packemon/bar');
-",
-]
-`;
-
-exports[`Rollup externals (regex) transforms example test case: browser-experimental-umd 1`] = `
-Array [
-  "umd/index-browser-experimental-umd.js",
-  "(function (global, factory) {
-  if (typeof define === \\"function\\" && define.amd) {
-    define([\\"@packemon/foo\\", \\"@packemon/bar\\"], factory);
-  } else if (typeof exports !== \\"undefined\\") {
-    factory(require(\\"@packemon/foo\\"), require(\\"@packemon/bar\\"));
-  } else {
-    var mod = {
-      exports: {}
-    };
-    factory(global.foo, global.bar);
-    global.examples = mod.exports;
-  }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_foo, _bar) {
-  \\"use strict\\";
-});
 ",
 ]
 `;
@@ -119,28 +75,6 @@ require('@packemon/bar');
 ]
 `;
 
-exports[`Rollup externals (regex) transforms example test case: browser-legacy-umd 1`] = `
-Array [
-  "umd/index-browser-legacy-umd.js",
-  "(function (global, factory) {
-  if (typeof define === \\"function\\" && define.amd) {
-    define([\\"@packemon/foo\\", \\"@packemon/bar\\"], factory);
-  } else if (typeof exports !== \\"undefined\\") {
-    factory(require(\\"@packemon/foo\\"), require(\\"@packemon/bar\\"));
-  } else {
-    var mod = {
-      exports: {}
-    };
-    factory(global.foo, global.bar);
-    global.examples = mod.exports;
-  }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_foo, _bar) {
-  \\"use strict\\";
-});
-",
-]
-`;
-
 exports[`Rollup externals (regex) transforms example test case: browser-stable-esm 1`] = `
 Array [
   "esm/index-browser-stable-esm.js",
@@ -162,28 +96,6 @@ Array [
 require('@packemon/foo');
 
 require('@packemon/bar');
-",
-]
-`;
-
-exports[`Rollup externals (regex) transforms example test case: browser-stable-umd 1`] = `
-Array [
-  "umd/index-browser-stable-umd.js",
-  "(function (global, factory) {
-  if (typeof define === \\"function\\" && define.amd) {
-    define([\\"@packemon/foo\\", \\"@packemon/bar\\"], factory);
-  } else if (typeof exports !== \\"undefined\\") {
-    factory(require(\\"@packemon/foo\\"), require(\\"@packemon/bar\\"));
-  } else {
-    var mod = {
-      exports: {}
-    };
-    factory(global.foo, global.bar);
-    global.examples = mod.exports;
-  }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_foo, _bar) {
-  \\"use strict\\";
-});
 ",
 ]
 `;
@@ -425,28 +337,6 @@ require('@packemon/bar');
 ]
 `;
 
-exports[`Rollup externals transforms example test case: browser-current-umd 1`] = `
-Array [
-  "umd/index-browser-current-umd.js",
-  "(function (global, factory) {
-  if (typeof define === \\"function\\" && define.amd) {
-    define([\\"@packemon/foo\\", \\"@packemon/bar\\"], factory);
-  } else if (typeof exports !== \\"undefined\\") {
-    factory(require(\\"@packemon/foo\\"), require(\\"@packemon/bar\\"));
-  } else {
-    var mod = {
-      exports: {}
-    };
-    factory(global.foo, global.bar);
-    global.examples = mod.exports;
-  }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_foo, _bar) {
-  \\"use strict\\";
-});
-",
-]
-`;
-
 exports[`Rollup externals transforms example test case: browser-experimental-esm 1`] = `
 Array [
   "esm/index-browser-experimental-esm.js",
@@ -468,28 +358,6 @@ Array [
 require('@packemon/foo');
 
 require('@packemon/bar');
-",
-]
-`;
-
-exports[`Rollup externals transforms example test case: browser-experimental-umd 1`] = `
-Array [
-  "umd/index-browser-experimental-umd.js",
-  "(function (global, factory) {
-  if (typeof define === \\"function\\" && define.amd) {
-    define([\\"@packemon/foo\\", \\"@packemon/bar\\"], factory);
-  } else if (typeof exports !== \\"undefined\\") {
-    factory(require(\\"@packemon/foo\\"), require(\\"@packemon/bar\\"));
-  } else {
-    var mod = {
-      exports: {}
-    };
-    factory(global.foo, global.bar);
-    global.examples = mod.exports;
-  }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_foo, _bar) {
-  \\"use strict\\";
-});
 ",
 ]
 `;
@@ -519,28 +387,6 @@ require('@packemon/bar');
 ]
 `;
 
-exports[`Rollup externals transforms example test case: browser-legacy-umd 1`] = `
-Array [
-  "umd/index-browser-legacy-umd.js",
-  "(function (global, factory) {
-  if (typeof define === \\"function\\" && define.amd) {
-    define([\\"@packemon/foo\\", \\"@packemon/bar\\"], factory);
-  } else if (typeof exports !== \\"undefined\\") {
-    factory(require(\\"@packemon/foo\\"), require(\\"@packemon/bar\\"));
-  } else {
-    var mod = {
-      exports: {}
-    };
-    factory(global.foo, global.bar);
-    global.examples = mod.exports;
-  }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_foo, _bar) {
-  \\"use strict\\";
-});
-",
-]
-`;
-
 exports[`Rollup externals transforms example test case: browser-stable-esm 1`] = `
 Array [
   "esm/index-browser-stable-esm.js",
@@ -562,28 +408,6 @@ Array [
 require('@packemon/foo');
 
 require('@packemon/bar');
-",
-]
-`;
-
-exports[`Rollup externals transforms example test case: browser-stable-umd 1`] = `
-Array [
-  "umd/index-browser-stable-umd.js",
-  "(function (global, factory) {
-  if (typeof define === \\"function\\" && define.amd) {
-    define([\\"@packemon/foo\\", \\"@packemon/bar\\"], factory);
-  } else if (typeof exports !== \\"undefined\\") {
-    factory(require(\\"@packemon/foo\\"), require(\\"@packemon/bar\\"));
-  } else {
-    var mod = {
-      exports: {}
-    };
-    factory(global.foo, global.bar);
-    global.examples = mod.exports;
-  }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_foo, _bar) {
-  \\"use strict\\";
-});
 ",
 ]
 `;

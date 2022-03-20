@@ -39,43 +39,6 @@ exports.optionalChain = optionalChain;
 ]
 `;
 
-exports[`New syntax transforms example test case: browser-current-umd 1`] = `
-Array [
-  "umd/index-browser-current-umd.js",
-  "(function (global, factory) {
-  if (typeof define === \\"function\\" && define.amd) {
-    define([\\"exports\\"], factory);
-  } else if (typeof exports !== \\"undefined\\") {
-    factory(exports);
-  } else {
-    var mod = {
-      exports: {}
-    };
-    factory(mod.exports);
-    global.examples = mod.exports;
-  }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports) {
-  \\"use strict\\";
-
-  Object.defineProperty(_exports, \\"__esModule\\", {
-    value: true
-  });
-  _exports.optionalChain = _exports.nullCoalesc = _exports.foo = void 0;
-  // Bundled with Packemon: https://packemon.dev
-  // Platform: browser, Support: current, Format: umd
-  const foo = {};
-  _exports.foo = foo;
-  const optionalChain = foo?.bar;
-  _exports.optionalChain = optionalChain;
-  const nullCoalesc = foo ?? 0;
-  _exports.nullCoalesc = nullCoalesc;
-  foo.bar ??= 'bar';
-  foo.baz ||= 'baz';
-});
-",
-]
-`;
-
 exports[`New syntax transforms example test case: browser-experimental-esm 1`] = `
 Array [
   "esm/index-browser-experimental-esm.js",
@@ -111,43 +74,6 @@ foo.baz || (foo.baz = 'baz');
 exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
-",
-]
-`;
-
-exports[`New syntax transforms example test case: browser-experimental-umd 1`] = `
-Array [
-  "umd/index-browser-experimental-umd.js",
-  "(function (global, factory) {
-  if (typeof define === \\"function\\" && define.amd) {
-    define([\\"exports\\"], factory);
-  } else if (typeof exports !== \\"undefined\\") {
-    factory(exports);
-  } else {
-    var mod = {
-      exports: {}
-    };
-    factory(mod.exports);
-    global.examples = mod.exports;
-  }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports) {
-  \\"use strict\\";
-
-  Object.defineProperty(_exports, \\"__esModule\\", {
-    value: true
-  });
-  _exports.optionalChain = _exports.nullCoalesc = _exports.foo = void 0;
-  // Bundled with Packemon: https://packemon.dev
-  // Platform: browser, Support: experimental, Format: umd
-  const foo = {};
-  _exports.foo = foo;
-  const optionalChain = foo?.bar;
-  _exports.optionalChain = optionalChain;
-  const nullCoalesc = foo ?? 0;
-  _exports.nullCoalesc = nullCoalesc;
-  foo.bar ??= 'bar';
-  foo.baz ||= 'baz';
-});
 ",
 ]
 `;
@@ -193,46 +119,6 @@ exports.optionalChain = optionalChain;
 ]
 `;
 
-exports[`New syntax transforms example test case: browser-legacy-umd 1`] = `
-Array [
-  "umd/index-browser-legacy-umd.js",
-  "(function (global, factory) {
-  if (typeof define === \\"function\\" && define.amd) {
-    define([\\"exports\\"], factory);
-  } else if (typeof exports !== \\"undefined\\") {
-    factory(exports);
-  } else {
-    var mod = {
-      exports: {}
-    };
-    factory(mod.exports);
-    global.examples = mod.exports;
-  }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports) {
-  \\"use strict\\";
-
-  Object.defineProperty(_exports, \\"__esModule\\", {
-    value: true
-  });
-  _exports.optionalChain = _exports.nullCoalesc = _exports.foo = void 0;
-
-  var _foo$bar;
-
-  // Bundled with Packemon: https://packemon.dev
-  // Platform: browser, Support: legacy, Format: umd
-  var foo = {};
-  _exports.foo = foo;
-  var optionalChain = foo === null || foo === void 0 ? void 0 : foo.bar;
-  _exports.optionalChain = optionalChain;
-  var nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
-  _exports.nullCoalesc = nullCoalesc;
-  (_foo$bar = foo.bar) !== null && _foo$bar !== void 0 ? _foo$bar : foo.bar = 'bar';
-  foo.baz || (foo.baz = 'baz');
-});
-",
-]
-`;
-
 exports[`New syntax transforms example test case: browser-stable-esm 1`] = `
 Array [
   "esm/index-browser-stable-esm.js",
@@ -270,46 +156,6 @@ foo.baz || (foo.baz = 'baz');
 exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
-",
-]
-`;
-
-exports[`New syntax transforms example test case: browser-stable-umd 1`] = `
-Array [
-  "umd/index-browser-stable-umd.js",
-  "(function (global, factory) {
-  if (typeof define === \\"function\\" && define.amd) {
-    define([\\"exports\\"], factory);
-  } else if (typeof exports !== \\"undefined\\") {
-    factory(exports);
-  } else {
-    var mod = {
-      exports: {}
-    };
-    factory(mod.exports);
-    global.examples = mod.exports;
-  }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports) {
-  \\"use strict\\";
-
-  Object.defineProperty(_exports, \\"__esModule\\", {
-    value: true
-  });
-  _exports.optionalChain = _exports.nullCoalesc = _exports.foo = void 0;
-
-  var _foo$bar;
-
-  // Bundled with Packemon: https://packemon.dev
-  // Platform: browser, Support: stable, Format: umd
-  const foo = {};
-  _exports.foo = foo;
-  const optionalChain = foo === null || foo === void 0 ? void 0 : foo.bar;
-  _exports.optionalChain = optionalChain;
-  const nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
-  _exports.nullCoalesc = nullCoalesc;
-  (_foo$bar = foo.bar) !== null && _foo$bar !== void 0 ? _foo$bar : foo.bar = 'bar';
-  foo.baz || (foo.baz = 'baz');
-});
 ",
 ]
 `;
