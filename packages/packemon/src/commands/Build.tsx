@@ -1,6 +1,6 @@
 import os from 'os';
 import { Arg, Config } from '@boost/cli';
-import { AnalyzeType, BuildOptions } from '../types';
+import { BuildOptions } from '../types';
 import { BaseCommand } from './Base';
 
 @Config('build', 'Build standardized packages for distribution')
@@ -13,11 +13,6 @@ export class BuildCommand extends BaseCommand<Required<BuildOptions>> {
 
 	@Arg.Flag('Add `files` whitelist to each `package.json`')
 	addFiles: boolean = true;
-
-	@Arg.String('Visualize and analyze all generated builds', {
-		choices: ['none', 'sunburst', 'treemap', 'network'],
-	})
-	analyze: AnalyzeType = 'none';
 
 	@Arg.Number('Number of builds to run in parallel')
 	concurrency: number = os.cpus().length;
@@ -42,7 +37,6 @@ export class BuildCommand extends BaseCommand<Required<BuildOptions>> {
 				addEngines={this.addEngines}
 				addExports={this.addExports}
 				addFiles={this.addFiles}
-				analyze={this.analyze}
 				concurrency={this.concurrency}
 				declaration={this.declaration}
 				declarationConfig={this.declarationConfig}

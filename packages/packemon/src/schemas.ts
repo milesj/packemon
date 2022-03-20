@@ -12,7 +12,6 @@ import {
 	SUPPORTS,
 } from './constants';
 import {
-	AnalyzeType,
 	ApiType,
 	BrowserFormat,
 	BuildOptions,
@@ -73,7 +72,6 @@ export const buildBlueprint: Blueprint<BuildOptions> = {
 	addEngines: bool(),
 	addExports: bool(),
 	addFiles: bool(),
-	analyze: string('none').oneOf<AnalyzeType>(['none', 'sunburst', 'treemap', 'network']),
 	concurrency: number(1).gte(1),
 	declaration: bool(),
 	declarationConfig: string(),

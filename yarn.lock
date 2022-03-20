@@ -15080,7 +15080,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nanoid@npm:^3.1.32, nanoid@npm:^3.3.1":
+"nanoid@npm:^3.3.1":
   version: 3.3.1
   resolution: "nanoid@npm:3.3.1"
   bin:
@@ -16025,7 +16025,6 @@ __metadata:
     rollup: ^2.70.1
     rollup-plugin-node-externals: ^2.2.0
     rollup-plugin-polyfill-node: ^0.8.0
-    rollup-plugin-visualizer: ^5.6.0
     semver: ^7.3.5
     spdx-license-list: ^6.4.0
   peerDependencies:
@@ -18249,22 +18248,6 @@ resolve@^2.0.0-next.3:
   peerDependencies:
     rollup: ^1.20.0 || ^2.0.0
   checksum: ad6e451b1ae91f7b4370ab7b5dd03f578a67ebd42bcd3eec198ae6d4cd7caa1c454bd020ff8e80f3dcb02cdd9357da2b752c0aac3f84c56a28c23a6c0ffeffd5
-  languageName: node
-  linkType: hard
-
-"rollup-plugin-visualizer@npm:^5.6.0":
-  version: 5.6.0
-  resolution: "rollup-plugin-visualizer@npm:5.6.0"
-  dependencies:
-    nanoid: ^3.1.32
-    open: ^8.4.0
-    source-map: ^0.7.3
-    yargs: ^17.3.1
-  peerDependencies:
-    rollup: ^2.0.0
-  bin:
-    rollup-plugin-visualizer: dist/bin/cli.js
-  checksum: 1036a3873f3b6a0c46d692538aaac5dc9f7a7b2a5aec9e7ab816aaf8a31576ae750f415e1019e401707d18490b634a982fbe8c22d9761cafbd9b12c756e7fd99
   languageName: node
   linkType: hard
 
@@ -21380,21 +21363,6 @@ resolve@^2.0.0-next.3:
     y18n: ^5.0.5
     yargs-parser: ^20.2.2
   checksum: b14afbb51e3251a204d81937c86a7e9d4bdbf9a2bcee38226c900d00f522969ab675703bee2a6f99f8e20103f608382936034e64d921b74df82b63c07c5e8f59
-  languageName: node
-  linkType: hard
-
-"yargs@npm:^17.3.1":
-  version: 17.3.1
-  resolution: "yargs@npm:17.3.1"
-  dependencies:
-    cliui: ^7.0.2
-    escalade: ^3.1.1
-    get-caller-file: ^2.0.5
-    require-directory: ^2.1.1
-    string-width: ^4.2.3
-    y18n: ^5.0.5
-    yargs-parser: ^21.0.0
-  checksum: 64fc2e32c56739f1d14d2d24acd17a6944c3c8e3e3558f09fc1953ac112e868cc16013d282886b9d5be22187f8b9ed4f60741a6b1011f595ce2718805a656852
   languageName: node
   linkType: hard
 

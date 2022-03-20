@@ -57,7 +57,6 @@ describe('Packemon', () => {
 				addEngines: true,
 				addExports: false,
 				addFiles: false,
-				analyze: 'none',
 				concurrency: 3,
 				declaration: false,
 				declarationConfig: '',

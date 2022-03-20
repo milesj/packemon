@@ -1,4 +1,3 @@
-import fs from 'fs-extra';
 import { rollup } from 'rollup';
 import { Path } from '@boost/common';
 import { getFixturePath } from '@boost/test-utils';
@@ -85,19 +84,6 @@ describe('CodeArtifact', () => {
 			});
 		});
 
-		it('inherits `analyze` feature flag', async () => {
-			await artifact.build({ analyze: 'network' }, {});
-
-			expect(getRollupConfig).toHaveBeenCalledWith(
-				artifact,
-				{
-					analyze: 'network',
-					typescript: true,
-				},
-				expect.any(Object),
-			);
-		});
-
 		it('sets rollup cache on artifact', async () => {
 			expect(artifact.cache).toBeUndefined();
 
@@ -117,16 +103,6 @@ describe('CodeArtifact', () => {
 
 			expect(bundleWriteSpy).toHaveBeenCalledWith({ c: true });
 			expect(artifact.builds[2].stats?.size).toBe(4);
-		});
-	});
-
-	describe('cleanup()', () => {
-		it('removes visualizer HTML files', async () => {
-			await artifact.cleanup();
-
-			expect(fs.remove).toHaveBeenCalledWith(
-				fixturePath.append('stats-project-node-stable.html').path(),
-			);
 		});
 	});
 
