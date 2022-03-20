@@ -123,14 +123,6 @@ export function PackageForm({ onSubmit }: PackageFormProps) {
 		}
 	}, []);
 
-	// NAMESPACE
-
-	const validateNamespace = useCallback((value: string) => {
-		if (!value || !value.match(/[a-z]\w+/iu)) {
-			throw new Error('Must be in pascal-case or camel-case and start with an alpha character');
-		}
-	}, []);
-
 	return (
 		<>
 			<MultiSelect<Platform>

@@ -282,7 +282,6 @@ export class Packemon {
 				artifact.configGroup = index;
 				artifact.externals = config.externals;
 				artifact.inputs = config.inputs;
-				artifact.namespace = config.namespace;
 				artifact.platform = config.platform;
 				artifact.sharedLib = sharedLib;
 				artifact.support = config.support;

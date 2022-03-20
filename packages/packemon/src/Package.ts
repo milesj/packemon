@@ -291,7 +291,6 @@ export class Package {
 					externals: toArray(config.externals),
 					formats,
 					inputs: config.inputs,
-					namespace: config.namespace,
 					platform,
 					support: config.support,
 				});

@@ -69,8 +69,7 @@ contents (not exhaustive).
 	"packemon": {
 		"inputs": { "index": "src/index.ts" },
 		"platform": ["node", "browser"],
-		"format": ["lib", "esm"],
-		"namespace": "Example"
+		"format": ["lib", "esm"]
 	}
 }
 ```
@@ -111,8 +110,7 @@ and files list, as demonstrated below. This can further be expanded upon using t
 	"packemon": {
 		"inputs": { "index": "src/index.ts" },
 		"platform": ["node", "browser"],
-		"format": ["lib", "esm"],
-		"namespace": "Example"
+		"format": ["lib", "esm"]
 	}
 }
 ```

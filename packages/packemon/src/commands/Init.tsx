@@ -49,7 +49,6 @@ export class InitCommand extends BaseCommand<InitOptions> {
 	formatConfigObject({
 		format,
 		inputs,
-		namespace,
 		platform,
 		support,
 	}: PackemonPackageConfig): PackemonPackageConfig {
@@ -65,10 +64,6 @@ export class InitCommand extends BaseCommand<InitOptions> {
 
 		if (inputs && !(Object.keys(inputs).length === 1 && inputs.index === DEFAULT_INPUT)) {
 			config.inputs = inputs;
-		}
-
-		if (namespace) {
-			config.namespace = namespace;
 		}
 
 		if (platform) {

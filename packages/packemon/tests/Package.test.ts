@@ -1112,7 +1112,6 @@ describe('Package', () => {
 					format: [],
 					inputs: {},
 					platform: 'browser',
-					namespace: '',
 					support: 'stable',
 				},
 			]);
@@ -1125,7 +1124,6 @@ describe('Package', () => {
 					formats: ['lib', 'esm'],
 					inputs: {},
 					platform: 'browser',
-					namespace: '',
 					support: 'stable',
 				},
 			]);
@@ -1137,7 +1135,6 @@ describe('Package', () => {
 					format: [],
 					inputs: {},
 					platform: 'native',
-					namespace: '',
 					support: 'stable',
 				},
 			]);
@@ -1150,7 +1147,6 @@ describe('Package', () => {
 					formats: ['lib'],
 					inputs: {},
 					platform: 'native',
-					namespace: '',
 					support: 'stable',
 				},
 			]);
@@ -1162,7 +1158,6 @@ describe('Package', () => {
 					format: [],
 					inputs: {},
 					platform: 'node',
-					namespace: '',
 					support: 'stable',
 				},
 			]);
@@ -1175,7 +1170,6 @@ describe('Package', () => {
 					formats: ['mjs'],
 					inputs: {},
 					platform: 'node',
-					namespace: '',
 					support: 'stable',
 				},
 			]);
@@ -1187,7 +1181,6 @@ describe('Package', () => {
 					format: ['cjs', 'mjs'],
 					inputs: {},
 					platform: 'node',
-					namespace: '',
 					support: 'stable',
 				},
 			]);
@@ -1200,7 +1193,6 @@ describe('Package', () => {
 					formats: ['cjs', 'mjs'],
 					inputs: {},
 					platform: 'node',
-					namespace: '',
 					support: 'stable',
 				},
 			]);
@@ -1222,7 +1214,6 @@ describe('Package', () => {
 					formats: ['lib', 'esm'],
 					inputs: {},
 					platform: 'browser',
-					namespace: '',
 					support: 'stable',
 				},
 				{
@@ -1232,7 +1223,6 @@ describe('Package', () => {
 					formats: ['mjs'],
 					inputs: {},
 					platform: 'node',
-					namespace: '',
 					support: 'stable',
 				},
 			]);
@@ -1255,7 +1245,6 @@ describe('Package', () => {
 					formats: ['lib', 'esm'],
 					inputs: {},
 					platform: 'browser',
-					namespace: '',
 					support: 'stable',
 				},
 				{
@@ -1265,7 +1254,6 @@ describe('Package', () => {
 					formats: ['lib', 'cjs'],
 					inputs: {},
 					platform: 'node',
-					namespace: '',
 					support: 'stable',
 				},
 				{
@@ -1275,7 +1263,6 @@ describe('Package', () => {
 					formats: ['lib'],
 					inputs: {},
 					platform: 'native',
-					namespace: '',
 					support: 'stable',
 				},
 			]);
@@ -1303,7 +1290,6 @@ describe('Package', () => {
 					formats: ['mjs'],
 					inputs: { index: 'src/index.ts' },
 					platform: 'node',
-					namespace: '',
 					support: 'stable',
 				},
 				{
@@ -1313,7 +1299,6 @@ describe('Package', () => {
 					formats: ['lib', 'esm'],
 					inputs: { index: 'src/index.ts' },
 					platform: 'browser',
-					namespace: '',
 					support: 'stable',
 				},
 			]);
@@ -1334,7 +1319,6 @@ describe('Package', () => {
 					formats: ['lib', 'esm'],
 					inputs: { index: 'src/index.ts' },
 					platform: 'browser',
-					namespace: '',
 					support: 'stable',
 				},
 			]);
@@ -1355,7 +1339,6 @@ describe('Package', () => {
 					formats: ['lib', 'esm'],
 					inputs: { index: 'src/index.ts' },
 					platform: 'browser',
-					namespace: '',
 					support: 'stable',
 				},
 			]);

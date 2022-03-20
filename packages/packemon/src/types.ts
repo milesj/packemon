@@ -60,7 +60,6 @@ export interface PackemonPackageConfig {
 	externals?: string[] | string;
 	format?: Format | Format[];
 	inputs?: InputMap;
-	namespace?: string;
 	platform?: Platform | Platform[];
 	support?: Support;
 }
@@ -76,7 +75,6 @@ export interface PackageConfig {
 	externals: string[];
 	formats: Format[];
 	inputs: InputMap;
-	namespace: string;
 	platform: Platform;
 	support: Support;
 }
