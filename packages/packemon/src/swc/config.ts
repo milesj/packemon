@@ -3,9 +3,9 @@ import {
 	EnvConfig,
 	JscTarget,
 	ModuleConfig,
+	Options,
 	TransformConfig,
 	TsParserConfig,
-	Options,
 } from '@swc/core';
 import { CodeArtifact } from '../CodeArtifact';
 import { BROWSER_TARGETS, NATIVE_TARGETS, NODE_SUPPORTED_VERSIONS } from '../constants';
@@ -28,7 +28,7 @@ function getJscTarget(support: Support): JscTarget {
 			return 'es2020';
 		case 'stable':
 			return 'es2018';
-		case 'legacy':
+		default:
 			return 'es5';
 	}
 }

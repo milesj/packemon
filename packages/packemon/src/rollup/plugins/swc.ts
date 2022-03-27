@@ -5,11 +5,21 @@ export function swcInput(config: Partial<Options>): Plugin {
 	return {
 		name: 'swc-input',
 
-		transform(code, filename) {
+		async transform(code, filename) {
 			return transform(code, {
 				...config,
 				filename,
 			});
+		},
+	};
+}
+
+export function swcOutput(config: Partial<Options>): Plugin {
+	return {
+		name: 'swc-output',
+
+		async renderChunk(code) {
+			return transform(code, config);
 		},
 	};
 }

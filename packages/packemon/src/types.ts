@@ -214,6 +214,7 @@ export interface ConfigFile {
 	babelOutput?: ConfigMutatorWithBuild<BabelOptions>;
 	rollupInput?: ConfigMutator<RollupOptions>;
 	rollupOutput?: ConfigMutatorWithBuild<RollupOutputOptions>;
+	swc?: boolean;
 	swcInput?: ConfigMutator<SwcOptions>;
 	swcOutput?: ConfigMutatorWithBuild<SwcOptions>;
 }
