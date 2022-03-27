@@ -18,6 +18,7 @@ export class PackCommand extends BuildCommand {
 				filter={this.filter}
 				filterFormats={this.formats}
 				filterPlatforms={this.platforms}
+				loadConfigs={this.loadConfigs}
 				packemon={this.packemon}
 				skipPrivate={this.skipPrivate}
 				stamp={this.stamp}

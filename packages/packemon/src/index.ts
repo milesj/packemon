@@ -21,5 +21,6 @@ export * from './PackageValidator';
 export * from './Packemon';
 export * from './Project';
 export * from './rollup/config';
+export * from './swc/config';
 export * from './types';
 export * from './TypesArtifact';

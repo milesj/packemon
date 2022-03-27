@@ -49,7 +49,9 @@ function getPlatformEnvOptions(platform: Platform, support: Support, format: For
 	switch (platform) {
 		case 'browser':
 			return {
-				targets: BROWSER_TARGETS[support],
+				targets: Array.isArray(BROWSER_TARGETS[support])
+					? (BROWSER_TARGETS[support] as string[]).join(', ')
+					: BROWSER_TARGETS[support],
 			};
 
 		case 'native':
@@ -75,10 +77,9 @@ function getSharedConfig(config: Config, features: FeatureFlags): Options {
 		caller: {
 			name: 'packemon',
 		},
-		// Do NOT load root `.swcrc` as we need full control
+		// Do NOT load `.swcrc` files as we need full control
 		configFile: false,
-		// Do load branch `.swcrc` files for granular customization
-		swcrc: true,
+		swcrc: false,
 		swcrcRoots: features.workspaces,
 	};
 }
@@ -100,6 +101,7 @@ export function getSwcInputConfig(
 			parser: {
 				syntax: 'ecmascript',
 				jsx: features.react,
+				dynamicImport: true,
 			},
 			transform,
 			// Keep the input as similar as possible
@@ -114,12 +116,12 @@ export function getSwcInputConfig(
 		const parser: TsParserConfig = {
 			syntax: 'typescript',
 			tsx: features.react,
+			dynamicImport: true,
 		};
 
 		if (features.decorators) {
 			parser.decorators = true;
 			transform.legacyDecorator = true;
-			transform.decoratorMetadata = true;
 		}
 
 		baseConfig.jsc!.parser = parser;

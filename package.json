@@ -7,7 +7,7 @@
     "docs": "cd website && yarn run start",
     "prepare": "beemo create-config",
     "setup": "node ./scripts/setup.mjs",
-    "build": "yarn run packemon build",
+    "build": "yarn run packemon build --loadConfigs",
     "validate": "yarn run packemon validate",
     "check": "yarn run type && yarn run test && yarn run lint",
     "clean": "yarn run packemon clean",

@@ -7,7 +7,7 @@ import json from '@rollup/plugin-json';
 import resolve from '@rollup/plugin-node-resolve';
 import { getBabelInputConfig, getBabelOutputConfig } from '../babel/config';
 import type { CodeArtifact } from '../CodeArtifact';
-import { EXCLUDE, EXTENSIONS } from '../constants';
+import { EXCLUDE, EXCLUDE_RUST, EXTENSIONS } from '../constants';
 import { getSwcInputConfig, getSwcOutputConfig } from '../swc/config';
 import { ConfigFile, FeatureFlags, Format } from '../types';
 import { addBinShebang } from './plugins/addBinShebang';
@@ -194,7 +194,7 @@ export function getRollupConfig(
 			packemonConfig.swc
 				? swcInput({
 						...getSwcInputConfig(artifact, features, packemonConfig),
-						exclude: isTest ? [] : EXCLUDE,
+						exclude: isTest ? [] : EXCLUDE_RUST,
 						filename: artifact.package.path.path(),
 						// Extract maps from the original source
 						sourceMaps: true,

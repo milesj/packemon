@@ -51,6 +51,17 @@ export const EXCLUDE = [
 	'**/*-(test|spec).*',
 ];
 
+// Rust (swc) uses regex patterns
+export const EXCLUDE_RUST = [
+	'node_modules',
+	'tests',
+	'__fixtures__',
+	'__mocks__',
+	'__tests__',
+	'\\.(config|test|spec)\\.[a-z]+$',
+	'\\.(test|spec)\\.[a-z]+$',
+];
+
 // https://reactnative.dev/docs/javascript-environment
 // Based on browserslist: https://github.com/browserslist/browserslist
 export const NATIVE_TARGETS: { [K in Support]: string } = {
