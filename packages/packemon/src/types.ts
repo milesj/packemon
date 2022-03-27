@@ -1,6 +1,7 @@
 import { OutputOptions as RollupOutputOptions, RollupOptions } from 'rollup';
 import { TransformOptions } from '@babel/core';
 import { PackageStructure } from '@boost/common';
+import { Config } from '@swc/core';
 
 // Platform = The runtime or operating system the code will run in.
 // Support = The supported version of the platform.
@@ -213,6 +214,8 @@ export interface ConfigFile {
 	babelOutput?: ConfigMutatorWithBuild<TransformOptions>;
 	rollupInput?: ConfigMutator<RollupOptions>;
 	rollupOutput?: ConfigMutatorWithBuild<RollupOutputOptions>;
+	swcInput?: ConfigMutator<Config>;
+	swcOutput?: ConfigMutatorWithBuild<Config>;
 }
 
 // OTHER
