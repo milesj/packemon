@@ -5,6 +5,7 @@ import {
 	ModuleConfig,
 	TransformConfig,
 	TsParserConfig,
+	Options,
 } from '@swc/core';
 import { CodeArtifact } from '../CodeArtifact';
 import { BROWSER_TARGETS, NATIVE_TARGETS, NODE_SUPPORTED_VERSIONS } from '../constants';
@@ -68,19 +69,33 @@ function getPlatformEnvOptions(platform: Platform, support: Support, format: For
 	}
 }
 
+function getSharedConfig(config: Config, features: FeatureFlags): Options {
+	return {
+		...config,
+		caller: {
+			name: 'packemon',
+		},
+		// Do NOT load root `.swcrc` as we need full control
+		configFile: false,
+		// Do load branch `.swcrc` files for granular customization
+		swcrc: true,
+		swcrcRoots: features.workspaces,
+	};
+}
+
 // The input config should only parse special syntax, not transform and downlevel.
 // This applies to all formats within a build target.
 export function getSwcInputConfig(
 	artifact: CodeArtifact,
 	features: FeatureFlags,
 	packemonConfig: ConfigFile = {},
-): Omit<Config, 'exclude' | 'test'> {
+): Omit<Options, 'exclude' | 'test'> {
 	const transform: TransformConfig = {
 		// Keep the input as similar as possible
 		optimizer: undefined,
 	};
 
-	const config: Config = {
+	const baseConfig: Config = {
 		jsc: {
 			parser: {
 				syntax: 'ecmascript',
@@ -107,7 +122,7 @@ export function getSwcInputConfig(
 			transform.decoratorMetadata = true;
 		}
 
-		config.jsc!.parser = parser;
+		baseConfig.jsc!.parser = parser;
 	}
 
 	if (features.react) {
@@ -117,6 +132,8 @@ export function getSwcInputConfig(
 			throwIfNamespace: true,
 		};
 	}
+
+	const config = getSharedConfig(baseConfig, features);
 
 	// Allow consumers to mutate
 	packemonConfig.swcInput?.(config);
@@ -132,7 +149,7 @@ export function getSwcOutputConfig(
 	format: Format,
 	features: FeatureFlags,
 	packemonConfig: ConfigFile = {},
-): Config {
+): Options {
 	const env: EnvConfig = {
 		// Prefer spec compliance in development
 		loose: false,
@@ -150,7 +167,7 @@ export function getSwcOutputConfig(
 		ignoreDynamic: shouldKeepDynamicImport(platform, support),
 	};
 
-	const config: Config = {
+	const baseConfig: Config = {
 		env,
 		module,
 		// Now we can downlevel
@@ -168,6 +185,8 @@ export function getSwcOutputConfig(
 	};
 
 	// TODO add plugins
+
+	const config = getSharedConfig(baseConfig, features);
 
 	// Allow consumers to mutate
 	packemonConfig.swcOutput?.(config, { features, format, platform, support });
