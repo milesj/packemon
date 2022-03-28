@@ -39,7 +39,7 @@ function getModuleConfigType(format: Format): ModuleConfig['type'] {
 		case 'mjs':
 			return 'es6';
 		case 'umd':
-			return 'umd'; // TODO namespace
+			return 'umd';
 		default:
 			return 'commonjs';
 	}
@@ -71,7 +71,7 @@ function getPlatformEnvOptions(platform: Platform, support: Support, format: For
 	}
 }
 
-function getSharedConfig(config: Config, features: FeatureFlags): Options {
+function getSharedConfig(config: Config): Options {
 	return {
 		...config,
 		caller: {
@@ -80,7 +80,6 @@ function getSharedConfig(config: Config, features: FeatureFlags): Options {
 		// Do NOT load `.swcrc` files as we need full control
 		configFile: false,
 		swcrc: false,
-		swcrcRoots: features.workspaces,
 	};
 }
 
@@ -135,7 +134,7 @@ export function getSwcInputConfig(
 		};
 	}
 
-	const config = getSharedConfig(baseConfig, features);
+	const config = getSharedConfig(baseConfig);
 
 	// Allow consumers to mutate
 	packemonConfig.swcInput?.(config);
@@ -186,9 +185,7 @@ export function getSwcOutputConfig(
 		},
 	};
 
-	// TODO add plugins
-
-	const config = getSharedConfig(baseConfig, features);
+	const config = getSharedConfig(baseConfig);
 
 	// Allow consumers to mutate
 	packemonConfig.swcOutput?.(config, { features, format, platform, support });

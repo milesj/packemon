@@ -1,7 +1,9 @@
 import fs from 'fs';
 import { transformSync, transformFileSync } from '@swc/core';
 
-const input = transformFileSync('./packages/packemon/src/commands/Scaffold.tsx', {
+const filename = './packages/packemon/src/commands/Scaffold.tsx';
+
+const input = transformFileSync(filename, {
 	jsc: {
 		parser: { syntax: 'typescript', tsx: true, decorators: true },
 		transform: {
@@ -32,39 +34,59 @@ const input = transformFileSync('./packages/packemon/src/commands/Scaffold.tsx',
 		'\\.(test|spec)\\.[a-z]+$',
 	],
 	sourceMaps: true,
+	filename,
 });
 
 fs.writeFileSync(new URL('./swc/input-pass.js', import.meta.url), input.code, 'utf8');
 
-const output = transformSync(input.code, {
-	env: {
-		loose: false,
-		mode: undefined,
-		shippedProposals: true,
-		targets: {
-			node: '10.17.0',
+function getOutputConfig(type) {
+	return {
+		env: {
+			loose: false,
+			mode: undefined,
+			shippedProposals: true,
+			targets: {
+				node: '12.17.0',
+			},
 		},
-	},
-	module: {
-		type: 'commonjs',
-		ignoreDynamic: true,
-	},
-	jsc: {
-		parser: {
-			syntax: 'ecmascript',
+		module: {
+			type,
+			ignoreDynamic: true,
 		},
-		transform: {
-			optimizer: undefined,
+		jsc: {
+			parser: {
+				syntax: 'ecmascript',
+			},
+			transform: {
+				optimizer: undefined,
+			},
+			target: 'es5',
+			keepClassNames: true,
+			preserveAllComments: false,
 		},
-		target: 'es5',
-		keepClassNames: true,
-		preserveAllComments: false,
-	},
-	caller: { name: 'packemon' },
-	configFile: false,
-	swcrc: false,
-	exclude: [],
-	sourceMaps: true,
-});
+		caller: { name: 'packemon' },
+		configFile: false,
+		swcrc: false,
+		exclude: [],
+		sourceMaps: true,
+		filename,
+	};
+}
 
-fs.writeFileSync(new URL('./swc/output-pass.js', import.meta.url), output.code, 'utf8');
+fs.writeFileSync(
+	new URL('./swc/output-cjs.js', import.meta.url),
+	transformSync(input.code, getOutputConfig('commonjs')).code,
+	'utf8',
+);
+
+fs.writeFileSync(
+	new URL('./swc/output-esm.js', import.meta.url),
+	transformSync(input.code, getOutputConfig('es6')).code,
+	'utf8',
+);
+
+fs.writeFileSync(
+	new URL('./swc/output-umd.js', import.meta.url),
+	transformSync(input.code, getOutputConfig('umd')).code,
+	'utf8',
+);
