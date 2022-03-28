@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Async/await transforms example test case: browser-current-esm 1`] = `
+exports[`Async/await babel transforms example test case: browser-current-esm 1`] = `
 Array [
   "esm/index-browser-current-esm.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -24,7 +24,7 @@ export { run, wait };
 ]
 `;
 
-exports[`Async/await transforms example test case: browser-current-lib 1`] = `
+exports[`Async/await babel transforms example test case: browser-current-lib 1`] = `
 Array [
   "lib/index-browser-current-lib.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -55,7 +55,7 @@ exports.wait = wait;
 ]
 `;
 
-exports[`Async/await transforms example test case: browser-current-umd 1`] = `
+exports[`Async/await babel transforms example test case: browser-current-umd 1`] = `
 Array [
   "umd/index-browser-current-umd.js",
   "(function (global, factory) {
@@ -99,7 +99,7 @@ Array [
 ]
 `;
 
-exports[`Async/await transforms example test case: browser-experimental-esm 1`] = `
+exports[`Async/await babel transforms example test case: browser-experimental-esm 1`] = `
 Array [
   "esm/index-browser-experimental-esm.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -123,7 +123,7 @@ export { run, wait };
 ]
 `;
 
-exports[`Async/await transforms example test case: browser-experimental-lib 1`] = `
+exports[`Async/await babel transforms example test case: browser-experimental-lib 1`] = `
 Array [
   "lib/index-browser-experimental-lib.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -154,7 +154,7 @@ exports.wait = wait;
 ]
 `;
 
-exports[`Async/await transforms example test case: browser-experimental-umd 1`] = `
+exports[`Async/await babel transforms example test case: browser-experimental-umd 1`] = `
 Array [
   "umd/index-browser-experimental-umd.js",
   "(function (global, factory) {
@@ -198,7 +198,7 @@ Array [
 ]
 `;
 
-exports[`Async/await transforms example test case: browser-legacy-esm 1`] = `
+exports[`Async/await babel transforms example test case: browser-legacy-esm 1`] = `
 Array [
   "esm/index-browser-legacy-esm.js",
   "function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError(\\"Cannot instantiate an arrow function\\"); } }
@@ -236,7 +236,7 @@ export { run, wait };
 ]
 `;
 
-exports[`Async/await transforms example test case: browser-legacy-lib 1`] = `
+exports[`Async/await babel transforms example test case: browser-legacy-lib 1`] = `
 Array [
   "lib/index-browser-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -294,7 +294,7 @@ exports.wait = wait;
 ]
 `;
 
-exports[`Async/await transforms example test case: browser-legacy-umd 1`] = `
+exports[`Async/await babel transforms example test case: browser-legacy-umd 1`] = `
 Array [
   "umd/index-browser-legacy-umd.js",
   "(function (global, factory) {
@@ -355,7 +355,7 @@ Array [
 ]
 `;
 
-exports[`Async/await transforms example test case: browser-stable-esm 1`] = `
+exports[`Async/await babel transforms example test case: browser-stable-esm 1`] = `
 Array [
   "esm/index-browser-stable-esm.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -379,7 +379,7 @@ export { run, wait };
 ]
 `;
 
-exports[`Async/await transforms example test case: browser-stable-lib 1`] = `
+exports[`Async/await babel transforms example test case: browser-stable-lib 1`] = `
 Array [
   "lib/index-browser-stable-lib.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -410,7 +410,7 @@ exports.wait = wait;
 ]
 `;
 
-exports[`Async/await transforms example test case: browser-stable-umd 1`] = `
+exports[`Async/await babel transforms example test case: browser-stable-umd 1`] = `
 Array [
   "umd/index-browser-stable-umd.js",
   "(function (global, factory) {
@@ -454,7 +454,7 @@ Array [
 ]
 `;
 
-exports[`Async/await transforms example test case: native-current-lib 1`] = `
+exports[`Async/await babel transforms example test case: native-current-lib 1`] = `
 Array [
   "lib/index-native-current-lib.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -485,7 +485,7 @@ exports.wait = wait;
 ]
 `;
 
-exports[`Async/await transforms example test case: native-experimental-lib 1`] = `
+exports[`Async/await babel transforms example test case: native-experimental-lib 1`] = `
 Array [
   "lib/index-native-experimental-lib.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -516,7 +516,7 @@ exports.wait = wait;
 ]
 `;
 
-exports[`Async/await transforms example test case: native-legacy-lib 1`] = `
+exports[`Async/await babel transforms example test case: native-legacy-lib 1`] = `
 Array [
   "lib/index-native-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -574,7 +574,7 @@ exports.wait = wait;
 ]
 `;
 
-exports[`Async/await transforms example test case: native-stable-lib 1`] = `
+exports[`Async/await babel transforms example test case: native-stable-lib 1`] = `
 Array [
   "lib/index-native-stable-lib.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -623,7 +623,7 @@ exports.wait = wait;
 ]
 `;
 
-exports[`Async/await transforms example test case: node-current-cjs 1`] = `
+exports[`Async/await babel transforms example test case: node-current-cjs 1`] = `
 Array [
   "cjs/index-node-current-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -654,7 +654,7 @@ exports.wait = wait;
 ]
 `;
 
-exports[`Async/await transforms example test case: node-current-lib 1`] = `
+exports[`Async/await babel transforms example test case: node-current-lib 1`] = `
 Array [
   "lib/index-node-current-lib.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -685,7 +685,7 @@ exports.wait = wait;
 ]
 `;
 
-exports[`Async/await transforms example test case: node-current-mjs 1`] = `
+exports[`Async/await babel transforms example test case: node-current-mjs 1`] = `
 Array [
   "mjs/index-node-current-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -709,7 +709,7 @@ export { run, wait };
 ]
 `;
 
-exports[`Async/await transforms example test case: node-experimental-cjs 1`] = `
+exports[`Async/await babel transforms example test case: node-experimental-cjs 1`] = `
 Array [
   "cjs/index-node-experimental-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -740,7 +740,7 @@ exports.wait = wait;
 ]
 `;
 
-exports[`Async/await transforms example test case: node-experimental-lib 1`] = `
+exports[`Async/await babel transforms example test case: node-experimental-lib 1`] = `
 Array [
   "lib/index-node-experimental-lib.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -771,7 +771,7 @@ exports.wait = wait;
 ]
 `;
 
-exports[`Async/await transforms example test case: node-experimental-mjs 1`] = `
+exports[`Async/await babel transforms example test case: node-experimental-mjs 1`] = `
 Array [
   "mjs/index-node-experimental-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -795,7 +795,7 @@ export { run, wait };
 ]
 `;
 
-exports[`Async/await transforms example test case: node-legacy-cjs 1`] = `
+exports[`Async/await babel transforms example test case: node-legacy-cjs 1`] = `
 Array [
   "cjs/index-node-legacy-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -826,7 +826,7 @@ exports.wait = wait;
 ]
 `;
 
-exports[`Async/await transforms example test case: node-legacy-lib 1`] = `
+exports[`Async/await babel transforms example test case: node-legacy-lib 1`] = `
 Array [
   "lib/index-node-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -857,7 +857,7 @@ exports.wait = wait;
 ]
 `;
 
-exports[`Async/await transforms example test case: node-legacy-mjs 1`] = `
+exports[`Async/await babel transforms example test case: node-legacy-mjs 1`] = `
 Array [
   "mjs/index-node-legacy-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -881,7 +881,7 @@ export { run, wait };
 ]
 `;
 
-exports[`Async/await transforms example test case: node-stable-cjs 1`] = `
+exports[`Async/await babel transforms example test case: node-stable-cjs 1`] = `
 Array [
   "cjs/index-node-stable-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -912,7 +912,7 @@ exports.wait = wait;
 ]
 `;
 
-exports[`Async/await transforms example test case: node-stable-lib 1`] = `
+exports[`Async/await babel transforms example test case: node-stable-lib 1`] = `
 Array [
   "lib/index-node-stable-lib.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -943,7 +943,7 @@ exports.wait = wait;
 ]
 `;
 
-exports[`Async/await transforms example test case: node-stable-mjs 1`] = `
+exports[`Async/await babel transforms example test case: node-stable-mjs 1`] = `
 Array [
   "mjs/index-node-stable-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -962,6 +962,1119 @@ async function run() {
   }
 }
 
+export { run, wait };
+",
+]
+`;
+
+exports[`Async/await swc transforms example test case: browser-current-esm 1`] = `
+Array [
+  "esm/index-browser-current-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: current, Format: esm
+async function wait() {
+    return new Promise((resolve)=>{
+        setTimeout(resolve, 100);
+    });
+}
+async function run() {
+    try {
+        await wait();
+    } catch  {
+        throw new Error('Fail');
+    }
+}
+export { run, wait };
+",
+]
+`;
+
+exports[`Async/await swc transforms example test case: browser-current-lib 1`] = `
+Array [
+  "lib/index-browser-current-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: current, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+async function wait() {
+    return new Promise((resolve)=>{
+        setTimeout(resolve, 100);
+    });
+}
+async function run() {
+    try {
+        await wait();
+    } catch  {
+        throw new Error('Fail');
+    }
+}
+exports.run = run;
+exports.wait = wait;
+",
+]
+`;
+
+exports[`Async/await swc transforms example test case: browser-current-umd 1`] = `
+Array [
+  "umd/index-browser-current-umd.js",
+  "(function(global, factory) {
+    if (typeof define === \\"function\\" && define.amd) {
+        define([
+            \\"exports\\"
+        ], factory);
+    } else if (typeof exports !== \\"undefined\\") {
+        factory(exports);
+    } else {
+        var mod = {
+            exports: {}
+        };
+        factory(mod.exports);
+        global.examples = mod.exports;
+    }
+})(this, function(_exports) {
+    \\"use strict\\";
+    Object.defineProperty(_exports, \\"__esModule\\", {
+        value: true
+    });
+    _exports.run = _exports.wait = void 0;
+    // Bundled with Packemon: https://packemon.dev
+    // Platform: browser, Support: current, Format: umd
+    async function wait() {
+        return new Promise((resolve)=>{
+            setTimeout(resolve, 100);
+        });
+    }
+    _exports.wait = wait;
+    async function run() {
+        try {
+            await wait();
+        } catch  {
+            throw new Error('Fail');
+        }
+    }
+    _exports.run = run;
+});
+",
+]
+`;
+
+exports[`Async/await swc transforms example test case: browser-experimental-esm 1`] = `
+Array [
+  "esm/index-browser-experimental-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: experimental, Format: esm
+async function wait() {
+    return new Promise((resolve)=>{
+        setTimeout(resolve, 100);
+    });
+}
+async function run() {
+    try {
+        await wait();
+    } catch  {
+        throw new Error('Fail');
+    }
+}
+export { run, wait };
+",
+]
+`;
+
+exports[`Async/await swc transforms example test case: browser-experimental-lib 1`] = `
+Array [
+  "lib/index-browser-experimental-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: experimental, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+async function wait() {
+    return new Promise((resolve)=>{
+        setTimeout(resolve, 100);
+    });
+}
+async function run() {
+    try {
+        await wait();
+    } catch  {
+        throw new Error('Fail');
+    }
+}
+exports.run = run;
+exports.wait = wait;
+",
+]
+`;
+
+exports[`Async/await swc transforms example test case: browser-experimental-umd 1`] = `
+Array [
+  "umd/index-browser-experimental-umd.js",
+  "(function(global, factory) {
+    if (typeof define === \\"function\\" && define.amd) {
+        define([
+            \\"exports\\"
+        ], factory);
+    } else if (typeof exports !== \\"undefined\\") {
+        factory(exports);
+    } else {
+        var mod = {
+            exports: {}
+        };
+        factory(mod.exports);
+        global.examples = mod.exports;
+    }
+})(this, function(_exports) {
+    \\"use strict\\";
+    Object.defineProperty(_exports, \\"__esModule\\", {
+        value: true
+    });
+    _exports.run = _exports.wait = void 0;
+    // Bundled with Packemon: https://packemon.dev
+    // Platform: browser, Support: experimental, Format: umd
+    async function wait() {
+        return new Promise((resolve)=>{
+            setTimeout(resolve, 100);
+        });
+    }
+    _exports.wait = wait;
+    async function run() {
+        try {
+            await wait();
+        } catch  {
+            throw new Error('Fail');
+        }
+    }
+    _exports.run = run;
+});
+",
+]
+`;
+
+exports[`Async/await swc transforms example test case: browser-legacy-esm 1`] = `
+Array [
+  "esm/index-browser-legacy-esm.js",
+  "function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
+    try {
+        var info = gen[key](arg);
+        var value = info.value;
+    } catch (error) {
+        reject(error);
+        return;
+    }
+    if (info.done) {
+        resolve(value);
+    } else {
+        Promise.resolve(value).then(_next, _throw);
+    }
+}
+function _asyncToGenerator(fn) {
+    return function() {
+        var self = this, args = arguments;
+        return new Promise(function(resolve, reject) {
+            var gen = fn.apply(self, args);
+            function _next(value) {
+                asyncGeneratorStep(gen, resolve, reject, _next, _throw, \\"next\\", value);
+            }
+            function _throw(err) {
+                asyncGeneratorStep(gen, resolve, reject, _next, _throw, \\"throw\\", err);
+            }
+            _next(undefined);
+        });
+    };
+}
+import regeneratorRuntime from \\"regenerator-runtime\\";
+function wait() {
+    return _wait.apply(this, arguments);
+}
+function _wait() {
+    _wait = // Bundled with Packemon: https://packemon.dev
+    // Platform: browser, Support: legacy, Format: esm
+    _asyncToGenerator(regeneratorRuntime.mark(function _callee() {
+        return regeneratorRuntime.wrap(function _callee$(_ctx) {
+            while(1)switch(_ctx.prev = _ctx.next){
+                case 0:
+                    return _ctx.abrupt(\\"return\\", new Promise(function(resolve) {
+                        setTimeout(resolve, 100);
+                    }));
+                case 1:
+                case \\"end\\":
+                    return _ctx.stop();
+            }
+        }, _callee);
+    }));
+    return _wait.apply(this, arguments);
+}
+function run() {
+    return _run.apply(this, arguments);
+}
+function _run() {
+    _run = _asyncToGenerator(regeneratorRuntime.mark(function _callee() {
+        return regeneratorRuntime.wrap(function _callee$(_ctx) {
+            while(1)switch(_ctx.prev = _ctx.next){
+                case 0:
+                    _ctx.prev = 0;
+                    _ctx.next = 3;
+                    return wait();
+                case 3:
+                    _ctx.next = 8;
+                    break;
+                case 5:
+                    _ctx.prev = 5;
+                    _ctx.t0 = _ctx[\\"catch\\"](0);
+                    throw new Error(\\"Fail\\");
+                case 8:
+                case \\"end\\":
+                    return _ctx.stop();
+            }
+        }, _callee, null, [
+            [
+                0,
+                5
+            ]
+        ]);
+    }));
+    return _run.apply(this, arguments);
+}
+export { run, wait };
+",
+]
+`;
+
+exports[`Async/await swc transforms example test case: browser-legacy-lib 1`] = `
+Array [
+  "lib/index-browser-legacy-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: legacy, Format: lib
+\\"use strict\\";
+var _regeneratorRuntime = _interopRequireDefault(require(\\"regenerator-runtime\\"));
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
+    try {
+        var info = gen[key](arg);
+        var value = info.value;
+    } catch (error) {
+        reject(error);
+        return;
+    }
+    if (info.done) {
+        resolve(value);
+    } else {
+        Promise.resolve(value).then(_next, _throw);
+    }
+}
+function _asyncToGenerator(fn) {
+    return function() {
+        var self = this, args = arguments;
+        return new Promise(function(resolve, reject) {
+            var gen = fn.apply(self, args);
+            function _next(value) {
+                asyncGeneratorStep(gen, resolve, reject, _next, _throw, \\"next\\", value);
+            }
+            function _throw(err) {
+                asyncGeneratorStep(gen, resolve, reject, _next, _throw, \\"throw\\", err);
+            }
+            _next(undefined);
+        });
+    };
+}
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+        default: obj
+    };
+}
+Object.defineProperty(exports, \\"__esModule\\", {
+    value: true
+});
+function wait() {
+    return _wait.apply(this, arguments);
+}
+function _wait() {
+    _wait = _asyncToGenerator(_regeneratorRuntime.default.mark(function _callee() {
+        return _regeneratorRuntime.default.wrap(function _callee$(_ctx) {
+            while(1)switch(_ctx.prev = _ctx.next){
+                case 0:
+                    return _ctx.abrupt(\\"return\\", new Promise(function(resolve) {
+                        setTimeout(resolve, 100);
+                    }));
+                case 1:
+                case \\"end\\":
+                    return _ctx.stop();
+            }
+        }, _callee);
+    }));
+    return _wait.apply(this, arguments);
+}
+function run() {
+    return _run.apply(this, arguments);
+}
+function _run() {
+    _run = _asyncToGenerator(_regeneratorRuntime.default.mark(function _callee() {
+        return _regeneratorRuntime.default.wrap(function _callee$(_ctx) {
+            while(1)switch(_ctx.prev = _ctx.next){
+                case 0:
+                    _ctx.prev = 0;
+                    _ctx.next = 3;
+                    return wait();
+                case 3:
+                    _ctx.next = 8;
+                    break;
+                case 5:
+                    _ctx.prev = 5;
+                    _ctx.t0 = _ctx[\\"catch\\"](0);
+                    throw new Error(\\"Fail\\");
+                case 8:
+                case \\"end\\":
+                    return _ctx.stop();
+            }
+        }, _callee, null, [
+            [
+                0,
+                5
+            ]
+        ]);
+    }));
+    return _run.apply(this, arguments);
+}
+exports.run = run;
+exports.wait = wait;
+",
+]
+`;
+
+exports[`Async/await swc transforms example test case: browser-legacy-umd 1`] = `
+Array [
+  "umd/index-browser-legacy-umd.js",
+  "(function(global, factory) {
+    if (typeof define === \\"function\\" && define.amd) {
+        define([
+            \\"exports\\",
+            \\"regenerator-runtime\\"
+        ], factory);
+    } else if (typeof exports !== \\"undefined\\") {
+        factory(exports, require(\\"regenerator-runtime\\"));
+    } else {
+        var mod = {
+            exports: {}
+        };
+        factory(mod.exports, global.regeneratorRuntime);
+        global.examples = mod.exports;
+    }
+})(this, function(_exports, _regeneratorRuntime) {
+    \\"use strict\\";
+    _regeneratorRuntime = _interopRequireDefault(_regeneratorRuntime);
+    Object.defineProperty(_exports, \\"__esModule\\", {
+        value: true
+    });
+    _exports.run = _exports.wait = void 0;
+    function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
+        try {
+            var info = gen[key](arg);
+            var value = info.value;
+        } catch (error) {
+            reject(error);
+            return;
+        }
+        if (info.done) {
+            resolve(value);
+        } else {
+            Promise.resolve(value).then(_next, _throw);
+        }
+    }
+    function _asyncToGenerator(fn) {
+        return function() {
+            var self = this, args = arguments;
+            return new Promise(function(resolve, reject) {
+                var gen = fn.apply(self, args);
+                function _next(value) {
+                    asyncGeneratorStep(gen, resolve, reject, _next, _throw, \\"next\\", value);
+                }
+                function _throw(err) {
+                    asyncGeneratorStep(gen, resolve, reject, _next, _throw, \\"throw\\", err);
+                }
+                _next(undefined);
+            });
+        };
+    }
+    function _interopRequireDefault(obj) {
+        return obj && obj.__esModule ? obj : {
+            default: obj
+        };
+    }
+    function wait() {
+        return _wait.apply(this, arguments);
+    }
+    _exports.wait = wait;
+    function _wait() {
+        _wait = // Bundled with Packemon: https://packemon.dev
+        // Platform: browser, Support: legacy, Format: umd
+        _asyncToGenerator(_regeneratorRuntime.default.mark(function _callee() {
+            return _regeneratorRuntime.default.wrap(function _callee$(_ctx) {
+                while(1)switch(_ctx.prev = _ctx.next){
+                    case 0:
+                        return _ctx.abrupt(\\"return\\", new Promise(function(resolve) {
+                            setTimeout(resolve, 100);
+                        }));
+                    case 1:
+                    case \\"end\\":
+                        return _ctx.stop();
+                }
+            }, _callee);
+        }));
+        return _wait.apply(this, arguments);
+    }
+    function run() {
+        return _run.apply(this, arguments);
+    }
+    _exports.run = run;
+    function _run() {
+        _run = _asyncToGenerator(_regeneratorRuntime.default.mark(function _callee() {
+            return _regeneratorRuntime.default.wrap(function _callee$(_ctx) {
+                while(1)switch(_ctx.prev = _ctx.next){
+                    case 0:
+                        _ctx.prev = 0;
+                        _ctx.next = 3;
+                        return wait();
+                    case 3:
+                        _ctx.next = 8;
+                        break;
+                    case 5:
+                        _ctx.prev = 5;
+                        _ctx.t0 = _ctx[\\"catch\\"](0);
+                        throw new Error(\\"Fail\\");
+                    case 8:
+                    case \\"end\\":
+                        return _ctx.stop();
+                }
+            }, _callee, null, [
+                [
+                    0,
+                    5
+                ]
+            ]);
+        }));
+        return _run.apply(this, arguments);
+    }
+});
+",
+]
+`;
+
+exports[`Async/await swc transforms example test case: browser-stable-esm 1`] = `
+Array [
+  "esm/index-browser-stable-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: stable, Format: esm
+async function wait() {
+    return new Promise((resolve)=>{
+        setTimeout(resolve, 100);
+    });
+}
+async function run() {
+    try {
+        await wait();
+    } catch  {
+        throw new Error('Fail');
+    }
+}
+export { run, wait };
+",
+]
+`;
+
+exports[`Async/await swc transforms example test case: browser-stable-lib 1`] = `
+Array [
+  "lib/index-browser-stable-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: stable, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+async function wait() {
+    return new Promise((resolve)=>{
+        setTimeout(resolve, 100);
+    });
+}
+async function run() {
+    try {
+        await wait();
+    } catch  {
+        throw new Error('Fail');
+    }
+}
+exports.run = run;
+exports.wait = wait;
+",
+]
+`;
+
+exports[`Async/await swc transforms example test case: browser-stable-umd 1`] = `
+Array [
+  "umd/index-browser-stable-umd.js",
+  "(function(global, factory) {
+    if (typeof define === \\"function\\" && define.amd) {
+        define([
+            \\"exports\\"
+        ], factory);
+    } else if (typeof exports !== \\"undefined\\") {
+        factory(exports);
+    } else {
+        var mod = {
+            exports: {}
+        };
+        factory(mod.exports);
+        global.examples = mod.exports;
+    }
+})(this, function(_exports) {
+    \\"use strict\\";
+    Object.defineProperty(_exports, \\"__esModule\\", {
+        value: true
+    });
+    _exports.run = _exports.wait = void 0;
+    // Bundled with Packemon: https://packemon.dev
+    // Platform: browser, Support: stable, Format: umd
+    async function wait() {
+        return new Promise((resolve)=>{
+            setTimeout(resolve, 100);
+        });
+    }
+    _exports.wait = wait;
+    async function run() {
+        try {
+            await wait();
+        } catch  {
+            throw new Error('Fail');
+        }
+    }
+    _exports.run = run;
+});
+",
+]
+`;
+
+exports[`Async/await swc transforms example test case: native-current-lib 1`] = `
+Array [
+  "lib/index-native-current-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: current, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+async function wait() {
+    return new Promise((resolve)=>{
+        setTimeout(resolve, 100);
+    });
+}
+async function run() {
+    try {
+        await wait();
+    } catch  {
+        throw new Error('Fail');
+    }
+}
+exports.run = run;
+exports.wait = wait;
+",
+]
+`;
+
+exports[`Async/await swc transforms example test case: native-experimental-lib 1`] = `
+Array [
+  "lib/index-native-experimental-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: experimental, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+async function wait() {
+    return new Promise((resolve)=>{
+        setTimeout(resolve, 100);
+    });
+}
+async function run() {
+    try {
+        await wait();
+    } catch  {
+        throw new Error('Fail');
+    }
+}
+exports.run = run;
+exports.wait = wait;
+",
+]
+`;
+
+exports[`Async/await swc transforms example test case: native-legacy-lib 1`] = `
+Array [
+  "lib/index-native-legacy-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: legacy, Format: lib
+\\"use strict\\";
+var _regeneratorRuntime = _interopRequireDefault(require(\\"regenerator-runtime\\"));
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
+    try {
+        var info = gen[key](arg);
+        var value = info.value;
+    } catch (error) {
+        reject(error);
+        return;
+    }
+    if (info.done) {
+        resolve(value);
+    } else {
+        Promise.resolve(value).then(_next, _throw);
+    }
+}
+function _asyncToGenerator(fn) {
+    return function() {
+        var self = this, args = arguments;
+        return new Promise(function(resolve, reject) {
+            var gen = fn.apply(self, args);
+            function _next(value) {
+                asyncGeneratorStep(gen, resolve, reject, _next, _throw, \\"next\\", value);
+            }
+            function _throw(err) {
+                asyncGeneratorStep(gen, resolve, reject, _next, _throw, \\"throw\\", err);
+            }
+            _next(undefined);
+        });
+    };
+}
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+        default: obj
+    };
+}
+Object.defineProperty(exports, \\"__esModule\\", {
+    value: true
+});
+function wait() {
+    return _wait.apply(this, arguments);
+}
+function _wait() {
+    _wait = _asyncToGenerator(_regeneratorRuntime.default.mark(function _callee() {
+        return _regeneratorRuntime.default.wrap(function _callee$(_ctx) {
+            while(1)switch(_ctx.prev = _ctx.next){
+                case 0:
+                    return _ctx.abrupt(\\"return\\", new Promise(function(resolve) {
+                        setTimeout(resolve, 100);
+                    }));
+                case 1:
+                case \\"end\\":
+                    return _ctx.stop();
+            }
+        }, _callee);
+    }));
+    return _wait.apply(this, arguments);
+}
+function run() {
+    return _run.apply(this, arguments);
+}
+function _run() {
+    _run = _asyncToGenerator(_regeneratorRuntime.default.mark(function _callee() {
+        return _regeneratorRuntime.default.wrap(function _callee$(_ctx) {
+            while(1)switch(_ctx.prev = _ctx.next){
+                case 0:
+                    _ctx.prev = 0;
+                    _ctx.next = 3;
+                    return wait();
+                case 3:
+                    _ctx.next = 8;
+                    break;
+                case 5:
+                    _ctx.prev = 5;
+                    _ctx.t0 = _ctx[\\"catch\\"](0);
+                    throw new Error(\\"Fail\\");
+                case 8:
+                case \\"end\\":
+                    return _ctx.stop();
+            }
+        }, _callee, null, [
+            [
+                0,
+                5
+            ]
+        ]);
+    }));
+    return _run.apply(this, arguments);
+}
+exports.run = run;
+exports.wait = wait;
+",
+]
+`;
+
+exports[`Async/await swc transforms example test case: native-stable-lib 1`] = `
+Array [
+  "lib/index-native-stable-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: stable, Format: lib
+'use strict';
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
+    try {
+        var info = gen[key](arg);
+        var value = info.value;
+    } catch (error) {
+        reject(error);
+        return;
+    }
+    if (info.done) {
+        resolve(value);
+    } else {
+        Promise.resolve(value).then(_next, _throw);
+    }
+}
+function _asyncToGenerator(fn) {
+    return function() {
+        var self = this, args = arguments;
+        return new Promise(function(resolve, reject) {
+            var gen = fn.apply(self, args);
+            function _next(value) {
+                asyncGeneratorStep(gen, resolve, reject, _next, _throw, \\"next\\", value);
+            }
+            function _throw(err) {
+                asyncGeneratorStep(gen, resolve, reject, _next, _throw, \\"throw\\", err);
+            }
+            _next(undefined);
+        });
+    };
+}
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function wait() {
+    return _wait.apply(this, arguments);
+}
+function _wait() {
+    _wait = _asyncToGenerator(function*() {
+        return new Promise((resolve)=>{
+            setTimeout(resolve, 100);
+        });
+    });
+    return _wait.apply(this, arguments);
+}
+function run() {
+    return _run.apply(this, arguments);
+}
+function _run() {
+    _run = _asyncToGenerator(function*() {
+        try {
+            yield wait();
+        } catch (e) {
+            throw new Error('Fail');
+        }
+    });
+    return _run.apply(this, arguments);
+}
+exports.run = run;
+exports.wait = wait;
+",
+]
+`;
+
+exports[`Async/await swc transforms example test case: node-current-cjs 1`] = `
+Array [
+  "cjs/index-node-current-cjs.cjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: current, Format: cjs
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+async function wait() {
+    return new Promise((resolve)=>{
+        setTimeout(resolve, 100);
+    });
+}
+async function run() {
+    try {
+        await wait();
+    } catch  {
+        throw new Error('Fail');
+    }
+}
+exports.run = run;
+exports.wait = wait;
+",
+]
+`;
+
+exports[`Async/await swc transforms example test case: node-current-lib 1`] = `
+Array [
+  "lib/index-node-current-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: current, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+async function wait() {
+    return new Promise((resolve)=>{
+        setTimeout(resolve, 100);
+    });
+}
+async function run() {
+    try {
+        await wait();
+    } catch  {
+        throw new Error('Fail');
+    }
+}
+exports.run = run;
+exports.wait = wait;
+",
+]
+`;
+
+exports[`Async/await swc transforms example test case: node-current-mjs 1`] = `
+Array [
+  "mjs/index-node-current-mjs.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: current, Format: mjs
+async function wait() {
+    return new Promise((resolve)=>{
+        setTimeout(resolve, 100);
+    });
+}
+async function run() {
+    try {
+        await wait();
+    } catch  {
+        throw new Error('Fail');
+    }
+}
+export { run, wait };
+",
+]
+`;
+
+exports[`Async/await swc transforms example test case: node-experimental-cjs 1`] = `
+Array [
+  "cjs/index-node-experimental-cjs.cjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: experimental, Format: cjs
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+async function wait() {
+    return new Promise((resolve)=>{
+        setTimeout(resolve, 100);
+    });
+}
+async function run() {
+    try {
+        await wait();
+    } catch  {
+        throw new Error('Fail');
+    }
+}
+exports.run = run;
+exports.wait = wait;
+",
+]
+`;
+
+exports[`Async/await swc transforms example test case: node-experimental-lib 1`] = `
+Array [
+  "lib/index-node-experimental-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: experimental, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+async function wait() {
+    return new Promise((resolve)=>{
+        setTimeout(resolve, 100);
+    });
+}
+async function run() {
+    try {
+        await wait();
+    } catch  {
+        throw new Error('Fail');
+    }
+}
+exports.run = run;
+exports.wait = wait;
+",
+]
+`;
+
+exports[`Async/await swc transforms example test case: node-experimental-mjs 1`] = `
+Array [
+  "mjs/index-node-experimental-mjs.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: experimental, Format: mjs
+async function wait() {
+    return new Promise((resolve)=>{
+        setTimeout(resolve, 100);
+    });
+}
+async function run() {
+    try {
+        await wait();
+    } catch  {
+        throw new Error('Fail');
+    }
+}
+export { run, wait };
+",
+]
+`;
+
+exports[`Async/await swc transforms example test case: node-legacy-cjs 1`] = `
+Array [
+  "cjs/index-node-legacy-cjs.cjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: legacy, Format: cjs
+\\"use strict\\";
+Object.defineProperty(exports, \\"__esModule\\", {
+    value: true
+});
+async function wait() {
+    return new Promise((resolve)=>{
+        setTimeout(resolve, 100);
+    });
+}
+async function run() {
+    try {
+        await wait();
+    } catch  {
+        throw new Error(\\"Fail\\");
+    }
+}
+exports.run = run;
+exports.wait = wait;
+",
+]
+`;
+
+exports[`Async/await swc transforms example test case: node-legacy-lib 1`] = `
+Array [
+  "lib/index-node-legacy-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: legacy, Format: lib
+\\"use strict\\";
+Object.defineProperty(exports, \\"__esModule\\", {
+    value: true
+});
+async function wait() {
+    return new Promise((resolve)=>{
+        setTimeout(resolve, 100);
+    });
+}
+async function run() {
+    try {
+        await wait();
+    } catch  {
+        throw new Error(\\"Fail\\");
+    }
+}
+exports.run = run;
+exports.wait = wait;
+",
+]
+`;
+
+exports[`Async/await swc transforms example test case: node-legacy-mjs 1`] = `
+Array [
+  "mjs/index-node-legacy-mjs.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: legacy, Format: mjs
+async function wait() {
+    return new Promise((resolve)=>{
+        setTimeout(resolve, 100);
+    });
+}
+async function run() {
+    try {
+        await wait();
+    } catch  {
+        throw new Error(\\"Fail\\");
+    }
+}
+export { run, wait };
+",
+]
+`;
+
+exports[`Async/await swc transforms example test case: node-stable-cjs 1`] = `
+Array [
+  "cjs/index-node-stable-cjs.cjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: cjs
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+async function wait() {
+    return new Promise((resolve)=>{
+        setTimeout(resolve, 100);
+    });
+}
+async function run() {
+    try {
+        await wait();
+    } catch  {
+        throw new Error('Fail');
+    }
+}
+exports.run = run;
+exports.wait = wait;
+",
+]
+`;
+
+exports[`Async/await swc transforms example test case: node-stable-lib 1`] = `
+Array [
+  "lib/index-node-stable-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+async function wait() {
+    return new Promise((resolve)=>{
+        setTimeout(resolve, 100);
+    });
+}
+async function run() {
+    try {
+        await wait();
+    } catch  {
+        throw new Error('Fail');
+    }
+}
+exports.run = run;
+exports.wait = wait;
+",
+]
+`;
+
+exports[`Async/await swc transforms example test case: node-stable-mjs 1`] = `
+Array [
+  "mjs/index-node-stable-mjs.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: mjs
+async function wait() {
+    return new Promise((resolve)=>{
+        setTimeout(resolve, 100);
+    });
+}
+async function run() {
+    try {
+        await wait();
+    } catch  {
+        throw new Error('Fail');
+    }
+}
 export { run, wait };
 ",
 ]

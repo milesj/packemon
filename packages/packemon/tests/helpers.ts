@@ -141,34 +141,50 @@ FORMATS.forEach((format) => {
 	});
 });
 
-export function testExampleOutput(file: string, options?: Partial<PackageConfig>) {
-	const snapshots = createSnapshotSpies(exampleRoot);
+export function testExampleOutput(
+	file: string,
+	transformer: 'babel' | 'swc',
+	options?: Partial<PackageConfig>,
+) {
+	describe(transformer, () => {
+		const snapshots = createSnapshotSpies(exampleRoot);
 
-	[...builds.values()].forEach((build) => {
-		const pkg = createProjectPackage(exampleRoot);
-		const env = `${build.platform}-${build.support}-${build.format}`;
+		if (transformer === 'swc') {
+			beforeEach(() => {
+				process.env.PACKEMON_SWC = 'true';
+			});
 
-		test(`transforms example test case: ${env}`, async () => {
-			const artifact = new CodeArtifact(pkg, [build]);
-			artifact.platform = build.platform;
-			artifact.support = build.support;
-			artifact.inputs = { [`index-${env}`]: file };
+			afterEach(() => {
+				delete process.env.PACKEMON_SWC;
+			});
+		}
 
-			// eslint-disable-next-line jest/no-conditional-in-test
-			if (options) {
-				Object.assign(artifact, options);
-			}
+		[...builds.values()].forEach((build) => {
+			const pkg = createProjectPackage(exampleRoot);
+			const env = `${build.platform}-${build.support}-${build.format}`;
 
-			pkg.addArtifact(artifact);
+			test(`transforms example test case: ${env}`, async () => {
+				const artifact = new CodeArtifact(pkg, [build]);
+				artifact.platform = build.platform;
+				artifact.support = build.support;
+				artifact.inputs = { [`index-${env}`]: file };
 
-			try {
-				await pkg.build({}, {});
-			} catch (error: unknown) {
-				console.error(error);
-			}
+				// eslint-disable-next-line jest/no-conditional-in-test
+				if (options) {
+					Object.assign(artifact, options);
+				}
 
-			snapshots(pkg).forEach((ss) => {
-				expect(ss).toMatchSnapshot();
+				pkg.addArtifact(artifact);
+
+				try {
+					await pkg.build({}, {});
+				} catch (error: unknown) {
+					console.error(error);
+				}
+
+				snapshots(pkg).forEach((ss) => {
+					expect(ss).toMatchSnapshot();
+				});
 			});
 		});
 	});

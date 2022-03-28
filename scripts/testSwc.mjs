@@ -56,6 +56,7 @@ function getOutputConfig(type) {
 		env: {
 			loose: false,
 			mode: undefined,
+			bugfixes: true,
 			shippedProposals: true,
 			targets: {
 				node: '12.17.0',

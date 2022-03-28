@@ -74,6 +74,11 @@ function getPlatformEnvOptions(platform: Platform, support: Support, format: For
 function getSharedConfig(config: Config): Options {
 	return {
 		...config,
+		jsc: {
+			...config.jsc,
+			keepClassNames: true,
+			preserveAllComments: true,
+		},
 		caller: {
 			name: 'packemon',
 		},
@@ -106,7 +111,6 @@ export function getSwcInputConfig(
 			// Keep the input as similar as possible
 			externalHelpers: false,
 			loose: false,
-			keepClassNames: true,
 			target: 'es2022',
 		},
 	};
@@ -157,10 +161,26 @@ export function getSwcOutputConfig(
 		// Consumers must polyfill accordingly
 		mode: undefined, // useBuiltIns
 		// Transform features accordingly
+		// @ts-expect-error Not typed
+		bugfixes: true,
 		shippedProposals: true,
 		// Platform specific
 		...getPlatformEnvOptions(platform, support, format),
 	};
+
+	if (platform === 'browser' || platform === 'native') {
+		// While modern browsers support these features, Node.js does not,
+		// which results in failing builds trying to parse the syntax.
+		// Let's only apply this for the lib format, but allow it for esm.
+		// TODO: Drop in Node 12+
+		if (format === 'lib') {
+			env.include = [
+				'proposal-logical-assignment-operators',
+				'proposal-nullish-coalescing-operator',
+				'proposal-optional-chaining',
+			];
+		}
+	}
 
 	const module: ModuleConfig = {
 		type: getModuleConfigType(format),
@@ -180,16 +200,14 @@ export function getSwcOutputConfig(
 				optimizer: {
 					globals: {
 						vars: {
-							__DEV__: "process.env.NODE_ENV !== 'production'",
-							__PROD__: "process.env.NODE_ENV === 'production'",
-							__TEST__: "process.env.NODE_ENV === 'test'",
+							['__DEV__']: "process.env.NODE_ENV !== 'production'",
+							['__PROD__']: "process.env.NODE_ENV === 'production'",
+							['__TEST__']: "process.env.NODE_ENV === 'test'",
 						},
 					},
 				},
 			},
 			target: getJscTarget(support),
-			keepClassNames: true,
-			preserveAllComments: false,
 		},
 	};
 

@@ -1,5 +1,6 @@
 import { testExampleOutput } from '../helpers';
 
 describe('Generators', () => {
-	testExampleOutput('generators.ts');
+	testExampleOutput('generators.ts', 'babel');
+	testExampleOutput('generators.ts', 'swc');
 });

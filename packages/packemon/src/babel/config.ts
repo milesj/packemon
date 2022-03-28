@@ -190,6 +190,7 @@ export function getBabelOutputConfig(
 		// While modern browsers support these features, Node.js does not,
 		// which results in failing builds trying to parse the syntax.
 		// Let's only apply this for the lib format, but allow it for esm.
+		// TODO: Drop in Node 12+
 		if (format === 'lib') {
 			plugins.push(
 				resolveFromBabel('@babel/plugin-proposal-logical-assignment-operators'),
