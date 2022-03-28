@@ -7,6 +7,7 @@ module.exports = {
 		'setup',
 		'features',
 		'config',
+		'swc',
 		'esm',
 		{
 			type: 'category',

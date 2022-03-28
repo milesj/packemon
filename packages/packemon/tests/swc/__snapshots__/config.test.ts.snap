@@ -1,0 +1,716 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`getSwcInputConfig() can mutate config 1`] = `
+Object {
+  "caller": Object {
+    "name": "packemon",
+  },
+  "configFile": false,
+  "cwd": "INPUT",
+  "jsc": Object {
+    "externalHelpers": false,
+    "keepClassNames": true,
+    "loose": false,
+    "parser": Object {
+      "dynamicImport": true,
+      "jsx": undefined,
+      "syntax": "ecmascript",
+    },
+    "preserveAllComments": true,
+    "target": "es2022",
+    "transform": Object {
+      "optimizer": undefined,
+    },
+  },
+  "rootMode": "upward",
+  "swcrc": false,
+}
+`;
+
+exports[`getSwcInputConfig() doesnt include typescript decorators if \`typescript\` feature flag is false 1`] = `
+Object {
+  "caller": Object {
+    "name": "packemon",
+  },
+  "configFile": false,
+  "jsc": Object {
+    "externalHelpers": false,
+    "keepClassNames": true,
+    "loose": false,
+    "parser": Object {
+      "dynamicImport": true,
+      "jsx": undefined,
+      "syntax": "ecmascript",
+    },
+    "preserveAllComments": true,
+    "target": "es2022",
+    "transform": Object {
+      "optimizer": undefined,
+    },
+  },
+  "swcrc": false,
+}
+`;
+
+exports[`getSwcInputConfig() includes no parser/transformer options by default 1`] = `
+Object {
+  "caller": Object {
+    "name": "packemon",
+  },
+  "configFile": false,
+  "jsc": Object {
+    "externalHelpers": false,
+    "keepClassNames": true,
+    "loose": false,
+    "parser": Object {
+      "dynamicImport": true,
+      "jsx": undefined,
+      "syntax": "ecmascript",
+    },
+    "preserveAllComments": true,
+    "target": "es2022",
+    "transform": Object {
+      "optimizer": undefined,
+    },
+  },
+  "swcrc": false,
+}
+`;
+
+exports[`getSwcInputConfig() includes react transformer if \`react\` feature flag is true 1`] = `
+Object {
+  "optimizer": undefined,
+  "react": Object {
+    "development": true,
+    "runtime": "classic",
+    "throwIfNamespace": true,
+  },
+}
+`;
+
+exports[`getSwcInputConfig() includes typescript decorators if \`typescript\` and \`decorators\` feature flag is true 1`] = `
+Object {
+  "caller": Object {
+    "name": "packemon",
+  },
+  "configFile": false,
+  "jsc": Object {
+    "externalHelpers": false,
+    "keepClassNames": true,
+    "loose": false,
+    "parser": Object {
+      "decorators": true,
+      "dynamicImport": true,
+      "syntax": "typescript",
+      "tsx": undefined,
+    },
+    "preserveAllComments": true,
+    "target": "es2022",
+    "transform": Object {
+      "legacyDecorator": true,
+      "optimizer": undefined,
+    },
+  },
+  "swcrc": false,
+}
+`;
+
+exports[`getSwcInputConfig() includes typescript parser if \`typescript\` feature flag is true 1`] = `
+Object {
+  "dynamicImport": true,
+  "syntax": "typescript",
+  "tsx": undefined,
+}
+`;
+
+exports[`getSwcInputConfig() supports private properties with decorators if dep exists 1`] = `
+Object {
+  "caller": Object {
+    "name": "packemon",
+  },
+  "configFile": false,
+  "jsc": Object {
+    "externalHelpers": false,
+    "keepClassNames": true,
+    "loose": false,
+    "parser": Object {
+      "decorators": true,
+      "dynamicImport": true,
+      "syntax": "typescript",
+      "tsx": undefined,
+    },
+    "preserveAllComments": true,
+    "target": "es2022",
+    "transform": Object {
+      "legacyDecorator": true,
+      "optimizer": undefined,
+    },
+  },
+  "swcrc": false,
+}
+`;
+
+exports[`getSwcOutputConfig() can mutate config 1`] = `
+Object {
+  "caller": Object {
+    "name": "packemon",
+  },
+  "configFile": false,
+  "cwd": "OUTPUT",
+  "env": Object {
+    "bugfixes": true,
+    "include": Array [
+      "proposal-logical-assignment-operators",
+      "proposal-nullish-coalescing-operator",
+      "proposal-optional-chaining",
+    ],
+    "loose": false,
+    "mode": undefined,
+    "shippedProposals": true,
+    "targets": "defaults, not IE 11",
+  },
+  "jsc": Object {
+    "keepClassNames": true,
+    "parser": Object {
+      "syntax": "ecmascript",
+    },
+    "preserveAllComments": true,
+    "target": "es2018",
+    "transform": Object {
+      "optimizer": Object {
+        "globals": Object {
+          "vars": Object {
+            "__DEV__": "process.env.NODE_ENV !== 'production'",
+            "__PROD__": "process.env.NODE_ENV === 'production'",
+            "__TEST__": "process.env.NODE_ENV === 'test'",
+          },
+        },
+      },
+    },
+  },
+  "module": Object {
+    "ignoreDynamic": true,
+    "type": "commonjs",
+  },
+  "rootMode": "upward",
+  "swcrc": false,
+}
+`;
+
+exports[`getSwcOutputConfig() handles preset-env: browser + esm + current 1`] = `
+Object {
+  "bugfixes": true,
+  "loose": false,
+  "mode": undefined,
+  "shippedProposals": true,
+  "targets": "> 1%, not dead",
+}
+`;
+
+exports[`getSwcOutputConfig() handles preset-env: browser + esm + experimental 1`] = `
+Object {
+  "bugfixes": true,
+  "loose": false,
+  "mode": undefined,
+  "shippedProposals": true,
+  "targets": "last 2 chrome versions, last 2 firefox versions",
+}
+`;
+
+exports[`getSwcOutputConfig() handles preset-env: browser + esm + legacy 1`] = `
+Object {
+  "bugfixes": true,
+  "loose": false,
+  "mode": undefined,
+  "shippedProposals": true,
+  "targets": "IE 11",
+}
+`;
+
+exports[`getSwcOutputConfig() handles preset-env: browser + esm + stable 1`] = `
+Object {
+  "bugfixes": true,
+  "loose": false,
+  "mode": undefined,
+  "shippedProposals": true,
+  "targets": "defaults, not IE 11",
+}
+`;
+
+exports[`getSwcOutputConfig() handles preset-env: browser + lib + current 1`] = `
+Object {
+  "bugfixes": true,
+  "include": Array [
+    "proposal-logical-assignment-operators",
+    "proposal-nullish-coalescing-operator",
+    "proposal-optional-chaining",
+  ],
+  "loose": false,
+  "mode": undefined,
+  "shippedProposals": true,
+  "targets": "> 1%, not dead",
+}
+`;
+
+exports[`getSwcOutputConfig() handles preset-env: browser + lib + experimental 1`] = `
+Object {
+  "bugfixes": true,
+  "include": Array [
+    "proposal-logical-assignment-operators",
+    "proposal-nullish-coalescing-operator",
+    "proposal-optional-chaining",
+  ],
+  "loose": false,
+  "mode": undefined,
+  "shippedProposals": true,
+  "targets": "last 2 chrome versions, last 2 firefox versions",
+}
+`;
+
+exports[`getSwcOutputConfig() handles preset-env: browser + lib + legacy 1`] = `
+Object {
+  "bugfixes": true,
+  "include": Array [
+    "proposal-logical-assignment-operators",
+    "proposal-nullish-coalescing-operator",
+    "proposal-optional-chaining",
+  ],
+  "loose": false,
+  "mode": undefined,
+  "shippedProposals": true,
+  "targets": "IE 11",
+}
+`;
+
+exports[`getSwcOutputConfig() handles preset-env: browser + lib + stable 1`] = `
+Object {
+  "bugfixes": true,
+  "include": Array [
+    "proposal-logical-assignment-operators",
+    "proposal-nullish-coalescing-operator",
+    "proposal-optional-chaining",
+  ],
+  "loose": false,
+  "mode": undefined,
+  "shippedProposals": true,
+  "targets": "defaults, not IE 11",
+}
+`;
+
+exports[`getSwcOutputConfig() handles preset-env: browser + umd + current 1`] = `
+Object {
+  "bugfixes": true,
+  "loose": false,
+  "mode": undefined,
+  "shippedProposals": true,
+  "targets": "> 1%, not dead",
+}
+`;
+
+exports[`getSwcOutputConfig() handles preset-env: browser + umd + experimental 1`] = `
+Object {
+  "bugfixes": true,
+  "loose": false,
+  "mode": undefined,
+  "shippedProposals": true,
+  "targets": "last 2 chrome versions, last 2 firefox versions",
+}
+`;
+
+exports[`getSwcOutputConfig() handles preset-env: browser + umd + legacy 1`] = `
+Object {
+  "bugfixes": true,
+  "loose": false,
+  "mode": undefined,
+  "shippedProposals": true,
+  "targets": "IE 11",
+}
+`;
+
+exports[`getSwcOutputConfig() handles preset-env: browser + umd + stable 1`] = `
+Object {
+  "bugfixes": true,
+  "loose": false,
+  "mode": undefined,
+  "shippedProposals": true,
+  "targets": "defaults, not IE 11",
+}
+`;
+
+exports[`getSwcOutputConfig() handles preset-env: native + lib + current 1`] = `
+Object {
+  "bugfixes": true,
+  "include": Array [
+    "proposal-logical-assignment-operators",
+    "proposal-nullish-coalescing-operator",
+    "proposal-optional-chaining",
+  ],
+  "loose": false,
+  "mode": undefined,
+  "shippedProposals": true,
+  "targets": "iOS 12",
+}
+`;
+
+exports[`getSwcOutputConfig() handles preset-env: native + lib + experimental 1`] = `
+Object {
+  "bugfixes": true,
+  "include": Array [
+    "proposal-logical-assignment-operators",
+    "proposal-nullish-coalescing-operator",
+    "proposal-optional-chaining",
+  ],
+  "loose": false,
+  "mode": undefined,
+  "shippedProposals": true,
+  "targets": "iOS 14",
+}
+`;
+
+exports[`getSwcOutputConfig() handles preset-env: native + lib + legacy 1`] = `
+Object {
+  "bugfixes": true,
+  "include": Array [
+    "proposal-logical-assignment-operators",
+    "proposal-nullish-coalescing-operator",
+    "proposal-optional-chaining",
+  ],
+  "loose": false,
+  "mode": undefined,
+  "shippedProposals": true,
+  "targets": "iOS 8",
+}
+`;
+
+exports[`getSwcOutputConfig() handles preset-env: native + lib + stable 1`] = `
+Object {
+  "bugfixes": true,
+  "include": Array [
+    "proposal-logical-assignment-operators",
+    "proposal-nullish-coalescing-operator",
+    "proposal-optional-chaining",
+  ],
+  "loose": false,
+  "mode": undefined,
+  "shippedProposals": true,
+  "targets": "iOS 10",
+}
+`;
+
+exports[`getSwcOutputConfig() handles preset-env: node + cjs + current 1`] = `
+Object {
+  "bugfixes": true,
+  "loose": false,
+  "mode": undefined,
+  "shippedProposals": true,
+  "targets": Object {
+    "node": "14.16.0",
+  },
+}
+`;
+
+exports[`getSwcOutputConfig() handles preset-env: node + cjs + experimental 1`] = `
+Object {
+  "bugfixes": true,
+  "loose": false,
+  "mode": undefined,
+  "shippedProposals": true,
+  "targets": Object {
+    "node": "16.0.0",
+  },
+}
+`;
+
+exports[`getSwcOutputConfig() handles preset-env: node + cjs + legacy 1`] = `
+Object {
+  "bugfixes": true,
+  "loose": false,
+  "mode": undefined,
+  "shippedProposals": true,
+  "targets": Object {
+    "node": "10.3.0",
+  },
+}
+`;
+
+exports[`getSwcOutputConfig() handles preset-env: node + cjs + stable 1`] = `
+Object {
+  "bugfixes": true,
+  "loose": false,
+  "mode": undefined,
+  "shippedProposals": true,
+  "targets": Object {
+    "node": "12.17.0",
+  },
+}
+`;
+
+exports[`getSwcOutputConfig() handles preset-env: node + lib + current 1`] = `
+Object {
+  "bugfixes": true,
+  "loose": false,
+  "mode": undefined,
+  "shippedProposals": true,
+  "targets": Object {
+    "node": "14.16.0",
+  },
+}
+`;
+
+exports[`getSwcOutputConfig() handles preset-env: node + lib + experimental 1`] = `
+Object {
+  "bugfixes": true,
+  "loose": false,
+  "mode": undefined,
+  "shippedProposals": true,
+  "targets": Object {
+    "node": "16.0.0",
+  },
+}
+`;
+
+exports[`getSwcOutputConfig() handles preset-env: node + lib + legacy 1`] = `
+Object {
+  "bugfixes": true,
+  "loose": false,
+  "mode": undefined,
+  "shippedProposals": true,
+  "targets": Object {
+    "node": "10.3.0",
+  },
+}
+`;
+
+exports[`getSwcOutputConfig() handles preset-env: node + lib + stable 1`] = `
+Object {
+  "bugfixes": true,
+  "loose": false,
+  "mode": undefined,
+  "shippedProposals": true,
+  "targets": Object {
+    "node": "12.17.0",
+  },
+}
+`;
+
+exports[`getSwcOutputConfig() handles preset-env: node + mjs + current 1`] = `
+Object {
+  "bugfixes": true,
+  "loose": false,
+  "mode": undefined,
+  "shippedProposals": true,
+  "targets": Object {
+    "node": "14.16.0",
+  },
+}
+`;
+
+exports[`getSwcOutputConfig() handles preset-env: node + mjs + experimental 1`] = `
+Object {
+  "bugfixes": true,
+  "loose": false,
+  "mode": undefined,
+  "shippedProposals": true,
+  "targets": Object {
+    "node": "16.0.0",
+  },
+}
+`;
+
+exports[`getSwcOutputConfig() handles preset-env: node + mjs + legacy 1`] = `
+Object {
+  "bugfixes": true,
+  "loose": false,
+  "mode": undefined,
+  "shippedProposals": true,
+  "targets": Object {
+    "node": "10.3.0",
+  },
+}
+`;
+
+exports[`getSwcOutputConfig() handles preset-env: node + mjs + stable 1`] = `
+Object {
+  "bugfixes": true,
+  "loose": false,
+  "mode": undefined,
+  "shippedProposals": true,
+  "targets": Object {
+    "node": "12.17.0",
+  },
+}
+`;
+
+exports[`getSwcOutputConfig() transforms async/await to promises when \`browser\` or \`native\` 1`] = `
+Object {
+  "caller": Object {
+    "name": "packemon",
+  },
+  "configFile": false,
+  "env": Object {
+    "bugfixes": true,
+    "include": Array [
+      "proposal-logical-assignment-operators",
+      "proposal-nullish-coalescing-operator",
+      "proposal-optional-chaining",
+    ],
+    "loose": false,
+    "mode": undefined,
+    "shippedProposals": true,
+    "targets": "defaults, not IE 11",
+  },
+  "jsc": Object {
+    "keepClassNames": true,
+    "parser": Object {
+      "syntax": "ecmascript",
+    },
+    "preserveAllComments": true,
+    "target": "es2018",
+    "transform": Object {
+      "optimizer": Object {
+        "globals": Object {
+          "vars": Object {
+            "__DEV__": "process.env.NODE_ENV !== 'production'",
+            "__PROD__": "process.env.NODE_ENV === 'production'",
+            "__TEST__": "process.env.NODE_ENV === 'test'",
+          },
+        },
+      },
+    },
+  },
+  "module": Object {
+    "ignoreDynamic": true,
+    "type": "commonjs",
+  },
+  "swcrc": false,
+}
+`;
+
+exports[`getSwcOutputConfig() transforms async/await to promises when \`browser\` or \`native\` 2`] = `
+Object {
+  "caller": Object {
+    "name": "packemon",
+  },
+  "configFile": false,
+  "env": Object {
+    "bugfixes": true,
+    "include": Array [
+      "proposal-logical-assignment-operators",
+      "proposal-nullish-coalescing-operator",
+      "proposal-optional-chaining",
+    ],
+    "loose": false,
+    "mode": undefined,
+    "shippedProposals": true,
+    "targets": "iOS 14",
+  },
+  "jsc": Object {
+    "keepClassNames": true,
+    "parser": Object {
+      "syntax": "ecmascript",
+    },
+    "preserveAllComments": true,
+    "target": "es2022",
+    "transform": Object {
+      "optimizer": Object {
+        "globals": Object {
+          "vars": Object {
+            "__DEV__": "process.env.NODE_ENV !== 'production'",
+            "__PROD__": "process.env.NODE_ENV === 'production'",
+            "__TEST__": "process.env.NODE_ENV === 'test'",
+          },
+        },
+      },
+    },
+  },
+  "module": Object {
+    "ignoreDynamic": true,
+    "type": "commonjs",
+  },
+  "swcrc": false,
+}
+`;
+
+exports[`getSwcOutputConfig() uses built-in destructuring and object spread when \`current\` or \`experimental\` 1`] = `
+Object {
+  "caller": Object {
+    "name": "packemon",
+  },
+  "configFile": false,
+  "env": Object {
+    "bugfixes": true,
+    "loose": false,
+    "mode": undefined,
+    "shippedProposals": true,
+    "targets": Object {
+      "node": "14.16.0",
+    },
+  },
+  "jsc": Object {
+    "keepClassNames": true,
+    "parser": Object {
+      "syntax": "ecmascript",
+    },
+    "preserveAllComments": true,
+    "target": "es2020",
+    "transform": Object {
+      "optimizer": Object {
+        "globals": Object {
+          "vars": Object {
+            "__DEV__": "process.env.NODE_ENV !== 'production'",
+            "__PROD__": "process.env.NODE_ENV === 'production'",
+            "__TEST__": "process.env.NODE_ENV === 'test'",
+          },
+        },
+      },
+    },
+  },
+  "module": Object {
+    "ignoreDynamic": true,
+    "type": "commonjs",
+  },
+  "swcrc": false,
+}
+`;
+
+exports[`getSwcOutputConfig() uses built-in destructuring and object spread when \`current\` or \`experimental\` 2`] = `
+Object {
+  "caller": Object {
+    "name": "packemon",
+  },
+  "configFile": false,
+  "env": Object {
+    "bugfixes": true,
+    "loose": false,
+    "mode": undefined,
+    "shippedProposals": true,
+    "targets": Object {
+      "node": "16.0.0",
+    },
+  },
+  "jsc": Object {
+    "keepClassNames": true,
+    "parser": Object {
+      "syntax": "ecmascript",
+    },
+    "preserveAllComments": true,
+    "target": "es2022",
+    "transform": Object {
+      "optimizer": Object {
+        "globals": Object {
+          "vars": Object {
+            "__DEV__": "process.env.NODE_ENV !== 'production'",
+            "__PROD__": "process.env.NODE_ENV === 'production'",
+            "__TEST__": "process.env.NODE_ENV === 'test'",
+          },
+        },
+      },
+    },
+  },
+  "module": Object {
+    "ignoreDynamic": true,
+    "type": "commonjs",
+  },
+  "swcrc": false,
+}
+`;
