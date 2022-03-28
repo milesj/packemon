@@ -1,9 +1,11 @@
 import { testExampleOutput } from '../helpers';
 
+// Dont need to test swc here
+
 describe('Rollup externals', () => {
-	testExampleOutput('externals.ts', { externals: ['@packemon/foo', '@packemon/bar'] });
+	testExampleOutput('externals.ts', 'babel', { externals: ['@packemon/foo', '@packemon/bar'] });
 });
 
 describe('Rollup externals (regex)', () => {
-	testExampleOutput('externals.ts', { externals: ['@packemon/\\*'] });
+	testExampleOutput('externals.ts', 'babel', { externals: ['@packemon/\\*'] });
 });

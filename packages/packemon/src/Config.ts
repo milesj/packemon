@@ -3,12 +3,15 @@ import { Configuration } from '@boost/config';
 import { BuildParams, ConfigFile, ConfigMutator, ConfigMutatorWithBuild } from './types';
 
 export class Config extends Configuration<ConfigFile> {
-	blueprint({ func }: Schemas): Blueprint<ConfigFile> {
+	blueprint({ bool, func }: Schemas): Blueprint<ConfigFile> {
 		return {
 			babelInput: func(),
 			babelOutput: func(),
 			rollupInput: func(),
 			rollupOutput: func(),
+			swc: bool(),
+			swcInput: func(),
+			swcOutput: func(),
 		};
 	}
 

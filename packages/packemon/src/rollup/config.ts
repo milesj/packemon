@@ -7,10 +7,12 @@ import json from '@rollup/plugin-json';
 import resolve from '@rollup/plugin-node-resolve';
 import { getBabelInputConfig, getBabelOutputConfig } from '../babel/config';
 import type { CodeArtifact } from '../CodeArtifact';
-import { EXCLUDE, EXTENSIONS } from '../constants';
+import { EXCLUDE, EXCLUDE_RUST, EXTENSIONS } from '../constants';
+import { getSwcInputConfig, getSwcOutputConfig } from '../swc/config';
 import { ConfigFile, FeatureFlags, Format } from '../types';
 import { addBinShebang } from './plugins/addBinShebang';
 import { copyAndRefAssets } from './plugins/copyAndRefAssets';
+import { swcInput, swcOutput } from './plugins/swc';
 
 function getRollupModuleFormat(format: Format): ModuleFormat {
 	if (
@@ -89,6 +91,8 @@ export function getRollupOutputConfig(
 ): OutputOptions {
 	const { platform, support } = artifact;
 	const { ext, folder } = artifact.getBuildOutput(format);
+	// eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
+	const isSwc = packemonConfig.swc || !!process.env.PACKEMON_SWC;
 
 	const output: OutputOptions = {
 		dir: artifact.package.path.append(folder).path(),
@@ -110,14 +114,21 @@ export function getRollupOutputConfig(
 		preferConst: support !== 'legacy',
 		// Output specific plugins
 		plugins: [
-			getBabelOutputPlugin({
-				...getBabelOutputConfig(platform, support, format, features, packemonConfig),
-				filename: artifact.package.path.path(),
-				// Provide a custom name for the UMD global
-				moduleId: format === 'umd' ? artifact.namespace : undefined,
-				// Maps are extracted above before transformation
-				sourceMaps: false,
-			}),
+			isSwc
+				? swcOutput({
+						...getSwcOutputConfig(platform, support, format, features, packemonConfig),
+						filename: artifact.package.path.path(),
+						// Maps were extracted before transformation
+						sourceMaps: false,
+				  })
+				: getBabelOutputPlugin({
+						...getBabelOutputConfig(platform, support, format, features, packemonConfig),
+						filename: artifact.package.path.path(),
+						// Provide a custom name for the UMD global
+						moduleId: format === 'umd' ? artifact.namespace : undefined,
+						// Maps were extracted before transformation
+						sourceMaps: false,
+				  }),
 			addBinShebang(),
 		],
 		// Always include source maps
@@ -131,7 +142,7 @@ export function getRollupOutputConfig(
 	}
 
 	// Automatically prepend a shebang for binaries
-	if (artifact.bundle) {
+	if (artifact.bundle && !(isSwc && format === 'umd')) {
 		output.banner = [
 			'// Bundled with Packemon: https://packemon.dev\n',
 			`// Platform: ${platform}, Support: ${support}, Format: ${format}\n\n`,
@@ -152,6 +163,8 @@ export function getRollupConfig(
 	const packagePath = artifact.package.packageJsonPath.path();
 	const isNode = artifact.platform === 'node';
 	const isTest = process.env.NODE_ENV === 'test';
+	// eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
+	const isSwc = packemonConfig.swc || !!process.env.PACKEMON_SWC;
 
 	const config: RollupOptions = {
 		cache: artifact.cache,
@@ -177,16 +190,24 @@ export function getRollupConfig(
 			copyAndRefAssets({
 				dir: artifact.package.path.append('assets').path(),
 			}),
-			// Declare Babel here so we can parse TypeScript/Flow
-			getBabelInputPlugin({
-				...getBabelInputConfig(artifact, features, packemonConfig),
-				babelHelpers: 'bundled',
-				exclude: isTest ? [] : EXCLUDE,
-				extensions: EXTENSIONS,
-				filename: artifact.package.path.path(),
-				// Extract maps from the original source
-				sourceMaps: true,
-			}),
+			// Declare Babel/swc here so we can parse TypeScript/Flow
+			isSwc
+				? swcInput({
+						...getSwcInputConfig(artifact, features, packemonConfig),
+						exclude: isTest ? [] : EXCLUDE_RUST,
+						filename: artifact.package.path.path(),
+						// Extract maps from the original source
+						sourceMaps: true,
+				  })
+				: getBabelInputPlugin({
+						...getBabelInputConfig(artifact, features, packemonConfig),
+						babelHelpers: 'bundled',
+						exclude: isTest ? [] : EXCLUDE,
+						extensions: EXTENSIONS,
+						filename: artifact.package.path.path(),
+						// Extract maps from the original source
+						sourceMaps: true,
+				  }),
 		],
 		// Treeshake for smaller builds
 		treeshake: artifact.bundle,

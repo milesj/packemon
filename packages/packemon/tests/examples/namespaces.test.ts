@@ -1,5 +1,6 @@
 import { testExampleOutput } from '../helpers';
 
 describe('Namespaces', () => {
-	testExampleOutput('namespaces.ts');
+	testExampleOutput('namespaces.ts', 'babel');
+	testExampleOutput('namespaces.ts', 'swc');
 });

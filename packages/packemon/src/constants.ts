@@ -51,6 +51,17 @@ export const EXCLUDE = [
 	'**/*-(test|spec).*',
 ];
 
+// Rust (swc) uses regex patterns
+export const EXCLUDE_RUST = [
+	'node_modules',
+	'tests',
+	'__fixtures__',
+	'__mocks__',
+	'__tests__',
+	'\\.(config|test|spec)\\.[a-z]+$',
+	'\\.(test|spec)\\.[a-z]+$',
+];
+
 // https://reactnative.dev/docs/javascript-environment
 // Based on browserslist: https://github.com/browserslist/browserslist
 export const NATIVE_TARGETS: { [K in Support]: string } = {
@@ -82,6 +93,13 @@ export const BROWSER_TARGETS: { [K in Support]: string[] | string } = {
 	current: ['> 1%', 'not dead'],
 	experimental: ['last 2 chrome versions', 'last 2 firefox versions'],
 };
+
+export const SUPPORT_TO_ESM_SPEC = {
+	legacy: 'es5',
+	stable: 'es2018',
+	current: 'es2020',
+	experimental: 'es2022',
+} as const;
 
 export const STATE_COLORS: { [K in ArtifactState]?: StyleType } = {
 	pending: 'muted',

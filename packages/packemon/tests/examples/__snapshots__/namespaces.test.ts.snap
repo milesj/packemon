@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Namespaces transforms example test case: browser-current-esm 1`] = `
+exports[`Namespaces babel transforms example test case: browser-current-esm 1`] = `
 Array [
   "esm/index-browser-current-esm.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -19,7 +19,7 @@ export { helpers as ns1, helpers as ns2 };
 ]
 `;
 
-exports[`Namespaces transforms example test case: browser-current-lib 1`] = `
+exports[`Namespaces babel transforms example test case: browser-current-lib 1`] = `
 Array [
   "lib/index-browser-current-lib.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -45,7 +45,7 @@ exports.ns2 = helpers;
 ]
 `;
 
-exports[`Namespaces transforms example test case: browser-current-umd 1`] = `
+exports[`Namespaces babel transforms example test case: browser-current-umd 1`] = `
 Array [
   "umd/index-browser-current-umd.js",
   "(function (global, factory) {
@@ -85,7 +85,7 @@ Array [
 ]
 `;
 
-exports[`Namespaces transforms example test case: browser-experimental-esm 1`] = `
+exports[`Namespaces babel transforms example test case: browser-experimental-esm 1`] = `
 Array [
   "esm/index-browser-experimental-esm.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -104,7 +104,7 @@ export { helpers as ns1, helpers as ns2 };
 ]
 `;
 
-exports[`Namespaces transforms example test case: browser-experimental-lib 1`] = `
+exports[`Namespaces babel transforms example test case: browser-experimental-lib 1`] = `
 Array [
   "lib/index-browser-experimental-lib.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -130,7 +130,7 @@ exports.ns2 = helpers;
 ]
 `;
 
-exports[`Namespaces transforms example test case: browser-experimental-umd 1`] = `
+exports[`Namespaces babel transforms example test case: browser-experimental-umd 1`] = `
 Array [
   "umd/index-browser-experimental-umd.js",
   "(function (global, factory) {
@@ -170,7 +170,7 @@ Array [
 ]
 `;
 
-exports[`Namespaces transforms example test case: browser-legacy-esm 1`] = `
+exports[`Namespaces babel transforms example test case: browser-legacy-esm 1`] = `
 Array [
   "esm/index-browser-legacy-esm.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -189,7 +189,7 @@ export { helpers as ns1, helpers as ns2 };
 ]
 `;
 
-exports[`Namespaces transforms example test case: browser-legacy-lib 1`] = `
+exports[`Namespaces babel transforms example test case: browser-legacy-lib 1`] = `
 Array [
   "lib/index-browser-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -215,7 +215,7 @@ exports.ns2 = helpers;
 ]
 `;
 
-exports[`Namespaces transforms example test case: browser-legacy-umd 1`] = `
+exports[`Namespaces babel transforms example test case: browser-legacy-umd 1`] = `
 Array [
   "umd/index-browser-legacy-umd.js",
   "(function (global, factory) {
@@ -255,7 +255,7 @@ Array [
 ]
 `;
 
-exports[`Namespaces transforms example test case: browser-stable-esm 1`] = `
+exports[`Namespaces babel transforms example test case: browser-stable-esm 1`] = `
 Array [
   "esm/index-browser-stable-esm.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -274,7 +274,7 @@ export { helpers as ns1, helpers as ns2 };
 ]
 `;
 
-exports[`Namespaces transforms example test case: browser-stable-lib 1`] = `
+exports[`Namespaces babel transforms example test case: browser-stable-lib 1`] = `
 Array [
   "lib/index-browser-stable-lib.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -300,7 +300,7 @@ exports.ns2 = helpers;
 ]
 `;
 
-exports[`Namespaces transforms example test case: browser-stable-umd 1`] = `
+exports[`Namespaces babel transforms example test case: browser-stable-umd 1`] = `
 Array [
   "umd/index-browser-stable-umd.js",
   "(function (global, factory) {
@@ -340,7 +340,7 @@ Array [
 ]
 `;
 
-exports[`Namespaces transforms example test case: native-current-lib 1`] = `
+exports[`Namespaces babel transforms example test case: native-current-lib 1`] = `
 Array [
   "lib/index-native-current-lib.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -366,7 +366,7 @@ exports.ns2 = helpers;
 ]
 `;
 
-exports[`Namespaces transforms example test case: native-experimental-lib 1`] = `
+exports[`Namespaces babel transforms example test case: native-experimental-lib 1`] = `
 Array [
   "lib/index-native-experimental-lib.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -392,7 +392,7 @@ exports.ns2 = helpers;
 ]
 `;
 
-exports[`Namespaces transforms example test case: native-legacy-lib 1`] = `
+exports[`Namespaces babel transforms example test case: native-legacy-lib 1`] = `
 Array [
   "lib/index-native-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -418,7 +418,7 @@ exports.ns2 = helpers;
 ]
 `;
 
-exports[`Namespaces transforms example test case: native-stable-lib 1`] = `
+exports[`Namespaces babel transforms example test case: native-stable-lib 1`] = `
 Array [
   "lib/index-native-stable-lib.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -444,7 +444,7 @@ exports.ns2 = helpers;
 ]
 `;
 
-exports[`Namespaces transforms example test case: node-current-cjs 1`] = `
+exports[`Namespaces babel transforms example test case: node-current-cjs 1`] = `
 Array [
   "cjs/index-node-current-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -470,7 +470,7 @@ exports.ns2 = helpers;
 ]
 `;
 
-exports[`Namespaces transforms example test case: node-current-lib 1`] = `
+exports[`Namespaces babel transforms example test case: node-current-lib 1`] = `
 Array [
   "lib/index-node-current-lib.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -496,7 +496,7 @@ exports.ns2 = helpers;
 ]
 `;
 
-exports[`Namespaces transforms example test case: node-current-mjs 1`] = `
+exports[`Namespaces babel transforms example test case: node-current-mjs 1`] = `
 Array [
   "mjs/index-node-current-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -515,7 +515,7 @@ export { helpers as ns1, helpers as ns2 };
 ]
 `;
 
-exports[`Namespaces transforms example test case: node-experimental-cjs 1`] = `
+exports[`Namespaces babel transforms example test case: node-experimental-cjs 1`] = `
 Array [
   "cjs/index-node-experimental-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -541,7 +541,7 @@ exports.ns2 = helpers;
 ]
 `;
 
-exports[`Namespaces transforms example test case: node-experimental-lib 1`] = `
+exports[`Namespaces babel transforms example test case: node-experimental-lib 1`] = `
 Array [
   "lib/index-node-experimental-lib.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -567,7 +567,7 @@ exports.ns2 = helpers;
 ]
 `;
 
-exports[`Namespaces transforms example test case: node-experimental-mjs 1`] = `
+exports[`Namespaces babel transforms example test case: node-experimental-mjs 1`] = `
 Array [
   "mjs/index-node-experimental-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -586,7 +586,7 @@ export { helpers as ns1, helpers as ns2 };
 ]
 `;
 
-exports[`Namespaces transforms example test case: node-legacy-cjs 1`] = `
+exports[`Namespaces babel transforms example test case: node-legacy-cjs 1`] = `
 Array [
   "cjs/index-node-legacy-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -612,7 +612,7 @@ exports.ns2 = helpers;
 ]
 `;
 
-exports[`Namespaces transforms example test case: node-legacy-lib 1`] = `
+exports[`Namespaces babel transforms example test case: node-legacy-lib 1`] = `
 Array [
   "lib/index-node-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -638,7 +638,7 @@ exports.ns2 = helpers;
 ]
 `;
 
-exports[`Namespaces transforms example test case: node-legacy-mjs 1`] = `
+exports[`Namespaces babel transforms example test case: node-legacy-mjs 1`] = `
 Array [
   "mjs/index-node-legacy-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -657,7 +657,7 @@ export { helpers as ns1, helpers as ns2 };
 ]
 `;
 
-exports[`Namespaces transforms example test case: node-stable-cjs 1`] = `
+exports[`Namespaces babel transforms example test case: node-stable-cjs 1`] = `
 Array [
   "cjs/index-node-stable-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -683,7 +683,7 @@ exports.ns2 = helpers;
 ]
 `;
 
-exports[`Namespaces transforms example test case: node-stable-lib 1`] = `
+exports[`Namespaces babel transforms example test case: node-stable-lib 1`] = `
 Array [
   "lib/index-node-stable-lib.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -709,7 +709,7 @@ exports.ns2 = helpers;
 ]
 `;
 
-exports[`Namespaces transforms example test case: node-stable-mjs 1`] = `
+exports[`Namespaces babel transforms example test case: node-stable-mjs 1`] = `
 Array [
   "mjs/index-node-stable-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -722,6 +722,642 @@ const helpers = /*#__PURE__*/Object.freeze({
   __proto__: null,
   foo,
   bar
+});
+export { helpers as ns1, helpers as ns2 };
+",
+]
+`;
+
+exports[`Namespaces swc transforms example test case: browser-current-esm 1`] = `
+Array [
+  "esm/index-browser-current-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: current, Format: esm
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+});
+export { helpers as ns1, helpers as ns2 };
+",
+]
+`;
+
+exports[`Namespaces swc transforms example test case: browser-current-lib 1`] = `
+Array [
+  "lib/index-browser-current-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: current, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+});
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+",
+]
+`;
+
+exports[`Namespaces swc transforms example test case: browser-current-umd 1`] = `
+Array [
+  "umd/index-browser-current-umd.js",
+  "(function(global, factory) {
+    if (typeof define === \\"function\\" && define.amd) {
+        define([
+            \\"exports\\"
+        ], factory);
+    } else if (typeof exports !== \\"undefined\\") {
+        factory(exports);
+    } else {
+        var mod = {
+            exports: {}
+        };
+        factory(mod.exports);
+        global.examples = mod.exports;
+    }
+})(this, function(_exports) {
+    \\"use strict\\";
+    Object.defineProperty(_exports, \\"__esModule\\", {
+        value: true
+    });
+    _exports.ns2 = _exports.ns1 = void 0;
+    function foo() {}
+    function bar() {}
+    const helpers = /*#__PURE__*/ Object.freeze({
+        __proto__: null,
+        foo,
+        bar
+    });
+    _exports.ns1 = helpers;
+    _exports.ns2 = helpers;
+});
+",
+]
+`;
+
+exports[`Namespaces swc transforms example test case: browser-experimental-esm 1`] = `
+Array [
+  "esm/index-browser-experimental-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: experimental, Format: esm
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+});
+export { helpers as ns1, helpers as ns2 };
+",
+]
+`;
+
+exports[`Namespaces swc transforms example test case: browser-experimental-lib 1`] = `
+Array [
+  "lib/index-browser-experimental-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: experimental, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+});
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+",
+]
+`;
+
+exports[`Namespaces swc transforms example test case: browser-experimental-umd 1`] = `
+Array [
+  "umd/index-browser-experimental-umd.js",
+  "(function(global, factory) {
+    if (typeof define === \\"function\\" && define.amd) {
+        define([
+            \\"exports\\"
+        ], factory);
+    } else if (typeof exports !== \\"undefined\\") {
+        factory(exports);
+    } else {
+        var mod = {
+            exports: {}
+        };
+        factory(mod.exports);
+        global.examples = mod.exports;
+    }
+})(this, function(_exports) {
+    \\"use strict\\";
+    Object.defineProperty(_exports, \\"__esModule\\", {
+        value: true
+    });
+    _exports.ns2 = _exports.ns1 = void 0;
+    function foo() {}
+    function bar() {}
+    const helpers = /*#__PURE__*/ Object.freeze({
+        __proto__: null,
+        foo,
+        bar
+    });
+    _exports.ns1 = helpers;
+    _exports.ns2 = helpers;
+});
+",
+]
+`;
+
+exports[`Namespaces swc transforms example test case: browser-legacy-esm 1`] = `
+Array [
+  "esm/index-browser-legacy-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: legacy, Format: esm
+function foo() {}
+function bar() {}
+var helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo: foo,
+    bar: bar
+});
+export { helpers as ns1, helpers as ns2 };
+",
+]
+`;
+
+exports[`Namespaces swc transforms example test case: browser-legacy-lib 1`] = `
+Array [
+  "lib/index-browser-legacy-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: legacy, Format: lib
+\\"use strict\\";
+Object.defineProperty(exports, \\"__esModule\\", {
+    value: true
+});
+function foo() {}
+function bar() {}
+var helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo: foo,
+    bar: bar
+});
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+",
+]
+`;
+
+exports[`Namespaces swc transforms example test case: browser-legacy-umd 1`] = `
+Array [
+  "umd/index-browser-legacy-umd.js",
+  "(function(global, factory) {
+    if (typeof define === \\"function\\" && define.amd) {
+        define([
+            \\"exports\\"
+        ], factory);
+    } else if (typeof exports !== \\"undefined\\") {
+        factory(exports);
+    } else {
+        var mod = {
+            exports: {}
+        };
+        factory(mod.exports);
+        global.examples = mod.exports;
+    }
+})(this, function(_exports) {
+    \\"use strict\\";
+    Object.defineProperty(_exports, \\"__esModule\\", {
+        value: true
+    });
+    _exports.ns2 = _exports.ns1 = void 0;
+    function foo() {}
+    function bar() {}
+    var helpers = /*#__PURE__*/ Object.freeze({
+        __proto__: null,
+        foo: foo,
+        bar: bar
+    });
+    _exports.ns1 = helpers;
+    _exports.ns2 = helpers;
+});
+",
+]
+`;
+
+exports[`Namespaces swc transforms example test case: browser-stable-esm 1`] = `
+Array [
+  "esm/index-browser-stable-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: stable, Format: esm
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+});
+export { helpers as ns1, helpers as ns2 };
+",
+]
+`;
+
+exports[`Namespaces swc transforms example test case: browser-stable-lib 1`] = `
+Array [
+  "lib/index-browser-stable-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: stable, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+});
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+",
+]
+`;
+
+exports[`Namespaces swc transforms example test case: browser-stable-umd 1`] = `
+Array [
+  "umd/index-browser-stable-umd.js",
+  "(function(global, factory) {
+    if (typeof define === \\"function\\" && define.amd) {
+        define([
+            \\"exports\\"
+        ], factory);
+    } else if (typeof exports !== \\"undefined\\") {
+        factory(exports);
+    } else {
+        var mod = {
+            exports: {}
+        };
+        factory(mod.exports);
+        global.examples = mod.exports;
+    }
+})(this, function(_exports) {
+    \\"use strict\\";
+    Object.defineProperty(_exports, \\"__esModule\\", {
+        value: true
+    });
+    _exports.ns2 = _exports.ns1 = void 0;
+    function foo() {}
+    function bar() {}
+    const helpers = /*#__PURE__*/ Object.freeze({
+        __proto__: null,
+        foo,
+        bar
+    });
+    _exports.ns1 = helpers;
+    _exports.ns2 = helpers;
+});
+",
+]
+`;
+
+exports[`Namespaces swc transforms example test case: native-current-lib 1`] = `
+Array [
+  "lib/index-native-current-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: current, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+});
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+",
+]
+`;
+
+exports[`Namespaces swc transforms example test case: native-experimental-lib 1`] = `
+Array [
+  "lib/index-native-experimental-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: experimental, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+});
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+",
+]
+`;
+
+exports[`Namespaces swc transforms example test case: native-legacy-lib 1`] = `
+Array [
+  "lib/index-native-legacy-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: legacy, Format: lib
+\\"use strict\\";
+Object.defineProperty(exports, \\"__esModule\\", {
+    value: true
+});
+function foo() {}
+function bar() {}
+var helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo: foo,
+    bar: bar
+});
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+",
+]
+`;
+
+exports[`Namespaces swc transforms example test case: native-stable-lib 1`] = `
+Array [
+  "lib/index-native-stable-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: stable, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+});
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+",
+]
+`;
+
+exports[`Namespaces swc transforms example test case: node-current-cjs 1`] = `
+Array [
+  "cjs/index-node-current-cjs.cjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: current, Format: cjs
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+});
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+",
+]
+`;
+
+exports[`Namespaces swc transforms example test case: node-current-lib 1`] = `
+Array [
+  "lib/index-node-current-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: current, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+});
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+",
+]
+`;
+
+exports[`Namespaces swc transforms example test case: node-current-mjs 1`] = `
+Array [
+  "mjs/index-node-current-mjs.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: current, Format: mjs
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+});
+export { helpers as ns1, helpers as ns2 };
+",
+]
+`;
+
+exports[`Namespaces swc transforms example test case: node-experimental-cjs 1`] = `
+Array [
+  "cjs/index-node-experimental-cjs.cjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: experimental, Format: cjs
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+});
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+",
+]
+`;
+
+exports[`Namespaces swc transforms example test case: node-experimental-lib 1`] = `
+Array [
+  "lib/index-node-experimental-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: experimental, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+});
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+",
+]
+`;
+
+exports[`Namespaces swc transforms example test case: node-experimental-mjs 1`] = `
+Array [
+  "mjs/index-node-experimental-mjs.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: experimental, Format: mjs
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+});
+export { helpers as ns1, helpers as ns2 };
+",
+]
+`;
+
+exports[`Namespaces swc transforms example test case: node-legacy-cjs 1`] = `
+Array [
+  "cjs/index-node-legacy-cjs.cjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: legacy, Format: cjs
+\\"use strict\\";
+Object.defineProperty(exports, \\"__esModule\\", {
+    value: true
+});
+function foo() {}
+function bar() {}
+var helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo: foo,
+    bar: bar
+});
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+",
+]
+`;
+
+exports[`Namespaces swc transforms example test case: node-legacy-lib 1`] = `
+Array [
+  "lib/index-node-legacy-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: legacy, Format: lib
+\\"use strict\\";
+Object.defineProperty(exports, \\"__esModule\\", {
+    value: true
+});
+function foo() {}
+function bar() {}
+var helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo: foo,
+    bar: bar
+});
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+",
+]
+`;
+
+exports[`Namespaces swc transforms example test case: node-legacy-mjs 1`] = `
+Array [
+  "mjs/index-node-legacy-mjs.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: legacy, Format: mjs
+function foo() {}
+function bar() {}
+var helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo: foo,
+    bar: bar
+});
+export { helpers as ns1, helpers as ns2 };
+",
+]
+`;
+
+exports[`Namespaces swc transforms example test case: node-stable-cjs 1`] = `
+Array [
+  "cjs/index-node-stable-cjs.cjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: cjs
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+});
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+",
+]
+`;
+
+exports[`Namespaces swc transforms example test case: node-stable-lib 1`] = `
+Array [
+  "lib/index-node-stable-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+});
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+",
+]
+`;
+
+exports[`Namespaces swc transforms example test case: node-stable-mjs 1`] = `
+Array [
+  "mjs/index-node-stable-mjs.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: mjs
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo,
+    bar
 });
 export { helpers as ns1, helpers as ns2 };
 ",

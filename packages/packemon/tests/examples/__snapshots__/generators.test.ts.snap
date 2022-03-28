@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Generators transforms example test case: browser-current-esm 1`] = `
+exports[`Generators babel transforms example test case: browser-current-esm 1`] = `
 Array [
   "esm/index-browser-current-esm.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -18,7 +18,7 @@ export { gen, runGen };
 ]
 `;
 
-exports[`Generators transforms example test case: browser-current-lib 1`] = `
+exports[`Generators babel transforms example test case: browser-current-lib 1`] = `
 Array [
   "lib/index-browser-current-lib.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -43,7 +43,7 @@ exports.runGen = runGen;
 ]
 `;
 
-exports[`Generators transforms example test case: browser-current-umd 1`] = `
+exports[`Generators babel transforms example test case: browser-current-umd 1`] = `
 Array [
   "umd/index-browser-current-umd.js",
   "(function (global, factory) {
@@ -81,7 +81,7 @@ Array [
 ]
 `;
 
-exports[`Generators transforms example test case: browser-experimental-esm 1`] = `
+exports[`Generators babel transforms example test case: browser-experimental-esm 1`] = `
 Array [
   "esm/index-browser-experimental-esm.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -99,7 +99,7 @@ export { gen, runGen };
 ]
 `;
 
-exports[`Generators transforms example test case: browser-experimental-lib 1`] = `
+exports[`Generators babel transforms example test case: browser-experimental-lib 1`] = `
 Array [
   "lib/index-browser-experimental-lib.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -124,7 +124,7 @@ exports.runGen = runGen;
 ]
 `;
 
-exports[`Generators transforms example test case: browser-experimental-umd 1`] = `
+exports[`Generators babel transforms example test case: browser-experimental-umd 1`] = `
 Array [
   "umd/index-browser-experimental-umd.js",
   "(function (global, factory) {
@@ -162,7 +162,7 @@ Array [
 ]
 `;
 
-exports[`Generators transforms example test case: browser-legacy-esm 1`] = `
+exports[`Generators babel transforms example test case: browser-legacy-esm 1`] = `
 Array [
   "esm/index-browser-legacy-esm.js",
   "function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== \\"undefined\\" && o[Symbol.iterator] || o[\\"@@iterator\\"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === \\"number\\") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError(\\"Invalid attempt to iterate non-iterable instance.\\\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\\"); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
@@ -210,7 +210,7 @@ export { gen, runGen };
 ]
 `;
 
-exports[`Generators transforms example test case: browser-legacy-lib 1`] = `
+exports[`Generators babel transforms example test case: browser-legacy-lib 1`] = `
 Array [
   "lib/index-browser-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -265,7 +265,7 @@ exports.runGen = runGen;
 ]
 `;
 
-exports[`Generators transforms example test case: browser-legacy-umd 1`] = `
+exports[`Generators babel transforms example test case: browser-legacy-umd 1`] = `
 Array [
   "umd/index-browser-legacy-umd.js",
   "(function (global, factory) {
@@ -334,7 +334,7 @@ Array [
 ]
 `;
 
-exports[`Generators transforms example test case: browser-stable-esm 1`] = `
+exports[`Generators babel transforms example test case: browser-stable-esm 1`] = `
 Array [
   "esm/index-browser-stable-esm.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -352,7 +352,7 @@ export { gen, runGen };
 ]
 `;
 
-exports[`Generators transforms example test case: browser-stable-lib 1`] = `
+exports[`Generators babel transforms example test case: browser-stable-lib 1`] = `
 Array [
   "lib/index-browser-stable-lib.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -377,7 +377,7 @@ exports.runGen = runGen;
 ]
 `;
 
-exports[`Generators transforms example test case: browser-stable-umd 1`] = `
+exports[`Generators babel transforms example test case: browser-stable-umd 1`] = `
 Array [
   "umd/index-browser-stable-umd.js",
   "(function (global, factory) {
@@ -415,7 +415,7 @@ Array [
 ]
 `;
 
-exports[`Generators transforms example test case: native-current-lib 1`] = `
+exports[`Generators babel transforms example test case: native-current-lib 1`] = `
 Array [
   "lib/index-native-current-lib.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -440,7 +440,7 @@ exports.runGen = runGen;
 ]
 `;
 
-exports[`Generators transforms example test case: native-experimental-lib 1`] = `
+exports[`Generators babel transforms example test case: native-experimental-lib 1`] = `
 Array [
   "lib/index-native-experimental-lib.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -465,7 +465,7 @@ exports.runGen = runGen;
 ]
 `;
 
-exports[`Generators transforms example test case: native-legacy-lib 1`] = `
+exports[`Generators babel transforms example test case: native-legacy-lib 1`] = `
 Array [
   "lib/index-native-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -520,7 +520,7 @@ exports.runGen = runGen;
 ]
 `;
 
-exports[`Generators transforms example test case: native-stable-lib 1`] = `
+exports[`Generators babel transforms example test case: native-stable-lib 1`] = `
 Array [
   "lib/index-native-stable-lib.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -545,7 +545,7 @@ exports.runGen = runGen;
 ]
 `;
 
-exports[`Generators transforms example test case: node-current-cjs 1`] = `
+exports[`Generators babel transforms example test case: node-current-cjs 1`] = `
 Array [
   "cjs/index-node-current-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -570,7 +570,7 @@ exports.runGen = runGen;
 ]
 `;
 
-exports[`Generators transforms example test case: node-current-lib 1`] = `
+exports[`Generators babel transforms example test case: node-current-lib 1`] = `
 Array [
   "lib/index-node-current-lib.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -595,7 +595,7 @@ exports.runGen = runGen;
 ]
 `;
 
-exports[`Generators transforms example test case: node-current-mjs 1`] = `
+exports[`Generators babel transforms example test case: node-current-mjs 1`] = `
 Array [
   "mjs/index-node-current-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -613,7 +613,7 @@ export { gen, runGen };
 ]
 `;
 
-exports[`Generators transforms example test case: node-experimental-cjs 1`] = `
+exports[`Generators babel transforms example test case: node-experimental-cjs 1`] = `
 Array [
   "cjs/index-node-experimental-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -638,7 +638,7 @@ exports.runGen = runGen;
 ]
 `;
 
-exports[`Generators transforms example test case: node-experimental-lib 1`] = `
+exports[`Generators babel transforms example test case: node-experimental-lib 1`] = `
 Array [
   "lib/index-node-experimental-lib.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -663,7 +663,7 @@ exports.runGen = runGen;
 ]
 `;
 
-exports[`Generators transforms example test case: node-experimental-mjs 1`] = `
+exports[`Generators babel transforms example test case: node-experimental-mjs 1`] = `
 Array [
   "mjs/index-node-experimental-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -681,7 +681,7 @@ export { gen, runGen };
 ]
 `;
 
-exports[`Generators transforms example test case: node-legacy-cjs 1`] = `
+exports[`Generators babel transforms example test case: node-legacy-cjs 1`] = `
 Array [
   "cjs/index-node-legacy-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -706,7 +706,7 @@ exports.runGen = runGen;
 ]
 `;
 
-exports[`Generators transforms example test case: node-legacy-lib 1`] = `
+exports[`Generators babel transforms example test case: node-legacy-lib 1`] = `
 Array [
   "lib/index-node-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -731,7 +731,7 @@ exports.runGen = runGen;
 ]
 `;
 
-exports[`Generators transforms example test case: node-legacy-mjs 1`] = `
+exports[`Generators babel transforms example test case: node-legacy-mjs 1`] = `
 Array [
   "mjs/index-node-legacy-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -749,7 +749,7 @@ export { gen, runGen };
 ]
 `;
 
-exports[`Generators transforms example test case: node-stable-cjs 1`] = `
+exports[`Generators babel transforms example test case: node-stable-cjs 1`] = `
 Array [
   "cjs/index-node-stable-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -774,7 +774,7 @@ exports.runGen = runGen;
 ]
 `;
 
-exports[`Generators transforms example test case: node-stable-lib 1`] = `
+exports[`Generators babel transforms example test case: node-stable-lib 1`] = `
 Array [
   "lib/index-node-stable-lib.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -799,7 +799,7 @@ exports.runGen = runGen;
 ]
 `;
 
-exports[`Generators transforms example test case: node-stable-mjs 1`] = `
+exports[`Generators babel transforms example test case: node-stable-mjs 1`] = `
 Array [
   "mjs/index-node-stable-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -812,6 +812,690 @@ function runGen() {
   }
 }
 
+export { gen, runGen };
+",
+]
+`;
+
+exports[`Generators swc transforms example test case: browser-current-esm 1`] = `
+Array [
+  "esm/index-browser-current-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: current, Format: esm
+function* gen() {}
+function runGen() {
+    for (const iterator of gen())console.log(iterator);
+}
+export { gen, runGen };
+",
+]
+`;
+
+exports[`Generators swc transforms example test case: browser-current-lib 1`] = `
+Array [
+  "lib/index-browser-current-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: current, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function* gen() {}
+function runGen() {
+    for (const iterator of gen())console.log(iterator);
+}
+exports.gen = gen;
+exports.runGen = runGen;
+",
+]
+`;
+
+exports[`Generators swc transforms example test case: browser-current-umd 1`] = `
+Array [
+  "umd/index-browser-current-umd.js",
+  "(function(global, factory) {
+    if (typeof define === \\"function\\" && define.amd) {
+        define([
+            \\"exports\\"
+        ], factory);
+    } else if (typeof exports !== \\"undefined\\") {
+        factory(exports);
+    } else {
+        var mod = {
+            exports: {}
+        };
+        factory(mod.exports);
+        global.examples = mod.exports;
+    }
+})(this, function(_exports) {
+    \\"use strict\\";
+    Object.defineProperty(_exports, \\"__esModule\\", {
+        value: true
+    });
+    _exports.runGen = _exports.gen = void 0;
+    function* gen() {}
+    _exports.gen = gen;
+    function runGen() {
+        for (const iterator of gen())console.log(iterator);
+    }
+    _exports.runGen = runGen;
+});
+",
+]
+`;
+
+exports[`Generators swc transforms example test case: browser-experimental-esm 1`] = `
+Array [
+  "esm/index-browser-experimental-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: experimental, Format: esm
+function* gen() {}
+function runGen() {
+    for (const iterator of gen())console.log(iterator);
+}
+export { gen, runGen };
+",
+]
+`;
+
+exports[`Generators swc transforms example test case: browser-experimental-lib 1`] = `
+Array [
+  "lib/index-browser-experimental-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: experimental, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function* gen() {}
+function runGen() {
+    for (const iterator of gen())console.log(iterator);
+}
+exports.gen = gen;
+exports.runGen = runGen;
+",
+]
+`;
+
+exports[`Generators swc transforms example test case: browser-experimental-umd 1`] = `
+Array [
+  "umd/index-browser-experimental-umd.js",
+  "(function(global, factory) {
+    if (typeof define === \\"function\\" && define.amd) {
+        define([
+            \\"exports\\"
+        ], factory);
+    } else if (typeof exports !== \\"undefined\\") {
+        factory(exports);
+    } else {
+        var mod = {
+            exports: {}
+        };
+        factory(mod.exports);
+        global.examples = mod.exports;
+    }
+})(this, function(_exports) {
+    \\"use strict\\";
+    Object.defineProperty(_exports, \\"__esModule\\", {
+        value: true
+    });
+    _exports.runGen = _exports.gen = void 0;
+    function* gen() {}
+    _exports.gen = gen;
+    function runGen() {
+        for (const iterator of gen())console.log(iterator);
+    }
+    _exports.runGen = runGen;
+});
+",
+]
+`;
+
+exports[`Generators swc transforms example test case: browser-legacy-esm 1`] = `
+Array [
+  "esm/index-browser-legacy-esm.js",
+  "import regeneratorRuntime from \\"regenerator-runtime\\";
+var _marked = regeneratorRuntime.mark(gen);
+// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: legacy, Format: esm
+function gen() {
+    return regeneratorRuntime.wrap(function gen$(_ctx) {
+        while(1)switch(_ctx.prev = _ctx.next){
+            case 0:
+            case \\"end\\":
+                return _ctx.stop();
+        }
+    }, _marked);
+}
+function runGen() {
+    var _iteratorNormalCompletion = true, _didIteratorError = false, _iteratorError = undefined;
+    try {
+        for(var _iterator = gen()[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true){
+            var iterator = _step.value;
+            console.log(iterator);
+        }
+    } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+    } finally{
+        try {
+            if (!_iteratorNormalCompletion && _iterator.return != null) {
+                _iterator.return();
+            }
+        } finally{
+            if (_didIteratorError) {
+                throw _iteratorError;
+            }
+        }
+    }
+}
+export { gen, runGen };
+",
+]
+`;
+
+exports[`Generators swc transforms example test case: browser-legacy-lib 1`] = `
+Array [
+  "lib/index-browser-legacy-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: legacy, Format: lib
+\\"use strict\\";
+var _regeneratorRuntime = _interopRequireDefault(require(\\"regenerator-runtime\\"));
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+        default: obj
+    };
+}
+var _marked = _regeneratorRuntime.default.mark(gen);
+Object.defineProperty(exports, \\"__esModule\\", {
+    value: true
+});
+function gen() {
+    return _regeneratorRuntime.default.wrap(function gen$(_ctx) {
+        while(1)switch(_ctx.prev = _ctx.next){
+            case 0:
+            case \\"end\\":
+                return _ctx.stop();
+        }
+    }, _marked);
+}
+function runGen() {
+    var _iteratorNormalCompletion = true, _didIteratorError = false, _iteratorError = undefined;
+    try {
+        for(var _iterator = gen()[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true){
+            var iterator = _step.value;
+            console.log(iterator);
+        }
+    } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+    } finally{
+        try {
+            if (!_iteratorNormalCompletion && _iterator.return != null) {
+                _iterator.return();
+            }
+        } finally{
+            if (_didIteratorError) {
+                throw _iteratorError;
+            }
+        }
+    }
+}
+exports.gen = gen;
+exports.runGen = runGen;
+",
+]
+`;
+
+exports[`Generators swc transforms example test case: browser-legacy-umd 1`] = `
+Array [
+  "umd/index-browser-legacy-umd.js",
+  "(function(global, factory) {
+    if (typeof define === \\"function\\" && define.amd) {
+        define([
+            \\"exports\\",
+            \\"regenerator-runtime\\"
+        ], factory);
+    } else if (typeof exports !== \\"undefined\\") {
+        factory(exports, require(\\"regenerator-runtime\\"));
+    } else {
+        var mod = {
+            exports: {}
+        };
+        factory(mod.exports, global.regeneratorRuntime);
+        global.examples = mod.exports;
+    }
+})(this, function(_exports, _regeneratorRuntime) {
+    \\"use strict\\";
+    _regeneratorRuntime = _interopRequireDefault(_regeneratorRuntime);
+    Object.defineProperty(_exports, \\"__esModule\\", {
+        value: true
+    });
+    _exports.runGen = _exports.gen = void 0;
+    function _interopRequireDefault(obj) {
+        return obj && obj.__esModule ? obj : {
+            default: obj
+        };
+    }
+    var _marked = _regeneratorRuntime.default.mark(gen);
+    function gen() {
+        return _regeneratorRuntime.default.wrap(function gen$(_ctx) {
+            while(1)switch(_ctx.prev = _ctx.next){
+                case 0:
+                case \\"end\\":
+                    return _ctx.stop();
+            }
+        }, _marked);
+    }
+    _exports.gen = gen;
+    function runGen() {
+        var _iteratorNormalCompletion = true, _didIteratorError = false, _iteratorError = undefined;
+        try {
+            for(var _iterator = gen()[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true){
+                var iterator = _step.value;
+                console.log(iterator);
+            }
+        } catch (err) {
+            _didIteratorError = true;
+            _iteratorError = err;
+        } finally{
+            try {
+                if (!_iteratorNormalCompletion && _iterator.return != null) {
+                    _iterator.return();
+                }
+            } finally{
+                if (_didIteratorError) {
+                    throw _iteratorError;
+                }
+            }
+        }
+    }
+    _exports.runGen = runGen;
+});
+",
+]
+`;
+
+exports[`Generators swc transforms example test case: browser-stable-esm 1`] = `
+Array [
+  "esm/index-browser-stable-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: stable, Format: esm
+function* gen() {}
+function runGen() {
+    for (const iterator of gen())console.log(iterator);
+}
+export { gen, runGen };
+",
+]
+`;
+
+exports[`Generators swc transforms example test case: browser-stable-lib 1`] = `
+Array [
+  "lib/index-browser-stable-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: stable, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function* gen() {}
+function runGen() {
+    for (const iterator of gen())console.log(iterator);
+}
+exports.gen = gen;
+exports.runGen = runGen;
+",
+]
+`;
+
+exports[`Generators swc transforms example test case: browser-stable-umd 1`] = `
+Array [
+  "umd/index-browser-stable-umd.js",
+  "(function(global, factory) {
+    if (typeof define === \\"function\\" && define.amd) {
+        define([
+            \\"exports\\"
+        ], factory);
+    } else if (typeof exports !== \\"undefined\\") {
+        factory(exports);
+    } else {
+        var mod = {
+            exports: {}
+        };
+        factory(mod.exports);
+        global.examples = mod.exports;
+    }
+})(this, function(_exports) {
+    \\"use strict\\";
+    Object.defineProperty(_exports, \\"__esModule\\", {
+        value: true
+    });
+    _exports.runGen = _exports.gen = void 0;
+    function* gen() {}
+    _exports.gen = gen;
+    function runGen() {
+        for (const iterator of gen())console.log(iterator);
+    }
+    _exports.runGen = runGen;
+});
+",
+]
+`;
+
+exports[`Generators swc transforms example test case: native-current-lib 1`] = `
+Array [
+  "lib/index-native-current-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: current, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function* gen() {}
+function runGen() {
+    for (const iterator of gen())console.log(iterator);
+}
+exports.gen = gen;
+exports.runGen = runGen;
+",
+]
+`;
+
+exports[`Generators swc transforms example test case: native-experimental-lib 1`] = `
+Array [
+  "lib/index-native-experimental-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: experimental, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function* gen() {}
+function runGen() {
+    for (const iterator of gen())console.log(iterator);
+}
+exports.gen = gen;
+exports.runGen = runGen;
+",
+]
+`;
+
+exports[`Generators swc transforms example test case: native-legacy-lib 1`] = `
+Array [
+  "lib/index-native-legacy-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: legacy, Format: lib
+\\"use strict\\";
+var _regeneratorRuntime = _interopRequireDefault(require(\\"regenerator-runtime\\"));
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+        default: obj
+    };
+}
+var _marked = _regeneratorRuntime.default.mark(gen);
+Object.defineProperty(exports, \\"__esModule\\", {
+    value: true
+});
+function gen() {
+    return _regeneratorRuntime.default.wrap(function gen$(_ctx) {
+        while(1)switch(_ctx.prev = _ctx.next){
+            case 0:
+            case \\"end\\":
+                return _ctx.stop();
+        }
+    }, _marked);
+}
+function runGen() {
+    var _iteratorNormalCompletion = true, _didIteratorError = false, _iteratorError = undefined;
+    try {
+        for(var _iterator = gen()[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true){
+            var iterator = _step.value;
+            console.log(iterator);
+        }
+    } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+    } finally{
+        try {
+            if (!_iteratorNormalCompletion && _iterator.return != null) {
+                _iterator.return();
+            }
+        } finally{
+            if (_didIteratorError) {
+                throw _iteratorError;
+            }
+        }
+    }
+}
+exports.gen = gen;
+exports.runGen = runGen;
+",
+]
+`;
+
+exports[`Generators swc transforms example test case: native-stable-lib 1`] = `
+Array [
+  "lib/index-native-stable-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: stable, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function* gen() {}
+function runGen() {
+    for (const iterator of gen())console.log(iterator);
+}
+exports.gen = gen;
+exports.runGen = runGen;
+",
+]
+`;
+
+exports[`Generators swc transforms example test case: node-current-cjs 1`] = `
+Array [
+  "cjs/index-node-current-cjs.cjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: current, Format: cjs
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function* gen() {}
+function runGen() {
+    for (const iterator of gen())console.log(iterator);
+}
+exports.gen = gen;
+exports.runGen = runGen;
+",
+]
+`;
+
+exports[`Generators swc transforms example test case: node-current-lib 1`] = `
+Array [
+  "lib/index-node-current-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: current, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function* gen() {}
+function runGen() {
+    for (const iterator of gen())console.log(iterator);
+}
+exports.gen = gen;
+exports.runGen = runGen;
+",
+]
+`;
+
+exports[`Generators swc transforms example test case: node-current-mjs 1`] = `
+Array [
+  "mjs/index-node-current-mjs.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: current, Format: mjs
+function* gen() {}
+function runGen() {
+    for (const iterator of gen())console.log(iterator);
+}
+export { gen, runGen };
+",
+]
+`;
+
+exports[`Generators swc transforms example test case: node-experimental-cjs 1`] = `
+Array [
+  "cjs/index-node-experimental-cjs.cjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: experimental, Format: cjs
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function* gen() {}
+function runGen() {
+    for (const iterator of gen())console.log(iterator);
+}
+exports.gen = gen;
+exports.runGen = runGen;
+",
+]
+`;
+
+exports[`Generators swc transforms example test case: node-experimental-lib 1`] = `
+Array [
+  "lib/index-node-experimental-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: experimental, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function* gen() {}
+function runGen() {
+    for (const iterator of gen())console.log(iterator);
+}
+exports.gen = gen;
+exports.runGen = runGen;
+",
+]
+`;
+
+exports[`Generators swc transforms example test case: node-experimental-mjs 1`] = `
+Array [
+  "mjs/index-node-experimental-mjs.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: experimental, Format: mjs
+function* gen() {}
+function runGen() {
+    for (const iterator of gen())console.log(iterator);
+}
+export { gen, runGen };
+",
+]
+`;
+
+exports[`Generators swc transforms example test case: node-legacy-cjs 1`] = `
+Array [
+  "cjs/index-node-legacy-cjs.cjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: legacy, Format: cjs
+\\"use strict\\";
+Object.defineProperty(exports, \\"__esModule\\", {
+    value: true
+});
+function* gen() {}
+function runGen() {
+    for (const iterator of gen())console.log(iterator);
+}
+exports.gen = gen;
+exports.runGen = runGen;
+",
+]
+`;
+
+exports[`Generators swc transforms example test case: node-legacy-lib 1`] = `
+Array [
+  "lib/index-node-legacy-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: legacy, Format: lib
+\\"use strict\\";
+Object.defineProperty(exports, \\"__esModule\\", {
+    value: true
+});
+function* gen() {}
+function runGen() {
+    for (const iterator of gen())console.log(iterator);
+}
+exports.gen = gen;
+exports.runGen = runGen;
+",
+]
+`;
+
+exports[`Generators swc transforms example test case: node-legacy-mjs 1`] = `
+Array [
+  "mjs/index-node-legacy-mjs.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: legacy, Format: mjs
+function* gen() {}
+function runGen() {
+    for (const iterator of gen())console.log(iterator);
+}
+export { gen, runGen };
+",
+]
+`;
+
+exports[`Generators swc transforms example test case: node-stable-cjs 1`] = `
+Array [
+  "cjs/index-node-stable-cjs.cjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: cjs
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function* gen() {}
+function runGen() {
+    for (const iterator of gen())console.log(iterator);
+}
+exports.gen = gen;
+exports.runGen = runGen;
+",
+]
+`;
+
+exports[`Generators swc transforms example test case: node-stable-lib 1`] = `
+Array [
+  "lib/index-node-stable-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function* gen() {}
+function runGen() {
+    for (const iterator of gen())console.log(iterator);
+}
+exports.gen = gen;
+exports.runGen = runGen;
+",
+]
+`;
+
+exports[`Generators swc transforms example test case: node-stable-mjs 1`] = `
+Array [
+  "mjs/index-node-stable-mjs.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: mjs
+function* gen() {}
+function runGen() {
+    for (const iterator of gen())console.log(iterator);
+}
 export { gen, runGen };
 ",
 ]
