@@ -7,6 +7,7 @@ module.exports = {
 		'setup',
 		'features',
 		'config',
+		'swc',
 		'esm',
 		{
 			type: 'category',
@@ -15,7 +16,6 @@ module.exports = {
 			items: ['build', 'clean', 'files', 'init', 'pack', 'scaffold', 'validate', 'watch'],
 		},
 		'advanced',
-		'swc',
 		{
 			type: 'category',
 			label: 'Migration',

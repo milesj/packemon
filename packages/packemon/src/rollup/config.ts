@@ -118,7 +118,7 @@ export function getRollupOutputConfig(
 		preferConst: support !== 'legacy',
 		// Output specific plugins
 		plugins: [
-			packemonConfig.swc
+			packemonConfig.swc || process.env.PACKEMON_SWC
 				? swcOutput({
 						...getSwcOutputConfig(platform, support, format, features, packemonConfig),
 						filename: artifact.package.path.path(),
@@ -190,8 +190,8 @@ export function getRollupConfig(
 			copyAndRefAssets({
 				dir: artifact.package.path.append('assets').path(),
 			}),
-			// Declare Babel here so we can parse TypeScript/Flow
-			packemonConfig.swc
+			// Declare Babel/swc here so we can parse TypeScript/Flow
+			packemonConfig.swc || process.env.PACKEMON_SWC
 				? swcInput({
 						...getSwcInputConfig(artifact, features, packemonConfig),
 						exclude: isTest ? [] : EXCLUDE_RUST,

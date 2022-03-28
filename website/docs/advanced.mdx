@@ -33,12 +33,12 @@ To make use of this functionality, you must define an [input](./config.md#inputs
 The contents of the binary source file can be whatever you want, but do be aware that code in the
 module scope will be executed immediately when the file is executed by Node.js.
 
-## Customizing Babel and Rollup
+## Customizing Babel, swc, and Rollup
 
 > This is an advanced escape hatch and should be avoided unless absolutely necessary, for example,
 > processing CSS files in a way that Packemon does not support.
 
-Customizing the Babel and Rollup configs are an _opt-in feature_, and require the following
+Customizing the Babel, swc, and Rollup configs are an _opt-in feature_, and require the following
 conditions to be met:
 
 - A `--loadConfigs` option is passed on the command line. This enables searching and loading of
@@ -102,13 +102,17 @@ conditions to be met:
 </Tabs>
 
 Both of these config files have the same structure, and may define the fields below. All of these
-fields require a function, which is passed the finalized config as an argument (with output fields
-also accepting the current build as the 2nd argument). This config can then be mutated in place.
+fields require a function (except `swc`), which is passed the finalized config as an argument (with
+output fields also accepting the current build as the 2nd argument). This config can then be mutated
+in place.
 
 - `babelInput` - For parsing syntax into an AST (TypeScript, JSX, etc).
 - `babelOutput` - For applying transformations.
 - `rollupInput` - For defining inputs, outputs, and more.
 - `rollupOutput` - For customizing each output.
+- `swc` - Enables swc instead of Babel.
+- `swcInput` - For parsing syntax into an AST (TypeScript, JSX, etc).
+- `swcOutput` - For applying transformations.
 
 <Tabs
   groupId="configs"
