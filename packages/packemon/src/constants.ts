@@ -94,6 +94,13 @@ export const BROWSER_TARGETS: { [K in Support]: string[] | string } = {
 	experimental: ['last 2 chrome versions', 'last 2 firefox versions'],
 };
 
+export const SUPPORT_TO_ESM_SPEC = {
+	legacy: 'es5',
+	stable: 'es2018',
+	current: 'es2020',
+	experimental: 'es2022',
+} as const;
+
 export const STATE_COLORS: { [K in ArtifactState]?: StyleType } = {
 	pending: 'muted',
 	passed: 'success',

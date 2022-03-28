@@ -5,7 +5,7 @@ import { getFixturePath } from '@boost/test-utils';
 import { CodeArtifact } from '../src';
 import { createProjectPackage, createSnapshotSpies } from './helpers';
 
-['babel'].forEach((transformer) => {
+['babel', 'swc'].forEach((transformer) => {
 	describe(`Outputs (${transformer})`, () => {
 		describe('artifacts', () => {
 			const root = new Path(getFixturePath('project-rollup'));

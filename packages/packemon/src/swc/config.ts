@@ -1,14 +1,18 @@
 import {
 	Config,
 	EnvConfig,
-	JscTarget,
 	ModuleConfig,
 	Options,
 	TransformConfig,
 	TsParserConfig,
 } from '@swc/core';
 import { CodeArtifact } from '../CodeArtifact';
-import { BROWSER_TARGETS, NATIVE_TARGETS, NODE_SUPPORTED_VERSIONS } from '../constants';
+import {
+	BROWSER_TARGETS,
+	NATIVE_TARGETS,
+	NODE_SUPPORTED_VERSIONS,
+	SUPPORT_TO_ESM_SPEC,
+} from '../constants';
 import { ConfigFile, FeatureFlags, Format, Platform, Support } from '../types';
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#browser_compatibility
@@ -18,19 +22,6 @@ function shouldKeepDynamicImport(platform: Platform, support: Support): boolean 
 	}
 
 	return support !== 'legacy';
-}
-
-function getJscTarget(support: Support): JscTarget {
-	switch (support) {
-		case 'experimental':
-			return 'es2022';
-		case 'current':
-			return 'es2020';
-		case 'stable':
-			return 'es2018';
-		default:
-			return 'es5';
-	}
 }
 
 function getModuleConfigType(format: Format): ModuleConfig['type'] {
@@ -186,10 +177,13 @@ export function getSwcOutputConfig(
 		ignoreDynamic: shouldKeepDynamicImport(platform, support),
 	};
 
+	// This is to trick the Babel plugin to not transform the const
+	const id = (name: string) => `__${name}__`;
+
+	// Now we can downlevel
 	const baseConfig: Config = {
 		env,
 		module,
-		// Now we can downlevel
 		jsc: {
 			parser: {
 				syntax: 'ecmascript',
@@ -198,14 +192,14 @@ export function getSwcOutputConfig(
 				optimizer: {
 					globals: {
 						vars: {
-							__DEV__: "process.env.NODE_ENV !== 'production'",
-							__PROD__: "process.env.NODE_ENV === 'production'",
-							__TEST__: "process.env.NODE_ENV === 'test'",
+							[id('DEV')]: "process.env.NODE_ENV !== 'production'",
+							[id('PROD')]: "process.env.NODE_ENV === 'production'",
+							[id('TEST')]: "process.env.NODE_ENV === 'test'",
 						},
 					},
 				},
 			},
-			target: getJscTarget(support),
+			target: SUPPORT_TO_ESM_SPEC[support],
 		},
 	};
 
