@@ -1039,8 +1039,6 @@ Array [
         value: true
     });
     _exports.run = _exports.wait = void 0;
-    // Bundled with Packemon: https://packemon.dev
-    // Platform: browser, Support: current, Format: umd
     async function wait() {
         return new Promise((resolve)=>{
             setTimeout(resolve, 100);
@@ -1132,8 +1130,6 @@ Array [
         value: true
     });
     _exports.run = _exports.wait = void 0;
-    // Bundled with Packemon: https://packemon.dev
-    // Platform: browser, Support: experimental, Format: umd
     async function wait() {
         return new Promise((resolve)=>{
             setTimeout(resolve, 100);
@@ -1407,9 +1403,7 @@ Array [
     }
     _exports.wait = wait;
     function _wait() {
-        _wait = // Bundled with Packemon: https://packemon.dev
-        // Platform: browser, Support: legacy, Format: umd
-        _asyncToGenerator(_regeneratorRuntime.default.mark(function _callee() {
+        _wait = _asyncToGenerator(_regeneratorRuntime.default.mark(function _callee() {
             return _regeneratorRuntime.default.wrap(function _callee$(_ctx) {
                 while(1)switch(_ctx.prev = _ctx.next){
                     case 0:
@@ -1533,8 +1527,6 @@ Array [
         value: true
     });
     _exports.run = _exports.wait = void 0;
-    // Bundled with Packemon: https://packemon.dev
-    // Platform: browser, Support: stable, Format: umd
     async function wait() {
         return new Promise((resolve)=>{
             setTimeout(resolve, 100);

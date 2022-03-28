@@ -168,18 +168,16 @@ export function getSwcOutputConfig(
 		...getPlatformEnvOptions(platform, support, format),
 	};
 
-	if (platform === 'browser' || platform === 'native') {
-		// While modern browsers support these features, Node.js does not,
-		// which results in failing builds trying to parse the syntax.
-		// Let's only apply this for the lib format, but allow it for esm.
-		// TODO: Drop in Node 12+
-		if (format === 'lib') {
-			env.include = [
-				'proposal-logical-assignment-operators',
-				'proposal-nullish-coalescing-operator',
-				'proposal-optional-chaining',
-			];
-		}
+	// While modern browsers support these features, Node.js does not,
+	// which results in failing builds trying to parse the syntax.
+	// Let's only apply this for the lib format, but allow it for esm.
+	// TODO: Drop in Node 12+
+	if ((platform === 'browser' || platform === 'native') && format === 'lib') {
+		env.include = [
+			'proposal-logical-assignment-operators',
+			'proposal-nullish-coalescing-operator',
+			'proposal-optional-chaining',
+		];
 	}
 
 	const module: ModuleConfig = {
@@ -200,9 +198,9 @@ export function getSwcOutputConfig(
 				optimizer: {
 					globals: {
 						vars: {
-							['__DEV__']: "process.env.NODE_ENV !== 'production'",
-							['__PROD__']: "process.env.NODE_ENV === 'production'",
-							['__TEST__']: "process.env.NODE_ENV === 'test'",
+							__DEV__: "process.env.NODE_ENV !== 'production'",
+							__PROD__: "process.env.NODE_ENV === 'production'",
+							__TEST__: "process.env.NODE_ENV === 'test'",
 						},
 					},
 				},

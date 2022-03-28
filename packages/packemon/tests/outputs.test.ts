@@ -5,184 +5,186 @@ import { getFixturePath } from '@boost/test-utils';
 import { CodeArtifact } from '../src';
 import { createProjectPackage, createSnapshotSpies } from './helpers';
 
-describe('Outputs', () => {
-	describe('artifacts', () => {
-		const root = new Path(getFixturePath('project-rollup'));
-		const snapshots = createSnapshotSpies(root, true);
+['babel'].forEach((transformer) => {
+	describe(`Outputs (${transformer})`, () => {
+		describe('artifacts', () => {
+			const root = new Path(getFixturePath('project-rollup'));
+			const snapshots = createSnapshotSpies(root, true);
 
-		it('builds all the artifacts with rollup', async () => {
-			const pkg = createProjectPackage(root);
+			it('builds all the artifacts with rollup', async () => {
+				const pkg = createProjectPackage(root);
 
-			const index = new CodeArtifact(pkg, [{ format: 'lib' }]);
-			index.platform = 'node';
-			index.support = 'stable';
-			index.inputs = { index: 'src/index.ts' };
+				const index = new CodeArtifact(pkg, [{ format: 'lib' }]);
+				index.platform = 'node';
+				index.support = 'stable';
+				index.inputs = { index: 'src/index.ts' };
 
-			pkg.addArtifact(index);
+				pkg.addArtifact(index);
 
-			const client = new CodeArtifact(pkg, [
-				{ format: 'lib' },
-				{ format: 'esm' },
-				{ format: 'umd' },
-			]);
-			client.platform = 'browser';
-			client.support = 'legacy';
-			client.inputs = { client: 'src/client/index.ts' };
-			client.namespace = 'Packemon';
+				const client = new CodeArtifact(pkg, [
+					{ format: 'lib' },
+					{ format: 'esm' },
+					{ format: 'umd' },
+				]);
+				client.platform = 'browser';
+				client.support = 'legacy';
+				client.inputs = { client: 'src/client/index.ts' };
+				client.namespace = 'Packemon';
 
-			pkg.addArtifact(client);
+				pkg.addArtifact(client);
 
-			const server = new CodeArtifact(pkg, [{ format: 'cjs' }]);
-			server.platform = 'node';
-			server.support = 'current';
-			server.inputs = { server: 'src/server/core.ts' };
+				const server = new CodeArtifact(pkg, [{ format: 'cjs' }]);
+				server.platform = 'node';
+				server.support = 'current';
+				server.inputs = { server: 'src/server/core.ts' };
 
-			pkg.addArtifact(server);
+				pkg.addArtifact(server);
 
-			const test = new CodeArtifact(pkg, [{ format: 'lib' }]);
-			test.platform = 'native';
-			test.support = 'experimental';
-			test.inputs = { test: 'src/test-utils/base.ts' };
+				const test = new CodeArtifact(pkg, [{ format: 'lib' }]);
+				test.platform = 'native';
+				test.support = 'experimental';
+				test.inputs = { test: 'src/test-utils/base.ts' };
 
-			pkg.addArtifact(test);
+				pkg.addArtifact(test);
 
-			await pkg.build({}, {});
+				await pkg.build({}, {});
 
-			snapshots(pkg).forEach((ss) => {
-				expect(ss).toMatchSnapshot();
-			});
+				snapshots(pkg).forEach((ss) => {
+					expect(ss).toMatchSnapshot();
+				});
 
-			expect(index.builds).toMatchSnapshot();
-		});
-	});
-
-	describe('bundle', () => {
-		const root = new Path(getFixturePath('project-bundle'));
-		const snapshots = createSnapshotSpies(root, true);
-
-		it('bundles all files into a single file with rollup', async () => {
-			const pkg = createProjectPackage(root);
-
-			const index = new CodeArtifact(pkg, [{ format: 'lib' }]);
-			index.bundle = true;
-			index.platform = 'node';
-			index.support = 'stable';
-			index.inputs = { index: 'src/index.ts' };
-
-			pkg.addArtifact(index);
-
-			await pkg.build({}, {});
-
-			snapshots(pkg).forEach((ss) => {
-				expect(ss).toMatchSnapshot();
-			});
-		});
-	});
-
-	describe('bundle with assets', () => {
-		const root = new Path(getFixturePath('project-assets'));
-		const snapshots = createSnapshotSpies(root, true);
-
-		it('bundles all files and references assets', async () => {
-			const pkg = createProjectPackage(root);
-
-			const index = new CodeArtifact(pkg, [{ format: 'lib' }]);
-			index.bundle = true;
-			index.platform = 'node';
-			index.support = 'stable';
-			index.inputs = { index: 'src/index.ts' };
-
-			pkg.addArtifact(index);
-
-			await pkg.build({}, {});
-
-			snapshots(pkg).forEach((ss) => {
-				expect(ss).toMatchSnapshot();
-
-				// Check import paths are correct
-				if (ss[0].endsWith('index.js')) {
-					expect(String(ss[1])).toContain("'../assets/globals-107ab52e.css'");
-					expect(String(ss[1])).toContain("'../assets/fonts-4e5dc96c.css'");
-					expect(String(ss[1])).toContain("'../assets/styles-b11c3a83.css'");
-				}
+				expect(index.builds).toMatchSnapshot();
 			});
 		});
 
-		it('uses same assets across multiple formats', async () => {
-			const pkg = createProjectPackage(root);
+		describe('bundle', () => {
+			const root = new Path(getFixturePath('project-bundle'));
+			const snapshots = createSnapshotSpies(root, true);
 
-			const index = new CodeArtifact(pkg, [
-				{ format: 'lib' },
-				{ format: 'esm' },
-				{ format: 'cjs' },
-			]);
-			index.bundle = true;
-			index.platform = 'node';
-			index.support = 'stable';
-			index.inputs = { index: 'src/index.ts' };
+			it('bundles all files into a single file with rollup', async () => {
+				const pkg = createProjectPackage(root);
 
-			pkg.addArtifact(index);
+				const index = new CodeArtifact(pkg, [{ format: 'lib' }]);
+				index.bundle = true;
+				index.platform = 'node';
+				index.support = 'stable';
+				index.inputs = { index: 'src/index.ts' };
 
-			await pkg.build({}, {});
+				pkg.addArtifact(index);
 
-			snapshots(pkg).forEach((ss) => {
-				expect(ss).toMatchSnapshot();
+				await pkg.build({}, {});
+
+				snapshots(pkg).forEach((ss) => {
+					expect(ss).toMatchSnapshot();
+				});
 			});
 		});
-	});
 
-	describe('no bundle', () => {
-		const root = new Path(getFixturePath('project-bundle'));
-		const snapshots = createSnapshotSpies(root, true);
+		describe('bundle with assets', () => {
+			const root = new Path(getFixturePath('project-assets'));
+			const snapshots = createSnapshotSpies(root, true);
 
-		it('creates individual files for every source file', async () => {
-			const pkg = createProjectPackage(root);
+			it('bundles all files and references assets', async () => {
+				const pkg = createProjectPackage(root);
 
-			const index = new CodeArtifact(pkg, [{ format: 'lib' }]);
-			index.bundle = false;
-			index.platform = 'node';
-			index.support = 'stable';
-			index.inputs = { index: 'src/index.ts' };
+				const index = new CodeArtifact(pkg, [{ format: 'lib' }]);
+				index.bundle = true;
+				index.platform = 'node';
+				index.support = 'stable';
+				index.inputs = { index: 'src/index.ts' };
 
-			pkg.addArtifact(index);
+				pkg.addArtifact(index);
 
-			await pkg.build({}, {});
+				await pkg.build({}, {});
 
-			snapshots(pkg).forEach((ss) => {
-				expect(ss).toMatchSnapshot();
+				snapshots(pkg).forEach((ss) => {
+					expect(ss).toMatchSnapshot();
+
+					// Check import paths are correct
+					if (ss[0].endsWith('index.js')) {
+						expect(String(ss[1])).toContain("'../assets/globals-107ab52e.css'");
+						expect(String(ss[1])).toContain("'../assets/fonts-4e5dc96c.css'");
+						expect(String(ss[1])).toContain("'../assets/styles-b11c3a83.css'");
+					}
+				});
+			});
+
+			it('uses same assets across multiple formats', async () => {
+				const pkg = createProjectPackage(root);
+
+				const index = new CodeArtifact(pkg, [
+					{ format: 'lib' },
+					{ format: 'esm' },
+					{ format: 'cjs' },
+				]);
+				index.bundle = true;
+				index.platform = 'node';
+				index.support = 'stable';
+				index.inputs = { index: 'src/index.ts' };
+
+				pkg.addArtifact(index);
+
+				await pkg.build({}, {});
+
+				snapshots(pkg).forEach((ss) => {
+					expect(ss).toMatchSnapshot();
+				});
 			});
 		});
-	});
 
-	describe('no bundle with assets', () => {
-		const root = new Path(getFixturePath('project-assets'));
-		const snapshots = createSnapshotSpies(root, true);
+		describe('no bundle', () => {
+			const root = new Path(getFixturePath('project-bundle'));
+			const snapshots = createSnapshotSpies(root, true);
 
-		it('creates individual files and references assets', async () => {
-			const pkg = createProjectPackage(root);
+			it('creates individual files for every source file', async () => {
+				const pkg = createProjectPackage(root);
 
-			const index = new CodeArtifact(pkg, [{ format: 'lib' }]);
-			index.bundle = false;
-			index.platform = 'node';
-			index.support = 'stable';
-			index.inputs = { index: 'src/index.ts' };
+				const index = new CodeArtifact(pkg, [{ format: 'lib' }]);
+				index.bundle = false;
+				index.platform = 'node';
+				index.support = 'stable';
+				index.inputs = { index: 'src/index.ts' };
 
-			pkg.addArtifact(index);
+				pkg.addArtifact(index);
 
-			await pkg.build({}, {});
+				await pkg.build({}, {});
 
-			snapshots(pkg).forEach((ss) => {
-				expect(ss).toMatchSnapshot();
+				snapshots(pkg).forEach((ss) => {
+					expect(ss).toMatchSnapshot();
+				});
+			});
+		});
 
-				// Check import paths are correct
-				if (ss[0].endsWith('lib/index.js')) {
-					expect(String(ss[1])).toContain("'../assets/globals-107ab52e.css'");
-					expect(String(ss[1])).toContain("'../assets/fonts-4e5dc96c.css'");
-				}
+		describe('no bundle with assets', () => {
+			const root = new Path(getFixturePath('project-assets'));
+			const snapshots = createSnapshotSpies(root, true);
 
-				if (ss[0].endsWith('lib/button/index.js')) {
-					expect(String(ss[1])).toContain("'../../assets/styles-b11c3a83.css'");
-				}
+			it('creates individual files and references assets', async () => {
+				const pkg = createProjectPackage(root);
+
+				const index = new CodeArtifact(pkg, [{ format: 'lib' }]);
+				index.bundle = false;
+				index.platform = 'node';
+				index.support = 'stable';
+				index.inputs = { index: 'src/index.ts' };
+
+				pkg.addArtifact(index);
+
+				await pkg.build({}, {});
+
+				snapshots(pkg).forEach((ss) => {
+					expect(ss).toMatchSnapshot();
+
+					// Check import paths are correct
+					if (ss[0].endsWith('lib/index.js')) {
+						expect(String(ss[1])).toContain("'../assets/globals-107ab52e.css'");
+						expect(String(ss[1])).toContain("'../assets/fonts-4e5dc96c.css'");
+					}
+
+					if (ss[0].endsWith('lib/button/index.js')) {
+						expect(String(ss[1])).toContain("'../../assets/styles-b11c3a83.css'");
+					}
+				});
 			});
 		});
 	});

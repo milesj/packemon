@@ -146,6 +146,7 @@ export function testExampleOutput(
 	transformer: 'babel' | 'swc',
 	options?: Partial<PackageConfig>,
 ) {
+	// eslint-disable-next-line jest/valid-title
 	describe(transformer, () => {
 		const snapshots = createSnapshotSpies(exampleRoot);
 
@@ -163,7 +164,7 @@ export function testExampleOutput(
 			const pkg = createProjectPackage(exampleRoot);
 			const env = `${build.platform}-${build.support}-${build.format}`;
 
-			test(`transforms example test case: ${env}`, async () => {
+			it(`transforms example test case: ${env}`, async () => {
 				const artifact = new CodeArtifact(pkg, [build]);
 				artifact.platform = build.platform;
 				artifact.support = build.support;

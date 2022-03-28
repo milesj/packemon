@@ -1148,8 +1148,7 @@ Array [
 import('./bundle-1bc8bc6c.js').then((result)=>{
     result.foo();
 });
-import(/* webpackChunkName: \\"helpers\\" */ './bundle-1bc8bc6c.js').then((param)=>{
-    let { bar  } = param;
+import(/* webpackChunkName: \\"helpers\\" */ './bundle-1bc8bc6c.js').then(({ bar  })=>{
     bar();
 });
 ",
@@ -1181,8 +1180,7 @@ Promise.resolve().then(()=>require('./bundle-b8bd2771.js')
     result.foo();
 });
 Promise.resolve().then(()=>require(/* webpackChunkName: \\"helpers\\" */ './bundle-b8bd2771.js')
-).then((param)=>{
-    let { bar  } = param;
+).then(({ bar  })=>{
     bar();
 });
 ",
@@ -1191,7 +1189,7 @@ Promise.resolve().then(()=>require(/* webpackChunkName: \\"helpers\\" */ './bund
 
 exports[`Dynamic imports swc transforms example test case: browser-current-umd 1`] = `
 Array [
-  "umd/bundle-030a0739.js",
+  "umd/bundle-ca4fc8e9.js",
   "(function(global, factory) {
     if (typeof define === \\"function\\" && define.amd) {
         define([
@@ -1212,8 +1210,6 @@ Array [
         value: true
     });
     _exports.bar = _exports.foo = void 0;
-    // Bundled with Packemon: https://packemon.dev
-    // Platform: browser, Support: current, Format: umd
     function foo() {}
     _exports.foo = foo;
     function bar() {}
@@ -1261,13 +1257,10 @@ Array [
             return newObj;
         }
     }
-    // Bundled with Packemon: https://packemon.dev
-    // Platform: browser, Support: current, Format: umd
-    import('./bundle-030a0739.js').then((result)=>{
+    import('./bundle-ca4fc8e9.js').then((result)=>{
         result.foo();
     });
-    import(/* webpackChunkName: \\"helpers\\" */ './bundle-030a0739.js').then((param)=>{
-        let { bar  } = param;
+    import(/* webpackChunkName: \\"helpers\\" */ './bundle-ca4fc8e9.js').then(({ bar  })=>{
         bar();
     });
 });
@@ -1336,7 +1329,7 @@ Promise.resolve().then(()=>require(/* webpackChunkName: \\"helpers\\" */ './bund
 
 exports[`Dynamic imports swc transforms example test case: browser-experimental-umd 1`] = `
 Array [
-  "umd/bundle-4cd630b0.js",
+  "umd/bundle-ca4fc8e9.js",
   "(function(global, factory) {
     if (typeof define === \\"function\\" && define.amd) {
         define([
@@ -1357,8 +1350,6 @@ Array [
         value: true
     });
     _exports.bar = _exports.foo = void 0;
-    // Bundled with Packemon: https://packemon.dev
-    // Platform: browser, Support: experimental, Format: umd
     function foo() {}
     _exports.foo = foo;
     function bar() {}
@@ -1406,12 +1397,10 @@ Array [
             return newObj;
         }
     }
-    // Bundled with Packemon: https://packemon.dev
-    // Platform: browser, Support: experimental, Format: umd
-    import('./bundle-4cd630b0.js').then((result)=>{
+    import('./bundle-ca4fc8e9.js').then((result)=>{
         result.foo();
     });
-    import(/* webpackChunkName: \\"helpers\\" */ './bundle-4cd630b0.js').then(({ bar  })=>{
+    import(/* webpackChunkName: \\"helpers\\" */ './bundle-ca4fc8e9.js').then(({ bar  })=>{
         bar();
     });
 });
@@ -1484,7 +1473,7 @@ Promise.resolve().then(function() {
 
 exports[`Dynamic imports swc transforms example test case: browser-legacy-umd 1`] = `
 Array [
-  "umd/bundle-99a7a8e3.js",
+  "umd/bundle-ca4fc8e9.js",
   "(function(global, factory) {
     if (typeof define === \\"function\\" && define.amd) {
         define([
@@ -1505,8 +1494,6 @@ Array [
         value: true
     });
     _exports.bar = _exports.foo = void 0;
-    // Bundled with Packemon: https://packemon.dev
-    // Platform: browser, Support: legacy, Format: umd
     function foo() {}
     _exports.foo = foo;
     function bar() {}
@@ -1554,31 +1541,29 @@ Array [
             return newObj;
         }
     }
-    // Bundled with Packemon: https://packemon.dev
-    // Platform: browser, Support: legacy, Format: umd
     (exports === undefined ? new Promise(function(resolve, reject) {
         require([
-            \\"./bundle-99a7a8e3.js\\"
+            \\"./bundle-ca4fc8e9.js\\"
         ], function(dep) {
             resolve(dep);
         }, function(err) {
             reject(err);
         });
     }) : Promise.resolve().then(function() {
-        return _interopRequireWildcard(require(\\"./bundle-99a7a8e3.js\\"));
+        return _interopRequireWildcard(require(\\"./bundle-ca4fc8e9.js\\"));
     })).then(function(result) {
         result.foo();
     });
     (exports === undefined ? new Promise(function(resolve, reject) {
         require([
-            /* webpackChunkName: \\"helpers\\" */ \\"./bundle-99a7a8e3.js\\"
+            /* webpackChunkName: \\"helpers\\" */ \\"./bundle-ca4fc8e9.js\\"
         ], function(dep) {
             resolve(dep);
         }, function(err) {
             reject(err);
         });
     }) : Promise.resolve().then(function() {
-        return _interopRequireWildcard(require(\\"./bundle-99a7a8e3.js\\"));
+        return _interopRequireWildcard(require(\\"./bundle-ca4fc8e9.js\\"));
     })).then(function(param) {
         var bar = param.bar;
         bar();
@@ -1608,8 +1593,7 @@ Array [
 import('./bundle-32c07aef.js').then((result)=>{
     result.foo();
 });
-import(/* webpackChunkName: \\"helpers\\" */ './bundle-32c07aef.js').then((param)=>{
-    let { bar  } = param;
+import(/* webpackChunkName: \\"helpers\\" */ './bundle-32c07aef.js').then(({ bar  })=>{
     bar();
 });
 ",
@@ -1641,8 +1625,7 @@ Promise.resolve().then(()=>require('./bundle-a1d8f7d2.js')
     result.foo();
 });
 Promise.resolve().then(()=>require(/* webpackChunkName: \\"helpers\\" */ './bundle-a1d8f7d2.js')
-).then((param)=>{
-    let { bar  } = param;
+).then(({ bar  })=>{
     bar();
 });
 ",
@@ -1651,7 +1634,7 @@ Promise.resolve().then(()=>require(/* webpackChunkName: \\"helpers\\" */ './bund
 
 exports[`Dynamic imports swc transforms example test case: browser-stable-umd 1`] = `
 Array [
-  "umd/bundle-adfd6fef.js",
+  "umd/bundle-ca4fc8e9.js",
   "(function(global, factory) {
     if (typeof define === \\"function\\" && define.amd) {
         define([
@@ -1672,8 +1655,6 @@ Array [
         value: true
     });
     _exports.bar = _exports.foo = void 0;
-    // Bundled with Packemon: https://packemon.dev
-    // Platform: browser, Support: stable, Format: umd
     function foo() {}
     _exports.foo = foo;
     function bar() {}
@@ -1721,13 +1702,10 @@ Array [
             return newObj;
         }
     }
-    // Bundled with Packemon: https://packemon.dev
-    // Platform: browser, Support: stable, Format: umd
-    import('./bundle-adfd6fef.js').then((result)=>{
+    import('./bundle-ca4fc8e9.js').then((result)=>{
         result.foo();
     });
-    import(/* webpackChunkName: \\"helpers\\" */ './bundle-adfd6fef.js').then((param)=>{
-        let { bar  } = param;
+    import(/* webpackChunkName: \\"helpers\\" */ './bundle-ca4fc8e9.js').then(({ bar  })=>{
         bar();
     });
 });
@@ -1760,8 +1738,7 @@ Promise.resolve().then(()=>require('./bundle-99524a7a.js')
     result.foo();
 });
 Promise.resolve().then(()=>require(/* webpackChunkName: \\"helpers\\" */ './bundle-99524a7a.js')
-).then((param)=>{
-    let { bar  } = param;
+).then(({ bar  })=>{
     bar();
 });
 ",
@@ -1793,8 +1770,7 @@ Promise.resolve().then(()=>require('./bundle-c8d5fd50.js')
     result.foo();
 });
 Promise.resolve().then(()=>require(/* webpackChunkName: \\"helpers\\" */ './bundle-c8d5fd50.js')
-).then((param)=>{
-    let { bar  } = param;
+).then(({ bar  })=>{
     bar();
 });
 ",
@@ -1861,8 +1837,7 @@ Promise.resolve().then(()=>require('./bundle-14db0c55.js')
     result.foo();
 });
 Promise.resolve().then(()=>require(/* webpackChunkName: \\"helpers\\" */ './bundle-14db0c55.js')
-).then((param)=>{
-    var { bar  } = param;
+).then(({ bar  })=>{
     bar();
 });
 ",

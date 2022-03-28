@@ -97,6 +97,8 @@ export function getRollupOutputConfig(
 ): OutputOptions {
 	const { platform, support } = artifact;
 	const { ext, folder } = artifact.getBuildOutput(format);
+	// eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
+	const isSwc = packemonConfig.swc || !!process.env.PACKEMON_SWC;
 
 	const output: OutputOptions = {
 		dir: artifact.package.path.append(folder).path(),
@@ -118,7 +120,7 @@ export function getRollupOutputConfig(
 		preferConst: support !== 'legacy',
 		// Output specific plugins
 		plugins: [
-			packemonConfig.swc || process.env.PACKEMON_SWC
+			isSwc
 				? swcOutput({
 						...getSwcOutputConfig(platform, support, format, features, packemonConfig),
 						filename: artifact.package.path.path(),
@@ -146,7 +148,7 @@ export function getRollupOutputConfig(
 	}
 
 	// Automatically prepend a shebang for binaries
-	if (artifact.bundle) {
+	if (artifact.bundle && !(isSwc && format === 'umd')) {
 		output.banner = [
 			'// Bundled with Packemon: https://packemon.dev\n',
 			`// Platform: ${platform}, Support: ${support}, Format: ${format}\n\n`,
@@ -167,6 +169,8 @@ export function getRollupConfig(
 	const packagePath = artifact.package.packageJsonPath.path();
 	const isNode = artifact.platform === 'node';
 	const isTest = process.env.NODE_ENV === 'test';
+	// eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
+	const isSwc = packemonConfig.swc || !!process.env.PACKEMON_SWC;
 
 	const config: RollupOptions = {
 		cache: artifact.cache,
@@ -191,7 +195,7 @@ export function getRollupConfig(
 				dir: artifact.package.path.append('assets').path(),
 			}),
 			// Declare Babel/swc here so we can parse TypeScript/Flow
-			packemonConfig.swc || process.env.PACKEMON_SWC
+			isSwc
 				? swcInput({
 						...getSwcInputConfig(artifact, features, packemonConfig),
 						exclude: isTest ? [] : EXCLUDE_RUST,

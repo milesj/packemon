@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Outputs artifacts builds all the artifacts with rollup 1`] = `
+exports[`Outputs (babel) artifacts builds all the artifacts with rollup 1`] = `
 Array [
   "cjs/server.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -26,7 +26,7 @@ https__default.default.createServer((req, res) => {
 ]
 `;
 
-exports[`Outputs artifacts builds all the artifacts with rollup 2`] = `
+exports[`Outputs (babel) artifacts builds all the artifacts with rollup 2`] = `
 Array [
   "esm/client.js",
   "function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== \\"undefined\\" && o[Symbol.iterator] || o[\\"@@iterator\\"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === \\"number\\") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError(\\"Invalid attempt to iterate non-iterable instance.\\\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\\"); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
@@ -96,7 +96,7 @@ export { createClient };
 ]
 `;
 
-exports[`Outputs artifacts builds all the artifacts with rollup 3`] = `
+exports[`Outputs (babel) artifacts builds all the artifacts with rollup 3`] = `
 Array [
   "lib/client.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -172,7 +172,7 @@ exports.createClient = createClient;
 ]
 `;
 
-exports[`Outputs artifacts builds all the artifacts with rollup 4`] = `
+exports[`Outputs (babel) artifacts builds all the artifacts with rollup 4`] = `
 Array [
   "lib/index.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -188,7 +188,7 @@ exports.EXAMPLE = EXAMPLE;
 ]
 `;
 
-exports[`Outputs artifacts builds all the artifacts with rollup 5`] = `
+exports[`Outputs (babel) artifacts builds all the artifacts with rollup 5`] = `
 Array [
   "lib/test.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -225,7 +225,7 @@ exports.wait = wait;
 ]
 `;
 
-exports[`Outputs artifacts builds all the artifacts with rollup 6`] = `
+exports[`Outputs (babel) artifacts builds all the artifacts with rollup 6`] = `
 Array [
   "package.json",
   Object {
@@ -246,7 +246,7 @@ Array [
 ]
 `;
 
-exports[`Outputs artifacts builds all the artifacts with rollup 7`] = `
+exports[`Outputs (babel) artifacts builds all the artifacts with rollup 7`] = `
 Array [
   "umd/client.js",
   "var _regeneratorRuntime2 = require(\\"@babel/runtime/regenerator\\");
@@ -340,7 +340,7 @@ Array [
 ]
 `;
 
-exports[`Outputs artifacts builds all the artifacts with rollup 8`] = `
+exports[`Outputs (babel) artifacts builds all the artifacts with rollup 8`] = `
 Array [
   Object {
     "format": "lib",
@@ -351,7 +351,7 @@ Array [
 ]
 `;
 
-exports[`Outputs bundle bundles all files into a single file with rollup 1`] = `
+exports[`Outputs (babel) bundle bundles all files into a single file with rollup 1`] = `
 Array [
   "lib/index.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -372,7 +372,7 @@ exports.foo = foo;
 ]
 `;
 
-exports[`Outputs bundle bundles all files into a single file with rollup 2`] = `
+exports[`Outputs (babel) bundle bundles all files into a single file with rollup 2`] = `
 Array [
   "package.json",
   Object {
@@ -386,7 +386,7 @@ Array [
 ]
 `;
 
-exports[`Outputs bundle with assets bundles all files and references assets 1`] = `
+exports[`Outputs (babel) bundle with assets bundles all files and references assets 1`] = `
 Array [
   "lib/index.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -410,7 +410,7 @@ exports.button = button;
 ]
 `;
 
-exports[`Outputs bundle with assets bundles all files and references assets 2`] = `
+exports[`Outputs (babel) bundle with assets bundles all files and references assets 2`] = `
 Array [
   "package.json",
   Object {
@@ -424,28 +424,28 @@ Array [
 ]
 `;
 
-exports[`Outputs bundle with assets bundles all files and references assets 3`] = `
+exports[`Outputs (babel) bundle with assets bundles all files and references assets 3`] = `
 Array [
   "src/button/styles.css",
   "assets/styles-b11c3a83.css",
 ]
 `;
 
-exports[`Outputs bundle with assets bundles all files and references assets 4`] = `
+exports[`Outputs (babel) bundle with assets bundles all files and references assets 4`] = `
 Array [
   "src/globals.css",
   "assets/globals-107ab52e.css",
 ]
 `;
 
-exports[`Outputs bundle with assets bundles all files and references assets 5`] = `
+exports[`Outputs (babel) bundle with assets bundles all files and references assets 5`] = `
 Array [
   "src/shared/fonts.css",
   "assets/fonts-4e5dc96c.css",
 ]
 `;
 
-exports[`Outputs bundle with assets uses same assets across multiple formats 1`] = `
+exports[`Outputs (babel) bundle with assets uses same assets across multiple formats 1`] = `
 Array [
   "cjs/index.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -469,7 +469,7 @@ exports.button = button;
 ]
 `;
 
-exports[`Outputs bundle with assets uses same assets across multiple formats 2`] = `
+exports[`Outputs (babel) bundle with assets uses same assets across multiple formats 2`] = `
 Array [
   "esm/index.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -485,7 +485,7 @@ export { button };
 ]
 `;
 
-exports[`Outputs bundle with assets uses same assets across multiple formats 3`] = `
+exports[`Outputs (babel) bundle with assets uses same assets across multiple formats 3`] = `
 Array [
   "lib/index.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -509,7 +509,7 @@ exports.button = button;
 ]
 `;
 
-exports[`Outputs bundle with assets uses same assets across multiple formats 4`] = `
+exports[`Outputs (babel) bundle with assets uses same assets across multiple formats 4`] = `
 Array [
   "package.json",
   Object {
@@ -524,70 +524,70 @@ Array [
 ]
 `;
 
-exports[`Outputs bundle with assets uses same assets across multiple formats 5`] = `
+exports[`Outputs (babel) bundle with assets uses same assets across multiple formats 5`] = `
 Array [
   "src/button/styles.css",
   "assets/styles-b11c3a83.css",
 ]
 `;
 
-exports[`Outputs bundle with assets uses same assets across multiple formats 6`] = `
+exports[`Outputs (babel) bundle with assets uses same assets across multiple formats 6`] = `
 Array [
   "src/button/styles.css",
   "assets/styles-b11c3a83.css",
 ]
 `;
 
-exports[`Outputs bundle with assets uses same assets across multiple formats 7`] = `
+exports[`Outputs (babel) bundle with assets uses same assets across multiple formats 7`] = `
 Array [
   "src/button/styles.css",
   "assets/styles-b11c3a83.css",
 ]
 `;
 
-exports[`Outputs bundle with assets uses same assets across multiple formats 8`] = `
+exports[`Outputs (babel) bundle with assets uses same assets across multiple formats 8`] = `
 Array [
   "src/globals.css",
   "assets/globals-107ab52e.css",
 ]
 `;
 
-exports[`Outputs bundle with assets uses same assets across multiple formats 9`] = `
+exports[`Outputs (babel) bundle with assets uses same assets across multiple formats 9`] = `
 Array [
   "src/globals.css",
   "assets/globals-107ab52e.css",
 ]
 `;
 
-exports[`Outputs bundle with assets uses same assets across multiple formats 10`] = `
+exports[`Outputs (babel) bundle with assets uses same assets across multiple formats 10`] = `
 Array [
   "src/globals.css",
   "assets/globals-107ab52e.css",
 ]
 `;
 
-exports[`Outputs bundle with assets uses same assets across multiple formats 11`] = `
+exports[`Outputs (babel) bundle with assets uses same assets across multiple formats 11`] = `
 Array [
   "src/shared/fonts.css",
   "assets/fonts-4e5dc96c.css",
 ]
 `;
 
-exports[`Outputs bundle with assets uses same assets across multiple formats 12`] = `
+exports[`Outputs (babel) bundle with assets uses same assets across multiple formats 12`] = `
 Array [
   "src/shared/fonts.css",
   "assets/fonts-4e5dc96c.css",
 ]
 `;
 
-exports[`Outputs bundle with assets uses same assets across multiple formats 13`] = `
+exports[`Outputs (babel) bundle with assets uses same assets across multiple formats 13`] = `
 Array [
   "src/shared/fonts.css",
   "assets/fonts-4e5dc96c.css",
 ]
 `;
 
-exports[`Outputs no bundle creates individual files for every source file 1`] = `
+exports[`Outputs (babel) no bundle creates individual files for every source file 1`] = `
 Array [
   "lib/index.js",
   "'use strict';
@@ -606,7 +606,7 @@ exports.bar = bar;
 ]
 `;
 
-exports[`Outputs no bundle creates individual files for every source file 2`] = `
+exports[`Outputs (babel) no bundle creates individual files for every source file 2`] = `
 Array [
   "lib/not-imported.js",
   "'use strict';
@@ -622,7 +622,7 @@ exports.baz = baz;
 ]
 `;
 
-exports[`Outputs no bundle creates individual files for every source file 3`] = `
+exports[`Outputs (babel) no bundle creates individual files for every source file 3`] = `
 Array [
   "lib/other.js",
   "'use strict';
@@ -638,7 +638,7 @@ exports.foo = foo;
 ]
 `;
 
-exports[`Outputs no bundle creates individual files for every source file 4`] = `
+exports[`Outputs (babel) no bundle creates individual files for every source file 4`] = `
 Array [
   "package.json",
   Object {
@@ -652,7 +652,7 @@ Array [
 ]
 `;
 
-exports[`Outputs no bundle with assets creates individual files and references assets 1`] = `
+exports[`Outputs (babel) no bundle with assets creates individual files and references assets 1`] = `
 Array [
   "lib/button/index.js",
   "'use strict';
@@ -670,7 +670,7 @@ exports.button = button;
 ]
 `;
 
-exports[`Outputs no bundle with assets creates individual files and references assets 2`] = `
+exports[`Outputs (babel) no bundle with assets creates individual files and references assets 2`] = `
 Array [
   "lib/index.js",
   "'use strict';
@@ -690,7 +690,7 @@ exports.button = index.button;
 ]
 `;
 
-exports[`Outputs no bundle with assets creates individual files and references assets 3`] = `
+exports[`Outputs (babel) no bundle with assets creates individual files and references assets 3`] = `
 Array [
   "package.json",
   Object {
@@ -704,21 +704,21 @@ Array [
 ]
 `;
 
-exports[`Outputs no bundle with assets creates individual files and references assets 4`] = `
+exports[`Outputs (babel) no bundle with assets creates individual files and references assets 4`] = `
 Array [
   "src/button/styles.css",
   "assets/styles-b11c3a83.css",
 ]
 `;
 
-exports[`Outputs no bundle with assets creates individual files and references assets 5`] = `
+exports[`Outputs (babel) no bundle with assets creates individual files and references assets 5`] = `
 Array [
   "src/globals.css",
   "assets/globals-107ab52e.css",
 ]
 `;
 
-exports[`Outputs no bundle with assets creates individual files and references assets 6`] = `
+exports[`Outputs (babel) no bundle with assets creates individual files and references assets 6`] = `
 Array [
   "src/shared/fonts.css",
   "assets/fonts-4e5dc96c.css",

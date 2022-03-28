@@ -81,8 +81,6 @@ export class Package {
 
 					artifact.state = 'passed';
 				} catch (error: unknown) {
-					console.log(error);
-
 					artifact.state = 'failed';
 
 					throw error;
