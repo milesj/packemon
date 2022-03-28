@@ -1,13 +1,25 @@
 import fs from 'fs';
 import { transformSync, transformFileSync } from '@swc/core';
 
-const filename = './packages/packemon/src/commands/Scaffold.tsx';
+const filename = './packages/packemon/src/babel/config.ts';
+
+try {
+	fs.mkdirSync(new URL('./swc', import.meta.url));
+} catch {}
 
 const input = transformFileSync(filename, {
 	jsc: {
 		parser: { syntax: 'typescript', tsx: true, decorators: true },
 		transform: {
-			optimizer: undefined,
+			optimizer: {
+				globals: {
+					vars: {
+						__DEV__: "process.env.NODE_ENV !== 'production'",
+						__PROD__: "process.env.NODE_ENV === 'production'",
+						__TEST__: "process.env.NODE_ENV === 'test'",
+					},
+				},
+			},
 			legacyDecorator: true,
 			decoratorMetadata: false,
 			react: {

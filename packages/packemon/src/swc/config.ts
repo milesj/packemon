@@ -177,7 +177,15 @@ export function getSwcOutputConfig(
 				syntax: 'ecmascript',
 			},
 			transform: {
-				optimizer: undefined,
+				optimizer: {
+					globals: {
+						vars: {
+							__DEV__: "process.env.NODE_ENV !== 'production'",
+							__PROD__: "process.env.NODE_ENV === 'production'",
+							__TEST__: "process.env.NODE_ENV === 'test'",
+						},
+					},
+				},
 			},
 			target: getJscTarget(support),
 			keepClassNames: true,
