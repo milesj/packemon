@@ -166,16 +166,18 @@ export class Package {
 		if (this.project.rootPackage.hasDependency('react') || this.hasDependency('react')) {
 			const peerDep =
 				this.packageJson.peerDependencies?.react ??
-				this.project.rootPackage.packageJson.peerDependencies?.react ??
-				'17.0.0';
+				this.project.rootPackage.packageJson.peerDependencies?.react;
 
 			// New JSX transform was backported to these versions:
 			// https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html
-			flags.react = ['17.0.0', '16.14.0', '15.7.0', '0.14.0'].some((minVer) =>
-				semver.satisfies(minVer, peerDep),
-			)
-				? 'automatic'
-				: 'classic';
+			flags.react =
+				peerDep &&
+				peerDep !== '*' &&
+				['17.0.0', '16.14.0', '15.7.0', '0.14.0'].some((minVer) =>
+					semver.satisfies(minVer, peerDep),
+				)
+					? 'automatic'
+					: 'classic';
 
 			this.debug(' - React');
 		}

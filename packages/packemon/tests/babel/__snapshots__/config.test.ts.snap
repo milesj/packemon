@@ -241,6 +241,20 @@ Array [
     "@babel/preset-react",
     Object {
       "development": true,
+      "runtime": "classic",
+      "throwIfNamespace": true,
+    },
+  ],
+]
+`;
+
+exports[`getBabelInputConfig() includes react preset if \`react\` feature flag is true 2`] = `
+Array [
+  Array [
+    "@babel/preset-react",
+    Object {
+      "development": true,
+      "runtime": "automatic",
       "throwIfNamespace": true,
     },
   ],
