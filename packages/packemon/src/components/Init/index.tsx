@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Box, Text } from 'ink';
 import { Header, Style, useProgram } from '@boost/cli/react';
 import { PackemonPackageConfig } from '../../types';

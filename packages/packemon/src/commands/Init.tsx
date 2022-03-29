@@ -1,6 +1,5 @@
 /* eslint-disable react/jsx-no-bind, react-perf/jsx-no-new-function-as-prop */
 
-import React from 'react';
 import { Arg, Config } from '@boost/cli';
 import { Path, WorkspacePackage } from '@boost/common';
 import { DEFAULT_INPUT, DEFAULT_SUPPORT } from '../constants';

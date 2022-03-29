@@ -1,4 +1,3 @@
-import React from 'react';
 import { Style } from '@boost/cli/react';
 
 export interface SymbolProps {

@@ -1,6 +1,5 @@
 /* eslint-disable react-perf/jsx-no-new-array-as-prop */
 
-import React from 'react';
 import { Box } from 'ink';
 import { Style } from '@boost/cli/react';
 import { Package } from '../Package';

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Box } from 'ink';
 import { Input, useProgram } from '@boost/cli/react';
 import { isModuleName } from '@boost/common';

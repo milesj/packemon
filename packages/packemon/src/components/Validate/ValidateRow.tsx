@@ -1,6 +1,5 @@
 /* eslint-disable react/no-array-index-key */
 
-import React from 'react';
 import { Box } from 'ink';
 import { Style } from '@boost/cli/react';
 import { figures } from '@boost/terminal';

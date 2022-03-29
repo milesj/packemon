@@ -2,7 +2,6 @@
 
 import path from 'path';
 import { fileURLToPath } from 'url';
-import React from 'react';
 import glob from 'fast-glob';
 import fs from 'fs-extra';
 import { Arg, Command, Config } from '@boost/cli';

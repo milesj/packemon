@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box } from 'ink';
 import Spinner from 'ink-spinner';
 import { Style } from '@boost/cli/react';

@@ -1,6 +1,5 @@
 /* eslint-disable react-perf/jsx-no-new-array-as-prop */
 
-import React from 'react';
 import { Box, Static } from 'ink';
 import { Header } from '@boost/cli/react';
 import { List } from './List';
