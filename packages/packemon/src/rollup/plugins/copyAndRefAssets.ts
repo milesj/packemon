@@ -128,7 +128,6 @@ export function copyAndRefAssets({ dir }: CopyAssetsPlugin): Plugin {
 			}
 
 			return {
-				// eslint-disable-next-line @typescript-eslint/no-base-to-string
 				code: magicString.toString(),
 				map: null,
 			};
