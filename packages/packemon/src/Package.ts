@@ -164,16 +164,24 @@ export class Package {
 
 		// React
 		if (this.hasDependency('react')) {
-			const dep = this.packageJson.peerDependencies?.react ?? this.packageJson.dependencies?.react;
+			const peerDep = this.packageJson.peerDependencies?.react;
+			const dep = this.packageJson.dependencies?.react;
+			let automatic = false;
 
 			// New JSX transform was backported to these versions:
 			// https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html
-			flags.react =
-				dep &&
-				dep !== '*' &&
-				['17.0.0', '16.14.0', '15.7.0', '0.14.0'].some((minVer) => semver.satisfies(minVer, dep))
-					? 'automatic'
-					: 'classic';
+			if (peerDep && peerDep !== '*') {
+				automatic = ['17.0.0', '16.14.0', '15.7.0', '0.14.0'].some((minVer) =>
+					semver.satisfies(minVer, peerDep),
+				);
+			} else if (dep && dep !== '*') {
+				automatic = semver.satisfies(
+					semver.coerce(dep)!.version,
+					'>=17.0.0 || ^16.14.0 || ^15.7.0 || ^0.14.0',
+				);
+			}
+
+			flags.react = automatic ? 'automatic' : 'classic';
 
 			this.debug(' - React');
 		}
