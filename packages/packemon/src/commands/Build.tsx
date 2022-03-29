@@ -52,6 +52,7 @@ export class BuildCommand extends BaseCommand<Required<BuildOptions>> {
 				filter={this.filter}
 				filterFormats={this.formats}
 				filterPlatforms={this.platforms}
+				loadConfigs={this.loadConfigs}
 				packemon={this.packemon}
 				quiet={this.quiet}
 				skipPrivate={this.skipPrivate}
