@@ -21,7 +21,7 @@ describe('getBabelInputConfig()', () => {
 	});
 
 	it('includes react preset if `react` feature flag is true', () => {
-		expect(getBabelInputConfig(bundleArtifact, { react: true }).presets).toMatchSnapshot();
+		expect(getBabelInputConfig(bundleArtifact, { react: 'classic' }).presets).toMatchSnapshot();
 	});
 
 	it('includes flow preset if `flow` feature flag is true', () => {

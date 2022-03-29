@@ -180,7 +180,7 @@ export interface FeatureFlags {
 	analyze?: AnalyzeType;
 	decorators?: boolean;
 	flow?: boolean;
-	react?: boolean;
+	react?: 'automatic' | 'classic';
 	strict?: boolean;
 	typescript?: boolean;
 	workspaces?: string[];

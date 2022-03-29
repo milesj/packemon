@@ -29,6 +29,9 @@ The following presets are enabled when one of their conditions are met.
   - Package contains a `tsconfig.json`.
 - `@babel/preset-react`
   - Package or root contains a `react` dependency.
+  - Enables the new
+    [JSX transform](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html) if
+    the peer dependency range captures the minimum requirement.
 
 ### Plugins
 
