@@ -14,12 +14,6 @@ import { ConfigFile, FeatureFlags, Format } from '../types';
 import { addBinShebang } from './plugins/addBinShebang';
 import { copyAndRefAssets } from './plugins/copyAndRefAssets';
 
-const sharedPlugins = [
-	resolve({ extensions: EXTENSIONS, preferBuiltins: true }),
-	commonjs(),
-	json({ compact: true, namedExports: false }),
-];
-
 function getRollupModuleFormat(format: Format): ModuleFormat {
 	if (
 		format === 'esm' ||
@@ -178,7 +172,9 @@ export function getRollupConfig(
 				peerDeps: true,
 			}),
 			// Externals MUST be listed before shared plugins
-			...sharedPlugins,
+			resolve({ extensions: EXTENSIONS, preferBuiltins: true }),
+			commonjs(),
+			json({ compact: true, namedExports: false }),
 			// Copy assets and update import references
 			copyAndRefAssets({
 				dir: artifact.package.path.append('assets').path(),
