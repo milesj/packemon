@@ -1,6 +1,8 @@
 import execa from 'execa';
 import glob from 'fast-glob';
 
+process.env.NODE_ENV = 'production';
+
 async function build(pkg, noInterop) {
 	return execa('yarn', ['beemo', 'babel', `${pkg}/src`, '--out-dir', `${pkg}/lib`], {
 		env: {
