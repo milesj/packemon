@@ -28,7 +28,8 @@ The following presets are enabled when one of their conditions are met.
   - Package or root contains a `typescript` dependency.
   - Package contains a `tsconfig.json`.
 - `@babel/preset-react`
-  - Package or root contains a `react` dependency.
+  - Package contains a `react` dependency.
+  - Enables the new [JSX transform][jsx] if the dependency range captures the minimum requirement.
 
 ### Plugins
 
@@ -95,6 +96,7 @@ The following plugins are enabled per package.
   - Analyzes and generates a bundle size visualizer.
 - _Custom_
   - Prepend a Node.js shebang to `bin.*` output files.
+  - Process imported assets and share between formats.
 
 ## Development and production targets
 
@@ -119,6 +121,33 @@ account and chunks the bundled code accordingly.
 Make use of `import()` and Packemon will ensure proper code-splitting for consumers. Packemon will
 persist dynamic imports when the the target platform and supported version can utilize the feature
 natively, otherwise it is transpiled down.
+
+## React JSX transforms
+
+[JSX][jsx] supports 2 patterns for transforming code: the `classic` pattern where
+`import React from 'react'` is required, and the new `automatic` pattern where the import can be
+omitted. Packemon will automatically choose a pattern based on the `react` dependency found in a
+package's `package.json`, by verifying the version satisfies the minimin requirement.
+
+The version can be defined as a `peerDependencies`:
+
+```json
+{
+	"peerDependencies": {
+		"react": ">=17.0.0"
+	}
+}
+```
+
+Or the version can be defined as a normal `dependencies`:
+
+```json
+{
+	"dependencies": {
+		"react": "^17.0.0"
+	}
+}
+```
 
 ## Asset imports
 
@@ -221,3 +250,4 @@ const self = __filename;
 
 [babel]: https://babeljs.io
 [rollup]: https://rollupjs.org
+[jsx]: https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html

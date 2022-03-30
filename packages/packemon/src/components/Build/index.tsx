@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { Box, Static } from 'ink';
 import { Header, useProgram, useRenderLoop } from '@boost/cli/react';
 import { Package } from '../../Package';

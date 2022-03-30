@@ -1,4 +1,3 @@
-import React from 'react';
 import { Style } from '@boost/cli/react';
 import { toArray } from '@boost/common';
 import { BROWSER_TARGETS, NATIVE_TARGETS, NODE_SUPPORTED_VERSIONS } from '../constants';

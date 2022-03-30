@@ -1025,15 +1025,22 @@ describe('Package', () => {
 			).toEqual({
 				decorators: false,
 				flow: true,
-				react: true,
 				strict: true,
 				typescript: true,
 			});
 		});
 
 		describe('react', () => {
-			it('returns true if a package dependency (normal)', () => {
-				expect(loadPackage('react').getFeatureFlags()).toEqual({ react: true });
+			it('returns "classic" if a * dependency', () => {
+				expect(loadPackage('react-star').getFeatureFlags()).toEqual({ react: 'classic' });
+			});
+
+			it('returns "classic" if a non-satisfying dependency', () => {
+				expect(loadPackage('react-classic').getFeatureFlags()).toEqual({ react: 'classic' });
+			});
+
+			it('returns "automatic" if a satisfying dependency', () => {
+				expect(loadPackage('react-automatic').getFeatureFlags()).toEqual({ react: 'automatic' });
 			});
 		});
 

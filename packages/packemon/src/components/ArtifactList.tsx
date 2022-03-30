@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box } from 'ink';
 import { Artifact } from '../Artifact';
 import { Environment as EnvType } from '../types';

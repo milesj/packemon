@@ -16,6 +16,6 @@ export default {
 	settings: {
 		decorators: true,
 		node: true,
-		react: true,
+		react: 'automatic',
 	},
 };

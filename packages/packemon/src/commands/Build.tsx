@@ -1,5 +1,4 @@
 import os from 'os';
-import React from 'react';
 import { Arg, Config } from '@boost/cli';
 import { AnalyzeType, BuildOptions, DeclarationType } from '../types';
 import { BaseCommand } from './Base';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Arg, Config } from '@boost/cli';
 import { ValidateOptions } from '../types';
 import { BaseCommand } from './Base';

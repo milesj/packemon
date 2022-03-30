@@ -1,4 +1,3 @@
-import React from 'react';
 import { Config } from '@boost/cli';
 import { BuildCommand } from './Build';
 

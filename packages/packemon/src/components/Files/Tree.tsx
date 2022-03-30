@@ -1,6 +1,6 @@
 /* eslint-disable react-perf/jsx-no-new-array-as-prop */
 
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { Box, Text } from 'ink';
 import { StyleType } from '@boost/cli';
 import { Style } from '@boost/cli/react';

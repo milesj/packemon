@@ -97,7 +97,11 @@ export default function Home() {
 	const { siteConfig } = context;
 
 	return (
-		<Layout description={siteConfig.tagline} title="Gotta pack 'em all!">
+		<Layout
+			// @ts-expect-error Types removed upstream?
+			description={siteConfig.tagline}
+			title="Gotta pack 'em all!"
+		>
 			<header className={clsx('hero hero--primary', styles.heroBanner)}>
 				<div className="container">
 					<h1 className="hero__title">{siteConfig.title}</h1>

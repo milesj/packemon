@@ -35,6 +35,8 @@ jobs:
       - run: yarn install --immutable
       - run: yarn run setup
       - run: yarn run pack
+      # Run again with packemon built files
+      - run: yarn run pack
   docs:
     name: Docs
     runs-on: ubuntu-latest

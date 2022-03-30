@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { applyStyle } from '@boost/cli';
 import { Input, MultiSelect, Select, SelectOptionLike } from '@boost/cli/react';
 import { DEFAULT_FORMATS, DEFAULT_INPUT, DEFAULT_SUPPORT } from '../../constants';

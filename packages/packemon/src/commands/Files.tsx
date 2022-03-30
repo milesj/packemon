@@ -1,6 +1,5 @@
 /* eslint-disable no-param-reassign */
 
-import React from 'react';
 import packList from 'npm-packlist';
 import { Arg, Config } from '@boost/cli';
 import type { FileFormat } from '../components/Files';
