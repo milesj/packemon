@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.9.0 - 2022-03-30
+
+#### 🚀 Updates
+
+- Support React automatic JSX transform. (#108) ([e4daf28](https://github.com/milesj/packemon/commit/e4daf28)), closes [#108](https://github.com/milesj/packemon/issues/108)
+
+#### 📦 Dependencies
+
+- **[docusaurus]** Update to beta.18. ([89f539b](https://github.com/milesj/packemon/commit/89f539b))
+
+**Note:** Version bump only for package website
+
+
+
+
+
 ## <small>0.8.1 (2022-03-19)</small>
 
 * deps(docusaurus): Update to beta.16. ([c8eeb33](https://github.com/milesj/packemon/commit/c8eeb33))

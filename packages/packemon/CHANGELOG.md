@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.15.0 - 2022-03-30
+
+#### 🚀 Updates
+
+- Support React automatic JSX transform. (#108) ([e4daf28](https://github.com/milesj/packemon/commit/e4daf28)), closes [#108](https://github.com/milesj/packemon/issues/108)
+
+#### 🐞 Fixes
+
+- Fix --loadConfigs not being populated. ([d38540f](https://github.com/milesj/packemon/commit/d38540f))
+
+#### 📦 Dependencies
+
+- **[beemo-dev]** Update to latest configs. ([c87f0a9](https://github.com/milesj/packemon/commit/c87f0a9))
+
+**Note:** Version bump only for package packemon
+
+
+
+
+
 ## <small>1.14.1 (2022-03-19)</small>
 
 * deps: Update internals. ([3aba5ac](https://github.com/milesj/packemon/commit/3aba5ac))
