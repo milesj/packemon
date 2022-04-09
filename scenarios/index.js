@@ -13,7 +13,7 @@ import esmModuleJsModule from 'esm-module-js-module';
 import esmModuleMjs from 'esm-module-mjs';
 
 // These are weird but allowed
-import 'valid-cjs-via-import';
+import validCjsViaImport from 'valid-cjs-via-import';
 
 // These should fail
 // import 'invalid-js-module-via-require';
@@ -30,4 +30,5 @@ console.log(
 	esmModuleJs,
 	esmModuleJsModule,
 	esmModuleMjs,
+	validCjsViaImport,
 );
