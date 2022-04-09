@@ -1,3 +1,9 @@
+// Browser dual CJS/ESM
+import dualExportsJs from 'dual-exports-js';
+import dualExportsCjsMjs from 'dual-exports-cjs-mjs';
+import dualModuleJs from 'dual-module-js';
+import dualModuleCjsMjs from 'dual-module-cjs-mjs';
+
 // Browser ESM
 import esmExportJs from 'esm-exports-js';
 import esmExportJsModule from 'esm-exports-js-module';
@@ -14,6 +20,10 @@ import 'valid-cjs-via-import';
 // import 'invalid-mjs-via-require';
 
 console.log(
+	dualExportsJs,
+	dualExportsCjsMjs,
+	dualModuleJs,
+	dualModuleCjsMjs,
 	esmExportJs,
 	esmExportJsModule,
 	esmExportMjs,

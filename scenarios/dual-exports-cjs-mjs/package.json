@@ -1,0 +1,9 @@
+{
+  "name": "dual-exports-cjs-mjs",
+  "exports": {
+    ".": {
+      "import": "./module.mjs",
+      "require": "./main.cjs"
+    }
+  }
+}
