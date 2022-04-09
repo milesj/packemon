@@ -1,0 +1,8 @@
+{
+  "name": "invalid-mjs-via-require",
+  "exports": {
+    ".": {
+      "require": "./index.mjs"
+    }
+  }
+}

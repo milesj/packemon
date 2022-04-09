@@ -8995,6 +8995,42 @@ __metadata:
   languageName: node
   linkType: hard
 
+"esm-exports-js-module@workspace:scenarios/esm-exports-js-module":
+  version: 0.0.0-use.local
+  resolution: "esm-exports-js-module@workspace:scenarios/esm-exports-js-module"
+  languageName: unknown
+  linkType: soft
+
+"esm-exports-js@workspace:scenarios/esm-exports-js":
+  version: 0.0.0-use.local
+  resolution: "esm-exports-js@workspace:scenarios/esm-exports-js"
+  languageName: unknown
+  linkType: soft
+
+"esm-exports-mjs@workspace:scenarios/esm-exports-mjs":
+  version: 0.0.0-use.local
+  resolution: "esm-exports-mjs@workspace:scenarios/esm-exports-mjs"
+  languageName: unknown
+  linkType: soft
+
+"esm-module-js-module@workspace:scenarios/esm-module-js-module":
+  version: 0.0.0-use.local
+  resolution: "esm-module-js-module@workspace:scenarios/esm-module-js-module"
+  languageName: unknown
+  linkType: soft
+
+"esm-module-js@workspace:scenarios/esm-module-js":
+  version: 0.0.0-use.local
+  resolution: "esm-module-js@workspace:scenarios/esm-module-js"
+  languageName: unknown
+  linkType: soft
+
+"esm-module-mjs@workspace:scenarios/esm-module-mjs":
+  version: 0.0.0-use.local
+  resolution: "esm-module-mjs@workspace:scenarios/esm-module-mjs"
+  languageName: unknown
+  linkType: soft
+
 "espree@npm:^9.3.1":
   version: 9.3.1
   resolution: "espree@npm:9.3.1"
@@ -10931,6 +10967,18 @@ __metadata:
   checksum: f51efef7cb8d02da16408ffa3504cd6053014c5aeb7bb8c223727e053e4235bf565e45d67028b0c8740d917c603807aa3c27d7bd2f21bf20b6417e2bb3e5fd6e
   languageName: node
   linkType: hard
+
+"invalid-js-module-via-require@workspace:scenarios/invalid-js-module-via-require":
+  version: 0.0.0-use.local
+  resolution: "invalid-js-module-via-require@workspace:scenarios/invalid-js-module-via-require"
+  languageName: unknown
+  linkType: soft
+
+"invalid-mjs-via-require@workspace:scenarios/invalid-mjs-via-require":
+  version: 0.0.0-use.local
+  resolution: "invalid-mjs-via-require@workspace:scenarios/invalid-mjs-via-require"
+  languageName: unknown
+  linkType: soft
 
 "invariant@npm:^2.2.4":
   version: 2.2.4
@@ -16553,15 +16601,6 @@ resolve@~1.19.0:
   languageName: node
   linkType: hard
 
-"scenarios-bc09d9@workspace:scenarios":
-  version: 0.0.0-use.local
-  resolution: "scenarios-bc09d9@workspace:scenarios"
-  dependencies:
-    webpack: ^5.72.0
-    webpack-cli: ^4.9.2
-  languageName: unknown
-  linkType: soft
-
 "scheduler@npm:^0.20.2":
   version: 0.20.2
   resolution: "scheduler@npm:0.20.2"
@@ -18591,6 +18630,12 @@ resolve@~1.19.0:
   languageName: node
   linkType: hard
 
+"valid-cjs-via-import@workspace:scenarios/valid-cjs-via-import":
+  version: 0.0.0-use.local
+  resolution: "valid-cjs-via-import@workspace:scenarios/valid-cjs-via-import"
+  languageName: unknown
+  linkType: soft
+
 "validate-npm-package-license@npm:^3.0.1, validate-npm-package-license@npm:^3.0.4":
   version: 3.0.4
   resolution: "validate-npm-package-license@npm:3.0.4"
@@ -18775,6 +18820,15 @@ resolve@~1.19.0:
   checksum: 1f526507aa491f972a0c1409d07f8444e1d28778dfa269a9971f2e157182f3d496dc33296e4ed45b157fdb3bf535bb90c90bf10c50dcf1dd6caacb2a34cc84fb
   languageName: node
   linkType: hard
+
+"webpack-3301ab@workspace:scenarios/webpack":
+  version: 0.0.0-use.local
+  resolution: "webpack-3301ab@workspace:scenarios/webpack"
+  dependencies:
+    webpack: ^5.72.0
+    webpack-cli: ^4.9.2
+  languageName: unknown
+  linkType: soft
 
 "webpack-bundle-analyzer@npm:^4.5.0":
   version: 4.5.0
