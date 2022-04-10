@@ -5,4 +5,5 @@ export default {
 		// Were using new automatic mode
 		'react/react-in-jsx-scope': 'off',
 	},
+	ignore: ['scenarios/'],
 };

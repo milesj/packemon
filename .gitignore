@@ -8,6 +8,7 @@ logs/
 .npm
 .vscode
 .yarnclean
+.parcel-cache
 
 # Directories
 assets/
@@ -23,6 +24,7 @@ tmp/
 umd/
 node_modules/
 test/
+scenarios/*/build.js
 
 # Required for testing
 !tests/__fixtures__/project/dts

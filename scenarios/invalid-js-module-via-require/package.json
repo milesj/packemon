@@ -1,0 +1,9 @@
+{
+  "name": "invalid-js-module-via-require",
+  "type": "module",
+  "exports": {
+    ".": {
+      "require": "./index.js"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "dual-exports-js",
+  "exports": {
+    ".": {
+      "import": "./module.js",
+      "require": "./main.js"
+    }
+  }
+}
