@@ -110,8 +110,7 @@ the following `build` (for development) and `pack` (for production) scripts.
 
 Packemon relies on its own internal Babel configuration for building packages, but if you want to
 use the same configuration for local development and testing, update your root `babel.config.js` to
-the following. With that being said, we do offer an
-[escape hatch for advanced scenarios](./advanced#customizing-babel-and-rollup).
+the following.
 
 ```js title="babel.config.js"
 const { createRootConfig } = require('packemon/babel');
@@ -120,13 +119,5 @@ module.exports = createRootConfig();
 ```
 
 If you're using workspaces and certain packages require additional configuration that the root does
-not provide (for example the React preset), you can create branch relative `.babelrc.js` configs.
-These configs must be located relative to the package's `package.json`.
-
-```js title=".babelrc.js"
-const { createConfig } = require('packemon/babel');
-
-module.exports = createConfig(__dirname); // Dir is required!
-```
-
-> We suggest using the configuration as is, which means no custom plugins or presets.
+not provide (for example the React preset), you can
+[create branch relative `.packemon.js` config](./advanced#customizing-babel-swc-and-rollup).
