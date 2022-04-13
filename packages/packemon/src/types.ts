@@ -88,13 +88,21 @@ export interface PackageConfig {
 // https://webpack.js.org/guides/package-exports
 
 export type PackageExportConditions =
+	| 'asset'
 	| 'browser'
 	| 'default'
+	| 'deno'
+	| 'development'
+	| 'electron'
 	| 'import'
 	| 'module'
+	| 'node-addons'
 	| 'node'
+	| 'production'
 	| 'react-native'
 	| 'require'
+	| 'script'
+	| 'style'
 	| 'types';
 
 export type PackageExportPaths = {

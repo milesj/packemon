@@ -95,7 +95,7 @@ export function getSwcInputConfig(
 		jsc: {
 			parser: {
 				syntax: 'ecmascript',
-				jsx: features.react,
+				jsx: !!features.react,
 				dynamicImport: true,
 			},
 			transform,
@@ -109,7 +109,7 @@ export function getSwcInputConfig(
 	if (features.typescript) {
 		const parser: TsParserConfig = {
 			syntax: 'typescript',
-			tsx: features.react,
+			tsx: !!features.react,
 			dynamicImport: true,
 		};
 
@@ -124,7 +124,7 @@ export function getSwcInputConfig(
 	if (features.react) {
 		transform.react = {
 			development: __DEV__,
-			runtime: 'classic',
+			runtime: features.react,
 			throwIfNamespace: true,
 		};
 	}

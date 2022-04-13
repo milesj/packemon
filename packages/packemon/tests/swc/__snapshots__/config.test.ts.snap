@@ -13,7 +13,7 @@ Object {
     "loose": false,
     "parser": Object {
       "dynamicImport": true,
-      "jsx": undefined,
+      "jsx": false,
       "syntax": "ecmascript",
     },
     "preserveAllComments": true,
@@ -39,7 +39,7 @@ Object {
     "loose": false,
     "parser": Object {
       "dynamicImport": true,
-      "jsx": undefined,
+      "jsx": false,
       "syntax": "ecmascript",
     },
     "preserveAllComments": true,
@@ -64,7 +64,7 @@ Object {
     "loose": false,
     "parser": Object {
       "dynamicImport": true,
-      "jsx": undefined,
+      "jsx": false,
       "syntax": "ecmascript",
     },
     "preserveAllComments": true,
@@ -82,7 +82,7 @@ Object {
   "optimizer": undefined,
   "react": Object {
     "development": true,
-    "runtime": "classic",
+    "runtime": "automatic",
     "throwIfNamespace": true,
   },
 }
@@ -102,7 +102,7 @@ Object {
       "decorators": true,
       "dynamicImport": true,
       "syntax": "typescript",
-      "tsx": undefined,
+      "tsx": false,
     },
     "preserveAllComments": true,
     "target": "es2022",
@@ -119,7 +119,7 @@ exports[`getSwcInputConfig() includes typescript parser if \`typescript\` featur
 Object {
   "dynamicImport": true,
   "syntax": "typescript",
-  "tsx": undefined,
+  "tsx": false,
 }
 `;
 
@@ -137,7 +137,7 @@ Object {
       "decorators": true,
       "dynamicImport": true,
       "syntax": "typescript",
-      "tsx": undefined,
+      "tsx": false,
     },
     "preserveAllComments": true,
     "target": "es2022",
