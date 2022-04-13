@@ -79,7 +79,7 @@ Object {
 
 exports[`createRootConfig() returns the correct config 1`] = `
 Object {
-  "babelrc": true,
+  "babelrc": false,
   "babelrcRoots": Array [
     "packages/*",
     "scenarios/*",
@@ -170,7 +170,7 @@ Object {
 
 exports[`getBabelInputConfig() can mutate config 1`] = `
 Object {
-  "babelrc": true,
+  "babelrc": false,
   "babelrcRoots": undefined,
   "caller": Object {
     "name": "packemon",
@@ -191,7 +191,7 @@ Object {
 
 exports[`getBabelInputConfig() doesnt include typescript decorators if \`typescript\` feature flag is false 1`] = `
 Object {
-  "babelrc": true,
+  "babelrc": false,
   "babelrcRoots": undefined,
   "caller": Object {
     "name": "packemon",
@@ -220,7 +220,7 @@ Array [
 
 exports[`getBabelInputConfig() includes no plugins or presets by default 1`] = `
 Object {
-  "babelrc": true,
+  "babelrc": false,
   "babelrcRoots": undefined,
   "caller": Object {
     "name": "packemon",
@@ -264,7 +264,7 @@ Array [
 
 exports[`getBabelInputConfig() includes typescript decorators if \`typescript\` and \`decorators\` feature flag is true 1`] = `
 Object {
-  "babelrc": true,
+  "babelrc": false,
   "babelrcRoots": undefined,
   "caller": Object {
     "name": "packemon",
@@ -325,7 +325,7 @@ Array [
 
 exports[`getBabelInputConfig() supports private properties with decorators if dep exists 1`] = `
 Object {
-  "babelrc": true,
+  "babelrc": false,
   "babelrcRoots": undefined,
   "caller": Object {
     "name": "packemon",
@@ -375,7 +375,7 @@ Object {
 
 exports[`getBabelOutputConfig() can mutate config 1`] = `
 Object {
-  "babelrc": true,
+  "babelrc": false,
   "babelrcRoots": undefined,
   "caller": Object {
     "name": "packemon",
@@ -1019,7 +1019,7 @@ Array [
 
 exports[`getBabelOutputConfig() transforms async/await to promises when \`browser\` or \`native\` 1`] = `
 Object {
-  "babelrc": true,
+  "babelrc": false,
   "babelrcRoots": undefined,
   "caller": Object {
     "name": "packemon",
@@ -1064,7 +1064,7 @@ Object {
 
 exports[`getBabelOutputConfig() transforms async/await to promises when \`browser\` or \`native\` 2`] = `
 Object {
-  "babelrc": true,
+  "babelrc": false,
   "babelrcRoots": undefined,
   "caller": Object {
     "name": "packemon",
@@ -1106,7 +1106,7 @@ Object {
 
 exports[`getBabelOutputConfig() uses built-in destructuring and object spread when \`current\` or \`experimental\` 1`] = `
 Object {
-  "babelrc": true,
+  "babelrc": false,
   "babelrcRoots": undefined,
   "caller": Object {
     "name": "packemon",
@@ -1165,7 +1165,7 @@ Object {
 
 exports[`getBabelOutputConfig() uses built-in destructuring and object spread when \`current\` or \`experimental\` 2`] = `
 Object {
-  "babelrc": true,
+  "babelrc": false,
   "babelrcRoots": undefined,
   "caller": Object {
     "name": "packemon",
