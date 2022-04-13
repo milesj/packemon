@@ -90,9 +90,13 @@ export interface PackageConfig {
 export type PackageExportConditions =
 	| 'browser'
 	| 'default'
+	| 'deno'
+	| 'development'
 	| 'import'
 	| 'module'
+	| 'node-addons'
 	| 'node'
+	| 'production'
 	| 'react-native'
 	| 'require'
 	| 'types';

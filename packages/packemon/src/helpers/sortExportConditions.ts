@@ -1,11 +1,13 @@
 import { PackageExportPaths } from '../types';
 
 const WEIGHTS = {
-	types: 1, // Types must always be first
-	misc: 2,
-	import: 3,
-	require: 4,
-	default: 10, // Default must be last
+	types: 10, // Types must always be first
+	misc: 20,
+	'node-addons': 30,
+	node: 31,
+	import: 40,
+	require: 50,
+	default: 100, // Default must be last
 };
 
 export function sortExportConditions(paths: PackageExportPaths): PackageExportPaths {
@@ -15,7 +17,7 @@ export function sortExportConditions(paths: PackageExportPaths): PackageExportPa
 		pathsList.push({
 			weight: key in WEIGHTS ? WEIGHTS[key as 'misc'] : WEIGHTS.misc,
 			key,
-			value,
+			value: typeof value === 'string' ? value : sortExportConditions(value),
 		});
 	});
 
