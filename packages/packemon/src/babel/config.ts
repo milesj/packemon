@@ -100,10 +100,9 @@ function getSharedConfig(
 		},
 		plugins,
 		presets,
-		// Do NOT load root `babel.config.js` as we need full control
+		// Do NOT load root `babel.config.js` or `.babelrc` as we need full control
 		configFile: false,
-		// Do load branch `.babelrc.js` files for granular customization
-		babelrc: true,
+		babelrc: false,
 		babelrcRoots: features.workspaces,
 	};
 }
