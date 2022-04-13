@@ -199,16 +199,9 @@ export class CodeArtifact extends Artifact<CodeBuild> {
 
 	protected mapPackageExportsFromBuilds(outputName: string, exportMap: PackageExports) {
 		const paths: PackageExportPaths = {};
-		let libPath: PackageExportPaths | string = '';
 
 		this.builds.forEach(({ format }) => {
 			const entry = this.findEntryPoint([format], outputName);
-
-			// Must come after import/require
-			if (paths.default) {
-				libPath = paths.default;
-				delete paths.default;
-			}
 
 			switch (format) {
 				case 'mjs':
@@ -226,7 +219,7 @@ export class CodeArtifact extends Artifact<CodeBuild> {
 					break;
 
 				case 'lib':
-					libPath = entry;
+					paths.default = entry;
 					break;
 
 				default:
@@ -234,15 +227,10 @@ export class CodeArtifact extends Artifact<CodeBuild> {
 			}
 		});
 
-		// Must come after import/require
-		if (libPath) {
-			paths.default = libPath;
-		}
-
 		// eslint-disable-next-line no-param-reassign
 		exportMap[outputName === 'index' ? '.' : `./${outputName}`] = {
 			[this.platform === 'native' ? 'react-native' : this.platform]:
-				Object.keys(paths).length === 1 && libPath ? libPath : paths,
+				Object.keys(paths).length === 1 && paths.default ? paths.default : paths,
 		};
 	}
 }
