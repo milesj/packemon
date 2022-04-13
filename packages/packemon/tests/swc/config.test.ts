@@ -15,7 +15,9 @@ describe('getSwcInputConfig()', () => {
 	});
 
 	it('includes react transformer if `react` feature flag is true', () => {
-		expect(getSwcInputConfig(bundleArtifact, { react: true }).jsc?.transform).toMatchSnapshot();
+		expect(
+			getSwcInputConfig(bundleArtifact, { react: 'automatic' }).jsc?.transform,
+		).toMatchSnapshot();
 	});
 
 	it('includes typescript parser if `typescript` feature flag is true', () => {

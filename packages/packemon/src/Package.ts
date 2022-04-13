@@ -19,6 +19,7 @@ import {
 	SUPPORT_PRIORITY,
 } from './constants';
 import { loadModule } from './helpers/loadModule';
+import { sortExportConditions } from './helpers/sortExportConditions';
 import { Project } from './Project';
 import { packemonBlueprint } from './schemas';
 import {
@@ -486,6 +487,12 @@ export class Package {
 
 				Object.assign(exportMap[path], conditions);
 			});
+		});
+
+		// Sort the condition paths
+		Object.entries(exportMap).forEach(([path, conditions]) => {
+			exportMap[path] =
+				typeof conditions === 'string' ? conditions : sortExportConditions(conditions);
 		});
 
 		if (isObject(this.packageJson.exports)) {

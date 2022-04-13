@@ -16,5 +16,5 @@ describe.skip('React/JSX', () => {
 	});
 
 	// Automatic only
-	testExampleOutput('react.tsx');
+	testExampleOutput('react.tsx', 'babel');
 });

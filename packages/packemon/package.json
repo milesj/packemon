@@ -28,12 +28,12 @@
   "exports": {
     "./package.json": "./package.json",
     "./*": {
-      "node": "./lib/*.js",
-      "types": "./dts/*.d.ts"
+      "types": "./dts/*.d.ts",
+      "node": "./lib/*.js"
     },
     ".": {
-      "node": "./lib/index.js",
-      "types": "./dts/index.d.ts"
+      "types": "./dts/index.d.ts",
+      "node": "./lib/index.js"
     }
   },
   "engines": {
