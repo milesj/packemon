@@ -1,5 +1,6 @@
 import { PackageExportPaths } from '../types';
 
+// https://nodejs.org/api/packages.html#conditional-exports
 const WEIGHTS = {
 	types: 10, // Types must always be first
 	misc: 20,
@@ -21,7 +22,11 @@ export function sortExportConditions(paths: PackageExportPaths): PackageExportPa
 		});
 	});
 
-	pathsList.sort((a, d) => a.weight - d.weight);
+	pathsList.sort((a, d) => {
+		const diff = a.weight - d.weight;
+
+		return diff === 0 ? a.key.localeCompare(d.key) : diff;
+	});
 
 	return Object.fromEntries(pathsList.map((path) => [path.key, path.value]));
 }
