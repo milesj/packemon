@@ -159,18 +159,6 @@ export function getSwcOutputConfig(
 		...getPlatformEnvOptions(platform, support, format),
 	};
 
-	// While modern browsers support these features, Node.js does not,
-	// which results in failing builds trying to parse the syntax.
-	// Let's only apply this for the lib format, but allow it for esm.
-	// TODO: Drop in Node 12+
-	if ((platform === 'browser' || platform === 'native') && format === 'lib') {
-		env.include = [
-			'proposal-logical-assignment-operators',
-			'proposal-nullish-coalescing-operator',
-			'proposal-optional-chaining',
-		];
-	}
-
 	const module: ModuleConfig = {
 		type: getModuleConfigType(format),
 		// @ts-expect-error Not typed

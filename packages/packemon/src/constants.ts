@@ -75,7 +75,7 @@ export const NATIVE_TARGETS: { [K in Support]: string } = {
 export const NODE_SUPPORTED_VERSIONS: { [K in Support]: string } = {
 	legacy: '10.3.0',
 	stable: '12.17.0', // ESM support not behind a flag
-	current: '14.16.0', // Includes security fixes
+	current: '14.19.0', // Includes corepack
 	experimental: '16.0.0',
 };
 

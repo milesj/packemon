@@ -187,18 +187,6 @@ export function getBabelOutputConfig(
 	// PLUGINS
 
 	if (platform === 'browser' || platform === 'native') {
-		// While modern browsers support these features, Node.js does not,
-		// which results in failing builds trying to parse the syntax.
-		// Let's only apply this for the lib format, but allow it for esm.
-		// TODO: Drop in Node 12+
-		if (format === 'lib') {
-			plugins.push(
-				resolveFromBabel('@babel/plugin-proposal-logical-assignment-operators'),
-				resolveFromBabel('@babel/plugin-proposal-nullish-coalescing-operator'),
-				resolveFromBabel('@babel/plugin-proposal-optional-chaining'),
-			);
-		}
-
 		// Both browsers and Node.js support these features outside of legacy targets
 		if (support === 'legacy') {
 			plugins.push(
