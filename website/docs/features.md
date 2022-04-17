@@ -41,9 +41,6 @@ The following plugins are enabled when one of their conditions are met.
 - `@babel/plugin-transform-runtime`
   - Enabled when package [platform](./config.md#platforms) is configured to `browser` or `native`.
     Will transform generators to `regnerator-runtime` for legacy versions.
-- `babel-plugin-transform-async-to-promises`
-  - Enabled when package [platform](./config.md#platforms) is configured to `browser` or `native`.
-    Will transform async/await to promises for legacy versions.
 - [`babel-plugin-env-constants`](#environment-constants)
   - Always enabled. Will transform `__DEV__`, `__PROD__`, and `__TEST__` to `process.env.NODE_ENV`
     expressions.

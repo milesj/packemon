@@ -409,7 +409,7 @@ var data = {
   }
 }; // @ts-expect-error resolveJsonModule is not on
 
-var keys = Object.keys(data);
+const keys = Object.keys(data);
 exports.keys = keys;
 ",
 ]
@@ -1163,7 +1163,7 @@ Object.defineProperty(exports, \\"__esModule\\", {
     value: true
 });
 // @ts-expect-error resolveJsonModule is not on
-var keys = Object.keys({
+const keys = Object.keys({
     list: [
         \\"foo\\",
         \\"bar\\",

@@ -621,27 +621,20 @@ Array [
 // Platform: native, Support: legacy, Format: lib
 'use strict';
 
-var _this = this;
-
-function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError(\\"Cannot instantiate an arrow function\\"); } }
-
 Promise.resolve().then(function () {
   return require('./bundle-399daa32.js');
-}).then(function (result) {
-  _newArrowCheck(this, _this);
-
+}).then(result => {
   result.foo();
-}.bind(this));
+});
 Promise.resolve().then(function () {
   return require(
   /* webpackChunkName: \\"helpers\\" */
   './bundle-399daa32.js');
-}).then(function (_ref) {
-  _newArrowCheck(this, _this);
-
-  var bar = _ref.bar;
+}).then(({
+  bar
+}) => {
   bar();
-}.bind(this));
+});
 ",
 ]
 `;
@@ -1541,30 +1534,10 @@ Array [
             return newObj;
         }
     }
-    (exports === undefined ? new Promise(function(resolve, reject) {
-        require([
-            \\"./bundle-ca4fc8e9.js\\"
-        ], function(dep) {
-            resolve(dep);
-        }, function(err) {
-            reject(err);
-        });
-    }) : Promise.resolve().then(function() {
-        return _interopRequireWildcard(require(\\"./bundle-ca4fc8e9.js\\"));
-    })).then(function(result) {
+    import(\\"./bundle-ca4fc8e9.js\\").then(function(result) {
         result.foo();
     });
-    (exports === undefined ? new Promise(function(resolve, reject) {
-        require([
-            /* webpackChunkName: \\"helpers\\" */ \\"./bundle-ca4fc8e9.js\\"
-        ], function(dep) {
-            resolve(dep);
-        }, function(err) {
-            reject(err);
-        });
-    }) : Promise.resolve().then(function() {
-        return _interopRequireWildcard(require(\\"./bundle-ca4fc8e9.js\\"));
-    })).then(function(param) {
+    import(/* webpackChunkName: \\"helpers\\" */ \\"./bundle-ca4fc8e9.js\\").then(function(param) {
         var bar = param.bar;
         bar();
     });
@@ -1799,13 +1772,12 @@ Array [
 \\"use strict\\";
 Promise.resolve().then(function() {
     return require(\\"./bundle-399daa32.js\\");
-}).then(function(result) {
+}).then((result)=>{
     result.foo();
 });
 Promise.resolve().then(function() {
     return require(/* webpackChunkName: \\"helpers\\" */ \\"./bundle-399daa32.js\\");
-}).then(function(param) {
-    var bar = param.bar;
+}).then(({ bar  })=>{
     bar();
 });
 ",

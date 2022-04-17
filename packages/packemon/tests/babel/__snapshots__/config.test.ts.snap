@@ -54,6 +54,7 @@ Object {
       Object {
         "bugfixes": true,
         "exclude": Array [
+          "@babel/plugin-proposal-dynamic-import",
           "@babel/plugin-transform-regenerator",
           "@babel/plugin-transform-async-to-generator",
         ],
@@ -145,6 +146,7 @@ Object {
       Object {
         "bugfixes": true,
         "exclude": Array [
+          "@babel/plugin-proposal-dynamic-import",
           "@babel/plugin-transform-regenerator",
           "@babel/plugin-transform-async-to-generator",
         ],
@@ -385,6 +387,18 @@ Object {
     "strictMode": undefined,
   },
   "plugins": Array [
+    Array [
+      "@babel/plugin-transform-destructuring",
+      Object {
+        "useBuiltIns": true,
+      },
+    ],
+    Array [
+      "@babel/plugin-proposal-object-rest-spread",
+      Object {
+        "useBuiltIns": true,
+      },
+    ],
     "babel-plugin-conditional-invariant",
     "babel-plugin-env-constants",
     "babel-plugin-example",
@@ -429,7 +443,7 @@ Array [
     "spec": true,
     "targets": Object {
       "browsers": Array [
-        "> 1%",
+        ">=1%",
         "not dead",
       ],
     },
@@ -466,13 +480,18 @@ Array [
   "@babel/preset-env",
   Object {
     "bugfixes": true,
-    "exclude": Array [],
+    "exclude": Array [
+      "@babel/plugin-proposal-dynamic-import",
+    ],
     "loose": false,
     "modules": false,
     "shippedProposals": true,
     "spec": true,
     "targets": Object {
-      "browsers": "IE 11",
+      "browsers": Array [
+        ">=0.10%",
+        "not IE 11",
+      ],
     },
     "useBuiltIns": false,
   },
@@ -516,7 +535,7 @@ Array [
     "spec": true,
     "targets": Object {
       "browsers": Array [
-        "> 1%",
+        ">=1%",
         "not dead",
       ],
     },
@@ -553,13 +572,18 @@ Array [
   "@babel/preset-env",
   Object {
     "bugfixes": true,
-    "exclude": Array [],
+    "exclude": Array [
+      "@babel/plugin-proposal-dynamic-import",
+    ],
     "loose": false,
     "modules": "cjs",
     "shippedProposals": true,
     "spec": true,
     "targets": Object {
-      "browsers": "IE 11",
+      "browsers": Array [
+        ">=0.10%",
+        "not IE 11",
+      ],
     },
     "useBuiltIns": false,
   },
@@ -603,7 +627,7 @@ Array [
     "spec": true,
     "targets": Object {
       "browsers": Array [
-        "> 1%",
+        ">=1%",
         "not dead",
       ],
     },
@@ -640,13 +664,18 @@ Array [
   "@babel/preset-env",
   Object {
     "bugfixes": true,
-    "exclude": Array [],
+    "exclude": Array [
+      "@babel/plugin-proposal-dynamic-import",
+    ],
     "loose": false,
     "modules": "umd",
     "shippedProposals": true,
     "spec": true,
     "targets": Object {
-      "browsers": "IE 11",
+      "browsers": Array [
+        ">=0.10%",
+        "not IE 11",
+      ],
     },
     "useBuiltIns": false,
   },
@@ -689,7 +718,7 @@ Array [
     "shippedProposals": true,
     "spec": true,
     "targets": Object {
-      "browsers": "iOS 12",
+      "browsers": "iOS 14",
     },
     "useBuiltIns": false,
   },
@@ -709,7 +738,7 @@ Array [
     "shippedProposals": true,
     "spec": true,
     "targets": Object {
-      "browsers": "iOS 14",
+      "browsers": "iOS 15",
     },
     "useBuiltIns": false,
   },
@@ -721,13 +750,15 @@ Array [
   "@babel/preset-env",
   Object {
     "bugfixes": true,
-    "exclude": Array [],
+    "exclude": Array [
+      "@babel/plugin-proposal-dynamic-import",
+    ],
     "loose": false,
     "modules": "cjs",
     "shippedProposals": true,
     "spec": true,
     "targets": Object {
-      "browsers": "iOS 8",
+      "browsers": "iOS 12",
     },
     "useBuiltIns": false,
   },
@@ -747,7 +778,7 @@ Array [
     "shippedProposals": true,
     "spec": true,
     "targets": Object {
-      "browsers": "iOS 10",
+      "browsers": "iOS 13",
     },
     "useBuiltIns": false,
   },
@@ -825,6 +856,7 @@ Array [
   Object {
     "bugfixes": true,
     "exclude": Array [
+      "@babel/plugin-proposal-dynamic-import",
       "@babel/plugin-transform-regenerator",
       "@babel/plugin-transform-async-to-generator",
     ],
@@ -911,6 +943,7 @@ Array [
   Object {
     "bugfixes": true,
     "exclude": Array [
+      "@babel/plugin-proposal-dynamic-import",
       "@babel/plugin-transform-regenerator",
       "@babel/plugin-transform-async-to-generator",
     ],
@@ -997,6 +1030,7 @@ Array [
   Object {
     "bugfixes": true,
     "exclude": Array [
+      "@babel/plugin-proposal-dynamic-import",
       "@babel/plugin-transform-regenerator",
       "@babel/plugin-transform-async-to-generator",
     ],
@@ -1026,6 +1060,18 @@ Object {
     "strictMode": undefined,
   },
   "plugins": Array [
+    Array [
+      "@babel/plugin-transform-destructuring",
+      Object {
+        "useBuiltIns": true,
+      },
+    ],
+    Array [
+      "@babel/plugin-proposal-object-rest-spread",
+      Object {
+        "useBuiltIns": true,
+      },
+    ],
     "babel-plugin-conditional-invariant",
     "babel-plugin-env-constants",
   ],
@@ -1068,6 +1114,18 @@ Object {
     "strictMode": undefined,
   },
   "plugins": Array [
+    Array [
+      "@babel/plugin-transform-destructuring",
+      Object {
+        "useBuiltIns": true,
+      },
+    ],
+    Array [
+      "@babel/plugin-proposal-object-rest-spread",
+      Object {
+        "useBuiltIns": true,
+      },
+    ],
     "babel-plugin-conditional-invariant",
     "babel-plugin-env-constants",
   ],
@@ -1084,7 +1142,7 @@ Object {
         "shippedProposals": true,
         "spec": true,
         "targets": Object {
-          "browsers": "iOS 14",
+          "browsers": "iOS 15",
         },
         "useBuiltIns": false,
       },

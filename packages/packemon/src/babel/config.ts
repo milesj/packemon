@@ -6,11 +6,7 @@ import { resolve, resolveFromBabel } from './resolve';
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#browser_compatibility
 function shouldKeepDynamicImport(platform: Platform, support: Support): boolean {
-	if (platform === 'node') {
-		return support === 'current' || support === 'experimental';
-	}
-
-	return support !== 'legacy';
+	return platform === 'node' ? support !== 'legacy' : true;
 }
 
 // https://babeljs.io/docs/en/babel-preset-env
@@ -185,29 +181,19 @@ export function getBabelOutputConfig(
 
 	// PLUGINS
 
-	if (platform === 'browser' || platform === 'native') {
-		// Both browsers and Node.js support these features outside of legacy targets
-		if (support === 'legacy') {
-			plugins.push(
-				[
-					resolve('babel-plugin-transform-async-to-promises'),
-					{ inlineHelpers: true, target: 'es5' },
-				],
-				[
-					resolve('@babel/plugin-transform-runtime'),
-					{ helpers: false, regenerator: true, useESModules: isESM },
-				],
-			);
-		}
-	} else {
+	plugins.push(
 		// Use `Object.assign` when available
-		plugins.push(
-			[resolveFromBabel('@babel/plugin-transform-destructuring'), { useBuiltIns: true }],
-			[resolveFromBabel('@babel/plugin-proposal-object-rest-spread'), { useBuiltIns: true }],
-		);
+		[resolveFromBabel('@babel/plugin-transform-destructuring'), { useBuiltIns: true }],
+		[resolveFromBabel('@babel/plugin-proposal-object-rest-spread'), { useBuiltIns: true }],
+	);
+
+	if ((platform === 'browser' || platform === 'native') && support === 'legacy') {
+		plugins.push([
+			resolve('@babel/plugin-transform-runtime'),
+			{ helpers: false, regenerator: true, useESModules: isESM },
+		]);
 	}
 
-	// Support our custom plugins
 	if (platform === 'node') {
 		plugins.push([resolve('babel-plugin-cjs-esm-interop'), { format: isESM ? 'mjs' : 'cjs' }]);
 	}

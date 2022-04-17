@@ -52,5 +52,3 @@ features.
   [`jsc.transform.optimizer.globals`](https://swc.rs/docs/configuration/compilation#jsctransformoptimizerglobals)
   to substitute conditionals. Since we can't use a real plugin, the scenarios in which these
   constants are replaced may differ between the Babel version.
-- Legacy targets do not support `async`/`await` by default, and will require the
-  [regenerator-runtime](https://www.npmjs.com/package/regenerator-runtime) to be installed.

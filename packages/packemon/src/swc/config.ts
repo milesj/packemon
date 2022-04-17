@@ -17,11 +17,7 @@ import { ConfigFile, FeatureFlags, Format, Platform, Support } from '../types';
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#browser_compatibility
 function shouldKeepDynamicImport(platform: Platform, support: Support): boolean {
-	if (platform === 'node') {
-		return support === 'current' || support === 'experimental';
-	}
-
-	return support !== 'legacy';
+	return platform === 'node' ? support !== 'legacy' : true;
 }
 
 function getModuleConfigType(format: Format): ModuleConfig['type'] {
@@ -102,7 +98,7 @@ export function getSwcInputConfig(
 			// Keep the input as similar as possible
 			externalHelpers: false,
 			loose: false,
-			target: 'es2022',
+			target: SUPPORT_TO_ESM_SPEC.experimental,
 		},
 	};
 

@@ -201,35 +201,76 @@ Array [
 exports[`Async/await babel transforms example test case: browser-legacy-esm 1`] = `
 Array [
   "esm/index-browser-legacy-esm.js",
-  "function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError(\\"Cannot instantiate an arrow function\\"); } }
+  "import _regeneratorRuntime from \\"@babel/runtime/regenerator\\";
 
-var run = function run() {
-  try {
-    return Promise.resolve(_catch(function () {
-      return Promise.resolve(wait()).then(function () {});
-    }, function () {
-      throw new Error('Fail');
-    }));
-  } catch (e) {
-    return Promise.reject(e);
-  }
-};
+function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError(\\"Cannot instantiate an arrow function\\"); } }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, \\"next\\", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, \\"throw\\", err); } _next(undefined); }); }; }
 
 // Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: esm
-var wait = function wait() {
-  var _this = this;
+function wait() {
+  return _wait.apply(this, arguments);
+}
 
-  try {
-    return Promise.resolve(new Promise(function (resolve) {
-      _newArrowCheck(this, _this);
+function _wait() {
+  _wait = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee() {
+    var _this = this;
 
-      setTimeout(resolve, 100);
-    }.bind(this)));
-  } catch (e) {
-    return Promise.reject(e);
-  }
-};
+    return _regeneratorRuntime.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            return _context.abrupt(\\"return\\", new Promise(function (resolve) {
+              _newArrowCheck(this, _this);
+
+              setTimeout(resolve, 100);
+            }.bind(this)));
+
+          case 1:
+          case \\"end\\":
+            return _context.stop();
+        }
+      }
+    }, _callee, this);
+  }));
+  return _wait.apply(this, arguments);
+}
+
+function run() {
+  return _run.apply(this, arguments);
+}
+
+function _run() {
+  _run = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee2() {
+    return _regeneratorRuntime.wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.prev = 0;
+            _context2.next = 3;
+            return wait();
+
+          case 3:
+            _context2.next = 8;
+            break;
+
+          case 5:
+            _context2.prev = 5;
+            _context2.t0 = _context2[\\"catch\\"](0);
+            throw new Error('Fail');
+
+          case 8:
+          case \\"end\\":
+            return _context2.stop();
+        }
+      }
+    }, _callee2, null, [[0, 5]]);
+  }));
+  return _run.apply(this, arguments);
+}
 
 export { run, wait };
 ",
@@ -243,51 +284,79 @@ Array [
 // Platform: browser, Support: legacy, Format: lib
 'use strict';
 
-function _catch(body, recover) {
-  try {
-    var result = body();
-  } catch (e) {
-    return recover(e);
-  }
-
-  if (result && result.then) {
-    return result.then(void 0, recover);
-  }
-
-  return result;
-}
+var _regeneratorRuntime = require(\\"@babel/runtime/regenerator\\");
 
 function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError(\\"Cannot instantiate an arrow function\\"); } }
 
-var run = function run() {
-  try {
-    return Promise.resolve(_catch(function () {
-      return Promise.resolve(wait()).then(function () {});
-    }, function () {
-      throw new Error('Fail');
-    }));
-  } catch (e) {
-    return Promise.reject(e);
-  }
-};
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
-var wait = function wait() {
-  var _this = this;
-
-  try {
-    return Promise.resolve(new Promise(function (resolve) {
-      _newArrowCheck(this, _this);
-
-      setTimeout(resolve, 100);
-    }.bind(this)));
-  } catch (e) {
-    return Promise.reject(e);
-  }
-};
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, \\"next\\", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, \\"throw\\", err); } _next(undefined); }); }; }
 
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
+
+function wait() {
+  return _wait.apply(this, arguments);
+}
+
+function _wait() {
+  _wait = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee() {
+    var _this = this;
+
+    return _regeneratorRuntime.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            return _context.abrupt(\\"return\\", new Promise(function (resolve) {
+              _newArrowCheck(this, _this);
+
+              setTimeout(resolve, 100);
+            }.bind(this)));
+
+          case 1:
+          case \\"end\\":
+            return _context.stop();
+        }
+      }
+    }, _callee, this);
+  }));
+  return _wait.apply(this, arguments);
+}
+
+function run() {
+  return _run.apply(this, arguments);
+}
+
+function _run() {
+  _run = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee2() {
+    return _regeneratorRuntime.wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.prev = 0;
+            _context2.next = 3;
+            return wait();
+
+          case 3:
+            _context2.next = 8;
+            break;
+
+          case 5:
+            _context2.prev = 5;
+            _context2.t0 = _context2[\\"catch\\"](0);
+            throw new Error('Fail');
+
+          case 8:
+          case \\"end\\":
+            return _context2.stop();
+        }
+      }
+    }, _callee2, null, [[0, 5]]);
+  }));
+  return _run.apply(this, arguments);
+}
+
 exports.run = run;
 exports.wait = wait;
 ",
@@ -299,57 +368,96 @@ Array [
   "umd/index-browser-legacy-umd.js",
   "(function (global, factory) {
   if (typeof define === \\"function\\" && define.amd) {
-    define([\\"exports\\"], factory);
+    define([\\"exports\\", \\"@babel/runtime/regenerator\\"], factory);
   } else if (typeof exports !== \\"undefined\\") {
-    factory(exports);
+    factory(exports, require(\\"@babel/runtime/regenerator\\"));
   } else {
     var mod = {
       exports: {}
     };
-    factory(mod.exports);
+    factory(mod.exports, global.regenerator);
     global.examples = mod.exports;
   }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports) {
+})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports, _regenerator) {
   \\"use strict\\";
 
   Object.defineProperty(_exports, \\"__esModule\\", {
     value: true
   });
-  _exports.wait = _exports.run = void 0;
+  _exports.run = run;
+  _exports.wait = wait;
+  _regenerator = _interopRequireDefault(_regenerator);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
   function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError(\\"Cannot instantiate an arrow function\\"); } }
 
-  var run = function run() {
-    try {
-      return Promise.resolve(_catch(function () {
-        return Promise.resolve(wait()).then(function () {});
-      }, function () {
-        throw new Error('Fail');
-      }));
-    } catch (e) {
-      return Promise.reject(e);
-    }
-  };
+  function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
-  _exports.run = run;
+  function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, \\"next\\", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, \\"throw\\", err); } _next(undefined); }); }; }
 
   // Bundled with Packemon: https://packemon.dev
   // Platform: browser, Support: legacy, Format: umd
-  var wait = function wait() {
-    var _this = this;
+  function wait() {
+    return _wait.apply(this, arguments);
+  }
 
-    try {
-      return Promise.resolve(new Promise(function (resolve) {
-        _newArrowCheck(this, _this);
+  function _wait() {
+    _wait = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {
+      var _this = this;
 
-        setTimeout(resolve, 100);
-      }.bind(this)));
-    } catch (e) {
-      return Promise.reject(e);
-    }
-  };
+      return _regenerator.default.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              return _context.abrupt(\\"return\\", new Promise(function (resolve) {
+                _newArrowCheck(this, _this);
 
-  _exports.wait = wait;
+                setTimeout(resolve, 100);
+              }.bind(this)));
+
+            case 1:
+            case \\"end\\":
+              return _context.stop();
+          }
+        }
+      }, _callee, this);
+    }));
+    return _wait.apply(this, arguments);
+  }
+
+  function run() {
+    return _run.apply(this, arguments);
+  }
+
+  function _run() {
+    _run = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {
+      return _regenerator.default.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.prev = 0;
+              _context2.next = 3;
+              return wait();
+
+            case 3:
+              _context2.next = 8;
+              break;
+
+            case 5:
+              _context2.prev = 5;
+              _context2.t0 = _context2[\\"catch\\"](0);
+              throw new Error('Fail');
+
+            case 8:
+            case \\"end\\":
+              return _context2.stop();
+          }
+        }
+      }, _callee2, null, [[0, 5]]);
+    }));
+    return _run.apply(this, arguments);
+  }
 });
 ",
 ]
@@ -523,51 +631,24 @@ Array [
 // Platform: native, Support: legacy, Format: lib
 'use strict';
 
-function _catch(body, recover) {
-  try {
-    var result = body();
-  } catch (e) {
-    return recover(e);
-  }
-
-  if (result && result.then) {
-    return result.then(void 0, recover);
-  }
-
-  return result;
-}
-
-function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError(\\"Cannot instantiate an arrow function\\"); } }
-
-var run = function run() {
-  try {
-    return Promise.resolve(_catch(function () {
-      return Promise.resolve(wait()).then(function () {});
-    }, function () {
-      throw new Error('Fail');
-    }));
-  } catch (e) {
-    return Promise.reject(e);
-  }
-};
-
-var wait = function wait() {
-  var _this = this;
-
-  try {
-    return Promise.resolve(new Promise(function (resolve) {
-      _newArrowCheck(this, _this);
-
-      setTimeout(resolve, 100);
-    }.bind(this)));
-  } catch (e) {
-    return Promise.reject(e);
-  }
-};
-
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
+
+async function wait() {
+  return new Promise(resolve => {
+    setTimeout(resolve, 100);
+  });
+}
+
+async function run() {
+  try {
+    await wait();
+  } catch {
+    throw new Error('Fail');
+  }
+}
+
 exports.run = run;
 exports.wait = wait;
 ",
@@ -581,40 +662,22 @@ Array [
 // Platform: native, Support: stable, Format: lib
 'use strict';
 
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, \\"next\\", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, \\"throw\\", err); } _next(undefined); }); }; }
-
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
 
-function wait() {
-  return _wait.apply(this, arguments);
-}
-
-function _wait() {
-  _wait = _asyncToGenerator(function* () {
-    return new Promise(resolve => {
-      setTimeout(resolve, 100);
-    });
+async function wait() {
+  return new Promise(resolve => {
+    setTimeout(resolve, 100);
   });
-  return _wait.apply(this, arguments);
 }
 
-function run() {
-  return _run.apply(this, arguments);
-}
-
-function _run() {
-  _run = _asyncToGenerator(function* () {
-    try {
-      yield wait();
-    } catch (_unused) {
-      throw new Error('Fail');
-    }
-  });
-  return _run.apply(this, arguments);
+async function run() {
+  try {
+    await wait();
+  } catch {
+    throw new Error('Fail');
+  }
 }
 
 exports.run = run;
@@ -1606,93 +1669,20 @@ Array [
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: legacy, Format: lib
 \\"use strict\\";
-var _regeneratorRuntime = _interopRequireDefault(require(\\"regenerator-runtime\\"));
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
-    try {
-        var info = gen[key](arg);
-        var value = info.value;
-    } catch (error) {
-        reject(error);
-        return;
-    }
-    if (info.done) {
-        resolve(value);
-    } else {
-        Promise.resolve(value).then(_next, _throw);
-    }
-}
-function _asyncToGenerator(fn) {
-    return function() {
-        var self = this, args = arguments;
-        return new Promise(function(resolve, reject) {
-            var gen = fn.apply(self, args);
-            function _next(value) {
-                asyncGeneratorStep(gen, resolve, reject, _next, _throw, \\"next\\", value);
-            }
-            function _throw(err) {
-                asyncGeneratorStep(gen, resolve, reject, _next, _throw, \\"throw\\", err);
-            }
-            _next(undefined);
-        });
-    };
-}
-function _interopRequireDefault(obj) {
-    return obj && obj.__esModule ? obj : {
-        default: obj
-    };
-}
 Object.defineProperty(exports, \\"__esModule\\", {
     value: true
 });
-function wait() {
-    return _wait.apply(this, arguments);
+async function wait() {
+    return new Promise((resolve)=>{
+        setTimeout(resolve, 100);
+    });
 }
-function _wait() {
-    _wait = _asyncToGenerator(_regeneratorRuntime.default.mark(function _callee() {
-        return _regeneratorRuntime.default.wrap(function _callee$(_ctx) {
-            while(1)switch(_ctx.prev = _ctx.next){
-                case 0:
-                    return _ctx.abrupt(\\"return\\", new Promise(function(resolve) {
-                        setTimeout(resolve, 100);
-                    }));
-                case 1:
-                case \\"end\\":
-                    return _ctx.stop();
-            }
-        }, _callee);
-    }));
-    return _wait.apply(this, arguments);
-}
-function run() {
-    return _run.apply(this, arguments);
-}
-function _run() {
-    _run = _asyncToGenerator(_regeneratorRuntime.default.mark(function _callee() {
-        return _regeneratorRuntime.default.wrap(function _callee$(_ctx) {
-            while(1)switch(_ctx.prev = _ctx.next){
-                case 0:
-                    _ctx.prev = 0;
-                    _ctx.next = 3;
-                    return wait();
-                case 3:
-                    _ctx.next = 8;
-                    break;
-                case 5:
-                    _ctx.prev = 5;
-                    _ctx.t0 = _ctx[\\"catch\\"](0);
-                    throw new Error(\\"Fail\\");
-                case 8:
-                case \\"end\\":
-                    return _ctx.stop();
-            }
-        }, _callee, null, [
-            [
-                0,
-                5
-            ]
-        ]);
-    }));
-    return _run.apply(this, arguments);
+async function run() {
+    try {
+        await wait();
+    } catch  {
+        throw new Error(\\"Fail\\");
+    }
 }
 exports.run = run;
 exports.wait = wait;
@@ -1706,61 +1696,20 @@ Array [
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: stable, Format: lib
 'use strict';
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
-    try {
-        var info = gen[key](arg);
-        var value = info.value;
-    } catch (error) {
-        reject(error);
-        return;
-    }
-    if (info.done) {
-        resolve(value);
-    } else {
-        Promise.resolve(value).then(_next, _throw);
-    }
-}
-function _asyncToGenerator(fn) {
-    return function() {
-        var self = this, args = arguments;
-        return new Promise(function(resolve, reject) {
-            var gen = fn.apply(self, args);
-            function _next(value) {
-                asyncGeneratorStep(gen, resolve, reject, _next, _throw, \\"next\\", value);
-            }
-            function _throw(err) {
-                asyncGeneratorStep(gen, resolve, reject, _next, _throw, \\"throw\\", err);
-            }
-            _next(undefined);
-        });
-    };
-}
 Object.defineProperty(exports, '__esModule', {
     value: true
 });
-function wait() {
-    return _wait.apply(this, arguments);
-}
-function _wait() {
-    _wait = _asyncToGenerator(function*() {
-        return new Promise((resolve)=>{
-            setTimeout(resolve, 100);
-        });
+async function wait() {
+    return new Promise((resolve)=>{
+        setTimeout(resolve, 100);
     });
-    return _wait.apply(this, arguments);
 }
-function run() {
-    return _run.apply(this, arguments);
-}
-function _run() {
-    _run = _asyncToGenerator(function*() {
-        try {
-            yield wait();
-        } catch (e) {
-            throw new Error('Fail');
-        }
-    });
-    return _run.apply(this, arguments);
+async function run() {
+    try {
+        await wait();
+    } catch  {
+        throw new Error('Fail');
+    }
 }
 exports.run = run;
 exports.wait = wait;

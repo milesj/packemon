@@ -9940,28 +9940,6 @@ Array [
 // Platform: native, Support: legacy, Format: lib
 'use strict';
 
-function _typeof(obj) { \\"@babel/helpers - typeof\\"; return _typeof = \\"function\\" == typeof Symbol && \\"symbol\\" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && \\"function\\" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? \\"symbol\\" : typeof obj; }, _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\\"Cannot call a class as a function\\"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\\"value\\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, \\"prototype\\", { writable: false }); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== \\"function\\" && superClass !== null) { throw new TypeError(\\"Super expression must either be null or a function\\"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, \\"prototype\\", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === \\"object\\" || typeof call === \\"function\\")) { return call; } else if (call !== void 0) { throw new TypeError(\\"Derived constructors may only return object or undefined\\"); } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError(\\"this hasn't been initialised - super() hasn't been called\\"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === \\"undefined\\" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === \\"function\\") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
@@ -10031,9 +10009,7 @@ function emitNone(handler, isFn, self) {
     var len = handler.length;
     var listeners = arrayClone(handler, len);
 
-    for (var i = 0; i < len; ++i) {
-      listeners[i].call(self);
-    }
+    for (var i = 0; i < len; ++i) listeners[i].call(self);
   }
 }
 
@@ -10042,9 +10018,7 @@ function emitOne(handler, isFn, self, arg1) {
     var len = handler.length;
     var listeners = arrayClone(handler, len);
 
-    for (var i = 0; i < len; ++i) {
-      listeners[i].call(self, arg1);
-    }
+    for (var i = 0; i < len; ++i) listeners[i].call(self, arg1);
   }
 }
 
@@ -10053,9 +10027,7 @@ function emitTwo(handler, isFn, self, arg1, arg2) {
     var len = handler.length;
     var listeners = arrayClone(handler, len);
 
-    for (var i = 0; i < len; ++i) {
-      listeners[i].call(self, arg1, arg2);
-    }
+    for (var i = 0; i < len; ++i) listeners[i].call(self, arg1, arg2);
   }
 }
 
@@ -10064,9 +10036,7 @@ function emitThree(handler, isFn, self, arg1, arg2, arg3) {
     var len = handler.length;
     var listeners = arrayClone(handler, len);
 
-    for (var i = 0; i < len; ++i) {
-      listeners[i].call(self, arg1, arg2, arg3);
-    }
+    for (var i = 0; i < len; ++i) listeners[i].call(self, arg1, arg2, arg3);
   }
 }
 
@@ -10075,9 +10045,7 @@ function emitMany(handler, isFn, self, args) {
     var len = handler.length;
     var listeners = arrayClone(handler, len);
 
-    for (var i = 0; i < len; ++i) {
-      listeners[i].apply(self, args);
-    }
+    for (var i = 0; i < len; ++i) listeners[i].apply(self, args);
   }
 }
 
@@ -10136,9 +10104,7 @@ EventEmitter.prototype.emit = function emit(type) {
     default:
       args = new Array(len - 1);
 
-      for (i = 1; i < len; i++) {
-        args[i - 1] = arguments[i];
-      }
+      for (i = 1; i < len; i++) args[i - 1] = arguments[i];
 
       emitMany(handler, isFn, this, args);
   }
@@ -10388,9 +10354,7 @@ EventEmitter.prototype.eventNames = function eventNames() {
 
 
 function spliceOne(list, index) {
-  for (var i = index, k = i + 1, n = list.length; k < n; i += 1, k += 1) {
-    list[i] = list[k];
-  }
+  for (var i = index, k = i + 1, n = list.length; k < n; i += 1, k += 1) list[i] = list[k];
 
   list.pop();
 }
@@ -10398,9 +10362,7 @@ function spliceOne(list, index) {
 function arrayClone(arr, i) {
   var copy = new Array(i);
 
-  while (i--) {
-    copy[i] = arr[i];
-  }
+  while (i--) copy[i] = arr[i];
 
   return copy;
 }
@@ -10471,7 +10433,7 @@ function normalizeArray(parts, allowAboveRoot) {
 
 var splitPathRe = /^(\\\\/?|)([\\\\s\\\\S]*?)((?:\\\\.{1,2}|[^\\\\/]+?|)(\\\\.[^.\\\\/]*|))(?:[\\\\/]*)$/;
 
-var splitPath = function splitPath(filename) {
+var splitPath = function (filename) {
   return splitPathRe.exec(filename).slice(1);
 }; // path.resolve([from ...], to)
 // posix version
@@ -10652,27 +10614,13 @@ var substr = 'ab'.substr(-1) === 'b' ? function (str, start, len) {
   if (start < 0) start = str.length + start;
   return str.substr(start, len);
 };
-var test = path.join('foo', 'bar');
-var emitter = new EventEmitter();
+const test = path.join('foo', 'bar');
+const emitter = new EventEmitter();
 
-var Example = /*#__PURE__*/function (_EventEmitter) {
-  _inherits(Example, _EventEmitter);
+class Example extends EventEmitter {
+  log() {}
 
-  var _super = _createSuper(Example);
-
-  function Example() {
-    _classCallCheck(this, Example);
-
-    return _super.apply(this, arguments);
-  }
-
-  _createClass(Example, [{
-    key: \\"log\\",
-    value: function log() {}
-  }]);
-
-  return Example;
-}(EventEmitter);
+}
 
 exports.Example = Example;
 exports.emitter = emitter;
@@ -15463,9 +15411,7 @@ function join() {
 // path.relative(from, to)
 // posix version
 function relative(from, to) {
-    from = resolve(from).substr(1);
-    to = resolve(to).substr(1);
-    function trim(arr) {
+    var trim = function trim(arr) {
         var start = 0;
         for(; start < arr.length; start++){
             if (arr[start] !== \\"\\") break;
@@ -15476,7 +15422,9 @@ function relative(from, to) {
         }
         if (start > end) return [];
         return arr.slice(start, end - start + 1);
-    }
+    };
+    from = resolve(from).substr(1);
+    to = resolve(to).substr(1);
     var fromParts = trim(from.split(\\"/\\"));
     var toParts = trim(to.split(\\"/\\"));
     var length = Math.min(fromParts.length, toParts.length);
@@ -16086,9 +16034,7 @@ function join() {
 // path.relative(from, to)
 // posix version
 function relative(from, to) {
-    from = resolve(from).substr(1);
-    to = resolve(to).substr(1);
-    function trim(arr) {
+    var trim = function trim(arr) {
         var start = 0;
         for(; start < arr.length; start++){
             if (arr[start] !== \\"\\") break;
@@ -16099,7 +16045,9 @@ function relative(from, to) {
         }
         if (start > end) return [];
         return arr.slice(start, end - start + 1);
-    }
+    };
+    from = resolve(from).substr(1);
+    to = resolve(to).substr(1);
     var fromParts = trim(from.split(\\"/\\"));
     var toParts = trim(to.split(\\"/\\"));
     var length = Math.min(fromParts.length, toParts.length);
@@ -16724,9 +16672,7 @@ Array [
     // path.relative(from, to)
     // posix version
     function relative(from, to) {
-        from = resolve(from).substr(1);
-        to = resolve(to).substr(1);
-        function trim(arr) {
+        var trim = function trim(arr) {
             var start = 0;
             for(; start < arr.length; start++){
                 if (arr[start] !== \\"\\") break;
@@ -16737,7 +16683,9 @@ Array [
             }
             if (start > end) return [];
             return arr.slice(start, end - start + 1);
-        }
+        };
+        from = resolve(from).substr(1);
+        to = resolve(to).substr(1);
         var fromParts = trim(from.split(\\"/\\"));
         var toParts = trim(to.split(\\"/\\"));
         var length = Math.min(fromParts.length, toParts.length);
@@ -19473,91 +19421,6 @@ Array [
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: legacy, Format: lib
 \\"use strict\\";
-function _assertThisInitialized(self) {
-    if (self === void 0) {
-        throw new ReferenceError(\\"this hasn't been initialised - super() hasn't been called\\");
-    }
-    return self;
-}
-function _classCallCheck(instance, Constructor) {
-    if (!(instance instanceof Constructor)) {
-        throw new TypeError(\\"Cannot call a class as a function\\");
-    }
-}
-function _defineProperties(target, props) {
-    for(var i = 0; i < props.length; i++){
-        var descriptor = props[i];
-        descriptor.enumerable = descriptor.enumerable || false;
-        descriptor.configurable = true;
-        if (\\"value\\" in descriptor) descriptor.writable = true;
-        Object.defineProperty(target, descriptor.key, descriptor);
-    }
-}
-function _createClass(Constructor, protoProps, staticProps) {
-    if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-    if (staticProps) _defineProperties(Constructor, staticProps);
-    return Constructor;
-}
-function _getPrototypeOf(o) {
-    _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
-        return o.__proto__ || Object.getPrototypeOf(o);
-    };
-    return _getPrototypeOf(o);
-}
-function _inherits(subClass, superClass) {
-    if (typeof superClass !== \\"function\\" && superClass !== null) {
-        throw new TypeError(\\"Super expression must either be null or a function\\");
-    }
-    subClass.prototype = Object.create(superClass && superClass.prototype, {
-        constructor: {
-            value: subClass,
-            writable: true,
-            configurable: true
-        }
-    });
-    if (superClass) _setPrototypeOf(subClass, superClass);
-}
-function _possibleConstructorReturn(self, call) {
-    if (call && (_typeof(call) === \\"object\\" || typeof call === \\"function\\")) {
-        return call;
-    }
-    return _assertThisInitialized(self);
-}
-function _setPrototypeOf(o, p) {
-    _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
-        o.__proto__ = p;
-        return o;
-    };
-    return _setPrototypeOf(o, p);
-}
-var _typeof = function(obj) {
-    \\"@swc/helpers - typeof\\";
-    return obj && typeof Symbol !== \\"undefined\\" && obj.constructor === Symbol ? \\"symbol\\" : typeof obj;
-};
-function _isNativeReflectConstruct() {
-    if (typeof Reflect === \\"undefined\\" || !Reflect.construct) return false;
-    if (Reflect.construct.sham) return false;
-    if (typeof Proxy === \\"function\\") return true;
-    try {
-        Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function() {}));
-        return true;
-    } catch (e) {
-        return false;
-    }
-}
-function _createSuper(Derived) {
-    var hasNativeReflectConstruct = _isNativeReflectConstruct();
-    return function _createSuperInternal() {
-        var Super = _getPrototypeOf(Derived), result;
-        if (hasNativeReflectConstruct) {
-            var NewTarget = _getPrototypeOf(this).constructor;
-            result = Reflect.construct(Super, arguments, NewTarget);
-        } else {
-            result = Super.apply(this, arguments);
-        }
-        return _possibleConstructorReturn(this, result);
-    };
-}
 Object.defineProperty(exports, \\"__esModule\\", {
     value: true
 });
@@ -19949,7 +19812,7 @@ function normalizeArray(parts, allowAboveRoot) {
 // Split a filename into [root, dir, basename, ext], unix version
 // 'root' is just a slash, or nothing.
 var splitPathRe = /^(\\\\/?|)([\\\\s\\\\S]*?)((?:\\\\.{1,2}|[^\\\\/]+?|)(\\\\.[^.\\\\/]*|))(?:[\\\\/]*)$/;
-var splitPath = function splitPath(filename) {
+var splitPath = function(filename) {
     return splitPathRe.exec(filename).slice(1);
 };
 // path.resolve([from ...], to)
@@ -19999,7 +19862,9 @@ function join() {
 // path.relative(from, to)
 // posix version
 function relative(from, to) {
-    var trim = function trim(arr) {
+    from = resolve(from).substr(1);
+    to = resolve(to).substr(1);
+    function trim(arr) {
         var start = 0;
         for(; start < arr.length; start++){
             if (arr[start] !== \\"\\") break;
@@ -20010,9 +19875,7 @@ function relative(from, to) {
         }
         if (start > end) return [];
         return arr.slice(start, end - start + 1);
-    };
-    from = resolve(from).substr(1);
-    to = resolve(to).substr(1);
+    }
     var fromParts = trim(from.split(\\"/\\"));
     var toParts = trim(to.split(\\"/\\"));
     var length = Math.min(fromParts.length, toParts.length);
@@ -20050,13 +19913,13 @@ function filter(xs, f) {
     return res;
 }
 // String.prototype.substr - negative index don't work in IE8
-var substr = \\"ab\\".substr(-1) === \\"b\\" ? function substr(str, start, len) {
+var substr = \\"ab\\".substr(-1) === \\"b\\" ? function(str, start, len) {
     return str.substr(start, len);
 } : function(str, start, len) {
     if (start < 0) start = str.length + start;
     return str.substr(start, len);
 };
-var test = ({
+const test = ({
     extname: extname,
     basename: basename,
     dirname: dirname,
@@ -20068,22 +19931,10 @@ var test = ({
     normalize: normalize,
     resolve: resolve
 }).join(\\"foo\\", \\"bar\\");
-var emitter = new EventEmitter();
-var Example = /*#__PURE__*/ function(EventEmitter1) {
-    _inherits(Example, EventEmitter1);
-    var _super = _createSuper(Example);
-    function Example() {
-        _classCallCheck(this, Example);
-        return _super.apply(this, arguments);
-    }
-    _createClass(Example, [
-        {
-            key: \\"log\\",
-            value: function log() {}
-        }
-    ]);
-    return Example;
-}(EventEmitter);
+const emitter = new EventEmitter();
+let Example = class Example extends EventEmitter {
+    log() {}
+};
 exports.Example = Example;
 exports.emitter = emitter;
 exports.test = test;
