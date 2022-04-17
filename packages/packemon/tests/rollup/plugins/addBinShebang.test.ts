@@ -18,6 +18,7 @@ async function transform(input: InputOption, options: OutputOptions = {}): Promi
 }
 
 describe('addBinShebang()', () => {
+	// eslint-disable-next-line unicorn/prefer-module
 	const fixturePath = path.join(__dirname, '__fixtures__/bin.ts');
 
 	it('doesnt add shebang if filename doesnt contain bin', async () => {

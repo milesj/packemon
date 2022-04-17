@@ -31,7 +31,7 @@ configured to support all formats.
 ## Requirements
 
 - Linux, OSX, Windows
-- Node 12.17+
+- Node 14.15+
 
 ## Documentation
 
