@@ -16178,7 +16178,7 @@ __metadata:
     resolve: ^1.22.0
     rimraf: ^3.0.2
     rollup: ^2.70.1
-    rollup-plugin-node-externals: ^2.2.0
+    rollup-plugin-node-externals: ^4.0.0
     rollup-plugin-polyfill-node: ^0.8.0
     semver: ^7.3.5
     spdx-license-list: ^6.4.0
@@ -18375,14 +18375,14 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"rollup-plugin-node-externals@npm:^2.2.0":
-  version: 2.2.0
-  resolution: "rollup-plugin-node-externals@npm:2.2.0"
+"rollup-plugin-node-externals@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "rollup-plugin-node-externals@npm:4.0.0"
   dependencies:
-    find-up: ^4.1.0
+    find-up: ^5.0.0
   peerDependencies:
-    builtin-modules: ^3.1.0
-  checksum: 63cdc0eb51da6820bbae9156dc32ffb096254b85384beb7229053a4494f2a667d9421eda7bdf661c8a01f78916001bb21d7f81cdb3cce8a2ff654c8e11ff3a26
+    rollup: ^2.60.0
+  checksum: 8f4e7faed64332f69f3751b0eb2e4786c05653275c141536e62a69d1c1335d6c9e1b82cf53d24d4511b22c50e9acece65d9217669321c0a87bed4c44ae81789e
   languageName: node
   linkType: hard
 
