@@ -12080,7 +12080,7 @@ function normalizeArray(parts, allowAboveRoot) {
         }
     }
     // if the path is allowed to go above the root, restore leading ..s
-    if (allowAboveRoot) for(; up--;)parts.unshift('..');
+    if (allowAboveRoot) for(; up--; up)parts.unshift('..');
     return parts;
 }
 // Split a filename into [root, dir, basename, ext], unix version
@@ -12606,7 +12606,7 @@ function normalizeArray(parts, allowAboveRoot) {
         }
     }
     // if the path is allowed to go above the root, restore leading ..s
-    if (allowAboveRoot) for(; up--;)parts.unshift('..');
+    if (allowAboveRoot) for(; up--; up)parts.unshift('..');
     return parts;
 }
 // Split a filename into [root, dir, basename, ext], unix version
@@ -13148,7 +13148,7 @@ Array [
             }
         }
         // if the path is allowed to go above the root, restore leading ..s
-        if (allowAboveRoot) for(; up--;)parts.unshift('..');
+        if (allowAboveRoot) for(; up--; up)parts.unshift('..');
         return parts;
     }
     // Split a filename into [root, dir, basename, ext], unix version
@@ -13673,7 +13673,7 @@ function normalizeArray(parts, allowAboveRoot) {
         }
     }
     // if the path is allowed to go above the root, restore leading ..s
-    if (allowAboveRoot) for(; up--;)parts.unshift('..');
+    if (allowAboveRoot) for(; up--; up)parts.unshift('..');
     return parts;
 }
 // Split a filename into [root, dir, basename, ext], unix version
@@ -14199,7 +14199,7 @@ function normalizeArray(parts, allowAboveRoot) {
         }
     }
     // if the path is allowed to go above the root, restore leading ..s
-    if (allowAboveRoot) for(; up--;)parts.unshift('..');
+    if (allowAboveRoot) for(; up--; up)parts.unshift('..');
     return parts;
 }
 // Split a filename into [root, dir, basename, ext], unix version
@@ -14741,7 +14741,7 @@ Array [
             }
         }
         // if the path is allowed to go above the root, restore leading ..s
-        if (allowAboveRoot) for(; up--;)parts.unshift('..');
+        if (allowAboveRoot) for(; up--; up)parts.unshift('..');
         return parts;
     }
     // Split a filename into [root, dir, basename, ext], unix version
@@ -15351,7 +15351,7 @@ function normalizeArray(parts, allowAboveRoot) {
         }
     }
     // if the path is allowed to go above the root, restore leading ..s
-    if (allowAboveRoot) for(; up--;)parts.unshift(\\"..\\");
+    if (allowAboveRoot) for(; up--; up)parts.unshift(\\"..\\");
     return parts;
 }
 // Split a filename into [root, dir, basename, ext], unix version
@@ -15975,7 +15975,7 @@ function normalizeArray(parts, allowAboveRoot) {
         }
     }
     // if the path is allowed to go above the root, restore leading ..s
-    if (allowAboveRoot) for(; up--;)parts.unshift(\\"..\\");
+    if (allowAboveRoot) for(; up--; up)parts.unshift(\\"..\\");
     return parts;
 }
 // Split a filename into [root, dir, basename, ext], unix version
@@ -16614,7 +16614,7 @@ Array [
             }
         }
         // if the path is allowed to go above the root, restore leading ..s
-        if (allowAboveRoot) for(; up--;)parts.unshift(\\"..\\");
+        if (allowAboveRoot) for(; up--; up)parts.unshift(\\"..\\");
         return parts;
     }
     // Split a filename into [root, dir, basename, ext], unix version
@@ -17152,7 +17152,7 @@ function normalizeArray(parts, allowAboveRoot) {
         }
     }
     // if the path is allowed to go above the root, restore leading ..s
-    if (allowAboveRoot) for(; up--;)parts.unshift('..');
+    if (allowAboveRoot) for(; up--; up)parts.unshift('..');
     return parts;
 }
 // Split a filename into [root, dir, basename, ext], unix version
@@ -17678,7 +17678,7 @@ function normalizeArray(parts, allowAboveRoot) {
         }
     }
     // if the path is allowed to go above the root, restore leading ..s
-    if (allowAboveRoot) for(; up--;)parts.unshift('..');
+    if (allowAboveRoot) for(; up--; up)parts.unshift('..');
     return parts;
 }
 // Split a filename into [root, dir, basename, ext], unix version
@@ -18220,7 +18220,7 @@ Array [
             }
         }
         // if the path is allowed to go above the root, restore leading ..s
-        if (allowAboveRoot) for(; up--;)parts.unshift('..');
+        if (allowAboveRoot) for(; up--; up)parts.unshift('..');
         return parts;
     }
     // Split a filename into [root, dir, basename, ext], unix version
@@ -18749,7 +18749,7 @@ function normalizeArray(parts, allowAboveRoot) {
         }
     }
     // if the path is allowed to go above the root, restore leading ..s
-    if (allowAboveRoot) for(; up--;)parts.unshift('..');
+    if (allowAboveRoot) for(; up--; up)parts.unshift('..');
     return parts;
 }
 // Split a filename into [root, dir, basename, ext], unix version
@@ -19277,7 +19277,7 @@ function normalizeArray(parts, allowAboveRoot) {
         }
     }
     // if the path is allowed to go above the root, restore leading ..s
-    if (allowAboveRoot) for(; up--;)parts.unshift('..');
+    if (allowAboveRoot) for(; up--; up)parts.unshift('..');
     return parts;
 }
 // Split a filename into [root, dir, basename, ext], unix version
@@ -19805,7 +19805,7 @@ function normalizeArray(parts, allowAboveRoot) {
         }
     }
     // if the path is allowed to go above the root, restore leading ..s
-    if (allowAboveRoot) for(; up--;)parts.unshift(\\"..\\");
+    if (allowAboveRoot) for(; up--; up)parts.unshift(\\"..\\");
     return parts;
 }
 // Split a filename into [root, dir, basename, ext], unix version
@@ -20333,7 +20333,7 @@ function normalizeArray(parts, allowAboveRoot) {
         }
     }
     // if the path is allowed to go above the root, restore leading ..s
-    if (allowAboveRoot) for(; up--;)parts.unshift('..');
+    if (allowAboveRoot) for(; up--; up)parts.unshift('..');
     return parts;
 }
 // Split a filename into [root, dir, basename, ext], unix version
