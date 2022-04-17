@@ -459,7 +459,7 @@ require('../assets/logo-c21f559f.svg');
 
 require('website/src/css/custom.css');
 
-var json = {
+const json = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
   number: 123,
   string: \\"abc\\",
@@ -713,7 +713,7 @@ require('../assets/logo-c21f559f.svg');
 
 require('website/src/css/custom.css');
 
-var json = {
+const json = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
   number: 123,
   string: \\"abc\\",
@@ -746,7 +746,7 @@ require('../assets/logo-c21f559f.svg');
 
 require('website/src/css/custom.css');
 
-var json = {
+const json = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
   number: 123,
   string: \\"abc\\",
@@ -774,7 +774,7 @@ Array [
 import '../assets/styles-17df299b.css';
 import '../assets/logo-c21f559f.svg';
 import 'website/src/css/custom.css';
-var json = {
+const json = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
   number: 123,
   string: \\"abc\\",
@@ -1104,7 +1104,7 @@ Array [
 import '../assets/styles-17df299b.css';
 import '../assets/logo-c21f559f.svg';
 import \\"website/src/css/custom.css\\";
-console.log({
+var json = {
     list: [
         \\"foo\\",
         \\"bar\\",
@@ -1115,7 +1115,8 @@ console.log({
     object: {
         foo: true
     }
-});
+};
+console.log(json);
 ",
 ]
 `;
@@ -1136,7 +1137,7 @@ Array [
 require('../assets/styles-17df299b.css');
 require('../assets/logo-c21f559f.svg');
 require(\\"website/src/css/custom.css\\");
-console.log({
+var json = {
     list: [
         \\"foo\\",
         \\"bar\\",
@@ -1147,7 +1148,8 @@ console.log({
     object: {
         foo: true
     }
-});
+};
+console.log(json);
 ",
 ]
 `;
@@ -1180,7 +1182,7 @@ Array [
     }
 })(this, function(_stylesCss, _logoSvg, _customCss) {
     \\"use strict\\";
-    console.log({
+    var json = {
         list: [
             \\"foo\\",
             \\"bar\\",
@@ -1191,7 +1193,8 @@ Array [
         object: {
             foo: true
         }
-    });
+    };
+    console.log(json);
 });
 ",
 ]
@@ -1376,7 +1379,7 @@ Array [
 require('../assets/styles-17df299b.css');
 require('../assets/logo-c21f559f.svg');
 require(\\"website/src/css/custom.css\\");
-console.log({
+const json = {
     list: [
         \\"foo\\",
         \\"bar\\",
@@ -1387,7 +1390,8 @@ console.log({
     object: {
         foo: true
     }
-});
+};
+console.log(json);
 ",
 ]
 `;
@@ -1637,7 +1641,7 @@ Array [
 require('../assets/styles-17df299b.css');
 require('../assets/logo-c21f559f.svg');
 require(\\"website/src/css/custom.css\\");
-console.log({
+const json = {
     list: [
         \\"foo\\",
         \\"bar\\",
@@ -1648,7 +1652,8 @@ console.log({
     object: {
         foo: true
     }
-});
+};
+console.log(json);
 ",
 ]
 `;
@@ -1669,7 +1674,7 @@ Array [
 require('../assets/styles-17df299b.css');
 require('../assets/logo-c21f559f.svg');
 require(\\"website/src/css/custom.css\\");
-console.log({
+const json = {
     list: [
         \\"foo\\",
         \\"bar\\",
@@ -1680,7 +1685,8 @@ console.log({
     object: {
         foo: true
     }
-});
+};
+console.log(json);
 ",
 ]
 `;
@@ -1700,7 +1706,7 @@ Array [
 import '../assets/styles-17df299b.css';
 import '../assets/logo-c21f559f.svg';
 import \\"website/src/css/custom.css\\";
-console.log({
+const json = {
     list: [
         \\"foo\\",
         \\"bar\\",
@@ -1711,7 +1717,8 @@ console.log({
     object: {
         foo: true
     }
-});
+};
+console.log(json);
 ",
 ]
 `;

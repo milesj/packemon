@@ -201,75 +201,26 @@ Array [
 exports[`Async/await babel transforms example test case: browser-legacy-esm 1`] = `
 Array [
   "esm/index-browser-legacy-esm.js",
-  "import _regeneratorRuntime from \\"@babel/runtime/regenerator\\";
-
-function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError(\\"Cannot instantiate an arrow function\\"); } }
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, \\"next\\", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, \\"throw\\", err); } _next(undefined); }); }; }
+  "function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError(\\"Cannot instantiate an arrow function\\"); } }
 
 // Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: esm
-function wait() {
-  return _wait.apply(this, arguments);
+async function wait() {
+  var _this = this;
+
+  return new Promise(function (resolve) {
+    _newArrowCheck(this, _this);
+
+    setTimeout(resolve, 100);
+  }.bind(this));
 }
 
-function _wait() {
-  _wait = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee() {
-    var _this = this;
-
-    return _regeneratorRuntime.wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            return _context.abrupt(\\"return\\", new Promise(function (resolve) {
-              _newArrowCheck(this, _this);
-
-              setTimeout(resolve, 100);
-            }.bind(this)));
-
-          case 1:
-          case \\"end\\":
-            return _context.stop();
-        }
-      }
-    }, _callee, this);
-  }));
-  return _wait.apply(this, arguments);
-}
-
-function run() {
-  return _run.apply(this, arguments);
-}
-
-function _run() {
-  _run = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee2() {
-    return _regeneratorRuntime.wrap(function _callee2$(_context2) {
-      while (1) {
-        switch (_context2.prev = _context2.next) {
-          case 0:
-            _context2.prev = 0;
-            _context2.next = 3;
-            return wait();
-
-          case 3:
-            _context2.next = 8;
-            break;
-
-          case 5:
-            _context2.prev = 5;
-            _context2.t0 = _context2[\\"catch\\"](0);
-            throw new Error('Fail');
-
-          case 8:
-          case \\"end\\":
-            return _context2.stop();
-        }
-      }
-    }, _callee2, null, [[0, 5]]);
-  }));
-  return _run.apply(this, arguments);
+async function run() {
+  try {
+    await wait();
+  } catch (_unused) {
+    throw new Error('Fail');
+  }
 }
 
 export { run, wait };
@@ -284,77 +235,28 @@ Array [
 // Platform: browser, Support: legacy, Format: lib
 'use strict';
 
-var _regeneratorRuntime = require(\\"@babel/runtime/regenerator\\");
-
 function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError(\\"Cannot instantiate an arrow function\\"); } }
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, \\"next\\", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, \\"throw\\", err); } _next(undefined); }); }; }
 
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
 
-function wait() {
-  return _wait.apply(this, arguments);
+async function wait() {
+  var _this = this;
+
+  return new Promise(function (resolve) {
+    _newArrowCheck(this, _this);
+
+    setTimeout(resolve, 100);
+  }.bind(this));
 }
 
-function _wait() {
-  _wait = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee() {
-    var _this = this;
-
-    return _regeneratorRuntime.wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            return _context.abrupt(\\"return\\", new Promise(function (resolve) {
-              _newArrowCheck(this, _this);
-
-              setTimeout(resolve, 100);
-            }.bind(this)));
-
-          case 1:
-          case \\"end\\":
-            return _context.stop();
-        }
-      }
-    }, _callee, this);
-  }));
-  return _wait.apply(this, arguments);
-}
-
-function run() {
-  return _run.apply(this, arguments);
-}
-
-function _run() {
-  _run = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee2() {
-    return _regeneratorRuntime.wrap(function _callee2$(_context2) {
-      while (1) {
-        switch (_context2.prev = _context2.next) {
-          case 0:
-            _context2.prev = 0;
-            _context2.next = 3;
-            return wait();
-
-          case 3:
-            _context2.next = 8;
-            break;
-
-          case 5:
-            _context2.prev = 5;
-            _context2.t0 = _context2[\\"catch\\"](0);
-            throw new Error('Fail');
-
-          case 8:
-          case \\"end\\":
-            return _context2.stop();
-        }
-      }
-    }, _callee2, null, [[0, 5]]);
-  }));
-  return _run.apply(this, arguments);
+async function run() {
+  try {
+    await wait();
+  } catch (_unused) {
+    throw new Error('Fail');
+  }
 }
 
 exports.run = run;
@@ -368,17 +270,17 @@ Array [
   "umd/index-browser-legacy-umd.js",
   "(function (global, factory) {
   if (typeof define === \\"function\\" && define.amd) {
-    define([\\"exports\\", \\"@babel/runtime/regenerator\\"], factory);
+    define([\\"exports\\"], factory);
   } else if (typeof exports !== \\"undefined\\") {
-    factory(exports, require(\\"@babel/runtime/regenerator\\"));
+    factory(exports);
   } else {
     var mod = {
       exports: {}
     };
-    factory(mod.exports, global.regenerator);
+    factory(mod.exports);
     global.examples = mod.exports;
   }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports, _regenerator) {
+})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports) {
   \\"use strict\\";
 
   Object.defineProperty(_exports, \\"__esModule\\", {
@@ -386,77 +288,27 @@ Array [
   });
   _exports.run = run;
   _exports.wait = wait;
-  _regenerator = _interopRequireDefault(_regenerator);
-
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
   function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError(\\"Cannot instantiate an arrow function\\"); } }
 
-  function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-  function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, \\"next\\", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, \\"throw\\", err); } _next(undefined); }); }; }
-
   // Bundled with Packemon: https://packemon.dev
   // Platform: browser, Support: legacy, Format: umd
-  function wait() {
-    return _wait.apply(this, arguments);
+  async function wait() {
+    var _this = this;
+
+    return new Promise(function (resolve) {
+      _newArrowCheck(this, _this);
+
+      setTimeout(resolve, 100);
+    }.bind(this));
   }
 
-  function _wait() {
-    _wait = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {
-      var _this = this;
-
-      return _regenerator.default.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              return _context.abrupt(\\"return\\", new Promise(function (resolve) {
-                _newArrowCheck(this, _this);
-
-                setTimeout(resolve, 100);
-              }.bind(this)));
-
-            case 1:
-            case \\"end\\":
-              return _context.stop();
-          }
-        }
-      }, _callee, this);
-    }));
-    return _wait.apply(this, arguments);
-  }
-
-  function run() {
-    return _run.apply(this, arguments);
-  }
-
-  function _run() {
-    _run = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {
-      return _regenerator.default.wrap(function _callee2$(_context2) {
-        while (1) {
-          switch (_context2.prev = _context2.next) {
-            case 0:
-              _context2.prev = 0;
-              _context2.next = 3;
-              return wait();
-
-            case 3:
-              _context2.next = 8;
-              break;
-
-            case 5:
-              _context2.prev = 5;
-              _context2.t0 = _context2[\\"catch\\"](0);
-              throw new Error('Fail');
-
-            case 8:
-            case \\"end\\":
-              return _context2.stop();
-          }
-        }
-      }, _callee2, null, [[0, 5]]);
-    }));
-    return _run.apply(this, arguments);
+  async function run() {
+    try {
+      await wait();
+    } catch (_unused) {
+      throw new Error('Fail');
+    }
   }
 });
 ",

@@ -40,7 +40,11 @@ function getPlatformEnvOptions(
 		modules = 'cjs'; // Babel CommonJS
 	}
 
-	const exclude = [];
+	const exclude = [
+		// Async/await and generators have been around for 4+ years
+		'@babel/plugin-transform-regenerator',
+		'@babel/plugin-transform-async-to-generator',
+	];
 
 	if (shouldKeepDynamicImport(platform, support)) {
 		exclude.push('@babel/plugin-proposal-dynamic-import');
@@ -63,16 +67,9 @@ function getPlatformEnvOptions(
 
 		case 'node':
 			return {
-				exclude: [
-					...exclude,
-					// Async/await has been available since v7
-					'@babel/plugin-transform-regenerator',
-					'@babel/plugin-transform-async-to-generator',
-				],
+				exclude,
 				modules,
-				targets: {
-					node: NODE_SUPPORTED_VERSIONS[support],
-				},
+				targets: { node: NODE_SUPPORTED_VERSIONS[support] },
 			};
 
 		default:
@@ -162,7 +159,7 @@ export function getBabelOutputConfig(
 	const presets: PluginItem[] = [];
 	const isESM = format === 'esm' || format === 'mjs';
 
-	// ENVIRONMENT
+	// PRESETS
 
 	const envOptions: PresetEnvOptions = {
 		// Prefer spec compliance in development
@@ -186,13 +183,6 @@ export function getBabelOutputConfig(
 		[resolveFromBabel('@babel/plugin-transform-destructuring'), { useBuiltIns: true }],
 		[resolveFromBabel('@babel/plugin-proposal-object-rest-spread'), { useBuiltIns: true }],
 	);
-
-	if ((platform === 'browser' || platform === 'native') && support === 'legacy') {
-		plugins.push([
-			resolve('@babel/plugin-transform-runtime'),
-			{ helpers: false, regenerator: true, useESModules: isESM },
-		]);
-	}
 
 	if (platform === 'node') {
 		plugins.push([resolve('babel-plugin-cjs-esm-interop'), { format: isESM ? 'mjs' : 'cjs' }]);

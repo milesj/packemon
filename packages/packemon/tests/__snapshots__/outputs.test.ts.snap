@@ -35,14 +35,6 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, \\"next\\", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, \\"throw\\", err); } _next(undefined); }); }; }
-
-import _regeneratorRuntime from \\"@babel/runtime/regenerator\\";
-
-var _marked = /*#__PURE__*/_regeneratorRuntime.mark(gen);
-
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\\"value\\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, \\"prototype\\", { writable: false }); return Constructor; }
@@ -59,76 +51,28 @@ var Client = /*#__PURE__*/_createClass(function Client() {
   _defineProperty(this, \\"prop\\", 123);
 });
 
-function gen() {
-  return _regeneratorRuntime.wrap(function gen$(_context) {
-    while (1) {
-      switch (_context.prev = _context.next) {
-        case 0:
-        case \\"end\\":
-          return _context.stop();
-      }
+function* gen() {}
+
+async function wait() {}
+
+async function createClient() {
+  await wait();
+
+  var _iterator = _createForOfIteratorHelper(gen()),
+      _step;
+
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      var iterator = _step.value;
+      console.log(iterator);
     }
-  }, _marked);
-}
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
 
-function wait() {
-  return _wait.apply(this, arguments);
-}
-
-function _wait() {
-  _wait = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee() {
-    return _regeneratorRuntime.wrap(function _callee$(_context2) {
-      while (1) {
-        switch (_context2.prev = _context2.next) {
-          case 0:
-          case \\"end\\":
-            return _context2.stop();
-        }
-      }
-    }, _callee);
-  }));
-  return _wait.apply(this, arguments);
-}
-
-function createClient() {
-  return _createClient.apply(this, arguments);
-}
-
-function _createClient() {
-  _createClient = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee2() {
-    var _iterator, _step, iterator;
-
-    return _regeneratorRuntime.wrap(function _callee2$(_context3) {
-      while (1) {
-        switch (_context3.prev = _context3.next) {
-          case 0:
-            _context3.next = 2;
-            return wait();
-
-          case 2:
-            _iterator = _createForOfIteratorHelper(gen());
-
-            try {
-              for (_iterator.s(); !(_step = _iterator.n()).done;) {
-                iterator = _step.value;
-                console.log(iterator);
-              }
-            } catch (err) {
-              _iterator.e(err);
-            } finally {
-              _iterator.f();
-            }
-
-            return _context3.abrupt(\\"return\\", new Client());
-
-          case 5:
-          case \\"end\\":
-            return _context3.stop();
-        }
-      }
-    }, _callee2);
-  }));
-  return _createClient.apply(this, arguments);
+  return new Client();
 }
 
 export { createClient };
@@ -143,19 +87,11 @@ Array [
 // Platform: browser, Support: legacy, Format: lib
 'use strict';
 
-var _regeneratorRuntime = require(\\"@babel/runtime/regenerator\\");
-
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== \\"undefined\\" && o[Symbol.iterator] || o[\\"@@iterator\\"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === \\"number\\") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError(\\"Invalid attempt to iterate non-iterable instance.\\\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\\"); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \\"string\\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \\"Object\\" && o.constructor) n = o.constructor.name; if (n === \\"Map\\" || n === \\"Set\\") return Array.from(o); if (n === \\"Arguments\\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, \\"next\\", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, \\"throw\\", err); } _next(undefined); }); }; }
-
-var _marked = /*#__PURE__*/_regeneratorRuntime.mark(gen);
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\\"value\\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
@@ -175,76 +111,28 @@ var Client = /*#__PURE__*/_createClass(function Client() {
   _defineProperty(this, \\"prop\\", 123);
 });
 
-function gen() {
-  return _regeneratorRuntime.wrap(function gen$(_context) {
-    while (1) {
-      switch (_context.prev = _context.next) {
-        case 0:
-        case \\"end\\":
-          return _context.stop();
-      }
+function* gen() {}
+
+async function wait() {}
+
+async function createClient() {
+  await wait();
+
+  var _iterator = _createForOfIteratorHelper(gen()),
+      _step;
+
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      var iterator = _step.value;
+      console.log(iterator);
     }
-  }, _marked);
-}
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
 
-function wait() {
-  return _wait.apply(this, arguments);
-}
-
-function _wait() {
-  _wait = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee() {
-    return _regeneratorRuntime.wrap(function _callee$(_context2) {
-      while (1) {
-        switch (_context2.prev = _context2.next) {
-          case 0:
-          case \\"end\\":
-            return _context2.stop();
-        }
-      }
-    }, _callee);
-  }));
-  return _wait.apply(this, arguments);
-}
-
-function createClient() {
-  return _createClient.apply(this, arguments);
-}
-
-function _createClient() {
-  _createClient = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee2() {
-    var _iterator, _step, iterator;
-
-    return _regeneratorRuntime.wrap(function _callee2$(_context3) {
-      while (1) {
-        switch (_context3.prev = _context3.next) {
-          case 0:
-            _context3.next = 2;
-            return wait();
-
-          case 2:
-            _iterator = _createForOfIteratorHelper(gen());
-
-            try {
-              for (_iterator.s(); !(_step = _iterator.n()).done;) {
-                iterator = _step.value;
-                console.log(iterator);
-              }
-            } catch (err) {
-              _iterator.e(err);
-            } finally {
-              _iterator.f();
-            }
-
-            return _context3.abrupt(\\"return\\", new Client());
-
-          case 5:
-          case \\"end\\":
-            return _context3.stop();
-        }
-      }
-    }, _callee2);
-  }));
-  return _createClient.apply(this, arguments);
+  return new Client();
 }
 
 exports.createClient = createClient;
@@ -324,42 +212,31 @@ Array [
 exports[`Outputs (babel) artifacts builds all the artifacts with rollup 7`] = `
 Array [
   "umd/client.js",
-  "var _regeneratorRuntime2 = require(\\"@babel/runtime/regenerator\\");
-
-(function (global, factory) {
+  "(function (global, factory) {
   if (typeof define === \\"function\\" && define.amd) {
-    define(\\"Packemon\\", [\\"exports\\", \\"@babel/runtime/regenerator\\"], factory);
+    define(\\"Packemon\\", [\\"exports\\"], factory);
   } else if (typeof exports !== \\"undefined\\") {
-    factory(exports, require(\\"@babel/runtime/regenerator\\"));
+    factory(exports);
   } else {
     var mod = {
       exports: {}
     };
-    factory(mod.exports, global.regenerator);
+    factory(mod.exports);
     global.Packemon = mod.exports;
   }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports, _regenerator) {
+})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports) {
   \\"use strict\\";
 
   Object.defineProperty(_exports, \\"__esModule\\", {
     value: true
   });
   _exports.createClient = createClient;
-  _regenerator = _interopRequireDefault(_regenerator);
-
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
   function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== \\"undefined\\" && o[Symbol.iterator] || o[\\"@@iterator\\"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === \\"number\\") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError(\\"Invalid attempt to iterate non-iterable instance.\\\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\\"); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
   function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \\"string\\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \\"Object\\" && o.constructor) n = o.constructor.name; if (n === \\"Map\\" || n === \\"Set\\") return Array.from(o); if (n === \\"Arguments\\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
   function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-  function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-  function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, \\"next\\", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, \\"throw\\", err); } _next(undefined); }); }; }
-
-  var _marked = /*#__PURE__*/_regeneratorRuntime2.mark(gen);
 
   function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\\"value\\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
@@ -377,76 +254,28 @@ Array [
     _defineProperty(this, \\"prop\\", 123);
   });
 
-  function gen() {
-    return _regenerator.default.wrap(function gen$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-          case \\"end\\":
-            return _context.stop();
-        }
+  function* gen() {}
+
+  async function wait() {}
+
+  async function createClient() {
+    await wait();
+
+    var _iterator = _createForOfIteratorHelper(gen()),
+        _step;
+
+    try {
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+        var iterator = _step.value;
+        console.log(iterator);
       }
-    }, _marked);
-  }
+    } catch (err) {
+      _iterator.e(err);
+    } finally {
+      _iterator.f();
+    }
 
-  function wait() {
-    return _wait.apply(this, arguments);
-  }
-
-  function _wait() {
-    _wait = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {
-      return _regenerator.default.wrap(function _callee$(_context2) {
-        while (1) {
-          switch (_context2.prev = _context2.next) {
-            case 0:
-            case \\"end\\":
-              return _context2.stop();
-          }
-        }
-      }, _callee);
-    }));
-    return _wait.apply(this, arguments);
-  }
-
-  function createClient() {
-    return _createClient.apply(this, arguments);
-  }
-
-  function _createClient() {
-    _createClient = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {
-      var _iterator, _step, iterator;
-
-      return _regenerator.default.wrap(function _callee2$(_context3) {
-        while (1) {
-          switch (_context3.prev = _context3.next) {
-            case 0:
-              _context3.next = 2;
-              return wait();
-
-            case 2:
-              _iterator = _createForOfIteratorHelper(gen());
-
-              try {
-                for (_iterator.s(); !(_step = _iterator.n()).done;) {
-                  iterator = _step.value;
-                  console.log(iterator);
-                }
-              } catch (err) {
-                _iterator.e(err);
-              } finally {
-                _iterator.f();
-              }
-
-              return _context3.abrupt(\\"return\\", new Client());
-
-            case 5:
-            case \\"end\\":
-              return _context3.stop();
-          }
-        }
-      }, _callee2);
-    }));
-    return _createClient.apply(this, arguments);
+    return new Client();
   }
 });
 ",
@@ -873,14 +702,6 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, \\"next\\", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, \\"throw\\", err); } _next(undefined); }); }; }
-
-import _regeneratorRuntime from \\"@babel/runtime/regenerator\\";
-
-var _marked = /*#__PURE__*/_regeneratorRuntime.mark(gen);
-
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\\"value\\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, \\"prototype\\", { writable: false }); return Constructor; }
@@ -897,76 +718,28 @@ var Client = /*#__PURE__*/_createClass(function Client() {
   _defineProperty(this, \\"prop\\", 123);
 });
 
-function gen() {
-  return _regeneratorRuntime.wrap(function gen$(_context) {
-    while (1) {
-      switch (_context.prev = _context.next) {
-        case 0:
-        case \\"end\\":
-          return _context.stop();
-      }
+function* gen() {}
+
+async function wait() {}
+
+async function createClient() {
+  await wait();
+
+  var _iterator = _createForOfIteratorHelper(gen()),
+      _step;
+
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      var iterator = _step.value;
+      console.log(iterator);
     }
-  }, _marked);
-}
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
 
-function wait() {
-  return _wait.apply(this, arguments);
-}
-
-function _wait() {
-  _wait = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee() {
-    return _regeneratorRuntime.wrap(function _callee$(_context2) {
-      while (1) {
-        switch (_context2.prev = _context2.next) {
-          case 0:
-          case \\"end\\":
-            return _context2.stop();
-        }
-      }
-    }, _callee);
-  }));
-  return _wait.apply(this, arguments);
-}
-
-function createClient() {
-  return _createClient.apply(this, arguments);
-}
-
-function _createClient() {
-  _createClient = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee2() {
-    var _iterator, _step, iterator;
-
-    return _regeneratorRuntime.wrap(function _callee2$(_context3) {
-      while (1) {
-        switch (_context3.prev = _context3.next) {
-          case 0:
-            _context3.next = 2;
-            return wait();
-
-          case 2:
-            _iterator = _createForOfIteratorHelper(gen());
-
-            try {
-              for (_iterator.s(); !(_step = _iterator.n()).done;) {
-                iterator = _step.value;
-                console.log(iterator);
-              }
-            } catch (err) {
-              _iterator.e(err);
-            } finally {
-              _iterator.f();
-            }
-
-            return _context3.abrupt(\\"return\\", new Client());
-
-          case 5:
-          case \\"end\\":
-            return _context3.stop();
-        }
-      }
-    }, _callee2);
-  }));
-  return _createClient.apply(this, arguments);
+  return new Client();
 }
 
 export { createClient };
@@ -981,19 +754,11 @@ Array [
 // Platform: browser, Support: legacy, Format: lib
 'use strict';
 
-var _regeneratorRuntime = require(\\"@babel/runtime/regenerator\\");
-
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== \\"undefined\\" && o[Symbol.iterator] || o[\\"@@iterator\\"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === \\"number\\") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError(\\"Invalid attempt to iterate non-iterable instance.\\\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\\"); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \\"string\\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \\"Object\\" && o.constructor) n = o.constructor.name; if (n === \\"Map\\" || n === \\"Set\\") return Array.from(o); if (n === \\"Arguments\\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, \\"next\\", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, \\"throw\\", err); } _next(undefined); }); }; }
-
-var _marked = /*#__PURE__*/_regeneratorRuntime.mark(gen);
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\\"value\\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
@@ -1013,76 +778,28 @@ var Client = /*#__PURE__*/_createClass(function Client() {
   _defineProperty(this, \\"prop\\", 123);
 });
 
-function gen() {
-  return _regeneratorRuntime.wrap(function gen$(_context) {
-    while (1) {
-      switch (_context.prev = _context.next) {
-        case 0:
-        case \\"end\\":
-          return _context.stop();
-      }
+function* gen() {}
+
+async function wait() {}
+
+async function createClient() {
+  await wait();
+
+  var _iterator = _createForOfIteratorHelper(gen()),
+      _step;
+
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      var iterator = _step.value;
+      console.log(iterator);
     }
-  }, _marked);
-}
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
 
-function wait() {
-  return _wait.apply(this, arguments);
-}
-
-function _wait() {
-  _wait = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee() {
-    return _regeneratorRuntime.wrap(function _callee$(_context2) {
-      while (1) {
-        switch (_context2.prev = _context2.next) {
-          case 0:
-          case \\"end\\":
-            return _context2.stop();
-        }
-      }
-    }, _callee);
-  }));
-  return _wait.apply(this, arguments);
-}
-
-function createClient() {
-  return _createClient.apply(this, arguments);
-}
-
-function _createClient() {
-  _createClient = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee2() {
-    var _iterator, _step, iterator;
-
-    return _regeneratorRuntime.wrap(function _callee2$(_context3) {
-      while (1) {
-        switch (_context3.prev = _context3.next) {
-          case 0:
-            _context3.next = 2;
-            return wait();
-
-          case 2:
-            _iterator = _createForOfIteratorHelper(gen());
-
-            try {
-              for (_iterator.s(); !(_step = _iterator.n()).done;) {
-                iterator = _step.value;
-                console.log(iterator);
-              }
-            } catch (err) {
-              _iterator.e(err);
-            } finally {
-              _iterator.f();
-            }
-
-            return _context3.abrupt(\\"return\\", new Client());
-
-          case 5:
-          case \\"end\\":
-            return _context3.stop();
-        }
-      }
-    }, _callee2);
-  }));
-  return _createClient.apply(this, arguments);
+  return new Client();
 }
 
 exports.createClient = createClient;
@@ -1162,42 +879,31 @@ Array [
 exports[`Outputs (swc) artifacts builds all the artifacts with rollup 7`] = `
 Array [
   "umd/client.js",
-  "var _regeneratorRuntime2 = require(\\"@babel/runtime/regenerator\\");
-
-(function (global, factory) {
+  "(function (global, factory) {
   if (typeof define === \\"function\\" && define.amd) {
-    define(\\"Packemon\\", [\\"exports\\", \\"@babel/runtime/regenerator\\"], factory);
+    define(\\"Packemon\\", [\\"exports\\"], factory);
   } else if (typeof exports !== \\"undefined\\") {
-    factory(exports, require(\\"@babel/runtime/regenerator\\"));
+    factory(exports);
   } else {
     var mod = {
       exports: {}
     };
-    factory(mod.exports, global.regenerator);
+    factory(mod.exports);
     global.Packemon = mod.exports;
   }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports, _regenerator) {
+})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports) {
   \\"use strict\\";
 
   Object.defineProperty(_exports, \\"__esModule\\", {
     value: true
   });
   _exports.createClient = createClient;
-  _regenerator = _interopRequireDefault(_regenerator);
-
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
   function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== \\"undefined\\" && o[Symbol.iterator] || o[\\"@@iterator\\"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === \\"number\\") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError(\\"Invalid attempt to iterate non-iterable instance.\\\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\\"); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
   function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \\"string\\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \\"Object\\" && o.constructor) n = o.constructor.name; if (n === \\"Map\\" || n === \\"Set\\") return Array.from(o); if (n === \\"Arguments\\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
   function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-  function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-  function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, \\"next\\", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, \\"throw\\", err); } _next(undefined); }); }; }
-
-  var _marked = /*#__PURE__*/_regeneratorRuntime2.mark(gen);
 
   function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\\"value\\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
@@ -1215,76 +921,28 @@ Array [
     _defineProperty(this, \\"prop\\", 123);
   });
 
-  function gen() {
-    return _regenerator.default.wrap(function gen$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-          case \\"end\\":
-            return _context.stop();
-        }
+  function* gen() {}
+
+  async function wait() {}
+
+  async function createClient() {
+    await wait();
+
+    var _iterator = _createForOfIteratorHelper(gen()),
+        _step;
+
+    try {
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+        var iterator = _step.value;
+        console.log(iterator);
       }
-    }, _marked);
-  }
+    } catch (err) {
+      _iterator.e(err);
+    } finally {
+      _iterator.f();
+    }
 
-  function wait() {
-    return _wait.apply(this, arguments);
-  }
-
-  function _wait() {
-    _wait = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {
-      return _regenerator.default.wrap(function _callee$(_context2) {
-        while (1) {
-          switch (_context2.prev = _context2.next) {
-            case 0:
-            case \\"end\\":
-              return _context2.stop();
-          }
-        }
-      }, _callee);
-    }));
-    return _wait.apply(this, arguments);
-  }
-
-  function createClient() {
-    return _createClient.apply(this, arguments);
-  }
-
-  function _createClient() {
-    _createClient = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {
-      var _iterator, _step, iterator;
-
-      return _regenerator.default.wrap(function _callee2$(_context3) {
-        while (1) {
-          switch (_context3.prev = _context3.next) {
-            case 0:
-              _context3.next = 2;
-              return wait();
-
-            case 2:
-              _iterator = _createForOfIteratorHelper(gen());
-
-              try {
-                for (_iterator.s(); !(_step = _iterator.n()).done;) {
-                  iterator = _step.value;
-                  console.log(iterator);
-                }
-              } catch (err) {
-                _iterator.e(err);
-              } finally {
-                _iterator.f();
-              }
-
-              return _context3.abrupt(\\"return\\", new Client());
-
-            case 5:
-            case \\"end\\":
-              return _context3.stop();
-          }
-        }
-      }, _callee2);
-    }));
-    return _createClient.apply(this, arguments);
+    return new Client();
   }
 });
 ",
