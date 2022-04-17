@@ -1,5 +1,5 @@
 import { ModuleFormat, OutputOptions, RollupOptions } from 'rollup';
-import externals from 'rollup-plugin-node-externals';
+import nodeExternals from 'rollup-plugin-node-externals';
 import nodePolyfills from 'rollup-plugin-polyfill-node';
 import { getBabelInputPlugin, getBabelOutputPlugin } from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
@@ -174,7 +174,7 @@ export function getRollupConfig(
 		// Shared output plugins
 		plugins: [
 			// Mark all dependencies in `package.json` as external
-			externals({
+			nodeExternals({
 				builtins: isNode,
 				deps: true,
 				devDeps: true,
