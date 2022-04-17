@@ -73,17 +73,17 @@ export const NATIVE_TARGETS: { [K in Support]: string } = {
 
 // Based on LTS schedule: https://nodejs.org/en/about/releases/
 export const NODE_SUPPORTED_VERSIONS: { [K in Support]: string } = {
-	legacy: '10.3.0',
-	stable: '12.17.0', // ESM support not behind a flag
-	current: '14.19.0', // Includes corepack
-	experimental: '16.0.0',
+	legacy: '12.22.0',
+	stable: '14.19.0', // Corepack
+	current: '16.12.0', // ESM loader hooks
+	experimental: '18.0.0',
 };
 
 export const NPM_SUPPORTED_VERSIONS: { [K in Support]: string[] | string } = {
-	legacy: '6.1.0',
-	stable: '6.13.0',
-	current: ['6.14.0', '7.0.0'],
-	experimental: '7.0.0',
+	legacy: '6.14.0',
+	stable: '6.14.0',
+	current: '8.1.0',
+	experimental: '8.5.0',
 };
 
 // Based on browserslist: https://github.com/browserslist/browserslist
