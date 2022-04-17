@@ -93,6 +93,7 @@ export function getRollupOutputConfig(
 	const { ext, folder } = artifact.getBuildOutput(format);
 	// eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
 	const isSwc = packemonConfig.swc || !!process.env.PACKEMON_SWC;
+	const isEsm = format === 'esm' || format === 'mjs';
 
 	const output: OutputOptions = {
 		dir: artifact.package.path.append(folder).path(),
@@ -109,7 +110,7 @@ export function getRollupOutputConfig(
 		// Use ESM features when not supporting old targets
 		generatedCode: {
 			preset: 'es2015',
-			symbols: false, // Enable for pure ESM later on
+			symbols: isEsm,
 		},
 		preferConst: true,
 		// Output specific plugins

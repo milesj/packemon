@@ -145,7 +145,7 @@ describe('getRollupConfig()', () => {
 					format: 'esm',
 					generatedCode: {
 						preset: 'es2015',
-						symbols: false,
+						symbols: true,
 					},
 					interop: 'auto',
 					originalFormat: 'esm',
@@ -165,7 +165,7 @@ describe('getRollupConfig()', () => {
 					format: 'esm',
 					generatedCode: {
 						preset: 'es2015',
-						symbols: false,
+						symbols: true,
 					},
 					interop: 'auto',
 					originalFormat: 'mjs',
