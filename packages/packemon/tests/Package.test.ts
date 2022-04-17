@@ -207,7 +207,7 @@ describe('Package', () => {
 
 				await pkg.build({ addEngines: true }, config);
 
-				expect(pkg.packageJson.engines).toEqual({ node: '>=12.17.0', npm: '>=6.13.0' });
+				expect(pkg.packageJson.engines).toEqual({ node: '>=14.19.0', npm: '>=6.14.0' });
 			});
 
 			it('uses oldest `node` build', async () => {
@@ -219,7 +219,7 @@ describe('Package', () => {
 
 				await pkg.build({ addEngines: true }, config);
 
-				expect(pkg.packageJson.engines).toEqual({ node: '>=10.3.0', npm: '>=6.1.0' });
+				expect(pkg.packageJson.engines).toEqual({ node: '>=12.22.0', npm: '>=6.14.0' });
 			});
 
 			it('merges with existing engines', async () => {
@@ -235,8 +235,8 @@ describe('Package', () => {
 
 				expect(pkg.packageJson.engines).toEqual({
 					packemon: '*',
-					node: '>=12.17.0',
-					npm: '>=6.13.0',
+					node: '>=14.19.0',
+					npm: '>=6.14.0',
 				});
 			});
 		});

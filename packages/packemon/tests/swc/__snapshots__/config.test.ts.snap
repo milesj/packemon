@@ -159,11 +159,6 @@ Object {
   "cwd": "OUTPUT",
   "env": Object {
     "bugfixes": true,
-    "include": Array [
-      "proposal-logical-assignment-operators",
-      "proposal-nullish-coalescing-operator",
-      "proposal-optional-chaining",
-    ],
     "loose": false,
     "mode": undefined,
     "shippedProposals": true,
@@ -240,11 +235,6 @@ Object {
 exports[`getSwcOutputConfig() handles preset-env: browser + lib + current 1`] = `
 Object {
   "bugfixes": true,
-  "include": Array [
-    "proposal-logical-assignment-operators",
-    "proposal-nullish-coalescing-operator",
-    "proposal-optional-chaining",
-  ],
   "loose": false,
   "mode": undefined,
   "shippedProposals": true,
@@ -255,11 +245,6 @@ Object {
 exports[`getSwcOutputConfig() handles preset-env: browser + lib + experimental 1`] = `
 Object {
   "bugfixes": true,
-  "include": Array [
-    "proposal-logical-assignment-operators",
-    "proposal-nullish-coalescing-operator",
-    "proposal-optional-chaining",
-  ],
   "loose": false,
   "mode": undefined,
   "shippedProposals": true,
@@ -270,11 +255,6 @@ Object {
 exports[`getSwcOutputConfig() handles preset-env: browser + lib + legacy 1`] = `
 Object {
   "bugfixes": true,
-  "include": Array [
-    "proposal-logical-assignment-operators",
-    "proposal-nullish-coalescing-operator",
-    "proposal-optional-chaining",
-  ],
   "loose": false,
   "mode": undefined,
   "shippedProposals": true,
@@ -285,11 +265,6 @@ Object {
 exports[`getSwcOutputConfig() handles preset-env: browser + lib + stable 1`] = `
 Object {
   "bugfixes": true,
-  "include": Array [
-    "proposal-logical-assignment-operators",
-    "proposal-nullish-coalescing-operator",
-    "proposal-optional-chaining",
-  ],
   "loose": false,
   "mode": undefined,
   "shippedProposals": true,
@@ -340,11 +315,6 @@ Object {
 exports[`getSwcOutputConfig() handles preset-env: native + lib + current 1`] = `
 Object {
   "bugfixes": true,
-  "include": Array [
-    "proposal-logical-assignment-operators",
-    "proposal-nullish-coalescing-operator",
-    "proposal-optional-chaining",
-  ],
   "loose": false,
   "mode": undefined,
   "shippedProposals": true,
@@ -355,11 +325,6 @@ Object {
 exports[`getSwcOutputConfig() handles preset-env: native + lib + experimental 1`] = `
 Object {
   "bugfixes": true,
-  "include": Array [
-    "proposal-logical-assignment-operators",
-    "proposal-nullish-coalescing-operator",
-    "proposal-optional-chaining",
-  ],
   "loose": false,
   "mode": undefined,
   "shippedProposals": true,
@@ -370,11 +335,6 @@ Object {
 exports[`getSwcOutputConfig() handles preset-env: native + lib + legacy 1`] = `
 Object {
   "bugfixes": true,
-  "include": Array [
-    "proposal-logical-assignment-operators",
-    "proposal-nullish-coalescing-operator",
-    "proposal-optional-chaining",
-  ],
   "loose": false,
   "mode": undefined,
   "shippedProposals": true,
@@ -385,11 +345,6 @@ Object {
 exports[`getSwcOutputConfig() handles preset-env: native + lib + stable 1`] = `
 Object {
   "bugfixes": true,
-  "include": Array [
-    "proposal-logical-assignment-operators",
-    "proposal-nullish-coalescing-operator",
-    "proposal-optional-chaining",
-  ],
   "loose": false,
   "mode": undefined,
   "shippedProposals": true,
@@ -404,7 +359,7 @@ Object {
   "mode": undefined,
   "shippedProposals": true,
   "targets": Object {
-    "node": "14.16.0",
+    "node": "16.12.0",
   },
 }
 `;
@@ -416,7 +371,7 @@ Object {
   "mode": undefined,
   "shippedProposals": true,
   "targets": Object {
-    "node": "16.0.0",
+    "node": "18.0.0",
   },
 }
 `;
@@ -428,7 +383,7 @@ Object {
   "mode": undefined,
   "shippedProposals": true,
   "targets": Object {
-    "node": "10.3.0",
+    "node": "12.22.0",
   },
 }
 `;
@@ -440,7 +395,7 @@ Object {
   "mode": undefined,
   "shippedProposals": true,
   "targets": Object {
-    "node": "12.17.0",
+    "node": "14.19.0",
   },
 }
 `;
@@ -452,7 +407,7 @@ Object {
   "mode": undefined,
   "shippedProposals": true,
   "targets": Object {
-    "node": "14.16.0",
+    "node": "16.12.0",
   },
 }
 `;
@@ -464,7 +419,7 @@ Object {
   "mode": undefined,
   "shippedProposals": true,
   "targets": Object {
-    "node": "16.0.0",
+    "node": "18.0.0",
   },
 }
 `;
@@ -476,7 +431,7 @@ Object {
   "mode": undefined,
   "shippedProposals": true,
   "targets": Object {
-    "node": "10.3.0",
+    "node": "12.22.0",
   },
 }
 `;
@@ -488,7 +443,7 @@ Object {
   "mode": undefined,
   "shippedProposals": true,
   "targets": Object {
-    "node": "12.17.0",
+    "node": "14.19.0",
   },
 }
 `;
@@ -500,7 +455,7 @@ Object {
   "mode": undefined,
   "shippedProposals": true,
   "targets": Object {
-    "node": "14.16.0",
+    "node": "16.12.0",
   },
 }
 `;
@@ -512,7 +467,7 @@ Object {
   "mode": undefined,
   "shippedProposals": true,
   "targets": Object {
-    "node": "16.0.0",
+    "node": "18.0.0",
   },
 }
 `;
@@ -524,7 +479,7 @@ Object {
   "mode": undefined,
   "shippedProposals": true,
   "targets": Object {
-    "node": "10.3.0",
+    "node": "12.22.0",
   },
 }
 `;
@@ -536,7 +491,7 @@ Object {
   "mode": undefined,
   "shippedProposals": true,
   "targets": Object {
-    "node": "12.17.0",
+    "node": "14.19.0",
   },
 }
 `;
@@ -549,11 +504,6 @@ Object {
   "configFile": false,
   "env": Object {
     "bugfixes": true,
-    "include": Array [
-      "proposal-logical-assignment-operators",
-      "proposal-nullish-coalescing-operator",
-      "proposal-optional-chaining",
-    ],
     "loose": false,
     "mode": undefined,
     "shippedProposals": true,
@@ -594,11 +544,6 @@ Object {
   "configFile": false,
   "env": Object {
     "bugfixes": true,
-    "include": Array [
-      "proposal-logical-assignment-operators",
-      "proposal-nullish-coalescing-operator",
-      "proposal-optional-chaining",
-    ],
     "loose": false,
     "mode": undefined,
     "shippedProposals": true,
@@ -643,7 +588,7 @@ Object {
     "mode": undefined,
     "shippedProposals": true,
     "targets": Object {
-      "node": "14.16.0",
+      "node": "16.12.0",
     },
   },
   "jsc": Object {
@@ -685,7 +630,7 @@ Object {
     "mode": undefined,
     "shippedProposals": true,
     "targets": Object {
-      "node": "16.0.0",
+      "node": "18.0.0",
     },
   },
   "jsc": Object {
