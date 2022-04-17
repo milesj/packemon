@@ -39,7 +39,7 @@ module.exports = {
 ## Requirements
 
 - Linux, OSX, Windows
-- Node 14.19+
+- Node 14.15+
 
 ## Transforms
 

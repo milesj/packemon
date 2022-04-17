@@ -32,4 +32,4 @@ configured to support all formats.
 ## Requirements
 
 - Linux, OSX, Windows
-- Node 14.19+
+- Node 14.15+

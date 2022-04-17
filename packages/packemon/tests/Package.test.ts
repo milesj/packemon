@@ -207,7 +207,7 @@ describe('Package', () => {
 
 				await pkg.build({ addEngines: true }, config);
 
-				expect(pkg.packageJson.engines).toEqual({ node: '>=14.19.0', npm: '>=6.14.0' });
+				expect(pkg.packageJson.engines).toEqual({ node: '>=14.15.0', npm: '>=6.14.0' });
 			});
 
 			it('uses oldest `node` build', async () => {
@@ -235,7 +235,7 @@ describe('Package', () => {
 
 				expect(pkg.packageJson.engines).toEqual({
 					packemon: '*',
-					node: '>=14.19.0',
+					node: '>=14.15.0',
 					npm: '>=6.14.0',
 				});
 			});

@@ -74,7 +74,7 @@ export const NATIVE_TARGETS: { [K in Support]: string } = {
 // Based on LTS schedule: https://nodejs.org/en/about/releases/
 export const NODE_SUPPORTED_VERSIONS: { [K in Support]: string } = {
 	legacy: '12.22.0',
-	stable: '14.19.0', // Corepack
+	stable: '14.15.0', // LTS support started
 	current: '16.12.0', // ESM loader hooks
 	experimental: '18.0.0',
 };

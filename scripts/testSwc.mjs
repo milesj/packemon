@@ -59,7 +59,7 @@ function getOutputConfig(type) {
 			bugfixes: true,
 			shippedProposals: true,
 			targets: {
-				node: '14.19.0',
+				node: '14.15.0',
 			},
 		},
 		module: {

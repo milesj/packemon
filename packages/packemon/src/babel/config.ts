@@ -139,7 +139,6 @@ export function getBabelInputConfig(
 		presets.push([
 			resolve('@babel/preset-react'),
 			{
-				development: __DEV__,
 				runtime: features.react,
 				throwIfNamespace: true,
 			},
