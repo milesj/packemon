@@ -9,11 +9,13 @@ function foo() {}
 
 function bar() {}
 
-const helpers = /*#__PURE__*/Object.freeze({
+const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
   __proto__: null,
   foo,
   bar
-});
+}, Symbol.toStringTag, {
+  value: 'Module'
+}));
 export { helpers as ns1, helpers as ns2 };
 ",
 ]
@@ -94,11 +96,13 @@ function foo() {}
 
 function bar() {}
 
-const helpers = /*#__PURE__*/Object.freeze({
+const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
   __proto__: null,
   foo,
   bar
-});
+}, Symbol.toStringTag, {
+  value: 'Module'
+}));
 export { helpers as ns1, helpers as ns2 };
 ",
 ]
@@ -179,11 +183,13 @@ function foo() {}
 
 function bar() {}
 
-var helpers = /*#__PURE__*/Object.freeze({
+var helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
   __proto__: null,
   foo: foo,
   bar: bar
-});
+}, Symbol.toStringTag, {
+  value: 'Module'
+}));
 export { helpers as ns1, helpers as ns2 };
 ",
 ]
@@ -264,11 +270,13 @@ function foo() {}
 
 function bar() {}
 
-const helpers = /*#__PURE__*/Object.freeze({
+const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
   __proto__: null,
   foo,
   bar
-});
+}, Symbol.toStringTag, {
+  value: 'Module'
+}));
 export { helpers as ns1, helpers as ns2 };
 ",
 ]
@@ -505,11 +513,13 @@ function foo() {}
 
 function bar() {}
 
-const helpers = /*#__PURE__*/Object.freeze({
+const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
   __proto__: null,
   foo,
   bar
-});
+}, Symbol.toStringTag, {
+  value: 'Module'
+}));
 export { helpers as ns1, helpers as ns2 };
 ",
 ]
@@ -576,11 +586,13 @@ function foo() {}
 
 function bar() {}
 
-const helpers = /*#__PURE__*/Object.freeze({
+const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
   __proto__: null,
   foo,
   bar
-});
+}, Symbol.toStringTag, {
+  value: 'Module'
+}));
 export { helpers as ns1, helpers as ns2 };
 ",
 ]
@@ -647,11 +659,13 @@ function foo() {}
 
 function bar() {}
 
-const helpers = /*#__PURE__*/Object.freeze({
+const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
   __proto__: null,
   foo,
   bar
-});
+}, Symbol.toStringTag, {
+  value: 'Module'
+}));
 export { helpers as ns1, helpers as ns2 };
 ",
 ]
@@ -718,11 +732,13 @@ function foo() {}
 
 function bar() {}
 
-const helpers = /*#__PURE__*/Object.freeze({
+const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
   __proto__: null,
   foo,
   bar
-});
+}, Symbol.toStringTag, {
+  value: 'Module'
+}));
 export { helpers as ns1, helpers as ns2 };
 ",
 ]
@@ -735,11 +751,13 @@ Array [
 // Platform: browser, Support: current, Format: esm
 function foo() {}
 function bar() {}
-const helpers = /*#__PURE__*/ Object.freeze({
+const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty({
     __proto__: null,
     foo,
     bar
-});
+}, Symbol.toStringTag, {
+    value: 'Module'
+}));
 export { helpers as ns1, helpers as ns2 };
 ",
 ]
@@ -811,11 +829,13 @@ Array [
 // Platform: browser, Support: experimental, Format: esm
 function foo() {}
 function bar() {}
-const helpers = /*#__PURE__*/ Object.freeze({
+const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty({
     __proto__: null,
     foo,
     bar
-});
+}, Symbol.toStringTag, {
+    value: 'Module'
+}));
 export { helpers as ns1, helpers as ns2 };
 ",
 ]
@@ -887,11 +907,13 @@ Array [
 // Platform: browser, Support: legacy, Format: esm
 function foo() {}
 function bar() {}
-var helpers = /*#__PURE__*/ Object.freeze({
+var helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty({
     __proto__: null,
     foo: foo,
     bar: bar
-});
+}, Symbol.toStringTag, {
+    value: \\"Module\\"
+}));
 export { helpers as ns1, helpers as ns2 };
 ",
 ]
@@ -963,11 +985,13 @@ Array [
 // Platform: browser, Support: stable, Format: esm
 function foo() {}
 function bar() {}
-const helpers = /*#__PURE__*/ Object.freeze({
+const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty({
     __proto__: null,
     foo,
     bar
-});
+}, Symbol.toStringTag, {
+    value: 'Module'
+}));
 export { helpers as ns1, helpers as ns2 };
 ",
 ]
@@ -1171,11 +1195,13 @@ Array [
 // Platform: node, Support: current, Format: mjs
 function foo() {}
 function bar() {}
-const helpers = /*#__PURE__*/ Object.freeze({
+const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty({
     __proto__: null,
     foo,
     bar
-});
+}, Symbol.toStringTag, {
+    value: 'Module'
+}));
 export { helpers as ns1, helpers as ns2 };
 ",
 ]
@@ -1232,11 +1258,13 @@ Array [
 // Platform: node, Support: experimental, Format: mjs
 function foo() {}
 function bar() {}
-const helpers = /*#__PURE__*/ Object.freeze({
+const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty({
     __proto__: null,
     foo,
     bar
-});
+}, Symbol.toStringTag, {
+    value: 'Module'
+}));
 export { helpers as ns1, helpers as ns2 };
 ",
 ]
@@ -1293,11 +1321,13 @@ Array [
 // Platform: node, Support: legacy, Format: mjs
 function foo() {}
 function bar() {}
-const helpers = /*#__PURE__*/ Object.freeze({
+const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty({
     __proto__: null,
     foo,
     bar
-});
+}, Symbol.toStringTag, {
+    value: \\"Module\\"
+}));
 export { helpers as ns1, helpers as ns2 };
 ",
 ]
@@ -1354,11 +1384,13 @@ Array [
 // Platform: node, Support: stable, Format: mjs
 function foo() {}
 function bar() {}
-const helpers = /*#__PURE__*/ Object.freeze({
+const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty({
     __proto__: null,
     foo,
     bar
-});
+}, Symbol.toStringTag, {
+    value: 'Module'
+}));
 export { helpers as ns1, helpers as ns2 };
 ",
 ]
