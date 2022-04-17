@@ -12277,6 +12277,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"ignore-walk@npm:^5.0.1":
+  version: 5.0.1
+  resolution: "ignore-walk@npm:5.0.1"
+  dependencies:
+    minimatch: ^5.0.1
+  checksum: 1a4ef35174653a1aa6faab3d9f8781269166536aee36a04946f6e2b319b2475c1903a75ed42f04219274128242f49d0a10e20c4354ee60d9548e97031451150b
+  languageName: node
+  linkType: hard
+
 "ignore@npm:^5.1.1, ignore@npm:^5.1.8, ignore@npm:^5.1.9, ignore@npm:^5.2.0":
   version: 5.2.0
   resolution: "ignore@npm:5.2.0"
@@ -15543,17 +15552,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"npm-packlist@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "npm-packlist@npm:4.0.0"
+"npm-packlist@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "npm-packlist@npm:5.0.0"
   dependencies:
     glob: ^7.2.0
-    ignore-walk: ^4.0.1
+    ignore-walk: ^5.0.1
     npm-bundled: ^1.1.2
     npm-normalize-package-bin: ^1.0.1
   bin:
     npm-packlist: bin/index.js
-  checksum: 246e92415e7b9b963983d1aa372425b0c4ee77fde89ab5d9310033b3dd7768baf2b983c352c825a14743ae442b7ae457763417ef9d215b274992406a507c58ff
+  checksum: 5badccf62cd66904186f8c9b08d539f1831b71f368efa7b436d3aec8729984293d2db56170669ae4df5993c1269bb0e0c82398a5e739d0d76471b97fc81aa20d
   languageName: node
   linkType: hard
 
@@ -16161,7 +16170,7 @@ __metadata:
     ink-spinner: ^4.0.3
     magic-string: ^0.26.1
     micromatch: ^4.0.5
-    npm-packlist: ^4.0.0
+    npm-packlist: ^5.0.0
     react: ^17.0.2
     resolve: ^1.22.0
     rimraf: ^3.0.2
