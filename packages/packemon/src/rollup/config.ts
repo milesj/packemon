@@ -108,10 +108,10 @@ export function getRollupOutputConfig(
 		preserveModules: !artifact.bundle,
 		// Use ESM features when not supporting old targets
 		generatedCode: {
-			preset: support === 'legacy' ? 'es5' : 'es2015',
+			preset: 'es2015',
 			symbols: false, // Enable for pure ESM later on
 		},
-		preferConst: support !== 'legacy',
+		preferConst: true,
 		// Output specific plugins
 		plugins: [
 			isSwc

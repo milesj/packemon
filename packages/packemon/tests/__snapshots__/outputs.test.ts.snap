@@ -35,34 +35,6 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
-import _regeneratorRuntime from \\"@babel/runtime/regenerator\\";
-
-var createClient = function createClient() {
-  return Promise.resolve(wait()).then(function () {
-    var _iterator = _createForOfIteratorHelper(gen()),
-        _step;
-
-    try {
-      for (_iterator.s(); !(_step = _iterator.n()).done;) {
-        var iterator = _step.value;
-        console.log(iterator);
-      }
-    } catch (err) {
-      _iterator.e(err);
-    } finally {
-      _iterator.f();
-    }
-
-    return new Client();
-  });
-};
-
-var wait = function wait() {
-  return Promise.resolve();
-};
-
-var _marked = /*#__PURE__*/_regeneratorRuntime.mark(gen);
-
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\\"value\\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, \\"prototype\\", { writable: false }); return Constructor; }
@@ -79,16 +51,28 @@ var Client = /*#__PURE__*/_createClass(function Client() {
   _defineProperty(this, \\"prop\\", 123);
 });
 
-function gen() {
-  return _regeneratorRuntime.wrap(function gen$(_context) {
-    while (1) {
-      switch (_context.prev = _context.next) {
-        case 0:
-        case \\"end\\":
-          return _context.stop();
-      }
+function* gen() {}
+
+async function wait() {}
+
+async function createClient() {
+  await wait();
+
+  var _iterator = _createForOfIteratorHelper(gen()),
+      _step;
+
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      var iterator = _step.value;
+      console.log(iterator);
     }
-  }, _marked);
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
+
+  return new Client();
 }
 
 export { createClient };
@@ -103,39 +87,11 @@ Array [
 // Platform: browser, Support: legacy, Format: lib
 'use strict';
 
-var _regeneratorRuntime = require(\\"@babel/runtime/regenerator\\");
-
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== \\"undefined\\" && o[Symbol.iterator] || o[\\"@@iterator\\"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === \\"number\\") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError(\\"Invalid attempt to iterate non-iterable instance.\\\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\\"); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \\"string\\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \\"Object\\" && o.constructor) n = o.constructor.name; if (n === \\"Map\\" || n === \\"Set\\") return Array.from(o); if (n === \\"Arguments\\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-var createClient = function createClient() {
-  return Promise.resolve(wait()).then(function () {
-    var _iterator = _createForOfIteratorHelper(gen()),
-        _step;
-
-    try {
-      for (_iterator.s(); !(_step = _iterator.n()).done;) {
-        var iterator = _step.value;
-        console.log(iterator);
-      }
-    } catch (err) {
-      _iterator.e(err);
-    } finally {
-      _iterator.f();
-    }
-
-    return new Client();
-  });
-};
-
-var wait = function wait() {
-  return Promise.resolve();
-};
-
-var _marked = /*#__PURE__*/_regeneratorRuntime.mark(gen);
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\\"value\\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
@@ -155,16 +111,28 @@ var Client = /*#__PURE__*/_createClass(function Client() {
   _defineProperty(this, \\"prop\\", 123);
 });
 
-function gen() {
-  return _regeneratorRuntime.wrap(function gen$(_context) {
-    while (1) {
-      switch (_context.prev = _context.next) {
-        case 0:
-        case \\"end\\":
-          return _context.stop();
-      }
+function* gen() {}
+
+async function wait() {}
+
+async function createClient() {
+  await wait();
+
+  var _iterator = _createForOfIteratorHelper(gen()),
+      _step;
+
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      var iterator = _step.value;
+      console.log(iterator);
     }
-  }, _marked);
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
+
+  return new Client();
 }
 
 exports.createClient = createClient;
@@ -195,18 +163,13 @@ Array [
 // Platform: native, Support: experimental, Format: lib
 'use strict';
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
 
 class Spy {
-  constructor() {
-    _defineProperty(this, \\"called\\", false);
-
-    _defineProperty(this, \\"mock\\", () => {});
-  }
+  called = false;
+  mock = () => {};
 
   method() {}
 
@@ -249,64 +212,31 @@ Array [
 exports[`Outputs (babel) artifacts builds all the artifacts with rollup 7`] = `
 Array [
   "umd/client.js",
-  "var _regeneratorRuntime2 = require(\\"@babel/runtime/regenerator\\");
-
-(function (global, factory) {
+  "(function (global, factory) {
   if (typeof define === \\"function\\" && define.amd) {
-    define(\\"Packemon\\", [\\"exports\\", \\"@babel/runtime/regenerator\\"], factory);
+    define(\\"Packemon\\", [\\"exports\\"], factory);
   } else if (typeof exports !== \\"undefined\\") {
-    factory(exports, require(\\"@babel/runtime/regenerator\\"));
+    factory(exports);
   } else {
     var mod = {
       exports: {}
     };
-    factory(mod.exports, global.regenerator);
+    factory(mod.exports);
     global.Packemon = mod.exports;
   }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports, _regenerator) {
+})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports) {
   \\"use strict\\";
 
   Object.defineProperty(_exports, \\"__esModule\\", {
     value: true
   });
-  _exports.createClient = void 0;
-  _regenerator = _interopRequireDefault(_regenerator);
-
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  _exports.createClient = createClient;
 
   function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== \\"undefined\\" && o[Symbol.iterator] || o[\\"@@iterator\\"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === \\"number\\") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError(\\"Invalid attempt to iterate non-iterable instance.\\\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\\"); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
   function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \\"string\\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \\"Object\\" && o.constructor) n = o.constructor.name; if (n === \\"Map\\" || n === \\"Set\\") return Array.from(o); if (n === \\"Arguments\\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
   function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-  var createClient = function createClient() {
-    return Promise.resolve(wait()).then(function () {
-      var _iterator = _createForOfIteratorHelper(gen()),
-          _step;
-
-      try {
-        for (_iterator.s(); !(_step = _iterator.n()).done;) {
-          var iterator = _step.value;
-          console.log(iterator);
-        }
-      } catch (err) {
-        _iterator.e(err);
-      } finally {
-        _iterator.f();
-      }
-
-      return new Client();
-    });
-  };
-
-  _exports.createClient = createClient;
-
-  var wait = function wait() {
-    return Promise.resolve();
-  };
-
-  var _marked = /*#__PURE__*/_regeneratorRuntime2.mark(gen);
 
   function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\\"value\\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
@@ -324,16 +254,28 @@ Array [
     _defineProperty(this, \\"prop\\", 123);
   });
 
-  function gen() {
-    return _regenerator.default.wrap(function gen$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-          case \\"end\\":
-            return _context.stop();
-        }
+  function* gen() {}
+
+  async function wait() {}
+
+  async function createClient() {
+    await wait();
+
+    var _iterator = _createForOfIteratorHelper(gen()),
+        _step;
+
+    try {
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+        var iterator = _step.value;
+        console.log(iterator);
       }
-    }, _marked);
+    } catch (err) {
+      _iterator.e(err);
+    } finally {
+      _iterator.f();
+    }
+
+    return new Client();
   }
 });
 ",
@@ -760,34 +702,6 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
-import _regeneratorRuntime from \\"@babel/runtime/regenerator\\";
-
-var createClient = function createClient() {
-  return Promise.resolve(wait()).then(function () {
-    var _iterator = _createForOfIteratorHelper(gen()),
-        _step;
-
-    try {
-      for (_iterator.s(); !(_step = _iterator.n()).done;) {
-        var iterator = _step.value;
-        console.log(iterator);
-      }
-    } catch (err) {
-      _iterator.e(err);
-    } finally {
-      _iterator.f();
-    }
-
-    return new Client();
-  });
-};
-
-var wait = function wait() {
-  return Promise.resolve();
-};
-
-var _marked = /*#__PURE__*/_regeneratorRuntime.mark(gen);
-
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\\"value\\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, \\"prototype\\", { writable: false }); return Constructor; }
@@ -804,16 +718,28 @@ var Client = /*#__PURE__*/_createClass(function Client() {
   _defineProperty(this, \\"prop\\", 123);
 });
 
-function gen() {
-  return _regeneratorRuntime.wrap(function gen$(_context) {
-    while (1) {
-      switch (_context.prev = _context.next) {
-        case 0:
-        case \\"end\\":
-          return _context.stop();
-      }
+function* gen() {}
+
+async function wait() {}
+
+async function createClient() {
+  await wait();
+
+  var _iterator = _createForOfIteratorHelper(gen()),
+      _step;
+
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      var iterator = _step.value;
+      console.log(iterator);
     }
-  }, _marked);
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
+
+  return new Client();
 }
 
 export { createClient };
@@ -828,39 +754,11 @@ Array [
 // Platform: browser, Support: legacy, Format: lib
 'use strict';
 
-var _regeneratorRuntime = require(\\"@babel/runtime/regenerator\\");
-
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== \\"undefined\\" && o[Symbol.iterator] || o[\\"@@iterator\\"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === \\"number\\") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError(\\"Invalid attempt to iterate non-iterable instance.\\\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\\"); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \\"string\\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \\"Object\\" && o.constructor) n = o.constructor.name; if (n === \\"Map\\" || n === \\"Set\\") return Array.from(o); if (n === \\"Arguments\\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-var createClient = function createClient() {
-  return Promise.resolve(wait()).then(function () {
-    var _iterator = _createForOfIteratorHelper(gen()),
-        _step;
-
-    try {
-      for (_iterator.s(); !(_step = _iterator.n()).done;) {
-        var iterator = _step.value;
-        console.log(iterator);
-      }
-    } catch (err) {
-      _iterator.e(err);
-    } finally {
-      _iterator.f();
-    }
-
-    return new Client();
-  });
-};
-
-var wait = function wait() {
-  return Promise.resolve();
-};
-
-var _marked = /*#__PURE__*/_regeneratorRuntime.mark(gen);
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\\"value\\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
@@ -880,16 +778,28 @@ var Client = /*#__PURE__*/_createClass(function Client() {
   _defineProperty(this, \\"prop\\", 123);
 });
 
-function gen() {
-  return _regeneratorRuntime.wrap(function gen$(_context) {
-    while (1) {
-      switch (_context.prev = _context.next) {
-        case 0:
-        case \\"end\\":
-          return _context.stop();
-      }
+function* gen() {}
+
+async function wait() {}
+
+async function createClient() {
+  await wait();
+
+  var _iterator = _createForOfIteratorHelper(gen()),
+      _step;
+
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      var iterator = _step.value;
+      console.log(iterator);
     }
-  }, _marked);
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
+
+  return new Client();
 }
 
 exports.createClient = createClient;
@@ -920,18 +830,13 @@ Array [
 // Platform: native, Support: experimental, Format: lib
 'use strict';
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
 
 class Spy {
-  constructor() {
-    _defineProperty(this, \\"called\\", false);
-
-    _defineProperty(this, \\"mock\\", () => {});
-  }
+  called = false;
+  mock = () => {};
 
   method() {}
 
@@ -974,64 +879,31 @@ Array [
 exports[`Outputs (swc) artifacts builds all the artifacts with rollup 7`] = `
 Array [
   "umd/client.js",
-  "var _regeneratorRuntime2 = require(\\"@babel/runtime/regenerator\\");
-
-(function (global, factory) {
+  "(function (global, factory) {
   if (typeof define === \\"function\\" && define.amd) {
-    define(\\"Packemon\\", [\\"exports\\", \\"@babel/runtime/regenerator\\"], factory);
+    define(\\"Packemon\\", [\\"exports\\"], factory);
   } else if (typeof exports !== \\"undefined\\") {
-    factory(exports, require(\\"@babel/runtime/regenerator\\"));
+    factory(exports);
   } else {
     var mod = {
       exports: {}
     };
-    factory(mod.exports, global.regenerator);
+    factory(mod.exports);
     global.Packemon = mod.exports;
   }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports, _regenerator) {
+})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports) {
   \\"use strict\\";
 
   Object.defineProperty(_exports, \\"__esModule\\", {
     value: true
   });
-  _exports.createClient = void 0;
-  _regenerator = _interopRequireDefault(_regenerator);
-
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  _exports.createClient = createClient;
 
   function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== \\"undefined\\" && o[Symbol.iterator] || o[\\"@@iterator\\"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === \\"number\\") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError(\\"Invalid attempt to iterate non-iterable instance.\\\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\\"); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
   function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \\"string\\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \\"Object\\" && o.constructor) n = o.constructor.name; if (n === \\"Map\\" || n === \\"Set\\") return Array.from(o); if (n === \\"Arguments\\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
   function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-  var createClient = function createClient() {
-    return Promise.resolve(wait()).then(function () {
-      var _iterator = _createForOfIteratorHelper(gen()),
-          _step;
-
-      try {
-        for (_iterator.s(); !(_step = _iterator.n()).done;) {
-          var iterator = _step.value;
-          console.log(iterator);
-        }
-      } catch (err) {
-        _iterator.e(err);
-      } finally {
-        _iterator.f();
-      }
-
-      return new Client();
-    });
-  };
-
-  _exports.createClient = createClient;
-
-  var wait = function wait() {
-    return Promise.resolve();
-  };
-
-  var _marked = /*#__PURE__*/_regeneratorRuntime2.mark(gen);
 
   function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\\"value\\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
@@ -1049,16 +921,28 @@ Array [
     _defineProperty(this, \\"prop\\", 123);
   });
 
-  function gen() {
-    return _regenerator.default.wrap(function gen$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-          case \\"end\\":
-            return _context.stop();
-        }
+  function* gen() {}
+
+  async function wait() {}
+
+  async function createClient() {
+    await wait();
+
+    var _iterator = _createForOfIteratorHelper(gen()),
+        _step;
+
+    try {
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+        var iterator = _step.value;
+        console.log(iterator);
       }
-    }, _marked);
+    } catch (err) {
+      _iterator.e(err);
+    } finally {
+      _iterator.f();
+    }
+
+    return new Client();
   }
 });
 ",

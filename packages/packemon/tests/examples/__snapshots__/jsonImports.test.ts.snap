@@ -400,7 +400,7 @@ Array [
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var data = {
+const data = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
   number: 123,
   string: \\"abc\\",
@@ -409,7 +409,7 @@ var data = {
   }
 }; // @ts-expect-error resolveJsonModule is not on
 
-var keys = Object.keys(data);
+const keys = Object.keys(data);
 exports.keys = keys;
 ",
 ]
@@ -590,7 +590,7 @@ Array [
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var data = {
+const data = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
   number: 123,
   string: \\"abc\\",
@@ -615,7 +615,7 @@ Array [
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var data = {
+const data = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
   number: 123,
   string: \\"abc\\",
@@ -635,7 +635,7 @@ Array [
   "mjs/index-node-legacy-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: mjs
-var data = {
+const data = {
   list: [\\"foo\\", \\"bar\\", \\"baz\\"],
   number: 123,
   string: \\"abc\\",
@@ -913,10 +913,9 @@ Array [
 exports[`JSON imports swc transforms example test case: browser-legacy-esm 1`] = `
 Array [
   "esm/index-browser-legacy-esm.js",
-  "// @ts-expect-error resolveJsonModule is not on
-var keys = Object.keys(// Bundled with Packemon: https://packemon.dev
+  "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: esm
-{
+var data = {
     list: [
         \\"foo\\",
         \\"bar\\",
@@ -927,7 +926,9 @@ var keys = Object.keys(// Bundled with Packemon: https://packemon.dev
     object: {
         foo: true
     }
-});
+};
+// @ts-expect-error resolveJsonModule is not on
+var keys = Object.keys(data);
 export { keys };
 ",
 ]
@@ -942,8 +943,7 @@ Array [
 Object.defineProperty(exports, \\"__esModule\\", {
     value: true
 });
-// @ts-expect-error resolveJsonModule is not on
-var keys = Object.keys({
+var data = {
     list: [
         \\"foo\\",
         \\"bar\\",
@@ -954,7 +954,9 @@ var keys = Object.keys({
     object: {
         foo: true
     }
-});
+};
+// @ts-expect-error resolveJsonModule is not on
+var keys = Object.keys(data);
 exports.keys = keys;
 ",
 ]
@@ -983,8 +985,7 @@ Array [
         value: true
     });
     _exports.keys = void 0;
-    // @ts-expect-error resolveJsonModule is not on
-    var keys = Object.keys({
+    var data = {
         list: [
             \\"foo\\",
             \\"bar\\",
@@ -995,7 +996,9 @@ Array [
         object: {
             foo: true
         }
-    });
+    };
+    // @ts-expect-error resolveJsonModule is not on
+    var keys = Object.keys(data);
     _exports.keys = keys;
 });
 ",
@@ -1162,8 +1165,7 @@ Array [
 Object.defineProperty(exports, \\"__esModule\\", {
     value: true
 });
-// @ts-expect-error resolveJsonModule is not on
-var keys = Object.keys({
+const data = {
     list: [
         \\"foo\\",
         \\"bar\\",
@@ -1174,7 +1176,9 @@ var keys = Object.keys({
     object: {
         foo: true
     }
-});
+};
+// @ts-expect-error resolveJsonModule is not on
+const keys = Object.keys(data);
 exports.keys = keys;
 ",
 ]
@@ -1377,8 +1381,7 @@ Array [
 Object.defineProperty(exports, \\"__esModule\\", {
     value: true
 });
-// @ts-expect-error resolveJsonModule is not on
-const keys = Object.keys({
+const data = {
     list: [
         \\"foo\\",
         \\"bar\\",
@@ -1389,7 +1392,9 @@ const keys = Object.keys({
     object: {
         foo: true
     }
-});
+};
+// @ts-expect-error resolveJsonModule is not on
+const keys = Object.keys(data);
 exports.keys = keys;
 ",
 ]
@@ -1404,8 +1409,7 @@ Array [
 Object.defineProperty(exports, \\"__esModule\\", {
     value: true
 });
-// @ts-expect-error resolveJsonModule is not on
-const keys = Object.keys({
+const data = {
     list: [
         \\"foo\\",
         \\"bar\\",
@@ -1416,7 +1420,9 @@ const keys = Object.keys({
     object: {
         foo: true
     }
-});
+};
+// @ts-expect-error resolveJsonModule is not on
+const keys = Object.keys(data);
 exports.keys = keys;
 ",
 ]
@@ -1425,10 +1431,9 @@ exports.keys = keys;
 exports[`JSON imports swc transforms example test case: node-legacy-mjs 1`] = `
 Array [
   "mjs/index-node-legacy-mjs.mjs",
-  "// @ts-expect-error resolveJsonModule is not on
-const keys = Object.keys(// Bundled with Packemon: https://packemon.dev
+  "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: mjs
-{
+const data = {
     list: [
         \\"foo\\",
         \\"bar\\",
@@ -1439,7 +1444,9 @@ const keys = Object.keys(// Bundled with Packemon: https://packemon.dev
     object: {
         foo: true
     }
-});
+};
+// @ts-expect-error resolveJsonModule is not on
+const keys = Object.keys(data);
 export { keys };
 ",
 ]

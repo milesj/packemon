@@ -88,12 +88,12 @@ The supported environment and or version for the configured platform(s).
 
 The supported environments above map to the following platform targets.
 
-|         | Legacy     | Stable              | Current        | Experimental           |
-| ------- | ---------- | ------------------- | -------------- | ---------------------- |
-| Browser | >= IE 11   | defaults, not IE 11 | > 1%, not dead | last 2 chrome versions |
-| Native  | >= iOS 8   | >= iOS 10           | >= iOS 12      | >= iOS 14              |
-| Node    | >= 12.22.0 | >= 14.15.0          | >= 16.12.0     | >= 18.0.0              |
-| npm     | >= 6.14.0  | >= 6.14.0           | >= 8.1.0       | >= 8.5.0               |
+|         | Legacy              | Stable              | Current         | Experimental           |
+| ------- | ------------------- | ------------------- | --------------- | ---------------------- |
+| Browser | >= 0.10%, not IE 11 | defaults, not IE 11 | >= 1%, not dead | last 2 chrome versions |
+| Native  | >= iOS 12           | >= iOS 13           | >= iOS 14       | >= iOS 15              |
+| Node    | >= 12.22.0          | >= 14.15.0          | >= 16.12.0      | >= 18.0.0              |
+| npm     | >= 6.14.0           | >= 6.14.0           | >= 8.1.0        | >= 8.5.0               |
 
 ## Formats
 

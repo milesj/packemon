@@ -65,10 +65,10 @@ export const EXCLUDE_RUST = [
 // https://reactnative.dev/docs/javascript-environment
 // Based on browserslist: https://github.com/browserslist/browserslist
 export const NATIVE_TARGETS: { [K in Support]: string } = {
-	legacy: 'iOS 8',
-	stable: 'iOS 10',
-	current: 'iOS 12',
-	experimental: 'iOS 14',
+	legacy: 'iOS 12', // 2018
+	stable: 'iOS 13', // 2019
+	current: 'iOS 14', // 2020
+	experimental: 'iOS 15', // 2021
 };
 
 // Based on LTS schedule: https://nodejs.org/en/about/releases/
@@ -88,9 +88,9 @@ export const NPM_SUPPORTED_VERSIONS: { [K in Support]: string[] | string } = {
 
 // Based on browserslist: https://github.com/browserslist/browserslist
 export const BROWSER_TARGETS: { [K in Support]: string[] | string } = {
-	legacy: 'IE 11',
+	legacy: ['>=0.10%', 'not IE 11'],
 	stable: ['defaults', 'not IE 11'],
-	current: ['> 1%', 'not dead'],
+	current: ['>=1%', 'not dead'],
 	experimental: ['last 2 chrome versions', 'last 2 firefox versions'],
 };
 
