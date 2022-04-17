@@ -198,7 +198,7 @@ Object {
   "loose": false,
   "mode": undefined,
   "shippedProposals": true,
-  "targets": "> 1%, not dead",
+  "targets": ">=1%, not dead",
 }
 `;
 
@@ -218,7 +218,7 @@ Object {
   "loose": false,
   "mode": undefined,
   "shippedProposals": true,
-  "targets": "IE 11",
+  "targets": ">=0.10%, not IE 11",
 }
 `;
 
@@ -238,7 +238,7 @@ Object {
   "loose": false,
   "mode": undefined,
   "shippedProposals": true,
-  "targets": "> 1%, not dead",
+  "targets": ">=1%, not dead",
 }
 `;
 
@@ -258,7 +258,7 @@ Object {
   "loose": false,
   "mode": undefined,
   "shippedProposals": true,
-  "targets": "IE 11",
+  "targets": ">=0.10%, not IE 11",
 }
 `;
 
@@ -278,7 +278,7 @@ Object {
   "loose": false,
   "mode": undefined,
   "shippedProposals": true,
-  "targets": "> 1%, not dead",
+  "targets": ">=1%, not dead",
 }
 `;
 
@@ -298,7 +298,7 @@ Object {
   "loose": false,
   "mode": undefined,
   "shippedProposals": true,
-  "targets": "IE 11",
+  "targets": ">=0.10%, not IE 11",
 }
 `;
 
@@ -318,7 +318,7 @@ Object {
   "loose": false,
   "mode": undefined,
   "shippedProposals": true,
-  "targets": "iOS 12",
+  "targets": "iOS 14",
 }
 `;
 
@@ -328,7 +328,7 @@ Object {
   "loose": false,
   "mode": undefined,
   "shippedProposals": true,
-  "targets": "iOS 14",
+  "targets": "iOS 15",
 }
 `;
 
@@ -338,7 +338,7 @@ Object {
   "loose": false,
   "mode": undefined,
   "shippedProposals": true,
-  "targets": "iOS 8",
+  "targets": "iOS 12",
 }
 `;
 
@@ -348,7 +348,7 @@ Object {
   "loose": false,
   "mode": undefined,
   "shippedProposals": true,
-  "targets": "iOS 10",
+  "targets": "iOS 13",
 }
 `;
 
@@ -547,7 +547,7 @@ Object {
     "loose": false,
     "mode": undefined,
     "shippedProposals": true,
-    "targets": "iOS 14",
+    "targets": "iOS 15",
   },
   "jsc": Object {
     "keepClassNames": true,

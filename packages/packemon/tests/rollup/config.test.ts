@@ -573,24 +573,6 @@ describe('getRollupOutputConfig()', () => {
 		});
 	});
 
-	it('enables `const` for non-legacy versions', () => {
-		artifact.support = 'legacy';
-
-		expect(getRollupOutputConfig(artifact, {}, 'lib').preferConst).toBe(false);
-
-		artifact.support = 'stable';
-
-		expect(getRollupOutputConfig(artifact, {}, 'lib').preferConst).toBe(true);
-
-		artifact.support = 'current';
-
-		expect(getRollupOutputConfig(artifact, {}, 'lib').preferConst).toBe(true);
-
-		artifact.support = 'experimental';
-
-		expect(getRollupOutputConfig(artifact, {}, 'lib').preferConst).toBe(true);
-	});
-
 	it('passes `namespace` to Babel as UMD name', () => {
 		artifact.platform = 'browser';
 		artifact.support = 'experimental';

@@ -317,17 +317,21 @@ var _this = this;
 function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError(\\"Cannot instantiate an arrow function\\"); } }
 
 Promise.resolve().then(function () {
+  _newArrowCheck(this, _this);
+
   return require('./bundle-0c868d09.js');
-}).then(function (result) {
+}.bind(this)).then(function (result) {
   _newArrowCheck(this, _this);
 
   result.foo();
 }.bind(this));
 Promise.resolve().then(function () {
+  _newArrowCheck(this, _this);
+
   return require(
   /* webpackChunkName: \\"helpers\\" */
   './bundle-0c868d09.js');
-}).then(function (_ref) {
+}.bind(this)).then(function (_ref) {
   _newArrowCheck(this, _this);
 
   var bar = _ref.bar;
@@ -621,27 +625,16 @@ Array [
 // Platform: native, Support: legacy, Format: lib
 'use strict';
 
-var _this = this;
-
-function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError(\\"Cannot instantiate an arrow function\\"); } }
-
-Promise.resolve().then(function () {
-  return require('./bundle-399daa32.js');
-}).then(function (result) {
-  _newArrowCheck(this, _this);
-
+Promise.resolve().then(() => require('./bundle-399daa32.js')).then(result => {
   result.foo();
-}.bind(this));
-Promise.resolve().then(function () {
-  return require(
-  /* webpackChunkName: \\"helpers\\" */
-  './bundle-399daa32.js');
-}).then(function (_ref) {
-  _newArrowCheck(this, _this);
-
-  var bar = _ref.bar;
+});
+Promise.resolve().then(() => require(
+/* webpackChunkName: \\"helpers\\" */
+'./bundle-399daa32.js')).then(({
+  bar
+}) => {
   bar();
-}.bind(this));
+});
 ",
 ]
 `;
@@ -926,16 +919,12 @@ Array [
 // Platform: node, Support: legacy, Format: cjs
 'use strict';
 
-Promise.resolve().then(function () {
-  return require('./bundle-adbf1ba7.cjs');
-}).then(result => {
+Promise.resolve().then(() => require('./bundle-adbf1ba7.cjs')).then(result => {
   result.foo();
 });
-Promise.resolve().then(function () {
-  return require(
-  /* webpackChunkName: \\"helpers\\" */
-  './bundle-adbf1ba7.cjs');
-}).then(({
+Promise.resolve().then(() => require(
+/* webpackChunkName: \\"helpers\\" */
+'./bundle-adbf1ba7.cjs')).then(({
   bar
 }) => {
   bar();
@@ -968,16 +957,12 @@ Array [
 // Platform: node, Support: legacy, Format: lib
 'use strict';
 
-Promise.resolve().then(function () {
-  return require('./bundle-0da238d9.js');
-}).then(result => {
+Promise.resolve().then(() => require('./bundle-0da238d9.js')).then(result => {
   result.foo();
 });
-Promise.resolve().then(function () {
-  return require(
-  /* webpackChunkName: \\"helpers\\" */
-  './bundle-0da238d9.js');
-}).then(({
+Promise.resolve().then(() => require(
+/* webpackChunkName: \\"helpers\\" */
+'./bundle-0da238d9.js')).then(({
   bar
 }) => {
   bar();
@@ -1541,30 +1526,10 @@ Array [
             return newObj;
         }
     }
-    (exports === undefined ? new Promise(function(resolve, reject) {
-        require([
-            \\"./bundle-ca4fc8e9.js\\"
-        ], function(dep) {
-            resolve(dep);
-        }, function(err) {
-            reject(err);
-        });
-    }) : Promise.resolve().then(function() {
-        return _interopRequireWildcard(require(\\"./bundle-ca4fc8e9.js\\"));
-    })).then(function(result) {
+    import(\\"./bundle-ca4fc8e9.js\\").then(function(result) {
         result.foo();
     });
-    (exports === undefined ? new Promise(function(resolve, reject) {
-        require([
-            /* webpackChunkName: \\"helpers\\" */ \\"./bundle-ca4fc8e9.js\\"
-        ], function(dep) {
-            resolve(dep);
-        }, function(err) {
-            reject(err);
-        });
-    }) : Promise.resolve().then(function() {
-        return _interopRequireWildcard(require(\\"./bundle-ca4fc8e9.js\\"));
-    })).then(function(param) {
+    import(/* webpackChunkName: \\"helpers\\" */ \\"./bundle-ca4fc8e9.js\\").then(function(param) {
         var bar = param.bar;
         bar();
     });
@@ -1797,15 +1762,12 @@ Array [
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: legacy, Format: lib
 \\"use strict\\";
-Promise.resolve().then(function() {
-    return require(\\"./bundle-399daa32.js\\");
-}).then(function(result) {
+Promise.resolve().then(()=>require(\\"./bundle-399daa32.js\\")
+).then((result)=>{
     result.foo();
 });
-Promise.resolve().then(function() {
-    return require(/* webpackChunkName: \\"helpers\\" */ \\"./bundle-399daa32.js\\");
-}).then(function(param) {
-    var bar = param.bar;
+Promise.resolve().then(()=>require(/* webpackChunkName: \\"helpers\\" */ \\"./bundle-399daa32.js\\")
+).then(({ bar  })=>{
     bar();
 });
 ",
@@ -2046,14 +2008,12 @@ Array [
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: cjs
 \\"use strict\\";
-Promise.resolve().then(function() {
-    return require(\\"./bundle-adbf1ba7.cjs\\");
-}).then((result)=>{
+Promise.resolve().then(()=>require(\\"./bundle-adbf1ba7.cjs\\")
+).then((result)=>{
     result.foo();
 });
-Promise.resolve().then(function() {
-    return require(/* webpackChunkName: \\"helpers\\" */ \\"./bundle-adbf1ba7.cjs\\");
-}).then(({ bar  })=>{
+Promise.resolve().then(()=>require(/* webpackChunkName: \\"helpers\\" */ \\"./bundle-adbf1ba7.cjs\\")
+).then(({ bar  })=>{
     bar();
 });
 ",
@@ -2080,14 +2040,12 @@ Array [
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: lib
 \\"use strict\\";
-Promise.resolve().then(function() {
-    return require(\\"./bundle-0da238d9.js\\");
-}).then((result)=>{
+Promise.resolve().then(()=>require(\\"./bundle-0da238d9.js\\")
+).then((result)=>{
     result.foo();
 });
-Promise.resolve().then(function() {
-    return require(/* webpackChunkName: \\"helpers\\" */ \\"./bundle-0da238d9.js\\");
-}).then(({ bar  })=>{
+Promise.resolve().then(()=>require(/* webpackChunkName: \\"helpers\\" */ \\"./bundle-0da238d9.js\\")
+).then(({ bar  })=>{
     bar();
 });
 ",

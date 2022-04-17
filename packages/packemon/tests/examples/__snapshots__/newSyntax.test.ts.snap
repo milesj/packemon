@@ -317,16 +317,14 @@ Array [
 // Platform: native, Support: current, Format: lib
 'use strict';
 
-var _foo$bar;
-
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
 const foo = {};
-const optionalChain = foo === null || foo === void 0 ? void 0 : foo.bar;
-const nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
-(_foo$bar = foo.bar) !== null && _foo$bar !== void 0 ? _foo$bar : foo.bar = 'bar';
-foo.baz || (foo.baz = 'baz');
+const optionalChain = foo?.bar;
+const nullCoalesc = foo ?? 0;
+foo.bar ??= 'bar';
+foo.baz ||= 'baz';
 exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
@@ -368,9 +366,9 @@ var _foo$bar;
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var foo = {};
-var optionalChain = foo === null || foo === void 0 ? void 0 : foo.bar;
-var nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
+const foo = {};
+const optionalChain = foo === null || foo === void 0 ? void 0 : foo.bar;
+const nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
 (_foo$bar = foo.bar) !== null && _foo$bar !== void 0 ? _foo$bar : foo.bar = 'bar';
 foo.baz || (foo.baz = 'baz');
 exports.foo = foo;
@@ -952,16 +950,14 @@ Array [
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: current, Format: lib
 'use strict';
-var _foo, _foo1;
 Object.defineProperty(exports, '__esModule', {
     value: true
 });
 const foo = {};
-const optionalChain = foo === null || foo === void 0 ? void 0 : foo.bar;
-const nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
-var _bar;
-(_bar = (_foo = foo).bar) !== null && _bar !== void 0 ? _bar : _foo.bar = 'bar';
-(_foo1 = foo).baz || (_foo1.baz = 'baz');
+const optionalChain = foo?.bar;
+const nullCoalesc = foo ?? 0;
+foo.bar ??= 'bar';
+foo.baz ||= 'baz';
 exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
@@ -1000,9 +996,9 @@ var _foo, _foo1;
 Object.defineProperty(exports, \\"__esModule\\", {
     value: true
 });
-var foo = {};
-var optionalChain = foo === null || foo === void 0 ? void 0 : foo.bar;
-var nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
+const foo = {};
+const optionalChain = foo === null || foo === void 0 ? void 0 : foo.bar;
+const nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
 var _bar;
 (_bar = (_foo = foo).bar) !== null && _bar !== void 0 ? _bar : _foo.bar = \\"bar\\";
 (_foo1 = foo).baz || (_foo1.baz = \\"baz\\");
