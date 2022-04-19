@@ -346,7 +346,7 @@ describe('Packemon', () => {
 			expect(packages[0].artifacts[0].builds).toEqual([{ format: 'lib' }]);
 
 			expect((packages[0].artifacts[1] as CodeArtifact).inputs).toEqual({ index: 'src/index.ts' });
-			expect(packages[0].artifacts[1].builds).toEqual([{ format: 'lib' }, { format: 'esm' }]);
+			expect(packages[0].artifacts[1].builds).toEqual([{ format: 'esm' }, { format: 'lib' }]);
 
 			expect(packages[1].artifacts).toHaveLength(1);
 			expect((packages[1].artifacts[0] as CodeArtifact).inputs).toEqual({ core: './src/core.ts' });
@@ -355,8 +355,8 @@ describe('Packemon', () => {
 			expect(packages[2].artifacts).toHaveLength(1);
 			expect((packages[2].artifacts[0] as CodeArtifact).inputs).toEqual({ index: 'src/index.ts' });
 			expect(packages[2].artifacts[0].builds).toEqual([
-				{ format: 'lib' },
 				{ format: 'esm' },
+				{ format: 'lib' },
 				{ format: 'umd' },
 			]);
 		});
@@ -398,7 +398,7 @@ describe('Packemon', () => {
 
 			packemon.generateArtifacts(packages);
 
-			expect(packages[0].artifacts[0].builds).toEqual([{ format: 'lib' }, { format: 'esm' }]);
+			expect(packages[0].artifacts[0].builds).toEqual([{ format: 'esm' }, { format: 'lib' }]);
 			expect(packages[0].artifacts[1].builds).toEqual([{ format: 'mjs' }]);
 		});
 
@@ -470,7 +470,7 @@ describe('Packemon', () => {
 					api: 'private',
 					bundle: true,
 					externals: [],
-					formats: ['lib', 'esm'],
+					formats: ['esm', 'lib'],
 					inputs: { index: 'src/index.ts' },
 					namespace: '',
 					platform: 'browser',
@@ -498,7 +498,7 @@ describe('Packemon', () => {
 					api: 'private',
 					bundle: true,
 					externals: [],
-					formats: ['lib', 'esm', 'umd'],
+					formats: ['esm', 'lib', 'umd'],
 					inputs: { index: 'src/index.ts' },
 					namespace: 'Test',
 					platform: 'browser',

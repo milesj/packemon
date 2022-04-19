@@ -4,7 +4,6 @@ import {
 	DEFAULT_INPUT,
 	DEFAULT_PLATFORM,
 	DEFAULT_SUPPORT,
-	FORMATS,
 	FORMATS_BROWSER,
 	FORMATS_NATIVE,
 	FORMATS_NODE,
@@ -36,20 +35,22 @@ const nativeFormat = string<NativeFormat>('lib').oneOf(FORMATS_NATIVE);
 const nodeFormat = string<NodeFormat>('mjs').oneOf(FORMATS_NODE);
 const browserFormat = string<BrowserFormat>('esm').oneOf(FORMATS_BROWSER);
 
-const format = string<Format>('lib')
-	.oneOf(FORMATS)
-	.custom((value, path, options) => {
-		const config = options.rootObject as PackemonPackageConfig;
-		const platforms = new Set(toArray(config.platform));
+const format = string<Format>().custom((value, path, options) => {
+	if (!value) {
+		return;
+	}
 
-		if (platforms.has('browser') && platforms.size === 1) {
-			browserFormat.validate(value as BrowserFormat, path, options);
-		} else if (platforms.has('native') && platforms.size === 1) {
-			nativeFormat.validate(value as NativeFormat, path, options);
-		} else if (platforms.has('node') && platforms.size === 1) {
-			nodeFormat.validate(value as NodeFormat, path, options);
-		}
-	});
+	const config = options.rootObject as PackemonPackageConfig;
+	const platforms = new Set(toArray(config.platform));
+
+	if (platforms.has('browser') && platforms.size === 1) {
+		browserFormat.validate(value as BrowserFormat, path, options);
+	} else if (platforms.has('native') && platforms.size === 1) {
+		nativeFormat.validate(value as NativeFormat, path, options);
+	} else if (platforms.has('node') && platforms.size === 1) {
+		nodeFormat.validate(value as NodeFormat, path, options);
+	}
+});
 
 // SUPPORT
 
