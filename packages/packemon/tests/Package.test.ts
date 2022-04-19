@@ -1141,7 +1141,8 @@ describe('Package', () => {
 		it('sets default formats for `browser` platform', () => {
 			pkg.setConfigs([
 				{
-					format: [],
+					// @ts-expect-error Allow empty
+					format: '',
 					inputs: {},
 					platform: 'browser',
 					namespace: '',
@@ -1166,7 +1167,8 @@ describe('Package', () => {
 		it('adds `umd` default format when `namespace` is provided for `browser` platform', () => {
 			pkg.setConfigs([
 				{
-					format: [],
+					// @ts-expect-error Allow empty
+					format: '',
 					inputs: {},
 					platform: 'browser',
 					namespace: 'test',
@@ -1191,7 +1193,8 @@ describe('Package', () => {
 		it('sets default formats for `native` platform', () => {
 			pkg.setConfigs([
 				{
-					format: [],
+					// @ts-expect-error Allow empty
+					format: '',
 					inputs: {},
 					platform: 'native',
 					namespace: '',
@@ -1216,7 +1219,8 @@ describe('Package', () => {
 		it('sets default formats for `node` platform', () => {
 			pkg.setConfigs([
 				{
-					format: [],
+					// @ts-expect-error Allow empty
+					format: '',
 					inputs: {},
 					platform: 'node',
 					namespace: '',
@@ -1241,7 +1245,7 @@ describe('Package', () => {
 		it('doesnt set default formats when supplied manually', () => {
 			pkg.setConfigs([
 				{
-					format: ['cjs', 'mjs'],
+					format: 'mjs',
 					inputs: {},
 					platform: 'node',
 					namespace: '',
@@ -1254,7 +1258,7 @@ describe('Package', () => {
 					api: 'public',
 					bundle: false,
 					externals: [],
-					formats: ['cjs', 'mjs'],
+					formats: ['mjs'],
 					inputs: {},
 					platform: 'node',
 					namespace: '',
@@ -1276,7 +1280,7 @@ describe('Package', () => {
 					api: 'private',
 					bundle: true,
 					externals: [],
-					formats: ['lib', 'esm'],
+					formats: ['lib'],
 					inputs: {},
 					platform: 'browser',
 					namespace: '',
@@ -1298,7 +1302,7 @@ describe('Package', () => {
 		it('filters and divides formats for multiple platforms', () => {
 			pkg.setConfigs([
 				{
-					format: ['lib', 'esm', 'cjs'],
+					format: 'esm',
 					inputs: {},
 					platform: ['browser', 'node', 'native'],
 				},
@@ -1309,7 +1313,7 @@ describe('Package', () => {
 					api: 'private',
 					bundle: true,
 					externals: [],
-					formats: ['lib', 'esm'],
+					formats: ['esm', 'lib'],
 					inputs: {},
 					platform: 'browser',
 					namespace: '',
@@ -1319,7 +1323,7 @@ describe('Package', () => {
 					api: 'public',
 					bundle: false,
 					externals: [],
-					formats: ['lib', 'cjs'],
+					formats: ['mjs'],
 					inputs: {},
 					platform: 'node',
 					namespace: '',
@@ -1422,7 +1426,7 @@ describe('Package', () => {
 			expect(() => {
 				pkg.setConfigs([
 					{
-						format: ['mjs'],
+						format: 'mjs',
 						platform: 'browser',
 					},
 				]);
@@ -1433,7 +1437,7 @@ describe('Package', () => {
 			expect(() => {
 				pkg.setConfigs([
 					{
-						format: ['esm'],
+						format: 'esm',
 						platform: 'native',
 					},
 				]);
@@ -1444,7 +1448,7 @@ describe('Package', () => {
 			expect(() => {
 				pkg.setConfigs([
 					{
-						format: ['umd'],
+						format: 'umd',
 						platform: 'node',
 					},
 				]);
