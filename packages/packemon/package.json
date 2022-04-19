@@ -27,6 +27,7 @@
   ],
   "exports": {
     "./package.json": "./package.json",
+    "./babel": "./babel.cjs",
     "./*": {
       "types": "./dts/*.d.ts",
       "node": "./lib/*.js"
