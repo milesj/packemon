@@ -16,7 +16,7 @@ function getSupportVersions(platforms: Platform[], support: Support): string {
 export function PackageForm({ onSubmit }: PackageFormProps) {
 	const [platform, setPlatform] = useState<Platform[]>([]);
 	const [support, setSupport] = useState<Support>(DEFAULT_SUPPORT);
-	const [format, setFormat] = useState<Format[]>([]);
+	const [format, setFormat] = useState<Format>('lib');
 	const [input, setInput] = useState<string>('');
 	const [namespace, setNamespace] = useState('');
 
@@ -26,7 +26,7 @@ export function PackageForm({ onSubmit }: PackageFormProps) {
 
 		if (
 			platform.length > 0 &&
-			format.length > 0 &&
+			format &&
 			support &&
 			input &&
 			((hasUMD && namespace) || (!hasUMD && !namespace))
@@ -48,7 +48,7 @@ export function PackageForm({ onSubmit }: PackageFormProps) {
 			// Reset state for the next package
 			setPlatform([]);
 			setSupport(DEFAULT_SUPPORT);
-			setFormat([]);
+			setFormat('lib');
 			setInput('');
 			setNamespace('');
 		}
@@ -123,9 +123,9 @@ export function PackageForm({ onSubmit }: PackageFormProps) {
 		return options;
 	}, [platform]);
 
-	const validateFormat = useCallback((value: Format[]) => {
-		if (value.length === 0) {
-			throw new Error('Please select at least 1 format');
+	const validateFormat = useCallback((value: Format) => {
+		if (!value) {
+			throw new Error('Please select 1 format');
 		}
 	}, []);
 
@@ -162,9 +162,9 @@ export function PackageForm({ onSubmit }: PackageFormProps) {
 				onSubmit={setSupport}
 			/>
 
-			<MultiSelect<Format>
+			<Select<Format>
 				defaultSelected={DEFAULT_FORMATS[platform[0]]}
-				label="Formats to build?"
+				label="Format to build?"
 				options={formatOptions}
 				validate={validateFormat}
 				onSubmit={setFormat}
