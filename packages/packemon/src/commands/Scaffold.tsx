@@ -58,7 +58,6 @@ export class ScaffoldCommand extends Command {
 				return this.scaffoldPolyrepo(params);
 			case 'monorepo-package':
 				return this.scaffoldMonorepoPackage(params);
-			case 'monorepo':
 			default:
 				return this.scaffoldMonorepo(params);
 		}
@@ -166,7 +165,6 @@ export class ScaffoldCommand extends Command {
 				args.unshift('add', '--save-dev', type === 'monorepo' ? '-W' : '');
 				break;
 
-			case 'yarn':
 			default: {
 				const version = Number.parseFloat((await this.executeCommand('yarn', ['-v'])).stdout);
 

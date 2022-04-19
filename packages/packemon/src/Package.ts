@@ -294,7 +294,6 @@ export class Package {
 						}
 						break;
 
-					case 'browser':
 					default:
 						if (isEmpty) {
 							formats.push(...DEFAULT_FORMATS.browser);
