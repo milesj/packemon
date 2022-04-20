@@ -210,7 +210,7 @@ export function getRollupConfig(
 						// Extract maps from the original source
 						sourceMaps: true,
 				  }),
-			addMjsWrapperForCjs({ inputs: artifact.inputs }),
+			addMjsWrapperForCjs({ inputs: artifact.inputs, packageRoot: artifact.package.path }),
 		],
 		// Treeshake for smaller builds
 		treeshake: artifact.bundle,
