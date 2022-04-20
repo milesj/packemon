@@ -425,7 +425,7 @@ export class Package {
 					}
 
 					if (!moduleEntry) {
-						moduleEntry = artifact.findEntryPoint(['esm', 'mjs'], 'index');
+						moduleEntry = artifact.findEntryPoint(['esm'], 'index');
 					}
 
 					// Only include when we share a lib with another platform
