@@ -92,11 +92,18 @@ function extractExportsFromAst(ast: t.Program): ExtractedExports {
 	return { namedExports, defaultExport };
 }
 
-export function addMjsWrapperForCjs({ inputs, packageRoot }: AddMjsWrapperOptions): Plugin {
-	const inputsByPath = Object.fromEntries(
-		Object.entries(inputs).map(([input, path]) => [packageRoot.append(path).path(), input]),
-	);
+function createMjsFileFromExports(input: string, exports: ExtractedExports) {
+	let mjs = `import ${input} from '../cjs/${input}.cjs`;
 
+	if (exports.defaultExport) {
+		mjs += '\n';
+		mjs += `export default ${input}.default;`;
+	}
+
+	return mjs;
+}
+
+export function addMjsWrapperForCjs({ inputs, packageRoot }: AddMjsWrapperOptions): Plugin {
 	return {
 		name: 'packemon-add-mjs-wrapper-for-cjs',
 
@@ -105,29 +112,25 @@ export function addMjsWrapperForCjs({ inputs, packageRoot }: AddMjsWrapperOption
 				return;
 			}
 
-			Object.keys(inputsByPath).forEach((id) => {
-				const info = this.getModuleInfo(id);
+			Object.entries(inputs).forEach(([input, inputPath]) => {
+				const info = this.getModuleInfo(inputPath);
 
 				console.log();
-				console.log(id);
+				console.log(inputPath);
 
 				if (!info || !info.ast) {
-					throw new Error(`Cannot get module info for ID: ${id}`);
+					throw new Error(`Cannot get module info for ID: ${inputPath}`);
 				}
 
 				const exports = extractExportsFromAst(info.ast as t.Program);
 
 				console.log(exports);
-				// console.log(info);
-				// console.log('dynamicallyImportedIdResolutions', info.dynamicallyImportedIdResolutions);
-				// console.log('dynamicallyImportedIds', info.dynamicallyImportedIds);
-				// console.log('dynamicImporters', info.dynamicImporters);
-				// console.log('hasDefaultExport', info.hasDefaultExport);
-				// console.log('implicitlyLoadedAfterOneOf', info.implicitlyLoadedAfterOneOf);
-				// console.log('implicitlyLoadedBefore', info.implicitlyLoadedBefore);
-				// console.log('importedIdResolutions', info.importedIdResolutions);
-				// console.log('importedIds', info.importedIds);
-				// console.log('importers', info.importers);
+
+				this.emitFile({
+					type: 'asset',
+					fileName: packageRoot.append(`mjs/${input}-wrapper.mjs`).path(),
+					source: createMjsFileFromExports(input, exports),
+				});
 			});
 		},
 	};
