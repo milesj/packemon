@@ -48,7 +48,7 @@ export class Project extends BaseProject {
 		let persistBuild = false;
 
 		if (this.isWorkspacesEnabled()) {
-			args.push('--build');
+			args.push('--build', '--force');
 
 			// Only build the specific project when applicable
 			if (pkgPath) {
