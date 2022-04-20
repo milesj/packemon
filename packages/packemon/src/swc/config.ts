@@ -119,7 +119,6 @@ export function getSwcInputConfig(
 
 	if (features.react) {
 		transform.react = {
-			development: __DEV__,
 			runtime: features.react,
 			throwIfNamespace: true,
 		};
