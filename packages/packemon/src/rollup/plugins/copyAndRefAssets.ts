@@ -23,11 +23,11 @@ function isRequireStatement(node: CallExpression): boolean {
 	);
 }
 
-export interface CopyAssetsPlugin {
+export interface CopyAssetsOptions {
 	dir: string;
 }
 
-export function copyAndRefAssets({ dir }: CopyAssetsPlugin): Plugin {
+export function copyAndRefAssets({ dir }: CopyAssetsOptions): Plugin {
 	const assetsToCopy: Record<string, VirtualPath> = {};
 
 	function determineNewAsset(source: string, importer?: string): VirtualPath {

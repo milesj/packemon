@@ -3,6 +3,7 @@ import { OutputPlugin } from 'rollup';
 export function addBinShebang(): OutputPlugin {
 	return {
 		name: 'packemon-add-bin-shebang',
+
 		generateBundle(options, bundle) {
 			Object.entries(bundle).forEach(([outputPath, chunk]) => {
 				if (outputPath.match(/bin\.(js|cjs|mjs)$/) && chunk.type === 'chunk') {

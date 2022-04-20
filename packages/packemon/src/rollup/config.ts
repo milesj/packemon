@@ -11,6 +11,7 @@ import { EXCLUDE, EXCLUDE_RUST, EXTENSIONS } from '../constants';
 import { getSwcInputConfig, getSwcOutputConfig } from '../swc/config';
 import { ConfigFile, FeatureFlags, Format } from '../types';
 import { addBinShebang } from './plugins/addBinShebang';
+import { addMjsWrapperForCjs } from './plugins/addMjsWrapperForCjs';
 import { copyAndRefAssets } from './plugins/copyAndRefAssets';
 import { swcInput, swcOutput } from './plugins/swc';
 
@@ -209,6 +210,7 @@ export function getRollupConfig(
 						// Extract maps from the original source
 						sourceMaps: true,
 				  }),
+			addMjsWrapperForCjs({ inputs: artifact.inputs }),
 		],
 		// Treeshake for smaller builds
 		treeshake: artifact.bundle,
