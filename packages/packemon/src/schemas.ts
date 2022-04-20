@@ -37,6 +37,7 @@ const browserFormat = string<BrowserFormat>('esm').oneOf(FORMATS_BROWSER);
 
 const format = string<Format>().custom((value, path, options) => {
 	if (!value) {
+		// Fallback to defaults
 		return;
 	}
 

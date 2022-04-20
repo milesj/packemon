@@ -125,7 +125,7 @@ export function PackageForm({ onSubmit }: PackageFormProps) {
 
 	const validateFormat = useCallback((value: Format) => {
 		if (!value) {
-			throw new Error('Please select 1 format');
+			throw new Error('Please select a format');
 		}
 	}, []);
 
