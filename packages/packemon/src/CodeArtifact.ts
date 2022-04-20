@@ -217,7 +217,7 @@ export class CodeArtifact extends Artifact<CodeBuild> {
 				case 'cjs':
 					// Automatically apply the wrapper
 					if (!paths.import) {
-						paths.import = entry.replace('.cjs', '-wrapper.mjs').replace('cjs', 'mjs');
+						paths.import = entry.replace('.cjs', '-wrapper.mjs');
 					}
 
 					paths.require = entry;

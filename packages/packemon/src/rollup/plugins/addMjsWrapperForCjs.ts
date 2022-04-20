@@ -1,4 +1,5 @@
-import { Plugin } from 'rollup';
+import path from 'path';
+import { GetModuleInfo, Plugin } from 'rollup';
 import * as t from '@babel/types';
 import { Path } from '@boost/common';
 import { InputMap } from '../../types';
@@ -51,7 +52,16 @@ function extractNameFromNode(node: t.Node): string[] | string | undefined {
 	return undefined;
 }
 
-function extractExportsFromAst(ast: t.Program): ExtractedExports {
+function extractExportsFromAst(id: string, getModuleInfo: GetModuleInfo): ExtractedExports {
+	const info = getModuleInfo(id);
+
+	console.log();
+	console.log(id);
+
+	if (!info || !info.ast) {
+		throw new Error(`Cannot get module info for ID: ${id}`);
+	}
+
 	const namedExports: string[] = [];
 	let defaultExport = '';
 
@@ -63,7 +73,7 @@ function extractExportsFromAst(ast: t.Program): ExtractedExports {
 		}
 	};
 
-	ast.body.forEach((item) => {
+	(info.ast as t.Program).body.forEach((item) => {
 		if (item.type === 'ExportNamedDeclaration' && item.exportKind !== 'type') {
 			// export function foo
 			// export const foo
@@ -87,17 +97,40 @@ function extractExportsFromAst(ast: t.Program): ExtractedExports {
 		if (item.type === 'ExportDefaultDeclaration' && item.declaration) {
 			defaultExport = String(extractNameFromNode(item.declaration));
 		}
+
+		// export * from ...
+		if (item.type === 'ExportAllDeclaration' && item.source) {
+			const allExports = extractExportsFromAst(
+				path.normalize(path.join(path.dirname(id), item.source.value)),
+				getModuleInfo,
+			);
+
+			namedExports.push(...allExports.namedExports);
+		}
 	});
 
 	return { namedExports, defaultExport };
 }
 
-function createMjsFileFromExports(input: string, exports: ExtractedExports) {
-	let mjs = `import ${input} from '../cjs/${input}.cjs`;
+function createMjsFileFromExports(
+	input: string,
+	{ namedExports, defaultExport }: ExtractedExports,
+) {
+	// Nothing exported, so must have side-effects (bin files, for example)
+	if (namedExports.length === 0 && !defaultExport) {
+		return `import './${input}.cjs';`;
+	}
 
-	if (exports.defaultExport) {
+	let mjs = `import ${input} from './${input}.cjs';`;
+
+	if (namedExports.length > 0) {
 		mjs += '\n';
-		mjs += `export default ${input}.default;`;
+		mjs += `export const { ${namedExports.join(', ')} } = ${input};`;
+	}
+
+	if (defaultExport) {
+		mjs += '\n';
+		mjs += `export default (${input}.default || ${input});`;
 	}
 
 	return mjs;
@@ -113,22 +146,16 @@ export function addMjsWrapperForCjs({ inputs, packageRoot }: AddMjsWrapperOption
 			}
 
 			Object.entries(inputs).forEach(([input, inputPath]) => {
-				const info = this.getModuleInfo(inputPath);
-
-				console.log();
-				console.log(inputPath);
-
-				if (!info || !info.ast) {
-					throw new Error(`Cannot get module info for ID: ${inputPath}`);
-				}
-
-				const exports = extractExportsFromAst(info.ast as t.Program);
+				const exports = extractExportsFromAst(
+					packageRoot.append(inputPath).path(),
+					this.getModuleInfo,
+				);
 
 				console.log(exports);
 
 				this.emitFile({
 					type: 'asset',
-					fileName: packageRoot.append(`mjs/${input}-wrapper.mjs`).path(),
+					fileName: `${input}-wrapper.mjs`,
 					source: createMjsFileFromExports(input, exports),
 				});
 			});
