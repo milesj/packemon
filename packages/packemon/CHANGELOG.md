@@ -3,6 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.0.0 - 2022-04-20
+
+#### 💥 Breaking
+
+- Drop IE support. Update browser targets. (#114) ([6f5c730](https://github.com/milesj/packemon/commit/6f5c730)), closes [#114](https://github.com/milesj/packemon/issues/114)
+- Drop Node.js v10/12 support and shift Node.js/npm support versions. (#113) ([38340df](https://github.com/milesj/packemon/commit/38340df)), closes [#113](https://github.com/milesj/packemon/issues/113)
+- Only support a single `format`. (#119) ([24fca16](https://github.com/milesj/packemon/commit/24fca16)), closes [#119](https://github.com/milesj/packemon/issues/119)
+- Remove `--analyze` option. (#105) ([e85e42c](https://github.com/milesj/packemon/commit/e85e42c)), closes [#105](https://github.com/milesj/packemon/issues/105)
+- Remove `.babelrc` support. (#112) ([46a70ac](https://github.com/milesj/packemon/commit/46a70ac)), closes [#112](https://github.com/milesj/packemon/issues/112)
+- Remove API extractor. (#104) ([e3270e1](https://github.com/milesj/packemon/commit/e3270e1)), closes [#104](https://github.com/milesj/packemon/issues/104)
+
+#### 🚀 Updates
+
+- Add support for `swc` instead of `babel`. (#107) ([702932a](https://github.com/milesj/packemon/commit/702932a)), closes [#107](https://github.com/milesj/packemon/issues/107)
+- Change babel import to CJS. (#118) ([8cfb834](https://github.com/milesj/packemon/commit/8cfb834)), closes [#118](https://github.com/milesj/packemon/issues/118)
+- Ensure package `exports` conditions are sorted correctly. (#111) ([51f5aa4](https://github.com/milesj/packemon/commit/51f5aa4)), closes [#111](https://github.com/milesj/packemon/issues/111)
+- Update `esm` and `mjs` to be tagged as "Module". (#116) ([e62a64a](https://github.com/milesj/packemon/commit/e62a64a)), closes [#116](https://github.com/milesj/packemon/issues/116)
+
+#### 📦 Dependencies
+
+- **[beemo-dev]** Update to latest configs. ([e9f756e](https://github.com/milesj/packemon/commit/e9f756e))
+- **[npm-packlist]** Update to v5. ([1ddbf7a](https://github.com/milesj/packemon/commit/1ddbf7a))
+- Remove builtin-modules. ([170d9a2](https://github.com/milesj/packemon/commit/170d9a2))
+- **[rollup-plugin-node-externals]** Update to v4. ([c49121e](https://github.com/milesj/packemon/commit/c49121e))
+- **[rollup-plugin-polyfill-node]** Update to v0.9. ([062a967](https://github.com/milesj/packemon/commit/062a967))
+- **[rollup]** Update core and plugins to latest. ([9919064](https://github.com/milesj/packemon/commit/9919064))
+- Update Babel and swc usage. ([be7f902](https://github.com/milesj/packemon/commit/be7f902))
+- Update minor and patch versions. ([76edf11](https://github.com/milesj/packemon/commit/76edf11))
+
+#### 🛠 Internals
+
+- Dont use workspaces for lerna. ([a34a005](https://github.com/milesj/packemon/commit/a34a005))
+- Enable React/JSX tests. ([e4e7e68](https://github.com/milesj/packemon/commit/e4e7e68))
+- Test bundling scenarios. (#110) ([5b16274](https://github.com/milesj/packemon/commit/5b16274)), closes [#110](https://github.com/milesj/packemon/issues/110)
+
+**Note:** Version bump only for package packemon
+
+
+
+
+
 ## 1.15.0 - 2022-03-30
 
 #### 🚀 Updates

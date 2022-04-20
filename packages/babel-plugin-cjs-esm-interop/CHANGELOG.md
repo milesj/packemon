@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.0.0 - 2022-04-20
+
+#### 💥 Breaking
+
+- Drop Node.js v10/12 support and shift Node.js/npm support versions. (#113) ([38340df](https://github.com/milesj/packemon/commit/38340df)), closes [#113](https://github.com/milesj/packemon/issues/113)
+
+#### 🚀 Updates
+
+- Ensure package `exports` conditions are sorted correctly. (#111) ([51f5aa4](https://github.com/milesj/packemon/commit/51f5aa4)), closes [#111](https://github.com/milesj/packemon/issues/111)
+
+**Note:** Version bump only for package babel-plugin-cjs-esm-interop
+
+
+
+
+
 ### 1.2.5 - 2022-02-13
 
 #### 🐞 Fixes
