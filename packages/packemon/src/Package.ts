@@ -264,17 +264,17 @@ export class Package {
 				name: this.getName(),
 			}).validate(cfg);
 
+			// eslint-disable-next-line complexity
 			toArray(config.platform).forEach((platform) => {
 				let { api, bundle } = config;
-				let formats = [...toArray(config.format)];
-				const isEmpty = formats.length === 0;
+				let formats = config.format ? [config.format] : [];
 
 				switch (platform) {
 					case 'native':
-						if (isEmpty) {
-							formats.push(...DEFAULT_FORMATS.native);
-						} else {
-							formats = formats.filter((format) => (FORMATS_NATIVE as string[]).includes(format));
+						formats = formats.filter((format) => (FORMATS_NATIVE as string[]).includes(format));
+
+						if (formats.length === 0) {
+							formats.push(DEFAULT_FORMATS.native);
 						}
 						break;
 
@@ -287,22 +287,27 @@ export class Package {
 							bundle = false;
 						}
 
-						if (isEmpty) {
-							formats.push(...DEFAULT_FORMATS.node);
-						} else {
-							formats = formats.filter((format) => (FORMATS_NODE as string[]).includes(format));
+						formats = formats.filter((format) => (FORMATS_NODE as string[]).includes(format));
+
+						if (formats.length === 0) {
+							formats.push(DEFAULT_FORMATS.node);
 						}
 						break;
 
 					default:
-						if (isEmpty) {
-							formats.push(...DEFAULT_FORMATS.browser);
+						formats = formats.filter((format) => (FORMATS_BROWSER as string[]).includes(format));
 
-							if (config.namespace) {
-								formats.push('umd');
-							}
-						} else {
-							formats = formats.filter((format) => (FORMATS_BROWSER as string[]).includes(format));
+						if (formats.length === 0) {
+							formats.push(DEFAULT_FORMATS.browser);
+						}
+
+						// Auto-support lib builds for test environments
+						if (formats.includes('esm') && !formats.includes('lib')) {
+							formats.push('lib');
+						}
+
+						if (config.namespace && !formats.includes('umd')) {
+							formats.push('umd');
 						}
 						break;
 				}

@@ -114,10 +114,10 @@ export const STATE_LABELS: { [K in ArtifactState]: string } = {
 	failed: 'Failed',
 };
 
-export const DEFAULT_FORMATS: Record<Platform, Format[]> = {
-	browser: ['lib', 'esm'],
-	native: ['lib'],
-	node: ['mjs'],
+export const DEFAULT_FORMATS: Record<Platform, Format> = {
+	browser: 'esm',
+	native: 'lib',
+	node: 'mjs',
 };
 
 export const FORMATS_BROWSER: BrowserFormat[] = ['lib', 'esm', 'umd'];
