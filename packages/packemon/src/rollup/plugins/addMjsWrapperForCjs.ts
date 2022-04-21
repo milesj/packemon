@@ -11,7 +11,7 @@ export interface AddMjsWrapperOptions {
 
 export interface ExtractedExports {
 	namedExports: string[];
-	defaultExport?: string;
+	defaultExport: boolean;
 }
 
 function extractNameFromNode(node: t.Node): string[] | string | undefined {
@@ -32,10 +32,9 @@ function extractNameFromNode(node: t.Node): string[] | string | undefined {
 
 		// const foo = ...
 		case 'VariableDeclaration':
-			if (node.declarations.length > 0) {
-				return extractNameFromNode(node.declarations[0].id);
-			}
-			break;
+			return node.declarations
+				.map((decl) => extractNameFromNode(decl.id))
+				.filter(Boolean) as string[];
 
 		// const [foo, bar] = ...
 		case 'ArrayPattern':
@@ -70,7 +69,7 @@ function extractExportsFromAst(id: string, getModuleInfo: GetModuleInfo): Extrac
 
 	const importedFiles = info.importedIds;
 	const namedExports: string[] = [];
-	let defaultExport = '';
+	let defaultExport = false;
 
 	const mapNamed = (name: string[] | string | undefined) => {
 		if (Array.isArray(name)) {
@@ -80,7 +79,13 @@ function extractExportsFromAst(id: string, getModuleInfo: GetModuleInfo): Extrac
 		}
 	};
 
+	// console.log(info.code);
+
 	(info.ast as t.Program).body.forEach((item) => {
+		// if (item.type.includes('Export')) {
+		// 	console.log(item);
+		// }
+
 		if (item.type === 'ExportNamedDeclaration' && item.exportKind !== 'type') {
 			// export function foo
 			// export const foo
@@ -101,18 +106,27 @@ function extractExportsFromAst(id: string, getModuleInfo: GetModuleInfo): Extrac
 		}
 
 		// export default ...
-		if (item.type === 'ExportDefaultDeclaration' && item.declaration) {
-			defaultExport = String(extractNameFromNode(item.declaration));
+		if (item.type === 'ExportDefaultDeclaration') {
+			defaultExport = !!item.declaration;
 		}
 
-		// export * from ...
 		if (item.type === 'ExportAllDeclaration' && item.source) {
-			const importId = importedFiles.find((file) =>
-				file.startsWith(path.normalize(path.join(path.dirname(id), item.source.value))),
-			);
+			// @ts-expect-error Not typed in Babel, is part of ESTree compliance
+			const exported = item.exported as t.Identifier | null;
 
-			if (importId) {
-				namedExports.push(...extractExportsFromAst(importId, getModuleInfo).namedExports);
+			// export * as name from ...
+			if (exported) {
+				mapNamed(extractNameFromNode(exported));
+
+				// export * from ...
+			} else {
+				const importId = importedFiles.find((file) =>
+					file.startsWith(path.normalize(path.join(path.dirname(id), item.source.value))),
+				);
+
+				if (importId) {
+					namedExports.push(...extractExportsFromAst(importId, getModuleInfo).namedExports);
+				}
 			}
 		}
 	});

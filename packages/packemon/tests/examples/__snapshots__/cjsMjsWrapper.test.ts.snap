@@ -5,13 +5,26 @@ Array [
   "esm/index-browser-current-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: esm
-let foo = 'abc';
-const bar = 123;
-const _baz = {
-  baz: true
+function foo() {}
+
+function bar() {}
+
+const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
+  __proto__: null,
+  foo,
+  bar
+}, Symbol.toStringTag, {
+  value: 'Module'
+}));
+let a = 'abc';
+const b = 123;
+const _c = {
+  c: true
 },
-      baz = _baz.baz;
-const qux = {};
+      c = _c.c;
+const d = {};
+const e = 456,
+      f = 'xyz';
 
 class ClassName {}
 
@@ -23,7 +36,7 @@ const CONST = 123;
 
 class DefaultClass {}
 
-export { CONST, ClassName, arrowFunc, bar, baz, DefaultClass as default, foo, func, qux };
+export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, func, helpers as ns1, helpers as ns2, helpers as ns3 };
 //# sourceMappingURL=index-browser-current-esm.js.map
 ",
 ]
@@ -39,13 +52,25 @@ Array [
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-let foo = 'abc';
-const bar = 123;
-const _baz = {
-  baz: true
+
+function foo() {}
+
+function bar() {}
+
+const helpers = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  foo,
+  bar
+});
+let a = 'abc';
+const b = 123;
+const _c = {
+  c: true
 },
-      baz = _baz.baz;
-const qux = {};
+      c = _c.c;
+const d = {};
+const e = 456,
+      f = 'xyz';
 
 class ClassName {}
 
@@ -59,13 +84,20 @@ class DefaultClass {}
 
 exports.CONST = CONST;
 exports.ClassName = ClassName;
+exports.a = a;
 exports.arrowFunc = arrowFunc;
+exports.b = b;
 exports.bar = bar;
-exports.baz = baz;
+exports.c = c;
+exports.d = d;
 exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
 exports.foo = foo;
 exports.func = func;
-exports.qux = qux;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
 //# sourceMappingURL=index-browser-current-lib.js.map
 ",
 ]
@@ -92,22 +124,40 @@ Array [
   Object.defineProperty(_exports, \\"__esModule\\", {
     value: true
   });
-  _exports.foo = _exports.default = _exports.baz = _exports.bar = _exports.arrowFunc = _exports.ClassName = _exports.CONST = void 0;
+  _exports.b = _exports.arrowFunc = _exports.a = _exports.ClassName = _exports.CONST = void 0;
+  _exports.bar = bar;
+  _exports.f = _exports.e = _exports.default = _exports.d = _exports.c = void 0;
+  _exports.foo = foo;
   _exports.func = func;
-  _exports.qux = void 0;
+  _exports.ns3 = _exports.ns2 = _exports.ns1 = void 0;
+
   // Bundled with Packemon: https://packemon.dev
   // Platform: browser, Support: current, Format: umd
-  let foo = 'abc';
-  _exports.foo = foo;
-  const bar = 123;
-  _exports.bar = bar;
-  const _baz = {
-    baz: true
+  function foo() {}
+
+  function bar() {}
+
+  const helpers = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+  });
+  _exports.ns3 = _exports.ns2 = _exports.ns1 = helpers;
+  let a = 'abc';
+  _exports.a = a;
+  const b = 123;
+  _exports.b = b;
+  const _c = {
+    c: true
   },
-        baz = _baz.baz;
-  _exports.baz = baz;
-  const qux = {};
-  _exports.qux = qux;
+        c = _c.c;
+  _exports.c = c;
+  const d = {};
+  _exports.d = d;
+  const e = 456,
+        f = 'xyz';
+  _exports.f = f;
+  _exports.e = e;
 
   class ClassName {}
 
@@ -135,13 +185,26 @@ Array [
   "esm/index-browser-experimental-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: experimental, Format: esm
-let foo = 'abc';
-const bar = 123;
-const _baz = {
-  baz: true
+function foo() {}
+
+function bar() {}
+
+const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
+  __proto__: null,
+  foo,
+  bar
+}, Symbol.toStringTag, {
+  value: 'Module'
+}));
+let a = 'abc';
+const b = 123;
+const _c = {
+  c: true
 },
-      baz = _baz.baz;
-const qux = {};
+      c = _c.c;
+const d = {};
+const e = 456,
+      f = 'xyz';
 
 class ClassName {}
 
@@ -153,7 +216,7 @@ const CONST = 123;
 
 class DefaultClass {}
 
-export { CONST, ClassName, arrowFunc, bar, baz, DefaultClass as default, foo, func, qux };
+export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, func, helpers as ns1, helpers as ns2, helpers as ns3 };
 //# sourceMappingURL=index-browser-experimental-esm.js.map
 ",
 ]
@@ -169,13 +232,25 @@ Array [
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-let foo = 'abc';
-const bar = 123;
-const _baz = {
-  baz: true
+
+function foo() {}
+
+function bar() {}
+
+const helpers = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  foo,
+  bar
+});
+let a = 'abc';
+const b = 123;
+const _c = {
+  c: true
 },
-      baz = _baz.baz;
-const qux = {};
+      c = _c.c;
+const d = {};
+const e = 456,
+      f = 'xyz';
 
 class ClassName {}
 
@@ -189,13 +264,20 @@ class DefaultClass {}
 
 exports.CONST = CONST;
 exports.ClassName = ClassName;
+exports.a = a;
 exports.arrowFunc = arrowFunc;
+exports.b = b;
 exports.bar = bar;
-exports.baz = baz;
+exports.c = c;
+exports.d = d;
 exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
 exports.foo = foo;
 exports.func = func;
-exports.qux = qux;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
 //# sourceMappingURL=index-browser-experimental-lib.js.map
 ",
 ]
@@ -222,22 +304,40 @@ Array [
   Object.defineProperty(_exports, \\"__esModule\\", {
     value: true
   });
-  _exports.foo = _exports.default = _exports.baz = _exports.bar = _exports.arrowFunc = _exports.ClassName = _exports.CONST = void 0;
+  _exports.b = _exports.arrowFunc = _exports.a = _exports.ClassName = _exports.CONST = void 0;
+  _exports.bar = bar;
+  _exports.f = _exports.e = _exports.default = _exports.d = _exports.c = void 0;
+  _exports.foo = foo;
   _exports.func = func;
-  _exports.qux = void 0;
+  _exports.ns3 = _exports.ns2 = _exports.ns1 = void 0;
+
   // Bundled with Packemon: https://packemon.dev
   // Platform: browser, Support: experimental, Format: umd
-  let foo = 'abc';
-  _exports.foo = foo;
-  const bar = 123;
-  _exports.bar = bar;
-  const _baz = {
-    baz: true
+  function foo() {}
+
+  function bar() {}
+
+  const helpers = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+  });
+  _exports.ns3 = _exports.ns2 = _exports.ns1 = helpers;
+  let a = 'abc';
+  _exports.a = a;
+  const b = 123;
+  _exports.b = b;
+  const _c = {
+    c: true
   },
-        baz = _baz.baz;
-  _exports.baz = baz;
-  const qux = {};
-  _exports.qux = qux;
+        c = _c.c;
+  _exports.c = c;
+  const d = {};
+  _exports.d = d;
+  const e = 456,
+        f = 'xyz';
+  _exports.f = f;
+  _exports.e = e;
 
   class ClassName {}
 
@@ -275,13 +375,26 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 // Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: esm
-var foo = 'abc';
-var bar = 123;
-var _baz = {
-  baz: true
+function foo() {}
+
+function bar() {}
+
+var helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
+  __proto__: null,
+  foo: foo,
+  bar: bar
+}, Symbol.toStringTag, {
+  value: 'Module'
+}));
+var a = 'abc';
+var b = 123;
+var _c = {
+  c: true
 },
-    baz = _baz.baz;
-var qux = {};
+    c = _c.c;
+var d = {};
+var e = 456,
+    f = 'xyz';
 
 var ClassName = /*#__PURE__*/_createClass(function ClassName() {
   _classCallCheck(this, ClassName);
@@ -299,7 +412,7 @@ var DefaultClass = /*#__PURE__*/_createClass(function DefaultClass() {
   _classCallCheck(this, DefaultClass);
 });
 
-export { CONST, ClassName, arrowFunc, bar, baz, DefaultClass as default, foo, func, qux };
+export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, func, helpers as ns1, helpers as ns2, helpers as ns3 };
 //# sourceMappingURL=index-browser-legacy-esm.js.map
 ",
 ]
@@ -325,13 +438,25 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var foo = 'abc';
-var bar = 123;
-var _baz = {
-  baz: true
+
+function foo() {}
+
+function bar() {}
+
+var helpers = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  foo: foo,
+  bar: bar
+});
+var a = 'abc';
+var b = 123;
+var _c = {
+  c: true
 },
-    baz = _baz.baz;
-var qux = {};
+    c = _c.c;
+var d = {};
+var e = 456,
+    f = 'xyz';
 
 var ClassName = /*#__PURE__*/_createClass(function ClassName() {
   _classCallCheck(this, ClassName);
@@ -351,13 +476,20 @@ var DefaultClass = /*#__PURE__*/_createClass(function DefaultClass() {
 
 exports.CONST = CONST;
 exports.ClassName = ClassName;
+exports.a = a;
 exports.arrowFunc = arrowFunc;
+exports.b = b;
 exports.bar = bar;
-exports.baz = baz;
+exports.c = c;
+exports.d = d;
 exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
 exports.foo = foo;
 exports.func = func;
-exports.qux = qux;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
 //# sourceMappingURL=index-browser-legacy-lib.js.map
 ",
 ]
@@ -384,9 +516,12 @@ Array [
   Object.defineProperty(_exports, \\"__esModule\\", {
     value: true
   });
-  _exports.foo = _exports.default = _exports.baz = _exports.bar = _exports.arrowFunc = _exports.ClassName = _exports.CONST = void 0;
+  _exports.b = _exports.arrowFunc = _exports.a = _exports.ClassName = _exports.CONST = void 0;
+  _exports.bar = bar;
+  _exports.f = _exports.e = _exports.default = _exports.d = _exports.c = void 0;
+  _exports.foo = foo;
   _exports.func = func;
-  _exports.qux = void 0;
+  _exports.ns3 = _exports.ns2 = _exports.ns1 = void 0;
 
   var _this = void 0;
 
@@ -400,17 +535,31 @@ Array [
 
   // Bundled with Packemon: https://packemon.dev
   // Platform: browser, Support: legacy, Format: umd
-  var foo = 'abc';
-  _exports.foo = foo;
-  var bar = 123;
-  _exports.bar = bar;
-  var _baz = {
-    baz: true
+  function foo() {}
+
+  function bar() {}
+
+  var helpers = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    foo: foo,
+    bar: bar
+  });
+  _exports.ns3 = _exports.ns2 = _exports.ns1 = helpers;
+  var a = 'abc';
+  _exports.a = a;
+  var b = 123;
+  _exports.b = b;
+  var _c = {
+    c: true
   },
-      baz = _baz.baz;
-  _exports.baz = baz;
-  var qux = {};
-  _exports.qux = qux;
+      c = _c.c;
+  _exports.c = c;
+  var d = {};
+  _exports.d = d;
+  var e = 456,
+      f = 'xyz';
+  _exports.f = f;
+  _exports.e = e;
 
   var ClassName = /*#__PURE__*/_createClass(function ClassName() {
     _classCallCheck(this, ClassName);
@@ -444,13 +593,26 @@ Array [
   "esm/index-browser-stable-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: esm
-let foo = 'abc';
-const bar = 123;
-const _baz = {
-  baz: true
+function foo() {}
+
+function bar() {}
+
+const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
+  __proto__: null,
+  foo,
+  bar
+}, Symbol.toStringTag, {
+  value: 'Module'
+}));
+let a = 'abc';
+const b = 123;
+const _c = {
+  c: true
 },
-      baz = _baz.baz;
-const qux = {};
+      c = _c.c;
+const d = {};
+const e = 456,
+      f = 'xyz';
 
 class ClassName {}
 
@@ -462,7 +624,7 @@ const CONST = 123;
 
 class DefaultClass {}
 
-export { CONST, ClassName, arrowFunc, bar, baz, DefaultClass as default, foo, func, qux };
+export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, func, helpers as ns1, helpers as ns2, helpers as ns3 };
 //# sourceMappingURL=index-browser-stable-esm.js.map
 ",
 ]
@@ -478,13 +640,25 @@ Array [
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-let foo = 'abc';
-const bar = 123;
-const _baz = {
-  baz: true
+
+function foo() {}
+
+function bar() {}
+
+const helpers = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  foo,
+  bar
+});
+let a = 'abc';
+const b = 123;
+const _c = {
+  c: true
 },
-      baz = _baz.baz;
-const qux = {};
+      c = _c.c;
+const d = {};
+const e = 456,
+      f = 'xyz';
 
 class ClassName {}
 
@@ -498,13 +672,20 @@ class DefaultClass {}
 
 exports.CONST = CONST;
 exports.ClassName = ClassName;
+exports.a = a;
 exports.arrowFunc = arrowFunc;
+exports.b = b;
 exports.bar = bar;
-exports.baz = baz;
+exports.c = c;
+exports.d = d;
 exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
 exports.foo = foo;
 exports.func = func;
-exports.qux = qux;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
 //# sourceMappingURL=index-browser-stable-lib.js.map
 ",
 ]
@@ -531,22 +712,40 @@ Array [
   Object.defineProperty(_exports, \\"__esModule\\", {
     value: true
   });
-  _exports.foo = _exports.default = _exports.baz = _exports.bar = _exports.arrowFunc = _exports.ClassName = _exports.CONST = void 0;
+  _exports.b = _exports.arrowFunc = _exports.a = _exports.ClassName = _exports.CONST = void 0;
+  _exports.bar = bar;
+  _exports.f = _exports.e = _exports.default = _exports.d = _exports.c = void 0;
+  _exports.foo = foo;
   _exports.func = func;
-  _exports.qux = void 0;
+  _exports.ns3 = _exports.ns2 = _exports.ns1 = void 0;
+
   // Bundled with Packemon: https://packemon.dev
   // Platform: browser, Support: stable, Format: umd
-  let foo = 'abc';
-  _exports.foo = foo;
-  const bar = 123;
-  _exports.bar = bar;
-  const _baz = {
-    baz: true
+  function foo() {}
+
+  function bar() {}
+
+  const helpers = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+  });
+  _exports.ns3 = _exports.ns2 = _exports.ns1 = helpers;
+  let a = 'abc';
+  _exports.a = a;
+  const b = 123;
+  _exports.b = b;
+  const _c = {
+    c: true
   },
-        baz = _baz.baz;
-  _exports.baz = baz;
-  const qux = {};
-  _exports.qux = qux;
+        c = _c.c;
+  _exports.c = c;
+  const d = {};
+  _exports.d = d;
+  const e = 456,
+        f = 'xyz';
+  _exports.f = f;
+  _exports.e = e;
 
   class ClassName {}
 
@@ -579,13 +778,25 @@ Array [
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-let foo = 'abc';
-const bar = 123;
-const _baz = {
-  baz: true
+
+function foo() {}
+
+function bar() {}
+
+const helpers = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  foo,
+  bar
+});
+let a = 'abc';
+const b = 123;
+const _c = {
+  c: true
 },
-      baz = _baz.baz;
-const qux = {};
+      c = _c.c;
+const d = {};
+const e = 456,
+      f = 'xyz';
 
 class ClassName {}
 
@@ -599,13 +810,20 @@ class DefaultClass {}
 
 exports.CONST = CONST;
 exports.ClassName = ClassName;
+exports.a = a;
 exports.arrowFunc = arrowFunc;
+exports.b = b;
 exports.bar = bar;
-exports.baz = baz;
+exports.c = c;
+exports.d = d;
 exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
 exports.foo = foo;
 exports.func = func;
-exports.qux = qux;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
 //# sourceMappingURL=index-native-current-lib.js.map
 ",
 ]
@@ -621,13 +839,25 @@ Array [
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-let foo = 'abc';
-const bar = 123;
-const _baz = {
-  baz: true
+
+function foo() {}
+
+function bar() {}
+
+const helpers = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  foo,
+  bar
+});
+let a = 'abc';
+const b = 123;
+const _c = {
+  c: true
 },
-      baz = _baz.baz;
-const qux = {};
+      c = _c.c;
+const d = {};
+const e = 456,
+      f = 'xyz';
 
 class ClassName {}
 
@@ -641,13 +871,20 @@ class DefaultClass {}
 
 exports.CONST = CONST;
 exports.ClassName = ClassName;
+exports.a = a;
 exports.arrowFunc = arrowFunc;
+exports.b = b;
 exports.bar = bar;
-exports.baz = baz;
+exports.c = c;
+exports.d = d;
 exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
 exports.foo = foo;
 exports.func = func;
-exports.qux = qux;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
 //# sourceMappingURL=index-native-experimental-lib.js.map
 ",
 ]
@@ -663,13 +900,25 @@ Array [
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-let foo = 'abc';
-const bar = 123;
-const _baz = {
-  baz: true
+
+function foo() {}
+
+function bar() {}
+
+const helpers = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  foo,
+  bar
+});
+let a = 'abc';
+const b = 123;
+const _c = {
+  c: true
 },
-      baz = _baz.baz;
-const qux = {};
+      c = _c.c;
+const d = {};
+const e = 456,
+      f = 'xyz';
 
 class ClassName {}
 
@@ -683,13 +932,20 @@ class DefaultClass {}
 
 exports.CONST = CONST;
 exports.ClassName = ClassName;
+exports.a = a;
 exports.arrowFunc = arrowFunc;
+exports.b = b;
 exports.bar = bar;
-exports.baz = baz;
+exports.c = c;
+exports.d = d;
 exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
 exports.foo = foo;
 exports.func = func;
-exports.qux = qux;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
 //# sourceMappingURL=index-native-legacy-lib.js.map
 ",
 ]
@@ -705,13 +961,25 @@ Array [
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-let foo = 'abc';
-const bar = 123;
-const _baz = {
-  baz: true
+
+function foo() {}
+
+function bar() {}
+
+const helpers = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  foo,
+  bar
+});
+let a = 'abc';
+const b = 123;
+const _c = {
+  c: true
 },
-      baz = _baz.baz;
-const qux = {};
+      c = _c.c;
+const d = {};
+const e = 456,
+      f = 'xyz';
 
 class ClassName {}
 
@@ -725,13 +993,20 @@ class DefaultClass {}
 
 exports.CONST = CONST;
 exports.ClassName = ClassName;
+exports.a = a;
 exports.arrowFunc = arrowFunc;
+exports.b = b;
 exports.bar = bar;
-exports.baz = baz;
+exports.c = c;
+exports.d = d;
 exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
 exports.foo = foo;
 exports.func = func;
-exports.qux = qux;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
 //# sourceMappingURL=index-native-stable-lib.js.map
 ",
 ]
@@ -745,7 +1020,7 @@ Array [
 
 import data from './index-node-current-cjs.cjs';
 
-export const { foo, bar, baz, qux, ClassName, func, arrowFunc, CONST } = data;
+export const { ns1, ns2, ns3, a, b, c, d, e, f, ClassName, func, arrowFunc, CONST, foo, bar } = data;
 
 export default data.default;",
 ]
@@ -761,13 +1036,25 @@ Array [
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-let foo = 'abc';
-const bar = 123;
-const _baz = {
-  baz: true
+
+function foo() {}
+
+function bar() {}
+
+const helpers = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  foo,
+  bar
+});
+let a = 'abc';
+const b = 123;
+const _c = {
+  c: true
 },
-      baz = _baz.baz;
-const qux = {};
+      c = _c.c;
+const d = {};
+const e = 456,
+      f = 'xyz';
 
 class ClassName {}
 
@@ -781,13 +1068,20 @@ class DefaultClass {}
 
 exports.CONST = CONST;
 exports.ClassName = ClassName;
+exports.a = a;
 exports.arrowFunc = arrowFunc;
+exports.b = b;
 exports.bar = bar;
-exports.baz = baz;
+exports.c = c;
+exports.d = d;
 exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
 exports.foo = foo;
 exports.func = func;
-exports.qux = qux;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
 //# sourceMappingURL=index-node-current-cjs.cjs.map
 ",
 ]
@@ -803,13 +1097,25 @@ Array [
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-let foo = 'abc';
-const bar = 123;
-const _baz = {
-  baz: true
+
+function foo() {}
+
+function bar() {}
+
+const helpers = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  foo,
+  bar
+});
+let a = 'abc';
+const b = 123;
+const _c = {
+  c: true
 },
-      baz = _baz.baz;
-const qux = {};
+      c = _c.c;
+const d = {};
+const e = 456,
+      f = 'xyz';
 
 class ClassName {}
 
@@ -823,13 +1129,20 @@ class DefaultClass {}
 
 exports.CONST = CONST;
 exports.ClassName = ClassName;
+exports.a = a;
 exports.arrowFunc = arrowFunc;
+exports.b = b;
 exports.bar = bar;
-exports.baz = baz;
+exports.c = c;
+exports.d = d;
 exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
 exports.foo = foo;
 exports.func = func;
-exports.qux = qux;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
 //# sourceMappingURL=index-node-current-lib.js.map
 ",
 ]
@@ -840,13 +1153,26 @@ Array [
   "mjs/index-node-current-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: mjs
-let foo = 'abc';
-const bar = 123;
-const _baz = {
-  baz: true
+function foo() {}
+
+function bar() {}
+
+const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
+  __proto__: null,
+  foo,
+  bar
+}, Symbol.toStringTag, {
+  value: 'Module'
+}));
+let a = 'abc';
+const b = 123;
+const _c = {
+  c: true
 },
-      baz = _baz.baz;
-const qux = {};
+      c = _c.c;
+const d = {};
+const e = 456,
+      f = 'xyz';
 
 class ClassName {}
 
@@ -858,7 +1184,7 @@ const CONST = 123;
 
 class DefaultClass {}
 
-export { CONST, ClassName, arrowFunc, bar, baz, DefaultClass as default, foo, func, qux };
+export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, func, helpers as ns1, helpers as ns2, helpers as ns3 };
 //# sourceMappingURL=index-node-current-mjs.mjs.map
 ",
 ]
@@ -872,7 +1198,7 @@ Array [
 
 import data from './index-node-experimental-cjs.cjs';
 
-export const { foo, bar, baz, qux, ClassName, func, arrowFunc, CONST } = data;
+export const { ns1, ns2, ns3, a, b, c, d, e, f, ClassName, func, arrowFunc, CONST, foo, bar } = data;
 
 export default data.default;",
 ]
@@ -888,13 +1214,25 @@ Array [
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-let foo = 'abc';
-const bar = 123;
-const _baz = {
-  baz: true
+
+function foo() {}
+
+function bar() {}
+
+const helpers = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  foo,
+  bar
+});
+let a = 'abc';
+const b = 123;
+const _c = {
+  c: true
 },
-      baz = _baz.baz;
-const qux = {};
+      c = _c.c;
+const d = {};
+const e = 456,
+      f = 'xyz';
 
 class ClassName {}
 
@@ -908,13 +1246,20 @@ class DefaultClass {}
 
 exports.CONST = CONST;
 exports.ClassName = ClassName;
+exports.a = a;
 exports.arrowFunc = arrowFunc;
+exports.b = b;
 exports.bar = bar;
-exports.baz = baz;
+exports.c = c;
+exports.d = d;
 exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
 exports.foo = foo;
 exports.func = func;
-exports.qux = qux;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
 //# sourceMappingURL=index-node-experimental-cjs.cjs.map
 ",
 ]
@@ -930,13 +1275,25 @@ Array [
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-let foo = 'abc';
-const bar = 123;
-const _baz = {
-  baz: true
+
+function foo() {}
+
+function bar() {}
+
+const helpers = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  foo,
+  bar
+});
+let a = 'abc';
+const b = 123;
+const _c = {
+  c: true
 },
-      baz = _baz.baz;
-const qux = {};
+      c = _c.c;
+const d = {};
+const e = 456,
+      f = 'xyz';
 
 class ClassName {}
 
@@ -950,13 +1307,20 @@ class DefaultClass {}
 
 exports.CONST = CONST;
 exports.ClassName = ClassName;
+exports.a = a;
 exports.arrowFunc = arrowFunc;
+exports.b = b;
 exports.bar = bar;
-exports.baz = baz;
+exports.c = c;
+exports.d = d;
 exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
 exports.foo = foo;
 exports.func = func;
-exports.qux = qux;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
 //# sourceMappingURL=index-node-experimental-lib.js.map
 ",
 ]
@@ -967,13 +1331,26 @@ Array [
   "mjs/index-node-experimental-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: mjs
-let foo = 'abc';
-const bar = 123;
-const _baz = {
-  baz: true
+function foo() {}
+
+function bar() {}
+
+const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
+  __proto__: null,
+  foo,
+  bar
+}, Symbol.toStringTag, {
+  value: 'Module'
+}));
+let a = 'abc';
+const b = 123;
+const _c = {
+  c: true
 },
-      baz = _baz.baz;
-const qux = {};
+      c = _c.c;
+const d = {};
+const e = 456,
+      f = 'xyz';
 
 class ClassName {}
 
@@ -985,7 +1362,7 @@ const CONST = 123;
 
 class DefaultClass {}
 
-export { CONST, ClassName, arrowFunc, bar, baz, DefaultClass as default, foo, func, qux };
+export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, func, helpers as ns1, helpers as ns2, helpers as ns3 };
 //# sourceMappingURL=index-node-experimental-mjs.mjs.map
 ",
 ]
@@ -999,7 +1376,7 @@ Array [
 
 import data from './index-node-legacy-cjs.cjs';
 
-export const { foo, bar, baz, qux, ClassName, func, arrowFunc, CONST } = data;
+export const { ns1, ns2, ns3, a, b, c, d, e, f, ClassName, func, arrowFunc, CONST, foo, bar } = data;
 
 export default data.default;",
 ]
@@ -1015,13 +1392,25 @@ Array [
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-let foo = 'abc';
-const bar = 123;
-const _baz = {
-  baz: true
+
+function foo() {}
+
+function bar() {}
+
+const helpers = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  foo,
+  bar
+});
+let a = 'abc';
+const b = 123;
+const _c = {
+  c: true
 },
-      baz = _baz.baz;
-const qux = {};
+      c = _c.c;
+const d = {};
+const e = 456,
+      f = 'xyz';
 
 class ClassName {}
 
@@ -1035,13 +1424,20 @@ class DefaultClass {}
 
 exports.CONST = CONST;
 exports.ClassName = ClassName;
+exports.a = a;
 exports.arrowFunc = arrowFunc;
+exports.b = b;
 exports.bar = bar;
-exports.baz = baz;
+exports.c = c;
+exports.d = d;
 exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
 exports.foo = foo;
 exports.func = func;
-exports.qux = qux;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
 //# sourceMappingURL=index-node-legacy-cjs.cjs.map
 ",
 ]
@@ -1057,13 +1453,25 @@ Array [
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-let foo = 'abc';
-const bar = 123;
-const _baz = {
-  baz: true
+
+function foo() {}
+
+function bar() {}
+
+const helpers = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  foo,
+  bar
+});
+let a = 'abc';
+const b = 123;
+const _c = {
+  c: true
 },
-      baz = _baz.baz;
-const qux = {};
+      c = _c.c;
+const d = {};
+const e = 456,
+      f = 'xyz';
 
 class ClassName {}
 
@@ -1077,13 +1485,20 @@ class DefaultClass {}
 
 exports.CONST = CONST;
 exports.ClassName = ClassName;
+exports.a = a;
 exports.arrowFunc = arrowFunc;
+exports.b = b;
 exports.bar = bar;
-exports.baz = baz;
+exports.c = c;
+exports.d = d;
 exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
 exports.foo = foo;
 exports.func = func;
-exports.qux = qux;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
 //# sourceMappingURL=index-node-legacy-lib.js.map
 ",
 ]
@@ -1094,13 +1509,26 @@ Array [
   "mjs/index-node-legacy-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: mjs
-let foo = 'abc';
-const bar = 123;
-const _baz = {
-  baz: true
+function foo() {}
+
+function bar() {}
+
+const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
+  __proto__: null,
+  foo,
+  bar
+}, Symbol.toStringTag, {
+  value: 'Module'
+}));
+let a = 'abc';
+const b = 123;
+const _c = {
+  c: true
 },
-      baz = _baz.baz;
-const qux = {};
+      c = _c.c;
+const d = {};
+const e = 456,
+      f = 'xyz';
 
 class ClassName {}
 
@@ -1112,7 +1540,7 @@ const CONST = 123;
 
 class DefaultClass {}
 
-export { CONST, ClassName, arrowFunc, bar, baz, DefaultClass as default, foo, func, qux };
+export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, func, helpers as ns1, helpers as ns2, helpers as ns3 };
 //# sourceMappingURL=index-node-legacy-mjs.mjs.map
 ",
 ]
@@ -1126,7 +1554,7 @@ Array [
 
 import data from './index-node-stable-cjs.cjs';
 
-export const { foo, bar, baz, qux, ClassName, func, arrowFunc, CONST } = data;
+export const { ns1, ns2, ns3, a, b, c, d, e, f, ClassName, func, arrowFunc, CONST, foo, bar } = data;
 
 export default data.default;",
 ]
@@ -1142,13 +1570,25 @@ Array [
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-let foo = 'abc';
-const bar = 123;
-const _baz = {
-  baz: true
+
+function foo() {}
+
+function bar() {}
+
+const helpers = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  foo,
+  bar
+});
+let a = 'abc';
+const b = 123;
+const _c = {
+  c: true
 },
-      baz = _baz.baz;
-const qux = {};
+      c = _c.c;
+const d = {};
+const e = 456,
+      f = 'xyz';
 
 class ClassName {}
 
@@ -1162,13 +1602,20 @@ class DefaultClass {}
 
 exports.CONST = CONST;
 exports.ClassName = ClassName;
+exports.a = a;
 exports.arrowFunc = arrowFunc;
+exports.b = b;
 exports.bar = bar;
-exports.baz = baz;
+exports.c = c;
+exports.d = d;
 exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
 exports.foo = foo;
 exports.func = func;
-exports.qux = qux;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
 //# sourceMappingURL=index-node-stable-cjs.cjs.map
 ",
 ]
@@ -1184,13 +1631,25 @@ Array [
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-let foo = 'abc';
-const bar = 123;
-const _baz = {
-  baz: true
+
+function foo() {}
+
+function bar() {}
+
+const helpers = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  foo,
+  bar
+});
+let a = 'abc';
+const b = 123;
+const _c = {
+  c: true
 },
-      baz = _baz.baz;
-const qux = {};
+      c = _c.c;
+const d = {};
+const e = 456,
+      f = 'xyz';
 
 class ClassName {}
 
@@ -1204,13 +1663,20 @@ class DefaultClass {}
 
 exports.CONST = CONST;
 exports.ClassName = ClassName;
+exports.a = a;
 exports.arrowFunc = arrowFunc;
+exports.b = b;
 exports.bar = bar;
-exports.baz = baz;
+exports.c = c;
+exports.d = d;
 exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
 exports.foo = foo;
 exports.func = func;
-exports.qux = qux;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
 //# sourceMappingURL=index-node-stable-lib.js.map
 ",
 ]
@@ -1221,13 +1687,26 @@ Array [
   "mjs/index-node-stable-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: mjs
-let foo = 'abc';
-const bar = 123;
-const _baz = {
-  baz: true
+function foo() {}
+
+function bar() {}
+
+const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
+  __proto__: null,
+  foo,
+  bar
+}, Symbol.toStringTag, {
+  value: 'Module'
+}));
+let a = 'abc';
+const b = 123;
+const _c = {
+  c: true
 },
-      baz = _baz.baz;
-const qux = {};
+      c = _c.c;
+const d = {};
+const e = 456,
+      f = 'xyz';
 
 class ClassName {}
 
@@ -1239,7 +1718,7 @@ const CONST = 123;
 
 class DefaultClass {}
 
-export { CONST, ClassName, arrowFunc, bar, baz, DefaultClass as default, foo, func, qux };
+export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, func, helpers as ns1, helpers as ns2, helpers as ns3 };
 //# sourceMappingURL=index-node-stable-mjs.mjs.map
 ",
 ]
