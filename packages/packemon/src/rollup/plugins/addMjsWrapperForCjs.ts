@@ -19,6 +19,10 @@ function extractNameFromNode(node: t.Node): string[] | string | undefined {
 		case 'Identifier':
 			return node.name;
 
+		// class Foo
+		case 'ClassDeclaration':
+			return extractNameFromNode(node.id);
+
 		// function foo
 		case 'FunctionDeclaration':
 			if (node.id) {
@@ -55,13 +59,11 @@ function extractNameFromNode(node: t.Node): string[] | string | undefined {
 function extractExportsFromAst(id: string, getModuleInfo: GetModuleInfo): ExtractedExports {
 	const info = getModuleInfo(id);
 
-	console.log();
-	console.log(id);
-
 	if (!info || !info.ast) {
 		throw new Error(`Cannot get module info for ID: ${id}`);
 	}
 
+	const importedFiles = info.importedIds;
 	const namedExports: string[] = [];
 	let defaultExport = '';
 
@@ -100,12 +102,13 @@ function extractExportsFromAst(id: string, getModuleInfo: GetModuleInfo): Extrac
 
 		// export * from ...
 		if (item.type === 'ExportAllDeclaration' && item.source) {
-			const allExports = extractExportsFromAst(
-				path.normalize(path.join(path.dirname(id), item.source.value)),
-				getModuleInfo,
+			const importId = importedFiles.find((file) =>
+				file.startsWith(path.normalize(path.join(path.dirname(id), item.source.value))),
 			);
 
-			namedExports.push(...allExports.namedExports);
+			if (importId) {
+				namedExports.push(...extractExportsFromAst(importId, getModuleInfo).namedExports);
+			}
 		}
 	});
 
@@ -130,7 +133,7 @@ function createMjsFileFromExports(
 
 	if (defaultExport) {
 		mjs += '\n';
-		mjs += `export default (${input}.default || ${input});`;
+		mjs += `export default ('default' in ${input} ? ${input}.default : ${input});`;
 	}
 
 	return mjs;
@@ -146,17 +149,13 @@ export function addMjsWrapperForCjs({ inputs, packageRoot }: AddMjsWrapperOption
 			}
 
 			Object.entries(inputs).forEach(([input, inputPath]) => {
-				const exports = extractExportsFromAst(
-					packageRoot.append(inputPath).path(),
-					this.getModuleInfo,
-				);
-
-				console.log(exports);
-
 				this.emitFile({
 					type: 'asset',
 					fileName: `${input}-wrapper.mjs`,
-					source: createMjsFileFromExports(input, exports),
+					source: createMjsFileFromExports(
+						input,
+						extractExportsFromAst(packageRoot.append(inputPath).path(), this.getModuleInfo),
+					),
 				});
 			});
 		},

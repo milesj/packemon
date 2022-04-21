@@ -210,7 +210,6 @@ export function getRollupConfig(
 						// Extract maps from the original source
 						sourceMaps: true,
 				  }),
-			addMjsWrapperForCjs({ inputs: artifact.inputs, packageRoot: artifact.package.path }),
 		],
 		// Treeshake for smaller builds
 		treeshake: artifact.bundle,
@@ -222,9 +221,15 @@ export function getRollupConfig(
 	}
 
 	// Add an output for each format
-	config.output = artifact.builds.map((build) =>
-		getRollupOutputConfig(artifact, features, build.format, packemonConfig),
-	);
+	config.output = artifact.builds.map((build) => {
+		if (build.format === 'cjs') {
+			config.plugins!.push(
+				addMjsWrapperForCjs({ inputs: artifact.inputs, packageRoot: artifact.package.path }),
+			);
+		}
+
+		return getRollupOutputConfig(artifact, features, build.format, packemonConfig);
+	});
 
 	// Allow consumers to mutate
 	packemonConfig.rollupInput?.(config);
