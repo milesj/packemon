@@ -17,6 +17,7 @@ const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
   value: 'Module'
 }));
 export { helpers as ns1, helpers as ns2 };
+//# sourceMappingURL=index-browser-current-esm.js.map
 ",
 ]
 `;
@@ -43,6 +44,7 @@ const helpers = /*#__PURE__*/Object.freeze({
 });
 exports.ns1 = helpers;
 exports.ns2 = helpers;
+//# sourceMappingURL=index-browser-current-lib.js.map
 ",
 ]
 `;
@@ -83,6 +85,7 @@ Array [
   });
   _exports.ns2 = _exports.ns1 = helpers;
 });
+//# sourceMappingURL=index-browser-current-umd.js.map
 ",
 ]
 `;
@@ -104,6 +107,7 @@ const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
   value: 'Module'
 }));
 export { helpers as ns1, helpers as ns2 };
+//# sourceMappingURL=index-browser-experimental-esm.js.map
 ",
 ]
 `;
@@ -130,6 +134,7 @@ const helpers = /*#__PURE__*/Object.freeze({
 });
 exports.ns1 = helpers;
 exports.ns2 = helpers;
+//# sourceMappingURL=index-browser-experimental-lib.js.map
 ",
 ]
 `;
@@ -170,6 +175,7 @@ Array [
   });
   _exports.ns2 = _exports.ns1 = helpers;
 });
+//# sourceMappingURL=index-browser-experimental-umd.js.map
 ",
 ]
 `;
@@ -191,6 +197,7 @@ var helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
   value: 'Module'
 }));
 export { helpers as ns1, helpers as ns2 };
+//# sourceMappingURL=index-browser-legacy-esm.js.map
 ",
 ]
 `;
@@ -217,6 +224,7 @@ var helpers = /*#__PURE__*/Object.freeze({
 });
 exports.ns1 = helpers;
 exports.ns2 = helpers;
+//# sourceMappingURL=index-browser-legacy-lib.js.map
 ",
 ]
 `;
@@ -257,6 +265,7 @@ Array [
   });
   _exports.ns2 = _exports.ns1 = helpers;
 });
+//# sourceMappingURL=index-browser-legacy-umd.js.map
 ",
 ]
 `;
@@ -278,6 +287,7 @@ const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
   value: 'Module'
 }));
 export { helpers as ns1, helpers as ns2 };
+//# sourceMappingURL=index-browser-stable-esm.js.map
 ",
 ]
 `;
@@ -304,6 +314,7 @@ const helpers = /*#__PURE__*/Object.freeze({
 });
 exports.ns1 = helpers;
 exports.ns2 = helpers;
+//# sourceMappingURL=index-browser-stable-lib.js.map
 ",
 ]
 `;
@@ -344,6 +355,7 @@ Array [
   });
   _exports.ns2 = _exports.ns1 = helpers;
 });
+//# sourceMappingURL=index-browser-stable-umd.js.map
 ",
 ]
 `;
@@ -370,6 +382,7 @@ const helpers = /*#__PURE__*/Object.freeze({
 });
 exports.ns1 = helpers;
 exports.ns2 = helpers;
+//# sourceMappingURL=index-native-current-lib.js.map
 ",
 ]
 `;
@@ -396,6 +409,7 @@ const helpers = /*#__PURE__*/Object.freeze({
 });
 exports.ns1 = helpers;
 exports.ns2 = helpers;
+//# sourceMappingURL=index-native-experimental-lib.js.map
 ",
 ]
 `;
@@ -422,6 +436,7 @@ const helpers = /*#__PURE__*/Object.freeze({
 });
 exports.ns1 = helpers;
 exports.ns2 = helpers;
+//# sourceMappingURL=index-native-legacy-lib.js.map
 ",
 ]
 `;
@@ -448,11 +463,24 @@ const helpers = /*#__PURE__*/Object.freeze({
 });
 exports.ns1 = helpers;
 exports.ns2 = helpers;
+//# sourceMappingURL=index-native-stable-lib.js.map
 ",
 ]
 `;
 
 exports[`Namespaces babel transforms example test case: node-current-cjs 1`] = `
+Array [
+  "cjs/index-node-current-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-current-cjs.cjs';
+
+export const { ns1, foo, bar } = data;",
+]
+`;
+
+exports[`Namespaces babel transforms example test case: node-current-cjs 2`] = `
 Array [
   "cjs/index-node-current-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -474,6 +502,7 @@ const helpers = /*#__PURE__*/Object.freeze({
 });
 exports.ns1 = helpers;
 exports.ns2 = helpers;
+//# sourceMappingURL=index-node-current-cjs.cjs.map
 ",
 ]
 `;
@@ -500,6 +529,7 @@ const helpers = /*#__PURE__*/Object.freeze({
 });
 exports.ns1 = helpers;
 exports.ns2 = helpers;
+//# sourceMappingURL=index-node-current-lib.js.map
 ",
 ]
 `;
@@ -521,11 +551,24 @@ const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
   value: 'Module'
 }));
 export { helpers as ns1, helpers as ns2 };
+//# sourceMappingURL=index-node-current-mjs.mjs.map
 ",
 ]
 `;
 
 exports[`Namespaces babel transforms example test case: node-experimental-cjs 1`] = `
+Array [
+  "cjs/index-node-experimental-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-experimental-cjs.cjs';
+
+export const { ns1, foo, bar } = data;",
+]
+`;
+
+exports[`Namespaces babel transforms example test case: node-experimental-cjs 2`] = `
 Array [
   "cjs/index-node-experimental-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -547,6 +590,7 @@ const helpers = /*#__PURE__*/Object.freeze({
 });
 exports.ns1 = helpers;
 exports.ns2 = helpers;
+//# sourceMappingURL=index-node-experimental-cjs.cjs.map
 ",
 ]
 `;
@@ -573,6 +617,7 @@ const helpers = /*#__PURE__*/Object.freeze({
 });
 exports.ns1 = helpers;
 exports.ns2 = helpers;
+//# sourceMappingURL=index-node-experimental-lib.js.map
 ",
 ]
 `;
@@ -594,11 +639,24 @@ const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
   value: 'Module'
 }));
 export { helpers as ns1, helpers as ns2 };
+//# sourceMappingURL=index-node-experimental-mjs.mjs.map
 ",
 ]
 `;
 
 exports[`Namespaces babel transforms example test case: node-legacy-cjs 1`] = `
+Array [
+  "cjs/index-node-legacy-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-legacy-cjs.cjs';
+
+export const { ns1, foo, bar } = data;",
+]
+`;
+
+exports[`Namespaces babel transforms example test case: node-legacy-cjs 2`] = `
 Array [
   "cjs/index-node-legacy-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -620,6 +678,7 @@ const helpers = /*#__PURE__*/Object.freeze({
 });
 exports.ns1 = helpers;
 exports.ns2 = helpers;
+//# sourceMappingURL=index-node-legacy-cjs.cjs.map
 ",
 ]
 `;
@@ -646,6 +705,7 @@ const helpers = /*#__PURE__*/Object.freeze({
 });
 exports.ns1 = helpers;
 exports.ns2 = helpers;
+//# sourceMappingURL=index-node-legacy-lib.js.map
 ",
 ]
 `;
@@ -667,11 +727,24 @@ const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
   value: 'Module'
 }));
 export { helpers as ns1, helpers as ns2 };
+//# sourceMappingURL=index-node-legacy-mjs.mjs.map
 ",
 ]
 `;
 
 exports[`Namespaces babel transforms example test case: node-stable-cjs 1`] = `
+Array [
+  "cjs/index-node-stable-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-stable-cjs.cjs';
+
+export const { ns1, foo, bar } = data;",
+]
+`;
+
+exports[`Namespaces babel transforms example test case: node-stable-cjs 2`] = `
 Array [
   "cjs/index-node-stable-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -693,6 +766,7 @@ const helpers = /*#__PURE__*/Object.freeze({
 });
 exports.ns1 = helpers;
 exports.ns2 = helpers;
+//# sourceMappingURL=index-node-stable-cjs.cjs.map
 ",
 ]
 `;
@@ -719,6 +793,7 @@ const helpers = /*#__PURE__*/Object.freeze({
 });
 exports.ns1 = helpers;
 exports.ns2 = helpers;
+//# sourceMappingURL=index-node-stable-lib.js.map
 ",
 ]
 `;
@@ -740,6 +815,7 @@ const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
   value: 'Module'
 }));
 export { helpers as ns1, helpers as ns2 };
+//# sourceMappingURL=index-node-stable-mjs.mjs.map
 ",
 ]
 `;
@@ -759,6 +835,7 @@ const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty(
     value: 'Module'
 }));
 export { helpers as ns1, helpers as ns2 };
+//# sourceMappingURL=index-browser-current-esm.js.map
 ",
 ]
 `;
@@ -781,6 +858,7 @@ const helpers = /*#__PURE__*/ Object.freeze({
 });
 exports.ns1 = helpers;
 exports.ns2 = helpers;
+//# sourceMappingURL=index-browser-current-lib.js.map
 ",
 ]
 `;
@@ -818,6 +896,7 @@ Array [
     _exports.ns1 = helpers;
     _exports.ns2 = helpers;
 });
+//# sourceMappingURL=index-browser-current-umd.js.map
 ",
 ]
 `;
@@ -837,6 +916,7 @@ const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty(
     value: 'Module'
 }));
 export { helpers as ns1, helpers as ns2 };
+//# sourceMappingURL=index-browser-experimental-esm.js.map
 ",
 ]
 `;
@@ -859,6 +939,7 @@ const helpers = /*#__PURE__*/ Object.freeze({
 });
 exports.ns1 = helpers;
 exports.ns2 = helpers;
+//# sourceMappingURL=index-browser-experimental-lib.js.map
 ",
 ]
 `;
@@ -896,6 +977,7 @@ Array [
     _exports.ns1 = helpers;
     _exports.ns2 = helpers;
 });
+//# sourceMappingURL=index-browser-experimental-umd.js.map
 ",
 ]
 `;
@@ -915,6 +997,7 @@ var helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty({
     value: \\"Module\\"
 }));
 export { helpers as ns1, helpers as ns2 };
+//# sourceMappingURL=index-browser-legacy-esm.js.map
 ",
 ]
 `;
@@ -937,6 +1020,7 @@ var helpers = /*#__PURE__*/ Object.freeze({
 });
 exports.ns1 = helpers;
 exports.ns2 = helpers;
+//# sourceMappingURL=index-browser-legacy-lib.js.map
 ",
 ]
 `;
@@ -974,6 +1058,7 @@ Array [
     _exports.ns1 = helpers;
     _exports.ns2 = helpers;
 });
+//# sourceMappingURL=index-browser-legacy-umd.js.map
 ",
 ]
 `;
@@ -993,6 +1078,7 @@ const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty(
     value: 'Module'
 }));
 export { helpers as ns1, helpers as ns2 };
+//# sourceMappingURL=index-browser-stable-esm.js.map
 ",
 ]
 `;
@@ -1015,6 +1101,7 @@ const helpers = /*#__PURE__*/ Object.freeze({
 });
 exports.ns1 = helpers;
 exports.ns2 = helpers;
+//# sourceMappingURL=index-browser-stable-lib.js.map
 ",
 ]
 `;
@@ -1052,6 +1139,7 @@ Array [
     _exports.ns1 = helpers;
     _exports.ns2 = helpers;
 });
+//# sourceMappingURL=index-browser-stable-umd.js.map
 ",
 ]
 `;
@@ -1074,6 +1162,7 @@ const helpers = /*#__PURE__*/ Object.freeze({
 });
 exports.ns1 = helpers;
 exports.ns2 = helpers;
+//# sourceMappingURL=index-native-current-lib.js.map
 ",
 ]
 `;
@@ -1096,6 +1185,7 @@ const helpers = /*#__PURE__*/ Object.freeze({
 });
 exports.ns1 = helpers;
 exports.ns2 = helpers;
+//# sourceMappingURL=index-native-experimental-lib.js.map
 ",
 ]
 `;
@@ -1118,6 +1208,7 @@ const helpers = /*#__PURE__*/ Object.freeze({
 });
 exports.ns1 = helpers;
 exports.ns2 = helpers;
+//# sourceMappingURL=index-native-legacy-lib.js.map
 ",
 ]
 `;
@@ -1140,11 +1231,24 @@ const helpers = /*#__PURE__*/ Object.freeze({
 });
 exports.ns1 = helpers;
 exports.ns2 = helpers;
+//# sourceMappingURL=index-native-stable-lib.js.map
 ",
 ]
 `;
 
 exports[`Namespaces swc transforms example test case: node-current-cjs 1`] = `
+Array [
+  "cjs/index-node-current-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-current-cjs.cjs';
+
+export const { ns1, foo, bar } = data;",
+]
+`;
+
+exports[`Namespaces swc transforms example test case: node-current-cjs 2`] = `
 Array [
   "cjs/index-node-current-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -1162,6 +1266,7 @@ const helpers = /*#__PURE__*/ Object.freeze({
 });
 exports.ns1 = helpers;
 exports.ns2 = helpers;
+//# sourceMappingURL=index-node-current-cjs.cjs.map
 ",
 ]
 `;
@@ -1184,6 +1289,7 @@ const helpers = /*#__PURE__*/ Object.freeze({
 });
 exports.ns1 = helpers;
 exports.ns2 = helpers;
+//# sourceMappingURL=index-node-current-lib.js.map
 ",
 ]
 `;
@@ -1203,11 +1309,24 @@ const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty(
     value: 'Module'
 }));
 export { helpers as ns1, helpers as ns2 };
+//# sourceMappingURL=index-node-current-mjs.mjs.map
 ",
 ]
 `;
 
 exports[`Namespaces swc transforms example test case: node-experimental-cjs 1`] = `
+Array [
+  "cjs/index-node-experimental-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-experimental-cjs.cjs';
+
+export const { ns1, foo, bar } = data;",
+]
+`;
+
+exports[`Namespaces swc transforms example test case: node-experimental-cjs 2`] = `
 Array [
   "cjs/index-node-experimental-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -1225,6 +1344,7 @@ const helpers = /*#__PURE__*/ Object.freeze({
 });
 exports.ns1 = helpers;
 exports.ns2 = helpers;
+//# sourceMappingURL=index-node-experimental-cjs.cjs.map
 ",
 ]
 `;
@@ -1247,6 +1367,7 @@ const helpers = /*#__PURE__*/ Object.freeze({
 });
 exports.ns1 = helpers;
 exports.ns2 = helpers;
+//# sourceMappingURL=index-node-experimental-lib.js.map
 ",
 ]
 `;
@@ -1266,11 +1387,24 @@ const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty(
     value: 'Module'
 }));
 export { helpers as ns1, helpers as ns2 };
+//# sourceMappingURL=index-node-experimental-mjs.mjs.map
 ",
 ]
 `;
 
 exports[`Namespaces swc transforms example test case: node-legacy-cjs 1`] = `
+Array [
+  "cjs/index-node-legacy-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-legacy-cjs.cjs';
+
+export const { ns1, foo, bar } = data;",
+]
+`;
+
+exports[`Namespaces swc transforms example test case: node-legacy-cjs 2`] = `
 Array [
   "cjs/index-node-legacy-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -1288,6 +1422,7 @@ const helpers = /*#__PURE__*/ Object.freeze({
 });
 exports.ns1 = helpers;
 exports.ns2 = helpers;
+//# sourceMappingURL=index-node-legacy-cjs.cjs.map
 ",
 ]
 `;
@@ -1310,6 +1445,7 @@ const helpers = /*#__PURE__*/ Object.freeze({
 });
 exports.ns1 = helpers;
 exports.ns2 = helpers;
+//# sourceMappingURL=index-node-legacy-lib.js.map
 ",
 ]
 `;
@@ -1329,11 +1465,24 @@ const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty(
     value: \\"Module\\"
 }));
 export { helpers as ns1, helpers as ns2 };
+//# sourceMappingURL=index-node-legacy-mjs.mjs.map
 ",
 ]
 `;
 
 exports[`Namespaces swc transforms example test case: node-stable-cjs 1`] = `
+Array [
+  "cjs/index-node-stable-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-stable-cjs.cjs';
+
+export const { ns1, foo, bar } = data;",
+]
+`;
+
+exports[`Namespaces swc transforms example test case: node-stable-cjs 2`] = `
 Array [
   "cjs/index-node-stable-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -1351,6 +1500,7 @@ const helpers = /*#__PURE__*/ Object.freeze({
 });
 exports.ns1 = helpers;
 exports.ns2 = helpers;
+//# sourceMappingURL=index-node-stable-cjs.cjs.map
 ",
 ]
 `;
@@ -1373,6 +1523,7 @@ const helpers = /*#__PURE__*/ Object.freeze({
 });
 exports.ns1 = helpers;
 exports.ns2 = helpers;
+//# sourceMappingURL=index-node-stable-lib.js.map
 ",
 ]
 `;
@@ -1392,6 +1543,7 @@ const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty(
     value: 'Module'
 }));
 export { helpers as ns1, helpers as ns2 };
+//# sourceMappingURL=index-node-stable-mjs.mjs.map
 ",
 ]
 `;

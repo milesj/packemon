@@ -16,6 +16,7 @@ const data = {
 
 const keys = Object.keys(data);
 export { keys };
+//# sourceMappingURL=index-browser-current-esm.js.map
 ",
 ]
 `;
@@ -41,6 +42,7 @@ const data = {
 
 const keys = Object.keys(data);
 exports.keys = keys;
+//# sourceMappingURL=index-browser-current-lib.js.map
 ",
 ]
 `;
@@ -81,6 +83,7 @@ Array [
   const keys = Object.keys(data);
   _exports.keys = keys;
 });
+//# sourceMappingURL=index-browser-current-umd.js.map
 ",
 ]
 `;
@@ -101,6 +104,7 @@ const data = {
 
 const keys = Object.keys(data);
 export { keys };
+//# sourceMappingURL=index-browser-experimental-esm.js.map
 ",
 ]
 `;
@@ -126,6 +130,7 @@ const data = {
 
 const keys = Object.keys(data);
 exports.keys = keys;
+//# sourceMappingURL=index-browser-experimental-lib.js.map
 ",
 ]
 `;
@@ -166,6 +171,7 @@ Array [
   const keys = Object.keys(data);
   _exports.keys = keys;
 });
+//# sourceMappingURL=index-browser-experimental-umd.js.map
 ",
 ]
 `;
@@ -186,6 +192,7 @@ var data = {
 
 var keys = Object.keys(data);
 export { keys };
+//# sourceMappingURL=index-browser-legacy-esm.js.map
 ",
 ]
 `;
@@ -211,6 +218,7 @@ var data = {
 
 var keys = Object.keys(data);
 exports.keys = keys;
+//# sourceMappingURL=index-browser-legacy-lib.js.map
 ",
 ]
 `;
@@ -251,6 +259,7 @@ Array [
   var keys = Object.keys(data);
   _exports.keys = keys;
 });
+//# sourceMappingURL=index-browser-legacy-umd.js.map
 ",
 ]
 `;
@@ -271,6 +280,7 @@ const data = {
 
 const keys = Object.keys(data);
 export { keys };
+//# sourceMappingURL=index-browser-stable-esm.js.map
 ",
 ]
 `;
@@ -296,6 +306,7 @@ const data = {
 
 const keys = Object.keys(data);
 exports.keys = keys;
+//# sourceMappingURL=index-browser-stable-lib.js.map
 ",
 ]
 `;
@@ -336,6 +347,7 @@ Array [
   const keys = Object.keys(data);
   _exports.keys = keys;
 });
+//# sourceMappingURL=index-browser-stable-umd.js.map
 ",
 ]
 `;
@@ -361,6 +373,7 @@ const data = {
 
 const keys = Object.keys(data);
 exports.keys = keys;
+//# sourceMappingURL=index-native-current-lib.js.map
 ",
 ]
 `;
@@ -386,6 +399,7 @@ const data = {
 
 const keys = Object.keys(data);
 exports.keys = keys;
+//# sourceMappingURL=index-native-experimental-lib.js.map
 ",
 ]
 `;
@@ -411,6 +425,7 @@ const data = {
 
 const keys = Object.keys(data);
 exports.keys = keys;
+//# sourceMappingURL=index-native-legacy-lib.js.map
 ",
 ]
 `;
@@ -436,11 +451,24 @@ const data = {
 
 const keys = Object.keys(data);
 exports.keys = keys;
+//# sourceMappingURL=index-native-stable-lib.js.map
 ",
 ]
 `;
 
 exports[`JSON imports babel transforms example test case: node-current-cjs 1`] = `
+Array [
+  "cjs/index-node-current-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-current-cjs.cjs';
+
+export const { keys } = data;",
+]
+`;
+
+exports[`JSON imports babel transforms example test case: node-current-cjs 2`] = `
 Array [
   "cjs/index-node-current-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -461,6 +489,7 @@ const data = {
 
 const keys = Object.keys(data);
 exports.keys = keys;
+//# sourceMappingURL=index-node-current-cjs.cjs.map
 ",
 ]
 `;
@@ -486,6 +515,7 @@ const data = {
 
 const keys = Object.keys(data);
 exports.keys = keys;
+//# sourceMappingURL=index-node-current-lib.js.map
 ",
 ]
 `;
@@ -506,11 +536,24 @@ const data = {
 
 const keys = Object.keys(data);
 export { keys };
+//# sourceMappingURL=index-node-current-mjs.mjs.map
 ",
 ]
 `;
 
 exports[`JSON imports babel transforms example test case: node-experimental-cjs 1`] = `
+Array [
+  "cjs/index-node-experimental-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-experimental-cjs.cjs';
+
+export const { keys } = data;",
+]
+`;
+
+exports[`JSON imports babel transforms example test case: node-experimental-cjs 2`] = `
 Array [
   "cjs/index-node-experimental-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -531,6 +574,7 @@ const data = {
 
 const keys = Object.keys(data);
 exports.keys = keys;
+//# sourceMappingURL=index-node-experimental-cjs.cjs.map
 ",
 ]
 `;
@@ -556,6 +600,7 @@ const data = {
 
 const keys = Object.keys(data);
 exports.keys = keys;
+//# sourceMappingURL=index-node-experimental-lib.js.map
 ",
 ]
 `;
@@ -576,11 +621,24 @@ const data = {
 
 const keys = Object.keys(data);
 export { keys };
+//# sourceMappingURL=index-node-experimental-mjs.mjs.map
 ",
 ]
 `;
 
 exports[`JSON imports babel transforms example test case: node-legacy-cjs 1`] = `
+Array [
+  "cjs/index-node-legacy-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-legacy-cjs.cjs';
+
+export const { keys } = data;",
+]
+`;
+
+exports[`JSON imports babel transforms example test case: node-legacy-cjs 2`] = `
 Array [
   "cjs/index-node-legacy-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -601,6 +659,7 @@ const data = {
 
 const keys = Object.keys(data);
 exports.keys = keys;
+//# sourceMappingURL=index-node-legacy-cjs.cjs.map
 ",
 ]
 `;
@@ -626,6 +685,7 @@ const data = {
 
 const keys = Object.keys(data);
 exports.keys = keys;
+//# sourceMappingURL=index-node-legacy-lib.js.map
 ",
 ]
 `;
@@ -646,11 +706,24 @@ const data = {
 
 const keys = Object.keys(data);
 export { keys };
+//# sourceMappingURL=index-node-legacy-mjs.mjs.map
 ",
 ]
 `;
 
 exports[`JSON imports babel transforms example test case: node-stable-cjs 1`] = `
+Array [
+  "cjs/index-node-stable-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-stable-cjs.cjs';
+
+export const { keys } = data;",
+]
+`;
+
+exports[`JSON imports babel transforms example test case: node-stable-cjs 2`] = `
 Array [
   "cjs/index-node-stable-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -671,6 +744,7 @@ const data = {
 
 const keys = Object.keys(data);
 exports.keys = keys;
+//# sourceMappingURL=index-node-stable-cjs.cjs.map
 ",
 ]
 `;
@@ -696,6 +770,7 @@ const data = {
 
 const keys = Object.keys(data);
 exports.keys = keys;
+//# sourceMappingURL=index-node-stable-lib.js.map
 ",
 ]
 `;
@@ -716,6 +791,7 @@ const data = {
 
 const keys = Object.keys(data);
 export { keys };
+//# sourceMappingURL=index-node-stable-mjs.mjs.map
 ",
 ]
 `;
@@ -740,6 +816,7 @@ const data = {
 // @ts-expect-error resolveJsonModule is not on
 const keys = Object.keys(data);
 export { keys };
+//# sourceMappingURL=index-browser-current-esm.js.map
 ",
 ]
 `;
@@ -768,6 +845,7 @@ const data = {
 // @ts-expect-error resolveJsonModule is not on
 const keys = Object.keys(data);
 exports.keys = keys;
+//# sourceMappingURL=index-browser-current-lib.js.map
 ",
 ]
 `;
@@ -811,6 +889,7 @@ Array [
     const keys = Object.keys(data);
     _exports.keys = keys;
 });
+//# sourceMappingURL=index-browser-current-umd.js.map
 ",
 ]
 `;
@@ -835,6 +914,7 @@ const data = {
 // @ts-expect-error resolveJsonModule is not on
 const keys = Object.keys(data);
 export { keys };
+//# sourceMappingURL=index-browser-experimental-esm.js.map
 ",
 ]
 `;
@@ -863,6 +943,7 @@ const data = {
 // @ts-expect-error resolveJsonModule is not on
 const keys = Object.keys(data);
 exports.keys = keys;
+//# sourceMappingURL=index-browser-experimental-lib.js.map
 ",
 ]
 `;
@@ -906,6 +987,7 @@ Array [
     const keys = Object.keys(data);
     _exports.keys = keys;
 });
+//# sourceMappingURL=index-browser-experimental-umd.js.map
 ",
 ]
 `;
@@ -930,6 +1012,7 @@ var data = {
 // @ts-expect-error resolveJsonModule is not on
 var keys = Object.keys(data);
 export { keys };
+//# sourceMappingURL=index-browser-legacy-esm.js.map
 ",
 ]
 `;
@@ -958,6 +1041,7 @@ var data = {
 // @ts-expect-error resolveJsonModule is not on
 var keys = Object.keys(data);
 exports.keys = keys;
+//# sourceMappingURL=index-browser-legacy-lib.js.map
 ",
 ]
 `;
@@ -1001,6 +1085,7 @@ Array [
     var keys = Object.keys(data);
     _exports.keys = keys;
 });
+//# sourceMappingURL=index-browser-legacy-umd.js.map
 ",
 ]
 `;
@@ -1025,6 +1110,7 @@ const data = {
 // @ts-expect-error resolveJsonModule is not on
 const keys = Object.keys(data);
 export { keys };
+//# sourceMappingURL=index-browser-stable-esm.js.map
 ",
 ]
 `;
@@ -1053,6 +1139,7 @@ const data = {
 // @ts-expect-error resolveJsonModule is not on
 const keys = Object.keys(data);
 exports.keys = keys;
+//# sourceMappingURL=index-browser-stable-lib.js.map
 ",
 ]
 `;
@@ -1096,6 +1183,7 @@ Array [
     const keys = Object.keys(data);
     _exports.keys = keys;
 });
+//# sourceMappingURL=index-browser-stable-umd.js.map
 ",
 ]
 `;
@@ -1124,6 +1212,7 @@ const data = {
 // @ts-expect-error resolveJsonModule is not on
 const keys = Object.keys(data);
 exports.keys = keys;
+//# sourceMappingURL=index-native-current-lib.js.map
 ",
 ]
 `;
@@ -1152,6 +1241,7 @@ const data = {
 // @ts-expect-error resolveJsonModule is not on
 const keys = Object.keys(data);
 exports.keys = keys;
+//# sourceMappingURL=index-native-experimental-lib.js.map
 ",
 ]
 `;
@@ -1180,6 +1270,7 @@ const data = {
 // @ts-expect-error resolveJsonModule is not on
 const keys = Object.keys(data);
 exports.keys = keys;
+//# sourceMappingURL=index-native-legacy-lib.js.map
 ",
 ]
 `;
@@ -1208,11 +1299,24 @@ const data = {
 // @ts-expect-error resolveJsonModule is not on
 const keys = Object.keys(data);
 exports.keys = keys;
+//# sourceMappingURL=index-native-stable-lib.js.map
 ",
 ]
 `;
 
 exports[`JSON imports swc transforms example test case: node-current-cjs 1`] = `
+Array [
+  "cjs/index-node-current-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-current-cjs.cjs';
+
+export const { keys } = data;",
+]
+`;
+
+exports[`JSON imports swc transforms example test case: node-current-cjs 2`] = `
 Array [
   "cjs/index-node-current-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -1236,6 +1340,7 @@ const data = {
 // @ts-expect-error resolveJsonModule is not on
 const keys = Object.keys(data);
 exports.keys = keys;
+//# sourceMappingURL=index-node-current-cjs.cjs.map
 ",
 ]
 `;
@@ -1264,6 +1369,7 @@ const data = {
 // @ts-expect-error resolveJsonModule is not on
 const keys = Object.keys(data);
 exports.keys = keys;
+//# sourceMappingURL=index-node-current-lib.js.map
 ",
 ]
 `;
@@ -1288,11 +1394,24 @@ const data = {
 // @ts-expect-error resolveJsonModule is not on
 const keys = Object.keys(data);
 export { keys };
+//# sourceMappingURL=index-node-current-mjs.mjs.map
 ",
 ]
 `;
 
 exports[`JSON imports swc transforms example test case: node-experimental-cjs 1`] = `
+Array [
+  "cjs/index-node-experimental-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-experimental-cjs.cjs';
+
+export const { keys } = data;",
+]
+`;
+
+exports[`JSON imports swc transforms example test case: node-experimental-cjs 2`] = `
 Array [
   "cjs/index-node-experimental-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -1316,6 +1435,7 @@ const data = {
 // @ts-expect-error resolveJsonModule is not on
 const keys = Object.keys(data);
 exports.keys = keys;
+//# sourceMappingURL=index-node-experimental-cjs.cjs.map
 ",
 ]
 `;
@@ -1344,6 +1464,7 @@ const data = {
 // @ts-expect-error resolveJsonModule is not on
 const keys = Object.keys(data);
 exports.keys = keys;
+//# sourceMappingURL=index-node-experimental-lib.js.map
 ",
 ]
 `;
@@ -1368,11 +1489,24 @@ const data = {
 // @ts-expect-error resolveJsonModule is not on
 const keys = Object.keys(data);
 export { keys };
+//# sourceMappingURL=index-node-experimental-mjs.mjs.map
 ",
 ]
 `;
 
 exports[`JSON imports swc transforms example test case: node-legacy-cjs 1`] = `
+Array [
+  "cjs/index-node-legacy-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-legacy-cjs.cjs';
+
+export const { keys } = data;",
+]
+`;
+
+exports[`JSON imports swc transforms example test case: node-legacy-cjs 2`] = `
 Array [
   "cjs/index-node-legacy-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -1396,6 +1530,7 @@ const data = {
 // @ts-expect-error resolveJsonModule is not on
 const keys = Object.keys(data);
 exports.keys = keys;
+//# sourceMappingURL=index-node-legacy-cjs.cjs.map
 ",
 ]
 `;
@@ -1424,6 +1559,7 @@ const data = {
 // @ts-expect-error resolveJsonModule is not on
 const keys = Object.keys(data);
 exports.keys = keys;
+//# sourceMappingURL=index-node-legacy-lib.js.map
 ",
 ]
 `;
@@ -1448,11 +1584,24 @@ const data = {
 // @ts-expect-error resolveJsonModule is not on
 const keys = Object.keys(data);
 export { keys };
+//# sourceMappingURL=index-node-legacy-mjs.mjs.map
 ",
 ]
 `;
 
 exports[`JSON imports swc transforms example test case: node-stable-cjs 1`] = `
+Array [
+  "cjs/index-node-stable-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-stable-cjs.cjs';
+
+export const { keys } = data;",
+]
+`;
+
+exports[`JSON imports swc transforms example test case: node-stable-cjs 2`] = `
 Array [
   "cjs/index-node-stable-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -1476,6 +1625,7 @@ const data = {
 // @ts-expect-error resolveJsonModule is not on
 const keys = Object.keys(data);
 exports.keys = keys;
+//# sourceMappingURL=index-node-stable-cjs.cjs.map
 ",
 ]
 `;
@@ -1504,6 +1654,7 @@ const data = {
 // @ts-expect-error resolveJsonModule is not on
 const keys = Object.keys(data);
 exports.keys = keys;
+//# sourceMappingURL=index-node-stable-lib.js.map
 ",
 ]
 `;
@@ -1528,6 +1679,7 @@ const data = {
 // @ts-expect-error resolveJsonModule is not on
 const keys = Object.keys(data);
 export { keys };
+//# sourceMappingURL=index-node-stable-mjs.mjs.map
 ",
 ]
 `;
