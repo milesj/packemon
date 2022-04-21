@@ -113,14 +113,17 @@ export function createSnapshotSpies(root: PortablePath, captureJson: boolean = f
 		spies.forEach((spy) => void spy.mockRestore());
 	});
 
-	return (pkg: Package) =>
-		// pkg.artifacts.forEach((artifact) => {
-		// 	artifact.buildResult.files.forEach((file) => {
-		// 		snapshots.push([file.file, file.code]);
-		// 	});
-		// });
+	return (pkg?: Package) => {
+		if (pkg) {
+			pkg.artifacts.forEach((artifact) => {
+				artifact.buildResult.files.forEach((file) => {
+					snapshots.push([file.file, file.code]);
+				});
+			});
+		}
 
-		snapshots.sort((a, b) => a[0].localeCompare(b[0]));
+		return snapshots.sort((a, b) => a[0].localeCompare(b[0]));
+	};
 }
 
 const exampleRoot = new Path(getFixturePath('examples'));
@@ -193,7 +196,7 @@ export function testExampleOutput(
 					console.error(error);
 				}
 
-				snapshots(pkg).forEach((ss) => {
+				snapshots().forEach((ss) => {
 					expect(ss).toMatchSnapshot();
 				});
 			});
