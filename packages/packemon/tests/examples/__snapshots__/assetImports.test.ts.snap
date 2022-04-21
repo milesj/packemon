@@ -17,6 +17,7 @@ const json = {
   }
 };
 console.log(json);
+//# sourceMappingURL=index-browser-current-esm.js.map
 ",
 ]
 `;
@@ -50,6 +51,7 @@ const json = {
   }
 };
 console.log(json);
+//# sourceMappingURL=index-browser-current-lib.js.map
 ",
 ]
 `;
@@ -91,6 +93,7 @@ Array [
   };
   console.log(json);
 });
+//# sourceMappingURL=index-browser-current-umd.js.map
 ",
 ]
 `;
@@ -112,6 +115,7 @@ const json = {
   }
 };
 console.log(json);
+//# sourceMappingURL=index-browser-experimental-esm.js.map
 ",
 ]
 `;
@@ -145,6 +149,7 @@ const json = {
   }
 };
 console.log(json);
+//# sourceMappingURL=index-browser-experimental-lib.js.map
 ",
 ]
 `;
@@ -186,6 +191,7 @@ Array [
   };
   console.log(json);
 });
+//# sourceMappingURL=index-browser-experimental-umd.js.map
 ",
 ]
 `;
@@ -207,6 +213,7 @@ var json = {
   }
 };
 console.log(json);
+//# sourceMappingURL=index-browser-legacy-esm.js.map
 ",
 ]
 `;
@@ -240,6 +247,7 @@ var json = {
   }
 };
 console.log(json);
+//# sourceMappingURL=index-browser-legacy-lib.js.map
 ",
 ]
 `;
@@ -281,6 +289,7 @@ Array [
   };
   console.log(json);
 });
+//# sourceMappingURL=index-browser-legacy-umd.js.map
 ",
 ]
 `;
@@ -302,6 +311,7 @@ const json = {
   }
 };
 console.log(json);
+//# sourceMappingURL=index-browser-stable-esm.js.map
 ",
 ]
 `;
@@ -335,6 +345,7 @@ const json = {
   }
 };
 console.log(json);
+//# sourceMappingURL=index-browser-stable-lib.js.map
 ",
 ]
 `;
@@ -376,6 +387,7 @@ Array [
   };
   console.log(json);
 });
+//# sourceMappingURL=index-browser-stable-umd.js.map
 ",
 ]
 `;
@@ -402,6 +414,7 @@ const json = {
   }
 };
 console.log(json);
+//# sourceMappingURL=index-native-current-lib.js.map
 ",
 ]
 `;
@@ -435,6 +448,7 @@ const json = {
   }
 };
 console.log(json);
+//# sourceMappingURL=index-native-experimental-lib.js.map
 ",
 ]
 `;
@@ -468,6 +482,7 @@ const json = {
   }
 };
 console.log(json);
+//# sourceMappingURL=index-native-legacy-lib.js.map
 ",
 ]
 `;
@@ -501,6 +516,7 @@ const json = {
   }
 };
 console.log(json);
+//# sourceMappingURL=index-native-stable-lib.js.map
 ",
 ]
 `;
@@ -513,6 +529,13 @@ Array [
 `;
 
 exports[`Assets babel transforms example test case: node-current-cjs 1`] = `
+Array [
+  "cjs/index-node-current-cjs-wrapper.mjs",
+  "import './index-node-current-cjs.cjs';",
+]
+`;
+
+exports[`Assets babel transforms example test case: node-current-cjs 2`] = `
 Array [
   "cjs/index-node-current-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -534,11 +557,12 @@ const json = {
   }
 };
 console.log(json);
+//# sourceMappingURL=index-node-current-cjs.cjs.map
 ",
 ]
 `;
 
-exports[`Assets babel transforms example test case: node-current-cjs 2`] = `
+exports[`Assets babel transforms example test case: node-current-cjs 3`] = `
 Array [
   "styles.css",
   "assets/styles-17df299b.css",
@@ -567,6 +591,7 @@ const json = {
   }
 };
 console.log(json);
+//# sourceMappingURL=index-node-current-lib.js.map
 ",
 ]
 `;
@@ -595,6 +620,7 @@ const json = {
   }
 };
 console.log(json);
+//# sourceMappingURL=index-node-current-mjs.mjs.map
 ",
 ]
 `;
@@ -607,6 +633,13 @@ Array [
 `;
 
 exports[`Assets babel transforms example test case: node-experimental-cjs 1`] = `
+Array [
+  "cjs/index-node-experimental-cjs-wrapper.mjs",
+  "import './index-node-experimental-cjs.cjs';",
+]
+`;
+
+exports[`Assets babel transforms example test case: node-experimental-cjs 2`] = `
 Array [
   "cjs/index-node-experimental-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -628,11 +661,12 @@ const json = {
   }
 };
 console.log(json);
+//# sourceMappingURL=index-node-experimental-cjs.cjs.map
 ",
 ]
 `;
 
-exports[`Assets babel transforms example test case: node-experimental-cjs 2`] = `
+exports[`Assets babel transforms example test case: node-experimental-cjs 3`] = `
 Array [
   "styles.css",
   "assets/styles-17df299b.css",
@@ -661,6 +695,7 @@ const json = {
   }
 };
 console.log(json);
+//# sourceMappingURL=index-node-experimental-lib.js.map
 ",
 ]
 `;
@@ -689,6 +724,7 @@ const json = {
   }
 };
 console.log(json);
+//# sourceMappingURL=index-node-experimental-mjs.mjs.map
 ",
 ]
 `;
@@ -701,6 +737,13 @@ Array [
 `;
 
 exports[`Assets babel transforms example test case: node-legacy-cjs 1`] = `
+Array [
+  "cjs/index-node-legacy-cjs-wrapper.mjs",
+  "import './index-node-legacy-cjs.cjs';",
+]
+`;
+
+exports[`Assets babel transforms example test case: node-legacy-cjs 2`] = `
 Array [
   "cjs/index-node-legacy-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -722,11 +765,12 @@ const json = {
   }
 };
 console.log(json);
+//# sourceMappingURL=index-node-legacy-cjs.cjs.map
 ",
 ]
 `;
 
-exports[`Assets babel transforms example test case: node-legacy-cjs 2`] = `
+exports[`Assets babel transforms example test case: node-legacy-cjs 3`] = `
 Array [
   "styles.css",
   "assets/styles-17df299b.css",
@@ -755,6 +799,7 @@ const json = {
   }
 };
 console.log(json);
+//# sourceMappingURL=index-node-legacy-lib.js.map
 ",
 ]
 `;
@@ -783,6 +828,7 @@ const json = {
   }
 };
 console.log(json);
+//# sourceMappingURL=index-node-legacy-mjs.mjs.map
 ",
 ]
 `;
@@ -795,6 +841,13 @@ Array [
 `;
 
 exports[`Assets babel transforms example test case: node-stable-cjs 1`] = `
+Array [
+  "cjs/index-node-stable-cjs-wrapper.mjs",
+  "import './index-node-stable-cjs.cjs';",
+]
+`;
+
+exports[`Assets babel transforms example test case: node-stable-cjs 2`] = `
 Array [
   "cjs/index-node-stable-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -816,11 +869,12 @@ const json = {
   }
 };
 console.log(json);
+//# sourceMappingURL=index-node-stable-cjs.cjs.map
 ",
 ]
 `;
 
-exports[`Assets babel transforms example test case: node-stable-cjs 2`] = `
+exports[`Assets babel transforms example test case: node-stable-cjs 3`] = `
 Array [
   "styles.css",
   "assets/styles-17df299b.css",
@@ -849,6 +903,7 @@ const json = {
   }
 };
 console.log(json);
+//# sourceMappingURL=index-node-stable-lib.js.map
 ",
 ]
 `;
@@ -877,6 +932,7 @@ const json = {
   }
 };
 console.log(json);
+//# sourceMappingURL=index-node-stable-mjs.mjs.map
 ",
 ]
 `;
@@ -909,6 +965,7 @@ const json = {
     }
 };
 console.log(json);
+//# sourceMappingURL=index-browser-current-esm.js.map
 ",
 ]
 `;
@@ -942,6 +999,7 @@ const json = {
     }
 };
 console.log(json);
+//# sourceMappingURL=index-browser-current-lib.js.map
 ",
 ]
 `;
@@ -988,6 +1046,7 @@ Array [
     };
     console.log(json);
 });
+//# sourceMappingURL=index-browser-current-umd.js.map
 ",
 ]
 `;
@@ -1013,6 +1072,7 @@ const json = {
     }
 };
 console.log(json);
+//# sourceMappingURL=index-browser-experimental-esm.js.map
 ",
 ]
 `;
@@ -1046,6 +1106,7 @@ const json = {
     }
 };
 console.log(json);
+//# sourceMappingURL=index-browser-experimental-lib.js.map
 ",
 ]
 `;
@@ -1092,6 +1153,7 @@ Array [
     };
     console.log(json);
 });
+//# sourceMappingURL=index-browser-experimental-umd.js.map
 ",
 ]
 `;
@@ -1117,6 +1179,7 @@ var json = {
     }
 };
 console.log(json);
+//# sourceMappingURL=index-browser-legacy-esm.js.map
 ",
 ]
 `;
@@ -1150,6 +1213,7 @@ var json = {
     }
 };
 console.log(json);
+//# sourceMappingURL=index-browser-legacy-lib.js.map
 ",
 ]
 `;
@@ -1196,6 +1260,7 @@ Array [
     };
     console.log(json);
 });
+//# sourceMappingURL=index-browser-legacy-umd.js.map
 ",
 ]
 `;
@@ -1221,6 +1286,7 @@ const json = {
     }
 };
 console.log(json);
+//# sourceMappingURL=index-browser-stable-esm.js.map
 ",
 ]
 `;
@@ -1254,6 +1320,7 @@ const json = {
     }
 };
 console.log(json);
+//# sourceMappingURL=index-browser-stable-lib.js.map
 ",
 ]
 `;
@@ -1300,6 +1367,7 @@ Array [
     };
     console.log(json);
 });
+//# sourceMappingURL=index-browser-stable-umd.js.map
 ",
 ]
 `;
@@ -1326,6 +1394,7 @@ const json = {
     }
 };
 console.log(json);
+//# sourceMappingURL=index-native-current-lib.js.map
 ",
 ]
 `;
@@ -1359,6 +1428,7 @@ const json = {
     }
 };
 console.log(json);
+//# sourceMappingURL=index-native-experimental-lib.js.map
 ",
 ]
 `;
@@ -1392,6 +1462,7 @@ const json = {
     }
 };
 console.log(json);
+//# sourceMappingURL=index-native-legacy-lib.js.map
 ",
 ]
 `;
@@ -1425,6 +1496,7 @@ const json = {
     }
 };
 console.log(json);
+//# sourceMappingURL=index-native-stable-lib.js.map
 ",
 ]
 `;
@@ -1437,6 +1509,13 @@ Array [
 `;
 
 exports[`Assets swc transforms example test case: node-current-cjs 1`] = `
+Array [
+  "cjs/index-node-current-cjs-wrapper.mjs",
+  "import './index-node-current-cjs.cjs';",
+]
+`;
+
+exports[`Assets swc transforms example test case: node-current-cjs 2`] = `
 Array [
   "cjs/index-node-current-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -1458,11 +1537,12 @@ const json = {
     }
 };
 console.log(json);
+//# sourceMappingURL=index-node-current-cjs.cjs.map
 ",
 ]
 `;
 
-exports[`Assets swc transforms example test case: node-current-cjs 2`] = `
+exports[`Assets swc transforms example test case: node-current-cjs 3`] = `
 Array [
   "styles.css",
   "assets/styles-17df299b.css",
@@ -1491,6 +1571,7 @@ const json = {
     }
 };
 console.log(json);
+//# sourceMappingURL=index-node-current-lib.js.map
 ",
 ]
 `;
@@ -1523,6 +1604,7 @@ const json = {
     }
 };
 console.log(json);
+//# sourceMappingURL=index-node-current-mjs.mjs.map
 ",
 ]
 `;
@@ -1535,6 +1617,13 @@ Array [
 `;
 
 exports[`Assets swc transforms example test case: node-experimental-cjs 1`] = `
+Array [
+  "cjs/index-node-experimental-cjs-wrapper.mjs",
+  "import './index-node-experimental-cjs.cjs';",
+]
+`;
+
+exports[`Assets swc transforms example test case: node-experimental-cjs 2`] = `
 Array [
   "cjs/index-node-experimental-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -1556,11 +1645,12 @@ const json = {
     }
 };
 console.log(json);
+//# sourceMappingURL=index-node-experimental-cjs.cjs.map
 ",
 ]
 `;
 
-exports[`Assets swc transforms example test case: node-experimental-cjs 2`] = `
+exports[`Assets swc transforms example test case: node-experimental-cjs 3`] = `
 Array [
   "styles.css",
   "assets/styles-17df299b.css",
@@ -1589,6 +1679,7 @@ const json = {
     }
 };
 console.log(json);
+//# sourceMappingURL=index-node-experimental-lib.js.map
 ",
 ]
 `;
@@ -1621,6 +1712,7 @@ const json = {
     }
 };
 console.log(json);
+//# sourceMappingURL=index-node-experimental-mjs.mjs.map
 ",
 ]
 `;
@@ -1633,6 +1725,13 @@ Array [
 `;
 
 exports[`Assets swc transforms example test case: node-legacy-cjs 1`] = `
+Array [
+  "cjs/index-node-legacy-cjs-wrapper.mjs",
+  "import './index-node-legacy-cjs.cjs';",
+]
+`;
+
+exports[`Assets swc transforms example test case: node-legacy-cjs 2`] = `
 Array [
   "cjs/index-node-legacy-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -1654,11 +1753,12 @@ const json = {
     }
 };
 console.log(json);
+//# sourceMappingURL=index-node-legacy-cjs.cjs.map
 ",
 ]
 `;
 
-exports[`Assets swc transforms example test case: node-legacy-cjs 2`] = `
+exports[`Assets swc transforms example test case: node-legacy-cjs 3`] = `
 Array [
   "styles.css",
   "assets/styles-17df299b.css",
@@ -1687,6 +1787,7 @@ const json = {
     }
 };
 console.log(json);
+//# sourceMappingURL=index-node-legacy-lib.js.map
 ",
 ]
 `;
@@ -1719,6 +1820,7 @@ const json = {
     }
 };
 console.log(json);
+//# sourceMappingURL=index-node-legacy-mjs.mjs.map
 ",
 ]
 `;
@@ -1731,6 +1833,13 @@ Array [
 `;
 
 exports[`Assets swc transforms example test case: node-stable-cjs 1`] = `
+Array [
+  "cjs/index-node-stable-cjs-wrapper.mjs",
+  "import './index-node-stable-cjs.cjs';",
+]
+`;
+
+exports[`Assets swc transforms example test case: node-stable-cjs 2`] = `
 Array [
   "cjs/index-node-stable-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -1752,11 +1861,12 @@ const json = {
     }
 };
 console.log(json);
+//# sourceMappingURL=index-node-stable-cjs.cjs.map
 ",
 ]
 `;
 
-exports[`Assets swc transforms example test case: node-stable-cjs 2`] = `
+exports[`Assets swc transforms example test case: node-stable-cjs 3`] = `
 Array [
   "styles.css",
   "assets/styles-17df299b.css",
@@ -1785,6 +1895,7 @@ const json = {
     }
 };
 console.log(json);
+//# sourceMappingURL=index-node-stable-lib.js.map
 ",
 ]
 `;
@@ -1817,6 +1928,7 @@ const json = {
     }
 };
 console.log(json);
+//# sourceMappingURL=index-node-stable-mjs.mjs.map
 ",
 ]
 `;

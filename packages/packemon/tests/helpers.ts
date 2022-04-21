@@ -66,7 +66,7 @@ function formatSnapshotFilePath(file: string, root: string): string {
 }
 
 export function createSnapshotSpies(root: PortablePath, captureJson: boolean = false) {
-	let snapshots: Record<string, unknown> = {};
+	let snapshots: [string, unknown][] = [];
 	const spies: jest.SpyInstance[] = [];
 
 	beforeEach(() => {
@@ -79,11 +79,11 @@ export function createSnapshotSpies(root: PortablePath, captureJson: boolean = f
 				filePath.endsWith('.mjs') ||
 				(captureJson && filePath.endsWith('.json'))
 			) {
-				snapshots[filePath] = content;
+				snapshots.push([filePath, content]);
 			}
 
 			if (filePath.endsWith('.css')) {
-				snapshots[filePath] = formatSnapshotFilePath(String(content), String(root));
+				snapshots.push([filePath, formatSnapshotFilePath(String(content), String(root))]);
 			}
 
 			if (typeof cb === 'function') {
@@ -97,28 +97,30 @@ export function createSnapshotSpies(root: PortablePath, captureJson: boolean = f
 		};
 
 		spies.push(
-			// jest.spyOn(fs, 'writeFile').mockImplementation(handler),
-			jest.spyOn(fs.promises, 'writeFile').mockImplementation(asyncHandler),
-			// jest.spyOn(fsx, 'writeJson').mockImplementation(handler),
-			// jest.spyOn(fsx, 'copyFile').mockImplementation(handler),
-			// jest.spyOn(fsx, 'mkdir'),
 			jest.spyOn(console, 'warn').mockImplementation(),
+			// Rollup
+			jest.spyOn(fs.promises, 'writeFile').mockImplementation(asyncHandler),
+			// Packemon
+			jest.spyOn(fsx, 'writeJson').mockImplementation(handler),
+			// Assets
+			jest.spyOn(fsx, 'copyFile').mockImplementation(handler),
+			jest.spyOn(fsx, 'mkdir'),
 		);
 	});
 
 	afterEach(() => {
-		snapshots = {};
+		snapshots = [];
 		spies.forEach((spy) => void spy.mockRestore());
 	});
 
 	return (pkg: Package) =>
 		// pkg.artifacts.forEach((artifact) => {
 		// 	artifact.buildResult.files.forEach((file) => {
-		// 		snapshots[file.file] = file.code;
+		// 		snapshots.push([file.file, file.code]);
 		// 	});
 		// });
 
-		Object.entries(snapshots).sort((a, b) => a[0].localeCompare(b[0]));
+		snapshots.sort((a, b) => a[0].localeCompare(b[0]));
 }
 
 const exampleRoot = new Path(getFixturePath('examples'));
