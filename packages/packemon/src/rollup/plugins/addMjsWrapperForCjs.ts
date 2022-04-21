@@ -68,7 +68,7 @@ function extractExportsFromAst(id: string, getModuleInfo: GetModuleInfo): Extrac
 	}
 
 	const importedFiles = info.importedIds;
-	const namedExports: string[] = [];
+	let namedExports: string[] = [];
 	let defaultExport = false;
 
 	const mapNamed = (name: string[] | string | undefined) => {
@@ -130,6 +130,12 @@ function extractExportsFromAst(id: string, getModuleInfo: GetModuleInfo): Extrac
 			}
 		}
 	});
+
+	// export { foo as default }
+	if (namedExports.includes('default')) {
+		namedExports = namedExports.filter((i) => i !== 'default');
+		defaultExport = true;
+	}
 
 	return { namedExports, defaultExport };
 }

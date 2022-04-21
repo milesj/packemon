@@ -531,7 +531,10 @@ Array [
 exports[`Assets babel transforms example test case: node-current-cjs 1`] = `
 Array [
   "cjs/index-node-current-cjs-wrapper.mjs",
-  "import './index-node-current-cjs.cjs';",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-current-cjs.cjs';",
 ]
 `;
 
@@ -635,7 +638,10 @@ Array [
 exports[`Assets babel transforms example test case: node-experimental-cjs 1`] = `
 Array [
   "cjs/index-node-experimental-cjs-wrapper.mjs",
-  "import './index-node-experimental-cjs.cjs';",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-experimental-cjs.cjs';",
 ]
 `;
 
@@ -739,7 +745,10 @@ Array [
 exports[`Assets babel transforms example test case: node-legacy-cjs 1`] = `
 Array [
   "cjs/index-node-legacy-cjs-wrapper.mjs",
-  "import './index-node-legacy-cjs.cjs';",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-legacy-cjs.cjs';",
 ]
 `;
 
@@ -843,7 +852,10 @@ Array [
 exports[`Assets babel transforms example test case: node-stable-cjs 1`] = `
 Array [
   "cjs/index-node-stable-cjs-wrapper.mjs",
-  "import './index-node-stable-cjs.cjs';",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-stable-cjs.cjs';",
 ]
 `;
 
@@ -1511,7 +1523,10 @@ Array [
 exports[`Assets swc transforms example test case: node-current-cjs 1`] = `
 Array [
   "cjs/index-node-current-cjs-wrapper.mjs",
-  "import './index-node-current-cjs.cjs';",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-current-cjs.cjs';",
 ]
 `;
 
@@ -1619,7 +1634,10 @@ Array [
 exports[`Assets swc transforms example test case: node-experimental-cjs 1`] = `
 Array [
   "cjs/index-node-experimental-cjs-wrapper.mjs",
-  "import './index-node-experimental-cjs.cjs';",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-experimental-cjs.cjs';",
 ]
 `;
 
@@ -1727,7 +1745,10 @@ Array [
 exports[`Assets swc transforms example test case: node-legacy-cjs 1`] = `
 Array [
   "cjs/index-node-legacy-cjs-wrapper.mjs",
-  "import './index-node-legacy-cjs.cjs';",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-legacy-cjs.cjs';",
 ]
 `;
 
@@ -1835,7 +1856,10 @@ Array [
 exports[`Assets swc transforms example test case: node-stable-cjs 1`] = `
 Array [
   "cjs/index-node-stable-cjs-wrapper.mjs",
-  "import './index-node-stable-cjs.cjs';",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-stable-cjs.cjs';",
 ]
 `;
 

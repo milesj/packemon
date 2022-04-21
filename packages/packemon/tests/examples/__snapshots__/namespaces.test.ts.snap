@@ -476,7 +476,7 @@ Array [
 
 import data from './index-node-current-cjs.cjs';
 
-export const { ns1, foo, bar } = data;",
+export const { ns1, ns2 } = data;",
 ]
 `;
 
@@ -564,7 +564,7 @@ Array [
 
 import data from './index-node-experimental-cjs.cjs';
 
-export const { ns1, foo, bar } = data;",
+export const { ns1, ns2 } = data;",
 ]
 `;
 
@@ -652,7 +652,7 @@ Array [
 
 import data from './index-node-legacy-cjs.cjs';
 
-export const { ns1, foo, bar } = data;",
+export const { ns1, ns2 } = data;",
 ]
 `;
 
@@ -740,7 +740,7 @@ Array [
 
 import data from './index-node-stable-cjs.cjs';
 
-export const { ns1, foo, bar } = data;",
+export const { ns1, ns2 } = data;",
 ]
 `;
 
@@ -1244,7 +1244,7 @@ Array [
 
 import data from './index-node-current-cjs.cjs';
 
-export const { ns1, foo, bar } = data;",
+export const { ns1, ns2 } = data;",
 ]
 `;
 
@@ -1322,7 +1322,7 @@ Array [
 
 import data from './index-node-experimental-cjs.cjs';
 
-export const { ns1, foo, bar } = data;",
+export const { ns1, ns2 } = data;",
 ]
 `;
 
@@ -1400,7 +1400,7 @@ Array [
 
 import data from './index-node-legacy-cjs.cjs';
 
-export const { ns1, foo, bar } = data;",
+export const { ns1, ns2 } = data;",
 ]
 `;
 
@@ -1478,7 +1478,7 @@ Array [
 
 import data from './index-node-stable-cjs.cjs';
 
-export const { ns1, foo, bar } = data;",
+export const { ns1, ns2 } = data;",
 ]
 `;
 

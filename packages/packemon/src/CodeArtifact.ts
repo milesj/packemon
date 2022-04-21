@@ -90,7 +90,7 @@ export class CodeArtifact extends Artifact<CodeBuild> {
 				// so use generate() instead of write():
 				// https://github.com/rollup/rollup/issues/4082
 				const result =
-					process.env.NODE_ENV === 'test'
+					process.env.NODE_ENV === 'test' && !process.env.PACKEMON_TEST_WRITE
 						? await bundle.generate(outOptions)
 						: await bundle.write(outOptions);
 

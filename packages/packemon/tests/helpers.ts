@@ -158,7 +158,7 @@ export function testExampleOutput(
 		const snapshots = createSnapshotSpies(exampleRoot);
 
 		beforeEach(() => {
-			delete process.env.NODE_ENV;
+			process.env.PACKEMON_TEST_WRITE = 'true';
 
 			if (transformer === 'swc') {
 				process.env.PACKEMON_SWC = 'true';
@@ -166,8 +166,7 @@ export function testExampleOutput(
 		});
 
 		afterEach(() => {
-			process.env.NODE_ENV = 'test';
-
+			delete process.env.PACKEMON_TEST_WRITE;
 			delete process.env.PACKEMON_SWC;
 		});
 
