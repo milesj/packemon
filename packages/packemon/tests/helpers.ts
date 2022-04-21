@@ -91,11 +91,17 @@ export function createSnapshotSpies(root: PortablePath, captureJson: boolean = f
 			}
 		};
 
+		// eslint-disable-next-line @typescript-eslint/require-await
+		const asyncHandler = async (file: unknown, content: unknown) => {
+			handler(file, content);
+		};
+
 		spies.push(
-			jest.spyOn(fs, 'writeFile').mockImplementation(handler),
-			jest.spyOn(fsx, 'writeJson').mockImplementation(handler),
-			jest.spyOn(fsx, 'copyFile').mockImplementation(handler),
-			jest.spyOn(fsx, 'mkdir'),
+			// jest.spyOn(fs, 'writeFile').mockImplementation(handler),
+			jest.spyOn(fs.promises, 'writeFile').mockImplementation(asyncHandler),
+			// jest.spyOn(fsx, 'writeJson').mockImplementation(handler),
+			// jest.spyOn(fsx, 'copyFile').mockImplementation(handler),
+			// jest.spyOn(fsx, 'mkdir'),
 			jest.spyOn(console, 'warn').mockImplementation(),
 		);
 	});
@@ -150,15 +156,19 @@ export function testExampleOutput(
 	describe(transformer, () => {
 		const snapshots = createSnapshotSpies(exampleRoot);
 
-		if (transformer === 'swc') {
-			beforeEach(() => {
-				process.env.PACKEMON_SWC = 'true';
-			});
+		beforeEach(() => {
+			delete process.env.NODE_ENV;
 
-			afterEach(() => {
-				delete process.env.PACKEMON_SWC;
-			});
-		}
+			if (transformer === 'swc') {
+				process.env.PACKEMON_SWC = 'true';
+			}
+		});
+
+		afterEach(() => {
+			process.env.NODE_ENV = 'test';
+
+			delete process.env.PACKEMON_SWC;
+		});
 
 		[...builds.values()].forEach((build) => {
 			const pkg = createProjectPackage(exampleRoot);

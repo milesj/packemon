@@ -693,7 +693,7 @@ describe('Package', () => {
 				expect(pkg.packageJson.exports).toEqual({
 					'.': {
 						node: {
-							import: './mjs/index-wrapper.mjs',
+							import: './cjs/index-wrapper.mjs',
 							require: './cjs/index.cjs',
 						},
 					},
@@ -867,7 +867,7 @@ describe('Package', () => {
 					bin: './lib/bin.js',
 					exports: {
 						'./package.json': './package.json',
-						'.': { node: { import: './mjs/index-wrapper.mjs', require: './cjs/index.cjs' } },
+						'.': { node: { import: './cjs/index-wrapper.mjs', require: './cjs/index.cjs' } },
 						'./bin': { node: './lib/bin.js' },
 						'./web': {
 							browser: {
@@ -922,7 +922,7 @@ describe('Package', () => {
 						'./web': {
 							browser: { default: './lib/web.js', import: './esm/web.js', module: './esm/web.js' },
 						},
-						'.': { node: { import: './mjs/node-wrapper.mjs', require: './cjs/node.cjs' } },
+						'.': { node: { import: './cjs/node-wrapper.mjs', require: './cjs/node.cjs' } },
 					},
 				}),
 			);

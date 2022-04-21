@@ -46,7 +46,12 @@ function extractNameFromNode(node: t.Node): string[] | string | undefined {
 		// const { foo, bar } = ...
 		case 'ObjectPattern':
 			return node.properties
-				.map((prop) => (prop.type === 'ObjectProperty' ? extractNameFromNode(prop.key) : null))
+				.map((prop) =>
+					// @ts-expect-error Is "Property" when logged
+					prop.type === 'ObjectProperty' || prop.type === 'Property'
+						? extractNameFromNode(prop.value)
+						: null,
+				)
 				.filter(Boolean) as string[];
 
 		default:
@@ -124,19 +129,22 @@ function createMjsFileFromExports(
 		return `import './${input}.cjs';`;
 	}
 
-	let mjs = `import ${input} from './${input}.cjs';`;
+	const mjs = [
+		'// Bundled with Packemon: https://packemon.dev',
+		'// This is an MJS wrapper for a sibling CJS file',
+	];
+
+	mjs.push('', `import data from './${input}.cjs';`);
 
 	if (namedExports.length > 0) {
-		mjs += '\n';
-		mjs += `export const { ${namedExports.join(', ')} } = ${input};`;
+		mjs.push('', `export const { ${namedExports.join(', ')} } = data;`);
 	}
 
 	if (defaultExport) {
-		mjs += '\n';
-		mjs += `export default ('default' in ${input} ? ${input}.default : ${input});`;
+		mjs.push('', namedExports.length > 0 ? `export default data.default;` : `export default data;`);
 	}
 
-	return mjs;
+	return mjs.join('\n');
 }
 
 export function addMjsWrapperForCjs({ inputs, packageRoot }: AddMjsWrapperOptions): Plugin {
