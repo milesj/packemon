@@ -34,7 +34,8 @@ const arrowFunc = () => {};
 
 const CONST = 123;
 
-class DefaultClass {}
+class DefaultClass {} // Types should be ignored
+
 
 export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, func, helpers as ns1, helpers as ns2, helpers as ns3 };
 //# sourceMappingURL=index-browser-current-esm.js.map
@@ -80,7 +81,8 @@ const arrowFunc = () => {};
 
 const CONST = 123;
 
-class DefaultClass {}
+class DefaultClass {} // Types should be ignored
+
 
 exports.CONST = CONST;
 exports.ClassName = ClassName;
@@ -171,7 +173,8 @@ Array [
   const CONST = 123;
   _exports.CONST = CONST;
 
-  class DefaultClass {}
+  class DefaultClass {} // Types should be ignored
+
 
   _exports.default = DefaultClass;
 });
@@ -214,7 +217,8 @@ const arrowFunc = () => {};
 
 const CONST = 123;
 
-class DefaultClass {}
+class DefaultClass {} // Types should be ignored
+
 
 export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, func, helpers as ns1, helpers as ns2, helpers as ns3 };
 //# sourceMappingURL=index-browser-experimental-esm.js.map
@@ -260,7 +264,8 @@ const arrowFunc = () => {};
 
 const CONST = 123;
 
-class DefaultClass {}
+class DefaultClass {} // Types should be ignored
+
 
 exports.CONST = CONST;
 exports.ClassName = ClassName;
@@ -351,7 +356,8 @@ Array [
   const CONST = 123;
   _exports.CONST = CONST;
 
-  class DefaultClass {}
+  class DefaultClass {} // Types should be ignored
+
 
   _exports.default = DefaultClass;
 });
@@ -410,7 +416,8 @@ var CONST = 123;
 
 var DefaultClass = /*#__PURE__*/_createClass(function DefaultClass() {
   _classCallCheck(this, DefaultClass);
-});
+}); // Types should be ignored
+
 
 export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, func, helpers as ns1, helpers as ns2, helpers as ns3 };
 //# sourceMappingURL=index-browser-legacy-esm.js.map
@@ -472,7 +479,8 @@ var CONST = 123;
 
 var DefaultClass = /*#__PURE__*/_createClass(function DefaultClass() {
   _classCallCheck(this, DefaultClass);
-});
+}); // Types should be ignored
+
 
 exports.CONST = CONST;
 exports.ClassName = ClassName;
@@ -579,7 +587,8 @@ Array [
 
   var DefaultClass = /*#__PURE__*/_createClass(function DefaultClass() {
     _classCallCheck(this, DefaultClass);
-  });
+  }); // Types should be ignored
+
 
   _exports.default = DefaultClass;
 });
@@ -622,7 +631,8 @@ const arrowFunc = () => {};
 
 const CONST = 123;
 
-class DefaultClass {}
+class DefaultClass {} // Types should be ignored
+
 
 export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, func, helpers as ns1, helpers as ns2, helpers as ns3 };
 //# sourceMappingURL=index-browser-stable-esm.js.map
@@ -668,7 +678,8 @@ const arrowFunc = () => {};
 
 const CONST = 123;
 
-class DefaultClass {}
+class DefaultClass {} // Types should be ignored
+
 
 exports.CONST = CONST;
 exports.ClassName = ClassName;
@@ -759,7 +770,8 @@ Array [
   const CONST = 123;
   _exports.CONST = CONST;
 
-  class DefaultClass {}
+  class DefaultClass {} // Types should be ignored
+
 
   _exports.default = DefaultClass;
 });
@@ -806,7 +818,8 @@ const arrowFunc = () => {};
 
 const CONST = 123;
 
-class DefaultClass {}
+class DefaultClass {} // Types should be ignored
+
 
 exports.CONST = CONST;
 exports.ClassName = ClassName;
@@ -867,7 +880,8 @@ const arrowFunc = () => {};
 
 const CONST = 123;
 
-class DefaultClass {}
+class DefaultClass {} // Types should be ignored
+
 
 exports.CONST = CONST;
 exports.ClassName = ClassName;
@@ -928,7 +942,8 @@ const arrowFunc = () => {};
 
 const CONST = 123;
 
-class DefaultClass {}
+class DefaultClass {} // Types should be ignored
+
 
 exports.CONST = CONST;
 exports.ClassName = ClassName;
@@ -989,7 +1004,8 @@ const arrowFunc = () => {};
 
 const CONST = 123;
 
-class DefaultClass {}
+class DefaultClass {} // Types should be ignored
+
 
 exports.CONST = CONST;
 exports.ClassName = ClassName;
@@ -1020,7 +1036,7 @@ Array [
 
 import data from './index-node-current-cjs.cjs';
 
-export const { ns1, ns2, ns3, a, b, c, d, e, f, ClassName, func, arrowFunc, CONST, foo, bar } = data;
+export const { ns1, ns2, ns3, foo, bar, a, b, c, d, e, f, ClassName, func, arrowFunc, CONST } = data;
 
 export default data.default;",
 ]
@@ -1064,7 +1080,8 @@ const arrowFunc = () => {};
 
 const CONST = 123;
 
-class DefaultClass {}
+class DefaultClass {} // Types should be ignored
+
 
 exports.CONST = CONST;
 exports.ClassName = ClassName;
@@ -1125,7 +1142,8 @@ const arrowFunc = () => {};
 
 const CONST = 123;
 
-class DefaultClass {}
+class DefaultClass {} // Types should be ignored
+
 
 exports.CONST = CONST;
 exports.ClassName = ClassName;
@@ -1182,7 +1200,8 @@ const arrowFunc = () => {};
 
 const CONST = 123;
 
-class DefaultClass {}
+class DefaultClass {} // Types should be ignored
+
 
 export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, func, helpers as ns1, helpers as ns2, helpers as ns3 };
 //# sourceMappingURL=index-node-current-mjs.mjs.map
@@ -1198,7 +1217,7 @@ Array [
 
 import data from './index-node-experimental-cjs.cjs';
 
-export const { ns1, ns2, ns3, a, b, c, d, e, f, ClassName, func, arrowFunc, CONST, foo, bar } = data;
+export const { ns1, ns2, ns3, foo, bar, a, b, c, d, e, f, ClassName, func, arrowFunc, CONST } = data;
 
 export default data.default;",
 ]
@@ -1242,7 +1261,8 @@ const arrowFunc = () => {};
 
 const CONST = 123;
 
-class DefaultClass {}
+class DefaultClass {} // Types should be ignored
+
 
 exports.CONST = CONST;
 exports.ClassName = ClassName;
@@ -1303,7 +1323,8 @@ const arrowFunc = () => {};
 
 const CONST = 123;
 
-class DefaultClass {}
+class DefaultClass {} // Types should be ignored
+
 
 exports.CONST = CONST;
 exports.ClassName = ClassName;
@@ -1360,7 +1381,8 @@ const arrowFunc = () => {};
 
 const CONST = 123;
 
-class DefaultClass {}
+class DefaultClass {} // Types should be ignored
+
 
 export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, func, helpers as ns1, helpers as ns2, helpers as ns3 };
 //# sourceMappingURL=index-node-experimental-mjs.mjs.map
@@ -1376,7 +1398,7 @@ Array [
 
 import data from './index-node-legacy-cjs.cjs';
 
-export const { ns1, ns2, ns3, a, b, c, d, e, f, ClassName, func, arrowFunc, CONST, foo, bar } = data;
+export const { ns1, ns2, ns3, foo, bar, a, b, c, d, e, f, ClassName, func, arrowFunc, CONST } = data;
 
 export default data.default;",
 ]
@@ -1420,7 +1442,8 @@ const arrowFunc = () => {};
 
 const CONST = 123;
 
-class DefaultClass {}
+class DefaultClass {} // Types should be ignored
+
 
 exports.CONST = CONST;
 exports.ClassName = ClassName;
@@ -1481,7 +1504,8 @@ const arrowFunc = () => {};
 
 const CONST = 123;
 
-class DefaultClass {}
+class DefaultClass {} // Types should be ignored
+
 
 exports.CONST = CONST;
 exports.ClassName = ClassName;
@@ -1538,7 +1562,8 @@ const arrowFunc = () => {};
 
 const CONST = 123;
 
-class DefaultClass {}
+class DefaultClass {} // Types should be ignored
+
 
 export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, func, helpers as ns1, helpers as ns2, helpers as ns3 };
 //# sourceMappingURL=index-node-legacy-mjs.mjs.map
@@ -1554,7 +1579,7 @@ Array [
 
 import data from './index-node-stable-cjs.cjs';
 
-export const { ns1, ns2, ns3, a, b, c, d, e, f, ClassName, func, arrowFunc, CONST, foo, bar } = data;
+export const { ns1, ns2, ns3, foo, bar, a, b, c, d, e, f, ClassName, func, arrowFunc, CONST } = data;
 
 export default data.default;",
 ]
@@ -1598,7 +1623,8 @@ const arrowFunc = () => {};
 
 const CONST = 123;
 
-class DefaultClass {}
+class DefaultClass {} // Types should be ignored
+
 
 exports.CONST = CONST;
 exports.ClassName = ClassName;
@@ -1659,7 +1685,8 @@ const arrowFunc = () => {};
 
 const CONST = 123;
 
-class DefaultClass {}
+class DefaultClass {} // Types should be ignored
+
 
 exports.CONST = CONST;
 exports.ClassName = ClassName;
@@ -1716,7 +1743,8 @@ const arrowFunc = () => {};
 
 const CONST = 123;
 
-class DefaultClass {}
+class DefaultClass {} // Types should be ignored
+
 
 export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, func, helpers as ns1, helpers as ns2, helpers as ns3 };
 //# sourceMappingURL=index-node-stable-mjs.mjs.map

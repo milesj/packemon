@@ -1,7 +1,10 @@
+import type { Baz } from './helpers';
+import { type Baz as BazRenamed } from './helpers';
 import * as ns1 from './helpers';
 
 export { ns1, ns1 as ns2 };
 export * as ns3 from './helpers';
+export * from './helpers';
 
 export let a = 'abc';
 export const b = 123;
@@ -16,7 +19,10 @@ export const arrowFunc = () => {};
 
 const CONST = 123;
 export { CONST };
-
-export * from './helpers';
-
 export default class DefaultClass {}
+
+// Types should be ignored
+export type Type = string;
+export interface Interface {}
+type LocalType = boolean;
+export { Baz, BazRenamed, LocalType };
