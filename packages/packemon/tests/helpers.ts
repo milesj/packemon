@@ -66,7 +66,7 @@ function formatSnapshotFilePath(file: string, root: string): string {
 }
 
 export function createSnapshotSpies(root: PortablePath, captureJson: boolean = false) {
-	let snapshots: [string, unknown][] = [];
+	let snapshots: Record<string, unknown> = {};
 	const spies: jest.SpyInstance[] = [];
 
 	beforeEach(() => {
@@ -79,11 +79,11 @@ export function createSnapshotSpies(root: PortablePath, captureJson: boolean = f
 				filePath.endsWith('.mjs') ||
 				(captureJson && filePath.endsWith('.json'))
 			) {
-				snapshots.push([filePath, content]);
+				snapshots[filePath] = content;
 			}
 
 			if (filePath.endsWith('.css')) {
-				snapshots.push([filePath, formatSnapshotFilePath(String(content), String(root))]);
+				snapshots[filePath] = formatSnapshotFilePath(String(content), String(root));
 			}
 
 			if (typeof cb === 'function') {
@@ -107,19 +107,18 @@ export function createSnapshotSpies(root: PortablePath, captureJson: boolean = f
 	});
 
 	afterEach(() => {
-		snapshots = [];
+		snapshots = {};
 		spies.forEach((spy) => void spy.mockRestore());
 	});
 
-	return (pkg: Package) => {
-		pkg.artifacts.forEach((artifact) => {
-			artifact.buildResult.files.forEach((file) => {
-				snapshots.push([file.file, file.code]);
-			});
-		});
+	return (pkg: Package) =>
+		// pkg.artifacts.forEach((artifact) => {
+		// 	artifact.buildResult.files.forEach((file) => {
+		// 		snapshots[file.file] = file.code;
+		// 	});
+		// });
 
-		return snapshots.sort((a, b) => a[0].localeCompare(b[0]));
-	};
+		Object.entries(snapshots).sort((a, b) => a[0].localeCompare(b[0]));
 }
 
 const exampleRoot = new Path(getFixturePath('examples'));
