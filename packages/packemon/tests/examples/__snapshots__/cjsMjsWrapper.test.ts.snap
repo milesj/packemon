@@ -29,34 +29,6 @@ export { CONST, ClassName, arrowFunc, bar, baz, DefaultClass as default, foo, fu
 ]
 `;
 
-exports[`CJS -> MJS wrapper babel transforms example test case: browser-current-esm 2`] = `
-Array [
-  "esm/index-browser-current-esm.js",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: browser, Support: current, Format: esm
-let foo = 'abc';
-const bar = 123;
-const _baz = {
-  baz: true
-},
-      baz = _baz.baz;
-const qux = {};
-
-class ClassName {}
-
-function func() {}
-
-const arrowFunc = () => {};
-
-const CONST = 123;
-
-class DefaultClass {}
-
-export { CONST, ClassName, arrowFunc, bar, baz, DefaultClass as default, foo, func, qux };
-",
-]
-`;
-
 exports[`CJS -> MJS wrapper babel transforms example test case: browser-current-lib 1`] = `
 Array [
   "lib/index-browser-current-lib.js",
@@ -95,47 +67,6 @@ exports.foo = foo;
 exports.func = func;
 exports.qux = qux;
 //# sourceMappingURL=index-browser-current-lib.js.map
-",
-]
-`;
-
-exports[`CJS -> MJS wrapper babel transforms example test case: browser-current-lib 2`] = `
-Array [
-  "lib/index-browser-current-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: browser, Support: current, Format: lib
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-let foo = 'abc';
-const bar = 123;
-const _baz = {
-  baz: true
-},
-      baz = _baz.baz;
-const qux = {};
-
-class ClassName {}
-
-function func() {}
-
-const arrowFunc = () => {};
-
-const CONST = 123;
-
-class DefaultClass {}
-
-exports.CONST = CONST;
-exports.ClassName = ClassName;
-exports.arrowFunc = arrowFunc;
-exports.bar = bar;
-exports.baz = baz;
-exports.default = DefaultClass;
-exports.foo = foo;
-exports.func = func;
-exports.qux = qux;
 ",
 ]
 `;
@@ -199,64 +130,6 @@ Array [
 ]
 `;
 
-exports[`CJS -> MJS wrapper babel transforms example test case: browser-current-umd 2`] = `
-Array [
-  "umd/index-browser-current-umd.js",
-  "(function (global, factory) {
-  if (typeof define === \\"function\\" && define.amd) {
-    define([\\"exports\\"], factory);
-  } else if (typeof exports !== \\"undefined\\") {
-    factory(exports);
-  } else {
-    var mod = {
-      exports: {}
-    };
-    factory(mod.exports);
-    global.examples = mod.exports;
-  }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports) {
-  \\"use strict\\";
-
-  Object.defineProperty(_exports, \\"__esModule\\", {
-    value: true
-  });
-  _exports.foo = _exports.default = _exports.baz = _exports.bar = _exports.arrowFunc = _exports.ClassName = _exports.CONST = void 0;
-  _exports.func = func;
-  _exports.qux = void 0;
-  // Bundled with Packemon: https://packemon.dev
-  // Platform: browser, Support: current, Format: umd
-  let foo = 'abc';
-  _exports.foo = foo;
-  const bar = 123;
-  _exports.bar = bar;
-  const _baz = {
-    baz: true
-  },
-        baz = _baz.baz;
-  _exports.baz = baz;
-  const qux = {};
-  _exports.qux = qux;
-
-  class ClassName {}
-
-  _exports.ClassName = ClassName;
-
-  function func() {}
-
-  const arrowFunc = () => {};
-
-  _exports.arrowFunc = arrowFunc;
-  const CONST = 123;
-  _exports.CONST = CONST;
-
-  class DefaultClass {}
-
-  _exports.default = DefaultClass;
-});
-",
-]
-`;
-
 exports[`CJS -> MJS wrapper babel transforms example test case: browser-experimental-esm 1`] = `
 Array [
   "esm/index-browser-experimental-esm.js",
@@ -282,34 +155,6 @@ class DefaultClass {}
 
 export { CONST, ClassName, arrowFunc, bar, baz, DefaultClass as default, foo, func, qux };
 //# sourceMappingURL=index-browser-experimental-esm.js.map
-",
-]
-`;
-
-exports[`CJS -> MJS wrapper babel transforms example test case: browser-experimental-esm 2`] = `
-Array [
-  "esm/index-browser-experimental-esm.js",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: browser, Support: experimental, Format: esm
-let foo = 'abc';
-const bar = 123;
-const _baz = {
-  baz: true
-},
-      baz = _baz.baz;
-const qux = {};
-
-class ClassName {}
-
-function func() {}
-
-const arrowFunc = () => {};
-
-const CONST = 123;
-
-class DefaultClass {}
-
-export { CONST, ClassName, arrowFunc, bar, baz, DefaultClass as default, foo, func, qux };
 ",
 ]
 `;
@@ -352,47 +197,6 @@ exports.foo = foo;
 exports.func = func;
 exports.qux = qux;
 //# sourceMappingURL=index-browser-experimental-lib.js.map
-",
-]
-`;
-
-exports[`CJS -> MJS wrapper babel transforms example test case: browser-experimental-lib 2`] = `
-Array [
-  "lib/index-browser-experimental-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: browser, Support: experimental, Format: lib
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-let foo = 'abc';
-const bar = 123;
-const _baz = {
-  baz: true
-},
-      baz = _baz.baz;
-const qux = {};
-
-class ClassName {}
-
-function func() {}
-
-const arrowFunc = () => {};
-
-const CONST = 123;
-
-class DefaultClass {}
-
-exports.CONST = CONST;
-exports.ClassName = ClassName;
-exports.arrowFunc = arrowFunc;
-exports.bar = bar;
-exports.baz = baz;
-exports.default = DefaultClass;
-exports.foo = foo;
-exports.func = func;
-exports.qux = qux;
 ",
 ]
 `;
@@ -456,64 +260,6 @@ Array [
 ]
 `;
 
-exports[`CJS -> MJS wrapper babel transforms example test case: browser-experimental-umd 2`] = `
-Array [
-  "umd/index-browser-experimental-umd.js",
-  "(function (global, factory) {
-  if (typeof define === \\"function\\" && define.amd) {
-    define([\\"exports\\"], factory);
-  } else if (typeof exports !== \\"undefined\\") {
-    factory(exports);
-  } else {
-    var mod = {
-      exports: {}
-    };
-    factory(mod.exports);
-    global.examples = mod.exports;
-  }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports) {
-  \\"use strict\\";
-
-  Object.defineProperty(_exports, \\"__esModule\\", {
-    value: true
-  });
-  _exports.foo = _exports.default = _exports.baz = _exports.bar = _exports.arrowFunc = _exports.ClassName = _exports.CONST = void 0;
-  _exports.func = func;
-  _exports.qux = void 0;
-  // Bundled with Packemon: https://packemon.dev
-  // Platform: browser, Support: experimental, Format: umd
-  let foo = 'abc';
-  _exports.foo = foo;
-  const bar = 123;
-  _exports.bar = bar;
-  const _baz = {
-    baz: true
-  },
-        baz = _baz.baz;
-  _exports.baz = baz;
-  const qux = {};
-  _exports.qux = qux;
-
-  class ClassName {}
-
-  _exports.ClassName = ClassName;
-
-  function func() {}
-
-  const arrowFunc = () => {};
-
-  _exports.arrowFunc = arrowFunc;
-  const CONST = 123;
-  _exports.CONST = CONST;
-
-  class DefaultClass {}
-
-  _exports.default = DefaultClass;
-});
-",
-]
-`;
-
 exports[`CJS -> MJS wrapper babel transforms example test case: browser-legacy-esm 1`] = `
 Array [
   "esm/index-browser-legacy-esm.js",
@@ -555,50 +301,6 @@ var DefaultClass = /*#__PURE__*/_createClass(function DefaultClass() {
 
 export { CONST, ClassName, arrowFunc, bar, baz, DefaultClass as default, foo, func, qux };
 //# sourceMappingURL=index-browser-legacy-esm.js.map
-",
-]
-`;
-
-exports[`CJS -> MJS wrapper babel transforms example test case: browser-legacy-esm 2`] = `
-Array [
-  "esm/index-browser-legacy-esm.js",
-  "var _this = this;
-
-function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError(\\"Cannot instantiate an arrow function\\"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\\"value\\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, \\"prototype\\", { writable: false }); return Constructor; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\\"Cannot call a class as a function\\"); } }
-
-// Bundled with Packemon: https://packemon.dev
-// Platform: browser, Support: legacy, Format: esm
-var foo = 'abc';
-var bar = 123;
-var _baz = {
-  baz: true
-},
-    baz = _baz.baz;
-var qux = {};
-
-var ClassName = /*#__PURE__*/_createClass(function ClassName() {
-  _classCallCheck(this, ClassName);
-});
-
-function func() {}
-
-var arrowFunc = function arrowFunc() {
-  _newArrowCheck(this, _this);
-}.bind(this);
-
-var CONST = 123;
-
-var DefaultClass = /*#__PURE__*/_createClass(function DefaultClass() {
-  _classCallCheck(this, DefaultClass);
-});
-
-export { CONST, ClassName, arrowFunc, bar, baz, DefaultClass as default, foo, func, qux };
 ",
 ]
 `;
@@ -657,63 +359,6 @@ exports.foo = foo;
 exports.func = func;
 exports.qux = qux;
 //# sourceMappingURL=index-browser-legacy-lib.js.map
-",
-]
-`;
-
-exports[`CJS -> MJS wrapper babel transforms example test case: browser-legacy-lib 2`] = `
-Array [
-  "lib/index-browser-legacy-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: browser, Support: legacy, Format: lib
-'use strict';
-
-var _this = this;
-
-function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError(\\"Cannot instantiate an arrow function\\"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\\"value\\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, \\"prototype\\", { writable: false }); return Constructor; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\\"Cannot call a class as a function\\"); } }
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-var foo = 'abc';
-var bar = 123;
-var _baz = {
-  baz: true
-},
-    baz = _baz.baz;
-var qux = {};
-
-var ClassName = /*#__PURE__*/_createClass(function ClassName() {
-  _classCallCheck(this, ClassName);
-});
-
-function func() {}
-
-var arrowFunc = function arrowFunc() {
-  _newArrowCheck(this, _this);
-}.bind(this);
-
-var CONST = 123;
-
-var DefaultClass = /*#__PURE__*/_createClass(function DefaultClass() {
-  _classCallCheck(this, DefaultClass);
-});
-
-exports.CONST = CONST;
-exports.ClassName = ClassName;
-exports.arrowFunc = arrowFunc;
-exports.bar = bar;
-exports.baz = baz;
-exports.default = DefaultClass;
-exports.foo = foo;
-exports.func = func;
-exports.qux = qux;
 ",
 ]
 `;
@@ -794,81 +439,6 @@ Array [
 ]
 `;
 
-exports[`CJS -> MJS wrapper babel transforms example test case: browser-legacy-umd 2`] = `
-Array [
-  "umd/index-browser-legacy-umd.js",
-  "(function (global, factory) {
-  if (typeof define === \\"function\\" && define.amd) {
-    define([\\"exports\\"], factory);
-  } else if (typeof exports !== \\"undefined\\") {
-    factory(exports);
-  } else {
-    var mod = {
-      exports: {}
-    };
-    factory(mod.exports);
-    global.examples = mod.exports;
-  }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports) {
-  \\"use strict\\";
-
-  Object.defineProperty(_exports, \\"__esModule\\", {
-    value: true
-  });
-  _exports.foo = _exports.default = _exports.baz = _exports.bar = _exports.arrowFunc = _exports.ClassName = _exports.CONST = void 0;
-  _exports.func = func;
-  _exports.qux = void 0;
-
-  var _this = void 0;
-
-  function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError(\\"Cannot instantiate an arrow function\\"); } }
-
-  function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\\"value\\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-  function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, \\"prototype\\", { writable: false }); return Constructor; }
-
-  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\\"Cannot call a class as a function\\"); } }
-
-  // Bundled with Packemon: https://packemon.dev
-  // Platform: browser, Support: legacy, Format: umd
-  var foo = 'abc';
-  _exports.foo = foo;
-  var bar = 123;
-  _exports.bar = bar;
-  var _baz = {
-    baz: true
-  },
-      baz = _baz.baz;
-  _exports.baz = baz;
-  var qux = {};
-  _exports.qux = qux;
-
-  var ClassName = /*#__PURE__*/_createClass(function ClassName() {
-    _classCallCheck(this, ClassName);
-  });
-
-  _exports.ClassName = ClassName;
-
-  function func() {}
-
-  var arrowFunc = function arrowFunc() {
-    _newArrowCheck(this, _this);
-  }.bind(void 0);
-
-  _exports.arrowFunc = arrowFunc;
-  var CONST = 123;
-  _exports.CONST = CONST;
-
-  var DefaultClass = /*#__PURE__*/_createClass(function DefaultClass() {
-    _classCallCheck(this, DefaultClass);
-  });
-
-  _exports.default = DefaultClass;
-});
-",
-]
-`;
-
 exports[`CJS -> MJS wrapper babel transforms example test case: browser-stable-esm 1`] = `
 Array [
   "esm/index-browser-stable-esm.js",
@@ -894,34 +464,6 @@ class DefaultClass {}
 
 export { CONST, ClassName, arrowFunc, bar, baz, DefaultClass as default, foo, func, qux };
 //# sourceMappingURL=index-browser-stable-esm.js.map
-",
-]
-`;
-
-exports[`CJS -> MJS wrapper babel transforms example test case: browser-stable-esm 2`] = `
-Array [
-  "esm/index-browser-stable-esm.js",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: browser, Support: stable, Format: esm
-let foo = 'abc';
-const bar = 123;
-const _baz = {
-  baz: true
-},
-      baz = _baz.baz;
-const qux = {};
-
-class ClassName {}
-
-function func() {}
-
-const arrowFunc = () => {};
-
-const CONST = 123;
-
-class DefaultClass {}
-
-export { CONST, ClassName, arrowFunc, bar, baz, DefaultClass as default, foo, func, qux };
 ",
 ]
 `;
@@ -964,47 +506,6 @@ exports.foo = foo;
 exports.func = func;
 exports.qux = qux;
 //# sourceMappingURL=index-browser-stable-lib.js.map
-",
-]
-`;
-
-exports[`CJS -> MJS wrapper babel transforms example test case: browser-stable-lib 2`] = `
-Array [
-  "lib/index-browser-stable-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: browser, Support: stable, Format: lib
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-let foo = 'abc';
-const bar = 123;
-const _baz = {
-  baz: true
-},
-      baz = _baz.baz;
-const qux = {};
-
-class ClassName {}
-
-function func() {}
-
-const arrowFunc = () => {};
-
-const CONST = 123;
-
-class DefaultClass {}
-
-exports.CONST = CONST;
-exports.ClassName = ClassName;
-exports.arrowFunc = arrowFunc;
-exports.bar = bar;
-exports.baz = baz;
-exports.default = DefaultClass;
-exports.foo = foo;
-exports.func = func;
-exports.qux = qux;
 ",
 ]
 `;
@@ -1068,64 +569,6 @@ Array [
 ]
 `;
 
-exports[`CJS -> MJS wrapper babel transforms example test case: browser-stable-umd 2`] = `
-Array [
-  "umd/index-browser-stable-umd.js",
-  "(function (global, factory) {
-  if (typeof define === \\"function\\" && define.amd) {
-    define([\\"exports\\"], factory);
-  } else if (typeof exports !== \\"undefined\\") {
-    factory(exports);
-  } else {
-    var mod = {
-      exports: {}
-    };
-    factory(mod.exports);
-    global.examples = mod.exports;
-  }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports) {
-  \\"use strict\\";
-
-  Object.defineProperty(_exports, \\"__esModule\\", {
-    value: true
-  });
-  _exports.foo = _exports.default = _exports.baz = _exports.bar = _exports.arrowFunc = _exports.ClassName = _exports.CONST = void 0;
-  _exports.func = func;
-  _exports.qux = void 0;
-  // Bundled with Packemon: https://packemon.dev
-  // Platform: browser, Support: stable, Format: umd
-  let foo = 'abc';
-  _exports.foo = foo;
-  const bar = 123;
-  _exports.bar = bar;
-  const _baz = {
-    baz: true
-  },
-        baz = _baz.baz;
-  _exports.baz = baz;
-  const qux = {};
-  _exports.qux = qux;
-
-  class ClassName {}
-
-  _exports.ClassName = ClassName;
-
-  function func() {}
-
-  const arrowFunc = () => {};
-
-  _exports.arrowFunc = arrowFunc;
-  const CONST = 123;
-  _exports.CONST = CONST;
-
-  class DefaultClass {}
-
-  _exports.default = DefaultClass;
-});
-",
-]
-`;
-
 exports[`CJS -> MJS wrapper babel transforms example test case: native-current-lib 1`] = `
 Array [
   "lib/index-native-current-lib.js",
@@ -1164,47 +607,6 @@ exports.foo = foo;
 exports.func = func;
 exports.qux = qux;
 //# sourceMappingURL=index-native-current-lib.js.map
-",
-]
-`;
-
-exports[`CJS -> MJS wrapper babel transforms example test case: native-current-lib 2`] = `
-Array [
-  "lib/index-native-current-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: native, Support: current, Format: lib
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-let foo = 'abc';
-const bar = 123;
-const _baz = {
-  baz: true
-},
-      baz = _baz.baz;
-const qux = {};
-
-class ClassName {}
-
-function func() {}
-
-const arrowFunc = () => {};
-
-const CONST = 123;
-
-class DefaultClass {}
-
-exports.CONST = CONST;
-exports.ClassName = ClassName;
-exports.arrowFunc = arrowFunc;
-exports.bar = bar;
-exports.baz = baz;
-exports.default = DefaultClass;
-exports.foo = foo;
-exports.func = func;
-exports.qux = qux;
 ",
 ]
 `;
@@ -1251,47 +653,6 @@ exports.qux = qux;
 ]
 `;
 
-exports[`CJS -> MJS wrapper babel transforms example test case: native-experimental-lib 2`] = `
-Array [
-  "lib/index-native-experimental-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: native, Support: experimental, Format: lib
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-let foo = 'abc';
-const bar = 123;
-const _baz = {
-  baz: true
-},
-      baz = _baz.baz;
-const qux = {};
-
-class ClassName {}
-
-function func() {}
-
-const arrowFunc = () => {};
-
-const CONST = 123;
-
-class DefaultClass {}
-
-exports.CONST = CONST;
-exports.ClassName = ClassName;
-exports.arrowFunc = arrowFunc;
-exports.bar = bar;
-exports.baz = baz;
-exports.default = DefaultClass;
-exports.foo = foo;
-exports.func = func;
-exports.qux = qux;
-",
-]
-`;
-
 exports[`CJS -> MJS wrapper babel transforms example test case: native-legacy-lib 1`] = `
 Array [
   "lib/index-native-legacy-lib.js",
@@ -1330,47 +691,6 @@ exports.foo = foo;
 exports.func = func;
 exports.qux = qux;
 //# sourceMappingURL=index-native-legacy-lib.js.map
-",
-]
-`;
-
-exports[`CJS -> MJS wrapper babel transforms example test case: native-legacy-lib 2`] = `
-Array [
-  "lib/index-native-legacy-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: native, Support: legacy, Format: lib
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-let foo = 'abc';
-const bar = 123;
-const _baz = {
-  baz: true
-},
-      baz = _baz.baz;
-const qux = {};
-
-class ClassName {}
-
-function func() {}
-
-const arrowFunc = () => {};
-
-const CONST = 123;
-
-class DefaultClass {}
-
-exports.CONST = CONST;
-exports.ClassName = ClassName;
-exports.arrowFunc = arrowFunc;
-exports.bar = bar;
-exports.baz = baz;
-exports.default = DefaultClass;
-exports.foo = foo;
-exports.func = func;
-exports.qux = qux;
 ",
 ]
 `;
@@ -1417,52 +737,16 @@ exports.qux = qux;
 ]
 `;
 
-exports[`CJS -> MJS wrapper babel transforms example test case: native-stable-lib 2`] = `
-Array [
-  "lib/index-native-stable-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: native, Support: stable, Format: lib
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-let foo = 'abc';
-const bar = 123;
-const _baz = {
-  baz: true
-},
-      baz = _baz.baz;
-const qux = {};
-
-class ClassName {}
-
-function func() {}
-
-const arrowFunc = () => {};
-
-const CONST = 123;
-
-class DefaultClass {}
-
-exports.CONST = CONST;
-exports.ClassName = ClassName;
-exports.arrowFunc = arrowFunc;
-exports.bar = bar;
-exports.baz = baz;
-exports.default = DefaultClass;
-exports.foo = foo;
-exports.func = func;
-exports.qux = qux;
-",
-]
-`;
-
 exports[`CJS -> MJS wrapper babel transforms example test case: node-current-cjs 1`] = `
 Array [
   "cjs/index-node-current-cjs-wrapper.mjs",
-  "import data from './index-node-current-cjs.cjs';
-export const { foo, bar, qux, ClassName, func, arrowFunc, CONST } = data;
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-current-cjs.cjs';
+
+export const { foo, bar, baz, qux, ClassName, func, arrowFunc, CONST } = data;
+
 export default data.default;",
 ]
 `;
@@ -1509,47 +793,6 @@ exports.qux = qux;
 ]
 `;
 
-exports[`CJS -> MJS wrapper babel transforms example test case: node-current-cjs 3`] = `
-Array [
-  "cjs/index-node-current-cjs.cjs",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: node, Support: current, Format: cjs
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-let foo = 'abc';
-const bar = 123;
-const _baz = {
-  baz: true
-},
-      baz = _baz.baz;
-const qux = {};
-
-class ClassName {}
-
-function func() {}
-
-const arrowFunc = () => {};
-
-const CONST = 123;
-
-class DefaultClass {}
-
-exports.CONST = CONST;
-exports.ClassName = ClassName;
-exports.arrowFunc = arrowFunc;
-exports.bar = bar;
-exports.baz = baz;
-exports.default = DefaultClass;
-exports.foo = foo;
-exports.func = func;
-exports.qux = qux;
-",
-]
-`;
-
 exports[`CJS -> MJS wrapper babel transforms example test case: node-current-lib 1`] = `
 Array [
   "lib/index-node-current-lib.js",
@@ -1592,47 +835,6 @@ exports.qux = qux;
 ]
 `;
 
-exports[`CJS -> MJS wrapper babel transforms example test case: node-current-lib 2`] = `
-Array [
-  "lib/index-node-current-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: node, Support: current, Format: lib
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-let foo = 'abc';
-const bar = 123;
-const _baz = {
-  baz: true
-},
-      baz = _baz.baz;
-const qux = {};
-
-class ClassName {}
-
-function func() {}
-
-const arrowFunc = () => {};
-
-const CONST = 123;
-
-class DefaultClass {}
-
-exports.CONST = CONST;
-exports.ClassName = ClassName;
-exports.arrowFunc = arrowFunc;
-exports.bar = bar;
-exports.baz = baz;
-exports.default = DefaultClass;
-exports.foo = foo;
-exports.func = func;
-exports.qux = qux;
-",
-]
-`;
-
 exports[`CJS -> MJS wrapper babel transforms example test case: node-current-mjs 1`] = `
 Array [
   "mjs/index-node-current-mjs.mjs",
@@ -1662,39 +864,16 @@ export { CONST, ClassName, arrowFunc, bar, baz, DefaultClass as default, foo, fu
 ]
 `;
 
-exports[`CJS -> MJS wrapper babel transforms example test case: node-current-mjs 2`] = `
-Array [
-  "mjs/index-node-current-mjs.mjs",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: node, Support: current, Format: mjs
-let foo = 'abc';
-const bar = 123;
-const _baz = {
-  baz: true
-},
-      baz = _baz.baz;
-const qux = {};
-
-class ClassName {}
-
-function func() {}
-
-const arrowFunc = () => {};
-
-const CONST = 123;
-
-class DefaultClass {}
-
-export { CONST, ClassName, arrowFunc, bar, baz, DefaultClass as default, foo, func, qux };
-",
-]
-`;
-
 exports[`CJS -> MJS wrapper babel transforms example test case: node-experimental-cjs 1`] = `
 Array [
   "cjs/index-node-experimental-cjs-wrapper.mjs",
-  "import data from './index-node-experimental-cjs.cjs';
-export const { foo, bar, qux, ClassName, func, arrowFunc, CONST } = data;
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-experimental-cjs.cjs';
+
+export const { foo, bar, baz, qux, ClassName, func, arrowFunc, CONST } = data;
+
 export default data.default;",
 ]
 `;
@@ -1741,47 +920,6 @@ exports.qux = qux;
 ]
 `;
 
-exports[`CJS -> MJS wrapper babel transforms example test case: node-experimental-cjs 3`] = `
-Array [
-  "cjs/index-node-experimental-cjs.cjs",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: node, Support: experimental, Format: cjs
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-let foo = 'abc';
-const bar = 123;
-const _baz = {
-  baz: true
-},
-      baz = _baz.baz;
-const qux = {};
-
-class ClassName {}
-
-function func() {}
-
-const arrowFunc = () => {};
-
-const CONST = 123;
-
-class DefaultClass {}
-
-exports.CONST = CONST;
-exports.ClassName = ClassName;
-exports.arrowFunc = arrowFunc;
-exports.bar = bar;
-exports.baz = baz;
-exports.default = DefaultClass;
-exports.foo = foo;
-exports.func = func;
-exports.qux = qux;
-",
-]
-`;
-
 exports[`CJS -> MJS wrapper babel transforms example test case: node-experimental-lib 1`] = `
 Array [
   "lib/index-node-experimental-lib.js",
@@ -1824,47 +962,6 @@ exports.qux = qux;
 ]
 `;
 
-exports[`CJS -> MJS wrapper babel transforms example test case: node-experimental-lib 2`] = `
-Array [
-  "lib/index-node-experimental-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: node, Support: experimental, Format: lib
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-let foo = 'abc';
-const bar = 123;
-const _baz = {
-  baz: true
-},
-      baz = _baz.baz;
-const qux = {};
-
-class ClassName {}
-
-function func() {}
-
-const arrowFunc = () => {};
-
-const CONST = 123;
-
-class DefaultClass {}
-
-exports.CONST = CONST;
-exports.ClassName = ClassName;
-exports.arrowFunc = arrowFunc;
-exports.bar = bar;
-exports.baz = baz;
-exports.default = DefaultClass;
-exports.foo = foo;
-exports.func = func;
-exports.qux = qux;
-",
-]
-`;
-
 exports[`CJS -> MJS wrapper babel transforms example test case: node-experimental-mjs 1`] = `
 Array [
   "mjs/index-node-experimental-mjs.mjs",
@@ -1894,39 +991,16 @@ export { CONST, ClassName, arrowFunc, bar, baz, DefaultClass as default, foo, fu
 ]
 `;
 
-exports[`CJS -> MJS wrapper babel transforms example test case: node-experimental-mjs 2`] = `
-Array [
-  "mjs/index-node-experimental-mjs.mjs",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: node, Support: experimental, Format: mjs
-let foo = 'abc';
-const bar = 123;
-const _baz = {
-  baz: true
-},
-      baz = _baz.baz;
-const qux = {};
-
-class ClassName {}
-
-function func() {}
-
-const arrowFunc = () => {};
-
-const CONST = 123;
-
-class DefaultClass {}
-
-export { CONST, ClassName, arrowFunc, bar, baz, DefaultClass as default, foo, func, qux };
-",
-]
-`;
-
 exports[`CJS -> MJS wrapper babel transforms example test case: node-legacy-cjs 1`] = `
 Array [
   "cjs/index-node-legacy-cjs-wrapper.mjs",
-  "import data from './index-node-legacy-cjs.cjs';
-export const { foo, bar, qux, ClassName, func, arrowFunc, CONST } = data;
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-legacy-cjs.cjs';
+
+export const { foo, bar, baz, qux, ClassName, func, arrowFunc, CONST } = data;
+
 export default data.default;",
 ]
 `;
@@ -1973,47 +1047,6 @@ exports.qux = qux;
 ]
 `;
 
-exports[`CJS -> MJS wrapper babel transforms example test case: node-legacy-cjs 3`] = `
-Array [
-  "cjs/index-node-legacy-cjs.cjs",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: node, Support: legacy, Format: cjs
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-let foo = 'abc';
-const bar = 123;
-const _baz = {
-  baz: true
-},
-      baz = _baz.baz;
-const qux = {};
-
-class ClassName {}
-
-function func() {}
-
-const arrowFunc = () => {};
-
-const CONST = 123;
-
-class DefaultClass {}
-
-exports.CONST = CONST;
-exports.ClassName = ClassName;
-exports.arrowFunc = arrowFunc;
-exports.bar = bar;
-exports.baz = baz;
-exports.default = DefaultClass;
-exports.foo = foo;
-exports.func = func;
-exports.qux = qux;
-",
-]
-`;
-
 exports[`CJS -> MJS wrapper babel transforms example test case: node-legacy-lib 1`] = `
 Array [
   "lib/index-node-legacy-lib.js",
@@ -2056,47 +1089,6 @@ exports.qux = qux;
 ]
 `;
 
-exports[`CJS -> MJS wrapper babel transforms example test case: node-legacy-lib 2`] = `
-Array [
-  "lib/index-node-legacy-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: node, Support: legacy, Format: lib
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-let foo = 'abc';
-const bar = 123;
-const _baz = {
-  baz: true
-},
-      baz = _baz.baz;
-const qux = {};
-
-class ClassName {}
-
-function func() {}
-
-const arrowFunc = () => {};
-
-const CONST = 123;
-
-class DefaultClass {}
-
-exports.CONST = CONST;
-exports.ClassName = ClassName;
-exports.arrowFunc = arrowFunc;
-exports.bar = bar;
-exports.baz = baz;
-exports.default = DefaultClass;
-exports.foo = foo;
-exports.func = func;
-exports.qux = qux;
-",
-]
-`;
-
 exports[`CJS -> MJS wrapper babel transforms example test case: node-legacy-mjs 1`] = `
 Array [
   "mjs/index-node-legacy-mjs.mjs",
@@ -2126,39 +1118,16 @@ export { CONST, ClassName, arrowFunc, bar, baz, DefaultClass as default, foo, fu
 ]
 `;
 
-exports[`CJS -> MJS wrapper babel transforms example test case: node-legacy-mjs 2`] = `
-Array [
-  "mjs/index-node-legacy-mjs.mjs",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: node, Support: legacy, Format: mjs
-let foo = 'abc';
-const bar = 123;
-const _baz = {
-  baz: true
-},
-      baz = _baz.baz;
-const qux = {};
-
-class ClassName {}
-
-function func() {}
-
-const arrowFunc = () => {};
-
-const CONST = 123;
-
-class DefaultClass {}
-
-export { CONST, ClassName, arrowFunc, bar, baz, DefaultClass as default, foo, func, qux };
-",
-]
-`;
-
 exports[`CJS -> MJS wrapper babel transforms example test case: node-stable-cjs 1`] = `
 Array [
   "cjs/index-node-stable-cjs-wrapper.mjs",
-  "import data from './index-node-stable-cjs.cjs';
-export const { foo, bar, qux, ClassName, func, arrowFunc, CONST } = data;
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-stable-cjs.cjs';
+
+export const { foo, bar, baz, qux, ClassName, func, arrowFunc, CONST } = data;
+
 export default data.default;",
 ]
 `;
@@ -2205,47 +1174,6 @@ exports.qux = qux;
 ]
 `;
 
-exports[`CJS -> MJS wrapper babel transforms example test case: node-stable-cjs 3`] = `
-Array [
-  "cjs/index-node-stable-cjs.cjs",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: node, Support: stable, Format: cjs
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-let foo = 'abc';
-const bar = 123;
-const _baz = {
-  baz: true
-},
-      baz = _baz.baz;
-const qux = {};
-
-class ClassName {}
-
-function func() {}
-
-const arrowFunc = () => {};
-
-const CONST = 123;
-
-class DefaultClass {}
-
-exports.CONST = CONST;
-exports.ClassName = ClassName;
-exports.arrowFunc = arrowFunc;
-exports.bar = bar;
-exports.baz = baz;
-exports.default = DefaultClass;
-exports.foo = foo;
-exports.func = func;
-exports.qux = qux;
-",
-]
-`;
-
 exports[`CJS -> MJS wrapper babel transforms example test case: node-stable-lib 1`] = `
 Array [
   "lib/index-node-stable-lib.js",
@@ -2288,47 +1216,6 @@ exports.qux = qux;
 ]
 `;
 
-exports[`CJS -> MJS wrapper babel transforms example test case: node-stable-lib 2`] = `
-Array [
-  "lib/index-node-stable-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: node, Support: stable, Format: lib
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-let foo = 'abc';
-const bar = 123;
-const _baz = {
-  baz: true
-},
-      baz = _baz.baz;
-const qux = {};
-
-class ClassName {}
-
-function func() {}
-
-const arrowFunc = () => {};
-
-const CONST = 123;
-
-class DefaultClass {}
-
-exports.CONST = CONST;
-exports.ClassName = ClassName;
-exports.arrowFunc = arrowFunc;
-exports.bar = bar;
-exports.baz = baz;
-exports.default = DefaultClass;
-exports.foo = foo;
-exports.func = func;
-exports.qux = qux;
-",
-]
-`;
-
 exports[`CJS -> MJS wrapper babel transforms example test case: node-stable-mjs 1`] = `
 Array [
   "mjs/index-node-stable-mjs.mjs",
@@ -2354,34 +1241,6 @@ class DefaultClass {}
 
 export { CONST, ClassName, arrowFunc, bar, baz, DefaultClass as default, foo, func, qux };
 //# sourceMappingURL=index-node-stable-mjs.mjs.map
-",
-]
-`;
-
-exports[`CJS -> MJS wrapper babel transforms example test case: node-stable-mjs 2`] = `
-Array [
-  "mjs/index-node-stable-mjs.mjs",
-  "// Bundled with Packemon: https://packemon.dev
-// Platform: node, Support: stable, Format: mjs
-let foo = 'abc';
-const bar = 123;
-const _baz = {
-  baz: true
-},
-      baz = _baz.baz;
-const qux = {};
-
-class ClassName {}
-
-function func() {}
-
-const arrowFunc = () => {};
-
-const CONST = 123;
-
-class DefaultClass {}
-
-export { CONST, ClassName, arrowFunc, bar, baz, DefaultClass as default, foo, func, qux };
 ",
 ]
 `;
