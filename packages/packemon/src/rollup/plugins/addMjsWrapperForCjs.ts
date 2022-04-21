@@ -124,24 +124,29 @@ function createMjsFileFromExports(
 	input: string,
 	{ namedExports, defaultExport }: ExtractedExports,
 ) {
-	// Nothing exported, so must have side-effects (bin files, for example)
-	if (namedExports.length === 0 && !defaultExport) {
-		return `import './${input}.cjs';`;
-	}
-
 	const mjs = [
 		'// Bundled with Packemon: https://packemon.dev',
 		'// This is an MJS wrapper for a sibling CJS file',
 	];
 
-	mjs.push('', `import data from './${input}.cjs';`);
+	// Nothing exported, so must have side-effects (bin files, for example)
+	if (namedExports.length === 0 && !defaultExport) {
+		mjs.push('', `import './${input}.cjs';`);
 
-	if (namedExports.length > 0) {
-		mjs.push('', `export const { ${namedExports.join(', ')} } = data;`);
-	}
+		// Otherwise, define explicit named and default exports
+	} else {
+		mjs.push('', `import data from './${input}.cjs';`);
 
-	if (defaultExport) {
-		mjs.push('', namedExports.length > 0 ? `export default data.default;` : `export default data;`);
+		if (namedExports.length > 0) {
+			mjs.push('', `export const { ${namedExports.join(', ')} } = data;`);
+		}
+
+		if (defaultExport) {
+			mjs.push(
+				'',
+				namedExports.length > 0 ? `export default data.default;` : `export default data;`,
+			);
+		}
 	}
 
 	return mjs.join('\n');
