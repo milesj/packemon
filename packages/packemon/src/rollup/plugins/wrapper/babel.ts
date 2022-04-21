@@ -73,7 +73,10 @@ function extractTypeNames(node: t.Program): string[] {
 	return types;
 }
 
-export function extractExports(id: string, getModuleInfo: GetModuleInfo): ExtractedExports {
+export function extractExportsWithBabel(
+	id: string,
+	getModuleInfo: GetModuleInfo,
+): ExtractedExports {
 	const info = getModuleInfo(id);
 
 	if (!info || !info.ast) {
@@ -133,7 +136,7 @@ export function extractExports(id: string, getModuleInfo: GetModuleInfo): Extrac
 				);
 
 				if (importId) {
-					namedExports.push(...extractExports(importId, getModuleInfo).namedExports);
+					namedExports.push(...extractExportsWithBabel(importId, getModuleInfo).namedExports);
 				}
 			}
 		}

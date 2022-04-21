@@ -1,11 +1,13 @@
 import { Plugin } from 'rollup';
 import { Path } from '@boost/common';
 import { InputMap } from '../../types';
-import { ExtractedExports, extractExports } from './wrapper/babel';
+import { ExtractedExports, extractExportsWithBabel } from './wrapper/babel';
+import { extractExportsWithSwc } from './wrapper/swc';
 
 export interface AddMjsWrapperOptions {
 	inputs: InputMap;
 	packageRoot: Path;
+	swc: boolean;
 }
 
 function createMjsFileFromExports(
@@ -40,7 +42,7 @@ function createMjsFileFromExports(
 	return mjs.join('\n');
 }
 
-export function addMjsWrapperForCjs({ inputs, packageRoot }: AddMjsWrapperOptions): Plugin {
+export function addMjsWrapperForCjs({ inputs, packageRoot, swc }: AddMjsWrapperOptions): Plugin {
 	return {
 		name: 'packemon-add-mjs-wrapper-for-cjs',
 
@@ -48,6 +50,8 @@ export function addMjsWrapperForCjs({ inputs, packageRoot }: AddMjsWrapperOption
 			if (error) {
 				return;
 			}
+
+			const extractExports = swc ? extractExportsWithSwc : extractExportsWithBabel;
 
 			Object.entries(inputs).forEach(([input, inputPath]) => {
 				this.emitFile({

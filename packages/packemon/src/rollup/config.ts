@@ -224,7 +224,11 @@ export function getRollupConfig(
 	config.output = artifact.builds.map((build) => {
 		if (build.format === 'cjs') {
 			config.plugins!.push(
-				addMjsWrapperForCjs({ inputs: artifact.inputs, packageRoot: artifact.package.path }),
+				addMjsWrapperForCjs({
+					inputs: artifact.inputs,
+					packageRoot: artifact.package.path,
+					swc: isSwc,
+				}),
 			);
 		}
 
