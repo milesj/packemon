@@ -2,7 +2,7 @@ import { Plugin } from 'rollup';
 import { Path } from '@boost/common';
 import { InputMap } from '../../types';
 import { ExtractedExports, extractExportsWithBabel } from './wrapper/babel';
-import { extractExportsWithSwc } from './wrapper/swc';
+// import { extractExportsWithSwc } from './wrapper/swc';
 
 export interface AddMjsWrapperOptions {
 	inputs: InputMap;
@@ -51,7 +51,8 @@ export function addMjsWrapperForCjs({ inputs, packageRoot, swc }: AddMjsWrapperO
 				return;
 			}
 
-			const extractExports = swc ? extractExportsWithSwc : extractExportsWithBabel;
+			// Rollup doesn't seem to use the SWC AST???
+			const extractExports = extractExportsWithBabel; // swc ? extractExportsWithSwc : extractExportsWithBabel;
 
 			Object.entries(inputs).forEach(([input, inputPath]) => {
 				this.emitFile({

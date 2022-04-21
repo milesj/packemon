@@ -25,4 +25,5 @@ export default class DefaultClass {}
 export type Type = string;
 export interface Interface {}
 type LocalType = boolean;
-export { Baz, BazRenamed, LocalType };
+export { Baz, LocalType };
+export type { BazRenamed };

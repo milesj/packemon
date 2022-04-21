@@ -1751,3 +1751,1486 @@ export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, 
 ",
 ]
 `;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: browser-current-esm 1`] = `
+Array [
+  "esm/index-browser-current-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: current, Format: esm
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty({
+    __proto__: null,
+    foo,
+    bar
+}, Symbol.toStringTag, {
+    value: 'Module'
+}));
+let a;
+const b = 123;
+const { c  } = {
+    c: true
+};
+const [d] = [
+    {}
+];
+const e = 456, f = 'xyz';
+let ClassName = class ClassName {
+};
+function func() {}
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
+};
+export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, func, helpers as ns1, helpers as ns2, helpers as ns3 };
+//# sourceMappingURL=index-browser-current-esm.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: browser-current-lib 1`] = `
+Array [
+  "lib/index-browser-current-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: current, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+});
+let a = 'abc';
+const b = 123;
+const { c  } = {
+    c: true
+};
+const [d] = [
+    {}
+];
+const e = 456, f = 'xyz';
+let ClassName = class ClassName {
+};
+function func() {}
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
+};
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-browser-current-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: browser-current-umd 1`] = `
+Array [
+  "umd/index-browser-current-umd.js",
+  "(function(global, factory) {
+    if (typeof define === \\"function\\" && define.amd) {
+        define([
+            \\"exports\\"
+        ], factory);
+    } else if (typeof exports !== \\"undefined\\") {
+        factory(exports);
+    } else {
+        var mod = {
+            exports: {}
+        };
+        factory(mod.exports);
+        global.examples = mod.exports;
+    }
+})(this, function(_exports) {
+    \\"use strict\\";
+    Object.defineProperty(_exports, \\"__esModule\\", {
+        value: true
+    });
+    _exports.default = _exports.CONST = _exports.arrowFunc = _exports.func = _exports.ClassName = _exports.f = _exports.e = _exports.d = _exports.c = _exports.b = _exports.a = _exports.ns3 = _exports.ns2 = _exports.ns1 = _exports.bar = _exports.foo = void 0;
+    function foo() {}
+    _exports.foo = foo;
+    function bar() {}
+    _exports.bar = bar;
+    const helpers = /*#__PURE__*/ Object.freeze({
+        __proto__: null,
+        foo,
+        bar
+    });
+    _exports.ns1 = helpers;
+    _exports.ns2 = helpers;
+    _exports.ns3 = helpers;
+    let a;
+    _exports.a = a;
+    const b = 123;
+    _exports.b = b;
+    const { c  } = {
+        c: true
+    };
+    _exports.c = c;
+    const [d] = [
+        {}
+    ];
+    _exports.d = d;
+    const e = 456, f = 'xyz';
+    _exports.e = e;
+    _exports.f = f;
+    let ClassName = class ClassName {
+    };
+    _exports.ClassName = ClassName;
+    function func() {}
+    _exports.func = func;
+    const arrowFunc = ()=>{};
+    _exports.arrowFunc = arrowFunc;
+    const CONST = 123;
+    _exports.CONST = CONST;
+    let DefaultClass = class DefaultClass {
+    };
+    _exports.default = DefaultClass;
+});
+//# sourceMappingURL=index-browser-current-umd.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: browser-experimental-esm 1`] = `
+Array [
+  "esm/index-browser-experimental-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: experimental, Format: esm
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty({
+    __proto__: null,
+    foo,
+    bar
+}, Symbol.toStringTag, {
+    value: 'Module'
+}));
+let a;
+const b = 123;
+const { c  } = {
+    c: true
+};
+const [d] = [
+    {}
+];
+const e = 456, f = 'xyz';
+let ClassName = class ClassName {
+};
+function func() {}
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
+};
+export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, func, helpers as ns1, helpers as ns2, helpers as ns3 };
+//# sourceMappingURL=index-browser-experimental-esm.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: browser-experimental-lib 1`] = `
+Array [
+  "lib/index-browser-experimental-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: experimental, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+});
+let a = 'abc';
+const b = 123;
+const { c  } = {
+    c: true
+};
+const [d] = [
+    {}
+];
+const e = 456, f = 'xyz';
+let ClassName = class ClassName {
+};
+function func() {}
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
+};
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-browser-experimental-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: browser-experimental-umd 1`] = `
+Array [
+  "umd/index-browser-experimental-umd.js",
+  "(function(global, factory) {
+    if (typeof define === \\"function\\" && define.amd) {
+        define([
+            \\"exports\\"
+        ], factory);
+    } else if (typeof exports !== \\"undefined\\") {
+        factory(exports);
+    } else {
+        var mod = {
+            exports: {}
+        };
+        factory(mod.exports);
+        global.examples = mod.exports;
+    }
+})(this, function(_exports) {
+    \\"use strict\\";
+    Object.defineProperty(_exports, \\"__esModule\\", {
+        value: true
+    });
+    _exports.default = _exports.CONST = _exports.arrowFunc = _exports.func = _exports.ClassName = _exports.f = _exports.e = _exports.d = _exports.c = _exports.b = _exports.a = _exports.ns3 = _exports.ns2 = _exports.ns1 = _exports.bar = _exports.foo = void 0;
+    function foo() {}
+    _exports.foo = foo;
+    function bar() {}
+    _exports.bar = bar;
+    const helpers = /*#__PURE__*/ Object.freeze({
+        __proto__: null,
+        foo,
+        bar
+    });
+    _exports.ns1 = helpers;
+    _exports.ns2 = helpers;
+    _exports.ns3 = helpers;
+    let a;
+    _exports.a = a;
+    const b = 123;
+    _exports.b = b;
+    const { c  } = {
+        c: true
+    };
+    _exports.c = c;
+    const [d] = [
+        {}
+    ];
+    _exports.d = d;
+    const e = 456, f = 'xyz';
+    _exports.e = e;
+    _exports.f = f;
+    let ClassName = class ClassName {
+    };
+    _exports.ClassName = ClassName;
+    function func() {}
+    _exports.func = func;
+    const arrowFunc = ()=>{};
+    _exports.arrowFunc = arrowFunc;
+    const CONST = 123;
+    _exports.CONST = CONST;
+    let DefaultClass = class DefaultClass {
+    };
+    _exports.default = DefaultClass;
+});
+//# sourceMappingURL=index-browser-experimental-umd.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: browser-legacy-esm 1`] = `
+Array [
+  "esm/index-browser-legacy-esm.js",
+  "function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+        throw new TypeError(\\"Cannot call a class as a function\\");
+    }
+}
+// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: legacy, Format: esm
+function foo() {}
+function bar() {}
+var helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty({
+    __proto__: null,
+    foo: foo,
+    bar: bar
+}, Symbol.toStringTag, {
+    value: \\"Module\\"
+}));
+var a;
+var b = 123;
+var c = {
+    c: true
+}.c;
+var d = {};
+var e = 456, f = \\"xyz\\";
+var ClassName = function ClassName() {
+    \\"use strict\\";
+    _classCallCheck(this, ClassName);
+};
+function func() {}
+var arrowFunc = function() {};
+var CONST = 123;
+var DefaultClass = function DefaultClass() {
+    \\"use strict\\";
+    _classCallCheck(this, DefaultClass);
+};
+export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, func, helpers as ns1, helpers as ns2, helpers as ns3 };
+//# sourceMappingURL=index-browser-legacy-esm.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: browser-legacy-lib 1`] = `
+Array [
+  "lib/index-browser-legacy-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: legacy, Format: lib
+\\"use strict\\";
+function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+        throw new TypeError(\\"Cannot call a class as a function\\");
+    }
+}
+Object.defineProperty(exports, \\"__esModule\\", {
+    value: true
+});
+function foo() {}
+function bar() {}
+var helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo: foo,
+    bar: bar
+});
+var a = \\"abc\\";
+var b = 123;
+var c = {
+    c: true
+}.c;
+var d = {};
+var e = 456, f = \\"xyz\\";
+var ClassName = function ClassName() {
+    _classCallCheck(this, ClassName);
+};
+function func() {}
+var arrowFunc = function() {};
+var CONST = 123;
+var DefaultClass = function DefaultClass() {
+    _classCallCheck(this, DefaultClass);
+};
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-browser-legacy-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: browser-legacy-umd 1`] = `
+Array [
+  "umd/index-browser-legacy-umd.js",
+  "(function(global, factory) {
+    if (typeof define === \\"function\\" && define.amd) {
+        define([
+            \\"exports\\"
+        ], factory);
+    } else if (typeof exports !== \\"undefined\\") {
+        factory(exports);
+    } else {
+        var mod = {
+            exports: {}
+        };
+        factory(mod.exports);
+        global.examples = mod.exports;
+    }
+})(this, function(_exports) {
+    \\"use strict\\";
+    Object.defineProperty(_exports, \\"__esModule\\", {
+        value: true
+    });
+    _exports.default = _exports.CONST = _exports.arrowFunc = _exports.func = _exports.ClassName = _exports.f = _exports.e = _exports.d = _exports.c = _exports.b = _exports.a = _exports.ns3 = _exports.ns2 = _exports.ns1 = _exports.bar = _exports.foo = void 0;
+    function _classCallCheck(instance, Constructor) {
+        if (!(instance instanceof Constructor)) {
+            throw new TypeError(\\"Cannot call a class as a function\\");
+        }
+    }
+    function foo() {}
+    _exports.foo = foo;
+    function bar() {}
+    _exports.bar = bar;
+    var helpers = /*#__PURE__*/ Object.freeze({
+        __proto__: null,
+        foo: foo,
+        bar: bar
+    });
+    _exports.ns1 = helpers;
+    _exports.ns2 = helpers;
+    _exports.ns3 = helpers;
+    var a;
+    _exports.a = a;
+    var b = 123;
+    _exports.b = b;
+    var c = {
+        c: true
+    }.c;
+    _exports.c = c;
+    var d = {};
+    _exports.d = d;
+    var e = 456, f = \\"xyz\\";
+    _exports.e = e;
+    _exports.f = f;
+    var ClassName = function ClassName() {
+        \\"use strict\\";
+        _classCallCheck(this, ClassName);
+    };
+    _exports.ClassName = ClassName;
+    function func() {}
+    _exports.func = func;
+    var arrowFunc = function() {};
+    _exports.arrowFunc = arrowFunc;
+    var CONST = 123;
+    _exports.CONST = CONST;
+    var DefaultClass = function DefaultClass() {
+        \\"use strict\\";
+        _classCallCheck(this, DefaultClass);
+    };
+    _exports.default = DefaultClass;
+});
+//# sourceMappingURL=index-browser-legacy-umd.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: browser-stable-esm 1`] = `
+Array [
+  "esm/index-browser-stable-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: stable, Format: esm
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty({
+    __proto__: null,
+    foo,
+    bar
+}, Symbol.toStringTag, {
+    value: 'Module'
+}));
+let a;
+const b = 123;
+const { c  } = {
+    c: true
+};
+const [d] = [
+    {}
+];
+const e = 456, f = 'xyz';
+let ClassName = class ClassName {
+};
+function func() {}
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
+};
+export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, func, helpers as ns1, helpers as ns2, helpers as ns3 };
+//# sourceMappingURL=index-browser-stable-esm.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: browser-stable-lib 1`] = `
+Array [
+  "lib/index-browser-stable-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: stable, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+});
+let a = 'abc';
+const b = 123;
+const { c  } = {
+    c: true
+};
+const [d] = [
+    {}
+];
+const e = 456, f = 'xyz';
+let ClassName = class ClassName {
+};
+function func() {}
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
+};
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-browser-stable-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: browser-stable-umd 1`] = `
+Array [
+  "umd/index-browser-stable-umd.js",
+  "(function(global, factory) {
+    if (typeof define === \\"function\\" && define.amd) {
+        define([
+            \\"exports\\"
+        ], factory);
+    } else if (typeof exports !== \\"undefined\\") {
+        factory(exports);
+    } else {
+        var mod = {
+            exports: {}
+        };
+        factory(mod.exports);
+        global.examples = mod.exports;
+    }
+})(this, function(_exports) {
+    \\"use strict\\";
+    Object.defineProperty(_exports, \\"__esModule\\", {
+        value: true
+    });
+    _exports.default = _exports.CONST = _exports.arrowFunc = _exports.func = _exports.ClassName = _exports.f = _exports.e = _exports.d = _exports.c = _exports.b = _exports.a = _exports.ns3 = _exports.ns2 = _exports.ns1 = _exports.bar = _exports.foo = void 0;
+    function foo() {}
+    _exports.foo = foo;
+    function bar() {}
+    _exports.bar = bar;
+    const helpers = /*#__PURE__*/ Object.freeze({
+        __proto__: null,
+        foo,
+        bar
+    });
+    _exports.ns1 = helpers;
+    _exports.ns2 = helpers;
+    _exports.ns3 = helpers;
+    let a;
+    _exports.a = a;
+    const b = 123;
+    _exports.b = b;
+    const { c  } = {
+        c: true
+    };
+    _exports.c = c;
+    const [d] = [
+        {}
+    ];
+    _exports.d = d;
+    const e = 456, f = 'xyz';
+    _exports.e = e;
+    _exports.f = f;
+    let ClassName = class ClassName {
+    };
+    _exports.ClassName = ClassName;
+    function func() {}
+    _exports.func = func;
+    const arrowFunc = ()=>{};
+    _exports.arrowFunc = arrowFunc;
+    const CONST = 123;
+    _exports.CONST = CONST;
+    let DefaultClass = class DefaultClass {
+    };
+    _exports.default = DefaultClass;
+});
+//# sourceMappingURL=index-browser-stable-umd.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: native-current-lib 1`] = `
+Array [
+  "lib/index-native-current-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: current, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+});
+let a = 'abc';
+const b = 123;
+const { c  } = {
+    c: true
+};
+const [d] = [
+    {}
+];
+const e = 456, f = 'xyz';
+let ClassName = class ClassName {
+};
+function func() {}
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
+};
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-native-current-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: native-experimental-lib 1`] = `
+Array [
+  "lib/index-native-experimental-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: experimental, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+});
+let a = 'abc';
+const b = 123;
+const { c  } = {
+    c: true
+};
+const [d] = [
+    {}
+];
+const e = 456, f = 'xyz';
+let ClassName = class ClassName {
+};
+function func() {}
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
+};
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-native-experimental-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: native-legacy-lib 1`] = `
+Array [
+  "lib/index-native-legacy-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: legacy, Format: lib
+\\"use strict\\";
+Object.defineProperty(exports, \\"__esModule\\", {
+    value: true
+});
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+});
+let a = \\"abc\\";
+const b = 123;
+const { c  } = {
+    c: true
+};
+const [d] = [
+    {}
+];
+const e = 456, f = \\"xyz\\";
+let ClassName = class ClassName {
+};
+function func() {}
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
+};
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-native-legacy-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: native-stable-lib 1`] = `
+Array [
+  "lib/index-native-stable-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: stable, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+});
+let a = 'abc';
+const b = 123;
+const { c  } = {
+    c: true
+};
+const [d] = [
+    {}
+];
+const e = 456, f = 'xyz';
+let ClassName = class ClassName {
+};
+function func() {}
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
+};
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-native-stable-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: node-current-cjs 1`] = `
+Array [
+  "cjs/index-node-current-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-current-cjs.cjs';
+
+export const { ns1, ns2, ns3, foo, bar, a, b, c, d, e, f, ClassName, func, arrowFunc, CONST } = data;
+
+export default data.default;",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: node-current-cjs 2`] = `
+Array [
+  "cjs/index-node-current-cjs.cjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: current, Format: cjs
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+});
+let a = 'abc';
+const b = 123;
+const { c  } = {
+    c: true
+};
+const [d] = [
+    {}
+];
+const e = 456, f = 'xyz';
+let ClassName = class ClassName {
+};
+function func() {}
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
+};
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-node-current-cjs.cjs.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: node-current-lib 1`] = `
+Array [
+  "lib/index-node-current-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: current, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+});
+let a = 'abc';
+const b = 123;
+const { c  } = {
+    c: true
+};
+const [d] = [
+    {}
+];
+const e = 456, f = 'xyz';
+let ClassName = class ClassName {
+};
+function func() {}
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
+};
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-node-current-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: node-current-mjs 1`] = `
+Array [
+  "mjs/index-node-current-mjs.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: current, Format: mjs
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty({
+    __proto__: null,
+    foo,
+    bar
+}, Symbol.toStringTag, {
+    value: 'Module'
+}));
+let a;
+const b = 123;
+const { c  } = {
+    c: true
+};
+const [d] = [
+    {}
+];
+const e = 456, f = 'xyz';
+let ClassName = class ClassName {
+};
+function func() {}
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
+};
+export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, func, helpers as ns1, helpers as ns2, helpers as ns3 };
+//# sourceMappingURL=index-node-current-mjs.mjs.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: node-experimental-cjs 1`] = `
+Array [
+  "cjs/index-node-experimental-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-experimental-cjs.cjs';
+
+export const { ns1, ns2, ns3, foo, bar, a, b, c, d, e, f, ClassName, func, arrowFunc, CONST } = data;
+
+export default data.default;",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: node-experimental-cjs 2`] = `
+Array [
+  "cjs/index-node-experimental-cjs.cjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: experimental, Format: cjs
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+});
+let a = 'abc';
+const b = 123;
+const { c  } = {
+    c: true
+};
+const [d] = [
+    {}
+];
+const e = 456, f = 'xyz';
+let ClassName = class ClassName {
+};
+function func() {}
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
+};
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-node-experimental-cjs.cjs.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: node-experimental-lib 1`] = `
+Array [
+  "lib/index-node-experimental-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: experimental, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+});
+let a = 'abc';
+const b = 123;
+const { c  } = {
+    c: true
+};
+const [d] = [
+    {}
+];
+const e = 456, f = 'xyz';
+let ClassName = class ClassName {
+};
+function func() {}
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
+};
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-node-experimental-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: node-experimental-mjs 1`] = `
+Array [
+  "mjs/index-node-experimental-mjs.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: experimental, Format: mjs
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty({
+    __proto__: null,
+    foo,
+    bar
+}, Symbol.toStringTag, {
+    value: 'Module'
+}));
+let a;
+const b = 123;
+const { c  } = {
+    c: true
+};
+const [d] = [
+    {}
+];
+const e = 456, f = 'xyz';
+let ClassName = class ClassName {
+};
+function func() {}
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
+};
+export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, func, helpers as ns1, helpers as ns2, helpers as ns3 };
+//# sourceMappingURL=index-node-experimental-mjs.mjs.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: node-legacy-cjs 1`] = `
+Array [
+  "cjs/index-node-legacy-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-legacy-cjs.cjs';
+
+export const { ns1, ns2, ns3, foo, bar, a, b, c, d, e, f, ClassName, func, arrowFunc, CONST } = data;
+
+export default data.default;",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: node-legacy-cjs 2`] = `
+Array [
+  "cjs/index-node-legacy-cjs.cjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: legacy, Format: cjs
+\\"use strict\\";
+Object.defineProperty(exports, \\"__esModule\\", {
+    value: true
+});
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+});
+let a = \\"abc\\";
+const b = 123;
+const { c  } = {
+    c: true
+};
+const [d] = [
+    {}
+];
+const e = 456, f = \\"xyz\\";
+let ClassName = class ClassName {
+};
+function func() {}
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
+};
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-node-legacy-cjs.cjs.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: node-legacy-lib 1`] = `
+Array [
+  "lib/index-node-legacy-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: legacy, Format: lib
+\\"use strict\\";
+Object.defineProperty(exports, \\"__esModule\\", {
+    value: true
+});
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+});
+let a = \\"abc\\";
+const b = 123;
+const { c  } = {
+    c: true
+};
+const [d] = [
+    {}
+];
+const e = 456, f = \\"xyz\\";
+let ClassName = class ClassName {
+};
+function func() {}
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
+};
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-node-legacy-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: node-legacy-mjs 1`] = `
+Array [
+  "mjs/index-node-legacy-mjs.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: legacy, Format: mjs
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty({
+    __proto__: null,
+    foo,
+    bar
+}, Symbol.toStringTag, {
+    value: \\"Module\\"
+}));
+let a;
+const b = 123;
+const { c  } = {
+    c: true
+};
+const [d] = [
+    {}
+];
+const e = 456, f = \\"xyz\\";
+let ClassName = class ClassName {
+};
+function func() {}
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
+};
+export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, func, helpers as ns1, helpers as ns2, helpers as ns3 };
+//# sourceMappingURL=index-node-legacy-mjs.mjs.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: node-stable-cjs 1`] = `
+Array [
+  "cjs/index-node-stable-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-stable-cjs.cjs';
+
+export const { ns1, ns2, ns3, foo, bar, a, b, c, d, e, f, ClassName, func, arrowFunc, CONST } = data;
+
+export default data.default;",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: node-stable-cjs 2`] = `
+Array [
+  "cjs/index-node-stable-cjs.cjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: cjs
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+});
+let a = 'abc';
+const b = 123;
+const { c  } = {
+    c: true
+};
+const [d] = [
+    {}
+];
+const e = 456, f = 'xyz';
+let ClassName = class ClassName {
+};
+function func() {}
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
+};
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-node-stable-cjs.cjs.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: node-stable-lib 1`] = `
+Array [
+  "lib/index-node-stable-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+});
+let a = 'abc';
+const b = 123;
+const { c  } = {
+    c: true
+};
+const [d] = [
+    {}
+];
+const e = 456, f = 'xyz';
+let ClassName = class ClassName {
+};
+function func() {}
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
+};
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-node-stable-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: node-stable-mjs 1`] = `
+Array [
+  "mjs/index-node-stable-mjs.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: mjs
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty({
+    __proto__: null,
+    foo,
+    bar
+}, Symbol.toStringTag, {
+    value: 'Module'
+}));
+let a;
+const b = 123;
+const { c  } = {
+    c: true
+};
+const [d] = [
+    {}
+];
+const e = 456, f = 'xyz';
+let ClassName = class ClassName {
+};
+function func() {}
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
+};
+export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, func, helpers as ns1, helpers as ns2, helpers as ns3 };
+//# sourceMappingURL=index-node-stable-mjs.mjs.map
+",
+]
+`;

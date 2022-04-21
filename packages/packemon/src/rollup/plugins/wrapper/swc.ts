@@ -100,6 +100,8 @@ export function extractExportsWithSwc(id: string, getModuleInfo: GetModuleInfo):
 		}
 	};
 
+	console.log(id, info);
+
 	(info.ast as unknown as Module).body.forEach((item) => {
 		// export { foo }
 		// export foo
