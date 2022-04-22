@@ -12,34 +12,47 @@ export interface AddMjsWrapperOptions {
 
 function createMjsFileFromExports(
 	input: string,
-	{ namedExports, defaultExport }: ExtractedExports,
+	{ externalExports, namedExports, defaultExport }: ExtractedExports,
 ) {
-	const mjs = [
-		'// Bundled with Packemon: https://packemon.dev',
-		'// This is an MJS wrapper for a sibling CJS file',
-	];
+	const mjs = [];
+
+	// Support re-exports from externals (node modules)
+	if (externalExports.length > 0) {
+		externalExports.forEach((external) => {
+			switch (external.type) {
+				case 'export-all':
+					mjs.push(`export * from '${external.source}';`);
+					break;
+
+				default:
+					break;
+			}
+		});
+	}
 
 	// Nothing exported, so must have side-effects (bin files, for example)
 	if (namedExports.length === 0 && !defaultExport) {
-		mjs.push('', `import './${input}.cjs';`);
+		mjs.unshift(`import './${input}.cjs';`, '');
 
 		// Otherwise, define explicit named and default exports
 	} else {
-		mjs.push('', `import data from './${input}.cjs';`);
+		mjs.unshift(`import data from './${input}.cjs';`, '');
 
 		if (namedExports.length > 0) {
-			mjs.push('', `export const { ${namedExports.join(', ')} } = data;`);
+			mjs.push(`export const { ${namedExports.join(', ')} } = data;`);
 		}
 
 		if (defaultExport) {
-			mjs.push(
-				'',
-				namedExports.length > 0 ? `export default data.default;` : `export default data;`,
-			);
+			mjs.push(namedExports.length > 0 ? `export default data.default;` : `export default data;`);
 		}
 	}
 
-	return mjs.join('\n');
+	return [
+		'// Bundled with Packemon: https://packemon.dev',
+		'// This is an MJS wrapper for a sibling CJS file',
+		'',
+		...mjs,
+	].join('\n');
 }
 
 export function addMjsWrapperForCjs({ inputs, packageRoot, swc }: AddMjsWrapperOptions): Plugin {

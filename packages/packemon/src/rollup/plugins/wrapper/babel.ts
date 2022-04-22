@@ -2,7 +2,13 @@ import path from 'path';
 import { GetModuleInfo } from 'rollup';
 import * as t from '@babel/types';
 
+export interface ExternalExport {
+	type: 'export-all';
+	source: string;
+}
+
 export interface ExtractedExports {
+	externalExports: ExternalExport[];
 	namedExports: string[];
 	defaultExport: boolean;
 }
@@ -83,8 +89,11 @@ export function extractExportsWithBabel(
 		throw new Error(`Cannot get module info for ID: ${id}`);
 	}
 
+	console.log(id, info.ast);
+
 	const importedFiles = info.importedIds;
 	const typeNames = new Set(extractTypeNames(info.ast as t.Program));
+	const externalExports: ExternalExport[] = [];
 	const namedExports: string[] = [];
 	let defaultExport = false;
 
@@ -129,8 +138,8 @@ export function extractExportsWithBabel(
 			if (exported) {
 				mapNamed(extractName(exported));
 
-				// export * from ...
-			} else {
+				// export * from './relative/file'
+			} else if (item.source.value.startsWith('.')) {
 				const importId = importedFiles.find((file) =>
 					file.startsWith(path.normalize(path.join(path.dirname(id), item.source.value))),
 				);
@@ -138,9 +147,16 @@ export function extractExportsWithBabel(
 				if (importId) {
 					namedExports.push(...extractExportsWithBabel(importId, getModuleInfo).namedExports);
 				}
+
+				// export * from 'node-module'
+			} else {
+				externalExports.push({
+					type: 'export-all',
+					source: item.source.value,
+				});
 			}
 		}
 	});
 
-	return { namedExports, defaultExport };
+	return { externalExports, namedExports, defaultExport };
 }
