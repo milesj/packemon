@@ -3,6 +3,7 @@ import { type Baz as BazRenamed } from './helpers';
 import * as ns1 from './helpers';
 
 export { ns1, ns1 as ns2 };
+export { foo as fooRenamed } from './helpers';
 export * as ns3 from './helpers';
 export * from './helpers';
 

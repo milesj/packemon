@@ -274,6 +274,9 @@ export const { name } = data;
 import { name } from 'package';
 ```
 
+> This is a great solution for packages that want to offer "modules" but are unable to fully migrate
+> to ESM.
+
 ## CommonJS & ECMAScript interoperability
 
 Packemon by default encourages [ECMAScript modules](./esm.md), but not everyone is there yet. To
