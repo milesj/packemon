@@ -8,7 +8,7 @@ Array [
 export * from 'optimal';
 import * as optimal from 'optimal';
 export { optimal };
-export { func } from 'optimal';
+export { func, string } from 'optimal';
 //# sourceMappingURL=index-browser-current-esm.js.map
 ",
 ]
@@ -54,6 +54,10 @@ Object.defineProperty(exports, 'func', {
   get: () => optimal.func
 });
 exports.optimal = optimal__namespace;
+Object.defineProperty(exports, 'string', {
+  enumerable: true,
+  get: () => optimal.string
+});
 
 for (const k in optimal) {
   if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
@@ -89,6 +93,7 @@ Array [
   });
   var _exportNames = {
     func: true,
+    string: true,
     optimal: true
   };
   Object.defineProperty(_exports, \\"func\\", {
@@ -98,6 +103,12 @@ Array [
     }
   });
   _exports.optimal = void 0;
+  Object.defineProperty(_exports, \\"string\\", {
+    enumerable: true,
+    get: function () {
+      return optimal.string;
+    }
+  });
   optimal = _interopRequireWildcard(optimal);
   _exports.optimal = optimal;
   Object.keys(optimal).forEach(function (key) {
@@ -129,7 +140,7 @@ Array [
 export * from 'optimal';
 import * as optimal from 'optimal';
 export { optimal };
-export { func } from 'optimal';
+export { func, string } from 'optimal';
 //# sourceMappingURL=index-browser-experimental-esm.js.map
 ",
 ]
@@ -175,6 +186,10 @@ Object.defineProperty(exports, 'func', {
   get: () => optimal.func
 });
 exports.optimal = optimal__namespace;
+Object.defineProperty(exports, 'string', {
+  enumerable: true,
+  get: () => optimal.string
+});
 
 for (const k in optimal) {
   if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
@@ -210,6 +225,7 @@ Array [
   });
   var _exportNames = {
     func: true,
+    string: true,
     optimal: true
   };
   Object.defineProperty(_exports, \\"func\\", {
@@ -219,6 +235,12 @@ Array [
     }
   });
   _exports.optimal = void 0;
+  Object.defineProperty(_exports, \\"string\\", {
+    enumerable: true,
+    get: function () {
+      return optimal.string;
+    }
+  });
   optimal = _interopRequireWildcard(optimal);
   _exports.optimal = optimal;
   Object.keys(optimal).forEach(function (key) {
@@ -250,7 +272,7 @@ Array [
 export * from 'optimal';
 import * as optimal from 'optimal';
 export { optimal };
-export { func } from 'optimal';
+export { func, string } from 'optimal';
 //# sourceMappingURL=index-browser-legacy-esm.js.map
 ",
 ]
@@ -314,6 +336,14 @@ Object.defineProperty(exports, 'func', {
   }.bind(this)
 });
 exports.optimal = optimal__namespace;
+Object.defineProperty(exports, 'string', {
+  enumerable: true,
+  get: function get() {
+    _newArrowCheck(this, _this2);
+
+    return optimal.string;
+  }.bind(this)
+});
 
 var _loop2 = function _loop2(k) {
   var _this3 = this;
@@ -361,6 +391,7 @@ Array [
   });
   var _exportNames = {
     func: true,
+    string: true,
     optimal: true
   };
   Object.defineProperty(_exports, \\"func\\", {
@@ -370,6 +401,12 @@ Array [
     }
   });
   _exports.optimal = void 0;
+  Object.defineProperty(_exports, \\"string\\", {
+    enumerable: true,
+    get: function get() {
+      return optimal.string;
+    }
+  });
   optimal = _interopRequireWildcard(optimal);
   _exports.optimal = optimal;
   Object.keys(optimal).forEach(function (key) {
@@ -401,7 +438,7 @@ Array [
 export * from 'optimal';
 import * as optimal from 'optimal';
 export { optimal };
-export { func } from 'optimal';
+export { func, string } from 'optimal';
 //# sourceMappingURL=index-browser-stable-esm.js.map
 ",
 ]
@@ -447,6 +484,10 @@ Object.defineProperty(exports, 'func', {
   get: () => optimal.func
 });
 exports.optimal = optimal__namespace;
+Object.defineProperty(exports, 'string', {
+  enumerable: true,
+  get: () => optimal.string
+});
 
 for (const k in optimal) {
   if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
@@ -482,6 +523,7 @@ Array [
   });
   var _exportNames = {
     func: true,
+    string: true,
     optimal: true
   };
   Object.defineProperty(_exports, \\"func\\", {
@@ -491,6 +533,12 @@ Array [
     }
   });
   _exports.optimal = void 0;
+  Object.defineProperty(_exports, \\"string\\", {
+    enumerable: true,
+    get: function () {
+      return optimal.string;
+    }
+  });
   optimal = _interopRequireWildcard(optimal);
   _exports.optimal = optimal;
   Object.keys(optimal).forEach(function (key) {
@@ -554,6 +602,10 @@ Object.defineProperty(exports, 'func', {
   get: () => optimal.func
 });
 exports.optimal = optimal__namespace;
+Object.defineProperty(exports, 'string', {
+  enumerable: true,
+  get: () => optimal.string
+});
 
 for (const k in optimal) {
   if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
@@ -606,6 +658,10 @@ Object.defineProperty(exports, 'func', {
   get: () => optimal.func
 });
 exports.optimal = optimal__namespace;
+Object.defineProperty(exports, 'string', {
+  enumerable: true,
+  get: () => optimal.string
+});
 
 for (const k in optimal) {
   if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
@@ -658,6 +714,10 @@ Object.defineProperty(exports, 'func', {
   get: () => optimal.func
 });
 exports.optimal = optimal__namespace;
+Object.defineProperty(exports, 'string', {
+  enumerable: true,
+  get: () => optimal.string
+});
 
 for (const k in optimal) {
   if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
@@ -710,6 +770,10 @@ Object.defineProperty(exports, 'func', {
   get: () => optimal.func
 });
 exports.optimal = optimal__namespace;
+Object.defineProperty(exports, 'string', {
+  enumerable: true,
+  get: () => optimal.string
+});
 
 for (const k in optimal) {
   if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
@@ -732,6 +796,7 @@ import './index-node-current-cjs.cjs';
 
 export * from 'optimal';
 export * as optimal from 'optimal';
+export { string } from 'optimal';
 export { func } from 'optimal';",
 ]
 `;
@@ -776,6 +841,10 @@ Object.defineProperty(exports, 'func', {
   get: () => optimal.func
 });
 exports.optimal = optimal__namespace;
+Object.defineProperty(exports, 'string', {
+  enumerable: true,
+  get: () => optimal.string
+});
 
 for (const k in optimal) {
   if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
@@ -828,6 +897,10 @@ Object.defineProperty(exports, 'func', {
   get: () => optimal.func
 });
 exports.optimal = optimal__namespace;
+Object.defineProperty(exports, 'string', {
+  enumerable: true,
+  get: () => optimal.string
+});
 
 for (const k in optimal) {
   if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
@@ -848,7 +921,7 @@ Array [
 export * from 'optimal';
 import * as optimal from 'optimal';
 export { optimal };
-export { func } from 'optimal';
+export { func, string } from 'optimal';
 //# sourceMappingURL=index-node-current-mjs.mjs.map
 ",
 ]
@@ -864,6 +937,7 @@ import './index-node-experimental-cjs.cjs';
 
 export * from 'optimal';
 export * as optimal from 'optimal';
+export { string } from 'optimal';
 export { func } from 'optimal';",
 ]
 `;
@@ -908,6 +982,10 @@ Object.defineProperty(exports, 'func', {
   get: () => optimal.func
 });
 exports.optimal = optimal__namespace;
+Object.defineProperty(exports, 'string', {
+  enumerable: true,
+  get: () => optimal.string
+});
 
 for (const k in optimal) {
   if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
@@ -960,6 +1038,10 @@ Object.defineProperty(exports, 'func', {
   get: () => optimal.func
 });
 exports.optimal = optimal__namespace;
+Object.defineProperty(exports, 'string', {
+  enumerable: true,
+  get: () => optimal.string
+});
 
 for (const k in optimal) {
   if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
@@ -980,7 +1062,7 @@ Array [
 export * from 'optimal';
 import * as optimal from 'optimal';
 export { optimal };
-export { func } from 'optimal';
+export { func, string } from 'optimal';
 //# sourceMappingURL=index-node-experimental-mjs.mjs.map
 ",
 ]
@@ -996,6 +1078,7 @@ import './index-node-legacy-cjs.cjs';
 
 export * from 'optimal';
 export * as optimal from 'optimal';
+export { string } from 'optimal';
 export { func } from 'optimal';",
 ]
 `;
@@ -1040,6 +1123,10 @@ Object.defineProperty(exports, 'func', {
   get: () => optimal.func
 });
 exports.optimal = optimal__namespace;
+Object.defineProperty(exports, 'string', {
+  enumerable: true,
+  get: () => optimal.string
+});
 
 for (const k in optimal) {
   if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
@@ -1092,6 +1179,10 @@ Object.defineProperty(exports, 'func', {
   get: () => optimal.func
 });
 exports.optimal = optimal__namespace;
+Object.defineProperty(exports, 'string', {
+  enumerable: true,
+  get: () => optimal.string
+});
 
 for (const k in optimal) {
   if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
@@ -1112,7 +1203,7 @@ Array [
 export * from 'optimal';
 import * as optimal from 'optimal';
 export { optimal };
-export { func } from 'optimal';
+export { func, string } from 'optimal';
 //# sourceMappingURL=index-node-legacy-mjs.mjs.map
 ",
 ]
@@ -1128,6 +1219,7 @@ import './index-node-stable-cjs.cjs';
 
 export * from 'optimal';
 export * as optimal from 'optimal';
+export { string } from 'optimal';
 export { func } from 'optimal';",
 ]
 `;
@@ -1172,6 +1264,10 @@ Object.defineProperty(exports, 'func', {
   get: () => optimal.func
 });
 exports.optimal = optimal__namespace;
+Object.defineProperty(exports, 'string', {
+  enumerable: true,
+  get: () => optimal.string
+});
 
 for (const k in optimal) {
   if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
@@ -1224,6 +1320,10 @@ Object.defineProperty(exports, 'func', {
   get: () => optimal.func
 });
 exports.optimal = optimal__namespace;
+Object.defineProperty(exports, 'string', {
+  enumerable: true,
+  get: () => optimal.string
+});
 
 for (const k in optimal) {
   if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
@@ -1244,7 +1344,7 @@ Array [
 export * from 'optimal';
 import * as optimal from 'optimal';
 export { optimal };
-export { func } from 'optimal';
+export { func, string } from 'optimal';
 //# sourceMappingURL=index-node-stable-mjs.mjs.map
 ",
 ]

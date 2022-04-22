@@ -1,6 +1,8 @@
+/* eslint-disable complexity */
+
 import path from 'path';
 import { GetModuleInfo } from 'rollup';
-import * as t from '@babel/types';
+import type { TSESTree } from '@typescript-eslint/types';
 
 export type ExternalExport =
 	| {
@@ -20,14 +22,24 @@ export interface ExtractedExports {
 	defaultExport: boolean;
 }
 
-function extractName(node: t.Node): string[] | string | undefined {
+function isExternalSource(source?: { value: string } | undefined): boolean {
+	return !!source && !source.value.startsWith('.');
+}
+
+function extractName(node: TSESTree.Node): string[] | string {
 	switch (node.type) {
 		case 'Identifier':
 			return node.name;
 
+		case 'Literal':
+			return String(node.value);
+
 		// class Foo
 		case 'ClassDeclaration':
-			return extractName(node.id);
+			if (node.id) {
+				return extractName(node.id);
+			}
+			break;
 
 		// function foo
 		case 'FunctionDeclaration':
@@ -38,32 +50,30 @@ function extractName(node: t.Node): string[] | string | undefined {
 
 		// const foo = ...
 		case 'VariableDeclaration':
-			return node.declarations.map((decl) => extractName(decl.id)).filter(Boolean) as string[];
+			return node.declarations.flatMap((decl) => extractName(decl.id)).filter(Boolean);
 
 		// const [foo, bar] = ...
 		case 'ArrayPattern':
-			return node.elements.map((el) => (el ? extractName(el) : null)).filter(Boolean) as string[];
+			return node.elements.flatMap((el) => (el ? extractName(el) : '')).filter(Boolean);
 
 		// const { foo, bar } = ...
 		case 'ObjectPattern':
 			return node.properties
-				.map((prop) =>
-					// @ts-expect-error Is "Property" when logged
-					prop.type === 'ObjectProperty' || prop.type === 'Property'
-						? extractName(prop.value)
-						: null,
-				)
-				.filter(Boolean) as string[];
+				.flatMap((prop) => (prop.type === 'Property' ? extractName(prop.value) : ''))
+				.filter(Boolean);
 
 		default:
 			break;
 	}
 
-	return undefined;
+	return '';
 }
 
-function extractTypeNames(node: t.Program): string[] {
-	const types: string[] = [];
+function extractScopedIdentifiers(node: TSESTree.Program) {
+	// id -> source
+	const imports: Record<string, string> = {};
+	// id
+	const types: Set<string> = new Set();
 
 	node.body.forEach((item) => {
 		if (
@@ -71,19 +81,23 @@ function extractTypeNames(node: t.Program): string[] {
 			item.type === 'TSInterfaceDeclaration' ||
 			item.type === 'TSEnumDeclaration'
 		) {
-			types.push(item.id.name);
+			types.add(item.id.name);
 		}
 
 		if (item.type === 'ImportDeclaration') {
 			item.specifiers.forEach((spec) => {
+				const { name } = spec.local;
+
+				imports[name] = item.source.value;
+
 				if (item.importKind === 'type' || ('importKind' in spec && spec.importKind === 'type')) {
-					types.push(spec.local.name);
+					types.add(name);
 				}
 			});
 		}
 	});
 
-	return types;
+	return { imports, types };
 }
 
 export function extractExportsWithBabel(
@@ -96,8 +110,8 @@ export function extractExportsWithBabel(
 		throw new Error(`Cannot get module info for ID: ${id}`);
 	}
 
-	const importedFiles = info.importedIds;
-	const typeNames = new Set(extractTypeNames(info.ast as t.Program));
+	const ast = info.ast as unknown as TSESTree.Program;
+	const { imports, types } = extractScopedIdentifiers(ast);
 	const externalExports: ExternalExport[] = [];
 	const namedExports: string[] = [];
 	let defaultExport = false;
@@ -107,38 +121,55 @@ export function extractExportsWithBabel(
 			name.forEach((n) => void mapNamed(n));
 		} else if (name === 'default') {
 			defaultExport = true;
-		} else if (name && !typeNames.has(name)) {
+		} else if (name && !types.has(name)) {
 			namedExports.push(name);
 		}
 	};
 
-	// eslint-disable-next-line complexity
-	(info.ast as t.Program).body.forEach((item) => {
-		if (item.type === 'ExportNamedDeclaration' && item.exportKind !== 'type') {
-			const isExternal = item.source && !item.source.value.startsWith('.');
+	const filterType = (value: string) => !!value && !types.has(value);
 
-			// export function foo
-			// export const foo
+	ast.body.forEach((item) => {
+		if (item.type === 'ExportNamedDeclaration' && item.exportKind !== 'type') {
+			// export class Foo {}
+			// export function foo() {}
+			// export const foo = {};
 			if (item.declaration) {
 				mapNamed(extractName(item.declaration));
 			}
 
-			// export { foo }
-			// export foo
-			// export * as foo
 			if (item.specifiers.length > 0) {
 				const names = item.specifiers
-					.map((spec) => extractName(spec.exported))
-					.filter(Boolean) as string[];
+					.flatMap((spec) => extractName(spec.exported))
+					.filter(filterType);
 
-				if (isExternal) {
-					externalExports.push({
-						names,
-						source: item.source!.value,
-						type: 'export-named',
+				// export { foo } from 'source';
+				// export foo from 'source';
+				// export * as foo from 'source';
+				if (item.source) {
+					if (isExternalSource(item.source)) {
+						externalExports.push({
+							names,
+							source: item.source.value,
+							type: 'export-named',
+						});
+					} else {
+						mapNamed(names);
+					}
+				}
+
+				// export { foo };
+				if (!item.source) {
+					names.forEach((name) => {
+						if (imports[name] && isExternalSource({ value: imports[name] })) {
+							externalExports.push({
+								names,
+								source: imports[name],
+								type: 'export-named',
+							});
+						} else {
+							mapNamed(name);
+						}
 					});
-				} else {
-					mapNamed(names);
 				}
 			}
 		}
@@ -149,27 +180,23 @@ export function extractExportsWithBabel(
 		}
 
 		if (item.type === 'ExportAllDeclaration' && item.source) {
-			const isExternal = !item.source.value.startsWith('.');
-			// @ts-expect-error Not typed in Babel, is part of ESTree compliance
-			const exported = item.exported as t.Identifier | null;
-
 			// export * from 'node-module'
 			// export * as ns from 'node-module'
-			if (isExternal) {
+			if (isExternalSource(item.source)) {
 				externalExports.push({
-					namespace: exported ? exported.name : undefined,
+					namespace: item.exported?.name,
 					source: item.source.value,
 					type: 'export-all',
 				});
 
 				// export * as ns from './relative/file'
-			} else if (exported) {
-				mapNamed(extractName(exported));
+			} else if (item.exported) {
+				mapNamed(extractName(item.exported));
 
 				// export * from './relative/file'
-			} else {
-				const importId = importedFiles.find((file) =>
-					file.startsWith(path.normalize(path.join(path.dirname(id), item.source.value))),
+			} else if (item.source) {
+				const importId = info.importedIds.find((file) =>
+					file.startsWith(path.normalize(path.join(path.dirname(id), item.source!.value))),
 				);
 
 				if (importId) {
