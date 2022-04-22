@@ -6,6 +6,9 @@ Array [
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: esm
 export * from 'optimal';
+import * as optimal from 'optimal';
+export { optimal };
+export { func } from 'optimal';
 //# sourceMappingURL=index-browser-current-esm.js.map
 ",
 ]
@@ -23,6 +26,34 @@ Object.defineProperty(exports, '__esModule', {
 });
 
 const optimal = require('optimal');
+
+function _interopNamespace(e) {
+  if (e && e.__esModule) return e;
+  const n = Object.create(null);
+
+  if (e) {
+    for (const k in e) {
+      if (k !== 'default') {
+        const d = Object.getOwnPropertyDescriptor(e, k);
+        Object.defineProperty(n, k, d.get ? d : {
+          enumerable: true,
+          get: () => e[k]
+        });
+      }
+    }
+  }
+
+  n.default = e;
+  return Object.freeze(n);
+}
+
+const optimal__namespace = /*#__PURE__*/_interopNamespace(optimal);
+
+Object.defineProperty(exports, 'func', {
+  enumerable: true,
+  get: () => optimal.func
+});
+exports.optimal = optimal__namespace;
 
 for (const k in optimal) {
   if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
@@ -50,22 +81,40 @@ Array [
     factory(mod.exports, global.optimal);
     global.examples = mod.exports;
   }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports, _optimal) {
+})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports, optimal) {
   \\"use strict\\";
 
   Object.defineProperty(_exports, \\"__esModule\\", {
     value: true
   });
-  Object.keys(_optimal).forEach(function (key) {
+  var _exportNames = {
+    func: true,
+    optimal: true
+  };
+  Object.defineProperty(_exports, \\"func\\", {
+    enumerable: true,
+    get: function () {
+      return optimal.func;
+    }
+  });
+  _exports.optimal = void 0;
+  optimal = _interopRequireWildcard(optimal);
+  _exports.optimal = optimal;
+  Object.keys(optimal).forEach(function (key) {
     if (key === \\"default\\" || key === \\"__esModule\\") return;
-    if (key in _exports && _exports[key] === _optimal[key]) return;
+    if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+    if (key in _exports && _exports[key] === optimal[key]) return;
     Object.defineProperty(_exports, key, {
       enumerable: true,
       get: function () {
-        return _optimal[key];
+        return optimal[key];
       }
     });
   });
+
+  function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== \\"function\\") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+  function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== \\"object\\" && typeof obj !== \\"function\\") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== \\"default\\" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 });
 //# sourceMappingURL=index-browser-current-umd.js.map
 ",
@@ -78,6 +127,9 @@ Array [
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: experimental, Format: esm
 export * from 'optimal';
+import * as optimal from 'optimal';
+export { optimal };
+export { func } from 'optimal';
 //# sourceMappingURL=index-browser-experimental-esm.js.map
 ",
 ]
@@ -95,6 +147,34 @@ Object.defineProperty(exports, '__esModule', {
 });
 
 const optimal = require('optimal');
+
+function _interopNamespace(e) {
+  if (e && e.__esModule) return e;
+  const n = Object.create(null);
+
+  if (e) {
+    for (const k in e) {
+      if (k !== 'default') {
+        const d = Object.getOwnPropertyDescriptor(e, k);
+        Object.defineProperty(n, k, d.get ? d : {
+          enumerable: true,
+          get: () => e[k]
+        });
+      }
+    }
+  }
+
+  n.default = e;
+  return Object.freeze(n);
+}
+
+const optimal__namespace = /*#__PURE__*/_interopNamespace(optimal);
+
+Object.defineProperty(exports, 'func', {
+  enumerable: true,
+  get: () => optimal.func
+});
+exports.optimal = optimal__namespace;
 
 for (const k in optimal) {
   if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
@@ -122,22 +202,40 @@ Array [
     factory(mod.exports, global.optimal);
     global.examples = mod.exports;
   }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports, _optimal) {
+})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports, optimal) {
   \\"use strict\\";
 
   Object.defineProperty(_exports, \\"__esModule\\", {
     value: true
   });
-  Object.keys(_optimal).forEach(function (key) {
+  var _exportNames = {
+    func: true,
+    optimal: true
+  };
+  Object.defineProperty(_exports, \\"func\\", {
+    enumerable: true,
+    get: function () {
+      return optimal.func;
+    }
+  });
+  _exports.optimal = void 0;
+  optimal = _interopRequireWildcard(optimal);
+  _exports.optimal = optimal;
+  Object.keys(optimal).forEach(function (key) {
     if (key === \\"default\\" || key === \\"__esModule\\") return;
-    if (key in _exports && _exports[key] === _optimal[key]) return;
+    if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+    if (key in _exports && _exports[key] === optimal[key]) return;
     Object.defineProperty(_exports, key, {
       enumerable: true,
       get: function () {
-        return _optimal[key];
+        return optimal[key];
       }
     });
   });
+
+  function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== \\"function\\") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+  function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== \\"object\\" && typeof obj !== \\"function\\") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== \\"default\\" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 });
 //# sourceMappingURL=index-browser-experimental-umd.js.map
 ",
@@ -150,6 +248,9 @@ Array [
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: esm
 export * from 'optimal';
+import * as optimal from 'optimal';
+export { optimal };
+export { func } from 'optimal';
 //# sourceMappingURL=index-browser-legacy-esm.js.map
 ",
 ]
@@ -162,6 +263,8 @@ Array [
 // Platform: browser, Support: legacy, Format: lib
 'use strict';
 
+var _this2 = this;
+
 function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError(\\"Cannot instantiate an arrow function\\"); } }
 
 Object.defineProperty(exports, '__esModule', {
@@ -170,13 +273,55 @@ Object.defineProperty(exports, '__esModule', {
 
 var optimal = require('optimal');
 
-var _loop = function _loop(k) {
-  var _this = this;
+function _interopNamespace(e) {
+  if (e && e.__esModule) return e;
+  var n = Object.create(null);
+
+  if (e) {
+    var _loop = function _loop(k) {
+      var _this = this;
+
+      if (k !== 'default') {
+        var d = Object.getOwnPropertyDescriptor(e, k);
+        Object.defineProperty(n, k, d.get ? d : {
+          enumerable: true,
+          get: function get() {
+            _newArrowCheck(this, _this);
+
+            return e[k];
+          }.bind(this)
+        });
+      }
+    };
+
+    for (var k in e) {
+      _loop(k);
+    }
+  }
+
+  n.default = e;
+  return Object.freeze(n);
+}
+
+var optimal__namespace = /*#__PURE__*/_interopNamespace(optimal);
+
+Object.defineProperty(exports, 'func', {
+  enumerable: true,
+  get: function get() {
+    _newArrowCheck(this, _this2);
+
+    return optimal.func;
+  }.bind(this)
+});
+exports.optimal = optimal__namespace;
+
+var _loop2 = function _loop2(k) {
+  var _this3 = this;
 
   if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
     enumerable: true,
     get: function get() {
-      _newArrowCheck(this, _this);
+      _newArrowCheck(this, _this3);
 
       return optimal[k];
     }.bind(this)
@@ -184,7 +329,7 @@ var _loop = function _loop(k) {
 };
 
 for (var k in optimal) {
-  _loop(k);
+  _loop2(k);
 }
 //# sourceMappingURL=index-browser-legacy-lib.js.map
 ",
@@ -194,7 +339,9 @@ for (var k in optimal) {
 exports[`CJS -> MJS wrapper (externals) babel transforms example test case: browser-legacy-umd 1`] = `
 Array [
   "umd/index-browser-legacy-umd.js",
-  "(function (global, factory) {
+  "function _typeof(obj) { \\"@babel/helpers - typeof\\"; return _typeof = \\"function\\" == typeof Symbol && \\"symbol\\" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && \\"function\\" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? \\"symbol\\" : typeof obj; }, _typeof(obj); }
+
+(function (global, factory) {
   if (typeof define === \\"function\\" && define.amd) {
     define([\\"exports\\", \\"optimal\\"], factory);
   } else if (typeof exports !== \\"undefined\\") {
@@ -206,22 +353,40 @@ Array [
     factory(mod.exports, global.optimal);
     global.examples = mod.exports;
   }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports, _optimal) {
+})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports, optimal) {
   \\"use strict\\";
 
   Object.defineProperty(_exports, \\"__esModule\\", {
     value: true
   });
-  Object.keys(_optimal).forEach(function (key) {
+  var _exportNames = {
+    func: true,
+    optimal: true
+  };
+  Object.defineProperty(_exports, \\"func\\", {
+    enumerable: true,
+    get: function get() {
+      return optimal.func;
+    }
+  });
+  _exports.optimal = void 0;
+  optimal = _interopRequireWildcard(optimal);
+  _exports.optimal = optimal;
+  Object.keys(optimal).forEach(function (key) {
     if (key === \\"default\\" || key === \\"__esModule\\") return;
-    if (key in _exports && _exports[key] === _optimal[key]) return;
+    if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+    if (key in _exports && _exports[key] === optimal[key]) return;
     Object.defineProperty(_exports, key, {
       enumerable: true,
       get: function get() {
-        return _optimal[key];
+        return optimal[key];
       }
     });
   });
+
+  function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== \\"function\\") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+  function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== \\"object\\" && typeof obj !== \\"function\\") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== \\"default\\" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 });
 //# sourceMappingURL=index-browser-legacy-umd.js.map
 ",
@@ -234,6 +399,9 @@ Array [
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: esm
 export * from 'optimal';
+import * as optimal from 'optimal';
+export { optimal };
+export { func } from 'optimal';
 //# sourceMappingURL=index-browser-stable-esm.js.map
 ",
 ]
@@ -251,6 +419,34 @@ Object.defineProperty(exports, '__esModule', {
 });
 
 const optimal = require('optimal');
+
+function _interopNamespace(e) {
+  if (e && e.__esModule) return e;
+  const n = Object.create(null);
+
+  if (e) {
+    for (const k in e) {
+      if (k !== 'default') {
+        const d = Object.getOwnPropertyDescriptor(e, k);
+        Object.defineProperty(n, k, d.get ? d : {
+          enumerable: true,
+          get: () => e[k]
+        });
+      }
+    }
+  }
+
+  n.default = e;
+  return Object.freeze(n);
+}
+
+const optimal__namespace = /*#__PURE__*/_interopNamespace(optimal);
+
+Object.defineProperty(exports, 'func', {
+  enumerable: true,
+  get: () => optimal.func
+});
+exports.optimal = optimal__namespace;
 
 for (const k in optimal) {
   if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
@@ -278,22 +474,40 @@ Array [
     factory(mod.exports, global.optimal);
     global.examples = mod.exports;
   }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports, _optimal) {
+})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports, optimal) {
   \\"use strict\\";
 
   Object.defineProperty(_exports, \\"__esModule\\", {
     value: true
   });
-  Object.keys(_optimal).forEach(function (key) {
+  var _exportNames = {
+    func: true,
+    optimal: true
+  };
+  Object.defineProperty(_exports, \\"func\\", {
+    enumerable: true,
+    get: function () {
+      return optimal.func;
+    }
+  });
+  _exports.optimal = void 0;
+  optimal = _interopRequireWildcard(optimal);
+  _exports.optimal = optimal;
+  Object.keys(optimal).forEach(function (key) {
     if (key === \\"default\\" || key === \\"__esModule\\") return;
-    if (key in _exports && _exports[key] === _optimal[key]) return;
+    if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+    if (key in _exports && _exports[key] === optimal[key]) return;
     Object.defineProperty(_exports, key, {
       enumerable: true,
       get: function () {
-        return _optimal[key];
+        return optimal[key];
       }
     });
   });
+
+  function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== \\"function\\") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+  function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== \\"object\\" && typeof obj !== \\"function\\") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== \\"default\\" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 });
 //# sourceMappingURL=index-browser-stable-umd.js.map
 ",
@@ -312,6 +526,34 @@ Object.defineProperty(exports, '__esModule', {
 });
 
 const optimal = require('optimal');
+
+function _interopNamespace(e) {
+  if (e && e.__esModule) return e;
+  const n = Object.create(null);
+
+  if (e) {
+    for (const k in e) {
+      if (k !== 'default') {
+        const d = Object.getOwnPropertyDescriptor(e, k);
+        Object.defineProperty(n, k, d.get ? d : {
+          enumerable: true,
+          get: () => e[k]
+        });
+      }
+    }
+  }
+
+  n.default = e;
+  return Object.freeze(n);
+}
+
+const optimal__namespace = /*#__PURE__*/_interopNamespace(optimal);
+
+Object.defineProperty(exports, 'func', {
+  enumerable: true,
+  get: () => optimal.func
+});
+exports.optimal = optimal__namespace;
 
 for (const k in optimal) {
   if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
@@ -337,6 +579,34 @@ Object.defineProperty(exports, '__esModule', {
 
 const optimal = require('optimal');
 
+function _interopNamespace(e) {
+  if (e && e.__esModule) return e;
+  const n = Object.create(null);
+
+  if (e) {
+    for (const k in e) {
+      if (k !== 'default') {
+        const d = Object.getOwnPropertyDescriptor(e, k);
+        Object.defineProperty(n, k, d.get ? d : {
+          enumerable: true,
+          get: () => e[k]
+        });
+      }
+    }
+  }
+
+  n.default = e;
+  return Object.freeze(n);
+}
+
+const optimal__namespace = /*#__PURE__*/_interopNamespace(optimal);
+
+Object.defineProperty(exports, 'func', {
+  enumerable: true,
+  get: () => optimal.func
+});
+exports.optimal = optimal__namespace;
+
 for (const k in optimal) {
   if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
     enumerable: true,
@@ -360,6 +630,34 @@ Object.defineProperty(exports, '__esModule', {
 });
 
 const optimal = require('optimal');
+
+function _interopNamespace(e) {
+  if (e && e.__esModule) return e;
+  const n = Object.create(null);
+
+  if (e) {
+    for (const k in e) {
+      if (k !== 'default') {
+        const d = Object.getOwnPropertyDescriptor(e, k);
+        Object.defineProperty(n, k, d.get ? d : {
+          enumerable: true,
+          get: () => e[k]
+        });
+      }
+    }
+  }
+
+  n.default = e;
+  return Object.freeze(n);
+}
+
+const optimal__namespace = /*#__PURE__*/_interopNamespace(optimal);
+
+Object.defineProperty(exports, 'func', {
+  enumerable: true,
+  get: () => optimal.func
+});
+exports.optimal = optimal__namespace;
 
 for (const k in optimal) {
   if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
@@ -385,6 +683,34 @@ Object.defineProperty(exports, '__esModule', {
 
 const optimal = require('optimal');
 
+function _interopNamespace(e) {
+  if (e && e.__esModule) return e;
+  const n = Object.create(null);
+
+  if (e) {
+    for (const k in e) {
+      if (k !== 'default') {
+        const d = Object.getOwnPropertyDescriptor(e, k);
+        Object.defineProperty(n, k, d.get ? d : {
+          enumerable: true,
+          get: () => e[k]
+        });
+      }
+    }
+  }
+
+  n.default = e;
+  return Object.freeze(n);
+}
+
+const optimal__namespace = /*#__PURE__*/_interopNamespace(optimal);
+
+Object.defineProperty(exports, 'func', {
+  enumerable: true,
+  get: () => optimal.func
+});
+exports.optimal = optimal__namespace;
+
 for (const k in optimal) {
   if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
     enumerable: true,
@@ -402,7 +728,11 @@ Array [
   "// Bundled with Packemon: https://packemon.dev
 // This is an MJS wrapper for a sibling CJS file
 
-import './index-node-current-cjs.cjs';",
+import './index-node-current-cjs.cjs';
+
+export * from 'optimal';
+export * as optimal from 'optimal';
+export { func } from 'optimal';",
 ]
 `;
 
@@ -418,6 +748,34 @@ Object.defineProperty(exports, '__esModule', {
 });
 
 const optimal = require('optimal');
+
+function _interopNamespace(e) {
+  if (e && e.__esModule) return e;
+  const n = Object.create(null);
+
+  if (e) {
+    for (const k in e) {
+      if (k !== 'default') {
+        const d = Object.getOwnPropertyDescriptor(e, k);
+        Object.defineProperty(n, k, d.get ? d : {
+          enumerable: true,
+          get: () => e[k]
+        });
+      }
+    }
+  }
+
+  n.default = e;
+  return Object.freeze(n);
+}
+
+const optimal__namespace = /*#__PURE__*/_interopNamespace(optimal);
+
+Object.defineProperty(exports, 'func', {
+  enumerable: true,
+  get: () => optimal.func
+});
+exports.optimal = optimal__namespace;
 
 for (const k in optimal) {
   if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
@@ -443,6 +801,34 @@ Object.defineProperty(exports, '__esModule', {
 
 const optimal = require('optimal');
 
+function _interopNamespace(e) {
+  if (e && e.__esModule) return e;
+  const n = Object.create(null);
+
+  if (e) {
+    for (const k in e) {
+      if (k !== 'default') {
+        const d = Object.getOwnPropertyDescriptor(e, k);
+        Object.defineProperty(n, k, d.get ? d : {
+          enumerable: true,
+          get: () => e[k]
+        });
+      }
+    }
+  }
+
+  n.default = e;
+  return Object.freeze(n);
+}
+
+const optimal__namespace = /*#__PURE__*/_interopNamespace(optimal);
+
+Object.defineProperty(exports, 'func', {
+  enumerable: true,
+  get: () => optimal.func
+});
+exports.optimal = optimal__namespace;
+
 for (const k in optimal) {
   if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
     enumerable: true,
@@ -460,6 +846,9 @@ Array [
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: mjs
 export * from 'optimal';
+import * as optimal from 'optimal';
+export { optimal };
+export { func } from 'optimal';
 //# sourceMappingURL=index-node-current-mjs.mjs.map
 ",
 ]
@@ -471,7 +860,11 @@ Array [
   "// Bundled with Packemon: https://packemon.dev
 // This is an MJS wrapper for a sibling CJS file
 
-import './index-node-experimental-cjs.cjs';",
+import './index-node-experimental-cjs.cjs';
+
+export * from 'optimal';
+export * as optimal from 'optimal';
+export { func } from 'optimal';",
 ]
 `;
 
@@ -487,6 +880,34 @@ Object.defineProperty(exports, '__esModule', {
 });
 
 const optimal = require('optimal');
+
+function _interopNamespace(e) {
+  if (e && e.__esModule) return e;
+  const n = Object.create(null);
+
+  if (e) {
+    for (const k in e) {
+      if (k !== 'default') {
+        const d = Object.getOwnPropertyDescriptor(e, k);
+        Object.defineProperty(n, k, d.get ? d : {
+          enumerable: true,
+          get: () => e[k]
+        });
+      }
+    }
+  }
+
+  n.default = e;
+  return Object.freeze(n);
+}
+
+const optimal__namespace = /*#__PURE__*/_interopNamespace(optimal);
+
+Object.defineProperty(exports, 'func', {
+  enumerable: true,
+  get: () => optimal.func
+});
+exports.optimal = optimal__namespace;
 
 for (const k in optimal) {
   if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
@@ -512,6 +933,34 @@ Object.defineProperty(exports, '__esModule', {
 
 const optimal = require('optimal');
 
+function _interopNamespace(e) {
+  if (e && e.__esModule) return e;
+  const n = Object.create(null);
+
+  if (e) {
+    for (const k in e) {
+      if (k !== 'default') {
+        const d = Object.getOwnPropertyDescriptor(e, k);
+        Object.defineProperty(n, k, d.get ? d : {
+          enumerable: true,
+          get: () => e[k]
+        });
+      }
+    }
+  }
+
+  n.default = e;
+  return Object.freeze(n);
+}
+
+const optimal__namespace = /*#__PURE__*/_interopNamespace(optimal);
+
+Object.defineProperty(exports, 'func', {
+  enumerable: true,
+  get: () => optimal.func
+});
+exports.optimal = optimal__namespace;
+
 for (const k in optimal) {
   if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
     enumerable: true,
@@ -529,6 +978,9 @@ Array [
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: mjs
 export * from 'optimal';
+import * as optimal from 'optimal';
+export { optimal };
+export { func } from 'optimal';
 //# sourceMappingURL=index-node-experimental-mjs.mjs.map
 ",
 ]
@@ -540,7 +992,11 @@ Array [
   "// Bundled with Packemon: https://packemon.dev
 // This is an MJS wrapper for a sibling CJS file
 
-import './index-node-legacy-cjs.cjs';",
+import './index-node-legacy-cjs.cjs';
+
+export * from 'optimal';
+export * as optimal from 'optimal';
+export { func } from 'optimal';",
 ]
 `;
 
@@ -556,6 +1012,34 @@ Object.defineProperty(exports, '__esModule', {
 });
 
 const optimal = require('optimal');
+
+function _interopNamespace(e) {
+  if (e && e.__esModule) return e;
+  const n = Object.create(null);
+
+  if (e) {
+    for (const k in e) {
+      if (k !== 'default') {
+        const d = Object.getOwnPropertyDescriptor(e, k);
+        Object.defineProperty(n, k, d.get ? d : {
+          enumerable: true,
+          get: () => e[k]
+        });
+      }
+    }
+  }
+
+  n.default = e;
+  return Object.freeze(n);
+}
+
+const optimal__namespace = /*#__PURE__*/_interopNamespace(optimal);
+
+Object.defineProperty(exports, 'func', {
+  enumerable: true,
+  get: () => optimal.func
+});
+exports.optimal = optimal__namespace;
 
 for (const k in optimal) {
   if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
@@ -581,6 +1065,34 @@ Object.defineProperty(exports, '__esModule', {
 
 const optimal = require('optimal');
 
+function _interopNamespace(e) {
+  if (e && e.__esModule) return e;
+  const n = Object.create(null);
+
+  if (e) {
+    for (const k in e) {
+      if (k !== 'default') {
+        const d = Object.getOwnPropertyDescriptor(e, k);
+        Object.defineProperty(n, k, d.get ? d : {
+          enumerable: true,
+          get: () => e[k]
+        });
+      }
+    }
+  }
+
+  n.default = e;
+  return Object.freeze(n);
+}
+
+const optimal__namespace = /*#__PURE__*/_interopNamespace(optimal);
+
+Object.defineProperty(exports, 'func', {
+  enumerable: true,
+  get: () => optimal.func
+});
+exports.optimal = optimal__namespace;
+
 for (const k in optimal) {
   if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
     enumerable: true,
@@ -598,6 +1110,9 @@ Array [
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: mjs
 export * from 'optimal';
+import * as optimal from 'optimal';
+export { optimal };
+export { func } from 'optimal';
 //# sourceMappingURL=index-node-legacy-mjs.mjs.map
 ",
 ]
@@ -609,7 +1124,11 @@ Array [
   "// Bundled with Packemon: https://packemon.dev
 // This is an MJS wrapper for a sibling CJS file
 
-import './index-node-stable-cjs.cjs';",
+import './index-node-stable-cjs.cjs';
+
+export * from 'optimal';
+export * as optimal from 'optimal';
+export { func } from 'optimal';",
 ]
 `;
 
@@ -625,6 +1144,34 @@ Object.defineProperty(exports, '__esModule', {
 });
 
 const optimal = require('optimal');
+
+function _interopNamespace(e) {
+  if (e && e.__esModule) return e;
+  const n = Object.create(null);
+
+  if (e) {
+    for (const k in e) {
+      if (k !== 'default') {
+        const d = Object.getOwnPropertyDescriptor(e, k);
+        Object.defineProperty(n, k, d.get ? d : {
+          enumerable: true,
+          get: () => e[k]
+        });
+      }
+    }
+  }
+
+  n.default = e;
+  return Object.freeze(n);
+}
+
+const optimal__namespace = /*#__PURE__*/_interopNamespace(optimal);
+
+Object.defineProperty(exports, 'func', {
+  enumerable: true,
+  get: () => optimal.func
+});
+exports.optimal = optimal__namespace;
 
 for (const k in optimal) {
   if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
@@ -650,6 +1197,34 @@ Object.defineProperty(exports, '__esModule', {
 
 const optimal = require('optimal');
 
+function _interopNamespace(e) {
+  if (e && e.__esModule) return e;
+  const n = Object.create(null);
+
+  if (e) {
+    for (const k in e) {
+      if (k !== 'default') {
+        const d = Object.getOwnPropertyDescriptor(e, k);
+        Object.defineProperty(n, k, d.get ? d : {
+          enumerable: true,
+          get: () => e[k]
+        });
+      }
+    }
+  }
+
+  n.default = e;
+  return Object.freeze(n);
+}
+
+const optimal__namespace = /*#__PURE__*/_interopNamespace(optimal);
+
+Object.defineProperty(exports, 'func', {
+  enumerable: true,
+  get: () => optimal.func
+});
+exports.optimal = optimal__namespace;
+
 for (const k in optimal) {
   if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
     enumerable: true,
@@ -667,6 +1242,9 @@ Array [
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: mjs
 export * from 'optimal';
+import * as optimal from 'optimal';
+export { optimal };
+export { func } from 'optimal';
 //# sourceMappingURL=index-node-stable-mjs.mjs.map
 ",
 ]
@@ -1717,7 +2295,6 @@ Array [
 import data from './index-node-current-cjs.cjs';
 
 export const { ns1, ns2, fooRenamed, ns3, foo, bar, a, b, c, d, e, f, ClassName, func, arrowFunc, CONST } = data;
-
 export default data.default;",
 ]
 `;
@@ -1900,7 +2477,6 @@ Array [
 import data from './index-node-experimental-cjs.cjs';
 
 export const { ns1, ns2, fooRenamed, ns3, foo, bar, a, b, c, d, e, f, ClassName, func, arrowFunc, CONST } = data;
-
 export default data.default;",
 ]
 `;
@@ -2083,7 +2659,6 @@ Array [
 import data from './index-node-legacy-cjs.cjs';
 
 export const { ns1, ns2, fooRenamed, ns3, foo, bar, a, b, c, d, e, f, ClassName, func, arrowFunc, CONST } = data;
-
 export default data.default;",
 ]
 `;
@@ -2266,7 +2841,6 @@ Array [
 import data from './index-node-stable-cjs.cjs';
 
 export const { ns1, ns2, fooRenamed, ns3, foo, bar, a, b, c, d, e, f, ClassName, func, arrowFunc, CONST } = data;
-
 export default data.default;",
 ]
 `;
@@ -3320,7 +3894,6 @@ Array [
 import data from './index-node-current-cjs.cjs';
 
 export const { ns1, ns2, fooRenamed, ns3, foo, bar, a, b, c, d, e, f, ClassName, func, arrowFunc, CONST } = data;
-
 export default data.default;",
 ]
 `;
@@ -3478,7 +4051,6 @@ Array [
 import data from './index-node-experimental-cjs.cjs';
 
 export const { ns1, ns2, fooRenamed, ns3, foo, bar, a, b, c, d, e, f, ClassName, func, arrowFunc, CONST } = data;
-
 export default data.default;",
 ]
 `;
@@ -3636,7 +4208,6 @@ Array [
 import data from './index-node-legacy-cjs.cjs';
 
 export const { ns1, ns2, fooRenamed, ns3, foo, bar, a, b, c, d, e, f, ClassName, func, arrowFunc, CONST } = data;
-
 export default data.default;",
 ]
 `;
@@ -3794,7 +4365,6 @@ Array [
 import data from './index-node-stable-cjs.cjs';
 
 export const { ns1, ns2, fooRenamed, ns3, foo, bar, a, b, c, d, e, f, ClassName, func, arrowFunc, CONST } = data;
-
 export default data.default;",
 ]
 `;

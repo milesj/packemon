@@ -21,7 +21,15 @@ function createMjsFileFromExports(
 		externalExports.forEach((external) => {
 			switch (external.type) {
 				case 'export-all':
-					mjs.push(`export * from '${external.source}';`);
+					mjs.push(
+						`export *${external.namespace ? ` as ${external.namespace}` : ''} from '${
+							external.source
+						}';`,
+					);
+					break;
+
+				case 'export-named':
+					mjs.push(`export { ${external.names.join(', ')} } from '${external.source}';`);
 					break;
 
 				default:

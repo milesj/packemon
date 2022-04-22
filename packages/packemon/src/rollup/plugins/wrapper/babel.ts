@@ -2,10 +2,17 @@ import path from 'path';
 import { GetModuleInfo } from 'rollup';
 import * as t from '@babel/types';
 
-export interface ExternalExport {
-	type: 'export-all';
-	source: string;
-}
+export type ExternalExport =
+	| {
+			type: 'export-all';
+			namespace?: string;
+			source: string;
+	  }
+	| {
+			type: 'export-named';
+			names: string[];
+			source: string;
+	  };
 
 export interface ExtractedExports {
 	externalExports: ExternalExport[];
@@ -89,8 +96,6 @@ export function extractExportsWithBabel(
 		throw new Error(`Cannot get module info for ID: ${id}`);
 	}
 
-	console.log(id, info.ast);
-
 	const importedFiles = info.importedIds;
 	const typeNames = new Set(extractTypeNames(info.ast as t.Program));
 	const externalExports: ExternalExport[] = [];
@@ -107,8 +112,11 @@ export function extractExportsWithBabel(
 		}
 	};
 
+	// eslint-disable-next-line complexity
 	(info.ast as t.Program).body.forEach((item) => {
 		if (item.type === 'ExportNamedDeclaration' && item.exportKind !== 'type') {
+			const isExternal = item.source && !item.source.value.startsWith('.');
+
 			// export function foo
 			// export const foo
 			if (item.declaration) {
@@ -119,9 +127,19 @@ export function extractExportsWithBabel(
 			// export foo
 			// export * as foo
 			if (item.specifiers.length > 0) {
-				mapNamed(
-					item.specifiers.map((spec) => extractName(spec.exported)).filter(Boolean) as string[],
-				);
+				const names = item.specifiers
+					.map((spec) => extractName(spec.exported))
+					.filter(Boolean) as string[];
+
+				if (isExternal) {
+					externalExports.push({
+						names,
+						source: item.source!.value,
+						type: 'export-named',
+					});
+				} else {
+					mapNamed(names);
+				}
 			}
 		}
 
@@ -131,15 +149,25 @@ export function extractExportsWithBabel(
 		}
 
 		if (item.type === 'ExportAllDeclaration' && item.source) {
+			const isExternal = !item.source.value.startsWith('.');
 			// @ts-expect-error Not typed in Babel, is part of ESTree compliance
 			const exported = item.exported as t.Identifier | null;
 
-			// export * as name from ...
-			if (exported) {
+			// export * from 'node-module'
+			// export * as ns from 'node-module'
+			if (isExternal) {
+				externalExports.push({
+					namespace: exported ? exported.name : undefined,
+					source: item.source.value,
+					type: 'export-all',
+				});
+
+				// export * as ns from './relative/file'
+			} else if (exported) {
 				mapNamed(extractName(exported));
 
 				// export * from './relative/file'
-			} else if (item.source.value.startsWith('.')) {
+			} else {
 				const importId = importedFiles.find((file) =>
 					file.startsWith(path.normalize(path.join(path.dirname(id), item.source.value))),
 				);
@@ -147,13 +175,6 @@ export function extractExportsWithBabel(
 				if (importId) {
 					namedExports.push(...extractExportsWithBabel(importId, getModuleInfo).namedExports);
 				}
-
-				// export * from 'node-module'
-			} else {
-				externalExports.push({
-					type: 'export-all',
-					source: item.source.value,
-				});
 			}
 		}
 	});
