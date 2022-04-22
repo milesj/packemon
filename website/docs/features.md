@@ -224,7 +224,57 @@ if (process.env.NODE_ENV !== 'production') {
 }
 ```
 
-## CJS & ESM interoperability
+## Automatic `.mjs` wrappers for `.cjs` inputs
+
+Publishing a package that contains builds for both `.cjs` and `.mjs` may result in the
+[dual package hazard](https://nodejs.org/api/packages.html#dual-commonjses-module-packages) problem.
+Packemon attempts to mitigate this problem by only allowing 1 format. However, when publishing
+`.cjs` code, a consumer _cannot_ used named imports within an `.mjs` file as one would expect (since
+CommonJS has no concept of default and named exports), as demonstrated below.
+
+```js title="package/cjs/index.cjs"
+exports.name = 'value';
+```
+
+```js title="index.mjs"
+// Invalid
+import { name } from 'package';
+
+// Valid
+import cjsPackage from 'package';
+
+const { name } = cjsPackage;
+```
+
+This is rather annoying, as it does not align with `import`/`export` assumptions, and also makes it
+harder for consumers to migrate to ESM based code (`.mjs`). However, there is a solution to this
+problem,
+[using an ESM wrapper](https://nodejs.org/api/packages.html#approach-1-use-an-es-module-wrapper).
+Packemon supports this as a first-class feature, and when the [`format`](./config.md#formats) is
+`cjs`, the following functionality is automatically enabled:
+
+- A wrapper `.mjs` file is emitted for each [input](./config.md#inputs), that re-exports all values
+  found in the base `.cjs` file.
+- If `--addExports` is enabled, will append an `import` exports conditional.
+
+Based on this information and the examples above, our imports now work as expected!
+
+```js title="package/cjs/index.cjs"
+exports.name = 'value';
+```
+
+```js title="package/cjs/index-wrapper.mjs"
+import data from 'package';
+
+export const { name } = data;
+```
+
+```js title="index.mjs"
+// Works now!
+import { name } from 'package';
+```
+
+## CommonJS & ECMAScript interoperability
 
 Packemon by default encourages [ECMAScript modules](./esm.md), but not everyone is there yet. To
 bridge this gap, we enable the
