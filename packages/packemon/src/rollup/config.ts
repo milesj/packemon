@@ -227,7 +227,6 @@ export function getRollupConfig(
 				addMjsWrapperForCjs({
 					inputs: artifact.inputs,
 					packageRoot: artifact.package.path,
-					swc: isSwc,
 				}),
 			);
 		}
