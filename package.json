@@ -6,7 +6,7 @@
   "scripts": {
     "docs": "cd website && yarn run start",
     "prepare": "beemo create-config",
-    "setup": "yarn dlx --package packemon@2.0.0 --package typescript --quiet packemon build",
+    "setup": "yarn dlx --package packemon@latest --package typescript --quiet packemon build",
     "build": "yarn run packemon build",
     "validate": "yarn run packemon validate",
     "check": "yarn run type && yarn run test && yarn run lint",
