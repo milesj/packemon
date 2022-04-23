@@ -27,10 +27,18 @@
   ],
   "exports": {
     "./package.json": "./package.json",
-    "./*": {
-      "types": "./dts/*.d.ts",
+    "./babel": {
+      "types": "./dts/babel.d.ts",
       "node": {
-        "require": "./cjs/*.cjs"
+        "import": "./cjs/babel-wrapper.mjs",
+        "require": "./cjs/babel.cjs"
+      }
+    },
+    "./bin": {
+      "types": "./dts/bin.d.ts",
+      "node": {
+        "import": "./cjs/bin-wrapper.mjs",
+        "require": "./cjs/bin.cjs"
       }
     },
     ".": {
@@ -46,6 +54,7 @@
     "npm": ">=6.14.0"
   },
   "packemon": {
+    "api": "private",
     "inputs": {
       "index": "src/index.ts",
       "babel": "src/babel.ts",
