@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.1.0 - 2022-04-23
+
+#### 🚀 Updates
+
+- Add automatic `.mjs` wrappers for `.cjs` inputs. (#120) ([c27dcff](https://github.com/milesj/packemon/commit/c27dcff)), closes [#120](https://github.com/milesj/packemon/issues/120)
+- Convert Packemon to a `.cjs` library. (#121) ([3605e12](https://github.com/milesj/packemon/commit/3605e12)), closes [#121](https://github.com/milesj/packemon/issues/121)
+
+#### 📦 Dependencies
+
+- **[npm-packlist]** Update to v5.0.2. ([75ea267](https://github.com/milesj/packemon/commit/75ea267))
+- **[swc]** Update to v1.2.171. ([d8f0a23](https://github.com/milesj/packemon/commit/d8f0a23))
+
+**Note:** Version bump only for package packemon
+
+
+
+
+
 # 2.0.0 - 2022-04-20
 
 #### 💥 Breaking
