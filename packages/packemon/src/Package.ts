@@ -523,7 +523,7 @@ export class Package {
 			// Build files
 			if (artifact instanceof CodeArtifact) {
 				artifact.builds.forEach(({ format }) => {
-					files.add(`${format}/**/*.{${artifact.getBuildOutput(format).ext},map}`);
+					files.add(`${format}/**/*.{${artifact.getBuildOutput(format).extGroup}}`);
 				});
 
 				files.add(`src/**/*.{${this.getSourceFileExts(artifact.inputs)}}`);

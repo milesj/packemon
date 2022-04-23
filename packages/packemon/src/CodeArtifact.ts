@@ -139,11 +139,13 @@ export class CodeArtifact extends Artifact<CodeBuild> {
 		}
 
 		const ext = format === 'cjs' || format === 'mjs' ? format : 'js';
+		const extGroup = format === 'cjs' ? 'cjs,mjs,map' : `${ext},map`;
 		const folder = format === 'lib' && this.sharedLib ? `lib/${this.platform}` : format;
 		const file = `${name}.${ext}`;
 
 		return {
 			ext,
+			extGroup,
 			file,
 			folder,
 			path: `./${new VirtualPath(folder, file)}`,
@@ -216,7 +218,7 @@ export class CodeArtifact extends Artifact<CodeBuild> {
 
 				case 'cjs':
 					// Automatically apply the wrapper
-					if (!paths.import) {
+					if (!paths.import && outputName !== '*') {
 						paths.import = entry.replace('.cjs', '-wrapper.mjs');
 					}
 

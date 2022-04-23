@@ -712,7 +712,7 @@ describe('Package', () => {
 				expect(pkg.packageJson).toEqual(
 					expect.objectContaining({
 						files: [
-							'cjs/**/*.{cjs,map}',
+							'cjs/**/*.{cjs,mjs,map}',
 							'lib/**/*.{js,map}',
 							'src/**/*.{ts,tsx,json}',
 							'umd/**/*.{js,map}',

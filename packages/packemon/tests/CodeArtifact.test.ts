@@ -122,6 +122,7 @@ describe('CodeArtifact', () => {
 		it('returns metadata for `lib` format', () => {
 			expect(artifact.getBuildOutput('lib', 'index')).toEqual({
 				ext: 'js',
+				extGroup: 'js,map',
 				file: 'index.js',
 				folder: 'lib',
 				path: './lib/index.js',
@@ -131,6 +132,7 @@ describe('CodeArtifact', () => {
 		it('returns metadata for `esm` format', () => {
 			expect(artifact.getBuildOutput('esm', 'index')).toEqual({
 				ext: 'js',
+				extGroup: 'js,map',
 				file: 'index.js',
 				folder: 'esm',
 				path: './esm/index.js',
@@ -140,6 +142,7 @@ describe('CodeArtifact', () => {
 		it('returns metadata for `umd` format', () => {
 			expect(artifact.getBuildOutput('umd', 'index')).toEqual({
 				ext: 'js',
+				extGroup: 'js,map',
 				file: 'index.js',
 				folder: 'umd',
 				path: './umd/index.js',
@@ -149,6 +152,7 @@ describe('CodeArtifact', () => {
 		it('returns metadata for `cjs` format', () => {
 			expect(artifact.getBuildOutput('cjs', 'index')).toEqual({
 				ext: 'cjs',
+				extGroup: 'cjs,mjs,map',
 				file: 'index.cjs',
 				folder: 'cjs',
 				path: './cjs/index.cjs',
@@ -158,6 +162,7 @@ describe('CodeArtifact', () => {
 		it('returns metadata for `mjs` format', () => {
 			expect(artifact.getBuildOutput('mjs', 'index')).toEqual({
 				ext: 'mjs',
+				extGroup: 'mjs,map',
 				file: 'index.mjs',
 				folder: 'mjs',
 				path: './mjs/index.mjs',
@@ -170,6 +175,7 @@ describe('CodeArtifact', () => {
 
 				expect(artifact.getBuildOutput('lib', 'index')).toEqual({
 					ext: 'js',
+					extGroup: 'js,map',
 					file: 'index.js',
 					folder: 'lib/node',
 					path: './lib/node/index.js',
@@ -181,6 +187,7 @@ describe('CodeArtifact', () => {
 
 				expect(artifact.getBuildOutput('esm', 'index')).toEqual({
 					ext: 'js',
+					extGroup: 'js,map',
 					file: 'index.js',
 					folder: 'esm',
 					path: './esm/index.js',
@@ -194,6 +201,7 @@ describe('CodeArtifact', () => {
 
 			expect(artifact.getBuildOutput('mjs', 'index')).toEqual({
 				ext: 'mjs',
+				extGroup: 'mjs,map',
 				file: 'some/other/file.mjs',
 				folder: 'mjs',
 				path: './mjs/some/other/file.mjs',
