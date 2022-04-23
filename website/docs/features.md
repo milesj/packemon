@@ -275,7 +275,7 @@ import { name } from 'package';
 ```
 
 > This is a great solution for packages that want to offer "modules" but are unable to fully migrate
-> to ESM.
+> to ESM. If you _do not_ want this functionality, use the `lib` format instead.
 
 ## CommonJS & ECMAScript interoperability
 
