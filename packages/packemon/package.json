@@ -20,21 +20,25 @@
   "types": "./dts/index.d.ts",
   "bin": "./cjs/bin.cjs",
   "files": [
-    "cjs/**/*.{cjs,map}",
+    "cjs/**/*.{cjs,mjs,map}",
     "dts/**/*.d.ts",
     "src/**/*.{ts,tsx,json}",
     "templates/**/*"
   ],
   "exports": {
     "./package.json": "./package.json",
-    "./babel": "./babel.cjs",
     "./*": {
       "types": "./dts/*.d.ts",
-      "node": "./cjs/*.cjs"
+      "node": {
+        "require": "./cjs/*.cjs"
+      }
     },
     ".": {
       "types": "./dts/index.d.ts",
-      "node": "./cjs/index.cjs"
+      "node": {
+        "import": "./cjs/index-wrapper.mjs",
+        "require": "./cjs/index.cjs"
+      }
     }
   },
   "engines": {

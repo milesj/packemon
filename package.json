@@ -6,7 +6,7 @@
   "scripts": {
     "docs": "cd website && yarn run start",
     "prepare": "beemo create-config",
-    "setup": "npx --package packemon@latest packemon build",
+    "setup": "yarn dlx --package packemon@2.0.0 --package typescript --quiet packemon build",
     "build": "yarn run packemon build",
     "validate": "yarn run packemon validate",
     "check": "yarn run type && yarn run test && yarn run lint",
@@ -20,7 +20,7 @@
     "release": "yarn prerelease && beemo run-script lerna-release",
     "version": "yarn install && git add yarn.lock",
     "pack": "NODE_ENV=production yarn run packemon build --addEngines --addExports --declaration",
-    "packemon": "node ./packages/packemon/lib/bin.js"
+    "packemon": "node ./packages/packemon/cjs/bin.cjs"
   },
   "workspaces": [
     "packages/*",
