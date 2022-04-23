@@ -10,6 +10,7 @@ function foo() {}
 function bar() {}
 
 export { bar, foo };
+//# sourceMappingURL=bundle-1bc8bc6c.js.map
 ",
 ]
 `;
@@ -29,6 +30,7 @@ import(
 }) => {
   bar();
 });
+//# sourceMappingURL=index-browser-current-esm.js.map
 ",
 ]
 `;
@@ -46,6 +48,7 @@ function bar() {}
 
 exports.bar = bar;
 exports.foo = foo;
+//# sourceMappingURL=bundle-b8bd2771.js.map
 ",
 ]
 `;
@@ -67,6 +70,7 @@ Promise.resolve().then(() => require(
 }) => {
   bar();
 });
+//# sourceMappingURL=index-browser-current-lib.js.map
 ",
 ]
 `;
@@ -101,6 +105,7 @@ Array [
 
   function bar() {}
 });
+//# sourceMappingURL=bundle-030a0739.js.map
 ",
 ]
 `;
@@ -120,6 +125,7 @@ import(
 }) => {
   bar();
 });
+//# sourceMappingURL=index-browser-current-umd.js.map
 ",
 ]
 `;
@@ -134,6 +140,7 @@ function foo() {}
 function bar() {}
 
 export { bar, foo };
+//# sourceMappingURL=bundle-e79ac686.js.map
 ",
 ]
 `;
@@ -153,6 +160,7 @@ import(
 }) => {
   bar();
 });
+//# sourceMappingURL=index-browser-experimental-esm.js.map
 ",
 ]
 `;
@@ -170,6 +178,7 @@ function bar() {}
 
 exports.bar = bar;
 exports.foo = foo;
+//# sourceMappingURL=bundle-c50d6f28.js.map
 ",
 ]
 `;
@@ -191,6 +200,7 @@ Promise.resolve().then(() => require(
 }) => {
   bar();
 });
+//# sourceMappingURL=index-browser-experimental-lib.js.map
 ",
 ]
 `;
@@ -225,6 +235,7 @@ Array [
 
   function bar() {}
 });
+//# sourceMappingURL=bundle-4cd630b0.js.map
 ",
 ]
 `;
@@ -244,6 +255,7 @@ import(
 }) => {
   bar();
 });
+//# sourceMappingURL=index-browser-experimental-umd.js.map
 ",
 ]
 `;
@@ -258,6 +270,7 @@ function foo() {}
 function bar() {}
 
 export { bar, foo };
+//# sourceMappingURL=bundle-cbaaee70.js.map
 ",
 ]
 `;
@@ -284,6 +297,7 @@ import(
   var bar = _ref.bar;
   bar();
 }.bind(this));
+//# sourceMappingURL=index-browser-legacy-esm.js.map
 ",
 ]
 `;
@@ -301,6 +315,7 @@ function bar() {}
 
 exports.bar = bar;
 exports.foo = foo;
+//# sourceMappingURL=bundle-0c868d09.js.map
 ",
 ]
 `;
@@ -337,6 +352,7 @@ Promise.resolve().then(function () {
   var bar = _ref.bar;
   bar();
 }.bind(this));
+//# sourceMappingURL=index-browser-legacy-lib.js.map
 ",
 ]
 `;
@@ -371,6 +387,7 @@ Array [
 
   function bar() {}
 });
+//# sourceMappingURL=bundle-99a7a8e3.js.map
 ",
 ]
 `;
@@ -397,6 +414,7 @@ import(
   var bar = _ref.bar;
   bar();
 }.bind(this));
+//# sourceMappingURL=index-browser-legacy-umd.js.map
 ",
 ]
 `;
@@ -411,6 +429,7 @@ function foo() {}
 function bar() {}
 
 export { bar, foo };
+//# sourceMappingURL=bundle-32c07aef.js.map
 ",
 ]
 `;
@@ -430,6 +449,7 @@ import(
 }) => {
   bar();
 });
+//# sourceMappingURL=index-browser-stable-esm.js.map
 ",
 ]
 `;
@@ -447,6 +467,7 @@ function bar() {}
 
 exports.bar = bar;
 exports.foo = foo;
+//# sourceMappingURL=bundle-a1d8f7d2.js.map
 ",
 ]
 `;
@@ -468,6 +489,7 @@ Promise.resolve().then(() => require(
 }) => {
   bar();
 });
+//# sourceMappingURL=index-browser-stable-lib.js.map
 ",
 ]
 `;
@@ -502,6 +524,7 @@ Array [
 
   function bar() {}
 });
+//# sourceMappingURL=bundle-adfd6fef.js.map
 ",
 ]
 `;
@@ -521,6 +544,7 @@ import(
 }) => {
   bar();
 });
+//# sourceMappingURL=index-browser-stable-umd.js.map
 ",
 ]
 `;
@@ -538,6 +562,7 @@ function bar() {}
 
 exports.bar = bar;
 exports.foo = foo;
+//# sourceMappingURL=bundle-99524a7a.js.map
 ",
 ]
 `;
@@ -559,6 +584,7 @@ Promise.resolve().then(() => require(
 }) => {
   bar();
 });
+//# sourceMappingURL=index-native-current-lib.js.map
 ",
 ]
 `;
@@ -576,6 +602,7 @@ function bar() {}
 
 exports.bar = bar;
 exports.foo = foo;
+//# sourceMappingURL=bundle-c8d5fd50.js.map
 ",
 ]
 `;
@@ -597,6 +624,7 @@ Promise.resolve().then(() => require(
 }) => {
   bar();
 });
+//# sourceMappingURL=index-native-experimental-lib.js.map
 ",
 ]
 `;
@@ -614,6 +642,7 @@ function bar() {}
 
 exports.bar = bar;
 exports.foo = foo;
+//# sourceMappingURL=bundle-399daa32.js.map
 ",
 ]
 `;
@@ -635,6 +664,7 @@ Promise.resolve().then(() => require(
 }) => {
   bar();
 });
+//# sourceMappingURL=index-native-legacy-lib.js.map
 ",
 ]
 `;
@@ -652,6 +682,7 @@ function bar() {}
 
 exports.bar = bar;
 exports.foo = foo;
+//# sourceMappingURL=bundle-14db0c55.js.map
 ",
 ]
 `;
@@ -673,6 +704,7 @@ Promise.resolve().then(() => require(
 }) => {
   bar();
 });
+//# sourceMappingURL=index-native-stable-lib.js.map
 ",
 ]
 `;
@@ -690,11 +722,22 @@ function bar() {}
 
 exports.bar = bar;
 exports.foo = foo;
+//# sourceMappingURL=bundle-be5cf5e2.cjs.map
 ",
 ]
 `;
 
 exports[`Dynamic imports babel transforms example test case: node-current-cjs 2`] = `
+Array [
+  "cjs/index-node-current-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-current-cjs.cjs';",
+]
+`;
+
+exports[`Dynamic imports babel transforms example test case: node-current-cjs 3`] = `
 Array [
   "cjs/index-node-current-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -711,6 +754,7 @@ Promise.resolve().then(() => require(
 }) => {
   bar();
 });
+//# sourceMappingURL=index-node-current-cjs.cjs.map
 ",
 ]
 `;
@@ -728,6 +772,7 @@ function bar() {}
 
 exports.bar = bar;
 exports.foo = foo;
+//# sourceMappingURL=bundle-b574f112.js.map
 ",
 ]
 `;
@@ -749,6 +794,7 @@ Promise.resolve().then(() => require(
 }) => {
   bar();
 });
+//# sourceMappingURL=index-node-current-lib.js.map
 ",
 ]
 `;
@@ -763,6 +809,7 @@ function foo() {}
 function bar() {}
 
 export { bar, foo };
+//# sourceMappingURL=bundle-1c4667ee.mjs.map
 ",
 ]
 `;
@@ -782,6 +829,7 @@ import(
 }) => {
   bar();
 });
+//# sourceMappingURL=index-node-current-mjs.mjs.map
 ",
 ]
 `;
@@ -799,11 +847,22 @@ function bar() {}
 
 exports.bar = bar;
 exports.foo = foo;
+//# sourceMappingURL=bundle-aca4e497.cjs.map
 ",
 ]
 `;
 
 exports[`Dynamic imports babel transforms example test case: node-experimental-cjs 2`] = `
+Array [
+  "cjs/index-node-experimental-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-experimental-cjs.cjs';",
+]
+`;
+
+exports[`Dynamic imports babel transforms example test case: node-experimental-cjs 3`] = `
 Array [
   "cjs/index-node-experimental-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -820,6 +879,7 @@ Promise.resolve().then(() => require(
 }) => {
   bar();
 });
+//# sourceMappingURL=index-node-experimental-cjs.cjs.map
 ",
 ]
 `;
@@ -837,6 +897,7 @@ function bar() {}
 
 exports.bar = bar;
 exports.foo = foo;
+//# sourceMappingURL=bundle-6879caf9.js.map
 ",
 ]
 `;
@@ -858,6 +919,7 @@ Promise.resolve().then(() => require(
 }) => {
   bar();
 });
+//# sourceMappingURL=index-node-experimental-lib.js.map
 ",
 ]
 `;
@@ -872,6 +934,7 @@ function foo() {}
 function bar() {}
 
 export { bar, foo };
+//# sourceMappingURL=bundle-bacbd395.mjs.map
 ",
 ]
 `;
@@ -891,6 +954,7 @@ import(
 }) => {
   bar();
 });
+//# sourceMappingURL=index-node-experimental-mjs.mjs.map
 ",
 ]
 `;
@@ -908,11 +972,22 @@ function bar() {}
 
 exports.bar = bar;
 exports.foo = foo;
+//# sourceMappingURL=bundle-adbf1ba7.cjs.map
 ",
 ]
 `;
 
 exports[`Dynamic imports babel transforms example test case: node-legacy-cjs 2`] = `
+Array [
+  "cjs/index-node-legacy-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-legacy-cjs.cjs';",
+]
+`;
+
+exports[`Dynamic imports babel transforms example test case: node-legacy-cjs 3`] = `
 Array [
   "cjs/index-node-legacy-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -929,6 +1004,7 @@ Promise.resolve().then(() => require(
 }) => {
   bar();
 });
+//# sourceMappingURL=index-node-legacy-cjs.cjs.map
 ",
 ]
 `;
@@ -946,6 +1022,7 @@ function bar() {}
 
 exports.bar = bar;
 exports.foo = foo;
+//# sourceMappingURL=bundle-0da238d9.js.map
 ",
 ]
 `;
@@ -967,6 +1044,7 @@ Promise.resolve().then(() => require(
 }) => {
   bar();
 });
+//# sourceMappingURL=index-node-legacy-lib.js.map
 ",
 ]
 `;
@@ -981,6 +1059,7 @@ function foo() {}
 function bar() {}
 
 export { bar, foo };
+//# sourceMappingURL=bundle-f11f9b7f.mjs.map
 ",
 ]
 `;
@@ -1000,6 +1079,7 @@ import(
 }) => {
   bar();
 });
+//# sourceMappingURL=index-node-legacy-mjs.mjs.map
 ",
 ]
 `;
@@ -1017,11 +1097,22 @@ function bar() {}
 
 exports.bar = bar;
 exports.foo = foo;
+//# sourceMappingURL=bundle-922b7d15.cjs.map
 ",
 ]
 `;
 
 exports[`Dynamic imports babel transforms example test case: node-stable-cjs 2`] = `
+Array [
+  "cjs/index-node-stable-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-stable-cjs.cjs';",
+]
+`;
+
+exports[`Dynamic imports babel transforms example test case: node-stable-cjs 3`] = `
 Array [
   "cjs/index-node-stable-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -1038,6 +1129,7 @@ Promise.resolve().then(() => require(
 }) => {
   bar();
 });
+//# sourceMappingURL=index-node-stable-cjs.cjs.map
 ",
 ]
 `;
@@ -1055,6 +1147,7 @@ function bar() {}
 
 exports.bar = bar;
 exports.foo = foo;
+//# sourceMappingURL=bundle-75d21bac.js.map
 ",
 ]
 `;
@@ -1076,6 +1169,7 @@ Promise.resolve().then(() => require(
 }) => {
   bar();
 });
+//# sourceMappingURL=index-node-stable-lib.js.map
 ",
 ]
 `;
@@ -1090,6 +1184,7 @@ function foo() {}
 function bar() {}
 
 export { bar, foo };
+//# sourceMappingURL=bundle-0856c0d8.mjs.map
 ",
 ]
 `;
@@ -1109,6 +1204,7 @@ import(
 }) => {
   bar();
 });
+//# sourceMappingURL=index-node-stable-mjs.mjs.map
 ",
 ]
 `;
@@ -1121,6 +1217,7 @@ Array [
 function foo() {}
 function bar() {}
 export { bar, foo };
+//# sourceMappingURL=bundle-1bc8bc6c.js.map
 ",
 ]
 `;
@@ -1136,6 +1233,7 @@ import('./bundle-1bc8bc6c.js').then((result)=>{
 import(/* webpackChunkName: \\"helpers\\" */ './bundle-1bc8bc6c.js').then(({ bar  })=>{
     bar();
 });
+//# sourceMappingURL=index-browser-current-esm.js.map
 ",
 ]
 `;
@@ -1150,6 +1248,7 @@ function foo() {}
 function bar() {}
 exports.bar = bar;
 exports.foo = foo;
+//# sourceMappingURL=bundle-b8bd2771.js.map
 ",
 ]
 `;
@@ -1168,6 +1267,7 @@ Promise.resolve().then(()=>require(/* webpackChunkName: \\"helpers\\" */ './bund
 ).then(({ bar  })=>{
     bar();
 });
+//# sourceMappingURL=index-browser-current-lib.js.map
 ",
 ]
 `;
@@ -1200,6 +1300,7 @@ Array [
     function bar() {}
     _exports.bar = bar;
 });
+//# sourceMappingURL=bundle-ca4fc8e9.js.map
 ",
 ]
 `;
@@ -1249,6 +1350,7 @@ Array [
         bar();
     });
 });
+//# sourceMappingURL=index-browser-current-umd.js.map
 ",
 ]
 `;
@@ -1261,6 +1363,7 @@ Array [
 function foo() {}
 function bar() {}
 export { bar, foo };
+//# sourceMappingURL=bundle-e79ac686.js.map
 ",
 ]
 `;
@@ -1276,6 +1379,7 @@ import('./bundle-e79ac686.js').then((result)=>{
 import(/* webpackChunkName: \\"helpers\\" */ './bundle-e79ac686.js').then(({ bar  })=>{
     bar();
 });
+//# sourceMappingURL=index-browser-experimental-esm.js.map
 ",
 ]
 `;
@@ -1290,6 +1394,7 @@ function foo() {}
 function bar() {}
 exports.bar = bar;
 exports.foo = foo;
+//# sourceMappingURL=bundle-c50d6f28.js.map
 ",
 ]
 `;
@@ -1308,6 +1413,7 @@ Promise.resolve().then(()=>require(/* webpackChunkName: \\"helpers\\" */ './bund
 ).then(({ bar  })=>{
     bar();
 });
+//# sourceMappingURL=index-browser-experimental-lib.js.map
 ",
 ]
 `;
@@ -1340,6 +1446,7 @@ Array [
     function bar() {}
     _exports.bar = bar;
 });
+//# sourceMappingURL=bundle-ca4fc8e9.js.map
 ",
 ]
 `;
@@ -1389,6 +1496,7 @@ Array [
         bar();
     });
 });
+//# sourceMappingURL=index-browser-experimental-umd.js.map
 ",
 ]
 `;
@@ -1401,6 +1509,7 @@ Array [
 function foo() {}
 function bar() {}
 export { bar, foo };
+//# sourceMappingURL=bundle-cbaaee70.js.map
 ",
 ]
 `;
@@ -1417,6 +1526,7 @@ import(/* webpackChunkName: \\"helpers\\" */ \\"./bundle-cbaaee70.js\\").then(fu
     var bar = param.bar;
     bar();
 });
+//# sourceMappingURL=index-browser-legacy-esm.js.map
 ",
 ]
 `;
@@ -1431,6 +1541,7 @@ function foo() {}
 function bar() {}
 exports.bar = bar;
 exports.foo = foo;
+//# sourceMappingURL=bundle-0c868d09.js.map
 ",
 ]
 `;
@@ -1452,6 +1563,7 @@ Promise.resolve().then(function() {
     var bar = param.bar;
     bar();
 });
+//# sourceMappingURL=index-browser-legacy-lib.js.map
 ",
 ]
 `;
@@ -1484,6 +1596,7 @@ Array [
     function bar() {}
     _exports.bar = bar;
 });
+//# sourceMappingURL=bundle-ca4fc8e9.js.map
 ",
 ]
 `;
@@ -1534,6 +1647,7 @@ Array [
         bar();
     });
 });
+//# sourceMappingURL=index-browser-legacy-umd.js.map
 ",
 ]
 `;
@@ -1546,6 +1660,7 @@ Array [
 function foo() {}
 function bar() {}
 export { bar, foo };
+//# sourceMappingURL=bundle-32c07aef.js.map
 ",
 ]
 `;
@@ -1561,6 +1676,7 @@ import('./bundle-32c07aef.js').then((result)=>{
 import(/* webpackChunkName: \\"helpers\\" */ './bundle-32c07aef.js').then(({ bar  })=>{
     bar();
 });
+//# sourceMappingURL=index-browser-stable-esm.js.map
 ",
 ]
 `;
@@ -1575,6 +1691,7 @@ function foo() {}
 function bar() {}
 exports.bar = bar;
 exports.foo = foo;
+//# sourceMappingURL=bundle-a1d8f7d2.js.map
 ",
 ]
 `;
@@ -1593,6 +1710,7 @@ Promise.resolve().then(()=>require(/* webpackChunkName: \\"helpers\\" */ './bund
 ).then(({ bar  })=>{
     bar();
 });
+//# sourceMappingURL=index-browser-stable-lib.js.map
 ",
 ]
 `;
@@ -1625,6 +1743,7 @@ Array [
     function bar() {}
     _exports.bar = bar;
 });
+//# sourceMappingURL=bundle-ca4fc8e9.js.map
 ",
 ]
 `;
@@ -1674,6 +1793,7 @@ Array [
         bar();
     });
 });
+//# sourceMappingURL=index-browser-stable-umd.js.map
 ",
 ]
 `;
@@ -1688,6 +1808,7 @@ function foo() {}
 function bar() {}
 exports.bar = bar;
 exports.foo = foo;
+//# sourceMappingURL=bundle-99524a7a.js.map
 ",
 ]
 `;
@@ -1706,6 +1827,7 @@ Promise.resolve().then(()=>require(/* webpackChunkName: \\"helpers\\" */ './bund
 ).then(({ bar  })=>{
     bar();
 });
+//# sourceMappingURL=index-native-current-lib.js.map
 ",
 ]
 `;
@@ -1720,6 +1842,7 @@ function foo() {}
 function bar() {}
 exports.bar = bar;
 exports.foo = foo;
+//# sourceMappingURL=bundle-c8d5fd50.js.map
 ",
 ]
 `;
@@ -1738,6 +1861,7 @@ Promise.resolve().then(()=>require(/* webpackChunkName: \\"helpers\\" */ './bund
 ).then(({ bar  })=>{
     bar();
 });
+//# sourceMappingURL=index-native-experimental-lib.js.map
 ",
 ]
 `;
@@ -1752,6 +1876,7 @@ function foo() {}
 function bar() {}
 exports.bar = bar;
 exports.foo = foo;
+//# sourceMappingURL=bundle-399daa32.js.map
 ",
 ]
 `;
@@ -1770,6 +1895,7 @@ Promise.resolve().then(()=>require(/* webpackChunkName: \\"helpers\\" */ \\"./bu
 ).then(({ bar  })=>{
     bar();
 });
+//# sourceMappingURL=index-native-legacy-lib.js.map
 ",
 ]
 `;
@@ -1784,6 +1910,7 @@ function foo() {}
 function bar() {}
 exports.bar = bar;
 exports.foo = foo;
+//# sourceMappingURL=bundle-14db0c55.js.map
 ",
 ]
 `;
@@ -1802,6 +1929,7 @@ Promise.resolve().then(()=>require(/* webpackChunkName: \\"helpers\\" */ './bund
 ).then(({ bar  })=>{
     bar();
 });
+//# sourceMappingURL=index-native-stable-lib.js.map
 ",
 ]
 `;
@@ -1816,11 +1944,22 @@ function foo() {}
 function bar() {}
 exports.bar = bar;
 exports.foo = foo;
+//# sourceMappingURL=bundle-be5cf5e2.cjs.map
 ",
 ]
 `;
 
 exports[`Dynamic imports swc transforms example test case: node-current-cjs 2`] = `
+Array [
+  "cjs/index-node-current-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-current-cjs.cjs';",
+]
+`;
+
+exports[`Dynamic imports swc transforms example test case: node-current-cjs 3`] = `
 Array [
   "cjs/index-node-current-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -1834,6 +1973,7 @@ Promise.resolve().then(()=>require(/* webpackChunkName: \\"helpers\\" */ './bund
 ).then(({ bar  })=>{
     bar();
 });
+//# sourceMappingURL=index-node-current-cjs.cjs.map
 ",
 ]
 `;
@@ -1848,6 +1988,7 @@ function foo() {}
 function bar() {}
 exports.bar = bar;
 exports.foo = foo;
+//# sourceMappingURL=bundle-b574f112.js.map
 ",
 ]
 `;
@@ -1866,6 +2007,7 @@ Promise.resolve().then(()=>require(/* webpackChunkName: \\"helpers\\" */ './bund
 ).then(({ bar  })=>{
     bar();
 });
+//# sourceMappingURL=index-node-current-lib.js.map
 ",
 ]
 `;
@@ -1878,6 +2020,7 @@ Array [
 function foo() {}
 function bar() {}
 export { bar, foo };
+//# sourceMappingURL=bundle-1c4667ee.mjs.map
 ",
 ]
 `;
@@ -1893,6 +2036,7 @@ import('./bundle-1c4667ee.mjs').then((result)=>{
 import(/* webpackChunkName: \\"helpers\\" */ './bundle-1c4667ee.mjs').then(({ bar  })=>{
     bar();
 });
+//# sourceMappingURL=index-node-current-mjs.mjs.map
 ",
 ]
 `;
@@ -1907,11 +2051,22 @@ function foo() {}
 function bar() {}
 exports.bar = bar;
 exports.foo = foo;
+//# sourceMappingURL=bundle-aca4e497.cjs.map
 ",
 ]
 `;
 
 exports[`Dynamic imports swc transforms example test case: node-experimental-cjs 2`] = `
+Array [
+  "cjs/index-node-experimental-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-experimental-cjs.cjs';",
+]
+`;
+
+exports[`Dynamic imports swc transforms example test case: node-experimental-cjs 3`] = `
 Array [
   "cjs/index-node-experimental-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -1925,6 +2080,7 @@ Promise.resolve().then(()=>require(/* webpackChunkName: \\"helpers\\" */ './bund
 ).then(({ bar  })=>{
     bar();
 });
+//# sourceMappingURL=index-node-experimental-cjs.cjs.map
 ",
 ]
 `;
@@ -1939,6 +2095,7 @@ function foo() {}
 function bar() {}
 exports.bar = bar;
 exports.foo = foo;
+//# sourceMappingURL=bundle-6879caf9.js.map
 ",
 ]
 `;
@@ -1957,6 +2114,7 @@ Promise.resolve().then(()=>require(/* webpackChunkName: \\"helpers\\" */ './bund
 ).then(({ bar  })=>{
     bar();
 });
+//# sourceMappingURL=index-node-experimental-lib.js.map
 ",
 ]
 `;
@@ -1969,6 +2127,7 @@ Array [
 function foo() {}
 function bar() {}
 export { bar, foo };
+//# sourceMappingURL=bundle-bacbd395.mjs.map
 ",
 ]
 `;
@@ -1984,6 +2143,7 @@ import('./bundle-bacbd395.mjs').then((result)=>{
 import(/* webpackChunkName: \\"helpers\\" */ './bundle-bacbd395.mjs').then(({ bar  })=>{
     bar();
 });
+//# sourceMappingURL=index-node-experimental-mjs.mjs.map
 ",
 ]
 `;
@@ -1998,11 +2158,22 @@ function foo() {}
 function bar() {}
 exports.bar = bar;
 exports.foo = foo;
+//# sourceMappingURL=bundle-adbf1ba7.cjs.map
 ",
 ]
 `;
 
 exports[`Dynamic imports swc transforms example test case: node-legacy-cjs 2`] = `
+Array [
+  "cjs/index-node-legacy-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-legacy-cjs.cjs';",
+]
+`;
+
+exports[`Dynamic imports swc transforms example test case: node-legacy-cjs 3`] = `
 Array [
   "cjs/index-node-legacy-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -2016,6 +2187,7 @@ Promise.resolve().then(()=>require(/* webpackChunkName: \\"helpers\\" */ \\"./bu
 ).then(({ bar  })=>{
     bar();
 });
+//# sourceMappingURL=index-node-legacy-cjs.cjs.map
 ",
 ]
 `;
@@ -2030,6 +2202,7 @@ function foo() {}
 function bar() {}
 exports.bar = bar;
 exports.foo = foo;
+//# sourceMappingURL=bundle-0da238d9.js.map
 ",
 ]
 `;
@@ -2048,6 +2221,7 @@ Promise.resolve().then(()=>require(/* webpackChunkName: \\"helpers\\" */ \\"./bu
 ).then(({ bar  })=>{
     bar();
 });
+//# sourceMappingURL=index-node-legacy-lib.js.map
 ",
 ]
 `;
@@ -2060,6 +2234,7 @@ Array [
 function foo() {}
 function bar() {}
 export { bar, foo };
+//# sourceMappingURL=bundle-f11f9b7f.mjs.map
 ",
 ]
 `;
@@ -2075,6 +2250,7 @@ import(\\"./bundle-f11f9b7f.mjs\\").then((result)=>{
 import(/* webpackChunkName: \\"helpers\\" */ \\"./bundle-f11f9b7f.mjs\\").then(({ bar  })=>{
     bar();
 });
+//# sourceMappingURL=index-node-legacy-mjs.mjs.map
 ",
 ]
 `;
@@ -2089,11 +2265,22 @@ function foo() {}
 function bar() {}
 exports.bar = bar;
 exports.foo = foo;
+//# sourceMappingURL=bundle-922b7d15.cjs.map
 ",
 ]
 `;
 
 exports[`Dynamic imports swc transforms example test case: node-stable-cjs 2`] = `
+Array [
+  "cjs/index-node-stable-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-stable-cjs.cjs';",
+]
+`;
+
+exports[`Dynamic imports swc transforms example test case: node-stable-cjs 3`] = `
 Array [
   "cjs/index-node-stable-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -2107,6 +2294,7 @@ Promise.resolve().then(()=>require(/* webpackChunkName: \\"helpers\\" */ './bund
 ).then(({ bar  })=>{
     bar();
 });
+//# sourceMappingURL=index-node-stable-cjs.cjs.map
 ",
 ]
 `;
@@ -2121,6 +2309,7 @@ function foo() {}
 function bar() {}
 exports.bar = bar;
 exports.foo = foo;
+//# sourceMappingURL=bundle-75d21bac.js.map
 ",
 ]
 `;
@@ -2139,6 +2328,7 @@ Promise.resolve().then(()=>require(/* webpackChunkName: \\"helpers\\" */ './bund
 ).then(({ bar  })=>{
     bar();
 });
+//# sourceMappingURL=index-node-stable-lib.js.map
 ",
 ]
 `;
@@ -2151,6 +2341,7 @@ Array [
 function foo() {}
 function bar() {}
 export { bar, foo };
+//# sourceMappingURL=bundle-0856c0d8.mjs.map
 ",
 ]
 `;
@@ -2166,6 +2357,7 @@ import('./bundle-0856c0d8.mjs').then((result)=>{
 import(/* webpackChunkName: \\"helpers\\" */ './bundle-0856c0d8.mjs').then(({ bar  })=>{
     bar();
 });
+//# sourceMappingURL=index-node-stable-mjs.mjs.map
 ",
 ]
 `;

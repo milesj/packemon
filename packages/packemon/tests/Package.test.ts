@@ -368,19 +368,6 @@ describe('Package', () => {
 			});
 
 			describe('module', () => {
-				it('adds "module" for node `mjs` format', async () => {
-					pkg.addArtifact(createCodeArtifact([{ format: 'mjs' }]));
-
-					await pkg.build({}, config);
-
-					expect(pkg.packageJson).toEqual(
-						expect.objectContaining({
-							module: './mjs/index.mjs',
-							type: 'module',
-						}),
-					);
-				});
-
 				it('adds "module" for browser `esm` format', async () => {
 					const a = createCodeArtifact([{ format: 'esm' }], 'browser');
 					pkg.addArtifact(a);
@@ -697,6 +684,22 @@ describe('Package', () => {
 					'./package.json': './package.json',
 				});
 			});
+
+			it('adds "mjs wrapper" exports for a single cjs format', async () => {
+				pkg.addArtifact(createCodeArtifact([{ format: 'cjs' }]));
+
+				await pkg.build({ addExports: true }, config);
+
+				expect(pkg.packageJson.exports).toEqual({
+					'.': {
+						node: {
+							import: './cjs/index-wrapper.mjs',
+							require: './cjs/index.cjs',
+						},
+					},
+					'./package.json': './package.json',
+				});
+			});
 		});
 
 		describe('files', () => {
@@ -864,7 +867,7 @@ describe('Package', () => {
 					bin: './lib/bin.js',
 					exports: {
 						'./package.json': './package.json',
-						'.': { node: { require: './cjs/index.cjs' } },
+						'.': { node: { import: './cjs/index-wrapper.mjs', require: './cjs/index.cjs' } },
 						'./bin': { node: './lib/bin.js' },
 						'./web': {
 							browser: {
@@ -919,7 +922,7 @@ describe('Package', () => {
 						'./web': {
 							browser: { default: './lib/web.js', import: './esm/web.js', module: './esm/web.js' },
 						},
-						'.': { node: { require: './cjs/node.cjs' } },
+						'.': { node: { import: './cjs/node-wrapper.mjs', require: './cjs/node.cjs' } },
 					},
 				}),
 			);

@@ -1,9 +1,9 @@
-import { Plugin } from 'rollup';
+import { OutputPlugin, Plugin } from 'rollup';
 import { Options, transform } from '@swc/core';
 
 export function swcInput(config: Partial<Options>): Plugin {
 	return {
-		name: 'swc-input',
+		name: 'packemon-swc-input',
 
 		async transform(code, filename) {
 			return transform(code, {
@@ -14,9 +14,9 @@ export function swcInput(config: Partial<Options>): Plugin {
 	};
 }
 
-export function swcOutput(config: Partial<Options>): Plugin {
+export function swcOutput(config: Partial<Options>): OutputPlugin {
 	return {
-		name: 'swc-output',
+		name: 'packemon-swc-output',
 
 		async renderChunk(code) {
 			return transform(code, config);

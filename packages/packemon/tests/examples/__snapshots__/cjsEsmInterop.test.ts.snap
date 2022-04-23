@@ -7,6 +7,7 @@ Array [
 // Platform: browser, Support: current, Format: esm
 __dirname;
 __filename;
+//# sourceMappingURL=index-browser-current-esm.js.map
 ",
 ]
 `;
@@ -20,6 +21,7 @@ Array [
 
 __dirname;
 __filename;
+//# sourceMappingURL=index-browser-current-lib.js.map
 ",
 ]
 `;
@@ -31,6 +33,7 @@ Array [
 // Platform: browser, Support: current, Format: umd
 __dirname;
 __filename;
+//# sourceMappingURL=index-browser-current-umd.js.map
 ",
 ]
 `;
@@ -42,6 +45,7 @@ Array [
 // Platform: browser, Support: experimental, Format: esm
 __dirname;
 __filename;
+//# sourceMappingURL=index-browser-experimental-esm.js.map
 ",
 ]
 `;
@@ -55,6 +59,7 @@ Array [
 
 __dirname;
 __filename;
+//# sourceMappingURL=index-browser-experimental-lib.js.map
 ",
 ]
 `;
@@ -66,6 +71,7 @@ Array [
 // Platform: browser, Support: experimental, Format: umd
 __dirname;
 __filename;
+//# sourceMappingURL=index-browser-experimental-umd.js.map
 ",
 ]
 `;
@@ -77,6 +83,7 @@ Array [
 // Platform: browser, Support: legacy, Format: esm
 __dirname;
 __filename;
+//# sourceMappingURL=index-browser-legacy-esm.js.map
 ",
 ]
 `;
@@ -90,6 +97,7 @@ Array [
 
 __dirname;
 __filename;
+//# sourceMappingURL=index-browser-legacy-lib.js.map
 ",
 ]
 `;
@@ -101,6 +109,7 @@ Array [
 // Platform: browser, Support: legacy, Format: umd
 __dirname;
 __filename;
+//# sourceMappingURL=index-browser-legacy-umd.js.map
 ",
 ]
 `;
@@ -112,6 +121,7 @@ Array [
 // Platform: browser, Support: stable, Format: esm
 __dirname;
 __filename;
+//# sourceMappingURL=index-browser-stable-esm.js.map
 ",
 ]
 `;
@@ -125,6 +135,7 @@ Array [
 
 __dirname;
 __filename;
+//# sourceMappingURL=index-browser-stable-lib.js.map
 ",
 ]
 `;
@@ -136,6 +147,7 @@ Array [
 // Platform: browser, Support: stable, Format: umd
 __dirname;
 __filename;
+//# sourceMappingURL=index-browser-stable-umd.js.map
 ",
 ]
 `;
@@ -149,6 +161,7 @@ Array [
 
 __dirname;
 __filename;
+//# sourceMappingURL=index-native-current-lib.js.map
 ",
 ]
 `;
@@ -162,6 +175,7 @@ Array [
 
 __dirname;
 __filename;
+//# sourceMappingURL=index-native-experimental-lib.js.map
 ",
 ]
 `;
@@ -175,6 +189,7 @@ Array [
 
 __dirname;
 __filename;
+//# sourceMappingURL=index-native-legacy-lib.js.map
 ",
 ]
 `;
@@ -188,11 +203,22 @@ Array [
 
 __dirname;
 __filename;
+//# sourceMappingURL=index-native-stable-lib.js.map
 ",
 ]
 `;
 
 exports[`CJS/ESM interop babel transforms example test case: node-current-cjs 1`] = `
+Array [
+  "cjs/index-node-current-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-current-cjs.cjs';",
+]
+`;
+
+exports[`CJS/ESM interop babel transforms example test case: node-current-cjs 2`] = `
 Array [
   "cjs/index-node-current-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -201,6 +227,7 @@ Array [
 
 __dirname;
 __filename;
+//# sourceMappingURL=index-node-current-cjs.cjs.map
 ",
 ]
 `;
@@ -214,6 +241,7 @@ Array [
 
 __dirname;
 __filename;
+//# sourceMappingURL=index-node-current-lib.js.map
 ",
 ]
 `;
@@ -230,11 +258,22 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 _path.dirname(import.meta.url);
 
 import.meta.url;
+//# sourceMappingURL=index-node-current-mjs.mjs.map
 ",
 ]
 `;
 
 exports[`CJS/ESM interop babel transforms example test case: node-experimental-cjs 1`] = `
+Array [
+  "cjs/index-node-experimental-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-experimental-cjs.cjs';",
+]
+`;
+
+exports[`CJS/ESM interop babel transforms example test case: node-experimental-cjs 2`] = `
 Array [
   "cjs/index-node-experimental-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -243,6 +282,7 @@ Array [
 
 __dirname;
 __filename;
+//# sourceMappingURL=index-node-experimental-cjs.cjs.map
 ",
 ]
 `;
@@ -256,6 +296,7 @@ Array [
 
 __dirname;
 __filename;
+//# sourceMappingURL=index-node-experimental-lib.js.map
 ",
 ]
 `;
@@ -272,11 +313,22 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 _path.dirname(import.meta.url);
 
 import.meta.url;
+//# sourceMappingURL=index-node-experimental-mjs.mjs.map
 ",
 ]
 `;
 
 exports[`CJS/ESM interop babel transforms example test case: node-legacy-cjs 1`] = `
+Array [
+  "cjs/index-node-legacy-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-legacy-cjs.cjs';",
+]
+`;
+
+exports[`CJS/ESM interop babel transforms example test case: node-legacy-cjs 2`] = `
 Array [
   "cjs/index-node-legacy-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -285,6 +337,7 @@ Array [
 
 __dirname;
 __filename;
+//# sourceMappingURL=index-node-legacy-cjs.cjs.map
 ",
 ]
 `;
@@ -298,6 +351,7 @@ Array [
 
 __dirname;
 __filename;
+//# sourceMappingURL=index-node-legacy-lib.js.map
 ",
 ]
 `;
@@ -314,11 +368,22 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 _path.dirname(import.meta.url);
 
 import.meta.url;
+//# sourceMappingURL=index-node-legacy-mjs.mjs.map
 ",
 ]
 `;
 
 exports[`CJS/ESM interop babel transforms example test case: node-stable-cjs 1`] = `
+Array [
+  "cjs/index-node-stable-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-stable-cjs.cjs';",
+]
+`;
+
+exports[`CJS/ESM interop babel transforms example test case: node-stable-cjs 2`] = `
 Array [
   "cjs/index-node-stable-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -327,6 +392,7 @@ Array [
 
 __dirname;
 __filename;
+//# sourceMappingURL=index-node-stable-cjs.cjs.map
 ",
 ]
 `;
@@ -340,6 +406,7 @@ Array [
 
 __dirname;
 __filename;
+//# sourceMappingURL=index-node-stable-lib.js.map
 ",
 ]
 `;
@@ -356,6 +423,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 _path.dirname(import.meta.url);
 
 import.meta.url;
+//# sourceMappingURL=index-node-stable-mjs.mjs.map
 ",
 ]
 `;

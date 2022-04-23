@@ -91,12 +91,20 @@ export function createSnapshotSpies(root: PortablePath, captureJson: boolean = f
 			}
 		};
 
+		// eslint-disable-next-line @typescript-eslint/require-await
+		const asyncHandler = async (file: unknown, content: unknown) => {
+			handler(file, content);
+		};
+
 		spies.push(
-			jest.spyOn(fs, 'writeFile').mockImplementation(handler),
+			jest.spyOn(console, 'warn').mockImplementation(),
+			// Rollup
+			jest.spyOn(fs.promises, 'writeFile').mockImplementation(asyncHandler),
+			// Packemon
 			jest.spyOn(fsx, 'writeJson').mockImplementation(handler),
+			// Assets
 			jest.spyOn(fsx, 'copyFile').mockImplementation(handler),
 			jest.spyOn(fsx, 'mkdir'),
-			jest.spyOn(console, 'warn').mockImplementation(),
 		);
 	});
 
@@ -105,12 +113,14 @@ export function createSnapshotSpies(root: PortablePath, captureJson: boolean = f
 		spies.forEach((spy) => void spy.mockRestore());
 	});
 
-	return (pkg: Package) => {
-		pkg.artifacts.forEach((artifact) => {
-			artifact.buildResult.files.forEach((file) => {
-				snapshots.push([file.file, file.code]);
+	return (pkg?: Package) => {
+		if (pkg) {
+			pkg.artifacts.forEach((artifact) => {
+				artifact.buildResult.files.forEach((file) => {
+					snapshots.push([file.file, file.code]);
+				});
 			});
-		});
+		}
 
 		return snapshots.sort((a, b) => a[0].localeCompare(b[0]));
 	};
@@ -150,15 +160,18 @@ export function testExampleOutput(
 	describe(transformer, () => {
 		const snapshots = createSnapshotSpies(exampleRoot);
 
-		if (transformer === 'swc') {
-			beforeEach(() => {
-				process.env.PACKEMON_SWC = 'true';
-			});
+		beforeEach(() => {
+			process.env.PACKEMON_TEST_WRITE = 'true';
 
-			afterEach(() => {
-				delete process.env.PACKEMON_SWC;
-			});
-		}
+			if (transformer === 'swc') {
+				process.env.PACKEMON_SWC = 'true';
+			}
+		});
+
+		afterEach(() => {
+			delete process.env.PACKEMON_TEST_WRITE;
+			delete process.env.PACKEMON_SWC;
+		});
 
 		[...builds.values()].forEach((build) => {
 			const pkg = createProjectPackage(exampleRoot);
@@ -183,7 +196,7 @@ export function testExampleOutput(
 					console.error(error);
 				}
 
-				snapshots(pkg).forEach((ss) => {
+				snapshots().forEach((ss) => {
 					expect(ss).toMatchSnapshot();
 				});
 			});

@@ -1,33 +1,35 @@
 import { createHash } from 'crypto';
 import path from 'path';
-import type { Node } from 'acorn';
 import fs from 'fs-extra';
 import MagicString from 'magic-string';
 import rimraf from 'rimraf';
 import { Plugin } from 'rollup';
 import { VirtualPath } from '@boost/common';
+import type { TSESTree } from '@typescript-eslint/types';
 import { ASSETS } from '../../constants';
 
 function isAsset(id: string): boolean {
 	return ASSETS.some((ext) => id.endsWith(ext));
 }
 
-function isRequireStatement(node: CallExpression): boolean {
+function isRequireStatement(node: TSESTree.Expression): node is TSESTree.CallExpression {
 	return (
 		node &&
 		node.type === 'CallExpression' &&
 		node.callee &&
 		node.callee.type === 'Identifier' &&
 		node.callee.name === 'require' &&
-		node.arguments.length > 0
+		node.arguments.length > 0 &&
+		node.arguments[0] &&
+		node.arguments[0].type === 'Literal'
 	);
 }
 
-export interface CopyAssetsPlugin {
+export interface CopyAssetsOptions {
 	dir: string;
 }
 
-export function copyAndRefAssets({ dir }: CopyAssetsPlugin): Plugin {
+export function copyAndRefAssets({ dir }: CopyAssetsOptions): Plugin {
 	const assetsToCopy: Record<string, VirtualPath> = {};
 
 	function determineNewAsset(source: string, importer?: string): VirtualPath {
@@ -77,10 +79,10 @@ export function copyAndRefAssets({ dir }: CopyAssetsPlugin): Plugin {
 
 		// Update import/require declarations to new asset paths
 		renderChunk(code, chunk, options) {
-			let ast: ProgramNode;
+			let ast: TSESTree.Program;
 
 			try {
-				ast = this.parse(code) as ProgramNode;
+				ast = this.parse(code) as unknown as TSESTree.Program;
 			} catch {
 				// Unknown syntax may fail parsing, not much we can do here?
 				return null;
@@ -90,8 +92,9 @@ export function copyAndRefAssets({ dir }: CopyAssetsPlugin): Plugin {
 			const magicString = new MagicString(code);
 			let hasChanged = false;
 
+			// eslint-disable-next-line complexity
 			ast.body.forEach((node) => {
-				let source: Literal | undefined;
+				let source: TSESTree.Literal | undefined;
 
 				// import './styles.css';
 				if (node.type === 'ImportDeclaration') {
@@ -99,27 +102,33 @@ export function copyAndRefAssets({ dir }: CopyAssetsPlugin): Plugin {
 
 					// require('./styles.css');
 				} else if (node.type === 'ExpressionStatement' && isRequireStatement(node.expression)) {
-					source = node.expression.arguments[0];
+					source = node.expression.arguments[0] as TSESTree.Literal;
 
 					// const foo = require('./styles.css');
 				} else if (
 					node.type === 'VariableDeclaration' &&
 					node.declarations.length > 0 &&
+					node.declarations[0].init &&
 					isRequireStatement(node.declarations[0].init)
 				) {
-					source = node.declarations[0].init.arguments[0];
+					source = node.declarations[0].init.arguments[0] as TSESTree.Literal;
 				}
 
 				// Update to new path (ignore files coming from node modules)
-				if (source?.value && isAsset(source.value) && source.value.startsWith('.')) {
-					const newId = determineNewAsset(source.value, parentId);
-
+				if (
+					source?.value &&
+					isAsset(String(source.value)) &&
+					String(source.value).startsWith('.')
+				) {
+					const newId = determineNewAsset(String(source.value), parentId);
 					const importPath = options.preserveModules
 						? new VirtualPath(path.relative(path.dirname(parentId), newId.path())).path()
 						: `../assets/${newId.name()}`;
 
-					hasChanged = true;
+					// @ts-expect-error Not typed
+					// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
 					magicString.overwrite(source.start, source.end, `'${importPath}'`);
+					hasChanged = true;
 				}
 			});
 
@@ -153,44 +162,4 @@ export function copyAndRefAssets({ dir }: CopyAssetsPlugin): Plugin {
 			);
 		},
 	};
-}
-
-interface Literal extends Node {
-	value: string;
-}
-
-interface Identifier extends Node {
-	type: 'Identifier';
-	name: string;
-}
-
-interface ImportDeclaration extends Node {
-	type: 'ImportDeclaration';
-	source: Literal;
-}
-
-interface ExpressionStatement extends Node {
-	type: 'ExpressionStatement';
-	expression: CallExpression;
-}
-
-interface CallExpression extends Node {
-	type: 'CallExpression';
-	callee: Identifier;
-	arguments: Literal[];
-}
-
-interface VariableDeclaration extends Node {
-	type: 'VariableDeclaration';
-	declarations: VariableDeclarator[];
-}
-
-interface VariableDeclarator extends Node {
-	type: 'VariableDeclarator';
-	id: Identifier;
-	init: CallExpression;
-}
-
-interface ProgramNode extends Node {
-	body: (ExpressionStatement | ImportDeclaration | VariableDeclaration)[];
 }

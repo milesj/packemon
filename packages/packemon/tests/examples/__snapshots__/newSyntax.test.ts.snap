@@ -11,6 +11,7 @@ const nullCoalesc = foo ?? 0;
 foo.bar ??= 'bar';
 foo.baz ||= 'baz';
 export { foo, nullCoalesc, optionalChain };
+//# sourceMappingURL=index-browser-current-esm.js.map
 ",
 ]
 `;
@@ -33,6 +34,7 @@ foo.baz ||= 'baz';
 exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
+//# sourceMappingURL=index-browser-current-lib.js.map
 ",
 ]
 `;
@@ -70,6 +72,7 @@ Array [
   foo.bar ??= 'bar';
   foo.baz ||= 'baz';
 });
+//# sourceMappingURL=index-browser-current-umd.js.map
 ",
 ]
 `;
@@ -85,6 +88,7 @@ const nullCoalesc = foo ?? 0;
 foo.bar ??= 'bar';
 foo.baz ||= 'baz';
 export { foo, nullCoalesc, optionalChain };
+//# sourceMappingURL=index-browser-experimental-esm.js.map
 ",
 ]
 `;
@@ -107,6 +111,7 @@ foo.baz ||= 'baz';
 exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
+//# sourceMappingURL=index-browser-experimental-lib.js.map
 ",
 ]
 `;
@@ -144,6 +149,7 @@ Array [
   foo.bar ??= 'bar';
   foo.baz ||= 'baz';
 });
+//# sourceMappingURL=index-browser-experimental-umd.js.map
 ",
 ]
 `;
@@ -161,6 +167,7 @@ var nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
 (_foo$bar = foo.bar) !== null && _foo$bar !== void 0 ? _foo$bar : foo.bar = 'bar';
 foo.baz || (foo.baz = 'baz');
 export { foo, nullCoalesc, optionalChain };
+//# sourceMappingURL=index-browser-legacy-esm.js.map
 ",
 ]
 `;
@@ -185,6 +192,7 @@ foo.baz || (foo.baz = 'baz');
 exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
+//# sourceMappingURL=index-browser-legacy-lib.js.map
 ",
 ]
 `;
@@ -225,6 +233,7 @@ Array [
   (_foo$bar = foo.bar) !== null && _foo$bar !== void 0 ? _foo$bar : foo.bar = 'bar';
   foo.baz || (foo.baz = 'baz');
 });
+//# sourceMappingURL=index-browser-legacy-umd.js.map
 ",
 ]
 `;
@@ -242,6 +251,7 @@ const nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
 (_foo$bar = foo.bar) !== null && _foo$bar !== void 0 ? _foo$bar : foo.bar = 'bar';
 foo.baz || (foo.baz = 'baz');
 export { foo, nullCoalesc, optionalChain };
+//# sourceMappingURL=index-browser-stable-esm.js.map
 ",
 ]
 `;
@@ -266,6 +276,7 @@ foo.baz || (foo.baz = 'baz');
 exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
+//# sourceMappingURL=index-browser-stable-lib.js.map
 ",
 ]
 `;
@@ -306,6 +317,7 @@ Array [
   (_foo$bar = foo.bar) !== null && _foo$bar !== void 0 ? _foo$bar : foo.bar = 'bar';
   foo.baz || (foo.baz = 'baz');
 });
+//# sourceMappingURL=index-browser-stable-umd.js.map
 ",
 ]
 `;
@@ -328,6 +340,7 @@ foo.baz ||= 'baz';
 exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
+//# sourceMappingURL=index-native-current-lib.js.map
 ",
 ]
 `;
@@ -350,6 +363,7 @@ foo.baz ||= 'baz';
 exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
+//# sourceMappingURL=index-native-experimental-lib.js.map
 ",
 ]
 `;
@@ -374,6 +388,7 @@ foo.baz || (foo.baz = 'baz');
 exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
+//# sourceMappingURL=index-native-legacy-lib.js.map
 ",
 ]
 `;
@@ -398,11 +413,24 @@ foo.baz || (foo.baz = 'baz');
 exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
+//# sourceMappingURL=index-native-stable-lib.js.map
 ",
 ]
 `;
 
 exports[`New syntax babel transforms example test case: node-current-cjs 1`] = `
+Array [
+  "cjs/index-node-current-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-current-cjs.cjs';
+
+export const { foo, nullCoalesc, optionalChain } = data;",
+]
+`;
+
+exports[`New syntax babel transforms example test case: node-current-cjs 2`] = `
 Array [
   "cjs/index-node-current-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -420,6 +448,7 @@ foo.baz ||= 'baz';
 exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
+//# sourceMappingURL=index-node-current-cjs.cjs.map
 ",
 ]
 `;
@@ -442,6 +471,7 @@ foo.baz ||= 'baz';
 exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
+//# sourceMappingURL=index-node-current-lib.js.map
 ",
 ]
 `;
@@ -457,11 +487,24 @@ const nullCoalesc = foo ?? 0;
 foo.bar ??= 'bar';
 foo.baz ||= 'baz';
 export { foo, nullCoalesc, optionalChain };
+//# sourceMappingURL=index-node-current-mjs.mjs.map
 ",
 ]
 `;
 
 exports[`New syntax babel transforms example test case: node-experimental-cjs 1`] = `
+Array [
+  "cjs/index-node-experimental-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-experimental-cjs.cjs';
+
+export const { foo, nullCoalesc, optionalChain } = data;",
+]
+`;
+
+exports[`New syntax babel transforms example test case: node-experimental-cjs 2`] = `
 Array [
   "cjs/index-node-experimental-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -479,6 +522,7 @@ foo.baz ||= 'baz';
 exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
+//# sourceMappingURL=index-node-experimental-cjs.cjs.map
 ",
 ]
 `;
@@ -501,6 +545,7 @@ foo.baz ||= 'baz';
 exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
+//# sourceMappingURL=index-node-experimental-lib.js.map
 ",
 ]
 `;
@@ -516,11 +561,24 @@ const nullCoalesc = foo ?? 0;
 foo.bar ??= 'bar';
 foo.baz ||= 'baz';
 export { foo, nullCoalesc, optionalChain };
+//# sourceMappingURL=index-node-experimental-mjs.mjs.map
 ",
 ]
 `;
 
 exports[`New syntax babel transforms example test case: node-legacy-cjs 1`] = `
+Array [
+  "cjs/index-node-legacy-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-legacy-cjs.cjs';
+
+export const { foo, nullCoalesc, optionalChain } = data;",
+]
+`;
+
+exports[`New syntax babel transforms example test case: node-legacy-cjs 2`] = `
 Array [
   "cjs/index-node-legacy-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -540,6 +598,7 @@ foo.baz || (foo.baz = 'baz');
 exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
+//# sourceMappingURL=index-node-legacy-cjs.cjs.map
 ",
 ]
 `;
@@ -564,6 +623,7 @@ foo.baz || (foo.baz = 'baz');
 exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
+//# sourceMappingURL=index-node-legacy-lib.js.map
 ",
 ]
 `;
@@ -581,11 +641,24 @@ const nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
 (_foo$bar = foo.bar) !== null && _foo$bar !== void 0 ? _foo$bar : foo.bar = 'bar';
 foo.baz || (foo.baz = 'baz');
 export { foo, nullCoalesc, optionalChain };
+//# sourceMappingURL=index-node-legacy-mjs.mjs.map
 ",
 ]
 `;
 
 exports[`New syntax babel transforms example test case: node-stable-cjs 1`] = `
+Array [
+  "cjs/index-node-stable-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-stable-cjs.cjs';
+
+export const { foo, nullCoalesc, optionalChain } = data;",
+]
+`;
+
+exports[`New syntax babel transforms example test case: node-stable-cjs 2`] = `
 Array [
   "cjs/index-node-stable-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -603,6 +676,7 @@ foo.baz || (foo.baz = 'baz');
 exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
+//# sourceMappingURL=index-node-stable-cjs.cjs.map
 ",
 ]
 `;
@@ -625,6 +699,7 @@ foo.baz || (foo.baz = 'baz');
 exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
+//# sourceMappingURL=index-node-stable-lib.js.map
 ",
 ]
 `;
@@ -640,6 +715,7 @@ const nullCoalesc = foo ?? 0;
 foo.bar ?? (foo.bar = 'bar');
 foo.baz || (foo.baz = 'baz');
 export { foo, nullCoalesc, optionalChain };
+//# sourceMappingURL=index-node-stable-mjs.mjs.map
 ",
 ]
 `;
@@ -655,6 +731,7 @@ const nullCoalesc = foo ?? 0;
 foo.bar ??= 'bar';
 foo.baz ||= 'baz';
 export { foo, nullCoalesc, optionalChain };
+//# sourceMappingURL=index-browser-current-esm.js.map
 ",
 ]
 `;
@@ -676,6 +753,7 @@ foo.baz ||= 'baz';
 exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
+//# sourceMappingURL=index-browser-current-lib.js.map
 ",
 ]
 `;
@@ -712,6 +790,7 @@ Array [
     foo.bar ??= 'bar';
     foo.baz ||= 'baz';
 });
+//# sourceMappingURL=index-browser-current-umd.js.map
 ",
 ]
 `;
@@ -727,6 +806,7 @@ const nullCoalesc = foo ?? 0;
 foo.bar ??= 'bar';
 foo.baz ||= 'baz';
 export { foo, nullCoalesc, optionalChain };
+//# sourceMappingURL=index-browser-experimental-esm.js.map
 ",
 ]
 `;
@@ -748,6 +828,7 @@ foo.baz ||= 'baz';
 exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
+//# sourceMappingURL=index-browser-experimental-lib.js.map
 ",
 ]
 `;
@@ -784,6 +865,7 @@ Array [
     foo.bar ??= 'bar';
     foo.baz ||= 'baz';
 });
+//# sourceMappingURL=index-browser-experimental-umd.js.map
 ",
 ]
 `;
@@ -801,6 +883,7 @@ var _bar;
 (_bar = (_foo = foo).bar) !== null && _bar !== void 0 ? _bar : _foo.bar = \\"bar\\";
 (_foo1 = foo).baz || (_foo1.baz = \\"baz\\");
 export { foo, nullCoalesc, optionalChain };
+//# sourceMappingURL=index-browser-legacy-esm.js.map
 ",
 ]
 `;
@@ -824,6 +907,7 @@ var _bar;
 exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
+//# sourceMappingURL=index-browser-legacy-lib.js.map
 ",
 ]
 `;
@@ -862,6 +946,7 @@ Array [
     (_bar = (_foo = foo).bar) !== null && _bar !== void 0 ? _bar : _foo.bar = \\"bar\\";
     (_foo1 = foo).baz || (_foo1.baz = \\"baz\\");
 });
+//# sourceMappingURL=index-browser-legacy-umd.js.map
 ",
 ]
 `;
@@ -879,6 +964,7 @@ var _bar;
 (_bar = (_foo = foo).bar) !== null && _bar !== void 0 ? _bar : _foo.bar = 'bar';
 (_foo1 = foo).baz || (_foo1.baz = 'baz');
 export { foo, nullCoalesc, optionalChain };
+//# sourceMappingURL=index-browser-stable-esm.js.map
 ",
 ]
 `;
@@ -902,6 +988,7 @@ var _bar;
 exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
+//# sourceMappingURL=index-browser-stable-lib.js.map
 ",
 ]
 `;
@@ -940,6 +1027,7 @@ Array [
     (_bar = (_foo = foo).bar) !== null && _bar !== void 0 ? _bar : _foo.bar = 'bar';
     (_foo1 = foo).baz || (_foo1.baz = 'baz');
 });
+//# sourceMappingURL=index-browser-stable-umd.js.map
 ",
 ]
 `;
@@ -961,6 +1049,7 @@ foo.baz ||= 'baz';
 exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
+//# sourceMappingURL=index-native-current-lib.js.map
 ",
 ]
 `;
@@ -982,6 +1071,7 @@ foo.baz ||= 'baz';
 exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
+//# sourceMappingURL=index-native-experimental-lib.js.map
 ",
 ]
 `;
@@ -1005,6 +1095,7 @@ var _bar;
 exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
+//# sourceMappingURL=index-native-legacy-lib.js.map
 ",
 ]
 `;
@@ -1028,11 +1119,24 @@ var _bar;
 exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
+//# sourceMappingURL=index-native-stable-lib.js.map
 ",
 ]
 `;
 
 exports[`New syntax swc transforms example test case: node-current-cjs 1`] = `
+Array [
+  "cjs/index-node-current-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-current-cjs.cjs';
+
+export const { foo, nullCoalesc, optionalChain } = data;",
+]
+`;
+
+exports[`New syntax swc transforms example test case: node-current-cjs 2`] = `
 Array [
   "cjs/index-node-current-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -1049,6 +1153,7 @@ foo.baz ||= 'baz';
 exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
+//# sourceMappingURL=index-node-current-cjs.cjs.map
 ",
 ]
 `;
@@ -1070,6 +1175,7 @@ foo.baz ||= 'baz';
 exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
+//# sourceMappingURL=index-node-current-lib.js.map
 ",
 ]
 `;
@@ -1085,11 +1191,24 @@ const nullCoalesc = foo ?? 0;
 foo.bar ??= 'bar';
 foo.baz ||= 'baz';
 export { foo, nullCoalesc, optionalChain };
+//# sourceMappingURL=index-node-current-mjs.mjs.map
 ",
 ]
 `;
 
 exports[`New syntax swc transforms example test case: node-experimental-cjs 1`] = `
+Array [
+  "cjs/index-node-experimental-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-experimental-cjs.cjs';
+
+export const { foo, nullCoalesc, optionalChain } = data;",
+]
+`;
+
+exports[`New syntax swc transforms example test case: node-experimental-cjs 2`] = `
 Array [
   "cjs/index-node-experimental-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -1106,6 +1225,7 @@ foo.baz ||= 'baz';
 exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
+//# sourceMappingURL=index-node-experimental-cjs.cjs.map
 ",
 ]
 `;
@@ -1127,6 +1247,7 @@ foo.baz ||= 'baz';
 exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
+//# sourceMappingURL=index-node-experimental-lib.js.map
 ",
 ]
 `;
@@ -1142,11 +1263,24 @@ const nullCoalesc = foo ?? 0;
 foo.bar ??= 'bar';
 foo.baz ||= 'baz';
 export { foo, nullCoalesc, optionalChain };
+//# sourceMappingURL=index-node-experimental-mjs.mjs.map
 ",
 ]
 `;
 
 exports[`New syntax swc transforms example test case: node-legacy-cjs 1`] = `
+Array [
+  "cjs/index-node-legacy-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-legacy-cjs.cjs';
+
+export const { foo, nullCoalesc, optionalChain } = data;",
+]
+`;
+
+exports[`New syntax swc transforms example test case: node-legacy-cjs 2`] = `
 Array [
   "cjs/index-node-legacy-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -1165,6 +1299,7 @@ var _bar;
 exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
+//# sourceMappingURL=index-node-legacy-cjs.cjs.map
 ",
 ]
 `;
@@ -1188,6 +1323,7 @@ var _bar;
 exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
+//# sourceMappingURL=index-node-legacy-lib.js.map
 ",
 ]
 `;
@@ -1205,11 +1341,24 @@ var _bar;
 (_bar = (_foo = foo).bar) !== null && _bar !== void 0 ? _bar : _foo.bar = \\"bar\\";
 (_foo1 = foo).baz || (_foo1.baz = \\"baz\\");
 export { foo, nullCoalesc, optionalChain };
+//# sourceMappingURL=index-node-legacy-mjs.mjs.map
 ",
 ]
 `;
 
 exports[`New syntax swc transforms example test case: node-stable-cjs 1`] = `
+Array [
+  "cjs/index-node-stable-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-stable-cjs.cjs';
+
+export const { foo, nullCoalesc, optionalChain } = data;",
+]
+`;
+
+exports[`New syntax swc transforms example test case: node-stable-cjs 2`] = `
 Array [
   "cjs/index-node-stable-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -1227,6 +1376,7 @@ const nullCoalesc = foo ?? 0;
 exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
+//# sourceMappingURL=index-node-stable-cjs.cjs.map
 ",
 ]
 `;
@@ -1249,6 +1399,7 @@ const nullCoalesc = foo ?? 0;
 exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
+//# sourceMappingURL=index-node-stable-lib.js.map
 ",
 ]
 `;
@@ -1265,6 +1416,7 @@ const nullCoalesc = foo ?? 0;
 (_foo = foo).bar ?? (_foo.bar = 'bar');
 (_foo1 = foo).baz || (_foo1.baz = 'baz');
 export { foo, nullCoalesc, optionalChain };
+//# sourceMappingURL=index-node-stable-mjs.mjs.map
 ",
 ]
 `;

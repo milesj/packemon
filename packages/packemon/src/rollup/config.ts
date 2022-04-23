@@ -11,6 +11,7 @@ import { EXCLUDE, EXCLUDE_RUST, EXTENSIONS } from '../constants';
 import { getSwcInputConfig, getSwcOutputConfig } from '../swc/config';
 import { ConfigFile, FeatureFlags, Format } from '../types';
 import { addBinShebang } from './plugins/addBinShebang';
+import { addMjsWrapperForCjs } from './plugins/addMjsWrapperForCjs';
 import { copyAndRefAssets } from './plugins/copyAndRefAssets';
 import { swcInput, swcOutput } from './plugins/swc';
 
@@ -220,9 +221,18 @@ export function getRollupConfig(
 	}
 
 	// Add an output for each format
-	config.output = artifact.builds.map((build) =>
-		getRollupOutputConfig(artifact, features, build.format, packemonConfig),
-	);
+	config.output = artifact.builds.map((build) => {
+		if (build.format === 'cjs') {
+			config.plugins!.push(
+				addMjsWrapperForCjs({
+					inputs: artifact.inputs,
+					packageRoot: artifact.package.path,
+				}),
+			);
+		}
+
+		return getRollupOutputConfig(artifact, features, build.format, packemonConfig);
+	});
 
 	// Allow consumers to mutate
 	packemonConfig.rollupInput?.(config);

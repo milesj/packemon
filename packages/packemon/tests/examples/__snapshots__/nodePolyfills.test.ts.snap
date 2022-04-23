@@ -685,6 +685,7 @@ class Example extends EventEmitter {
 }
 
 export { Example, emitter, test };
+//# sourceMappingURL=index-browser-current-esm.js.map
 ",
 ]
 `;
@@ -1381,6 +1382,7 @@ class Example extends EventEmitter {
 exports.Example = Example;
 exports.emitter = emitter;
 exports.test = test;
+//# sourceMappingURL=index-browser-current-lib.js.map
 ",
 ]
 `;
@@ -2092,6 +2094,7 @@ Array [
 
   _exports.Example = Example;
 });
+//# sourceMappingURL=index-browser-current-umd.js.map
 ",
 ]
 `;
@@ -2781,6 +2784,7 @@ class Example extends EventEmitter {
 }
 
 export { Example, emitter, test };
+//# sourceMappingURL=index-browser-experimental-esm.js.map
 ",
 ]
 `;
@@ -3477,6 +3481,7 @@ class Example extends EventEmitter {
 exports.Example = Example;
 exports.emitter = emitter;
 exports.test = test;
+//# sourceMappingURL=index-browser-experimental-lib.js.map
 ",
 ]
 `;
@@ -4188,6 +4193,7 @@ Array [
 
   _exports.Example = Example;
 });
+//# sourceMappingURL=index-browser-experimental-umd.js.map
 ",
 ]
 `;
@@ -4929,6 +4935,7 @@ var Example = /*#__PURE__*/function (_EventEmitter) {
 }(EventEmitter);
 
 export { Example, emitter, test };
+//# sourceMappingURL=index-browser-legacy-esm.js.map
 ",
 ]
 `;
@@ -5677,6 +5684,7 @@ var Example = /*#__PURE__*/function (_EventEmitter) {
 exports.Example = Example;
 exports.emitter = emitter;
 exports.test = test;
+//# sourceMappingURL=index-browser-legacy-lib.js.map
 ",
 ]
 `;
@@ -6441,6 +6449,7 @@ Array [
 
   _exports.Example = Example;
 });
+//# sourceMappingURL=index-browser-legacy-umd.js.map
 ",
 ]
 `;
@@ -7130,6 +7139,7 @@ class Example extends EventEmitter {
 }
 
 export { Example, emitter, test };
+//# sourceMappingURL=index-browser-stable-esm.js.map
 ",
 ]
 `;
@@ -7826,6 +7836,7 @@ class Example extends EventEmitter {
 exports.Example = Example;
 exports.emitter = emitter;
 exports.test = test;
+//# sourceMappingURL=index-browser-stable-lib.js.map
 ",
 ]
 `;
@@ -8537,6 +8548,7 @@ Array [
 
   _exports.Example = Example;
 });
+//# sourceMappingURL=index-browser-stable-umd.js.map
 ",
 ]
 `;
@@ -9233,6 +9245,7 @@ class Example extends EventEmitter {
 exports.Example = Example;
 exports.emitter = emitter;
 exports.test = test;
+//# sourceMappingURL=index-native-current-lib.js.map
 ",
 ]
 `;
@@ -9929,6 +9942,7 @@ class Example extends EventEmitter {
 exports.Example = Example;
 exports.emitter = emitter;
 exports.test = test;
+//# sourceMappingURL=index-native-experimental-lib.js.map
 ",
 ]
 `;
@@ -10625,6 +10639,7 @@ class Example extends EventEmitter {
 exports.Example = Example;
 exports.emitter = emitter;
 exports.test = test;
+//# sourceMappingURL=index-native-legacy-lib.js.map
 ",
 ]
 `;
@@ -11321,11 +11336,24 @@ class Example extends EventEmitter {
 exports.Example = Example;
 exports.emitter = emitter;
 exports.test = test;
+//# sourceMappingURL=index-native-stable-lib.js.map
 ",
 ]
 `;
 
 exports[`Node polyfills babel transforms example test case: node-current-cjs 1`] = `
+Array [
+  "cjs/index-node-current-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-current-cjs.cjs';
+
+export const { Example, emitter, test } = data;",
+]
+`;
+
+exports[`Node polyfills babel transforms example test case: node-current-cjs 2`] = `
 Array [
   "cjs/index-node-current-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -11357,6 +11385,7 @@ class Example extends events.EventEmitter {
 exports.Example = Example;
 exports.emitter = emitter;
 exports.test = test;
+//# sourceMappingURL=index-node-current-cjs.cjs.map
 ",
 ]
 `;
@@ -11393,6 +11422,7 @@ class Example extends events.EventEmitter {
 exports.Example = Example;
 exports.emitter = emitter;
 exports.test = test;
+//# sourceMappingURL=index-node-current-lib.js.map
 ",
 ]
 `;
@@ -11413,11 +11443,24 @@ class Example extends EventEmitter {
 }
 
 export { Example, emitter, test };
+//# sourceMappingURL=index-node-current-mjs.mjs.map
 ",
 ]
 `;
 
 exports[`Node polyfills babel transforms example test case: node-experimental-cjs 1`] = `
+Array [
+  "cjs/index-node-experimental-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-experimental-cjs.cjs';
+
+export const { Example, emitter, test } = data;",
+]
+`;
+
+exports[`Node polyfills babel transforms example test case: node-experimental-cjs 2`] = `
 Array [
   "cjs/index-node-experimental-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -11449,6 +11492,7 @@ class Example extends events.EventEmitter {
 exports.Example = Example;
 exports.emitter = emitter;
 exports.test = test;
+//# sourceMappingURL=index-node-experimental-cjs.cjs.map
 ",
 ]
 `;
@@ -11485,6 +11529,7 @@ class Example extends events.EventEmitter {
 exports.Example = Example;
 exports.emitter = emitter;
 exports.test = test;
+//# sourceMappingURL=index-node-experimental-lib.js.map
 ",
 ]
 `;
@@ -11505,11 +11550,24 @@ class Example extends EventEmitter {
 }
 
 export { Example, emitter, test };
+//# sourceMappingURL=index-node-experimental-mjs.mjs.map
 ",
 ]
 `;
 
 exports[`Node polyfills babel transforms example test case: node-legacy-cjs 1`] = `
+Array [
+  "cjs/index-node-legacy-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-legacy-cjs.cjs';
+
+export const { Example, emitter, test } = data;",
+]
+`;
+
+exports[`Node polyfills babel transforms example test case: node-legacy-cjs 2`] = `
 Array [
   "cjs/index-node-legacy-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -11541,6 +11599,7 @@ class Example extends events.EventEmitter {
 exports.Example = Example;
 exports.emitter = emitter;
 exports.test = test;
+//# sourceMappingURL=index-node-legacy-cjs.cjs.map
 ",
 ]
 `;
@@ -11577,6 +11636,7 @@ class Example extends events.EventEmitter {
 exports.Example = Example;
 exports.emitter = emitter;
 exports.test = test;
+//# sourceMappingURL=index-node-legacy-lib.js.map
 ",
 ]
 `;
@@ -11597,11 +11657,24 @@ class Example extends EventEmitter {
 }
 
 export { Example, emitter, test };
+//# sourceMappingURL=index-node-legacy-mjs.mjs.map
 ",
 ]
 `;
 
 exports[`Node polyfills babel transforms example test case: node-stable-cjs 1`] = `
+Array [
+  "cjs/index-node-stable-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-stable-cjs.cjs';
+
+export const { Example, emitter, test } = data;",
+]
+`;
+
+exports[`Node polyfills babel transforms example test case: node-stable-cjs 2`] = `
 Array [
   "cjs/index-node-stable-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -11633,6 +11706,7 @@ class Example extends events.EventEmitter {
 exports.Example = Example;
 exports.emitter = emitter;
 exports.test = test;
+//# sourceMappingURL=index-node-stable-cjs.cjs.map
 ",
 ]
 `;
@@ -11669,6 +11743,7 @@ class Example extends events.EventEmitter {
 exports.Example = Example;
 exports.emitter = emitter;
 exports.test = test;
+//# sourceMappingURL=index-node-stable-lib.js.map
 ",
 ]
 `;
@@ -11689,6 +11764,7 @@ class Example extends EventEmitter {
 }
 
 export { Example, emitter, test };
+//# sourceMappingURL=index-node-stable-mjs.mjs.map
 ",
 ]
 `;
@@ -12211,6 +12287,7 @@ let Example = class Example extends EventEmitter {
     log() {}
 };
 export { Example, emitter, test };
+//# sourceMappingURL=index-browser-current-esm.js.map
 ",
 ]
 `;
@@ -12739,6 +12816,7 @@ let Example = class Example extends EventEmitter {
 exports.Example = Example;
 exports.emitter = emitter;
 exports.test = test;
+//# sourceMappingURL=index-browser-current-lib.js.map
 ",
 ]
 `;
@@ -13282,6 +13360,7 @@ Array [
     };
     _exports.Example = Example;
 });
+//# sourceMappingURL=index-browser-current-umd.js.map
 ",
 ]
 `;
@@ -13804,6 +13883,7 @@ let Example = class Example extends EventEmitter {
     log() {}
 };
 export { Example, emitter, test };
+//# sourceMappingURL=index-browser-experimental-esm.js.map
 ",
 ]
 `;
@@ -14332,6 +14412,7 @@ let Example = class Example extends EventEmitter {
 exports.Example = Example;
 exports.emitter = emitter;
 exports.test = test;
+//# sourceMappingURL=index-browser-experimental-lib.js.map
 ",
 ]
 `;
@@ -14875,6 +14956,7 @@ Array [
     };
     _exports.Example = Example;
 });
+//# sourceMappingURL=index-browser-experimental-umd.js.map
 ",
 ]
 `;
@@ -15495,6 +15577,7 @@ var Example = /*#__PURE__*/ function(EventEmitter1) {
     return Example;
 }(EventEmitter);
 export { Example, emitter, test };
+//# sourceMappingURL=index-browser-legacy-esm.js.map
 ",
 ]
 `;
@@ -16120,6 +16203,7 @@ var Example = /*#__PURE__*/ function(EventEmitter1) {
 exports.Example = Example;
 exports.emitter = emitter;
 exports.test = test;
+//# sourceMappingURL=index-browser-legacy-lib.js.map
 ",
 ]
 `;
@@ -16761,6 +16845,7 @@ Array [
     }(EventEmitter1);
     _exports.Example = Example;
 });
+//# sourceMappingURL=index-browser-legacy-umd.js.map
 ",
 ]
 `;
@@ -17283,6 +17368,7 @@ let Example = class Example extends EventEmitter {
     log() {}
 };
 export { Example, emitter, test };
+//# sourceMappingURL=index-browser-stable-esm.js.map
 ",
 ]
 `;
@@ -17811,6 +17897,7 @@ let Example = class Example extends EventEmitter {
 exports.Example = Example;
 exports.emitter = emitter;
 exports.test = test;
+//# sourceMappingURL=index-browser-stable-lib.js.map
 ",
 ]
 `;
@@ -18354,6 +18441,7 @@ Array [
     };
     _exports.Example = Example;
 });
+//# sourceMappingURL=index-browser-stable-umd.js.map
 ",
 ]
 `;
@@ -18882,6 +18970,7 @@ let Example = class Example extends EventEmitter {
 exports.Example = Example;
 exports.emitter = emitter;
 exports.test = test;
+//# sourceMappingURL=index-native-current-lib.js.map
 ",
 ]
 `;
@@ -19410,6 +19499,7 @@ let Example = class Example extends EventEmitter {
 exports.Example = Example;
 exports.emitter = emitter;
 exports.test = test;
+//# sourceMappingURL=index-native-experimental-lib.js.map
 ",
 ]
 `;
@@ -19938,6 +20028,7 @@ let Example = class Example extends EventEmitter {
 exports.Example = Example;
 exports.emitter = emitter;
 exports.test = test;
+//# sourceMappingURL=index-native-legacy-lib.js.map
 ",
 ]
 `;
@@ -20466,11 +20557,24 @@ let Example = class Example extends EventEmitter {
 exports.Example = Example;
 exports.emitter = emitter;
 exports.test = test;
+//# sourceMappingURL=index-native-stable-lib.js.map
 ",
 ]
 `;
 
 exports[`Node polyfills swc transforms example test case: node-current-cjs 1`] = `
+Array [
+  "cjs/index-node-current-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-current-cjs.cjs';
+
+export const { Example, emitter, test } = data;",
+]
+`;
+
+exports[`Node polyfills swc transforms example test case: node-current-cjs 2`] = `
 Array [
   "cjs/index-node-current-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -20494,6 +20598,7 @@ let Example = class Example extends events.EventEmitter {
 exports.Example = Example;
 exports.emitter = emitter;
 exports.test = test;
+//# sourceMappingURL=index-node-current-cjs.cjs.map
 ",
 ]
 `;
@@ -20522,6 +20627,7 @@ let Example = class Example extends events.EventEmitter {
 exports.Example = Example;
 exports.emitter = emitter;
 exports.test = test;
+//# sourceMappingURL=index-node-current-lib.js.map
 ",
 ]
 `;
@@ -20539,11 +20645,24 @@ let Example = class Example extends EventEmitter {
     log() {}
 };
 export { Example, emitter, test };
+//# sourceMappingURL=index-node-current-mjs.mjs.map
 ",
 ]
 `;
 
 exports[`Node polyfills swc transforms example test case: node-experimental-cjs 1`] = `
+Array [
+  "cjs/index-node-experimental-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-experimental-cjs.cjs';
+
+export const { Example, emitter, test } = data;",
+]
+`;
+
+exports[`Node polyfills swc transforms example test case: node-experimental-cjs 2`] = `
 Array [
   "cjs/index-node-experimental-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -20567,6 +20686,7 @@ let Example = class Example extends events.EventEmitter {
 exports.Example = Example;
 exports.emitter = emitter;
 exports.test = test;
+//# sourceMappingURL=index-node-experimental-cjs.cjs.map
 ",
 ]
 `;
@@ -20595,6 +20715,7 @@ let Example = class Example extends events.EventEmitter {
 exports.Example = Example;
 exports.emitter = emitter;
 exports.test = test;
+//# sourceMappingURL=index-node-experimental-lib.js.map
 ",
 ]
 `;
@@ -20612,11 +20733,24 @@ let Example = class Example extends EventEmitter {
     log() {}
 };
 export { Example, emitter, test };
+//# sourceMappingURL=index-node-experimental-mjs.mjs.map
 ",
 ]
 `;
 
 exports[`Node polyfills swc transforms example test case: node-legacy-cjs 1`] = `
+Array [
+  "cjs/index-node-legacy-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-legacy-cjs.cjs';
+
+export const { Example, emitter, test } = data;",
+]
+`;
+
+exports[`Node polyfills swc transforms example test case: node-legacy-cjs 2`] = `
 Array [
   "cjs/index-node-legacy-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -20640,6 +20774,7 @@ let Example = class Example extends events.EventEmitter {
 exports.Example = Example;
 exports.emitter = emitter;
 exports.test = test;
+//# sourceMappingURL=index-node-legacy-cjs.cjs.map
 ",
 ]
 `;
@@ -20668,6 +20803,7 @@ let Example = class Example extends events.EventEmitter {
 exports.Example = Example;
 exports.emitter = emitter;
 exports.test = test;
+//# sourceMappingURL=index-node-legacy-lib.js.map
 ",
 ]
 `;
@@ -20685,11 +20821,24 @@ let Example = class Example extends EventEmitter {
     log() {}
 };
 export { Example, emitter, test };
+//# sourceMappingURL=index-node-legacy-mjs.mjs.map
 ",
 ]
 `;
 
 exports[`Node polyfills swc transforms example test case: node-stable-cjs 1`] = `
+Array [
+  "cjs/index-node-stable-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-stable-cjs.cjs';
+
+export const { Example, emitter, test } = data;",
+]
+`;
+
+exports[`Node polyfills swc transforms example test case: node-stable-cjs 2`] = `
 Array [
   "cjs/index-node-stable-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
@@ -20713,6 +20862,7 @@ let Example = class Example extends events.EventEmitter {
 exports.Example = Example;
 exports.emitter = emitter;
 exports.test = test;
+//# sourceMappingURL=index-node-stable-cjs.cjs.map
 ",
 ]
 `;
@@ -20741,6 +20891,7 @@ let Example = class Example extends events.EventEmitter {
 exports.Example = Example;
 exports.emitter = emitter;
 exports.test = test;
+//# sourceMappingURL=index-node-stable-lib.js.map
 ",
 ]
 `;
@@ -20758,6 +20909,7 @@ let Example = class Example extends EventEmitter {
     log() {}
 };
 export { Example, emitter, test };
+//# sourceMappingURL=index-node-stable-mjs.mjs.map
 ",
 ]
 `;

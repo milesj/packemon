@@ -1,0 +1,5820 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CJS -> MJS wrapper (externals) babel transforms example test case: browser-current-esm 1`] = `
+Array [
+  "esm/index-browser-current-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: current, Format: esm
+export * from 'optimal';
+import * as optimal from 'optimal';
+export { optimal };
+export { func, string } from 'optimal';
+//# sourceMappingURL=index-browser-current-esm.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) babel transforms example test case: browser-current-lib 1`] = `
+Array [
+  "lib/index-browser-current-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: current, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+const optimal = require('optimal');
+
+function _interopNamespace(e) {
+  if (e && e.__esModule) return e;
+  const n = Object.create(null);
+
+  if (e) {
+    for (const k in e) {
+      if (k !== 'default') {
+        const d = Object.getOwnPropertyDescriptor(e, k);
+        Object.defineProperty(n, k, d.get ? d : {
+          enumerable: true,
+          get: () => e[k]
+        });
+      }
+    }
+  }
+
+  n.default = e;
+  return Object.freeze(n);
+}
+
+const optimal__namespace = /*#__PURE__*/_interopNamespace(optimal);
+
+Object.defineProperty(exports, 'func', {
+  enumerable: true,
+  get: () => optimal.func
+});
+exports.optimal = optimal__namespace;
+Object.defineProperty(exports, 'string', {
+  enumerable: true,
+  get: () => optimal.string
+});
+
+for (const k in optimal) {
+  if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
+    enumerable: true,
+    get: () => optimal[k]
+  });
+}
+//# sourceMappingURL=index-browser-current-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) babel transforms example test case: browser-current-umd 1`] = `
+Array [
+  "umd/index-browser-current-umd.js",
+  "(function (global, factory) {
+  if (typeof define === \\"function\\" && define.amd) {
+    define([\\"exports\\", \\"optimal\\"], factory);
+  } else if (typeof exports !== \\"undefined\\") {
+    factory(exports, require(\\"optimal\\"));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.optimal);
+    global.examples = mod.exports;
+  }
+})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports, optimal) {
+  \\"use strict\\";
+
+  Object.defineProperty(_exports, \\"__esModule\\", {
+    value: true
+  });
+  var _exportNames = {
+    func: true,
+    string: true,
+    optimal: true
+  };
+  Object.defineProperty(_exports, \\"func\\", {
+    enumerable: true,
+    get: function () {
+      return optimal.func;
+    }
+  });
+  _exports.optimal = void 0;
+  Object.defineProperty(_exports, \\"string\\", {
+    enumerable: true,
+    get: function () {
+      return optimal.string;
+    }
+  });
+  optimal = _interopRequireWildcard(optimal);
+  _exports.optimal = optimal;
+  Object.keys(optimal).forEach(function (key) {
+    if (key === \\"default\\" || key === \\"__esModule\\") return;
+    if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+    if (key in _exports && _exports[key] === optimal[key]) return;
+    Object.defineProperty(_exports, key, {
+      enumerable: true,
+      get: function () {
+        return optimal[key];
+      }
+    });
+  });
+
+  function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== \\"function\\") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+  function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== \\"object\\" && typeof obj !== \\"function\\") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== \\"default\\" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+});
+//# sourceMappingURL=index-browser-current-umd.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) babel transforms example test case: browser-experimental-esm 1`] = `
+Array [
+  "esm/index-browser-experimental-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: experimental, Format: esm
+export * from 'optimal';
+import * as optimal from 'optimal';
+export { optimal };
+export { func, string } from 'optimal';
+//# sourceMappingURL=index-browser-experimental-esm.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) babel transforms example test case: browser-experimental-lib 1`] = `
+Array [
+  "lib/index-browser-experimental-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: experimental, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+const optimal = require('optimal');
+
+function _interopNamespace(e) {
+  if (e && e.__esModule) return e;
+  const n = Object.create(null);
+
+  if (e) {
+    for (const k in e) {
+      if (k !== 'default') {
+        const d = Object.getOwnPropertyDescriptor(e, k);
+        Object.defineProperty(n, k, d.get ? d : {
+          enumerable: true,
+          get: () => e[k]
+        });
+      }
+    }
+  }
+
+  n.default = e;
+  return Object.freeze(n);
+}
+
+const optimal__namespace = /*#__PURE__*/_interopNamespace(optimal);
+
+Object.defineProperty(exports, 'func', {
+  enumerable: true,
+  get: () => optimal.func
+});
+exports.optimal = optimal__namespace;
+Object.defineProperty(exports, 'string', {
+  enumerable: true,
+  get: () => optimal.string
+});
+
+for (const k in optimal) {
+  if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
+    enumerable: true,
+    get: () => optimal[k]
+  });
+}
+//# sourceMappingURL=index-browser-experimental-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) babel transforms example test case: browser-experimental-umd 1`] = `
+Array [
+  "umd/index-browser-experimental-umd.js",
+  "(function (global, factory) {
+  if (typeof define === \\"function\\" && define.amd) {
+    define([\\"exports\\", \\"optimal\\"], factory);
+  } else if (typeof exports !== \\"undefined\\") {
+    factory(exports, require(\\"optimal\\"));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.optimal);
+    global.examples = mod.exports;
+  }
+})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports, optimal) {
+  \\"use strict\\";
+
+  Object.defineProperty(_exports, \\"__esModule\\", {
+    value: true
+  });
+  var _exportNames = {
+    func: true,
+    string: true,
+    optimal: true
+  };
+  Object.defineProperty(_exports, \\"func\\", {
+    enumerable: true,
+    get: function () {
+      return optimal.func;
+    }
+  });
+  _exports.optimal = void 0;
+  Object.defineProperty(_exports, \\"string\\", {
+    enumerable: true,
+    get: function () {
+      return optimal.string;
+    }
+  });
+  optimal = _interopRequireWildcard(optimal);
+  _exports.optimal = optimal;
+  Object.keys(optimal).forEach(function (key) {
+    if (key === \\"default\\" || key === \\"__esModule\\") return;
+    if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+    if (key in _exports && _exports[key] === optimal[key]) return;
+    Object.defineProperty(_exports, key, {
+      enumerable: true,
+      get: function () {
+        return optimal[key];
+      }
+    });
+  });
+
+  function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== \\"function\\") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+  function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== \\"object\\" && typeof obj !== \\"function\\") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== \\"default\\" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+});
+//# sourceMappingURL=index-browser-experimental-umd.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) babel transforms example test case: browser-legacy-esm 1`] = `
+Array [
+  "esm/index-browser-legacy-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: legacy, Format: esm
+export * from 'optimal';
+import * as optimal from 'optimal';
+export { optimal };
+export { func, string } from 'optimal';
+//# sourceMappingURL=index-browser-legacy-esm.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) babel transforms example test case: browser-legacy-lib 1`] = `
+Array [
+  "lib/index-browser-legacy-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: legacy, Format: lib
+'use strict';
+
+var _this2 = this;
+
+function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError(\\"Cannot instantiate an arrow function\\"); } }
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var optimal = require('optimal');
+
+function _interopNamespace(e) {
+  if (e && e.__esModule) return e;
+  var n = Object.create(null);
+
+  if (e) {
+    var _loop = function _loop(k) {
+      var _this = this;
+
+      if (k !== 'default') {
+        var d = Object.getOwnPropertyDescriptor(e, k);
+        Object.defineProperty(n, k, d.get ? d : {
+          enumerable: true,
+          get: function get() {
+            _newArrowCheck(this, _this);
+
+            return e[k];
+          }.bind(this)
+        });
+      }
+    };
+
+    for (var k in e) {
+      _loop(k);
+    }
+  }
+
+  n.default = e;
+  return Object.freeze(n);
+}
+
+var optimal__namespace = /*#__PURE__*/_interopNamespace(optimal);
+
+Object.defineProperty(exports, 'func', {
+  enumerable: true,
+  get: function get() {
+    _newArrowCheck(this, _this2);
+
+    return optimal.func;
+  }.bind(this)
+});
+exports.optimal = optimal__namespace;
+Object.defineProperty(exports, 'string', {
+  enumerable: true,
+  get: function get() {
+    _newArrowCheck(this, _this2);
+
+    return optimal.string;
+  }.bind(this)
+});
+
+var _loop2 = function _loop2(k) {
+  var _this3 = this;
+
+  if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
+    enumerable: true,
+    get: function get() {
+      _newArrowCheck(this, _this3);
+
+      return optimal[k];
+    }.bind(this)
+  });
+};
+
+for (var k in optimal) {
+  _loop2(k);
+}
+//# sourceMappingURL=index-browser-legacy-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) babel transforms example test case: browser-legacy-umd 1`] = `
+Array [
+  "umd/index-browser-legacy-umd.js",
+  "function _typeof(obj) { \\"@babel/helpers - typeof\\"; return _typeof = \\"function\\" == typeof Symbol && \\"symbol\\" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && \\"function\\" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? \\"symbol\\" : typeof obj; }, _typeof(obj); }
+
+(function (global, factory) {
+  if (typeof define === \\"function\\" && define.amd) {
+    define([\\"exports\\", \\"optimal\\"], factory);
+  } else if (typeof exports !== \\"undefined\\") {
+    factory(exports, require(\\"optimal\\"));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.optimal);
+    global.examples = mod.exports;
+  }
+})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports, optimal) {
+  \\"use strict\\";
+
+  Object.defineProperty(_exports, \\"__esModule\\", {
+    value: true
+  });
+  var _exportNames = {
+    func: true,
+    string: true,
+    optimal: true
+  };
+  Object.defineProperty(_exports, \\"func\\", {
+    enumerable: true,
+    get: function get() {
+      return optimal.func;
+    }
+  });
+  _exports.optimal = void 0;
+  Object.defineProperty(_exports, \\"string\\", {
+    enumerable: true,
+    get: function get() {
+      return optimal.string;
+    }
+  });
+  optimal = _interopRequireWildcard(optimal);
+  _exports.optimal = optimal;
+  Object.keys(optimal).forEach(function (key) {
+    if (key === \\"default\\" || key === \\"__esModule\\") return;
+    if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+    if (key in _exports && _exports[key] === optimal[key]) return;
+    Object.defineProperty(_exports, key, {
+      enumerable: true,
+      get: function get() {
+        return optimal[key];
+      }
+    });
+  });
+
+  function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== \\"function\\") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+  function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== \\"object\\" && typeof obj !== \\"function\\") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== \\"default\\" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+});
+//# sourceMappingURL=index-browser-legacy-umd.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) babel transforms example test case: browser-stable-esm 1`] = `
+Array [
+  "esm/index-browser-stable-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: stable, Format: esm
+export * from 'optimal';
+import * as optimal from 'optimal';
+export { optimal };
+export { func, string } from 'optimal';
+//# sourceMappingURL=index-browser-stable-esm.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) babel transforms example test case: browser-stable-lib 1`] = `
+Array [
+  "lib/index-browser-stable-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: stable, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+const optimal = require('optimal');
+
+function _interopNamespace(e) {
+  if (e && e.__esModule) return e;
+  const n = Object.create(null);
+
+  if (e) {
+    for (const k in e) {
+      if (k !== 'default') {
+        const d = Object.getOwnPropertyDescriptor(e, k);
+        Object.defineProperty(n, k, d.get ? d : {
+          enumerable: true,
+          get: () => e[k]
+        });
+      }
+    }
+  }
+
+  n.default = e;
+  return Object.freeze(n);
+}
+
+const optimal__namespace = /*#__PURE__*/_interopNamespace(optimal);
+
+Object.defineProperty(exports, 'func', {
+  enumerable: true,
+  get: () => optimal.func
+});
+exports.optimal = optimal__namespace;
+Object.defineProperty(exports, 'string', {
+  enumerable: true,
+  get: () => optimal.string
+});
+
+for (const k in optimal) {
+  if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
+    enumerable: true,
+    get: () => optimal[k]
+  });
+}
+//# sourceMappingURL=index-browser-stable-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) babel transforms example test case: browser-stable-umd 1`] = `
+Array [
+  "umd/index-browser-stable-umd.js",
+  "(function (global, factory) {
+  if (typeof define === \\"function\\" && define.amd) {
+    define([\\"exports\\", \\"optimal\\"], factory);
+  } else if (typeof exports !== \\"undefined\\") {
+    factory(exports, require(\\"optimal\\"));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.optimal);
+    global.examples = mod.exports;
+  }
+})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports, optimal) {
+  \\"use strict\\";
+
+  Object.defineProperty(_exports, \\"__esModule\\", {
+    value: true
+  });
+  var _exportNames = {
+    func: true,
+    string: true,
+    optimal: true
+  };
+  Object.defineProperty(_exports, \\"func\\", {
+    enumerable: true,
+    get: function () {
+      return optimal.func;
+    }
+  });
+  _exports.optimal = void 0;
+  Object.defineProperty(_exports, \\"string\\", {
+    enumerable: true,
+    get: function () {
+      return optimal.string;
+    }
+  });
+  optimal = _interopRequireWildcard(optimal);
+  _exports.optimal = optimal;
+  Object.keys(optimal).forEach(function (key) {
+    if (key === \\"default\\" || key === \\"__esModule\\") return;
+    if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+    if (key in _exports && _exports[key] === optimal[key]) return;
+    Object.defineProperty(_exports, key, {
+      enumerable: true,
+      get: function () {
+        return optimal[key];
+      }
+    });
+  });
+
+  function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== \\"function\\") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+  function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== \\"object\\" && typeof obj !== \\"function\\") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== \\"default\\" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+});
+//# sourceMappingURL=index-browser-stable-umd.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) babel transforms example test case: native-current-lib 1`] = `
+Array [
+  "lib/index-native-current-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: current, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+const optimal = require('optimal');
+
+function _interopNamespace(e) {
+  if (e && e.__esModule) return e;
+  const n = Object.create(null);
+
+  if (e) {
+    for (const k in e) {
+      if (k !== 'default') {
+        const d = Object.getOwnPropertyDescriptor(e, k);
+        Object.defineProperty(n, k, d.get ? d : {
+          enumerable: true,
+          get: () => e[k]
+        });
+      }
+    }
+  }
+
+  n.default = e;
+  return Object.freeze(n);
+}
+
+const optimal__namespace = /*#__PURE__*/_interopNamespace(optimal);
+
+Object.defineProperty(exports, 'func', {
+  enumerable: true,
+  get: () => optimal.func
+});
+exports.optimal = optimal__namespace;
+Object.defineProperty(exports, 'string', {
+  enumerable: true,
+  get: () => optimal.string
+});
+
+for (const k in optimal) {
+  if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
+    enumerable: true,
+    get: () => optimal[k]
+  });
+}
+//# sourceMappingURL=index-native-current-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) babel transforms example test case: native-experimental-lib 1`] = `
+Array [
+  "lib/index-native-experimental-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: experimental, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+const optimal = require('optimal');
+
+function _interopNamespace(e) {
+  if (e && e.__esModule) return e;
+  const n = Object.create(null);
+
+  if (e) {
+    for (const k in e) {
+      if (k !== 'default') {
+        const d = Object.getOwnPropertyDescriptor(e, k);
+        Object.defineProperty(n, k, d.get ? d : {
+          enumerable: true,
+          get: () => e[k]
+        });
+      }
+    }
+  }
+
+  n.default = e;
+  return Object.freeze(n);
+}
+
+const optimal__namespace = /*#__PURE__*/_interopNamespace(optimal);
+
+Object.defineProperty(exports, 'func', {
+  enumerable: true,
+  get: () => optimal.func
+});
+exports.optimal = optimal__namespace;
+Object.defineProperty(exports, 'string', {
+  enumerable: true,
+  get: () => optimal.string
+});
+
+for (const k in optimal) {
+  if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
+    enumerable: true,
+    get: () => optimal[k]
+  });
+}
+//# sourceMappingURL=index-native-experimental-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) babel transforms example test case: native-legacy-lib 1`] = `
+Array [
+  "lib/index-native-legacy-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: legacy, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+const optimal = require('optimal');
+
+function _interopNamespace(e) {
+  if (e && e.__esModule) return e;
+  const n = Object.create(null);
+
+  if (e) {
+    for (const k in e) {
+      if (k !== 'default') {
+        const d = Object.getOwnPropertyDescriptor(e, k);
+        Object.defineProperty(n, k, d.get ? d : {
+          enumerable: true,
+          get: () => e[k]
+        });
+      }
+    }
+  }
+
+  n.default = e;
+  return Object.freeze(n);
+}
+
+const optimal__namespace = /*#__PURE__*/_interopNamespace(optimal);
+
+Object.defineProperty(exports, 'func', {
+  enumerable: true,
+  get: () => optimal.func
+});
+exports.optimal = optimal__namespace;
+Object.defineProperty(exports, 'string', {
+  enumerable: true,
+  get: () => optimal.string
+});
+
+for (const k in optimal) {
+  if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
+    enumerable: true,
+    get: () => optimal[k]
+  });
+}
+//# sourceMappingURL=index-native-legacy-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) babel transforms example test case: native-stable-lib 1`] = `
+Array [
+  "lib/index-native-stable-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: stable, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+const optimal = require('optimal');
+
+function _interopNamespace(e) {
+  if (e && e.__esModule) return e;
+  const n = Object.create(null);
+
+  if (e) {
+    for (const k in e) {
+      if (k !== 'default') {
+        const d = Object.getOwnPropertyDescriptor(e, k);
+        Object.defineProperty(n, k, d.get ? d : {
+          enumerable: true,
+          get: () => e[k]
+        });
+      }
+    }
+  }
+
+  n.default = e;
+  return Object.freeze(n);
+}
+
+const optimal__namespace = /*#__PURE__*/_interopNamespace(optimal);
+
+Object.defineProperty(exports, 'func', {
+  enumerable: true,
+  get: () => optimal.func
+});
+exports.optimal = optimal__namespace;
+Object.defineProperty(exports, 'string', {
+  enumerable: true,
+  get: () => optimal.string
+});
+
+for (const k in optimal) {
+  if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
+    enumerable: true,
+    get: () => optimal[k]
+  });
+}
+//# sourceMappingURL=index-native-stable-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) babel transforms example test case: node-current-cjs 1`] = `
+Array [
+  "cjs/index-node-current-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-current-cjs.cjs';
+
+export * from 'optimal';
+export * as optimal from 'optimal';
+export { string } from 'optimal';
+export { func } from 'optimal';",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) babel transforms example test case: node-current-cjs 2`] = `
+Array [
+  "cjs/index-node-current-cjs.cjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: current, Format: cjs
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+const optimal = require('optimal');
+
+function _interopNamespace(e) {
+  if (e && e.__esModule) return e;
+  const n = Object.create(null);
+
+  if (e) {
+    for (const k in e) {
+      if (k !== 'default') {
+        const d = Object.getOwnPropertyDescriptor(e, k);
+        Object.defineProperty(n, k, d.get ? d : {
+          enumerable: true,
+          get: () => e[k]
+        });
+      }
+    }
+  }
+
+  n.default = e;
+  return Object.freeze(n);
+}
+
+const optimal__namespace = /*#__PURE__*/_interopNamespace(optimal);
+
+Object.defineProperty(exports, 'func', {
+  enumerable: true,
+  get: () => optimal.func
+});
+exports.optimal = optimal__namespace;
+Object.defineProperty(exports, 'string', {
+  enumerable: true,
+  get: () => optimal.string
+});
+
+for (const k in optimal) {
+  if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
+    enumerable: true,
+    get: () => optimal[k]
+  });
+}
+//# sourceMappingURL=index-node-current-cjs.cjs.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) babel transforms example test case: node-current-lib 1`] = `
+Array [
+  "lib/index-node-current-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: current, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+const optimal = require('optimal');
+
+function _interopNamespace(e) {
+  if (e && e.__esModule) return e;
+  const n = Object.create(null);
+
+  if (e) {
+    for (const k in e) {
+      if (k !== 'default') {
+        const d = Object.getOwnPropertyDescriptor(e, k);
+        Object.defineProperty(n, k, d.get ? d : {
+          enumerable: true,
+          get: () => e[k]
+        });
+      }
+    }
+  }
+
+  n.default = e;
+  return Object.freeze(n);
+}
+
+const optimal__namespace = /*#__PURE__*/_interopNamespace(optimal);
+
+Object.defineProperty(exports, 'func', {
+  enumerable: true,
+  get: () => optimal.func
+});
+exports.optimal = optimal__namespace;
+Object.defineProperty(exports, 'string', {
+  enumerable: true,
+  get: () => optimal.string
+});
+
+for (const k in optimal) {
+  if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
+    enumerable: true,
+    get: () => optimal[k]
+  });
+}
+//# sourceMappingURL=index-node-current-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) babel transforms example test case: node-current-mjs 1`] = `
+Array [
+  "mjs/index-node-current-mjs.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: current, Format: mjs
+export * from 'optimal';
+import * as optimal from 'optimal';
+export { optimal };
+export { func, string } from 'optimal';
+//# sourceMappingURL=index-node-current-mjs.mjs.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) babel transforms example test case: node-experimental-cjs 1`] = `
+Array [
+  "cjs/index-node-experimental-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-experimental-cjs.cjs';
+
+export * from 'optimal';
+export * as optimal from 'optimal';
+export { string } from 'optimal';
+export { func } from 'optimal';",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) babel transforms example test case: node-experimental-cjs 2`] = `
+Array [
+  "cjs/index-node-experimental-cjs.cjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: experimental, Format: cjs
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+const optimal = require('optimal');
+
+function _interopNamespace(e) {
+  if (e && e.__esModule) return e;
+  const n = Object.create(null);
+
+  if (e) {
+    for (const k in e) {
+      if (k !== 'default') {
+        const d = Object.getOwnPropertyDescriptor(e, k);
+        Object.defineProperty(n, k, d.get ? d : {
+          enumerable: true,
+          get: () => e[k]
+        });
+      }
+    }
+  }
+
+  n.default = e;
+  return Object.freeze(n);
+}
+
+const optimal__namespace = /*#__PURE__*/_interopNamespace(optimal);
+
+Object.defineProperty(exports, 'func', {
+  enumerable: true,
+  get: () => optimal.func
+});
+exports.optimal = optimal__namespace;
+Object.defineProperty(exports, 'string', {
+  enumerable: true,
+  get: () => optimal.string
+});
+
+for (const k in optimal) {
+  if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
+    enumerable: true,
+    get: () => optimal[k]
+  });
+}
+//# sourceMappingURL=index-node-experimental-cjs.cjs.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) babel transforms example test case: node-experimental-lib 1`] = `
+Array [
+  "lib/index-node-experimental-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: experimental, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+const optimal = require('optimal');
+
+function _interopNamespace(e) {
+  if (e && e.__esModule) return e;
+  const n = Object.create(null);
+
+  if (e) {
+    for (const k in e) {
+      if (k !== 'default') {
+        const d = Object.getOwnPropertyDescriptor(e, k);
+        Object.defineProperty(n, k, d.get ? d : {
+          enumerable: true,
+          get: () => e[k]
+        });
+      }
+    }
+  }
+
+  n.default = e;
+  return Object.freeze(n);
+}
+
+const optimal__namespace = /*#__PURE__*/_interopNamespace(optimal);
+
+Object.defineProperty(exports, 'func', {
+  enumerable: true,
+  get: () => optimal.func
+});
+exports.optimal = optimal__namespace;
+Object.defineProperty(exports, 'string', {
+  enumerable: true,
+  get: () => optimal.string
+});
+
+for (const k in optimal) {
+  if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
+    enumerable: true,
+    get: () => optimal[k]
+  });
+}
+//# sourceMappingURL=index-node-experimental-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) babel transforms example test case: node-experimental-mjs 1`] = `
+Array [
+  "mjs/index-node-experimental-mjs.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: experimental, Format: mjs
+export * from 'optimal';
+import * as optimal from 'optimal';
+export { optimal };
+export { func, string } from 'optimal';
+//# sourceMappingURL=index-node-experimental-mjs.mjs.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) babel transforms example test case: node-legacy-cjs 1`] = `
+Array [
+  "cjs/index-node-legacy-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-legacy-cjs.cjs';
+
+export * from 'optimal';
+export * as optimal from 'optimal';
+export { string } from 'optimal';
+export { func } from 'optimal';",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) babel transforms example test case: node-legacy-cjs 2`] = `
+Array [
+  "cjs/index-node-legacy-cjs.cjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: legacy, Format: cjs
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+const optimal = require('optimal');
+
+function _interopNamespace(e) {
+  if (e && e.__esModule) return e;
+  const n = Object.create(null);
+
+  if (e) {
+    for (const k in e) {
+      if (k !== 'default') {
+        const d = Object.getOwnPropertyDescriptor(e, k);
+        Object.defineProperty(n, k, d.get ? d : {
+          enumerable: true,
+          get: () => e[k]
+        });
+      }
+    }
+  }
+
+  n.default = e;
+  return Object.freeze(n);
+}
+
+const optimal__namespace = /*#__PURE__*/_interopNamespace(optimal);
+
+Object.defineProperty(exports, 'func', {
+  enumerable: true,
+  get: () => optimal.func
+});
+exports.optimal = optimal__namespace;
+Object.defineProperty(exports, 'string', {
+  enumerable: true,
+  get: () => optimal.string
+});
+
+for (const k in optimal) {
+  if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
+    enumerable: true,
+    get: () => optimal[k]
+  });
+}
+//# sourceMappingURL=index-node-legacy-cjs.cjs.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) babel transforms example test case: node-legacy-lib 1`] = `
+Array [
+  "lib/index-node-legacy-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: legacy, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+const optimal = require('optimal');
+
+function _interopNamespace(e) {
+  if (e && e.__esModule) return e;
+  const n = Object.create(null);
+
+  if (e) {
+    for (const k in e) {
+      if (k !== 'default') {
+        const d = Object.getOwnPropertyDescriptor(e, k);
+        Object.defineProperty(n, k, d.get ? d : {
+          enumerable: true,
+          get: () => e[k]
+        });
+      }
+    }
+  }
+
+  n.default = e;
+  return Object.freeze(n);
+}
+
+const optimal__namespace = /*#__PURE__*/_interopNamespace(optimal);
+
+Object.defineProperty(exports, 'func', {
+  enumerable: true,
+  get: () => optimal.func
+});
+exports.optimal = optimal__namespace;
+Object.defineProperty(exports, 'string', {
+  enumerable: true,
+  get: () => optimal.string
+});
+
+for (const k in optimal) {
+  if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
+    enumerable: true,
+    get: () => optimal[k]
+  });
+}
+//# sourceMappingURL=index-node-legacy-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) babel transforms example test case: node-legacy-mjs 1`] = `
+Array [
+  "mjs/index-node-legacy-mjs.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: legacy, Format: mjs
+export * from 'optimal';
+import * as optimal from 'optimal';
+export { optimal };
+export { func, string } from 'optimal';
+//# sourceMappingURL=index-node-legacy-mjs.mjs.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) babel transforms example test case: node-stable-cjs 1`] = `
+Array [
+  "cjs/index-node-stable-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-stable-cjs.cjs';
+
+export * from 'optimal';
+export * as optimal from 'optimal';
+export { string } from 'optimal';
+export { func } from 'optimal';",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) babel transforms example test case: node-stable-cjs 2`] = `
+Array [
+  "cjs/index-node-stable-cjs.cjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: cjs
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+const optimal = require('optimal');
+
+function _interopNamespace(e) {
+  if (e && e.__esModule) return e;
+  const n = Object.create(null);
+
+  if (e) {
+    for (const k in e) {
+      if (k !== 'default') {
+        const d = Object.getOwnPropertyDescriptor(e, k);
+        Object.defineProperty(n, k, d.get ? d : {
+          enumerable: true,
+          get: () => e[k]
+        });
+      }
+    }
+  }
+
+  n.default = e;
+  return Object.freeze(n);
+}
+
+const optimal__namespace = /*#__PURE__*/_interopNamespace(optimal);
+
+Object.defineProperty(exports, 'func', {
+  enumerable: true,
+  get: () => optimal.func
+});
+exports.optimal = optimal__namespace;
+Object.defineProperty(exports, 'string', {
+  enumerable: true,
+  get: () => optimal.string
+});
+
+for (const k in optimal) {
+  if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
+    enumerable: true,
+    get: () => optimal[k]
+  });
+}
+//# sourceMappingURL=index-node-stable-cjs.cjs.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) babel transforms example test case: node-stable-lib 1`] = `
+Array [
+  "lib/index-node-stable-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+const optimal = require('optimal');
+
+function _interopNamespace(e) {
+  if (e && e.__esModule) return e;
+  const n = Object.create(null);
+
+  if (e) {
+    for (const k in e) {
+      if (k !== 'default') {
+        const d = Object.getOwnPropertyDescriptor(e, k);
+        Object.defineProperty(n, k, d.get ? d : {
+          enumerable: true,
+          get: () => e[k]
+        });
+      }
+    }
+  }
+
+  n.default = e;
+  return Object.freeze(n);
+}
+
+const optimal__namespace = /*#__PURE__*/_interopNamespace(optimal);
+
+Object.defineProperty(exports, 'func', {
+  enumerable: true,
+  get: () => optimal.func
+});
+exports.optimal = optimal__namespace;
+Object.defineProperty(exports, 'string', {
+  enumerable: true,
+  get: () => optimal.string
+});
+
+for (const k in optimal) {
+  if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
+    enumerable: true,
+    get: () => optimal[k]
+  });
+}
+//# sourceMappingURL=index-node-stable-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) babel transforms example test case: node-stable-mjs 1`] = `
+Array [
+  "mjs/index-node-stable-mjs.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: mjs
+export * from 'optimal';
+import * as optimal from 'optimal';
+export { optimal };
+export { func, string } from 'optimal';
+//# sourceMappingURL=index-node-stable-mjs.mjs.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) swc transforms example test case: browser-current-esm 1`] = `
+Array [
+  "esm/index-browser-current-esm.js",
+  "import * as optimal from 'optimal';
+// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: current, Format: esm
+export * from 'optimal';
+export { optimal };
+export { func, string } from 'optimal';
+//# sourceMappingURL=index-browser-current-esm.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) swc transforms example test case: browser-current-lib 1`] = `
+Array [
+  "lib/index-browser-current-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: current, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+const optimal = require('optimal');
+function _interopNamespace(e) {
+    if (e && e.__esModule) return e;
+    const n = Object.create(null);
+    if (e) {
+        for(const k1 in e)if (k1 !== 'default') {
+            const d = Object.getOwnPropertyDescriptor(e, k1);
+            Object.defineProperty(n, k1, d.get ? d : {
+                enumerable: true,
+                get: ()=>e[k1]
+            });
+        }
+    }
+    n.default = e;
+    return Object.freeze(n);
+}
+const optimal__namespace = /*#__PURE__*/ _interopNamespace(optimal);
+Object.defineProperty(exports, 'func', {
+    enumerable: true,
+    get: ()=>optimal.func
+});
+exports.optimal = optimal__namespace;
+Object.defineProperty(exports, 'string', {
+    enumerable: true,
+    get: ()=>optimal.string
+});
+for(const k in optimal)if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
+    enumerable: true,
+    get: ()=>optimal[k]
+});
+//# sourceMappingURL=index-browser-current-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) swc transforms example test case: browser-current-umd 1`] = `
+Array [
+  "umd/index-browser-current-umd.js",
+  "(function(global, factory) {
+    if (typeof define === \\"function\\" && define.amd) {
+        define([
+            \\"exports\\",
+            \\"optimal\\"
+        ], factory);
+    } else if (typeof exports !== \\"undefined\\") {
+        factory(exports, require(\\"optimal\\"));
+    } else {
+        var mod = {
+            exports: {}
+        };
+        factory(mod.exports, global.optimal);
+        global.examples = mod.exports;
+    }
+})(this, function(_exports, optimal) {
+    \\"use strict\\";
+    optimal = _interopRequireWildcard(optimal);
+    Object.defineProperty(_exports, \\"__esModule\\", {
+        value: true
+    });
+    Object.defineProperty(_exports, \\"func\\", {
+        enumerable: true,
+        get: function() {
+            return optimal.func;
+        }
+    });
+    Object.defineProperty(_exports, \\"string\\", {
+        enumerable: true,
+        get: function() {
+            return optimal.string;
+        }
+    });
+    var _exportNames = {
+        optimal: true
+    };
+    Object.keys(optimal).forEach(function(key) {
+        if (key === \\"default\\" || key === \\"__esModule\\") return;
+        if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+        if (key in _exports && _exports[key] === optimal[key]) return;
+        Object.defineProperty(_exports, key, {
+            enumerable: true,
+            get: function() {
+                return optimal[key];
+            }
+        });
+    });
+    _exports.optimal = void 0;
+    _exports.optimal = optimal;
+    function _interopRequireWildcard(obj) {
+        if (obj && obj.__esModule) {
+            return obj;
+        } else {
+            var newObj = {};
+            if (obj != null) {
+                for(var key in obj){
+                    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+                        var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {};
+                        if (desc.get || desc.set) {
+                            Object.defineProperty(newObj, key, desc);
+                        } else {
+                            newObj[key] = obj[key];
+                        }
+                    }
+                }
+            }
+            newObj.default = obj;
+            return newObj;
+        }
+    }
+});
+//# sourceMappingURL=index-browser-current-umd.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) swc transforms example test case: browser-experimental-esm 1`] = `
+Array [
+  "esm/index-browser-experimental-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: experimental, Format: esm
+export * from 'optimal';
+import * as optimal from 'optimal';
+export { optimal };
+export { func, string } from 'optimal';
+//# sourceMappingURL=index-browser-experimental-esm.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) swc transforms example test case: browser-experimental-lib 1`] = `
+Array [
+  "lib/index-browser-experimental-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: experimental, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+const optimal = require('optimal');
+function _interopNamespace(e) {
+    if (e && e.__esModule) return e;
+    const n = Object.create(null);
+    if (e) {
+        for(const k1 in e)if (k1 !== 'default') {
+            const d = Object.getOwnPropertyDescriptor(e, k1);
+            Object.defineProperty(n, k1, d.get ? d : {
+                enumerable: true,
+                get: ()=>e[k1]
+            });
+        }
+    }
+    n.default = e;
+    return Object.freeze(n);
+}
+const optimal__namespace = /*#__PURE__*/ _interopNamespace(optimal);
+Object.defineProperty(exports, 'func', {
+    enumerable: true,
+    get: ()=>optimal.func
+});
+exports.optimal = optimal__namespace;
+Object.defineProperty(exports, 'string', {
+    enumerable: true,
+    get: ()=>optimal.string
+});
+for(const k in optimal)if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
+    enumerable: true,
+    get: ()=>optimal[k]
+});
+//# sourceMappingURL=index-browser-experimental-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) swc transforms example test case: browser-experimental-umd 1`] = `
+Array [
+  "umd/index-browser-experimental-umd.js",
+  "(function(global, factory) {
+    if (typeof define === \\"function\\" && define.amd) {
+        define([
+            \\"exports\\",
+            \\"optimal\\"
+        ], factory);
+    } else if (typeof exports !== \\"undefined\\") {
+        factory(exports, require(\\"optimal\\"));
+    } else {
+        var mod = {
+            exports: {}
+        };
+        factory(mod.exports, global.optimal);
+        global.examples = mod.exports;
+    }
+})(this, function(_exports, optimal) {
+    \\"use strict\\";
+    optimal = _interopRequireWildcard(optimal);
+    Object.defineProperty(_exports, \\"__esModule\\", {
+        value: true
+    });
+    Object.defineProperty(_exports, \\"func\\", {
+        enumerable: true,
+        get: function() {
+            return optimal.func;
+        }
+    });
+    Object.defineProperty(_exports, \\"string\\", {
+        enumerable: true,
+        get: function() {
+            return optimal.string;
+        }
+    });
+    var _exportNames = {
+        optimal: true
+    };
+    Object.keys(optimal).forEach(function(key) {
+        if (key === \\"default\\" || key === \\"__esModule\\") return;
+        if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+        if (key in _exports && _exports[key] === optimal[key]) return;
+        Object.defineProperty(_exports, key, {
+            enumerable: true,
+            get: function() {
+                return optimal[key];
+            }
+        });
+    });
+    _exports.optimal = void 0;
+    _exports.optimal = optimal;
+    function _interopRequireWildcard(obj) {
+        if (obj && obj.__esModule) {
+            return obj;
+        } else {
+            var newObj = {};
+            if (obj != null) {
+                for(var key in obj){
+                    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+                        var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {};
+                        if (desc.get || desc.set) {
+                            Object.defineProperty(newObj, key, desc);
+                        } else {
+                            newObj[key] = obj[key];
+                        }
+                    }
+                }
+            }
+            newObj.default = obj;
+            return newObj;
+        }
+    }
+});
+//# sourceMappingURL=index-browser-experimental-umd.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) swc transforms example test case: browser-legacy-esm 1`] = `
+Array [
+  "esm/index-browser-legacy-esm.js",
+  "import * as optimal from \\"optimal\\";
+// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: legacy, Format: esm
+export * from \\"optimal\\";
+export { optimal };
+export { func, string } from \\"optimal\\";
+//# sourceMappingURL=index-browser-legacy-esm.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) swc transforms example test case: browser-legacy-lib 1`] = `
+Array [
+  "lib/index-browser-legacy-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: legacy, Format: lib
+\\"use strict\\";
+var _loop = function(k) {
+    if (k !== \\"default\\" && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
+        enumerable: true,
+        get: function() {
+            return optimal[k];
+        }
+    });
+};
+Object.defineProperty(exports, \\"__esModule\\", {
+    value: true
+});
+var optimal = require(\\"optimal\\");
+function _interopNamespace(e) {
+    if (e && e.__esModule) return e;
+    var n = Object.create(null);
+    if (e) {
+        var _loop1 = function(k) {
+            if (k !== \\"default\\") {
+                var d = Object.getOwnPropertyDescriptor(e, k);
+                Object.defineProperty(n, k, d.get ? d : {
+                    enumerable: true,
+                    get: function() {
+                        return e[k];
+                    }
+                });
+            }
+        };
+        for(var k in e)_loop1(k);
+    }
+    n.default = e;
+    return Object.freeze(n);
+}
+var optimal__namespace = /*#__PURE__*/ _interopNamespace(optimal);
+Object.defineProperty(exports, \\"func\\", {
+    enumerable: true,
+    get: function() {
+        return optimal.func;
+    }
+});
+exports.optimal = optimal__namespace;
+Object.defineProperty(exports, \\"string\\", {
+    enumerable: true,
+    get: function() {
+        return optimal.string;
+    }
+});
+for(var k in optimal)_loop(k);
+//# sourceMappingURL=index-browser-legacy-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) swc transforms example test case: browser-legacy-umd 1`] = `
+Array [
+  "umd/index-browser-legacy-umd.js",
+  "(function(global, factory) {
+    if (typeof define === \\"function\\" && define.amd) {
+        define([
+            \\"exports\\",
+            \\"optimal\\"
+        ], factory);
+    } else if (typeof exports !== \\"undefined\\") {
+        factory(exports, require(\\"optimal\\"));
+    } else {
+        var mod = {
+            exports: {}
+        };
+        factory(mod.exports, global.optimal);
+        global.examples = mod.exports;
+    }
+})(this, function(_exports, optimal) {
+    \\"use strict\\";
+    optimal = _interopRequireWildcard(optimal);
+    Object.defineProperty(_exports, \\"__esModule\\", {
+        value: true
+    });
+    Object.defineProperty(_exports, \\"func\\", {
+        enumerable: true,
+        get: function() {
+            return optimal.func;
+        }
+    });
+    Object.defineProperty(_exports, \\"string\\", {
+        enumerable: true,
+        get: function() {
+            return optimal.string;
+        }
+    });
+    var _exportNames = {
+        optimal: true
+    };
+    Object.keys(optimal).forEach(function(key) {
+        if (key === \\"default\\" || key === \\"__esModule\\") return;
+        if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+        if (key in _exports && _exports[key] === optimal[key]) return;
+        Object.defineProperty(_exports, key, {
+            enumerable: true,
+            get: function() {
+                return optimal[key];
+            }
+        });
+    });
+    _exports.optimal = void 0;
+    _exports.optimal = optimal;
+    function _interopRequireWildcard(obj) {
+        if (obj && obj.__esModule) {
+            return obj;
+        } else {
+            var newObj = {};
+            if (obj != null) {
+                for(var key in obj){
+                    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+                        var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {};
+                        if (desc.get || desc.set) {
+                            Object.defineProperty(newObj, key, desc);
+                        } else {
+                            newObj[key] = obj[key];
+                        }
+                    }
+                }
+            }
+            newObj.default = obj;
+            return newObj;
+        }
+    }
+});
+//# sourceMappingURL=index-browser-legacy-umd.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) swc transforms example test case: browser-stable-esm 1`] = `
+Array [
+  "esm/index-browser-stable-esm.js",
+  "import * as optimal from 'optimal';
+// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: stable, Format: esm
+export * from 'optimal';
+export { optimal };
+export { func, string } from 'optimal';
+//# sourceMappingURL=index-browser-stable-esm.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) swc transforms example test case: browser-stable-lib 1`] = `
+Array [
+  "lib/index-browser-stable-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: stable, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+const optimal = require('optimal');
+function _interopNamespace(e) {
+    if (e && e.__esModule) return e;
+    const n = Object.create(null);
+    if (e) {
+        for(const k1 in e)if (k1 !== 'default') {
+            const d = Object.getOwnPropertyDescriptor(e, k1);
+            Object.defineProperty(n, k1, d.get ? d : {
+                enumerable: true,
+                get: ()=>e[k1]
+            });
+        }
+    }
+    n.default = e;
+    return Object.freeze(n);
+}
+const optimal__namespace = /*#__PURE__*/ _interopNamespace(optimal);
+Object.defineProperty(exports, 'func', {
+    enumerable: true,
+    get: ()=>optimal.func
+});
+exports.optimal = optimal__namespace;
+Object.defineProperty(exports, 'string', {
+    enumerable: true,
+    get: ()=>optimal.string
+});
+for(const k in optimal)if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
+    enumerable: true,
+    get: ()=>optimal[k]
+});
+//# sourceMappingURL=index-browser-stable-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) swc transforms example test case: browser-stable-umd 1`] = `
+Array [
+  "umd/index-browser-stable-umd.js",
+  "(function(global, factory) {
+    if (typeof define === \\"function\\" && define.amd) {
+        define([
+            \\"exports\\",
+            \\"optimal\\"
+        ], factory);
+    } else if (typeof exports !== \\"undefined\\") {
+        factory(exports, require(\\"optimal\\"));
+    } else {
+        var mod = {
+            exports: {}
+        };
+        factory(mod.exports, global.optimal);
+        global.examples = mod.exports;
+    }
+})(this, function(_exports, optimal) {
+    \\"use strict\\";
+    optimal = _interopRequireWildcard(optimal);
+    Object.defineProperty(_exports, \\"__esModule\\", {
+        value: true
+    });
+    Object.defineProperty(_exports, \\"func\\", {
+        enumerable: true,
+        get: function() {
+            return optimal.func;
+        }
+    });
+    Object.defineProperty(_exports, \\"string\\", {
+        enumerable: true,
+        get: function() {
+            return optimal.string;
+        }
+    });
+    var _exportNames = {
+        optimal: true
+    };
+    Object.keys(optimal).forEach(function(key) {
+        if (key === \\"default\\" || key === \\"__esModule\\") return;
+        if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+        if (key in _exports && _exports[key] === optimal[key]) return;
+        Object.defineProperty(_exports, key, {
+            enumerable: true,
+            get: function() {
+                return optimal[key];
+            }
+        });
+    });
+    _exports.optimal = void 0;
+    _exports.optimal = optimal;
+    function _interopRequireWildcard(obj) {
+        if (obj && obj.__esModule) {
+            return obj;
+        } else {
+            var newObj = {};
+            if (obj != null) {
+                for(var key in obj){
+                    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+                        var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {};
+                        if (desc.get || desc.set) {
+                            Object.defineProperty(newObj, key, desc);
+                        } else {
+                            newObj[key] = obj[key];
+                        }
+                    }
+                }
+            }
+            newObj.default = obj;
+            return newObj;
+        }
+    }
+});
+//# sourceMappingURL=index-browser-stable-umd.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) swc transforms example test case: native-current-lib 1`] = `
+Array [
+  "lib/index-native-current-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: current, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+const optimal = require('optimal');
+function _interopNamespace(e) {
+    if (e && e.__esModule) return e;
+    const n = Object.create(null);
+    if (e) {
+        for(const k1 in e)if (k1 !== 'default') {
+            const d = Object.getOwnPropertyDescriptor(e, k1);
+            Object.defineProperty(n, k1, d.get ? d : {
+                enumerable: true,
+                get: ()=>e[k1]
+            });
+        }
+    }
+    n.default = e;
+    return Object.freeze(n);
+}
+const optimal__namespace = /*#__PURE__*/ _interopNamespace(optimal);
+Object.defineProperty(exports, 'func', {
+    enumerable: true,
+    get: ()=>optimal.func
+});
+exports.optimal = optimal__namespace;
+Object.defineProperty(exports, 'string', {
+    enumerable: true,
+    get: ()=>optimal.string
+});
+for(const k in optimal)if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
+    enumerable: true,
+    get: ()=>optimal[k]
+});
+//# sourceMappingURL=index-native-current-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) swc transforms example test case: native-experimental-lib 1`] = `
+Array [
+  "lib/index-native-experimental-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: experimental, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+const optimal = require('optimal');
+function _interopNamespace(e) {
+    if (e && e.__esModule) return e;
+    const n = Object.create(null);
+    if (e) {
+        for(const k1 in e)if (k1 !== 'default') {
+            const d = Object.getOwnPropertyDescriptor(e, k1);
+            Object.defineProperty(n, k1, d.get ? d : {
+                enumerable: true,
+                get: ()=>e[k1]
+            });
+        }
+    }
+    n.default = e;
+    return Object.freeze(n);
+}
+const optimal__namespace = /*#__PURE__*/ _interopNamespace(optimal);
+Object.defineProperty(exports, 'func', {
+    enumerable: true,
+    get: ()=>optimal.func
+});
+exports.optimal = optimal__namespace;
+Object.defineProperty(exports, 'string', {
+    enumerable: true,
+    get: ()=>optimal.string
+});
+for(const k in optimal)if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
+    enumerable: true,
+    get: ()=>optimal[k]
+});
+//# sourceMappingURL=index-native-experimental-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) swc transforms example test case: native-legacy-lib 1`] = `
+Array [
+  "lib/index-native-legacy-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: legacy, Format: lib
+\\"use strict\\";
+Object.defineProperty(exports, \\"__esModule\\", {
+    value: true
+});
+const optimal = require(\\"optimal\\");
+function _interopNamespace(e) {
+    if (e && e.__esModule) return e;
+    const n = Object.create(null);
+    if (e) {
+        for(const k1 in e)if (k1 !== \\"default\\") {
+            const d = Object.getOwnPropertyDescriptor(e, k1);
+            Object.defineProperty(n, k1, d.get ? d : {
+                enumerable: true,
+                get: ()=>e[k1]
+            });
+        }
+    }
+    n.default = e;
+    return Object.freeze(n);
+}
+const optimal__namespace = /*#__PURE__*/ _interopNamespace(optimal);
+Object.defineProperty(exports, \\"func\\", {
+    enumerable: true,
+    get: ()=>optimal.func
+});
+exports.optimal = optimal__namespace;
+Object.defineProperty(exports, \\"string\\", {
+    enumerable: true,
+    get: ()=>optimal.string
+});
+for(const k in optimal)if (k !== \\"default\\" && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
+    enumerable: true,
+    get: ()=>optimal[k]
+});
+//# sourceMappingURL=index-native-legacy-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) swc transforms example test case: native-stable-lib 1`] = `
+Array [
+  "lib/index-native-stable-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: stable, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+const optimal = require('optimal');
+function _interopNamespace(e) {
+    if (e && e.__esModule) return e;
+    const n = Object.create(null);
+    if (e) {
+        for(const k1 in e)if (k1 !== 'default') {
+            const d = Object.getOwnPropertyDescriptor(e, k1);
+            Object.defineProperty(n, k1, d.get ? d : {
+                enumerable: true,
+                get: ()=>e[k1]
+            });
+        }
+    }
+    n.default = e;
+    return Object.freeze(n);
+}
+const optimal__namespace = /*#__PURE__*/ _interopNamespace(optimal);
+Object.defineProperty(exports, 'func', {
+    enumerable: true,
+    get: ()=>optimal.func
+});
+exports.optimal = optimal__namespace;
+Object.defineProperty(exports, 'string', {
+    enumerable: true,
+    get: ()=>optimal.string
+});
+for(const k in optimal)if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
+    enumerable: true,
+    get: ()=>optimal[k]
+});
+//# sourceMappingURL=index-native-stable-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) swc transforms example test case: node-current-cjs 1`] = `
+Array [
+  "cjs/index-node-current-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-current-cjs.cjs';
+
+export * from 'optimal';
+export * as optimal from 'optimal';
+export { string } from 'optimal';
+export { func } from 'optimal';",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) swc transforms example test case: node-current-cjs 2`] = `
+Array [
+  "cjs/index-node-current-cjs.cjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: current, Format: cjs
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+const optimal = require('optimal');
+function _interopNamespace(e) {
+    if (e && e.__esModule) return e;
+    const n = Object.create(null);
+    if (e) {
+        for(const k1 in e)if (k1 !== 'default') {
+            const d = Object.getOwnPropertyDescriptor(e, k1);
+            Object.defineProperty(n, k1, d.get ? d : {
+                enumerable: true,
+                get: ()=>e[k1]
+            });
+        }
+    }
+    n.default = e;
+    return Object.freeze(n);
+}
+const optimal__namespace = /*#__PURE__*/ _interopNamespace(optimal);
+Object.defineProperty(exports, 'func', {
+    enumerable: true,
+    get: ()=>optimal.func
+});
+exports.optimal = optimal__namespace;
+Object.defineProperty(exports, 'string', {
+    enumerable: true,
+    get: ()=>optimal.string
+});
+for(const k in optimal)if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
+    enumerable: true,
+    get: ()=>optimal[k]
+});
+//# sourceMappingURL=index-node-current-cjs.cjs.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) swc transforms example test case: node-current-lib 1`] = `
+Array [
+  "lib/index-node-current-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: current, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+const optimal = require('optimal');
+function _interopNamespace(e) {
+    if (e && e.__esModule) return e;
+    const n = Object.create(null);
+    if (e) {
+        for(const k1 in e)if (k1 !== 'default') {
+            const d = Object.getOwnPropertyDescriptor(e, k1);
+            Object.defineProperty(n, k1, d.get ? d : {
+                enumerable: true,
+                get: ()=>e[k1]
+            });
+        }
+    }
+    n.default = e;
+    return Object.freeze(n);
+}
+const optimal__namespace = /*#__PURE__*/ _interopNamespace(optimal);
+Object.defineProperty(exports, 'func', {
+    enumerable: true,
+    get: ()=>optimal.func
+});
+exports.optimal = optimal__namespace;
+Object.defineProperty(exports, 'string', {
+    enumerable: true,
+    get: ()=>optimal.string
+});
+for(const k in optimal)if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
+    enumerable: true,
+    get: ()=>optimal[k]
+});
+//# sourceMappingURL=index-node-current-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) swc transforms example test case: node-current-mjs 1`] = `
+Array [
+  "mjs/index-node-current-mjs.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: current, Format: mjs
+export * from 'optimal';
+import * as optimal from 'optimal';
+export { optimal };
+export { func, string } from 'optimal';
+//# sourceMappingURL=index-node-current-mjs.mjs.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) swc transforms example test case: node-experimental-cjs 1`] = `
+Array [
+  "cjs/index-node-experimental-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-experimental-cjs.cjs';
+
+export * from 'optimal';
+export * as optimal from 'optimal';
+export { string } from 'optimal';
+export { func } from 'optimal';",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) swc transforms example test case: node-experimental-cjs 2`] = `
+Array [
+  "cjs/index-node-experimental-cjs.cjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: experimental, Format: cjs
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+const optimal = require('optimal');
+function _interopNamespace(e) {
+    if (e && e.__esModule) return e;
+    const n = Object.create(null);
+    if (e) {
+        for(const k1 in e)if (k1 !== 'default') {
+            const d = Object.getOwnPropertyDescriptor(e, k1);
+            Object.defineProperty(n, k1, d.get ? d : {
+                enumerable: true,
+                get: ()=>e[k1]
+            });
+        }
+    }
+    n.default = e;
+    return Object.freeze(n);
+}
+const optimal__namespace = /*#__PURE__*/ _interopNamespace(optimal);
+Object.defineProperty(exports, 'func', {
+    enumerable: true,
+    get: ()=>optimal.func
+});
+exports.optimal = optimal__namespace;
+Object.defineProperty(exports, 'string', {
+    enumerable: true,
+    get: ()=>optimal.string
+});
+for(const k in optimal)if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
+    enumerable: true,
+    get: ()=>optimal[k]
+});
+//# sourceMappingURL=index-node-experimental-cjs.cjs.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) swc transforms example test case: node-experimental-lib 1`] = `
+Array [
+  "lib/index-node-experimental-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: experimental, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+const optimal = require('optimal');
+function _interopNamespace(e) {
+    if (e && e.__esModule) return e;
+    const n = Object.create(null);
+    if (e) {
+        for(const k1 in e)if (k1 !== 'default') {
+            const d = Object.getOwnPropertyDescriptor(e, k1);
+            Object.defineProperty(n, k1, d.get ? d : {
+                enumerable: true,
+                get: ()=>e[k1]
+            });
+        }
+    }
+    n.default = e;
+    return Object.freeze(n);
+}
+const optimal__namespace = /*#__PURE__*/ _interopNamespace(optimal);
+Object.defineProperty(exports, 'func', {
+    enumerable: true,
+    get: ()=>optimal.func
+});
+exports.optimal = optimal__namespace;
+Object.defineProperty(exports, 'string', {
+    enumerable: true,
+    get: ()=>optimal.string
+});
+for(const k in optimal)if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
+    enumerable: true,
+    get: ()=>optimal[k]
+});
+//# sourceMappingURL=index-node-experimental-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) swc transforms example test case: node-experimental-mjs 1`] = `
+Array [
+  "mjs/index-node-experimental-mjs.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: experimental, Format: mjs
+export * from 'optimal';
+import * as optimal from 'optimal';
+export { optimal };
+export { func, string } from 'optimal';
+//# sourceMappingURL=index-node-experimental-mjs.mjs.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) swc transforms example test case: node-legacy-cjs 1`] = `
+Array [
+  "cjs/index-node-legacy-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-legacy-cjs.cjs';
+
+export * from 'optimal';
+export * as optimal from 'optimal';
+export { string } from 'optimal';
+export { func } from 'optimal';",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) swc transforms example test case: node-legacy-cjs 2`] = `
+Array [
+  "cjs/index-node-legacy-cjs.cjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: legacy, Format: cjs
+\\"use strict\\";
+Object.defineProperty(exports, \\"__esModule\\", {
+    value: true
+});
+const optimal = require(\\"optimal\\");
+function _interopNamespace(e) {
+    if (e && e.__esModule) return e;
+    const n = Object.create(null);
+    if (e) {
+        for(const k1 in e)if (k1 !== \\"default\\") {
+            const d = Object.getOwnPropertyDescriptor(e, k1);
+            Object.defineProperty(n, k1, d.get ? d : {
+                enumerable: true,
+                get: ()=>e[k1]
+            });
+        }
+    }
+    n.default = e;
+    return Object.freeze(n);
+}
+const optimal__namespace = /*#__PURE__*/ _interopNamespace(optimal);
+Object.defineProperty(exports, \\"func\\", {
+    enumerable: true,
+    get: ()=>optimal.func
+});
+exports.optimal = optimal__namespace;
+Object.defineProperty(exports, \\"string\\", {
+    enumerable: true,
+    get: ()=>optimal.string
+});
+for(const k in optimal)if (k !== \\"default\\" && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
+    enumerable: true,
+    get: ()=>optimal[k]
+});
+//# sourceMappingURL=index-node-legacy-cjs.cjs.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) swc transforms example test case: node-legacy-lib 1`] = `
+Array [
+  "lib/index-node-legacy-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: legacy, Format: lib
+\\"use strict\\";
+Object.defineProperty(exports, \\"__esModule\\", {
+    value: true
+});
+const optimal = require(\\"optimal\\");
+function _interopNamespace(e) {
+    if (e && e.__esModule) return e;
+    const n = Object.create(null);
+    if (e) {
+        for(const k1 in e)if (k1 !== \\"default\\") {
+            const d = Object.getOwnPropertyDescriptor(e, k1);
+            Object.defineProperty(n, k1, d.get ? d : {
+                enumerable: true,
+                get: ()=>e[k1]
+            });
+        }
+    }
+    n.default = e;
+    return Object.freeze(n);
+}
+const optimal__namespace = /*#__PURE__*/ _interopNamespace(optimal);
+Object.defineProperty(exports, \\"func\\", {
+    enumerable: true,
+    get: ()=>optimal.func
+});
+exports.optimal = optimal__namespace;
+Object.defineProperty(exports, \\"string\\", {
+    enumerable: true,
+    get: ()=>optimal.string
+});
+for(const k in optimal)if (k !== \\"default\\" && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
+    enumerable: true,
+    get: ()=>optimal[k]
+});
+//# sourceMappingURL=index-node-legacy-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) swc transforms example test case: node-legacy-mjs 1`] = `
+Array [
+  "mjs/index-node-legacy-mjs.mjs",
+  "import * as optimal from \\"optimal\\";
+// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: legacy, Format: mjs
+export * from \\"optimal\\";
+export { optimal };
+export { func, string } from \\"optimal\\";
+//# sourceMappingURL=index-node-legacy-mjs.mjs.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) swc transforms example test case: node-stable-cjs 1`] = `
+Array [
+  "cjs/index-node-stable-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-stable-cjs.cjs';
+
+export * from 'optimal';
+export * as optimal from 'optimal';
+export { string } from 'optimal';
+export { func } from 'optimal';",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) swc transforms example test case: node-stable-cjs 2`] = `
+Array [
+  "cjs/index-node-stable-cjs.cjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: cjs
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+const optimal = require('optimal');
+function _interopNamespace(e) {
+    if (e && e.__esModule) return e;
+    const n = Object.create(null);
+    if (e) {
+        for(const k1 in e)if (k1 !== 'default') {
+            const d = Object.getOwnPropertyDescriptor(e, k1);
+            Object.defineProperty(n, k1, d.get ? d : {
+                enumerable: true,
+                get: ()=>e[k1]
+            });
+        }
+    }
+    n.default = e;
+    return Object.freeze(n);
+}
+const optimal__namespace = /*#__PURE__*/ _interopNamespace(optimal);
+Object.defineProperty(exports, 'func', {
+    enumerable: true,
+    get: ()=>optimal.func
+});
+exports.optimal = optimal__namespace;
+Object.defineProperty(exports, 'string', {
+    enumerable: true,
+    get: ()=>optimal.string
+});
+for(const k in optimal)if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
+    enumerable: true,
+    get: ()=>optimal[k]
+});
+//# sourceMappingURL=index-node-stable-cjs.cjs.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) swc transforms example test case: node-stable-lib 1`] = `
+Array [
+  "lib/index-node-stable-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+const optimal = require('optimal');
+function _interopNamespace(e) {
+    if (e && e.__esModule) return e;
+    const n = Object.create(null);
+    if (e) {
+        for(const k1 in e)if (k1 !== 'default') {
+            const d = Object.getOwnPropertyDescriptor(e, k1);
+            Object.defineProperty(n, k1, d.get ? d : {
+                enumerable: true,
+                get: ()=>e[k1]
+            });
+        }
+    }
+    n.default = e;
+    return Object.freeze(n);
+}
+const optimal__namespace = /*#__PURE__*/ _interopNamespace(optimal);
+Object.defineProperty(exports, 'func', {
+    enumerable: true,
+    get: ()=>optimal.func
+});
+exports.optimal = optimal__namespace;
+Object.defineProperty(exports, 'string', {
+    enumerable: true,
+    get: ()=>optimal.string
+});
+for(const k in optimal)if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
+    enumerable: true,
+    get: ()=>optimal[k]
+});
+//# sourceMappingURL=index-node-stable-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) swc transforms example test case: node-stable-mjs 1`] = `
+Array [
+  "mjs/index-node-stable-mjs.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: mjs
+export * from 'optimal';
+import * as optimal from 'optimal';
+export { optimal };
+export { func, string } from 'optimal';
+//# sourceMappingURL=index-node-stable-mjs.mjs.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper babel transforms example test case: browser-current-esm 1`] = `
+Array [
+  "esm/index-browser-current-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: current, Format: esm
+function foo() {}
+
+function bar() {}
+
+const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
+  __proto__: null,
+  foo,
+  bar
+}, Symbol.toStringTag, {
+  value: 'Module'
+}));
+let a = 'abc';
+const b = 123;
+const _c = {
+  c: true
+},
+      c = _c.c;
+const d = {};
+const e = 456,
+      f = 'xyz';
+
+class ClassName {}
+
+function func() {}
+
+const arrowFunc = () => {};
+
+const CONST = 123;
+
+class DefaultClass {} // Types should be ignored
+
+
+export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, foo as fooRenamed, func, helpers as ns1, helpers as ns2, helpers as ns3 };
+//# sourceMappingURL=index-browser-current-esm.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper babel transforms example test case: browser-current-lib 1`] = `
+Array [
+  "lib/index-browser-current-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: current, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function foo() {}
+
+function bar() {}
+
+const helpers = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  foo,
+  bar
+});
+let a = 'abc';
+const b = 123;
+const _c = {
+  c: true
+},
+      c = _c.c;
+const d = {};
+const e = 456,
+      f = 'xyz';
+
+class ClassName {}
+
+function func() {}
+
+const arrowFunc = () => {};
+
+const CONST = 123;
+
+class DefaultClass {} // Types should be ignored
+
+
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.fooRenamed = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-browser-current-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper babel transforms example test case: browser-current-umd 1`] = `
+Array [
+  "umd/index-browser-current-umd.js",
+  "(function (global, factory) {
+  if (typeof define === \\"function\\" && define.amd) {
+    define([\\"exports\\"], factory);
+  } else if (typeof exports !== \\"undefined\\") {
+    factory(exports);
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports);
+    global.examples = mod.exports;
+  }
+})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports) {
+  \\"use strict\\";
+
+  Object.defineProperty(_exports, \\"__esModule\\", {
+    value: true
+  });
+  _exports.b = _exports.arrowFunc = _exports.a = _exports.ClassName = _exports.CONST = void 0;
+  _exports.bar = bar;
+  _exports.f = _exports.e = _exports.default = _exports.d = _exports.c = void 0;
+  _exports.fooRenamed = _exports.foo = foo;
+  _exports.func = func;
+  _exports.ns3 = _exports.ns2 = _exports.ns1 = void 0;
+
+  // Bundled with Packemon: https://packemon.dev
+  // Platform: browser, Support: current, Format: umd
+  function foo() {}
+
+  function bar() {}
+
+  const helpers = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+  });
+  _exports.ns3 = _exports.ns2 = _exports.ns1 = helpers;
+  let a = 'abc';
+  _exports.a = a;
+  const b = 123;
+  _exports.b = b;
+  const _c = {
+    c: true
+  },
+        c = _c.c;
+  _exports.c = c;
+  const d = {};
+  _exports.d = d;
+  const e = 456,
+        f = 'xyz';
+  _exports.f = f;
+  _exports.e = e;
+
+  class ClassName {}
+
+  _exports.ClassName = ClassName;
+
+  function func() {}
+
+  const arrowFunc = () => {};
+
+  _exports.arrowFunc = arrowFunc;
+  const CONST = 123;
+  _exports.CONST = CONST;
+
+  class DefaultClass {} // Types should be ignored
+
+
+  _exports.default = DefaultClass;
+});
+//# sourceMappingURL=index-browser-current-umd.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper babel transforms example test case: browser-experimental-esm 1`] = `
+Array [
+  "esm/index-browser-experimental-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: experimental, Format: esm
+function foo() {}
+
+function bar() {}
+
+const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
+  __proto__: null,
+  foo,
+  bar
+}, Symbol.toStringTag, {
+  value: 'Module'
+}));
+let a = 'abc';
+const b = 123;
+const _c = {
+  c: true
+},
+      c = _c.c;
+const d = {};
+const e = 456,
+      f = 'xyz';
+
+class ClassName {}
+
+function func() {}
+
+const arrowFunc = () => {};
+
+const CONST = 123;
+
+class DefaultClass {} // Types should be ignored
+
+
+export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, foo as fooRenamed, func, helpers as ns1, helpers as ns2, helpers as ns3 };
+//# sourceMappingURL=index-browser-experimental-esm.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper babel transforms example test case: browser-experimental-lib 1`] = `
+Array [
+  "lib/index-browser-experimental-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: experimental, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function foo() {}
+
+function bar() {}
+
+const helpers = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  foo,
+  bar
+});
+let a = 'abc';
+const b = 123;
+const _c = {
+  c: true
+},
+      c = _c.c;
+const d = {};
+const e = 456,
+      f = 'xyz';
+
+class ClassName {}
+
+function func() {}
+
+const arrowFunc = () => {};
+
+const CONST = 123;
+
+class DefaultClass {} // Types should be ignored
+
+
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.fooRenamed = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-browser-experimental-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper babel transforms example test case: browser-experimental-umd 1`] = `
+Array [
+  "umd/index-browser-experimental-umd.js",
+  "(function (global, factory) {
+  if (typeof define === \\"function\\" && define.amd) {
+    define([\\"exports\\"], factory);
+  } else if (typeof exports !== \\"undefined\\") {
+    factory(exports);
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports);
+    global.examples = mod.exports;
+  }
+})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports) {
+  \\"use strict\\";
+
+  Object.defineProperty(_exports, \\"__esModule\\", {
+    value: true
+  });
+  _exports.b = _exports.arrowFunc = _exports.a = _exports.ClassName = _exports.CONST = void 0;
+  _exports.bar = bar;
+  _exports.f = _exports.e = _exports.default = _exports.d = _exports.c = void 0;
+  _exports.fooRenamed = _exports.foo = foo;
+  _exports.func = func;
+  _exports.ns3 = _exports.ns2 = _exports.ns1 = void 0;
+
+  // Bundled with Packemon: https://packemon.dev
+  // Platform: browser, Support: experimental, Format: umd
+  function foo() {}
+
+  function bar() {}
+
+  const helpers = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+  });
+  _exports.ns3 = _exports.ns2 = _exports.ns1 = helpers;
+  let a = 'abc';
+  _exports.a = a;
+  const b = 123;
+  _exports.b = b;
+  const _c = {
+    c: true
+  },
+        c = _c.c;
+  _exports.c = c;
+  const d = {};
+  _exports.d = d;
+  const e = 456,
+        f = 'xyz';
+  _exports.f = f;
+  _exports.e = e;
+
+  class ClassName {}
+
+  _exports.ClassName = ClassName;
+
+  function func() {}
+
+  const arrowFunc = () => {};
+
+  _exports.arrowFunc = arrowFunc;
+  const CONST = 123;
+  _exports.CONST = CONST;
+
+  class DefaultClass {} // Types should be ignored
+
+
+  _exports.default = DefaultClass;
+});
+//# sourceMappingURL=index-browser-experimental-umd.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper babel transforms example test case: browser-legacy-esm 1`] = `
+Array [
+  "esm/index-browser-legacy-esm.js",
+  "var _this = this;
+
+function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError(\\"Cannot instantiate an arrow function\\"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\\"value\\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, \\"prototype\\", { writable: false }); return Constructor; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\\"Cannot call a class as a function\\"); } }
+
+// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: legacy, Format: esm
+function foo() {}
+
+function bar() {}
+
+var helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
+  __proto__: null,
+  foo: foo,
+  bar: bar
+}, Symbol.toStringTag, {
+  value: 'Module'
+}));
+var a = 'abc';
+var b = 123;
+var _c = {
+  c: true
+},
+    c = _c.c;
+var d = {};
+var e = 456,
+    f = 'xyz';
+
+var ClassName = /*#__PURE__*/_createClass(function ClassName() {
+  _classCallCheck(this, ClassName);
+});
+
+function func() {}
+
+var arrowFunc = function arrowFunc() {
+  _newArrowCheck(this, _this);
+}.bind(this);
+
+var CONST = 123;
+
+var DefaultClass = /*#__PURE__*/_createClass(function DefaultClass() {
+  _classCallCheck(this, DefaultClass);
+}); // Types should be ignored
+
+
+export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, foo as fooRenamed, func, helpers as ns1, helpers as ns2, helpers as ns3 };
+//# sourceMappingURL=index-browser-legacy-esm.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper babel transforms example test case: browser-legacy-lib 1`] = `
+Array [
+  "lib/index-browser-legacy-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: legacy, Format: lib
+'use strict';
+
+var _this = this;
+
+function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError(\\"Cannot instantiate an arrow function\\"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\\"value\\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, \\"prototype\\", { writable: false }); return Constructor; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\\"Cannot call a class as a function\\"); } }
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function foo() {}
+
+function bar() {}
+
+var helpers = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  foo: foo,
+  bar: bar
+});
+var a = 'abc';
+var b = 123;
+var _c = {
+  c: true
+},
+    c = _c.c;
+var d = {};
+var e = 456,
+    f = 'xyz';
+
+var ClassName = /*#__PURE__*/_createClass(function ClassName() {
+  _classCallCheck(this, ClassName);
+});
+
+function func() {}
+
+var arrowFunc = function arrowFunc() {
+  _newArrowCheck(this, _this);
+}.bind(this);
+
+var CONST = 123;
+
+var DefaultClass = /*#__PURE__*/_createClass(function DefaultClass() {
+  _classCallCheck(this, DefaultClass);
+}); // Types should be ignored
+
+
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.fooRenamed = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-browser-legacy-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper babel transforms example test case: browser-legacy-umd 1`] = `
+Array [
+  "umd/index-browser-legacy-umd.js",
+  "(function (global, factory) {
+  if (typeof define === \\"function\\" && define.amd) {
+    define([\\"exports\\"], factory);
+  } else if (typeof exports !== \\"undefined\\") {
+    factory(exports);
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports);
+    global.examples = mod.exports;
+  }
+})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports) {
+  \\"use strict\\";
+
+  Object.defineProperty(_exports, \\"__esModule\\", {
+    value: true
+  });
+  _exports.b = _exports.arrowFunc = _exports.a = _exports.ClassName = _exports.CONST = void 0;
+  _exports.bar = bar;
+  _exports.f = _exports.e = _exports.default = _exports.d = _exports.c = void 0;
+  _exports.fooRenamed = _exports.foo = foo;
+  _exports.func = func;
+  _exports.ns3 = _exports.ns2 = _exports.ns1 = void 0;
+
+  var _this = void 0;
+
+  function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError(\\"Cannot instantiate an arrow function\\"); } }
+
+  function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\\"value\\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+  function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, \\"prototype\\", { writable: false }); return Constructor; }
+
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\\"Cannot call a class as a function\\"); } }
+
+  // Bundled with Packemon: https://packemon.dev
+  // Platform: browser, Support: legacy, Format: umd
+  function foo() {}
+
+  function bar() {}
+
+  var helpers = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    foo: foo,
+    bar: bar
+  });
+  _exports.ns3 = _exports.ns2 = _exports.ns1 = helpers;
+  var a = 'abc';
+  _exports.a = a;
+  var b = 123;
+  _exports.b = b;
+  var _c = {
+    c: true
+  },
+      c = _c.c;
+  _exports.c = c;
+  var d = {};
+  _exports.d = d;
+  var e = 456,
+      f = 'xyz';
+  _exports.f = f;
+  _exports.e = e;
+
+  var ClassName = /*#__PURE__*/_createClass(function ClassName() {
+    _classCallCheck(this, ClassName);
+  });
+
+  _exports.ClassName = ClassName;
+
+  function func() {}
+
+  var arrowFunc = function arrowFunc() {
+    _newArrowCheck(this, _this);
+  }.bind(void 0);
+
+  _exports.arrowFunc = arrowFunc;
+  var CONST = 123;
+  _exports.CONST = CONST;
+
+  var DefaultClass = /*#__PURE__*/_createClass(function DefaultClass() {
+    _classCallCheck(this, DefaultClass);
+  }); // Types should be ignored
+
+
+  _exports.default = DefaultClass;
+});
+//# sourceMappingURL=index-browser-legacy-umd.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper babel transforms example test case: browser-stable-esm 1`] = `
+Array [
+  "esm/index-browser-stable-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: stable, Format: esm
+function foo() {}
+
+function bar() {}
+
+const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
+  __proto__: null,
+  foo,
+  bar
+}, Symbol.toStringTag, {
+  value: 'Module'
+}));
+let a = 'abc';
+const b = 123;
+const _c = {
+  c: true
+},
+      c = _c.c;
+const d = {};
+const e = 456,
+      f = 'xyz';
+
+class ClassName {}
+
+function func() {}
+
+const arrowFunc = () => {};
+
+const CONST = 123;
+
+class DefaultClass {} // Types should be ignored
+
+
+export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, foo as fooRenamed, func, helpers as ns1, helpers as ns2, helpers as ns3 };
+//# sourceMappingURL=index-browser-stable-esm.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper babel transforms example test case: browser-stable-lib 1`] = `
+Array [
+  "lib/index-browser-stable-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: stable, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function foo() {}
+
+function bar() {}
+
+const helpers = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  foo,
+  bar
+});
+let a = 'abc';
+const b = 123;
+const _c = {
+  c: true
+},
+      c = _c.c;
+const d = {};
+const e = 456,
+      f = 'xyz';
+
+class ClassName {}
+
+function func() {}
+
+const arrowFunc = () => {};
+
+const CONST = 123;
+
+class DefaultClass {} // Types should be ignored
+
+
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.fooRenamed = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-browser-stable-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper babel transforms example test case: browser-stable-umd 1`] = `
+Array [
+  "umd/index-browser-stable-umd.js",
+  "(function (global, factory) {
+  if (typeof define === \\"function\\" && define.amd) {
+    define([\\"exports\\"], factory);
+  } else if (typeof exports !== \\"undefined\\") {
+    factory(exports);
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports);
+    global.examples = mod.exports;
+  }
+})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports) {
+  \\"use strict\\";
+
+  Object.defineProperty(_exports, \\"__esModule\\", {
+    value: true
+  });
+  _exports.b = _exports.arrowFunc = _exports.a = _exports.ClassName = _exports.CONST = void 0;
+  _exports.bar = bar;
+  _exports.f = _exports.e = _exports.default = _exports.d = _exports.c = void 0;
+  _exports.fooRenamed = _exports.foo = foo;
+  _exports.func = func;
+  _exports.ns3 = _exports.ns2 = _exports.ns1 = void 0;
+
+  // Bundled with Packemon: https://packemon.dev
+  // Platform: browser, Support: stable, Format: umd
+  function foo() {}
+
+  function bar() {}
+
+  const helpers = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+  });
+  _exports.ns3 = _exports.ns2 = _exports.ns1 = helpers;
+  let a = 'abc';
+  _exports.a = a;
+  const b = 123;
+  _exports.b = b;
+  const _c = {
+    c: true
+  },
+        c = _c.c;
+  _exports.c = c;
+  const d = {};
+  _exports.d = d;
+  const e = 456,
+        f = 'xyz';
+  _exports.f = f;
+  _exports.e = e;
+
+  class ClassName {}
+
+  _exports.ClassName = ClassName;
+
+  function func() {}
+
+  const arrowFunc = () => {};
+
+  _exports.arrowFunc = arrowFunc;
+  const CONST = 123;
+  _exports.CONST = CONST;
+
+  class DefaultClass {} // Types should be ignored
+
+
+  _exports.default = DefaultClass;
+});
+//# sourceMappingURL=index-browser-stable-umd.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper babel transforms example test case: native-current-lib 1`] = `
+Array [
+  "lib/index-native-current-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: current, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function foo() {}
+
+function bar() {}
+
+const helpers = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  foo,
+  bar
+});
+let a = 'abc';
+const b = 123;
+const _c = {
+  c: true
+},
+      c = _c.c;
+const d = {};
+const e = 456,
+      f = 'xyz';
+
+class ClassName {}
+
+function func() {}
+
+const arrowFunc = () => {};
+
+const CONST = 123;
+
+class DefaultClass {} // Types should be ignored
+
+
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.fooRenamed = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-native-current-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper babel transforms example test case: native-experimental-lib 1`] = `
+Array [
+  "lib/index-native-experimental-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: experimental, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function foo() {}
+
+function bar() {}
+
+const helpers = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  foo,
+  bar
+});
+let a = 'abc';
+const b = 123;
+const _c = {
+  c: true
+},
+      c = _c.c;
+const d = {};
+const e = 456,
+      f = 'xyz';
+
+class ClassName {}
+
+function func() {}
+
+const arrowFunc = () => {};
+
+const CONST = 123;
+
+class DefaultClass {} // Types should be ignored
+
+
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.fooRenamed = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-native-experimental-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper babel transforms example test case: native-legacy-lib 1`] = `
+Array [
+  "lib/index-native-legacy-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: legacy, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function foo() {}
+
+function bar() {}
+
+const helpers = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  foo,
+  bar
+});
+let a = 'abc';
+const b = 123;
+const _c = {
+  c: true
+},
+      c = _c.c;
+const d = {};
+const e = 456,
+      f = 'xyz';
+
+class ClassName {}
+
+function func() {}
+
+const arrowFunc = () => {};
+
+const CONST = 123;
+
+class DefaultClass {} // Types should be ignored
+
+
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.fooRenamed = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-native-legacy-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper babel transforms example test case: native-stable-lib 1`] = `
+Array [
+  "lib/index-native-stable-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: stable, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function foo() {}
+
+function bar() {}
+
+const helpers = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  foo,
+  bar
+});
+let a = 'abc';
+const b = 123;
+const _c = {
+  c: true
+},
+      c = _c.c;
+const d = {};
+const e = 456,
+      f = 'xyz';
+
+class ClassName {}
+
+function func() {}
+
+const arrowFunc = () => {};
+
+const CONST = 123;
+
+class DefaultClass {} // Types should be ignored
+
+
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.fooRenamed = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-native-stable-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper babel transforms example test case: node-current-cjs 1`] = `
+Array [
+  "cjs/index-node-current-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-current-cjs.cjs';
+
+export const { CONST, ClassName, a, arrowFunc, b, bar, c, d, e, f, foo, fooRenamed, func, ns1, ns2, ns3 } = data;
+export default data.default;",
+]
+`;
+
+exports[`CJS -> MJS wrapper babel transforms example test case: node-current-cjs 2`] = `
+Array [
+  "cjs/index-node-current-cjs.cjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: current, Format: cjs
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function foo() {}
+
+function bar() {}
+
+const helpers = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  foo,
+  bar
+});
+let a = 'abc';
+const b = 123;
+const _c = {
+  c: true
+},
+      c = _c.c;
+const d = {};
+const e = 456,
+      f = 'xyz';
+
+class ClassName {}
+
+function func() {}
+
+const arrowFunc = () => {};
+
+const CONST = 123;
+
+class DefaultClass {} // Types should be ignored
+
+
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.fooRenamed = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-node-current-cjs.cjs.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper babel transforms example test case: node-current-lib 1`] = `
+Array [
+  "lib/index-node-current-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: current, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function foo() {}
+
+function bar() {}
+
+const helpers = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  foo,
+  bar
+});
+let a = 'abc';
+const b = 123;
+const _c = {
+  c: true
+},
+      c = _c.c;
+const d = {};
+const e = 456,
+      f = 'xyz';
+
+class ClassName {}
+
+function func() {}
+
+const arrowFunc = () => {};
+
+const CONST = 123;
+
+class DefaultClass {} // Types should be ignored
+
+
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.fooRenamed = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-node-current-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper babel transforms example test case: node-current-mjs 1`] = `
+Array [
+  "mjs/index-node-current-mjs.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: current, Format: mjs
+function foo() {}
+
+function bar() {}
+
+const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
+  __proto__: null,
+  foo,
+  bar
+}, Symbol.toStringTag, {
+  value: 'Module'
+}));
+let a = 'abc';
+const b = 123;
+const _c = {
+  c: true
+},
+      c = _c.c;
+const d = {};
+const e = 456,
+      f = 'xyz';
+
+class ClassName {}
+
+function func() {}
+
+const arrowFunc = () => {};
+
+const CONST = 123;
+
+class DefaultClass {} // Types should be ignored
+
+
+export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, foo as fooRenamed, func, helpers as ns1, helpers as ns2, helpers as ns3 };
+//# sourceMappingURL=index-node-current-mjs.mjs.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper babel transforms example test case: node-experimental-cjs 1`] = `
+Array [
+  "cjs/index-node-experimental-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-experimental-cjs.cjs';
+
+export const { CONST, ClassName, a, arrowFunc, b, bar, c, d, e, f, foo, fooRenamed, func, ns1, ns2, ns3 } = data;
+export default data.default;",
+]
+`;
+
+exports[`CJS -> MJS wrapper babel transforms example test case: node-experimental-cjs 2`] = `
+Array [
+  "cjs/index-node-experimental-cjs.cjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: experimental, Format: cjs
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function foo() {}
+
+function bar() {}
+
+const helpers = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  foo,
+  bar
+});
+let a = 'abc';
+const b = 123;
+const _c = {
+  c: true
+},
+      c = _c.c;
+const d = {};
+const e = 456,
+      f = 'xyz';
+
+class ClassName {}
+
+function func() {}
+
+const arrowFunc = () => {};
+
+const CONST = 123;
+
+class DefaultClass {} // Types should be ignored
+
+
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.fooRenamed = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-node-experimental-cjs.cjs.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper babel transforms example test case: node-experimental-lib 1`] = `
+Array [
+  "lib/index-node-experimental-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: experimental, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function foo() {}
+
+function bar() {}
+
+const helpers = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  foo,
+  bar
+});
+let a = 'abc';
+const b = 123;
+const _c = {
+  c: true
+},
+      c = _c.c;
+const d = {};
+const e = 456,
+      f = 'xyz';
+
+class ClassName {}
+
+function func() {}
+
+const arrowFunc = () => {};
+
+const CONST = 123;
+
+class DefaultClass {} // Types should be ignored
+
+
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.fooRenamed = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-node-experimental-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper babel transforms example test case: node-experimental-mjs 1`] = `
+Array [
+  "mjs/index-node-experimental-mjs.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: experimental, Format: mjs
+function foo() {}
+
+function bar() {}
+
+const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
+  __proto__: null,
+  foo,
+  bar
+}, Symbol.toStringTag, {
+  value: 'Module'
+}));
+let a = 'abc';
+const b = 123;
+const _c = {
+  c: true
+},
+      c = _c.c;
+const d = {};
+const e = 456,
+      f = 'xyz';
+
+class ClassName {}
+
+function func() {}
+
+const arrowFunc = () => {};
+
+const CONST = 123;
+
+class DefaultClass {} // Types should be ignored
+
+
+export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, foo as fooRenamed, func, helpers as ns1, helpers as ns2, helpers as ns3 };
+//# sourceMappingURL=index-node-experimental-mjs.mjs.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper babel transforms example test case: node-legacy-cjs 1`] = `
+Array [
+  "cjs/index-node-legacy-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-legacy-cjs.cjs';
+
+export const { CONST, ClassName, a, arrowFunc, b, bar, c, d, e, f, foo, fooRenamed, func, ns1, ns2, ns3 } = data;
+export default data.default;",
+]
+`;
+
+exports[`CJS -> MJS wrapper babel transforms example test case: node-legacy-cjs 2`] = `
+Array [
+  "cjs/index-node-legacy-cjs.cjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: legacy, Format: cjs
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function foo() {}
+
+function bar() {}
+
+const helpers = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  foo,
+  bar
+});
+let a = 'abc';
+const b = 123;
+const _c = {
+  c: true
+},
+      c = _c.c;
+const d = {};
+const e = 456,
+      f = 'xyz';
+
+class ClassName {}
+
+function func() {}
+
+const arrowFunc = () => {};
+
+const CONST = 123;
+
+class DefaultClass {} // Types should be ignored
+
+
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.fooRenamed = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-node-legacy-cjs.cjs.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper babel transforms example test case: node-legacy-lib 1`] = `
+Array [
+  "lib/index-node-legacy-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: legacy, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function foo() {}
+
+function bar() {}
+
+const helpers = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  foo,
+  bar
+});
+let a = 'abc';
+const b = 123;
+const _c = {
+  c: true
+},
+      c = _c.c;
+const d = {};
+const e = 456,
+      f = 'xyz';
+
+class ClassName {}
+
+function func() {}
+
+const arrowFunc = () => {};
+
+const CONST = 123;
+
+class DefaultClass {} // Types should be ignored
+
+
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.fooRenamed = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-node-legacy-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper babel transforms example test case: node-legacy-mjs 1`] = `
+Array [
+  "mjs/index-node-legacy-mjs.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: legacy, Format: mjs
+function foo() {}
+
+function bar() {}
+
+const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
+  __proto__: null,
+  foo,
+  bar
+}, Symbol.toStringTag, {
+  value: 'Module'
+}));
+let a = 'abc';
+const b = 123;
+const _c = {
+  c: true
+},
+      c = _c.c;
+const d = {};
+const e = 456,
+      f = 'xyz';
+
+class ClassName {}
+
+function func() {}
+
+const arrowFunc = () => {};
+
+const CONST = 123;
+
+class DefaultClass {} // Types should be ignored
+
+
+export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, foo as fooRenamed, func, helpers as ns1, helpers as ns2, helpers as ns3 };
+//# sourceMappingURL=index-node-legacy-mjs.mjs.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper babel transforms example test case: node-stable-cjs 1`] = `
+Array [
+  "cjs/index-node-stable-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-stable-cjs.cjs';
+
+export const { CONST, ClassName, a, arrowFunc, b, bar, c, d, e, f, foo, fooRenamed, func, ns1, ns2, ns3 } = data;
+export default data.default;",
+]
+`;
+
+exports[`CJS -> MJS wrapper babel transforms example test case: node-stable-cjs 2`] = `
+Array [
+  "cjs/index-node-stable-cjs.cjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: cjs
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function foo() {}
+
+function bar() {}
+
+const helpers = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  foo,
+  bar
+});
+let a = 'abc';
+const b = 123;
+const _c = {
+  c: true
+},
+      c = _c.c;
+const d = {};
+const e = 456,
+      f = 'xyz';
+
+class ClassName {}
+
+function func() {}
+
+const arrowFunc = () => {};
+
+const CONST = 123;
+
+class DefaultClass {} // Types should be ignored
+
+
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.fooRenamed = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-node-stable-cjs.cjs.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper babel transforms example test case: node-stable-lib 1`] = `
+Array [
+  "lib/index-node-stable-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function foo() {}
+
+function bar() {}
+
+const helpers = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  foo,
+  bar
+});
+let a = 'abc';
+const b = 123;
+const _c = {
+  c: true
+},
+      c = _c.c;
+const d = {};
+const e = 456,
+      f = 'xyz';
+
+class ClassName {}
+
+function func() {}
+
+const arrowFunc = () => {};
+
+const CONST = 123;
+
+class DefaultClass {} // Types should be ignored
+
+
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.fooRenamed = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-node-stable-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper babel transforms example test case: node-stable-mjs 1`] = `
+Array [
+  "mjs/index-node-stable-mjs.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: mjs
+function foo() {}
+
+function bar() {}
+
+const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
+  __proto__: null,
+  foo,
+  bar
+}, Symbol.toStringTag, {
+  value: 'Module'
+}));
+let a = 'abc';
+const b = 123;
+const _c = {
+  c: true
+},
+      c = _c.c;
+const d = {};
+const e = 456,
+      f = 'xyz';
+
+class ClassName {}
+
+function func() {}
+
+const arrowFunc = () => {};
+
+const CONST = 123;
+
+class DefaultClass {} // Types should be ignored
+
+
+export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, foo as fooRenamed, func, helpers as ns1, helpers as ns2, helpers as ns3 };
+//# sourceMappingURL=index-node-stable-mjs.mjs.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: browser-current-esm 1`] = `
+Array [
+  "esm/index-browser-current-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: current, Format: esm
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty({
+    __proto__: null,
+    foo,
+    bar
+}, Symbol.toStringTag, {
+    value: 'Module'
+}));
+let a;
+const b = 123;
+const { c  } = {
+    c: true
+};
+const [d] = [
+    {}
+];
+const e = 456, f = 'xyz';
+let ClassName = class ClassName {
+};
+function func() {}
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
+};
+export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, foo as fooRenamed, func, helpers as ns1, helpers as ns2, helpers as ns3 };
+//# sourceMappingURL=index-browser-current-esm.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: browser-current-lib 1`] = `
+Array [
+  "lib/index-browser-current-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: current, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+});
+let a = 'abc';
+const b = 123;
+const { c  } = {
+    c: true
+};
+const [d] = [
+    {}
+];
+const e = 456, f = 'xyz';
+let ClassName = class ClassName {
+};
+function func() {}
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
+};
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.fooRenamed = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-browser-current-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: browser-current-umd 1`] = `
+Array [
+  "umd/index-browser-current-umd.js",
+  "(function(global, factory) {
+    if (typeof define === \\"function\\" && define.amd) {
+        define([
+            \\"exports\\"
+        ], factory);
+    } else if (typeof exports !== \\"undefined\\") {
+        factory(exports);
+    } else {
+        var mod = {
+            exports: {}
+        };
+        factory(mod.exports);
+        global.examples = mod.exports;
+    }
+})(this, function(_exports) {
+    \\"use strict\\";
+    Object.defineProperty(_exports, \\"__esModule\\", {
+        value: true
+    });
+    _exports.default = _exports.CONST = _exports.arrowFunc = _exports.func = _exports.ClassName = _exports.f = _exports.e = _exports.d = _exports.c = _exports.b = _exports.a = _exports.ns3 = _exports.ns2 = _exports.ns1 = _exports.bar = _exports.fooRenamed = _exports.foo = void 0;
+    function foo() {}
+    _exports.foo = foo;
+    _exports.fooRenamed = foo;
+    function bar() {}
+    _exports.bar = bar;
+    const helpers = /*#__PURE__*/ Object.freeze({
+        __proto__: null,
+        foo,
+        bar
+    });
+    _exports.ns1 = helpers;
+    _exports.ns2 = helpers;
+    _exports.ns3 = helpers;
+    let a;
+    _exports.a = a;
+    const b = 123;
+    _exports.b = b;
+    const { c  } = {
+        c: true
+    };
+    _exports.c = c;
+    const [d] = [
+        {}
+    ];
+    _exports.d = d;
+    const e = 456, f = 'xyz';
+    _exports.e = e;
+    _exports.f = f;
+    let ClassName = class ClassName {
+    };
+    _exports.ClassName = ClassName;
+    function func() {}
+    _exports.func = func;
+    const arrowFunc = ()=>{};
+    _exports.arrowFunc = arrowFunc;
+    const CONST = 123;
+    _exports.CONST = CONST;
+    let DefaultClass = class DefaultClass {
+    };
+    _exports.default = DefaultClass;
+});
+//# sourceMappingURL=index-browser-current-umd.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: browser-experimental-esm 1`] = `
+Array [
+  "esm/index-browser-experimental-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: experimental, Format: esm
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty({
+    __proto__: null,
+    foo,
+    bar
+}, Symbol.toStringTag, {
+    value: 'Module'
+}));
+let a;
+const b = 123;
+const { c  } = {
+    c: true
+};
+const [d] = [
+    {}
+];
+const e = 456, f = 'xyz';
+let ClassName = class ClassName {
+};
+function func() {}
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
+};
+export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, foo as fooRenamed, func, helpers as ns1, helpers as ns2, helpers as ns3 };
+//# sourceMappingURL=index-browser-experimental-esm.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: browser-experimental-lib 1`] = `
+Array [
+  "lib/index-browser-experimental-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: experimental, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+});
+let a = 'abc';
+const b = 123;
+const { c  } = {
+    c: true
+};
+const [d] = [
+    {}
+];
+const e = 456, f = 'xyz';
+let ClassName = class ClassName {
+};
+function func() {}
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
+};
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.fooRenamed = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-browser-experimental-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: browser-experimental-umd 1`] = `
+Array [
+  "umd/index-browser-experimental-umd.js",
+  "(function(global, factory) {
+    if (typeof define === \\"function\\" && define.amd) {
+        define([
+            \\"exports\\"
+        ], factory);
+    } else if (typeof exports !== \\"undefined\\") {
+        factory(exports);
+    } else {
+        var mod = {
+            exports: {}
+        };
+        factory(mod.exports);
+        global.examples = mod.exports;
+    }
+})(this, function(_exports) {
+    \\"use strict\\";
+    Object.defineProperty(_exports, \\"__esModule\\", {
+        value: true
+    });
+    _exports.default = _exports.CONST = _exports.arrowFunc = _exports.func = _exports.ClassName = _exports.f = _exports.e = _exports.d = _exports.c = _exports.b = _exports.a = _exports.ns3 = _exports.ns2 = _exports.ns1 = _exports.bar = _exports.fooRenamed = _exports.foo = void 0;
+    function foo() {}
+    _exports.foo = foo;
+    _exports.fooRenamed = foo;
+    function bar() {}
+    _exports.bar = bar;
+    const helpers = /*#__PURE__*/ Object.freeze({
+        __proto__: null,
+        foo,
+        bar
+    });
+    _exports.ns1 = helpers;
+    _exports.ns2 = helpers;
+    _exports.ns3 = helpers;
+    let a;
+    _exports.a = a;
+    const b = 123;
+    _exports.b = b;
+    const { c  } = {
+        c: true
+    };
+    _exports.c = c;
+    const [d] = [
+        {}
+    ];
+    _exports.d = d;
+    const e = 456, f = 'xyz';
+    _exports.e = e;
+    _exports.f = f;
+    let ClassName = class ClassName {
+    };
+    _exports.ClassName = ClassName;
+    function func() {}
+    _exports.func = func;
+    const arrowFunc = ()=>{};
+    _exports.arrowFunc = arrowFunc;
+    const CONST = 123;
+    _exports.CONST = CONST;
+    let DefaultClass = class DefaultClass {
+    };
+    _exports.default = DefaultClass;
+});
+//# sourceMappingURL=index-browser-experimental-umd.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: browser-legacy-esm 1`] = `
+Array [
+  "esm/index-browser-legacy-esm.js",
+  "function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+        throw new TypeError(\\"Cannot call a class as a function\\");
+    }
+}
+// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: legacy, Format: esm
+function foo() {}
+function bar() {}
+var helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty({
+    __proto__: null,
+    foo: foo,
+    bar: bar
+}, Symbol.toStringTag, {
+    value: \\"Module\\"
+}));
+var a;
+var b = 123;
+var c = {
+    c: true
+}.c;
+var d = {};
+var e = 456, f = \\"xyz\\";
+var ClassName = function ClassName() {
+    \\"use strict\\";
+    _classCallCheck(this, ClassName);
+};
+function func() {}
+var arrowFunc = function() {};
+var CONST = 123;
+var DefaultClass = function DefaultClass() {
+    \\"use strict\\";
+    _classCallCheck(this, DefaultClass);
+};
+export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, foo as fooRenamed, func, helpers as ns1, helpers as ns2, helpers as ns3 };
+//# sourceMappingURL=index-browser-legacy-esm.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: browser-legacy-lib 1`] = `
+Array [
+  "lib/index-browser-legacy-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: legacy, Format: lib
+\\"use strict\\";
+function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+        throw new TypeError(\\"Cannot call a class as a function\\");
+    }
+}
+Object.defineProperty(exports, \\"__esModule\\", {
+    value: true
+});
+function foo() {}
+function bar() {}
+var helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo: foo,
+    bar: bar
+});
+var a = \\"abc\\";
+var b = 123;
+var c = {
+    c: true
+}.c;
+var d = {};
+var e = 456, f = \\"xyz\\";
+var ClassName = function ClassName() {
+    _classCallCheck(this, ClassName);
+};
+function func() {}
+var arrowFunc = function() {};
+var CONST = 123;
+var DefaultClass = function DefaultClass() {
+    _classCallCheck(this, DefaultClass);
+};
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.fooRenamed = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-browser-legacy-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: browser-legacy-umd 1`] = `
+Array [
+  "umd/index-browser-legacy-umd.js",
+  "(function(global, factory) {
+    if (typeof define === \\"function\\" && define.amd) {
+        define([
+            \\"exports\\"
+        ], factory);
+    } else if (typeof exports !== \\"undefined\\") {
+        factory(exports);
+    } else {
+        var mod = {
+            exports: {}
+        };
+        factory(mod.exports);
+        global.examples = mod.exports;
+    }
+})(this, function(_exports) {
+    \\"use strict\\";
+    Object.defineProperty(_exports, \\"__esModule\\", {
+        value: true
+    });
+    _exports.default = _exports.CONST = _exports.arrowFunc = _exports.func = _exports.ClassName = _exports.f = _exports.e = _exports.d = _exports.c = _exports.b = _exports.a = _exports.ns3 = _exports.ns2 = _exports.ns1 = _exports.bar = _exports.fooRenamed = _exports.foo = void 0;
+    function _classCallCheck(instance, Constructor) {
+        if (!(instance instanceof Constructor)) {
+            throw new TypeError(\\"Cannot call a class as a function\\");
+        }
+    }
+    function foo() {}
+    _exports.foo = foo;
+    _exports.fooRenamed = foo;
+    function bar() {}
+    _exports.bar = bar;
+    var helpers = /*#__PURE__*/ Object.freeze({
+        __proto__: null,
+        foo: foo,
+        bar: bar
+    });
+    _exports.ns1 = helpers;
+    _exports.ns2 = helpers;
+    _exports.ns3 = helpers;
+    var a;
+    _exports.a = a;
+    var b = 123;
+    _exports.b = b;
+    var c = {
+        c: true
+    }.c;
+    _exports.c = c;
+    var d = {};
+    _exports.d = d;
+    var e = 456, f = \\"xyz\\";
+    _exports.e = e;
+    _exports.f = f;
+    var ClassName = function ClassName() {
+        \\"use strict\\";
+        _classCallCheck(this, ClassName);
+    };
+    _exports.ClassName = ClassName;
+    function func() {}
+    _exports.func = func;
+    var arrowFunc = function() {};
+    _exports.arrowFunc = arrowFunc;
+    var CONST = 123;
+    _exports.CONST = CONST;
+    var DefaultClass = function DefaultClass() {
+        \\"use strict\\";
+        _classCallCheck(this, DefaultClass);
+    };
+    _exports.default = DefaultClass;
+});
+//# sourceMappingURL=index-browser-legacy-umd.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: browser-stable-esm 1`] = `
+Array [
+  "esm/index-browser-stable-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: stable, Format: esm
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty({
+    __proto__: null,
+    foo,
+    bar
+}, Symbol.toStringTag, {
+    value: 'Module'
+}));
+let a;
+const b = 123;
+const { c  } = {
+    c: true
+};
+const [d] = [
+    {}
+];
+const e = 456, f = 'xyz';
+let ClassName = class ClassName {
+};
+function func() {}
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
+};
+export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, foo as fooRenamed, func, helpers as ns1, helpers as ns2, helpers as ns3 };
+//# sourceMappingURL=index-browser-stable-esm.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: browser-stable-lib 1`] = `
+Array [
+  "lib/index-browser-stable-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: stable, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+});
+let a = 'abc';
+const b = 123;
+const { c  } = {
+    c: true
+};
+const [d] = [
+    {}
+];
+const e = 456, f = 'xyz';
+let ClassName = class ClassName {
+};
+function func() {}
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
+};
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.fooRenamed = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-browser-stable-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: browser-stable-umd 1`] = `
+Array [
+  "umd/index-browser-stable-umd.js",
+  "(function(global, factory) {
+    if (typeof define === \\"function\\" && define.amd) {
+        define([
+            \\"exports\\"
+        ], factory);
+    } else if (typeof exports !== \\"undefined\\") {
+        factory(exports);
+    } else {
+        var mod = {
+            exports: {}
+        };
+        factory(mod.exports);
+        global.examples = mod.exports;
+    }
+})(this, function(_exports) {
+    \\"use strict\\";
+    Object.defineProperty(_exports, \\"__esModule\\", {
+        value: true
+    });
+    _exports.default = _exports.CONST = _exports.arrowFunc = _exports.func = _exports.ClassName = _exports.f = _exports.e = _exports.d = _exports.c = _exports.b = _exports.a = _exports.ns3 = _exports.ns2 = _exports.ns1 = _exports.bar = _exports.fooRenamed = _exports.foo = void 0;
+    function foo() {}
+    _exports.foo = foo;
+    _exports.fooRenamed = foo;
+    function bar() {}
+    _exports.bar = bar;
+    const helpers = /*#__PURE__*/ Object.freeze({
+        __proto__: null,
+        foo,
+        bar
+    });
+    _exports.ns1 = helpers;
+    _exports.ns2 = helpers;
+    _exports.ns3 = helpers;
+    let a;
+    _exports.a = a;
+    const b = 123;
+    _exports.b = b;
+    const { c  } = {
+        c: true
+    };
+    _exports.c = c;
+    const [d] = [
+        {}
+    ];
+    _exports.d = d;
+    const e = 456, f = 'xyz';
+    _exports.e = e;
+    _exports.f = f;
+    let ClassName = class ClassName {
+    };
+    _exports.ClassName = ClassName;
+    function func() {}
+    _exports.func = func;
+    const arrowFunc = ()=>{};
+    _exports.arrowFunc = arrowFunc;
+    const CONST = 123;
+    _exports.CONST = CONST;
+    let DefaultClass = class DefaultClass {
+    };
+    _exports.default = DefaultClass;
+});
+//# sourceMappingURL=index-browser-stable-umd.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: native-current-lib 1`] = `
+Array [
+  "lib/index-native-current-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: current, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+});
+let a = 'abc';
+const b = 123;
+const { c  } = {
+    c: true
+};
+const [d] = [
+    {}
+];
+const e = 456, f = 'xyz';
+let ClassName = class ClassName {
+};
+function func() {}
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
+};
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.fooRenamed = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-native-current-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: native-experimental-lib 1`] = `
+Array [
+  "lib/index-native-experimental-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: experimental, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+});
+let a = 'abc';
+const b = 123;
+const { c  } = {
+    c: true
+};
+const [d] = [
+    {}
+];
+const e = 456, f = 'xyz';
+let ClassName = class ClassName {
+};
+function func() {}
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
+};
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.fooRenamed = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-native-experimental-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: native-legacy-lib 1`] = `
+Array [
+  "lib/index-native-legacy-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: legacy, Format: lib
+\\"use strict\\";
+Object.defineProperty(exports, \\"__esModule\\", {
+    value: true
+});
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+});
+let a = \\"abc\\";
+const b = 123;
+const { c  } = {
+    c: true
+};
+const [d] = [
+    {}
+];
+const e = 456, f = \\"xyz\\";
+let ClassName = class ClassName {
+};
+function func() {}
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
+};
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.fooRenamed = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-native-legacy-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: native-stable-lib 1`] = `
+Array [
+  "lib/index-native-stable-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: stable, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+});
+let a = 'abc';
+const b = 123;
+const { c  } = {
+    c: true
+};
+const [d] = [
+    {}
+];
+const e = 456, f = 'xyz';
+let ClassName = class ClassName {
+};
+function func() {}
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
+};
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.fooRenamed = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-native-stable-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: node-current-cjs 1`] = `
+Array [
+  "cjs/index-node-current-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-current-cjs.cjs';
+
+export const { CONST, ClassName, a, arrowFunc, b, bar, c, d, e, f, foo, fooRenamed, func, ns1, ns2, ns3 } = data;
+export default data.default;",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: node-current-cjs 2`] = `
+Array [
+  "cjs/index-node-current-cjs.cjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: current, Format: cjs
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+});
+let a = 'abc';
+const b = 123;
+const { c  } = {
+    c: true
+};
+const [d] = [
+    {}
+];
+const e = 456, f = 'xyz';
+let ClassName = class ClassName {
+};
+function func() {}
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
+};
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.fooRenamed = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-node-current-cjs.cjs.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: node-current-lib 1`] = `
+Array [
+  "lib/index-node-current-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: current, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+});
+let a = 'abc';
+const b = 123;
+const { c  } = {
+    c: true
+};
+const [d] = [
+    {}
+];
+const e = 456, f = 'xyz';
+let ClassName = class ClassName {
+};
+function func() {}
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
+};
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.fooRenamed = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-node-current-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: node-current-mjs 1`] = `
+Array [
+  "mjs/index-node-current-mjs.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: current, Format: mjs
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty({
+    __proto__: null,
+    foo,
+    bar
+}, Symbol.toStringTag, {
+    value: 'Module'
+}));
+let a;
+const b = 123;
+const { c  } = {
+    c: true
+};
+const [d] = [
+    {}
+];
+const e = 456, f = 'xyz';
+let ClassName = class ClassName {
+};
+function func() {}
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
+};
+export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, foo as fooRenamed, func, helpers as ns1, helpers as ns2, helpers as ns3 };
+//# sourceMappingURL=index-node-current-mjs.mjs.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: node-experimental-cjs 1`] = `
+Array [
+  "cjs/index-node-experimental-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-experimental-cjs.cjs';
+
+export const { CONST, ClassName, a, arrowFunc, b, bar, c, d, e, f, foo, fooRenamed, func, ns1, ns2, ns3 } = data;
+export default data.default;",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: node-experimental-cjs 2`] = `
+Array [
+  "cjs/index-node-experimental-cjs.cjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: experimental, Format: cjs
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+});
+let a = 'abc';
+const b = 123;
+const { c  } = {
+    c: true
+};
+const [d] = [
+    {}
+];
+const e = 456, f = 'xyz';
+let ClassName = class ClassName {
+};
+function func() {}
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
+};
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.fooRenamed = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-node-experimental-cjs.cjs.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: node-experimental-lib 1`] = `
+Array [
+  "lib/index-node-experimental-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: experimental, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+});
+let a = 'abc';
+const b = 123;
+const { c  } = {
+    c: true
+};
+const [d] = [
+    {}
+];
+const e = 456, f = 'xyz';
+let ClassName = class ClassName {
+};
+function func() {}
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
+};
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.fooRenamed = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-node-experimental-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: node-experimental-mjs 1`] = `
+Array [
+  "mjs/index-node-experimental-mjs.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: experimental, Format: mjs
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty({
+    __proto__: null,
+    foo,
+    bar
+}, Symbol.toStringTag, {
+    value: 'Module'
+}));
+let a;
+const b = 123;
+const { c  } = {
+    c: true
+};
+const [d] = [
+    {}
+];
+const e = 456, f = 'xyz';
+let ClassName = class ClassName {
+};
+function func() {}
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
+};
+export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, foo as fooRenamed, func, helpers as ns1, helpers as ns2, helpers as ns3 };
+//# sourceMappingURL=index-node-experimental-mjs.mjs.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: node-legacy-cjs 1`] = `
+Array [
+  "cjs/index-node-legacy-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-legacy-cjs.cjs';
+
+export const { CONST, ClassName, a, arrowFunc, b, bar, c, d, e, f, foo, fooRenamed, func, ns1, ns2, ns3 } = data;
+export default data.default;",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: node-legacy-cjs 2`] = `
+Array [
+  "cjs/index-node-legacy-cjs.cjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: legacy, Format: cjs
+\\"use strict\\";
+Object.defineProperty(exports, \\"__esModule\\", {
+    value: true
+});
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+});
+let a = \\"abc\\";
+const b = 123;
+const { c  } = {
+    c: true
+};
+const [d] = [
+    {}
+];
+const e = 456, f = \\"xyz\\";
+let ClassName = class ClassName {
+};
+function func() {}
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
+};
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.fooRenamed = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-node-legacy-cjs.cjs.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: node-legacy-lib 1`] = `
+Array [
+  "lib/index-node-legacy-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: legacy, Format: lib
+\\"use strict\\";
+Object.defineProperty(exports, \\"__esModule\\", {
+    value: true
+});
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+});
+let a = \\"abc\\";
+const b = 123;
+const { c  } = {
+    c: true
+};
+const [d] = [
+    {}
+];
+const e = 456, f = \\"xyz\\";
+let ClassName = class ClassName {
+};
+function func() {}
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
+};
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.fooRenamed = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-node-legacy-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: node-legacy-mjs 1`] = `
+Array [
+  "mjs/index-node-legacy-mjs.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: legacy, Format: mjs
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty({
+    __proto__: null,
+    foo,
+    bar
+}, Symbol.toStringTag, {
+    value: \\"Module\\"
+}));
+let a;
+const b = 123;
+const { c  } = {
+    c: true
+};
+const [d] = [
+    {}
+];
+const e = 456, f = \\"xyz\\";
+let ClassName = class ClassName {
+};
+function func() {}
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
+};
+export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, foo as fooRenamed, func, helpers as ns1, helpers as ns2, helpers as ns3 };
+//# sourceMappingURL=index-node-legacy-mjs.mjs.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: node-stable-cjs 1`] = `
+Array [
+  "cjs/index-node-stable-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-stable-cjs.cjs';
+
+export const { CONST, ClassName, a, arrowFunc, b, bar, c, d, e, f, foo, fooRenamed, func, ns1, ns2, ns3 } = data;
+export default data.default;",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: node-stable-cjs 2`] = `
+Array [
+  "cjs/index-node-stable-cjs.cjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: cjs
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+});
+let a = 'abc';
+const b = 123;
+const { c  } = {
+    c: true
+};
+const [d] = [
+    {}
+];
+const e = 456, f = 'xyz';
+let ClassName = class ClassName {
+};
+function func() {}
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
+};
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.fooRenamed = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-node-stable-cjs.cjs.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: node-stable-lib 1`] = `
+Array [
+  "lib/index-node-stable-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+});
+let a = 'abc';
+const b = 123;
+const { c  } = {
+    c: true
+};
+const [d] = [
+    {}
+];
+const e = 456, f = 'xyz';
+let ClassName = class ClassName {
+};
+function func() {}
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
+};
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.fooRenamed = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-node-stable-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: node-stable-mjs 1`] = `
+Array [
+  "mjs/index-node-stable-mjs.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: mjs
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty({
+    __proto__: null,
+    foo,
+    bar
+}, Symbol.toStringTag, {
+    value: 'Module'
+}));
+let a;
+const b = 123;
+const { c  } = {
+    c: true
+};
+const [d] = [
+    {}
+];
+const e = 456, f = 'xyz';
+let ClassName = class ClassName {
+};
+function func() {}
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
+};
+export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, foo as fooRenamed, func, helpers as ns1, helpers as ns2, helpers as ns3 };
+//# sourceMappingURL=index-node-stable-mjs.mjs.map
+",
+]
+`;

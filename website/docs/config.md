@@ -124,7 +124,9 @@ project root that will house the built files.
 - `lib` - [CommonJS](https://nodejs.org/api/modules.html) output using `.js` file extension. For
   standard JavaScript and TypeScript projects.
 - `cjs` - [CommonJS](https://nodejs.org/api/modules.html) output using `.cjs` file extension. Source
-  files must be written in CommonJS (`.cjs`) and `require` paths must use trailing extensions.
+  files must be written in CommonJS (`.cjs`) and `require` paths must use trailing extensions. _Will
+  automatically create [`.mjs` wrappers](./features.md#automatic-mjs-wrappers-for-cjs-inputs) for
+  inputs._
 - `mjs` _(default)_ - [ECMAScript module](https://nodejs.org/api/esm.html) output using `.mjs` file
   extension. Source files must be written in ESM (`.mjs`) and `import` paths must use trailing
   extensions.
