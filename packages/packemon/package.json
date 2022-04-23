@@ -1,7 +1,8 @@
 {
   "name": "packemon",
   "version": "2.0.0",
-  "description": "Build and prepare packages for NPM distribution using standardized configurations and practices. Gotta pack 'em all!",
+  "type": "commonjs",
+  "description": "Build and prepare packages for npm distribution using standardized configurations and practices. Gotta pack 'em all!",
   "keywords": [
     "build",
     "prepare",
@@ -15,13 +16,12 @@
   },
   "author": "Miles Johnson",
   "license": "MIT",
-  "main": "./lib/index.js",
+  "main": "./cjs/index.cjs",
   "types": "./dts/index.d.ts",
-  "bin": "./lib/bin.js",
+  "bin": "./cjs/bin.cjs",
   "files": [
-    "babel.js",
+    "cjs/**/*.{cjs,map}",
     "dts/**/*.d.ts",
-    "lib/**/*.{js,map}",
     "src/**/*.{ts,tsx,json}",
     "templates/**/*"
   ],
@@ -30,11 +30,11 @@
     "./babel": "./babel.cjs",
     "./*": {
       "types": "./dts/*.d.ts",
-      "node": "./lib/*.js"
+      "node": "./cjs/*.cjs"
     },
     ".": {
       "types": "./dts/index.d.ts",
-      "node": "./lib/index.js"
+      "node": "./cjs/index.cjs"
     }
   },
   "engines": {
@@ -47,7 +47,7 @@
       "babel": "src/babel.ts",
       "bin": "src/bin.ts"
     },
-    "format": "lib",
+    "format": "cjs",
     "platform": "node"
   },
   "dependencies": {
