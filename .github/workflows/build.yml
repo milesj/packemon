@@ -24,6 +24,20 @@ jobs:
       - run: yarn run type
       - run: yarn run coverage
       - run: yarn run lint
+  compat:
+    name: Compatibility
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          cache: yarn
+      - run: yarn install --immutable
+      - run: yarn run setup
+      - run: node ./scripts/testPackemonImports.cjs
+      - run: node ./scripts/testPackemonImports.mjs
+      # Requires TS 4.7+
+      # - run: ts-node ./scripts/testPackemonImports.ts
   pack:
     name: Pack
     runs-on: ubuntu-latest
