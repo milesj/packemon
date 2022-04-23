@@ -264,7 +264,9 @@ function createMjsFileFromExports(
 		'// This is an MJS wrapper for a sibling CJS file',
 		'',
 		...mjs,
-	].join('\n');
+	]
+		.join('\n')
+		.trim();
 }
 
 export function addMjsWrapperForCjs({ inputs, packageRoot }: AddMjsWrapperOptions): Plugin {

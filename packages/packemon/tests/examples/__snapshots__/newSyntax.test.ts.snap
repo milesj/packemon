@@ -426,7 +426,7 @@ Array [
 
 import data from './index-node-current-cjs.cjs';
 
-export const { foo, optionalChain, nullCoalesc } = data;",
+export const { foo, nullCoalesc, optionalChain } = data;",
 ]
 `;
 
@@ -500,7 +500,7 @@ Array [
 
 import data from './index-node-experimental-cjs.cjs';
 
-export const { foo, optionalChain, nullCoalesc } = data;",
+export const { foo, nullCoalesc, optionalChain } = data;",
 ]
 `;
 
@@ -574,7 +574,7 @@ Array [
 
 import data from './index-node-legacy-cjs.cjs';
 
-export const { foo, optionalChain, nullCoalesc } = data;",
+export const { foo, nullCoalesc, optionalChain } = data;",
 ]
 `;
 
@@ -654,7 +654,7 @@ Array [
 
 import data from './index-node-stable-cjs.cjs';
 
-export const { foo, optionalChain, nullCoalesc } = data;",
+export const { foo, nullCoalesc, optionalChain } = data;",
 ]
 `;
 
@@ -1132,7 +1132,7 @@ Array [
 
 import data from './index-node-current-cjs.cjs';
 
-export const { foo, optionalChain, nullCoalesc } = data;",
+export const { foo, nullCoalesc, optionalChain } = data;",
 ]
 `;
 
@@ -1204,7 +1204,7 @@ Array [
 
 import data from './index-node-experimental-cjs.cjs';
 
-export const { foo, optionalChain, nullCoalesc } = data;",
+export const { foo, nullCoalesc, optionalChain } = data;",
 ]
 `;
 
@@ -1276,7 +1276,7 @@ Array [
 
 import data from './index-node-legacy-cjs.cjs';
 
-export const { foo, optionalChain, nullCoalesc } = data;",
+export const { foo, nullCoalesc, optionalChain } = data;",
 ]
 `;
 
@@ -1354,7 +1354,7 @@ Array [
 
 import data from './index-node-stable-cjs.cjs';
 
-export const { foo, optionalChain, nullCoalesc } = data;",
+export const { foo, nullCoalesc, optionalChain } = data;",
 ]
 `;
 

@@ -7,5 +7,5 @@ describe('CJS -> MJS wrapper', () => {
 
 describe('CJS -> MJS wrapper (externals)', () => {
 	testExampleOutput('cjs-mjs-wrapper-externals.ts', 'babel');
-	// testExampleOutput('cjs-mjs-wrapper.ts', 'swc');
+	testExampleOutput('cjs-mjs-wrapper-externals.ts', 'swc');
 });
