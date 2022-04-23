@@ -34,6 +34,7 @@ jobs:
           cache: yarn
       - run: yarn install --immutable
       - run: yarn run setup
+      - run: yarn run build
       - run: node ./scripts/testPackemonImports.cjs
       - run: node ./scripts/testPackemonImports.mjs
       # Requires TS 4.7+
