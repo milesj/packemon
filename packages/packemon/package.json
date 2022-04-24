@@ -28,10 +28,13 @@
   "exports": {
     "./package.json": "./package.json",
     "./babel": {
-      "types": "./dts/babel.d.ts",
-      "node": {
-        "import": "./cjs/babel-wrapper.mjs",
-        "require": "./cjs/babel.cjs"
+      "import": {
+        "types": "./dts/babel.d.ts",
+        "default": "./cjs/babel-wrapper.mjs"
+      },
+      "require": {
+        "types": "./dts/babel.d.ts",
+        "default": "./cjs/babel.cjs"
       }
     },
     "./bin": {
