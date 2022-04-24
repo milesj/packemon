@@ -9,6 +9,7 @@ export * from 'optimal';
 import * as optimal from 'optimal';
 export { optimal };
 export { func, string } from 'optimal';
+export { useState } from 'react';
 //# sourceMappingURL=index-browser-current-esm.js.map
 ",
 ]
@@ -26,6 +27,8 @@ Object.defineProperty(exports, '__esModule', {
 });
 
 const optimal = require('optimal');
+
+const react = require('react');
 
 function _interopNamespace(e) {
   if (e && e.__esModule) return e;
@@ -58,6 +61,10 @@ Object.defineProperty(exports, 'string', {
   enumerable: true,
   get: () => optimal.string
 });
+Object.defineProperty(exports, 'useState', {
+  enumerable: true,
+  get: () => react.useState
+});
 
 for (const k in optimal) {
   if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
@@ -75,17 +82,17 @@ Array [
   "umd/index-browser-current-umd.js",
   "(function (global, factory) {
   if (typeof define === \\"function\\" && define.amd) {
-    define([\\"exports\\", \\"optimal\\"], factory);
+    define([\\"exports\\", \\"optimal\\", \\"react\\"], factory);
   } else if (typeof exports !== \\"undefined\\") {
-    factory(exports, require(\\"optimal\\"));
+    factory(exports, require(\\"optimal\\"), require(\\"react\\"));
   } else {
     var mod = {
       exports: {}
     };
-    factory(mod.exports, global.optimal);
+    factory(mod.exports, global.optimal, global.react);
     global.examples = mod.exports;
   }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports, optimal) {
+})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports, optimal, _react) {
   \\"use strict\\";
 
   Object.defineProperty(_exports, \\"__esModule\\", {
@@ -94,7 +101,8 @@ Array [
   var _exportNames = {
     func: true,
     string: true,
-    optimal: true
+    optimal: true,
+    useState: true
   };
   Object.defineProperty(_exports, \\"func\\", {
     enumerable: true,
@@ -107,6 +115,12 @@ Array [
     enumerable: true,
     get: function () {
       return optimal.string;
+    }
+  });
+  Object.defineProperty(_exports, \\"useState\\", {
+    enumerable: true,
+    get: function () {
+      return _react.useState;
     }
   });
   optimal = _interopRequireWildcard(optimal);
@@ -141,6 +155,7 @@ export * from 'optimal';
 import * as optimal from 'optimal';
 export { optimal };
 export { func, string } from 'optimal';
+export { useState } from 'react';
 //# sourceMappingURL=index-browser-experimental-esm.js.map
 ",
 ]
@@ -158,6 +173,8 @@ Object.defineProperty(exports, '__esModule', {
 });
 
 const optimal = require('optimal');
+
+const react = require('react');
 
 function _interopNamespace(e) {
   if (e && e.__esModule) return e;
@@ -190,6 +207,10 @@ Object.defineProperty(exports, 'string', {
   enumerable: true,
   get: () => optimal.string
 });
+Object.defineProperty(exports, 'useState', {
+  enumerable: true,
+  get: () => react.useState
+});
 
 for (const k in optimal) {
   if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
@@ -207,17 +228,17 @@ Array [
   "umd/index-browser-experimental-umd.js",
   "(function (global, factory) {
   if (typeof define === \\"function\\" && define.amd) {
-    define([\\"exports\\", \\"optimal\\"], factory);
+    define([\\"exports\\", \\"optimal\\", \\"react\\"], factory);
   } else if (typeof exports !== \\"undefined\\") {
-    factory(exports, require(\\"optimal\\"));
+    factory(exports, require(\\"optimal\\"), require(\\"react\\"));
   } else {
     var mod = {
       exports: {}
     };
-    factory(mod.exports, global.optimal);
+    factory(mod.exports, global.optimal, global.react);
     global.examples = mod.exports;
   }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports, optimal) {
+})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports, optimal, _react) {
   \\"use strict\\";
 
   Object.defineProperty(_exports, \\"__esModule\\", {
@@ -226,7 +247,8 @@ Array [
   var _exportNames = {
     func: true,
     string: true,
-    optimal: true
+    optimal: true,
+    useState: true
   };
   Object.defineProperty(_exports, \\"func\\", {
     enumerable: true,
@@ -239,6 +261,12 @@ Array [
     enumerable: true,
     get: function () {
       return optimal.string;
+    }
+  });
+  Object.defineProperty(_exports, \\"useState\\", {
+    enumerable: true,
+    get: function () {
+      return _react.useState;
     }
   });
   optimal = _interopRequireWildcard(optimal);
@@ -273,6 +301,7 @@ export * from 'optimal';
 import * as optimal from 'optimal';
 export { optimal };
 export { func, string } from 'optimal';
+export { useState } from 'react';
 //# sourceMappingURL=index-browser-legacy-esm.js.map
 ",
 ]
@@ -294,6 +323,8 @@ Object.defineProperty(exports, '__esModule', {
 });
 
 var optimal = require('optimal');
+
+var react = require('react');
 
 function _interopNamespace(e) {
   if (e && e.__esModule) return e;
@@ -344,6 +375,14 @@ Object.defineProperty(exports, 'string', {
     return optimal.string;
   }.bind(this)
 });
+Object.defineProperty(exports, 'useState', {
+  enumerable: true,
+  get: function get() {
+    _newArrowCheck(this, _this2);
+
+    return react.useState;
+  }.bind(this)
+});
 
 var _loop2 = function _loop2(k) {
   var _this3 = this;
@@ -373,17 +412,17 @@ Array [
 
 (function (global, factory) {
   if (typeof define === \\"function\\" && define.amd) {
-    define([\\"exports\\", \\"optimal\\"], factory);
+    define([\\"exports\\", \\"optimal\\", \\"react\\"], factory);
   } else if (typeof exports !== \\"undefined\\") {
-    factory(exports, require(\\"optimal\\"));
+    factory(exports, require(\\"optimal\\"), require(\\"react\\"));
   } else {
     var mod = {
       exports: {}
     };
-    factory(mod.exports, global.optimal);
+    factory(mod.exports, global.optimal, global.react);
     global.examples = mod.exports;
   }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports, optimal) {
+})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports, optimal, _react) {
   \\"use strict\\";
 
   Object.defineProperty(_exports, \\"__esModule\\", {
@@ -392,7 +431,8 @@ Array [
   var _exportNames = {
     func: true,
     string: true,
-    optimal: true
+    optimal: true,
+    useState: true
   };
   Object.defineProperty(_exports, \\"func\\", {
     enumerable: true,
@@ -405,6 +445,12 @@ Array [
     enumerable: true,
     get: function get() {
       return optimal.string;
+    }
+  });
+  Object.defineProperty(_exports, \\"useState\\", {
+    enumerable: true,
+    get: function get() {
+      return _react.useState;
     }
   });
   optimal = _interopRequireWildcard(optimal);
@@ -439,6 +485,7 @@ export * from 'optimal';
 import * as optimal from 'optimal';
 export { optimal };
 export { func, string } from 'optimal';
+export { useState } from 'react';
 //# sourceMappingURL=index-browser-stable-esm.js.map
 ",
 ]
@@ -456,6 +503,8 @@ Object.defineProperty(exports, '__esModule', {
 });
 
 const optimal = require('optimal');
+
+const react = require('react');
 
 function _interopNamespace(e) {
   if (e && e.__esModule) return e;
@@ -488,6 +537,10 @@ Object.defineProperty(exports, 'string', {
   enumerable: true,
   get: () => optimal.string
 });
+Object.defineProperty(exports, 'useState', {
+  enumerable: true,
+  get: () => react.useState
+});
 
 for (const k in optimal) {
   if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
@@ -505,17 +558,17 @@ Array [
   "umd/index-browser-stable-umd.js",
   "(function (global, factory) {
   if (typeof define === \\"function\\" && define.amd) {
-    define([\\"exports\\", \\"optimal\\"], factory);
+    define([\\"exports\\", \\"optimal\\", \\"react\\"], factory);
   } else if (typeof exports !== \\"undefined\\") {
-    factory(exports, require(\\"optimal\\"));
+    factory(exports, require(\\"optimal\\"), require(\\"react\\"));
   } else {
     var mod = {
       exports: {}
     };
-    factory(mod.exports, global.optimal);
+    factory(mod.exports, global.optimal, global.react);
     global.examples = mod.exports;
   }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports, optimal) {
+})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports, optimal, _react) {
   \\"use strict\\";
 
   Object.defineProperty(_exports, \\"__esModule\\", {
@@ -524,7 +577,8 @@ Array [
   var _exportNames = {
     func: true,
     string: true,
-    optimal: true
+    optimal: true,
+    useState: true
   };
   Object.defineProperty(_exports, \\"func\\", {
     enumerable: true,
@@ -537,6 +591,12 @@ Array [
     enumerable: true,
     get: function () {
       return optimal.string;
+    }
+  });
+  Object.defineProperty(_exports, \\"useState\\", {
+    enumerable: true,
+    get: function () {
+      return _react.useState;
     }
   });
   optimal = _interopRequireWildcard(optimal);
@@ -575,6 +635,8 @@ Object.defineProperty(exports, '__esModule', {
 
 const optimal = require('optimal');
 
+const react = require('react');
+
 function _interopNamespace(e) {
   if (e && e.__esModule) return e;
   const n = Object.create(null);
@@ -605,6 +667,10 @@ exports.optimal = optimal__namespace;
 Object.defineProperty(exports, 'string', {
   enumerable: true,
   get: () => optimal.string
+});
+Object.defineProperty(exports, 'useState', {
+  enumerable: true,
+  get: () => react.useState
 });
 
 for (const k in optimal) {
@@ -631,6 +697,8 @@ Object.defineProperty(exports, '__esModule', {
 
 const optimal = require('optimal');
 
+const react = require('react');
+
 function _interopNamespace(e) {
   if (e && e.__esModule) return e;
   const n = Object.create(null);
@@ -661,6 +729,10 @@ exports.optimal = optimal__namespace;
 Object.defineProperty(exports, 'string', {
   enumerable: true,
   get: () => optimal.string
+});
+Object.defineProperty(exports, 'useState', {
+  enumerable: true,
+  get: () => react.useState
 });
 
 for (const k in optimal) {
@@ -687,6 +759,8 @@ Object.defineProperty(exports, '__esModule', {
 
 const optimal = require('optimal');
 
+const react = require('react');
+
 function _interopNamespace(e) {
   if (e && e.__esModule) return e;
   const n = Object.create(null);
@@ -717,6 +791,10 @@ exports.optimal = optimal__namespace;
 Object.defineProperty(exports, 'string', {
   enumerable: true,
   get: () => optimal.string
+});
+Object.defineProperty(exports, 'useState', {
+  enumerable: true,
+  get: () => react.useState
 });
 
 for (const k in optimal) {
@@ -743,6 +821,8 @@ Object.defineProperty(exports, '__esModule', {
 
 const optimal = require('optimal');
 
+const react = require('react');
+
 function _interopNamespace(e) {
   if (e && e.__esModule) return e;
   const n = Object.create(null);
@@ -773,6 +853,10 @@ exports.optimal = optimal__namespace;
 Object.defineProperty(exports, 'string', {
   enumerable: true,
   get: () => optimal.string
+});
+Object.defineProperty(exports, 'useState', {
+  enumerable: true,
+  get: () => react.useState
 });
 
 for (const k in optimal) {
@@ -796,8 +880,8 @@ import './index-node-current-cjs.cjs';
 
 export * from 'optimal';
 export * as optimal from 'optimal';
-export { string } from 'optimal';
-export { func } from 'optimal';",
+export { string, func } from 'optimal';
+export { useState } from 'react';",
 ]
 `;
 
@@ -813,6 +897,8 @@ Object.defineProperty(exports, '__esModule', {
 });
 
 const optimal = require('optimal');
+
+const react = require('react');
 
 function _interopNamespace(e) {
   if (e && e.__esModule) return e;
@@ -844,6 +930,10 @@ exports.optimal = optimal__namespace;
 Object.defineProperty(exports, 'string', {
   enumerable: true,
   get: () => optimal.string
+});
+Object.defineProperty(exports, 'useState', {
+  enumerable: true,
+  get: () => react.useState
 });
 
 for (const k in optimal) {
@@ -870,6 +960,8 @@ Object.defineProperty(exports, '__esModule', {
 
 const optimal = require('optimal');
 
+const react = require('react');
+
 function _interopNamespace(e) {
   if (e && e.__esModule) return e;
   const n = Object.create(null);
@@ -900,6 +992,10 @@ exports.optimal = optimal__namespace;
 Object.defineProperty(exports, 'string', {
   enumerable: true,
   get: () => optimal.string
+});
+Object.defineProperty(exports, 'useState', {
+  enumerable: true,
+  get: () => react.useState
 });
 
 for (const k in optimal) {
@@ -922,6 +1018,7 @@ export * from 'optimal';
 import * as optimal from 'optimal';
 export { optimal };
 export { func, string } from 'optimal';
+export { useState } from 'react';
 //# sourceMappingURL=index-node-current-mjs.mjs.map
 ",
 ]
@@ -937,8 +1034,8 @@ import './index-node-experimental-cjs.cjs';
 
 export * from 'optimal';
 export * as optimal from 'optimal';
-export { string } from 'optimal';
-export { func } from 'optimal';",
+export { string, func } from 'optimal';
+export { useState } from 'react';",
 ]
 `;
 
@@ -954,6 +1051,8 @@ Object.defineProperty(exports, '__esModule', {
 });
 
 const optimal = require('optimal');
+
+const react = require('react');
 
 function _interopNamespace(e) {
   if (e && e.__esModule) return e;
@@ -985,6 +1084,10 @@ exports.optimal = optimal__namespace;
 Object.defineProperty(exports, 'string', {
   enumerable: true,
   get: () => optimal.string
+});
+Object.defineProperty(exports, 'useState', {
+  enumerable: true,
+  get: () => react.useState
 });
 
 for (const k in optimal) {
@@ -1011,6 +1114,8 @@ Object.defineProperty(exports, '__esModule', {
 
 const optimal = require('optimal');
 
+const react = require('react');
+
 function _interopNamespace(e) {
   if (e && e.__esModule) return e;
   const n = Object.create(null);
@@ -1041,6 +1146,10 @@ exports.optimal = optimal__namespace;
 Object.defineProperty(exports, 'string', {
   enumerable: true,
   get: () => optimal.string
+});
+Object.defineProperty(exports, 'useState', {
+  enumerable: true,
+  get: () => react.useState
 });
 
 for (const k in optimal) {
@@ -1063,6 +1172,7 @@ export * from 'optimal';
 import * as optimal from 'optimal';
 export { optimal };
 export { func, string } from 'optimal';
+export { useState } from 'react';
 //# sourceMappingURL=index-node-experimental-mjs.mjs.map
 ",
 ]
@@ -1078,8 +1188,8 @@ import './index-node-legacy-cjs.cjs';
 
 export * from 'optimal';
 export * as optimal from 'optimal';
-export { string } from 'optimal';
-export { func } from 'optimal';",
+export { string, func } from 'optimal';
+export { useState } from 'react';",
 ]
 `;
 
@@ -1095,6 +1205,8 @@ Object.defineProperty(exports, '__esModule', {
 });
 
 const optimal = require('optimal');
+
+const react = require('react');
 
 function _interopNamespace(e) {
   if (e && e.__esModule) return e;
@@ -1126,6 +1238,10 @@ exports.optimal = optimal__namespace;
 Object.defineProperty(exports, 'string', {
   enumerable: true,
   get: () => optimal.string
+});
+Object.defineProperty(exports, 'useState', {
+  enumerable: true,
+  get: () => react.useState
 });
 
 for (const k in optimal) {
@@ -1152,6 +1268,8 @@ Object.defineProperty(exports, '__esModule', {
 
 const optimal = require('optimal');
 
+const react = require('react');
+
 function _interopNamespace(e) {
   if (e && e.__esModule) return e;
   const n = Object.create(null);
@@ -1182,6 +1300,10 @@ exports.optimal = optimal__namespace;
 Object.defineProperty(exports, 'string', {
   enumerable: true,
   get: () => optimal.string
+});
+Object.defineProperty(exports, 'useState', {
+  enumerable: true,
+  get: () => react.useState
 });
 
 for (const k in optimal) {
@@ -1204,6 +1326,7 @@ export * from 'optimal';
 import * as optimal from 'optimal';
 export { optimal };
 export { func, string } from 'optimal';
+export { useState } from 'react';
 //# sourceMappingURL=index-node-legacy-mjs.mjs.map
 ",
 ]
@@ -1219,8 +1342,8 @@ import './index-node-stable-cjs.cjs';
 
 export * from 'optimal';
 export * as optimal from 'optimal';
-export { string } from 'optimal';
-export { func } from 'optimal';",
+export { string, func } from 'optimal';
+export { useState } from 'react';",
 ]
 `;
 
@@ -1236,6 +1359,8 @@ Object.defineProperty(exports, '__esModule', {
 });
 
 const optimal = require('optimal');
+
+const react = require('react');
 
 function _interopNamespace(e) {
   if (e && e.__esModule) return e;
@@ -1267,6 +1392,10 @@ exports.optimal = optimal__namespace;
 Object.defineProperty(exports, 'string', {
   enumerable: true,
   get: () => optimal.string
+});
+Object.defineProperty(exports, 'useState', {
+  enumerable: true,
+  get: () => react.useState
 });
 
 for (const k in optimal) {
@@ -1293,6 +1422,8 @@ Object.defineProperty(exports, '__esModule', {
 
 const optimal = require('optimal');
 
+const react = require('react');
+
 function _interopNamespace(e) {
   if (e && e.__esModule) return e;
   const n = Object.create(null);
@@ -1324,6 +1455,10 @@ Object.defineProperty(exports, 'string', {
   enumerable: true,
   get: () => optimal.string
 });
+Object.defineProperty(exports, 'useState', {
+  enumerable: true,
+  get: () => react.useState
+});
 
 for (const k in optimal) {
   if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
@@ -1345,6 +1480,7 @@ export * from 'optimal';
 import * as optimal from 'optimal';
 export { optimal };
 export { func, string } from 'optimal';
+export { useState } from 'react';
 //# sourceMappingURL=index-node-stable-mjs.mjs.map
 ",
 ]
@@ -1359,6 +1495,7 @@ Array [
 export * from 'optimal';
 export { optimal };
 export { func, string } from 'optimal';
+export { useState } from 'react';
 //# sourceMappingURL=index-browser-current-esm.js.map
 ",
 ]
@@ -1374,6 +1511,7 @@ Object.defineProperty(exports, '__esModule', {
     value: true
 });
 const optimal = require('optimal');
+const react = require('react');
 function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
@@ -1399,6 +1537,10 @@ Object.defineProperty(exports, 'string', {
     enumerable: true,
     get: ()=>optimal.string
 });
+Object.defineProperty(exports, 'useState', {
+    enumerable: true,
+    get: ()=>react.useState
+});
 for(const k in optimal)if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
     enumerable: true,
     get: ()=>optimal[k]
@@ -1415,18 +1557,19 @@ Array [
     if (typeof define === \\"function\\" && define.amd) {
         define([
             \\"exports\\",
-            \\"optimal\\"
+            \\"optimal\\",
+            \\"react\\"
         ], factory);
     } else if (typeof exports !== \\"undefined\\") {
-        factory(exports, require(\\"optimal\\"));
+        factory(exports, require(\\"optimal\\"), require(\\"react\\"));
     } else {
         var mod = {
             exports: {}
         };
-        factory(mod.exports, global.optimal);
+        factory(mod.exports, global.optimal, global.react);
         global.examples = mod.exports;
     }
-})(this, function(_exports, optimal) {
+})(this, function(_exports, optimal, _react) {
     \\"use strict\\";
     optimal = _interopRequireWildcard(optimal);
     Object.defineProperty(_exports, \\"__esModule\\", {
@@ -1442,6 +1585,12 @@ Array [
         enumerable: true,
         get: function() {
             return optimal.string;
+        }
+    });
+    Object.defineProperty(_exports, \\"useState\\", {
+        enumerable: true,
+        get: function() {
+            return _react.useState;
         }
     });
     var _exportNames = {
@@ -1496,6 +1645,7 @@ export * from 'optimal';
 import * as optimal from 'optimal';
 export { optimal };
 export { func, string } from 'optimal';
+export { useState } from 'react';
 //# sourceMappingURL=index-browser-experimental-esm.js.map
 ",
 ]
@@ -1511,6 +1661,7 @@ Object.defineProperty(exports, '__esModule', {
     value: true
 });
 const optimal = require('optimal');
+const react = require('react');
 function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
@@ -1536,6 +1687,10 @@ Object.defineProperty(exports, 'string', {
     enumerable: true,
     get: ()=>optimal.string
 });
+Object.defineProperty(exports, 'useState', {
+    enumerable: true,
+    get: ()=>react.useState
+});
 for(const k in optimal)if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
     enumerable: true,
     get: ()=>optimal[k]
@@ -1552,18 +1707,19 @@ Array [
     if (typeof define === \\"function\\" && define.amd) {
         define([
             \\"exports\\",
-            \\"optimal\\"
+            \\"optimal\\",
+            \\"react\\"
         ], factory);
     } else if (typeof exports !== \\"undefined\\") {
-        factory(exports, require(\\"optimal\\"));
+        factory(exports, require(\\"optimal\\"), require(\\"react\\"));
     } else {
         var mod = {
             exports: {}
         };
-        factory(mod.exports, global.optimal);
+        factory(mod.exports, global.optimal, global.react);
         global.examples = mod.exports;
     }
-})(this, function(_exports, optimal) {
+})(this, function(_exports, optimal, _react) {
     \\"use strict\\";
     optimal = _interopRequireWildcard(optimal);
     Object.defineProperty(_exports, \\"__esModule\\", {
@@ -1579,6 +1735,12 @@ Array [
         enumerable: true,
         get: function() {
             return optimal.string;
+        }
+    });
+    Object.defineProperty(_exports, \\"useState\\", {
+        enumerable: true,
+        get: function() {
+            return _react.useState;
         }
     });
     var _exportNames = {
@@ -1633,6 +1795,7 @@ Array [
 export * from \\"optimal\\";
 export { optimal };
 export { func, string } from \\"optimal\\";
+export { useState } from \\"react\\";
 //# sourceMappingURL=index-browser-legacy-esm.js.map
 ",
 ]
@@ -1656,6 +1819,7 @@ Object.defineProperty(exports, \\"__esModule\\", {
     value: true
 });
 var optimal = require(\\"optimal\\");
+var react = require(\\"react\\");
 function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     var n = Object.create(null);
@@ -1690,6 +1854,12 @@ Object.defineProperty(exports, \\"string\\", {
         return optimal.string;
     }
 });
+Object.defineProperty(exports, \\"useState\\", {
+    enumerable: true,
+    get: function() {
+        return react.useState;
+    }
+});
 for(var k in optimal)_loop(k);
 //# sourceMappingURL=index-browser-legacy-lib.js.map
 ",
@@ -1703,18 +1873,19 @@ Array [
     if (typeof define === \\"function\\" && define.amd) {
         define([
             \\"exports\\",
-            \\"optimal\\"
+            \\"optimal\\",
+            \\"react\\"
         ], factory);
     } else if (typeof exports !== \\"undefined\\") {
-        factory(exports, require(\\"optimal\\"));
+        factory(exports, require(\\"optimal\\"), require(\\"react\\"));
     } else {
         var mod = {
             exports: {}
         };
-        factory(mod.exports, global.optimal);
+        factory(mod.exports, global.optimal, global.react);
         global.examples = mod.exports;
     }
-})(this, function(_exports, optimal) {
+})(this, function(_exports, optimal, _react) {
     \\"use strict\\";
     optimal = _interopRequireWildcard(optimal);
     Object.defineProperty(_exports, \\"__esModule\\", {
@@ -1730,6 +1901,12 @@ Array [
         enumerable: true,
         get: function() {
             return optimal.string;
+        }
+    });
+    Object.defineProperty(_exports, \\"useState\\", {
+        enumerable: true,
+        get: function() {
+            return _react.useState;
         }
     });
     var _exportNames = {
@@ -1784,6 +1961,7 @@ Array [
 export * from 'optimal';
 export { optimal };
 export { func, string } from 'optimal';
+export { useState } from 'react';
 //# sourceMappingURL=index-browser-stable-esm.js.map
 ",
 ]
@@ -1799,6 +1977,7 @@ Object.defineProperty(exports, '__esModule', {
     value: true
 });
 const optimal = require('optimal');
+const react = require('react');
 function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
@@ -1824,6 +2003,10 @@ Object.defineProperty(exports, 'string', {
     enumerable: true,
     get: ()=>optimal.string
 });
+Object.defineProperty(exports, 'useState', {
+    enumerable: true,
+    get: ()=>react.useState
+});
 for(const k in optimal)if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
     enumerable: true,
     get: ()=>optimal[k]
@@ -1840,18 +2023,19 @@ Array [
     if (typeof define === \\"function\\" && define.amd) {
         define([
             \\"exports\\",
-            \\"optimal\\"
+            \\"optimal\\",
+            \\"react\\"
         ], factory);
     } else if (typeof exports !== \\"undefined\\") {
-        factory(exports, require(\\"optimal\\"));
+        factory(exports, require(\\"optimal\\"), require(\\"react\\"));
     } else {
         var mod = {
             exports: {}
         };
-        factory(mod.exports, global.optimal);
+        factory(mod.exports, global.optimal, global.react);
         global.examples = mod.exports;
     }
-})(this, function(_exports, optimal) {
+})(this, function(_exports, optimal, _react) {
     \\"use strict\\";
     optimal = _interopRequireWildcard(optimal);
     Object.defineProperty(_exports, \\"__esModule\\", {
@@ -1867,6 +2051,12 @@ Array [
         enumerable: true,
         get: function() {
             return optimal.string;
+        }
+    });
+    Object.defineProperty(_exports, \\"useState\\", {
+        enumerable: true,
+        get: function() {
+            return _react.useState;
         }
     });
     var _exportNames = {
@@ -1922,6 +2112,7 @@ Object.defineProperty(exports, '__esModule', {
     value: true
 });
 const optimal = require('optimal');
+const react = require('react');
 function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
@@ -1946,6 +2137,10 @@ exports.optimal = optimal__namespace;
 Object.defineProperty(exports, 'string', {
     enumerable: true,
     get: ()=>optimal.string
+});
+Object.defineProperty(exports, 'useState', {
+    enumerable: true,
+    get: ()=>react.useState
 });
 for(const k in optimal)if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
     enumerable: true,
@@ -1966,6 +2161,7 @@ Object.defineProperty(exports, '__esModule', {
     value: true
 });
 const optimal = require('optimal');
+const react = require('react');
 function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
@@ -1990,6 +2186,10 @@ exports.optimal = optimal__namespace;
 Object.defineProperty(exports, 'string', {
     enumerable: true,
     get: ()=>optimal.string
+});
+Object.defineProperty(exports, 'useState', {
+    enumerable: true,
+    get: ()=>react.useState
 });
 for(const k in optimal)if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
     enumerable: true,
@@ -2010,6 +2210,7 @@ Object.defineProperty(exports, \\"__esModule\\", {
     value: true
 });
 const optimal = require(\\"optimal\\");
+const react = require(\\"react\\");
 function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
@@ -2034,6 +2235,10 @@ exports.optimal = optimal__namespace;
 Object.defineProperty(exports, \\"string\\", {
     enumerable: true,
     get: ()=>optimal.string
+});
+Object.defineProperty(exports, \\"useState\\", {
+    enumerable: true,
+    get: ()=>react.useState
 });
 for(const k in optimal)if (k !== \\"default\\" && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
     enumerable: true,
@@ -2054,6 +2259,7 @@ Object.defineProperty(exports, '__esModule', {
     value: true
 });
 const optimal = require('optimal');
+const react = require('react');
 function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
@@ -2078,6 +2284,10 @@ exports.optimal = optimal__namespace;
 Object.defineProperty(exports, 'string', {
     enumerable: true,
     get: ()=>optimal.string
+});
+Object.defineProperty(exports, 'useState', {
+    enumerable: true,
+    get: ()=>react.useState
 });
 for(const k in optimal)if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
     enumerable: true,
@@ -2098,8 +2308,8 @@ import './index-node-current-cjs.cjs';
 
 export * from 'optimal';
 export * as optimal from 'optimal';
-export { string } from 'optimal';
-export { func } from 'optimal';",
+export { string, func } from 'optimal';
+export { useState } from 'react';",
 ]
 `;
 
@@ -2113,6 +2323,7 @@ Object.defineProperty(exports, '__esModule', {
     value: true
 });
 const optimal = require('optimal');
+const react = require('react');
 function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
@@ -2137,6 +2348,10 @@ exports.optimal = optimal__namespace;
 Object.defineProperty(exports, 'string', {
     enumerable: true,
     get: ()=>optimal.string
+});
+Object.defineProperty(exports, 'useState', {
+    enumerable: true,
+    get: ()=>react.useState
 });
 for(const k in optimal)if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
     enumerable: true,
@@ -2157,6 +2372,7 @@ Object.defineProperty(exports, '__esModule', {
     value: true
 });
 const optimal = require('optimal');
+const react = require('react');
 function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
@@ -2181,6 +2397,10 @@ exports.optimal = optimal__namespace;
 Object.defineProperty(exports, 'string', {
     enumerable: true,
     get: ()=>optimal.string
+});
+Object.defineProperty(exports, 'useState', {
+    enumerable: true,
+    get: ()=>react.useState
 });
 for(const k in optimal)if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
     enumerable: true,
@@ -2200,6 +2420,7 @@ export * from 'optimal';
 import * as optimal from 'optimal';
 export { optimal };
 export { func, string } from 'optimal';
+export { useState } from 'react';
 //# sourceMappingURL=index-node-current-mjs.mjs.map
 ",
 ]
@@ -2215,8 +2436,8 @@ import './index-node-experimental-cjs.cjs';
 
 export * from 'optimal';
 export * as optimal from 'optimal';
-export { string } from 'optimal';
-export { func } from 'optimal';",
+export { string, func } from 'optimal';
+export { useState } from 'react';",
 ]
 `;
 
@@ -2230,6 +2451,7 @@ Object.defineProperty(exports, '__esModule', {
     value: true
 });
 const optimal = require('optimal');
+const react = require('react');
 function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
@@ -2254,6 +2476,10 @@ exports.optimal = optimal__namespace;
 Object.defineProperty(exports, 'string', {
     enumerable: true,
     get: ()=>optimal.string
+});
+Object.defineProperty(exports, 'useState', {
+    enumerable: true,
+    get: ()=>react.useState
 });
 for(const k in optimal)if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
     enumerable: true,
@@ -2274,6 +2500,7 @@ Object.defineProperty(exports, '__esModule', {
     value: true
 });
 const optimal = require('optimal');
+const react = require('react');
 function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
@@ -2299,6 +2526,10 @@ Object.defineProperty(exports, 'string', {
     enumerable: true,
     get: ()=>optimal.string
 });
+Object.defineProperty(exports, 'useState', {
+    enumerable: true,
+    get: ()=>react.useState
+});
 for(const k in optimal)if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
     enumerable: true,
     get: ()=>optimal[k]
@@ -2317,6 +2548,7 @@ export * from 'optimal';
 import * as optimal from 'optimal';
 export { optimal };
 export { func, string } from 'optimal';
+export { useState } from 'react';
 //# sourceMappingURL=index-node-experimental-mjs.mjs.map
 ",
 ]
@@ -2332,8 +2564,8 @@ import './index-node-legacy-cjs.cjs';
 
 export * from 'optimal';
 export * as optimal from 'optimal';
-export { string } from 'optimal';
-export { func } from 'optimal';",
+export { string, func } from 'optimal';
+export { useState } from 'react';",
 ]
 `;
 
@@ -2347,6 +2579,7 @@ Object.defineProperty(exports, \\"__esModule\\", {
     value: true
 });
 const optimal = require(\\"optimal\\");
+const react = require(\\"react\\");
 function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
@@ -2371,6 +2604,10 @@ exports.optimal = optimal__namespace;
 Object.defineProperty(exports, \\"string\\", {
     enumerable: true,
     get: ()=>optimal.string
+});
+Object.defineProperty(exports, \\"useState\\", {
+    enumerable: true,
+    get: ()=>react.useState
 });
 for(const k in optimal)if (k !== \\"default\\" && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
     enumerable: true,
@@ -2391,6 +2628,7 @@ Object.defineProperty(exports, \\"__esModule\\", {
     value: true
 });
 const optimal = require(\\"optimal\\");
+const react = require(\\"react\\");
 function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
@@ -2416,6 +2654,10 @@ Object.defineProperty(exports, \\"string\\", {
     enumerable: true,
     get: ()=>optimal.string
 });
+Object.defineProperty(exports, \\"useState\\", {
+    enumerable: true,
+    get: ()=>react.useState
+});
 for(const k in optimal)if (k !== \\"default\\" && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
     enumerable: true,
     get: ()=>optimal[k]
@@ -2434,6 +2676,7 @@ Array [
 export * from \\"optimal\\";
 export { optimal };
 export { func, string } from \\"optimal\\";
+export { useState } from \\"react\\";
 //# sourceMappingURL=index-node-legacy-mjs.mjs.map
 ",
 ]
@@ -2449,8 +2692,8 @@ import './index-node-stable-cjs.cjs';
 
 export * from 'optimal';
 export * as optimal from 'optimal';
-export { string } from 'optimal';
-export { func } from 'optimal';",
+export { string, func } from 'optimal';
+export { useState } from 'react';",
 ]
 `;
 
@@ -2464,6 +2707,7 @@ Object.defineProperty(exports, '__esModule', {
     value: true
 });
 const optimal = require('optimal');
+const react = require('react');
 function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
@@ -2488,6 +2732,10 @@ exports.optimal = optimal__namespace;
 Object.defineProperty(exports, 'string', {
     enumerable: true,
     get: ()=>optimal.string
+});
+Object.defineProperty(exports, 'useState', {
+    enumerable: true,
+    get: ()=>react.useState
 });
 for(const k in optimal)if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
     enumerable: true,
@@ -2508,6 +2756,7 @@ Object.defineProperty(exports, '__esModule', {
     value: true
 });
 const optimal = require('optimal');
+const react = require('react');
 function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
@@ -2533,6 +2782,10 @@ Object.defineProperty(exports, 'string', {
     enumerable: true,
     get: ()=>optimal.string
 });
+Object.defineProperty(exports, 'useState', {
+    enumerable: true,
+    get: ()=>react.useState
+});
 for(const k in optimal)if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
     enumerable: true,
     get: ()=>optimal[k]
@@ -2551,6 +2804,7 @@ export * from 'optimal';
 import * as optimal from 'optimal';
 export { optimal };
 export { func, string } from 'optimal';
+export { useState } from 'react';
 //# sourceMappingURL=index-node-stable-mjs.mjs.map
 ",
 ]

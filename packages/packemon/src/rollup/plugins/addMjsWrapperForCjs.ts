@@ -129,6 +129,7 @@ export function extractExports(id: string, getModuleInfo: GetModuleInfo): Extrac
 	};
 
 	const filterType = (value: string) => !!value && !types.has(value);
+	const namedExportsBySource: Record<string, string[]> = {};
 
 	// eslint-disable-next-line complexity
 	ast.body.forEach((item) => {
@@ -150,11 +151,7 @@ export function extractExports(id: string, getModuleInfo: GetModuleInfo): Extrac
 				// export * as foo from 'source';
 				if (item.source) {
 					if (isExternalSource(item.source)) {
-						externalExports.push({
-							names,
-							source: item.source.value,
-							type: 'export-named',
-						});
+						(namedExportsBySource[item.source.value] ??= []).push(...names);
 					} else {
 						mapNamed(names);
 					}
@@ -163,12 +160,10 @@ export function extractExports(id: string, getModuleInfo: GetModuleInfo): Extrac
 				// export { foo };
 				if (!item.source) {
 					names.forEach((name) => {
-						if (imports[name] && isExternalSource({ value: imports[name] })) {
-							externalExports.push({
-								names,
-								source: imports[name],
-								type: 'export-named',
-							});
+						const maybeSource = imports[name];
+
+						if (maybeSource && isExternalSource({ value: maybeSource })) {
+							(namedExportsBySource[maybeSource] ??= []).push(name);
 						} else {
 							mapNamed(name);
 						}
@@ -207,6 +202,14 @@ export function extractExports(id: string, getModuleInfo: GetModuleInfo): Extrac
 				}
 			}
 		}
+	});
+
+	Object.entries(namedExportsBySource).forEach(([source, names]) => {
+		externalExports.push({
+			names,
+			source,
+			type: 'export-named',
+		});
 	});
 
 	return { externalExports, namedExports, defaultExport };
