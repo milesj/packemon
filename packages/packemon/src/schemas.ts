@@ -64,7 +64,9 @@ export const packemonBlueprint: Blueprint<PackemonPackageConfig> = {
 	bundle: bool(true),
 	externals: union([]).of([string(), array().of(string())]),
 	format,
-	inputs: object({ index: DEFAULT_INPUT }).of(string()).keysOf(string().match(/^\w+$/u)),
+	inputs: object({ index: DEFAULT_INPUT })
+		.of(string())
+		.keysOf(string().match(/^[a-zA-Z0-9-_]+$/u)),
 	namespace: string(),
 	platform: union(DEFAULT_PLATFORM).of([array().of(platform), platform]),
 	support,

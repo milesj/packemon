@@ -2,12 +2,12 @@
 
 exports[`Package setConfigs() errors if input name contains a slash 1`] = `
 "The following validations have failed for \`flag-common\`:
-  - Invalid field \\"inputs\\". Invalid key \\"foo/bar\\". String does not match. (pattern \\"^\\\\w+$\\")"
+  - Invalid field \\"inputs\\". Invalid key \\"foo/bar\\". String does not match. (pattern \\"^[a-zA-Z0-9-_]+$\\")"
 `;
 
 exports[`Package setConfigs() errors if input name contains a space 1`] = `
 "The following validations have failed for \`flag-common\`:
-  - Invalid field \\"inputs\\". Invalid key \\"foo bar\\". String does not match. (pattern \\"^\\\\w+$\\")"
+  - Invalid field \\"inputs\\". Invalid key \\"foo bar\\". String does not match. (pattern \\"^[a-zA-Z0-9-_]+$\\")"
 `;
 
 exports[`Package setConfigs() errors if invalid format is provided for \`browser\` platform 1`] = `
