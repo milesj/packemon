@@ -34,11 +34,10 @@ jobs:
           cache: yarn
       - run: yarn install --immutable
       - run: yarn run setup
-      - run: yarn run build
-      - run: node ./scripts/testPackemonImports.cjs
-      - run: node ./scripts/testPackemonImports.mjs
-      # Requires TS 4.7+
-      # - run: ts-node ./scripts/testPackemonImports.ts
+      - run: yarn run pack
+      - run: yarn ts-node --cwd ./tests ./testPackemonImports.ts
+      - run: node ./tests/testPackemonImports.cjs
+      - run: node ./tests/testPackemonImports.mjs
   pack:
     name: Pack
     runs-on: ubuntu-latest
