@@ -28,6 +28,7 @@ import {
 	FeatureFlags,
 	InputMap,
 	PackageConfig,
+	PackageExportPaths,
 	PackageExports,
 	PackemonPackage,
 	PackemonPackageConfig,
@@ -478,20 +479,28 @@ export class Package {
 		const exportMap: PackageExports = {
 			'./package.json': './package.json',
 		};
+		let indexExport: PackageExportPaths | string | undefined;
 
 		this.artifacts.forEach((artifact) => {
-			Object.entries(artifact.getPackageExports()).forEach(([basePath, conditions]) => {
-				const path = basePath.replace('/index', '');
+			Object.entries(artifact.getPackageExports()).forEach(([path, conditions]) => {
+				if (path.endsWith('index')) {
+					indexExport = conditions;
+				} else {
+					if (!exportMap[path]) {
+						exportMap[path] = {};
+					} else if (typeof exportMap[path] === 'string') {
+						exportMap[path] = { default: exportMap[path] };
+					}
 
-				if (!exportMap[path]) {
-					exportMap[path] = {};
-				} else if (typeof exportMap[path] === 'string') {
-					exportMap[path] = { default: exportMap[path] };
+					Object.assign(exportMap[path], conditions);
 				}
-
-				Object.assign(exportMap[path], conditions);
 			});
 		});
+
+		// Ensure index export is last
+		if (indexExport) {
+			exportMap['.'] = indexExport;
+		}
 
 		// Sort the condition paths
 		Object.entries(exportMap).forEach(([path, conditions]) => {
