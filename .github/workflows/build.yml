@@ -34,7 +34,7 @@ jobs:
           cache: yarn
       - run: yarn install --immutable
       - run: yarn run setup
-      - run: yarn run build
+      - run: yarn run pack
       - run: yarn ts-node --cwd ./tests ./testPackemonImports.ts
       - run: node ./tests/testPackemonImports.cjs
       - run: node ./tests/testPackemonImports.mjs
