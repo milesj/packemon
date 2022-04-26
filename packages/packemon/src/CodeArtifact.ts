@@ -178,7 +178,7 @@ export class CodeArtifact extends Artifact<CodeBuild> {
 				this.mapPackageExportsFromBuilds(outputName, exportMap);
 			});
 		} else {
-			// Use subpath exports when not bundling
+			// Use subpath export patterns when not bundling
 			// https://nodejs.org/api/packages.html#subpath-patterns
 			this.mapPackageExportsFromBuilds('*', exportMap);
 			this.mapPackageExportsFromBuilds('index', exportMap);
