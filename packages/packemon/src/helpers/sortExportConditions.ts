@@ -11,14 +11,18 @@ const WEIGHTS = {
 	default: 100, // Default must be last
 };
 
-export function sortExportConditions(paths: PackageExportPaths): PackageExportPaths {
+export function sortExportConditions<T extends PackageExportPaths | string>(paths: T): T {
+	if (typeof paths === 'string') {
+		return paths;
+	}
+
 	const pathsList: { weight: number; key: string; value: PackageExportPaths | string }[] = [];
 
 	Object.entries(paths).forEach(([key, value]) => {
 		pathsList.push({
 			weight: key in WEIGHTS ? WEIGHTS[key as 'misc'] : WEIGHTS.misc,
 			key,
-			value: typeof value === 'string' ? value : sortExportConditions(value),
+			value: sortExportConditions(value),
 		});
 	});
 
@@ -28,5 +32,5 @@ export function sortExportConditions(paths: PackageExportPaths): PackageExportPa
 		return diff === 0 ? a.key.localeCompare(d.key) : diff;
 	});
 
-	return Object.fromEntries(pathsList.map((path) => [path.key, path.value]));
+	return Object.fromEntries(pathsList.map((path) => [path.key, path.value])) as T;
 }
