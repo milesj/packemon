@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.2.0 - 2022-04-26
+
+#### 🚀 Updates
+
+- Support dashes in input names. ([aa76abe](https://github.com/milesj/packemon/commit/aa76abe))
+
+#### 🐞 Fixes
+
+- Fix multiple named exports from different sources. ([9aa99a2](https://github.com/milesj/packemon/commit/9aa99a2))
+- Improve exports sorting by path. (#123) ([0d204f3](https://github.com/milesj/packemon/commit/0d204f3)), closes [#123](https://github.com/milesj/packemon/issues/123)
+
+**Note:** Version bump only for package packemon
+
+
+
+
+
 ## 2.1.0 - 2022-04-23
 
 #### 🚀 Updates
