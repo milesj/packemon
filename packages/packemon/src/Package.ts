@@ -19,7 +19,7 @@ import {
 	SUPPORT_PRIORITY,
 } from './constants';
 import { loadModule } from './helpers/loadModule';
-import { sortExportConditions } from './helpers/sortExportConditions';
+import { sortExports } from './helpers/sortExports';
 import { Project } from './Project';
 import { packemonBlueprint } from './schemas';
 import {
@@ -475,9 +475,11 @@ export class Package {
 	protected addExports() {
 		this.debug('Adding `exports` to `package.json`');
 
-		const exportMap: PackageExports = {
-			'./package.json': './package.json',
-		};
+		const exportMap: PackageExports = {};
+
+		if (isObject(this.packageJson.exports)) {
+			Object.assign(exportMap, this.packageJson.exports);
+		}
 
 		this.artifacts.forEach((artifact) => {
 			Object.entries(artifact.getPackageExports()).forEach(([path, conditions]) => {
@@ -491,17 +493,10 @@ export class Package {
 			});
 		});
 
-		// Sort the condition paths
-		Object.entries(exportMap).forEach(([path, conditions]) => {
-			exportMap[path] =
-				typeof conditions === 'string' ? conditions : sortExportConditions(conditions);
-		});
-
-		if (isObject(this.packageJson.exports)) {
-			Object.assign(this.packageJson.exports, exportMap);
-		} else {
-			this.packageJson.exports = exportMap as PackageStructure['exports'];
-		}
+		this.packageJson.exports = sortExports({
+			'./package.json': './package.json',
+			...exportMap,
+		}) as PackageStructure['exports'];
 	}
 
 	protected addFiles() {
