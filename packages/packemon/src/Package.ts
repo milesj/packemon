@@ -475,11 +475,9 @@ export class Package {
 	protected addExports() {
 		this.debug('Adding `exports` to `package.json`');
 
-		const exportMap: PackageExports = {};
-
-		if (isObject(this.packageJson.exports)) {
-			Object.assign(exportMap, this.packageJson.exports);
-		}
+		let exportMap: PackageExports = {
+			'./package.json': './package.json',
+		};
 
 		this.artifacts.forEach((artifact) => {
 			Object.entries(artifact.getPackageExports()).forEach(([path, conditions]) => {
@@ -493,10 +491,13 @@ export class Package {
 			});
 		});
 
-		this.packageJson.exports = sortExports({
-			'./package.json': './package.json',
-			...exportMap,
-		}) as PackageStructure['exports'];
+		exportMap = sortExports(exportMap);
+
+		if (isObject(this.packageJson.exports)) {
+			Object.assign(this.packageJson.exports, exportMap);
+		} else {
+			this.packageJson.exports = exportMap as PackageStructure['exports'];
+		}
 	}
 
 	protected addFiles() {
