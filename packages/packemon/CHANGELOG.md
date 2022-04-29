@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.2.1 - 2022-04-29
+
+#### 🐞 Fixes
+
+- Dont sort non-Packemon exports. ([c82c232](https://github.com/milesj/packemon/commit/c82c232))
+- Improve React automatic JSX detection for peer deps. ([d8b8202](https://github.com/milesj/packemon/commit/d8b8202))
+
+**Note:** Version bump only for package packemon
+
+
+
+
+
 ## 2.2.0 - 2022-04-26
 
 #### 🚀 Updates
