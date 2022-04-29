@@ -166,23 +166,31 @@ export class Package {
 		// React
 		if (this.hasDependency('react')) {
 			const peerDep = this.packageJson.peerDependencies?.react;
-			const dep = this.packageJson.dependencies?.react;
-			let automatic = false;
+			const normalDep = this.packageJson.dependencies?.react;
+			const versionsToCheck: string[] = [];
+
+			if (peerDep && peerDep !== '*') {
+				versionsToCheck.push(...peerDep.split('||'));
+			} else if (normalDep && normalDep !== '*') {
+				versionsToCheck.push(normalDep);
+			}
 
 			// New JSX transform was backported to these versions:
 			// https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html
-			if (peerDep && peerDep !== '*') {
-				automatic = ['17.0.0', '16.14.0', '15.7.0', '0.14.0'].some((minVer) =>
-					semver.satisfies(minVer, peerDep),
-				);
-			} else if (dep && dep !== '*') {
-				automatic = semver.satisfies(
-					semver.coerce(dep)!.version,
+			const automatic = versionsToCheck.every((version) => {
+				const coercedVersion = semver.coerce(version.trim().replace(/(>|<|=|~|^)/g, ''));
+
+				if (coercedVersion === null) {
+					return false;
+				}
+
+				return semver.satisfies(
+					coercedVersion.version,
 					'>=17.0.0 || ^16.14.0 || ^15.7.0 || ^0.14.0',
 				);
-			}
+			});
 
-			flags.react = automatic ? 'automatic' : 'classic';
+			flags.react = automatic && versionsToCheck.length > 0 ? 'automatic' : 'classic';
 
 			this.debug(' - React');
 		}
