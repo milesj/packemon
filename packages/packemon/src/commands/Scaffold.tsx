@@ -43,6 +43,21 @@ export class ScaffoldCommand extends Command {
 		this.dest = dest;
 		this.destDir = path.join(process.cwd(), dest);
 
+		// This is purely for testing in CI, as we have no way to pass stdin
+		if (process.env.CI) {
+			await this.scaffold({
+				author: 'Packemon',
+				template: this.template!,
+				projectName: 'packemon',
+				packageName: 'example',
+				packagePath: 'packages/example',
+				repoUrl: 'packemon',
+				year: new Date().getFullYear(),
+			});
+
+			return undefined;
+		}
+
 		const { Scaffold } = await import('../components/Scaffold');
 
 		return (
