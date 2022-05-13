@@ -65,8 +65,9 @@ jobs:
           cache: yarn
       - run: yarn install --immutable
       - run: yarn run setup
-      - run: yarn packemon scaffold --template ${{ matrix.type }} ./${{ matrix.type }}
-      - run: ls ./${{ matrix.type }}
+      - run: mkdir ../work
+      - run: yarn packemon scaffold --template ${{ matrix.type }} ../work/${{ matrix.type }}
+      - run: ls ../work/${{ matrix.type }}
   docs:
     name: Docs
     runs-on: ubuntu-latest
