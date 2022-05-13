@@ -51,7 +51,7 @@ jobs:
       - run: yarn run pack
       # Run again with packemon built files
       - run: yarn run pack
-  pack:
+  scaffold:
     name: Scaffold
     runs-on: ubuntu-latest
     steps:
