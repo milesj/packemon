@@ -54,6 +54,10 @@ jobs:
   scaffold:
     name: Scaffold
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        type: [monorepo, monorepo-package, polyrepo, polyrepo-package]
+      fail-fast: true
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -61,10 +65,8 @@ jobs:
           cache: yarn
       - run: yarn install --immutable
       - run: yarn run setup
-      - run: yarn packemon scaffold --template monorepo ./monorepo
-      - run: yarn packemon scaffold --template monorepo-package ./monorepo-package
-      - run: yarn packemon scaffold --template polyrepo ./polyrepo
-      - run: yarn packemon scaffold --template polyrepo-package ./polyrepo-package
+      - run: yarn packemon scaffold --template ${{ matrix.type }} ./${{ matrix.type }}
+      - run: ls ./${{ matrix.type }}
   docs:
     name: Docs
     runs-on: ubuntu-latest

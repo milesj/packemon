@@ -43,6 +43,20 @@ export class ScaffoldCommand extends Command {
 		this.dest = dest;
 		this.destDir = path.join(process.cwd(), dest);
 
+		if (process.env.CI) {
+			await this.scaffold({
+				author: 'Packemon',
+				template: this.template!,
+				projectName: 'packemon',
+				packageName: 'example',
+				packagePath: '',
+				repoUrl: '',
+				year: new Date().getFullYear(),
+			});
+
+			return undefined;
+		}
+
 		const { Scaffold } = await import('../components/Scaffold');
 
 		return (
