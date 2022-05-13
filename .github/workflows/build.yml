@@ -51,13 +51,9 @@ jobs:
       - run: yarn run pack
       # Run again with packemon built files
       - run: yarn run pack
-  scaffold:
-    name: Scaffold
+  scaffold-mono:
+    name: Scaffold (monorepo)
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        type: [monorepo, monorepo-package, polyrepo, polyrepo-package]
-      fail-fast: true
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -66,8 +62,23 @@ jobs:
       - run: yarn install --immutable
       - run: yarn run setup
       - run: mkdir ../work
-      - run: yarn packemon scaffold --template ${{ matrix.type }} ../work/${{ matrix.type }}
-      - run: ls ../work/${{ matrix.type }}
+      - run: yarn packemon scaffold --template monorepo ../work
+      - run: yarn packemon scaffold --template monorepo-package ../work
+      - run: ls -R ../work
+  scaffold-poly:
+    name: Scaffold (polyrepo)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          cache: yarn
+      - run: yarn install --immutable
+      - run: yarn run setup
+      - run: mkdir ../work
+      - run: yarn packemon scaffold --template polyrepo ../work
+      - run: yarn packemon scaffold --template polyrepo-package ../work
+      - run: ls -R ../work
   docs:
     name: Docs
     runs-on: ubuntu-latest
