@@ -421,11 +421,14 @@ export class Package {
 		let mainEntry = '';
 		let moduleEntry = '';
 		let browserEntry = '';
+		let buildCount = 0;
 
 		// eslint-disable-next-line complexity
 		this.artifacts.forEach((artifact) => {
 			// Build files
 			if (artifact instanceof CodeArtifact) {
+				buildCount += artifact.builds.length;
+
 				// Generate `main`, `module`, and `browser` fields
 				if (artifact.inputs.index) {
 					if (!mainEntry || artifact.platform === 'node') {
@@ -464,10 +467,13 @@ export class Package {
 		if (mainEntry) {
 			this.packageJson.main = mainEntry;
 
-			if (mainEntry.includes('mjs/') || mainEntry.includes('esm/')) {
-				this.packageJson.type = 'module';
-			} else if (mainEntry.includes('cjs/')) {
-				this.packageJson.type = 'commonjs';
+			// Only set when we have 1 build, otherwise its confusing
+			if (buildCount === 1) {
+				if (mainEntry.includes('mjs/') || mainEntry.includes('esm/')) {
+					this.packageJson.type = 'module';
+				} else if (mainEntry.includes('cjs/')) {
+					this.packageJson.type = 'commonjs';
+				}
 			}
 		}
 
