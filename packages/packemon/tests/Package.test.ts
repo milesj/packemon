@@ -862,7 +862,6 @@ describe('Package', () => {
 
 			expect(pkg.packageJson).toEqual(
 				expect.objectContaining({
-					type: 'commonjs',
 					main: './cjs/index.cjs',
 					bin: './lib/bin.js',
 					exports: {
@@ -912,7 +911,6 @@ describe('Package', () => {
 
 			expect(pkg.packageJson).toEqual(
 				expect.objectContaining({
-					type: 'commonjs',
 					main: './cjs/node.cjs',
 					bin: './lib/cli.js',
 					exports: {
@@ -959,7 +957,6 @@ describe('Package', () => {
 
 			expect(pkg.packageJson).toEqual(
 				expect.objectContaining({
-					type: 'commonjs',
 					main: './cjs/node.cjs',
 					bin: './lib/cli.js',
 					exports: {
