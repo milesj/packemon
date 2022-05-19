@@ -47,11 +47,13 @@
     "./package.json": "./package.json",
     "./*": {
       "types": "./dts/*.d.ts",
-      "node": "./lib/*.js"
+      "node": "./lib/*.js",
+      "default": "./lib/*.js"
     },
     ".": {
       "types": "./dts/index.d.ts",
-      "node": "./lib/index.js"
+      "node": "./lib/index.js",
+      "default": "./lib/index.js"
     }
   }
 }

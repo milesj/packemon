@@ -216,6 +216,7 @@ describe('CodeArtifact', () => {
 			expect(artifact.getPackageExports()).toEqual({
 				'.': {
 					node: './lib/index.js',
+					default: './lib/index.js',
 				},
 			});
 		});
@@ -227,6 +228,7 @@ describe('CodeArtifact', () => {
 			expect(artifact.getPackageExports()).toEqual({
 				'.': {
 					node: './lib/node/index.js',
+					default: './lib/node/index.js',
 				},
 			});
 		});
@@ -238,6 +240,7 @@ describe('CodeArtifact', () => {
 			expect(artifact.getPackageExports()).toEqual({
 				'./sub': {
 					node: './lib/sub.js',
+					default: './lib/sub.js',
 				},
 			});
 		});
@@ -250,8 +253,8 @@ describe('CodeArtifact', () => {
 					node: {
 						import: './mjs/index.mjs',
 						require: './cjs/index.cjs',
-						default: './lib/index.js',
 					},
+					default: './lib/index.js',
 				},
 			});
 		});
@@ -277,6 +280,7 @@ describe('CodeArtifact', () => {
 			expect(artifact.getPackageExports()).toEqual({
 				'.': {
 					browser: './lib/index.js',
+					default: './lib/index.js',
 				},
 			});
 		});
@@ -288,6 +292,7 @@ describe('CodeArtifact', () => {
 			expect(artifact.getPackageExports()).toEqual({
 				'.': {
 					'react-native': './lib/index.js',
+					default: './lib/index.js',
 				},
 			});
 		});

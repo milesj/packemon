@@ -15,5 +15,10 @@ export function sortExports(exportMap: PackageExports): PackageExports {
 		return diff === 0 ? d.length - a.length : diff;
 	});
 
-	return Object.fromEntries(paths.map((path) => [path, sortExportConditions(exportMap[path])]));
+	return Object.fromEntries(
+		paths.map((path) => [
+			path,
+			exportMap[path] === undefined ? undefined : sortExportConditions(exportMap[path]),
+		]),
+	);
 }
