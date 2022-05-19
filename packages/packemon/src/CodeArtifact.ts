@@ -201,6 +201,7 @@ export class CodeArtifact extends Artifact<CodeBuild> {
 
 	protected mapPackageExportsFromBuilds(outputName: string, exportMap: PackageExports) {
 		const paths: PackageExportPaths = {};
+		let defaultEntry = '';
 
 		this.builds.forEach(({ format }) => {
 			const entry = this.findEntryPoint([format], outputName);
@@ -226,7 +227,7 @@ export class CodeArtifact extends Artifact<CodeBuild> {
 					break;
 
 				case 'lib':
-					paths.default = entry;
+					defaultEntry = entry;
 					break;
 
 				default:
@@ -236,12 +237,12 @@ export class CodeArtifact extends Artifact<CodeBuild> {
 
 		const pathsMap = {
 			[this.platform === 'native' ? 'react-native' : this.platform]:
-				Object.keys(paths).length === 1 && paths.default ? paths.default : paths,
+				Object.keys(paths).length === 0 && defaultEntry ? defaultEntry : paths,
 		};
 
 		// Provide fallbacks if condition above is not
-		if (paths.default) {
-			pathsMap.default = paths.default;
+		if (defaultEntry) {
+			pathsMap.default = defaultEntry;
 		}
 
 		// eslint-disable-next-line no-param-reassign

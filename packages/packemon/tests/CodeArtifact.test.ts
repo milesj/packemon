@@ -253,7 +253,6 @@ describe('CodeArtifact', () => {
 					node: {
 						import: './mjs/index.mjs',
 						require: './cjs/index.cjs',
-						default: './lib/index.js',
 					},
 					default: './lib/index.js',
 				},
