@@ -234,11 +234,17 @@ export class CodeArtifact extends Artifact<CodeBuild> {
 			}
 		});
 
-		// eslint-disable-next-line no-param-reassign
-		exportMap[outputName === 'index' ? '.' : `./${outputName}`] = {
-			[this.platform === 'native' ? 'react-native' : this.platform]: paths,
-			// Provide fallbacks if condition above is not met
-			default: paths.default,
+		const pathsMap = {
+			[this.platform === 'native' ? 'react-native' : this.platform]:
+				Object.keys(paths).length === 1 && paths.default ? paths.default : paths,
 		};
+
+		// Provide fallbacks if condition above is not
+		if (paths.default) {
+			pathsMap.default = paths.default;
+		}
+
+		// eslint-disable-next-line no-param-reassign
+		exportMap[outputName === 'index' ? '.' : `./${outputName}`] = pathsMap;
 	}
 }

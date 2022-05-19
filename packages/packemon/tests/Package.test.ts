@@ -530,7 +530,7 @@ describe('Package', () => {
 				await pkg.build({ addExports: true }, config);
 
 				expect(pkg.packageJson.exports).toEqual({
-					'.': { node: './lib/index.js' },
+					'.': { node: './lib/index.js', default: './lib/index.js' },
 					'./package.json': './package.json',
 				});
 			});
@@ -549,6 +549,7 @@ describe('Package', () => {
 							require: './cjs/index.cjs',
 							default: './lib/index.js',
 						},
+						default: './lib/index.js',
 					},
 					'./package.json': './package.json',
 				});
@@ -574,6 +575,7 @@ describe('Package', () => {
 						node: './lib/node/index.js',
 						browser: './lib/browser/index.js',
 						'react-native': './lib/native/index.js',
+						default: './lib/native/index.js',
 					},
 					'./package.json': './package.json',
 				});
@@ -603,6 +605,7 @@ describe('Package', () => {
 							module: './esm/index.js',
 							default: './lib/index.js',
 						},
+						default: './lib/index.js',
 					},
 					'./package.json': './package.json',
 				});
@@ -619,8 +622,8 @@ describe('Package', () => {
 				await pkg.build({ addExports: true }, config);
 
 				expect(pkg.packageJson.exports).toEqual({
-					'.': { node: './lib/index.js' },
-					'./client': { browser: './lib/client.js' },
+					'.': { node: './lib/index.js', default: './lib/index.js' },
+					'./client': { browser: './lib/client.js', default: './lib/client.js' },
 					'./package.json': './package.json',
 				});
 			});
@@ -645,6 +648,7 @@ describe('Package', () => {
 							require: './cjs/index.cjs',
 							default: './lib/index.js',
 						},
+						default: './lib/index.js',
 					},
 					'./client': {
 						browser: {
@@ -652,6 +656,7 @@ describe('Package', () => {
 							module: './esm/client.js',
 							default: './lib/client.js',
 						},
+						default: './lib/client.js',
 					},
 					'./package.json': './package.json',
 				});
@@ -664,7 +669,7 @@ describe('Package', () => {
 				await pkg.build({ addExports: true }, config);
 
 				expect(pkg.packageJson.exports).toEqual({
-					'.': { node: './lib/index.js', types: './dts/index.d.ts' },
+					'.': { node: './lib/index.js', types: './dts/index.d.ts', default: './lib/index.js' },
 					'./package.json': './package.json',
 				});
 			});
@@ -679,7 +684,7 @@ describe('Package', () => {
 				await pkg.build({ addExports: true }, config);
 
 				expect(pkg.packageJson.exports).toEqual({
-					'.': { node: './lib/index.js' },
+					'.': { node: './lib/index.js', default: './lib/index.js' },
 					'./foo': './lib/foo.js',
 					'./package.json': './package.json',
 				});
@@ -868,13 +873,14 @@ describe('Package', () => {
 					exports: {
 						'./package.json': './package.json',
 						'.': { node: { import: './cjs/index-wrapper.mjs', require: './cjs/index.cjs' } },
-						'./bin': { node: './lib/bin.js' },
+						'./bin': { node: './lib/bin.js', default: './lib/bin.js' },
 						'./web': {
 							browser: {
 								import: './esm/web.js',
 								module: './esm/web.js',
 								default: './lib/web.js',
 							},
+							default: './lib/web.js',
 						},
 						'./import': { node: { import: './mjs/import.mjs' } },
 					},
@@ -917,10 +923,11 @@ describe('Package', () => {
 					bin: './lib/cli.js',
 					exports: {
 						'./package.json': './package.json',
-						'./bin': { node: './lib/cli.js' },
+						'./bin': { node: './lib/cli.js', default: './lib/cli.js' },
 						'./import': { node: { import: './mjs/web.mjs' } },
 						'./web': {
 							browser: { default: './lib/web.js', import: './esm/web.js', module: './esm/web.js' },
+							default: './lib/web.js',
 						},
 						'.': { node: { import: './cjs/node-wrapper.mjs', require: './cjs/node.cjs' } },
 					},
@@ -966,6 +973,7 @@ describe('Package', () => {
 						'./*': {
 							browser: { import: './esm/*.js', module: './esm/*.js', default: './lib/*.js' },
 							node: { import: './mjs/*.mjs' },
+							default: './lib/*.js',
 						},
 						'.': {
 							browser: {
@@ -974,6 +982,7 @@ describe('Package', () => {
 								default: './lib/index.js',
 							},
 							node: { import: './mjs/index.mjs' },
+							default: './lib/index.js',
 						},
 					},
 				}),
