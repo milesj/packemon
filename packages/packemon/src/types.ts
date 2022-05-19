@@ -109,7 +109,7 @@ export type PackageExportPaths = {
 	[K in PackageExportConditions]?: PackageExportPaths | string;
 };
 
-export type PackageExports = Record<string, PackageExportPaths | string>;
+export type PackageExports = Record<string, PackageExportPaths | string | undefined>;
 
 // BUILD
 

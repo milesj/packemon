@@ -489,13 +489,17 @@ export class Package {
 
 		this.artifacts.forEach((artifact) => {
 			Object.entries(artifact.getPackageExports()).forEach(([path, conditions]) => {
+				if (!conditions) {
+					return;
+				}
+
 				if (!exportMap[path]) {
 					exportMap[path] = {};
 				} else if (typeof exportMap[path] === 'string') {
 					exportMap[path] = { default: exportMap[path] };
 				}
 
-				Object.assign(exportMap[path], conditions);
+				Object.assign(exportMap[path]!, conditions);
 			});
 		});
 

@@ -11,8 +11,10 @@ const WEIGHTS = {
 	default: 100, // Default must be last
 };
 
-export function sortExportConditions<T extends PackageExportPaths | string>(paths: T): T {
-	if (typeof paths === 'string') {
+export function sortExportConditions<T extends PackageExportPaths | string | undefined>(
+	paths: T,
+): T {
+	if (!paths || typeof paths === 'string') {
 		return paths;
 	}
 
