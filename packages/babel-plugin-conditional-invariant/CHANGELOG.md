@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.0.1 - 2022-05-20
+
+#### 🐞 Fixes
+
+- Improve handling of `default` for package exports. (#127) ([08f5995](https://github.com/milesj/packemon/commit/08f5995)), closes [#127](https://github.com/milesj/packemon/issues/127)
+
+**Note:** Version bump only for package babel-plugin-conditional-invariant
+
+
+
+
+
 # 2.0.0 - 2022-04-20
 
 #### 💥 Breaking

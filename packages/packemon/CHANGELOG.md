@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.2.2 - 2022-05-20
+
+#### 🐞 Fixes
+
+- Improve handling of `default` for package exports. (#127) ([08f5995](https://github.com/milesj/packemon/commit/08f5995)), closes [#127](https://github.com/milesj/packemon/issues/127)
+- Only set `type` when there's 1 build. (#128) ([fc250ac](https://github.com/milesj/packemon/commit/fc250ac)), closes [#128](https://github.com/milesj/packemon/issues/128)
+
+#### 📦 Dependencies
+
+- **[babel]** Update to v7.17 latest. ([7a1d226](https://github.com/milesj/packemon/commit/7a1d226))
+- **[babel]** Update to v7.18 latest. ([be2da27](https://github.com/milesj/packemon/commit/be2da27))
+- **[rollup]** Update to v2.74. (#129) ([5e0e133](https://github.com/milesj/packemon/commit/5e0e133)), closes [#129](https://github.com/milesj/packemon/issues/129)
+- **[swc]** Update to v1.2.181. ([7dac168](https://github.com/milesj/packemon/commit/7dac168))
+
+#### 🛠 Internals
+
+- Test scaffolding. (#125) ([04ee133](https://github.com/milesj/packemon/commit/04ee133)), closes [#125](https://github.com/milesj/packemon/issues/125)
+
+**Note:** Version bump only for package packemon
+
+
+
+
+
 ### 2.2.1 - 2022-04-29
 
 #### 🐞 Fixes
