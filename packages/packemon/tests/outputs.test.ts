@@ -176,12 +176,12 @@ import { createProjectPackage, createSnapshotSpies } from './helpers';
 					expect(ss).toMatchSnapshot();
 
 					// Check import paths are correct
-					if (ss[0].endsWith('lib/index.js')) {
+					if (ss[0].endsWith('lib/index2.js')) {
 						expect(String(ss[1])).toContain("'../assets/globals-107ab52e.css'");
 						expect(String(ss[1])).toContain("'../assets/fonts-4e5dc96c.css'");
 					}
 
-					if (ss[0].endsWith('lib/button/index.js')) {
+					if (ss[0].endsWith('lib/button/index2.js')) {
 						expect(String(ss[1])).toContain("'../../assets/styles-b11c3a83.css'");
 					}
 				});
