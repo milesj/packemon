@@ -39,7 +39,7 @@ export const ASSETS = [
 	'.ttf',
 ];
 
-export const EXTENSIONS = ['.ts', '.tsx', '.js', '.jsx', '.cjs', '.mjs'];
+export const EXTENSIONS = ['.ts', '.tsx', '.cts', '.mts', '.js', '.jsx', '.cjs', '.mjs'];
 
 export const EXCLUDE = [
 	'**/node_modules/**',

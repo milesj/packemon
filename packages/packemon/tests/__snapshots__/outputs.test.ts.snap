@@ -1503,3 +1503,36 @@ Array [
   "assets/fonts-4e5dc96c.css",
 ]
 `;
+
+exports[`Special formats cts supports .cts -> .cjs / .d.cts 1`] = `
+Array [
+  "cjs/index.cjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: cjs
+'use strict';
+
+function test() {
+  return 123;
+}
+
+module.exports = test;
+",
+]
+`;
+
+exports[`Special formats cts supports .cts -> .cjs / .d.cts 2`] = `
+Array [
+  "package.json",
+  Object {
+    "main": "./cjs/index.cjs",
+    "name": "project-cts",
+    "packemon": Object {
+      "format": "cjs",
+      "inputs": Object {
+        "index": "src/index.cts",
+      },
+    },
+    "type": "commonjs",
+  },
+]
+`;

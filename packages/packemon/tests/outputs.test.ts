@@ -2,7 +2,7 @@
 
 import { Path } from '@boost/common';
 import { getFixturePath } from '@boost/test-utils';
-import { CodeArtifact } from '../src';
+import { CodeArtifact, TypesArtifact } from '../src';
 import { createProjectPackage, createSnapshotSpies } from './helpers';
 
 ['babel', 'swc'].forEach((transformer) => {
@@ -185,6 +185,37 @@ import { createProjectPackage, createSnapshotSpies } from './helpers';
 						expect(String(ss[1])).toContain("'../../assets/styles-b11c3a83.css'");
 					}
 				});
+			});
+		});
+	});
+});
+
+describe.only('Special formats', () => {
+	describe('cts', () => {
+		const root = new Path(getFixturePath('project-cts'));
+		const snapshots = createSnapshotSpies(root, true);
+
+		it('supports .cts -> .cjs / .d.cts', async () => {
+			const pkg = createProjectPackage(root);
+
+			const index = new CodeArtifact(pkg, [{ format: 'cjs' }]);
+			index.bundle = true;
+			index.platform = 'node';
+			index.support = 'stable';
+			index.inputs = { index: 'src/index.cts' };
+
+			pkg.addArtifact(index);
+
+			const types = new TypesArtifact(pkg, [
+				{ format: 'cjs', inputFile: 'src/index.cts', outputName: 'index' },
+			]);
+
+			pkg.addArtifact(types);
+
+			await pkg.build({}, {});
+
+			snapshots(pkg).forEach((ss) => {
+				expect(ss).toMatchSnapshot();
 			});
 		});
 	});

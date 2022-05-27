@@ -2,7 +2,7 @@ import { VirtualPath } from '@boost/common';
 import { createDebugger, Debugger } from '@boost/debug';
 import { Artifact } from './Artifact';
 import { removeSourcePath } from './helpers/removeSourcePath';
-import { BuildOptions, PackageExports, TSConfigStructure, TypesBuild } from './types';
+import { BuildOptions, Format, PackageExports, TSConfigStructure, TypesBuild } from './types';
 
 export class TypesArtifact extends Artifact<TypesBuild> {
 	protected debug!: Debugger;
@@ -24,7 +24,37 @@ export class TypesArtifact extends Artifact<TypesBuild> {
 			return '';
 		}
 
-		return `./${new VirtualPath('dts', removeSourcePath(output.inputFile))}.d.ts`;
+		return `./${new VirtualPath('dts', removeSourcePath(output.inputFile))}.${this.getDeclFileExt(
+			output.format,
+		)}`;
+	}
+
+	getDeclFileExt(format?: Format): string {
+		let sourceFormat = format;
+
+		if (!sourceFormat) {
+			sourceFormat = this.builds[0].format;
+
+			const formatsList = this.builds.map((build) => build.format);
+			const isAllSameFormat = formatsList.every((f) => f === sourceFormat);
+
+			if (!isAllSameFormat) {
+				throw new Error(
+					`Unable to generate declarations for multiple formats. Can only generate 1 format, found ${formatsList.join(
+						', ',
+					)}.`,
+				);
+			}
+		}
+
+		switch (sourceFormat) {
+			case 'cjs':
+				return 'd.cts';
+			case 'mjs':
+				return 'd.mts';
+			default:
+				return 'd.ts';
+		}
 	}
 
 	getLabel(): string {
@@ -45,8 +75,10 @@ export class TypesArtifact extends Artifact<TypesBuild> {
 				};
 			});
 		} else {
-			exportMap['./*'] = { types: './dts/*.d.ts' };
-			exportMap['.'] = { types: './dts/index.d.ts' };
+			const ext = this.getDeclFileExt();
+
+			exportMap['./*'] = { types: `./dts/*.${ext}` };
+			exportMap['.'] = { types: `./dts/index.${ext}` };
 		}
 
 		return exportMap;

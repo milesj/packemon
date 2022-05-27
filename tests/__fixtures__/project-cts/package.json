@@ -1,0 +1,12 @@
+{
+  "name": "project-cts",
+  "packemon": {
+    "format": "cjs",
+    "inputs": {
+      "index": "src/index.cts"
+    }
+  },
+  "types": "./dts/index.d.ts",
+  "main": "./cjs/index.cjs",
+  "type": "commonjs"
+}
