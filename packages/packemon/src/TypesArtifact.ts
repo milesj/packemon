@@ -15,7 +15,7 @@ export class TypesArtifact extends Artifact<TypesBuild> {
 	async build(options: BuildOptions): Promise<void> {
 		this.debug('Building types artifact with TypeScript');
 
-		// await this.package.project.generateDeclarations(this.package.path, options.declarationConfig);
+		await this.package.project.generateDeclarations(this.package.path, options.declarationConfig);
 	}
 
 	findEntryPoint(outputName: string): string {

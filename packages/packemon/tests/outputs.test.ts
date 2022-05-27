@@ -190,7 +190,9 @@ import { createProjectPackage, createSnapshotSpies } from './helpers';
 	});
 });
 
-describe.only('Special formats', () => {
+describe('Special formats', () => {
+	jest.setTimeout(10_000);
+
 	describe('cts', () => {
 		const root = new Path(getFixturePath('project-cts'));
 		const snapshots = createSnapshotSpies(root, true);
