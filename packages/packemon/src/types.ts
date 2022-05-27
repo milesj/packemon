@@ -158,7 +158,6 @@ export interface CodeBuild {
 }
 
 export interface TypesBuild {
-	format: Format;
 	inputFile: string;
 	outputName: string;
 }

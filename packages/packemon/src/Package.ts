@@ -543,7 +543,7 @@ export class Package {
 
 			// Type declarations
 			if (artifact instanceof TypesArtifact) {
-				files.add(`dts/**/*.${artifact.getDeclFileExt()}`);
+				files.add(`dts/**/*.${artifact.getDeclExt()}`);
 			}
 		});
 

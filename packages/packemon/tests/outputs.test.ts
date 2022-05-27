@@ -206,9 +206,7 @@ describe.only('Special formats', () => {
 
 			pkg.addArtifact(index);
 
-			const types = new TypesArtifact(pkg, [
-				{ format: 'cjs', inputFile: 'src/index.cts', outputName: 'index' },
-			]);
+			const types = new TypesArtifact(pkg, [{ inputFile: 'src/index.cts', outputName: 'index' }]);
 
 			pkg.addArtifact(types);
 

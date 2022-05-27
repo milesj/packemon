@@ -78,6 +78,47 @@ describe('TypesArtifact', () => {
 			expect(artifact.findEntryPoint('index')).toBe('./dts/index.d.ts');
 			expect(artifact.findEntryPoint('test')).toBe('./dts/sub/test.d.ts');
 		});
+
+		it('supports .d.cts', () => {
+			artifact.builds[0].inputFile = 'src/index.cts';
+
+			expect(artifact.findEntryPoint('index')).toBe('./dts/index.d.cts');
+		});
+
+		it('supports .d.mts', () => {
+			artifact.builds[0].inputFile = 'src/index.mts';
+
+			expect(artifact.findEntryPoint('index')).toBe('./dts/index.d.mts');
+		});
+	});
+
+	describe('getDeclExt()', () => {
+		it('defaults to .d.ts', () => {
+			expect(artifact.getDeclExt()).toBe('d.ts');
+		});
+
+		it('supports .d.cts', () => {
+			artifact.builds[0].inputFile = 'src/index.cts';
+			artifact.builds[1].inputFile = 'src/sub/test.cts';
+
+			expect(artifact.getDeclExt()).toBe('d.cts');
+		});
+
+		it('supports .d.mts', () => {
+			artifact.builds[0].inputFile = 'src/index.mts';
+			artifact.builds[1].inputFile = 'src/sub/test.mts';
+
+			expect(artifact.getDeclExt()).toBe('d.mts');
+		});
+
+		it('errors if multiple source formats', () => {
+			artifact.builds[0].inputFile = 'src/index.cts';
+			artifact.builds[1].inputFile = 'src/sub/test.mts';
+
+			expect(() => artifact.getDeclExt()).toThrow(
+				'All inputs must share the same extension. Cannot determine a TypeScript declaration format.',
+			);
+		});
 	});
 
 	describe('getPackageExports()', () => {
@@ -88,6 +129,34 @@ describe('TypesArtifact', () => {
 				},
 				'./test': {
 					types: './dts/sub/test.d.ts',
+				},
+			});
+		});
+
+		it('supports .d.cts', () => {
+			artifact.builds[0].inputFile = 'src/index.cts';
+			artifact.builds[1].inputFile = 'src/sub/test.cts';
+
+			expect(artifact.getPackageExports()).toEqual({
+				'.': {
+					types: './dts/index.d.cts',
+				},
+				'./test': {
+					types: './dts/sub/test.d.cts',
+				},
+			});
+		});
+
+		it('supports .d.mts', () => {
+			artifact.builds[0].inputFile = 'src/index.mts';
+			artifact.builds[1].inputFile = 'src/sub/test.mts';
+
+			expect(artifact.getPackageExports()).toEqual({
+				'.': {
+					types: './dts/index.d.mts',
+				},
+				'./test': {
+					types: './dts/sub/test.d.mts',
 				},
 			});
 		});
