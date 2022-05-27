@@ -1537,3 +1537,45 @@ Array [
   },
 ]
 `;
+
+exports[`Special formats cts supports .cts -> .cjs / .d.cts 3`] = `
+"export default function test(): number;
+//# sourceMappingURL=index.d.cts.map"
+`;
+
+exports[`Special formats mts supports .mts -> .mjs / .d.mts 1`] = `
+Array [
+  "mjs/index.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: mjs
+function test() {
+  return 'abc';
+}
+
+export { test as default };
+",
+]
+`;
+
+exports[`Special formats mts supports .mts -> .mjs / .d.mts 2`] = `
+Array [
+  "package.json",
+  Object {
+    "main": "./mjs/index.mjs",
+    "name": "project-mts",
+    "packemon": Object {
+      "format": "mjs",
+      "inputs": Object {
+        "index": "src/index.mts",
+      },
+    },
+    "type": "module",
+    "types": "./dts/index.d.mts",
+  },
+]
+`;
+
+exports[`Special formats mts supports .mts -> .mjs / .d.mts 3`] = `
+"export default function test(): string;
+//# sourceMappingURL=index.d.mts.map"
+`;

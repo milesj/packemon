@@ -1,5 +1,6 @@
 /* eslint-disable jest/no-conditional-in-test */
 
+import fs from 'fs';
 import { Path } from '@boost/common';
 import { getFixturePath } from '@boost/test-utils';
 import { CodeArtifact, TypesArtifact } from '../src';
@@ -191,7 +192,7 @@ import { createProjectPackage, createSnapshotSpies } from './helpers';
 });
 
 describe('Special formats', () => {
-	jest.setTimeout(10_000);
+	jest.setTimeout(30_000);
 
 	describe('cts', () => {
 		const root = new Path(getFixturePath('project-cts'));
@@ -217,6 +218,39 @@ describe('Special formats', () => {
 			snapshots(pkg).forEach((ss) => {
 				expect(ss).toMatchSnapshot();
 			});
+
+			// Declaration snapshots are not captured above because it runs in a child process
+			expect(fs.readFileSync(root.append('dts/index.d.cts').path(), 'utf8')).toMatchSnapshot();
+		});
+	});
+
+	describe('mts', () => {
+		const root = new Path(getFixturePath('project-mts'));
+		const snapshots = createSnapshotSpies(root, true);
+
+		it('supports .mts -> .mjs / .d.mts', async () => {
+			const pkg = createProjectPackage(root);
+
+			const index = new CodeArtifact(pkg, [{ format: 'mjs' }]);
+			index.bundle = true;
+			index.platform = 'node';
+			index.support = 'stable';
+			index.inputs = { index: 'src/index.mts' };
+
+			pkg.addArtifact(index);
+
+			const types = new TypesArtifact(pkg, [{ inputFile: 'src/index.mts', outputName: 'index' }]);
+
+			pkg.addArtifact(types);
+
+			await pkg.build({}, {});
+
+			snapshots(pkg).forEach((ss) => {
+				expect(ss).toMatchSnapshot();
+			});
+
+			// Declaration snapshots are not captured above because it runs in a child process
+			expect(fs.readFileSync(root.append('dts/index.d.mts').path(), 'utf8')).toMatchSnapshot();
 		});
 	});
 });
