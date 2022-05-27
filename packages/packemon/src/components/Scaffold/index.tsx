@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { Box } from 'ink';
+import { Box, Text } from 'ink';
 import { Input, useProgram } from '@boost/cli/react';
 import { isModuleName } from '@boost/common';
 import { ScaffoldParams, TemplateType } from '../../types';
@@ -17,6 +17,7 @@ export function Scaffold({ defaultTemplate, onComplete }: ScaffoldProps) {
 	const [projectName, setProjectName] = useState<string>('');
 	const [repoUrl, setRepoUrl] = useState<string>('');
 	const [author, setAuthor] = useState<string>('');
+	const [running, setRunning] = useState(false);
 
 	useEffect(() => {
 		// eslint-disable-next-line complexity
@@ -39,6 +40,8 @@ export function Scaffold({ defaultTemplate, onComplete }: ScaffoldProps) {
 			}
 
 			try {
+				setRunning(true);
+
 				await onComplete({
 					author,
 					template,
@@ -50,6 +53,7 @@ export function Scaffold({ defaultTemplate, onComplete }: ScaffoldProps) {
 			} catch (error: unknown) {
 				exit(error as Error);
 			} finally {
+				setRunning(false);
 				exit();
 			}
 		}
@@ -80,6 +84,14 @@ export function Scaffold({ defaultTemplate, onComplete }: ScaffoldProps) {
 			throw new Error('Please provide an author or company name');
 		}
 	}, []);
+
+	if (running) {
+		return (
+			<Box flexDirection="column">
+				<Text>Scaffolding {template}...</Text>
+			</Box>
+		);
+	}
 
 	const isPackage = template === 'monorepo-package' || template === 'polyrepo-package';
 

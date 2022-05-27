@@ -181,9 +181,7 @@ export class ScaffoldCommand extends Command {
 				break;
 
 			default: {
-				const version = Number.parseFloat((await this.executeCommand('yarn', ['-v'])).stdout);
-
-				args.unshift('add', '--dev', type === 'monorepo' && version < 2 ? '-W' : '');
+				args.unshift('add', '--dev', type === 'monorepo' ? '-W' : '');
 				break;
 			}
 		}
@@ -202,7 +200,11 @@ export class ScaffoldCommand extends Command {
 
 		const pkg = await this.loadJsonConfig<{ infra: string }>(packagePath);
 
-		if (pkg.infra !== type) {
+		if (pkg.infra === undefined) {
+			throw new Error(
+				`A package.json already exists, cannot setup ${type} infrastructure. Perhaps you want "${type}-package"?`,
+			);
+		} else if (pkg.infra !== type) {
 			throw new Error(
 				`Cannot scaffold ${type} infrastructure, as destination has already been setup as a ${pkg.infra}.`,
 			);
