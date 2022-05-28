@@ -11018,10 +11018,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"filesize@npm:^8.0.6, filesize@npm:^8.0.7":
+"filesize@npm:^8.0.6":
   version: 8.0.7
   resolution: "filesize@npm:8.0.7"
   checksum: 8603d27c5287b984cb100733640645e078f5f5ad65c6d913173e01fb99e09b0747828498fd86647685ccecb69be31f3587b9739ab1e50732116b2374aff4cbf9
+  languageName: node
+  linkType: hard
+
+"filesize@npm:^9.0.0":
+  version: 9.0.0
+  resolution: "filesize@npm:9.0.0"
+  checksum: b219da2a58de0921f34940da1c24739293ee8af5dcf8a40a12510cc08ebb6fc6b8f2349c914433d278ab477fca63a2d5c1616afe96123c94870b8c0d73a1bb03
   languageName: node
   linkType: hard
 
@@ -16304,7 +16311,7 @@ __metadata:
     babel-plugin-env-constants: ^2.0.1
     execa: ^5.1.1
     fast-glob: ^3.2.11
-    filesize: ^8.0.7
+    filesize: ^9.0.0
     fs-extra: ^10.1.0
     ink: ^3.2.0
     ink-progress-bar: ^3.0.0
