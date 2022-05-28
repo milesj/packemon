@@ -30,7 +30,7 @@ export class BuildCommand extends BaseCommand<Required<BuildOptions>> {
 	stamp: boolean = false;
 
 	async run() {
-		// eslint-disable-next-line import/no-useless-path-segments, import/no-unresolved
+		// eslint-disable-next-line import/no-useless-path-segments
 		const { Build } = await import('../components/Build/index.js');
 
 		return (

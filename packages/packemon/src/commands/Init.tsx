@@ -34,7 +34,7 @@ export class InitCommand extends BaseCommand<InitOptions> {
 			return undefined;
 		}
 
-		// eslint-disable-next-line import/no-useless-path-segments, import/no-unresolved
+		// eslint-disable-next-line import/no-useless-path-segments
 		const { Init } = await import('../components/Init/index.js');
 
 		return (

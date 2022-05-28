@@ -58,7 +58,7 @@ export class ScaffoldCommand extends Command {
 			return undefined;
 		}
 
-		// eslint-disable-next-line import/no-useless-path-segments, import/no-unresolved
+		// eslint-disable-next-line import/no-useless-path-segments
 		const { Scaffold } = await import('../components/Scaffold/index.js');
 
 		return (

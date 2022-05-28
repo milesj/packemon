@@ -30,7 +30,7 @@ export class FilesCommand extends BaseCommand {
 		const files = await packList({ path: pkg.path.path() });
 		const tree = this.convertFilesToTree(files);
 
-		// eslint-disable-next-line import/no-useless-path-segments, import/no-unresolved
+		// eslint-disable-next-line import/no-useless-path-segments
 		const { Files } = await import('../components/Files/index.js');
 
 		return <Files format={this.format} list={files} name={pkg.getName()} tree={tree} />;
