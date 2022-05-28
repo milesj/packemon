@@ -6,4 +6,5 @@ export default {
 		'tests/helpers.ts',
 		'website',
 	],
+	testEnvironment: 'node',
 };
