@@ -5231,6 +5231,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@rollup/plugin-commonjs@npm:22.0.0":
+  version: 22.0.0
+  resolution: "@rollup/plugin-commonjs@npm:22.0.0"
+  dependencies:
+    "@rollup/pluginutils": ^3.1.0
+    commondir: ^1.0.1
+    estree-walker: ^2.0.1
+    glob: ^7.1.6
+    is-reference: ^1.2.1
+    magic-string: ^0.25.7
+    resolve: ^1.17.0
+  peerDependencies:
+    rollup: ^2.68.0
+  checksum: fdcce2bf58875fde0e06f001544c0d9a0509a12929393862f72dcef8fcbf4d5d0ba0d5db6cf10ba4351335caf67a3dbdb95000678c468585e3972994f92e2ce9
+  languageName: node
+  linkType: hard
+
 "@rollup/plugin-commonjs@npm:^16.0.0":
   version: 16.0.0
   resolution: "@rollup/plugin-commonjs@npm:16.0.0"
@@ -5248,9 +5265,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/plugin-commonjs@npm:^22.0.0":
+"@rollup/plugin-commonjs@patch:@rollup/plugin-commonjs@npm:22.0.0#.yarn/patches/@rollup-plugin-commonjs-npm-22.0.0-6275b92096.patch::locator=packemon-root%40workspace%3A.":
   version: 22.0.0
-  resolution: "@rollup/plugin-commonjs@npm:22.0.0"
+  resolution: "@rollup/plugin-commonjs@patch:@rollup/plugin-commonjs@npm%3A22.0.0#.yarn/patches/@rollup-plugin-commonjs-npm-22.0.0-6275b92096.patch::version=22.0.0&hash=049cfd&locator=packemon-root%40workspace%3A."
   dependencies:
     "@rollup/pluginutils": ^3.1.0
     commondir: ^1.0.1
@@ -5261,7 +5278,7 @@ __metadata:
     resolve: ^1.17.0
   peerDependencies:
     rollup: ^2.68.0
-  checksum: fdcce2bf58875fde0e06f001544c0d9a0509a12929393862f72dcef8fcbf4d5d0ba0d5db6cf10ba4351335caf67a3dbdb95000678c468585e3972994f92e2ce9
+  checksum: 1d7665b28d7c9b8e6b0ada197cab762cb56e6b3026c1654dc1bbc49b12cbd3069c1c71efb3470e5568a53ca4171758701687bcb2235adea2d52fb10e516019a7
   languageName: node
   linkType: hard
 
@@ -5289,6 +5306,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@rollup/plugin-node-resolve@npm:13.3.0":
+  version: 13.3.0
+  resolution: "@rollup/plugin-node-resolve@npm:13.3.0"
+  dependencies:
+    "@rollup/pluginutils": ^3.1.0
+    "@types/resolve": 1.17.1
+    deepmerge: ^4.2.2
+    is-builtin-module: ^3.1.0
+    is-module: ^1.0.0
+    resolve: ^1.19.0
+  peerDependencies:
+    rollup: ^2.42.0
+  checksum: ec5418e6b3c23a9e30683056b3010e9d325316dcfae93fbc673ae64dad8e56a2ce761c15c48f5e2dcfe0c822fdc4a4905ee6346e3dcf90603ba2260afef5a5e6
+  languageName: node
+  linkType: hard
+
 "@rollup/plugin-node-resolve@npm:^10.0.0":
   version: 10.0.0
   resolution: "@rollup/plugin-node-resolve@npm:10.0.0"
@@ -5305,9 +5338,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/plugin-node-resolve@npm:^13.3.0":
+"@rollup/plugin-node-resolve@patch:@rollup/plugin-node-resolve@npm:13.3.0#.yarn/patches/@rollup-plugin-node-resolve-npm-13.3.0-a93dd11647.patch::locator=packemon-root%40workspace%3A.":
   version: 13.3.0
-  resolution: "@rollup/plugin-node-resolve@npm:13.3.0"
+  resolution: "@rollup/plugin-node-resolve@patch:@rollup/plugin-node-resolve@npm%3A13.3.0#.yarn/patches/@rollup-plugin-node-resolve-npm-13.3.0-a93dd11647.patch::version=13.3.0&hash=b79d4f&locator=packemon-root%40workspace%3A."
   dependencies:
     "@rollup/pluginutils": ^3.1.0
     "@types/resolve": 1.17.1
@@ -5317,7 +5350,7 @@ __metadata:
     resolve: ^1.19.0
   peerDependencies:
     rollup: ^2.42.0
-  checksum: ec5418e6b3c23a9e30683056b3010e9d325316dcfae93fbc673ae64dad8e56a2ce761c15c48f5e2dcfe0c822fdc4a4905ee6346e3dcf90603ba2260afef5a5e6
+  checksum: 55b8e13991faf83f87bd81a27108ba86e2654551e62e9c84f29a5a93a215417005e1fd309549cf7db6317ebcd4a4dcd9e09471203c16b77436ab062ec2e22cc5
   languageName: node
   linkType: hard
 
@@ -18960,7 +18993,7 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"rollup-plugin-node-externals@npm:^4.0.0":
+"rollup-plugin-node-externals@npm:4.0.0":
   version: 4.0.0
   resolution: "rollup-plugin-node-externals@npm:4.0.0"
   dependencies:
@@ -18968,6 +19001,17 @@ resolve@^2.0.0-next.3:
   peerDependencies:
     rollup: ^2.60.0
   checksum: 8f4e7faed64332f69f3751b0eb2e4786c05653275c141536e62a69d1c1335d6c9e1b82cf53d24d4511b22c50e9acece65d9217669321c0a87bed4c44ae81789e
+  languageName: node
+  linkType: hard
+
+"rollup-plugin-node-externals@patch:rollup-plugin-node-externals@npm:4.0.0#.yarn/patches/rollup-plugin-node-externals-npm-4.0.0-ff7f4cacfc.patch::locator=packemon-root%40workspace%3A.":
+  version: 4.0.0
+  resolution: "rollup-plugin-node-externals@patch:rollup-plugin-node-externals@npm%3A4.0.0#.yarn/patches/rollup-plugin-node-externals-npm-4.0.0-ff7f4cacfc.patch::version=4.0.0&hash=3617f4&locator=packemon-root%40workspace%3A."
+  dependencies:
+    find-up: ^5.0.0
+  peerDependencies:
+    rollup: ^2.60.0
+  checksum: decbcb44721f6a47e7e513692972f0a42bc63b7199de869204dd8afc172d7d39bb51c1c8fd9f8772217e83879ed093d4e8212cc7ad174be7ab3ee850aef37608
   languageName: node
   linkType: hard
 
