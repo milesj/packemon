@@ -1,0 +1,12 @@
+{
+  "name": "project-mts",
+  "packemon": {
+    "format": "mjs",
+    "inputs": {
+      "index": "src/index.mts"
+    }
+  },
+  "types": "./dts/index.d.mts",
+  "main": "./mjs/index.mjs",
+  "type": "module"
+}

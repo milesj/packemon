@@ -77,6 +77,9 @@ export function createSnapshotSpies(root: PortablePath, captureJson: boolean = f
 				filePath.endsWith('.js') ||
 				filePath.endsWith('.cjs') ||
 				filePath.endsWith('.mjs') ||
+				filePath.endsWith('.d.ts') ||
+				filePath.endsWith('.d.cts') ||
+				filePath.endsWith('.d.mts') ||
 				(captureJson && filePath.endsWith('.json'))
 			) {
 				snapshots.push([filePath, content]);

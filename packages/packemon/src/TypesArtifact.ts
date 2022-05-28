@@ -1,3 +1,4 @@
+import path from 'path';
 import { VirtualPath } from '@boost/common';
 import { createDebugger, Debugger } from '@boost/debug';
 import { Artifact } from './Artifact';
@@ -24,7 +25,35 @@ export class TypesArtifact extends Artifact<TypesBuild> {
 			return '';
 		}
 
-		return `./${new VirtualPath('dts', removeSourcePath(output.inputFile))}.d.ts`;
+		return `./${new VirtualPath(
+			'dts',
+			removeSourcePath(output.inputFile),
+		)}.${this.getDeclExtFromInput(output.inputFile)}`;
+	}
+
+	getDeclExt(): string {
+		const baseInputExt = path.extname(this.builds[0].inputFile);
+		const isAllSameExt = this.builds.every((build) => build.inputFile.endsWith(baseInputExt));
+
+		if (!isAllSameExt) {
+			throw new Error(
+				'All inputs must share the same extension. Cannot determine a TypeScript declaration format.',
+			);
+		}
+
+		return this.getDeclExtFromInput(baseInputExt);
+	}
+
+	getDeclExtFromInput(inputFile: string): string {
+		if (inputFile.endsWith('.cts')) {
+			return 'd.cts';
+		}
+
+		if (inputFile.endsWith('.mts')) {
+			return 'd.mts';
+		}
+
+		return 'd.ts';
 	}
 
 	getLabel(): string {
@@ -45,8 +74,10 @@ export class TypesArtifact extends Artifact<TypesBuild> {
 				};
 			});
 		} else {
-			exportMap['./*'] = { types: './dts/*.d.ts' };
-			exportMap['.'] = { types: './dts/index.d.ts' };
+			const ext = this.getDeclExt();
+
+			exportMap['./*'] = { types: `./dts/*.${ext}` };
+			exportMap['.'] = { types: `./dts/index.${ext}` };
 		}
 
 		return exportMap;

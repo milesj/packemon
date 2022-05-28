@@ -181,7 +181,11 @@ export class ScaffoldCommand extends Command {
 				break;
 
 			default: {
-				args.unshift('add', '--dev', type === 'monorepo' ? '-W' : '');
+				const version = Number.parseFloat(
+					(await this.executeCommand('yarn', ['-v'], { preferLocal: false })).stdout,
+				);
+
+				args.unshift('add', '--dev', type === 'monorepo' && version < 2 ? '-W' : '');
 				break;
 			}
 		}
