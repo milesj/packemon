@@ -194,7 +194,7 @@ export function extractExports(id: string, getModuleInfo: GetModuleInfo): Extrac
 				// export * from './relative/file'
 			} else if (item.source) {
 				const importId = info.importedIds.find((file) =>
-					file.startsWith(path.normalize(path.join(path.dirname(id), item.source!.value))),
+					file.startsWith(path.normalize(path.join(path.dirname(id), item.source.value))),
 				);
 
 				if (importId) {
