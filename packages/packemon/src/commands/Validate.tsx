@@ -32,7 +32,8 @@ export class ValidateCommand extends BaseCommand<Required<ValidateOptions>> {
 	repo: boolean = true;
 
 	async run() {
-		const { Validate } = await import('../components/Validate');
+		// eslint-disable-next-line import/no-useless-path-segments
+		const { Validate } = await import('../components/Validate/index.js');
 
 		return (
 			<Validate

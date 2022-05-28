@@ -4,7 +4,8 @@ import { BuildCommand } from './Build';
 @Config('pack', 'Clean, build, and validate packages for distribution')
 export class PackCommand extends BuildCommand {
 	override async run() {
-		const { Pack } = await import('../components/Pack');
+		// eslint-disable-next-line import/no-useless-path-segments
+		const { Pack } = await import('../components/Pack/index.js');
 
 		return (
 			<Pack
