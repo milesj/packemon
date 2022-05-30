@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.3.1 - 2022-05-30
+
+#### 🐞 Fixes
+
+- Fix exports types when bundling. ([219f35e](https://github.com/milesj/packemon/commit/219f35e))
+- Update non-bundle to include more source file types. ([01a04cb](https://github.com/milesj/packemon/commit/01a04cb))
+
+**Note:** Version bump only for package packemon
+
+
+
+
+
 ## 2.3.0 - 2022-05-30
 
 #### 🚀 Updates
