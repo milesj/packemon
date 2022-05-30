@@ -19,11 +19,16 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## <small>0.8.1 (2022-03-19)</small>
+### 0.8.1 - 2022-03-19
 
-* deps(docusaurus): Update to beta.16. ([c8eeb33](https://github.com/milesj/packemon/commit/c8eeb33))
-* deps(docusaurus): Update to beta.17. ([2729f5a](https://github.com/milesj/packemon/commit/2729f5a))
-* docs: Update algolia keys. ([c2b0c50](https://github.com/milesj/packemon/commit/c2b0c50))
+#### 📦 Dependencies
+
+- **[docusaurus]** Update to beta.16. ([c8eeb33](https://github.com/milesj/packemon/commit/c8eeb33))
+- **[docusaurus]** Update to beta.17. ([2729f5a](https://github.com/milesj/packemon/commit/2729f5a))
+
+#### 📘 Docs
+
+- Update algolia keys. ([c2b0c50](https://github.com/milesj/packemon/commit/c2b0c50))
 
 
 
