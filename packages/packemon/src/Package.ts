@@ -11,6 +11,7 @@ import { CodeArtifact } from './CodeArtifact';
 import {
 	DEFAULT_FORMATS,
 	EXCLUDE,
+	EXTENSIONS,
 	FORMATS_BROWSER,
 	FORMATS_NATIVE,
 	FORMATS_NODE,
@@ -236,8 +237,10 @@ export class Package {
 
 	@Memoize()
 	getSourceFiles(): string[] {
+		const extsWithoutPeriod = EXTENSIONS.map((ext) => ext.slice(1)).join(',');
+
 		return glob
-			.sync('src/**/*.{js,jsx,ts,tsx}', {
+			.sync(`src/**/*.{${extsWithoutPeriod}}`, {
 				absolute: true,
 				cwd: this.path.path(),
 				onlyFiles: true,
