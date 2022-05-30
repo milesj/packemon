@@ -15,6 +15,8 @@ import type {
 export abstract class Artifact<T extends object = {}> {
 	api: ApiType = 'private';
 
+	bundle: boolean = true;
+
 	readonly builds: T[] = [];
 
 	readonly buildResult: BuildResult = { files: [], time: 0 };

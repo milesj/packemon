@@ -18,8 +18,6 @@ import {
 } from './types';
 
 export class CodeArtifact extends Artifact<CodeBuild> {
-	bundle: boolean = true;
-
 	cache?: RollupCache;
 
 	// Config object in which inputs are grouped in

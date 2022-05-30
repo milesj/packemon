@@ -297,6 +297,7 @@ export class Packemon {
 			if (declaration) {
 				const artifact = new TypesArtifact(pkg, Object.values(typesBuilds));
 				artifact.api = apiType;
+				artifact.bundle = pkg.configs.some((config) => config.bundle);
 
 				pkg.addArtifact(artifact);
 			}

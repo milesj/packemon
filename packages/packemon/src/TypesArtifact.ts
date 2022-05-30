@@ -67,7 +67,7 @@ export class TypesArtifact extends Artifact<TypesBuild> {
 	getPackageExports(): PackageExports {
 		const exportMap: PackageExports = {};
 
-		if (this.api === 'private') {
+		if (this.api === 'private' || this.bundle) {
 			this.builds.forEach(({ outputName }) => {
 				exportMap[outputName === 'index' ? '.' : `./${outputName}`] = {
 					types: this.findEntryPoint(outputName),
