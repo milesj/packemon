@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.3.0 - 2022-05-30
+
+#### 🚀 Updates
+
+- Support `.cts` and `.mts` files. (#130) ([f0a9041](https://github.com/milesj/packemon/commit/f0a9041)), closes [#130](https://github.com/milesj/packemon/issues/130)
+
+#### 🐞 Fixes
+
+- Show a progress indicator when templates are being scaffolded. ([a3fd4c4](https://github.com/milesj/packemon/commit/a3fd4c4))
+
+#### 📦 Dependencies
+
+- **[babel]** Update to v7.18 latest. ([7931a45](https://github.com/milesj/packemon/commit/7931a45))
+- **[filesize]** Update to v9. ([4b9a31e](https://github.com/milesj/packemon/commit/4b9a31e))
+- **[npm-packlist]** Update to v5.1. ([5134d2d](https://github.com/milesj/packemon/commit/5134d2d))
+- **[rollup]** Update to v2.75. ([731c825](https://github.com/milesj/packemon/commit/731c825))
+- **[swc]** Update to v1.2.194. ([53a1a84](https://github.com/milesj/packemon/commit/53a1a84))
+
+**Note:** Version bump only for package packemon
+
+
+
+
+
 ### 2.2.2 - 2022-05-20
 
 #### 🐞 Fixes
