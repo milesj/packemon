@@ -421,9 +421,9 @@ export class Package {
 	protected addEntryPoints() {
 		this.debug('Adding entry points to `package.json`');
 
-		let mainEntry = '';
-		let moduleEntry = '';
-		let browserEntry = '';
+		let mainEntry: string | undefined;
+		let moduleEntry: string | undefined;
+		let browserEntry: string | undefined;
 		let buildCount = 0;
 
 		// eslint-disable-next-line complexity

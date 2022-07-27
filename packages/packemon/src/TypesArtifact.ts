@@ -18,11 +18,11 @@ export class TypesArtifact extends Artifact<TypesBuild> {
 		await this.package.project.generateDeclarations(this.package.path, options.declarationConfig);
 	}
 
-	findEntryPoint(outputName: string): string {
+	findEntryPoint(outputName: string): string | undefined {
 		const output = this.builds.find((build) => build.outputName === outputName);
 
 		if (!output) {
-			return '';
+			return undefined;
 		}
 
 		return `./${new VirtualPath(

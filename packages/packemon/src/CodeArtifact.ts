@@ -117,14 +117,14 @@ export class CodeArtifact extends Artifact<CodeBuild> {
 		this.buildResult.files = files;
 	}
 
-	findEntryPoint(formats: Format[], outputName: string): string {
+	findEntryPoint(formats: Format[], outputName: string): string | undefined {
 		for (const format of formats) {
 			if (this.builds.some((build) => build.format === format)) {
 				return this.getBuildOutput(format, outputName).path;
 			}
 		}
 
-		return '';
+		return undefined;
 	}
 
 	getBuildOutput(format: Format, outputName: string = '') {
@@ -199,7 +199,7 @@ export class CodeArtifact extends Artifact<CodeBuild> {
 
 	protected mapPackageExportsFromBuilds(outputName: string, exportMap: PackageExports) {
 		const paths: PackageExportPaths = {};
-		let defaultEntry = '';
+		let defaultEntry: string | undefined;
 
 		this.builds.forEach(({ format }) => {
 			const entry = this.findEntryPoint([format], outputName);
@@ -217,7 +217,7 @@ export class CodeArtifact extends Artifact<CodeBuild> {
 
 				case 'cjs':
 					// Automatically apply the wrapper
-					if (!paths.import && outputName !== '*') {
+					if (!paths.import && outputName !== '*' && entry) {
 						paths.import = entry.replace('.cjs', '-wrapper.mjs');
 					}
 
