@@ -16372,9 +16372,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"npm-packlist@npm:^5.1.0":
-  version: 5.1.0
-  resolution: "npm-packlist@npm:5.1.0"
+"npm-packlist@npm:^5.1.0, npm-packlist@npm:^5.1.1":
+  version: 5.1.1
+  resolution: "npm-packlist@npm:5.1.1"
   dependencies:
     glob: ^8.0.1
     ignore-walk: ^5.0.1
@@ -16382,7 +16382,7 @@ __metadata:
     npm-normalize-package-bin: ^1.0.1
   bin:
     npm-packlist: bin/index.js
-  checksum: aeeed530858bd760236e49f42f36174a437e632406d71ee8af91f15ad42e3a49332365c3dfa3dc0686599506e3a3701d8c7eab157480993ad8634dbc5af27adc
+  checksum: 28dab153744ceb4695b82a9032d14aa2bfb855d38344a09052673d07860a4d8725f808ed23996e6f2792c48e11f5d147632c159f798d2c24dac92b51a884f0c6
   languageName: node
   linkType: hard
 
@@ -17000,7 +17000,7 @@ __metadata:
     ink-spinner: ^4.0.3
     magic-string: ^0.26.2
     micromatch: ^4.0.5
-    npm-packlist: ^5.1.0
+    npm-packlist: ^5.1.1
     react: ^17.0.2
     resolve: ^1.22.1
     rimraf: ^3.0.2
