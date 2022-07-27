@@ -1489,10 +1489,10 @@ export { useState } from 'react';
 exports[`CJS -> MJS wrapper (externals) swc transforms example test case: browser-current-esm 1`] = `
 Array [
   "esm/index-browser-current-esm.js",
-  "import * as optimal from 'optimal';
-// Bundled with Packemon: https://packemon.dev
+  "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: esm
 export * from 'optimal';
+import * as optimal from 'optimal';
 export { optimal };
 export { func, string } from 'optimal';
 export { useState } from 'react';
@@ -1516,11 +1516,11 @@ function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
-        for(const k1 in e)if (k1 !== 'default') {
-            const d = Object.getOwnPropertyDescriptor(e, k1);
-            Object.defineProperty(n, k1, d.get ? d : {
+        for(const k in e)if (k !== 'default') {
+            const d = Object.getOwnPropertyDescriptor(e, k);
+            Object.defineProperty(n, k, d.get ? d : {
                 enumerable: true,
-                get: ()=>e[k1]
+                get: ()=>e[k]
             });
         }
     }
@@ -1554,71 +1554,52 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: browse
 Array [
   "umd/index-browser-current-umd.js",
   "(function(global, factory) {
-    if (typeof define === \\"function\\" && define.amd) {
-        define([
-            \\"exports\\",
-            \\"optimal\\",
-            \\"react\\"
-        ], factory);
-    } else if (typeof exports !== \\"undefined\\") {
-        factory(exports, require(\\"optimal\\"), require(\\"react\\"));
-    } else {
-        var mod = {
-            exports: {}
-        };
-        factory(mod.exports, global.optimal, global.react);
-        global.examples = mod.exports;
-    }
-})(this, function(_exports, optimal, _react) {
+    if (typeof module === \\"object\\" && typeof module.exports === \\"object\\") factory(exports, require(\\"optimal\\"), require(\\"react\\" /*#__PURE__*/ ));
+    else if (typeof define === \\"function\\" && define.amd) define([
+        \\"exports\\",
+        \\"optimal\\",
+        \\"react\\"
+    ], factory);
+    else if (global = typeof globalThis !== \\"undefined\\" ? globalThis : global || self) factory(global.examples = {}, global.optimal, global.react);
+})(this, function(exports, _optimal, _react) {
     \\"use strict\\";
-    optimal = _interopRequireWildcard(optimal);
-    Object.defineProperty(_exports, \\"__esModule\\", {
+    Object.defineProperty(exports, \\"__esModule\\", {
         value: true
     });
-    Object.defineProperty(_exports, \\"func\\", {
-        enumerable: true,
-        get: function() {
-            return optimal.func;
-        }
-    });
-    Object.defineProperty(_exports, \\"string\\", {
-        enumerable: true,
-        get: function() {
-            return optimal.string;
-        }
-    });
-    Object.defineProperty(_exports, \\"useState\\", {
-        enumerable: true,
-        get: function() {
-            return _react.useState;
-        }
-    });
-    var _exportNames = {
-        optimal: true
-    };
-    Object.keys(optimal).forEach(function(key) {
-        if (key === \\"default\\" || key === \\"__esModule\\") return;
-        if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-        if (key in _exports && _exports[key] === optimal[key]) return;
-        Object.defineProperty(_exports, key, {
+    function _export(target, all) {
+        for(var name in all)Object.defineProperty(target, name, {
             enumerable: true,
-            get: function() {
-                return optimal[key];
-            }
+            get: all[name]
         });
-    });
-    _exports.optimal = void 0;
-    _exports.optimal = optimal;
-    function _getRequireWildcardCache() {
-        if (typeof WeakMap !== \\"function\\") return null;
-        var cache = new WeakMap();
-        _getRequireWildcardCache = function() {
-            return cache;
-        };
-        return cache;
     }
-    function _interopRequireWildcard(obj) {
-        if (obj && obj.__esModule) {
+    _export(exports, {
+        optimal: ()=>_optimal,
+        func: ()=>_optimal.func,
+        string: ()=>_optimal.string,
+        useState: ()=>_react.useState
+    });
+    _optimal = _interopRequireWildcard(_exportStar(_optimal, exports));
+    function _exportStar(from, to) {
+        Object.keys(from).forEach(function(k) {
+            if (k !== \\"default\\" && !Object.prototype.hasOwnProperty.call(to, k)) Object.defineProperty(to, k, {
+                enumerable: true,
+                get: function() {
+                    return from[k];
+                }
+            });
+        });
+        return from;
+    }
+    function _getRequireWildcardCache(nodeInterop) {
+        if (typeof WeakMap !== \\"function\\") return null;
+        var cacheBabelInterop = new WeakMap();
+        var cacheNodeInterop = new WeakMap();
+        return (_getRequireWildcardCache = function(nodeInterop) {
+            return nodeInterop ? cacheNodeInterop : cacheBabelInterop;
+        })(nodeInterop);
+    }
+    function _interopRequireWildcard(obj, nodeInterop) {
+        if (!nodeInterop && obj && obj.__esModule) {
             return obj;
         }
         if (obj === null || typeof obj !== \\"object\\" && typeof obj !== \\"function\\") {
@@ -1626,14 +1607,14 @@ Array [
                 default: obj
             };
         }
-        var cache = _getRequireWildcardCache();
+        var cache = _getRequireWildcardCache(nodeInterop);
         if (cache && cache.has(obj)) {
             return cache.get(obj);
         }
         var newObj = {};
         var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;
         for(var key in obj){
-            if (Object.prototype.hasOwnProperty.call(obj, key)) {
+            if (key !== \\"default\\" && Object.prototype.hasOwnProperty.call(obj, key)) {
                 var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;
                 if (desc && (desc.get || desc.set)) {
                     Object.defineProperty(newObj, key, desc);
@@ -1684,11 +1665,11 @@ function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
-        for(const k1 in e)if (k1 !== 'default') {
-            const d = Object.getOwnPropertyDescriptor(e, k1);
-            Object.defineProperty(n, k1, d.get ? d : {
+        for(const k in e)if (k !== 'default') {
+            const d = Object.getOwnPropertyDescriptor(e, k);
+            Object.defineProperty(n, k, d.get ? d : {
                 enumerable: true,
-                get: ()=>e[k1]
+                get: ()=>e[k]
             });
         }
     }
@@ -1722,71 +1703,52 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: browse
 Array [
   "umd/index-browser-experimental-umd.js",
   "(function(global, factory) {
-    if (typeof define === \\"function\\" && define.amd) {
-        define([
-            \\"exports\\",
-            \\"optimal\\",
-            \\"react\\"
-        ], factory);
-    } else if (typeof exports !== \\"undefined\\") {
-        factory(exports, require(\\"optimal\\"), require(\\"react\\"));
-    } else {
-        var mod = {
-            exports: {}
-        };
-        factory(mod.exports, global.optimal, global.react);
-        global.examples = mod.exports;
-    }
-})(this, function(_exports, optimal, _react) {
+    if (typeof module === \\"object\\" && typeof module.exports === \\"object\\") factory(exports, require(\\"optimal\\"), require(\\"react\\" /*#__PURE__*/ ));
+    else if (typeof define === \\"function\\" && define.amd) define([
+        \\"exports\\",
+        \\"optimal\\",
+        \\"react\\"
+    ], factory);
+    else if (global = typeof globalThis !== \\"undefined\\" ? globalThis : global || self) factory(global.examples = {}, global.optimal, global.react);
+})(this, function(exports, _optimal, _react) {
     \\"use strict\\";
-    optimal = _interopRequireWildcard(optimal);
-    Object.defineProperty(_exports, \\"__esModule\\", {
+    Object.defineProperty(exports, \\"__esModule\\", {
         value: true
     });
-    Object.defineProperty(_exports, \\"func\\", {
-        enumerable: true,
-        get: function() {
-            return optimal.func;
-        }
-    });
-    Object.defineProperty(_exports, \\"string\\", {
-        enumerable: true,
-        get: function() {
-            return optimal.string;
-        }
-    });
-    Object.defineProperty(_exports, \\"useState\\", {
-        enumerable: true,
-        get: function() {
-            return _react.useState;
-        }
-    });
-    var _exportNames = {
-        optimal: true
-    };
-    Object.keys(optimal).forEach(function(key) {
-        if (key === \\"default\\" || key === \\"__esModule\\") return;
-        if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-        if (key in _exports && _exports[key] === optimal[key]) return;
-        Object.defineProperty(_exports, key, {
+    function _export(target, all) {
+        for(var name in all)Object.defineProperty(target, name, {
             enumerable: true,
-            get: function() {
-                return optimal[key];
-            }
+            get: all[name]
         });
-    });
-    _exports.optimal = void 0;
-    _exports.optimal = optimal;
-    function _getRequireWildcardCache() {
-        if (typeof WeakMap !== \\"function\\") return null;
-        var cache = new WeakMap();
-        _getRequireWildcardCache = function() {
-            return cache;
-        };
-        return cache;
     }
-    function _interopRequireWildcard(obj) {
-        if (obj && obj.__esModule) {
+    _export(exports, {
+        optimal: ()=>_optimal,
+        func: ()=>_optimal.func,
+        string: ()=>_optimal.string,
+        useState: ()=>_react.useState
+    });
+    _optimal = _interopRequireWildcard(_exportStar(_optimal, exports));
+    function _exportStar(from, to) {
+        Object.keys(from).forEach(function(k) {
+            if (k !== \\"default\\" && !Object.prototype.hasOwnProperty.call(to, k)) Object.defineProperty(to, k, {
+                enumerable: true,
+                get: function() {
+                    return from[k];
+                }
+            });
+        });
+        return from;
+    }
+    function _getRequireWildcardCache(nodeInterop) {
+        if (typeof WeakMap !== \\"function\\") return null;
+        var cacheBabelInterop = new WeakMap();
+        var cacheNodeInterop = new WeakMap();
+        return (_getRequireWildcardCache = function(nodeInterop) {
+            return nodeInterop ? cacheNodeInterop : cacheBabelInterop;
+        })(nodeInterop);
+    }
+    function _interopRequireWildcard(obj, nodeInterop) {
+        if (!nodeInterop && obj && obj.__esModule) {
             return obj;
         }
         if (obj === null || typeof obj !== \\"object\\" && typeof obj !== \\"function\\") {
@@ -1794,14 +1756,14 @@ Array [
                 default: obj
             };
         }
-        var cache = _getRequireWildcardCache();
+        var cache = _getRequireWildcardCache(nodeInterop);
         if (cache && cache.has(obj)) {
             return cache.get(obj);
         }
         var newObj = {};
         var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;
         for(var key in obj){
-            if (Object.prototype.hasOwnProperty.call(obj, key)) {
+            if (key !== \\"default\\" && Object.prototype.hasOwnProperty.call(obj, key)) {
                 var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;
                 if (desc && (desc.get || desc.set)) {
                     Object.defineProperty(newObj, key, desc);
@@ -1825,10 +1787,10 @@ Array [
 exports[`CJS -> MJS wrapper (externals) swc transforms example test case: browser-legacy-esm 1`] = `
 Array [
   "esm/index-browser-legacy-esm.js",
-  "import * as optimal from \\"optimal\\";
-// Bundled with Packemon: https://packemon.dev
+  "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: esm
 export * from \\"optimal\\";
+import * as optimal from \\"optimal\\";
 export { optimal };
 export { func, string } from \\"optimal\\";
 export { useState } from \\"react\\";
@@ -1860,7 +1822,7 @@ function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     var n = Object.create(null);
     if (e) {
-        var _loop1 = function(k) {
+        var _loop = function(k) {
             if (k !== \\"default\\") {
                 var d = Object.getOwnPropertyDescriptor(e, k);
                 Object.defineProperty(n, k, d.get ? d : {
@@ -1871,7 +1833,7 @@ function _interopNamespace(e) {
                 });
             }
         };
-        for(var k in e)_loop1(k);
+        for(var k in e)_loop(k);
     }
     n.default = e;
     return Object.freeze(n);
@@ -1906,71 +1868,60 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: browse
 Array [
   "umd/index-browser-legacy-umd.js",
   "(function(global, factory) {
-    if (typeof define === \\"function\\" && define.amd) {
-        define([
-            \\"exports\\",
-            \\"optimal\\",
-            \\"react\\"
-        ], factory);
-    } else if (typeof exports !== \\"undefined\\") {
-        factory(exports, require(\\"optimal\\"), require(\\"react\\"));
-    } else {
-        var mod = {
-            exports: {}
-        };
-        factory(mod.exports, global.optimal, global.react);
-        global.examples = mod.exports;
-    }
-})(this, function(_exports, optimal, _react) {
+    if (typeof module === \\"object\\" && typeof module.exports === \\"object\\") factory(exports, require(\\"optimal\\"), require(\\"react\\" /*#__PURE__*/ ));
+    else if (typeof define === \\"function\\" && define.amd) define([
+        \\"exports\\",
+        \\"optimal\\",
+        \\"react\\"
+    ], factory);
+    else if (global = typeof globalThis !== \\"undefined\\" ? globalThis : global || self) factory(global.examples = {}, global.optimal, global.react);
+})(this, function(exports, _optimal, _react) {
     \\"use strict\\";
-    optimal = _interopRequireWildcard(optimal);
-    Object.defineProperty(_exports, \\"__esModule\\", {
+    Object.defineProperty(exports, \\"__esModule\\", {
         value: true
     });
-    Object.defineProperty(_exports, \\"func\\", {
-        enumerable: true,
-        get: function() {
-            return optimal.func;
-        }
-    });
-    Object.defineProperty(_exports, \\"string\\", {
-        enumerable: true,
-        get: function() {
-            return optimal.string;
-        }
-    });
-    Object.defineProperty(_exports, \\"useState\\", {
-        enumerable: true,
-        get: function() {
+    function _export(target, all) {
+        for(var name in all)Object.defineProperty(target, name, {
+            enumerable: true,
+            get: all[name]
+        });
+    }
+    _export(exports, {
+        optimal: function() {
+            return _optimal;
+        },
+        func: function() {
+            return _optimal.func;
+        },
+        string: function() {
+            return _optimal.string;
+        },
+        useState: function() {
             return _react.useState;
         }
     });
-    var _exportNames = {
-        optimal: true
-    };
-    Object.keys(optimal).forEach(function(key) {
-        if (key === \\"default\\" || key === \\"__esModule\\") return;
-        if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-        if (key in _exports && _exports[key] === optimal[key]) return;
-        Object.defineProperty(_exports, key, {
-            enumerable: true,
-            get: function() {
-                return optimal[key];
-            }
+    _optimal = _interopRequireWildcard(_exportStar(_optimal, exports));
+    function _exportStar(from, to) {
+        Object.keys(from).forEach(function(k) {
+            if (k !== \\"default\\" && !Object.prototype.hasOwnProperty.call(to, k)) Object.defineProperty(to, k, {
+                enumerable: true,
+                get: function() {
+                    return from[k];
+                }
+            });
         });
-    });
-    _exports.optimal = void 0;
-    _exports.optimal = optimal;
-    function _getRequireWildcardCache() {
-        if (typeof WeakMap !== \\"function\\") return null;
-        var cache = new WeakMap();
-        _getRequireWildcardCache = function() {
-            return cache;
-        };
-        return cache;
+        return from;
     }
-    function _interopRequireWildcard(obj) {
-        if (obj && obj.__esModule) {
+    function _getRequireWildcardCache(nodeInterop) {
+        if (typeof WeakMap !== \\"function\\") return null;
+        var cacheBabelInterop = new WeakMap();
+        var cacheNodeInterop = new WeakMap();
+        return (_getRequireWildcardCache = function(nodeInterop) {
+            return nodeInterop ? cacheNodeInterop : cacheBabelInterop;
+        })(nodeInterop);
+    }
+    function _interopRequireWildcard(obj, nodeInterop) {
+        if (!nodeInterop && obj && obj.__esModule) {
             return obj;
         }
         if (obj === null || typeof obj !== \\"object\\" && typeof obj !== \\"function\\") {
@@ -1978,14 +1929,14 @@ Array [
                 default: obj
             };
         }
-        var cache = _getRequireWildcardCache();
+        var cache = _getRequireWildcardCache(nodeInterop);
         if (cache && cache.has(obj)) {
             return cache.get(obj);
         }
         var newObj = {};
         var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;
         for(var key in obj){
-            if (Object.prototype.hasOwnProperty.call(obj, key)) {
+            if (key !== \\"default\\" && Object.prototype.hasOwnProperty.call(obj, key)) {
                 var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;
                 if (desc && (desc.get || desc.set)) {
                     Object.defineProperty(newObj, key, desc);
@@ -2009,10 +1960,10 @@ Array [
 exports[`CJS -> MJS wrapper (externals) swc transforms example test case: browser-stable-esm 1`] = `
 Array [
   "esm/index-browser-stable-esm.js",
-  "import * as optimal from 'optimal';
-// Bundled with Packemon: https://packemon.dev
+  "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: esm
 export * from 'optimal';
+import * as optimal from 'optimal';
 export { optimal };
 export { func, string } from 'optimal';
 export { useState } from 'react';
@@ -2036,11 +1987,11 @@ function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
-        for(const k1 in e)if (k1 !== 'default') {
-            const d = Object.getOwnPropertyDescriptor(e, k1);
-            Object.defineProperty(n, k1, d.get ? d : {
+        for(const k in e)if (k !== 'default') {
+            const d = Object.getOwnPropertyDescriptor(e, k);
+            Object.defineProperty(n, k, d.get ? d : {
                 enumerable: true,
-                get: ()=>e[k1]
+                get: ()=>e[k]
             });
         }
     }
@@ -2074,71 +2025,52 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: browse
 Array [
   "umd/index-browser-stable-umd.js",
   "(function(global, factory) {
-    if (typeof define === \\"function\\" && define.amd) {
-        define([
-            \\"exports\\",
-            \\"optimal\\",
-            \\"react\\"
-        ], factory);
-    } else if (typeof exports !== \\"undefined\\") {
-        factory(exports, require(\\"optimal\\"), require(\\"react\\"));
-    } else {
-        var mod = {
-            exports: {}
-        };
-        factory(mod.exports, global.optimal, global.react);
-        global.examples = mod.exports;
-    }
-})(this, function(_exports, optimal, _react) {
+    if (typeof module === \\"object\\" && typeof module.exports === \\"object\\") factory(exports, require(\\"optimal\\"), require(\\"react\\" /*#__PURE__*/ ));
+    else if (typeof define === \\"function\\" && define.amd) define([
+        \\"exports\\",
+        \\"optimal\\",
+        \\"react\\"
+    ], factory);
+    else if (global = typeof globalThis !== \\"undefined\\" ? globalThis : global || self) factory(global.examples = {}, global.optimal, global.react);
+})(this, function(exports, _optimal, _react) {
     \\"use strict\\";
-    optimal = _interopRequireWildcard(optimal);
-    Object.defineProperty(_exports, \\"__esModule\\", {
+    Object.defineProperty(exports, \\"__esModule\\", {
         value: true
     });
-    Object.defineProperty(_exports, \\"func\\", {
-        enumerable: true,
-        get: function() {
-            return optimal.func;
-        }
-    });
-    Object.defineProperty(_exports, \\"string\\", {
-        enumerable: true,
-        get: function() {
-            return optimal.string;
-        }
-    });
-    Object.defineProperty(_exports, \\"useState\\", {
-        enumerable: true,
-        get: function() {
-            return _react.useState;
-        }
-    });
-    var _exportNames = {
-        optimal: true
-    };
-    Object.keys(optimal).forEach(function(key) {
-        if (key === \\"default\\" || key === \\"__esModule\\") return;
-        if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-        if (key in _exports && _exports[key] === optimal[key]) return;
-        Object.defineProperty(_exports, key, {
+    function _export(target, all) {
+        for(var name in all)Object.defineProperty(target, name, {
             enumerable: true,
-            get: function() {
-                return optimal[key];
-            }
+            get: all[name]
         });
-    });
-    _exports.optimal = void 0;
-    _exports.optimal = optimal;
-    function _getRequireWildcardCache() {
-        if (typeof WeakMap !== \\"function\\") return null;
-        var cache = new WeakMap();
-        _getRequireWildcardCache = function() {
-            return cache;
-        };
-        return cache;
     }
-    function _interopRequireWildcard(obj) {
-        if (obj && obj.__esModule) {
+    _export(exports, {
+        optimal: ()=>_optimal,
+        func: ()=>_optimal.func,
+        string: ()=>_optimal.string,
+        useState: ()=>_react.useState
+    });
+    _optimal = _interopRequireWildcard(_exportStar(_optimal, exports));
+    function _exportStar(from, to) {
+        Object.keys(from).forEach(function(k) {
+            if (k !== \\"default\\" && !Object.prototype.hasOwnProperty.call(to, k)) Object.defineProperty(to, k, {
+                enumerable: true,
+                get: function() {
+                    return from[k];
+                }
+            });
+        });
+        return from;
+    }
+    function _getRequireWildcardCache(nodeInterop) {
+        if (typeof WeakMap !== \\"function\\") return null;
+        var cacheBabelInterop = new WeakMap();
+        var cacheNodeInterop = new WeakMap();
+        return (_getRequireWildcardCache = function(nodeInterop) {
+            return nodeInterop ? cacheNodeInterop : cacheBabelInterop;
+        })(nodeInterop);
+    }
+    function _interopRequireWildcard(obj, nodeInterop) {
+        if (!nodeInterop && obj && obj.__esModule) {
             return obj;
         }
         if (obj === null || typeof obj !== \\"object\\" && typeof obj !== \\"function\\") {
@@ -2146,14 +2078,14 @@ Array [
                 default: obj
             };
         }
-        var cache = _getRequireWildcardCache();
+        var cache = _getRequireWildcardCache(nodeInterop);
         if (cache && cache.has(obj)) {
             return cache.get(obj);
         }
         var newObj = {};
         var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;
         for(var key in obj){
-            if (Object.prototype.hasOwnProperty.call(obj, key)) {
+            if (key !== \\"default\\" && Object.prototype.hasOwnProperty.call(obj, key)) {
                 var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;
                 if (desc && (desc.get || desc.set)) {
                     Object.defineProperty(newObj, key, desc);
@@ -2189,11 +2121,11 @@ function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
-        for(const k1 in e)if (k1 !== 'default') {
-            const d = Object.getOwnPropertyDescriptor(e, k1);
-            Object.defineProperty(n, k1, d.get ? d : {
+        for(const k in e)if (k !== 'default') {
+            const d = Object.getOwnPropertyDescriptor(e, k);
+            Object.defineProperty(n, k, d.get ? d : {
                 enumerable: true,
-                get: ()=>e[k1]
+                get: ()=>e[k]
             });
         }
     }
@@ -2238,11 +2170,11 @@ function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
-        for(const k1 in e)if (k1 !== 'default') {
-            const d = Object.getOwnPropertyDescriptor(e, k1);
-            Object.defineProperty(n, k1, d.get ? d : {
+        for(const k in e)if (k !== 'default') {
+            const d = Object.getOwnPropertyDescriptor(e, k);
+            Object.defineProperty(n, k, d.get ? d : {
                 enumerable: true,
-                get: ()=>e[k1]
+                get: ()=>e[k]
             });
         }
     }
@@ -2287,11 +2219,11 @@ function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
-        for(const k1 in e)if (k1 !== \\"default\\") {
-            const d = Object.getOwnPropertyDescriptor(e, k1);
-            Object.defineProperty(n, k1, d.get ? d : {
+        for(const k in e)if (k !== \\"default\\") {
+            const d = Object.getOwnPropertyDescriptor(e, k);
+            Object.defineProperty(n, k, d.get ? d : {
                 enumerable: true,
-                get: ()=>e[k1]
+                get: ()=>e[k]
             });
         }
     }
@@ -2336,11 +2268,11 @@ function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
-        for(const k1 in e)if (k1 !== 'default') {
-            const d = Object.getOwnPropertyDescriptor(e, k1);
-            Object.defineProperty(n, k1, d.get ? d : {
+        for(const k in e)if (k !== 'default') {
+            const d = Object.getOwnPropertyDescriptor(e, k);
+            Object.defineProperty(n, k, d.get ? d : {
                 enumerable: true,
-                get: ()=>e[k1]
+                get: ()=>e[k]
             });
         }
     }
@@ -2400,11 +2332,11 @@ function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
-        for(const k1 in e)if (k1 !== 'default') {
-            const d = Object.getOwnPropertyDescriptor(e, k1);
-            Object.defineProperty(n, k1, d.get ? d : {
+        for(const k in e)if (k !== 'default') {
+            const d = Object.getOwnPropertyDescriptor(e, k);
+            Object.defineProperty(n, k, d.get ? d : {
                 enumerable: true,
-                get: ()=>e[k1]
+                get: ()=>e[k]
             });
         }
     }
@@ -2449,11 +2381,11 @@ function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
-        for(const k1 in e)if (k1 !== 'default') {
-            const d = Object.getOwnPropertyDescriptor(e, k1);
-            Object.defineProperty(n, k1, d.get ? d : {
+        for(const k in e)if (k !== 'default') {
+            const d = Object.getOwnPropertyDescriptor(e, k);
+            Object.defineProperty(n, k, d.get ? d : {
                 enumerable: true,
-                get: ()=>e[k1]
+                get: ()=>e[k]
             });
         }
     }
@@ -2528,11 +2460,11 @@ function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
-        for(const k1 in e)if (k1 !== 'default') {
-            const d = Object.getOwnPropertyDescriptor(e, k1);
-            Object.defineProperty(n, k1, d.get ? d : {
+        for(const k in e)if (k !== 'default') {
+            const d = Object.getOwnPropertyDescriptor(e, k);
+            Object.defineProperty(n, k, d.get ? d : {
                 enumerable: true,
-                get: ()=>e[k1]
+                get: ()=>e[k]
             });
         }
     }
@@ -2577,11 +2509,11 @@ function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
-        for(const k1 in e)if (k1 !== 'default') {
-            const d = Object.getOwnPropertyDescriptor(e, k1);
-            Object.defineProperty(n, k1, d.get ? d : {
+        for(const k in e)if (k !== 'default') {
+            const d = Object.getOwnPropertyDescriptor(e, k);
+            Object.defineProperty(n, k, d.get ? d : {
                 enumerable: true,
-                get: ()=>e[k1]
+                get: ()=>e[k]
             });
         }
     }
@@ -2656,11 +2588,11 @@ function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
-        for(const k1 in e)if (k1 !== \\"default\\") {
-            const d = Object.getOwnPropertyDescriptor(e, k1);
-            Object.defineProperty(n, k1, d.get ? d : {
+        for(const k in e)if (k !== \\"default\\") {
+            const d = Object.getOwnPropertyDescriptor(e, k);
+            Object.defineProperty(n, k, d.get ? d : {
                 enumerable: true,
-                get: ()=>e[k1]
+                get: ()=>e[k]
             });
         }
     }
@@ -2705,11 +2637,11 @@ function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
-        for(const k1 in e)if (k1 !== \\"default\\") {
-            const d = Object.getOwnPropertyDescriptor(e, k1);
-            Object.defineProperty(n, k1, d.get ? d : {
+        for(const k in e)if (k !== \\"default\\") {
+            const d = Object.getOwnPropertyDescriptor(e, k);
+            Object.defineProperty(n, k, d.get ? d : {
                 enumerable: true,
-                get: ()=>e[k1]
+                get: ()=>e[k]
             });
         }
     }
@@ -2742,10 +2674,10 @@ for(const k in optimal)if (k !== \\"default\\" && !exports.hasOwnProperty(k)) Ob
 exports[`CJS -> MJS wrapper (externals) swc transforms example test case: node-legacy-mjs 1`] = `
 Array [
   "mjs/index-node-legacy-mjs.mjs",
-  "import * as optimal from \\"optimal\\";
-// Bundled with Packemon: https://packemon.dev
+  "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: mjs
 export * from \\"optimal\\";
+import * as optimal from \\"optimal\\";
 export { optimal };
 export { func, string } from \\"optimal\\";
 export { useState } from \\"react\\";
@@ -2784,11 +2716,11 @@ function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
-        for(const k1 in e)if (k1 !== 'default') {
-            const d = Object.getOwnPropertyDescriptor(e, k1);
-            Object.defineProperty(n, k1, d.get ? d : {
+        for(const k in e)if (k !== 'default') {
+            const d = Object.getOwnPropertyDescriptor(e, k);
+            Object.defineProperty(n, k, d.get ? d : {
                 enumerable: true,
-                get: ()=>e[k1]
+                get: ()=>e[k]
             });
         }
     }
@@ -2833,11 +2765,11 @@ function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
-        for(const k1 in e)if (k1 !== 'default') {
-            const d = Object.getOwnPropertyDescriptor(e, k1);
-            Object.defineProperty(n, k1, d.get ? d : {
+        for(const k in e)if (k !== 'default') {
+            const d = Object.getOwnPropertyDescriptor(e, k);
+            Object.defineProperty(n, k, d.get ? d : {
                 enumerable: true,
-                get: ()=>e[k1]
+                get: ()=>e[k]
             });
         }
     }
@@ -4740,65 +4672,64 @@ exports[`CJS -> MJS wrapper swc transforms example test case: browser-current-um
 Array [
   "umd/index-browser-current-umd.js",
   "(function(global, factory) {
-    if (typeof define === \\"function\\" && define.amd) {
-        define([
-            \\"exports\\"
-        ], factory);
-    } else if (typeof exports !== \\"undefined\\") {
-        factory(exports);
-    } else {
-        var mod = {
-            exports: {}
-        };
-        factory(mod.exports);
-        global.examples = mod.exports;
-    }
-})(this, function(_exports) {
+    if (typeof module === \\"object\\" && typeof module.exports === \\"object\\") factory(exports);
+    else if (typeof define === \\"function\\" && define.amd) define([
+        \\"exports\\"
+    ], factory);
+    else if (global = typeof globalThis !== \\"undefined\\" ? globalThis : global || self) factory(global.examples = {});
+})(this, function(exports) {
     \\"use strict\\";
-    Object.defineProperty(_exports, \\"__esModule\\", {
+    Object.defineProperty(exports, \\"__esModule\\", {
         value: true
     });
-    _exports.default = _exports.CONST = _exports.arrowFunc = _exports.func = _exports.ClassName = _exports.f = _exports.e = _exports.d = _exports.c = _exports.b = _exports.a = _exports.ns3 = _exports.ns2 = _exports.ns1 = _exports.bar = _exports.fooRenamed = _exports.foo = void 0;
+    function _export(target, all) {
+        for(var name in all)Object.defineProperty(target, name, {
+            enumerable: true,
+            get: all[name]
+        });
+    }
+    _export(exports, {
+        CONST: ()=>CONST,
+        ClassName: ()=>ClassName,
+        a: ()=>a,
+        arrowFunc: ()=>arrowFunc,
+        b: ()=>b,
+        bar: ()=>bar,
+        c: ()=>c,
+        d: ()=>d,
+        default: ()=>DefaultClass,
+        e: ()=>e,
+        f: ()=>f,
+        foo: ()=>foo,
+        fooRenamed: ()=>foo,
+        func: ()=>func,
+        ns1: ()=>helpers,
+        ns2: ()=>helpers,
+        ns3: ()=>helpers
+    });
     function foo() {}
-    _exports.foo = foo;
-    _exports.fooRenamed = foo;
     function bar() {}
-    _exports.bar = bar;
     const helpers = /*#__PURE__*/ Object.freeze({
         __proto__: null,
         foo,
         bar
     });
-    _exports.ns1 = helpers;
-    _exports.ns2 = helpers;
-    _exports.ns3 = helpers;
     let a;
-    _exports.a = a;
     const b = 123;
-    _exports.b = b;
     const { c  } = {
         c: true
     };
-    _exports.c = c;
     const [d] = [
         {}
     ];
-    _exports.d = d;
     const e = 456, f = 'xyz';
-    _exports.e = e;
-    _exports.f = f;
     let ClassName = class ClassName {
     };
-    _exports.ClassName = ClassName;
     function func() {}
-    _exports.func = func;
     const arrowFunc = ()=>{};
-    _exports.arrowFunc = arrowFunc;
     const CONST = 123;
-    _exports.CONST = CONST;
     let DefaultClass = class DefaultClass {
     };
-    _exports.default = DefaultClass;
 });
 //# sourceMappingURL=index-browser-current-umd.js.map
 ",
@@ -4899,65 +4830,64 @@ exports[`CJS -> MJS wrapper swc transforms example test case: browser-experiment
 Array [
   "umd/index-browser-experimental-umd.js",
   "(function(global, factory) {
-    if (typeof define === \\"function\\" && define.amd) {
-        define([
-            \\"exports\\"
-        ], factory);
-    } else if (typeof exports !== \\"undefined\\") {
-        factory(exports);
-    } else {
-        var mod = {
-            exports: {}
-        };
-        factory(mod.exports);
-        global.examples = mod.exports;
-    }
-})(this, function(_exports) {
+    if (typeof module === \\"object\\" && typeof module.exports === \\"object\\") factory(exports);
+    else if (typeof define === \\"function\\" && define.amd) define([
+        \\"exports\\"
+    ], factory);
+    else if (global = typeof globalThis !== \\"undefined\\" ? globalThis : global || self) factory(global.examples = {});
+})(this, function(exports) {
     \\"use strict\\";
-    Object.defineProperty(_exports, \\"__esModule\\", {
+    Object.defineProperty(exports, \\"__esModule\\", {
         value: true
     });
-    _exports.default = _exports.CONST = _exports.arrowFunc = _exports.func = _exports.ClassName = _exports.f = _exports.e = _exports.d = _exports.c = _exports.b = _exports.a = _exports.ns3 = _exports.ns2 = _exports.ns1 = _exports.bar = _exports.fooRenamed = _exports.foo = void 0;
+    function _export(target, all) {
+        for(var name in all)Object.defineProperty(target, name, {
+            enumerable: true,
+            get: all[name]
+        });
+    }
+    _export(exports, {
+        CONST: ()=>CONST,
+        ClassName: ()=>ClassName,
+        a: ()=>a,
+        arrowFunc: ()=>arrowFunc,
+        b: ()=>b,
+        bar: ()=>bar,
+        c: ()=>c,
+        d: ()=>d,
+        default: ()=>DefaultClass,
+        e: ()=>e,
+        f: ()=>f,
+        foo: ()=>foo,
+        fooRenamed: ()=>foo,
+        func: ()=>func,
+        ns1: ()=>helpers,
+        ns2: ()=>helpers,
+        ns3: ()=>helpers
+    });
     function foo() {}
-    _exports.foo = foo;
-    _exports.fooRenamed = foo;
     function bar() {}
-    _exports.bar = bar;
     const helpers = /*#__PURE__*/ Object.freeze({
         __proto__: null,
         foo,
         bar
     });
-    _exports.ns1 = helpers;
-    _exports.ns2 = helpers;
-    _exports.ns3 = helpers;
     let a;
-    _exports.a = a;
     const b = 123;
-    _exports.b = b;
     const { c  } = {
         c: true
     };
-    _exports.c = c;
     const [d] = [
         {}
     ];
-    _exports.d = d;
     const e = 456, f = 'xyz';
-    _exports.e = e;
-    _exports.f = f;
     let ClassName = class ClassName {
     };
-    _exports.ClassName = ClassName;
     function func() {}
-    _exports.func = func;
     const arrowFunc = ()=>{};
-    _exports.arrowFunc = arrowFunc;
     const CONST = 123;
-    _exports.CONST = CONST;
     let DefaultClass = class DefaultClass {
     };
-    _exports.default = DefaultClass;
 });
 //# sourceMappingURL=index-browser-experimental-umd.js.map
 ",
@@ -4967,13 +4897,13 @@ Array [
 exports[`CJS -> MJS wrapper swc transforms example test case: browser-legacy-esm 1`] = `
 Array [
   "esm/index-browser-legacy-esm.js",
-  "function _classCallCheck(instance, Constructor) {
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: legacy, Format: esm
+function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
         throw new TypeError(\\"Cannot call a class as a function\\");
     }
 }
-// Bundled with Packemon: https://packemon.dev
-// Platform: browser, Support: legacy, Format: esm
 function foo() {}
 function bar() {}
 var helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty({
@@ -5070,72 +5000,105 @@ exports[`CJS -> MJS wrapper swc transforms example test case: browser-legacy-umd
 Array [
   "umd/index-browser-legacy-umd.js",
   "(function(global, factory) {
-    if (typeof define === \\"function\\" && define.amd) {
-        define([
-            \\"exports\\"
-        ], factory);
-    } else if (typeof exports !== \\"undefined\\") {
-        factory(exports);
-    } else {
-        var mod = {
-            exports: {}
-        };
-        factory(mod.exports);
-        global.examples = mod.exports;
-    }
-})(this, function(_exports) {
+    if (typeof module === \\"object\\" && typeof module.exports === \\"object\\") factory(exports);
+    else if (typeof define === \\"function\\" && define.amd) define([
+        \\"exports\\"
+    ], factory);
+    else if (global = typeof globalThis !== \\"undefined\\" ? globalThis : global || self) factory(global.examples = {});
+})(this, function(exports) {
     \\"use strict\\";
-    Object.defineProperty(_exports, \\"__esModule\\", {
+    Object.defineProperty(exports, \\"__esModule\\", {
         value: true
     });
-    _exports.default = _exports.CONST = _exports.arrowFunc = _exports.func = _exports.ClassName = _exports.f = _exports.e = _exports.d = _exports.c = _exports.b = _exports.a = _exports.ns3 = _exports.ns2 = _exports.ns1 = _exports.bar = _exports.fooRenamed = _exports.foo = void 0;
+    function _export(target, all) {
+        for(var name in all)Object.defineProperty(target, name, {
+            enumerable: true,
+            get: all[name]
+        });
+    }
+    _export(exports, {
+        CONST: function() {
+            return CONST;
+        },
+        ClassName: function() {
+            return ClassName;
+        },
+        a: function() {
+            return a;
+        },
+        arrowFunc: function() {
+            return arrowFunc;
+        },
+        b: function() {
+            return b;
+        },
+        bar: function() {
+            return bar;
+        },
+        c: function() {
+            return c;
+        },
+        d: function() {
+            return d;
+        },
+        default: function() {
+            return DefaultClass;
+        },
+        e: function() {
+            return e;
+        },
+        f: function() {
+            return f;
+        },
+        foo: function() {
+            return foo;
+        },
+        fooRenamed: function() {
+            return foo;
+        },
+        func: function() {
+            return func;
+        },
+        ns1: function() {
+            return helpers;
+        },
+        ns2: function() {
+            return helpers;
+        },
+        ns3: function() {
+            return helpers;
+        }
+    });
     function _classCallCheck(instance, Constructor) {
         if (!(instance instanceof Constructor)) {
             throw new TypeError(\\"Cannot call a class as a function\\");
         }
     }
     function foo() {}
-    _exports.foo = foo;
-    _exports.fooRenamed = foo;
     function bar() {}
-    _exports.bar = bar;
     var helpers = /*#__PURE__*/ Object.freeze({
         __proto__: null,
         foo: foo,
         bar: bar
     });
-    _exports.ns1 = helpers;
-    _exports.ns2 = helpers;
-    _exports.ns3 = helpers;
     var a;
-    _exports.a = a;
     var b = 123;
-    _exports.b = b;
     var c = {
         c: true
     }.c;
-    _exports.c = c;
     var d = {};
-    _exports.d = d;
     var e = 456, f = \\"xyz\\";
-    _exports.e = e;
-    _exports.f = f;
     var ClassName = function ClassName() {
         \\"use strict\\";
         _classCallCheck(this, ClassName);
     };
-    _exports.ClassName = ClassName;
     function func() {}
-    _exports.func = func;
     var arrowFunc = function() {};
-    _exports.arrowFunc = arrowFunc;
     var CONST = 123;
-    _exports.CONST = CONST;
     var DefaultClass = function DefaultClass() {
         \\"use strict\\";
         _classCallCheck(this, DefaultClass);
     };
-    _exports.default = DefaultClass;
 });
 //# sourceMappingURL=index-browser-legacy-umd.js.map
 ",
@@ -5236,65 +5199,64 @@ exports[`CJS -> MJS wrapper swc transforms example test case: browser-stable-umd
 Array [
   "umd/index-browser-stable-umd.js",
   "(function(global, factory) {
-    if (typeof define === \\"function\\" && define.amd) {
-        define([
-            \\"exports\\"
-        ], factory);
-    } else if (typeof exports !== \\"undefined\\") {
-        factory(exports);
-    } else {
-        var mod = {
-            exports: {}
-        };
-        factory(mod.exports);
-        global.examples = mod.exports;
-    }
-})(this, function(_exports) {
+    if (typeof module === \\"object\\" && typeof module.exports === \\"object\\") factory(exports);
+    else if (typeof define === \\"function\\" && define.amd) define([
+        \\"exports\\"
+    ], factory);
+    else if (global = typeof globalThis !== \\"undefined\\" ? globalThis : global || self) factory(global.examples = {});
+})(this, function(exports) {
     \\"use strict\\";
-    Object.defineProperty(_exports, \\"__esModule\\", {
+    Object.defineProperty(exports, \\"__esModule\\", {
         value: true
     });
-    _exports.default = _exports.CONST = _exports.arrowFunc = _exports.func = _exports.ClassName = _exports.f = _exports.e = _exports.d = _exports.c = _exports.b = _exports.a = _exports.ns3 = _exports.ns2 = _exports.ns1 = _exports.bar = _exports.fooRenamed = _exports.foo = void 0;
+    function _export(target, all) {
+        for(var name in all)Object.defineProperty(target, name, {
+            enumerable: true,
+            get: all[name]
+        });
+    }
+    _export(exports, {
+        CONST: ()=>CONST,
+        ClassName: ()=>ClassName,
+        a: ()=>a,
+        arrowFunc: ()=>arrowFunc,
+        b: ()=>b,
+        bar: ()=>bar,
+        c: ()=>c,
+        d: ()=>d,
+        default: ()=>DefaultClass,
+        e: ()=>e,
+        f: ()=>f,
+        foo: ()=>foo,
+        fooRenamed: ()=>foo,
+        func: ()=>func,
+        ns1: ()=>helpers,
+        ns2: ()=>helpers,
+        ns3: ()=>helpers
+    });
     function foo() {}
-    _exports.foo = foo;
-    _exports.fooRenamed = foo;
     function bar() {}
-    _exports.bar = bar;
     const helpers = /*#__PURE__*/ Object.freeze({
         __proto__: null,
         foo,
         bar
     });
-    _exports.ns1 = helpers;
-    _exports.ns2 = helpers;
-    _exports.ns3 = helpers;
     let a;
-    _exports.a = a;
     const b = 123;
-    _exports.b = b;
     const { c  } = {
         c: true
     };
-    _exports.c = c;
     const [d] = [
         {}
     ];
-    _exports.d = d;
     const e = 456, f = 'xyz';
-    _exports.e = e;
-    _exports.f = f;
     let ClassName = class ClassName {
     };
-    _exports.ClassName = ClassName;
     function func() {}
-    _exports.func = func;
     const arrowFunc = ()=>{};
-    _exports.arrowFunc = arrowFunc;
     const CONST = 123;
-    _exports.CONST = CONST;
     let DefaultClass = class DefaultClass {
     };
-    _exports.default = DefaultClass;
 });
 //# sourceMappingURL=index-browser-stable-umd.js.map
 ",

@@ -1027,23 +1027,19 @@ exports[`Assets swc transforms example test case: browser-current-umd 1`] = `
 Array [
   "umd/index-browser-current-umd.js",
   "(function(global, factory) {
-    if (typeof define === \\"function\\" && define.amd) {
-        define([
-            \\"./styles.css\\",
-            \\"./logo.svg\\",
-            \\"website/src/css/custom.css\\"
-        ], factory);
-    } else if (typeof exports !== \\"undefined\\") {
-        factory(require(\\"./styles.css\\"), require(\\"./logo.svg\\"), require(\\"website/src/css/custom.css\\"));
-    } else {
-        var mod = {
-            exports: {}
-        };
-        factory(global.stylesCss, global.logoSvg, global.customCss);
-        global.examples = mod.exports;
-    }
-})(this, function(_stylesCss, _logoSvg, _customCss) {
+    if (typeof module === \\"object\\" && typeof module.exports === \\"object\\") factory(exports, require(\\"./styles.css\\"), require(\\"./logo.svg\\"), require(\\"website/src/css/custom.css\\"));
+    else if (typeof define === \\"function\\" && define.amd) define([
+        \\"exports\\",
+        \\"./styles.css\\",
+        \\"./logo.svg\\",
+        \\"website/src/css/custom.css\\"
+    ], factory);
+    else if (global = typeof globalThis !== \\"undefined\\" ? globalThis : global || self) factory(global.examples = {}, global.stylesCss, global.logoSvg, global.customCss);
+})(this, function(exports, _stylesCss, _logoSvg, _customCss) {
     \\"use strict\\";
+    Object.defineProperty(exports, \\"__esModule\\", {
+        value: true
+    });
     const json = {
         list: [
             \\"foo\\",
@@ -1134,23 +1130,19 @@ exports[`Assets swc transforms example test case: browser-experimental-umd 1`] =
 Array [
   "umd/index-browser-experimental-umd.js",
   "(function(global, factory) {
-    if (typeof define === \\"function\\" && define.amd) {
-        define([
-            \\"./styles.css\\",
-            \\"./logo.svg\\",
-            \\"website/src/css/custom.css\\"
-        ], factory);
-    } else if (typeof exports !== \\"undefined\\") {
-        factory(require(\\"./styles.css\\"), require(\\"./logo.svg\\"), require(\\"website/src/css/custom.css\\"));
-    } else {
-        var mod = {
-            exports: {}
-        };
-        factory(global.stylesCss, global.logoSvg, global.customCss);
-        global.examples = mod.exports;
-    }
-})(this, function(_stylesCss, _logoSvg, _customCss) {
+    if (typeof module === \\"object\\" && typeof module.exports === \\"object\\") factory(exports, require(\\"./styles.css\\"), require(\\"./logo.svg\\"), require(\\"website/src/css/custom.css\\"));
+    else if (typeof define === \\"function\\" && define.amd) define([
+        \\"exports\\",
+        \\"./styles.css\\",
+        \\"./logo.svg\\",
+        \\"website/src/css/custom.css\\"
+    ], factory);
+    else if (global = typeof globalThis !== \\"undefined\\" ? globalThis : global || self) factory(global.examples = {}, global.stylesCss, global.logoSvg, global.customCss);
+})(this, function(exports, _stylesCss, _logoSvg, _customCss) {
     \\"use strict\\";
+    Object.defineProperty(exports, \\"__esModule\\", {
+        value: true
+    });
     const json = {
         list: [
             \\"foo\\",
@@ -1241,23 +1233,19 @@ exports[`Assets swc transforms example test case: browser-legacy-umd 1`] = `
 Array [
   "umd/index-browser-legacy-umd.js",
   "(function(global, factory) {
-    if (typeof define === \\"function\\" && define.amd) {
-        define([
-            \\"./styles.css\\",
-            \\"./logo.svg\\",
-            \\"website/src/css/custom.css\\"
-        ], factory);
-    } else if (typeof exports !== \\"undefined\\") {
-        factory(require(\\"./styles.css\\"), require(\\"./logo.svg\\"), require(\\"website/src/css/custom.css\\"));
-    } else {
-        var mod = {
-            exports: {}
-        };
-        factory(global.stylesCss, global.logoSvg, global.customCss);
-        global.examples = mod.exports;
-    }
-})(this, function(_stylesCss, _logoSvg, _customCss) {
+    if (typeof module === \\"object\\" && typeof module.exports === \\"object\\") factory(exports, require(\\"./styles.css\\"), require(\\"./logo.svg\\"), require(\\"website/src/css/custom.css\\"));
+    else if (typeof define === \\"function\\" && define.amd) define([
+        \\"exports\\",
+        \\"./styles.css\\",
+        \\"./logo.svg\\",
+        \\"website/src/css/custom.css\\"
+    ], factory);
+    else if (global = typeof globalThis !== \\"undefined\\" ? globalThis : global || self) factory(global.examples = {}, global.stylesCss, global.logoSvg, global.customCss);
+})(this, function(exports, _stylesCss, _logoSvg, _customCss) {
     \\"use strict\\";
+    Object.defineProperty(exports, \\"__esModule\\", {
+        value: true
+    });
     var json = {
         list: [
             \\"foo\\",
@@ -1348,23 +1336,19 @@ exports[`Assets swc transforms example test case: browser-stable-umd 1`] = `
 Array [
   "umd/index-browser-stable-umd.js",
   "(function(global, factory) {
-    if (typeof define === \\"function\\" && define.amd) {
-        define([
-            \\"./styles.css\\",
-            \\"./logo.svg\\",
-            \\"website/src/css/custom.css\\"
-        ], factory);
-    } else if (typeof exports !== \\"undefined\\") {
-        factory(require(\\"./styles.css\\"), require(\\"./logo.svg\\"), require(\\"website/src/css/custom.css\\"));
-    } else {
-        var mod = {
-            exports: {}
-        };
-        factory(global.stylesCss, global.logoSvg, global.customCss);
-        global.examples = mod.exports;
-    }
-})(this, function(_stylesCss, _logoSvg, _customCss) {
+    if (typeof module === \\"object\\" && typeof module.exports === \\"object\\") factory(exports, require(\\"./styles.css\\"), require(\\"./logo.svg\\"), require(\\"website/src/css/custom.css\\"));
+    else if (typeof define === \\"function\\" && define.amd) define([
+        \\"exports\\",
+        \\"./styles.css\\",
+        \\"./logo.svg\\",
+        \\"website/src/css/custom.css\\"
+    ], factory);
+    else if (global = typeof globalThis !== \\"undefined\\" ? globalThis : global || self) factory(global.examples = {}, global.stylesCss, global.logoSvg, global.customCss);
+})(this, function(exports, _stylesCss, _logoSvg, _customCss) {
     \\"use strict\\";
+    Object.defineProperty(exports, \\"__esModule\\", {
+        value: true
+    });
     const json = {
         list: [
             \\"foo\\",

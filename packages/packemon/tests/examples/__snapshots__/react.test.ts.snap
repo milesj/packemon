@@ -659,30 +659,24 @@ exports[`React/JSX swc transforms example test case: browser-current-umd 1`] = `
 Array [
   "umd/index-browser-current-umd.js",
   "(function(global, factory) {
-    if (typeof define === \\"function\\" && define.amd) {
-        define([
-            \\"exports\\",
-            \\"react/jsx-runtime\\"
-        ], factory);
-    } else if (typeof exports !== \\"undefined\\") {
-        factory(exports, require(\\"react/jsx-runtime\\"));
-    } else {
-        var mod = {
-            exports: {}
-        };
-        factory(mod.exports, global.jsxRuntime);
-        global.examples = mod.exports;
-    }
-})(this, function(_exports, _jsxRuntime) {
+    if (typeof module === \\"object\\" && typeof module.exports === \\"object\\") factory(exports, require(\\"react/jsx-runtime\\"));
+    else if (typeof define === \\"function\\" && define.amd) define([
+        \\"exports\\",
+        \\"react/jsx-runtime\\"
+    ], factory);
+    else if (global = typeof globalThis !== \\"undefined\\" ? globalThis : global || self) factory(global.examples = {}, global.jsxRuntime);
+})(this, function(exports, _jsxRuntime) {
     \\"use strict\\";
-    Object.defineProperty(_exports, \\"__esModule\\", {
+    Object.defineProperty(exports, \\"__esModule\\", {
         value: true
     });
-    _exports.default = void 0;
+    Object.defineProperty(exports, \\"default\\", {
+        enumerable: true,
+        get: ()=>Button
+    });
     function Button() {
-        return /*#__PURE__*/ (0, _jsxRuntime).jsx(\\"button\\", {});
+        return /*#__PURE__*/ (0, _jsxRuntime.jsx)(\\"button\\", {});
     }
-    _exports.default = Button;
 });
 //# sourceMappingURL=index-browser-current-umd.js.map
 ",
@@ -724,30 +718,24 @@ exports[`React/JSX swc transforms example test case: browser-experimental-umd 1`
 Array [
   "umd/index-browser-experimental-umd.js",
   "(function(global, factory) {
-    if (typeof define === \\"function\\" && define.amd) {
-        define([
-            \\"exports\\",
-            \\"react/jsx-runtime\\"
-        ], factory);
-    } else if (typeof exports !== \\"undefined\\") {
-        factory(exports, require(\\"react/jsx-runtime\\"));
-    } else {
-        var mod = {
-            exports: {}
-        };
-        factory(mod.exports, global.jsxRuntime);
-        global.examples = mod.exports;
-    }
-})(this, function(_exports, _jsxRuntime) {
+    if (typeof module === \\"object\\" && typeof module.exports === \\"object\\") factory(exports, require(\\"react/jsx-runtime\\"));
+    else if (typeof define === \\"function\\" && define.amd) define([
+        \\"exports\\",
+        \\"react/jsx-runtime\\"
+    ], factory);
+    else if (global = typeof globalThis !== \\"undefined\\" ? globalThis : global || self) factory(global.examples = {}, global.jsxRuntime);
+})(this, function(exports, _jsxRuntime) {
     \\"use strict\\";
-    Object.defineProperty(_exports, \\"__esModule\\", {
+    Object.defineProperty(exports, \\"__esModule\\", {
         value: true
     });
-    _exports.default = void 0;
+    Object.defineProperty(exports, \\"default\\", {
+        enumerable: true,
+        get: ()=>Button
+    });
     function Button() {
-        return /*#__PURE__*/ (0, _jsxRuntime).jsx(\\"button\\", {});
+        return /*#__PURE__*/ (0, _jsxRuntime.jsx)(\\"button\\", {});
     }
-    _exports.default = Button;
 });
 //# sourceMappingURL=index-browser-experimental-umd.js.map
 ",
@@ -789,30 +777,26 @@ exports[`React/JSX swc transforms example test case: browser-legacy-umd 1`] = `
 Array [
   "umd/index-browser-legacy-umd.js",
   "(function(global, factory) {
-    if (typeof define === \\"function\\" && define.amd) {
-        define([
-            \\"exports\\",
-            \\"react/jsx-runtime\\"
-        ], factory);
-    } else if (typeof exports !== \\"undefined\\") {
-        factory(exports, require(\\"react/jsx-runtime\\"));
-    } else {
-        var mod = {
-            exports: {}
-        };
-        factory(mod.exports, global.jsxRuntime);
-        global.examples = mod.exports;
-    }
-})(this, function(_exports, _jsxRuntime) {
+    if (typeof module === \\"object\\" && typeof module.exports === \\"object\\") factory(exports, require(\\"react/jsx-runtime\\"));
+    else if (typeof define === \\"function\\" && define.amd) define([
+        \\"exports\\",
+        \\"react/jsx-runtime\\"
+    ], factory);
+    else if (global = typeof globalThis !== \\"undefined\\" ? globalThis : global || self) factory(global.examples = {}, global.jsxRuntime);
+})(this, function(exports, _jsxRuntime) {
     \\"use strict\\";
-    Object.defineProperty(_exports, \\"__esModule\\", {
+    Object.defineProperty(exports, \\"__esModule\\", {
         value: true
     });
-    _exports.default = void 0;
+    Object.defineProperty(exports, \\"default\\", {
+        enumerable: true,
+        get: function() {
+            return Button;
+        }
+    });
     function Button() {
-        return /*#__PURE__*/ (0, _jsxRuntime).jsx(\\"button\\", {});
+        return /*#__PURE__*/ (0, _jsxRuntime.jsx)(\\"button\\", {});
     }
-    _exports.default = Button;
 });
 //# sourceMappingURL=index-browser-legacy-umd.js.map
 ",
@@ -854,30 +838,24 @@ exports[`React/JSX swc transforms example test case: browser-stable-umd 1`] = `
 Array [
   "umd/index-browser-stable-umd.js",
   "(function(global, factory) {
-    if (typeof define === \\"function\\" && define.amd) {
-        define([
-            \\"exports\\",
-            \\"react/jsx-runtime\\"
-        ], factory);
-    } else if (typeof exports !== \\"undefined\\") {
-        factory(exports, require(\\"react/jsx-runtime\\"));
-    } else {
-        var mod = {
-            exports: {}
-        };
-        factory(mod.exports, global.jsxRuntime);
-        global.examples = mod.exports;
-    }
-})(this, function(_exports, _jsxRuntime) {
+    if (typeof module === \\"object\\" && typeof module.exports === \\"object\\") factory(exports, require(\\"react/jsx-runtime\\"));
+    else if (typeof define === \\"function\\" && define.amd) define([
+        \\"exports\\",
+        \\"react/jsx-runtime\\"
+    ], factory);
+    else if (global = typeof globalThis !== \\"undefined\\" ? globalThis : global || self) factory(global.examples = {}, global.jsxRuntime);
+})(this, function(exports, _jsxRuntime) {
     \\"use strict\\";
-    Object.defineProperty(_exports, \\"__esModule\\", {
+    Object.defineProperty(exports, \\"__esModule\\", {
         value: true
     });
-    _exports.default = void 0;
+    Object.defineProperty(exports, \\"default\\", {
+        enumerable: true,
+        get: ()=>Button
+    });
     function Button() {
-        return /*#__PURE__*/ (0, _jsxRuntime).jsx(\\"button\\", {});
+        return /*#__PURE__*/ (0, _jsxRuntime.jsx)(\\"button\\", {});
     }
-    _exports.default = Button;
 });
 //# sourceMappingURL=index-browser-stable-umd.js.map
 ",

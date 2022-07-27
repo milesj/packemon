@@ -762,31 +762,30 @@ exports[`New syntax swc transforms example test case: browser-current-umd 1`] = 
 Array [
   "umd/index-browser-current-umd.js",
   "(function(global, factory) {
-    if (typeof define === \\"function\\" && define.amd) {
-        define([
-            \\"exports\\"
-        ], factory);
-    } else if (typeof exports !== \\"undefined\\") {
-        factory(exports);
-    } else {
-        var mod = {
-            exports: {}
-        };
-        factory(mod.exports);
-        global.examples = mod.exports;
-    }
-})(this, function(_exports) {
+    if (typeof module === \\"object\\" && typeof module.exports === \\"object\\") factory(exports);
+    else if (typeof define === \\"function\\" && define.amd) define([
+        \\"exports\\"
+    ], factory);
+    else if (global = typeof globalThis !== \\"undefined\\" ? globalThis : global || self) factory(global.examples = {});
+})(this, function(exports) {
     \\"use strict\\";
-    Object.defineProperty(_exports, \\"__esModule\\", {
+    Object.defineProperty(exports, \\"__esModule\\", {
         value: true
     });
-    _exports.nullCoalesc = _exports.optionalChain = _exports.foo = void 0;
+    function _export(target, all) {
+        for(var name in all)Object.defineProperty(target, name, {
+            enumerable: true,
+            get: all[name]
+        });
+    }
+    _export(exports, {
+        foo: ()=>foo,
+        nullCoalesc: ()=>nullCoalesc,
+        optionalChain: ()=>optionalChain
+    });
     const foo = {};
-    _exports.foo = foo;
     const optionalChain = foo?.bar;
-    _exports.optionalChain = optionalChain;
     const nullCoalesc = foo ?? 0;
-    _exports.nullCoalesc = nullCoalesc;
     foo.bar ??= 'bar';
     foo.baz ||= 'baz';
 });
@@ -837,31 +836,30 @@ exports[`New syntax swc transforms example test case: browser-experimental-umd 1
 Array [
   "umd/index-browser-experimental-umd.js",
   "(function(global, factory) {
-    if (typeof define === \\"function\\" && define.amd) {
-        define([
-            \\"exports\\"
-        ], factory);
-    } else if (typeof exports !== \\"undefined\\") {
-        factory(exports);
-    } else {
-        var mod = {
-            exports: {}
-        };
-        factory(mod.exports);
-        global.examples = mod.exports;
-    }
-})(this, function(_exports) {
+    if (typeof module === \\"object\\" && typeof module.exports === \\"object\\") factory(exports);
+    else if (typeof define === \\"function\\" && define.amd) define([
+        \\"exports\\"
+    ], factory);
+    else if (global = typeof globalThis !== \\"undefined\\" ? globalThis : global || self) factory(global.examples = {});
+})(this, function(exports) {
     \\"use strict\\";
-    Object.defineProperty(_exports, \\"__esModule\\", {
+    Object.defineProperty(exports, \\"__esModule\\", {
         value: true
     });
-    _exports.nullCoalesc = _exports.optionalChain = _exports.foo = void 0;
+    function _export(target, all) {
+        for(var name in all)Object.defineProperty(target, name, {
+            enumerable: true,
+            get: all[name]
+        });
+    }
+    _export(exports, {
+        foo: ()=>foo,
+        nullCoalesc: ()=>nullCoalesc,
+        optionalChain: ()=>optionalChain
+    });
     const foo = {};
-    _exports.foo = foo;
     const optionalChain = foo?.bar;
-    _exports.optionalChain = optionalChain;
     const nullCoalesc = foo ?? 0;
-    _exports.nullCoalesc = nullCoalesc;
     foo.bar ??= 'bar';
     foo.baz ||= 'baz';
 });
@@ -873,9 +871,9 @@ Array [
 exports[`New syntax swc transforms example test case: browser-legacy-esm 1`] = `
 Array [
   "esm/index-browser-legacy-esm.js",
-  "var _foo, _foo1;
-// Bundled with Packemon: https://packemon.dev
+  "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: esm
+var _foo, _foo1;
 var foo = {};
 var optionalChain = foo === null || foo === void 0 ? void 0 : foo.bar;
 var nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
@@ -916,32 +914,37 @@ exports[`New syntax swc transforms example test case: browser-legacy-umd 1`] = `
 Array [
   "umd/index-browser-legacy-umd.js",
   "(function(global, factory) {
-    if (typeof define === \\"function\\" && define.amd) {
-        define([
-            \\"exports\\"
-        ], factory);
-    } else if (typeof exports !== \\"undefined\\") {
-        factory(exports);
-    } else {
-        var mod = {
-            exports: {}
-        };
-        factory(mod.exports);
-        global.examples = mod.exports;
-    }
-})(this, function(_exports) {
+    if (typeof module === \\"object\\" && typeof module.exports === \\"object\\") factory(exports);
+    else if (typeof define === \\"function\\" && define.amd) define([
+        \\"exports\\"
+    ], factory);
+    else if (global = typeof globalThis !== \\"undefined\\" ? globalThis : global || self) factory(global.examples = {});
+})(this, function(exports) {
     \\"use strict\\";
-    Object.defineProperty(_exports, \\"__esModule\\", {
+    Object.defineProperty(exports, \\"__esModule\\", {
         value: true
     });
-    _exports.nullCoalesc = _exports.optionalChain = _exports.foo = void 0;
+    function _export(target, all) {
+        for(var name in all)Object.defineProperty(target, name, {
+            enumerable: true,
+            get: all[name]
+        });
+    }
+    _export(exports, {
+        foo: function() {
+            return foo;
+        },
+        nullCoalesc: function() {
+            return nullCoalesc;
+        },
+        optionalChain: function() {
+            return optionalChain;
+        }
+    });
     var _foo, _foo1;
     var foo = {};
-    _exports.foo = foo;
     var optionalChain = foo === null || foo === void 0 ? void 0 : foo.bar;
-    _exports.optionalChain = optionalChain;
     var nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
-    _exports.nullCoalesc = nullCoalesc;
     var _bar;
     (_bar = (_foo = foo).bar) !== null && _bar !== void 0 ? _bar : _foo.bar = \\"bar\\";
     (_foo1 = foo).baz || (_foo1.baz = \\"baz\\");
@@ -954,9 +957,9 @@ Array [
 exports[`New syntax swc transforms example test case: browser-stable-esm 1`] = `
 Array [
   "esm/index-browser-stable-esm.js",
-  "var _foo, _foo1;
-// Bundled with Packemon: https://packemon.dev
+  "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: esm
+var _foo, _foo1;
 const foo = {};
 const optionalChain = foo === null || foo === void 0 ? void 0 : foo.bar;
 const nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
@@ -997,32 +1000,31 @@ exports[`New syntax swc transforms example test case: browser-stable-umd 1`] = `
 Array [
   "umd/index-browser-stable-umd.js",
   "(function(global, factory) {
-    if (typeof define === \\"function\\" && define.amd) {
-        define([
-            \\"exports\\"
-        ], factory);
-    } else if (typeof exports !== \\"undefined\\") {
-        factory(exports);
-    } else {
-        var mod = {
-            exports: {}
-        };
-        factory(mod.exports);
-        global.examples = mod.exports;
-    }
-})(this, function(_exports) {
+    if (typeof module === \\"object\\" && typeof module.exports === \\"object\\") factory(exports);
+    else if (typeof define === \\"function\\" && define.amd) define([
+        \\"exports\\"
+    ], factory);
+    else if (global = typeof globalThis !== \\"undefined\\" ? globalThis : global || self) factory(global.examples = {});
+})(this, function(exports) {
     \\"use strict\\";
-    Object.defineProperty(_exports, \\"__esModule\\", {
+    Object.defineProperty(exports, \\"__esModule\\", {
         value: true
     });
-    _exports.nullCoalesc = _exports.optionalChain = _exports.foo = void 0;
+    function _export(target, all) {
+        for(var name in all)Object.defineProperty(target, name, {
+            enumerable: true,
+            get: all[name]
+        });
+    }
+    _export(exports, {
+        foo: ()=>foo,
+        nullCoalesc: ()=>nullCoalesc,
+        optionalChain: ()=>optionalChain
+    });
     var _foo, _foo1;
     const foo = {};
-    _exports.foo = foo;
     const optionalChain = foo === null || foo === void 0 ? void 0 : foo.bar;
-    _exports.optionalChain = optionalChain;
     const nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
-    _exports.nullCoalesc = nullCoalesc;
     var _bar;
     (_bar = (_foo = foo).bar) !== null && _bar !== void 0 ? _bar : _foo.bar = 'bar';
     (_foo1 = foo).baz || (_foo1.baz = 'baz');
@@ -1331,9 +1333,9 @@ exports.optionalChain = optionalChain;
 exports[`New syntax swc transforms example test case: node-legacy-mjs 1`] = `
 Array [
   "mjs/index-node-legacy-mjs.mjs",
-  "var _foo, _foo1;
-// Bundled with Packemon: https://packemon.dev
+  "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: mjs
+var _foo, _foo1;
 const foo = {};
 const optionalChain = foo === null || foo === void 0 ? void 0 : foo.bar;
 const nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
@@ -1407,9 +1409,9 @@ exports.optionalChain = optionalChain;
 exports[`New syntax swc transforms example test case: node-stable-mjs 1`] = `
 Array [
   "mjs/index-node-stable-mjs.mjs",
-  "var _foo, _foo1;
-// Bundled with Packemon: https://packemon.dev
+  "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: mjs
+var _foo, _foo1;
 const foo = {};
 const optionalChain = foo?.bar;
 const nullCoalesc = foo ?? 0;

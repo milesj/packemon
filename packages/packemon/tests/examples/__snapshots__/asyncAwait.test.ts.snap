@@ -1013,31 +1013,31 @@ exports[`Async/await swc transforms example test case: browser-current-umd 1`] =
 Array [
   "umd/index-browser-current-umd.js",
   "(function(global, factory) {
-    if (typeof define === \\"function\\" && define.amd) {
-        define([
-            \\"exports\\"
-        ], factory);
-    } else if (typeof exports !== \\"undefined\\") {
-        factory(exports);
-    } else {
-        var mod = {
-            exports: {}
-        };
-        factory(mod.exports);
-        global.examples = mod.exports;
-    }
-})(this, function(_exports) {
+    if (typeof module === \\"object\\" && typeof module.exports === \\"object\\") factory(exports);
+    else if (typeof define === \\"function\\" && define.amd) define([
+        \\"exports\\"
+    ], factory);
+    else if (global = typeof globalThis !== \\"undefined\\" ? globalThis : global || self) factory(global.examples = {});
+})(this, function(exports) {
     \\"use strict\\";
-    Object.defineProperty(_exports, \\"__esModule\\", {
+    Object.defineProperty(exports, \\"__esModule\\", {
         value: true
     });
-    _exports.run = _exports.wait = void 0;
+    function _export(target, all) {
+        for(var name in all)Object.defineProperty(target, name, {
+            enumerable: true,
+            get: all[name]
+        });
+    }
+    _export(exports, {
+        run: ()=>run,
+        wait: ()=>wait
+    });
     async function wait() {
         return new Promise((resolve)=>{
             setTimeout(resolve, 100);
         });
     }
-    _exports.wait = wait;
     async function run() {
         try {
             await wait();
@@ -1045,7 +1045,6 @@ Array [
             throw new Error('Fail');
         }
     }
-    _exports.run = run;
 });
 //# sourceMappingURL=index-browser-current-umd.js.map
 ",
@@ -1107,31 +1106,31 @@ exports[`Async/await swc transforms example test case: browser-experimental-umd 
 Array [
   "umd/index-browser-experimental-umd.js",
   "(function(global, factory) {
-    if (typeof define === \\"function\\" && define.amd) {
-        define([
-            \\"exports\\"
-        ], factory);
-    } else if (typeof exports !== \\"undefined\\") {
-        factory(exports);
-    } else {
-        var mod = {
-            exports: {}
-        };
-        factory(mod.exports);
-        global.examples = mod.exports;
-    }
-})(this, function(_exports) {
+    if (typeof module === \\"object\\" && typeof module.exports === \\"object\\") factory(exports);
+    else if (typeof define === \\"function\\" && define.amd) define([
+        \\"exports\\"
+    ], factory);
+    else if (global = typeof globalThis !== \\"undefined\\" ? globalThis : global || self) factory(global.examples = {});
+})(this, function(exports) {
     \\"use strict\\";
-    Object.defineProperty(_exports, \\"__esModule\\", {
+    Object.defineProperty(exports, \\"__esModule\\", {
         value: true
     });
-    _exports.run = _exports.wait = void 0;
+    function _export(target, all) {
+        for(var name in all)Object.defineProperty(target, name, {
+            enumerable: true,
+            get: all[name]
+        });
+    }
+    _export(exports, {
+        run: ()=>run,
+        wait: ()=>wait
+    });
     async function wait() {
         return new Promise((resolve)=>{
             setTimeout(resolve, 100);
         });
     }
-    _exports.wait = wait;
     async function run() {
         try {
             await wait();
@@ -1139,7 +1138,6 @@ Array [
             throw new Error('Fail');
         }
     }
-    _exports.run = run;
 });
 //# sourceMappingURL=index-browser-experimental-umd.js.map
 ",
@@ -1149,7 +1147,9 @@ Array [
 exports[`Async/await swc transforms example test case: browser-legacy-esm 1`] = `
 Array [
   "esm/index-browser-legacy-esm.js",
-  "function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: legacy, Format: esm
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
     try {
         var info = gen[key](arg);
         var value = info.value;
@@ -1183,9 +1183,7 @@ function wait() {
     return _wait.apply(this, arguments);
 }
 function _wait() {
-    _wait = // Bundled with Packemon: https://packemon.dev
-    // Platform: browser, Support: legacy, Format: esm
-    _asyncToGenerator(regeneratorRuntime.mark(function _callee() {
+    _wait = _asyncToGenerator(regeneratorRuntime.mark(function _callee() {
         return regeneratorRuntime.wrap(function _callee$(_ctx) {
             while(1)switch(_ctx.prev = _ctx.next){
                 case 0:
@@ -1243,6 +1241,9 @@ Array [
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: lib
 \\"use strict\\";
+Object.defineProperty(exports, \\"__esModule\\", {
+    value: true
+});
 var _regeneratorRuntime = _interopRequireDefault(require(\\"regenerator-runtime\\"));
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
     try {
@@ -1332,7 +1333,7 @@ function _run() {
     return _run.apply(this, arguments);
 }
 exports.run = run;
-exports.wait = wait;
+exports.wait = wait; /*#__PURE__*/ 
 //# sourceMappingURL=index-browser-legacy-lib.js.map
 ",
 ]
@@ -1342,27 +1343,32 @@ exports[`Async/await swc transforms example test case: browser-legacy-umd 1`] = 
 Array [
   "umd/index-browser-legacy-umd.js",
   "(function(global, factory) {
-    if (typeof define === \\"function\\" && define.amd) {
-        define([
-            \\"exports\\",
-            \\"regenerator-runtime\\"
-        ], factory);
-    } else if (typeof exports !== \\"undefined\\") {
-        factory(exports, require(\\"regenerator-runtime\\"));
-    } else {
-        var mod = {
-            exports: {}
-        };
-        factory(mod.exports, global.regeneratorRuntime);
-        global.examples = mod.exports;
-    }
-})(this, function(_exports, _regeneratorRuntime) {
+    if (typeof module === \\"object\\" && typeof module.exports === \\"object\\") factory(exports, require(\\"regenerator-runtime\\"));
+    else if (typeof define === \\"function\\" && define.amd) define([
+        \\"exports\\",
+        \\"regenerator-runtime\\"
+    ], factory);
+    else if (global = typeof globalThis !== \\"undefined\\" ? globalThis : global || self) factory(global.examples = {}, global.regeneratorRuntime);
+})(this, function(exports, _regeneratorRuntime) {
     \\"use strict\\";
-    _regeneratorRuntime = _interopRequireDefault(_regeneratorRuntime);
-    Object.defineProperty(_exports, \\"__esModule\\", {
+    Object.defineProperty(exports, \\"__esModule\\", {
         value: true
     });
-    _exports.run = _exports.wait = void 0;
+    function _export(target, all) {
+        for(var name in all)Object.defineProperty(target, name, {
+            enumerable: true,
+            get: all[name]
+        });
+    }
+    _export(exports, {
+        run: function() {
+            return run;
+        },
+        wait: function() {
+            return wait /*#__PURE__*/ ;
+        }
+    });
+    _regeneratorRuntime = _interopRequireDefault(_regeneratorRuntime);
     function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
         try {
             var info = gen[key](arg);
@@ -1379,9 +1385,9 @@ Array [
     }
     function _asyncToGenerator(fn) {
         return function() {
-            var self = this, args = arguments;
+            var self1 = this, args = arguments;
             return new Promise(function(resolve, reject) {
-                var gen = fn.apply(self, args);
+                var gen = fn.apply(self1, args);
                 function _next(value) {
                     asyncGeneratorStep(gen, resolve, reject, _next, _throw, \\"next\\", value);
                 }
@@ -1400,7 +1406,6 @@ Array [
     function wait() {
         return _wait.apply(this, arguments);
     }
-    _exports.wait = wait;
     function _wait() {
         _wait = _asyncToGenerator(_regeneratorRuntime.default.mark(function _callee() {
             return _regeneratorRuntime.default.wrap(function _callee$(_ctx) {
@@ -1420,7 +1425,6 @@ Array [
     function run() {
         return _run.apply(this, arguments);
     }
-    _exports.run = run;
     function _run() {
         _run = _asyncToGenerator(_regeneratorRuntime.default.mark(function _callee() {
             return _regeneratorRuntime.default.wrap(function _callee$(_ctx) {
@@ -1510,31 +1514,31 @@ exports[`Async/await swc transforms example test case: browser-stable-umd 1`] = 
 Array [
   "umd/index-browser-stable-umd.js",
   "(function(global, factory) {
-    if (typeof define === \\"function\\" && define.amd) {
-        define([
-            \\"exports\\"
-        ], factory);
-    } else if (typeof exports !== \\"undefined\\") {
-        factory(exports);
-    } else {
-        var mod = {
-            exports: {}
-        };
-        factory(mod.exports);
-        global.examples = mod.exports;
-    }
-})(this, function(_exports) {
+    if (typeof module === \\"object\\" && typeof module.exports === \\"object\\") factory(exports);
+    else if (typeof define === \\"function\\" && define.amd) define([
+        \\"exports\\"
+    ], factory);
+    else if (global = typeof globalThis !== \\"undefined\\" ? globalThis : global || self) factory(global.examples = {});
+})(this, function(exports) {
     \\"use strict\\";
-    Object.defineProperty(_exports, \\"__esModule\\", {
+    Object.defineProperty(exports, \\"__esModule\\", {
         value: true
     });
-    _exports.run = _exports.wait = void 0;
+    function _export(target, all) {
+        for(var name in all)Object.defineProperty(target, name, {
+            enumerable: true,
+            get: all[name]
+        });
+    }
+    _export(exports, {
+        run: ()=>run,
+        wait: ()=>wait
+    });
     async function wait() {
         return new Promise((resolve)=>{
             setTimeout(resolve, 100);
         });
     }
-    _exports.wait = wait;
     async function run() {
         try {
             await wait();
@@ -1542,7 +1546,6 @@ Array [
             throw new Error('Fail');
         }
     }
-    _exports.run = run;
 });
 //# sourceMappingURL=index-browser-stable-umd.js.map
 ",
