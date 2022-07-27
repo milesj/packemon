@@ -700,6 +700,23 @@ describe('Package', () => {
 					'./package.json': './package.json',
 				});
 			});
+
+			it('supports dual cjs/mjs exports', async () => {
+				pkg.addArtifact(createCodeArtifact([{ format: 'cjs' }]));
+				pkg.addArtifact(createCodeArtifact([{ format: 'mjs' }], 'node', 'experimental'));
+
+				await pkg.build({ addExports: true }, config);
+
+				expect(pkg.packageJson.exports).toEqual({
+					'.': {
+						node: {
+							import: './mjs/index.mjs',
+							require: './cjs/index.cjs',
+						},
+					},
+					'./package.json': './package.json',
+				});
+			});
 		});
 
 		describe('files', () => {

@@ -3,7 +3,7 @@
 import glob from 'fast-glob';
 import fs from 'fs-extra';
 import semver from 'semver';
-import { isObject, Memoize, PackageStructure, Path, toArray } from '@boost/common';
+import { deepMerge, isObject, Memoize, PackageStructure, Path, toArray } from '@boost/common';
 import { optimal } from '@boost/common/optimal';
 import { createDebugger, Debugger } from '@boost/debug';
 import { Artifact } from './Artifact';
@@ -29,6 +29,7 @@ import {
 	FeatureFlags,
 	InputMap,
 	PackageConfig,
+	PackageExportPaths,
 	PackageExports,
 	PackemonPackage,
 	PackemonPackageConfig,
@@ -503,12 +504,18 @@ export class Package {
 				}
 
 				if (!exportMap[path]) {
-					exportMap[path] = {};
-				} else if (typeof exportMap[path] === 'string') {
+					exportMap[path] = conditions;
+					return;
+				}
+
+				if (typeof exportMap[path] === 'string') {
 					exportMap[path] = { default: exportMap[path] };
 				}
 
-				Object.assign(exportMap[path]!, conditions);
+				exportMap[path] = deepMerge<PackageExportPaths, PackageExportPaths>(
+					exportMap[path] as PackageExportPaths,
+					typeof conditions === 'string' ? { default: conditions } : conditions,
+				);
 			});
 		});
 
