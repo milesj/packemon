@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.0.2 - 2022-07-27
+
+#### 📦 Dependencies
+
+- **[beemo-dev]** Update to v2 latest. ([97dca2a](https://github.com/milesj/packemon/commit/97dca2a))
+
+**Note:** Version bump only for package babel-plugin-cjs-esm-interop
+
+
+
+
+
 ### 2.0.1 - 2022-05-20
 
 #### 🐞 Fixes

@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.3.2 - 2022-07-27
+
+#### 🐞 Fixes
+
+- Don't set missing entry points to an empty string. ([6589465](https://github.com/milesj/packemon/commit/6589465))
+- Properly handle package exports for dual formats. (#136) ([c3687f1](https://github.com/milesj/packemon/commit/c3687f1)), closes [#136](https://github.com/milesj/packemon/issues/136)
+
+#### 📦 Dependencies
+
+- **[beemo-dev]** Update to v2 latest. ([97dca2a](https://github.com/milesj/packemon/commit/97dca2a))
+- **[npm-packlist]** Update to v5.1.1. ([f793a62](https://github.com/milesj/packemon/commit/f793a62))
+- **[rollup]** Update to v2.77. (#134) ([517562b](https://github.com/milesj/packemon/commit/517562b)), closes [#134](https://github.com/milesj/packemon/issues/134)
+- **[spdx-license-list]** Update to v6.6. ([2bf97e0](https://github.com/milesj/packemon/commit/2bf97e0))
+- Update internals. ([969a6d5](https://github.com/milesj/packemon/commit/969a6d5))
+
+#### 🛠 Internals
+
+- Remove acorn dep. ([3a2c8d6](https://github.com/milesj/packemon/commit/3a2c8d6))
+
+**Note:** Version bump only for package packemon
+
+
+
+
+
 ### 2.3.1 - 2022-05-30
 
 #### 🐞 Fixes
