@@ -156,7 +156,6 @@ export function getSwcOutputConfig(
 
 	const module: ModuleConfig = {
 		type: getModuleConfigType(format),
-		// @ts-expect-error Not typed
 		ignoreDynamic: shouldKeepDynamicImport(platform, support),
 	};
 
