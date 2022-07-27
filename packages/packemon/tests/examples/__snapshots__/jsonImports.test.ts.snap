@@ -854,25 +854,20 @@ exports[`JSON imports swc transforms example test case: browser-current-umd 1`] 
 Array [
   "umd/index-browser-current-umd.js",
   "(function(global, factory) {
-    if (typeof define === \\"function\\" && define.amd) {
-        define([
-            \\"exports\\"
-        ], factory);
-    } else if (typeof exports !== \\"undefined\\") {
-        factory(exports);
-    } else {
-        var mod = {
-            exports: {}
-        };
-        factory(mod.exports);
-        global.examples = mod.exports;
-    }
-})(this, function(_exports) {
+    if (typeof module === \\"object\\" && typeof module.exports === \\"object\\") factory(exports);
+    else if (typeof define === \\"function\\" && define.amd) define([
+        \\"exports\\"
+    ], factory);
+    else if (global = typeof globalThis !== \\"undefined\\" ? globalThis : global || self) factory(global.examples = {});
+})(this, function(exports) {
     \\"use strict\\";
-    Object.defineProperty(_exports, \\"__esModule\\", {
+    Object.defineProperty(exports, \\"__esModule\\", {
         value: true
     });
-    _exports.keys = void 0;
+    Object.defineProperty(exports, \\"keys\\", {
+        enumerable: true,
+        get: ()=>keys
+    });
     const data = {
         list: [
             \\"foo\\",
@@ -887,7 +882,6 @@ Array [
     };
     // @ts-expect-error resolveJsonModule is not on
     const keys = Object.keys(data);
-    _exports.keys = keys;
 });
 //# sourceMappingURL=index-browser-current-umd.js.map
 ",
@@ -952,25 +946,20 @@ exports[`JSON imports swc transforms example test case: browser-experimental-umd
 Array [
   "umd/index-browser-experimental-umd.js",
   "(function(global, factory) {
-    if (typeof define === \\"function\\" && define.amd) {
-        define([
-            \\"exports\\"
-        ], factory);
-    } else if (typeof exports !== \\"undefined\\") {
-        factory(exports);
-    } else {
-        var mod = {
-            exports: {}
-        };
-        factory(mod.exports);
-        global.examples = mod.exports;
-    }
-})(this, function(_exports) {
+    if (typeof module === \\"object\\" && typeof module.exports === \\"object\\") factory(exports);
+    else if (typeof define === \\"function\\" && define.amd) define([
+        \\"exports\\"
+    ], factory);
+    else if (global = typeof globalThis !== \\"undefined\\" ? globalThis : global || self) factory(global.examples = {});
+})(this, function(exports) {
     \\"use strict\\";
-    Object.defineProperty(_exports, \\"__esModule\\", {
+    Object.defineProperty(exports, \\"__esModule\\", {
         value: true
     });
-    _exports.keys = void 0;
+    Object.defineProperty(exports, \\"keys\\", {
+        enumerable: true,
+        get: ()=>keys
+    });
     const data = {
         list: [
             \\"foo\\",
@@ -985,7 +974,6 @@ Array [
     };
     // @ts-expect-error resolveJsonModule is not on
     const keys = Object.keys(data);
-    _exports.keys = keys;
 });
 //# sourceMappingURL=index-browser-experimental-umd.js.map
 ",
@@ -1050,25 +1038,22 @@ exports[`JSON imports swc transforms example test case: browser-legacy-umd 1`] =
 Array [
   "umd/index-browser-legacy-umd.js",
   "(function(global, factory) {
-    if (typeof define === \\"function\\" && define.amd) {
-        define([
-            \\"exports\\"
-        ], factory);
-    } else if (typeof exports !== \\"undefined\\") {
-        factory(exports);
-    } else {
-        var mod = {
-            exports: {}
-        };
-        factory(mod.exports);
-        global.examples = mod.exports;
-    }
-})(this, function(_exports) {
+    if (typeof module === \\"object\\" && typeof module.exports === \\"object\\") factory(exports);
+    else if (typeof define === \\"function\\" && define.amd) define([
+        \\"exports\\"
+    ], factory);
+    else if (global = typeof globalThis !== \\"undefined\\" ? globalThis : global || self) factory(global.examples = {});
+})(this, function(exports) {
     \\"use strict\\";
-    Object.defineProperty(_exports, \\"__esModule\\", {
+    Object.defineProperty(exports, \\"__esModule\\", {
         value: true
     });
-    _exports.keys = void 0;
+    Object.defineProperty(exports, \\"keys\\", {
+        enumerable: true,
+        get: function() {
+            return keys;
+        }
+    });
     var data = {
         list: [
             \\"foo\\",
@@ -1083,7 +1068,6 @@ Array [
     };
     // @ts-expect-error resolveJsonModule is not on
     var keys = Object.keys(data);
-    _exports.keys = keys;
 });
 //# sourceMappingURL=index-browser-legacy-umd.js.map
 ",
@@ -1148,25 +1132,20 @@ exports[`JSON imports swc transforms example test case: browser-stable-umd 1`] =
 Array [
   "umd/index-browser-stable-umd.js",
   "(function(global, factory) {
-    if (typeof define === \\"function\\" && define.amd) {
-        define([
-            \\"exports\\"
-        ], factory);
-    } else if (typeof exports !== \\"undefined\\") {
-        factory(exports);
-    } else {
-        var mod = {
-            exports: {}
-        };
-        factory(mod.exports);
-        global.examples = mod.exports;
-    }
-})(this, function(_exports) {
+    if (typeof module === \\"object\\" && typeof module.exports === \\"object\\") factory(exports);
+    else if (typeof define === \\"function\\" && define.amd) define([
+        \\"exports\\"
+    ], factory);
+    else if (global = typeof globalThis !== \\"undefined\\" ? globalThis : global || self) factory(global.examples = {});
+})(this, function(exports) {
     \\"use strict\\";
-    Object.defineProperty(_exports, \\"__esModule\\", {
+    Object.defineProperty(exports, \\"__esModule\\", {
         value: true
     });
-    _exports.keys = void 0;
+    Object.defineProperty(exports, \\"keys\\", {
+        enumerable: true,
+        get: ()=>keys
+    });
     const data = {
         list: [
             \\"foo\\",
@@ -1181,7 +1160,6 @@ Array [
     };
     // @ts-expect-error resolveJsonModule is not on
     const keys = Object.keys(data);
-    _exports.keys = keys;
 });
 //# sourceMappingURL=index-browser-stable-umd.js.map
 ",

@@ -1274,29 +1274,28 @@ exports[`Dynamic imports swc transforms example test case: browser-current-umd 1
 Array [
   "umd/bundle-ca4fc8e9.js",
   "(function(global, factory) {
-    if (typeof define === \\"function\\" && define.amd) {
-        define([
-            \\"exports\\"
-        ], factory);
-    } else if (typeof exports !== \\"undefined\\") {
-        factory(exports);
-    } else {
-        var mod = {
-            exports: {}
-        };
-        factory(mod.exports);
-        global.examples = mod.exports;
-    }
-})(this, function(_exports) {
+    if (typeof module === \\"object\\" && typeof module.exports === \\"object\\") factory(exports);
+    else if (typeof define === \\"function\\" && define.amd) define([
+        \\"exports\\"
+    ], factory);
+    else if (global = typeof globalThis !== \\"undefined\\" ? globalThis : global || self) factory(global.examples = {});
+})(this, function(exports) {
     \\"use strict\\";
-    Object.defineProperty(_exports, \\"__esModule\\", {
+    Object.defineProperty(exports, \\"__esModule\\", {
         value: true
     });
-    _exports.bar = _exports.foo = void 0;
+    function _export(target, all) {
+        for(var name in all)Object.defineProperty(target, name, {
+            enumerable: true,
+            get: all[name]
+        });
+    }
+    _export(exports, {
+        bar: ()=>bar,
+        foo: ()=>foo
+    });
     function foo() {}
-    _exports.foo = foo;
     function bar() {}
-    _exports.bar = bar;
 });
 //# sourceMappingURL=bundle-ca4fc8e9.js.map
 ",
@@ -1307,58 +1306,11 @@ exports[`Dynamic imports swc transforms example test case: browser-current-umd 2
 Array [
   "umd/index-browser-current-umd.js",
   "(function(global, factory) {
-    if (typeof define === \\"function\\" && define.amd) {
-        define([], factory);
-    } else if (typeof exports !== \\"undefined\\") {
-        factory();
-    } else {
-        var mod = {
-            exports: {}
-        };
-        factory();
-        global.examples = mod.exports;
-    }
+    if (typeof module === \\"object\\" && typeof module.exports === \\"object\\") factory();
+    else if (typeof define === \\"function\\" && define.amd) define([], factory);
+    else if (global = typeof globalThis !== \\"undefined\\" ? globalThis : global || self) factory();
 })(this, function() {
     \\"use strict\\";
-    function _getRequireWildcardCache() {
-        if (typeof WeakMap !== \\"function\\") return null;
-        var cache = new WeakMap();
-        _getRequireWildcardCache = function() {
-            return cache;
-        };
-        return cache;
-    }
-    function _interopRequireWildcard(obj) {
-        if (obj && obj.__esModule) {
-            return obj;
-        }
-        if (obj === null || typeof obj !== \\"object\\" && typeof obj !== \\"function\\") {
-            return {
-                default: obj
-            };
-        }
-        var cache = _getRequireWildcardCache();
-        if (cache && cache.has(obj)) {
-            return cache.get(obj);
-        }
-        var newObj = {};
-        var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;
-        for(var key in obj){
-            if (Object.prototype.hasOwnProperty.call(obj, key)) {
-                var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;
-                if (desc && (desc.get || desc.set)) {
-                    Object.defineProperty(newObj, key, desc);
-                } else {
-                    newObj[key] = obj[key];
-                }
-            }
-        }
-        newObj.default = obj;
-        if (cache) {
-            cache.set(obj, newObj);
-        }
-        return newObj;
-    }
     import('./bundle-ca4fc8e9.js').then((result)=>{
         result.foo();
     });
@@ -1436,29 +1388,28 @@ exports[`Dynamic imports swc transforms example test case: browser-experimental-
 Array [
   "umd/bundle-ca4fc8e9.js",
   "(function(global, factory) {
-    if (typeof define === \\"function\\" && define.amd) {
-        define([
-            \\"exports\\"
-        ], factory);
-    } else if (typeof exports !== \\"undefined\\") {
-        factory(exports);
-    } else {
-        var mod = {
-            exports: {}
-        };
-        factory(mod.exports);
-        global.examples = mod.exports;
-    }
-})(this, function(_exports) {
+    if (typeof module === \\"object\\" && typeof module.exports === \\"object\\") factory(exports);
+    else if (typeof define === \\"function\\" && define.amd) define([
+        \\"exports\\"
+    ], factory);
+    else if (global = typeof globalThis !== \\"undefined\\" ? globalThis : global || self) factory(global.examples = {});
+})(this, function(exports) {
     \\"use strict\\";
-    Object.defineProperty(_exports, \\"__esModule\\", {
+    Object.defineProperty(exports, \\"__esModule\\", {
         value: true
     });
-    _exports.bar = _exports.foo = void 0;
+    function _export(target, all) {
+        for(var name in all)Object.defineProperty(target, name, {
+            enumerable: true,
+            get: all[name]
+        });
+    }
+    _export(exports, {
+        bar: ()=>bar,
+        foo: ()=>foo
+    });
     function foo() {}
-    _exports.foo = foo;
     function bar() {}
-    _exports.bar = bar;
 });
 //# sourceMappingURL=bundle-ca4fc8e9.js.map
 ",
@@ -1469,58 +1420,11 @@ exports[`Dynamic imports swc transforms example test case: browser-experimental-
 Array [
   "umd/index-browser-experimental-umd.js",
   "(function(global, factory) {
-    if (typeof define === \\"function\\" && define.amd) {
-        define([], factory);
-    } else if (typeof exports !== \\"undefined\\") {
-        factory();
-    } else {
-        var mod = {
-            exports: {}
-        };
-        factory();
-        global.examples = mod.exports;
-    }
+    if (typeof module === \\"object\\" && typeof module.exports === \\"object\\") factory();
+    else if (typeof define === \\"function\\" && define.amd) define([], factory);
+    else if (global = typeof globalThis !== \\"undefined\\" ? globalThis : global || self) factory();
 })(this, function() {
     \\"use strict\\";
-    function _getRequireWildcardCache() {
-        if (typeof WeakMap !== \\"function\\") return null;
-        var cache = new WeakMap();
-        _getRequireWildcardCache = function() {
-            return cache;
-        };
-        return cache;
-    }
-    function _interopRequireWildcard(obj) {
-        if (obj && obj.__esModule) {
-            return obj;
-        }
-        if (obj === null || typeof obj !== \\"object\\" && typeof obj !== \\"function\\") {
-            return {
-                default: obj
-            };
-        }
-        var cache = _getRequireWildcardCache();
-        if (cache && cache.has(obj)) {
-            return cache.get(obj);
-        }
-        var newObj = {};
-        var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;
-        for(var key in obj){
-            if (Object.prototype.hasOwnProperty.call(obj, key)) {
-                var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;
-                if (desc && (desc.get || desc.set)) {
-                    Object.defineProperty(newObj, key, desc);
-                } else {
-                    newObj[key] = obj[key];
-                }
-            }
-        }
-        newObj.default = obj;
-        if (cache) {
-            cache.set(obj, newObj);
-        }
-        return newObj;
-    }
     import('./bundle-ca4fc8e9.js').then((result)=>{
         result.foo();
     });
@@ -1604,29 +1508,32 @@ exports[`Dynamic imports swc transforms example test case: browser-legacy-umd 1`
 Array [
   "umd/bundle-ca4fc8e9.js",
   "(function(global, factory) {
-    if (typeof define === \\"function\\" && define.amd) {
-        define([
-            \\"exports\\"
-        ], factory);
-    } else if (typeof exports !== \\"undefined\\") {
-        factory(exports);
-    } else {
-        var mod = {
-            exports: {}
-        };
-        factory(mod.exports);
-        global.examples = mod.exports;
-    }
-})(this, function(_exports) {
+    if (typeof module === \\"object\\" && typeof module.exports === \\"object\\") factory(exports);
+    else if (typeof define === \\"function\\" && define.amd) define([
+        \\"exports\\"
+    ], factory);
+    else if (global = typeof globalThis !== \\"undefined\\" ? globalThis : global || self) factory(global.examples = {});
+})(this, function(exports) {
     \\"use strict\\";
-    Object.defineProperty(_exports, \\"__esModule\\", {
+    Object.defineProperty(exports, \\"__esModule\\", {
         value: true
     });
-    _exports.bar = _exports.foo = void 0;
+    function _export(target, all) {
+        for(var name in all)Object.defineProperty(target, name, {
+            enumerable: true,
+            get: all[name]
+        });
+    }
+    _export(exports, {
+        bar: function() {
+            return bar;
+        },
+        foo: function() {
+            return foo;
+        }
+    });
     function foo() {}
-    _exports.foo = foo;
     function bar() {}
-    _exports.bar = bar;
 });
 //# sourceMappingURL=bundle-ca4fc8e9.js.map
 ",
@@ -1637,58 +1544,11 @@ exports[`Dynamic imports swc transforms example test case: browser-legacy-umd 2`
 Array [
   "umd/index-browser-legacy-umd.js",
   "(function(global, factory) {
-    if (typeof define === \\"function\\" && define.amd) {
-        define([], factory);
-    } else if (typeof exports !== \\"undefined\\") {
-        factory();
-    } else {
-        var mod = {
-            exports: {}
-        };
-        factory();
-        global.examples = mod.exports;
-    }
+    if (typeof module === \\"object\\" && typeof module.exports === \\"object\\") factory();
+    else if (typeof define === \\"function\\" && define.amd) define([], factory);
+    else if (global = typeof globalThis !== \\"undefined\\" ? globalThis : global || self) factory();
 })(this, function() {
     \\"use strict\\";
-    function _getRequireWildcardCache() {
-        if (typeof WeakMap !== \\"function\\") return null;
-        var cache = new WeakMap();
-        _getRequireWildcardCache = function() {
-            return cache;
-        };
-        return cache;
-    }
-    function _interopRequireWildcard(obj) {
-        if (obj && obj.__esModule) {
-            return obj;
-        }
-        if (obj === null || typeof obj !== \\"object\\" && typeof obj !== \\"function\\") {
-            return {
-                default: obj
-            };
-        }
-        var cache = _getRequireWildcardCache();
-        if (cache && cache.has(obj)) {
-            return cache.get(obj);
-        }
-        var newObj = {};
-        var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;
-        for(var key in obj){
-            if (Object.prototype.hasOwnProperty.call(obj, key)) {
-                var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;
-                if (desc && (desc.get || desc.set)) {
-                    Object.defineProperty(newObj, key, desc);
-                } else {
-                    newObj[key] = obj[key];
-                }
-            }
-        }
-        newObj.default = obj;
-        if (cache) {
-            cache.set(obj, newObj);
-        }
-        return newObj;
-    }
     import(\\"./bundle-ca4fc8e9.js\\").then(function(result) {
         result.foo();
     });
@@ -1767,29 +1627,28 @@ exports[`Dynamic imports swc transforms example test case: browser-stable-umd 1`
 Array [
   "umd/bundle-ca4fc8e9.js",
   "(function(global, factory) {
-    if (typeof define === \\"function\\" && define.amd) {
-        define([
-            \\"exports\\"
-        ], factory);
-    } else if (typeof exports !== \\"undefined\\") {
-        factory(exports);
-    } else {
-        var mod = {
-            exports: {}
-        };
-        factory(mod.exports);
-        global.examples = mod.exports;
-    }
-})(this, function(_exports) {
+    if (typeof module === \\"object\\" && typeof module.exports === \\"object\\") factory(exports);
+    else if (typeof define === \\"function\\" && define.amd) define([
+        \\"exports\\"
+    ], factory);
+    else if (global = typeof globalThis !== \\"undefined\\" ? globalThis : global || self) factory(global.examples = {});
+})(this, function(exports) {
     \\"use strict\\";
-    Object.defineProperty(_exports, \\"__esModule\\", {
+    Object.defineProperty(exports, \\"__esModule\\", {
         value: true
     });
-    _exports.bar = _exports.foo = void 0;
+    function _export(target, all) {
+        for(var name in all)Object.defineProperty(target, name, {
+            enumerable: true,
+            get: all[name]
+        });
+    }
+    _export(exports, {
+        bar: ()=>bar,
+        foo: ()=>foo
+    });
     function foo() {}
-    _exports.foo = foo;
     function bar() {}
-    _exports.bar = bar;
 });
 //# sourceMappingURL=bundle-ca4fc8e9.js.map
 ",
@@ -1800,58 +1659,11 @@ exports[`Dynamic imports swc transforms example test case: browser-stable-umd 2`
 Array [
   "umd/index-browser-stable-umd.js",
   "(function(global, factory) {
-    if (typeof define === \\"function\\" && define.amd) {
-        define([], factory);
-    } else if (typeof exports !== \\"undefined\\") {
-        factory();
-    } else {
-        var mod = {
-            exports: {}
-        };
-        factory();
-        global.examples = mod.exports;
-    }
+    if (typeof module === \\"object\\" && typeof module.exports === \\"object\\") factory();
+    else if (typeof define === \\"function\\" && define.amd) define([], factory);
+    else if (global = typeof globalThis !== \\"undefined\\" ? globalThis : global || self) factory();
 })(this, function() {
     \\"use strict\\";
-    function _getRequireWildcardCache() {
-        if (typeof WeakMap !== \\"function\\") return null;
-        var cache = new WeakMap();
-        _getRequireWildcardCache = function() {
-            return cache;
-        };
-        return cache;
-    }
-    function _interopRequireWildcard(obj) {
-        if (obj && obj.__esModule) {
-            return obj;
-        }
-        if (obj === null || typeof obj !== \\"object\\" && typeof obj !== \\"function\\") {
-            return {
-                default: obj
-            };
-        }
-        var cache = _getRequireWildcardCache();
-        if (cache && cache.has(obj)) {
-            return cache.get(obj);
-        }
-        var newObj = {};
-        var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;
-        for(var key in obj){
-            if (Object.prototype.hasOwnProperty.call(obj, key)) {
-                var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;
-                if (desc && (desc.get || desc.set)) {
-                    Object.defineProperty(newObj, key, desc);
-                } else {
-                    newObj[key] = obj[key];
-                }
-            }
-        }
-        newObj.default = obj;
-        if (cache) {
-            cache.set(obj, newObj);
-        }
-        return newObj;
-    }
     import('./bundle-ca4fc8e9.js').then((result)=>{
         result.foo();
     });
