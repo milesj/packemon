@@ -88,6 +88,10 @@ export function getSwcInputConfig(
 	};
 
 	const baseConfig: Config = {
+		module: {
+			type: 'es6',
+			ignoreDynamic: true,
+		},
 		jsc: {
 			parser: {
 				syntax: 'ecmascript',

@@ -41,11 +41,12 @@ function getPlatformEnvOptions(
 	}
 
 	const exclude = [
-		// Async/await and generators have been around for 4+ years
+		// https://caniuse.com/async-functions
 		'@babel/plugin-transform-regenerator',
 		'@babel/plugin-transform-async-to-generator',
 	];
 
+	// https://caniuse.com/es6-module-dynamic-import
 	if (shouldKeepDynamicImport(platform, support)) {
 		exclude.push('@babel/plugin-proposal-dynamic-import');
 	}
@@ -85,6 +86,9 @@ function getSharedConfig(
 	return {
 		caller: {
 			name: 'packemon',
+			supportsDynamicImport: true,
+			supportsTopLevelAwait: true,
+			supportsStaticESM: true,
 		},
 		comments: true,
 		parserOpts: {
