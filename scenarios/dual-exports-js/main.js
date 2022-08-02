@@ -1,1 +1,1 @@
-export default 'dual-exports-js (main)';
+module.exports = 'dual-exports-js (main)';

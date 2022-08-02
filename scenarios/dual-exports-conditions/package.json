@@ -1,0 +1,14 @@
+{
+  "name": "dual-exports-conditions",
+  "exports": {
+    ".": {
+      "browser": {
+        "import": "./browser.js"
+      },
+      "node": {
+        "require": "./node.cjs"
+      },
+      "default": "./default.js"
+    }
+  }
+}
