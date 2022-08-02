@@ -39,6 +39,24 @@ function isProcessEnv(path: NodePath): boolean {
 	);
 }
 
+function isValidNodeGlobal(path: NodePath, name: string): boolean {
+	if (!path.isIdentifier({ name })) {
+		return false;
+	}
+
+	const { parentPath } = path;
+
+	// const __dirname = ...
+	if (
+		parentPath?.isVariableDeclarator() &&
+		(parentPath.get('id') as NodePath).isIdentifier({ name })
+	) {
+		return false;
+	}
+
+	return true;
+}
+
 function getFormat(state: PluginPass): 'cjs' | 'mjs' {
 	return (state.opts as CjsEsmInteropOptions)?.format ?? 'mjs';
 }
@@ -90,7 +108,7 @@ export default function cjsEsmInterop(): PluginObj {
 			Identifier(path: NodePath<t.Identifier>, state) {
 				// __filename -> import.meta.url
 				// https://nodejs.org/api/esm.html#esm_no_filename_or_dirname
-				if (getFormat(state) === 'mjs' && path.isIdentifier({ name: '__filename' })) {
+				if (getFormat(state) === 'mjs' && isValidNodeGlobal(path, '__filename')) {
 					path.replaceWith(
 						t.memberExpression(
 							t.metaProperty(t.identifier('import'), t.identifier('meta')),
@@ -101,7 +119,7 @@ export default function cjsEsmInterop(): PluginObj {
 
 				// __dirname -> path.dirname(import.meta.url)
 				// https://nodejs.org/api/esm.html#esm_no_filename_or_dirname
-				if (getFormat(state) === 'mjs' && path.isIdentifier({ name: '__dirname' })) {
+				if (getFormat(state) === 'mjs' && isValidNodeGlobal(path, '__dirname')) {
 					// eslint-disable-next-line @typescript-eslint/no-unsafe-call
 					this.pathImport ??= addDefault(path, 'path', { nameHint: '_path' });
 

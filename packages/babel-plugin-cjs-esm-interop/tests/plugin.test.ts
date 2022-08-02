@@ -210,6 +210,12 @@ describe('cjsEsmInterop()', () => {
 	// });
 
 	describe('__filename', () => {
+		it('ignores vars named __filename', async () => {
+			await expect(
+				transform('const __filename = 123;', { filename: 'file.ts' }, { format: 'mjs' }),
+			).resolves.toMatchInlineSnapshot(`"const __filename = 123;"`);
+		});
+
 		it('transforms from .ts -> .mjs', async () => {
 			await expect(
 				transform('const file = __filename;', { filename: 'file.ts' }, { format: 'mjs' }),
@@ -260,9 +266,15 @@ describe('cjsEsmInterop()', () => {
 	});
 
 	describe('__dirname', () => {
+		it('ignores vars named __dirname', async () => {
+			await expect(
+				transform('const __dirname = 123;', { filename: 'file.ts' }, { format: 'mjs' }),
+			).resolves.toMatchInlineSnapshot(`"const __dirname = 123;"`);
+		});
+
 		it('transforms from .ts -> .mjs', async () => {
-			await expect(transform('const dir = __dirname;', { filename: 'file.ts' }, { format: 'mjs' })).resolves
-				.toMatchInlineSnapshot(`
+			await expect(transform('const dir = __dirname;', { filename: 'file.ts' }, { format: 'mjs' }))
+				.resolves.toMatchInlineSnapshot(`
 			"import _path from 'path';
 
 			const dir = _path.dirname(import.meta.url);"
@@ -270,8 +282,8 @@ describe('cjsEsmInterop()', () => {
 		});
 
 		it('transforms from .mjs -> .mjs', async () => {
-			await expect(transform('const dir = __dirname;', { filename: 'file.mjs' }, { format: 'mjs' })).resolves
-				.toMatchInlineSnapshot(`
+			await expect(transform('const dir = __dirname;', { filename: 'file.mjs' }, { format: 'mjs' }))
+				.resolves.toMatchInlineSnapshot(`
 			"import _path from 'path';
 
 			const dir = _path.dirname(import.meta.url);"
@@ -279,8 +291,8 @@ describe('cjsEsmInterop()', () => {
 		});
 
 		it('transforms from .js -> .mjs', async () => {
-			await expect(transform('const dir = __dirname;', { filename: 'file.js' }, { format: 'mjs' })).resolves
-				.toMatchInlineSnapshot(`
+			await expect(transform('const dir = __dirname;', { filename: 'file.js' }, { format: 'mjs' }))
+				.resolves.toMatchInlineSnapshot(`
 			"import _path from 'path';
 
 			const dir = _path.dirname(import.meta.url);"
@@ -288,8 +300,8 @@ describe('cjsEsmInterop()', () => {
 		});
 
 		it('transforms from .cjs -> .mjs', async () => {
-			await expect(transform('const dir = __dirname;', { filename: 'file.cjs' }, { format: 'mjs' })).resolves
-				.toMatchInlineSnapshot(`
+			await expect(transform('const dir = __dirname;', { filename: 'file.cjs' }, { format: 'mjs' }))
+				.resolves.toMatchInlineSnapshot(`
 			"import _path from 'path';
 
 			const dir = _path.dirname(import.meta.url);"
@@ -324,41 +336,25 @@ describe('cjsEsmInterop()', () => {
 	describe('import.meta.url', () => {
 		it('transforms from .ts -> .cjs', async () => {
 			await expect(
-				transform(
-					'const file = import.meta.url;',
-					{ filename: 'file.ts' },
-					{ format: 'cjs' },
-				),
+				transform('const file = import.meta.url;', { filename: 'file.ts' }, { format: 'cjs' }),
 			).resolves.toMatchInlineSnapshot(`"const file = __filename;"`);
 		});
 
 		it('transforms from .mjs -> .cjs', async () => {
 			await expect(
-				transform(
-					'const file = import.meta.url;',
-					{ filename: 'file.mjs' },
-					{ format: 'cjs' },
-				),
+				transform('const file = import.meta.url;', { filename: 'file.mjs' }, { format: 'cjs' }),
 			).resolves.toMatchInlineSnapshot(`"const file = __filename;"`);
 		});
 
 		it('transforms from .js -> .cjs', async () => {
 			await expect(
-				transform(
-					'const file = import.meta.url;',
-					{ filename: 'file.js' },
-					{ format: 'cjs' },
-				),
+				transform('const file = import.meta.url;', { filename: 'file.js' }, { format: 'cjs' }),
 			).resolves.toMatchInlineSnapshot(`"const file = __filename;"`);
 		});
 
 		it('transforms from .cjs -> .cjs', async () => {
 			await expect(
-				transform(
-					'const file = import.meta.url;',
-					{ filename: 'file.cjs' },
-					{ format: 'cjs' },
-				),
+				transform('const file = import.meta.url;', { filename: 'file.cjs' }, { format: 'cjs' }),
 			).resolves.toMatchInlineSnapshot(`"const file = __filename;"`);
 		});
 
@@ -377,41 +373,25 @@ describe('cjsEsmInterop()', () => {
 
 		it('doesnt transform from .ts -> .mjs', async () => {
 			await expect(
-				transform(
-					'const file = import.meta.url;',
-					{ filename: 'file.ts' },
-					{ format: 'mjs' },
-				),
+				transform('const file = import.meta.url;', { filename: 'file.ts' }, { format: 'mjs' }),
 			).resolves.toMatchInlineSnapshot(`"const file = import.meta.url;"`);
 		});
 
 		it('doesnt transform from .mjs -> .mjs', async () => {
 			await expect(
-				transform(
-					'const file = import.meta.url;',
-					{ filename: 'file.mjs' },
-					{ format: 'mjs' },
-				),
+				transform('const file = import.meta.url;', { filename: 'file.mjs' }, { format: 'mjs' }),
 			).resolves.toMatchInlineSnapshot(`"const file = import.meta.url;"`);
 		});
 
 		it('doesnt transform from .js -> .mjs', async () => {
 			await expect(
-				transform(
-					'const file = import.meta.url;',
-					{ filename: 'file.js' },
-					{ format: 'mjs' },
-				),
+				transform('const file = import.meta.url;', { filename: 'file.js' }, { format: 'mjs' }),
 			).resolves.toMatchInlineSnapshot(`"const file = import.meta.url;"`);
 		});
 
 		it('doesnt transform from .cjs -> .mjs', async () => {
 			await expect(
-				transform(
-					'const file = import.meta.url;',
-					{ filename: 'file.cjs' },
-					{ format: 'mjs' },
-				),
+				transform('const file = import.meta.url;', { filename: 'file.cjs' }, { format: 'mjs' }),
 			).resolves.toMatchInlineSnapshot(`"const file = import.meta.url;"`);
 		});
 
@@ -525,11 +505,7 @@ describe('cjsEsmInterop()', () => {
 
 		it('doesnt transform to cjs when not wrapped with dirname', async () => {
 			await expect(
-				transform(
-					'const file = import.meta.url;',
-					{ filename: 'file.ts' },
-					{ format: 'cjs' },
-				),
+				transform('const file = import.meta.url;', { filename: 'file.ts' }, { format: 'cjs' }),
 			).resolves.toMatchInlineSnapshot(`"const file = __filename;"`);
 		});
 	});
