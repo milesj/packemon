@@ -1,13 +1,9 @@
 import { PluginItem, TransformOptions as ConfigStructure } from '@babel/core';
 import { CodeArtifact } from '../CodeArtifact';
 import { BROWSER_TARGETS, NATIVE_TARGETS, NODE_SUPPORTED_VERSIONS } from '../constants';
+import { shouldKeepDynamicImport } from '../helpers/shouldKeepDynamicImport';
 import { ConfigFile, FeatureFlags, Format, Platform, Support } from '../types';
 import { resolve, resolveFromBabel } from './resolve';
-
-// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#browser_compatibility
-function shouldKeepDynamicImport(platform: Platform, support: Support): boolean {
-	return platform === 'node' ? support !== 'legacy' : true;
-}
 
 // https://babeljs.io/docs/en/babel-preset-env
 export interface PresetEnvOptions {

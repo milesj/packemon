@@ -13,12 +13,8 @@ import {
 	NODE_SUPPORTED_VERSIONS,
 	SUPPORT_TO_ESM_SPEC,
 } from '../constants';
+import { shouldKeepDynamicImport } from '../helpers/shouldKeepDynamicImport';
 import { ConfigFile, FeatureFlags, Format, Platform, Support } from '../types';
-
-// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#browser_compatibility
-function shouldKeepDynamicImport(platform: Platform, support: Support): boolean {
-	return platform === 'node' ? support !== 'legacy' : true;
-}
 
 function getModuleConfigType(format: Format): ModuleConfig['type'] {
 	switch (format) {

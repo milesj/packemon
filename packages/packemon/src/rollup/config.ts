@@ -13,6 +13,7 @@ import { ConfigFile, FeatureFlags, Format } from '../types';
 import { addBinShebang } from './plugins/addBinShebang';
 import { addMjsWrapperForCjs } from './plugins/addMjsWrapperForCjs';
 import { copyAndRefAssets } from './plugins/copyAndRefAssets';
+import { preserveDynamicImport } from './plugins/preserveDynamicImport';
 import { swcInput, swcOutput } from './plugins/swc';
 
 function getRollupModuleFormat(format: Format): ModuleFormat {
@@ -116,6 +117,7 @@ export function getRollupOutputConfig(
 		preferConst: true,
 		// Output specific plugins
 		plugins: [
+			preserveDynamicImport(platform, support),
 			isSwc
 				? swcOutput({
 						...getSwcOutputConfig(platform, support, format, features, packemonConfig),
