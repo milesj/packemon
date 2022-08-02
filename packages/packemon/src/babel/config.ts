@@ -82,9 +82,6 @@ function getSharedConfig(
 	return {
 		caller: {
 			name: 'packemon',
-			supportsDynamicImport: true,
-			supportsTopLevelAwait: true,
-			supportsStaticESM: true,
 		},
 		comments: true,
 		parserOpts: {
