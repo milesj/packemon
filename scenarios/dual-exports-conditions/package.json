@@ -3,10 +3,12 @@
   "exports": {
     ".": {
       "browser": {
-        "import": "./browser.js"
+        "import": "./browser.js",
+        "default": "./browser-default.js"
       },
       "node": {
-        "require": "./node.cjs"
+        "require": "./node.cjs",
+        "default": "./node-default.cjs"
       },
       "default": "./default.js"
     }
