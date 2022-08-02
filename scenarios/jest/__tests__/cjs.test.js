@@ -4,7 +4,6 @@ import dualExportsConditions from 'dual-exports-conditions';
 import dualModuleJs from 'dual-module-js';
 import dualModuleCjsMjs from 'dual-module-cjs-mjs';
 
-// The esm scenarios must use import() in Jest since it only runs CJS by default
 describe('Resolves', () => {
 	it('imports cjs/js correctly', async () => {
 		expect(dualExportsJs).toBe('dual-exports-js (main)');
