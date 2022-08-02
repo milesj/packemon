@@ -24,6 +24,19 @@ jobs:
       - run: yarn run type
       - run: yarn run coverage
       - run: yarn run lint
+  integrate:
+    name: Integrations
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          cache: yarn
+      - run: yarn install --immutable
+      - run: cd scenarios/jest && yarn test
+      - run: cd scenarios/snowpack && yarn build
+      - run: cd scenarios/vite && yarn build
+      - run: cd scenarios/webpack && yarn build
   compat:
     name: Compatibility
     runs-on: ubuntu-latest
