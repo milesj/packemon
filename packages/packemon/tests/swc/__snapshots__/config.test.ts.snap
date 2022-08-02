@@ -22,6 +22,10 @@ Object {
       "optimizer": undefined,
     },
   },
+  "module": Object {
+    "ignoreDynamic": true,
+    "type": "es6",
+  },
   "rootMode": "upward",
   "swcrc": false,
 }
@@ -48,6 +52,10 @@ Object {
       "optimizer": undefined,
     },
   },
+  "module": Object {
+    "ignoreDynamic": true,
+    "type": "es6",
+  },
   "swcrc": false,
 }
 `;
@@ -72,6 +80,10 @@ Object {
     "transform": Object {
       "optimizer": undefined,
     },
+  },
+  "module": Object {
+    "ignoreDynamic": true,
+    "type": "es6",
   },
   "swcrc": false,
 }
@@ -110,6 +122,10 @@ Object {
       "optimizer": undefined,
     },
   },
+  "module": Object {
+    "ignoreDynamic": true,
+    "type": "es6",
+  },
   "swcrc": false,
 }
 `;
@@ -144,6 +160,10 @@ Object {
       "legacyDecorator": true,
       "optimizer": undefined,
     },
+  },
+  "module": Object {
+    "ignoreDynamic": true,
+    "type": "es6",
   },
   "swcrc": false,
 }
@@ -568,7 +588,7 @@ Object {
     },
   },
   "module": Object {
-    "ignoreDynamic": true,
+    "ignoreDynamic": false,
     "type": "commonjs",
   },
   "swcrc": false,

@@ -46,6 +46,7 @@ function createArtifact(outputName: string, inputFile: string, pkg?: Package) {
 	return artifact;
 }
 
+const dynamicImportPlugin = expect.objectContaining({ name: 'packemon-preserve-dynamic-import' });
 const binPlugin = expect.objectContaining({ name: 'packemon-add-bin-shebang' });
 
 describe('getRollupConfig()', () => {
@@ -130,7 +131,7 @@ describe('getRollupConfig()', () => {
 					interop: 'auto',
 					originalFormat: 'lib',
 					paths: {},
-					plugins: [`babelOutput(${fixturePath}, *)`, binPlugin],
+					plugins: [dynamicImportPlugin, `babelOutput(${fixturePath}, *)`, binPlugin],
 					preferConst: true,
 					preserveModules: false,
 					sourcemap: true,
@@ -150,7 +151,7 @@ describe('getRollupConfig()', () => {
 					interop: 'auto',
 					originalFormat: 'esm',
 					paths: {},
-					plugins: [`babelOutput(${fixturePath}, *)`, binPlugin],
+					plugins: [dynamicImportPlugin, `babelOutput(${fixturePath}, *)`, binPlugin],
 					preferConst: true,
 					preserveModules: false,
 					sourcemap: true,
@@ -170,7 +171,7 @@ describe('getRollupConfig()', () => {
 					interop: 'auto',
 					originalFormat: 'mjs',
 					paths: {},
-					plugins: [`babelOutput(${fixturePath}, *)`, binPlugin],
+					plugins: [dynamicImportPlugin, `babelOutput(${fixturePath}, *)`, binPlugin],
 					preferConst: true,
 					preserveModules: false,
 					sourcemap: true,
@@ -210,7 +211,7 @@ describe('getRollupConfig()', () => {
 					interop: 'auto',
 					originalFormat: 'lib',
 					paths: {},
-					plugins: [`babelOutput(${fixturePath}, *)`, binPlugin],
+					plugins: [dynamicImportPlugin, `babelOutput(${fixturePath}, *)`, binPlugin],
 					preferConst: true,
 					preserveModules: false,
 					sourcemap: true,
@@ -251,7 +252,7 @@ describe('getRollupConfig()', () => {
 					interop: 'auto',
 					originalFormat: 'lib',
 					paths: {},
-					plugins: [`babelOutput(${fixturePath}, *)`, binPlugin],
+					plugins: [dynamicImportPlugin, `babelOutput(${fixturePath}, *)`, binPlugin],
 					preferConst: true,
 					preserveModules: true,
 					sourcemap: true,
@@ -377,7 +378,7 @@ describe('getRollupOutputConfig()', () => {
 			interop: 'auto',
 			originalFormat: 'lib',
 			paths: {},
-			plugins: [`babelOutput(${fixturePath}, *)`, binPlugin],
+			plugins: [dynamicImportPlugin, `babelOutput(${fixturePath}, *)`, binPlugin],
 			preferConst: true,
 			preserveModules: false,
 			sourcemap: true,
@@ -422,7 +423,7 @@ describe('getRollupOutputConfig()', () => {
 			interop: 'auto',
 			originalFormat: 'lib',
 			paths: {},
-			plugins: [`babelOutput(${fixturePath}, *)`, binPlugin],
+			plugins: [dynamicImportPlugin, `babelOutput(${fixturePath}, *)`, binPlugin],
 			preferConst: true,
 			preserveModules: false,
 			sourcemap: false,
@@ -592,7 +593,7 @@ describe('getRollupOutputConfig()', () => {
 			interop: 'auto',
 			originalFormat: 'umd',
 			paths: {},
-			plugins: [`babelOutput(${fixturePath}, FooBar)`, binPlugin],
+			plugins: [dynamicImportPlugin, `babelOutput(${fixturePath}, FooBar)`, binPlugin],
 			preferConst: true,
 			preserveModules: false,
 			sourcemap: true,

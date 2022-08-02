@@ -60,12 +60,12 @@ Array [
 // Platform: browser, Support: current, Format: lib
 'use strict';
 
-Promise.resolve().then(() => require('./bundle-b8bd2771.js')).then(result => {
+import('./bundle-b8bd2771.js').then(result => {
   result.foo();
 });
-Promise.resolve().then(() => require(
+import(
 /* webpackChunkName: \\"helpers\\" */
-'./bundle-b8bd2771.js')).then(({
+'./bundle-b8bd2771.js').then(({
   bar
 }) => {
   bar();
@@ -190,12 +190,12 @@ Array [
 // Platform: browser, Support: experimental, Format: lib
 'use strict';
 
-Promise.resolve().then(() => require('./bundle-c50d6f28.js')).then(result => {
+import('./bundle-c50d6f28.js').then(result => {
   result.foo();
 });
-Promise.resolve().then(() => require(
+import(
 /* webpackChunkName: \\"helpers\\" */
-'./bundle-c50d6f28.js')).then(({
+'./bundle-c50d6f28.js').then(({
   bar
 }) => {
   bar();
@@ -331,22 +331,14 @@ var _this = this;
 
 function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError(\\"Cannot instantiate an arrow function\\"); } }
 
-Promise.resolve().then(function () {
-  _newArrowCheck(this, _this);
-
-  return require('./bundle-0c868d09.js');
-}.bind(this)).then(function (result) {
+import('./bundle-0c868d09.js').then(function (result) {
   _newArrowCheck(this, _this);
 
   result.foo();
 }.bind(this));
-Promise.resolve().then(function () {
-  _newArrowCheck(this, _this);
-
-  return require(
-  /* webpackChunkName: \\"helpers\\" */
-  './bundle-0c868d09.js');
-}.bind(this)).then(function (_ref) {
+import(
+/* webpackChunkName: \\"helpers\\" */
+'./bundle-0c868d09.js').then(function (_ref) {
   _newArrowCheck(this, _this);
 
   var bar = _ref.bar;
@@ -479,12 +471,12 @@ Array [
 // Platform: browser, Support: stable, Format: lib
 'use strict';
 
-Promise.resolve().then(() => require('./bundle-a1d8f7d2.js')).then(result => {
+import('./bundle-a1d8f7d2.js').then(result => {
   result.foo();
 });
-Promise.resolve().then(() => require(
+import(
 /* webpackChunkName: \\"helpers\\" */
-'./bundle-a1d8f7d2.js')).then(({
+'./bundle-a1d8f7d2.js').then(({
   bar
 }) => {
   bar();
@@ -744,12 +736,12 @@ Array [
 // Platform: node, Support: current, Format: cjs
 'use strict';
 
-Promise.resolve().then(() => require('./bundle-be5cf5e2.cjs')).then(result => {
+import('./bundle-be5cf5e2.cjs').then(result => {
   result.foo();
 });
-Promise.resolve().then(() => require(
+import(
 /* webpackChunkName: \\"helpers\\" */
-'./bundle-be5cf5e2.cjs')).then(({
+'./bundle-be5cf5e2.cjs').then(({
   bar
 }) => {
   bar();
@@ -784,12 +776,12 @@ Array [
 // Platform: node, Support: current, Format: lib
 'use strict';
 
-Promise.resolve().then(() => require('./bundle-b574f112.js')).then(result => {
+import('./bundle-b574f112.js').then(result => {
   result.foo();
 });
-Promise.resolve().then(() => require(
+import(
 /* webpackChunkName: \\"helpers\\" */
-'./bundle-b574f112.js')).then(({
+'./bundle-b574f112.js').then(({
   bar
 }) => {
   bar();
@@ -869,12 +861,12 @@ Array [
 // Platform: node, Support: experimental, Format: cjs
 'use strict';
 
-Promise.resolve().then(() => require('./bundle-aca4e497.cjs')).then(result => {
+import('./bundle-aca4e497.cjs').then(result => {
   result.foo();
 });
-Promise.resolve().then(() => require(
+import(
 /* webpackChunkName: \\"helpers\\" */
-'./bundle-aca4e497.cjs')).then(({
+'./bundle-aca4e497.cjs').then(({
   bar
 }) => {
   bar();
@@ -909,12 +901,12 @@ Array [
 // Platform: node, Support: experimental, Format: lib
 'use strict';
 
-Promise.resolve().then(() => require('./bundle-6879caf9.js')).then(result => {
+import('./bundle-6879caf9.js').then(result => {
   result.foo();
 });
-Promise.resolve().then(() => require(
+import(
 /* webpackChunkName: \\"helpers\\" */
-'./bundle-6879caf9.js')).then(({
+'./bundle-6879caf9.js').then(({
   bar
 }) => {
   bar();
@@ -1119,12 +1111,12 @@ Array [
 // Platform: node, Support: stable, Format: cjs
 'use strict';
 
-Promise.resolve().then(() => require('./bundle-922b7d15.cjs')).then(result => {
+import('./bundle-922b7d15.cjs').then(result => {
   result.foo();
 });
-Promise.resolve().then(() => require(
+import(
 /* webpackChunkName: \\"helpers\\" */
-'./bundle-922b7d15.cjs')).then(({
+'./bundle-922b7d15.cjs').then(({
   bar
 }) => {
   bar();
@@ -1159,12 +1151,12 @@ Array [
 // Platform: node, Support: stable, Format: lib
 'use strict';
 
-Promise.resolve().then(() => require('./bundle-75d21bac.js')).then(result => {
+import('./bundle-75d21bac.js').then(result => {
   result.foo();
 });
-Promise.resolve().then(() => require(
+import(
 /* webpackChunkName: \\"helpers\\" */
-'./bundle-75d21bac.js')).then(({
+'./bundle-75d21bac.js').then(({
   bar
 }) => {
   bar();
@@ -1259,10 +1251,10 @@ Array [
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: lib
 'use strict';
-Promise.resolve().then(()=>require('./bundle-b8bd2771.js')).then((result)=>{
+import('./bundle-b8bd2771.js').then((result)=>{
     result.foo();
 });
-Promise.resolve().then(()=>require(/* webpackChunkName: \\"helpers\\" */ './bundle-b8bd2771.js')).then(({ bar  })=>{
+import(/* webpackChunkName: \\"helpers\\" */ './bundle-b8bd2771.js').then(({ bar  })=>{
     bar();
 });
 //# sourceMappingURL=index-browser-current-lib.js.map
@@ -1373,10 +1365,10 @@ Array [
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: experimental, Format: lib
 'use strict';
-Promise.resolve().then(()=>require('./bundle-c50d6f28.js')).then((result)=>{
+import('./bundle-c50d6f28.js').then((result)=>{
     result.foo();
 });
-Promise.resolve().then(()=>require(/* webpackChunkName: \\"helpers\\" */ './bundle-c50d6f28.js')).then(({ bar  })=>{
+import(/* webpackChunkName: \\"helpers\\" */ './bundle-c50d6f28.js').then(({ bar  })=>{
     bar();
 });
 //# sourceMappingURL=index-browser-experimental-lib.js.map
@@ -1488,14 +1480,10 @@ Array [
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: lib
 \\"use strict\\";
-Promise.resolve().then(function() {
-    return require(\\"./bundle-0c868d09.js\\");
-}).then(function(result) {
+import(\\"./bundle-0c868d09.js\\").then(function(result) {
     result.foo();
 });
-Promise.resolve().then(function() {
-    return require(/* webpackChunkName: \\"helpers\\" */ \\"./bundle-0c868d09.js\\");
-}).then(function(param) {
+import(/* webpackChunkName: \\"helpers\\" */ \\"./bundle-0c868d09.js\\").then(function(param) {
     var bar = param.bar;
     bar();
 });
@@ -1612,10 +1600,10 @@ Array [
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: lib
 'use strict';
-Promise.resolve().then(()=>require('./bundle-a1d8f7d2.js')).then((result)=>{
+import('./bundle-a1d8f7d2.js').then((result)=>{
     result.foo();
 });
-Promise.resolve().then(()=>require(/* webpackChunkName: \\"helpers\\" */ './bundle-a1d8f7d2.js')).then(({ bar  })=>{
+import(/* webpackChunkName: \\"helpers\\" */ './bundle-a1d8f7d2.js').then(({ bar  })=>{
     bar();
 });
 //# sourceMappingURL=index-browser-stable-lib.js.map
@@ -1835,10 +1823,10 @@ Array [
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: cjs
 'use strict';
-Promise.resolve().then(()=>require('./bundle-be5cf5e2.cjs')).then((result)=>{
+import('./bundle-be5cf5e2.cjs').then((result)=>{
     result.foo();
 });
-Promise.resolve().then(()=>require(/* webpackChunkName: \\"helpers\\" */ './bundle-be5cf5e2.cjs')).then(({ bar  })=>{
+import(/* webpackChunkName: \\"helpers\\" */ './bundle-be5cf5e2.cjs').then(({ bar  })=>{
     bar();
 });
 //# sourceMappingURL=index-node-current-cjs.cjs.map
@@ -1867,10 +1855,10 @@ Array [
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: lib
 'use strict';
-Promise.resolve().then(()=>require('./bundle-b574f112.js')).then((result)=>{
+import('./bundle-b574f112.js').then((result)=>{
     result.foo();
 });
-Promise.resolve().then(()=>require(/* webpackChunkName: \\"helpers\\" */ './bundle-b574f112.js')).then(({ bar  })=>{
+import(/* webpackChunkName: \\"helpers\\" */ './bundle-b574f112.js').then(({ bar  })=>{
     bar();
 });
 //# sourceMappingURL=index-node-current-lib.js.map
@@ -1938,10 +1926,10 @@ Array [
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: cjs
 'use strict';
-Promise.resolve().then(()=>require('./bundle-aca4e497.cjs')).then((result)=>{
+import('./bundle-aca4e497.cjs').then((result)=>{
     result.foo();
 });
-Promise.resolve().then(()=>require(/* webpackChunkName: \\"helpers\\" */ './bundle-aca4e497.cjs')).then(({ bar  })=>{
+import(/* webpackChunkName: \\"helpers\\" */ './bundle-aca4e497.cjs').then(({ bar  })=>{
     bar();
 });
 //# sourceMappingURL=index-node-experimental-cjs.cjs.map
@@ -1970,10 +1958,10 @@ Array [
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: lib
 'use strict';
-Promise.resolve().then(()=>require('./bundle-6879caf9.js')).then((result)=>{
+import('./bundle-6879caf9.js').then((result)=>{
     result.foo();
 });
-Promise.resolve().then(()=>require(/* webpackChunkName: \\"helpers\\" */ './bundle-6879caf9.js')).then(({ bar  })=>{
+import(/* webpackChunkName: \\"helpers\\" */ './bundle-6879caf9.js').then(({ bar  })=>{
     bar();
 });
 //# sourceMappingURL=index-node-experimental-lib.js.map
@@ -2144,10 +2132,10 @@ Array [
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: cjs
 'use strict';
-Promise.resolve().then(()=>require('./bundle-922b7d15.cjs')).then((result)=>{
+import('./bundle-922b7d15.cjs').then((result)=>{
     result.foo();
 });
-Promise.resolve().then(()=>require(/* webpackChunkName: \\"helpers\\" */ './bundle-922b7d15.cjs')).then(({ bar  })=>{
+import(/* webpackChunkName: \\"helpers\\" */ './bundle-922b7d15.cjs').then(({ bar  })=>{
     bar();
 });
 //# sourceMappingURL=index-node-stable-cjs.cjs.map
@@ -2176,10 +2164,10 @@ Array [
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: lib
 'use strict';
-Promise.resolve().then(()=>require('./bundle-75d21bac.js')).then((result)=>{
+import('./bundle-75d21bac.js').then((result)=>{
     result.foo();
 });
-Promise.resolve().then(()=>require(/* webpackChunkName: \\"helpers\\" */ './bundle-75d21bac.js')).then(({ bar  })=>{
+import(/* webpackChunkName: \\"helpers\\" */ './bundle-75d21bac.js').then(({ bar  })=>{
     bar();
 });
 //# sourceMappingURL=index-node-stable-lib.js.map
