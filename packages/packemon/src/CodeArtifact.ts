@@ -224,6 +224,10 @@ export class CodeArtifact extends Artifact<CodeBuild> {
 				if (!paths.import && outputName !== '*' && paths.require) {
 					paths.import = (paths.require as string).replace('.cjs', '-wrapper.mjs');
 				}
+
+				if (!paths.require && defaultEntry) {
+					paths.default = defaultEntry;
+				}
 				break;
 			}
 
