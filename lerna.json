@@ -1,13 +1,15 @@
 {
   "version": "independent",
   "npmClient": "yarn",
-  "useWorkspaces": false,
+  "useWorkspaces": true,
   "packages": [
     "packages/*"
   ],
   "command": {
     "publish": {
-      "ignoreChanges": ["*.md"]
+      "ignoreChanges": [
+        "*.md"
+      ]
     }
   }
 }
