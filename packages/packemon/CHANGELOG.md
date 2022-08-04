@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.3.3 - 2022-08-04
+
+#### 🐞 Fixes
+
+- Add "default" export conditions for `browser` and `node` platforms when applicable. (#140) ([ab96384](https://github.com/milesj/packemon/commit/ab96384)), closes [#140](https://github.com/milesj/packemon/issues/140)
+- Ensure dynamic imports are preserved for the target platform. (#139) ([b06e89d](https://github.com/milesj/packemon/commit/b06e89d)), closes [#139](https://github.com/milesj/packemon/issues/139)
+
+**Note:** Version bump only for package packemon
+
+
+
+
+
 ### 2.3.2 - 2022-07-27
 
 #### 🐞 Fixes
