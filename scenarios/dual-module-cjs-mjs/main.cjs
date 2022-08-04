@@ -1,1 +1,1 @@
-export default 'dual-module-cjs-mjs (main)';
+module.exports = 'dual-module-cjs-mjs (main)';

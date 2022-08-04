@@ -7,4 +7,5 @@ export default {
 		'website',
 	],
 	testEnvironment: 'node',
+	testPathIgnorePatterns: ['scenarios'],
 };

@@ -12,6 +12,9 @@ import esmModuleJs from 'esm-module-js';
 import esmModuleJsModule from 'esm-module-js-module';
 import esmModuleMjs from 'esm-module-mjs';
 
+// Browser/Node conditions
+import dualExportsConditions from 'dual-exports-conditions';
+
 // These are weird but allowed
 import validCjsViaImport from 'valid-cjs-via-import';
 
@@ -22,6 +25,7 @@ import validCjsViaImport from 'valid-cjs-via-import';
 console.log(
 	dualExportsJs,
 	dualExportsCjsMjs,
+	dualExportsConditions,
 	dualModuleJs,
 	dualModuleCjsMjs,
 	esmExportJs,
