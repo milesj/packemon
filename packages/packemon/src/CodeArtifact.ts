@@ -197,45 +197,60 @@ export class CodeArtifact extends Artifact<CodeBuild> {
 		return `code (${this.getLabel()})`;
 	}
 
+	// eslint-disable-next-line complexity
 	protected mapPackageExportsFromBuilds(outputName: string, exportMap: PackageExports) {
-		const paths: PackageExportPaths = {};
-		let defaultEntry: string | undefined;
+		const defaultEntry = this.findEntryPoint(['lib'], outputName);
+		let paths: PackageExportPaths = {};
 
-		this.builds.forEach(({ format }) => {
-			const entry = this.findEntryPoint([format], outputName);
+		switch (this.platform) {
+			case 'browser': {
+				const moduleEntry = this.findEntryPoint(['esm'], outputName);
 
-			switch (format) {
-				case 'mjs':
-				case 'esm':
-					paths.import = entry;
-
-					// Webpack and Rollup support
-					if (format === 'esm') {
-						paths.module = entry;
-					}
-					break;
-
-				case 'cjs':
-					// Automatically apply the wrapper
-					if (!paths.import && outputName !== '*' && entry) {
-						paths.import = entry.replace('.cjs', '-wrapper.mjs');
-					}
-
-					paths.require = entry;
-					break;
-
-				case 'lib':
-					defaultEntry = entry;
-					break;
-
-				default:
-					break;
+				paths = {
+					module: moduleEntry, // Bundlers
+					import: moduleEntry,
+					default: this.findEntryPoint(['umd', 'lib'], outputName), // Node.js tooling
+				};
+				break;
 			}
-		});
 
+			case 'node': {
+				paths = {
+					import: this.findEntryPoint(['mjs'], outputName),
+					require: this.findEntryPoint(['cjs'], outputName),
+				};
+
+				// Automatically apply the mjs wrapper for cjs
+				if (!paths.import && outputName !== '*' && paths.require) {
+					paths.import = (paths.require as string).replace('.cjs', '-wrapper.mjs');
+				}
+				break;
+			}
+
+			case 'native':
+				paths.default = defaultEntry;
+				break;
+
+			default:
+				break;
+		}
+
+		// Remove undefined values
+		for (const key in paths) {
+			if (paths[key as keyof typeof paths] === undefined) {
+				delete paths[key as keyof typeof paths];
+			}
+		}
+
+		const pathsCount = Object.keys(paths).length;
 		const pathsMap = {
 			[this.platform === 'native' ? 'react-native' : this.platform]:
-				Object.keys(paths).length === 0 && defaultEntry ? defaultEntry : paths,
+				// eslint-disable-next-line no-nested-ternary
+				pathsCount === 0 && defaultEntry
+					? defaultEntry
+					: pathsCount === 1 && paths.default
+					? paths.default
+					: paths,
 		};
 
 		// Provide fallbacks if condition above is not

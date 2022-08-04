@@ -601,6 +601,7 @@ describe('Package', () => {
 						browser: {
 							import: './esm/index.js',
 							module: './esm/index.js',
+							default: './umd/index.js',
 						},
 						default: './lib/index.js',
 					},
@@ -650,6 +651,7 @@ describe('Package', () => {
 						browser: {
 							import: './esm/client.js',
 							module: './esm/client.js',
+							default: './umd/client.js',
 						},
 						default: './lib/client.js',
 					},
@@ -889,6 +891,7 @@ describe('Package', () => {
 							browser: {
 								import: './esm/web.js',
 								module: './esm/web.js',
+								default: './lib/web.js',
 							},
 							default: './lib/web.js',
 						},
@@ -935,7 +938,7 @@ describe('Package', () => {
 						'./bin': { node: './lib/cli.js', default: './lib/cli.js' },
 						'./import': { node: { import: './mjs/web.mjs' } },
 						'./web': {
-							browser: { import: './esm/web.js', module: './esm/web.js' },
+							browser: { import: './esm/web.js', module: './esm/web.js', default: './lib/web.js' },
 							default: './lib/web.js',
 						},
 						'.': { node: { import: './cjs/node-wrapper.mjs', require: './cjs/node.cjs' } },
@@ -979,7 +982,7 @@ describe('Package', () => {
 					exports: {
 						'./package.json': './package.json',
 						'./*': {
-							browser: { import: './esm/*.js', module: './esm/*.js' },
+							browser: { import: './esm/*.js', module: './esm/*.js', default: './lib/*.js' },
 							node: { import: './mjs/*.mjs' },
 							default: './lib/*.js',
 						},
@@ -987,6 +990,7 @@ describe('Package', () => {
 							browser: {
 								import: './esm/index.js',
 								module: './esm/index.js',
+								default: './lib/index.js',
 							},
 							node: { import: './mjs/index.mjs' },
 							default: './lib/index.js',
