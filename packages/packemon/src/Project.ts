@@ -2,7 +2,7 @@
 
 import execa from 'execa';
 import semver from 'semver';
-import { Memoize, Path, Project as BaseProject, VirtualPath } from '@boost/common';
+import { Memoize, Project as BaseProject } from '@boost/common';
 import { getVersion } from './helpers/getVersion';
 import { Package } from './Package';
 
@@ -38,48 +38,21 @@ export class Project extends BaseProject {
 		return this.workspaces.length > 0;
 	}
 
-	async generateDeclarations(pkgPath?: Path, declarationConfig?: string): Promise<unknown> {
+	async generateDeclarations(declarationConfig?: string): Promise<unknown> {
 		if (this.buildPromise) {
 			return this.buildPromise;
 		}
 
-		const args: string[] = [];
-		const isNonStandardTsConfig = declarationConfig && declarationConfig !== 'tsconfig.json';
-		let persistBuild = false;
+		const args: string[] = [
+			'--declaration',
+			'--declarationDir',
+			'dts',
+			'--declarationMap',
+			'--emitDeclarationOnly',
+		];
 
-		if (this.isWorkspacesEnabled()) {
-			args.push('--build', '--force');
-
-			// Only build the specific project when applicable
-			if (pkgPath) {
-				let projectPath = this.root.relativeTo(pkgPath);
-
-				if (isNonStandardTsConfig) {
-					projectPath = projectPath.append(declarationConfig);
-				}
-
-				args.push(new VirtualPath(projectPath).path());
-
-				// Persist when we're building the entire monorepo,
-				// otherwise we'll have overlapping builds!
-			} else {
-				persistBuild = true;
-			}
-		} else {
-			args.push(
-				'--declaration',
-				'--declarationDir',
-				'dts',
-				'--declarationMap',
-				'--emitDeclarationOnly',
-			);
-
-			// This options isn't supported with project references
-			if (isNonStandardTsConfig) {
-				args.push('--project', declarationConfig);
-			}
-
-			persistBuild = true;
+		if (declarationConfig && declarationConfig !== 'tsconfig.json') {
+			args.push('--project', declarationConfig);
 		}
 
 		// Store the promise so parallel artifacts can rely on the same build
@@ -88,9 +61,7 @@ export class Project extends BaseProject {
 			preferLocal: true,
 		});
 
-		if (persistBuild) {
-			this.buildPromise = promise;
-		}
+		this.buildPromise = promise;
 
 		return promise;
 	}

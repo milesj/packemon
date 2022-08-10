@@ -238,4 +238,5 @@ export interface TSConfigStructure {
 		outDir?: string;
 		strict?: boolean;
 	};
+	projectReferences?: readonly unknown[];
 }
