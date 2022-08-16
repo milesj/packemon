@@ -1,4 +1,5 @@
-export default {
+module.exports = {
+	preset: 'jest-preset-moon',
 	coveragePathIgnorePatterns: [
 		'src/commands',
 		'src/components',
@@ -6,6 +7,7 @@ export default {
 		'tests/helpers.ts',
 		'website',
 	],
+	extensionsToTreatAsEsm: [],
 	testEnvironment: 'node',
 	testPathIgnorePatterns: ['scenarios'],
 };
