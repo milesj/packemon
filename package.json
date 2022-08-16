@@ -14,7 +14,7 @@
     "format": "prettier --write .",
     "lint": "beemo eslint",
     "test": "beemo jest",
-    "type": "beemo typescript --build",
+    "type": "tsc --build",
     "prerelease": "yarn run clean && yarn run setup && yarn run pack && yarn run check",
     "release": "yarn prerelease && beemo run-script lerna-release",
     "version": "yarn install && git add yarn.lock",
