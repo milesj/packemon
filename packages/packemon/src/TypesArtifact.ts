@@ -4,7 +4,7 @@ import { VirtualPath } from '@boost/common';
 import { createDebugger, Debugger } from '@boost/debug';
 import { Artifact } from './Artifact';
 import { removeSourcePath } from './helpers/removeSourcePath';
-import { BuildOptions, PackageExports, TypesBuild } from './types';
+import { BuildOptions, PackageExports, TSConfigStructure, TypesBuild } from './types';
 
 export class TypesArtifact extends Artifact<TypesBuild> {
 	protected debug!: Debugger;
@@ -22,22 +22,26 @@ export class TypesArtifact extends Artifact<TypesBuild> {
 		const tsConfig = this.package.loadTsconfigJson(declarationConfig ?? 'tsconfig.json');
 
 		if (tsConfig?.projectReferences && tsConfig?.projectReferences.length > 0) {
-			const args = ['--build', '--force'];
-
-			if (declarationConfig && declarationConfig !== 'tsconfig.json') {
-				args.push(declarationConfig);
-			}
-
-			await execa('tsc', args, {
-				cwd: this.package.path.path(),
-				preferLocal: true,
-			});
+			await this.generateDeclarations();
 
 			return;
 		}
 
 		// Otherwise fallback to a normal `tsc` build
 		await this.package.project.generateDeclarations(declarationConfig);
+	}
+
+	async generateDeclarations(declarationConfig?: string) {
+		const args = ['--build', '--force'];
+
+		if (declarationConfig && declarationConfig !== 'tsconfig.json') {
+			args.push(declarationConfig);
+		}
+
+		await execa('tsc', args, {
+			cwd: this.package.path.path(),
+			preferLocal: true,
+		});
 	}
 
 	findEntryPoint(outputName: string): string | undefined {
@@ -107,5 +111,11 @@ export class TypesArtifact extends Artifact<TypesBuild> {
 
 	override toString() {
 		return `types (${this.getLabel()})`;
+	}
+
+	// This method only exists so that we can mock in tests.
+	// istanbul ignore next
+	protected loadTsconfigJson(): TSConfigStructure | undefined {
+		return this.package.loadTsconfigJson();
 	}
 }

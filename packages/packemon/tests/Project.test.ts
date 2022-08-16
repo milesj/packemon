@@ -88,17 +88,17 @@ describe('Project', () => {
 			});
 		});
 
-		it('generates declarations with `tsc --build` for a specific project', async () => {
-			const project = new Project(getFixturePath('workspaces'));
-			project.workspaces = ['packages/*'];
+		// it('generates declarations with `tsc --build` for a specific project', async () => {
+		// 	const project = new Project(getFixturePath('workspaces'));
+		// 	project.workspaces = ['packages/*'];
 
-			await project.generateDeclarations(project.root.append('packages/foo'));
+		// 	await project.generateDeclarations(project.root.append('packages/foo'));
 
-			expect(execa).toHaveBeenCalledWith('tsc', ['--build', '--force', 'packages/foo'], {
-				cwd: project.root.path(),
-				preferLocal: true,
-			});
-		});
+		// 	expect(execa).toHaveBeenCalledWith('tsc', ['--build', '--force', 'packages/foo'], {
+		// 		cwd: project.root.path(),
+		// 		preferLocal: true,
+		// 	});
+		// });
 
 		it('reuses the same promise while building', async () => {
 			mockSpy(execa)
@@ -119,7 +119,7 @@ describe('Project', () => {
 		it('can pass a custom tsconfig', async () => {
 			const project = new Project(getFixturePath('workspace-private'));
 
-			await project.generateDeclarations(undefined, 'tsconfig.custom.json');
+			await project.generateDeclarations('tsconfig.custom.json');
 
 			expect(execa).toHaveBeenCalledWith(
 				'tsc',
@@ -139,36 +139,36 @@ describe('Project', () => {
 			);
 		});
 
-		it('can pass a custom tsconfig when using workspaces', async () => {
-			const project = new Project(getFixturePath('workspaces'));
-			project.workspaces = ['packages/*'];
+		// it('can pass a custom tsconfig when using workspaces', async () => {
+		// 	const project = new Project(getFixturePath('workspaces'));
+		// 	project.workspaces = ['packages/*'];
 
-			await project.generateDeclarations(
-				project.root.append('packages/foo'),
-				'tsconfig.custom.json',
-			);
+		// 	await project.generateDeclarations(
+		// 		project.root.append('packages/foo'),
+		// 		'tsconfig.custom.json',
+		// 	);
 
-			expect(execa).toHaveBeenCalledWith(
-				'tsc',
-				['--build', '--force', 'packages/foo/tsconfig.custom.json'],
-				{
-					cwd: project.root.path(),
-					preferLocal: true,
-				},
-			);
-		});
+		// 	expect(execa).toHaveBeenCalledWith(
+		// 		'tsc',
+		// 		['--build', '--force', 'packages/foo/tsconfig.custom.json'],
+		// 		{
+		// 			cwd: project.root.path(),
+		// 			preferLocal: true,
+		// 		},
+		// 	);
+		// });
 
-		it('does not pass custom tsconfig when using workspaces and no package', async () => {
-			const project = new Project(getFixturePath('workspaces'));
-			project.workspaces = ['packages/*'];
+		// it('does not pass custom tsconfig when using workspaces and no package', async () => {
+		// 	const project = new Project(getFixturePath('workspaces'));
+		// 	project.workspaces = ['packages/*'];
 
-			await project.generateDeclarations(undefined, 'tsconfig.custom.json');
+		// 	await project.generateDeclarations(undefined, 'tsconfig.custom.json');
 
-			expect(execa).toHaveBeenCalledWith('tsc', ['--build', '--force'], {
-				cwd: project.root.path(),
-				preferLocal: true,
-			});
-		});
+		// 	expect(execa).toHaveBeenCalledWith('tsc', ['--build', '--force'], {
+		// 		cwd: project.root.path(),
+		// 		preferLocal: true,
+		// 	});
+		// });
 	});
 
 	describe('getWorkspacePackageNames()', () => {

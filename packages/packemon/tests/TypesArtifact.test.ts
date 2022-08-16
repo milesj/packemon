@@ -47,24 +47,31 @@ describe('TypesArtifact', () => {
 
 	describe('build()', () => {
 		let declSpy: jest.SpyInstance;
+		let declRootSpy: jest.SpyInstance;
 
 		beforeEach(() => {
 			declSpy = jest
+				.spyOn(artifact, 'generateDeclarations')
+				// eslint-disable-next-line @typescript-eslint/no-misused-promises
+				.mockImplementation(() => Promise.resolve());
+
+			declRootSpy = jest
 				.spyOn(artifact.package.project, 'generateDeclarations')
 				.mockImplementation(() => Promise.resolve());
 		});
 
 		afterEach(() => {
 			declSpy.mockRestore();
+			declRootSpy.mockRestore();
 		});
 
-		it('generates types using `tsc`', async () => {
+		it('no refs, runs project `tsc` without --build', async () => {
 			await artifact.build({});
 
-			expect(declSpy).toHaveBeenCalled();
+			expect(declRootSpy).toHaveBeenCalled();
 		});
 
-		it('runs the same `tsc` when using workspaces', async () => {
+		it('with refs, runs package `tsc` with --build', async () => {
 			artifact.package.project.workspaces = ['packages/*'];
 
 			await artifact.build({});
