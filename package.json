@@ -16,7 +16,7 @@
     "test": "jest --colors --logHeapUsage",
     "type": "tsc --build",
     "prerelease": "yarn run clean && yarn run setup && yarn run pack && yarn run check",
-    "release": "yarn prerelease && beemo run-script lerna-release",
+    "release": "yarn prerelease && lerna version --conventional-commits --changelog-preset conventional-changelog-beemo --create-release github --push && lerna publish from-git",
     "version": "yarn install && git add yarn.lock",
     "pack": "NODE_ENV=production yarn run packemon build --addEngines --addExports --declaration",
     "packemon": "node ./packages/packemon/cjs/bin.cjs"

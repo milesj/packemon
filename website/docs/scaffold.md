@@ -33,7 +33,7 @@ The following templates can be scaffolded.
 Structures a project to be a monorepo of many packages.
 
 - Creates config files for common developer tools (Babel, ESLint, Jest, TypeScript, etc), based on
-  [Beemo presets](https://github.com/beemojs/dev).
+  [moonrepo presets](https://github.com/moonrepo/dev).
 - Creates a `packages` folder where all packages will exist. Create a package with the
   `monorepo-package` template.
 - Configures `package.json` with pre-defined scripts _and_ Yarn workspaces.
@@ -54,7 +54,7 @@ first!
 Structures a project to be a polyrepo of 1 package.
 
 - Creates config files for common developer tools (Babel, ESLint, Jest, TypeScript, etc), based on
-  [Beemo presets](https://github.com/beemojs/dev).
+  [moonrepo presets](https://github.com/moonrepo/dev).
 - Configures `package.json` with pre-defined scripts.
 - Configures `tsconfig.json` for type-checking.
 
