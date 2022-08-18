@@ -20,13 +20,13 @@ To make use of this functionality, you must define an [input](./config.md#inputs
 
 ```json title="package.json"
 {
-	"name": "package",
-	"packemon": {
-		"inputs": {
-			"bin": "src/bin.ts"
-		},
-		"platform": "node"
-	}
+  "name": "package",
+  "packemon": {
+    "inputs": {
+      "bin": "src/bin.ts"
+    },
+    "platform": "node"
+  }
 }
 ```
 
@@ -129,12 +129,12 @@ import type { ConfigFile } from 'packemon';
 import linaria from '@linaria/rollup';
 
 const config: ConfigFile = {
-	babelOutput(config, build) {
-		config.presets.push('@linaria/babel-preset');
-	},
-	rollupInput(config) {
-		config.plugins.unshift(linaria());
-	},
+  babelOutput(config, build) {
+    config.presets.push('@linaria/babel-preset');
+  },
+  rollupInput(config) {
+    config.plugins.unshift(linaria());
+  },
 };
 
 export default config;
@@ -147,12 +147,12 @@ export default config;
 const linaria = require('@linaria/rollup');
 
 module.exports = {
-	babelOutput(config) {
-		config.presets.push('@linaria/babel-preset');
-	},
-	rollupInput(config) {
-		config.plugins.unshift(linaria());
-	},
+  babelOutput(config) {
+    config.presets.push('@linaria/babel-preset');
+  },
+  rollupInput(config) {
+    config.plugins.unshift(linaria());
+  },
 };
 ```
 
@@ -177,9 +177,9 @@ are using the correct packemon version, you can provide an `engines` constraint 
 
 ```json title="package.json"
 {
-	"name": "package",
-	"engines": {
-		"packemon": "^1.0.0"
-	}
+  "name": "package",
+  "engines": {
+    "packemon": "^1.0.0"
+  }
 }
 ```

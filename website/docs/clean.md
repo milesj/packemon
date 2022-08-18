@@ -9,9 +9,9 @@ used to remove all temporary files _and_ all build artifacts (lib, esm, etc fold
 
 ```json title="package.json"
 {
-	"scripts": {
-		"clean": "packemon clean"
-	}
+  "scripts": {
+    "clean": "packemon clean"
+  }
 }
 ```
 

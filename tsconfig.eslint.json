@@ -1,12 +1,12 @@
 {
-	"extends": "./tsconfig.options.json",
-	"include": [
-		"packages/**/*"
-	],
-	"exclude": [
-		"**/cjs/**/*",
-		"**/dts/**/*",
-		"**/lib/**/*",
-		"**/node_modules/**/*"
-	]
+  "extends": "./tsconfig.options.json",
+  "include": [
+    "packages/**/*"
+  ],
+  "exclude": [
+    "**/cjs/**/*",
+    "**/dts/**/*",
+    "**/lib/**/*",
+    "**/node_modules/**/*"
+  ]
 }

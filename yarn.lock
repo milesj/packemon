@@ -3823,15 +3823,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@moonrepo/dev@npm:^0.1.0":
-  version: 0.1.0
-  resolution: "@moonrepo/dev@npm:0.1.0"
+"@moonrepo/dev@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@moonrepo/dev@npm:1.0.0"
   dependencies:
     conventional-changelog-beemo: ^3.0.1
     execa: ^5.1.1
   bin:
     lerna-release: lib/bin/lernaRelease.js
-  checksum: 6442d5c094ef1b053c64f39bf11f5b391b9997e0fa23a594ed30b62719b7d5a14305771f7953df6f729a4c6e4e33e52bd27478c78ac2625c6f6cf74b212b5898
+  checksum: 330098b771183bedb8467d359a7bf109ef1f74fbfc4b6864981cddcd19105c6a7116329390b6cea536f3741b31f15c8ad7dca813de66683ddf7763acdbf462fd
   languageName: node
   linkType: hard
 
@@ -7535,9 +7535,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"babel-preset-moon@npm:^0.1.0":
-  version: 0.1.0
-  resolution: "babel-preset-moon@npm:0.1.0"
+"babel-preset-moon@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "babel-preset-moon@npm:1.0.0"
   dependencies:
     "@babel/plugin-proposal-class-properties": ^7.18.6
     "@babel/plugin-proposal-decorators": ^7.18.10
@@ -7552,7 +7552,7 @@ __metadata:
     babel-preset-solid: ^1.4.8
   peerDependencies:
     "@babel/core": ">=7.0.0"
-  checksum: 53bc3c955545881aea3d77ecf0a6f17459b66ad68474eb5dcca89e1ca0a5b1fb189bb59bc14b636f2e24ff5ca857bbb4e63fa6f7746fb5950972559bfef928aa
+  checksum: c547342f0ae74bc6ce9b065069c80471df012038f2a400608894a8053d44b5c558c7a2eb6eaa82368cb823511f0c5eb77b6f726ed0528a2f95030d5e6554ffe0
   languageName: node
   linkType: hard
 
@@ -10376,11 +10376,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-moon@npm:^0.1.0":
-  version: 0.1.0
-  resolution: "eslint-config-moon@npm:0.1.0"
+"eslint-config-moon@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "eslint-config-moon@npm:1.0.0"
   dependencies:
-    "@moonrepo/dev": ^0.1.0
+    "@moonrepo/dev": ^1.0.0
     "@typescript-eslint/eslint-plugin": ^5.33.1
     "@typescript-eslint/parser": ^5.33.1
     eslint-config-airbnb-base: ^15.0.0
@@ -10399,7 +10399,7 @@ __metadata:
     eslint-plugin-unicorn: ^43.0.2
   peerDependencies:
     eslint: ^8.0.0
-  checksum: d779a85070c9ab4003846ab69d84d598c1fa18e8f1889b0d2fa31a27e6edfa2290cd4dbfae8d4500db89c7f3efdee0a25c9027219ebddc43f75ce1b5ad245f68
+  checksum: d49cf385bc99792520b5f650fe9b3127f0846f120b71a2b9320992802484f03cccd62725cb41184192b9607b92183982b7b10a4dceb946ce9444f95a97f20a61
   languageName: node
   linkType: hard
 
@@ -13756,17 +13756,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-preset-moon@npm:^0.1.0":
-  version: 0.1.0
-  resolution: "jest-preset-moon@npm:0.1.0"
+"jest-preset-moon@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "jest-preset-moon@npm:1.0.0"
   dependencies:
-    "@moonrepo/dev": ^0.1.0
+    "@moonrepo/dev": ^1.0.0
     "@types/jest": ^28.1.7
     jest-circus: ^28.1.3
     jest-environment-jsdom: ^28.1.3
   peerDependencies:
     jest: ">=26.0.0"
-  checksum: 2bfddaeee63130063ce313a943e6d5e4129529217771947d11aaae8691d05b5412d6ddc7f3a6a19b1d9788d3c16d6c4a14ef199170b9f3d58494032927947820
+  checksum: 78adf4ca5c0cf88ceb85721bec670c81b1801a46100b7c4362cdfaf9ec91da99359e3f6181705d9b3b25ad20a189d04f5dfcb18c2ea23ba8ad13588f7d2242e2
   languageName: node
   linkType: hard
 
@@ -16425,16 +16425,16 @@ __metadata:
     "@types/react": ^17.0.48
     "@types/rimraf": ^3.0.2
     "@types/semver": ^7.3.12
-    babel-preset-moon: ^0.1.0
+    babel-preset-moon: ^1.0.0
     chokidar: ^3.5.3
     conventional-changelog-beemo: ^3.0.1
     eslint: ^8.22.0
-    eslint-config-moon: ^0.1.0
+    eslint-config-moon: ^1.0.0
     jest: ^28.1.3
-    jest-preset-moon: ^0.1.0
+    jest-preset-moon: ^1.0.0
     lerna: ^5.4.3
     prettier: ^2.7.1
-    prettier-config-moon: ^0.0.1
+    prettier-config-moon: ^1.0.0
     ts-node: ^10.9.1
     typescript: ^4.7.4
   languageName: unknown
@@ -17455,10 +17455,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier-config-moon@npm:^0.0.1":
-  version: 0.0.1
-  resolution: "prettier-config-moon@npm:0.0.1"
-  checksum: 9f6b31672f07208dd59feba8a766b781a5b211c0fb82a915ed01daa02d27deeaeb69a40d764dd34dbce0c453aa2a6cc6f0c897cd8fc8ede4b014a9be716217ff
+"prettier-config-moon@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "prettier-config-moon@npm:1.0.0"
+  checksum: 369a1cb863dffe028344ba9c44d17dec7b62af9c2f590439d097834741246c9455e304d920f2f6438501f1f61bfe92769aa97b669f82c537f9497dc862c62850
   languageName: node
   linkType: hard
 

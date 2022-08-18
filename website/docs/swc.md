@@ -20,7 +20,7 @@ Enable for all packages through a root `packemon.config.{js,ts}` (requires
 
 ```js title="packemon.config.js"
 module.exports = {
-	swc: true,
+  swc: true,
 };
 ```
 
@@ -29,7 +29,7 @@ Enable for individual packages through a `.packemon.{js,ts}` in each package. (r
 
 ```js title="packages/<name>/.packemon.js"
 module.exports = {
-	swc: true,
+  swc: true,
 };
 ```
 

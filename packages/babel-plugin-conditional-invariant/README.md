@@ -13,7 +13,7 @@ invariant(value === false, 'Value must be falsy!');
 ```ts
 // Output
 if (process.env.NODE_ENV !== 'production') {
-	invariant(value === false, 'Value must be falsy!');
+  invariant(value === false, 'Value must be falsy!');
 }
 ```
 
@@ -27,7 +27,7 @@ Add the plugin to your root `babel.config.*` file.
 
 ```js
 module.exports = {
-	plugins: ['babel-plugin-conditional-invariant'],
+  plugins: ['babel-plugin-conditional-invariant'],
 };
 ```
 

@@ -94,11 +94,11 @@ to `lib`, `build`, or some other variant. This is especially true if using proje
 
 ```json title="tsconfig.json"
 {
-	"compilerOptions": {
-		"declaration": true,
-		"declarationDir": "dts",
-		"outDir": "dts"
-	}
+  "compilerOptions": {
+    "declaration": true,
+    "declarationDir": "dts",
+    "outDir": "dts"
+  }
 }
 ```
 
@@ -122,9 +122,9 @@ guarantees that Packemon needs for handling declarations.
 
 ```json title="tsconfig.json"
 {
-	"compilerOptions": {
-		"resolveJsonModule": false
-	}
+  "compilerOptions": {
+    "resolveJsonModule": false
+  }
 }
 ```
 
@@ -138,12 +138,12 @@ should be updated to only emit declarations to `dts`, like so.
 
 ```json title="tsconfig.json"
 {
-	"compilerOptions": {
-		"declaration": true,
-		"declarationDir": "dts",
-		"outDir": "dts",
-		"rootDir": "src",
-		"emitDeclarationOnly": true
-	}
+  "compilerOptions": {
+    "declaration": true,
+    "declarationDir": "dts",
+    "outDir": "dts",
+    "rootDir": "src",
+    "emitDeclarationOnly": true
+  }
 }
 ```
