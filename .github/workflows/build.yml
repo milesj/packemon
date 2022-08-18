@@ -34,7 +34,6 @@ jobs:
           cache: yarn
       - run: yarn install --immutable
       - run: yarn run setup
-      - run: yarn run prepare
       - run: cd scenarios/jest && yarn test
       - run: cd scenarios/snowpack && yarn build
       - run: cd scenarios/vite && yarn build

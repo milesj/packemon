@@ -8,7 +8,7 @@ Transform `__DEV__`, `__PROD__`, and `__TEST__` constants to `process.env.NODE_E
 ```ts
 // Input
 if (__DEV__) {
-	console.log('Some message in development!');
+  console.log('Some message in development!');
 }
 
 const value = __TEST__ ? 0 : 100;
@@ -17,7 +17,7 @@ const value = __TEST__ ? 0 : 100;
 ```ts
 // Output
 if (process.env.NODE_ENV !== 'production') {
-	console.log('Some message in development!');
+  console.log('Some message in development!');
 }
 
 const value = process.env.NODE_ENV === 'test' ? 0 : 100;
@@ -33,7 +33,7 @@ Add the plugin to your root `babel.config.*` file.
 
 ```js
 module.exports = {
-	plugins: ['babel-plugin-env-constants'],
+  plugins: ['babel-plugin-env-constants'],
 };
 ```
 
@@ -41,9 +41,9 @@ And if you are using TypeScript, you'll most likely need to declare the globals 
 
 ```ts
 declare global {
-	const __DEV__: boolean;
-	const __PROD__: boolean;
-	const __TEST__: boolean;
+  const __DEV__: boolean;
+  const __PROD__: boolean;
+  const __TEST__: boolean;
 }
 ```
 

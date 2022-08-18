@@ -55,7 +55,7 @@ Scaffolding a new project will...
 
 - Align with the [defined file structure](./setup.mdx#package-structure).
 - Create config files for common developer tools (Babel, ESLint, Jest, TypeScript, etc), based on
-  [Beemo presets](https://github.com/beemojs/dev).
+  [moonrepo presets](https://github.com/moonrepo/dev).
 - Create package specific files like `package.json`, readme's, and licenses.
 - Create example source and test files.
 - Install dependencies with the chosen package manager.
@@ -98,11 +98,11 @@ the following `build` (for development) and `pack` (for production) scripts.
 
 ```json title="package.json"
 {
-	"name": "package",
-	"scripts": {
-		"build": "packemon build",
-		"pack": "NODE_ENV=production packemon pack --addEngines --addFiles --declaration"
-	}
+  "name": "package",
+  "scripts": {
+    "build": "packemon build",
+    "pack": "NODE_ENV=production packemon pack --addEngines --addFiles --declaration"
+  }
 }
 ```
 

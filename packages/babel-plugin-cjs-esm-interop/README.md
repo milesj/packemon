@@ -32,7 +32,7 @@ either `mjs` (default) or `cjs`.
 
 ```js
 module.exports = {
-	plugins: [['babel-plugin-cjs-esm-interop', { format: 'mjs' }]],
+  plugins: [['babel-plugin-cjs-esm-interop', { format: 'mjs' }]],
 };
 ```
 

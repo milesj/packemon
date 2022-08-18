@@ -1,6 +1,6 @@
-// https://www.npmjs.com/package/jest-preset-beemo
+// https://www.npmjs.com/package/jest-preset-moon
 module.exports = {
-	preset: 'jest-preset-beemo',
+	preset: 'jest-preset-moon',
 	// Uncomment if using React/JSX
 	// testEnvironment: 'jsdom',
 };

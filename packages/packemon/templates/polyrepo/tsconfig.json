@@ -1,8 +1,8 @@
-// https://www.npmjs.com/package/tsconfig-beemo
+// https://www.npmjs.com/package/tsconfig-moon
 {
-  "extends": "tsconfig-beemo/tsconfig.json",
+  "extends": "tsconfig-moon/tsconfig.json",
   // Uncomment if using React/JSX
-  // "extends": "tsconfig-beemo/tsconfig.react.json",
+  // "extends": "tsconfig-moon/tsconfig.react.json",
   "include": ["src/**/*", "types/**/*"],
   "compilerOptions": {
     "declaration": true,

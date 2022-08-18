@@ -11,21 +11,21 @@ Congrats on your new project, powered by Packemon! Here are a few things to know
 ## Tooling
 
 To improve and automate the developer experience, the following tooling has been automatically
-installed and [pre-configured using Beemo presets](https://github.com/beemojs/dev).
+installed and [pre-configured using moonrepo presets](https://github.com/moonrepo/dev).
 
 - [Babel](https://babeljs.io/) for transpiling, configured dynamically with Packemon.
 - [ESLint](https://eslint.org/) for linting, configured with
-  [eslint-config-beemo](https://www.npmjs.com/package/eslint-config-beemo).
+  [eslint-config-moon](https://www.npmjs.com/package/eslint-config-moon).
 - [Jest](https://jestjs.io/) for unit testing, configured with
-  [jest-preset-beemo](https://www.npmjs.com/package/jest-preset-beemo).
+  [jest-preset-moon](https://www.npmjs.com/package/jest-preset-moon).
 - [Prettier](https://prettier.io/) for code formatting, configured with
-  [prettier-config-beemo](https://www.npmjs.com/package/prettier-config-beemo).
+  [prettier-config-moon](https://www.npmjs.com/package/prettier-config-moon).
 - [Rollup](https://rollupjs.org) for bundling and distributing, configured dynamically with
   Packemon.
 - [TypeScript](https://www.typescriptlang.org/) for type checking, configured with
-  [tsconfig-beemo](https://www.npmjs.com/package/tsconfig-beemo).
+  [tsconfig-moon](https://www.npmjs.com/package/tsconfig-moon).
 
-Feel free to use the configuration as-is, or to modify, or to not use Beemo, the choice is yours!
+Feel free to use the configuration as-is, or to modify, or to not use moon, the choice is yours!
 
 ### React support
 
@@ -33,7 +33,7 @@ Scaffolded projects are not configured for React by default, but enabling React 
 simple! Open the following files and remove the `// Uncomment if using React/JSX` comment and any
 surrounding comments.
 
-- root `.eslintrc.js` (also replace `beemo/node` with `beemo/browser`)
+- root `.eslintrc.js` (also replace `moon/node` with `moon/browser`)
 - root `jest.config.js`
 - every `tsconfig.json`
 - root `tsconfig.options.json`

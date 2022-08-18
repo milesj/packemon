@@ -128,9 +128,9 @@ The version can be defined as a `peerDependencies`:
 
 ```json
 {
-	"peerDependencies": {
-		"react": ">=17.0.0"
-	}
+  "peerDependencies": {
+    "react": ">=17.0.0"
+  }
 }
 ```
 
@@ -138,9 +138,9 @@ Or the version can be defined as a normal `dependencies`:
 
 ```json
 {
-	"dependencies": {
-		"react": "^17.0.0"
-	}
+  "dependencies": {
+    "react": "^17.0.0"
+  }
 }
 ```
 
@@ -181,14 +181,14 @@ through a process known as dead-code elimination. This will greatly reduce bundl
 ```ts
 // Input
 if (__DEV__) {
-	console.log('Some message in development!');
+  console.log('Some message in development!');
 }
 ```
 
 ```ts
 // Output
 if (process.env.NODE_ENV !== 'production') {
-	console.log('Some message in development!');
+  console.log('Some message in development!');
 }
 ```
 
@@ -196,9 +196,9 @@ If you are using TypeScript, you'll most likely need to declare the globals your
 
 ```ts
 declare global {
-	var __DEV__: boolean;
-	var __PROD__: boolean;
-	var __TEST__: boolean;
+  var __DEV__: boolean;
+  var __PROD__: boolean;
+  var __TEST__: boolean;
 }
 ```
 
@@ -220,7 +220,7 @@ invariant(value === false, 'Value must be falsy!');
 ```ts
 // Output
 if (process.env.NODE_ENV !== 'production') {
-	invariant(value === false, 'Value must be falsy!');
+  invariant(value === false, 'Value must be falsy!');
 }
 ```
 

@@ -1,12 +1,12 @@
-// https://www.npmjs.com/package/eslint-config-beemo
+// https://www.npmjs.com/package/eslint-config-moon
 module.exports = {
 	root: true,
 	extends: [
-		'beemo',
-		'beemo/node',
+		'moon',
+		'moon/node',
 		// Uncomment when targeting browsers
-		// 'beemo/browser',
+		// 'moon/browser',
 		// Uncomment if using React/JSX
-		// 'beemo/react',
+		// 'moon/react',
 	],
 };

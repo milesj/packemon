@@ -161,14 +161,14 @@ export class ScaffoldCommand extends Command {
 		const args = [
 			'@types/jest',
 			'@types/node',
-			'eslint-config-beemo',
+			'eslint-config-moon',
 			'eslint',
-			'jest-preset-beemo',
+			'jest-preset-moon',
 			'jest',
 			'packemon',
-			'prettier-config-beemo',
+			'prettier-config-moon',
 			'prettier',
-			'tsconfig-beemo',
+			'tsconfig-moon',
 			'typescript',
 		];
 
