@@ -347,6 +347,14 @@ export class Packemon {
 	 * This is necessary as it changes functionality.
 	 */
 	protected findWorkspaceRoot(dir: Path): Path | undefined {
+		if (
+			dir.append('yarn.lock').exists() ||
+			dir.append('package-lock.json').exists() ||
+			dir.append('pnpm-lock.yaml').exists()
+		) {
+			return dir;
+		}
+
 		const pkgPath = dir.append('package.json');
 
 		if (pkgPath.exists()) {
