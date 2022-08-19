@@ -105,6 +105,37 @@ describe('Packemon', () => {
 		});
 	});
 
+	it('detects project root', () => {
+		const root = Path.create(getFixturePath('project'));
+
+		packemon = new Packemon(root);
+
+		expect(packemon.workingDir.path()).toBe(root.path());
+		expect(packemon.root.path()).toBe(root.path());
+		expect(packemon.project.root.path()).toBe(root.path());
+	});
+
+	it('detects workspace root', () => {
+		const root = Path.create(getFixturePath('workspaces'));
+
+		packemon = new Packemon(root);
+
+		expect(packemon.workingDir.path()).toBe(root.path());
+		expect(packemon.root.path()).toBe(root.path());
+		expect(packemon.project.root.path()).toBe(root.path());
+	});
+
+	it('detects workspace root when running in a sub-folder', () => {
+		const root = Path.create(getFixturePath('workspaces'));
+		const sub = root.append('packages/valid-array');
+
+		packemon = new Packemon(sub);
+
+		expect(packemon.workingDir.path()).toBe(sub.path());
+		expect(packemon.root.path()).toBe(root.path());
+		expect(packemon.project.root.path()).toBe(root.path());
+	});
+
 	describe('clean()', () => {
 		it('handles file system failures', async () => {
 			(rimraf as unknown as jest.Mock).mockImplementation((path, cb) => {
