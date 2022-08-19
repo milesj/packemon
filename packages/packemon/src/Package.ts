@@ -157,7 +157,7 @@ export class Package {
 		this.debug('Loading feature flags');
 
 		const flags: FeatureFlags =
-			this.root || !this.project.isWorkspacesEnabled()
+			this.root || !this.project.isRunningInWorkspaceRoot()
 				? {}
 				: this.project.rootPackage.getFeatureFlags();
 
