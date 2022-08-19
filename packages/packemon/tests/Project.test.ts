@@ -76,17 +76,17 @@ describe('Project', () => {
 			);
 		});
 
-		it('generates declarations with `tsc --build` when using workspaces', async () => {
-			const project = new Project(getFixturePath('workspaces'));
-			project.workspaces = ['packages/*'];
+		// it('generates declarations with `tsc --build` when using workspaces', async () => {
+		// 	const project = new Project(getFixturePath('workspaces'));
+		// 	project.workspaces = ['packages/*'];
 
-			await project.generateDeclarations();
+		// 	await project.generateDeclarations();
 
-			expect(execa).toHaveBeenCalledWith('tsc', ['--build', '--force'], {
-				cwd: project.root.path(),
-				preferLocal: true,
-			});
-		});
+		// 	expect(execa).toHaveBeenCalledWith('tsc', ['--build', '--force'], {
+		// 		cwd: project.root.path(),
+		// 		preferLocal: true,
+		// 	});
+		// });
 
 		// it('generates declarations with `tsc --build` for a specific project', async () => {
 		// 	const project = new Project(getFixturePath('workspaces'));

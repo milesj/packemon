@@ -19,7 +19,7 @@ export class TypesArtifact extends Artifact<TypesBuild> {
 		const { declarationConfig } = options;
 
 		// If the local project is using project references, we must build it individually
-		const tsConfig = this.package.loadTsconfigJson(declarationConfig ?? 'tsconfig.json');
+		const tsConfig = this.loadTsconfigJson(declarationConfig ?? 'tsconfig.json');
 
 		if (tsConfig?.projectReferences && tsConfig?.projectReferences.length > 0) {
 			await this.generateDeclarations();
@@ -115,7 +115,7 @@ export class TypesArtifact extends Artifact<TypesBuild> {
 
 	// This method only exists so that we can mock in tests.
 	// istanbul ignore next
-	protected loadTsconfigJson(): TSConfigStructure | undefined {
-		return this.package.loadTsconfigJson();
+	loadTsconfigJson(configName?: string): TSConfigStructure | undefined {
+		return this.package.loadTsconfigJson(configName);
 	}
 }

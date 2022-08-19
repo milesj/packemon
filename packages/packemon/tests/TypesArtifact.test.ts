@@ -1,3 +1,4 @@
+import execa from 'execa';
 import { Path } from '@boost/common';
 import { getFixturePath } from '@boost/test-utils';
 import { Package } from '../src/Package';
@@ -5,6 +6,7 @@ import { Project } from '../src/Project';
 import { TypesArtifact } from '../src/TypesArtifact';
 
 jest.mock('fs-extra');
+jest.mock('execa');
 
 describe('TypesArtifact', () => {
 	const fixturePath = new Path(getFixturePath('project'));
@@ -27,7 +29,6 @@ describe('TypesArtifact', () => {
 		artifact.startup();
 
 		tsconfigSpy = jest
-			// @ts-expect-error Allow partial return
 			.spyOn(artifact, 'loadTsconfigJson')
 			.mockImplementation(() => ({ options: {} } as any));
 
@@ -50,14 +51,8 @@ describe('TypesArtifact', () => {
 		let declRootSpy: jest.SpyInstance;
 
 		beforeEach(() => {
-			declSpy = jest
-				.spyOn(artifact, 'generateDeclarations')
-				// eslint-disable-next-line @typescript-eslint/no-misused-promises
-				.mockImplementation(() => Promise.resolve());
-
-			declRootSpy = jest
-				.spyOn(artifact.package.project, 'generateDeclarations')
-				.mockImplementation(() => Promise.resolve());
+			declSpy = jest.spyOn(artifact, 'generateDeclarations');
+			declRootSpy = jest.spyOn(artifact.package.project, 'generateDeclarations');
 		});
 
 		afterEach(() => {
@@ -65,18 +60,34 @@ describe('TypesArtifact', () => {
 			declRootSpy.mockRestore();
 		});
 
-		it('no refs, runs project `tsc` without --build', async () => {
+		it('without refs, runs project `tsc` without --build', async () => {
 			await artifact.build({});
 
 			expect(declRootSpy).toHaveBeenCalled();
+			expect(declSpy).not.toHaveBeenCalled();
+
+			expect(execa).toHaveBeenCalledWith(
+				'tsc',
+				['--declaration', '--declarationDir', 'dts', '--declarationMap', '--emitDeclarationOnly'],
+				{
+					cwd: fixturePath.path(),
+					preferLocal: true,
+				},
+			);
 		});
 
 		it('with refs, runs package `tsc` with --build', async () => {
-			artifact.package.project.workspaces = ['packages/*'];
+			tsconfigSpy.mockImplementation(() => ({ projectReferences: [{ path: '..' }] } as any));
 
 			await artifact.build({});
 
+			expect(declRootSpy).not.toHaveBeenCalled();
 			expect(declSpy).toHaveBeenCalled();
+
+			expect(execa).toHaveBeenCalledWith('tsc', ['--build', '--force'], {
+				cwd: fixturePath.path(),
+				preferLocal: true,
+			});
 		});
 	});
 
