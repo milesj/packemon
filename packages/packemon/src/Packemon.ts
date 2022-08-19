@@ -47,9 +47,12 @@ export class Packemon {
 
 	readonly root: Path;
 
+	readonly workingDir: Path;
+
 	constructor(cwd: PortablePath = process.cwd()) {
-		this.root = Path.resolve(cwd);
-		this.project = new Project(this.root);
+		this.workingDir = Path.resolve(cwd);
+		this.root = this.findWorkspaceRoot(this.workingDir) ?? this.workingDir;
+		this.project = new Project(this.root, this.workingDir);
 		this.debug = createDebugger('packemon:core');
 
 		this.debug('Initializing packemon in project %s', this.root);
@@ -337,6 +340,45 @@ export class Packemon {
 	 */
 	protected determineApiType(pkg: Package): ApiType {
 		return pkg.configs.some((cfg) => cfg.api === 'private') ? 'private' : 'public';
+	}
+
+	/**
+	 * Determine the workspace root when running in a monorepo.
+	 * This is necessary as it changes functionality.
+	 */
+	protected findWorkspaceRoot(dir: Path): Path | undefined {
+		if (
+			dir.append('yarn.lock').exists() ||
+			dir.append('package-lock.json').exists() ||
+			dir.append('pnpm-lock.yaml').exists()
+		) {
+			return dir;
+		}
+
+		const pkgPath = dir.append('package.json');
+
+		if (pkgPath.exists()) {
+			const pkg = json.parse<PackemonPackage>(fs.readFileSync(pkgPath.path(), 'utf8'));
+
+			if (pkg.workspaces) {
+				return dir;
+			}
+		}
+
+		const parentDir = dir.parent();
+
+		// This is a special case to handle our fixtures
+		if (__TEST__ && parentDir.name() === '__fixtures__') {
+			return dir;
+		}
+
+		const isRoot = parentDir.path();
+
+		if (isRoot === '' || isRoot === '.' || isRoot === '/') {
+			return undefined;
+		}
+
+		return this.findWorkspaceRoot(parentDir);
 	}
 
 	/**

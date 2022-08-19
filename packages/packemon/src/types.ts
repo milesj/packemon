@@ -13,6 +13,8 @@ import { Options as SwcOptions } from '@swc/core';
 declare global {
 	// eslint-disable-next-line no-underscore-dangle
 	const __DEV__: boolean;
+	// eslint-disable-next-line no-underscore-dangle
+	const __TEST__: boolean;
 }
 
 export type Platform = 'browser' | 'native' | 'node'; // electron

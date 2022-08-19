@@ -1,4 +1,5 @@
 import { rollup } from 'rollup';
+import { Path } from '@boost/common';
 import { getFixturePath } from '@boost/test-utils';
 import { Packemon } from '../src';
 import { createSnapshotSpies } from './helpers';
@@ -157,6 +158,55 @@ describe('Config files', () => {
 							features: { workspaces: ['packages/*'] },
 							format: 'mjs',
 							name: 'foo-plugin',
+							platform: 'node',
+							support: 'stable',
+						},
+					]),
+				}),
+			);
+		});
+
+		it('inherits config from root and branches when running in a sub-folder', async () => {
+			const packemon = new Packemon(Path.create(root).append('packages/bar'));
+
+			await packemon.build({ loadConfigs: true });
+
+			// bar (using push)
+			expect(rollupSpy).toHaveBeenCalledWith(
+				expect.objectContaining({
+					plugins: expect.arrayContaining([
+						expect.objectContaining({
+							name: '@rollup/plugin-babel-input',
+							plugins: expect.arrayContaining(['babel-plugin-bar']),
+						}),
+						{ name: 'rollup-plugin-root' },
+						{ name: 'rollup-plugin-bar' },
+					]),
+				}),
+			);
+			expect(generateSpy).toHaveBeenCalledWith(
+				expect.objectContaining({
+					plugins: expect.arrayContaining([
+						expect.objectContaining({
+							name: '@rollup/plugin-babel-output',
+							plugins: expect.arrayContaining([
+								'root-plugin',
+								[
+									'bar-plugin',
+									{
+										features: { workspaces: ['packages/*'] },
+										format: 'mjs',
+										platform: 'node',
+										support: 'stable',
+									},
+								],
+							]),
+						}),
+						{ name: 'root-plugin' },
+						{
+							features: { workspaces: ['packages/*'] },
+							format: 'mjs',
+							name: 'bar-plugin',
 							platform: 'node',
 							support: 'stable',
 						},

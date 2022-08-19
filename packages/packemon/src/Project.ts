@@ -2,14 +2,22 @@
 
 import execa from 'execa';
 import semver from 'semver';
-import { Memoize, Project as BaseProject } from '@boost/common';
+import { Memoize, Path, PortablePath, Project as BaseProject } from '@boost/common';
 import { getVersion } from './helpers/getVersion';
 import { Package } from './Package';
 
 export class Project extends BaseProject {
+	readonly workingDir: Path;
+
 	workspaces: string[] = [];
 
 	private buildPromise?: Promise<unknown>;
+
+	constructor(root: PortablePath, cwd?: Path) {
+		super(root);
+
+		this.workingDir = cwd ?? this.root;
+	}
 
 	checkEngineVersionConstraint() {
 		let version = '';
@@ -36,6 +44,10 @@ export class Project extends BaseProject {
 
 	isWorkspacesEnabled(): boolean {
 		return this.workspaces.length > 0;
+	}
+
+	isRunningInWorkspaceRoot(): boolean {
+		return this.root.equals(this.workingDir);
 	}
 
 	async generateDeclarations(declarationConfig?: string): Promise<unknown> {
