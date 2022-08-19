@@ -366,6 +366,12 @@ export class Packemon {
 		}
 
 		const parentDir = dir.parent();
+
+		// This is a special case to handle our fixtures
+		if (__TEST__ && parentDir.name() === '__fixtures__') {
+			return dir;
+		}
+
 		const isRoot = parentDir.path();
 
 		if (isRoot === '' || isRoot === '.' || isRoot === '/') {
