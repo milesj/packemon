@@ -198,7 +198,7 @@ export class Package {
 		}
 
 		// TypeScript
-		const tsConfig = this.tsconfigJson ?? this.project.rootPackage.tsconfigJson;
+		const tsConfig = this.loadTsconfigJson() ?? this.project.rootPackage.loadTsconfigJson();
 
 		if (
 			this.project.rootPackage.hasDependency('typescript') ||
@@ -343,8 +343,8 @@ export class Package {
 	}
 
 	@Memoize()
-	get tsconfigJson(): TSConfigStructure | undefined {
-		const tsconfigJsonPath = this.path.append('tsconfig.json');
+	loadTsconfigJson(configName: string = 'tsconfig.json'): TSConfigStructure | undefined {
+		const tsconfigJsonPath = this.path.append(configName);
 
 		if (!tsconfigJsonPath.exists()) {
 			return undefined;

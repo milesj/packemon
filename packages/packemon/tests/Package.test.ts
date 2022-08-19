@@ -1517,15 +1517,15 @@ describe('Package', () => {
 		});
 	});
 
-	describe('tsconfigJson()', () => {
+	describe('loadTsconfigJson()', () => {
 		it('returns undefined if no `tsconfig.json` in package', () => {
-			expect(pkg.tsconfigJson).toBeUndefined();
+			expect(pkg.loadTsconfigJson()).toBeUndefined();
 		});
 
 		it('returns options from `tsconfig.json` in package', () => {
 			pkg = loadPackage('ts-config');
 
-			expect(pkg.tsconfigJson).toEqual(
+			expect(pkg.loadTsconfigJson()).toEqual(
 				expect.objectContaining({
 					options: {
 						configFilePath: new VirtualPath(pkg.path.append('tsconfig.json')).path(),

@@ -234,8 +234,10 @@ export type Awaitable = Promise<void> | void;
 export interface TSConfigStructure {
 	options: {
 		declarationDir?: string;
+		composite?: boolean;
 		experimentalDecorators?: boolean;
 		outDir?: string;
 		strict?: boolean;
 	};
+	projectReferences?: readonly unknown[];
 }

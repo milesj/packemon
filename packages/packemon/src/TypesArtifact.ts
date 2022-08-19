@@ -1,4 +1,5 @@
 import path from 'path';
+import execa from 'execa';
 import { VirtualPath } from '@boost/common';
 import { createDebugger, Debugger } from '@boost/debug';
 import { Artifact } from './Artifact';
@@ -15,7 +16,35 @@ export class TypesArtifact extends Artifact<TypesBuild> {
 	async build(options: BuildOptions): Promise<void> {
 		this.debug('Building types artifact with TypeScript');
 
-		await this.package.project.generateDeclarations(this.package.path, options.declarationConfig);
+		const { declarationConfig } = options;
+
+		// If the local project is using project references, we must build it individually
+		const tsConfig = this.loadTsconfigJson(declarationConfig ?? 'tsconfig.json');
+
+		if (
+			tsConfig?.options?.composite ||
+			(tsConfig?.projectReferences && tsConfig?.projectReferences.length > 0)
+		) {
+			await this.generateDeclarations();
+
+			return;
+		}
+
+		// Otherwise fallback to a normal `tsc` build
+		await this.package.project.generateDeclarations(declarationConfig);
+	}
+
+	async generateDeclarations(declarationConfig?: string) {
+		const args = ['--build', '--force'];
+
+		if (declarationConfig && declarationConfig !== 'tsconfig.json') {
+			args.push(declarationConfig);
+		}
+
+		await execa('tsc', args, {
+			cwd: this.package.path.path(),
+			preferLocal: true,
+		});
 	}
 
 	findEntryPoint(outputName: string): string | undefined {
@@ -89,7 +118,7 @@ export class TypesArtifact extends Artifact<TypesBuild> {
 
 	// This method only exists so that we can mock in tests.
 	// istanbul ignore next
-	protected loadTsconfigJson(): TSConfigStructure | undefined {
-		return this.package.tsconfigJson;
+	loadTsconfigJson(configName?: string): TSConfigStructure | undefined {
+		return this.package.loadTsconfigJson(configName);
 	}
 }
