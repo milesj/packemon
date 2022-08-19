@@ -58,11 +58,7 @@ export class Packemon {
 		this.debug('Initializing packemon in project %s', this.root);
 
 		this.project.checkEngineVersionConstraint();
-
-		// Not sure which approach is better here? Build systems run packemon
-		// from the package folder itself, bypasing the "workspace" logic and the root,
-		// but non-build systems run from the root...
-		this.config.setRootDir(this.workingDir);
+		this.config.setRootDir(this.root);
 	}
 
 	async build(baseOptions: BuildOptions) {
