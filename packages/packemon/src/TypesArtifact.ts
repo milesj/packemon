@@ -21,7 +21,10 @@ export class TypesArtifact extends Artifact<TypesBuild> {
 		// If the local project is using project references, we must build it individually
 		const tsConfig = this.loadTsconfigJson(declarationConfig ?? 'tsconfig.json');
 
-		if (tsConfig?.projectReferences && tsConfig?.projectReferences.length > 0) {
+		if (
+			tsConfig?.options?.composite ||
+			(tsConfig?.projectReferences && tsConfig?.projectReferences.length > 0)
+		) {
 			await this.generateDeclarations();
 
 			return;

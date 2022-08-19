@@ -89,6 +89,20 @@ describe('TypesArtifact', () => {
 				preferLocal: true,
 			});
 		});
+
+		it('when composite, runs package `tsc` with --build', async () => {
+			tsconfigSpy.mockImplementation(() => ({ options: { composite: true } } as any));
+
+			await artifact.build({});
+
+			expect(declRootSpy).not.toHaveBeenCalled();
+			expect(declSpy).toHaveBeenCalled();
+
+			expect(execa).toHaveBeenCalledWith('tsc', ['--build', '--force'], {
+				cwd: fixturePath.path(),
+				preferLocal: true,
+			});
+		});
 	});
 
 	describe('findEntryPoint()', () => {
