@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.0.4 - 2022-08-20
+
+#### 🛠 Internals
+
+- Migrate from beemo to moon. (#141) ([3538adc](https://github.com/milesj/packemon/commit/3538adc)), closes [#141](https://github.com/milesj/packemon/issues/141)
+
+**Note:** Version bump only for package babel-plugin-cjs-esm-interop
+
+
+
+
+
 ### 2.0.3 - 2022-08-04
 
 #### 🐞 Fixes

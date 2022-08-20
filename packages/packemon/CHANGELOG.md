@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.3.4 - 2022-08-20
+
+#### 🐞 Fixes
+
+- Improve workspace root detection. Fix config loading and validation. (#143) ([c01154d](https://github.com/milesj/packemon/commit/c01154d)), closes [#143](https://github.com/milesj/packemon/issues/143)
+- Update `tsc` to build project references based on the state of the local config. (#142) ([c11a6dd](https://github.com/milesj/packemon/commit/c11a6dd)), closes [#142](https://github.com/milesj/packemon/issues/142)
+
+#### 📦 Dependencies
+
+- **[boost]** Update to v4. ([12ba06c](https://github.com/milesj/packemon/commit/12ba06c))
+- **[rollup]** Update to v2.78. ([7fa90c1](https://github.com/milesj/packemon/commit/7fa90c1))
+- **[swc]** Update to v1.2.241. ([467e70b](https://github.com/milesj/packemon/commit/467e70b))
+
+#### 🛠 Internals
+
+- Migrate from beemo to moon. (#141) ([3538adc](https://github.com/milesj/packemon/commit/3538adc)), closes [#141](https://github.com/milesj/packemon/issues/141)
+
+**Note:** Version bump only for package packemon
+
+
+
+
+
 ### 2.3.3 - 2022-08-04
 
 #### 🐞 Fixes
