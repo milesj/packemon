@@ -996,7 +996,7 @@ function runGen() {
         }
     }
 }
-export { gen, runGen };
+export { gen, runGen }; /*#__PURE__*/ 
 //# sourceMappingURL=index-browser-legacy-esm.js.map
 ",
 ]
@@ -1053,7 +1053,7 @@ function runGen() {
     }
 }
 exports.gen = gen;
-exports.runGen = runGen; /*#__PURE__*/ 
+exports.runGen = runGen; /*#__PURE__*/  /*#__PURE__*/ 
 //# sourceMappingURL=index-browser-legacy-lib.js.map
 ",
 ]
@@ -1085,7 +1085,7 @@ Array [
             return gen;
         },
         runGen: function() {
-            return runGen /*#__PURE__*/ ;
+            return runGen /*#__PURE__*/  /*#__PURE__*/ ;
         }
     });
     _regeneratorRuntime = _interopRequireDefault(_regeneratorRuntime);
