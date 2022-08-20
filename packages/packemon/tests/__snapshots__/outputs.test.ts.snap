@@ -538,26 +538,7 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 
-const index = require('./index2.js');
-
-const other = require('./other2.js');
-
-exports.bar = index.bar;
-exports.foo = other.foo;
-",
-]
-`;
-
-exports[`Outputs (babel) no bundle creates individual files for every source file 2`] = `
-Array [
-  "lib/index2.js",
-  "'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-const other = require('./other2.js');
+const other = require('./other.js');
 
 function bar() {}
 
@@ -567,25 +548,9 @@ exports.bar = bar;
 ]
 `;
 
-exports[`Outputs (babel) no bundle creates individual files for every source file 3`] = `
+exports[`Outputs (babel) no bundle creates individual files for every source file 2`] = `
 Array [
   "lib/not-imported.js",
-  "'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-const notImported = require('./not-imported2.js');
-
-exports.baz = notImported.baz;
-",
-]
-`;
-
-exports[`Outputs (babel) no bundle creates individual files for every source file 4`] = `
-Array [
-  "lib/not-imported2.js",
   "'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -599,25 +564,9 @@ exports.baz = baz;
 ]
 `;
 
-exports[`Outputs (babel) no bundle creates individual files for every source file 5`] = `
+exports[`Outputs (babel) no bundle creates individual files for every source file 3`] = `
 Array [
   "lib/other.js",
-  "'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-const other = require('./other2.js');
-
-exports.foo = other.foo;
-",
-]
-`;
-
-exports[`Outputs (babel) no bundle creates individual files for every source file 6`] = `
-Array [
-  "lib/other2.js",
   "'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -631,7 +580,7 @@ exports.foo = foo;
 ]
 `;
 
-exports[`Outputs (babel) no bundle creates individual files for every source file 7`] = `
+exports[`Outputs (babel) no bundle creates individual files for every source file 4`] = `
 Array [
   "package.json",
   Object {
@@ -654,22 +603,6 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 
-const index = require('./index2.js');
-
-exports.button = index.button;
-",
-]
-`;
-
-exports[`Outputs (babel) no bundle with assets creates individual files and references assets 2`] = `
-Array [
-  "lib/button/index2.js",
-  "'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
 require('../../assets/styles-b11c3a83.css');
 
 function button() {}
@@ -679,27 +612,9 @@ exports.button = button;
 ]
 `;
 
-exports[`Outputs (babel) no bundle with assets creates individual files and references assets 3`] = `
+exports[`Outputs (babel) no bundle with assets creates individual files and references assets 2`] = `
 Array [
   "lib/index.js",
-  "'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-require('./index2.js');
-
-const index = require('./button/index2.js');
-
-exports.button = index.button;
-",
-]
-`;
-
-exports[`Outputs (babel) no bundle with assets creates individual files and references assets 4`] = `
-Array [
-  "lib/index2.js",
   "'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -710,14 +625,14 @@ require('../assets/globals-107ab52e.css');
 
 require('../assets/fonts-4e5dc96c.css');
 
-const index = require('./button/index2.js');
+const index = require('./button/index.js');
 
 exports.button = index.button;
 ",
 ]
 `;
 
-exports[`Outputs (babel) no bundle with assets creates individual files and references assets 5`] = `
+exports[`Outputs (babel) no bundle with assets creates individual files and references assets 3`] = `
 Array [
   "package.json",
   Object {
@@ -731,21 +646,21 @@ Array [
 ]
 `;
 
-exports[`Outputs (babel) no bundle with assets creates individual files and references assets 6`] = `
+exports[`Outputs (babel) no bundle with assets creates individual files and references assets 4`] = `
 Array [
   "src/button/styles.css",
   "assets/styles-b11c3a83.css",
 ]
 `;
 
-exports[`Outputs (babel) no bundle with assets creates individual files and references assets 7`] = `
+exports[`Outputs (babel) no bundle with assets creates individual files and references assets 5`] = `
 Array [
   "src/globals.css",
   "assets/globals-107ab52e.css",
 ]
 `;
 
-exports[`Outputs (babel) no bundle with assets creates individual files and references assets 8`] = `
+exports[`Outputs (babel) no bundle with assets creates individual files and references assets 6`] = `
 Array [
   "src/shared/fonts.css",
   "assets/fonts-4e5dc96c.css",
@@ -1290,26 +1205,7 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 
-const index = require('./index2.js');
-
-const other = require('./other2.js');
-
-exports.bar = index.bar;
-exports.foo = other.foo;
-",
-]
-`;
-
-exports[`Outputs (swc) no bundle creates individual files for every source file 2`] = `
-Array [
-  "lib/index2.js",
-  "'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-const other = require('./other2.js');
+const other = require('./other.js');
 
 function bar() {}
 
@@ -1319,25 +1215,9 @@ exports.bar = bar;
 ]
 `;
 
-exports[`Outputs (swc) no bundle creates individual files for every source file 3`] = `
+exports[`Outputs (swc) no bundle creates individual files for every source file 2`] = `
 Array [
   "lib/not-imported.js",
-  "'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-const notImported = require('./not-imported2.js');
-
-exports.baz = notImported.baz;
-",
-]
-`;
-
-exports[`Outputs (swc) no bundle creates individual files for every source file 4`] = `
-Array [
-  "lib/not-imported2.js",
   "'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1351,25 +1231,9 @@ exports.baz = baz;
 ]
 `;
 
-exports[`Outputs (swc) no bundle creates individual files for every source file 5`] = `
+exports[`Outputs (swc) no bundle creates individual files for every source file 3`] = `
 Array [
   "lib/other.js",
-  "'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-const other = require('./other2.js');
-
-exports.foo = other.foo;
-",
-]
-`;
-
-exports[`Outputs (swc) no bundle creates individual files for every source file 6`] = `
-Array [
-  "lib/other2.js",
   "'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1383,7 +1247,7 @@ exports.foo = foo;
 ]
 `;
 
-exports[`Outputs (swc) no bundle creates individual files for every source file 7`] = `
+exports[`Outputs (swc) no bundle creates individual files for every source file 4`] = `
 Array [
   "package.json",
   Object {
@@ -1406,22 +1270,6 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 
-const index = require('./index2.js');
-
-exports.button = index.button;
-",
-]
-`;
-
-exports[`Outputs (swc) no bundle with assets creates individual files and references assets 2`] = `
-Array [
-  "lib/button/index2.js",
-  "'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
 require('../../assets/styles-b11c3a83.css');
 
 function button() {}
@@ -1431,27 +1279,9 @@ exports.button = button;
 ]
 `;
 
-exports[`Outputs (swc) no bundle with assets creates individual files and references assets 3`] = `
+exports[`Outputs (swc) no bundle with assets creates individual files and references assets 2`] = `
 Array [
   "lib/index.js",
-  "'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-require('./index2.js');
-
-const index = require('./button/index2.js');
-
-exports.button = index.button;
-",
-]
-`;
-
-exports[`Outputs (swc) no bundle with assets creates individual files and references assets 4`] = `
-Array [
-  "lib/index2.js",
   "'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1462,14 +1292,14 @@ require('../assets/globals-107ab52e.css');
 
 require('../assets/fonts-4e5dc96c.css');
 
-const index = require('./button/index2.js');
+const index = require('./button/index.js');
 
 exports.button = index.button;
 ",
 ]
 `;
 
-exports[`Outputs (swc) no bundle with assets creates individual files and references assets 5`] = `
+exports[`Outputs (swc) no bundle with assets creates individual files and references assets 3`] = `
 Array [
   "package.json",
   Object {
@@ -1483,21 +1313,21 @@ Array [
 ]
 `;
 
-exports[`Outputs (swc) no bundle with assets creates individual files and references assets 6`] = `
+exports[`Outputs (swc) no bundle with assets creates individual files and references assets 4`] = `
 Array [
   "src/button/styles.css",
   "assets/styles-b11c3a83.css",
 ]
 `;
 
-exports[`Outputs (swc) no bundle with assets creates individual files and references assets 7`] = `
+exports[`Outputs (swc) no bundle with assets creates individual files and references assets 5`] = `
 Array [
   "src/globals.css",
   "assets/globals-107ab52e.css",
 ]
 `;
 
-exports[`Outputs (swc) no bundle with assets creates individual files and references assets 8`] = `
+exports[`Outputs (swc) no bundle with assets creates individual files and references assets 6`] = `
 Array [
   "src/shared/fonts.css",
   "assets/fonts-4e5dc96c.css",
