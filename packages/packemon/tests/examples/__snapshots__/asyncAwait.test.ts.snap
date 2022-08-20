@@ -1229,7 +1229,7 @@ function _run() {
     }));
     return _run.apply(this, arguments);
 }
-export { run, wait };
+export { run, wait }; /*#__PURE__*/  /*#__PURE__*/ 
 //# sourceMappingURL=index-browser-legacy-esm.js.map
 ",
 ]
@@ -1333,7 +1333,7 @@ function _run() {
     return _run.apply(this, arguments);
 }
 exports.run = run;
-exports.wait = wait; /*#__PURE__*/ 
+exports.wait = wait; /*#__PURE__*/  /*#__PURE__*/  /*#__PURE__*/ 
 //# sourceMappingURL=index-browser-legacy-lib.js.map
 ",
 ]
@@ -1365,7 +1365,7 @@ Array [
             return run;
         },
         wait: function() {
-            return wait /*#__PURE__*/ ;
+            return wait /*#__PURE__*/  /*#__PURE__*/  /*#__PURE__*/ ;
         }
     });
     _regeneratorRuntime = _interopRequireDefault(_regeneratorRuntime);
