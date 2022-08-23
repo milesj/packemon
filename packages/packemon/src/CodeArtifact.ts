@@ -47,13 +47,6 @@ export class CodeArtifact extends Artifact<CodeBuild> {
 		this.debug = createDebugger(['packemon', 'code', this.package.getSlug(), this.getLabel()]);
 	}
 
-	override async cleanup(): Promise<void> {
-		this.debug('Cleaning code artifacts');
-
-		// Visualizer stats
-		await this.removeFiles([this.package.project.root.append(this.getStatsFileName())]);
-	}
-
 	async build(options: BuildOptions, packemonConfig: ConfigFile): Promise<void> {
 		this.debug('Building code artifacts with Rollup');
 
@@ -183,14 +176,6 @@ export class CodeArtifact extends Artifact<CodeBuild> {
 		}
 
 		return exportMap;
-	}
-
-	getStatsFileName(): string {
-		return `stats-${this.getStatsTitle().replace(/\//gu, '-')}.html`;
-	}
-
-	getStatsTitle(): string {
-		return `${this.package.getName()}/${this.platform}/${this.support}`;
 	}
 
 	override toString() {

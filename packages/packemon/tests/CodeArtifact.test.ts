@@ -45,8 +45,6 @@ describe('CodeArtifact', () => {
 		expect(artifact.getLabel()).toBe('node:stable:lib,cjs');
 		expect(artifact.getBuildTargets()).toEqual(['lib', 'cjs']);
 		expect(artifact.toString()).toBe('code (node:stable:lib,cjs)');
-		expect(artifact.getStatsTitle()).toBe('project/node/stable');
-		expect(artifact.getStatsFileName()).toBe('stats-project-node-stable.html');
 	});
 
 	describe('build()', () => {

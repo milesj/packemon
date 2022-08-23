@@ -118,7 +118,7 @@ export class Packemon {
 		const formatFolders = '{assets,cjs,dts,esm,lib,mjs,umd}';
 		const pathsToRemove: string[] = [];
 
-		if (this.project.isWorkspacesEnabled()) {
+		if (this.project.isRunningInWorkspaceRoot() && this.project.isWorkspacesEnabled()) {
 			this.project.workspaces.forEach((ws) => {
 				pathsToRemove.push(new VirtualPath(ws, formatFolders).path());
 			});
@@ -165,8 +165,8 @@ export class Packemon {
 		this.project.workspaces = this.project.getWorkspaceGlobs({ relative: true });
 
 		// Multi package repo
-		if (this.project.workspaces.length > 0) {
-			this.debug('Workspaces enabled, finding packages using globs');
+		if (this.project.isRunningInWorkspaceRoot() && this.project.workspaces.length > 0) {
+			this.debug('Finding packages from root using workspace globs');
 
 			this.project.getWorkspacePackagePaths().forEach((filePath) => {
 				pkgPaths.push(Path.create(filePath).append('package.json'));
@@ -174,9 +174,9 @@ export class Packemon {
 
 			// Single package repo
 		} else {
-			this.debug('Not workspaces enabled, using root as package');
+			this.debug('Using current directory as package');
 
-			pkgPaths.push(this.root.append('package.json'));
+			pkgPaths.push(this.workingDir.append('package.json'));
 		}
 
 		this.debug('Found %d package(s)', pkgPaths.length);
