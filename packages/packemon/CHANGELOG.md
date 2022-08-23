@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.3.5 - 2022-08-23
+
+#### 🐞 Fixes
+
+- Fix tsc running in the wrong dir. ([700fbb4](https://github.com/milesj/packemon/commit/700fbb4))
+
+**Note:** Version bump only for package packemon
+
+
+
+
+
 ### 2.3.4 - 2022-08-20
 
 #### 🐞 Fixes
