@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.3.7 - 2022-08-23
+
+#### 🐞 Fixes
+
+- Fixed missing declaration config when compiling for project refs. ([606cb39](https://github.com/milesj/packemon/commit/606cb39))
+
+**Note:** Version bump only for package packemon
+
+
+
+
+
 ### 2.3.6 - 2022-08-23
 
 #### 🐞 Fixes
