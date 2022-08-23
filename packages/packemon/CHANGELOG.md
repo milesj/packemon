@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.3.6 - 2022-08-23
+
+#### 🐞 Fixes
+
+- Fixed an issue where all packages were being built when attempting to build a single package. ([e1642bb](https://github.com/milesj/packemon/commit/e1642bb))
+
+**Note:** Version bump only for package packemon
+
+
+
+
+
 ### 2.3.5 - 2022-08-23
 
 #### 🐞 Fixes
