@@ -25,7 +25,7 @@ export class TypesArtifact extends Artifact<TypesBuild> {
 			tsConfig?.options?.composite ||
 			(tsConfig?.projectReferences && tsConfig?.projectReferences.length > 0)
 		) {
-			await this.generateDeclarations();
+			await this.generateDeclarations(declarationConfig);
 
 			return;
 		}

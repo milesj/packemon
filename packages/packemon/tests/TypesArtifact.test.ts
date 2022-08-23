@@ -76,6 +76,30 @@ describe('TypesArtifact', () => {
 			);
 		});
 
+		it('without refs, supports a custom config name', async () => {
+			await artifact.build({ declarationConfig: 'tsconfig.build.json' });
+
+			expect(declRootSpy).toHaveBeenCalled();
+			expect(declSpy).not.toHaveBeenCalled();
+
+			expect(execa).toHaveBeenCalledWith(
+				'tsc',
+				[
+					'--declaration',
+					'--declarationDir',
+					'dts',
+					'--declarationMap',
+					'--emitDeclarationOnly',
+					'--project',
+					'tsconfig.build.json',
+				],
+				{
+					cwd: fixturePath.path(),
+					preferLocal: true,
+				},
+			);
+		});
+
 		it('with refs, runs package `tsc` with --build', async () => {
 			tsconfigSpy.mockImplementation(() => ({ projectReferences: [{ path: '..' }] } as any));
 
@@ -90,6 +114,20 @@ describe('TypesArtifact', () => {
 			});
 		});
 
+		it('with refs, supports a custom config name', async () => {
+			tsconfigSpy.mockImplementation(() => ({ projectReferences: [{ path: '..' }] } as any));
+
+			await artifact.build({ declarationConfig: 'tsconfig.build.json' });
+
+			expect(declRootSpy).not.toHaveBeenCalled();
+			expect(declSpy).toHaveBeenCalled();
+
+			expect(execa).toHaveBeenCalledWith('tsc', ['--build', '--force', 'tsconfig.build.json'], {
+				cwd: fixturePath.path(),
+				preferLocal: true,
+			});
+		});
+
 		it('when composite, runs package `tsc` with --build', async () => {
 			tsconfigSpy.mockImplementation(() => ({ options: { composite: true } } as any));
 
@@ -99,6 +137,20 @@ describe('TypesArtifact', () => {
 			expect(declSpy).toHaveBeenCalled();
 
 			expect(execa).toHaveBeenCalledWith('tsc', ['--build', '--force'], {
+				cwd: fixturePath.path(),
+				preferLocal: true,
+			});
+		});
+
+		it('when composite, supports a custom config name', async () => {
+			tsconfigSpy.mockImplementation(() => ({ options: { composite: true } } as any));
+
+			await artifact.build({ declarationConfig: 'tsconfig.build.json' });
+
+			expect(declRootSpy).not.toHaveBeenCalled();
+			expect(declSpy).toHaveBeenCalled();
+
+			expect(execa).toHaveBeenCalledWith('tsc', ['--build', '--force', 'tsconfig.build.json'], {
 				cwd: fixturePath.path(),
 				preferLocal: true,
 			});
