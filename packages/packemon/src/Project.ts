@@ -50,7 +50,7 @@ export class Project extends BaseProject {
 		return this.root.equals(this.workingDir);
 	}
 
-	async generateDeclarations(declarationConfig?: string): Promise<unknown> {
+	async generateDeclarations(declarationConfig?: string, cwd?: PortablePath): Promise<unknown> {
 		if (this.buildPromise) {
 			return this.buildPromise;
 		}
@@ -69,11 +69,13 @@ export class Project extends BaseProject {
 
 		// Store the promise so parallel artifacts can rely on the same build
 		const promise = execa('tsc', args, {
-			cwd: this.root.path(),
+			cwd: String(cwd ?? this.root),
 			preferLocal: true,
 		});
 
-		this.buildPromise = promise;
+		if (!cwd) {
+			this.buildPromise = promise;
+		}
 
 		return promise;
 	}

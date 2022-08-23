@@ -31,7 +31,7 @@ export class TypesArtifact extends Artifact<TypesBuild> {
 		}
 
 		// Otherwise fallback to a normal `tsc` build
-		await this.package.project.generateDeclarations(declarationConfig);
+		await this.package.project.generateDeclarations(declarationConfig, this.package.path);
 	}
 
 	async generateDeclarations(declarationConfig?: string) {
