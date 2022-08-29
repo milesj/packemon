@@ -91,7 +91,7 @@ export function getSwcInputConfig(
 		jsc: {
 			parser: {
 				syntax: 'ecmascript',
-				jsx: !!features.react,
+				jsx: !!features.react || features.solid,
 				dynamicImport: true,
 			},
 			transform,
@@ -105,7 +105,7 @@ export function getSwcInputConfig(
 	if (features.typescript) {
 		const parser: TsParserConfig = {
 			syntax: 'typescript',
-			tsx: !!features.react,
+			tsx: !!features.react || features.solid,
 			dynamicImport: true,
 		};
 
@@ -120,6 +120,16 @@ export function getSwcInputConfig(
 	if (features.react) {
 		transform.react = {
 			runtime: features.react,
+			throwIfNamespace: true,
+		};
+	}
+
+	if (features.solid) {
+		transform.react = {
+			runtime: 'automatic',
+			importSource: 'solid-js',
+			pragma: 'createComponent',
+			pragmaFrag: 'Fragment',
 			throwIfNamespace: true,
 		};
 	}
