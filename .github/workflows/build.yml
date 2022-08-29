@@ -76,8 +76,8 @@ jobs:
       - run: yarn install --immutable
       - run: yarn run setup
       - run: mkdir ../work
-      - run: yarn packemon scaffold --template monorepo ../work
-      - run: yarn packemon scaffold --template monorepo-package ../work
+      - run: yarn packemon scaffold --packageManager npm --template monorepo ../work
+      - run: yarn packemon scaffold --packageManager npm --template monorepo-package ../work
       # Test all the things
       - run: cd ../work
       - run: ls -R .
@@ -93,8 +93,8 @@ jobs:
       - run: yarn install --immutable
       - run: yarn run setup
       - run: mkdir ../work
-      - run: yarn packemon scaffold --template polyrepo ../work
-      - run: yarn packemon scaffold --template polyrepo-package ../work
+      - run: yarn packemon scaffold --packageManager npm --template polyrepo ../work
+      - run: yarn packemon scaffold --packageManager npm --template polyrepo-package ../work
       # Test all the things
       - run: cd ../work
       - run: ls -R .
