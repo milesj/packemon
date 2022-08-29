@@ -158,10 +158,11 @@ export function testExampleOutput(
 	file: string,
 	transformer: 'babel' | 'swc',
 	options?: Partial<PackageConfig>,
+	customRoot?: Path,
 ) {
 	// eslint-disable-next-line jest/valid-title
 	describe(transformer, () => {
-		const snapshots = createSnapshotSpies(exampleRoot);
+		const snapshots = createSnapshotSpies(customRoot ?? exampleRoot);
 
 		beforeEach(() => {
 			process.env.PACKEMON_TEST_WRITE = 'true';
@@ -177,7 +178,7 @@ export function testExampleOutput(
 		});
 
 		[...builds.values()].forEach((build) => {
-			const pkg = createProjectPackage(exampleRoot);
+			const pkg = createProjectPackage(customRoot ?? exampleRoot);
 			const env = `${build.platform}-${build.support}-${build.format}`;
 
 			it(`transforms example test case: ${env}`, async () => {

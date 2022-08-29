@@ -25,6 +25,10 @@ describe('getBabelInputConfig()', () => {
 		expect(getBabelInputConfig(bundleArtifact, { react: 'automatic' }).presets).toMatchSnapshot();
 	});
 
+	it('includes solid preset if `solid` feature flag is true', () => {
+		expect(getBabelInputConfig(bundleArtifact, { solid: true }).presets).toMatchSnapshot();
+	});
+
 	it('includes flow preset if `flow` feature flag is true', () => {
 		expect(getBabelInputConfig(bundleArtifact, { flow: true }).presets).toMatchSnapshot();
 	});

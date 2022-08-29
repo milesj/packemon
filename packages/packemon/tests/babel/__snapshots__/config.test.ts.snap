@@ -274,6 +274,12 @@ Array [
 ]
 `;
 
+exports[`getBabelInputConfig() includes solid preset if \`solid\` feature flag is true 1`] = `
+Array [
+  "babel-preset-solid",
+]
+`;
+
 exports[`getBabelInputConfig() includes typescript decorators if \`typescript\` and \`decorators\` feature flag is true 1`] = `
 Object {
   "babelrc": false,
