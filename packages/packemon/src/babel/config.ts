@@ -136,6 +136,10 @@ export function getBabelInputConfig(
 		]);
 	}
 
+	if (features.solid) {
+		presets.push(resolve('babel-preset-solid'));
+	}
+
 	const config = getSharedConfig(plugins, presets, features);
 
 	// Allow consumers to mutate

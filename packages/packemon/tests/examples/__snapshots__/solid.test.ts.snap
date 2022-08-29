@@ -1,0 +1,1569 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Solid/JSX babel transforms example test case: browser-current-esm 1`] = `
+Array [
+  "esm/index-browser-current-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: current, Format: esm
+import { template } from 'solid-js/web';
+
+const _tmpl$ = /*#__PURE__*/template(\`<button></button>\`, 2);
+
+function Button() {
+  return _tmpl$.cloneNode(true);
+}
+
+function Element() {
+  return \\"some content\\";
+}
+
+export { Button, Element as default };
+//# sourceMappingURL=index-browser-current-esm.js.map
+",
+]
+`;
+
+exports[`Solid/JSX babel transforms example test case: browser-current-lib 1`] = `
+Array [
+  "lib/index-browser-current-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: current, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+const web = require('solid-js/web');
+
+const _tmpl$ = /*#__PURE__*/web.template(\`<button></button>\`, 2);
+
+function Button() {
+  return _tmpl$.cloneNode(true);
+}
+
+function Element() {
+  return \\"some content\\";
+}
+
+exports.Button = Button;
+exports.default = Element;
+//# sourceMappingURL=index-browser-current-lib.js.map
+",
+]
+`;
+
+exports[`Solid/JSX babel transforms example test case: browser-current-umd 1`] = `
+Array [
+  "umd/index-browser-current-umd.js",
+  "(function (global, factory) {
+  if (typeof define === \\"function\\" && define.amd) {
+    define([\\"exports\\", \\"solid-js/web\\"], factory);
+  } else if (typeof exports !== \\"undefined\\") {
+    factory(exports, require(\\"solid-js/web\\"));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.web);
+    global.exampleSolid = mod.exports;
+  }
+})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports, _web) {
+  \\"use strict\\";
+
+  Object.defineProperty(_exports, \\"__esModule\\", {
+    value: true
+  });
+  _exports.Button = Button;
+  _exports.default = Element;
+
+  // Bundled with Packemon: https://packemon.dev
+  // Platform: browser, Support: current, Format: umd
+  const _tmpl$ = /*#__PURE__*/(0, _web.template)(\`<button></button>\`, 2);
+
+  function Button() {
+    return _tmpl$.cloneNode(true);
+  }
+
+  function Element() {
+    return \\"some content\\";
+  }
+});
+//# sourceMappingURL=index-browser-current-umd.js.map
+",
+]
+`;
+
+exports[`Solid/JSX babel transforms example test case: browser-experimental-esm 1`] = `
+Array [
+  "esm/index-browser-experimental-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: experimental, Format: esm
+import { template } from 'solid-js/web';
+
+const _tmpl$ = /*#__PURE__*/template(\`<button></button>\`, 2);
+
+function Button() {
+  return _tmpl$.cloneNode(true);
+}
+
+function Element() {
+  return \\"some content\\";
+}
+
+export { Button, Element as default };
+//# sourceMappingURL=index-browser-experimental-esm.js.map
+",
+]
+`;
+
+exports[`Solid/JSX babel transforms example test case: browser-experimental-lib 1`] = `
+Array [
+  "lib/index-browser-experimental-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: experimental, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+const web = require('solid-js/web');
+
+const _tmpl$ = /*#__PURE__*/web.template(\`<button></button>\`, 2);
+
+function Button() {
+  return _tmpl$.cloneNode(true);
+}
+
+function Element() {
+  return \\"some content\\";
+}
+
+exports.Button = Button;
+exports.default = Element;
+//# sourceMappingURL=index-browser-experimental-lib.js.map
+",
+]
+`;
+
+exports[`Solid/JSX babel transforms example test case: browser-experimental-umd 1`] = `
+Array [
+  "umd/index-browser-experimental-umd.js",
+  "(function (global, factory) {
+  if (typeof define === \\"function\\" && define.amd) {
+    define([\\"exports\\", \\"solid-js/web\\"], factory);
+  } else if (typeof exports !== \\"undefined\\") {
+    factory(exports, require(\\"solid-js/web\\"));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.web);
+    global.exampleSolid = mod.exports;
+  }
+})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports, _web) {
+  \\"use strict\\";
+
+  Object.defineProperty(_exports, \\"__esModule\\", {
+    value: true
+  });
+  _exports.Button = Button;
+  _exports.default = Element;
+
+  // Bundled with Packemon: https://packemon.dev
+  // Platform: browser, Support: experimental, Format: umd
+  const _tmpl$ = /*#__PURE__*/(0, _web.template)(\`<button></button>\`, 2);
+
+  function Button() {
+    return _tmpl$.cloneNode(true);
+  }
+
+  function Element() {
+    return \\"some content\\";
+  }
+});
+//# sourceMappingURL=index-browser-experimental-umd.js.map
+",
+]
+`;
+
+exports[`Solid/JSX babel transforms example test case: browser-legacy-esm 1`] = `
+Array [
+  "esm/index-browser-legacy-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: legacy, Format: esm
+import { template } from 'solid-js/web';
+
+var _tmpl$ = /*#__PURE__*/template(\\"<button></button>\\", 2);
+
+function Button() {
+  return _tmpl$.cloneNode(true);
+}
+
+function Element() {
+  return \\"some content\\";
+}
+
+export { Button, Element as default };
+//# sourceMappingURL=index-browser-legacy-esm.js.map
+",
+]
+`;
+
+exports[`Solid/JSX babel transforms example test case: browser-legacy-lib 1`] = `
+Array [
+  "lib/index-browser-legacy-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: legacy, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var web = require('solid-js/web');
+
+var _tmpl$ = /*#__PURE__*/web.template(\\"<button></button>\\", 2);
+
+function Button() {
+  return _tmpl$.cloneNode(true);
+}
+
+function Element() {
+  return \\"some content\\";
+}
+
+exports.Button = Button;
+exports.default = Element;
+//# sourceMappingURL=index-browser-legacy-lib.js.map
+",
+]
+`;
+
+exports[`Solid/JSX babel transforms example test case: browser-legacy-umd 1`] = `
+Array [
+  "umd/index-browser-legacy-umd.js",
+  "(function (global, factory) {
+  if (typeof define === \\"function\\" && define.amd) {
+    define([\\"exports\\", \\"solid-js/web\\"], factory);
+  } else if (typeof exports !== \\"undefined\\") {
+    factory(exports, require(\\"solid-js/web\\"));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.web);
+    global.exampleSolid = mod.exports;
+  }
+})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports, _web) {
+  \\"use strict\\";
+
+  Object.defineProperty(_exports, \\"__esModule\\", {
+    value: true
+  });
+  _exports.Button = Button;
+  _exports.default = Element;
+
+  // Bundled with Packemon: https://packemon.dev
+  // Platform: browser, Support: legacy, Format: umd
+  var _tmpl$ = /*#__PURE__*/(0, _web.template)(\\"<button></button>\\", 2);
+
+  function Button() {
+    return _tmpl$.cloneNode(true);
+  }
+
+  function Element() {
+    return \\"some content\\";
+  }
+});
+//# sourceMappingURL=index-browser-legacy-umd.js.map
+",
+]
+`;
+
+exports[`Solid/JSX babel transforms example test case: browser-stable-esm 1`] = `
+Array [
+  "esm/index-browser-stable-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: stable, Format: esm
+import { template } from 'solid-js/web';
+
+const _tmpl$ = /*#__PURE__*/template(\`<button></button>\`, 2);
+
+function Button() {
+  return _tmpl$.cloneNode(true);
+}
+
+function Element() {
+  return \\"some content\\";
+}
+
+export { Button, Element as default };
+//# sourceMappingURL=index-browser-stable-esm.js.map
+",
+]
+`;
+
+exports[`Solid/JSX babel transforms example test case: browser-stable-lib 1`] = `
+Array [
+  "lib/index-browser-stable-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: stable, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+const web = require('solid-js/web');
+
+const _tmpl$ = /*#__PURE__*/web.template(\`<button></button>\`, 2);
+
+function Button() {
+  return _tmpl$.cloneNode(true);
+}
+
+function Element() {
+  return \\"some content\\";
+}
+
+exports.Button = Button;
+exports.default = Element;
+//# sourceMappingURL=index-browser-stable-lib.js.map
+",
+]
+`;
+
+exports[`Solid/JSX babel transforms example test case: browser-stable-umd 1`] = `
+Array [
+  "umd/index-browser-stable-umd.js",
+  "(function (global, factory) {
+  if (typeof define === \\"function\\" && define.amd) {
+    define([\\"exports\\", \\"solid-js/web\\"], factory);
+  } else if (typeof exports !== \\"undefined\\") {
+    factory(exports, require(\\"solid-js/web\\"));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.web);
+    global.exampleSolid = mod.exports;
+  }
+})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports, _web) {
+  \\"use strict\\";
+
+  Object.defineProperty(_exports, \\"__esModule\\", {
+    value: true
+  });
+  _exports.Button = Button;
+  _exports.default = Element;
+
+  // Bundled with Packemon: https://packemon.dev
+  // Platform: browser, Support: stable, Format: umd
+  const _tmpl$ = /*#__PURE__*/(0, _web.template)(\`<button></button>\`, 2);
+
+  function Button() {
+    return _tmpl$.cloneNode(true);
+  }
+
+  function Element() {
+    return \\"some content\\";
+  }
+});
+//# sourceMappingURL=index-browser-stable-umd.js.map
+",
+]
+`;
+
+exports[`Solid/JSX babel transforms example test case: native-current-lib 1`] = `
+Array [
+  "lib/index-native-current-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: current, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+const web = require('solid-js/web');
+
+const _tmpl$ = /*#__PURE__*/web.template(\`<button></button>\`, 2);
+
+function Button() {
+  return _tmpl$.cloneNode(true);
+}
+
+function Element() {
+  return \\"some content\\";
+}
+
+exports.Button = Button;
+exports.default = Element;
+//# sourceMappingURL=index-native-current-lib.js.map
+",
+]
+`;
+
+exports[`Solid/JSX babel transforms example test case: native-experimental-lib 1`] = `
+Array [
+  "lib/index-native-experimental-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: experimental, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+const web = require('solid-js/web');
+
+const _tmpl$ = /*#__PURE__*/web.template(\`<button></button>\`, 2);
+
+function Button() {
+  return _tmpl$.cloneNode(true);
+}
+
+function Element() {
+  return \\"some content\\";
+}
+
+exports.Button = Button;
+exports.default = Element;
+//# sourceMappingURL=index-native-experimental-lib.js.map
+",
+]
+`;
+
+exports[`Solid/JSX babel transforms example test case: native-legacy-lib 1`] = `
+Array [
+  "lib/index-native-legacy-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: legacy, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+const web = require('solid-js/web');
+
+const _tmpl$ = /*#__PURE__*/web.template(\`<button></button>\`, 2);
+
+function Button() {
+  return _tmpl$.cloneNode(true);
+}
+
+function Element() {
+  return \\"some content\\";
+}
+
+exports.Button = Button;
+exports.default = Element;
+//# sourceMappingURL=index-native-legacy-lib.js.map
+",
+]
+`;
+
+exports[`Solid/JSX babel transforms example test case: native-stable-lib 1`] = `
+Array [
+  "lib/index-native-stable-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: stable, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+const web = require('solid-js/web');
+
+const _tmpl$ = /*#__PURE__*/web.template(\`<button></button>\`, 2);
+
+function Button() {
+  return _tmpl$.cloneNode(true);
+}
+
+function Element() {
+  return \\"some content\\";
+}
+
+exports.Button = Button;
+exports.default = Element;
+//# sourceMappingURL=index-native-stable-lib.js.map
+",
+]
+`;
+
+exports[`Solid/JSX babel transforms example test case: node-current-cjs 1`] = `
+Array [
+  "cjs/index-node-current-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-current-cjs.cjs';
+
+export const { Button } = data;
+export default data.default;",
+]
+`;
+
+exports[`Solid/JSX babel transforms example test case: node-current-cjs 2`] = `
+Array [
+  "cjs/index-node-current-cjs.cjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: current, Format: cjs
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+const web = require('solid-js/web');
+
+const _tmpl$ = /*#__PURE__*/web.template(\`<button></button>\`, 2);
+
+function Button() {
+  return _tmpl$.cloneNode(true);
+}
+
+function Element() {
+  return \\"some content\\";
+}
+
+exports.Button = Button;
+exports.default = Element;
+//# sourceMappingURL=index-node-current-cjs.cjs.map
+",
+]
+`;
+
+exports[`Solid/JSX babel transforms example test case: node-current-lib 1`] = `
+Array [
+  "lib/index-node-current-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: current, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+const web = require('solid-js/web');
+
+const _tmpl$ = /*#__PURE__*/web.template(\`<button></button>\`, 2);
+
+function Button() {
+  return _tmpl$.cloneNode(true);
+}
+
+function Element() {
+  return \\"some content\\";
+}
+
+exports.Button = Button;
+exports.default = Element;
+//# sourceMappingURL=index-node-current-lib.js.map
+",
+]
+`;
+
+exports[`Solid/JSX babel transforms example test case: node-current-mjs 1`] = `
+Array [
+  "mjs/index-node-current-mjs.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: current, Format: mjs
+import { template } from 'solid-js/web';
+
+const _tmpl$ = /*#__PURE__*/template(\`<button></button>\`, 2);
+
+function Button() {
+  return _tmpl$.cloneNode(true);
+}
+
+function Element() {
+  return \\"some content\\";
+}
+
+export { Button, Element as default };
+//# sourceMappingURL=index-node-current-mjs.mjs.map
+",
+]
+`;
+
+exports[`Solid/JSX babel transforms example test case: node-experimental-cjs 1`] = `
+Array [
+  "cjs/index-node-experimental-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-experimental-cjs.cjs';
+
+export const { Button } = data;
+export default data.default;",
+]
+`;
+
+exports[`Solid/JSX babel transforms example test case: node-experimental-cjs 2`] = `
+Array [
+  "cjs/index-node-experimental-cjs.cjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: experimental, Format: cjs
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+const web = require('solid-js/web');
+
+const _tmpl$ = /*#__PURE__*/web.template(\`<button></button>\`, 2);
+
+function Button() {
+  return _tmpl$.cloneNode(true);
+}
+
+function Element() {
+  return \\"some content\\";
+}
+
+exports.Button = Button;
+exports.default = Element;
+//# sourceMappingURL=index-node-experimental-cjs.cjs.map
+",
+]
+`;
+
+exports[`Solid/JSX babel transforms example test case: node-experimental-lib 1`] = `
+Array [
+  "lib/index-node-experimental-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: experimental, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+const web = require('solid-js/web');
+
+const _tmpl$ = /*#__PURE__*/web.template(\`<button></button>\`, 2);
+
+function Button() {
+  return _tmpl$.cloneNode(true);
+}
+
+function Element() {
+  return \\"some content\\";
+}
+
+exports.Button = Button;
+exports.default = Element;
+//# sourceMappingURL=index-node-experimental-lib.js.map
+",
+]
+`;
+
+exports[`Solid/JSX babel transforms example test case: node-experimental-mjs 1`] = `
+Array [
+  "mjs/index-node-experimental-mjs.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: experimental, Format: mjs
+import { template } from 'solid-js/web';
+
+const _tmpl$ = /*#__PURE__*/template(\`<button></button>\`, 2);
+
+function Button() {
+  return _tmpl$.cloneNode(true);
+}
+
+function Element() {
+  return \\"some content\\";
+}
+
+export { Button, Element as default };
+//# sourceMappingURL=index-node-experimental-mjs.mjs.map
+",
+]
+`;
+
+exports[`Solid/JSX babel transforms example test case: node-legacy-cjs 1`] = `
+Array [
+  "cjs/index-node-legacy-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-legacy-cjs.cjs';
+
+export const { Button } = data;
+export default data.default;",
+]
+`;
+
+exports[`Solid/JSX babel transforms example test case: node-legacy-cjs 2`] = `
+Array [
+  "cjs/index-node-legacy-cjs.cjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: legacy, Format: cjs
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+const web = require('solid-js/web');
+
+const _tmpl$ = /*#__PURE__*/web.template(\`<button></button>\`, 2);
+
+function Button() {
+  return _tmpl$.cloneNode(true);
+}
+
+function Element() {
+  return \\"some content\\";
+}
+
+exports.Button = Button;
+exports.default = Element;
+//# sourceMappingURL=index-node-legacy-cjs.cjs.map
+",
+]
+`;
+
+exports[`Solid/JSX babel transforms example test case: node-legacy-lib 1`] = `
+Array [
+  "lib/index-node-legacy-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: legacy, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+const web = require('solid-js/web');
+
+const _tmpl$ = /*#__PURE__*/web.template(\`<button></button>\`, 2);
+
+function Button() {
+  return _tmpl$.cloneNode(true);
+}
+
+function Element() {
+  return \\"some content\\";
+}
+
+exports.Button = Button;
+exports.default = Element;
+//# sourceMappingURL=index-node-legacy-lib.js.map
+",
+]
+`;
+
+exports[`Solid/JSX babel transforms example test case: node-legacy-mjs 1`] = `
+Array [
+  "mjs/index-node-legacy-mjs.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: legacy, Format: mjs
+import { template } from 'solid-js/web';
+
+const _tmpl$ = /*#__PURE__*/template(\`<button></button>\`, 2);
+
+function Button() {
+  return _tmpl$.cloneNode(true);
+}
+
+function Element() {
+  return \\"some content\\";
+}
+
+export { Button, Element as default };
+//# sourceMappingURL=index-node-legacy-mjs.mjs.map
+",
+]
+`;
+
+exports[`Solid/JSX babel transforms example test case: node-stable-cjs 1`] = `
+Array [
+  "cjs/index-node-stable-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-stable-cjs.cjs';
+
+export const { Button } = data;
+export default data.default;",
+]
+`;
+
+exports[`Solid/JSX babel transforms example test case: node-stable-cjs 2`] = `
+Array [
+  "cjs/index-node-stable-cjs.cjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: cjs
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+const web = require('solid-js/web');
+
+const _tmpl$ = /*#__PURE__*/web.template(\`<button></button>\`, 2);
+
+function Button() {
+  return _tmpl$.cloneNode(true);
+}
+
+function Element() {
+  return \\"some content\\";
+}
+
+exports.Button = Button;
+exports.default = Element;
+//# sourceMappingURL=index-node-stable-cjs.cjs.map
+",
+]
+`;
+
+exports[`Solid/JSX babel transforms example test case: node-stable-lib 1`] = `
+Array [
+  "lib/index-node-stable-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: lib
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+const web = require('solid-js/web');
+
+const _tmpl$ = /*#__PURE__*/web.template(\`<button></button>\`, 2);
+
+function Button() {
+  return _tmpl$.cloneNode(true);
+}
+
+function Element() {
+  return \\"some content\\";
+}
+
+exports.Button = Button;
+exports.default = Element;
+//# sourceMappingURL=index-node-stable-lib.js.map
+",
+]
+`;
+
+exports[`Solid/JSX babel transforms example test case: node-stable-mjs 1`] = `
+Array [
+  "mjs/index-node-stable-mjs.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: mjs
+import { template } from 'solid-js/web';
+
+const _tmpl$ = /*#__PURE__*/template(\`<button></button>\`, 2);
+
+function Button() {
+  return _tmpl$.cloneNode(true);
+}
+
+function Element() {
+  return \\"some content\\";
+}
+
+export { Button, Element as default };
+//# sourceMappingURL=index-node-stable-mjs.mjs.map
+",
+]
+`;
+
+exports[`Solid/JSX swc transforms example test case: browser-current-esm 1`] = `
+Array [
+  "esm/index-browser-current-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: current, Format: esm
+function Button() {
+    return /*#__PURE__*/ React.createElement(\\"button\\", null);
+}
+function Element() {
+    return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
+}
+export { Button, Element as default };
+//# sourceMappingURL=index-browser-current-esm.js.map
+",
+]
+`;
+
+exports[`Solid/JSX swc transforms example test case: browser-current-lib 1`] = `
+Array [
+  "lib/index-browser-current-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: current, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function Button() {
+    return /*#__PURE__*/ React.createElement(\\"button\\", null);
+}
+function Element() {
+    return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
+}
+exports.Button = Button;
+exports.default = Element;
+//# sourceMappingURL=index-browser-current-lib.js.map
+",
+]
+`;
+
+exports[`Solid/JSX swc transforms example test case: browser-current-umd 1`] = `
+Array [
+  "umd/index-browser-current-umd.js",
+  "(function(global, factory) {
+    if (typeof module === \\"object\\" && typeof module.exports === \\"object\\") factory(exports);
+    else if (typeof define === \\"function\\" && define.amd) define([
+        \\"exports\\"
+    ], factory);
+    else if (global = typeof globalThis !== \\"undefined\\" ? globalThis : global || self) factory(global.exampleSolid = {});
+})(this, function(exports) {
+    \\"use strict\\";
+    Object.defineProperty(exports, \\"__esModule\\", {
+        value: true
+    });
+    function _export(target, all) {
+        for(var name in all)Object.defineProperty(target, name, {
+            enumerable: true,
+            get: all[name]
+        });
+    }
+    _export(exports, {
+        Button: ()=>Button,
+        default: ()=>Element
+    });
+    function Button() {
+        return /*#__PURE__*/ React.createElement(\\"button\\", null);
+    }
+    function Element() {
+        return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
+    }
+});
+//# sourceMappingURL=index-browser-current-umd.js.map
+",
+]
+`;
+
+exports[`Solid/JSX swc transforms example test case: browser-experimental-esm 1`] = `
+Array [
+  "esm/index-browser-experimental-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: experimental, Format: esm
+function Button() {
+    return /*#__PURE__*/ React.createElement(\\"button\\", null);
+}
+function Element() {
+    return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
+}
+export { Button, Element as default };
+//# sourceMappingURL=index-browser-experimental-esm.js.map
+",
+]
+`;
+
+exports[`Solid/JSX swc transforms example test case: browser-experimental-lib 1`] = `
+Array [
+  "lib/index-browser-experimental-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: experimental, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function Button() {
+    return /*#__PURE__*/ React.createElement(\\"button\\", null);
+}
+function Element() {
+    return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
+}
+exports.Button = Button;
+exports.default = Element;
+//# sourceMappingURL=index-browser-experimental-lib.js.map
+",
+]
+`;
+
+exports[`Solid/JSX swc transforms example test case: browser-experimental-umd 1`] = `
+Array [
+  "umd/index-browser-experimental-umd.js",
+  "(function(global, factory) {
+    if (typeof module === \\"object\\" && typeof module.exports === \\"object\\") factory(exports);
+    else if (typeof define === \\"function\\" && define.amd) define([
+        \\"exports\\"
+    ], factory);
+    else if (global = typeof globalThis !== \\"undefined\\" ? globalThis : global || self) factory(global.exampleSolid = {});
+})(this, function(exports) {
+    \\"use strict\\";
+    Object.defineProperty(exports, \\"__esModule\\", {
+        value: true
+    });
+    function _export(target, all) {
+        for(var name in all)Object.defineProperty(target, name, {
+            enumerable: true,
+            get: all[name]
+        });
+    }
+    _export(exports, {
+        Button: ()=>Button,
+        default: ()=>Element
+    });
+    function Button() {
+        return /*#__PURE__*/ React.createElement(\\"button\\", null);
+    }
+    function Element() {
+        return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
+    }
+});
+//# sourceMappingURL=index-browser-experimental-umd.js.map
+",
+]
+`;
+
+exports[`Solid/JSX swc transforms example test case: browser-legacy-esm 1`] = `
+Array [
+  "esm/index-browser-legacy-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: legacy, Format: esm
+function Button() {
+    return /*#__PURE__*/ React.createElement(\\"button\\", null);
+}
+function Element() {
+    return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
+}
+export { Button, Element as default };
+//# sourceMappingURL=index-browser-legacy-esm.js.map
+",
+]
+`;
+
+exports[`Solid/JSX swc transforms example test case: browser-legacy-lib 1`] = `
+Array [
+  "lib/index-browser-legacy-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: legacy, Format: lib
+\\"use strict\\";
+Object.defineProperty(exports, \\"__esModule\\", {
+    value: true
+});
+function Button() {
+    return /*#__PURE__*/ React.createElement(\\"button\\", null);
+}
+function Element() {
+    return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
+}
+exports.Button = Button;
+exports.default = Element;
+//# sourceMappingURL=index-browser-legacy-lib.js.map
+",
+]
+`;
+
+exports[`Solid/JSX swc transforms example test case: browser-legacy-umd 1`] = `
+Array [
+  "umd/index-browser-legacy-umd.js",
+  "(function(global, factory) {
+    if (typeof module === \\"object\\" && typeof module.exports === \\"object\\") factory(exports);
+    else if (typeof define === \\"function\\" && define.amd) define([
+        \\"exports\\"
+    ], factory);
+    else if (global = typeof globalThis !== \\"undefined\\" ? globalThis : global || self) factory(global.exampleSolid = {});
+})(this, function(exports) {
+    \\"use strict\\";
+    Object.defineProperty(exports, \\"__esModule\\", {
+        value: true
+    });
+    function _export(target, all) {
+        for(var name in all)Object.defineProperty(target, name, {
+            enumerable: true,
+            get: all[name]
+        });
+    }
+    _export(exports, {
+        Button: function() {
+            return Button;
+        },
+        default: function() {
+            return Element;
+        }
+    });
+    function Button() {
+        return /*#__PURE__*/ React.createElement(\\"button\\", null);
+    }
+    function Element() {
+        return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
+    }
+});
+//# sourceMappingURL=index-browser-legacy-umd.js.map
+",
+]
+`;
+
+exports[`Solid/JSX swc transforms example test case: browser-stable-esm 1`] = `
+Array [
+  "esm/index-browser-stable-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: stable, Format: esm
+function Button() {
+    return /*#__PURE__*/ React.createElement(\\"button\\", null);
+}
+function Element() {
+    return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
+}
+export { Button, Element as default };
+//# sourceMappingURL=index-browser-stable-esm.js.map
+",
+]
+`;
+
+exports[`Solid/JSX swc transforms example test case: browser-stable-lib 1`] = `
+Array [
+  "lib/index-browser-stable-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: stable, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function Button() {
+    return /*#__PURE__*/ React.createElement(\\"button\\", null);
+}
+function Element() {
+    return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
+}
+exports.Button = Button;
+exports.default = Element;
+//# sourceMappingURL=index-browser-stable-lib.js.map
+",
+]
+`;
+
+exports[`Solid/JSX swc transforms example test case: browser-stable-umd 1`] = `
+Array [
+  "umd/index-browser-stable-umd.js",
+  "(function(global, factory) {
+    if (typeof module === \\"object\\" && typeof module.exports === \\"object\\") factory(exports);
+    else if (typeof define === \\"function\\" && define.amd) define([
+        \\"exports\\"
+    ], factory);
+    else if (global = typeof globalThis !== \\"undefined\\" ? globalThis : global || self) factory(global.exampleSolid = {});
+})(this, function(exports) {
+    \\"use strict\\";
+    Object.defineProperty(exports, \\"__esModule\\", {
+        value: true
+    });
+    function _export(target, all) {
+        for(var name in all)Object.defineProperty(target, name, {
+            enumerable: true,
+            get: all[name]
+        });
+    }
+    _export(exports, {
+        Button: ()=>Button,
+        default: ()=>Element
+    });
+    function Button() {
+        return /*#__PURE__*/ React.createElement(\\"button\\", null);
+    }
+    function Element() {
+        return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
+    }
+});
+//# sourceMappingURL=index-browser-stable-umd.js.map
+",
+]
+`;
+
+exports[`Solid/JSX swc transforms example test case: native-current-lib 1`] = `
+Array [
+  "lib/index-native-current-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: current, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function Button() {
+    return /*#__PURE__*/ React.createElement(\\"button\\", null);
+}
+function Element() {
+    return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
+}
+exports.Button = Button;
+exports.default = Element;
+//# sourceMappingURL=index-native-current-lib.js.map
+",
+]
+`;
+
+exports[`Solid/JSX swc transforms example test case: native-experimental-lib 1`] = `
+Array [
+  "lib/index-native-experimental-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: experimental, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function Button() {
+    return /*#__PURE__*/ React.createElement(\\"button\\", null);
+}
+function Element() {
+    return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
+}
+exports.Button = Button;
+exports.default = Element;
+//# sourceMappingURL=index-native-experimental-lib.js.map
+",
+]
+`;
+
+exports[`Solid/JSX swc transforms example test case: native-legacy-lib 1`] = `
+Array [
+  "lib/index-native-legacy-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: legacy, Format: lib
+\\"use strict\\";
+Object.defineProperty(exports, \\"__esModule\\", {
+    value: true
+});
+function Button() {
+    return /*#__PURE__*/ React.createElement(\\"button\\", null);
+}
+function Element() {
+    return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
+}
+exports.Button = Button;
+exports.default = Element;
+//# sourceMappingURL=index-native-legacy-lib.js.map
+",
+]
+`;
+
+exports[`Solid/JSX swc transforms example test case: native-stable-lib 1`] = `
+Array [
+  "lib/index-native-stable-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: stable, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function Button() {
+    return /*#__PURE__*/ React.createElement(\\"button\\", null);
+}
+function Element() {
+    return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
+}
+exports.Button = Button;
+exports.default = Element;
+//# sourceMappingURL=index-native-stable-lib.js.map
+",
+]
+`;
+
+exports[`Solid/JSX swc transforms example test case: node-current-cjs 1`] = `
+Array [
+  "cjs/index-node-current-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-current-cjs.cjs';
+
+export const { Button } = data;
+export default data.default;",
+]
+`;
+
+exports[`Solid/JSX swc transforms example test case: node-current-cjs 2`] = `
+Array [
+  "cjs/index-node-current-cjs.cjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: current, Format: cjs
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function Button() {
+    return /*#__PURE__*/ React.createElement(\\"button\\", null);
+}
+function Element() {
+    return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
+}
+exports.Button = Button;
+exports.default = Element;
+//# sourceMappingURL=index-node-current-cjs.cjs.map
+",
+]
+`;
+
+exports[`Solid/JSX swc transforms example test case: node-current-lib 1`] = `
+Array [
+  "lib/index-node-current-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: current, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function Button() {
+    return /*#__PURE__*/ React.createElement(\\"button\\", null);
+}
+function Element() {
+    return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
+}
+exports.Button = Button;
+exports.default = Element;
+//# sourceMappingURL=index-node-current-lib.js.map
+",
+]
+`;
+
+exports[`Solid/JSX swc transforms example test case: node-current-mjs 1`] = `
+Array [
+  "mjs/index-node-current-mjs.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: current, Format: mjs
+function Button() {
+    return /*#__PURE__*/ React.createElement(\\"button\\", null);
+}
+function Element() {
+    return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
+}
+export { Button, Element as default };
+//# sourceMappingURL=index-node-current-mjs.mjs.map
+",
+]
+`;
+
+exports[`Solid/JSX swc transforms example test case: node-experimental-cjs 1`] = `
+Array [
+  "cjs/index-node-experimental-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-experimental-cjs.cjs';
+
+export const { Button } = data;
+export default data.default;",
+]
+`;
+
+exports[`Solid/JSX swc transforms example test case: node-experimental-cjs 2`] = `
+Array [
+  "cjs/index-node-experimental-cjs.cjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: experimental, Format: cjs
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function Button() {
+    return /*#__PURE__*/ React.createElement(\\"button\\", null);
+}
+function Element() {
+    return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
+}
+exports.Button = Button;
+exports.default = Element;
+//# sourceMappingURL=index-node-experimental-cjs.cjs.map
+",
+]
+`;
+
+exports[`Solid/JSX swc transforms example test case: node-experimental-lib 1`] = `
+Array [
+  "lib/index-node-experimental-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: experimental, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function Button() {
+    return /*#__PURE__*/ React.createElement(\\"button\\", null);
+}
+function Element() {
+    return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
+}
+exports.Button = Button;
+exports.default = Element;
+//# sourceMappingURL=index-node-experimental-lib.js.map
+",
+]
+`;
+
+exports[`Solid/JSX swc transforms example test case: node-experimental-mjs 1`] = `
+Array [
+  "mjs/index-node-experimental-mjs.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: experimental, Format: mjs
+function Button() {
+    return /*#__PURE__*/ React.createElement(\\"button\\", null);
+}
+function Element() {
+    return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
+}
+export { Button, Element as default };
+//# sourceMappingURL=index-node-experimental-mjs.mjs.map
+",
+]
+`;
+
+exports[`Solid/JSX swc transforms example test case: node-legacy-cjs 1`] = `
+Array [
+  "cjs/index-node-legacy-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-legacy-cjs.cjs';
+
+export const { Button } = data;
+export default data.default;",
+]
+`;
+
+exports[`Solid/JSX swc transforms example test case: node-legacy-cjs 2`] = `
+Array [
+  "cjs/index-node-legacy-cjs.cjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: legacy, Format: cjs
+\\"use strict\\";
+Object.defineProperty(exports, \\"__esModule\\", {
+    value: true
+});
+function Button() {
+    return /*#__PURE__*/ React.createElement(\\"button\\", null);
+}
+function Element() {
+    return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
+}
+exports.Button = Button;
+exports.default = Element;
+//# sourceMappingURL=index-node-legacy-cjs.cjs.map
+",
+]
+`;
+
+exports[`Solid/JSX swc transforms example test case: node-legacy-lib 1`] = `
+Array [
+  "lib/index-node-legacy-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: legacy, Format: lib
+\\"use strict\\";
+Object.defineProperty(exports, \\"__esModule\\", {
+    value: true
+});
+function Button() {
+    return /*#__PURE__*/ React.createElement(\\"button\\", null);
+}
+function Element() {
+    return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
+}
+exports.Button = Button;
+exports.default = Element;
+//# sourceMappingURL=index-node-legacy-lib.js.map
+",
+]
+`;
+
+exports[`Solid/JSX swc transforms example test case: node-legacy-mjs 1`] = `
+Array [
+  "mjs/index-node-legacy-mjs.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: legacy, Format: mjs
+function Button() {
+    return /*#__PURE__*/ React.createElement(\\"button\\", null);
+}
+function Element() {
+    return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
+}
+export { Button, Element as default };
+//# sourceMappingURL=index-node-legacy-mjs.mjs.map
+",
+]
+`;
+
+exports[`Solid/JSX swc transforms example test case: node-stable-cjs 1`] = `
+Array [
+  "cjs/index-node-stable-cjs-wrapper.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-stable-cjs.cjs';
+
+export const { Button } = data;
+export default data.default;",
+]
+`;
+
+exports[`Solid/JSX swc transforms example test case: node-stable-cjs 2`] = `
+Array [
+  "cjs/index-node-stable-cjs.cjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: cjs
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function Button() {
+    return /*#__PURE__*/ React.createElement(\\"button\\", null);
+}
+function Element() {
+    return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
+}
+exports.Button = Button;
+exports.default = Element;
+//# sourceMappingURL=index-node-stable-cjs.cjs.map
+",
+]
+`;
+
+exports[`Solid/JSX swc transforms example test case: node-stable-lib 1`] = `
+Array [
+  "lib/index-node-stable-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function Button() {
+    return /*#__PURE__*/ React.createElement(\\"button\\", null);
+}
+function Element() {
+    return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
+}
+exports.Button = Button;
+exports.default = Element;
+//# sourceMappingURL=index-node-stable-lib.js.map
+",
+]
+`;
+
+exports[`Solid/JSX swc transforms example test case: node-stable-mjs 1`] = `
+Array [
+  "mjs/index-node-stable-mjs.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: mjs
+function Button() {
+    return /*#__PURE__*/ React.createElement(\\"button\\", null);
+}
+function Element() {
+    return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
+}
+export { Button, Element as default };
+//# sourceMappingURL=index-node-stable-mjs.mjs.map
+",
+]
+`;

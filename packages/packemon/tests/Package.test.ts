@@ -1067,6 +1067,12 @@ describe('Package', () => {
 			});
 		});
 
+		describe('solid', () => {
+			it('enables if a dependency', () => {
+				expect(loadPackage('solid').getFeatureFlags()).toEqual({ solid: true });
+			});
+		});
+
 		describe('typescript', () => {
 			it('returns true if a package dependency (peer)', () => {
 				expect(loadPackage('ts').getFeatureFlags()).toEqual({

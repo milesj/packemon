@@ -7455,6 +7455,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"babel-plugin-jsx-dom-expressions@npm:^0.34.0":
+  version: 0.34.0
+  resolution: "babel-plugin-jsx-dom-expressions@npm:0.34.0"
+  dependencies:
+    "@babel/helper-module-imports": 7.16.0
+    "@babel/plugin-syntax-jsx": ^7.16.5
+    "@babel/types": ^7.16.0
+    html-entities: 2.3.2
+  peerDependencies:
+    "@babel/core": ^7.0.0
+  checksum: bdb22dbda9e786acd76308f5328881512ea1254f423f62f4d85a879ae9fed86bf897a03fb8dc6d8edf42d6dbbafff9fad139bee27ee10affa0beeefc78b26a5f
+  languageName: node
+  linkType: hard
+
 "babel-plugin-polyfill-corejs2@npm:^0.3.1, babel-plugin-polyfill-corejs2@npm:^0.3.2":
   version: 0.3.2
   resolution: "babel-plugin-polyfill-corejs2@npm:0.3.2"
@@ -7565,6 +7579,17 @@ __metadata:
   peerDependencies:
     "@babel/core": ^7.0.0
   checksum: e3776daeca80e01344f9ad356864bbb14e2ba60dea618c8c0fd09bef487d1020a4215a1c6b9ecaf959a68e142b3dd7653ec5748eba7584cfa9c84693fff364b7
+  languageName: node
+  linkType: hard
+
+"babel-preset-solid@npm:^1.5.1":
+  version: 1.5.1
+  resolution: "babel-preset-solid@npm:1.5.1"
+  dependencies:
+    babel-plugin-jsx-dom-expressions: ^0.34.0
+  peerDependencies:
+    "@babel/core": ^7.0.0
+  checksum: fdbbf6fdca9d9bfbc6f9ba7db7f7982be07ac5e489ce8b7363705c917b752857311260321395c0627175f0541eb3c45fb7766ed39d69888d05917755ec6b4391
   languageName: node
   linkType: hard
 
@@ -16469,6 +16494,7 @@ __metadata:
     babel-plugin-cjs-esm-interop: ^2.0.4
     babel-plugin-conditional-invariant: ^2.0.2
     babel-plugin-env-constants: ^2.0.2
+    babel-preset-solid: ^1.5.1
     browserslist: ^4.21.3
     execa: ^5.1.1
     fast-glob: ^3.2.11

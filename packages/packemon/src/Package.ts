@@ -197,6 +197,13 @@ export class Package {
 			this.debug(' - React');
 		}
 
+		// Solid
+		if (this.hasDependency('solid-js')) {
+			flags.solid = true;
+
+			this.debug(' - Solid');
+		}
+
 		// TypeScript
 		const tsConfig = this.loadTsconfigJson() ?? this.project.rootPackage.loadTsconfigJson();
 

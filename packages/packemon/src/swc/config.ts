@@ -91,7 +91,7 @@ export function getSwcInputConfig(
 		jsc: {
 			parser: {
 				syntax: 'ecmascript',
-				jsx: !!features.react,
+				jsx: !!features.react || !!features.solid,
 				dynamicImport: true,
 			},
 			transform,
@@ -105,7 +105,7 @@ export function getSwcInputConfig(
 	if (features.typescript) {
 		const parser: TsParserConfig = {
 			syntax: 'typescript',
-			tsx: !!features.react,
+			tsx: !!features.react || !!features.solid,
 			dynamicImport: true,
 		};
 
@@ -123,6 +123,17 @@ export function getSwcInputConfig(
 			throwIfNamespace: true,
 		};
 	}
+
+	// TODO: this doesn't work right, skip for now
+	// if (features.solid) {
+	// 	transform.react = {
+	// 		runtime: 'classic',
+	// 		importSource: 'solid-js/web',
+	// 		pragma: 'createComponent',
+	// 		pragmaFrag: 'Fragment',
+	// 		throwIfNamespace: true,
+	// 	};
+	// }
 
 	const config = getSharedConfig(baseConfig);
 
