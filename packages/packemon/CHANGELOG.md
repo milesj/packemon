@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.4.0 - 2022-08-29
+
+#### 🚀 Updates
+
+- Add Solid.js support (Babel only). (#146) ([494d6d3](https://github.com/milesj/packemon/commit/494d6d3)), closes [#146](https://github.com/milesj/packemon/issues/146)
+
+#### 🐞 Fixes
+
+- Fix TS declared fields when used with decorators. ([36ffb38](https://github.com/milesj/packemon/commit/36ffb38))
+
+**Note:** Version bump only for package packemon
+
+
+
+
+
 ### 2.3.7 - 2022-08-23
 
 #### 🐞 Fixes
