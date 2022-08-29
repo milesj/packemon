@@ -886,10 +886,10 @@ Array [
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: esm
 function Button() {
-    return /*#__PURE__*/ createComponent(\\"button\\", null);
+    return /*#__PURE__*/ React.createElement(\\"button\\", null);
 }
 function Element() {
-    return /*#__PURE__*/ createComponent(Fragment, null, \\"some content\\");
+    return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
 }
 export { Button, Element as default };
 //# sourceMappingURL=index-browser-current-esm.js.map
@@ -907,10 +907,10 @@ Object.defineProperty(exports, '__esModule', {
     value: true
 });
 function Button() {
-    return /*#__PURE__*/ createComponent(\\"button\\", null);
+    return /*#__PURE__*/ React.createElement(\\"button\\", null);
 }
 function Element() {
-    return /*#__PURE__*/ createComponent(Fragment, null, \\"some content\\");
+    return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
 }
 exports.Button = Button;
 exports.default = Element;
@@ -944,10 +944,10 @@ Array [
         default: ()=>Element
     });
     function Button() {
-        return /*#__PURE__*/ createComponent(\\"button\\", null);
+        return /*#__PURE__*/ React.createElement(\\"button\\", null);
     }
     function Element() {
-        return /*#__PURE__*/ createComponent(Fragment, null, \\"some content\\");
+        return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
     }
 });
 //# sourceMappingURL=index-browser-current-umd.js.map
@@ -961,10 +961,10 @@ Array [
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: experimental, Format: esm
 function Button() {
-    return /*#__PURE__*/ createComponent(\\"button\\", null);
+    return /*#__PURE__*/ React.createElement(\\"button\\", null);
 }
 function Element() {
-    return /*#__PURE__*/ createComponent(Fragment, null, \\"some content\\");
+    return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
 }
 export { Button, Element as default };
 //# sourceMappingURL=index-browser-experimental-esm.js.map
@@ -982,10 +982,10 @@ Object.defineProperty(exports, '__esModule', {
     value: true
 });
 function Button() {
-    return /*#__PURE__*/ createComponent(\\"button\\", null);
+    return /*#__PURE__*/ React.createElement(\\"button\\", null);
 }
 function Element() {
-    return /*#__PURE__*/ createComponent(Fragment, null, \\"some content\\");
+    return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
 }
 exports.Button = Button;
 exports.default = Element;
@@ -1019,10 +1019,10 @@ Array [
         default: ()=>Element
     });
     function Button() {
-        return /*#__PURE__*/ createComponent(\\"button\\", null);
+        return /*#__PURE__*/ React.createElement(\\"button\\", null);
     }
     function Element() {
-        return /*#__PURE__*/ createComponent(Fragment, null, \\"some content\\");
+        return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
     }
 });
 //# sourceMappingURL=index-browser-experimental-umd.js.map
@@ -1036,10 +1036,10 @@ Array [
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: esm
 function Button() {
-    return /*#__PURE__*/ createComponent(\\"button\\", null);
+    return /*#__PURE__*/ React.createElement(\\"button\\", null);
 }
 function Element() {
-    return /*#__PURE__*/ createComponent(Fragment, null, \\"some content\\");
+    return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
 }
 export { Button, Element as default };
 //# sourceMappingURL=index-browser-legacy-esm.js.map
@@ -1057,10 +1057,10 @@ Object.defineProperty(exports, \\"__esModule\\", {
     value: true
 });
 function Button() {
-    return /*#__PURE__*/ createComponent(\\"button\\", null);
+    return /*#__PURE__*/ React.createElement(\\"button\\", null);
 }
 function Element() {
-    return /*#__PURE__*/ createComponent(Fragment, null, \\"some content\\");
+    return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
 }
 exports.Button = Button;
 exports.default = Element;
@@ -1098,10 +1098,10 @@ Array [
         }
     });
     function Button() {
-        return /*#__PURE__*/ createComponent(\\"button\\", null);
+        return /*#__PURE__*/ React.createElement(\\"button\\", null);
     }
     function Element() {
-        return /*#__PURE__*/ createComponent(Fragment, null, \\"some content\\");
+        return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
     }
 });
 //# sourceMappingURL=index-browser-legacy-umd.js.map
@@ -1115,10 +1115,10 @@ Array [
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: esm
 function Button() {
-    return /*#__PURE__*/ createComponent(\\"button\\", null);
+    return /*#__PURE__*/ React.createElement(\\"button\\", null);
 }
 function Element() {
-    return /*#__PURE__*/ createComponent(Fragment, null, \\"some content\\");
+    return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
 }
 export { Button, Element as default };
 //# sourceMappingURL=index-browser-stable-esm.js.map
@@ -1136,10 +1136,10 @@ Object.defineProperty(exports, '__esModule', {
     value: true
 });
 function Button() {
-    return /*#__PURE__*/ createComponent(\\"button\\", null);
+    return /*#__PURE__*/ React.createElement(\\"button\\", null);
 }
 function Element() {
-    return /*#__PURE__*/ createComponent(Fragment, null, \\"some content\\");
+    return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
 }
 exports.Button = Button;
 exports.default = Element;
@@ -1173,10 +1173,10 @@ Array [
         default: ()=>Element
     });
     function Button() {
-        return /*#__PURE__*/ createComponent(\\"button\\", null);
+        return /*#__PURE__*/ React.createElement(\\"button\\", null);
     }
     function Element() {
-        return /*#__PURE__*/ createComponent(Fragment, null, \\"some content\\");
+        return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
     }
 });
 //# sourceMappingURL=index-browser-stable-umd.js.map
@@ -1194,10 +1194,10 @@ Object.defineProperty(exports, '__esModule', {
     value: true
 });
 function Button() {
-    return /*#__PURE__*/ createComponent(\\"button\\", null);
+    return /*#__PURE__*/ React.createElement(\\"button\\", null);
 }
 function Element() {
-    return /*#__PURE__*/ createComponent(Fragment, null, \\"some content\\");
+    return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
 }
 exports.Button = Button;
 exports.default = Element;
@@ -1216,10 +1216,10 @@ Object.defineProperty(exports, '__esModule', {
     value: true
 });
 function Button() {
-    return /*#__PURE__*/ createComponent(\\"button\\", null);
+    return /*#__PURE__*/ React.createElement(\\"button\\", null);
 }
 function Element() {
-    return /*#__PURE__*/ createComponent(Fragment, null, \\"some content\\");
+    return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
 }
 exports.Button = Button;
 exports.default = Element;
@@ -1238,10 +1238,10 @@ Object.defineProperty(exports, \\"__esModule\\", {
     value: true
 });
 function Button() {
-    return /*#__PURE__*/ createComponent(\\"button\\", null);
+    return /*#__PURE__*/ React.createElement(\\"button\\", null);
 }
 function Element() {
-    return /*#__PURE__*/ createComponent(Fragment, null, \\"some content\\");
+    return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
 }
 exports.Button = Button;
 exports.default = Element;
@@ -1260,10 +1260,10 @@ Object.defineProperty(exports, '__esModule', {
     value: true
 });
 function Button() {
-    return /*#__PURE__*/ createComponent(\\"button\\", null);
+    return /*#__PURE__*/ React.createElement(\\"button\\", null);
 }
 function Element() {
-    return /*#__PURE__*/ createComponent(Fragment, null, \\"some content\\");
+    return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
 }
 exports.Button = Button;
 exports.default = Element;
@@ -1295,10 +1295,10 @@ Object.defineProperty(exports, '__esModule', {
     value: true
 });
 function Button() {
-    return /*#__PURE__*/ createComponent(\\"button\\", null);
+    return /*#__PURE__*/ React.createElement(\\"button\\", null);
 }
 function Element() {
-    return /*#__PURE__*/ createComponent(Fragment, null, \\"some content\\");
+    return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
 }
 exports.Button = Button;
 exports.default = Element;
@@ -1317,10 +1317,10 @@ Object.defineProperty(exports, '__esModule', {
     value: true
 });
 function Button() {
-    return /*#__PURE__*/ createComponent(\\"button\\", null);
+    return /*#__PURE__*/ React.createElement(\\"button\\", null);
 }
 function Element() {
-    return /*#__PURE__*/ createComponent(Fragment, null, \\"some content\\");
+    return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
 }
 exports.Button = Button;
 exports.default = Element;
@@ -1335,10 +1335,10 @@ Array [
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: mjs
 function Button() {
-    return /*#__PURE__*/ createComponent(\\"button\\", null);
+    return /*#__PURE__*/ React.createElement(\\"button\\", null);
 }
 function Element() {
-    return /*#__PURE__*/ createComponent(Fragment, null, \\"some content\\");
+    return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
 }
 export { Button, Element as default };
 //# sourceMappingURL=index-node-current-mjs.mjs.map
@@ -1369,10 +1369,10 @@ Object.defineProperty(exports, '__esModule', {
     value: true
 });
 function Button() {
-    return /*#__PURE__*/ createComponent(\\"button\\", null);
+    return /*#__PURE__*/ React.createElement(\\"button\\", null);
 }
 function Element() {
-    return /*#__PURE__*/ createComponent(Fragment, null, \\"some content\\");
+    return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
 }
 exports.Button = Button;
 exports.default = Element;
@@ -1391,10 +1391,10 @@ Object.defineProperty(exports, '__esModule', {
     value: true
 });
 function Button() {
-    return /*#__PURE__*/ createComponent(\\"button\\", null);
+    return /*#__PURE__*/ React.createElement(\\"button\\", null);
 }
 function Element() {
-    return /*#__PURE__*/ createComponent(Fragment, null, \\"some content\\");
+    return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
 }
 exports.Button = Button;
 exports.default = Element;
@@ -1409,10 +1409,10 @@ Array [
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: mjs
 function Button() {
-    return /*#__PURE__*/ createComponent(\\"button\\", null);
+    return /*#__PURE__*/ React.createElement(\\"button\\", null);
 }
 function Element() {
-    return /*#__PURE__*/ createComponent(Fragment, null, \\"some content\\");
+    return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
 }
 export { Button, Element as default };
 //# sourceMappingURL=index-node-experimental-mjs.mjs.map
@@ -1443,10 +1443,10 @@ Object.defineProperty(exports, \\"__esModule\\", {
     value: true
 });
 function Button() {
-    return /*#__PURE__*/ createComponent(\\"button\\", null);
+    return /*#__PURE__*/ React.createElement(\\"button\\", null);
 }
 function Element() {
-    return /*#__PURE__*/ createComponent(Fragment, null, \\"some content\\");
+    return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
 }
 exports.Button = Button;
 exports.default = Element;
@@ -1465,10 +1465,10 @@ Object.defineProperty(exports, \\"__esModule\\", {
     value: true
 });
 function Button() {
-    return /*#__PURE__*/ createComponent(\\"button\\", null);
+    return /*#__PURE__*/ React.createElement(\\"button\\", null);
 }
 function Element() {
-    return /*#__PURE__*/ createComponent(Fragment, null, \\"some content\\");
+    return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
 }
 exports.Button = Button;
 exports.default = Element;
@@ -1483,10 +1483,10 @@ Array [
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: mjs
 function Button() {
-    return /*#__PURE__*/ createComponent(\\"button\\", null);
+    return /*#__PURE__*/ React.createElement(\\"button\\", null);
 }
 function Element() {
-    return /*#__PURE__*/ createComponent(Fragment, null, \\"some content\\");
+    return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
 }
 export { Button, Element as default };
 //# sourceMappingURL=index-node-legacy-mjs.mjs.map
@@ -1517,10 +1517,10 @@ Object.defineProperty(exports, '__esModule', {
     value: true
 });
 function Button() {
-    return /*#__PURE__*/ createComponent(\\"button\\", null);
+    return /*#__PURE__*/ React.createElement(\\"button\\", null);
 }
 function Element() {
-    return /*#__PURE__*/ createComponent(Fragment, null, \\"some content\\");
+    return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
 }
 exports.Button = Button;
 exports.default = Element;
@@ -1539,10 +1539,10 @@ Object.defineProperty(exports, '__esModule', {
     value: true
 });
 function Button() {
-    return /*#__PURE__*/ createComponent(\\"button\\", null);
+    return /*#__PURE__*/ React.createElement(\\"button\\", null);
 }
 function Element() {
-    return /*#__PURE__*/ createComponent(Fragment, null, \\"some content\\");
+    return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
 }
 exports.Button = Button;
 exports.default = Element;
@@ -1557,10 +1557,10 @@ Array [
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: mjs
 function Button() {
-    return /*#__PURE__*/ createComponent(\\"button\\", null);
+    return /*#__PURE__*/ React.createElement(\\"button\\", null);
 }
 function Element() {
-    return /*#__PURE__*/ createComponent(Fragment, null, \\"some content\\");
+    return /*#__PURE__*/ React.createElement(React.Fragment, null, \\"some content\\");
 }
 export { Button, Element as default };
 //# sourceMappingURL=index-node-stable-mjs.mjs.map

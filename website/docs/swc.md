@@ -39,6 +39,7 @@ Compared to the Babel implementation, our swc implementation does not support th
 features.
 
 - [Flow](https://flow.org/) syntax parsing and transforming.
+- [Solid](https://www.solidjs.com) JSX transforming.
 - UMD [namespace](./config#namespace) (swc uses the filename as the namespace).
 - Bundled helpers like Babel (swc inlines them in each file).
 - Granular plugin control like Babel.

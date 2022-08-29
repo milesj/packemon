@@ -124,15 +124,16 @@ export function getSwcInputConfig(
 		};
 	}
 
-	if (features.solid) {
-		transform.react = {
-			runtime: 'classic',
-			importSource: 'solid-js/web',
-			pragma: 'createComponent',
-			pragmaFrag: 'Fragment',
-			throwIfNamespace: true,
-		};
-	}
+	// TODO: this doesn't work right, skip for now
+	// if (features.solid) {
+	// 	transform.react = {
+	// 		runtime: 'classic',
+	// 		importSource: 'solid-js/web',
+	// 		pragma: 'createComponent',
+	// 		pragmaFrag: 'Fragment',
+	// 		throwIfNamespace: true,
+	// 	};
+	// }
 
 	const config = getSharedConfig(baseConfig);
 
