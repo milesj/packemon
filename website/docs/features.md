@@ -30,6 +30,8 @@ The following presets are enabled when one of their conditions are met.
 - `@babel/preset-react`
   - Package contains a `react` dependency.
   - Enables the new [JSX transform][jsx] if the dependency range captures the minimum requirement.
+- `babel-preset-solid`
+  - Package contains a `solid-js` dependency.
 
 ### Plugins
 
