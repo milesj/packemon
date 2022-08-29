@@ -117,6 +117,7 @@ export function getBabelInputConfig(
 		// When decorators are used, class properties must be loose
 		if (features.decorators) {
 			plugins.push(
+				[resolve('@babel/plugin-transform-typescript'), { allowDeclareFields: true }],
 				[resolve('@babel/plugin-proposal-decorators'), { legacy: true }],
 				[resolveFromBabel('@babel/plugin-proposal-class-properties'), { loose: true }],
 				[resolveFromBabel('@babel/plugin-proposal-private-methods'), { loose: true }],

@@ -4,6 +4,12 @@ exports[`createConfig() returns the correct config 1`] = `
 Object {
   "plugins": Array [
     Array [
+      "@babel/plugin-transform-typescript",
+      Object {
+        "allowDeclareFields": true,
+      },
+    ],
+    Array [
       "@babel/plugin-proposal-decorators",
       Object {
         "legacy": true,
@@ -95,6 +101,12 @@ Object {
     },
   ],
   "plugins": Array [
+    Array [
+      "@babel/plugin-transform-typescript",
+      Object {
+        "allowDeclareFields": true,
+      },
+    ],
     Array [
       "@babel/plugin-proposal-decorators",
       Object {
@@ -277,6 +289,12 @@ Object {
   },
   "plugins": Array [
     Array [
+      "@babel/plugin-transform-typescript",
+      Object {
+        "allowDeclareFields": true,
+      },
+    ],
+    Array [
       "@babel/plugin-proposal-decorators",
       Object {
         "legacy": true,
@@ -337,6 +355,12 @@ Object {
     "strictMode": undefined,
   },
   "plugins": Array [
+    Array [
+      "@babel/plugin-transform-typescript",
+      Object {
+        "allowDeclareFields": true,
+      },
+    ],
     Array [
       "@babel/plugin-proposal-decorators",
       Object {
