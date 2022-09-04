@@ -69,7 +69,7 @@ contents (not exhaustive).
   "packemon": {
     "inputs": { "index": "src/index.ts" },
     "platform": ["node", "browser"],
-    "formats": ["lib", "esm", "umd"],
+    "format": "esm",
     "namespace": "Example"
   }
 }
@@ -92,8 +92,6 @@ like the following (when also using `--declaration`).
 |   ├── index.ts
 |   └── *.ts
 ├── tests/
-├── umd/
-|   └── index.js
 ├── package.json
 ├── LICENSE
 └── README.md
@@ -108,13 +106,12 @@ and files list, as demonstrated below. This can further be expanded upon using t
   "name": "package",
   "main": "./lib/index.js",
   "module": "./esm/index.js",
-  "browser": "./umd/index.js",
   "types": "./dts/index.d.ts",
-  "files": ["dts/", "esm/", "lib/", "src/", "umd/"],
+  "files": ["dts/", "esm/", "lib/", "src/"],
   "packemon": {
     "inputs": { "index": "src/index.ts" },
     "platform": ["node", "browser"],
-    "formats": ["lib", "esm", "umd"],
+    "format": "esm",
     "namespace": "Example"
   }
 }
@@ -131,7 +128,6 @@ much everything except tests).
 ├── esm/
 ├── lib/
 ├── src/
-├── umd/
 ├── package.json
 ├── LICENSE
 └── README.md
