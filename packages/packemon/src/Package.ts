@@ -438,25 +438,25 @@ export class Package {
 		this.artifacts.forEach((artifact) => {
 			// Build files
 			if (artifact instanceof CodeArtifact) {
+				const mainEntryName = artifact.inputs.index ? 'index' : Object.keys(artifact.inputs)[0];
+
 				buildCount += artifact.builds.length;
 
 				// Generate `main`, `module`, and `browser` fields
-				if (artifact.inputs.index) {
-					if (!mainEntry || artifact.platform === 'node') {
-						mainEntry = artifact.findEntryPoint(['lib', 'cjs', 'mjs', 'esm'], 'index');
-					}
+				if (!mainEntry || artifact.platform === 'node') {
+					mainEntry = artifact.findEntryPoint(['lib', 'cjs', 'mjs', 'esm'], mainEntryName);
+				}
 
-					if (!moduleEntry) {
-						moduleEntry = artifact.findEntryPoint(['esm'], 'index');
-					}
+				if (!moduleEntry) {
+					moduleEntry = artifact.findEntryPoint(['esm'], mainEntryName);
+				}
 
-					// Only include when we share a lib with another platform
-					if (!browserEntry && artifact.platform === 'browser') {
-						browserEntry = artifact.findEntryPoint(
-							artifact.sharedLib ? ['lib', 'umd'] : ['umd'],
-							'index',
-						);
-					}
+				// Only include when we share a lib with another platform
+				if (!browserEntry && artifact.platform === 'browser') {
+					browserEntry = artifact.findEntryPoint(
+						artifact.sharedLib ? ['lib', 'umd'] : ['umd'],
+						mainEntryName,
+					);
 				}
 
 				// Generate `bin` field
@@ -471,7 +471,11 @@ export class Package {
 
 			// Type declarations
 			if (artifact instanceof TypesArtifact) {
-				this.packageJson.types = artifact.findEntryPoint('index');
+				const mainEntryName = artifact.builds.some((build) => build.outputName === 'index')
+					? 'index'
+					: artifact.builds[0].outputName;
+
+				this.packageJson.types = artifact.findEntryPoint(mainEntryName);
 			}
 		});
 
