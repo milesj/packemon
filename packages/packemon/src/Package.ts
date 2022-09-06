@@ -443,11 +443,11 @@ export class Package {
 				buildCount += artifact.builds.length;
 
 				// Generate `main`, `module`, and `browser` fields
-				if (!mainEntry || artifact.platform === 'node') {
+				if (!mainEntry || (artifact.platform === 'node' && mainEntryName === 'index')) {
 					mainEntry = artifact.findEntryPoint(['lib', 'cjs', 'mjs', 'esm'], mainEntryName);
 				}
 
-				if (!moduleEntry) {
+				if (!moduleEntry || (artifact.platform === 'browser' && mainEntryName === 'index')) {
 					moduleEntry = artifact.findEntryPoint(['esm'], mainEntryName);
 				}
 

@@ -320,14 +320,14 @@ describe('Package', () => {
 					);
 				});
 
-				it('doesnt add "main" if output name is not "index"', async () => {
+				it('adds "main" if output name is not "index"', async () => {
 					const a = createCodeArtifact([{ format: 'lib' }]);
 					a.inputs = { server: 'src/index.ts' };
 					pkg.addArtifact(a);
 
 					await pkg.build({}, config);
 
-					expect(pkg.packageJson.main).toBeUndefined();
+					expect(pkg.packageJson.main).toBe('./lib/server.js');
 				});
 
 				it('adds "main" when using shared `lib` format', async () => {

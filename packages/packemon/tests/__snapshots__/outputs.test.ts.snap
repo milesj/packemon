@@ -192,10 +192,12 @@ exports[`Outputs (babel) artifacts builds all the artifacts with rollup 6`] = `
 Array [
   "package.json",
   Object {
+    "browser": "./umd/client.js",
     "dependencies": Object {
       "typescript": "*",
     },
     "main": "./lib/index.js",
+    "module": "./esm/client.js",
     "name": "project-rollup",
     "packemon": Object {
       "inputs": Object {
@@ -859,10 +861,12 @@ exports[`Outputs (swc) artifacts builds all the artifacts with rollup 6`] = `
 Array [
   "package.json",
   Object {
+    "browser": "./umd/client.js",
     "dependencies": Object {
       "typescript": "*",
     },
     "main": "./lib/index.js",
+    "module": "./esm/client.js",
     "name": "project-rollup",
     "packemon": Object {
       "inputs": Object {
