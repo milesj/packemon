@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Assets babel transforms example test case: browser-current-esm 1`] = `
-Array [
+[
   "esm/index-browser-current-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: esm
@@ -9,9 +9,9 @@ import '../assets/styles-17df299b.css';
 import '../assets/logo-c21f559f.svg';
 import 'website/src/css/custom.css';
 const json = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  list: ["foo", "bar", "baz"],
   number: 123,
-  string: \\"abc\\",
+  string: "abc",
   object: {
     foo: true
   }
@@ -23,14 +23,14 @@ console.log(json);
 `;
 
 exports[`Assets babel transforms example test case: browser-current-esm 2`] = `
-Array [
+[
   "styles.css",
   "assets/styles-17df299b.css",
 ]
 `;
 
 exports[`Assets babel transforms example test case: browser-current-lib 1`] = `
-Array [
+[
   "lib/index-browser-current-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: lib
@@ -43,9 +43,9 @@ require('../assets/logo-c21f559f.svg');
 require('website/src/css/custom.css');
 
 const json = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  list: ["foo", "bar", "baz"],
   number: 123,
-  string: \\"abc\\",
+  string: "abc",
   object: {
     foo: true
   }
@@ -57,20 +57,20 @@ console.log(json);
 `;
 
 exports[`Assets babel transforms example test case: browser-current-lib 2`] = `
-Array [
+[
   "styles.css",
   "assets/styles-17df299b.css",
 ]
 `;
 
 exports[`Assets babel transforms example test case: browser-current-umd 1`] = `
-Array [
+[
   "umd/index-browser-current-umd.js",
   "(function (global, factory) {
-  if (typeof define === \\"function\\" && define.amd) {
-    define([\\"./styles.css\\", \\"./logo.svg\\", \\"website/src/css/custom.css\\"], factory);
-  } else if (typeof exports !== \\"undefined\\") {
-    factory(require(\\"./styles.css\\"), require(\\"./logo.svg\\"), require(\\"website/src/css/custom.css\\"));
+  if (typeof define === "function" && define.amd) {
+    define(["./styles.css", "./logo.svg", "website/src/css/custom.css"], factory);
+  } else if (typeof exports !== "undefined") {
+    factory(require("./styles.css"), require("./logo.svg"), require("website/src/css/custom.css"));
   } else {
     var mod = {
       exports: {}
@@ -78,15 +78,15 @@ Array [
     factory(global.styles, global.logo, global.custom);
     global.examples = mod.exports;
   }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_styles, _logo, _custom) {
-  \\"use strict\\";
+})(typeof globalThis !== "undefined" ? globalThis : typeof self !== "undefined" ? self : this, function (_styles, _logo, _custom) {
+  "use strict";
 
   // Bundled with Packemon: https://packemon.dev
   // Platform: browser, Support: current, Format: umd
   const json = {
-    list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+    list: ["foo", "bar", "baz"],
     number: 123,
-    string: \\"abc\\",
+    string: "abc",
     object: {
       foo: true
     }
@@ -99,7 +99,7 @@ Array [
 `;
 
 exports[`Assets babel transforms example test case: browser-experimental-esm 1`] = `
-Array [
+[
   "esm/index-browser-experimental-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: experimental, Format: esm
@@ -107,9 +107,9 @@ import '../assets/styles-17df299b.css';
 import '../assets/logo-c21f559f.svg';
 import 'website/src/css/custom.css';
 const json = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  list: ["foo", "bar", "baz"],
   number: 123,
-  string: \\"abc\\",
+  string: "abc",
   object: {
     foo: true
   }
@@ -121,14 +121,14 @@ console.log(json);
 `;
 
 exports[`Assets babel transforms example test case: browser-experimental-esm 2`] = `
-Array [
+[
   "styles.css",
   "assets/styles-17df299b.css",
 ]
 `;
 
 exports[`Assets babel transforms example test case: browser-experimental-lib 1`] = `
-Array [
+[
   "lib/index-browser-experimental-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: experimental, Format: lib
@@ -141,9 +141,9 @@ require('../assets/logo-c21f559f.svg');
 require('website/src/css/custom.css');
 
 const json = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  list: ["foo", "bar", "baz"],
   number: 123,
-  string: \\"abc\\",
+  string: "abc",
   object: {
     foo: true
   }
@@ -155,20 +155,20 @@ console.log(json);
 `;
 
 exports[`Assets babel transforms example test case: browser-experimental-lib 2`] = `
-Array [
+[
   "styles.css",
   "assets/styles-17df299b.css",
 ]
 `;
 
 exports[`Assets babel transforms example test case: browser-experimental-umd 1`] = `
-Array [
+[
   "umd/index-browser-experimental-umd.js",
   "(function (global, factory) {
-  if (typeof define === \\"function\\" && define.amd) {
-    define([\\"./styles.css\\", \\"./logo.svg\\", \\"website/src/css/custom.css\\"], factory);
-  } else if (typeof exports !== \\"undefined\\") {
-    factory(require(\\"./styles.css\\"), require(\\"./logo.svg\\"), require(\\"website/src/css/custom.css\\"));
+  if (typeof define === "function" && define.amd) {
+    define(["./styles.css", "./logo.svg", "website/src/css/custom.css"], factory);
+  } else if (typeof exports !== "undefined") {
+    factory(require("./styles.css"), require("./logo.svg"), require("website/src/css/custom.css"));
   } else {
     var mod = {
       exports: {}
@@ -176,15 +176,15 @@ Array [
     factory(global.styles, global.logo, global.custom);
     global.examples = mod.exports;
   }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_styles, _logo, _custom) {
-  \\"use strict\\";
+})(typeof globalThis !== "undefined" ? globalThis : typeof self !== "undefined" ? self : this, function (_styles, _logo, _custom) {
+  "use strict";
 
   // Bundled with Packemon: https://packemon.dev
   // Platform: browser, Support: experimental, Format: umd
   const json = {
-    list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+    list: ["foo", "bar", "baz"],
     number: 123,
-    string: \\"abc\\",
+    string: "abc",
     object: {
       foo: true
     }
@@ -197,7 +197,7 @@ Array [
 `;
 
 exports[`Assets babel transforms example test case: browser-legacy-esm 1`] = `
-Array [
+[
   "esm/index-browser-legacy-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: esm
@@ -205,9 +205,9 @@ import '../assets/styles-17df299b.css';
 import '../assets/logo-c21f559f.svg';
 import 'website/src/css/custom.css';
 var json = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  list: ["foo", "bar", "baz"],
   number: 123,
-  string: \\"abc\\",
+  string: "abc",
   object: {
     foo: true
   }
@@ -219,14 +219,14 @@ console.log(json);
 `;
 
 exports[`Assets babel transforms example test case: browser-legacy-esm 2`] = `
-Array [
+[
   "styles.css",
   "assets/styles-17df299b.css",
 ]
 `;
 
 exports[`Assets babel transforms example test case: browser-legacy-lib 1`] = `
-Array [
+[
   "lib/index-browser-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: lib
@@ -239,9 +239,9 @@ require('../assets/logo-c21f559f.svg');
 require('website/src/css/custom.css');
 
 var json = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  list: ["foo", "bar", "baz"],
   number: 123,
-  string: \\"abc\\",
+  string: "abc",
   object: {
     foo: true
   }
@@ -253,20 +253,20 @@ console.log(json);
 `;
 
 exports[`Assets babel transforms example test case: browser-legacy-lib 2`] = `
-Array [
+[
   "styles.css",
   "assets/styles-17df299b.css",
 ]
 `;
 
 exports[`Assets babel transforms example test case: browser-legacy-umd 1`] = `
-Array [
+[
   "umd/index-browser-legacy-umd.js",
   "(function (global, factory) {
-  if (typeof define === \\"function\\" && define.amd) {
-    define([\\"./styles.css\\", \\"./logo.svg\\", \\"website/src/css/custom.css\\"], factory);
-  } else if (typeof exports !== \\"undefined\\") {
-    factory(require(\\"./styles.css\\"), require(\\"./logo.svg\\"), require(\\"website/src/css/custom.css\\"));
+  if (typeof define === "function" && define.amd) {
+    define(["./styles.css", "./logo.svg", "website/src/css/custom.css"], factory);
+  } else if (typeof exports !== "undefined") {
+    factory(require("./styles.css"), require("./logo.svg"), require("website/src/css/custom.css"));
   } else {
     var mod = {
       exports: {}
@@ -274,15 +274,15 @@ Array [
     factory(global.styles, global.logo, global.custom);
     global.examples = mod.exports;
   }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_styles, _logo, _custom) {
-  \\"use strict\\";
+})(typeof globalThis !== "undefined" ? globalThis : typeof self !== "undefined" ? self : this, function (_styles, _logo, _custom) {
+  "use strict";
 
   // Bundled with Packemon: https://packemon.dev
   // Platform: browser, Support: legacy, Format: umd
   var json = {
-    list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+    list: ["foo", "bar", "baz"],
     number: 123,
-    string: \\"abc\\",
+    string: "abc",
     object: {
       foo: true
     }
@@ -295,7 +295,7 @@ Array [
 `;
 
 exports[`Assets babel transforms example test case: browser-stable-esm 1`] = `
-Array [
+[
   "esm/index-browser-stable-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: esm
@@ -303,9 +303,9 @@ import '../assets/styles-17df299b.css';
 import '../assets/logo-c21f559f.svg';
 import 'website/src/css/custom.css';
 const json = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  list: ["foo", "bar", "baz"],
   number: 123,
-  string: \\"abc\\",
+  string: "abc",
   object: {
     foo: true
   }
@@ -317,14 +317,14 @@ console.log(json);
 `;
 
 exports[`Assets babel transforms example test case: browser-stable-esm 2`] = `
-Array [
+[
   "styles.css",
   "assets/styles-17df299b.css",
 ]
 `;
 
 exports[`Assets babel transforms example test case: browser-stable-lib 1`] = `
-Array [
+[
   "lib/index-browser-stable-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: lib
@@ -337,9 +337,9 @@ require('../assets/logo-c21f559f.svg');
 require('website/src/css/custom.css');
 
 const json = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  list: ["foo", "bar", "baz"],
   number: 123,
-  string: \\"abc\\",
+  string: "abc",
   object: {
     foo: true
   }
@@ -351,20 +351,20 @@ console.log(json);
 `;
 
 exports[`Assets babel transforms example test case: browser-stable-lib 2`] = `
-Array [
+[
   "styles.css",
   "assets/styles-17df299b.css",
 ]
 `;
 
 exports[`Assets babel transforms example test case: browser-stable-umd 1`] = `
-Array [
+[
   "umd/index-browser-stable-umd.js",
   "(function (global, factory) {
-  if (typeof define === \\"function\\" && define.amd) {
-    define([\\"./styles.css\\", \\"./logo.svg\\", \\"website/src/css/custom.css\\"], factory);
-  } else if (typeof exports !== \\"undefined\\") {
-    factory(require(\\"./styles.css\\"), require(\\"./logo.svg\\"), require(\\"website/src/css/custom.css\\"));
+  if (typeof define === "function" && define.amd) {
+    define(["./styles.css", "./logo.svg", "website/src/css/custom.css"], factory);
+  } else if (typeof exports !== "undefined") {
+    factory(require("./styles.css"), require("./logo.svg"), require("website/src/css/custom.css"));
   } else {
     var mod = {
       exports: {}
@@ -372,15 +372,15 @@ Array [
     factory(global.styles, global.logo, global.custom);
     global.examples = mod.exports;
   }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_styles, _logo, _custom) {
-  \\"use strict\\";
+})(typeof globalThis !== "undefined" ? globalThis : typeof self !== "undefined" ? self : this, function (_styles, _logo, _custom) {
+  "use strict";
 
   // Bundled with Packemon: https://packemon.dev
   // Platform: browser, Support: stable, Format: umd
   const json = {
-    list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+    list: ["foo", "bar", "baz"],
     number: 123,
-    string: \\"abc\\",
+    string: "abc",
     object: {
       foo: true
     }
@@ -393,7 +393,7 @@ Array [
 `;
 
 exports[`Assets babel transforms example test case: native-current-lib 1`] = `
-Array [
+[
   "lib/index-native-current-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: current, Format: lib
@@ -406,9 +406,9 @@ require('../assets/logo-c21f559f.svg');
 require('website/src/css/custom.css');
 
 const json = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  list: ["foo", "bar", "baz"],
   number: 123,
-  string: \\"abc\\",
+  string: "abc",
   object: {
     foo: true
   }
@@ -420,14 +420,14 @@ console.log(json);
 `;
 
 exports[`Assets babel transforms example test case: native-current-lib 2`] = `
-Array [
+[
   "styles.css",
   "assets/styles-17df299b.css",
 ]
 `;
 
 exports[`Assets babel transforms example test case: native-experimental-lib 1`] = `
-Array [
+[
   "lib/index-native-experimental-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: experimental, Format: lib
@@ -440,9 +440,9 @@ require('../assets/logo-c21f559f.svg');
 require('website/src/css/custom.css');
 
 const json = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  list: ["foo", "bar", "baz"],
   number: 123,
-  string: \\"abc\\",
+  string: "abc",
   object: {
     foo: true
   }
@@ -454,14 +454,14 @@ console.log(json);
 `;
 
 exports[`Assets babel transforms example test case: native-experimental-lib 2`] = `
-Array [
+[
   "styles.css",
   "assets/styles-17df299b.css",
 ]
 `;
 
 exports[`Assets babel transforms example test case: native-legacy-lib 1`] = `
-Array [
+[
   "lib/index-native-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: legacy, Format: lib
@@ -474,9 +474,9 @@ require('../assets/logo-c21f559f.svg');
 require('website/src/css/custom.css');
 
 const json = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  list: ["foo", "bar", "baz"],
   number: 123,
-  string: \\"abc\\",
+  string: "abc",
   object: {
     foo: true
   }
@@ -488,14 +488,14 @@ console.log(json);
 `;
 
 exports[`Assets babel transforms example test case: native-legacy-lib 2`] = `
-Array [
+[
   "styles.css",
   "assets/styles-17df299b.css",
 ]
 `;
 
 exports[`Assets babel transforms example test case: native-stable-lib 1`] = `
-Array [
+[
   "lib/index-native-stable-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: stable, Format: lib
@@ -508,9 +508,9 @@ require('../assets/logo-c21f559f.svg');
 require('website/src/css/custom.css');
 
 const json = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  list: ["foo", "bar", "baz"],
   number: 123,
-  string: \\"abc\\",
+  string: "abc",
   object: {
     foo: true
   }
@@ -522,14 +522,14 @@ console.log(json);
 `;
 
 exports[`Assets babel transforms example test case: native-stable-lib 2`] = `
-Array [
+[
   "styles.css",
   "assets/styles-17df299b.css",
 ]
 `;
 
 exports[`Assets babel transforms example test case: node-current-cjs 1`] = `
-Array [
+[
   "cjs/index-node-current-cjs-wrapper.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // This is an MJS wrapper for a sibling CJS file
@@ -539,7 +539,7 @@ import './index-node-current-cjs.cjs';",
 `;
 
 exports[`Assets babel transforms example test case: node-current-cjs 2`] = `
-Array [
+[
   "cjs/index-node-current-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: cjs
@@ -552,9 +552,9 @@ require('../assets/logo-c21f559f.svg');
 require('website/src/css/custom.css');
 
 const json = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  list: ["foo", "bar", "baz"],
   number: 123,
-  string: \\"abc\\",
+  string: "abc",
   object: {
     foo: true
   }
@@ -566,14 +566,14 @@ console.log(json);
 `;
 
 exports[`Assets babel transforms example test case: node-current-cjs 3`] = `
-Array [
+[
   "styles.css",
   "assets/styles-17df299b.css",
 ]
 `;
 
 exports[`Assets babel transforms example test case: node-current-lib 1`] = `
-Array [
+[
   "lib/index-node-current-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: lib
@@ -586,9 +586,9 @@ require('../assets/logo-c21f559f.svg');
 require('website/src/css/custom.css');
 
 const json = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  list: ["foo", "bar", "baz"],
   number: 123,
-  string: \\"abc\\",
+  string: "abc",
   object: {
     foo: true
   }
@@ -600,14 +600,14 @@ console.log(json);
 `;
 
 exports[`Assets babel transforms example test case: node-current-lib 2`] = `
-Array [
+[
   "styles.css",
   "assets/styles-17df299b.css",
 ]
 `;
 
 exports[`Assets babel transforms example test case: node-current-mjs 1`] = `
-Array [
+[
   "mjs/index-node-current-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: mjs
@@ -615,9 +615,9 @@ import '../assets/styles-17df299b.css';
 import '../assets/logo-c21f559f.svg';
 import 'website/src/css/custom.css';
 const json = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  list: ["foo", "bar", "baz"],
   number: 123,
-  string: \\"abc\\",
+  string: "abc",
   object: {
     foo: true
   }
@@ -629,14 +629,14 @@ console.log(json);
 `;
 
 exports[`Assets babel transforms example test case: node-current-mjs 2`] = `
-Array [
+[
   "styles.css",
   "assets/styles-17df299b.css",
 ]
 `;
 
 exports[`Assets babel transforms example test case: node-experimental-cjs 1`] = `
-Array [
+[
   "cjs/index-node-experimental-cjs-wrapper.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // This is an MJS wrapper for a sibling CJS file
@@ -646,7 +646,7 @@ import './index-node-experimental-cjs.cjs';",
 `;
 
 exports[`Assets babel transforms example test case: node-experimental-cjs 2`] = `
-Array [
+[
   "cjs/index-node-experimental-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: cjs
@@ -659,9 +659,9 @@ require('../assets/logo-c21f559f.svg');
 require('website/src/css/custom.css');
 
 const json = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  list: ["foo", "bar", "baz"],
   number: 123,
-  string: \\"abc\\",
+  string: "abc",
   object: {
     foo: true
   }
@@ -673,14 +673,14 @@ console.log(json);
 `;
 
 exports[`Assets babel transforms example test case: node-experimental-cjs 3`] = `
-Array [
+[
   "styles.css",
   "assets/styles-17df299b.css",
 ]
 `;
 
 exports[`Assets babel transforms example test case: node-experimental-lib 1`] = `
-Array [
+[
   "lib/index-node-experimental-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: lib
@@ -693,9 +693,9 @@ require('../assets/logo-c21f559f.svg');
 require('website/src/css/custom.css');
 
 const json = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  list: ["foo", "bar", "baz"],
   number: 123,
-  string: \\"abc\\",
+  string: "abc",
   object: {
     foo: true
   }
@@ -707,14 +707,14 @@ console.log(json);
 `;
 
 exports[`Assets babel transforms example test case: node-experimental-lib 2`] = `
-Array [
+[
   "styles.css",
   "assets/styles-17df299b.css",
 ]
 `;
 
 exports[`Assets babel transforms example test case: node-experimental-mjs 1`] = `
-Array [
+[
   "mjs/index-node-experimental-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: mjs
@@ -722,9 +722,9 @@ import '../assets/styles-17df299b.css';
 import '../assets/logo-c21f559f.svg';
 import 'website/src/css/custom.css';
 const json = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  list: ["foo", "bar", "baz"],
   number: 123,
-  string: \\"abc\\",
+  string: "abc",
   object: {
     foo: true
   }
@@ -736,14 +736,14 @@ console.log(json);
 `;
 
 exports[`Assets babel transforms example test case: node-experimental-mjs 2`] = `
-Array [
+[
   "styles.css",
   "assets/styles-17df299b.css",
 ]
 `;
 
 exports[`Assets babel transforms example test case: node-legacy-cjs 1`] = `
-Array [
+[
   "cjs/index-node-legacy-cjs-wrapper.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // This is an MJS wrapper for a sibling CJS file
@@ -753,7 +753,7 @@ import './index-node-legacy-cjs.cjs';",
 `;
 
 exports[`Assets babel transforms example test case: node-legacy-cjs 2`] = `
-Array [
+[
   "cjs/index-node-legacy-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: cjs
@@ -766,9 +766,9 @@ require('../assets/logo-c21f559f.svg');
 require('website/src/css/custom.css');
 
 const json = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  list: ["foo", "bar", "baz"],
   number: 123,
-  string: \\"abc\\",
+  string: "abc",
   object: {
     foo: true
   }
@@ -780,14 +780,14 @@ console.log(json);
 `;
 
 exports[`Assets babel transforms example test case: node-legacy-cjs 3`] = `
-Array [
+[
   "styles.css",
   "assets/styles-17df299b.css",
 ]
 `;
 
 exports[`Assets babel transforms example test case: node-legacy-lib 1`] = `
-Array [
+[
   "lib/index-node-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: lib
@@ -800,9 +800,9 @@ require('../assets/logo-c21f559f.svg');
 require('website/src/css/custom.css');
 
 const json = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  list: ["foo", "bar", "baz"],
   number: 123,
-  string: \\"abc\\",
+  string: "abc",
   object: {
     foo: true
   }
@@ -814,14 +814,14 @@ console.log(json);
 `;
 
 exports[`Assets babel transforms example test case: node-legacy-lib 2`] = `
-Array [
+[
   "styles.css",
   "assets/styles-17df299b.css",
 ]
 `;
 
 exports[`Assets babel transforms example test case: node-legacy-mjs 1`] = `
-Array [
+[
   "mjs/index-node-legacy-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: mjs
@@ -829,9 +829,9 @@ import '../assets/styles-17df299b.css';
 import '../assets/logo-c21f559f.svg';
 import 'website/src/css/custom.css';
 const json = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  list: ["foo", "bar", "baz"],
   number: 123,
-  string: \\"abc\\",
+  string: "abc",
   object: {
     foo: true
   }
@@ -843,14 +843,14 @@ console.log(json);
 `;
 
 exports[`Assets babel transforms example test case: node-legacy-mjs 2`] = `
-Array [
+[
   "styles.css",
   "assets/styles-17df299b.css",
 ]
 `;
 
 exports[`Assets babel transforms example test case: node-stable-cjs 1`] = `
-Array [
+[
   "cjs/index-node-stable-cjs-wrapper.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // This is an MJS wrapper for a sibling CJS file
@@ -860,7 +860,7 @@ import './index-node-stable-cjs.cjs';",
 `;
 
 exports[`Assets babel transforms example test case: node-stable-cjs 2`] = `
-Array [
+[
   "cjs/index-node-stable-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: cjs
@@ -873,9 +873,9 @@ require('../assets/logo-c21f559f.svg');
 require('website/src/css/custom.css');
 
 const json = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  list: ["foo", "bar", "baz"],
   number: 123,
-  string: \\"abc\\",
+  string: "abc",
   object: {
     foo: true
   }
@@ -887,14 +887,14 @@ console.log(json);
 `;
 
 exports[`Assets babel transforms example test case: node-stable-cjs 3`] = `
-Array [
+[
   "styles.css",
   "assets/styles-17df299b.css",
 ]
 `;
 
 exports[`Assets babel transforms example test case: node-stable-lib 1`] = `
-Array [
+[
   "lib/index-node-stable-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: lib
@@ -907,9 +907,9 @@ require('../assets/logo-c21f559f.svg');
 require('website/src/css/custom.css');
 
 const json = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  list: ["foo", "bar", "baz"],
   number: 123,
-  string: \\"abc\\",
+  string: "abc",
   object: {
     foo: true
   }
@@ -921,14 +921,14 @@ console.log(json);
 `;
 
 exports[`Assets babel transforms example test case: node-stable-lib 2`] = `
-Array [
+[
   "styles.css",
   "assets/styles-17df299b.css",
 ]
 `;
 
 exports[`Assets babel transforms example test case: node-stable-mjs 1`] = `
-Array [
+[
   "mjs/index-node-stable-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: mjs
@@ -936,9 +936,9 @@ import '../assets/styles-17df299b.css';
 import '../assets/logo-c21f559f.svg';
 import 'website/src/css/custom.css';
 const json = {
-  list: [\\"foo\\", \\"bar\\", \\"baz\\"],
+  list: ["foo", "bar", "baz"],
   number: 123,
-  string: \\"abc\\",
+  string: "abc",
   object: {
     foo: true
   }
@@ -950,14 +950,14 @@ console.log(json);
 `;
 
 exports[`Assets babel transforms example test case: node-stable-mjs 2`] = `
-Array [
+[
   "styles.css",
   "assets/styles-17df299b.css",
 ]
 `;
 
 exports[`Assets swc transforms example test case: browser-current-esm 1`] = `
-Array [
+[
   "esm/index-browser-current-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: esm
@@ -966,12 +966,12 @@ import '../assets/logo-c21f559f.svg';
 import 'website/src/css/custom.css';
 const json = {
     list: [
-        \\"foo\\",
-        \\"bar\\",
-        \\"baz\\"
+        "foo",
+        "bar",
+        "baz"
     ],
     number: 123,
-    string: \\"abc\\",
+    string: "abc",
     object: {
         foo: true
     }
@@ -983,14 +983,14 @@ console.log(json);
 `;
 
 exports[`Assets swc transforms example test case: browser-current-esm 2`] = `
-Array [
+[
   "styles.css",
   "assets/styles-17df299b.css",
 ]
 `;
 
 exports[`Assets swc transforms example test case: browser-current-lib 1`] = `
-Array [
+[
   "lib/index-browser-current-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: lib
@@ -1000,12 +1000,12 @@ require('../assets/logo-c21f559f.svg');
 require('website/src/css/custom.css');
 const json = {
     list: [
-        \\"foo\\",
-        \\"bar\\",
-        \\"baz\\"
+        "foo",
+        "bar",
+        "baz"
     ],
     number: 123,
-    string: \\"abc\\",
+    string: "abc",
     object: {
         foo: true
     }
@@ -1017,37 +1017,37 @@ console.log(json);
 `;
 
 exports[`Assets swc transforms example test case: browser-current-lib 2`] = `
-Array [
+[
   "styles.css",
   "assets/styles-17df299b.css",
 ]
 `;
 
 exports[`Assets swc transforms example test case: browser-current-umd 1`] = `
-Array [
+[
   "umd/index-browser-current-umd.js",
   "(function(global, factory) {
-    if (typeof module === \\"object\\" && typeof module.exports === \\"object\\") factory(exports, require(\\"./styles.css\\"), require(\\"./logo.svg\\"), require(\\"website/src/css/custom.css\\"));
-    else if (typeof define === \\"function\\" && define.amd) define([
-        \\"exports\\",
-        \\"./styles.css\\",
-        \\"./logo.svg\\",
-        \\"website/src/css/custom.css\\"
+    if (typeof module === "object" && typeof module.exports === "object") factory(exports, require("./styles.css"), require("./logo.svg"), require("website/src/css/custom.css"));
+    else if (typeof define === "function" && define.amd) define([
+        "exports",
+        "./styles.css",
+        "./logo.svg",
+        "website/src/css/custom.css"
     ], factory);
-    else if (global = typeof globalThis !== \\"undefined\\" ? globalThis : global || self) factory(global.examples = {}, global.stylesCss, global.logoSvg, global.customCss);
+    else if (global = typeof globalThis !== "undefined" ? globalThis : global || self) factory(global.examples = {}, global.stylesCss, global.logoSvg, global.customCss);
 })(this, function(exports, _stylesCss, _logoSvg, _customCss) {
-    \\"use strict\\";
-    Object.defineProperty(exports, \\"__esModule\\", {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
         value: true
     });
     const json = {
         list: [
-            \\"foo\\",
-            \\"bar\\",
-            \\"baz\\"
+            "foo",
+            "bar",
+            "baz"
         ],
         number: 123,
-        string: \\"abc\\",
+        string: "abc",
         object: {
             foo: true
         }
@@ -1060,7 +1060,7 @@ Array [
 `;
 
 exports[`Assets swc transforms example test case: browser-experimental-esm 1`] = `
-Array [
+[
   "esm/index-browser-experimental-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: experimental, Format: esm
@@ -1069,12 +1069,12 @@ import '../assets/logo-c21f559f.svg';
 import 'website/src/css/custom.css';
 const json = {
     list: [
-        \\"foo\\",
-        \\"bar\\",
-        \\"baz\\"
+        "foo",
+        "bar",
+        "baz"
     ],
     number: 123,
-    string: \\"abc\\",
+    string: "abc",
     object: {
         foo: true
     }
@@ -1086,14 +1086,14 @@ console.log(json);
 `;
 
 exports[`Assets swc transforms example test case: browser-experimental-esm 2`] = `
-Array [
+[
   "styles.css",
   "assets/styles-17df299b.css",
 ]
 `;
 
 exports[`Assets swc transforms example test case: browser-experimental-lib 1`] = `
-Array [
+[
   "lib/index-browser-experimental-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: experimental, Format: lib
@@ -1103,12 +1103,12 @@ require('../assets/logo-c21f559f.svg');
 require('website/src/css/custom.css');
 const json = {
     list: [
-        \\"foo\\",
-        \\"bar\\",
-        \\"baz\\"
+        "foo",
+        "bar",
+        "baz"
     ],
     number: 123,
-    string: \\"abc\\",
+    string: "abc",
     object: {
         foo: true
     }
@@ -1120,37 +1120,37 @@ console.log(json);
 `;
 
 exports[`Assets swc transforms example test case: browser-experimental-lib 2`] = `
-Array [
+[
   "styles.css",
   "assets/styles-17df299b.css",
 ]
 `;
 
 exports[`Assets swc transforms example test case: browser-experimental-umd 1`] = `
-Array [
+[
   "umd/index-browser-experimental-umd.js",
   "(function(global, factory) {
-    if (typeof module === \\"object\\" && typeof module.exports === \\"object\\") factory(exports, require(\\"./styles.css\\"), require(\\"./logo.svg\\"), require(\\"website/src/css/custom.css\\"));
-    else if (typeof define === \\"function\\" && define.amd) define([
-        \\"exports\\",
-        \\"./styles.css\\",
-        \\"./logo.svg\\",
-        \\"website/src/css/custom.css\\"
+    if (typeof module === "object" && typeof module.exports === "object") factory(exports, require("./styles.css"), require("./logo.svg"), require("website/src/css/custom.css"));
+    else if (typeof define === "function" && define.amd) define([
+        "exports",
+        "./styles.css",
+        "./logo.svg",
+        "website/src/css/custom.css"
     ], factory);
-    else if (global = typeof globalThis !== \\"undefined\\" ? globalThis : global || self) factory(global.examples = {}, global.stylesCss, global.logoSvg, global.customCss);
+    else if (global = typeof globalThis !== "undefined" ? globalThis : global || self) factory(global.examples = {}, global.stylesCss, global.logoSvg, global.customCss);
 })(this, function(exports, _stylesCss, _logoSvg, _customCss) {
-    \\"use strict\\";
-    Object.defineProperty(exports, \\"__esModule\\", {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
         value: true
     });
     const json = {
         list: [
-            \\"foo\\",
-            \\"bar\\",
-            \\"baz\\"
+            "foo",
+            "bar",
+            "baz"
         ],
         number: 123,
-        string: \\"abc\\",
+        string: "abc",
         object: {
             foo: true
         }
@@ -1163,21 +1163,21 @@ Array [
 `;
 
 exports[`Assets swc transforms example test case: browser-legacy-esm 1`] = `
-Array [
+[
   "esm/index-browser-legacy-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: esm
 import '../assets/styles-17df299b.css';
 import '../assets/logo-c21f559f.svg';
-import \\"website/src/css/custom.css\\";
+import "website/src/css/custom.css";
 var json = {
     list: [
-        \\"foo\\",
-        \\"bar\\",
-        \\"baz\\"
+        "foo",
+        "bar",
+        "baz"
     ],
     number: 123,
-    string: \\"abc\\",
+    string: "abc",
     object: {
         foo: true
     }
@@ -1189,29 +1189,29 @@ console.log(json);
 `;
 
 exports[`Assets swc transforms example test case: browser-legacy-esm 2`] = `
-Array [
+[
   "styles.css",
   "assets/styles-17df299b.css",
 ]
 `;
 
 exports[`Assets swc transforms example test case: browser-legacy-lib 1`] = `
-Array [
+[
   "lib/index-browser-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: lib
-\\"use strict\\";
+"use strict";
 require('../assets/styles-17df299b.css');
 require('../assets/logo-c21f559f.svg');
-require(\\"website/src/css/custom.css\\");
+require("website/src/css/custom.css");
 var json = {
     list: [
-        \\"foo\\",
-        \\"bar\\",
-        \\"baz\\"
+        "foo",
+        "bar",
+        "baz"
     ],
     number: 123,
-    string: \\"abc\\",
+    string: "abc",
     object: {
         foo: true
     }
@@ -1223,37 +1223,37 @@ console.log(json);
 `;
 
 exports[`Assets swc transforms example test case: browser-legacy-lib 2`] = `
-Array [
+[
   "styles.css",
   "assets/styles-17df299b.css",
 ]
 `;
 
 exports[`Assets swc transforms example test case: browser-legacy-umd 1`] = `
-Array [
+[
   "umd/index-browser-legacy-umd.js",
   "(function(global, factory) {
-    if (typeof module === \\"object\\" && typeof module.exports === \\"object\\") factory(exports, require(\\"./styles.css\\"), require(\\"./logo.svg\\"), require(\\"website/src/css/custom.css\\"));
-    else if (typeof define === \\"function\\" && define.amd) define([
-        \\"exports\\",
-        \\"./styles.css\\",
-        \\"./logo.svg\\",
-        \\"website/src/css/custom.css\\"
+    if (typeof module === "object" && typeof module.exports === "object") factory(exports, require("./styles.css"), require("./logo.svg"), require("website/src/css/custom.css"));
+    else if (typeof define === "function" && define.amd) define([
+        "exports",
+        "./styles.css",
+        "./logo.svg",
+        "website/src/css/custom.css"
     ], factory);
-    else if (global = typeof globalThis !== \\"undefined\\" ? globalThis : global || self) factory(global.examples = {}, global.stylesCss, global.logoSvg, global.customCss);
+    else if (global = typeof globalThis !== "undefined" ? globalThis : global || self) factory(global.examples = {}, global.stylesCss, global.logoSvg, global.customCss);
 })(this, function(exports, _stylesCss, _logoSvg, _customCss) {
-    \\"use strict\\";
-    Object.defineProperty(exports, \\"__esModule\\", {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
         value: true
     });
     var json = {
         list: [
-            \\"foo\\",
-            \\"bar\\",
-            \\"baz\\"
+            "foo",
+            "bar",
+            "baz"
         ],
         number: 123,
-        string: \\"abc\\",
+        string: "abc",
         object: {
             foo: true
         }
@@ -1266,7 +1266,7 @@ Array [
 `;
 
 exports[`Assets swc transforms example test case: browser-stable-esm 1`] = `
-Array [
+[
   "esm/index-browser-stable-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: esm
@@ -1275,12 +1275,12 @@ import '../assets/logo-c21f559f.svg';
 import 'website/src/css/custom.css';
 const json = {
     list: [
-        \\"foo\\",
-        \\"bar\\",
-        \\"baz\\"
+        "foo",
+        "bar",
+        "baz"
     ],
     number: 123,
-    string: \\"abc\\",
+    string: "abc",
     object: {
         foo: true
     }
@@ -1292,14 +1292,14 @@ console.log(json);
 `;
 
 exports[`Assets swc transforms example test case: browser-stable-esm 2`] = `
-Array [
+[
   "styles.css",
   "assets/styles-17df299b.css",
 ]
 `;
 
 exports[`Assets swc transforms example test case: browser-stable-lib 1`] = `
-Array [
+[
   "lib/index-browser-stable-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: lib
@@ -1309,12 +1309,12 @@ require('../assets/logo-c21f559f.svg');
 require('website/src/css/custom.css');
 const json = {
     list: [
-        \\"foo\\",
-        \\"bar\\",
-        \\"baz\\"
+        "foo",
+        "bar",
+        "baz"
     ],
     number: 123,
-    string: \\"abc\\",
+    string: "abc",
     object: {
         foo: true
     }
@@ -1326,37 +1326,37 @@ console.log(json);
 `;
 
 exports[`Assets swc transforms example test case: browser-stable-lib 2`] = `
-Array [
+[
   "styles.css",
   "assets/styles-17df299b.css",
 ]
 `;
 
 exports[`Assets swc transforms example test case: browser-stable-umd 1`] = `
-Array [
+[
   "umd/index-browser-stable-umd.js",
   "(function(global, factory) {
-    if (typeof module === \\"object\\" && typeof module.exports === \\"object\\") factory(exports, require(\\"./styles.css\\"), require(\\"./logo.svg\\"), require(\\"website/src/css/custom.css\\"));
-    else if (typeof define === \\"function\\" && define.amd) define([
-        \\"exports\\",
-        \\"./styles.css\\",
-        \\"./logo.svg\\",
-        \\"website/src/css/custom.css\\"
+    if (typeof module === "object" && typeof module.exports === "object") factory(exports, require("./styles.css"), require("./logo.svg"), require("website/src/css/custom.css"));
+    else if (typeof define === "function" && define.amd) define([
+        "exports",
+        "./styles.css",
+        "./logo.svg",
+        "website/src/css/custom.css"
     ], factory);
-    else if (global = typeof globalThis !== \\"undefined\\" ? globalThis : global || self) factory(global.examples = {}, global.stylesCss, global.logoSvg, global.customCss);
+    else if (global = typeof globalThis !== "undefined" ? globalThis : global || self) factory(global.examples = {}, global.stylesCss, global.logoSvg, global.customCss);
 })(this, function(exports, _stylesCss, _logoSvg, _customCss) {
-    \\"use strict\\";
-    Object.defineProperty(exports, \\"__esModule\\", {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
         value: true
     });
     const json = {
         list: [
-            \\"foo\\",
-            \\"bar\\",
-            \\"baz\\"
+            "foo",
+            "bar",
+            "baz"
         ],
         number: 123,
-        string: \\"abc\\",
+        string: "abc",
         object: {
             foo: true
         }
@@ -1369,7 +1369,7 @@ Array [
 `;
 
 exports[`Assets swc transforms example test case: native-current-lib 1`] = `
-Array [
+[
   "lib/index-native-current-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: current, Format: lib
@@ -1379,12 +1379,12 @@ require('../assets/logo-c21f559f.svg');
 require('website/src/css/custom.css');
 const json = {
     list: [
-        \\"foo\\",
-        \\"bar\\",
-        \\"baz\\"
+        "foo",
+        "bar",
+        "baz"
     ],
     number: 123,
-    string: \\"abc\\",
+    string: "abc",
     object: {
         foo: true
     }
@@ -1396,14 +1396,14 @@ console.log(json);
 `;
 
 exports[`Assets swc transforms example test case: native-current-lib 2`] = `
-Array [
+[
   "styles.css",
   "assets/styles-17df299b.css",
 ]
 `;
 
 exports[`Assets swc transforms example test case: native-experimental-lib 1`] = `
-Array [
+[
   "lib/index-native-experimental-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: experimental, Format: lib
@@ -1413,12 +1413,12 @@ require('../assets/logo-c21f559f.svg');
 require('website/src/css/custom.css');
 const json = {
     list: [
-        \\"foo\\",
-        \\"bar\\",
-        \\"baz\\"
+        "foo",
+        "bar",
+        "baz"
     ],
     number: 123,
-    string: \\"abc\\",
+    string: "abc",
     object: {
         foo: true
     }
@@ -1430,29 +1430,29 @@ console.log(json);
 `;
 
 exports[`Assets swc transforms example test case: native-experimental-lib 2`] = `
-Array [
+[
   "styles.css",
   "assets/styles-17df299b.css",
 ]
 `;
 
 exports[`Assets swc transforms example test case: native-legacy-lib 1`] = `
-Array [
+[
   "lib/index-native-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: legacy, Format: lib
-\\"use strict\\";
+"use strict";
 require('../assets/styles-17df299b.css');
 require('../assets/logo-c21f559f.svg');
-require(\\"website/src/css/custom.css\\");
+require("website/src/css/custom.css");
 const json = {
     list: [
-        \\"foo\\",
-        \\"bar\\",
-        \\"baz\\"
+        "foo",
+        "bar",
+        "baz"
     ],
     number: 123,
-    string: \\"abc\\",
+    string: "abc",
     object: {
         foo: true
     }
@@ -1464,14 +1464,14 @@ console.log(json);
 `;
 
 exports[`Assets swc transforms example test case: native-legacy-lib 2`] = `
-Array [
+[
   "styles.css",
   "assets/styles-17df299b.css",
 ]
 `;
 
 exports[`Assets swc transforms example test case: native-stable-lib 1`] = `
-Array [
+[
   "lib/index-native-stable-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: stable, Format: lib
@@ -1481,12 +1481,12 @@ require('../assets/logo-c21f559f.svg');
 require('website/src/css/custom.css');
 const json = {
     list: [
-        \\"foo\\",
-        \\"bar\\",
-        \\"baz\\"
+        "foo",
+        "bar",
+        "baz"
     ],
     number: 123,
-    string: \\"abc\\",
+    string: "abc",
     object: {
         foo: true
     }
@@ -1498,14 +1498,14 @@ console.log(json);
 `;
 
 exports[`Assets swc transforms example test case: native-stable-lib 2`] = `
-Array [
+[
   "styles.css",
   "assets/styles-17df299b.css",
 ]
 `;
 
 exports[`Assets swc transforms example test case: node-current-cjs 1`] = `
-Array [
+[
   "cjs/index-node-current-cjs-wrapper.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // This is an MJS wrapper for a sibling CJS file
@@ -1515,7 +1515,7 @@ import './index-node-current-cjs.cjs';",
 `;
 
 exports[`Assets swc transforms example test case: node-current-cjs 2`] = `
-Array [
+[
   "cjs/index-node-current-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: cjs
@@ -1525,12 +1525,12 @@ require('../assets/logo-c21f559f.svg');
 require('website/src/css/custom.css');
 const json = {
     list: [
-        \\"foo\\",
-        \\"bar\\",
-        \\"baz\\"
+        "foo",
+        "bar",
+        "baz"
     ],
     number: 123,
-    string: \\"abc\\",
+    string: "abc",
     object: {
         foo: true
     }
@@ -1542,14 +1542,14 @@ console.log(json);
 `;
 
 exports[`Assets swc transforms example test case: node-current-cjs 3`] = `
-Array [
+[
   "styles.css",
   "assets/styles-17df299b.css",
 ]
 `;
 
 exports[`Assets swc transforms example test case: node-current-lib 1`] = `
-Array [
+[
   "lib/index-node-current-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: lib
@@ -1559,12 +1559,12 @@ require('../assets/logo-c21f559f.svg');
 require('website/src/css/custom.css');
 const json = {
     list: [
-        \\"foo\\",
-        \\"bar\\",
-        \\"baz\\"
+        "foo",
+        "bar",
+        "baz"
     ],
     number: 123,
-    string: \\"abc\\",
+    string: "abc",
     object: {
         foo: true
     }
@@ -1576,14 +1576,14 @@ console.log(json);
 `;
 
 exports[`Assets swc transforms example test case: node-current-lib 2`] = `
-Array [
+[
   "styles.css",
   "assets/styles-17df299b.css",
 ]
 `;
 
 exports[`Assets swc transforms example test case: node-current-mjs 1`] = `
-Array [
+[
   "mjs/index-node-current-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: mjs
@@ -1592,12 +1592,12 @@ import '../assets/logo-c21f559f.svg';
 import 'website/src/css/custom.css';
 const json = {
     list: [
-        \\"foo\\",
-        \\"bar\\",
-        \\"baz\\"
+        "foo",
+        "bar",
+        "baz"
     ],
     number: 123,
-    string: \\"abc\\",
+    string: "abc",
     object: {
         foo: true
     }
@@ -1609,14 +1609,14 @@ console.log(json);
 `;
 
 exports[`Assets swc transforms example test case: node-current-mjs 2`] = `
-Array [
+[
   "styles.css",
   "assets/styles-17df299b.css",
 ]
 `;
 
 exports[`Assets swc transforms example test case: node-experimental-cjs 1`] = `
-Array [
+[
   "cjs/index-node-experimental-cjs-wrapper.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // This is an MJS wrapper for a sibling CJS file
@@ -1626,7 +1626,7 @@ import './index-node-experimental-cjs.cjs';",
 `;
 
 exports[`Assets swc transforms example test case: node-experimental-cjs 2`] = `
-Array [
+[
   "cjs/index-node-experimental-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: cjs
@@ -1636,12 +1636,12 @@ require('../assets/logo-c21f559f.svg');
 require('website/src/css/custom.css');
 const json = {
     list: [
-        \\"foo\\",
-        \\"bar\\",
-        \\"baz\\"
+        "foo",
+        "bar",
+        "baz"
     ],
     number: 123,
-    string: \\"abc\\",
+    string: "abc",
     object: {
         foo: true
     }
@@ -1653,14 +1653,14 @@ console.log(json);
 `;
 
 exports[`Assets swc transforms example test case: node-experimental-cjs 3`] = `
-Array [
+[
   "styles.css",
   "assets/styles-17df299b.css",
 ]
 `;
 
 exports[`Assets swc transforms example test case: node-experimental-lib 1`] = `
-Array [
+[
   "lib/index-node-experimental-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: lib
@@ -1670,12 +1670,12 @@ require('../assets/logo-c21f559f.svg');
 require('website/src/css/custom.css');
 const json = {
     list: [
-        \\"foo\\",
-        \\"bar\\",
-        \\"baz\\"
+        "foo",
+        "bar",
+        "baz"
     ],
     number: 123,
-    string: \\"abc\\",
+    string: "abc",
     object: {
         foo: true
     }
@@ -1687,14 +1687,14 @@ console.log(json);
 `;
 
 exports[`Assets swc transforms example test case: node-experimental-lib 2`] = `
-Array [
+[
   "styles.css",
   "assets/styles-17df299b.css",
 ]
 `;
 
 exports[`Assets swc transforms example test case: node-experimental-mjs 1`] = `
-Array [
+[
   "mjs/index-node-experimental-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: mjs
@@ -1703,12 +1703,12 @@ import '../assets/logo-c21f559f.svg';
 import 'website/src/css/custom.css';
 const json = {
     list: [
-        \\"foo\\",
-        \\"bar\\",
-        \\"baz\\"
+        "foo",
+        "bar",
+        "baz"
     ],
     number: 123,
-    string: \\"abc\\",
+    string: "abc",
     object: {
         foo: true
     }
@@ -1720,14 +1720,14 @@ console.log(json);
 `;
 
 exports[`Assets swc transforms example test case: node-experimental-mjs 2`] = `
-Array [
+[
   "styles.css",
   "assets/styles-17df299b.css",
 ]
 `;
 
 exports[`Assets swc transforms example test case: node-legacy-cjs 1`] = `
-Array [
+[
   "cjs/index-node-legacy-cjs-wrapper.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // This is an MJS wrapper for a sibling CJS file
@@ -1737,22 +1737,22 @@ import './index-node-legacy-cjs.cjs';",
 `;
 
 exports[`Assets swc transforms example test case: node-legacy-cjs 2`] = `
-Array [
+[
   "cjs/index-node-legacy-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: cjs
-\\"use strict\\";
+"use strict";
 require('../assets/styles-17df299b.css');
 require('../assets/logo-c21f559f.svg');
-require(\\"website/src/css/custom.css\\");
+require("website/src/css/custom.css");
 const json = {
     list: [
-        \\"foo\\",
-        \\"bar\\",
-        \\"baz\\"
+        "foo",
+        "bar",
+        "baz"
     ],
     number: 123,
-    string: \\"abc\\",
+    string: "abc",
     object: {
         foo: true
     }
@@ -1764,29 +1764,29 @@ console.log(json);
 `;
 
 exports[`Assets swc transforms example test case: node-legacy-cjs 3`] = `
-Array [
+[
   "styles.css",
   "assets/styles-17df299b.css",
 ]
 `;
 
 exports[`Assets swc transforms example test case: node-legacy-lib 1`] = `
-Array [
+[
   "lib/index-node-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: lib
-\\"use strict\\";
+"use strict";
 require('../assets/styles-17df299b.css');
 require('../assets/logo-c21f559f.svg');
-require(\\"website/src/css/custom.css\\");
+require("website/src/css/custom.css");
 const json = {
     list: [
-        \\"foo\\",
-        \\"bar\\",
-        \\"baz\\"
+        "foo",
+        "bar",
+        "baz"
     ],
     number: 123,
-    string: \\"abc\\",
+    string: "abc",
     object: {
         foo: true
     }
@@ -1798,28 +1798,28 @@ console.log(json);
 `;
 
 exports[`Assets swc transforms example test case: node-legacy-lib 2`] = `
-Array [
+[
   "styles.css",
   "assets/styles-17df299b.css",
 ]
 `;
 
 exports[`Assets swc transforms example test case: node-legacy-mjs 1`] = `
-Array [
+[
   "mjs/index-node-legacy-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: mjs
 import '../assets/styles-17df299b.css';
 import '../assets/logo-c21f559f.svg';
-import \\"website/src/css/custom.css\\";
+import "website/src/css/custom.css";
 const json = {
     list: [
-        \\"foo\\",
-        \\"bar\\",
-        \\"baz\\"
+        "foo",
+        "bar",
+        "baz"
     ],
     number: 123,
-    string: \\"abc\\",
+    string: "abc",
     object: {
         foo: true
     }
@@ -1831,14 +1831,14 @@ console.log(json);
 `;
 
 exports[`Assets swc transforms example test case: node-legacy-mjs 2`] = `
-Array [
+[
   "styles.css",
   "assets/styles-17df299b.css",
 ]
 `;
 
 exports[`Assets swc transforms example test case: node-stable-cjs 1`] = `
-Array [
+[
   "cjs/index-node-stable-cjs-wrapper.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // This is an MJS wrapper for a sibling CJS file
@@ -1848,7 +1848,7 @@ import './index-node-stable-cjs.cjs';",
 `;
 
 exports[`Assets swc transforms example test case: node-stable-cjs 2`] = `
-Array [
+[
   "cjs/index-node-stable-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: cjs
@@ -1858,12 +1858,12 @@ require('../assets/logo-c21f559f.svg');
 require('website/src/css/custom.css');
 const json = {
     list: [
-        \\"foo\\",
-        \\"bar\\",
-        \\"baz\\"
+        "foo",
+        "bar",
+        "baz"
     ],
     number: 123,
-    string: \\"abc\\",
+    string: "abc",
     object: {
         foo: true
     }
@@ -1875,14 +1875,14 @@ console.log(json);
 `;
 
 exports[`Assets swc transforms example test case: node-stable-cjs 3`] = `
-Array [
+[
   "styles.css",
   "assets/styles-17df299b.css",
 ]
 `;
 
 exports[`Assets swc transforms example test case: node-stable-lib 1`] = `
-Array [
+[
   "lib/index-node-stable-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: lib
@@ -1892,12 +1892,12 @@ require('../assets/logo-c21f559f.svg');
 require('website/src/css/custom.css');
 const json = {
     list: [
-        \\"foo\\",
-        \\"bar\\",
-        \\"baz\\"
+        "foo",
+        "bar",
+        "baz"
     ],
     number: 123,
-    string: \\"abc\\",
+    string: "abc",
     object: {
         foo: true
     }
@@ -1909,14 +1909,14 @@ console.log(json);
 `;
 
 exports[`Assets swc transforms example test case: node-stable-lib 2`] = `
-Array [
+[
   "styles.css",
   "assets/styles-17df299b.css",
 ]
 `;
 
 exports[`Assets swc transforms example test case: node-stable-mjs 1`] = `
-Array [
+[
   "mjs/index-node-stable-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: mjs
@@ -1925,12 +1925,12 @@ import '../assets/logo-c21f559f.svg';
 import 'website/src/css/custom.css';
 const json = {
     list: [
-        \\"foo\\",
-        \\"bar\\",
-        \\"baz\\"
+        "foo",
+        "bar",
+        "baz"
     ],
     number: 123,
-    string: \\"abc\\",
+    string: "abc",
     object: {
         foo: true
     }
@@ -1942,7 +1942,7 @@ console.log(json);
 `;
 
 exports[`Assets swc transforms example test case: node-stable-mjs 2`] = `
-Array [
+[
   "styles.css",
   "assets/styles-17df299b.css",
 ]

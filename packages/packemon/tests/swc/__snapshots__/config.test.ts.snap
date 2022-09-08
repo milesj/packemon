@@ -1,28 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`getSwcInputConfig() can mutate config 1`] = `
-Object {
-  "caller": Object {
+{
+  "caller": {
     "name": "packemon",
   },
   "configFile": false,
   "cwd": "INPUT",
-  "jsc": Object {
+  "jsc": {
     "externalHelpers": false,
     "keepClassNames": true,
     "loose": false,
-    "parser": Object {
+    "parser": {
       "dynamicImport": true,
       "jsx": false,
       "syntax": "ecmascript",
     },
     "preserveAllComments": true,
     "target": "es2022",
-    "transform": Object {
+    "transform": {
       "optimizer": undefined,
     },
   },
-  "module": Object {
+  "module": {
     "ignoreDynamic": true,
     "type": "es6",
   },
@@ -32,27 +32,27 @@ Object {
 `;
 
 exports[`getSwcInputConfig() doesnt include typescript decorators if \`typescript\` feature flag is false 1`] = `
-Object {
-  "caller": Object {
+{
+  "caller": {
     "name": "packemon",
   },
   "configFile": false,
-  "jsc": Object {
+  "jsc": {
     "externalHelpers": false,
     "keepClassNames": true,
     "loose": false,
-    "parser": Object {
+    "parser": {
       "dynamicImport": true,
       "jsx": false,
       "syntax": "ecmascript",
     },
     "preserveAllComments": true,
     "target": "es2022",
-    "transform": Object {
+    "transform": {
       "optimizer": undefined,
     },
   },
-  "module": Object {
+  "module": {
     "ignoreDynamic": true,
     "type": "es6",
   },
@@ -61,27 +61,27 @@ Object {
 `;
 
 exports[`getSwcInputConfig() includes no parser/transformer options by default 1`] = `
-Object {
-  "caller": Object {
+{
+  "caller": {
     "name": "packemon",
   },
   "configFile": false,
-  "jsc": Object {
+  "jsc": {
     "externalHelpers": false,
     "keepClassNames": true,
     "loose": false,
-    "parser": Object {
+    "parser": {
       "dynamicImport": true,
       "jsx": false,
       "syntax": "ecmascript",
     },
     "preserveAllComments": true,
     "target": "es2022",
-    "transform": Object {
+    "transform": {
       "optimizer": undefined,
     },
   },
-  "module": Object {
+  "module": {
     "ignoreDynamic": true,
     "type": "es6",
   },
@@ -90,9 +90,9 @@ Object {
 `;
 
 exports[`getSwcInputConfig() includes react transformer if \`react\` feature flag is true 1`] = `
-Object {
+{
   "optimizer": undefined,
-  "react": Object {
+  "react": {
     "runtime": "automatic",
     "throwIfNamespace": true,
   },
@@ -100,16 +100,16 @@ Object {
 `;
 
 exports[`getSwcInputConfig() includes typescript decorators if \`typescript\` and \`decorators\` feature flag is true 1`] = `
-Object {
-  "caller": Object {
+{
+  "caller": {
     "name": "packemon",
   },
   "configFile": false,
-  "jsc": Object {
+  "jsc": {
     "externalHelpers": false,
     "keepClassNames": true,
     "loose": false,
-    "parser": Object {
+    "parser": {
       "decorators": true,
       "dynamicImport": true,
       "syntax": "typescript",
@@ -117,12 +117,12 @@ Object {
     },
     "preserveAllComments": true,
     "target": "es2022",
-    "transform": Object {
+    "transform": {
       "legacyDecorator": true,
       "optimizer": undefined,
     },
   },
-  "module": Object {
+  "module": {
     "ignoreDynamic": true,
     "type": "es6",
   },
@@ -131,7 +131,7 @@ Object {
 `;
 
 exports[`getSwcInputConfig() includes typescript parser if \`typescript\` feature flag is true 1`] = `
-Object {
+{
   "dynamicImport": true,
   "syntax": "typescript",
   "tsx": false,
@@ -139,16 +139,16 @@ Object {
 `;
 
 exports[`getSwcInputConfig() supports private properties with decorators if dep exists 1`] = `
-Object {
-  "caller": Object {
+{
+  "caller": {
     "name": "packemon",
   },
   "configFile": false,
-  "jsc": Object {
+  "jsc": {
     "externalHelpers": false,
     "keepClassNames": true,
     "loose": false,
-    "parser": Object {
+    "parser": {
       "decorators": true,
       "dynamicImport": true,
       "syntax": "typescript",
@@ -156,12 +156,12 @@ Object {
     },
     "preserveAllComments": true,
     "target": "es2022",
-    "transform": Object {
+    "transform": {
       "legacyDecorator": true,
       "optimizer": undefined,
     },
   },
-  "module": Object {
+  "module": {
     "ignoreDynamic": true,
     "type": "es6",
   },
@@ -170,30 +170,30 @@ Object {
 `;
 
 exports[`getSwcOutputConfig() can mutate config 1`] = `
-Object {
-  "caller": Object {
+{
+  "caller": {
     "name": "packemon",
   },
   "configFile": false,
   "cwd": "OUTPUT",
-  "env": Object {
+  "env": {
     "bugfixes": true,
     "loose": false,
     "mode": undefined,
     "shippedProposals": true,
     "targets": "defaults, not IE 11",
   },
-  "jsc": Object {
+  "jsc": {
     "keepClassNames": true,
-    "parser": Object {
+    "parser": {
       "syntax": "ecmascript",
     },
     "preserveAllComments": true,
     "target": "es2018",
-    "transform": Object {
-      "optimizer": Object {
-        "globals": Object {
-          "vars": Object {
+    "transform": {
+      "optimizer": {
+        "globals": {
+          "vars": {
             "__DEV__": "process.env.NODE_ENV !== 'production'",
             "__PROD__": "process.env.NODE_ENV === 'production'",
             "__TEST__": "process.env.NODE_ENV === 'test'",
@@ -202,7 +202,7 @@ Object {
       },
     },
   },
-  "module": Object {
+  "module": {
     "ignoreDynamic": true,
     "type": "commonjs",
   },
@@ -212,7 +212,7 @@ Object {
 `;
 
 exports[`getSwcOutputConfig() handles preset-env: browser + esm + current 1`] = `
-Object {
+{
   "bugfixes": true,
   "loose": false,
   "mode": undefined,
@@ -222,7 +222,7 @@ Object {
 `;
 
 exports[`getSwcOutputConfig() handles preset-env: browser + esm + experimental 1`] = `
-Object {
+{
   "bugfixes": true,
   "loose": false,
   "mode": undefined,
@@ -232,7 +232,7 @@ Object {
 `;
 
 exports[`getSwcOutputConfig() handles preset-env: browser + esm + legacy 1`] = `
-Object {
+{
   "bugfixes": true,
   "loose": false,
   "mode": undefined,
@@ -242,7 +242,7 @@ Object {
 `;
 
 exports[`getSwcOutputConfig() handles preset-env: browser + esm + stable 1`] = `
-Object {
+{
   "bugfixes": true,
   "loose": false,
   "mode": undefined,
@@ -252,7 +252,7 @@ Object {
 `;
 
 exports[`getSwcOutputConfig() handles preset-env: browser + lib + current 1`] = `
-Object {
+{
   "bugfixes": true,
   "loose": false,
   "mode": undefined,
@@ -262,7 +262,7 @@ Object {
 `;
 
 exports[`getSwcOutputConfig() handles preset-env: browser + lib + experimental 1`] = `
-Object {
+{
   "bugfixes": true,
   "loose": false,
   "mode": undefined,
@@ -272,7 +272,7 @@ Object {
 `;
 
 exports[`getSwcOutputConfig() handles preset-env: browser + lib + legacy 1`] = `
-Object {
+{
   "bugfixes": true,
   "loose": false,
   "mode": undefined,
@@ -282,7 +282,7 @@ Object {
 `;
 
 exports[`getSwcOutputConfig() handles preset-env: browser + lib + stable 1`] = `
-Object {
+{
   "bugfixes": true,
   "loose": false,
   "mode": undefined,
@@ -292,7 +292,7 @@ Object {
 `;
 
 exports[`getSwcOutputConfig() handles preset-env: browser + umd + current 1`] = `
-Object {
+{
   "bugfixes": true,
   "loose": false,
   "mode": undefined,
@@ -302,7 +302,7 @@ Object {
 `;
 
 exports[`getSwcOutputConfig() handles preset-env: browser + umd + experimental 1`] = `
-Object {
+{
   "bugfixes": true,
   "loose": false,
   "mode": undefined,
@@ -312,7 +312,7 @@ Object {
 `;
 
 exports[`getSwcOutputConfig() handles preset-env: browser + umd + legacy 1`] = `
-Object {
+{
   "bugfixes": true,
   "loose": false,
   "mode": undefined,
@@ -322,7 +322,7 @@ Object {
 `;
 
 exports[`getSwcOutputConfig() handles preset-env: browser + umd + stable 1`] = `
-Object {
+{
   "bugfixes": true,
   "loose": false,
   "mode": undefined,
@@ -332,7 +332,7 @@ Object {
 `;
 
 exports[`getSwcOutputConfig() handles preset-env: native + lib + current 1`] = `
-Object {
+{
   "bugfixes": true,
   "loose": false,
   "mode": undefined,
@@ -342,7 +342,7 @@ Object {
 `;
 
 exports[`getSwcOutputConfig() handles preset-env: native + lib + experimental 1`] = `
-Object {
+{
   "bugfixes": true,
   "loose": false,
   "mode": undefined,
@@ -352,7 +352,7 @@ Object {
 `;
 
 exports[`getSwcOutputConfig() handles preset-env: native + lib + legacy 1`] = `
-Object {
+{
   "bugfixes": true,
   "loose": false,
   "mode": undefined,
@@ -362,7 +362,7 @@ Object {
 `;
 
 exports[`getSwcOutputConfig() handles preset-env: native + lib + stable 1`] = `
-Object {
+{
   "bugfixes": true,
   "loose": false,
   "mode": undefined,
@@ -372,173 +372,173 @@ Object {
 `;
 
 exports[`getSwcOutputConfig() handles preset-env: node + cjs + current 1`] = `
-Object {
+{
   "bugfixes": true,
   "loose": false,
   "mode": undefined,
   "shippedProposals": true,
-  "targets": Object {
+  "targets": {
     "node": "16.12.0",
   },
 }
 `;
 
 exports[`getSwcOutputConfig() handles preset-env: node + cjs + experimental 1`] = `
-Object {
+{
   "bugfixes": true,
   "loose": false,
   "mode": undefined,
   "shippedProposals": true,
-  "targets": Object {
+  "targets": {
     "node": "18.0.0",
   },
 }
 `;
 
 exports[`getSwcOutputConfig() handles preset-env: node + cjs + legacy 1`] = `
-Object {
+{
   "bugfixes": true,
   "loose": false,
   "mode": undefined,
   "shippedProposals": true,
-  "targets": Object {
+  "targets": {
     "node": "12.22.0",
   },
 }
 `;
 
 exports[`getSwcOutputConfig() handles preset-env: node + cjs + stable 1`] = `
-Object {
+{
   "bugfixes": true,
   "loose": false,
   "mode": undefined,
   "shippedProposals": true,
-  "targets": Object {
+  "targets": {
     "node": "14.15.0",
   },
 }
 `;
 
 exports[`getSwcOutputConfig() handles preset-env: node + lib + current 1`] = `
-Object {
+{
   "bugfixes": true,
   "loose": false,
   "mode": undefined,
   "shippedProposals": true,
-  "targets": Object {
+  "targets": {
     "node": "16.12.0",
   },
 }
 `;
 
 exports[`getSwcOutputConfig() handles preset-env: node + lib + experimental 1`] = `
-Object {
+{
   "bugfixes": true,
   "loose": false,
   "mode": undefined,
   "shippedProposals": true,
-  "targets": Object {
+  "targets": {
     "node": "18.0.0",
   },
 }
 `;
 
 exports[`getSwcOutputConfig() handles preset-env: node + lib + legacy 1`] = `
-Object {
+{
   "bugfixes": true,
   "loose": false,
   "mode": undefined,
   "shippedProposals": true,
-  "targets": Object {
+  "targets": {
     "node": "12.22.0",
   },
 }
 `;
 
 exports[`getSwcOutputConfig() handles preset-env: node + lib + stable 1`] = `
-Object {
+{
   "bugfixes": true,
   "loose": false,
   "mode": undefined,
   "shippedProposals": true,
-  "targets": Object {
+  "targets": {
     "node": "14.15.0",
   },
 }
 `;
 
 exports[`getSwcOutputConfig() handles preset-env: node + mjs + current 1`] = `
-Object {
+{
   "bugfixes": true,
   "loose": false,
   "mode": undefined,
   "shippedProposals": true,
-  "targets": Object {
+  "targets": {
     "node": "16.12.0",
   },
 }
 `;
 
 exports[`getSwcOutputConfig() handles preset-env: node + mjs + experimental 1`] = `
-Object {
+{
   "bugfixes": true,
   "loose": false,
   "mode": undefined,
   "shippedProposals": true,
-  "targets": Object {
+  "targets": {
     "node": "18.0.0",
   },
 }
 `;
 
 exports[`getSwcOutputConfig() handles preset-env: node + mjs + legacy 1`] = `
-Object {
+{
   "bugfixes": true,
   "loose": false,
   "mode": undefined,
   "shippedProposals": true,
-  "targets": Object {
+  "targets": {
     "node": "12.22.0",
   },
 }
 `;
 
 exports[`getSwcOutputConfig() handles preset-env: node + mjs + stable 1`] = `
-Object {
+{
   "bugfixes": true,
   "loose": false,
   "mode": undefined,
   "shippedProposals": true,
-  "targets": Object {
+  "targets": {
     "node": "14.15.0",
   },
 }
 `;
 
 exports[`getSwcOutputConfig() transforms async/await to promises when \`browser\` or \`native\` 1`] = `
-Object {
-  "caller": Object {
+{
+  "caller": {
     "name": "packemon",
   },
   "configFile": false,
-  "env": Object {
+  "env": {
     "bugfixes": true,
     "loose": false,
     "mode": undefined,
     "shippedProposals": true,
     "targets": "defaults, not IE 11",
   },
-  "jsc": Object {
+  "jsc": {
     "keepClassNames": true,
-    "parser": Object {
+    "parser": {
       "syntax": "ecmascript",
     },
     "preserveAllComments": true,
     "target": "es2018",
-    "transform": Object {
-      "optimizer": Object {
-        "globals": Object {
-          "vars": Object {
+    "transform": {
+      "optimizer": {
+        "globals": {
+          "vars": {
             "__DEV__": "process.env.NODE_ENV !== 'production'",
             "__PROD__": "process.env.NODE_ENV === 'production'",
             "__TEST__": "process.env.NODE_ENV === 'test'",
@@ -547,7 +547,7 @@ Object {
       },
     },
   },
-  "module": Object {
+  "module": {
     "ignoreDynamic": true,
     "type": "commonjs",
   },
@@ -556,29 +556,29 @@ Object {
 `;
 
 exports[`getSwcOutputConfig() transforms async/await to promises when \`browser\` or \`native\` 2`] = `
-Object {
-  "caller": Object {
+{
+  "caller": {
     "name": "packemon",
   },
   "configFile": false,
-  "env": Object {
+  "env": {
     "bugfixes": true,
     "loose": false,
     "mode": undefined,
     "shippedProposals": true,
     "targets": "iOS 15",
   },
-  "jsc": Object {
+  "jsc": {
     "keepClassNames": true,
-    "parser": Object {
+    "parser": {
       "syntax": "ecmascript",
     },
     "preserveAllComments": true,
     "target": "es2022",
-    "transform": Object {
-      "optimizer": Object {
-        "globals": Object {
-          "vars": Object {
+    "transform": {
+      "optimizer": {
+        "globals": {
+          "vars": {
             "__DEV__": "process.env.NODE_ENV !== 'production'",
             "__PROD__": "process.env.NODE_ENV === 'production'",
             "__TEST__": "process.env.NODE_ENV === 'test'",
@@ -587,7 +587,7 @@ Object {
       },
     },
   },
-  "module": Object {
+  "module": {
     "ignoreDynamic": false,
     "type": "commonjs",
   },
@@ -596,31 +596,31 @@ Object {
 `;
 
 exports[`getSwcOutputConfig() uses built-in destructuring and object spread when \`current\` or \`experimental\` 1`] = `
-Object {
-  "caller": Object {
+{
+  "caller": {
     "name": "packemon",
   },
   "configFile": false,
-  "env": Object {
+  "env": {
     "bugfixes": true,
     "loose": false,
     "mode": undefined,
     "shippedProposals": true,
-    "targets": Object {
+    "targets": {
       "node": "16.12.0",
     },
   },
-  "jsc": Object {
+  "jsc": {
     "keepClassNames": true,
-    "parser": Object {
+    "parser": {
       "syntax": "ecmascript",
     },
     "preserveAllComments": true,
     "target": "es2020",
-    "transform": Object {
-      "optimizer": Object {
-        "globals": Object {
-          "vars": Object {
+    "transform": {
+      "optimizer": {
+        "globals": {
+          "vars": {
             "__DEV__": "process.env.NODE_ENV !== 'production'",
             "__PROD__": "process.env.NODE_ENV === 'production'",
             "__TEST__": "process.env.NODE_ENV === 'test'",
@@ -629,7 +629,7 @@ Object {
       },
     },
   },
-  "module": Object {
+  "module": {
     "ignoreDynamic": true,
     "type": "commonjs",
   },
@@ -638,31 +638,31 @@ Object {
 `;
 
 exports[`getSwcOutputConfig() uses built-in destructuring and object spread when \`current\` or \`experimental\` 2`] = `
-Object {
-  "caller": Object {
+{
+  "caller": {
     "name": "packemon",
   },
   "configFile": false,
-  "env": Object {
+  "env": {
     "bugfixes": true,
     "loose": false,
     "mode": undefined,
     "shippedProposals": true,
-    "targets": Object {
+    "targets": {
       "node": "18.0.0",
     },
   },
-  "jsc": Object {
+  "jsc": {
     "keepClassNames": true,
-    "parser": Object {
+    "parser": {
       "syntax": "ecmascript",
     },
     "preserveAllComments": true,
     "target": "es2022",
-    "transform": Object {
-      "optimizer": Object {
-        "globals": Object {
-          "vars": Object {
+    "transform": {
+      "optimizer": {
+        "globals": {
+          "vars": {
             "__DEV__": "process.env.NODE_ENV !== 'production'",
             "__PROD__": "process.env.NODE_ENV === 'production'",
             "__TEST__": "process.env.NODE_ENV === 'test'",
@@ -671,7 +671,7 @@ Object {
       },
     },
   },
-  "module": Object {
+  "module": {
     "ignoreDynamic": true,
     "type": "commonjs",
   },

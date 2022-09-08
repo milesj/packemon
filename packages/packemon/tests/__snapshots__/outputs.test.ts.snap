@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Outputs (babel) artifacts builds all the artifacts with rollup 1`] = `
-Array [
+[
   "cjs/server.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: cjs
@@ -27,19 +27,19 @@ https__default.default.createServer((req, res) => {
 `;
 
 exports[`Outputs (babel) artifacts builds all the artifacts with rollup 2`] = `
-Array [
+[
   "esm/client.js",
-  "function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== \\"undefined\\" && o[Symbol.iterator] || o[\\"@@iterator\\"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === \\"number\\") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError(\\"Invalid attempt to iterate non-iterable instance.\\\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\\"); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+  "function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \\"string\\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \\"Object\\" && o.constructor) n = o.constructor.name; if (n === \\"Map\\" || n === \\"Set\\") return Array.from(o); if (n === \\"Arguments\\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\\"value\\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, \\"prototype\\", { writable: false }); return Constructor; }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\\"Cannot call a class as a function\\"); } }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -48,7 +48,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 var Client = /*#__PURE__*/_createClass(function Client() {
   _classCallCheck(this, Client);
 
-  _defineProperty(this, \\"prop\\", 123);
+  _defineProperty(this, "prop", 123);
 });
 
 function* gen() {}
@@ -81,23 +81,23 @@ export { createClient };
 `;
 
 exports[`Outputs (babel) artifacts builds all the artifacts with rollup 3`] = `
-Array [
+[
   "lib/client.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: lib
 'use strict';
 
-function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== \\"undefined\\" && o[Symbol.iterator] || o[\\"@@iterator\\"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === \\"number\\") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError(\\"Invalid attempt to iterate non-iterable instance.\\\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\\"); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \\"string\\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \\"Object\\" && o.constructor) n = o.constructor.name; if (n === \\"Map\\" || n === \\"Set\\") return Array.from(o); if (n === \\"Arguments\\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\\"value\\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, \\"prototype\\", { writable: false }); return Constructor; }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\\"Cannot call a class as a function\\"); } }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -108,7 +108,7 @@ Object.defineProperty(exports, '__esModule', {
 var Client = /*#__PURE__*/_createClass(function Client() {
   _classCallCheck(this, Client);
 
-  _defineProperty(this, \\"prop\\", 123);
+  _defineProperty(this, "prop", 123);
 });
 
 function* gen() {}
@@ -141,7 +141,7 @@ exports.createClient = createClient;
 `;
 
 exports[`Outputs (babel) artifacts builds all the artifacts with rollup 4`] = `
-Array [
+[
   "lib/index.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: lib
@@ -157,7 +157,7 @@ exports.EXAMPLE = EXAMPLE;
 `;
 
 exports[`Outputs (babel) artifacts builds all the artifacts with rollup 5`] = `
-Array [
+[
   "lib/test.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: experimental, Format: lib
@@ -189,18 +189,18 @@ exports.wait = wait;
 `;
 
 exports[`Outputs (babel) artifacts builds all the artifacts with rollup 6`] = `
-Array [
+[
   "package.json",
-  Object {
+  {
     "browser": "./umd/client.js",
-    "dependencies": Object {
+    "dependencies": {
       "typescript": "*",
     },
     "main": "./lib/index.js",
     "module": "./esm/client.js",
     "name": "project-rollup",
-    "packemon": Object {
-      "inputs": Object {
+    "packemon": {
+      "inputs": {
         "client": "src/client.ts",
         "index": "src/index.ts",
         "server": "src/server/core.ts",
@@ -212,12 +212,12 @@ Array [
 `;
 
 exports[`Outputs (babel) artifacts builds all the artifacts with rollup 7`] = `
-Array [
+[
   "umd/client.js",
   "(function (global, factory) {
-  if (typeof define === \\"function\\" && define.amd) {
-    define(\\"Packemon\\", [\\"exports\\"], factory);
-  } else if (typeof exports !== \\"undefined\\") {
+  if (typeof define === "function" && define.amd) {
+    define("Packemon", ["exports"], factory);
+  } else if (typeof exports !== "undefined") {
     factory(exports);
   } else {
     var mod = {
@@ -226,25 +226,25 @@ Array [
     factory(mod.exports);
     global.Packemon = mod.exports;
   }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports) {
-  \\"use strict\\";
+})(typeof globalThis !== "undefined" ? globalThis : typeof self !== "undefined" ? self : this, function (_exports) {
+  "use strict";
 
-  Object.defineProperty(_exports, \\"__esModule\\", {
+  Object.defineProperty(_exports, "__esModule", {
     value: true
   });
   _exports.createClient = createClient;
 
-  function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== \\"undefined\\" && o[Symbol.iterator] || o[\\"@@iterator\\"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === \\"number\\") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError(\\"Invalid attempt to iterate non-iterable instance.\\\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\\"); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+  function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
-  function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \\"string\\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \\"Object\\" && o.constructor) n = o.constructor.name; if (n === \\"Map\\" || n === \\"Set\\") return Array.from(o); if (n === \\"Arguments\\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+  function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
   function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
-  function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\\"value\\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+  function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-  function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, \\"prototype\\", { writable: false }); return Constructor; }
+  function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 
-  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\\"Cannot call a class as a function\\"); } }
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
   function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -253,7 +253,7 @@ Array [
   var Client = /*#__PURE__*/_createClass(function Client() {
     _classCallCheck(this, Client);
 
-    _defineProperty(this, \\"prop\\", 123);
+    _defineProperty(this, "prop", 123);
   });
 
   function* gen() {}
@@ -285,10 +285,10 @@ Array [
 `;
 
 exports[`Outputs (babel) artifacts builds all the artifacts with rollup 8`] = `
-Array [
-  Object {
+[
+  {
     "format": "lib",
-    "stats": Object {
+    "stats": {
       "size": 225,
     },
   },
@@ -296,7 +296,7 @@ Array [
 `;
 
 exports[`Outputs (babel) bundle bundles all files into a single file with rollup 1`] = `
-Array [
+[
   "lib/index.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: lib
@@ -317,12 +317,12 @@ exports.foo = foo;
 `;
 
 exports[`Outputs (babel) bundle bundles all files into a single file with rollup 2`] = `
-Array [
+[
   "package.json",
-  Object {
+  {
     "main": "./lib/index.js",
     "name": "project-bundle",
-    "packemon": Object {
+    "packemon": {
       "bundle": true,
       "platform": "node",
     },
@@ -331,7 +331,7 @@ Array [
 `;
 
 exports[`Outputs (babel) bundle with assets bundles all files and references assets 1`] = `
-Array [
+[
   "lib/index.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: lib
@@ -355,12 +355,12 @@ exports.button = button;
 `;
 
 exports[`Outputs (babel) bundle with assets bundles all files and references assets 2`] = `
-Array [
+[
   "package.json",
-  Object {
+  {
     "main": "./lib/index.js",
     "name": "project-assets",
-    "packemon": Object {
+    "packemon": {
       "bundle": true,
       "platform": "node",
     },
@@ -369,28 +369,28 @@ Array [
 `;
 
 exports[`Outputs (babel) bundle with assets bundles all files and references assets 3`] = `
-Array [
+[
   "src/button/styles.css",
   "assets/styles-b11c3a83.css",
 ]
 `;
 
 exports[`Outputs (babel) bundle with assets bundles all files and references assets 4`] = `
-Array [
+[
   "src/globals.css",
   "assets/globals-107ab52e.css",
 ]
 `;
 
 exports[`Outputs (babel) bundle with assets bundles all files and references assets 5`] = `
-Array [
+[
   "src/shared/fonts.css",
   "assets/fonts-4e5dc96c.css",
 ]
 `;
 
 exports[`Outputs (babel) bundle with assets uses same assets across multiple formats 1`] = `
-Array [
+[
   "cjs/index.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: cjs
@@ -414,7 +414,7 @@ exports.button = button;
 `;
 
 exports[`Outputs (babel) bundle with assets uses same assets across multiple formats 2`] = `
-Array [
+[
   "esm/index.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: esm
@@ -430,7 +430,7 @@ export { button };
 `;
 
 exports[`Outputs (babel) bundle with assets uses same assets across multiple formats 3`] = `
-Array [
+[
   "lib/index.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: lib
@@ -454,13 +454,13 @@ exports.button = button;
 `;
 
 exports[`Outputs (babel) bundle with assets uses same assets across multiple formats 4`] = `
-Array [
+[
   "package.json",
-  Object {
+  {
     "main": "./lib/index.js",
     "module": "./esm/index.js",
     "name": "project-assets",
-    "packemon": Object {
+    "packemon": {
       "bundle": true,
       "platform": "node",
     },
@@ -469,70 +469,70 @@ Array [
 `;
 
 exports[`Outputs (babel) bundle with assets uses same assets across multiple formats 5`] = `
-Array [
+[
   "src/button/styles.css",
   "assets/styles-b11c3a83.css",
 ]
 `;
 
 exports[`Outputs (babel) bundle with assets uses same assets across multiple formats 6`] = `
-Array [
+[
   "src/button/styles.css",
   "assets/styles-b11c3a83.css",
 ]
 `;
 
 exports[`Outputs (babel) bundle with assets uses same assets across multiple formats 7`] = `
-Array [
+[
   "src/button/styles.css",
   "assets/styles-b11c3a83.css",
 ]
 `;
 
 exports[`Outputs (babel) bundle with assets uses same assets across multiple formats 8`] = `
-Array [
+[
   "src/globals.css",
   "assets/globals-107ab52e.css",
 ]
 `;
 
 exports[`Outputs (babel) bundle with assets uses same assets across multiple formats 9`] = `
-Array [
+[
   "src/globals.css",
   "assets/globals-107ab52e.css",
 ]
 `;
 
 exports[`Outputs (babel) bundle with assets uses same assets across multiple formats 10`] = `
-Array [
+[
   "src/globals.css",
   "assets/globals-107ab52e.css",
 ]
 `;
 
 exports[`Outputs (babel) bundle with assets uses same assets across multiple formats 11`] = `
-Array [
+[
   "src/shared/fonts.css",
   "assets/fonts-4e5dc96c.css",
 ]
 `;
 
 exports[`Outputs (babel) bundle with assets uses same assets across multiple formats 12`] = `
-Array [
+[
   "src/shared/fonts.css",
   "assets/fonts-4e5dc96c.css",
 ]
 `;
 
 exports[`Outputs (babel) bundle with assets uses same assets across multiple formats 13`] = `
-Array [
+[
   "src/shared/fonts.css",
   "assets/fonts-4e5dc96c.css",
 ]
 `;
 
 exports[`Outputs (babel) no bundle creates individual files for every source file 1`] = `
-Array [
+[
   "lib/index.js",
   "'use strict';
 
@@ -551,7 +551,7 @@ exports.bar = bar;
 `;
 
 exports[`Outputs (babel) no bundle creates individual files for every source file 2`] = `
-Array [
+[
   "lib/not-imported.js",
   "'use strict';
 
@@ -567,7 +567,7 @@ exports.baz = baz;
 `;
 
 exports[`Outputs (babel) no bundle creates individual files for every source file 3`] = `
-Array [
+[
   "lib/other.js",
   "'use strict';
 
@@ -583,12 +583,12 @@ exports.foo = foo;
 `;
 
 exports[`Outputs (babel) no bundle creates individual files for every source file 4`] = `
-Array [
+[
   "package.json",
-  Object {
+  {
     "main": "./lib/index.js",
     "name": "project-bundle",
-    "packemon": Object {
+    "packemon": {
       "bundle": true,
       "platform": "node",
     },
@@ -597,7 +597,7 @@ Array [
 `;
 
 exports[`Outputs (babel) no bundle with assets creates individual files and references assets 1`] = `
-Array [
+[
   "lib/button/index.js",
   "'use strict';
 
@@ -615,7 +615,7 @@ exports.button = button;
 `;
 
 exports[`Outputs (babel) no bundle with assets creates individual files and references assets 2`] = `
-Array [
+[
   "lib/index.js",
   "'use strict';
 
@@ -635,12 +635,12 @@ exports.button = index.button;
 `;
 
 exports[`Outputs (babel) no bundle with assets creates individual files and references assets 3`] = `
-Array [
+[
   "package.json",
-  Object {
+  {
     "main": "./lib/index.js",
     "name": "project-assets",
-    "packemon": Object {
+    "packemon": {
       "bundle": true,
       "platform": "node",
     },
@@ -649,28 +649,28 @@ Array [
 `;
 
 exports[`Outputs (babel) no bundle with assets creates individual files and references assets 4`] = `
-Array [
+[
   "src/button/styles.css",
   "assets/styles-b11c3a83.css",
 ]
 `;
 
 exports[`Outputs (babel) no bundle with assets creates individual files and references assets 5`] = `
-Array [
+[
   "src/globals.css",
   "assets/globals-107ab52e.css",
 ]
 `;
 
 exports[`Outputs (babel) no bundle with assets creates individual files and references assets 6`] = `
-Array [
+[
   "src/shared/fonts.css",
   "assets/fonts-4e5dc96c.css",
 ]
 `;
 
 exports[`Outputs (swc) artifacts builds all the artifacts with rollup 1`] = `
-Array [
+[
   "cjs/server.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: cjs
@@ -696,19 +696,19 @@ https__default.default.createServer((req, res) => {
 `;
 
 exports[`Outputs (swc) artifacts builds all the artifacts with rollup 2`] = `
-Array [
+[
   "esm/client.js",
-  "function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== \\"undefined\\" && o[Symbol.iterator] || o[\\"@@iterator\\"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === \\"number\\") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError(\\"Invalid attempt to iterate non-iterable instance.\\\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\\"); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+  "function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \\"string\\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \\"Object\\" && o.constructor) n = o.constructor.name; if (n === \\"Map\\" || n === \\"Set\\") return Array.from(o); if (n === \\"Arguments\\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\\"value\\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, \\"prototype\\", { writable: false }); return Constructor; }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\\"Cannot call a class as a function\\"); } }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -717,7 +717,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 var Client = /*#__PURE__*/_createClass(function Client() {
   _classCallCheck(this, Client);
 
-  _defineProperty(this, \\"prop\\", 123);
+  _defineProperty(this, "prop", 123);
 });
 
 function* gen() {}
@@ -750,23 +750,23 @@ export { createClient };
 `;
 
 exports[`Outputs (swc) artifacts builds all the artifacts with rollup 3`] = `
-Array [
+[
   "lib/client.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: lib
 'use strict';
 
-function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== \\"undefined\\" && o[Symbol.iterator] || o[\\"@@iterator\\"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === \\"number\\") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError(\\"Invalid attempt to iterate non-iterable instance.\\\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\\"); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \\"string\\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \\"Object\\" && o.constructor) n = o.constructor.name; if (n === \\"Map\\" || n === \\"Set\\") return Array.from(o); if (n === \\"Arguments\\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\\"value\\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, \\"prototype\\", { writable: false }); return Constructor; }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\\"Cannot call a class as a function\\"); } }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -777,7 +777,7 @@ Object.defineProperty(exports, '__esModule', {
 var Client = /*#__PURE__*/_createClass(function Client() {
   _classCallCheck(this, Client);
 
-  _defineProperty(this, \\"prop\\", 123);
+  _defineProperty(this, "prop", 123);
 });
 
 function* gen() {}
@@ -810,7 +810,7 @@ exports.createClient = createClient;
 `;
 
 exports[`Outputs (swc) artifacts builds all the artifacts with rollup 4`] = `
-Array [
+[
   "lib/index.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: lib
@@ -826,7 +826,7 @@ exports.EXAMPLE = EXAMPLE;
 `;
 
 exports[`Outputs (swc) artifacts builds all the artifacts with rollup 5`] = `
-Array [
+[
   "lib/test.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: experimental, Format: lib
@@ -858,18 +858,18 @@ exports.wait = wait;
 `;
 
 exports[`Outputs (swc) artifacts builds all the artifacts with rollup 6`] = `
-Array [
+[
   "package.json",
-  Object {
+  {
     "browser": "./umd/client.js",
-    "dependencies": Object {
+    "dependencies": {
       "typescript": "*",
     },
     "main": "./lib/index.js",
     "module": "./esm/client.js",
     "name": "project-rollup",
-    "packemon": Object {
-      "inputs": Object {
+    "packemon": {
+      "inputs": {
         "client": "src/client.ts",
         "index": "src/index.ts",
         "server": "src/server/core.ts",
@@ -881,12 +881,12 @@ Array [
 `;
 
 exports[`Outputs (swc) artifacts builds all the artifacts with rollup 7`] = `
-Array [
+[
   "umd/client.js",
   "(function (global, factory) {
-  if (typeof define === \\"function\\" && define.amd) {
-    define(\\"Packemon\\", [\\"exports\\"], factory);
-  } else if (typeof exports !== \\"undefined\\") {
+  if (typeof define === "function" && define.amd) {
+    define("Packemon", ["exports"], factory);
+  } else if (typeof exports !== "undefined") {
     factory(exports);
   } else {
     var mod = {
@@ -895,25 +895,25 @@ Array [
     factory(mod.exports);
     global.Packemon = mod.exports;
   }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports) {
-  \\"use strict\\";
+})(typeof globalThis !== "undefined" ? globalThis : typeof self !== "undefined" ? self : this, function (_exports) {
+  "use strict";
 
-  Object.defineProperty(_exports, \\"__esModule\\", {
+  Object.defineProperty(_exports, "__esModule", {
     value: true
   });
   _exports.createClient = createClient;
 
-  function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== \\"undefined\\" && o[Symbol.iterator] || o[\\"@@iterator\\"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === \\"number\\") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError(\\"Invalid attempt to iterate non-iterable instance.\\\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\\"); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+  function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
-  function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \\"string\\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \\"Object\\" && o.constructor) n = o.constructor.name; if (n === \\"Map\\" || n === \\"Set\\") return Array.from(o); if (n === \\"Arguments\\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+  function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
   function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
-  function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\\"value\\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+  function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-  function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, \\"prototype\\", { writable: false }); return Constructor; }
+  function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 
-  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\\"Cannot call a class as a function\\"); } }
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
   function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -922,7 +922,7 @@ Array [
   var Client = /*#__PURE__*/_createClass(function Client() {
     _classCallCheck(this, Client);
 
-    _defineProperty(this, \\"prop\\", 123);
+    _defineProperty(this, "prop", 123);
   });
 
   function* gen() {}
@@ -954,10 +954,10 @@ Array [
 `;
 
 exports[`Outputs (swc) artifacts builds all the artifacts with rollup 8`] = `
-Array [
-  Object {
+[
+  {
     "format": "lib",
-    "stats": Object {
+    "stats": {
       "size": 225,
     },
   },
@@ -965,7 +965,7 @@ Array [
 `;
 
 exports[`Outputs (swc) bundle bundles all files into a single file with rollup 1`] = `
-Array [
+[
   "lib/index.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: lib
@@ -986,12 +986,12 @@ exports.foo = foo;
 `;
 
 exports[`Outputs (swc) bundle bundles all files into a single file with rollup 2`] = `
-Array [
+[
   "package.json",
-  Object {
+  {
     "main": "./lib/index.js",
     "name": "project-bundle",
-    "packemon": Object {
+    "packemon": {
       "bundle": true,
       "platform": "node",
     },
@@ -1000,7 +1000,7 @@ Array [
 `;
 
 exports[`Outputs (swc) bundle with assets bundles all files and references assets 1`] = `
-Array [
+[
   "lib/index.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: lib
@@ -1024,12 +1024,12 @@ exports.button = button;
 `;
 
 exports[`Outputs (swc) bundle with assets bundles all files and references assets 2`] = `
-Array [
+[
   "package.json",
-  Object {
+  {
     "main": "./lib/index.js",
     "name": "project-assets",
-    "packemon": Object {
+    "packemon": {
       "bundle": true,
       "platform": "node",
     },
@@ -1038,28 +1038,28 @@ Array [
 `;
 
 exports[`Outputs (swc) bundle with assets bundles all files and references assets 3`] = `
-Array [
+[
   "src/button/styles.css",
   "assets/styles-b11c3a83.css",
 ]
 `;
 
 exports[`Outputs (swc) bundle with assets bundles all files and references assets 4`] = `
-Array [
+[
   "src/globals.css",
   "assets/globals-107ab52e.css",
 ]
 `;
 
 exports[`Outputs (swc) bundle with assets bundles all files and references assets 5`] = `
-Array [
+[
   "src/shared/fonts.css",
   "assets/fonts-4e5dc96c.css",
 ]
 `;
 
 exports[`Outputs (swc) bundle with assets uses same assets across multiple formats 1`] = `
-Array [
+[
   "cjs/index.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: cjs
@@ -1083,7 +1083,7 @@ exports.button = button;
 `;
 
 exports[`Outputs (swc) bundle with assets uses same assets across multiple formats 2`] = `
-Array [
+[
   "esm/index.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: esm
@@ -1099,7 +1099,7 @@ export { button };
 `;
 
 exports[`Outputs (swc) bundle with assets uses same assets across multiple formats 3`] = `
-Array [
+[
   "lib/index.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: lib
@@ -1123,13 +1123,13 @@ exports.button = button;
 `;
 
 exports[`Outputs (swc) bundle with assets uses same assets across multiple formats 4`] = `
-Array [
+[
   "package.json",
-  Object {
+  {
     "main": "./lib/index.js",
     "module": "./esm/index.js",
     "name": "project-assets",
-    "packemon": Object {
+    "packemon": {
       "bundle": true,
       "platform": "node",
     },
@@ -1138,70 +1138,70 @@ Array [
 `;
 
 exports[`Outputs (swc) bundle with assets uses same assets across multiple formats 5`] = `
-Array [
+[
   "src/button/styles.css",
   "assets/styles-b11c3a83.css",
 ]
 `;
 
 exports[`Outputs (swc) bundle with assets uses same assets across multiple formats 6`] = `
-Array [
+[
   "src/button/styles.css",
   "assets/styles-b11c3a83.css",
 ]
 `;
 
 exports[`Outputs (swc) bundle with assets uses same assets across multiple formats 7`] = `
-Array [
+[
   "src/button/styles.css",
   "assets/styles-b11c3a83.css",
 ]
 `;
 
 exports[`Outputs (swc) bundle with assets uses same assets across multiple formats 8`] = `
-Array [
+[
   "src/globals.css",
   "assets/globals-107ab52e.css",
 ]
 `;
 
 exports[`Outputs (swc) bundle with assets uses same assets across multiple formats 9`] = `
-Array [
+[
   "src/globals.css",
   "assets/globals-107ab52e.css",
 ]
 `;
 
 exports[`Outputs (swc) bundle with assets uses same assets across multiple formats 10`] = `
-Array [
+[
   "src/globals.css",
   "assets/globals-107ab52e.css",
 ]
 `;
 
 exports[`Outputs (swc) bundle with assets uses same assets across multiple formats 11`] = `
-Array [
+[
   "src/shared/fonts.css",
   "assets/fonts-4e5dc96c.css",
 ]
 `;
 
 exports[`Outputs (swc) bundle with assets uses same assets across multiple formats 12`] = `
-Array [
+[
   "src/shared/fonts.css",
   "assets/fonts-4e5dc96c.css",
 ]
 `;
 
 exports[`Outputs (swc) bundle with assets uses same assets across multiple formats 13`] = `
-Array [
+[
   "src/shared/fonts.css",
   "assets/fonts-4e5dc96c.css",
 ]
 `;
 
 exports[`Outputs (swc) no bundle creates individual files for every source file 1`] = `
-Array [
+[
   "lib/index.js",
   "'use strict';
 
@@ -1220,7 +1220,7 @@ exports.bar = bar;
 `;
 
 exports[`Outputs (swc) no bundle creates individual files for every source file 2`] = `
-Array [
+[
   "lib/not-imported.js",
   "'use strict';
 
@@ -1236,7 +1236,7 @@ exports.baz = baz;
 `;
 
 exports[`Outputs (swc) no bundle creates individual files for every source file 3`] = `
-Array [
+[
   "lib/other.js",
   "'use strict';
 
@@ -1252,12 +1252,12 @@ exports.foo = foo;
 `;
 
 exports[`Outputs (swc) no bundle creates individual files for every source file 4`] = `
-Array [
+[
   "package.json",
-  Object {
+  {
     "main": "./lib/index.js",
     "name": "project-bundle",
-    "packemon": Object {
+    "packemon": {
       "bundle": true,
       "platform": "node",
     },
@@ -1266,7 +1266,7 @@ Array [
 `;
 
 exports[`Outputs (swc) no bundle with assets creates individual files and references assets 1`] = `
-Array [
+[
   "lib/button/index.js",
   "'use strict';
 
@@ -1284,7 +1284,7 @@ exports.button = button;
 `;
 
 exports[`Outputs (swc) no bundle with assets creates individual files and references assets 2`] = `
-Array [
+[
   "lib/index.js",
   "'use strict';
 
@@ -1304,12 +1304,12 @@ exports.button = index.button;
 `;
 
 exports[`Outputs (swc) no bundle with assets creates individual files and references assets 3`] = `
-Array [
+[
   "package.json",
-  Object {
+  {
     "main": "./lib/index.js",
     "name": "project-assets",
-    "packemon": Object {
+    "packemon": {
       "bundle": true,
       "platform": "node",
     },
@@ -1318,28 +1318,28 @@ Array [
 `;
 
 exports[`Outputs (swc) no bundle with assets creates individual files and references assets 4`] = `
-Array [
+[
   "src/button/styles.css",
   "assets/styles-b11c3a83.css",
 ]
 `;
 
 exports[`Outputs (swc) no bundle with assets creates individual files and references assets 5`] = `
-Array [
+[
   "src/globals.css",
   "assets/globals-107ab52e.css",
 ]
 `;
 
 exports[`Outputs (swc) no bundle with assets creates individual files and references assets 6`] = `
-Array [
+[
   "src/shared/fonts.css",
   "assets/fonts-4e5dc96c.css",
 ]
 `;
 
 exports[`Special formats cts supports .cts -> .cjs / .d.cts 1`] = `
-Array [
+[
   "cjs/index.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: cjs
@@ -1355,14 +1355,14 @@ module.exports = test;
 `;
 
 exports[`Special formats cts supports .cts -> .cjs / .d.cts 2`] = `
-Array [
+[
   "package.json",
-  Object {
+  {
     "main": "./cjs/index.cjs",
     "name": "project-cts",
-    "packemon": Object {
+    "packemon": {
       "format": "cjs",
-      "inputs": Object {
+      "inputs": {
         "index": "src/index.cts",
       },
     },
@@ -1378,7 +1378,7 @@ exports[`Special formats cts supports .cts -> .cjs / .d.cts 3`] = `
 `;
 
 exports[`Special formats mts supports .mts -> .mjs / .d.mts 1`] = `
-Array [
+[
   "mjs/index.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: mjs
@@ -1392,14 +1392,14 @@ export { test as default };
 `;
 
 exports[`Special formats mts supports .mts -> .mjs / .d.mts 2`] = `
-Array [
+[
   "package.json",
-  Object {
+  {
     "main": "./mjs/index.mjs",
     "name": "project-mts",
-    "packemon": Object {
+    "packemon": {
       "format": "mjs",
-      "inputs": Object {
+      "inputs": {
         "index": "src/index.mts",
       },
     },

@@ -1,65 +1,65 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`createConfig() returns the correct config 1`] = `
-Object {
-  "plugins": Array [
-    Array [
+{
+  "plugins": [
+    [
       "@babel/plugin-transform-typescript",
-      Object {
+      {
         "allowDeclareFields": true,
       },
     ],
-    Array [
+    [
       "@babel/plugin-proposal-decorators",
-      Object {
+      {
         "legacy": true,
       },
     ],
-    Array [
+    [
       "@babel/plugin-proposal-class-properties",
-      Object {
+      {
         "loose": true,
       },
     ],
-    Array [
+    [
       "@babel/plugin-proposal-private-methods",
-      Object {
+      {
         "loose": true,
       },
     ],
-    Array [
+    [
       "@babel/plugin-proposal-private-property-in-object",
-      Object {
+      {
         "loose": true,
       },
     ],
-    Array [
+    [
       "@babel/plugin-transform-destructuring",
-      Object {
+      {
         "useBuiltIns": true,
       },
     ],
-    Array [
+    [
       "@babel/plugin-proposal-object-rest-spread",
-      Object {
+      {
         "useBuiltIns": true,
       },
     ],
-    Array [
+    [
       "babel-plugin-cjs-esm-interop",
-      Object {
+      {
         "format": "cjs",
       },
     ],
     "babel-plugin-conditional-invariant",
     "babel-plugin-env-constants",
   ],
-  "presets": Array [
-    Array [
+  "presets": [
+    [
       "@babel/preset-env",
-      Object {
+      {
         "bugfixes": true,
-        "exclude": Array [
+        "exclude": [
           "@babel/plugin-transform-regenerator",
           "@babel/plugin-transform-async-to-generator",
           "@babel/plugin-proposal-dynamic-import",
@@ -68,15 +68,15 @@ Object {
         "modules": "cjs",
         "shippedProposals": true,
         "spec": true,
-        "targets": Object {
+        "targets": {
           "node": "14.15.0",
         },
         "useBuiltIns": false,
       },
     ],
-    Array [
+    [
       "@babel/preset-typescript",
-      Object {
+      {
         "allowDeclareFields": true,
       },
     ],
@@ -85,79 +85,79 @@ Object {
 `;
 
 exports[`createRootConfig() returns the correct config 1`] = `
-Object {
+{
   "babelrc": false,
-  "babelrcRoots": Array [
+  "babelrcRoots": [
     "packages/*",
     "scenarios/*",
     "website",
   ],
-  "overrides": Array [
-    Object {
-      "presets": Array [
+  "overrides": [
+    {
+      "presets": [
         "@babel/preset-flow",
       ],
       "test": /node_modules\\\\/\\(\\(jest-\\)\\?react-native\\|@react-native\\(-community\\)\\?\\)/iu,
     },
   ],
-  "plugins": Array [
-    Array [
+  "plugins": [
+    [
       "@babel/plugin-transform-typescript",
-      Object {
+      {
         "allowDeclareFields": true,
       },
     ],
-    Array [
+    [
       "@babel/plugin-proposal-decorators",
-      Object {
+      {
         "legacy": true,
       },
     ],
-    Array [
+    [
       "@babel/plugin-proposal-class-properties",
-      Object {
+      {
         "loose": true,
       },
     ],
-    Array [
+    [
       "@babel/plugin-proposal-private-methods",
-      Object {
+      {
         "loose": true,
       },
     ],
-    Array [
+    [
       "@babel/plugin-proposal-private-property-in-object",
-      Object {
+      {
         "loose": true,
       },
     ],
-    Array [
+    [
       "@babel/plugin-transform-destructuring",
-      Object {
+      {
         "useBuiltIns": true,
       },
     ],
-    Array [
+    [
       "@babel/plugin-proposal-object-rest-spread",
-      Object {
+      {
         "useBuiltIns": true,
       },
     ],
-    Array [
+    [
       "babel-plugin-cjs-esm-interop",
-      Object {
+      {
         "format": "cjs",
       },
     ],
     "babel-plugin-conditional-invariant",
     "babel-plugin-env-constants",
   ],
-  "presets": Array [
-    Array [
+  "presets": [
+    [
       "@babel/preset-env",
-      Object {
+      {
         "bugfixes": true,
-        "exclude": Array [
+        "exclude": [
           "@babel/plugin-transform-regenerator",
           "@babel/plugin-transform-async-to-generator",
           "@babel/plugin-proposal-dynamic-import",
@@ -166,15 +166,15 @@ Object {
         "modules": "cjs",
         "shippedProposals": true,
         "spec": true,
-        "targets": Object {
+        "targets": {
           "node": "14.15.0",
         },
         "useBuiltIns": false,
       },
     ],
-    Array [
+    [
       "@babel/preset-typescript",
-      Object {
+      {
         "allowDeclareFields": true,
       },
     ],
@@ -183,49 +183,49 @@ Object {
 `;
 
 exports[`getBabelInputConfig() can mutate config 1`] = `
-Object {
+{
   "babelrc": false,
   "babelrcRoots": undefined,
-  "caller": Object {
+  "caller": {
     "name": "packemon",
   },
   "comments": true,
   "configFile": false,
-  "parserOpts": Object {
+  "parserOpts": {
     "sourceType": "unambiguous",
     "strictMode": undefined,
   },
-  "plugins": Array [
+  "plugins": [
     "babel-plugin-example",
   ],
-  "presets": Array [],
+  "presets": [],
   "rootMode": "upward",
 }
 `;
 
 exports[`getBabelInputConfig() doesnt include typescript decorators if \`typescript\` feature flag is false 1`] = `
-Object {
+{
   "babelrc": false,
   "babelrcRoots": undefined,
-  "caller": Object {
+  "caller": {
     "name": "packemon",
   },
   "comments": true,
   "configFile": false,
-  "parserOpts": Object {
+  "parserOpts": {
     "sourceType": "unambiguous",
     "strictMode": undefined,
   },
-  "plugins": Array [],
-  "presets": Array [],
+  "plugins": [],
+  "presets": [],
 }
 `;
 
 exports[`getBabelInputConfig() includes flow preset if \`flow\` feature flag is true 1`] = `
-Array [
-  Array [
+[
+  [
     "@babel/preset-flow",
-    Object {
+    {
       "allowDeclareFields": true,
     },
   ],
@@ -233,28 +233,28 @@ Array [
 `;
 
 exports[`getBabelInputConfig() includes no plugins or presets by default 1`] = `
-Object {
+{
   "babelrc": false,
   "babelrcRoots": undefined,
-  "caller": Object {
+  "caller": {
     "name": "packemon",
   },
   "comments": true,
   "configFile": false,
-  "parserOpts": Object {
+  "parserOpts": {
     "sourceType": "unambiguous",
     "strictMode": undefined,
   },
-  "plugins": Array [],
-  "presets": Array [],
+  "plugins": [],
+  "presets": [],
 }
 `;
 
 exports[`getBabelInputConfig() includes react preset if \`react\` feature flag is true 1`] = `
-Array [
-  Array [
+[
+  [
     "@babel/preset-react",
-    Object {
+    {
       "runtime": "classic",
       "throwIfNamespace": true,
     },
@@ -263,10 +263,10 @@ Array [
 `;
 
 exports[`getBabelInputConfig() includes react preset if \`react\` feature flag is true 2`] = `
-Array [
-  Array [
+[
+  [
     "@babel/preset-react",
-    Object {
+    {
       "runtime": "automatic",
       "throwIfNamespace": true,
     },
@@ -275,60 +275,60 @@ Array [
 `;
 
 exports[`getBabelInputConfig() includes solid preset if \`solid\` feature flag is true 1`] = `
-Array [
+[
   "babel-preset-solid",
 ]
 `;
 
 exports[`getBabelInputConfig() includes typescript decorators if \`typescript\` and \`decorators\` feature flag is true 1`] = `
-Object {
+{
   "babelrc": false,
   "babelrcRoots": undefined,
-  "caller": Object {
+  "caller": {
     "name": "packemon",
   },
   "comments": true,
   "configFile": false,
-  "parserOpts": Object {
+  "parserOpts": {
     "sourceType": "unambiguous",
     "strictMode": undefined,
   },
-  "plugins": Array [
-    Array [
+  "plugins": [
+    [
       "@babel/plugin-transform-typescript",
-      Object {
+      {
         "allowDeclareFields": true,
       },
     ],
-    Array [
+    [
       "@babel/plugin-proposal-decorators",
-      Object {
+      {
         "legacy": true,
       },
     ],
-    Array [
+    [
       "@babel/plugin-proposal-class-properties",
-      Object {
+      {
         "loose": true,
       },
     ],
-    Array [
+    [
       "@babel/plugin-proposal-private-methods",
-      Object {
+      {
         "loose": true,
       },
     ],
-    Array [
+    [
       "@babel/plugin-proposal-private-property-in-object",
-      Object {
+      {
         "loose": true,
       },
     ],
   ],
-  "presets": Array [
-    Array [
+  "presets": [
+    [
       "@babel/preset-typescript",
-      Object {
+      {
         "allowDeclareFields": true,
       },
     ],
@@ -337,10 +337,10 @@ Object {
 `;
 
 exports[`getBabelInputConfig() includes typescript preset if \`typescript\` feature flag is true 1`] = `
-Array [
-  Array [
+[
+  [
     "@babel/preset-typescript",
-    Object {
+    {
       "allowDeclareFields": true,
     },
   ],
@@ -348,54 +348,54 @@ Array [
 `;
 
 exports[`getBabelInputConfig() supports private properties with decorators if dep exists 1`] = `
-Object {
+{
   "babelrc": false,
   "babelrcRoots": undefined,
-  "caller": Object {
+  "caller": {
     "name": "packemon",
   },
   "comments": true,
   "configFile": false,
-  "parserOpts": Object {
+  "parserOpts": {
     "sourceType": "unambiguous",
     "strictMode": undefined,
   },
-  "plugins": Array [
-    Array [
+  "plugins": [
+    [
       "@babel/plugin-transform-typescript",
-      Object {
+      {
         "allowDeclareFields": true,
       },
     ],
-    Array [
+    [
       "@babel/plugin-proposal-decorators",
-      Object {
+      {
         "legacy": true,
       },
     ],
-    Array [
+    [
       "@babel/plugin-proposal-class-properties",
-      Object {
+      {
         "loose": true,
       },
     ],
-    Array [
+    [
       "@babel/plugin-proposal-private-methods",
-      Object {
+      {
         "loose": true,
       },
     ],
-    Array [
+    [
       "@babel/plugin-proposal-private-property-in-object",
-      Object {
+      {
         "loose": true,
       },
     ],
   ],
-  "presets": Array [
-    Array [
+  "presets": [
+    [
       "@babel/preset-typescript",
-      Object {
+      {
         "allowDeclareFields": true,
       },
     ],
@@ -404,28 +404,28 @@ Object {
 `;
 
 exports[`getBabelOutputConfig() can mutate config 1`] = `
-Object {
+{
   "babelrc": false,
   "babelrcRoots": undefined,
-  "caller": Object {
+  "caller": {
     "name": "packemon",
   },
   "comments": true,
   "configFile": false,
-  "parserOpts": Object {
+  "parserOpts": {
     "sourceType": "unambiguous",
     "strictMode": undefined,
   },
-  "plugins": Array [
-    Array [
+  "plugins": [
+    [
       "@babel/plugin-transform-destructuring",
-      Object {
+      {
         "useBuiltIns": true,
       },
     ],
-    Array [
+    [
       "@babel/plugin-proposal-object-rest-spread",
-      Object {
+      {
         "useBuiltIns": true,
       },
     ],
@@ -433,12 +433,12 @@ Object {
     "babel-plugin-env-constants",
     "babel-plugin-example",
   ],
-  "presets": Array [
-    Array [
+  "presets": [
+    [
       "@babel/preset-env",
-      Object {
+      {
         "bugfixes": true,
-        "exclude": Array [
+        "exclude": [
           "@babel/plugin-transform-regenerator",
           "@babel/plugin-transform-async-to-generator",
           "@babel/plugin-proposal-dynamic-import",
@@ -447,8 +447,8 @@ Object {
         "modules": "cjs",
         "shippedProposals": true,
         "spec": true,
-        "targets": Object {
-          "browsers": Array [
+        "targets": {
+          "browsers": [
             "defaults",
             "not IE 11",
           ],
@@ -462,11 +462,11 @@ Object {
 `;
 
 exports[`getBabelOutputConfig() handles preset-env: browser + esm + current 1`] = `
-Array [
+[
   "@babel/preset-env",
-  Object {
+  {
     "bugfixes": true,
-    "exclude": Array [
+    "exclude": [
       "@babel/plugin-transform-regenerator",
       "@babel/plugin-transform-async-to-generator",
       "@babel/plugin-proposal-dynamic-import",
@@ -475,8 +475,8 @@ Array [
     "modules": false,
     "shippedProposals": true,
     "spec": true,
-    "targets": Object {
-      "browsers": Array [
+    "targets": {
+      "browsers": [
         ">=1%",
         "not dead",
       ],
@@ -487,11 +487,11 @@ Array [
 `;
 
 exports[`getBabelOutputConfig() handles preset-env: browser + esm + experimental 1`] = `
-Array [
+[
   "@babel/preset-env",
-  Object {
+  {
     "bugfixes": true,
-    "exclude": Array [
+    "exclude": [
       "@babel/plugin-transform-regenerator",
       "@babel/plugin-transform-async-to-generator",
       "@babel/plugin-proposal-dynamic-import",
@@ -500,8 +500,8 @@ Array [
     "modules": false,
     "shippedProposals": true,
     "spec": true,
-    "targets": Object {
-      "browsers": Array [
+    "targets": {
+      "browsers": [
         "last 2 chrome versions",
         "last 2 firefox versions",
       ],
@@ -512,11 +512,11 @@ Array [
 `;
 
 exports[`getBabelOutputConfig() handles preset-env: browser + esm + legacy 1`] = `
-Array [
+[
   "@babel/preset-env",
-  Object {
+  {
     "bugfixes": true,
-    "exclude": Array [
+    "exclude": [
       "@babel/plugin-transform-regenerator",
       "@babel/plugin-transform-async-to-generator",
       "@babel/plugin-proposal-dynamic-import",
@@ -525,8 +525,8 @@ Array [
     "modules": false,
     "shippedProposals": true,
     "spec": true,
-    "targets": Object {
-      "browsers": Array [
+    "targets": {
+      "browsers": [
         ">=0.10%",
         "not IE 11",
       ],
@@ -537,11 +537,11 @@ Array [
 `;
 
 exports[`getBabelOutputConfig() handles preset-env: browser + esm + stable 1`] = `
-Array [
+[
   "@babel/preset-env",
-  Object {
+  {
     "bugfixes": true,
-    "exclude": Array [
+    "exclude": [
       "@babel/plugin-transform-regenerator",
       "@babel/plugin-transform-async-to-generator",
       "@babel/plugin-proposal-dynamic-import",
@@ -550,8 +550,8 @@ Array [
     "modules": false,
     "shippedProposals": true,
     "spec": true,
-    "targets": Object {
-      "browsers": Array [
+    "targets": {
+      "browsers": [
         "defaults",
         "not IE 11",
       ],
@@ -562,11 +562,11 @@ Array [
 `;
 
 exports[`getBabelOutputConfig() handles preset-env: browser + lib + current 1`] = `
-Array [
+[
   "@babel/preset-env",
-  Object {
+  {
     "bugfixes": true,
-    "exclude": Array [
+    "exclude": [
       "@babel/plugin-transform-regenerator",
       "@babel/plugin-transform-async-to-generator",
       "@babel/plugin-proposal-dynamic-import",
@@ -575,8 +575,8 @@ Array [
     "modules": "cjs",
     "shippedProposals": true,
     "spec": true,
-    "targets": Object {
-      "browsers": Array [
+    "targets": {
+      "browsers": [
         ">=1%",
         "not dead",
       ],
@@ -587,11 +587,11 @@ Array [
 `;
 
 exports[`getBabelOutputConfig() handles preset-env: browser + lib + experimental 1`] = `
-Array [
+[
   "@babel/preset-env",
-  Object {
+  {
     "bugfixes": true,
-    "exclude": Array [
+    "exclude": [
       "@babel/plugin-transform-regenerator",
       "@babel/plugin-transform-async-to-generator",
       "@babel/plugin-proposal-dynamic-import",
@@ -600,8 +600,8 @@ Array [
     "modules": "cjs",
     "shippedProposals": true,
     "spec": true,
-    "targets": Object {
-      "browsers": Array [
+    "targets": {
+      "browsers": [
         "last 2 chrome versions",
         "last 2 firefox versions",
       ],
@@ -612,11 +612,11 @@ Array [
 `;
 
 exports[`getBabelOutputConfig() handles preset-env: browser + lib + legacy 1`] = `
-Array [
+[
   "@babel/preset-env",
-  Object {
+  {
     "bugfixes": true,
-    "exclude": Array [
+    "exclude": [
       "@babel/plugin-transform-regenerator",
       "@babel/plugin-transform-async-to-generator",
       "@babel/plugin-proposal-dynamic-import",
@@ -625,8 +625,8 @@ Array [
     "modules": "cjs",
     "shippedProposals": true,
     "spec": true,
-    "targets": Object {
-      "browsers": Array [
+    "targets": {
+      "browsers": [
         ">=0.10%",
         "not IE 11",
       ],
@@ -637,11 +637,11 @@ Array [
 `;
 
 exports[`getBabelOutputConfig() handles preset-env: browser + lib + stable 1`] = `
-Array [
+[
   "@babel/preset-env",
-  Object {
+  {
     "bugfixes": true,
-    "exclude": Array [
+    "exclude": [
       "@babel/plugin-transform-regenerator",
       "@babel/plugin-transform-async-to-generator",
       "@babel/plugin-proposal-dynamic-import",
@@ -650,8 +650,8 @@ Array [
     "modules": "cjs",
     "shippedProposals": true,
     "spec": true,
-    "targets": Object {
-      "browsers": Array [
+    "targets": {
+      "browsers": [
         "defaults",
         "not IE 11",
       ],
@@ -662,11 +662,11 @@ Array [
 `;
 
 exports[`getBabelOutputConfig() handles preset-env: browser + umd + current 1`] = `
-Array [
+[
   "@babel/preset-env",
-  Object {
+  {
     "bugfixes": true,
-    "exclude": Array [
+    "exclude": [
       "@babel/plugin-transform-regenerator",
       "@babel/plugin-transform-async-to-generator",
       "@babel/plugin-proposal-dynamic-import",
@@ -675,8 +675,8 @@ Array [
     "modules": "umd",
     "shippedProposals": true,
     "spec": true,
-    "targets": Object {
-      "browsers": Array [
+    "targets": {
+      "browsers": [
         ">=1%",
         "not dead",
       ],
@@ -687,11 +687,11 @@ Array [
 `;
 
 exports[`getBabelOutputConfig() handles preset-env: browser + umd + experimental 1`] = `
-Array [
+[
   "@babel/preset-env",
-  Object {
+  {
     "bugfixes": true,
-    "exclude": Array [
+    "exclude": [
       "@babel/plugin-transform-regenerator",
       "@babel/plugin-transform-async-to-generator",
       "@babel/plugin-proposal-dynamic-import",
@@ -700,8 +700,8 @@ Array [
     "modules": "umd",
     "shippedProposals": true,
     "spec": true,
-    "targets": Object {
-      "browsers": Array [
+    "targets": {
+      "browsers": [
         "last 2 chrome versions",
         "last 2 firefox versions",
       ],
@@ -712,11 +712,11 @@ Array [
 `;
 
 exports[`getBabelOutputConfig() handles preset-env: browser + umd + legacy 1`] = `
-Array [
+[
   "@babel/preset-env",
-  Object {
+  {
     "bugfixes": true,
-    "exclude": Array [
+    "exclude": [
       "@babel/plugin-transform-regenerator",
       "@babel/plugin-transform-async-to-generator",
       "@babel/plugin-proposal-dynamic-import",
@@ -725,8 +725,8 @@ Array [
     "modules": "umd",
     "shippedProposals": true,
     "spec": true,
-    "targets": Object {
-      "browsers": Array [
+    "targets": {
+      "browsers": [
         ">=0.10%",
         "not IE 11",
       ],
@@ -737,11 +737,11 @@ Array [
 `;
 
 exports[`getBabelOutputConfig() handles preset-env: browser + umd + stable 1`] = `
-Array [
+[
   "@babel/preset-env",
-  Object {
+  {
     "bugfixes": true,
-    "exclude": Array [
+    "exclude": [
       "@babel/plugin-transform-regenerator",
       "@babel/plugin-transform-async-to-generator",
       "@babel/plugin-proposal-dynamic-import",
@@ -750,8 +750,8 @@ Array [
     "modules": "umd",
     "shippedProposals": true,
     "spec": true,
-    "targets": Object {
-      "browsers": Array [
+    "targets": {
+      "browsers": [
         "defaults",
         "not IE 11",
       ],
@@ -762,11 +762,11 @@ Array [
 `;
 
 exports[`getBabelOutputConfig() handles preset-env: native + lib + current 1`] = `
-Array [
+[
   "@babel/preset-env",
-  Object {
+  {
     "bugfixes": true,
-    "exclude": Array [
+    "exclude": [
       "@babel/plugin-transform-regenerator",
       "@babel/plugin-transform-async-to-generator",
     ],
@@ -774,7 +774,7 @@ Array [
     "modules": "cjs",
     "shippedProposals": true,
     "spec": true,
-    "targets": Object {
+    "targets": {
       "browsers": "iOS 14",
     },
     "useBuiltIns": false,
@@ -783,11 +783,11 @@ Array [
 `;
 
 exports[`getBabelOutputConfig() handles preset-env: native + lib + experimental 1`] = `
-Array [
+[
   "@babel/preset-env",
-  Object {
+  {
     "bugfixes": true,
-    "exclude": Array [
+    "exclude": [
       "@babel/plugin-transform-regenerator",
       "@babel/plugin-transform-async-to-generator",
     ],
@@ -795,7 +795,7 @@ Array [
     "modules": "cjs",
     "shippedProposals": true,
     "spec": true,
-    "targets": Object {
+    "targets": {
       "browsers": "iOS 15",
     },
     "useBuiltIns": false,
@@ -804,11 +804,11 @@ Array [
 `;
 
 exports[`getBabelOutputConfig() handles preset-env: native + lib + legacy 1`] = `
-Array [
+[
   "@babel/preset-env",
-  Object {
+  {
     "bugfixes": true,
-    "exclude": Array [
+    "exclude": [
       "@babel/plugin-transform-regenerator",
       "@babel/plugin-transform-async-to-generator",
     ],
@@ -816,7 +816,7 @@ Array [
     "modules": "cjs",
     "shippedProposals": true,
     "spec": true,
-    "targets": Object {
+    "targets": {
       "browsers": "iOS 12",
     },
     "useBuiltIns": false,
@@ -825,11 +825,11 @@ Array [
 `;
 
 exports[`getBabelOutputConfig() handles preset-env: native + lib + stable 1`] = `
-Array [
+[
   "@babel/preset-env",
-  Object {
+  {
     "bugfixes": true,
-    "exclude": Array [
+    "exclude": [
       "@babel/plugin-transform-regenerator",
       "@babel/plugin-transform-async-to-generator",
     ],
@@ -837,7 +837,7 @@ Array [
     "modules": "cjs",
     "shippedProposals": true,
     "spec": true,
-    "targets": Object {
+    "targets": {
       "browsers": "iOS 13",
     },
     "useBuiltIns": false,
@@ -846,11 +846,11 @@ Array [
 `;
 
 exports[`getBabelOutputConfig() handles preset-env: node + cjs + current 1`] = `
-Array [
+[
   "@babel/preset-env",
-  Object {
+  {
     "bugfixes": true,
-    "exclude": Array [
+    "exclude": [
       "@babel/plugin-transform-regenerator",
       "@babel/plugin-transform-async-to-generator",
       "@babel/plugin-proposal-dynamic-import",
@@ -859,7 +859,7 @@ Array [
     "modules": "cjs",
     "shippedProposals": true,
     "spec": true,
-    "targets": Object {
+    "targets": {
       "node": "16.12.0",
     },
     "useBuiltIns": false,
@@ -868,11 +868,11 @@ Array [
 `;
 
 exports[`getBabelOutputConfig() handles preset-env: node + cjs + experimental 1`] = `
-Array [
+[
   "@babel/preset-env",
-  Object {
+  {
     "bugfixes": true,
-    "exclude": Array [
+    "exclude": [
       "@babel/plugin-transform-regenerator",
       "@babel/plugin-transform-async-to-generator",
       "@babel/plugin-proposal-dynamic-import",
@@ -881,7 +881,7 @@ Array [
     "modules": "cjs",
     "shippedProposals": true,
     "spec": true,
-    "targets": Object {
+    "targets": {
       "node": "18.0.0",
     },
     "useBuiltIns": false,
@@ -890,11 +890,11 @@ Array [
 `;
 
 exports[`getBabelOutputConfig() handles preset-env: node + cjs + legacy 1`] = `
-Array [
+[
   "@babel/preset-env",
-  Object {
+  {
     "bugfixes": true,
-    "exclude": Array [
+    "exclude": [
       "@babel/plugin-transform-regenerator",
       "@babel/plugin-transform-async-to-generator",
     ],
@@ -902,7 +902,7 @@ Array [
     "modules": "cjs",
     "shippedProposals": true,
     "spec": true,
-    "targets": Object {
+    "targets": {
       "node": "12.22.0",
     },
     "useBuiltIns": false,
@@ -911,11 +911,11 @@ Array [
 `;
 
 exports[`getBabelOutputConfig() handles preset-env: node + cjs + stable 1`] = `
-Array [
+[
   "@babel/preset-env",
-  Object {
+  {
     "bugfixes": true,
-    "exclude": Array [
+    "exclude": [
       "@babel/plugin-transform-regenerator",
       "@babel/plugin-transform-async-to-generator",
       "@babel/plugin-proposal-dynamic-import",
@@ -924,7 +924,7 @@ Array [
     "modules": "cjs",
     "shippedProposals": true,
     "spec": true,
-    "targets": Object {
+    "targets": {
       "node": "14.15.0",
     },
     "useBuiltIns": false,
@@ -933,11 +933,11 @@ Array [
 `;
 
 exports[`getBabelOutputConfig() handles preset-env: node + lib + current 1`] = `
-Array [
+[
   "@babel/preset-env",
-  Object {
+  {
     "bugfixes": true,
-    "exclude": Array [
+    "exclude": [
       "@babel/plugin-transform-regenerator",
       "@babel/plugin-transform-async-to-generator",
       "@babel/plugin-proposal-dynamic-import",
@@ -946,7 +946,7 @@ Array [
     "modules": "cjs",
     "shippedProposals": true,
     "spec": true,
-    "targets": Object {
+    "targets": {
       "node": "16.12.0",
     },
     "useBuiltIns": false,
@@ -955,11 +955,11 @@ Array [
 `;
 
 exports[`getBabelOutputConfig() handles preset-env: node + lib + experimental 1`] = `
-Array [
+[
   "@babel/preset-env",
-  Object {
+  {
     "bugfixes": true,
-    "exclude": Array [
+    "exclude": [
       "@babel/plugin-transform-regenerator",
       "@babel/plugin-transform-async-to-generator",
       "@babel/plugin-proposal-dynamic-import",
@@ -968,7 +968,7 @@ Array [
     "modules": "cjs",
     "shippedProposals": true,
     "spec": true,
-    "targets": Object {
+    "targets": {
       "node": "18.0.0",
     },
     "useBuiltIns": false,
@@ -977,11 +977,11 @@ Array [
 `;
 
 exports[`getBabelOutputConfig() handles preset-env: node + lib + legacy 1`] = `
-Array [
+[
   "@babel/preset-env",
-  Object {
+  {
     "bugfixes": true,
-    "exclude": Array [
+    "exclude": [
       "@babel/plugin-transform-regenerator",
       "@babel/plugin-transform-async-to-generator",
     ],
@@ -989,7 +989,7 @@ Array [
     "modules": "cjs",
     "shippedProposals": true,
     "spec": true,
-    "targets": Object {
+    "targets": {
       "node": "12.22.0",
     },
     "useBuiltIns": false,
@@ -998,11 +998,11 @@ Array [
 `;
 
 exports[`getBabelOutputConfig() handles preset-env: node + lib + stable 1`] = `
-Array [
+[
   "@babel/preset-env",
-  Object {
+  {
     "bugfixes": true,
-    "exclude": Array [
+    "exclude": [
       "@babel/plugin-transform-regenerator",
       "@babel/plugin-transform-async-to-generator",
       "@babel/plugin-proposal-dynamic-import",
@@ -1011,7 +1011,7 @@ Array [
     "modules": "cjs",
     "shippedProposals": true,
     "spec": true,
-    "targets": Object {
+    "targets": {
       "node": "14.15.0",
     },
     "useBuiltIns": false,
@@ -1020,11 +1020,11 @@ Array [
 `;
 
 exports[`getBabelOutputConfig() handles preset-env: node + mjs + current 1`] = `
-Array [
+[
   "@babel/preset-env",
-  Object {
+  {
     "bugfixes": true,
-    "exclude": Array [
+    "exclude": [
       "@babel/plugin-transform-regenerator",
       "@babel/plugin-transform-async-to-generator",
       "@babel/plugin-proposal-dynamic-import",
@@ -1033,7 +1033,7 @@ Array [
     "modules": false,
     "shippedProposals": true,
     "spec": true,
-    "targets": Object {
+    "targets": {
       "node": "16.12.0",
     },
     "useBuiltIns": false,
@@ -1042,11 +1042,11 @@ Array [
 `;
 
 exports[`getBabelOutputConfig() handles preset-env: node + mjs + experimental 1`] = `
-Array [
+[
   "@babel/preset-env",
-  Object {
+  {
     "bugfixes": true,
-    "exclude": Array [
+    "exclude": [
       "@babel/plugin-transform-regenerator",
       "@babel/plugin-transform-async-to-generator",
       "@babel/plugin-proposal-dynamic-import",
@@ -1055,7 +1055,7 @@ Array [
     "modules": false,
     "shippedProposals": true,
     "spec": true,
-    "targets": Object {
+    "targets": {
       "node": "18.0.0",
     },
     "useBuiltIns": false,
@@ -1064,11 +1064,11 @@ Array [
 `;
 
 exports[`getBabelOutputConfig() handles preset-env: node + mjs + legacy 1`] = `
-Array [
+[
   "@babel/preset-env",
-  Object {
+  {
     "bugfixes": true,
-    "exclude": Array [
+    "exclude": [
       "@babel/plugin-transform-regenerator",
       "@babel/plugin-transform-async-to-generator",
     ],
@@ -1076,7 +1076,7 @@ Array [
     "modules": false,
     "shippedProposals": true,
     "spec": true,
-    "targets": Object {
+    "targets": {
       "node": "12.22.0",
     },
     "useBuiltIns": false,
@@ -1085,11 +1085,11 @@ Array [
 `;
 
 exports[`getBabelOutputConfig() handles preset-env: node + mjs + stable 1`] = `
-Array [
+[
   "@babel/preset-env",
-  Object {
+  {
     "bugfixes": true,
-    "exclude": Array [
+    "exclude": [
       "@babel/plugin-transform-regenerator",
       "@babel/plugin-transform-async-to-generator",
       "@babel/plugin-proposal-dynamic-import",
@@ -1098,7 +1098,7 @@ Array [
     "modules": false,
     "shippedProposals": true,
     "spec": true,
-    "targets": Object {
+    "targets": {
       "node": "14.15.0",
     },
     "useBuiltIns": false,
@@ -1107,40 +1107,40 @@ Array [
 `;
 
 exports[`getBabelOutputConfig() transforms async/await to promises when \`browser\` or \`native\` 1`] = `
-Object {
+{
   "babelrc": false,
   "babelrcRoots": undefined,
-  "caller": Object {
+  "caller": {
     "name": "packemon",
   },
   "comments": true,
   "configFile": false,
-  "parserOpts": Object {
+  "parserOpts": {
     "sourceType": "unambiguous",
     "strictMode": undefined,
   },
-  "plugins": Array [
-    Array [
+  "plugins": [
+    [
       "@babel/plugin-transform-destructuring",
-      Object {
+      {
         "useBuiltIns": true,
       },
     ],
-    Array [
+    [
       "@babel/plugin-proposal-object-rest-spread",
-      Object {
+      {
         "useBuiltIns": true,
       },
     ],
     "babel-plugin-conditional-invariant",
     "babel-plugin-env-constants",
   ],
-  "presets": Array [
-    Array [
+  "presets": [
+    [
       "@babel/preset-env",
-      Object {
+      {
         "bugfixes": true,
-        "exclude": Array [
+        "exclude": [
           "@babel/plugin-transform-regenerator",
           "@babel/plugin-transform-async-to-generator",
           "@babel/plugin-proposal-dynamic-import",
@@ -1149,8 +1149,8 @@ Object {
         "modules": "cjs",
         "shippedProposals": true,
         "spec": true,
-        "targets": Object {
-          "browsers": Array [
+        "targets": {
+          "browsers": [
             "defaults",
             "not IE 11",
           ],
@@ -1163,40 +1163,40 @@ Object {
 `;
 
 exports[`getBabelOutputConfig() transforms async/await to promises when \`browser\` or \`native\` 2`] = `
-Object {
+{
   "babelrc": false,
   "babelrcRoots": undefined,
-  "caller": Object {
+  "caller": {
     "name": "packemon",
   },
   "comments": true,
   "configFile": false,
-  "parserOpts": Object {
+  "parserOpts": {
     "sourceType": "unambiguous",
     "strictMode": undefined,
   },
-  "plugins": Array [
-    Array [
+  "plugins": [
+    [
       "@babel/plugin-transform-destructuring",
-      Object {
+      {
         "useBuiltIns": true,
       },
     ],
-    Array [
+    [
       "@babel/plugin-proposal-object-rest-spread",
-      Object {
+      {
         "useBuiltIns": true,
       },
     ],
     "babel-plugin-conditional-invariant",
     "babel-plugin-env-constants",
   ],
-  "presets": Array [
-    Array [
+  "presets": [
+    [
       "@babel/preset-env",
-      Object {
+      {
         "bugfixes": true,
-        "exclude": Array [
+        "exclude": [
           "@babel/plugin-transform-regenerator",
           "@babel/plugin-transform-async-to-generator",
         ],
@@ -1204,7 +1204,7 @@ Object {
         "modules": "cjs",
         "shippedProposals": true,
         "spec": true,
-        "targets": Object {
+        "targets": {
           "browsers": "iOS 15",
         },
         "useBuiltIns": false,
@@ -1215,46 +1215,46 @@ Object {
 `;
 
 exports[`getBabelOutputConfig() uses built-in destructuring and object spread when \`current\` or \`experimental\` 1`] = `
-Object {
+{
   "babelrc": false,
   "babelrcRoots": undefined,
-  "caller": Object {
+  "caller": {
     "name": "packemon",
   },
   "comments": true,
   "configFile": false,
-  "parserOpts": Object {
+  "parserOpts": {
     "sourceType": "unambiguous",
     "strictMode": undefined,
   },
-  "plugins": Array [
-    Array [
+  "plugins": [
+    [
       "@babel/plugin-transform-destructuring",
-      Object {
+      {
         "useBuiltIns": true,
       },
     ],
-    Array [
+    [
       "@babel/plugin-proposal-object-rest-spread",
-      Object {
+      {
         "useBuiltIns": true,
       },
     ],
-    Array [
+    [
       "babel-plugin-cjs-esm-interop",
-      Object {
+      {
         "format": "cjs",
       },
     ],
     "babel-plugin-conditional-invariant",
     "babel-plugin-env-constants",
   ],
-  "presets": Array [
-    Array [
+  "presets": [
+    [
       "@babel/preset-env",
-      Object {
+      {
         "bugfixes": true,
-        "exclude": Array [
+        "exclude": [
           "@babel/plugin-transform-regenerator",
           "@babel/plugin-transform-async-to-generator",
           "@babel/plugin-proposal-dynamic-import",
@@ -1263,7 +1263,7 @@ Object {
         "modules": "cjs",
         "shippedProposals": true,
         "spec": true,
-        "targets": Object {
+        "targets": {
           "node": "16.12.0",
         },
         "useBuiltIns": false,
@@ -1274,46 +1274,46 @@ Object {
 `;
 
 exports[`getBabelOutputConfig() uses built-in destructuring and object spread when \`current\` or \`experimental\` 2`] = `
-Object {
+{
   "babelrc": false,
   "babelrcRoots": undefined,
-  "caller": Object {
+  "caller": {
     "name": "packemon",
   },
   "comments": true,
   "configFile": false,
-  "parserOpts": Object {
+  "parserOpts": {
     "sourceType": "unambiguous",
     "strictMode": undefined,
   },
-  "plugins": Array [
-    Array [
+  "plugins": [
+    [
       "@babel/plugin-transform-destructuring",
-      Object {
+      {
         "useBuiltIns": true,
       },
     ],
-    Array [
+    [
       "@babel/plugin-proposal-object-rest-spread",
-      Object {
+      {
         "useBuiltIns": true,
       },
     ],
-    Array [
+    [
       "babel-plugin-cjs-esm-interop",
-      Object {
+      {
         "format": "cjs",
       },
     ],
     "babel-plugin-conditional-invariant",
     "babel-plugin-env-constants",
   ],
-  "presets": Array [
-    Array [
+  "presets": [
+    [
       "@babel/preset-env",
-      Object {
+      {
         "bugfixes": true,
-        "exclude": Array [
+        "exclude": [
           "@babel/plugin-transform-regenerator",
           "@babel/plugin-transform-async-to-generator",
           "@babel/plugin-proposal-dynamic-import",
@@ -1322,7 +1322,7 @@ Object {
         "modules": "cjs",
         "shippedProposals": true,
         "spec": true,
-        "targets": Object {
+        "targets": {
           "node": "18.0.0",
         },
         "useBuiltIns": false,

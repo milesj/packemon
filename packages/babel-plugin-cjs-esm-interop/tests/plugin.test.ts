@@ -367,7 +367,7 @@ describe('cjsEsmInterop()', () => {
 				),
 			).resolves.toMatchInlineSnapshot(`
 			"import _url from 'url';
-			const url = new URL(\\"\\", _url.pathToFileURL(__filename));"
+			const url = new URL("", _url.pathToFileURL(__filename));"
 		`);
 		});
 
@@ -459,7 +459,7 @@ describe('cjsEsmInterop()', () => {
 				),
 			).resolves.toMatchInlineSnapshot(`
 			"import _url from 'url';
-			const url = new URL(\\"\\", _url.pathToFileURL(__dirname));"
+			const url = new URL("", _url.pathToFileURL(__dirname));"
 		`);
 		});
 

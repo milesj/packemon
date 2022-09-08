@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Generators babel transforms example test case: browser-current-esm 1`] = `
-Array [
+[
   "esm/index-browser-current-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: esm
@@ -20,7 +20,7 @@ export { gen, runGen };
 `;
 
 exports[`Generators babel transforms example test case: browser-current-lib 1`] = `
-Array [
+[
   "lib/index-browser-current-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: lib
@@ -46,12 +46,12 @@ exports.runGen = runGen;
 `;
 
 exports[`Generators babel transforms example test case: browser-current-umd 1`] = `
-Array [
+[
   "umd/index-browser-current-umd.js",
   "(function (global, factory) {
-  if (typeof define === \\"function\\" && define.amd) {
-    define([\\"exports\\"], factory);
-  } else if (typeof exports !== \\"undefined\\") {
+  if (typeof define === "function" && define.amd) {
+    define(["exports"], factory);
+  } else if (typeof exports !== "undefined") {
     factory(exports);
   } else {
     var mod = {
@@ -60,10 +60,10 @@ Array [
     factory(mod.exports);
     global.examples = mod.exports;
   }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports) {
-  \\"use strict\\";
+})(typeof globalThis !== "undefined" ? globalThis : typeof self !== "undefined" ? self : this, function (_exports) {
+  "use strict";
 
-  Object.defineProperty(_exports, \\"__esModule\\", {
+  Object.defineProperty(_exports, "__esModule", {
     value: true
   });
   _exports.gen = gen;
@@ -85,7 +85,7 @@ Array [
 `;
 
 exports[`Generators babel transforms example test case: browser-experimental-esm 1`] = `
-Array [
+[
   "esm/index-browser-experimental-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: experimental, Format: esm
@@ -104,7 +104,7 @@ export { gen, runGen };
 `;
 
 exports[`Generators babel transforms example test case: browser-experimental-lib 1`] = `
-Array [
+[
   "lib/index-browser-experimental-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: experimental, Format: lib
@@ -130,12 +130,12 @@ exports.runGen = runGen;
 `;
 
 exports[`Generators babel transforms example test case: browser-experimental-umd 1`] = `
-Array [
+[
   "umd/index-browser-experimental-umd.js",
   "(function (global, factory) {
-  if (typeof define === \\"function\\" && define.amd) {
-    define([\\"exports\\"], factory);
-  } else if (typeof exports !== \\"undefined\\") {
+  if (typeof define === "function" && define.amd) {
+    define(["exports"], factory);
+  } else if (typeof exports !== "undefined") {
     factory(exports);
   } else {
     var mod = {
@@ -144,10 +144,10 @@ Array [
     factory(mod.exports);
     global.examples = mod.exports;
   }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports) {
-  \\"use strict\\";
+})(typeof globalThis !== "undefined" ? globalThis : typeof self !== "undefined" ? self : this, function (_exports) {
+  "use strict";
 
-  Object.defineProperty(_exports, \\"__esModule\\", {
+  Object.defineProperty(_exports, "__esModule", {
     value: true
   });
   _exports.gen = gen;
@@ -169,11 +169,11 @@ Array [
 `;
 
 exports[`Generators babel transforms example test case: browser-legacy-esm 1`] = `
-Array [
+[
   "esm/index-browser-legacy-esm.js",
-  "function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== \\"undefined\\" && o[Symbol.iterator] || o[\\"@@iterator\\"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === \\"number\\") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError(\\"Invalid attempt to iterate non-iterable instance.\\\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\\"); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+  "function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \\"string\\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \\"Object\\" && o.constructor) n = o.constructor.name; if (n === \\"Map\\" || n === \\"Set\\") return Array.from(o); if (n === \\"Arguments\\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
@@ -204,15 +204,15 @@ export { gen, runGen };
 `;
 
 exports[`Generators babel transforms example test case: browser-legacy-lib 1`] = `
-Array [
+[
   "lib/index-browser-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: lib
 'use strict';
 
-function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== \\"undefined\\" && o[Symbol.iterator] || o[\\"@@iterator\\"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === \\"number\\") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError(\\"Invalid attempt to iterate non-iterable instance.\\\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\\"); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \\"string\\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \\"Object\\" && o.constructor) n = o.constructor.name; if (n === \\"Map\\" || n === \\"Set\\") return Array.from(o); if (n === \\"Arguments\\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
@@ -246,12 +246,12 @@ exports.runGen = runGen;
 `;
 
 exports[`Generators babel transforms example test case: browser-legacy-umd 1`] = `
-Array [
+[
   "umd/index-browser-legacy-umd.js",
   "(function (global, factory) {
-  if (typeof define === \\"function\\" && define.amd) {
-    define([\\"exports\\"], factory);
-  } else if (typeof exports !== \\"undefined\\") {
+  if (typeof define === "function" && define.amd) {
+    define(["exports"], factory);
+  } else if (typeof exports !== "undefined") {
     factory(exports);
   } else {
     var mod = {
@@ -260,18 +260,18 @@ Array [
     factory(mod.exports);
     global.examples = mod.exports;
   }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports) {
-  \\"use strict\\";
+})(typeof globalThis !== "undefined" ? globalThis : typeof self !== "undefined" ? self : this, function (_exports) {
+  "use strict";
 
-  Object.defineProperty(_exports, \\"__esModule\\", {
+  Object.defineProperty(_exports, "__esModule", {
     value: true
   });
   _exports.gen = gen;
   _exports.runGen = runGen;
 
-  function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== \\"undefined\\" && o[Symbol.iterator] || o[\\"@@iterator\\"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === \\"number\\") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError(\\"Invalid attempt to iterate non-iterable instance.\\\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\\"); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+  function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
-  function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \\"string\\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \\"Object\\" && o.constructor) n = o.constructor.name; if (n === \\"Map\\" || n === \\"Set\\") return Array.from(o); if (n === \\"Arguments\\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+  function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
   function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
@@ -301,7 +301,7 @@ Array [
 `;
 
 exports[`Generators babel transforms example test case: browser-stable-esm 1`] = `
-Array [
+[
   "esm/index-browser-stable-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: esm
@@ -320,7 +320,7 @@ export { gen, runGen };
 `;
 
 exports[`Generators babel transforms example test case: browser-stable-lib 1`] = `
-Array [
+[
   "lib/index-browser-stable-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: lib
@@ -346,12 +346,12 @@ exports.runGen = runGen;
 `;
 
 exports[`Generators babel transforms example test case: browser-stable-umd 1`] = `
-Array [
+[
   "umd/index-browser-stable-umd.js",
   "(function (global, factory) {
-  if (typeof define === \\"function\\" && define.amd) {
-    define([\\"exports\\"], factory);
-  } else if (typeof exports !== \\"undefined\\") {
+  if (typeof define === "function" && define.amd) {
+    define(["exports"], factory);
+  } else if (typeof exports !== "undefined") {
     factory(exports);
   } else {
     var mod = {
@@ -360,10 +360,10 @@ Array [
     factory(mod.exports);
     global.examples = mod.exports;
   }
-})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports) {
-  \\"use strict\\";
+})(typeof globalThis !== "undefined" ? globalThis : typeof self !== "undefined" ? self : this, function (_exports) {
+  "use strict";
 
-  Object.defineProperty(_exports, \\"__esModule\\", {
+  Object.defineProperty(_exports, "__esModule", {
     value: true
   });
   _exports.gen = gen;
@@ -385,7 +385,7 @@ Array [
 `;
 
 exports[`Generators babel transforms example test case: native-current-lib 1`] = `
-Array [
+[
   "lib/index-native-current-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: current, Format: lib
@@ -411,7 +411,7 @@ exports.runGen = runGen;
 `;
 
 exports[`Generators babel transforms example test case: native-experimental-lib 1`] = `
-Array [
+[
   "lib/index-native-experimental-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: experimental, Format: lib
@@ -437,7 +437,7 @@ exports.runGen = runGen;
 `;
 
 exports[`Generators babel transforms example test case: native-legacy-lib 1`] = `
-Array [
+[
   "lib/index-native-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: legacy, Format: lib
@@ -463,7 +463,7 @@ exports.runGen = runGen;
 `;
 
 exports[`Generators babel transforms example test case: native-stable-lib 1`] = `
-Array [
+[
   "lib/index-native-stable-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: stable, Format: lib
@@ -489,7 +489,7 @@ exports.runGen = runGen;
 `;
 
 exports[`Generators babel transforms example test case: node-current-cjs 1`] = `
-Array [
+[
   "cjs/index-node-current-cjs-wrapper.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // This is an MJS wrapper for a sibling CJS file
@@ -501,7 +501,7 @@ export const { gen, runGen } = data;",
 `;
 
 exports[`Generators babel transforms example test case: node-current-cjs 2`] = `
-Array [
+[
   "cjs/index-node-current-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: cjs
@@ -527,7 +527,7 @@ exports.runGen = runGen;
 `;
 
 exports[`Generators babel transforms example test case: node-current-lib 1`] = `
-Array [
+[
   "lib/index-node-current-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: lib
@@ -553,7 +553,7 @@ exports.runGen = runGen;
 `;
 
 exports[`Generators babel transforms example test case: node-current-mjs 1`] = `
-Array [
+[
   "mjs/index-node-current-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: mjs
@@ -572,7 +572,7 @@ export { gen, runGen };
 `;
 
 exports[`Generators babel transforms example test case: node-experimental-cjs 1`] = `
-Array [
+[
   "cjs/index-node-experimental-cjs-wrapper.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // This is an MJS wrapper for a sibling CJS file
@@ -584,7 +584,7 @@ export const { gen, runGen } = data;",
 `;
 
 exports[`Generators babel transforms example test case: node-experimental-cjs 2`] = `
-Array [
+[
   "cjs/index-node-experimental-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: cjs
@@ -610,7 +610,7 @@ exports.runGen = runGen;
 `;
 
 exports[`Generators babel transforms example test case: node-experimental-lib 1`] = `
-Array [
+[
   "lib/index-node-experimental-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: lib
@@ -636,7 +636,7 @@ exports.runGen = runGen;
 `;
 
 exports[`Generators babel transforms example test case: node-experimental-mjs 1`] = `
-Array [
+[
   "mjs/index-node-experimental-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: mjs
@@ -655,7 +655,7 @@ export { gen, runGen };
 `;
 
 exports[`Generators babel transforms example test case: node-legacy-cjs 1`] = `
-Array [
+[
   "cjs/index-node-legacy-cjs-wrapper.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // This is an MJS wrapper for a sibling CJS file
@@ -667,7 +667,7 @@ export const { gen, runGen } = data;",
 `;
 
 exports[`Generators babel transforms example test case: node-legacy-cjs 2`] = `
-Array [
+[
   "cjs/index-node-legacy-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: cjs
@@ -693,7 +693,7 @@ exports.runGen = runGen;
 `;
 
 exports[`Generators babel transforms example test case: node-legacy-lib 1`] = `
-Array [
+[
   "lib/index-node-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: lib
@@ -719,7 +719,7 @@ exports.runGen = runGen;
 `;
 
 exports[`Generators babel transforms example test case: node-legacy-mjs 1`] = `
-Array [
+[
   "mjs/index-node-legacy-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: mjs
@@ -738,7 +738,7 @@ export { gen, runGen };
 `;
 
 exports[`Generators babel transforms example test case: node-stable-cjs 1`] = `
-Array [
+[
   "cjs/index-node-stable-cjs-wrapper.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // This is an MJS wrapper for a sibling CJS file
@@ -750,7 +750,7 @@ export const { gen, runGen } = data;",
 `;
 
 exports[`Generators babel transforms example test case: node-stable-cjs 2`] = `
-Array [
+[
   "cjs/index-node-stable-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: cjs
@@ -776,7 +776,7 @@ exports.runGen = runGen;
 `;
 
 exports[`Generators babel transforms example test case: node-stable-lib 1`] = `
-Array [
+[
   "lib/index-node-stable-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: lib
@@ -802,7 +802,7 @@ exports.runGen = runGen;
 `;
 
 exports[`Generators babel transforms example test case: node-stable-mjs 1`] = `
-Array [
+[
   "mjs/index-node-stable-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: mjs
@@ -821,7 +821,7 @@ export { gen, runGen };
 `;
 
 exports[`Generators swc transforms example test case: browser-current-esm 1`] = `
-Array [
+[
   "esm/index-browser-current-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: esm
@@ -836,7 +836,7 @@ export { gen, runGen };
 `;
 
 exports[`Generators swc transforms example test case: browser-current-lib 1`] = `
-Array [
+[
   "lib/index-browser-current-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: lib
@@ -856,17 +856,17 @@ exports.runGen = runGen;
 `;
 
 exports[`Generators swc transforms example test case: browser-current-umd 1`] = `
-Array [
+[
   "umd/index-browser-current-umd.js",
   "(function(global, factory) {
-    if (typeof module === \\"object\\" && typeof module.exports === \\"object\\") factory(exports);
-    else if (typeof define === \\"function\\" && define.amd) define([
-        \\"exports\\"
+    if (typeof module === "object" && typeof module.exports === "object") factory(exports);
+    else if (typeof define === "function" && define.amd) define([
+        "exports"
     ], factory);
-    else if (global = typeof globalThis !== \\"undefined\\" ? globalThis : global || self) factory(global.examples = {});
+    else if (global = typeof globalThis !== "undefined" ? globalThis : global || self) factory(global.examples = {});
 })(this, function(exports) {
-    \\"use strict\\";
-    Object.defineProperty(exports, \\"__esModule\\", {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
         value: true
     });
     function _export(target, all) {
@@ -890,7 +890,7 @@ Array [
 `;
 
 exports[`Generators swc transforms example test case: browser-experimental-esm 1`] = `
-Array [
+[
   "esm/index-browser-experimental-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: experimental, Format: esm
@@ -905,7 +905,7 @@ export { gen, runGen };
 `;
 
 exports[`Generators swc transforms example test case: browser-experimental-lib 1`] = `
-Array [
+[
   "lib/index-browser-experimental-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: experimental, Format: lib
@@ -925,17 +925,17 @@ exports.runGen = runGen;
 `;
 
 exports[`Generators swc transforms example test case: browser-experimental-umd 1`] = `
-Array [
+[
   "umd/index-browser-experimental-umd.js",
   "(function(global, factory) {
-    if (typeof module === \\"object\\" && typeof module.exports === \\"object\\") factory(exports);
-    else if (typeof define === \\"function\\" && define.amd) define([
-        \\"exports\\"
+    if (typeof module === "object" && typeof module.exports === "object") factory(exports);
+    else if (typeof define === "function" && define.amd) define([
+        "exports"
     ], factory);
-    else if (global = typeof globalThis !== \\"undefined\\" ? globalThis : global || self) factory(global.examples = {});
+    else if (global = typeof globalThis !== "undefined" ? globalThis : global || self) factory(global.examples = {});
 })(this, function(exports) {
-    \\"use strict\\";
-    Object.defineProperty(exports, \\"__esModule\\", {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
         value: true
     });
     function _export(target, all) {
@@ -959,7 +959,7 @@ Array [
 `;
 
 exports[`Generators swc transforms example test case: browser-legacy-esm 1`] = `
-Array [
+[
   "esm/index-browser-legacy-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: esm
@@ -975,9 +975,9 @@ var __generator = this && this.__generator || function(thisArg, body) {
     };
     return g = {
         next: verb(0),
-        \\"throw\\": verb(1),
-        \\"return\\": verb(2)
-    }, typeof Symbol === \\"function\\" && (g[Symbol.iterator] = function() {
+        "throw": verb(1),
+        "return": verb(2)
+    }, typeof Symbol === "function" && (g[Symbol.iterator] = function() {
         return this;
     }), g;
     function verb(n) {
@@ -989,9 +989,9 @@ var __generator = this && this.__generator || function(thisArg, body) {
         };
     }
     function step(op) {
-        if (f) throw new TypeError(\\"Generator is already executing.\\");
+        if (f) throw new TypeError("Generator is already executing.");
         while(_)try {
-            if (f = 1, y && (t = op[0] & 2 ? y[\\"return\\"] : op[0] ? y[\\"throw\\"] || ((t = y[\\"return\\"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [
                 op[0] & 2,
                 t.value
@@ -1094,11 +1094,11 @@ export { gen, runGen };
 `;
 
 exports[`Generators swc transforms example test case: browser-legacy-lib 1`] = `
-Array [
+[
   "lib/index-browser-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: lib
-\\"use strict\\";
+"use strict";
 var __generator = (void 0) && (void 0).__generator || function(thisArg, body) {
     var f, y, t, g, _ = {
         label: 0,
@@ -1111,9 +1111,9 @@ var __generator = (void 0) && (void 0).__generator || function(thisArg, body) {
     };
     return g = {
         next: verb(0),
-        \\"throw\\": verb(1),
-        \\"return\\": verb(2)
-    }, typeof Symbol === \\"function\\" && (g[Symbol.iterator] = function() {
+        "throw": verb(1),
+        "return": verb(2)
+    }, typeof Symbol === "function" && (g[Symbol.iterator] = function() {
         return this;
     }), g;
     function verb(n) {
@@ -1125,9 +1125,9 @@ var __generator = (void 0) && (void 0).__generator || function(thisArg, body) {
         };
     }
     function step(op) {
-        if (f) throw new TypeError(\\"Generator is already executing.\\");
+        if (f) throw new TypeError("Generator is already executing.");
         while(_)try {
-            if (f = 1, y && (t = op[0] & 2 ? y[\\"return\\"] : op[0] ? y[\\"throw\\"] || ((t = y[\\"return\\"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [
                 op[0] & 2,
                 t.value
@@ -1194,7 +1194,7 @@ var __generator = (void 0) && (void 0).__generator || function(thisArg, body) {
         };
     }
 };
-Object.defineProperty(exports, \\"__esModule\\", {
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
 function gen() {
@@ -1234,17 +1234,17 @@ exports.runGen = runGen;
 `;
 
 exports[`Generators swc transforms example test case: browser-legacy-umd 1`] = `
-Array [
+[
   "umd/index-browser-legacy-umd.js",
   "(function(global, factory) {
-    if (typeof module === \\"object\\" && typeof module.exports === \\"object\\") factory(exports);
-    else if (typeof define === \\"function\\" && define.amd) define([
-        \\"exports\\"
+    if (typeof module === "object" && typeof module.exports === "object") factory(exports);
+    else if (typeof define === "function" && define.amd) define([
+        "exports"
     ], factory);
-    else if (global = typeof globalThis !== \\"undefined\\" ? globalThis : global || self) factory(global.examples = {});
+    else if (global = typeof globalThis !== "undefined" ? globalThis : global || self) factory(global.examples = {});
 })(this, function(exports) {
-    \\"use strict\\";
-    Object.defineProperty(exports, \\"__esModule\\", {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
         value: true
     });
     function _export(target, all) {
@@ -1273,9 +1273,9 @@ Array [
         };
         return g = {
             next: verb(0),
-            \\"throw\\": verb(1),
-            \\"return\\": verb(2)
-        }, typeof Symbol === \\"function\\" && (g[Symbol.iterator] = function() {
+            "throw": verb(1),
+            "return": verb(2)
+        }, typeof Symbol === "function" && (g[Symbol.iterator] = function() {
             return this;
         }), g;
         function verb(n) {
@@ -1287,9 +1287,9 @@ Array [
             };
         }
         function step(op) {
-            if (f) throw new TypeError(\\"Generator is already executing.\\");
+            if (f) throw new TypeError("Generator is already executing.");
             while(_)try {
-                if (f = 1, y && (t = op[0] & 2 ? y[\\"return\\"] : op[0] ? y[\\"throw\\"] || ((t = y[\\"return\\"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+                if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
                 if (y = 0, t) op = [
                     op[0] & 2,
                     t.value
@@ -1392,7 +1392,7 @@ Array [
 `;
 
 exports[`Generators swc transforms example test case: browser-stable-esm 1`] = `
-Array [
+[
   "esm/index-browser-stable-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: esm
@@ -1407,7 +1407,7 @@ export { gen, runGen };
 `;
 
 exports[`Generators swc transforms example test case: browser-stable-lib 1`] = `
-Array [
+[
   "lib/index-browser-stable-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: lib
@@ -1427,17 +1427,17 @@ exports.runGen = runGen;
 `;
 
 exports[`Generators swc transforms example test case: browser-stable-umd 1`] = `
-Array [
+[
   "umd/index-browser-stable-umd.js",
   "(function(global, factory) {
-    if (typeof module === \\"object\\" && typeof module.exports === \\"object\\") factory(exports);
-    else if (typeof define === \\"function\\" && define.amd) define([
-        \\"exports\\"
+    if (typeof module === "object" && typeof module.exports === "object") factory(exports);
+    else if (typeof define === "function" && define.amd) define([
+        "exports"
     ], factory);
-    else if (global = typeof globalThis !== \\"undefined\\" ? globalThis : global || self) factory(global.examples = {});
+    else if (global = typeof globalThis !== "undefined" ? globalThis : global || self) factory(global.examples = {});
 })(this, function(exports) {
-    \\"use strict\\";
-    Object.defineProperty(exports, \\"__esModule\\", {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
         value: true
     });
     function _export(target, all) {
@@ -1461,7 +1461,7 @@ Array [
 `;
 
 exports[`Generators swc transforms example test case: native-current-lib 1`] = `
-Array [
+[
   "lib/index-native-current-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: current, Format: lib
@@ -1481,7 +1481,7 @@ exports.runGen = runGen;
 `;
 
 exports[`Generators swc transforms example test case: native-experimental-lib 1`] = `
-Array [
+[
   "lib/index-native-experimental-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: experimental, Format: lib
@@ -1501,12 +1501,12 @@ exports.runGen = runGen;
 `;
 
 exports[`Generators swc transforms example test case: native-legacy-lib 1`] = `
-Array [
+[
   "lib/index-native-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: legacy, Format: lib
-\\"use strict\\";
-Object.defineProperty(exports, \\"__esModule\\", {
+"use strict";
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
 function* gen() {}
@@ -1521,7 +1521,7 @@ exports.runGen = runGen;
 `;
 
 exports[`Generators swc transforms example test case: native-stable-lib 1`] = `
-Array [
+[
   "lib/index-native-stable-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: stable, Format: lib
@@ -1541,7 +1541,7 @@ exports.runGen = runGen;
 `;
 
 exports[`Generators swc transforms example test case: node-current-cjs 1`] = `
-Array [
+[
   "cjs/index-node-current-cjs-wrapper.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // This is an MJS wrapper for a sibling CJS file
@@ -1553,7 +1553,7 @@ export const { gen, runGen } = data;",
 `;
 
 exports[`Generators swc transforms example test case: node-current-cjs 2`] = `
-Array [
+[
   "cjs/index-node-current-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: cjs
@@ -1573,7 +1573,7 @@ exports.runGen = runGen;
 `;
 
 exports[`Generators swc transforms example test case: node-current-lib 1`] = `
-Array [
+[
   "lib/index-node-current-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: lib
@@ -1593,7 +1593,7 @@ exports.runGen = runGen;
 `;
 
 exports[`Generators swc transforms example test case: node-current-mjs 1`] = `
-Array [
+[
   "mjs/index-node-current-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: mjs
@@ -1608,7 +1608,7 @@ export { gen, runGen };
 `;
 
 exports[`Generators swc transforms example test case: node-experimental-cjs 1`] = `
-Array [
+[
   "cjs/index-node-experimental-cjs-wrapper.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // This is an MJS wrapper for a sibling CJS file
@@ -1620,7 +1620,7 @@ export const { gen, runGen } = data;",
 `;
 
 exports[`Generators swc transforms example test case: node-experimental-cjs 2`] = `
-Array [
+[
   "cjs/index-node-experimental-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: cjs
@@ -1640,7 +1640,7 @@ exports.runGen = runGen;
 `;
 
 exports[`Generators swc transforms example test case: node-experimental-lib 1`] = `
-Array [
+[
   "lib/index-node-experimental-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: lib
@@ -1660,7 +1660,7 @@ exports.runGen = runGen;
 `;
 
 exports[`Generators swc transforms example test case: node-experimental-mjs 1`] = `
-Array [
+[
   "mjs/index-node-experimental-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: mjs
@@ -1675,7 +1675,7 @@ export { gen, runGen };
 `;
 
 exports[`Generators swc transforms example test case: node-legacy-cjs 1`] = `
-Array [
+[
   "cjs/index-node-legacy-cjs-wrapper.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // This is an MJS wrapper for a sibling CJS file
@@ -1687,12 +1687,12 @@ export const { gen, runGen } = data;",
 `;
 
 exports[`Generators swc transforms example test case: node-legacy-cjs 2`] = `
-Array [
+[
   "cjs/index-node-legacy-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: cjs
-\\"use strict\\";
-Object.defineProperty(exports, \\"__esModule\\", {
+"use strict";
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
 function* gen() {}
@@ -1707,12 +1707,12 @@ exports.runGen = runGen;
 `;
 
 exports[`Generators swc transforms example test case: node-legacy-lib 1`] = `
-Array [
+[
   "lib/index-node-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: lib
-\\"use strict\\";
-Object.defineProperty(exports, \\"__esModule\\", {
+"use strict";
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
 function* gen() {}
@@ -1727,7 +1727,7 @@ exports.runGen = runGen;
 `;
 
 exports[`Generators swc transforms example test case: node-legacy-mjs 1`] = `
-Array [
+[
   "mjs/index-node-legacy-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: mjs
@@ -1742,7 +1742,7 @@ export { gen, runGen };
 `;
 
 exports[`Generators swc transforms example test case: node-stable-cjs 1`] = `
-Array [
+[
   "cjs/index-node-stable-cjs-wrapper.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // This is an MJS wrapper for a sibling CJS file
@@ -1754,7 +1754,7 @@ export const { gen, runGen } = data;",
 `;
 
 exports[`Generators swc transforms example test case: node-stable-cjs 2`] = `
-Array [
+[
   "cjs/index-node-stable-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: cjs
@@ -1774,7 +1774,7 @@ exports.runGen = runGen;
 `;
 
 exports[`Generators swc transforms example test case: node-stable-lib 1`] = `
-Array [
+[
   "lib/index-node-stable-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: lib
@@ -1794,7 +1794,7 @@ exports.runGen = runGen;
 `;
 
 exports[`Generators swc transforms example test case: node-stable-mjs 1`] = `
-Array [
+[
   "mjs/index-node-stable-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: mjs
