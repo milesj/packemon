@@ -14742,12 +14742,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"magic-string@npm:^0.26.2":
-  version: 0.26.2
-  resolution: "magic-string@npm:0.26.2"
+"magic-string@npm:^0.26.3":
+  version: 0.26.3
+  resolution: "magic-string@npm:0.26.3"
   dependencies:
     sourcemap-codec: ^1.4.8
-  checksum: b4db4e2b370ac8d9ffc6443a2b591b75364bf1fc9121b5a4068d5b89804abff6709d1fa4a0e0c2d54f2e61e0e44db83efdfe219a5ab0ba6d25ee1f2b51fbed55
+  checksum: e72c9b3d90ccbde088acc5937109f73fa4be8b6a2c2ea9bf9c3c01974f1ebf09842259a74ff2ba4081008a7d49941d883cfef8c460e6c33a6eb564b58482b750
   languageName: node
   linkType: hard
 
@@ -16492,13 +16492,13 @@ __metadata:
     ink: ^3.2.0
     ink-progress-bar: ^3.0.0
     ink-spinner: ^4.0.3
-    magic-string: ^0.26.2
+    magic-string: ^0.26.3
     micromatch: ^4.0.5
     npm-packlist: ^5.1.1
     react: ^17.0.2
     resolve: ^1.22.1
     rimraf: ^3.0.2
-    rollup: ^2.78.1
+    rollup: ^2.79.0
     rollup-plugin-node-externals: ^4.1.1
     rollup-plugin-polyfill-node: ^0.10.2
     semver: ^7.3.7
@@ -18689,9 +18689,9 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"rollup@npm:^2.23.0, rollup@npm:^2.78.1, rollup@npm:~2.78.0":
-  version: 2.78.1
-  resolution: "rollup@npm:2.78.1"
+"rollup@npm:^2.23.0, rollup@npm:^2.79.0":
+  version: 2.79.0
+  resolution: "rollup@npm:2.79.0"
   dependencies:
     fsevents: ~2.3.2
   dependenciesMeta:
@@ -18699,7 +18699,7 @@ resolve@^2.0.0-next.3:
       optional: true
   bin:
     rollup: dist/bin/rollup
-  checksum: 9034814383ca5bdb4bea6d499270aeb31cdb0bb884f81b0c6a1d19c63cc973f040e6ee09b7af8a7169dd231c090f4b44ef8b99c4bfdf884aceeb3dcefb8cfa14
+  checksum: 166f1ffea1898e157003920065b3a328e7012ea6808860ee8fe5d1ce94804fcce9985c95a3c0f7fe9c611aff0d09a70f073f1d6f715c8faba28e4e40f71ee3bb
   languageName: node
   linkType: hard
 
@@ -18714,6 +18714,20 @@ resolve@^2.0.0-next.3:
   bin:
     rollup: dist/bin/rollup
   checksum: ef6c124c0feda22423e7dc97ea626fbd63f63bf72c8facd70bf461fa97ea55975cc80da5317be7118084d4d6fb15490cafa6c7c2b902e8adfa94a1a544f4782d
+  languageName: node
+  linkType: hard
+
+"rollup@npm:~2.78.0":
+  version: 2.78.1
+  resolution: "rollup@npm:2.78.1"
+  dependencies:
+    fsevents: ~2.3.2
+  dependenciesMeta:
+    fsevents:
+      optional: true
+  bin:
+    rollup: dist/bin/rollup
+  checksum: 9034814383ca5bdb4bea6d499270aeb31cdb0bb884f81b0c6a1d19c63cc973f040e6ee09b7af8a7169dd231c090f4b44ef8b99c4bfdf884aceeb3dcefb8cfa14
   languageName: node
   linkType: hard
 
