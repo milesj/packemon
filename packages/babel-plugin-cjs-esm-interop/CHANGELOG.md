@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.0.5 - 2022-09-08
+
+#### 🛠 Internals
+
+- Update snapshots. ([cbb1022](https://github.com/milesj/packemon/commit/cbb1022))
+
+**Note:** Version bump only for package babel-plugin-cjs-esm-interop
+
+
+
+
+
 ### 2.0.4 - 2022-08-20
 
 #### 🛠 Internals

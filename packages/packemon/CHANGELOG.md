@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.4.1 - 2022-09-08
+
+#### 🐞 Fixes
+
+- Use non-index inputs for entry points. (#149) ([8cecfba](https://github.com/milesj/packemon/commit/8cecfba)), closes [#149](https://github.com/milesj/packemon/issues/149)
+
+#### 📦 Dependencies
+
+- **[babel]** Update to v7.19. ([19aabea](https://github.com/milesj/packemon/commit/19aabea))
+- **[moon-dev]** Update to latest. ([d71b3fa](https://github.com/milesj/packemon/commit/d71b3fa))
+- **[rollup]** Update to v2.79. ([0d05ff3](https://github.com/milesj/packemon/commit/0d05ff3))
+- **[swc]** Update to v1.2.248. ([2be6863](https://github.com/milesj/packemon/commit/2be6863))
+
+#### 🛠 Internals
+
+- Update snapshots. ([cbb1022](https://github.com/milesj/packemon/commit/cbb1022))
+
+**Note:** Version bump only for package packemon
+
+
+
+
+
 ## 2.4.0 - 2022-08-29
 
 #### 🚀 Updates
