@@ -217,10 +217,6 @@ export class Artifact {
 		};
 	}
 
-	getBuildTargets(): string[] {
-		return this.builds.map((build) => build.format);
-	}
-
 	getInputPaths(): InputMap {
 		// Return absolute paths so that Rollup paths/externals resolve correctly
 		return Object.fromEntries(
@@ -232,7 +228,7 @@ export class Artifact {
 	}
 
 	getLabel(): string {
-		return `${this.platform}:${this.support}:${this.getBuildTargets().join(',')}`;
+		return `${this.platform}:${this.support}:${this.builds.map((build) => build.format).join(',')}`;
 	}
 
 	isComplete(): boolean {
@@ -292,12 +288,4 @@ export class Artifact {
 	protected async removeFiles(files: PortablePath[]): Promise<unknown> {
 		return Promise.all(files.map((file) => fs.remove(String(file))));
 	}
-
-	// abstract build(options: BuildOptions, packemonConfig: ConfigFile): Awaitable;
-
-	// abstract getLabel(): string;
-
-	// abstract getBuildTargets(): string[];
-
-	// abstract getPackageExports(): PackageExports;
 }

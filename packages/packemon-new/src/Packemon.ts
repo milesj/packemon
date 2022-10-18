@@ -34,7 +34,7 @@ export class Packemon {
 
 		if (!pkg) {
 			console.log('No package found to build.');
-			return;
+			return undefined;
 		}
 
 		// Build packages in parallel using a pool
@@ -61,6 +61,8 @@ export class Packemon {
 		if (errors.length > 0) {
 			throw errors[0];
 		}
+
+		return pkg;
 	}
 
 	async clean() {
