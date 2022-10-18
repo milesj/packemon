@@ -1,9 +1,14 @@
+/* eslint-disable require-atomic-updates */
+/* eslint-disable no-param-reassign */
 /* eslint-disable @typescript-eslint/member-ordering */
+
 import glob from 'fast-glob';
+import fs from 'fs-extra';
 import semver from 'semver';
 import { Memoize, Path, toArray } from '@boost/common';
 import { optimal } from '@boost/common/optimal';
 import { createDebugger, Debugger } from '@boost/debug';
+import { Artifact } from './Artifact';
 import {
 	DEFAULT_FORMATS,
 	EXCLUDE,
@@ -11,16 +16,23 @@ import {
 	FORMATS_BROWSER,
 	FORMATS_NATIVE,
 	FORMATS_NODE,
-	NODE_SUPPORTED_VERSIONS,
-	NPM_SUPPORTED_VERSIONS,
-	SUPPORT_PRIORITY,
 } from './constants';
 import { loadTsconfigJson } from './helpers/loadTsconfigJson';
+import { matchesPattern } from './helpers/matchesPattern';
 import { packemonBlueprint } from './schemas';
-import { FeatureFlags, PackageConfig, PackemonPackage, PackemonPackageConfig } from './types';
+import {
+	ApiType,
+	BuildOptions,
+	ConfigFile,
+	FeatureFlags,
+	PackageConfig,
+	PackemonPackage,
+	PackemonPackageConfig,
+	Platform,
+} from './types';
 
 export class Package {
-	// readonly artifacts: Artifact[] = [];
+	readonly artifacts: Artifact[] = [];
 
 	readonly configs: PackageConfig[] = [];
 
@@ -42,12 +54,64 @@ export class Package {
 		this.debug = createDebugger(['packemon', 'package', this.getSlug()]);
 	}
 
+	async build(options: BuildOptions, packemonConfig: ConfigFile): Promise<void> {
+		this.debug('Building artifacts');
+
+		// Build artifacts in parallel
+		await Promise.all(
+			this.artifacts.map(async (artifact) => {
+				const start = Date.now();
+
+				try {
+					artifact.state = 'building';
+
+					await artifact.build(options, packemonConfig);
+
+					artifact.state = 'passed';
+				} catch (error: unknown) {
+					artifact.state = 'failed';
+
+					throw error;
+				} finally {
+					artifact.buildResult.time = Date.now() - start;
+				}
+			}),
+		);
+
+		// Add package entry points based on artifacts
+		// this.addEntryPoints();
+
+		// Add package `engines` based on artifacts
+		if (options.addEngines) {
+			// this.addEngines();
+		}
+
+		// Add package `exports` based on artifacts
+		if (options.addExports) {
+			// this.addExports();
+		}
+
+		// Add package `files` whitelist
+		if (options.addFiles) {
+			// this.addFiles();
+		}
+
+		// Stamp with a timestamp
+		if (options.stamp) {
+			this.json.release = String(Date.now());
+		}
+
+		// Sync `package.json` in case it was modified
+		await fs.writeJson(this.jsonPath.path(), this.json, { spaces: 2 });
+	}
+
 	async clean(): Promise<void> {
 		this.debug('Cleaning build artifacts');
 
-		// await Promise.all(this.artifacts.map((artifact) => artifact.cleanup()));
+		await Promise.all(this.artifacts.map((artifact) => artifact.clean()));
 	}
 
+	@Memoize()
 	async findDistributableFiles(): Promise<string[]> {
 		// https://github.com/npm/npm-packlist/blob/main/index.js#L29
 		const patterns: string[] = ['(readme|copying|license|licence)*', 'package.json'];
@@ -66,6 +130,69 @@ export class Package {
 			dot: true,
 			ignore: ['node_modules'],
 		});
+	}
+
+	@Memoize()
+	async findSourceFiles(): Promise<string[]> {
+		const extsWithoutPeriod = EXTENSIONS.map((ext) => ext.slice(1)).join(',');
+
+		return glob(`src/**/*.{${extsWithoutPeriod}}`, {
+			absolute: true,
+			cwd: this.path.path(),
+			onlyFiles: true,
+			// This breaks our own fixtures, so this is hard to test...
+			ignore: process.env.NODE_ENV === 'test' ? [] : EXCLUDE,
+		});
+	}
+
+	/**
+	 * Generate artifacts based on the packemon configuration.
+	 */
+	generateArtifacts({ declaration = false, filterFormats, filterPlatforms }: BuildOptions = {}) {
+		this.debug('Generating artifacts');
+
+		const sharedLib = this.requiresSharedLib();
+		const apiType = this.determineApiType();
+
+		this.configs.forEach((config, index) => {
+			let builds = config.formats.map((format) => ({
+				declaration,
+				format,
+			}));
+
+			if (filterFormats) {
+				this.debug('Filtering formats with pattern: %s', filterFormats);
+
+				builds = builds.filter((build) => matchesPattern(build.format, filterFormats));
+			}
+
+			if (filterPlatforms) {
+				this.debug('Filtering platforms with pattern: %s', filterPlatforms);
+
+				if (!matchesPattern(config.platform, filterPlatforms)) {
+					return;
+				}
+			}
+
+			if (builds.length === 0) {
+				return;
+			}
+
+			const artifact = new Artifact(this, builds);
+			artifact.api = apiType;
+			artifact.bundle = config.bundle;
+			artifact.configGroup = index;
+			artifact.externals = config.externals;
+			artifact.inputs = config.inputs;
+			artifact.namespace = config.namespace;
+			artifact.platform = config.platform;
+			artifact.sharedLib = sharedLib;
+			artifact.support = config.support;
+
+			this.artifacts.push(artifact);
+		});
+
+		this.debug(' - %s: %s', this.getName(), this.artifacts.join(', '));
 	}
 
 	@Memoize()
@@ -236,5 +363,35 @@ export class Package {
 				});
 			});
 		});
+	}
+
+	/**
+	 * When 1 config needs a private API, all other configs should be private,
+	 * otherwise we will have conflicting output structures and exports.
+	 */
+	protected determineApiType(): ApiType {
+		return this.configs.some((cfg) => cfg.api === 'private') ? 'private' : 'public';
+	}
+
+	/**
+	 * Format "lib" is a shared format across all platforms,
+	 * and when a package wants to support multiple platforms,
+	 * we must account for this and alter the output paths.
+	 */
+	protected requiresSharedLib(): boolean {
+		const platformsToCheck = new Set<Platform>();
+		let libFormatCount = 0;
+
+		this.configs.forEach((config) => {
+			platformsToCheck.add(config.platform);
+
+			config.formats.forEach((format) => {
+				if (format === 'lib') {
+					libFormatCount += 1;
+				}
+			});
+		});
+
+		return platformsToCheck.size > 1 && libFormatCount > 1;
 	}
 }

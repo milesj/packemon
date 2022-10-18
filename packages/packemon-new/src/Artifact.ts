@@ -10,7 +10,6 @@ import { getRollupConfig } from './rollup/config';
 import type {
 	ApiType,
 	ArtifactState,
-	Awaitable,
 	Build,
 	BuildOptions,
 	BuildResult,
@@ -154,6 +153,10 @@ export class Artifact {
 
 		await Promise.all(
 			this.builds.map((build) => {
+				if (!build.declaration) {
+					return Promise.resolve();
+				}
+
 				const args: string[] = [];
 
 				// Project references
@@ -179,7 +182,7 @@ export class Artifact {
 		);
 	}
 
-	clean() {}
+	async clean() {}
 
 	findEntryPoint(formats: Format[], outputName: string): string | undefined {
 		for (const format of formats) {
@@ -239,8 +242,6 @@ export class Artifact {
 	isRunning(): boolean {
 		return this.state === 'building';
 	}
-
-	startup() {}
 
 	toString(): string {
 		return this.getLabel();
