@@ -93,7 +93,6 @@ function getSharedConfig(
 		// Do NOT load root `babel.config.js` or `.babelrc` as we need full control
 		configFile: false,
 		babelrc: false,
-		babelrcRoots: features.workspaces,
 	};
 }
 
