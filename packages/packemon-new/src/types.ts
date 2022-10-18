@@ -154,14 +154,9 @@ export interface BuildResult {
 	time: number;
 }
 
-export interface CodeBuild {
+export interface Build {
 	format: Format;
 	stats?: { size: number };
-}
-
-export interface TypesBuild {
-	inputFile: string;
-	outputName: string;
 }
 
 // VALIDATE
@@ -189,6 +184,7 @@ export interface FeatureFlags {
 	solid?: boolean;
 	strict?: boolean;
 	typescript?: boolean;
+	typescriptComposite?: boolean;
 	// workspaces?: string[];
 }
 

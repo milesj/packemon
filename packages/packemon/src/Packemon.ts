@@ -118,15 +118,6 @@ export class Packemon {
 	}
 
 	/**
-	 * Cleanup all package and artifact related files in all packages.
-	 */
-	protected async cleanTemporaryFiles(packages: Package[]) {
-		this.debug('Cleaning temporary build files');
-
-		await Promise.all(packages.map((pkg) => pkg.cleanup()));
-	}
-
-	/**
 	 * When 1 config needs a private API, all other configs should be private,
 	 * otherwise we will have conflicting output structures and exports.
 	 */

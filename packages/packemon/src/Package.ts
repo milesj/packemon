@@ -127,116 +127,8 @@ export class Package {
 		await Promise.all(this.artifacts.map((artifact) => artifact.cleanup()));
 	}
 
-	async findDistributableFiles(): Promise<string[]> {
-		// https://github.com/npm/npm-packlist/blob/main/index.js#L29
-		const patterns: string[] = ['(readme|copying|license|licence)*', 'package.json'];
-
-		this.packageJson.files?.forEach((file) => {
-			if (file.endsWith('/')) {
-				patterns.push(`${file}**/*`);
-			} else {
-				patterns.push(file);
-			}
-		});
-
-		return glob(patterns, {
-			caseSensitiveMatch: false,
-			cwd: this.path.path(),
-			dot: true,
-			ignore: ['node_modules'],
-		});
-	}
-
 	getName(): string {
 		return this.packageJson.name;
-	}
-
-	@Memoize()
-	// eslint-disable-next-line complexity
-	getFeatureFlags(): FeatureFlags {
-		this.debug('Loading feature flags');
-
-		const flags: FeatureFlags =
-			this.root || !this.project.isWorkspacesEnabled()
-				? {}
-				: this.project.rootPackage.getFeatureFlags();
-
-		if (this.project.workspaces.length > 0) {
-			flags.workspaces = this.project.workspaces;
-		}
-
-		// React
-		if (this.hasDependency('react')) {
-			const peerDep = this.packageJson.peerDependencies?.react;
-			const normalDep = this.packageJson.dependencies?.react;
-			const versionsToCheck: string[] = [];
-
-			if (peerDep && peerDep !== '*') {
-				versionsToCheck.push(...peerDep.split('||'));
-			} else if (normalDep && normalDep !== '*') {
-				versionsToCheck.push(normalDep);
-			}
-
-			// New JSX transform was backported to these versions:
-			// https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html
-			const automatic = versionsToCheck.every((version) => {
-				const coercedVersion = semver.coerce(version.trim().replace(/(>|<|=|~|^)/g, ''));
-
-				if (coercedVersion === null) {
-					return false;
-				}
-
-				return semver.satisfies(
-					coercedVersion.version,
-					'>=17.0.0 || ^16.14.0 || ^15.7.0 || ^0.14.0',
-				);
-			});
-
-			flags.react = automatic && versionsToCheck.length > 0 ? 'automatic' : 'classic';
-
-			this.debug(' - React');
-		}
-
-		// Solid
-		if (this.hasDependency('solid-js')) {
-			flags.solid = true;
-
-			this.debug(' - Solid');
-		}
-
-		// TypeScript
-		const tsConfig = this.loadTsconfigJson() ?? this.project.rootPackage.loadTsconfigJson();
-
-		if (
-			this.project.rootPackage.hasDependency('typescript') ||
-			this.hasDependency('typescript') ||
-			tsConfig
-		) {
-			flags.typescript = true;
-			flags.decorators = Boolean(tsConfig?.options.experimentalDecorators);
-			flags.strict = Boolean(tsConfig?.options.strict);
-
-			this.debug(
-				' - TypeScript (%s, %s)',
-				flags.strict ? 'strict' : 'non-strict',
-				flags.decorators ? 'decorators' : 'non-decorators',
-			);
-		}
-
-		// Flow
-		const flowconfigPath = this.project.root.append('.flowconfig');
-
-		if (
-			this.project.rootPackage.hasDependency('flow-bin') ||
-			this.hasDependency('flow-bin') ||
-			flowconfigPath.exists()
-		) {
-			flags.flow = true;
-
-			this.debug(' - Flow');
-		}
-
-		return flags;
 	}
 
 	getSlug(): string {
@@ -256,17 +148,6 @@ export class Package {
 				ignore: process.env.NODE_ENV === 'test' ? [] : EXCLUDE,
 			})
 			.map((file) => new Path(file).path());
-	}
-
-	hasDependency(name: string): boolean {
-		const pkg = this.packageJson;
-
-		return Boolean(
-			pkg.dependencies?.[name] ??
-				pkg.devDependencies?.[name] ??
-				pkg.peerDependencies?.[name] ??
-				pkg.optionalDependencies?.[name],
-		);
 	}
 
 	isComplete(): boolean {
@@ -347,51 +228,6 @@ export class Package {
 
 	async syncPackageJson() {
 		await fs.writeJson(this.packageJsonPath.path(), this.packageJson, { spaces: 2 });
-	}
-
-	@Memoize()
-	loadTsconfigJson(configName: string = 'tsconfig.json'): TSConfigStructure | undefined {
-		const tsconfigJsonPath = this.path.append(configName);
-
-		if (!tsconfigJsonPath.exists()) {
-			return undefined;
-		}
-
-		const ts = loadModule(
-			'typescript',
-			'TypeScript is required for config loading.',
-		) as typeof import('typescript');
-
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-		const { config, error } = ts.readConfigFile(tsconfigJsonPath.path(), (name) =>
-			fs.readFileSync(name, 'utf8'),
-		);
-
-		const host = {
-			getCanonicalFileName: (fileName: string) => fileName,
-			getCurrentDirectory: () => ts.sys.getCurrentDirectory(),
-			getNewLine: () => ts.sys.newLine,
-		};
-
-		// istanbul ignore next
-		if (error) {
-			throw new Error(ts.formatDiagnostic(error, host));
-		}
-
-		const result = ts.parseJsonConfigFileContent(
-			config,
-			ts.sys,
-			this.path.path(),
-			{},
-			tsconfigJsonPath.path(),
-		);
-
-		// istanbul ignore next
-		if (result.errors.length > 0) {
-			throw new Error(ts.formatDiagnostics(result.errors, host));
-		}
-
-		return result;
 	}
 
 	protected addEngines() {

@@ -7,46 +7,6 @@ import { removeSourcePath } from './helpers/removeSourcePath';
 import { BuildOptions, PackageExports, TSConfigStructure, TypesBuild } from './types';
 
 export class TypesArtifact extends Artifact<TypesBuild> {
-	protected debug!: Debugger;
-
-	override startup() {
-		this.debug = createDebugger(['packemon', 'types', this.package.getSlug(), this.getLabel()]);
-	}
-
-	async build(options: BuildOptions): Promise<void> {
-		this.debug('Building types artifact with TypeScript');
-
-		const { declarationConfig } = options;
-
-		// If the local project is using project references, we must build it individually
-		const tsConfig = this.loadTsconfigJson(declarationConfig ?? 'tsconfig.json');
-
-		if (
-			tsConfig?.options?.composite ||
-			(tsConfig?.projectReferences && tsConfig?.projectReferences.length > 0)
-		) {
-			await this.generateDeclarations(declarationConfig);
-
-			return;
-		}
-
-		// Otherwise fallback to a normal `tsc` build
-		await this.package.project.generateDeclarations(declarationConfig, this.package.path);
-	}
-
-	async generateDeclarations(declarationConfig?: string) {
-		const args = ['--build', '--force'];
-
-		if (declarationConfig && declarationConfig !== 'tsconfig.json') {
-			args.push(declarationConfig);
-		}
-
-		await execa('tsc', args, {
-			cwd: this.package.path.path(),
-			preferLocal: true,
-		});
-	}
-
 	findEntryPoint(outputName: string): string | undefined {
 		const output = this.builds.find((build) => build.outputName === outputName);
 
@@ -110,15 +70,5 @@ export class TypesArtifact extends Artifact<TypesBuild> {
 		}
 
 		return exportMap;
-	}
-
-	override toString() {
-		return `types (${this.getLabel()})`;
-	}
-
-	// This method only exists so that we can mock in tests.
-	// istanbul ignore next
-	loadTsconfigJson(configName?: string): TSConfigStructure | undefined {
-		return this.package.loadTsconfigJson(configName);
 	}
 }

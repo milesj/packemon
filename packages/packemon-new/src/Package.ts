@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/member-ordering */
 import glob from 'fast-glob';
-import { Path, toArray } from '@boost/common';
+import semver from 'semver';
+import { Memoize, Path, toArray } from '@boost/common';
 import { optimal } from '@boost/common/optimal';
 import { createDebugger, Debugger } from '@boost/debug';
 import {
@@ -13,8 +15,9 @@ import {
 	NPM_SUPPORTED_VERSIONS,
 	SUPPORT_PRIORITY,
 } from './constants';
+import { loadTsconfigJson } from './helpers/loadTsconfigJson';
 import { packemonBlueprint } from './schemas';
-import { PackageConfig, PackemonPackage, PackemonPackageConfig } from './types';
+import { FeatureFlags, PackageConfig, PackemonPackage, PackemonPackageConfig } from './types';
 
 export class Package {
 	// readonly artifacts: Artifact[] = [];
@@ -65,12 +68,106 @@ export class Package {
 		});
 	}
 
+	@Memoize()
+	// eslint-disable-next-line complexity
+	getFeatureFlags(): FeatureFlags {
+		this.debug('Loading feature flags');
+
+		const flags: FeatureFlags = {};
+
+		// React
+		if (this.hasDependency('react')) {
+			const peerDep = this.json.peerDependencies?.react;
+			const prodDep = this.json.dependencies?.react;
+			const versionsToCheck: string[] = [];
+
+			if (peerDep && peerDep !== '*') {
+				versionsToCheck.push(...peerDep.split('||'));
+			} else if (prodDep && prodDep !== '*') {
+				versionsToCheck.push(prodDep);
+			}
+
+			// New JSX transform was backported to these versions:
+			// https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html
+			const automatic = versionsToCheck.every((version) => {
+				const coercedVersion = semver.coerce(version.trim().replace(/(>|<|=|~|^)/g, ''));
+
+				if (coercedVersion === null) {
+					return false;
+				}
+
+				return semver.satisfies(
+					coercedVersion.version,
+					'>=17.0.0 || ^16.14.0 || ^15.7.0 || ^0.14.0',
+				);
+			});
+
+			flags.react = automatic && versionsToCheck.length > 0 ? 'automatic' : 'classic';
+
+			this.debug(' - React');
+		}
+
+		// Solid
+		if (this.hasDependency('solid-js')) {
+			flags.solid = true;
+
+			this.debug(' - Solid');
+		}
+
+		// TypeScript
+		if (
+			this.hasDependency('typescript') ||
+			this.path.append('tsconfig.json') ||
+			this.workspaceRoot.append('tsconfig.json')
+		) {
+			const tsConfig = loadTsconfigJson(this.path.append('tsconfig.json'));
+
+			flags.typescript = Boolean(tsConfig);
+			flags.typescriptComposite = Boolean(
+				tsConfig?.options?.composite ||
+					(tsConfig?.projectReferences && tsConfig?.projectReferences.length > 0),
+			);
+			flags.decorators = Boolean(tsConfig?.options.experimentalDecorators);
+			flags.strict = Boolean(tsConfig?.options.strict);
+
+			this.debug(
+				' - TypeScript (%s, %s)',
+				flags.strict ? 'strict' : 'non-strict',
+				flags.decorators ? 'decorators' : 'non-decorators',
+			);
+		}
+
+		// Flow
+		if (
+			this.hasDependency('flow-bin') ||
+			this.path.append('.flowconfig').exists() ||
+			this.workspaceRoot.append('.flowconfig')
+		) {
+			flags.flow = true;
+
+			this.debug(' - Flow');
+		}
+
+		return flags;
+	}
+
 	getName(): string {
 		return this.json.name;
 	}
 
 	getSlug(): string {
 		return this.path.name(true);
+	}
+
+	hasDependency(name: string): boolean {
+		const { json } = this;
+
+		return Boolean(
+			json.dependencies?.[name] ??
+				json.devDependencies?.[name] ??
+				json.peerDependencies?.[name] ??
+				json.optionalDependencies?.[name],
+		);
 	}
 
 	setConfigs(configs: PackemonPackageConfig[]) {
