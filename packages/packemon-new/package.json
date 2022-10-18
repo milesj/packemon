@@ -1,0 +1,129 @@
+{
+  "name": "packemon",
+  "version": "2.4.1",
+  "type": "commonjs",
+  "description": "Build and prepare packages for npm distribution using standardized configurations and practices. Gotta pack 'em all!",
+  "keywords": [
+    "build",
+    "prepare",
+    "pack",
+    "package"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:milesj/packemon.git",
+    "directory": "packages/packemon"
+  },
+  "author": "Miles Johnson",
+  "license": "MIT",
+  "main": "./cjs/index.cjs",
+  "types": "./dts/index.d.ts",
+  "bin": "./cjs/bin.cjs",
+  "files": [
+    "cjs/**/*.{cjs,mjs,map}",
+    "dts/**/*.d.ts",
+    "src/**/*.{ts,tsx,json}",
+    "templates/**/*"
+  ],
+  "exports": {
+    "./package.json": "./package.json",
+    "./babel": {
+      "types": "./dts/babel.d.ts",
+      "node": {
+        "import": "./cjs/babel-wrapper.mjs",
+        "require": "./cjs/babel.cjs"
+      }
+    },
+    "./bin": {
+      "types": "./dts/bin.d.ts",
+      "node": {
+        "import": "./cjs/bin-wrapper.mjs",
+        "require": "./cjs/bin.cjs"
+      }
+    },
+    ".": {
+      "types": "./dts/index.d.ts",
+      "node": {
+        "import": "./cjs/index-wrapper.mjs",
+        "require": "./cjs/index.cjs"
+      }
+    }
+  },
+  "engines": {
+    "node": ">=14.15.0",
+    "npm": ">=6.14.0"
+  },
+  "packemon": {
+    "api": "private",
+    "inputs": {
+      "index": "src/index.ts",
+      "babel": "src/babel.ts",
+      "bin": "src/bin.ts"
+    },
+    "format": "cjs",
+    "platform": "node"
+  },
+  "dependencies": {
+    "@babel/core": "^7.19.0",
+    "@babel/plugin-proposal-decorators": "^7.19.0",
+    "@babel/preset-env": "^7.19.0",
+    "@babel/preset-flow": "^7.18.6",
+    "@babel/preset-react": "^7.18.6",
+    "@babel/preset-typescript": "^7.18.6",
+    "@boost/cli": "^4.0.0",
+    "@boost/common": "^4.0.0",
+    "@boost/config": "^4.0.0",
+    "@boost/debug": "^4.0.0",
+    "@boost/event": "^4.0.0",
+    "@boost/pipeline": "^4.0.0",
+    "@boost/terminal": "^4.0.0",
+    "@rollup/plugin-babel": "^5.3.1",
+    "@rollup/plugin-commonjs": "^22.0.2",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^13.3.0",
+    "@swc/core": "^1.2.248",
+    "babel-plugin-cjs-esm-interop": "^2.0.5",
+    "babel-plugin-conditional-invariant": "^2.0.2",
+    "babel-plugin-env-constants": "^2.0.2",
+    "babel-preset-solid": "^1.5.4",
+    "browserslist": "^4.21.3",
+    "execa": "^5.1.1",
+    "fast-glob": "^3.2.11",
+    "filesize": "^9.0.11",
+    "fs-extra": "^10.1.0",
+    "ink": "^3.2.0",
+    "ink-progress-bar": "^3.0.0",
+    "ink-spinner": "^4.0.3",
+    "magic-string": "^0.26.3",
+    "micromatch": "^4.0.5",
+    "npm-packlist": "^5.1.1",
+    "react": "^17.0.2",
+    "resolve": "^1.22.1",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.79.0",
+    "rollup-plugin-node-externals": "^4.1.1",
+    "rollup-plugin-polyfill-node": "^0.10.2",
+    "semver": "^7.3.7",
+    "spdx-license-list": "^6.6.0"
+  },
+  "devDependencies": {
+    "@swc/cli": "^0.1.57",
+    "@typescript-eslint/types": "^5.36.2"
+  },
+  "peerDependencies": {
+    "chokidar": "^3.5.1",
+    "typescript": "^4.2.4"
+  },
+  "peerDependenciesMeta": {
+    "chokidar": {
+      "optional": true
+    },
+    "typescript": {
+      "optional": true
+    }
+  },
+  "funding": {
+    "type": "ko-fi",
+    "url": "https://ko-fi.com/milesjohnson"
+  }
+}

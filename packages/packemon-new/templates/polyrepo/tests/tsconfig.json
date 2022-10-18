@@ -1,0 +1,10 @@
+{
+  "extends": "tsconfig-moon/tsconfig.json",
+  // Uncomment if using React/JSX
+  // "extends": "tsconfig-moon/tsconfig.react.json",
+  "include": ["**/*"],
+  "compilerOptions": {
+    "noEmit": true,
+    "rootDir": ".."
+  }
+}

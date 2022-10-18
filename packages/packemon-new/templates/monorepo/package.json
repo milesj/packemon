@@ -1,0 +1,23 @@
+{
+  "private": true,
+  "name": "<projectName>",
+  "infra": "monorepo",
+  "scripts": {
+    "build": "packemon build",
+    "check": "yarn run type && yarn run test && yarn run lint",
+    "clean": "packemon clean",
+    "coverage": "yarn run test --coverage",
+    "format": "prettier --write ./<packagesFolder>",
+    "lint": "eslint --cache --fix ./<packagesFolder>",
+    "pack": "NODE_ENV=production packemon pack --addEngines --declaration",
+    "prelease": "yarn run pack && yarn run check",
+    "release": "echo 'Customize your own release script!'",
+    "test": "jest",
+    "type": "tsc --build",
+    "validate": "packemon validate",
+    "watch": "packemon watch"
+  },
+  "workspaces": [
+    "<packagesFolder>/*"
+  ]
+}
