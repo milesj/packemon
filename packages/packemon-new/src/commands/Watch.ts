@@ -45,11 +45,7 @@ export class WatchCommand extends BaseCommand<WatchOptions> {
 		packemon.debug('Starting `watch` process');
 
 		// Generate all our build artifacts
-		this.package = await packemon.loadPackage();
-
-		if (!this.package) {
-			throw new Error('No package to watch.');
-		}
+		this.package = await this.getPackage();
 
 		// Instantiate the watcher for each package source
 		const watchPaths = this.package.path.append('src/**/*').path();

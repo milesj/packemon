@@ -12,21 +12,8 @@ export class FilesCommand extends BaseCommand {
 		choices: ['list', 'tree'],
 	})
 	format: FileFormat = 'tree';
-
-	@Arg.Params({
-		label: 'package',
-		description: 'Name of package to inspect',
-		type: 'string',
-		required: true,
-	})
-	async run(pkgName: string) {
-		const packages = await this.packemon.loadConfiguredPackages(this.getBuildOptions());
-		const pkg = packages.find((p) => p.getName() === pkgName || p.path.name() === pkgName);
-
-		if (!pkg) {
-			throw new Error(`No package found with name "${pkgName}".`);
-		}
-
+	async run() {
+		const pkg = await this.getPackage();
 		const files = await packList({ path: pkg.path.path() });
 		const tree = this.convertFilesToTree(files);
 

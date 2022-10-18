@@ -1,5 +1,4 @@
 import { Arg, Command, GlobalOptions, PrimitiveType } from '@boost/cli';
-import { Memoize } from '@boost/common';
 import { Packemon } from '../Packemon';
 import { BuildOptions } from '../types';
 
@@ -30,9 +29,18 @@ export abstract class BaseCommand<
 	@Arg.Flag('Skip `private` packages', { category: 'filter' })
 	skipPrivate: boolean = false;
 
-	@Memoize()
 	protected get packemon() {
 		return new Packemon(this.cwd || process.cwd());
+	}
+
+	protected async getPackage() {
+		const pkg = await this.packemon.loadPackage({ skipPrivate: this.skipPrivate });
+
+		if (!pkg) {
+			throw new Error(`No package found in ${this.packemon.workingDir}!`);
+		}
+
+		return pkg;
 	}
 
 	protected getBuildOptions(): BuildOptions {
