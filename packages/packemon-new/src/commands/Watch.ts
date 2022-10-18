@@ -17,9 +17,9 @@ export class WatchCommand extends BaseCommand<WatchOptions> {
 	@Arg.Flag('Poll for file changes instead of using file system events')
 	poll: boolean = false;
 
-	protected packages: Package[] = [];
+	protected package: Package | null = null;
 
-	protected packagesToRebuild = new Set<Package>();
+	protected rebuild: boolean = false;
 
 	protected rebuilding: boolean = false;
 
@@ -31,14 +31,8 @@ export class WatchCommand extends BaseCommand<WatchOptions> {
 			return;
 		}
 
-		this.log(applyStyle(' - %s', 'muted'), path.replace(`${this.packemon.root.path()}/`, ''));
-
-		const changedPkg = this.packages.find((pkg) => path.startsWith(pkg.path.path()));
-
-		if (changedPkg) {
-			this.packagesToRebuild.add(changedPkg);
-			this.triggerRebuilds();
-		}
+		this.log(applyStyle(' - %s', 'muted'), path.replace(`${this.packemon.workingDir.path()}/`, ''));
+		this.triggerRebuild();
 	}
 
 	async run() {
@@ -51,14 +45,17 @@ export class WatchCommand extends BaseCommand<WatchOptions> {
 		packemon.debug('Starting `watch` process');
 
 		// Generate all our build artifacts
-		this.packages = await packemon.loadConfiguredPackages(this.getBuildOptions());
-		this.packages = packemon.generateArtifacts(this.packages);
+		this.package = await packemon.loadPackage();
+
+		if (!this.package) {
+			throw new Error('No package to watch.');
+		}
 
 		// Instantiate the watcher for each package source
-		const watchPaths = this.packages.map((pkg) => pkg.path.append('src/**/*').path());
+		const watchPaths = this.package.path.append('src/**/*').path();
 
 		packemon.debug('Initializing chokidar watcher for paths:');
-		packemon.debug(watchPaths.map((path) => ` - ${path}`).join('\n'));
+		packemon.debug(watchPaths);
 
 		const watcher = chokidar.watch(watchPaths, {
 			ignored: /(^|[/\\])\../u, // dotfiles
@@ -73,51 +70,43 @@ export class WatchCommand extends BaseCommand<WatchOptions> {
 		this.log('Watching for changes...');
 	}
 
-	triggerRebuilds() {
+	triggerRebuild() {
 		if (this.rebuildTimer) {
 			clearTimeout(this.rebuildTimer);
 		}
 
 		this.rebuildTimer = setTimeout(() => {
-			void this.rebuildPackages();
+			void this.rebuildPackage();
 		}, this.debounce);
 	}
 
-	async rebuildPackages() {
+	async rebuildPackage() {
 		if (this.rebuilding) {
-			this.triggerRebuilds();
+			this.triggerRebuild();
 
 			return;
 		}
 
-		const pkgs = [...this.packagesToRebuild];
-		const pkgNames = pkgs.map((pkg) => pkg.getName());
-
-		if (pkgs.length === 0) {
+		if (!this.package) {
 			return;
 		}
 
-		this.packagesToRebuild.clear();
 		this.rebuilding = true;
 
 		try {
 			const start = Date.now();
 
-			await Promise.all(
-				pkgs.map(async (pkg) => {
-					if (this.loadConfigs) {
-						const { config } = await this.packemon.config.loadConfigFromBranchToRoot(pkg.path);
+			if (this.loadConfigs) {
+				const { config } = await this.packemon.config.loadConfigFromBranchToRoot(this.package.path);
 
-						await pkg.build({}, config);
-					} else {
-						await pkg.build({}, {});
-					}
-				}),
-			);
+				await this.package.build({}, config);
+			} else {
+				await this.package.build({}, {});
+			}
 
 			this.log(
 				applyStyle('Built %s in %s', 'success'),
-				pkgNames.join(', '),
+				this.package.getName(),
 				formatMs(Date.now() - start),
 			);
 		} catch (error: unknown) {
@@ -125,7 +114,7 @@ export class WatchCommand extends BaseCommand<WatchOptions> {
 				this.log.error(error.message);
 			}
 
-			this.log(applyStyle('Failed to build %s', 'failure'), pkgNames.join(', '));
+			this.log(applyStyle('Failed to build %s', 'failure'), this.package.getName());
 		} finally {
 			this.rebuilding = false;
 		}

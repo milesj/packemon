@@ -1,47 +1,18 @@
 import fs from 'fs-extra';
-import rimraf from 'rimraf';
-import semver from 'semver';
-import {
-	isObject,
-	json,
-	Memoize,
-	Path,
-	PortablePath,
-	toArray,
-	VirtualPath,
-	WorkspacePackage,
-} from '@boost/common';
+import { isObject, json, Path, PortablePath, toArray } from '@boost/common';
 import { optimal } from '@boost/common/optimal';
 import { createDebugger, Debugger } from '@boost/debug';
-import { Event } from '@boost/event';
 import { Context, PooledPipeline } from '@boost/pipeline';
-import { CodeArtifact } from './CodeArtifact';
 import { Config } from './Config';
-import { getVersion } from './helpers/getVersion';
-import { matchesPattern } from './helpers/matchesPattern';
 import { Package } from './Package';
 import { PackageValidator } from './PackageValidator';
-import { Project } from './Project';
 import { buildBlueprint, validateBlueprint } from './schemas';
-import type {
-	ApiType,
-	BuildOptions,
-	FilterOptions,
-	PackemonPackage,
-	Platform,
-	TypesBuild,
-	ValidateOptions,
-} from './types';
-import { TypesArtifact } from './TypesArtifact';
+import type { BuildOptions, FilterOptions, PackemonPackage, ValidateOptions } from './types';
 
 export class Packemon {
 	readonly config: Config = new Config('packemon');
 
 	readonly debug: Debugger;
-
-	readonly onPackageBuilt = new Event<[Package]>('package-built');
-
-	readonly onPackageLoaded = new Event<[Package]>('package-loaded');
 
 	readonly workingDir: Path;
 
@@ -82,8 +53,6 @@ export class Packemon {
 			} else {
 				await pkg.build(options, {});
 			}
-
-			this.onPackageBuilt.emit([pkg]);
 		});
 
 		const { errors } = await pipeline.run();
@@ -102,6 +71,46 @@ export class Packemon {
 		if (pkg) {
 			await pkg.clean();
 		}
+	}
+
+	/**
+	 * Find and load the package that has been configured with a `packemon`
+	 * block in the `package.json`. Once loaded, validate the configuration.
+	 */
+	async loadPackage({ skipPrivate }: FilterOptions = {}): Promise<Package | null> {
+		this.debug('Loading package from %s', this.workingDir);
+
+		const pkgPath = this.workingDir.append('package.json');
+
+		if (pkgPath.exists()) {
+			throw new Error(`No \`package.json\` found in ${this.workingDir}.`);
+		}
+
+		const pkgContents = json.parse<PackemonPackage>(await fs.readFile(pkgPath.path(), 'utf8'));
+
+		if (skipPrivate && pkgContents.private) {
+			this.debug('Package is private and `skipPrivate` has been provided');
+
+			return null;
+		}
+
+		if (!pkgContents.packemon) {
+			this.debug('No `packemon` configuration found for %s, skipping', pkgContents.name);
+
+			return null;
+		}
+
+		if (!isObject(pkgContents.packemon) && !Array.isArray(pkgContents.packemon)) {
+			throw new Error(
+				`Invalid \`packemon\` configuration for ${pkgContents.name}, must be an object or array of objects.`,
+			);
+		}
+
+		const pkg = new Package(this.workingDir, pkgContents, this.workspaceRoot);
+
+		pkg.setConfigs(toArray(pkgContents.packemon));
+
+		return pkg;
 	}
 
 	async validate(baseOptions: Partial<ValidateOptions>): Promise<PackageValidator | null> {
@@ -154,50 +163,5 @@ export class Packemon {
 		}
 
 		return this.findWorkspaceRoot(parentDir);
-	}
-
-	/**
-	 * Find and load the package that has been configured with a `packemon`
-	 * block in the `package.json`. Once loaded, validate the configuration.
-	 */
-	protected async loadPackage({
-		filter,
-		skipPrivate,
-	}: FilterOptions = {}): Promise<Package | null> {
-		this.debug('Loading package from %s', this.workingDir);
-
-		const pkgPath = this.workingDir.append('package.json');
-
-		if (pkgPath.exists()) {
-			throw new Error(`No \`package.json\` found in ${this.workingDir}.`);
-		}
-
-		const pkgContents = json.parse<PackemonPackage>(await fs.readFile(pkgPath.path(), 'utf8'));
-
-		if (skipPrivate && pkgContents.private) {
-			this.debug('Package is private and `skipPrivate` has been provided');
-
-			return null;
-		}
-
-		if (!pkgContents.packemon) {
-			this.debug('No `packemon` configuration found for %s, skipping', pkgContents.name);
-
-			return null;
-		}
-
-		if (!isObject(pkgContents.packemon) && !Array.isArray(pkgContents.packemon)) {
-			throw new Error(
-				`Invalid \`packemon\` configuration for ${pkgContents.name}, must be an object or array of objects.`,
-			);
-		}
-
-		const pkg = new Package(this.workingDir, pkgContents, this.workspaceRoot);
-
-		pkg.setConfigs(toArray(pkgContents.packemon));
-
-		this.onPackageLoaded.emit([pkg]);
-
-		return pkg;
 	}
 }
