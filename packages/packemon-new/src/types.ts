@@ -118,7 +118,6 @@ export type PackageExports = Record<string, PackageExportPaths | string | undefi
 export type ArtifactState = 'building' | 'failed' | 'passed' | 'pending';
 
 export interface FilterOptions {
-	filter?: string;
 	filterFormats?: string;
 	filterPlatforms?: string;
 	skipPrivate?: boolean;

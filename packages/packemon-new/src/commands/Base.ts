@@ -15,9 +15,6 @@ export abstract class BaseCommand<
 	@Arg.String('Current working directory to run in', { category: 'global' })
 	cwd: string = '';
 
-	@Arg.String('Filter packages to build', { category: 'filter' })
-	filter: string = '';
-
 	@Arg.String('Only generate specific output formats', { category: 'filter', short: 'f' })
 	formats: string = '';
 
@@ -40,7 +37,6 @@ export abstract class BaseCommand<
 
 	protected getBuildOptions(): BuildOptions {
 		return {
-			filter: this.filter,
 			filterFormats: this.formats,
 			filterPlatforms: this.platforms,
 			loadConfigs: this.loadConfigs,
