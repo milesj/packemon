@@ -1,3 +1,4 @@
+import glob from 'fast-glob';
 import { Path, toArray } from '@boost/common';
 import { optimal } from '@boost/common/optimal';
 import { createDebugger, Debugger } from '@boost/debug';
@@ -28,10 +29,13 @@ export class Package {
 
 	readonly path: Path;
 
-	constructor(path: Path, contents: PackemonPackage) {
+	readonly workspaceRoot: Path;
+
+	constructor(path: Path, contents: PackemonPackage, workspaceRoot: Path) {
 		this.path = path;
 		this.jsonPath = this.path.append('package.json');
 		this.json = contents;
+		this.workspaceRoot = workspaceRoot;
 		this.debug = createDebugger(['packemon', 'package', this.getSlug()]);
 	}
 
@@ -39,6 +43,26 @@ export class Package {
 		this.debug('Cleaning build artifacts');
 
 		// await Promise.all(this.artifacts.map((artifact) => artifact.cleanup()));
+	}
+
+	async findDistributableFiles(): Promise<string[]> {
+		// https://github.com/npm/npm-packlist/blob/main/index.js#L29
+		const patterns: string[] = ['(readme|copying|license|licence)*', 'package.json'];
+
+		this.json.files?.forEach((file) => {
+			if (file.endsWith('/')) {
+				patterns.push(`${file}**/*`);
+			} else {
+				patterns.push(file);
+			}
+		});
+
+		return glob(patterns, {
+			caseSensitiveMatch: false,
+			cwd: this.path.path(),
+			dot: true,
+			ignore: ['node_modules'],
+		});
 	}
 
 	getName(): string {

@@ -53,7 +53,6 @@ export class Packemon {
 		this.debug = createDebugger('packemon:core');
 
 		this.debug('Initializing packemon in project %s', this.workingDir);
-		this.checkEngineVersionConstraint();
 	}
 
 	async build(baseOptions: BuildOptions) {
@@ -116,24 +115,6 @@ export class Packemon {
 		}
 
 		return null;
-	}
-
-	protected checkEngineVersionConstraint() {
-		let version = '';
-
-		try {
-			version = getVersion();
-		} catch {
-			return;
-		}
-
-		const versionConstraint = this.rootPackage.packageJson.engines?.packemon;
-
-		if (version && versionConstraint && !semver.satisfies(version, versionConstraint)) {
-			throw new Error(
-				`Project requires a packemon version compatible with ${versionConstraint}, found ${version}.`,
-			);
-		}
 	}
 
 	/**
@@ -211,7 +192,7 @@ export class Packemon {
 			);
 		}
 
-		const pkg = new Package(this.workingDir, pkgContents);
+		const pkg = new Package(this.workingDir, pkgContents, this.workspaceRoot);
 
 		pkg.setConfigs(toArray(pkgContents.packemon));
 
