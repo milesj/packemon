@@ -1,5 +1,5 @@
 import { PluginItem, TransformOptions as ConfigStructure } from '@babel/core';
-import { CodeArtifact } from '../CodeArtifact';
+import { Artifact } from '../Artifact';
 import { BROWSER_TARGETS, NATIVE_TARGETS, NODE_SUPPORTED_VERSIONS } from '../constants';
 import { shouldKeepDynamicImport } from '../helpers/shouldKeepDynamicImport';
 import { ConfigFile, FeatureFlags, Format, Platform, Support } from '../types';
@@ -99,7 +99,7 @@ function getSharedConfig(
 // The input config should only parse special syntax, not transform and downlevel.
 // This applies to all formats within a build target.
 export function getBabelInputConfig(
-	artifact: CodeArtifact,
+	artifact: Artifact,
 	features: FeatureFlags,
 	packemonConfig: ConfigFile = {},
 ): Omit<ConfigStructure, 'exclude' | 'include'> {

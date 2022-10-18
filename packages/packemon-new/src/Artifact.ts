@@ -85,7 +85,7 @@ export class Artifact {
 	async buildCode(features: FeatureFlags, packemonConfig: ConfigFile): Promise<void> {
 		this.debug('Building code artifacts with Rollup');
 
-		const { output = [], ...input } = getRollupConfig(this, features, packemonConfig);
+		const { output = [], ...input } = await getRollupConfig(this, features, packemonConfig);
 		const bundle = await rollup({
 			...input,
 			onwarn: /* istanbul ignore next */ ({ id, loc = {}, message }) => {
