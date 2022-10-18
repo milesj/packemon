@@ -87,11 +87,6 @@ exports[`createConfig() returns the correct config 1`] = `
 exports[`createRootConfig() returns the correct config 1`] = `
 {
   "babelrc": false,
-  "babelrcRoots": [
-    "packages/*",
-    "scenarios/*",
-    "website",
-  ],
   "overrides": [
     {
       "presets": [
@@ -185,7 +180,6 @@ exports[`createRootConfig() returns the correct config 1`] = `
 exports[`getBabelInputConfig() can mutate config 1`] = `
 {
   "babelrc": false,
-  "babelrcRoots": undefined,
   "caller": {
     "name": "packemon",
   },
@@ -206,7 +200,6 @@ exports[`getBabelInputConfig() can mutate config 1`] = `
 exports[`getBabelInputConfig() doesnt include typescript decorators if \`typescript\` feature flag is false 1`] = `
 {
   "babelrc": false,
-  "babelrcRoots": undefined,
   "caller": {
     "name": "packemon",
   },
@@ -235,7 +228,6 @@ exports[`getBabelInputConfig() includes flow preset if \`flow\` feature flag is 
 exports[`getBabelInputConfig() includes no plugins or presets by default 1`] = `
 {
   "babelrc": false,
-  "babelrcRoots": undefined,
   "caller": {
     "name": "packemon",
   },
@@ -283,7 +275,6 @@ exports[`getBabelInputConfig() includes solid preset if \`solid\` feature flag i
 exports[`getBabelInputConfig() includes typescript decorators if \`typescript\` and \`decorators\` feature flag is true 1`] = `
 {
   "babelrc": false,
-  "babelrcRoots": undefined,
   "caller": {
     "name": "packemon",
   },
@@ -350,7 +341,6 @@ exports[`getBabelInputConfig() includes typescript preset if \`typescript\` feat
 exports[`getBabelInputConfig() supports private properties with decorators if dep exists 1`] = `
 {
   "babelrc": false,
-  "babelrcRoots": undefined,
   "caller": {
     "name": "packemon",
   },
@@ -406,7 +396,6 @@ exports[`getBabelInputConfig() supports private properties with decorators if de
 exports[`getBabelOutputConfig() can mutate config 1`] = `
 {
   "babelrc": false,
-  "babelrcRoots": undefined,
   "caller": {
     "name": "packemon",
   },
@@ -1109,7 +1098,6 @@ exports[`getBabelOutputConfig() handles preset-env: node + mjs + stable 1`] = `
 exports[`getBabelOutputConfig() transforms async/await to promises when \`browser\` or \`native\` 1`] = `
 {
   "babelrc": false,
-  "babelrcRoots": undefined,
   "caller": {
     "name": "packemon",
   },
@@ -1165,7 +1153,6 @@ exports[`getBabelOutputConfig() transforms async/await to promises when \`browse
 exports[`getBabelOutputConfig() transforms async/await to promises when \`browser\` or \`native\` 2`] = `
 {
   "babelrc": false,
-  "babelrcRoots": undefined,
   "caller": {
     "name": "packemon",
   },
@@ -1217,7 +1204,6 @@ exports[`getBabelOutputConfig() transforms async/await to promises when \`browse
 exports[`getBabelOutputConfig() uses built-in destructuring and object spread when \`current\` or \`experimental\` 1`] = `
 {
   "babelrc": false,
-  "babelrcRoots": undefined,
   "caller": {
     "name": "packemon",
   },
@@ -1276,7 +1262,6 @@ exports[`getBabelOutputConfig() uses built-in destructuring and object spread wh
 exports[`getBabelOutputConfig() uses built-in destructuring and object spread when \`current\` or \`experimental\` 2`] = `
 {
   "babelrc": false,
-  "babelrcRoots": undefined,
   "caller": {
     "name": "packemon",
   },

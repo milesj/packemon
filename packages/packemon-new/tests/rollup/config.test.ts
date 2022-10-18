@@ -1,9 +1,8 @@
 /* eslint-disable no-param-reassign */
 import { Path } from '@boost/common';
 import { getFixturePath } from '@boost/test-utils';
-import { CodeArtifact } from '../../src/CodeArtifact';
+import { Artifact } from '../../src/Artifact';
 import { Package } from '../../src/Package';
-import { Project } from '../../src/Project';
 import {
 	getRollupConfig,
 	getRollupExternals,
@@ -28,20 +27,23 @@ const fixturePath = new Path(getFixturePath('project-rollup'));
 const srcInputFile = fixturePath.append('src/index.ts').path();
 
 function createArtifact(outputName: string, inputFile: string, pkg?: Package) {
-	const artifact = new CodeArtifact(
+	const artifact = new Artifact(
 		pkg ??
-			new Package(new Project(fixturePath), fixturePath, {
-				name: 'project',
-				version: '0.0.0',
-				packemon: {},
-			}),
+			new Package(
+				fixturePath,
+				{
+					name: 'project',
+					version: '0.0.0',
+					packemon: {},
+				},
+				fixturePath, // TODO
+			),
 		[],
 	);
 	artifact.configGroup = 1;
 	artifact.inputs = {
 		[outputName]: inputFile,
 	};
-	artifact.startup();
 
 	return artifact;
 }
@@ -61,16 +63,16 @@ describe('getRollupConfig()', () => {
 
 	const sharedNonNodePlugins = ['polyfillNode()', ...sharedPlugins];
 
-	let artifact: CodeArtifact;
+	let artifact: Artifact;
 
 	beforeEach(() => {
 		artifact = createArtifact('index', 'src/index.ts');
 	});
 
-	it('generates default input config for `browser` platform', () => {
+	it('generates default input config for `browser` platform', async () => {
 		artifact.platform = 'browser';
 
-		expect(getRollupConfig(artifact, {})).toEqual({
+		await expect(getRollupConfig(artifact, {})).resolves.toEqual({
 			cache: undefined,
 			external: expect.any(Function),
 			input: { index: srcInputFile },
@@ -80,10 +82,10 @@ describe('getRollupConfig()', () => {
 		});
 	});
 
-	it('generates default input config for `native` platform', () => {
+	it('generates default input config for `native` platform', async () => {
 		artifact.platform = 'native';
 
-		expect(getRollupConfig(artifact, {})).toEqual({
+		await expect(getRollupConfig(artifact, {})).resolves.toEqual({
 			cache: undefined,
 			external: expect.any(Function),
 			input: { index: srcInputFile },
@@ -93,10 +95,10 @@ describe('getRollupConfig()', () => {
 		});
 	});
 
-	it('generates default input config for `node` platform', () => {
+	it('generates default input config for `node` platform', async () => {
 		artifact.platform = 'node';
 
-		expect(getRollupConfig(artifact, {})).toEqual({
+		await expect(getRollupConfig(artifact, {})).resolves.toEqual({
 			cache: undefined,
 			external: expect.any(Function),
 			input: { index: srcInputFile },
@@ -106,10 +108,10 @@ describe('getRollupConfig()', () => {
 		});
 	});
 
-	it('generates an output config for each build', () => {
+	it('generates an output config for each build', async () => {
 		artifact.builds.push({ format: 'lib' }, { format: 'esm' }, { format: 'mjs' });
 
-		expect(getRollupConfig(artifact, {})).toEqual({
+		await expect(getRollupConfig(artifact, {})).resolves.toEqual({
 			cache: undefined,
 			external: expect.any(Function),
 			input: {
@@ -183,13 +185,13 @@ describe('getRollupConfig()', () => {
 		});
 	});
 
-	it('generates an accurate config if input/output are not "index"', () => {
+	it('generates an accurate config if input/output are not "index"', async () => {
 		artifact.inputs = {
 			server: 'src/server/core.ts',
 		};
 		artifact.builds.push({ format: 'lib' });
 
-		expect(getRollupConfig(artifact, {})).toEqual({
+		await expect(getRollupConfig(artifact, {})).resolves.toEqual({
 			cache: undefined,
 			external: expect.any(Function),
 			input: {
@@ -223,11 +225,11 @@ describe('getRollupConfig()', () => {
 		});
 	});
 
-	it('when not bundling, globs all source files, preserves modules, and doesnt treeshake', () => {
+	it('when not bundling, globs all source files, preserves modules, and doesnt treeshake', async () => {
 		artifact.bundle = false;
 		artifact.builds.push({ format: 'lib' });
 
-		expect(getRollupConfig(artifact, {})).toEqual({
+		await expect(getRollupConfig(artifact, {})).resolves.toEqual({
 			cache: undefined,
 			external: expect.any(Function),
 			input: [
@@ -264,18 +266,10 @@ describe('getRollupConfig()', () => {
 		});
 	});
 
-	it('inherits artifact rollup cache', () => {
-		artifact.cache = { modules: [] };
-
-		expect(getRollupConfig(artifact, {}).cache).toEqual({
-			modules: [],
-		});
-	});
-
-	it('can mutate config', () => {
+	it('can mutate config', async () => {
 		artifact.platform = 'browser';
 
-		expect(
+		await expect(
 			getRollupConfig(
 				artifact,
 				{},
@@ -291,7 +285,7 @@ describe('getRollupConfig()', () => {
 					},
 				},
 			),
-		).toEqual({
+		).resolves.toEqual({
 			cache: undefined,
 			external: expect.any(Function),
 			input: { index: srcInputFile },
@@ -306,7 +300,7 @@ describe('getRollupConfig()', () => {
 	describe('externals', () => {
 		beforeEach(() => {
 			// Add self
-			artifact.package.addArtifact(artifact);
+			artifact.package.artifacts.push(artifact);
 		});
 
 		it('returns false for self', () => {
@@ -322,7 +316,7 @@ describe('getRollupConfig()', () => {
 				const foreignArtifact = createArtifact('other', 'src/other/index.ts', artifact.package);
 				foreignArtifact.configGroup = 10;
 
-				artifact.package.addArtifact(foreignArtifact);
+				artifact.package.artifacts.push(foreignArtifact);
 
 				const parent = srcInputFile;
 				const child = fixturePath.append('src/other/index.ts').path();
@@ -342,7 +336,7 @@ describe('getRollupConfig()', () => {
 				const foreignArtifact = createArtifact('other', 'src/index.ts', artifact.package);
 				foreignArtifact.configGroup = 10;
 
-				artifact.package.addArtifact(foreignArtifact);
+				artifact.package.artifacts.push(foreignArtifact);
 
 				const parent = srcInputFile;
 				const child = fixturePath.append('src/index.ts').path();
@@ -354,7 +348,7 @@ describe('getRollupConfig()', () => {
 });
 
 describe('getRollupOutputConfig()', () => {
-	let artifact: CodeArtifact;
+	let artifact: Artifact;
 
 	beforeEach(() => {
 		artifact = createArtifact('index', 'src/index.ts');

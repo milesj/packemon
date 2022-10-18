@@ -30,17 +30,20 @@ function getRollupModuleFormat(format: Format): ModuleFormat {
 	return 'cjs';
 }
 
+function getSiblingArtifacts(artifact: Artifact): Artifact[] {
+	return artifact.package.artifacts.filter((art) => art.configGroup !== artifact.configGroup);
+}
+
 function getRollupPaths(artifact: Artifact, ext: string): Record<string, string> {
 	const paths: Record<string, string> = {};
 
 	if (artifact.bundle) {
-		// TODO VERIFY
-		// getCodeArtifacts(artifact).forEach((art) => {
-		Object.entries(artifact.getInputPaths()).forEach(([outputName, inputPath]) => {
-			// All output files are in the same directory, so we can hard-code a relative path
-			paths[inputPath] = `./${outputName}.${ext}`;
+		getSiblingArtifacts(artifact).forEach((art) => {
+			Object.entries(art.getInputPaths()).forEach(([outputName, inputPath]) => {
+				// All output files are in the same directory, so we can hard-code a relative path
+				paths[inputPath] = `./${outputName}.${ext}`;
+			});
 		});
-		// });
 	}
 
 	return paths;
@@ -52,14 +55,13 @@ export function getRollupExternals(artifact: Artifact) {
 	if (artifact.bundle) {
 		const sameInputPaths = new Set(Object.values(artifact.getInputPaths()));
 
-		// TODO VERIFY
-		// getCodeArtifacts(artifact).forEach((art) => {
-		Object.values(artifact.getInputPaths()).forEach((inputPath) => {
-			if (!sameInputPaths.has(inputPath)) {
-				foreignInputs.add(inputPath);
-			}
+		getSiblingArtifacts(artifact).forEach((art) => {
+			Object.values(art.getInputPaths()).forEach((inputPath) => {
+				if (!sameInputPaths.has(inputPath)) {
+					foreignInputs.add(inputPath);
+				}
+			});
 		});
-		// });
 	}
 
 	return (id: string, parent: string = '<unknown>') => {

@@ -3,23 +3,22 @@ import { TransformOptions as ConfigStructure } from '@babel/core';
 import { Path, toArray } from '@boost/common';
 import { FeatureFlags } from './types';
 import {
-	CodeArtifact,
+	Artifact,
 	DEFAULT_SUPPORT,
 	Format,
 	getBabelInputConfig,
 	getBabelOutputConfig,
 	Package,
+	Packemon,
 	PackemonPackage,
 	Platform,
-	Project,
 	Support,
 } from '.';
 
 const format = (process.env.PACKEMON_FORMAT ?? 'lib') as Format;
 const support = (process.env.PACKEMON_SUPPORT ?? DEFAULT_SUPPORT) as Support;
-const project = new Project(process.cwd());
 
-function getBabelConfig(artifact: CodeArtifact, featureFlags: FeatureFlags): ConfigStructure {
+function getBabelConfig(artifact: Artifact, featureFlags: FeatureFlags): ConfigStructure {
 	const inputConfig = getBabelInputConfig(artifact, featureFlags, {});
 	const outputConfig = getBabelOutputConfig(
 		artifact.platform,
@@ -46,12 +45,13 @@ export interface ConfigOptions {
 export function createConfig(folder: string, options: ConfigOptions = {}): ConfigStructure {
 	const path = new Path(folder);
 	const contents = fs.readJsonSync(path.append('package.json').path()) as PackemonPackage;
+	const packemon = new Packemon();
 
 	// Create package and configs
-	const pkg = new Package(project, path, contents);
+	const pkg = new Package(path, contents, packemon.workspaceRoot);
 
-	if (pkg.packageJson.packemon) {
-		pkg.setConfigs(toArray(pkg.packageJson.packemon));
+	if (pkg.json.packemon) {
+		pkg.setConfigs(toArray(pkg.json.packemon));
 	}
 
 	// Determine the lowest platform to support
@@ -66,7 +66,7 @@ export function createConfig(folder: string, options: ConfigOptions = {}): Confi
 	}
 
 	// Generate artifact and builds
-	const artifact = new CodeArtifact(pkg, [{ format: options.format ?? format }]);
+	const artifact = new Artifact(pkg, [{ declaration: false, format: options.format ?? format }]);
 	artifact.bundle = false;
 	artifact.platform = options.platform ?? lowestPlatform;
 	artifact.support = options.support ?? support;
@@ -80,7 +80,6 @@ export function createRootConfig(options?: ConfigOptions): ConfigStructure {
 	return {
 		...config,
 		babelrc: false,
-		babelrcRoots: project.getWorkspaceGlobs({ relative: true }),
 		// Support React Native libraries by default
 		overrides: [
 			{

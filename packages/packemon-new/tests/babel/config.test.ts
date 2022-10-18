@@ -128,14 +128,6 @@ describe('getBabelOutputConfig()', () => {
 		);
 	});
 
-	it('sets `babelrcRoots` based on `workspaces` feature flag', () => {
-		expect(getBabelOutputConfig('node', 'stable', 'lib', { workspaces: ['packages/*'] })).toEqual(
-			expect.objectContaining({
-				babelrcRoots: ['packages/*'],
-			}),
-		);
-	});
-
 	it('can mutate config', () => {
 		expect(
 			getBabelOutputConfig(

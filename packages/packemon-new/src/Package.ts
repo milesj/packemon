@@ -148,7 +148,7 @@ export class Package {
 	/**
 	 * Generate artifacts based on the packemon configuration.
 	 */
-	generateArtifacts({ declaration = false, filterFormats, filterPlatforms }: BuildOptions = {}) {
+	generateArtifacts({ declaration, filterFormats, filterPlatforms }: BuildOptions = {}) {
 		this.debug('Generating artifacts');
 
 		const sharedLib = this.requiresSharedLib();
@@ -268,7 +268,7 @@ export class Package {
 		if (
 			this.hasDependency('flow-bin') ||
 			this.path.append('.flowconfig').exists() ||
-			this.workspaceRoot.append('.flowconfig')
+			this.workspaceRoot.append('.flowconfig').exists()
 		) {
 			flags.flow = true;
 

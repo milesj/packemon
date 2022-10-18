@@ -155,7 +155,7 @@ export interface BuildResult {
 }
 
 export interface Build {
-	declaration: boolean;
+	declaration?: boolean;
 	format: Format;
 	stats?: { size: number };
 }
