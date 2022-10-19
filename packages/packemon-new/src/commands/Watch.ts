@@ -92,13 +92,9 @@ export class WatchCommand extends BaseCommand<WatchOptions> {
 		try {
 			const start = Date.now();
 
-			if (this.loadConfigs) {
-				const { config } = await this.packemon.config.loadConfigFromBranchToRoot(this.package.path);
-
-				await this.package.build({}, config);
-			} else {
-				await this.package.build({}, {});
-			}
+			await this.packemon.build(this.package, {
+				loadConfigs: this.loadConfigs,
+			});
 
 			this.log(
 				applyStyle('Built %s in %s', 'success'),

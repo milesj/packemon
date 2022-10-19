@@ -2,7 +2,6 @@ import fs from 'fs-extra';
 import { isObject, json, Path, PortablePath, toArray } from '@boost/common';
 import { optimal } from '@boost/common/optimal';
 import { createDebugger, Debugger } from '@boost/debug';
-import { Context, PooledPipeline } from '@boost/pipeline';
 import { Config } from './Config';
 import { Package } from './Package';
 import { PackageValidator } from './PackageValidator';
@@ -26,53 +25,26 @@ export class Packemon {
 		this.debug('Initializing packemon in project %s', this.workingDir);
 	}
 
-	async build(baseOptions: BuildOptions) {
+	async build(pkg: Package, baseOptions: BuildOptions) {
 		this.debug('Starting `build` process');
 
 		const options = optimal(buildBlueprint).validate(baseOptions);
-		const pkg = await this.loadPackage(options);
 
-		if (!pkg) {
-			console.log('No package found to build.');
-			return undefined;
-		}
+		if (options.loadConfigs) {
+			const { config } = await this.config.loadConfigFromBranchToRoot(pkg.path);
 
-		// Build packages in parallel using a pool
-		const pipeline = new PooledPipeline(new Context());
-
-		pipeline.configure({
-			concurrency: options.concurrency,
-			timeout: options.timeout,
-		});
-
-		pipeline.add(pkg.getName(), async () => {
-			if (options.loadConfigs) {
-				const { config } = await this.config.loadConfigFromBranchToRoot(pkg.path);
-
-				await pkg.build(options, config);
-			} else {
-				await pkg.build(options, {});
-			}
-		});
-
-		const { errors } = await pipeline.run();
-
-		// Throw to trigger an error screen in the terminal
-		if (errors.length > 0) {
-			throw errors[0];
+			await pkg.build(options, config);
+		} else {
+			await pkg.build(options, {});
 		}
 
 		return pkg;
 	}
 
-	async clean() {
+	async clean(pkg: Package) {
 		this.debug('Starting `clean` process');
 
-		const pkg = await this.loadPackage();
-
-		if (pkg) {
-			await pkg.clean();
-		}
+		await pkg.clean();
 	}
 
 	/**
@@ -115,17 +87,12 @@ export class Packemon {
 		return pkg;
 	}
 
-	async validate(baseOptions: Partial<ValidateOptions>): Promise<PackageValidator | null> {
+	async validate(pkg: Package, baseOptions: Partial<ValidateOptions>): Promise<PackageValidator> {
 		this.debug('Starting `validate` process');
 
 		const options = optimal(validateBlueprint).validate(baseOptions);
-		const pkg = await this.loadPackage(options);
 
-		if (pkg) {
-			return new PackageValidator(pkg).validate(options);
-		}
-
-		return null;
+		return new PackageValidator(pkg).validate(options);
 	}
 
 	/**

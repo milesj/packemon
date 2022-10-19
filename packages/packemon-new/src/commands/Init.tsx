@@ -17,6 +17,7 @@ export class InitCommand extends BaseCommand<InitOptions> {
 	force: boolean = false;
 
 	async run() {
+		// Dont use `getPackage` so we dont throw an error
 		const pkg = await this.packemon.loadPackage();
 
 		if (!pkg) {

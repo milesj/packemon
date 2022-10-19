@@ -38,7 +38,9 @@ export class BuildCommand extends BaseCommand<Required<BuildOptions>> {
 	}
 
 	async build() {
-		const pkg = await this.packemon.build({
+		const pkg = await this.getPackage();
+
+		await this.packemon.build(pkg, {
 			addEngines: this.addEngines,
 			addExports: this.addExports,
 			addFiles: this.addFiles,
@@ -53,10 +55,6 @@ export class BuildCommand extends BaseCommand<Required<BuildOptions>> {
 			stamp: this.stamp,
 			timeout: this.timeout,
 		});
-
-		if (!pkg) {
-			return;
-		}
 
 		const output = [applyMarkdown(`**${pkg.getName()}**`)];
 

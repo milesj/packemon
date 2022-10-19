@@ -33,7 +33,9 @@ export class ValidateCommand extends BaseCommand<Required<ValidateOptions>> {
 	repo: boolean = true;
 
 	async run() {
-		const validator = await this.packemon.validate({
+		const pkg = await this.getPackage();
+
+		const validator = await this.packemon.validate(pkg, {
 			deps: this.deps,
 			engines: this.engines,
 			entries: this.engines,
@@ -46,10 +48,6 @@ export class ValidateCommand extends BaseCommand<Required<ValidateOptions>> {
 			repo: this.repo,
 			skipPrivate: this.skipPrivate,
 		});
-
-		if (!validator) {
-			return;
-		}
 
 		if (validator.hasErrors()) {
 			validator.errors.forEach((error) => {
