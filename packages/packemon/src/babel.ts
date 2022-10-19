@@ -48,7 +48,7 @@ export function createConfig(folder: string, options: ConfigOptions = {}): Confi
 	const packemon = new Packemon();
 
 	// Create package and configs
-	const pkg = new Package(path, contents, packemon.workspaceRoot);
+	const pkg = new Package(path, contents, packemon.findWorkspaceRoot());
 
 	if (pkg.json.packemon) {
 		pkg.setConfigs(toArray(pkg.json.packemon));

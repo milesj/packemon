@@ -18,7 +18,7 @@ export class InitCommand extends BaseCommand<InitOptions> {
 
 	async run() {
 		// Dont use `getPackage` so we dont throw an error
-		const pkg = await this.packemon.loadPackage();
+		const pkg = await this.packemon.findPackage();
 
 		if (!pkg) {
 			this.log.error('No package found in current directory.');

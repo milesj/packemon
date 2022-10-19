@@ -79,7 +79,6 @@ export const buildBlueprint: Blueprint<BuildOptions> = {
 	concurrency: number(1).gte(1),
 	declaration: bool(),
 	declarationConfig: string(),
-	filter: string(),
 	filterFormats: string(),
 	filterPlatforms: string(),
 	loadConfigs: bool(),

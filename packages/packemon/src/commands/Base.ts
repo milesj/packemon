@@ -34,7 +34,7 @@ export abstract class BaseCommand<
 	}
 
 	protected async getPackage() {
-		const pkg = await this.packemon.loadPackage({ skipPrivate: this.skipPrivate });
+		const pkg = await this.packemon.findPackage({ skipPrivate: this.skipPrivate });
 
 		if (!pkg) {
 			throw new Error(`No package found in ${this.packemon.workingDir}!`);

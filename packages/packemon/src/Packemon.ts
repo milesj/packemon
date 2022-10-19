@@ -15,14 +15,11 @@ export class Packemon {
 
 	readonly workingDir: Path;
 
-	readonly workspaceRoot: Path;
-
 	constructor(cwd: PortablePath = process.cwd()) {
 		this.workingDir = Path.resolve(cwd);
-		this.workspaceRoot = this.findWorkspaceRoot(this.workingDir);
 		this.debug = createDebugger('packemon:core');
 
-		this.debug('Initializing packemon in project %s', this.workingDir);
+		this.debug('Running packemon in %s', this.workingDir);
 	}
 
 	async build(pkg: Package, baseOptions: BuildOptions) {
@@ -37,8 +34,6 @@ export class Packemon {
 		} else {
 			await pkg.build(options, {});
 		}
-
-		return pkg;
 	}
 
 	async clean(pkg: Package) {
@@ -47,16 +42,24 @@ export class Packemon {
 		await pkg.clean();
 	}
 
+	async validate(pkg: Package, baseOptions: Partial<ValidateOptions>): Promise<PackageValidator> {
+		this.debug('Starting `validate` process');
+
+		const options = optimal(validateBlueprint).validate(baseOptions);
+
+		return new PackageValidator(pkg).validate(options);
+	}
+
 	/**
 	 * Find and load the package that has been configured with a `packemon`
 	 * block in the `package.json`. Once loaded, validate the configuration.
 	 */
-	async loadPackage({ skipPrivate }: FilterOptions = {}): Promise<Package | null> {
-		this.debug('Loading package from %s', this.workingDir);
+	async findPackage({ skipPrivate }: FilterOptions = {}): Promise<Package | null> {
+		this.debug('Finding package in %s', this.workingDir);
 
 		const pkgPath = this.workingDir.append('package.json');
 
-		if (pkgPath.exists()) {
+		if (!pkgPath.exists()) {
 			throw new Error(`No \`package.json\` found in ${this.workingDir}.`);
 		}
 
@@ -80,26 +83,21 @@ export class Packemon {
 			);
 		}
 
-		const pkg = new Package(this.workingDir, pkgContents, this.workspaceRoot);
+		const pkg = new Package(this.workingDir, pkgContents, this.findWorkspaceRoot());
 
 		pkg.setConfigs(toArray(pkgContents.packemon));
 
 		return pkg;
 	}
 
-	async validate(pkg: Package, baseOptions: Partial<ValidateOptions>): Promise<PackageValidator> {
-		this.debug('Starting `validate` process');
-
-		const options = optimal(validateBlueprint).validate(baseOptions);
-
-		return new PackageValidator(pkg).validate(options);
-	}
-
 	/**
 	 * Determine the workspace root when running in a monorepo.
 	 * This is necessary as it changes functionality.
 	 */
-	protected findWorkspaceRoot(dir: Path): Path {
+	// eslint-disable-next-line complexity
+	findWorkspaceRoot(startingDir?: Path): Path {
+		const dir = startingDir ?? this.workingDir;
+
 		if (
 			dir.append('yarn.lock').exists() ||
 			dir.append('package-lock.json').exists() ||
