@@ -1,11 +1,14 @@
+/* eslint-disable require-atomic-updates */
+/* eslint-disable no-param-reassign */
+/* eslint-disable @typescript-eslint/member-ordering */
+
 import glob from 'fast-glob';
 import fs from 'fs-extra';
 import semver from 'semver';
-import { deepMerge, isObject, Memoize, PackageStructure, Path, toArray } from '@boost/common';
+import { Memoize, Path, toArray } from '@boost/common';
 import { optimal } from '@boost/common/optimal';
 import { createDebugger, Debugger } from '@boost/debug';
 import { Artifact } from './Artifact';
-import { CodeArtifact } from './CodeArtifact';
 import {
 	DEFAULT_FORMATS,
 	EXCLUDE,
@@ -13,247 +16,386 @@ import {
 	FORMATS_BROWSER,
 	FORMATS_NATIVE,
 	FORMATS_NODE,
-	NODE_SUPPORTED_VERSIONS,
-	NPM_SUPPORTED_VERSIONS,
-	SUPPORT_PRIORITY,
 } from './constants';
-import { loadModule } from './helpers/loadModule';
-import { sortExports } from './helpers/sortExports';
-import { Project } from './Project';
+import { loadTsconfigJson } from './helpers/loadTsconfigJson';
+import { matchesPattern } from './helpers/matchesPattern';
 import { packemonBlueprint } from './schemas';
 import {
+	ApiType,
 	BuildOptions,
 	ConfigFile,
 	FeatureFlags,
-	InputMap,
 	PackageConfig,
-	PackageExportPaths,
-	PackageExports,
 	PackemonPackage,
 	PackemonPackageConfig,
-	TSConfigStructure,
+	Platform,
 } from './types';
-import { TypesArtifact } from './TypesArtifact';
 
 export class Package {
-	isComplete(): boolean {
-		return this.artifacts.every((artifact) => artifact.isComplete());
+	readonly artifacts: Artifact[] = [];
+
+	readonly configs: PackageConfig[] = [];
+
+	readonly debug!: Debugger;
+
+	readonly json: PackemonPackage;
+
+	readonly jsonPath: Path;
+
+	readonly path: Path;
+
+	readonly workspaceRoot: Path;
+
+	constructor(path: Path, contents: PackemonPackage, workspaceRoot: Path) {
+		this.path = path;
+		this.jsonPath = this.path.append('package.json');
+		this.json = contents;
+		this.workspaceRoot = workspaceRoot;
+		this.debug = createDebugger(['packemon', 'package', this.getSlug()]);
 	}
 
-	isRunning(): boolean {
-		return this.artifacts.some((artifact) => artifact.isRunning());
+	async build(options: BuildOptions, packemonConfig: ConfigFile): Promise<void> {
+		this.debug('Building artifacts');
+
+		// Build artifacts in parallel
+		await Promise.all(
+			this.artifacts.map(async (artifact) => {
+				const start = Date.now();
+
+				try {
+					artifact.state = 'building';
+
+					await artifact.build(options, packemonConfig);
+
+					artifact.state = 'passed';
+				} catch (error: unknown) {
+					artifact.state = 'failed';
+
+					throw error;
+				} finally {
+					artifact.buildResult.time = Date.now() - start;
+				}
+			}),
+		);
+
+		// Add package entry points based on artifacts
+		// this.addEntryPoints();
+
+		// Add package `engines` based on artifacts
+		if (options.addEngines) {
+			// this.addEngines();
+		}
+
+		// Add package `exports` based on artifacts
+		if (options.addExports) {
+			// this.addExports();
+		}
+
+		// Add package `files` whitelist
+		if (options.addFiles) {
+			// this.addFiles();
+		}
+
+		// Stamp with a timestamp
+		if (options.stamp) {
+			this.json.release = String(Date.now());
+		}
+
+		// Sync `package.json` in case it was modified
+		await fs.writeJson(this.jsonPath.path(), this.json, { spaces: 2 });
 	}
 
-	protected addEngines() {
-		const artifact = (this.artifacts as CodeArtifact[])
-			.filter((art) => art instanceof CodeArtifact)
-			.filter((art) => art.platform === 'node')
-			.reduce<CodeArtifact | null>(
-				(oldest, art) =>
-					!oldest || SUPPORT_PRIORITY[art.support] < SUPPORT_PRIORITY[oldest.support]
-						? art
-						: oldest,
-				null,
-			);
+	async clean(): Promise<void> {
+		this.debug('Cleaning build artifacts');
 
-		if (!artifact) {
-			return;
-		}
+		await Promise.all(this.artifacts.map((artifact) => artifact.clean()));
+	}
 
-		this.debug('Adding `engines` to `package.json`');
+	@Memoize()
+	async findDistributableFiles(): Promise<string[]> {
+		// https://github.com/npm/npm-packlist/blob/main/index.js#L29
+		const patterns: string[] = ['(readme|copying|license|licence)*', 'package.json'];
 
-		const pkg = this.packageJson;
+		this.json.files?.forEach((file) => {
+			if (file.endsWith('/')) {
+				patterns.push(`${file}**/*`);
+			} else {
+				patterns.push(file);
+			}
+		});
 
-		if (!pkg.engines) {
-			pkg.engines = {};
-		}
-
-		Object.assign(pkg.engines, {
-			node: `>=${NODE_SUPPORTED_VERSIONS[artifact.support]}`,
-			npm: toArray(NPM_SUPPORTED_VERSIONS[artifact.support])
-				.map((v) => `>=${v}`)
-				.join(' || '),
+		return glob(patterns, {
+			caseSensitiveMatch: false,
+			cwd: this.path.path(),
+			dot: true,
+			ignore: ['node_modules'],
 		});
 	}
 
-	protected addEntryPoints() {
-		this.debug('Adding entry points to `package.json`');
+	@Memoize()
+	async findSourceFiles(): Promise<string[]> {
+		const extsWithoutPeriod = EXTENSIONS.map((ext) => ext.slice(1)).join(',');
 
-		let mainEntry: string | undefined;
-		let moduleEntry: string | undefined;
-		let browserEntry: string | undefined;
-		let buildCount = 0;
-
-		// eslint-disable-next-line complexity
-		this.artifacts.forEach((artifact) => {
-			// Build files
-			if (artifact instanceof CodeArtifact) {
-				const mainEntryName = artifact.inputs.index ? 'index' : Object.keys(artifact.inputs)[0];
-
-				buildCount += artifact.builds.length;
-
-				// Generate `main`, `module`, and `browser` fields
-				if (!mainEntry || (artifact.platform === 'node' && mainEntryName === 'index')) {
-					mainEntry = artifact.findEntryPoint(['lib', 'cjs', 'mjs', 'esm'], mainEntryName);
-				}
-
-				if (!moduleEntry || (artifact.platform === 'browser' && mainEntryName === 'index')) {
-					moduleEntry = artifact.findEntryPoint(['esm'], mainEntryName);
-				}
-
-				// Only include when we share a lib with another platform
-				if (!browserEntry && artifact.platform === 'browser') {
-					browserEntry = artifact.findEntryPoint(
-						artifact.sharedLib ? ['lib', 'umd'] : ['umd'],
-						mainEntryName,
-					);
-				}
-
-				// Generate `bin` field
-				if (
-					artifact.inputs.bin &&
-					artifact.platform === 'node' &&
-					!isObject(this.packageJson.bin)
-				) {
-					this.packageJson.bin = artifact.findEntryPoint(['lib', 'cjs', 'mjs'], 'bin');
-				}
-			}
-
-			// Type declarations
-			if (artifact instanceof TypesArtifact) {
-				const mainEntryName = artifact.builds.some((build) => build.outputName === 'index')
-					? 'index'
-					: artifact.builds[0].outputName;
-
-				this.packageJson.types = artifact.findEntryPoint(mainEntryName);
-			}
+		return glob(`src/**/*.{${extsWithoutPeriod}}`, {
+			absolute: true,
+			cwd: this.path.path(),
+			onlyFiles: true,
+			// This breaks our own fixtures, so this is hard to test...
+			ignore: process.env.NODE_ENV === 'test' ? [] : EXCLUDE,
 		});
-
-		if (mainEntry) {
-			this.packageJson.main = mainEntry;
-
-			// Only set when we have 1 build, otherwise its confusing
-			if (buildCount === 1) {
-				if (mainEntry.includes('mjs/') || mainEntry.includes('esm/')) {
-					this.packageJson.type = 'module';
-				} else if (mainEntry.includes('cjs/')) {
-					this.packageJson.type = 'commonjs';
-				}
-			}
-		}
-
-		if (moduleEntry) {
-			this.packageJson.module = moduleEntry;
-		}
-
-		if (browserEntry && !isObject(this.packageJson.browser)) {
-			this.packageJson.browser = browserEntry;
-		}
 	}
 
-	protected addExports() {
-		this.debug('Adding `exports` to `package.json`');
+	/**
+	 * Generate artifacts based on the packemon configuration.
+	 */
+	generateArtifacts({ declaration, filterFormats, filterPlatforms }: BuildOptions = {}) {
+		this.debug('Generating artifacts');
 
-		let exportMap: PackageExports = {
-			'./package.json': './package.json',
-		};
+		const sharedLib = this.requiresSharedLib();
+		const apiType = this.determineApiType();
 
-		this.artifacts.forEach((artifact) => {
-			Object.entries(artifact.getPackageExports()).forEach(([path, conditions]) => {
-				if (!conditions) {
+		this.configs.forEach((config, index) => {
+			let builds = config.formats.map((format) => ({
+				declaration,
+				format,
+			}));
+
+			if (filterFormats) {
+				this.debug('Filtering formats with pattern: %s', filterFormats);
+
+				builds = builds.filter((build) => matchesPattern(build.format, filterFormats));
+			}
+
+			if (filterPlatforms) {
+				this.debug('Filtering platforms with pattern: %s', filterPlatforms);
+
+				if (!matchesPattern(config.platform, filterPlatforms)) {
 					return;
 				}
+			}
 
-				if (!exportMap[path]) {
-					exportMap[path] = conditions;
-					return;
+			if (builds.length === 0) {
+				return;
+			}
+
+			const artifact = new Artifact(this, builds);
+			artifact.api = apiType;
+			artifact.bundle = config.bundle;
+			artifact.configGroup = index;
+			artifact.externals = config.externals;
+			artifact.inputs = config.inputs;
+			artifact.namespace = config.namespace;
+			artifact.platform = config.platform;
+			artifact.sharedLib = sharedLib;
+			artifact.support = config.support;
+
+			this.artifacts.push(artifact);
+		});
+
+		this.debug(' - %s: %s', this.getName(), this.artifacts.join(', '));
+	}
+
+	@Memoize()
+	// eslint-disable-next-line complexity
+	getFeatureFlags(): FeatureFlags {
+		this.debug('Loading feature flags');
+
+		const flags: FeatureFlags = {};
+
+		// React
+		if (this.hasDependency('react')) {
+			const peerDep = this.json.peerDependencies?.react;
+			const prodDep = this.json.dependencies?.react;
+			const versionsToCheck: string[] = [];
+
+			if (peerDep && peerDep !== '*') {
+				versionsToCheck.push(...peerDep.split('||'));
+			} else if (prodDep && prodDep !== '*') {
+				versionsToCheck.push(prodDep);
+			}
+
+			// New JSX transform was backported to these versions:
+			// https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html
+			const automatic = versionsToCheck.every((version) => {
+				const coercedVersion = semver.coerce(version.trim().replace(/(>|<|=|~|^)/g, ''));
+
+				if (coercedVersion === null) {
+					return false;
 				}
 
-				if (typeof exportMap[path] === 'string') {
-					exportMap[path] = { default: exportMap[path] };
-				}
-
-				exportMap[path] = deepMerge<PackageExportPaths, PackageExportPaths>(
-					exportMap[path] as PackageExportPaths,
-					typeof conditions === 'string' ? { default: conditions } : conditions,
+				return semver.satisfies(
+					coercedVersion.version,
+					'>=17.0.0 || ^16.14.0 || ^15.7.0 || ^0.14.0',
 				);
+			});
+
+			flags.react = automatic && versionsToCheck.length > 0 ? 'automatic' : 'classic';
+
+			this.debug(' - React');
+		}
+
+		// Solid
+		if (this.hasDependency('solid-js')) {
+			flags.solid = true;
+
+			this.debug(' - Solid');
+		}
+
+		// TypeScript
+		if (
+			this.hasDependency('typescript') ||
+			this.path.append('tsconfig.json') ||
+			this.workspaceRoot.append('tsconfig.json')
+		) {
+			const tsConfig = loadTsconfigJson(this.path.append('tsconfig.json'));
+
+			flags.typescript = Boolean(tsConfig);
+			flags.typescriptComposite = Boolean(
+				tsConfig?.options?.composite ||
+					(tsConfig?.projectReferences && tsConfig?.projectReferences.length > 0),
+			);
+			flags.decorators = Boolean(tsConfig?.options.experimentalDecorators);
+			flags.strict = Boolean(tsConfig?.options.strict);
+
+			this.debug(
+				' - TypeScript (%s, %s)',
+				flags.strict ? 'strict' : 'non-strict',
+				flags.decorators ? 'decorators' : 'non-decorators',
+			);
+		}
+
+		// Flow
+		if (
+			this.hasDependency('flow-bin') ||
+			this.path.append('.flowconfig').exists() ||
+			this.workspaceRoot.append('.flowconfig').exists()
+		) {
+			flags.flow = true;
+
+			this.debug(' - Flow');
+		}
+
+		return flags;
+	}
+
+	getName(): string {
+		return this.json.name;
+	}
+
+	getSlug(): string {
+		return this.path.name(true);
+	}
+
+	hasDependency(name: string): boolean {
+		const { json } = this;
+
+		return Boolean(
+			json.dependencies?.[name] ??
+				json.devDependencies?.[name] ??
+				json.peerDependencies?.[name] ??
+				json.optionalDependencies?.[name],
+		);
+	}
+
+	setConfigs(configs: PackemonPackageConfig[]) {
+		configs.forEach((cfg) => {
+			const config = optimal(packemonBlueprint, {
+				name: this.getName(),
+			}).validate(cfg);
+
+			// eslint-disable-next-line complexity
+			toArray(config.platform).forEach((platform) => {
+				let { api, bundle } = config;
+				let formats = config.format ? [config.format] : [];
+
+				switch (platform) {
+					case 'native':
+						formats = formats.filter((format) => (FORMATS_NATIVE as string[]).includes(format));
+
+						if (formats.length === 0) {
+							formats.push(DEFAULT_FORMATS.native);
+						}
+						break;
+
+					case 'node':
+						if (cfg.api === undefined) {
+							api = 'public';
+						}
+
+						if (cfg.bundle === undefined) {
+							bundle = false;
+						}
+
+						formats = formats.filter((format) => (FORMATS_NODE as string[]).includes(format));
+
+						if (formats.length === 0) {
+							formats.push(DEFAULT_FORMATS.node);
+						}
+						break;
+
+					default:
+						formats = formats.filter((format) => (FORMATS_BROWSER as string[]).includes(format));
+
+						if (formats.length === 0) {
+							formats.push(DEFAULT_FORMATS.browser);
+						}
+
+						// Auto-support lib builds for test environments
+						if (formats.includes('esm') && !formats.includes('lib')) {
+							formats.push('lib');
+						}
+
+						if (config.namespace && !formats.includes('umd')) {
+							formats.push('umd');
+						}
+						break;
+				}
+
+				this.configs.push({
+					api,
+					bundle,
+					externals: toArray(config.externals),
+					formats,
+					inputs: config.inputs,
+					namespace: config.namespace,
+					platform,
+					support: config.support,
+				});
+			});
+		});
+	}
+
+	async syncJson() {
+		await fs.writeJson(this.jsonPath.path(), this.json, { spaces: 2 });
+	}
+
+	/**
+	 * When 1 config needs a private API, all other configs should be private,
+	 * otherwise we will have conflicting output structures and exports.
+	 */
+	protected determineApiType(): ApiType {
+		return this.configs.some((cfg) => cfg.api === 'private') ? 'private' : 'public';
+	}
+
+	/**
+	 * Format "lib" is a shared format across all platforms,
+	 * and when a package wants to support multiple platforms,
+	 * we must account for this and alter the output paths.
+	 */
+	protected requiresSharedLib(): boolean {
+		const platformsToCheck = new Set<Platform>();
+		let libFormatCount = 0;
+
+		this.configs.forEach((config) => {
+			platformsToCheck.add(config.platform);
+
+			config.formats.forEach((format) => {
+				if (format === 'lib') {
+					libFormatCount += 1;
+				}
 			});
 		});
 
-		exportMap = sortExports(exportMap);
-
-		if (isObject(this.packageJson.exports)) {
-			Object.assign(this.packageJson.exports, exportMap);
-		} else {
-			this.packageJson.exports = exportMap as PackageStructure['exports'];
-		}
-	}
-
-	protected addFiles() {
-		this.debug('Adding files to `package.json`');
-
-		const files = new Set<string>(this.packageJson.files);
-
-		try {
-			if (this.path.append('assets').exists()) {
-				files.add('assets/**/*');
-			}
-		} catch {
-			// May throw ENOENT
-		}
-
-		this.artifacts.forEach((artifact) => {
-			// Build files
-			if (artifact instanceof CodeArtifact) {
-				artifact.builds.forEach(({ format }) => {
-					files.add(`${format}/**/*.{${artifact.getBuildOutput(format).extGroup}}`);
-				});
-
-				files.add(`src/**/*.{${this.getSourceFileExts(artifact.inputs)}}`);
-			}
-
-			// Type declarations
-			if (artifact instanceof TypesArtifact) {
-				files.add(`dts/**/*.${artifact.getDeclExt()}`);
-			}
-		});
-
-		this.packageJson.files = [...files].sort();
-	}
-
-	protected getSourceFileExts(inputs: InputMap): string[] {
-		const sourceExts = Object.values(inputs).map((inputFile) => new Path(inputFile).ext(true));
-		const exts = new Set(sourceExts);
-
-		// Include sibling file extensions
-		sourceExts.forEach((sourceExt) => {
-			switch (sourceExt) {
-				case 'js':
-					exts.add('jsx');
-					break;
-
-				case 'jsx':
-				case 'cjs':
-					exts.add('js');
-					break;
-
-				case 'ts':
-					exts.add('tsx');
-					break;
-
-				case 'tsx':
-					exts.add('ts');
-					break;
-
-				// no default
-			}
-		});
-
-		const list = [...exts].sort();
-
-		// Always be last
-		list.push('json');
-
-		return list;
+		return platformsToCheck.size > 1 && libFormatCount > 1;
 	}
 }
