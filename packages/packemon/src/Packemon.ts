@@ -27,6 +27,8 @@ export class Packemon {
 
 		const options = optimal(buildBlueprint).validate(baseOptions);
 
+		pkg.generateArtifacts(options);
+
 		if (options.loadConfigs) {
 			const { config } = await this.config.loadConfigFromBranchToRoot(pkg.path);
 

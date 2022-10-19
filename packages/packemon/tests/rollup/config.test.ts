@@ -230,7 +230,6 @@ describe('getRollupConfig()', () => {
 		artifact.builds.push({ format: 'lib' });
 
 		await expect(getRollupConfig(artifact, {})).resolves.toEqual({
-			cache: undefined,
 			external: expect.any(Function),
 			input: [
 				'src/index.ts',

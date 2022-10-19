@@ -5,8 +5,7 @@ import { Path } from '@boost/common';
 import { getFixturePath } from '@boost/test-utils';
 import { Package } from '../src/Package';
 import { PackageValidator } from '../src/PackageValidator';
-import { Project } from '../src/Project';
-import { mockSpy } from './helpers';
+import { mockSpy } from '../tests-old/helpers';
 
 jest.mock('execa');
 jest.mock('npm-packlist');
@@ -15,7 +14,7 @@ function createValidator(fixture: string) {
 	const root = new Path(getFixturePath(fixture));
 
 	return new PackageValidator(
-		new Package(new Project(root), root, {
+		new Package(root, {
 			name: 'test',
 			version: '0.0.0',
 			description: 'Test',
@@ -77,14 +76,14 @@ describe('PackageValidator', () => {
 				describe(`${depType}`, () => {
 					beforeEach(() => {
 						if (depType === 'peerDependencies') {
-							validator.package.packageJson.devDependencies = {
+							validator.package.json.devDependencies = {
 								foo: '*',
 							};
 						}
 					});
 
 					it('does not error if no deps', async () => {
-						validator.package.packageJson[depType as 'dependencies'] = {};
+						validator.package.json[depType as 'dependencies'] = {};
 
 						await validator.validate({ deps: true });
 
@@ -93,7 +92,7 @@ describe('PackageValidator', () => {
 					});
 
 					it('errors if a dep uses a file: constraint', async () => {
-						validator.package.packageJson[depType as 'dependencies'] = {
+						validator.package.json[depType as 'dependencies'] = {
 							foo: 'file:../package',
 						};
 
@@ -106,7 +105,7 @@ describe('PackageValidator', () => {
 					});
 
 					it('errors if a dep uses a link: constraint', async () => {
-						validator.package.packageJson[depType as 'dependencies'] = {
+						validator.package.json[depType as 'dependencies'] = {
 							foo: 'link:../package',
 						};
 
@@ -122,10 +121,10 @@ describe('PackageValidator', () => {
 		);
 
 		it('errors if a dep defined as both a normal and peer', async () => {
-			validator.package.packageJson.dependencies = {
+			validator.package.json.dependencies = {
 				foo: '1.0.0',
 			};
-			validator.package.packageJson.peerDependencies = {
+			validator.package.json.peerDependencies = {
 				foo: '1.0.0',
 			};
 
@@ -140,7 +139,7 @@ describe('PackageValidator', () => {
 		});
 
 		it('warns if a dep defined as a peer without a dev', async () => {
-			validator.package.packageJson.peerDependencies = {
+			validator.package.json.peerDependencies = {
 				foo: '1.0.0',
 			};
 
@@ -153,11 +152,11 @@ describe('PackageValidator', () => {
 		});
 
 		it('doesnt warn if a dep defined as a peer without a dev, but is optional', async () => {
-			validator.package.packageJson.peerDependencies = {
+			validator.package.json.peerDependencies = {
 				foo: '1.0.0',
 			};
 
-			validator.package.packageJson.peerDependenciesMeta = {
+			validator.package.json.peerDependenciesMeta = {
 				foo: {
 					optional: true,
 				},
@@ -170,10 +169,10 @@ describe('PackageValidator', () => {
 		});
 
 		it('errors if a dep defined as a peer without a dev satisfying version', async () => {
-			validator.package.packageJson.peerDependencies = {
+			validator.package.json.peerDependencies = {
 				foo: '^1.0.0',
 			};
-			validator.package.packageJson.devDependencies = {
+			validator.package.json.devDependencies = {
 				foo: '0.1.2',
 			};
 
@@ -186,10 +185,10 @@ describe('PackageValidator', () => {
 		});
 
 		it('doesnt error if a dep defined as a peer with a dev satisfying version', async () => {
-			validator.package.packageJson.peerDependencies = {
+			validator.package.json.peerDependencies = {
 				foo: '^1.0.0',
 			};
-			validator.package.packageJson.devDependencies = {
+			validator.package.json.devDependencies = {
 				foo: '1.1.2',
 			};
 
@@ -201,17 +200,19 @@ describe('PackageValidator', () => {
 
 		describe('lerna', () => {
 			beforeEach(() => {
-				jest.spyOn(validator.package.project, 'isLernaManaged').mockImplementation(() => true);
+				// @ts-expect-error Allow override
+				jest.spyOn(validator, 'isLernaManaged').mockImplementation(() => true);
 				jest
-					.spyOn(validator.package.project, 'getWorkspacePackageNames')
+					// @ts-expect-error Allow override
+					.spyOn(validator, 'getWorkspacePackageNames')
 					.mockImplementation(() => ['foo', 'bar', 'baz']);
 			});
 
 			it('errors if a dep defined as a peer with a dev', async () => {
-				validator.package.packageJson.peerDependencies = {
+				validator.package.json.peerDependencies = {
 					foo: '^1.0.0',
 				};
-				validator.package.packageJson.devDependencies = {
+				validator.package.json.devDependencies = {
 					foo: '1.2.3',
 				};
 
@@ -224,7 +225,7 @@ describe('PackageValidator', () => {
 			});
 
 			it('doesnt error if a dep defined as a peer without a dev', async () => {
-				validator.package.packageJson.peerDependencies = {
+				validator.package.json.peerDependencies = {
 					foo: '^1.0.0',
 				};
 
@@ -243,13 +244,13 @@ describe('PackageValidator', () => {
 
 		describe('node', () => {
 			beforeEach(() => {
-				validator.package.packageJson.engines = {
+				validator.package.json.engines = {
 					node: '>=10.10.0',
 				};
 			});
 
 			it('does nothing if no node constraint', async () => {
-				validator.package.packageJson.engines = {};
+				validator.package.json.engines = {};
 
 				await validator.validate({ engines: true });
 
@@ -280,13 +281,13 @@ describe('PackageValidator', () => {
 
 		describe('npm', () => {
 			beforeEach(() => {
-				validator.package.packageJson.engines = {
+				validator.package.json.engines = {
 					npm: '^7.0.0',
 				};
 			});
 
 			it('does nothing if no npm constraint', async () => {
-				validator.package.packageJson.engines = {};
+				validator.package.json.engines = {};
 
 				await validator.validate({ engines: true });
 
@@ -317,13 +318,13 @@ describe('PackageValidator', () => {
 
 		describe('yarn', () => {
 			beforeEach(() => {
-				validator.package.packageJson.engines = {
+				validator.package.json.engines = {
 					yarn: '^1.0.0 || ^2.0.0',
 				};
 			});
 
 			it('does nothing if no yarn constraint', async () => {
-				validator.package.packageJson.engines = {};
+				validator.package.json.engines = {};
 
 				await validator.validate({ engines: true });
 
@@ -369,7 +370,7 @@ describe('PackageValidator', () => {
 
 				if (entryPoint !== 'main') {
 					it('doesnt error if field is empty', async () => {
-						validator.package.packageJson[entryPoint as 'main'] = undefined;
+						validator.package.json[entryPoint as 'main'] = undefined;
 
 						await validator.validate({ entries: true });
 
@@ -379,7 +380,7 @@ describe('PackageValidator', () => {
 				}
 
 				it('errors if field points to an invalid file', async () => {
-					validator.package.packageJson[entryPoint as 'main'] = './missing/file.js';
+					validator.package.json[entryPoint as 'main'] = './missing/file.js';
 
 					await validator.validate({ entries: true });
 
@@ -404,7 +405,7 @@ describe('PackageValidator', () => {
 			});
 
 			it('errors if a bin field points to an invalid file', async () => {
-				(validator.package.packageJson.bin as Record<string, string>).b = './missing/file.js';
+				(validator.package.json.bin as Record<string, string>).b = './missing/file.js';
 
 				await validator.validate({ entries: true });
 
@@ -426,7 +427,7 @@ describe('PackageValidator', () => {
 			});
 
 			it('errors if a man field points to an invalid file', async () => {
-				(validator.package.packageJson.man as string[])[0] = './missing/file.js';
+				(validator.package.json.man as string[])[0] = './missing/file.js';
 
 				await validator.validate({ entries: true });
 
@@ -439,8 +440,8 @@ describe('PackageValidator', () => {
 
 		it(`errors if "main" and "exports" are empty`, async () => {
 			validator = createValidator(`validate-entry-main`);
-			validator.package.packageJson.main = undefined;
-			validator.package.packageJson.exports = undefined;
+			validator.package.json.main = undefined;
+			validator.package.json.exports = undefined;
 
 			await validator.validate({ entries: true });
 
@@ -502,7 +503,7 @@ describe('PackageValidator', () => {
 		});
 
 		it('errors if license field is not defined', async () => {
-			validator.package.packageJson.license = undefined;
+			validator.package.json.license = undefined;
 
 			await validator.validate({ license: true });
 
@@ -511,7 +512,7 @@ describe('PackageValidator', () => {
 		});
 
 		it('errors if license field is an invalid SPDX license', async () => {
-			validator.package.packageJson.license = 'unknown';
+			validator.package.json.license = 'unknown';
 
 			await validator.validate({ license: true });
 
@@ -522,7 +523,7 @@ describe('PackageValidator', () => {
 		});
 
 		it('errors if license non-string field is an invalid SPDX license', async () => {
-			validator.package.packageJson.license = [
+			validator.package.json.license = [
 				{ type: 'MIT', url: '' },
 				{ type: 'what', url: '' },
 			];
@@ -536,7 +537,7 @@ describe('PackageValidator', () => {
 		});
 
 		it('doesnt error if license field is an object', async () => {
-			validator.package.packageJson.license = { type: 'MIT', url: '' };
+			validator.package.json.license = { type: 'MIT', url: '' };
 
 			await validator.validate({ license: true });
 
@@ -545,7 +546,7 @@ describe('PackageValidator', () => {
 		});
 
 		it('doesnt error if license field is an array of objects', async () => {
-			validator.package.packageJson.license = [
+			validator.package.json.license = [
 				{ type: 'MIT', url: '' },
 				{ type: 'BSD-3-Clause', url: '' },
 			];
@@ -604,7 +605,7 @@ describe('PackageValidator', () => {
 			});
 
 			it('doesnt warn if defined and a valid URL', async () => {
-				validator.package.packageJson.homepage = 'https://packemon.dev';
+				validator.package.json.homepage = 'https://packemon.dev';
 
 				await validator.validate({ links: true });
 
@@ -615,7 +616,7 @@ describe('PackageValidator', () => {
 			it('warns if defined and an invalid URL', async () => {
 				urlSpy.mockImplementation(() => false);
 
-				validator.package.packageJson.homepage = 'invalid url';
+				validator.package.json.homepage = 'invalid url';
 
 				await validator.validate({ links: true });
 
@@ -635,7 +636,7 @@ describe('PackageValidator', () => {
 			});
 
 			it('doesnt warn if defined and a valid URL', async () => {
-				validator.package.packageJson.bugs = 'https://packemon.dev';
+				validator.package.json.bugs = 'https://packemon.dev';
 
 				await validator.validate({ links: true });
 
@@ -646,7 +647,7 @@ describe('PackageValidator', () => {
 			it('warns if defined and an invalid URL', async () => {
 				urlSpy.mockImplementation(() => false);
 
-				validator.package.packageJson.bugs = 'invalid url';
+				validator.package.json.bugs = 'invalid url';
 
 				await validator.validate({ links: true });
 
@@ -658,7 +659,7 @@ describe('PackageValidator', () => {
 
 			describe('object', () => {
 				it('doesnt warn if defined and a valid URL', async () => {
-					validator.package.packageJson.bugs = { url: 'https://packemon.dev' };
+					validator.package.json.bugs = { url: 'https://packemon.dev' };
 
 					await validator.validate({ links: true });
 
@@ -669,7 +670,7 @@ describe('PackageValidator', () => {
 				it('warns if defined and an invalid URL', async () => {
 					urlSpy.mockImplementation(() => false);
 
-					validator.package.packageJson.bugs = { url: 'invalid url' };
+					validator.package.json.bugs = { url: 'invalid url' };
 
 					await validator.validate({ links: true });
 
@@ -689,7 +690,7 @@ describe('PackageValidator', () => {
 
 		describe('name', () => {
 			it('doesnt error if defined', async () => {
-				validator.package.packageJson.name = 'packemon';
+				validator.package.json.name = 'packemon';
 
 				await validator.validate({ meta: true });
 
@@ -698,7 +699,7 @@ describe('PackageValidator', () => {
 			});
 
 			it('errors if not defined', async () => {
-				validator.package.packageJson.name = '';
+				validator.package.json.name = '';
 
 				await validator.validate({ meta: true });
 
@@ -707,7 +708,7 @@ describe('PackageValidator', () => {
 			});
 
 			it('errors if an invalid format', async () => {
-				validator.package.packageJson.name = 'what even is this';
+				validator.package.json.name = 'what even is this';
 
 				await validator.validate({ meta: true });
 
@@ -720,7 +721,7 @@ describe('PackageValidator', () => {
 
 		describe('version', () => {
 			it('doesnt error if defined', async () => {
-				validator.package.packageJson.version = '1.0.0';
+				validator.package.json.version = '1.0.0';
 
 				await validator.validate({ meta: true });
 
@@ -729,7 +730,7 @@ describe('PackageValidator', () => {
 			});
 
 			it('errors if not defined', async () => {
-				validator.package.packageJson.version = '';
+				validator.package.json.version = '';
 
 				await validator.validate({ meta: true });
 
@@ -738,7 +739,7 @@ describe('PackageValidator', () => {
 			});
 
 			it('doesnt error if not defined but package is private', async () => {
-				validator.package.packageJson.private = true;
+				validator.package.json.private = true;
 
 				await validator.validate({ meta: true });
 
@@ -749,7 +750,7 @@ describe('PackageValidator', () => {
 
 		describe('description', () => {
 			it('doesnt warn if defined', async () => {
-				validator.package.packageJson.description = 'Packemon';
+				validator.package.json.description = 'Packemon';
 
 				await validator.validate({ meta: true });
 
@@ -758,7 +759,7 @@ describe('PackageValidator', () => {
 			});
 
 			it('warns if not defined', async () => {
-				validator.package.packageJson.description = undefined;
+				validator.package.json.description = undefined;
 
 				await validator.validate({ meta: true });
 
@@ -767,7 +768,7 @@ describe('PackageValidator', () => {
 			});
 
 			it('doesnt warn if not defined but package is private', async () => {
-				validator.package.packageJson.private = true;
+				validator.package.json.private = true;
 
 				await validator.validate({ meta: true });
 
@@ -778,7 +779,7 @@ describe('PackageValidator', () => {
 
 		describe('keywords', () => {
 			it('doesnt warn if defined', async () => {
-				validator.package.packageJson.keywords = ['packemon'];
+				validator.package.json.keywords = ['packemon'];
 
 				await validator.validate({ meta: true });
 
@@ -787,7 +788,7 @@ describe('PackageValidator', () => {
 			});
 
 			it('warns if not defined', async () => {
-				validator.package.packageJson.keywords = undefined;
+				validator.package.json.keywords = undefined;
 
 				await validator.validate({ meta: true });
 
@@ -796,7 +797,7 @@ describe('PackageValidator', () => {
 			});
 
 			it('warns if defined but empty', async () => {
-				validator.package.packageJson.keywords = [];
+				validator.package.json.keywords = [];
 
 				await validator.validate({ meta: true });
 
@@ -805,7 +806,7 @@ describe('PackageValidator', () => {
 			});
 
 			it('doesnt warn if not defined but package is private', async () => {
-				validator.package.packageJson.private = true;
+				validator.package.json.private = true;
 
 				await validator.validate({ meta: true });
 
@@ -852,7 +853,7 @@ describe('PackageValidator', () => {
 
 		describe('author', () => {
 			it('warns if not defined', async () => {
-				validator.package.packageJson.author = undefined;
+				validator.package.json.author = undefined;
 
 				await validator.validate({ people: true });
 
@@ -861,7 +862,7 @@ describe('PackageValidator', () => {
 			});
 
 			it('doesnt warn if defined', async () => {
-				validator.package.packageJson.author = 'Ash Ketchum';
+				validator.package.json.author = 'Ash Ketchum';
 
 				await validator.validate({ people: true });
 
@@ -870,7 +871,7 @@ describe('PackageValidator', () => {
 			});
 
 			it('errors if defined as an object without a name', async () => {
-				validator.package.packageJson.author = { name: '' };
+				validator.package.json.author = { name: '' };
 
 				await validator.validate({ people: true });
 
@@ -879,7 +880,7 @@ describe('PackageValidator', () => {
 			});
 
 			it('doesnt error if defined', async () => {
-				validator.package.packageJson.author = { name: 'Ash Ketchum' };
+				validator.package.json.author = { name: 'Ash Ketchum' };
 
 				await validator.validate({ people: true });
 
@@ -890,7 +891,7 @@ describe('PackageValidator', () => {
 			it('warns if defined and an invalid URL', async () => {
 				urlSpy.mockImplementation(() => false);
 
-				validator.package.packageJson.author = { name: 'Ash Ketchum', url: 'https broken url' };
+				validator.package.json.author = { name: 'Ash Ketchum', url: 'https broken url' };
 
 				await validator.validate({ people: true });
 
@@ -903,12 +904,12 @@ describe('PackageValidator', () => {
 
 		describe('contributors', () => {
 			beforeEach(() => {
-				validator.package.packageJson.author = 'Professor Oak';
+				validator.package.json.author = 'Professor Oak';
 			});
 
 			it('warns if defined and not an array', async () => {
 				// @ts-expect-error Allow invalid type
-				validator.package.packageJson.contributors = {};
+				validator.package.json.contributors = {};
 
 				await validator.validate({ people: true });
 
@@ -917,7 +918,7 @@ describe('PackageValidator', () => {
 			});
 
 			it('doesnt warn if defined but empty', async () => {
-				validator.package.packageJson.contributors = [];
+				validator.package.json.contributors = [];
 
 				await validator.validate({ people: true });
 
@@ -926,7 +927,7 @@ describe('PackageValidator', () => {
 			});
 
 			it('doesnt warn if defined with strings', async () => {
-				validator.package.packageJson.contributors = ['Ash Ketchum'];
+				validator.package.json.contributors = ['Ash Ketchum'];
 
 				await validator.validate({ people: true });
 
@@ -935,7 +936,7 @@ describe('PackageValidator', () => {
 			});
 
 			it('errors if defined with an object but missing name', async () => {
-				validator.package.packageJson.contributors = [{ name: '' }];
+				validator.package.json.contributors = [{ name: '' }];
 
 				await validator.validate({ people: true });
 
@@ -946,9 +947,7 @@ describe('PackageValidator', () => {
 			it('warns if defined with an object but an invalid URL', async () => {
 				urlSpy.mockImplementation(() => false);
 
-				validator.package.packageJson.contributors = [
-					{ name: 'Ash Ketchum', url: 'https broken url' },
-				];
+				validator.package.json.contributors = [{ name: 'Ash Ketchum', url: 'https broken url' }];
 
 				await validator.validate({ people: true });
 
@@ -967,7 +966,7 @@ describe('PackageValidator', () => {
 		});
 
 		it('errors if not defined', async () => {
-			validator.package.packageJson.repository = undefined;
+			validator.package.json.repository = undefined;
 
 			await validator.validate({ repo: true });
 
@@ -978,7 +977,7 @@ describe('PackageValidator', () => {
 		it('warns if defined and an invalid URL', async () => {
 			urlSpy.mockImplementation(() => false);
 
-			validator.package.packageJson.repository = 'https broken url';
+			validator.package.json.repository = 'https broken url';
 
 			await validator.validate({ repo: true });
 
@@ -989,7 +988,7 @@ describe('PackageValidator', () => {
 		});
 
 		it('doesnt error if defined and a valid URL', async () => {
-			validator.package.packageJson.repository = 'https://packemon.dev';
+			validator.package.json.repository = 'https://packemon.dev';
 
 			await validator.validate({ repo: true });
 
@@ -998,7 +997,7 @@ describe('PackageValidator', () => {
 		});
 
 		it('doesnt error if defined and a valid git SSH', async () => {
-			validator.package.packageJson.repository = 'git@github.com:milesj/packemon.git';
+			validator.package.json.repository = 'git@github.com:milesj/packemon.git';
 
 			await validator.validate({ repo: true });
 
@@ -1008,7 +1007,7 @@ describe('PackageValidator', () => {
 
 		describe('object', () => {
 			it('errors if not defined', async () => {
-				validator.package.packageJson.repository = { type: 'url', url: '' };
+				validator.package.json.repository = { type: 'url', url: '' };
 
 				await validator.validate({ repo: true });
 
@@ -1017,7 +1016,7 @@ describe('PackageValidator', () => {
 			});
 
 			it('doesnt error if defined and a valid URL', async () => {
-				validator.package.packageJson.repository = { type: 'url', url: 'https://packemon.dev' };
+				validator.package.json.repository = { type: 'url', url: 'https://packemon.dev' };
 
 				await validator.validate({ repo: true });
 
@@ -1026,7 +1025,7 @@ describe('PackageValidator', () => {
 			});
 
 			it('doesnt error if defined and a valid git SSH', async () => {
-				validator.package.packageJson.repository = {
+				validator.package.json.repository = {
 					type: 'git',
 					url: 'git@github.com:milesj/packemon.git',
 				};
@@ -1039,7 +1038,7 @@ describe('PackageValidator', () => {
 
 			describe('directory', () => {
 				it('errors if defined and points to an invalid path', async () => {
-					validator.package.packageJson.repository = {
+					validator.package.json.repository = {
 						type: 'url',
 						url: 'https://packemon.dev',
 						directory: 'packages/missing-package',
@@ -1054,7 +1053,7 @@ describe('PackageValidator', () => {
 				});
 
 				it('doesnt error if defined and points to an valid path', async () => {
-					validator.package.packageJson.repository = {
+					validator.package.json.repository = {
 						type: 'url',
 						url: 'https://packemon.dev',
 						directory: 'packages/valid-object',

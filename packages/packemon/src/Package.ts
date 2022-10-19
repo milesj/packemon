@@ -46,11 +46,11 @@ export class Package {
 
 	readonly workspaceRoot: Path;
 
-	constructor(path: Path, contents: PackemonPackage, workspaceRoot: Path) {
+	constructor(path: Path, contents: PackemonPackage, workspaceRoot?: Path) {
 		this.path = path;
 		this.jsonPath = this.path.append('package.json');
 		this.json = contents;
-		this.workspaceRoot = workspaceRoot;
+		this.workspaceRoot = workspaceRoot ?? path;
 		this.debug = createDebugger(['packemon', 'package', this.getSlug()]);
 	}
 

@@ -83,7 +83,7 @@ export class PackageValidator {
 	protected checkDependencies() {
 		this.package.debug('Checking dependencies');
 
-		const usesLerna = this.package.workspaceRoot.append('lerna.json').exists();
+		const usesLerna = this.isLernaManaged();
 		const workspacePackageNames = new Set(this.getWorkspacePackageNames());
 		const {
 			dependencies = {},
@@ -439,5 +439,9 @@ export class PackageValidator {
 		return new Project(this.package.workspaceRoot)
 			.getWorkspacePackages()
 			.map((wp) => wp.package.name);
+	}
+
+	protected isLernaManaged(): boolean {
+		return this.package.workspaceRoot.append('lerna.json').exists();
 	}
 }
