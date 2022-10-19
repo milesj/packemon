@@ -34,6 +34,10 @@ export class BuildCommand extends BaseCommand<Required<BuildOptions>> {
 	stamp: boolean = false;
 
 	async run() {
+		return this.build();
+	}
+
+	async build() {
 		const pkg = await this.packemon.build({
 			addEngines: this.addEngines,
 			addExports: this.addExports,
