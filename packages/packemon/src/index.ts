@@ -12,7 +12,6 @@ export * from './commands/Clean';
 export * from './commands/Files';
 export * from './commands/Init';
 export * from './commands/Pack';
-export * from './commands/Scaffold';
 export * from './commands/Validate';
 export * from './commands/Watch';
 export * from './constants';
