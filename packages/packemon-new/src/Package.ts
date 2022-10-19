@@ -365,6 +365,10 @@ export class Package {
 		});
 	}
 
+	async syncJson() {
+		await fs.writeJson(this.jsonPath.path(), this.json, { spaces: 2 });
+	}
+
 	/**
 	 * When 1 config needs a private API, all other configs should be private,
 	 * otherwise we will have conflicting output structures and exports.

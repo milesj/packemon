@@ -104,6 +104,7 @@ export type PackageExportConditions =
 	| 'react-native'
 	| 'require'
 	| 'script'
+	| 'solid'
 	| 'style'
 	| 'types';
 
@@ -185,7 +186,6 @@ export interface FeatureFlags {
 	strict?: boolean;
 	typescript?: boolean;
 	typescriptComposite?: boolean;
-	// workspaces?: string[];
 }
 
 declare module 'rollup' {

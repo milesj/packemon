@@ -1,3 +1,4 @@
-const { createRootConfig } = require('packemon/babel');
-
-module.exports = createRootConfig();
+// https://www.npmjs.com/package/babel-preset-moon
+module.exports = {
+	presets: ['moon'],
+};
