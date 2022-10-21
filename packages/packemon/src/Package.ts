@@ -244,12 +244,12 @@ export class Package {
 		// TypeScript
 		if (
 			this.hasDependency('typescript') ||
-			this.path.append('tsconfig.json') ||
-			this.workspaceRoot.append('tsconfig.json')
+			this.path.append('tsconfig.json').exists() ||
+			this.workspaceRoot.append('tsconfig.json').exists()
 		) {
 			const tsConfig = loadTsconfigJson(this.path.append('tsconfig.json'));
 
-			flags.typescript = Boolean(tsConfig);
+			flags.typescript = true;
 			flags.typescriptComposite = Boolean(
 				tsConfig?.options?.composite ||
 					(tsConfig?.projectReferences && tsConfig?.projectReferences.length > 0),
