@@ -192,12 +192,9 @@ exports[`Outputs (babel) artifacts builds all the artifacts with rollup 6`] = `
 [
   "package.json",
   {
-    "browser": "./umd/client.js",
     "dependencies": {
       "typescript": "*",
     },
-    "main": "./lib/index.js",
-    "module": "./esm/client.js",
     "name": "project-rollup",
     "packemon": {
       "inputs": {
@@ -320,7 +317,6 @@ exports[`Outputs (babel) bundle bundles all files into a single file with rollup
 [
   "package.json",
   {
-    "main": "./lib/index.js",
     "name": "project-bundle",
     "packemon": {
       "bundle": true,
@@ -458,7 +454,6 @@ exports[`Outputs (babel) bundle with assets uses same assets across multiple for
   "package.json",
   {
     "main": "./lib/index.js",
-    "module": "./esm/index.js",
     "name": "project-assets",
     "packemon": {
       "bundle": true,
@@ -586,7 +581,6 @@ exports[`Outputs (babel) no bundle creates individual files for every source fil
 [
   "package.json",
   {
-    "main": "./lib/index.js",
     "name": "project-bundle",
     "packemon": {
       "bundle": true,
@@ -861,12 +855,9 @@ exports[`Outputs (swc) artifacts builds all the artifacts with rollup 6`] = `
 [
   "package.json",
   {
-    "browser": "./umd/client.js",
     "dependencies": {
       "typescript": "*",
     },
-    "main": "./lib/index.js",
-    "module": "./esm/client.js",
     "name": "project-rollup",
     "packemon": {
       "inputs": {
@@ -989,7 +980,6 @@ exports[`Outputs (swc) bundle bundles all files into a single file with rollup 2
 [
   "package.json",
   {
-    "main": "./lib/index.js",
     "name": "project-bundle",
     "packemon": {
       "bundle": true,
@@ -1127,7 +1117,6 @@ exports[`Outputs (swc) bundle with assets uses same assets across multiple forma
   "package.json",
   {
     "main": "./lib/index.js",
-    "module": "./esm/index.js",
     "name": "project-assets",
     "packemon": {
       "bundle": true,
@@ -1255,7 +1244,6 @@ exports[`Outputs (swc) no bundle creates individual files for every source file 
 [
   "package.json",
   {
-    "main": "./lib/index.js",
     "name": "project-bundle",
     "packemon": {
       "bundle": true,

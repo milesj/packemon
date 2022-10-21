@@ -208,7 +208,7 @@ describe('Special formats', () => {
 			});
 
 			// Declaration snapshots are not captured above because it runs in a child process
-			expect(fs.readFileSync(root.append('dts/index.d.cts').path(), 'utf8')).toMatchSnapshot();
+			expect(fs.readFileSync(root.append('cjs/index.d.cts').path(), 'utf8')).toMatchSnapshot();
 		});
 	});
 
@@ -234,7 +234,7 @@ describe('Special formats', () => {
 			});
 
 			// Declaration snapshots are not captured above because it runs in a child process
-			expect(fs.readFileSync(root.append('dts/index.d.mts').path(), 'utf8')).toMatchSnapshot();
+			expect(fs.readFileSync(root.append('mjs/index.d.mts').path(), 'utf8')).toMatchSnapshot();
 		});
 	});
 });
