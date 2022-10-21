@@ -3,8 +3,8 @@
 import fs from 'fs';
 import { Path } from '@boost/common';
 import { getFixturePath } from '@boost/test-utils';
-import { CodeArtifact, TypesArtifact } from '../src';
-import { createProjectPackage, createSnapshotSpies } from './helpers';
+import { Artifact } from '../src';
+import { createSnapshotSpies, loadPackageAtPath } from './helpers';
 
 ['babel', 'swc'].forEach((transformer) => {
 	describe(`Outputs (${transformer})`, () => {
@@ -13,40 +13,36 @@ import { createProjectPackage, createSnapshotSpies } from './helpers';
 			const snapshots = createSnapshotSpies(root, true);
 
 			it('builds all the artifacts with rollup', async () => {
-				const pkg = createProjectPackage(root);
+				const pkg = loadPackageAtPath(root);
 
-				const index = new CodeArtifact(pkg, [{ format: 'lib' }]);
+				const index = new Artifact(pkg, [{ format: 'lib' }]);
 				index.platform = 'node';
 				index.support = 'stable';
 				index.inputs = { index: 'src/index.ts' };
 
-				pkg.addArtifact(index);
+				pkg.artifacts.push(index);
 
-				const client = new CodeArtifact(pkg, [
-					{ format: 'lib' },
-					{ format: 'esm' },
-					{ format: 'umd' },
-				]);
+				const client = new Artifact(pkg, [{ format: 'lib' }, { format: 'esm' }, { format: 'umd' }]);
 				client.platform = 'browser';
 				client.support = 'legacy';
 				client.inputs = { client: 'src/client/index.ts' };
 				client.namespace = 'Packemon';
 
-				pkg.addArtifact(client);
+				pkg.artifacts.push(client);
 
-				const server = new CodeArtifact(pkg, [{ format: 'cjs' }]);
+				const server = new Artifact(pkg, [{ format: 'cjs' }]);
 				server.platform = 'node';
 				server.support = 'current';
 				server.inputs = { server: 'src/server/core.ts' };
 
-				pkg.addArtifact(server);
+				pkg.artifacts.push(server);
 
-				const test = new CodeArtifact(pkg, [{ format: 'lib' }]);
+				const test = new Artifact(pkg, [{ format: 'lib' }]);
 				test.platform = 'native';
 				test.support = 'experimental';
 				test.inputs = { test: 'src/test-utils/base.ts' };
 
-				pkg.addArtifact(test);
+				pkg.artifacts.push(test);
 
 				await pkg.build({}, {});
 
@@ -63,15 +59,15 @@ import { createProjectPackage, createSnapshotSpies } from './helpers';
 			const snapshots = createSnapshotSpies(root, true);
 
 			it('bundles all files into a single file with rollup', async () => {
-				const pkg = createProjectPackage(root);
+				const pkg = loadPackageAtPath(root);
 
-				const index = new CodeArtifact(pkg, [{ format: 'lib' }]);
+				const index = new Artifact(pkg, [{ format: 'lib' }]);
 				index.bundle = true;
 				index.platform = 'node';
 				index.support = 'stable';
 				index.inputs = { index: 'src/index.ts' };
 
-				pkg.addArtifact(index);
+				pkg.artifacts.push(index);
 
 				await pkg.build({}, {});
 
@@ -86,15 +82,15 @@ import { createProjectPackage, createSnapshotSpies } from './helpers';
 			const snapshots = createSnapshotSpies(root, true);
 
 			it('bundles all files and references assets', async () => {
-				const pkg = createProjectPackage(root);
+				const pkg = loadPackageAtPath(root);
 
-				const index = new CodeArtifact(pkg, [{ format: 'lib' }]);
+				const index = new Artifact(pkg, [{ format: 'lib' }]);
 				index.bundle = true;
 				index.platform = 'node';
 				index.support = 'stable';
 				index.inputs = { index: 'src/index.ts' };
 
-				pkg.addArtifact(index);
+				pkg.artifacts.push(index);
 
 				await pkg.build({}, {});
 
@@ -111,19 +107,15 @@ import { createProjectPackage, createSnapshotSpies } from './helpers';
 			});
 
 			it('uses same assets across multiple formats', async () => {
-				const pkg = createProjectPackage(root);
+				const pkg = loadPackageAtPath(root);
 
-				const index = new CodeArtifact(pkg, [
-					{ format: 'lib' },
-					{ format: 'esm' },
-					{ format: 'cjs' },
-				]);
+				const index = new Artifact(pkg, [{ format: 'lib' }, { format: 'esm' }, { format: 'cjs' }]);
 				index.bundle = true;
 				index.platform = 'node';
 				index.support = 'stable';
 				index.inputs = { index: 'src/index.ts' };
 
-				pkg.addArtifact(index);
+				pkg.artifacts.push(index);
 
 				await pkg.build({}, {});
 
@@ -138,15 +130,15 @@ import { createProjectPackage, createSnapshotSpies } from './helpers';
 			const snapshots = createSnapshotSpies(root, true);
 
 			it('creates individual files for every source file', async () => {
-				const pkg = createProjectPackage(root);
+				const pkg = loadPackageAtPath(root);
 
-				const index = new CodeArtifact(pkg, [{ format: 'lib' }]);
+				const index = new Artifact(pkg, [{ format: 'lib' }]);
 				index.bundle = false;
 				index.platform = 'node';
 				index.support = 'stable';
 				index.inputs = { index: 'src/index.ts' };
 
-				pkg.addArtifact(index);
+				pkg.artifacts.push(index);
 
 				await pkg.build({}, {});
 
@@ -161,15 +153,15 @@ import { createProjectPackage, createSnapshotSpies } from './helpers';
 			const snapshots = createSnapshotSpies(root, true);
 
 			it('creates individual files and references assets', async () => {
-				const pkg = createProjectPackage(root);
+				const pkg = loadPackageAtPath(root);
 
-				const index = new CodeArtifact(pkg, [{ format: 'lib' }]);
+				const index = new Artifact(pkg, [{ format: 'lib' }]);
 				index.bundle = false;
 				index.platform = 'node';
 				index.support = 'stable';
 				index.inputs = { index: 'src/index.ts' };
 
-				pkg.addArtifact(index);
+				pkg.artifacts.push(index);
 
 				await pkg.build({}, {});
 
@@ -199,19 +191,15 @@ describe('Special formats', () => {
 		const snapshots = createSnapshotSpies(root, true);
 
 		it('supports .cts -> .cjs / .d.cts', async () => {
-			const pkg = createProjectPackage(root);
+			const pkg = loadPackageAtPath(root);
 
-			const index = new CodeArtifact(pkg, [{ format: 'cjs' }]);
+			const index = new Artifact(pkg, [{ declaration: true, format: 'cjs' }]);
 			index.bundle = true;
 			index.platform = 'node';
 			index.support = 'stable';
 			index.inputs = { index: 'src/index.cts' };
 
-			pkg.addArtifact(index);
-
-			const types = new TypesArtifact(pkg, [{ inputFile: 'src/index.cts', outputName: 'index' }]);
-
-			pkg.addArtifact(types);
+			pkg.artifacts.push(index);
 
 			await pkg.build({}, {});
 
@@ -229,19 +217,15 @@ describe('Special formats', () => {
 		const snapshots = createSnapshotSpies(root, true);
 
 		it('supports .mts -> .mjs / .d.mts', async () => {
-			const pkg = createProjectPackage(root);
+			const pkg = loadPackageAtPath(root);
 
-			const index = new CodeArtifact(pkg, [{ format: 'mjs' }]);
+			const index = new Artifact(pkg, [{ declaration: true, format: 'mjs' }]);
 			index.bundle = true;
 			index.platform = 'node';
 			index.support = 'stable';
 			index.inputs = { index: 'src/index.mts' };
 
-			pkg.addArtifact(index);
-
-			const types = new TypesArtifact(pkg, [{ inputFile: 'src/index.mts', outputName: 'index' }]);
-
-			pkg.addArtifact(types);
+			pkg.artifacts.push(index);
 
 			await pkg.build({}, {});
 
