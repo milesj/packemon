@@ -5,8 +5,6 @@ import { Packemon } from '../src/Packemon';
 import { BuildOptions } from '../src/types';
 import { loadPackageAtPath } from './helpers';
 
-jest.mock('rimraf');
-
 jest.mock('../src/PackageValidator', () => ({
 	PackageValidator: class MockValidator {
 		validate = jest.fn(() => this);

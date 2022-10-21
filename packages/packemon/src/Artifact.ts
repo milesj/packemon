@@ -2,7 +2,7 @@ import execa from 'execa';
 import fs from 'fs-extra';
 import { rollup } from 'rollup';
 import { applyStyle } from '@boost/cli';
-import { Path, PortablePath, toArray, VirtualPath } from '@boost/common';
+import { Path, toArray, VirtualPath } from '@boost/common';
 import { createDebugger, Debugger } from '@boost/debug';
 import { removeSourcePath } from './helpers/removeSourcePath';
 import type { Package } from './Package';
@@ -142,7 +142,7 @@ export class Artifact {
 
 	/**
 	 * Build type artifacts using TypeScript. We'll need to spin up an individual process
-	 * for each format, as they may require different declaration outputs.
+	 * for each format, as they may require different declaration outputs or compiler options.
 	 */
 	async buildTypes(features: FeatureFlags): Promise<void> {
 		if (!features.typescript) {
@@ -159,7 +159,6 @@ export class Artifact {
 
 				const args: string[] = [];
 
-				// Project references
 				if (features.typescriptComposite) {
 					args.push('--build', `tsconfig.${build.format}.json`);
 				} else {
@@ -182,7 +181,21 @@ export class Artifact {
 		);
 	}
 
-	async clean() {}
+	async clean() {
+		this.debug('Cleaning artifact directories');
+
+		const dirs = ['assets', 'dts', ...this.builds.map((build) => build.format)];
+
+		await Promise.all(
+			dirs.map(async (dir) => {
+				const dirPath = this.package.path.append(dir).path();
+
+				this.debug('  - %s', dirPath);
+
+				await fs.remove(dirPath);
+			}),
+		);
+	}
 
 	findEntryPoint(formats: Format[], outputName: string): string | undefined {
 		for (const format of formats) {
@@ -218,10 +231,10 @@ export class Artifact {
 	}
 
 	getInputPaths(): InputMap {
-		// Return absolute paths so that Rollup paths/externals resolve correctly
 		return Object.fromEntries(
 			Object.entries(this.inputs).map(([outputName, inputFile]) => [
 				outputName,
+				// Return absolute paths so that Rollup paths/externals resolve correctly
 				this.package.path.append(inputFile).path(),
 			]),
 		);
@@ -283,9 +296,5 @@ export class Artifact {
 		}
 
 		console[level](msg);
-	}
-
-	protected async removeFiles(files: PortablePath[]): Promise<unknown> {
-		return Promise.all(files.map((file) => fs.remove(String(file))));
 	}
 }
