@@ -13,14 +13,11 @@ aborted.
 ```json title="package.json"
 {
   "scripts": {
-    "pack": "NODE_ENV=production packemon pack --addEngines --declaration",
+    "pack": "packemon pack --addEngines --declaration",
     "release": "yarn run pack && yarn publish"
   }
 }
 ```
-
-> When releasing, be sure to set `NODE_ENV` to production to remove all development and testing
-> configuration settings.
 
 ## Options
 

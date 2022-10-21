@@ -78,7 +78,6 @@ export const buildBlueprint: Blueprint<BuildOptions> = {
 	addFiles: bool(),
 	concurrency: number(1).gte(1),
 	declaration: bool(),
-	declarationConfig: string(),
 	filterFormats: string(),
 	filterPlatforms: string(),
 	loadConfigs: bool(),

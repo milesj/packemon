@@ -4,6 +4,7 @@ import { applyMarkdown, applyStyle, Arg, Config } from '@boost/cli';
 import { formatMs } from '@boost/common';
 import { figures } from '@boost/terminal';
 import { STATE_COLORS } from '../constants';
+import { Package } from '../Package';
 import { BuildOptions } from '../types';
 import { BaseCommand } from './Base';
 
@@ -24,9 +25,6 @@ export class BuildCommand extends BaseCommand<Required<BuildOptions>> {
 	@Arg.Flag('Generate TypeScript declarations for each package')
 	declaration: boolean = false;
 
-	@Arg.String('Path to a custom `tsconfig` for declaration building')
-	declarationConfig: string = 'tsconfig.json';
-
 	@Arg.Number('Timeout in milliseconds before a build is cancelled')
 	timeout: number = 0;
 
@@ -34,19 +32,16 @@ export class BuildCommand extends BaseCommand<Required<BuildOptions>> {
 	stamp: boolean = false;
 
 	async run() {
-		return this.build();
+		return this.build(await this.getPackage());
 	}
 
-	async build() {
-		const pkg = await this.getPackage();
-
+	protected async build(pkg: Package) {
 		await this.packemon.build(pkg, {
 			addEngines: this.addEngines,
 			addExports: this.addExports,
 			addFiles: this.addFiles,
 			concurrency: this.concurrency,
 			declaration: this.declaration,
-			declarationConfig: this.declarationConfig,
 			filterFormats: this.formats,
 			filterPlatforms: this.platforms,
 			loadConfigs: this.loadConfigs,
@@ -88,5 +83,13 @@ export class BuildCommand extends BaseCommand<Required<BuildOptions>> {
 		});
 
 		this.log(output.join('\n'));
+	}
+
+	protected async pack(pkg: Package) {
+		const cwd = pkg.path.path();
+
+		await this.runProgram(['clean', '--cwd', cwd]);
+		await this.build(pkg);
+		await this.runProgram(['validate', '--cwd', cwd]);
 	}
 }

@@ -1,6 +1,5 @@
 import { Arg, Command, GlobalOptions, PrimitiveType } from '@boost/cli';
 import { Packemon } from '../Packemon';
-import { BuildOptions } from '../types';
 
 export interface CommonOptions {
 	cwd: string;
@@ -41,14 +40,5 @@ export abstract class BaseCommand<
 		}
 
 		return pkg;
-	}
-
-	protected getBuildOptions(): BuildOptions {
-		return {
-			filterFormats: this.formats,
-			filterPlatforms: this.platforms,
-			loadConfigs: this.loadConfigs,
-			skipPrivate: this.skipPrivate,
-		};
 	}
 }

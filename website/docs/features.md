@@ -99,12 +99,12 @@ The following plugins are enabled per package.
 
 Packemon configures Babel internally based on `NODE_ENV`. When in development (default), code is
 transpiled for spec compliance and debugging purposes, while in production for performance. We
-suggest running `packemon build` for development, and `packemon pack` with environment variable for
-production (before a release).
+suggest running `packemon build` for development, and `packemon pack` for production (before a
+release).
 
 ```bash
-packemon build
-NODE_ENV=production packemon pack
+packemon build # development
+packemon pack # production
 ```
 
 ## Tree-shaking optimization

@@ -36,7 +36,6 @@ describe('Packemon', () => {
 			addFiles: false,
 			concurrency: 1,
 			declaration: false,
-			declarationConfig: '',
 			filterFormats: '',
 			filterPlatforms: '',
 			loadConfigs: false,
