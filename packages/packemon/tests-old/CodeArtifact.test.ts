@@ -38,63 +38,6 @@ describe('CodeArtifact', () => {
 		artifact.startup();
 	});
 
-	describe('build()', () => {
-		let bundleWriteSpy: jest.SpyInstance;
-
-		beforeEach(() => {
-			bundleWriteSpy = jest.fn(() => ({ output: [{ type: 'chunk', code: 'code' }] }));
-
-			mockSpy(rollup)
-				.mockReset()
-				.mockImplementation(() => ({
-					cache: { cache: true },
-					generate: bundleWriteSpy,
-					write: bundleWriteSpy,
-				}));
-
-			jest
-				.spyOn(artifact.package, 'getFeatureFlags')
-				.mockImplementation(() => ({ typescript: true }));
-
-			artifact.builds.push({ format: 'lib' }, { format: 'cjs' }, { format: 'esm' });
-		});
-
-		it('generates rollup config using input config', async () => {
-			await artifact.build({}, {});
-
-			expect(getRollupConfig).toHaveBeenCalledWith(
-				artifact,
-				{ typescript: true },
-				expect.any(Object),
-			);
-			expect(rollup).toHaveBeenCalledWith({
-				input: true,
-				onwarn: expect.any(Function),
-			});
-		});
-
-		it('sets rollup cache on artifact', async () => {
-			expect(artifact.cache).toBeUndefined();
-
-			await artifact.build({}, {});
-
-			expect(artifact.cache).toEqual({ cache: true });
-		});
-
-		it('writes a bundle and stats for each build', async () => {
-			await artifact.build({}, {});
-
-			expect(bundleWriteSpy).toHaveBeenCalledWith({ a: true });
-			expect(artifact.builds[0].stats?.size).toBe(4);
-
-			expect(bundleWriteSpy).toHaveBeenCalledWith({ b: true });
-			expect(artifact.builds[1].stats?.size).toBe(4);
-
-			expect(bundleWriteSpy).toHaveBeenCalledWith({ c: true });
-			expect(artifact.builds[2].stats?.size).toBe(4);
-		});
-	});
-
 	describe('getPackageExports()', () => {
 		it('adds exports based on input file and output name', () => {
 			artifact.builds.push({ format: 'lib' });

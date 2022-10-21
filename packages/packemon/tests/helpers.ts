@@ -4,6 +4,10 @@ import { Path, PortablePath, toArray } from '@boost/common';
 import { Package } from '../src/Package';
 import { PackemonPackage } from '../src/types';
 
+export function mockSpy(instance: unknown): jest.SpyInstance {
+	return instance as jest.SpyInstance;
+}
+
 export function loadPackageAtPath(path: PortablePath, workspaceRoot?: PortablePath): Package {
 	const root = Path.create(path);
 	const json = fsx.readJsonSync(root.append('package.json').path()) as PackemonPackage;

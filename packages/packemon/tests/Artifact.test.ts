@@ -1,10 +1,23 @@
 import execa from 'execa';
 import fsx from 'fs-extra';
+import { rollup } from 'rollup';
 import { applyStyle } from '@boost/cli';
 import { Path } from '@boost/common';
 import { getFixturePath } from '@boost/test-utils';
 import { Artifact } from '../src/Artifact';
-import { loadPackageAtPath } from './helpers';
+import { getRollupConfig } from '../src/rollup/config';
+import { loadPackageAtPath, mockSpy } from './helpers';
+
+jest.mock('../src/rollup/config', () => ({
+	getRollupConfig: jest.fn(() => ({
+		input: true,
+		output: [
+			{ originalFormat: 'lib', a: true },
+			{ originalFormat: 'cjs', b: true },
+			{ originalFormat: 'mjs', c: true },
+		],
+	})),
+}));
 
 jest.mock('execa');
 
@@ -13,6 +26,8 @@ jest.mock('rimraf', () =>
 		cb();
 	}),
 );
+
+jest.mock('rollup', () => ({ rollup: jest.fn() }));
 
 class TestArtifact extends Artifact {
 	log = this.logWithSource.bind(this);
@@ -32,6 +47,63 @@ describe('Artifact', () => {
 
 	it('returns label when cast to string', () => {
 		expect(String(artifact)).toBe('node:stable:cjs,mjs');
+	});
+
+	describe('build()', () => {
+		it('builds code and types', async () => {
+			const codeSpy = jest.spyOn(artifact, 'buildCode').mockImplementation();
+			const typesSpy = jest.spyOn(artifact, 'buildTypes').mockImplementation();
+
+			await artifact.build({}, {});
+
+			expect(codeSpy).toHaveBeenCalled();
+			expect(typesSpy).toHaveBeenCalled();
+		});
+	});
+
+	describe('buildCode()', () => {
+		let bundleWriteSpy: jest.SpyInstance;
+
+		beforeEach(() => {
+			bundleWriteSpy = jest.fn(() => ({ output: [{ type: 'chunk', code: 'code' }] }));
+
+			mockSpy(rollup)
+				.mockReset()
+				.mockImplementation(() => ({
+					cache: { cache: true },
+					generate: bundleWriteSpy,
+					write: bundleWriteSpy,
+				}));
+
+			artifact.builds.push({ format: 'lib' });
+		});
+
+		it('generates rollup config using input config', async () => {
+			await artifact.buildCode({ typescript: true }, {});
+
+			expect(getRollupConfig).toHaveBeenCalledWith(
+				artifact,
+				{ typescript: true },
+				expect.any(Object),
+			);
+			expect(rollup).toHaveBeenCalledWith({
+				input: true,
+				onwarn: expect.any(Function),
+			});
+		});
+
+		it('writes a bundle and stats for each build', async () => {
+			await artifact.buildCode({}, {});
+
+			expect(bundleWriteSpy).toHaveBeenCalledWith({ a: true });
+			expect(artifact.builds[0].stats?.size).toBe(4);
+
+			expect(bundleWriteSpy).toHaveBeenCalledWith({ b: true });
+			expect(artifact.builds[1].stats?.size).toBe(4);
+
+			expect(bundleWriteSpy).toHaveBeenCalledWith({ c: true });
+			expect(artifact.builds[2].stats?.size).toBe(4);
+		});
 	});
 
 	describe('buildTypes()', () => {
