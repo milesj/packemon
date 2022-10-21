@@ -5,7 +5,7 @@
 import glob from 'fast-glob';
 import fs from 'fs-extra';
 import semver from 'semver';
-import { Memoize, Path, toArray } from '@boost/common';
+import { isObject, Memoize, Path, toArray } from '@boost/common';
 import { optimal } from '@boost/common/optimal';
 import { createDebugger, Debugger } from '@boost/debug';
 import { Artifact } from './Artifact';
@@ -52,6 +52,12 @@ export class Package {
 		this.json = contents;
 		this.workspaceRoot = workspaceRoot ?? path;
 		this.debug = createDebugger(['packemon', 'package', this.getSlug()]);
+
+		if (!isObject(contents.packemon) && !Array.isArray(contents.packemon)) {
+			throw new Error(
+				`Invalid \`packemon\` configuration for ${contents.name}, must be an object or array of objects.`,
+			);
+		}
 	}
 
 	async build(options: BuildOptions, packemonConfig: ConfigFile): Promise<void> {

@@ -1,8 +1,9 @@
 import fs from 'fs-extra';
-import { isObject, json, Path, PortablePath, toArray } from '@boost/common';
+import { json, Path, PortablePath, Project, toArray } from '@boost/common';
 import { optimal } from '@boost/common/optimal';
 import { createDebugger, Debugger } from '@boost/debug';
 import { Config } from './Config';
+import { matchesPattern } from './helpers/matchesPattern';
 import { Package } from './Package';
 import { PackageValidator } from './PackageValidator';
 import { buildBlueprint, validateBlueprint } from './schemas';
@@ -79,17 +80,92 @@ export class Packemon {
 			return null;
 		}
 
-		if (!isObject(pkgContents.packemon) && !Array.isArray(pkgContents.packemon)) {
-			throw new Error(
-				`Invalid \`packemon\` configuration for ${pkgContents.name}, must be an object or array of objects.`,
-			);
-		}
-
 		const pkg = new Package(this.workingDir, pkgContents, this.findWorkspaceRoot());
 
 		pkg.setConfigs(toArray(pkgContents.packemon));
 
 		return pkg;
+	}
+
+	/**
+	 * Find all packages within a project. If using workspaces, return a list of packages
+	 * from each workspace glob. If not using workspaces, assume project is a package.
+	 */
+	async findPackages({ filter, skipPrivate }: FilterOptions = {}): Promise<Package[]> {
+		this.debug('Finding packages in project');
+
+		const workspaceRoot = this.findWorkspaceRoot();
+		const project = new Project(workspaceRoot);
+		const workspaces = project.getWorkspaceGlobs({ relative: true });
+
+		if (workspaces.length === 0) {
+			throw new Error('No `workspaces` defined in root `package.json`.');
+		}
+
+		const pkgPaths = project
+			.getWorkspacePackagePaths()
+			.map((filePath) => Path.create(filePath).append('package.json'));
+
+		this.debug('Found %d package(s)', pkgPaths.length);
+
+		let packages: Package[] = [];
+
+		await Promise.all(
+			pkgPaths.map(async (pkgPath) => {
+				const contents = json.parse<PackemonPackage>(await fs.readFile(pkgPath.path(), 'utf8'));
+
+				if (contents.packemon) {
+					this.debug(' - %s (%s)', contents.name, pkgPath.path());
+
+					packages.push(new Package(pkgPath.parent(), contents, workspaceRoot));
+				} else {
+					this.debug('No `packemon` configuration found for %s, skipping', contents.name);
+				}
+			}),
+		);
+
+		// Skip `private` packages
+		if (skipPrivate) {
+			const privatePackageNames: string[] = [];
+
+			packages = packages.filter((pkg) => {
+				if (pkg.json.private) {
+					privatePackageNames.push(pkg.getName());
+
+					return false;
+				}
+
+				return true;
+			});
+
+			this.debug('Filtering private packages: %s', privatePackageNames.join(', '));
+		}
+
+		// Filter packages based on a pattern
+		if (filter) {
+			const filteredPackageNames: string[] = [];
+
+			packages = packages.filter((pkg) => {
+				const name = pkg.getName();
+
+				if (!matchesPattern(name, filter)) {
+					filteredPackageNames.push(name);
+
+					return false;
+				}
+
+				return true;
+			});
+
+			this.debug('Filtering packages with pattern %s: %s', filter, filteredPackageNames.join(', '));
+		}
+
+		// Error if no packages are found
+		if (packages.length === 0) {
+			throw new Error('No packages found in project.');
+		}
+
+		return packages;
 	}
 
 	/**

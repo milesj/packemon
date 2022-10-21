@@ -8,6 +8,6 @@ export class PackWorkspaceCommand extends BuildWorkspaceCommand {
 			process.env.NODE_ENV = 'production';
 		}
 
-		await this.runPipeline([], this.pack);
+		await this.runPipeline(this.pack);
 	}
 }

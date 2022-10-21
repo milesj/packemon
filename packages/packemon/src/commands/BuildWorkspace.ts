@@ -9,18 +9,22 @@ export class BuildWorkspaceCommand extends BuildCommand {
 	filter: string = '';
 
 	override async run() {
-		await this.runPipeline([], this.build);
+		await this.runPipeline(this.build);
 	}
 
-	protected async runPipeline(pkgs: Package[], run: (pkg: Package) => Promise<unknown>) {
+	protected async runPipeline(run: (pkg: Package) => Promise<unknown>) {
 		const pipeline = new PooledPipeline(new Context());
+		const packages = await this.packemon.findPackages({
+			filter: this.filter,
+			skipPrivate: this.skipPrivate,
+		});
 
 		pipeline.configure({
 			concurrency: this.concurrency,
 			timeout: this.timeout,
 		});
 
-		pkgs.forEach((pkg) => {
+		packages.forEach((pkg) => {
 			pipeline.add(pkg.getName(), async () => {
 				await run(pkg);
 			});
