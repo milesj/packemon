@@ -108,7 +108,7 @@ export class Package {
 		}
 
 		// Sync `package.json` in case it was modified
-		await fs.writeJson(this.jsonPath.path(), this.json, { spaces: 2 });
+		await this.syncJson();
 	}
 
 	async clean(): Promise<void> {
