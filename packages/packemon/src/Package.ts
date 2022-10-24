@@ -142,13 +142,17 @@ export class Package {
 	async findSourceFiles(): Promise<string[]> {
 		const extsWithoutPeriod = EXTENSIONS.map((ext) => ext.slice(1)).join(',');
 
-		return glob(`src/**/*.{${extsWithoutPeriod}}`, {
+		const files = await glob(`src/**/*.{${extsWithoutPeriod}}`, {
 			absolute: true,
 			cwd: this.path.path(),
 			onlyFiles: true,
 			// This breaks our own fixtures, so this is hard to test...
 			ignore: process.env.NODE_ENV === 'test' ? [] : EXCLUDE,
 		});
+
+		files.sort();
+
+		return files;
 	}
 
 	/**

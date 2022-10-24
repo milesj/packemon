@@ -112,6 +112,10 @@ export class Packemon {
 
 		await Promise.all(
 			pkgPaths.map(async (pkgPath) => {
+				if (!pkgPath.exists()) {
+					return;
+				}
+
 				const contents = json.parse<PackemonPackage>(await fs.readFile(pkgPath.path(), 'utf8'));
 
 				if (contents.packemon) {

@@ -232,11 +232,11 @@ describe('getRollupConfig()', () => {
 		await expect(getRollupConfig(artifact, {})).resolves.toEqual({
 			external: expect.any(Function),
 			input: [
-				'src/index.ts',
 				'src/client/index.ts',
+				'src/index.ts',
+				'src/other/index.ts',
 				'src/server/core.ts',
 				'src/test-utils/base.ts',
-				'src/other/index.ts',
 			].map((f) => fixturePath.append(f).path()),
 			output: [
 				{

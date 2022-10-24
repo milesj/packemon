@@ -235,6 +235,44 @@ describe('Packemon', () => {
 		});
 	});
 
+	describe('findPackages()', () => {
+		it('errors if no packages are found', async () => {
+			packemon = new Packemon(getFixturePath('workspaces-no-packages'));
+
+			await expect(packemon.findPackages({})).rejects.toThrow('No packages found in project.');
+		});
+
+		describe('polyrepo', () => {
+			it('errors if no workspaces', async () => {
+				packemon = new Packemon(getFixturePath('workspace-not-configured'));
+
+				await expect(packemon.findPackages({})).rejects.toThrow(
+					'No `workspaces` defined in root `package.json`.',
+				);
+			});
+		});
+
+		describe('monorepo', () => {
+			it('returns all packages in project', async () => {
+				packemon = new Packemon(getFixturePath('workspaces-configured'));
+
+				const packages = await packemon.findPackages();
+
+				expect(packages).toHaveLength(4);
+				expect(packages.map((p) => p.getName()).sort()).toEqual(['bar', 'baz', 'foo', 'qux']);
+			});
+
+			it('filters private packages when `skipPrivate` is true', async () => {
+				packemon = new Packemon(getFixturePath('workspaces-configured'));
+
+				const packages = await packemon.findPackages({ skipPrivate: true });
+
+				expect(packages).toHaveLength(3);
+				expect(packages.map((p) => p.getName()).sort()).toEqual(['bar', 'baz', 'foo']);
+			});
+		});
+	});
+
 	describe('findWorkspaceRoot()', () => {
 		it('detects workspace root', () => {
 			const root = Path.create(getFixturePath('workspaces'));
