@@ -1,6 +1,6 @@
 import fs from 'fs';
 import fsx from 'fs-extra';
-import { Path, PortablePath, toArray } from '@boost/common';
+import { Path, PortablePath } from '@boost/common';
 import { getFixturePath } from '@boost/test-utils';
 import {
 	Artifact,

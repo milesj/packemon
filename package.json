@@ -18,7 +18,7 @@
     "prerelease": "yarn run clean && yarn run setup && yarn run pack && yarn run check",
     "release": "yarn prerelease && lerna-release",
     "version": "yarn install && git add yarn.lock",
-    "pack": "NODE_ENV=production yarn run packemon build-workspace --addEngines --addExports --declaration",
+    "pack": "NODE_ENV=production yarn run packemon build-workspace --addEngines --addExports",
     "packemon": "node ./packages/packemon/cjs/bin.cjs"
   },
   "workspaces": [
