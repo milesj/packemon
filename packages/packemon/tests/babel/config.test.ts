@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 
-import { createConfig, createRootConfig } from '../../src/babel';
+// import { createConfig, createRootConfig } from '../../src/babel';
 import { getBabelInputConfig, getBabelOutputConfig } from '../../src/babel/config';
 import { Format, Platform, Support } from '../../src/types';
 

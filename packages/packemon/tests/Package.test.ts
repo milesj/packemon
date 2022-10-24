@@ -619,10 +619,7 @@ describe('Packemon', () => {
 			});
 
 			it('adds exports for bundle and types artifacts in parallel', async () => {
-				pkg.artifacts.push(createCodeArtifact([{ format: 'lib' }]));
-				pkg.artifacts.push(
-					createTypesArtifact([{ inputFile: 'src/index.ts', outputName: 'index' }]),
-				);
+				pkg.artifacts.push(createCodeArtifact([{ declaration: true, format: 'lib' }]));
 
 				await pkg.build({ addExports: true }, config);
 
@@ -665,8 +662,10 @@ describe('Packemon', () => {
 			});
 
 			it('supports dual cjs/mjs exports', async () => {
-				pkg.artifacts.push(createCodeArtifact([{ format: 'cjs' }]));
-				pkg.artifacts.push(createCodeArtifact([{ format: 'mjs' }], 'node', 'experimental'));
+				pkg.artifacts.push(
+					createCodeArtifact([{ format: 'cjs' }]),
+					createCodeArtifact([{ format: 'mjs' }], 'node', 'experimental'),
+				);
 
 				await pkg.build({ addExports: true }, config);
 

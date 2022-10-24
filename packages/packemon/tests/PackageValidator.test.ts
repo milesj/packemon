@@ -5,7 +5,7 @@ import { Path } from '@boost/common';
 import { getFixturePath } from '@boost/test-utils';
 import { Package } from '../src/Package';
 import { PackageValidator } from '../src/PackageValidator';
-import { mockSpy } from '../tests-old/helpers';
+import { mockSpy } from './helpers';
 
 jest.mock('execa');
 jest.mock('npm-packlist');
