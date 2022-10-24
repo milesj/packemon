@@ -170,14 +170,14 @@ describe('getBabelOutputConfig()', () => {
 	});
 });
 
-describe('createRootConfig()', () => {
-	it('returns the correct config', () => {
-		expect(createRootConfig()).toMatchSnapshot();
-	});
-});
+// describe('createRootConfig()', () => {
+// 	it('returns the correct config', () => {
+// 		expect(createRootConfig()).toMatchSnapshot();
+// 	});
+// });
 
-describe('createConfig()', () => {
-	it('returns the correct config', () => {
-		expect(createConfig(process.cwd())).toMatchSnapshot();
-	});
-});
+// describe('createConfig()', () => {
+// 	it('returns the correct config', () => {
+// 		expect(createConfig(process.cwd())).toMatchSnapshot();
+// 	});
+// });
