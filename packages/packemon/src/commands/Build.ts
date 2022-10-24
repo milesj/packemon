@@ -54,7 +54,7 @@ export class BuildCommand extends BaseCommand<Required<BuildOptions>> {
 		const output = [applyMarkdown(`**${pkg.getName()}**`)];
 
 		pkg.artifacts.forEach((artifact) => {
-			const row: string[] = [];
+			const row: string[] = [' '];
 
 			artifact.builds.forEach((build, index) => {
 				const icon = artifact.state === 'failed' ? figures.cross : figures.squareSmallFilled;
@@ -82,14 +82,18 @@ export class BuildCommand extends BaseCommand<Required<BuildOptions>> {
 			output.push(row.join(' '));
 		});
 
+		output.push('\n');
+
 		this.log(output.join('\n'));
 	}
 
 	protected async pack(pkg: Package) {
-		const cwd = pkg.path.path();
+		await this.packemon.clean(pkg);
 
-		await this.runProgram(['clean', '--cwd', cwd]);
 		await this.build(pkg);
-		await this.runProgram(['validate', '--cwd', cwd]);
+
+		const validator = await this.packemon.validate(pkg, {});
+
+		this.renderValidator(validator);
 	}
 }

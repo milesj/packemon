@@ -1,5 +1,4 @@
-import { applyStyle, Arg, Config } from '@boost/cli';
-import { figures } from '@boost/terminal';
+import { Arg, Config } from '@boost/cli';
 import { ValidateOptions } from '../types';
 import { BaseCommand } from './Base';
 
@@ -49,20 +48,6 @@ export class ValidateCommand extends BaseCommand<Required<ValidateOptions>> {
 			skipPrivate: this.skipPrivate,
 		});
 
-		if (validator.hasErrors()) {
-			validator.errors.forEach((error) => {
-				this.log.error(applyStyle(` ${figures.bullet} ${error}`, 'failure'));
-			});
-		}
-
-		if (validator.hasWarnings()) {
-			validator.warnings.forEach((warning) => {
-				this.log.warn(applyStyle(` ${figures.bullet} ${warning}`, 'warning'));
-			});
-		}
-
-		if (validator.hasErrors()) {
-			this.exit(`Found errors in ${validator.package.getName()} package!`);
-		}
+		this.renderValidator(validator);
 	}
 }

@@ -1,5 +1,5 @@
 import fs from 'fs-extra';
-import { json, Path, PortablePath, Project, toArray } from '@boost/common';
+import { json, Path, PortablePath, Project } from '@boost/common';
 import { optimal } from '@boost/common/optimal';
 import { createDebugger, Debugger } from '@boost/debug';
 import { Config } from './Config';
@@ -80,11 +80,7 @@ export class Packemon {
 			return null;
 		}
 
-		const pkg = new Package(this.workingDir, pkgContents, this.findWorkspaceRoot());
-
-		pkg.setConfigs(toArray(pkgContents.packemon));
-
-		return pkg;
+		return new Package(this.workingDir, pkgContents, this.findWorkspaceRoot());
 	}
 
 	/**

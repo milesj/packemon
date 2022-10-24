@@ -1,4 +1,6 @@
-import { Arg, Command, GlobalOptions, PrimitiveType } from '@boost/cli';
+import { applyStyle, Arg, Command, GlobalOptions, PrimitiveType } from '@boost/cli';
+import { figures } from '@boost/terminal';
+import { PackageValidator } from '../PackageValidator';
 import { Packemon } from '../Packemon';
 
 export interface CommonOptions {
@@ -36,9 +38,32 @@ export abstract class BaseCommand<
 		const pkg = await this.packemon.findPackage({ skipPrivate: this.skipPrivate });
 
 		if (!pkg) {
-			throw new Error(`No package found in ${this.packemon.workingDir}!`);
+			throw new Error(
+				`No \`packemon\` configured package found in ${applyStyle(
+					this.packemon.workingDir.path(),
+					'info',
+				)}!`,
+			);
 		}
 
 		return pkg;
+	}
+
+	protected renderValidator(validator: PackageValidator) {
+		if (validator.hasErrors()) {
+			validator.errors.forEach((error) => {
+				this.log.error(applyStyle(` ${figures.bullet} ${error}`, 'failure'));
+			});
+		}
+
+		if (validator.hasWarnings()) {
+			validator.warnings.forEach((warning) => {
+				this.log.warn(applyStyle(` ${figures.bullet} ${warning}`, 'warning'));
+			});
+		}
+
+		if (validator.hasErrors()) {
+			this.exit(`Found errors in ${validator.package.getName()} package!`);
+		}
 	}
 }

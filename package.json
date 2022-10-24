@@ -6,7 +6,7 @@
   "scripts": {
     "docs": "cd website && yarn run start",
     "setup": "yarn dlx --package packemon@latest --package typescript --quiet packemon build",
-    "build": "yarn run packemon build",
+    "build": "yarn run packemon build-workspace",
     "validate": "yarn run packemon validate",
     "check": "yarn run type && yarn run test && yarn run lint",
     "clean": "yarn run packemon clean",
@@ -18,7 +18,7 @@
     "prerelease": "yarn run clean && yarn run setup && yarn run pack && yarn run check",
     "release": "yarn prerelease && lerna-release",
     "version": "yarn install && git add yarn.lock",
-    "pack": "NODE_ENV=production yarn run packemon build --addEngines --addExports --declaration",
+    "pack": "NODE_ENV=production yarn run packemon build-workspace --addEngines --addExports --declaration",
     "packemon": "node ./packages/packemon/cjs/bin.cjs"
   },
   "workspaces": [

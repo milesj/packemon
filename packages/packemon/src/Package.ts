@@ -58,6 +58,8 @@ export class Package {
 				`Invalid \`packemon\` configuration for ${contents.name}, must be an object or array of objects.`,
 			);
 		}
+
+		this.setConfigs(toArray(contents.packemon));
 	}
 
 	async build(options: BuildOptions, packemonConfig: ConfigFile): Promise<void> {
@@ -200,9 +202,9 @@ export class Package {
 			artifact.support = config.support;
 
 			this.artifacts.push(artifact);
-		});
 
-		this.debug(' - %s: %s', this.getName(), this.artifacts.join(', '));
+			this.debug(' - %s', artifact);
+		});
 	}
 
 	@Memoize()

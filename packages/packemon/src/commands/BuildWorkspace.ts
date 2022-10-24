@@ -9,7 +9,7 @@ export class BuildWorkspaceCommand extends BuildCommand {
 	filter: string = '';
 
 	override async run() {
-		await this.runPipeline(this.build);
+		await this.runPipeline(this.build.bind(this));
 	}
 
 	protected async runPipeline(run: (pkg: Package) => Promise<unknown>) {

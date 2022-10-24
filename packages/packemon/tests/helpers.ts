@@ -49,11 +49,8 @@ export function mockSpy(instance: unknown): jest.SpyInstance {
 export function loadPackageAtPath(path: PortablePath, workspaceRoot?: PortablePath): Package {
 	const root = Path.create(path);
 	const json = fsx.readJsonSync(root.append('package.json').path()) as PackemonPackage;
-	const pkg = new Package(root, json, workspaceRoot ? Path.create(workspaceRoot) : root);
 
-	pkg.setConfigs(toArray(json.packemon));
-
-	return pkg;
+	return new Package(root, json, workspaceRoot ? Path.create(workspaceRoot) : root);
 }
 
 function formatSnapshotFilePath(file: string, root: string): string {
