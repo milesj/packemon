@@ -2,7 +2,6 @@ import { createHash } from 'crypto';
 import path from 'path';
 import fs from 'fs-extra';
 import MagicString from 'magic-string';
-import rimraf from 'rimraf';
 import { Plugin } from 'rollup';
 import { VirtualPath } from '@boost/common';
 import type { TSESTree } from '@typescript-eslint/types';
@@ -57,15 +56,7 @@ export function copyAndRefAssets({ dir }: CopyAssetsOptions): Plugin {
 
 		// Delete old assets to remove any possible stale assets
 		async buildStart() {
-			await new Promise((resolve, reject) => {
-				rimraf(dir, (error) => {
-					if (error) {
-						reject(error);
-					} else {
-						resolve(undefined);
-					}
-				});
-			});
+			await fs.remove(dir);
 		},
 
 		// Find assets and mark as external

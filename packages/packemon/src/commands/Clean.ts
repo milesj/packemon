@@ -4,6 +4,8 @@ import { BaseCommand } from './Base';
 @Config('clean', 'Clean build artifacts from packages')
 export class CleanCommand extends BaseCommand {
 	async run() {
-		await this.packemon.clean();
+		const pkg = await this.getPackage();
+
+		await this.packemon.clean(pkg);
 	}
 }

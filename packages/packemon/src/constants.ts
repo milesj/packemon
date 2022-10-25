@@ -107,13 +107,6 @@ export const STATE_COLORS: { [K in ArtifactState]?: StyleType } = {
 	failed: 'failure',
 };
 
-export const STATE_LABELS: { [K in ArtifactState]: string } = {
-	pending: '',
-	building: 'Building',
-	passed: 'Passed',
-	failed: 'Failed',
-};
-
 export const DEFAULT_FORMATS: Record<Platform, Format> = {
 	browser: 'esm',
 	native: 'lib',

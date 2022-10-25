@@ -1,7 +1,7 @@
-import { Arg, Command, GlobalOptions, PrimitiveType } from '@boost/cli';
-import { Memoize } from '@boost/common';
+import { applyStyle, Arg, Command, GlobalOptions, PrimitiveType } from '@boost/cli';
+import { figures } from '@boost/terminal';
+import { PackageValidator } from '../PackageValidator';
 import { Packemon } from '../Packemon';
-import { BuildOptions } from '../types';
 
 export interface CommonOptions {
 	cwd: string;
@@ -14,9 +14,6 @@ export abstract class BaseCommand<
 > extends Command<CommonOptions & GlobalOptions & O, P> {
 	@Arg.String('Current working directory to run in', { category: 'global' })
 	cwd: string = '';
-
-	@Arg.String('Filter packages to build', { category: 'filter' })
-	filter: string = '';
 
 	@Arg.String('Only generate specific output formats', { category: 'filter', short: 'f' })
 	formats: string = '';
@@ -33,18 +30,40 @@ export abstract class BaseCommand<
 	@Arg.Flag('Skip `private` packages', { category: 'filter' })
 	skipPrivate: boolean = false;
 
-	@Memoize()
 	protected get packemon() {
 		return new Packemon(this.cwd || process.cwd());
 	}
 
-	protected getBuildOptions(): BuildOptions {
-		return {
-			filter: this.filter,
-			filterFormats: this.formats,
-			filterPlatforms: this.platforms,
-			loadConfigs: this.loadConfigs,
-			skipPrivate: this.skipPrivate,
-		};
+	protected async getPackage() {
+		const pkg = await this.packemon.findPackage({ skipPrivate: this.skipPrivate });
+
+		if (!pkg) {
+			throw new Error(
+				`No \`packemon\` configured package found in ${applyStyle(
+					this.packemon.workingDir.path(),
+					'info',
+				)}!`,
+			);
+		}
+
+		return pkg;
+	}
+
+	protected renderValidator(validator: PackageValidator) {
+		if (validator.hasErrors()) {
+			validator.errors.forEach((error) => {
+				this.log.error(applyStyle(` ${figures.bullet} ${error}`, 'failure'));
+			});
+		}
+
+		if (validator.hasWarnings()) {
+			validator.warnings.forEach((warning) => {
+				this.log.warn(applyStyle(` ${figures.bullet} ${warning}`, 'warning'));
+			});
+		}
+
+		if (validator.hasErrors()) {
+			this.exit(`Found errors in ${validator.package.getName()} package!`);
+		}
 	}
 }

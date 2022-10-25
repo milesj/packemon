@@ -104,6 +104,7 @@ export type PackageExportConditions =
 	| 'react-native'
 	| 'require'
 	| 'script'
+	| 'solid'
 	| 'style'
 	| 'types';
 
@@ -130,7 +131,6 @@ export interface BuildOptions extends FilterOptions {
 	addFiles?: boolean;
 	concurrency?: number;
 	declaration?: boolean;
-	declarationConfig?: string;
 	loadConfigs?: boolean;
 	stamp?: boolean;
 	timeout?: number;
@@ -154,14 +154,10 @@ export interface BuildResult {
 	time: number;
 }
 
-export interface CodeBuild {
+export interface Build {
+	declaration?: boolean;
 	format: Format;
 	stats?: { size: number };
-}
-
-export interface TypesBuild {
-	inputFile: string;
-	outputName: string;
 }
 
 // VALIDATE
@@ -189,7 +185,7 @@ export interface FeatureFlags {
 	solid?: boolean;
 	strict?: boolean;
 	typescript?: boolean;
-	workspaces?: string[];
+	typescriptComposite?: boolean;
 }
 
 declare module 'rollup' {

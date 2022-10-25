@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 
-import { createConfig, createRootConfig } from '../../src/babel';
+// import { createConfig, createRootConfig } from '../../src/babel';
 import { getBabelInputConfig, getBabelOutputConfig } from '../../src/babel/config';
 import { Format, Platform, Support } from '../../src/types';
 
@@ -128,14 +128,6 @@ describe('getBabelOutputConfig()', () => {
 		);
 	});
 
-	it('sets `babelrcRoots` based on `workspaces` feature flag', () => {
-		expect(getBabelOutputConfig('node', 'stable', 'lib', { workspaces: ['packages/*'] })).toEqual(
-			expect.objectContaining({
-				babelrcRoots: ['packages/*'],
-			}),
-		);
-	});
-
 	it('can mutate config', () => {
 		expect(
 			getBabelOutputConfig(
@@ -178,14 +170,14 @@ describe('getBabelOutputConfig()', () => {
 	});
 });
 
-describe('createRootConfig()', () => {
-	it('returns the correct config', () => {
-		expect(createRootConfig()).toMatchSnapshot();
-	});
-});
+// describe('createRootConfig()', () => {
+// 	it('returns the correct config', () => {
+// 		expect(createRootConfig()).toMatchSnapshot();
+// 	});
+// });
 
-describe('createConfig()', () => {
-	it('returns the correct config', () => {
-		expect(createConfig(process.cwd())).toMatchSnapshot();
-	});
-});
+// describe('createConfig()', () => {
+// 	it('returns the correct config', () => {
+// 		expect(createConfig(process.cwd())).toMatchSnapshot();
+// 	});
+// });

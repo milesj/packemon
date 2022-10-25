@@ -22,7 +22,7 @@ jobs:
       - run: yarn install --immutable
       - run: yarn run setup
       - run: yarn run type
-      - run: yarn run coverage
+      - run: yarn run test # coverage
       - run: yarn run lint
   integrate:
     name: Integrations

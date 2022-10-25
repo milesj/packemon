@@ -1,10 +1,9 @@
 /* eslint-disable react/jsx-no-bind, react-perf/jsx-no-new-function-as-prop */
 
 import { Arg, Config } from '@boost/cli';
-import { Path, WorkspacePackage } from '@boost/common';
 import { DEFAULT_INPUT, DEFAULT_SUPPORT } from '../constants';
 import { Package } from '../Package';
-import { PackemonPackage, PackemonPackageConfig } from '../types';
+import { PackemonPackageConfig } from '../types';
 import { BaseCommand } from './Base';
 
 export interface InitOptions {
@@ -12,25 +11,24 @@ export interface InitOptions {
 	skipPrivate: boolean;
 }
 
-@Config('init', 'Initialize and configure Packemon for packages')
+@Config('init', 'Initialize and configure a package for Packemon')
 export class InitCommand extends BaseCommand<InitOptions> {
-	@Arg.Flag('Override already configured packages')
+	@Arg.Flag('Override existing configuration')
 	force: boolean = false;
 
 	async run() {
-		const packages = await this.packemon.findPackagesInProject(this.getBuildOptions());
+		// Dont use `getPackage` so we dont throw an error
+		const pkg = await this.packemon.findPackage();
 
-		const unconfiguredPackages = this.force
-			? packages
-			: packages.filter((pkg) => !pkg.package.packemon);
+		if (!pkg) {
+			this.log.error('No package found in current directory.');
+			return undefined;
+		}
 
-		if (unconfiguredPackages.length === 0) {
-			if (packages.length === 0) {
-				this.log.error('No packages found in project.');
-			} else {
-				this.log.info('All packages have been configured. Pass --force to override.');
-			}
+		const name = pkg.getName();
 
+		if (pkg.json.packemon && !this.force) {
+			this.log.info(`Package ${name} has already been configured. Pass --force to override.`);
 			return undefined;
 		}
 
@@ -39,8 +37,8 @@ export class InitCommand extends BaseCommand<InitOptions> {
 
 		return (
 			<Init
-				packageNames={unconfiguredPackages.map((pkg) => pkg.package.name)}
-				onComplete={(configs) => this.writeConfigsToPackageJsons(unconfiguredPackages, configs)}
+				packageName={name}
+				onComplete={(config) => this.writeConfigToPackageJson(pkg, config)}
 			/>
 		);
 	}
@@ -86,19 +84,10 @@ export class InitCommand extends BaseCommand<InitOptions> {
 		return config;
 	}
 
-	async writeConfigsToPackageJsons(
-		packages: WorkspacePackage<PackemonPackage>[],
-		configs: Record<string, PackemonPackageConfig>,
-	) {
-		await Promise.all(
-			packages.map((item) => {
-				const pkg = new Package(this.packemon.project, new Path(item.metadata.packagePath), {
-					...item.package,
-					packemon: this.formatConfigObject(configs[item.package.name]),
-				});
+	async writeConfigToPackageJson(pkg: Package, config: PackemonPackageConfig) {
+		// eslint-disable-next-line no-param-reassign
+		pkg.json.packemon = this.formatConfigObject(config);
 
-				return pkg.syncPackageJson();
-			}),
-		);
+		return pkg.syncJson();
 	}
 }

@@ -6,7 +6,7 @@ import {
 	TransformConfig,
 	TsParserConfig,
 } from '@swc/core';
-import { CodeArtifact } from '../CodeArtifact';
+import { Artifact } from '../Artifact';
 import {
 	BROWSER_TARGETS,
 	NATIVE_TARGETS,
@@ -74,7 +74,7 @@ function getSharedConfig(config: Config): Options {
 // The input config should only parse special syntax, not transform and downlevel.
 // This applies to all formats within a build target.
 export function getSwcInputConfig(
-	artifact: CodeArtifact,
+	artifact: Artifact,
 	features: FeatureFlags,
 	packemonConfig: ConfigFile = {},
 ): Omit<Options, 'exclude' | 'test'> {

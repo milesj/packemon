@@ -1,12 +1,9 @@
-import rimraf from 'rimraf';
 import { Path } from '@boost/common';
-import { mockNormalizedFilePath } from '@boost/common/test';
 import { getFixturePath } from '@boost/test-utils';
-import { BuildOptions, CodeArtifact, TypesArtifact } from '../src';
 import { Package } from '../src/Package';
 import { Packemon } from '../src/Packemon';
-
-jest.mock('rimraf');
+import { BuildOptions } from '../src/types';
+import { loadPackageAtPath } from './helpers';
 
 jest.mock('../src/PackageValidator', () => ({
 	PackageValidator: class MockValidator {
@@ -16,477 +13,204 @@ jest.mock('../src/PackageValidator', () => ({
 
 describe('Packemon', () => {
 	let packemon: Packemon;
+	let pkg: Package;
 
 	beforeEach(() => {
-		(rimraf as unknown as jest.Mock).mockImplementation((path: string, cb: Function) => {
-			cb();
-		});
+		packemon = new Packemon(getFixturePath('project'));
 	});
 
-	it('runs on cwd by default', () => {
-		packemon = new Packemon();
+	it('uses working dir', () => {
+		const root = Path.create(getFixturePath('project'));
 
-		expect(packemon.root).toEqual(mockNormalizedFilePath(process.cwd()));
-	});
-
-	it('errors with engine version constraint', () => {
-		// eslint-disable-next-line jest/require-to-throw-message
-		expect(() => new Packemon(getFixturePath('project-constraint'))).toThrow();
+		expect(packemon.workingDir.path()).toBe(root.path());
 	});
 
 	describe('build()', () => {
-		let packages: Package[];
-
-		beforeEach(async () => {
-			packemon = new Packemon(getFixturePath('workspaces'));
-			packages = (await packemon.loadConfiguredPackages()).map((pkg) => {
-				jest.spyOn(pkg, 'build').mockImplementation(() => Promise.resolve());
-
-				return pkg;
-			});
-
-			jest
-				.spyOn(packemon, 'loadConfiguredPackages')
-				.mockImplementation(() => Promise.resolve(packages));
+		beforeEach(() => {
+			pkg = loadPackageAtPath(packemon.workingDir);
 		});
 
-		it('calls `build` on each package', async () => {
-			await packemon.build({ addEngines: true, concurrency: 3 });
+		const options: BuildOptions = {
+			addEngines: false,
+			addExports: false,
+			addFiles: false,
+			concurrency: 1,
+			declaration: false,
+			filter: '',
+			filterFormats: '',
+			filterPlatforms: '',
+			loadConfigs: false,
+			quiet: false,
+			skipPrivate: false,
+			stamp: false,
+			timeout: 0,
+		};
 
-			const options: BuildOptions = {
-				addEngines: true,
-				addExports: false,
-				addFiles: false,
-				concurrency: 3,
-				declaration: false,
-				declarationConfig: '',
-				filter: '',
-				filterFormats: '',
-				filterPlatforms: '',
-				loadConfigs: false,
-				quiet: false,
-				skipPrivate: false,
-				stamp: false,
-				timeout: 0,
-			};
+		it('runs build on package', async () => {
+			const spy = jest.spyOn(pkg, 'build').mockImplementation();
 
-			expect(packages[0].build).toHaveBeenCalledWith(options, expect.any(Object));
-			expect(packages[1].build).toHaveBeenCalledWith(options, expect.any(Object));
-			expect(packages[2].build).toHaveBeenCalledWith(options, expect.any(Object));
+			await packemon.build(pkg, { addEngines: true, concurrency: 3 });
+
+			expect(spy).toHaveBeenCalledWith({ ...options, addEngines: true, concurrency: 3 }, {});
 		});
 
-		it('emits `onPackageBuilt` for each package', async () => {
-			const spy = jest.fn();
-
-			packemon.onPackageBuilt.listen(spy);
-
-			await packemon.build({ addExports: true, skipPrivate: true });
-
-			expect(spy).toHaveBeenCalledWith(packages[0]);
-			expect(spy).toHaveBeenCalledWith(packages[1]);
-			expect(spy).toHaveBeenCalledWith(packages[2]);
-		});
-
-		it('cleans temporary files from each package', async () => {
-			// @ts-expect-error Private
-			const spy = jest.spyOn(packemon, 'cleanTemporaryFiles');
-
-			await packemon.build({});
-
-			expect(spy).toHaveBeenCalledWith(packages);
-		});
-
-		it('throws if a build fails', async () => {
-			(packages[1].build as jest.Mock).mockImplementation(() => {
+		it('throws if build fails', async () => {
+			jest.spyOn(pkg, 'build').mockImplementation(() => {
 				throw new Error('Oops');
 			});
 
-			await expect(() => packemon.build({})).rejects.toThrow('Oops');
+			await expect(() => packemon.build(pkg, {})).rejects.toThrow('Oops');
 		});
-	});
 
-	it('detects project root', () => {
-		const root = Path.create(getFixturePath('project'));
+		describe('config loading', () => {
+			it('inherits for a polyrepo', async () => {
+				pkg = loadPackageAtPath(getFixturePath('config-files-polyrepo'));
 
-		packemon = new Packemon(root);
+				const spy = jest.spyOn(pkg, 'build').mockImplementation();
 
-		expect(packemon.workingDir.path()).toBe(root.path());
-		expect(packemon.root.path()).toBe(root.path());
-		expect(packemon.project.root.path()).toBe(root.path());
-	});
+				await packemon.build(pkg, { loadConfigs: true });
 
-	it('detects workspace root', () => {
-		const root = Path.create(getFixturePath('workspaces'));
+				expect(spy).toHaveBeenCalledWith(
+					{ ...options, loadConfigs: true },
+					{
+						babelInput: expect.any(Function),
+						babelOutput: expect.any(Function),
+						rollupInput: expect.any(Function),
+						rollupOutput: expect.any(Function),
+						swc: false,
+						swcInput: undefined,
+						swcOutput: undefined,
+					},
+				);
+			});
 
-		packemon = new Packemon(root);
+			it('inherits for a monorepo', async () => {
+				pkg = loadPackageAtPath(getFixturePath('config-files-monorepo', 'packages/baz'));
 
-		expect(packemon.workingDir.path()).toBe(root.path());
-		expect(packemon.root.path()).toBe(root.path());
-		expect(packemon.project.root.path()).toBe(root.path());
-	});
+				const spy = jest.spyOn(pkg, 'build').mockImplementation();
 
-	it('detects workspace root when running in a sub-folder', () => {
-		const root = Path.create(getFixturePath('workspaces'));
-		const sub = root.append('packages/valid-array');
+				await packemon.build(pkg, { loadConfigs: true });
 
-		packemon = new Packemon(sub);
+				expect(spy).toHaveBeenCalledWith(
+					{ ...options, loadConfigs: true },
+					{
+						babelInput: expect.any(Function),
+						babelOutput: expect.any(Function),
+						rollupInput: expect.any(Function),
+						rollupOutput: expect.any(Function),
+						swc: false,
+						swcInput: undefined,
+						swcOutput: undefined,
+					},
+				);
+			});
 
-		expect(packemon.workingDir.path()).toBe(sub.path());
-		expect(packemon.root.path()).toBe(root.path());
-		expect(packemon.project.root.path()).toBe(root.path());
+			it('doesnt inherit if `loadConfigs` is false', async () => {
+				pkg = loadPackageAtPath(getFixturePath('config-files-polyrepo'));
+
+				const spy = jest.spyOn(pkg, 'build').mockImplementation();
+
+				await packemon.build(pkg, { loadConfigs: false });
+
+				expect(spy).toHaveBeenCalledWith({ ...options, loadConfigs: false }, {});
+			});
+		});
 	});
 
 	describe('clean()', () => {
-		it('handles file system failures', async () => {
-			(rimraf as unknown as jest.Mock).mockImplementation((path, cb) => {
-				cb(new Error('Missing'));
-			});
-
-			packemon = new Packemon(getFixturePath('project'));
-
-			await expect(() => packemon.clean()).rejects.toThrow('Missing');
+		beforeEach(() => {
+			pkg = loadPackageAtPath(packemon.workingDir);
 		});
 
-		describe('polyrepo', () => {
-			beforeEach(() => {
-				packemon = new Packemon(getFixturePath('project'));
-			});
+		it('runs clean on package', async () => {
+			const spy = jest.spyOn(pkg, 'clean').mockImplementation();
 
-			it('cleans temporary files from each package', async () => {
-				// @ts-expect-error Private
-				const spy = jest.spyOn(packemon, 'cleanTemporaryFiles');
+			await packemon.clean(pkg);
 
-				await packemon.clean();
-
-				expect(spy).toHaveBeenCalledWith([expect.any(Package)]);
-			});
-
-			it('cleans build folders from project', async () => {
-				await packemon.clean();
-
-				expect(rimraf).toHaveBeenCalledWith(
-					'./{assets,cjs,dts,esm,lib,mjs,umd}',
-					expect.any(Function),
-				);
-			});
-		});
-
-		describe('monorepo', () => {
-			beforeEach(() => {
-				packemon = new Packemon(getFixturePath('workspaces'));
-			});
-
-			it('cleans temporary files from each package', async () => {
-				// @ts-expect-error Private
-				const spy = jest.spyOn(packemon, 'cleanTemporaryFiles');
-
-				await packemon.clean();
-
-				expect(spy).toHaveBeenCalledWith([
-					expect.any(Package),
-					expect.any(Package),
-					expect.any(Package),
-				]);
-			});
-
-			it('cleans build folders from project', async () => {
-				await packemon.clean();
-
-				expect(rimraf).toHaveBeenCalledWith(
-					'packages/*/{assets,cjs,dts,esm,lib,mjs,umd}',
-					expect.any(Function),
-				);
-				expect(rimraf).toHaveBeenCalledWith(
-					'other/{assets,cjs,dts,esm,lib,mjs,umd}',
-					expect.any(Function),
-				);
-				expect(rimraf).toHaveBeenCalledWith(
-					'misc/{assets,cjs,dts,esm,lib,mjs,umd}',
-					expect.any(Function),
-				);
-			});
+			expect(spy).toHaveBeenCalledWith();
 		});
 	});
 
 	describe('validate()', () => {
-		it('can skip private packages', async () => {
-			packemon = new Packemon(getFixturePath('project'));
-
-			const spy = jest.spyOn(packemon, 'loadConfiguredPackages');
-
-			await packemon.validate({ skipPrivate: true });
-
-			expect(spy).toHaveBeenCalledWith(expect.objectContaining({ skipPrivate: true }));
-
-			spy.mockRestore();
+		beforeEach(() => {
+			pkg = loadPackageAtPath(packemon.workingDir);
 		});
 
-		describe('polyrepo', () => {
-			beforeEach(() => {
-				packemon = new Packemon(getFixturePath('project'));
-			});
+		it('calls a validator on the package', async () => {
+			const validator = await packemon.validate(pkg, { deps: false, people: false });
 
-			it('calls a validator on the package', async () => {
-				const validators = await packemon.validate({ deps: false, people: false });
-
-				expect(validators).toHaveLength(1);
-				expect(validators[0].validate).toHaveBeenCalledWith({
-					deps: false,
-					engines: true,
-					entries: true,
-					files: true,
-					license: true,
-					links: true,
-					meta: true,
-					people: false,
-					quiet: false,
-					repo: true,
-					skipPrivate: false,
-				});
-			});
-		});
-
-		describe('monorepo', () => {
-			beforeEach(() => {
-				packemon = new Packemon(getFixturePath('workspaces'));
-			});
-
-			it('calls a validator on each package', async () => {
-				const validators = await packemon.validate({ engines: false, license: false });
-				const options = {
-					deps: true,
-					engines: false,
-					entries: true,
-					files: true,
-					license: false,
-					links: true,
-					meta: true,
-					people: true,
-					quiet: false,
-					repo: true,
-					skipPrivate: false,
-				};
-
-				expect(validators).toHaveLength(3);
-				expect(validators[0].validate).toHaveBeenCalledWith(options);
-				expect(validators[1].validate).toHaveBeenCalledWith(options);
-				expect(validators[2].validate).toHaveBeenCalledWith(options);
+			expect(validator.validate).toHaveBeenCalledWith({
+				deps: false,
+				engines: true,
+				entries: true,
+				files: true,
+				license: true,
+				links: true,
+				meta: true,
+				people: false,
+				quiet: false,
+				repo: true,
+				skipPrivate: false,
 			});
 		});
 	});
 
-	describe('findPackagesInProject()', () => {
-		it('errors if no packages are found', async () => {
+	describe('findPackage()', () => {
+		it('errors if no `package.json`', async () => {
+			packemon = new Packemon(getFixturePath('workspaces', 'no-package'));
+
+			await expect(packemon.findPackage()).rejects.toThrow(
+				`No \`package.json\` found in ${packemon.workingDir}.`,
+			);
+		});
+
+		it('errors for invalid `packemon` config', async () => {
+			packemon = new Packemon(getFixturePath('workspaces', 'packages/invalid-config'));
+
+			await expect(packemon.findPackage()).rejects.toThrow(
+				'Invalid `packemon` configuration for pkg-invalid-config, must be an object or array of objects.',
+			);
+		});
+
+		it('returns null if package is private and `skipPrivate` is true', async () => {
 			packemon = new Packemon(getFixturePath('workspace-private'));
 
-			await expect(packemon.findPackagesInProject({ skipPrivate: true })).rejects.toThrow(
-				'No packages found in project.',
-			);
+			await expect(packemon.findPackage({ skipPrivate: true })).resolves.toBeNull();
 		});
 
-		describe('polyrepo', () => {
-			it('sets workspaces property to an empty list', async () => {
-				packemon = new Packemon(getFixturePath('workspace-not-configured'));
+		it('returns null if package does not have a `packemon` config', async () => {
+			packemon = new Packemon(getFixturePath('workspaces', 'packages/no-config'));
 
-				await packemon.findPackagesInProject();
-
-				expect(packemon.project.workspaces).toEqual([]);
-			});
-
-			it('returns project as package', async () => {
-				const root = getFixturePath('workspace-not-configured');
-				packemon = new Packemon(root);
-				const packages = await packemon.findPackagesInProject();
-
-				expect(packages).toHaveLength(1);
-				expect(packages).toEqual([
-					{
-						metadata: packemon.project.createWorkspaceMetadata(new Path(root, 'package.json')),
-						package: { name: 'polyrepo' },
-					},
-				]);
-			});
+			await expect(packemon.findPackage({})).resolves.toBeNull();
 		});
 
-		describe('monorepo', () => {
-			it('sets workspaces property to a list of globs', async () => {
-				packemon = new Packemon(getFixturePath('workspaces-not-configured'));
+		it('loads a package with a single `packemon` config', async () => {
+			packemon = new Packemon(getFixturePath('workspaces', 'packages/valid-object'));
 
-				await packemon.findPackagesInProject();
+			pkg = (await packemon.findPackage({}))!;
 
-				expect(packemon.project.workspaces).toEqual(['packages/*']);
-			});
-
-			it('returns all packages in project', async () => {
-				const root = getFixturePath('workspaces-not-configured');
-				packemon = new Packemon(root);
-				const packages = await packemon.findPackagesInProject();
-
-				expect(packages).toHaveLength(4);
-				expect(packages).toEqual([
-					{
-						metadata: packemon.project.createWorkspaceMetadata(
-							new Path(root, 'packages/bar/package.json'),
-						),
-						package: { name: 'bar' },
-					},
-					{
-						metadata: packemon.project.createWorkspaceMetadata(
-							new Path(root, 'packages/baz/package.json'),
-						),
-						package: { name: 'baz' },
-					},
-					{
-						metadata: packemon.project.createWorkspaceMetadata(
-							new Path(root, 'packages/foo/package.json'),
-						),
-						package: { name: 'foo' },
-					},
-					{
-						metadata: packemon.project.createWorkspaceMetadata(
-							new Path(root, 'packages/qux/package.json'),
-						),
-						package: { name: 'qux', private: true },
-					},
-				]);
-			});
-
-			it('filters private packages when `skipPrivate` is true', async () => {
-				const root = getFixturePath('workspaces-not-configured');
-				packemon = new Packemon(root);
-				const packages = await packemon.findPackagesInProject({ skipPrivate: true });
-
-				expect(packages).toHaveLength(3);
-				expect(packages.find((pkg) => pkg.package.name === 'qux')).toBeUndefined();
-			});
-		});
-	});
-
-	describe('generateArtifacts()', () => {
-		beforeEach(() => {
-			packemon = new Packemon(getFixturePath('workspaces'));
-		});
-
-		it('generates build artifacts for each config in a package', async () => {
-			const packages = await packemon.loadConfiguredPackages();
-
-			packemon.generateArtifacts(packages);
-
-			expect(packages[0].artifacts).toHaveLength(2);
-			expect((packages[0].artifacts[0] as CodeArtifact).inputs).toEqual({ index: 'src/index.ts' });
-			expect(packages[0].artifacts[0].builds).toEqual([{ format: 'lib' }]);
-
-			expect((packages[0].artifacts[1] as CodeArtifact).inputs).toEqual({ index: 'src/index.ts' });
-			expect(packages[0].artifacts[1].builds).toEqual([{ format: 'esm' }, { format: 'lib' }]);
-
-			expect(packages[1].artifacts).toHaveLength(1);
-			expect((packages[1].artifacts[0] as CodeArtifact).inputs).toEqual({ core: './src/core.ts' });
-			expect(packages[1].artifacts[0].builds).toEqual([{ format: 'mjs' }]);
-
-			expect(packages[2].artifacts).toHaveLength(1);
-			expect((packages[2].artifacts[0] as CodeArtifact).inputs).toEqual({ index: 'src/index.ts' });
-			expect(packages[2].artifacts[0].builds).toEqual([
-				{ format: 'esm' },
-				{ format: 'lib' },
-				{ format: 'umd' },
-			]);
-		});
-
-		it('generates type artifacts for each config in a package', async () => {
-			const packages = await packemon.loadConfiguredPackages();
-
-			packemon.generateArtifacts(packages, { declaration: true });
-
-			expect(packages[0].artifacts).toHaveLength(3);
-			expect((packages[0].artifacts[2] as TypesArtifact).builds).toEqual([
+			expect(pkg).toBeInstanceOf(Package);
+			expect(pkg.configs).toEqual([
 				{
-					inputFile: 'src/index.ts',
-					outputName: 'index',
-				},
-			]);
-
-			expect(packages[1].artifacts).toHaveLength(2);
-			expect((packages[1].artifacts[1] as TypesArtifact).builds).toEqual([
-				{
-					inputFile: './src/core.ts',
-					outputName: 'core',
-				},
-			]);
-
-			expect(packages[2].artifacts).toHaveLength(2);
-			expect((packages[2].artifacts[1] as TypesArtifact).builds).toEqual([
-				{
-					inputFile: 'src/index.ts',
-					outputName: 'index',
+					api: 'public',
+					bundle: false,
+					externals: [],
+					formats: ['mjs'],
+					inputs: { core: './src/core.ts' },
+					namespace: '',
+					platform: 'node',
+					support: 'stable',
 				},
 			]);
 		});
 
-		it('generates build artifacts for projects with multiple platforms', async () => {
-			packemon = new Packemon(getFixturePath('project-multi-platform'));
+		it('loads a package with multiple `packemon` configs', async () => {
+			packemon = new Packemon(getFixturePath('workspaces', 'packages/valid-array'));
 
-			const packages = await packemon.loadConfiguredPackages();
+			pkg = (await packemon.findPackage({}))!;
 
-			packemon.generateArtifacts(packages);
-
-			expect(packages[0].artifacts[0].builds).toEqual([{ format: 'esm' }, { format: 'lib' }]);
-			expect(packages[0].artifacts[1].builds).toEqual([{ format: 'mjs' }]);
-		});
-
-		it('filters formats using `filterFormats`', async () => {
-			packemon = new Packemon(getFixturePath('project-multi-platform'));
-
-			const packages = await packemon.loadConfiguredPackages();
-
-			packemon.generateArtifacts(packages, {
-				filterFormats: 'esm',
-			});
-
-			expect(packages[0].artifacts[0].builds).toEqual([{ format: 'esm' }]);
-			expect(packages[0].artifacts[1]).toBeUndefined();
-		});
-
-		it('filters platforms using `filterPlatforms`', async () => {
-			packemon = new Packemon(getFixturePath('project-multi-platform'));
-
-			const packages = await packemon.loadConfiguredPackages();
-
-			packemon.generateArtifacts(packages, {
-				filterPlatforms: 'node',
-			});
-
-			expect(packages[0].artifacts[0].builds).toEqual([{ format: 'mjs' }]);
-			expect(packages[0].artifacts[1]).toBeUndefined();
-		});
-	});
-
-	describe('loadConfiguredPackages()', () => {
-		beforeEach(() => {
-			packemon = new Packemon(getFixturePath('workspaces'));
-		});
-
-		it('returns the same reference because of memoization', async () => {
-			await expect(packemon.loadConfiguredPackages()).resolves.toBe(
-				await packemon.loadConfiguredPackages(),
-			);
-		});
-
-		it('returns all configured packages', async () => {
-			const packages = await packemon.loadConfiguredPackages();
-
-			expect(packages).toHaveLength(3);
-			expect(packages.map((pkg) => pkg.getName())).toEqual([
-				'pkg-valid-array',
-				'pkg-valid-object',
-				'pkg-valid-object-private',
-			]);
-		});
-
-		it('sets configs for each valid package', async () => {
-			const [one, two, three] = await packemon.loadConfiguredPackages();
-
-			expect(one.getName()).toBe('pkg-valid-array');
-			expect(one.configs).toEqual([
+			expect(pkg).toBeInstanceOf(Package);
+			expect(pkg.configs).toEqual([
 				{
 					api: 'public',
 					bundle: false,
@@ -508,89 +232,65 @@ describe('Packemon', () => {
 					support: 'current',
 				},
 			]);
+		});
+	});
 
-			expect(two.getName()).toBe('pkg-valid-object');
-			expect(two.configs).toEqual([
-				{
-					api: 'public',
-					bundle: false,
-					externals: [],
-					formats: ['mjs'],
-					inputs: { core: './src/core.ts' },
-					namespace: '',
-					platform: 'node',
-					support: 'stable',
-				},
-			]);
+	describe('findPackages()', () => {
+		it('errors if no packages are found', async () => {
+			packemon = new Packemon(getFixturePath('workspaces-no-packages'));
 
-			expect(three.getName()).toBe('pkg-valid-object-private');
-			expect(three.configs).toEqual([
-				{
-					api: 'private',
-					bundle: true,
-					externals: [],
-					formats: ['esm', 'lib', 'umd'],
-					inputs: { index: 'src/index.ts' },
-					namespace: 'Test',
-					platform: 'browser',
-					support: 'stable',
-				},
-			]);
+			await expect(packemon.findPackages({})).rejects.toThrow('No packages found in project.');
 		});
 
-		it('filters private packages when `skipPrivate` is true', async () => {
-			const packages = await packemon.loadConfiguredPackages({ skipPrivate: true });
+		describe('polyrepo', () => {
+			it('errors if no workspaces', async () => {
+				packemon = new Packemon(getFixturePath('workspace-not-configured'));
 
-			expect(packages.map((pkg) => pkg.getName())).toEqual(['pkg-valid-array', 'pkg-valid-object']);
+				await expect(packemon.findPackages({})).rejects.toThrow(
+					'No `workspaces` defined in root `package.json`.',
+				);
+			});
 		});
 
-		it('filters packages using a pattern with `filterPackages`', async () => {
-			const packages = await packemon.loadConfiguredPackages({ filter: 'pkg-*-object' });
+		describe('monorepo', () => {
+			it('returns all packages in project', async () => {
+				packemon = new Packemon(getFixturePath('workspaces-configured'));
 
-			expect(packages.map((pkg) => pkg.getName())).toEqual(['pkg-valid-object']);
-		});
+				const packages = await packemon.findPackages();
 
-		it('filters packages using a comma separate list with `filterPackages`', async () => {
-			const packages = await packemon.loadConfiguredPackages({
-				filter: 'pkg-valid-obj*,pkg-*-config',
-				skipPrivate: true,
+				expect(packages).toHaveLength(4);
+				expect(packages.map((p) => p.getName()).sort()).toEqual(['bar', 'baz', 'foo', 'qux']);
 			});
 
-			expect(packages.map((pkg) => pkg.getName())).toEqual(['pkg-valid-object']);
+			it('filters private packages when `skipPrivate` is true', async () => {
+				packemon = new Packemon(getFixturePath('workspaces-configured'));
+
+				const packages = await packemon.findPackages({ skipPrivate: true });
+
+				expect(packages).toHaveLength(3);
+				expect(packages.map((p) => p.getName()).sort()).toEqual(['bar', 'baz', 'foo']);
+			});
+		});
+	});
+
+	describe('findWorkspaceRoot()', () => {
+		it('detects workspace root', () => {
+			const root = Path.create(getFixturePath('workspaces'));
+
+			packemon = new Packemon(root);
+
+			expect(packemon.workingDir.path()).toBe(root.path());
+			expect(packemon.findWorkspaceRoot().path()).toBe(root.path());
 		});
 
-		it('filters packages that are missing a `packemon` config', async () => {
-			const packages = await packemon.loadConfiguredPackages();
+		it('detects workspace root when running in a sub-folder', () => {
+			const root = Path.create(getFixturePath('workspaces'));
+			const sub = root.append('packages/valid-array');
 
-			expect(packages.map((pkg) => pkg.getName())).toEqual([
-				'pkg-valid-array',
-				'pkg-valid-object',
-				'pkg-valid-object-private',
-			]);
-		});
+			packemon = new Packemon(sub);
 
-		it('filters packages where `packemon` config is invalid', async () => {
-			const packages = await packemon.loadConfiguredPackages();
-
-			expect(packages.map((pkg) => pkg.getName())).toEqual([
-				'pkg-valid-array',
-				'pkg-valid-object',
-				'pkg-valid-object-private',
-			]);
-		});
-
-		it('emits `onPackagesLoaded` event', async () => {
-			const spy = jest.fn();
-
-			packemon.onPackagesLoaded.listen(spy);
-
-			await packemon.loadConfiguredPackages();
-
-			expect(spy).toHaveBeenCalledWith([
-				expect.any(Package),
-				expect.any(Package),
-				expect.any(Package),
-			]);
+			expect(packemon.workingDir.path()).toBe(sub.path());
+			expect(packemon.findWorkspaceRoot().path()).toBe(root.path());
 		});
 	});
 });

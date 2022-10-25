@@ -1,13 +1,14 @@
-/* eslint-disable require-atomic-updates, no-param-reassign, @typescript-eslint/member-ordering */
+/* eslint-disable require-atomic-updates */
+/* eslint-disable no-param-reassign */
+/* eslint-disable @typescript-eslint/member-ordering */
 
 import glob from 'fast-glob';
 import fs from 'fs-extra';
 import semver from 'semver';
-import { deepMerge, isObject, Memoize, PackageStructure, Path, toArray } from '@boost/common';
+import { isObject, Memoize, Path, toArray } from '@boost/common';
 import { optimal } from '@boost/common/optimal';
 import { createDebugger, Debugger } from '@boost/debug';
 import { Artifact } from './Artifact';
-import { CodeArtifact } from './CodeArtifact';
 import {
 	DEFAULT_FORMATS,
 	EXCLUDE,
@@ -15,27 +16,20 @@ import {
 	FORMATS_BROWSER,
 	FORMATS_NATIVE,
 	FORMATS_NODE,
-	NODE_SUPPORTED_VERSIONS,
-	NPM_SUPPORTED_VERSIONS,
-	SUPPORT_PRIORITY,
 } from './constants';
-import { loadModule } from './helpers/loadModule';
-import { sortExports } from './helpers/sortExports';
-import { Project } from './Project';
+import { loadTsconfigJson } from './helpers/loadTsconfigJson';
+import { matchesPattern } from './helpers/matchesPattern';
 import { packemonBlueprint } from './schemas';
 import {
+	ApiType,
 	BuildOptions,
 	ConfigFile,
 	FeatureFlags,
-	InputMap,
 	PackageConfig,
-	PackageExportPaths,
-	PackageExports,
 	PackemonPackage,
 	PackemonPackageConfig,
-	TSConfigStructure,
+	Platform,
 } from './types';
-import { TypesArtifact } from './TypesArtifact';
 
 export class Package {
 	readonly artifacts: Artifact[] = [];
@@ -44,30 +38,28 @@ export class Package {
 
 	readonly debug!: Debugger;
 
-	readonly packageJson: PackemonPackage;
+	readonly json: PackemonPackage;
 
-	readonly packageJsonPath: Path;
+	readonly jsonPath: Path;
 
 	readonly path: Path;
 
-	readonly project: Project;
+	readonly workspaceRoot: Path;
 
-	root: boolean = false;
-
-	constructor(project: Project, path: Path, contents: PackemonPackage) {
-		this.project = project;
+	constructor(path: Path, contents: PackemonPackage, workspaceRoot?: Path) {
 		this.path = path;
-		this.packageJsonPath = this.path.append('package.json');
-		this.packageJson = contents;
+		this.jsonPath = this.path.append('package.json');
+		this.json = contents;
+		this.workspaceRoot = workspaceRoot ?? path;
 		this.debug = createDebugger(['packemon', 'package', this.getSlug()]);
-	}
 
-	addArtifact(artifact: Artifact): Artifact {
-		this.artifacts.push(artifact);
+		if (!isObject(contents.packemon) && !Array.isArray(contents.packemon)) {
+			throw new Error(
+				`Invalid \`packemon\` configuration for ${contents.name}, must be an object or array of objects.`,
+			);
+		}
 
-		artifact.startup();
-
-		return artifact;
+		this.setConfigs(toArray(contents.packemon));
 	}
 
 	async build(options: BuildOptions, packemonConfig: ConfigFile): Promise<void> {
@@ -95,43 +87,44 @@ export class Package {
 		);
 
 		// Add package entry points based on artifacts
-		this.addEntryPoints();
+		// this.addEntryPoints();
 
 		// Add package `engines` based on artifacts
 		if (options.addEngines) {
-			this.addEngines();
+			// this.addEngines();
 		}
 
 		// Add package `exports` based on artifacts
 		if (options.addExports) {
-			this.addExports();
+			// this.addExports();
 		}
 
 		// Add package `files` whitelist
 		if (options.addFiles) {
-			this.addFiles();
+			// this.addFiles();
 		}
 
 		// Stamp with a timestamp
 		if (options.stamp) {
-			this.packageJson.release = String(Date.now());
+			this.json.release = String(Date.now());
 		}
 
 		// Sync `package.json` in case it was modified
-		await this.syncPackageJson();
+		await this.syncJson();
 	}
 
-	async cleanup(): Promise<void> {
+	async clean(): Promise<void> {
 		this.debug('Cleaning build artifacts');
 
-		await Promise.all(this.artifacts.map((artifact) => artifact.cleanup()));
+		await Promise.all(this.artifacts.map((artifact) => artifact.clean()));
 	}
 
+	@Memoize()
 	async findDistributableFiles(): Promise<string[]> {
 		// https://github.com/npm/npm-packlist/blob/main/index.js#L29
 		const patterns: string[] = ['(readme|copying|license|licence)*', 'package.json'];
 
-		this.packageJson.files?.forEach((file) => {
+		this.json.files?.forEach((file) => {
 			if (file.endsWith('/')) {
 				patterns.push(`${file}**/*`);
 			} else {
@@ -147,8 +140,71 @@ export class Package {
 		});
 	}
 
-	getName(): string {
-		return this.packageJson.name;
+	@Memoize()
+	async findSourceFiles(): Promise<string[]> {
+		const extsWithoutPeriod = EXTENSIONS.map((ext) => ext.slice(1)).join(',');
+
+		const files = await glob(`src/**/*.{${extsWithoutPeriod}}`, {
+			absolute: true,
+			cwd: this.path.path(),
+			onlyFiles: true,
+			// This breaks our own fixtures, so this is hard to test...
+			ignore: process.env.NODE_ENV === 'test' ? [] : EXCLUDE,
+		});
+
+		files.sort();
+
+		return files.map((file) => new Path(file).path());
+	}
+
+	/**
+	 * Generate artifacts based on the packemon configuration.
+	 */
+	generateArtifacts({ declaration, filterFormats, filterPlatforms }: BuildOptions = {}) {
+		this.debug('Generating artifacts');
+
+		const sharedLib = this.requiresSharedLib();
+		const apiType = this.determineApiType();
+
+		this.configs.forEach((config, index) => {
+			let builds = config.formats.map((format) => ({
+				declaration,
+				format,
+			}));
+
+			if (filterFormats) {
+				this.debug('Filtering formats with pattern: %s', filterFormats);
+
+				builds = builds.filter((build) => matchesPattern(build.format, filterFormats));
+			}
+
+			if (filterPlatforms) {
+				this.debug('Filtering platforms with pattern: %s', filterPlatforms);
+
+				if (!matchesPattern(config.platform, filterPlatforms)) {
+					return;
+				}
+			}
+
+			if (builds.length === 0) {
+				return;
+			}
+
+			const artifact = new Artifact(this, builds);
+			artifact.api = apiType;
+			artifact.bundle = config.bundle;
+			artifact.configGroup = index;
+			artifact.externals = config.externals;
+			artifact.inputs = config.inputs;
+			artifact.namespace = config.namespace;
+			artifact.platform = config.platform;
+			artifact.sharedLib = sharedLib;
+			artifact.support = config.support;
+
+			this.artifacts.push(artifact);
+
+			this.debug(' - %s', artifact);
+		});
 	}
 
 	@Memoize()
@@ -156,25 +212,18 @@ export class Package {
 	getFeatureFlags(): FeatureFlags {
 		this.debug('Loading feature flags');
 
-		const flags: FeatureFlags =
-			this.root || !this.project.isWorkspacesEnabled()
-				? {}
-				: this.project.rootPackage.getFeatureFlags();
-
-		if (this.project.workspaces.length > 0) {
-			flags.workspaces = this.project.workspaces;
-		}
+		const flags: FeatureFlags = {};
 
 		// React
 		if (this.hasDependency('react')) {
-			const peerDep = this.packageJson.peerDependencies?.react;
-			const normalDep = this.packageJson.dependencies?.react;
+			const peerDep = this.json.peerDependencies?.react;
+			const prodDep = this.json.dependencies?.react;
 			const versionsToCheck: string[] = [];
 
 			if (peerDep && peerDep !== '*') {
 				versionsToCheck.push(...peerDep.split('||'));
-			} else if (normalDep && normalDep !== '*') {
-				versionsToCheck.push(normalDep);
+			} else if (prodDep && prodDep !== '*') {
+				versionsToCheck.push(prodDep);
 			}
 
 			// New JSX transform was backported to these versions:
@@ -205,14 +254,18 @@ export class Package {
 		}
 
 		// TypeScript
-		const tsConfig = this.loadTsconfigJson() ?? this.project.rootPackage.loadTsconfigJson();
-
 		if (
-			this.project.rootPackage.hasDependency('typescript') ||
 			this.hasDependency('typescript') ||
-			tsConfig
+			this.path.append('tsconfig.json').exists() ||
+			this.workspaceRoot.append('tsconfig.json').exists()
 		) {
+			const tsConfig = loadTsconfigJson(this.path.append('tsconfig.json'));
+
 			flags.typescript = true;
+			flags.typescriptComposite = Boolean(
+				tsConfig?.options?.composite ||
+					(tsConfig?.projectReferences && tsConfig?.projectReferences.length > 0),
+			);
 			flags.decorators = Boolean(tsConfig?.options.experimentalDecorators);
 			flags.strict = Boolean(tsConfig?.options.strict);
 
@@ -224,12 +277,10 @@ export class Package {
 		}
 
 		// Flow
-		const flowconfigPath = this.project.root.append('.flowconfig');
-
 		if (
-			this.project.rootPackage.hasDependency('flow-bin') ||
 			this.hasDependency('flow-bin') ||
-			flowconfigPath.exists()
+			this.path.append('.flowconfig').exists() ||
+			this.workspaceRoot.append('.flowconfig').exists()
 		) {
 			flags.flow = true;
 
@@ -239,42 +290,23 @@ export class Package {
 		return flags;
 	}
 
+	getName(): string {
+		return this.json.name;
+	}
+
 	getSlug(): string {
 		return this.path.name(true);
 	}
 
-	@Memoize()
-	getSourceFiles(): string[] {
-		const extsWithoutPeriod = EXTENSIONS.map((ext) => ext.slice(1)).join(',');
-
-		return glob
-			.sync(`src/**/*.{${extsWithoutPeriod}}`, {
-				absolute: true,
-				cwd: this.path.path(),
-				onlyFiles: true,
-				// This breaks our own fixtures, so this is hard to test...
-				ignore: process.env.NODE_ENV === 'test' ? [] : EXCLUDE,
-			})
-			.map((file) => new Path(file).path());
-	}
-
 	hasDependency(name: string): boolean {
-		const pkg = this.packageJson;
+		const { json } = this;
 
 		return Boolean(
-			pkg.dependencies?.[name] ??
-				pkg.devDependencies?.[name] ??
-				pkg.peerDependencies?.[name] ??
-				pkg.optionalDependencies?.[name],
+			json.dependencies?.[name] ??
+				json.devDependencies?.[name] ??
+				json.peerDependencies?.[name] ??
+				json.optionalDependencies?.[name],
 		);
-	}
-
-	isComplete(): boolean {
-		return this.artifacts.every((artifact) => artifact.isComplete());
-	}
-
-	isRunning(): boolean {
-		return this.artifacts.some((artifact) => artifact.isRunning());
 	}
 
 	setConfigs(configs: PackemonPackageConfig[]) {
@@ -345,265 +377,37 @@ export class Package {
 		});
 	}
 
-	async syncPackageJson() {
-		await fs.writeJson(this.packageJsonPath.path(), this.packageJson, { spaces: 2 });
+	async syncJson() {
+		await fs.writeJson(this.jsonPath.path(), this.json, { spaces: 2 });
 	}
 
-	@Memoize()
-	loadTsconfigJson(configName: string = 'tsconfig.json'): TSConfigStructure | undefined {
-		const tsconfigJsonPath = this.path.append(configName);
-
-		if (!tsconfigJsonPath.exists()) {
-			return undefined;
-		}
-
-		const ts = loadModule(
-			'typescript',
-			'TypeScript is required for config loading.',
-		) as typeof import('typescript');
-
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-		const { config, error } = ts.readConfigFile(tsconfigJsonPath.path(), (name) =>
-			fs.readFileSync(name, 'utf8'),
-		);
-
-		const host = {
-			getCanonicalFileName: (fileName: string) => fileName,
-			getCurrentDirectory: () => ts.sys.getCurrentDirectory(),
-			getNewLine: () => ts.sys.newLine,
-		};
-
-		// istanbul ignore next
-		if (error) {
-			throw new Error(ts.formatDiagnostic(error, host));
-		}
-
-		const result = ts.parseJsonConfigFileContent(
-			config,
-			ts.sys,
-			this.path.path(),
-			{},
-			tsconfigJsonPath.path(),
-		);
-
-		// istanbul ignore next
-		if (result.errors.length > 0) {
-			throw new Error(ts.formatDiagnostics(result.errors, host));
-		}
-
-		return result;
+	/**
+	 * When 1 config needs a private API, all other configs should be private,
+	 * otherwise we will have conflicting output structures and exports.
+	 */
+	protected determineApiType(): ApiType {
+		return this.configs.some((cfg) => cfg.api === 'private') ? 'private' : 'public';
 	}
 
-	protected addEngines() {
-		const artifact = (this.artifacts as CodeArtifact[])
-			.filter((art) => art instanceof CodeArtifact)
-			.filter((art) => art.platform === 'node')
-			.reduce<CodeArtifact | null>(
-				(oldest, art) =>
-					!oldest || SUPPORT_PRIORITY[art.support] < SUPPORT_PRIORITY[oldest.support]
-						? art
-						: oldest,
-				null,
-			);
+	/**
+	 * Format "lib" is a shared format across all platforms,
+	 * and when a package wants to support multiple platforms,
+	 * we must account for this and alter the output paths.
+	 */
+	protected requiresSharedLib(): boolean {
+		const platformsToCheck = new Set<Platform>();
+		let libFormatCount = 0;
 
-		if (!artifact) {
-			return;
-		}
+		this.configs.forEach((config) => {
+			platformsToCheck.add(config.platform);
 
-		this.debug('Adding `engines` to `package.json`');
-
-		const pkg = this.packageJson;
-
-		if (!pkg.engines) {
-			pkg.engines = {};
-		}
-
-		Object.assign(pkg.engines, {
-			node: `>=${NODE_SUPPORTED_VERSIONS[artifact.support]}`,
-			npm: toArray(NPM_SUPPORTED_VERSIONS[artifact.support])
-				.map((v) => `>=${v}`)
-				.join(' || '),
-		});
-	}
-
-	protected addEntryPoints() {
-		this.debug('Adding entry points to `package.json`');
-
-		let mainEntry: string | undefined;
-		let moduleEntry: string | undefined;
-		let browserEntry: string | undefined;
-		let buildCount = 0;
-
-		// eslint-disable-next-line complexity
-		this.artifacts.forEach((artifact) => {
-			// Build files
-			if (artifact instanceof CodeArtifact) {
-				const mainEntryName = artifact.inputs.index ? 'index' : Object.keys(artifact.inputs)[0];
-
-				buildCount += artifact.builds.length;
-
-				// Generate `main`, `module`, and `browser` fields
-				if (!mainEntry || (artifact.platform === 'node' && mainEntryName === 'index')) {
-					mainEntry = artifact.findEntryPoint(['lib', 'cjs', 'mjs', 'esm'], mainEntryName);
+			config.formats.forEach((format) => {
+				if (format === 'lib') {
+					libFormatCount += 1;
 				}
-
-				if (!moduleEntry || (artifact.platform === 'browser' && mainEntryName === 'index')) {
-					moduleEntry = artifact.findEntryPoint(['esm'], mainEntryName);
-				}
-
-				// Only include when we share a lib with another platform
-				if (!browserEntry && artifact.platform === 'browser') {
-					browserEntry = artifact.findEntryPoint(
-						artifact.sharedLib ? ['lib', 'umd'] : ['umd'],
-						mainEntryName,
-					);
-				}
-
-				// Generate `bin` field
-				if (
-					artifact.inputs.bin &&
-					artifact.platform === 'node' &&
-					!isObject(this.packageJson.bin)
-				) {
-					this.packageJson.bin = artifact.findEntryPoint(['lib', 'cjs', 'mjs'], 'bin');
-				}
-			}
-
-			// Type declarations
-			if (artifact instanceof TypesArtifact) {
-				const mainEntryName = artifact.builds.some((build) => build.outputName === 'index')
-					? 'index'
-					: artifact.builds[0].outputName;
-
-				this.packageJson.types = artifact.findEntryPoint(mainEntryName);
-			}
-		});
-
-		if (mainEntry) {
-			this.packageJson.main = mainEntry;
-
-			// Only set when we have 1 build, otherwise its confusing
-			if (buildCount === 1) {
-				if (mainEntry.includes('mjs/') || mainEntry.includes('esm/')) {
-					this.packageJson.type = 'module';
-				} else if (mainEntry.includes('cjs/')) {
-					this.packageJson.type = 'commonjs';
-				}
-			}
-		}
-
-		if (moduleEntry) {
-			this.packageJson.module = moduleEntry;
-		}
-
-		if (browserEntry && !isObject(this.packageJson.browser)) {
-			this.packageJson.browser = browserEntry;
-		}
-	}
-
-	protected addExports() {
-		this.debug('Adding `exports` to `package.json`');
-
-		let exportMap: PackageExports = {
-			'./package.json': './package.json',
-		};
-
-		this.artifacts.forEach((artifact) => {
-			Object.entries(artifact.getPackageExports()).forEach(([path, conditions]) => {
-				if (!conditions) {
-					return;
-				}
-
-				if (!exportMap[path]) {
-					exportMap[path] = conditions;
-					return;
-				}
-
-				if (typeof exportMap[path] === 'string') {
-					exportMap[path] = { default: exportMap[path] };
-				}
-
-				exportMap[path] = deepMerge<PackageExportPaths, PackageExportPaths>(
-					exportMap[path] as PackageExportPaths,
-					typeof conditions === 'string' ? { default: conditions } : conditions,
-				);
 			});
 		});
 
-		exportMap = sortExports(exportMap);
-
-		if (isObject(this.packageJson.exports)) {
-			Object.assign(this.packageJson.exports, exportMap);
-		} else {
-			this.packageJson.exports = exportMap as PackageStructure['exports'];
-		}
-	}
-
-	protected addFiles() {
-		this.debug('Adding files to `package.json`');
-
-		const files = new Set<string>(this.packageJson.files);
-
-		try {
-			if (this.path.append('assets').exists()) {
-				files.add('assets/**/*');
-			}
-		} catch {
-			// May throw ENOENT
-		}
-
-		this.artifacts.forEach((artifact) => {
-			// Build files
-			if (artifact instanceof CodeArtifact) {
-				artifact.builds.forEach(({ format }) => {
-					files.add(`${format}/**/*.{${artifact.getBuildOutput(format).extGroup}}`);
-				});
-
-				files.add(`src/**/*.{${this.getSourceFileExts(artifact.inputs)}}`);
-			}
-
-			// Type declarations
-			if (artifact instanceof TypesArtifact) {
-				files.add(`dts/**/*.${artifact.getDeclExt()}`);
-			}
-		});
-
-		this.packageJson.files = [...files].sort();
-	}
-
-	protected getSourceFileExts(inputs: InputMap): string[] {
-		const sourceExts = Object.values(inputs).map((inputFile) => new Path(inputFile).ext(true));
-		const exts = new Set(sourceExts);
-
-		// Include sibling file extensions
-		sourceExts.forEach((sourceExt) => {
-			switch (sourceExt) {
-				case 'js':
-					exts.add('jsx');
-					break;
-
-				case 'jsx':
-				case 'cjs':
-					exts.add('js');
-					break;
-
-				case 'ts':
-					exts.add('tsx');
-					break;
-
-				case 'tsx':
-					exts.add('ts');
-					break;
-
-				// no default
-			}
-		});
-
-		const list = [...exts].sort();
-
-		// Always be last
-		list.push('json');
-
-		return list;
+		return platformsToCheck.size > 1 && libFormatCount > 1;
 	}
 }

@@ -31,7 +31,6 @@ Build supports the following command line options.
 - `--addFiles` - Add `files` whitelist entries to each `package.json`.
 - `--concurrency` - Number of builds to run in parallel. Defaults to operating system CPU count.
 - `--declaration` - Generate TypeScript declarations for each package.
-- `--declarationConfig` - Path to a custom `tsconfig` for declaration building.
 - `--filter` - Filter packages to build based on their name in `package.json`.
 - `--formats`, `-f` - Only generate specific output `format`s.
 - `--loadConfigs` - Search and load config files for customizing Babel and Rollup.

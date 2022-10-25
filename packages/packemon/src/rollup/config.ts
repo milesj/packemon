@@ -5,8 +5,8 @@ import { getBabelInputPlugin, getBabelOutputPlugin } from '@rollup/plugin-babel'
 import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
 import resolve from '@rollup/plugin-node-resolve';
+import type { Artifact } from '../Artifact';
 import { getBabelInputConfig, getBabelOutputConfig } from '../babel/config';
-import type { CodeArtifact } from '../CodeArtifact';
 import { EXCLUDE, EXCLUDE_RUST, EXTENSIONS } from '../constants';
 import { getSwcInputConfig, getSwcOutputConfig } from '../swc/config';
 import { ConfigFile, FeatureFlags, Format } from '../types';
@@ -30,19 +30,15 @@ function getRollupModuleFormat(format: Format): ModuleFormat {
 	return 'cjs';
 }
 
-function getCodeArtifacts(artifact: CodeArtifact): CodeArtifact[] {
-	// Don't include non-code artifacts. We also can't use `instanceof`
-	// because of circular dependencies, boo!
-	return artifact.package.artifacts.filter(
-		(art) => 'configGroup' in art && (art as CodeArtifact).configGroup !== artifact.configGroup,
-	) as CodeArtifact[];
+function getSiblingArtifacts(artifact: Artifact): Artifact[] {
+	return artifact.package.artifacts.filter((art) => art.configGroup !== artifact.configGroup);
 }
 
-function getRollupPaths(artifact: CodeArtifact, ext: string): Record<string, string> {
+function getRollupPaths(artifact: Artifact, ext: string): Record<string, string> {
 	const paths: Record<string, string> = {};
 
 	if (artifact.bundle) {
-		getCodeArtifacts(artifact).forEach((art) => {
+		getSiblingArtifacts(artifact).forEach((art) => {
 			Object.entries(art.getInputPaths()).forEach(([outputName, inputPath]) => {
 				// All output files are in the same directory, so we can hard-code a relative path
 				paths[inputPath] = `./${outputName}.${ext}`;
@@ -53,13 +49,13 @@ function getRollupPaths(artifact: CodeArtifact, ext: string): Record<string, str
 	return paths;
 }
 
-export function getRollupExternals(artifact: CodeArtifact) {
+export function getRollupExternals(artifact: Artifact) {
 	const foreignInputs = new Set<string>();
 
 	if (artifact.bundle) {
 		const sameInputPaths = new Set(Object.values(artifact.getInputPaths()));
 
-		getCodeArtifacts(artifact).forEach((art) => {
+		getSiblingArtifacts(artifact).forEach((art) => {
 			Object.values(art.getInputPaths()).forEach((inputPath) => {
 				if (!sameInputPaths.has(inputPath)) {
 					foreignInputs.add(inputPath);
@@ -86,7 +82,7 @@ export function getRollupExternals(artifact: CodeArtifact) {
 }
 
 export function getRollupOutputConfig(
-	artifact: CodeArtifact,
+	artifact: Artifact,
 	features: FeatureFlags,
 	format: Format,
 	packemonConfig: ConfigFile = {},
@@ -159,21 +155,20 @@ export function getRollupOutputConfig(
 	return output;
 }
 
-export function getRollupConfig(
-	artifact: CodeArtifact,
+export async function getRollupConfig(
+	artifact: Artifact,
 	features: FeatureFlags,
 	packemonConfig: ConfigFile = {},
-): RollupOptions {
-	const packagePath = artifact.package.packageJsonPath.path();
+): Promise<RollupOptions> {
+	const packagePath = artifact.package.jsonPath.path();
 	const isNode = artifact.platform === 'node';
 	const isTest = process.env.NODE_ENV === 'test';
 	// eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
 	const isSwc = packemonConfig.swc || !!process.env.PACKEMON_SWC;
 
 	const config: RollupOptions = {
-		cache: artifact.cache,
 		external: getRollupExternals(artifact),
-		input: artifact.bundle ? artifact.getInputPaths() : artifact.package.getSourceFiles(),
+		input: artifact.bundle ? artifact.getInputPaths() : await artifact.package.findSourceFiles(),
 		output: [],
 		// Shared output plugins
 		plugins: [

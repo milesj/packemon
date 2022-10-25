@@ -1,4 +1,6 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+/* eslint-disable react/jsx-no-literals */
+
+import { useCallback } from 'react';
 import { Box, Text } from 'ink';
 import { Header, Style, useProgram } from '@boost/cli/react';
 import { PackemonPackageConfig } from '../../types';
@@ -7,67 +9,43 @@ import { PackageForm } from './PackageForm';
 export type InitPackageConfigs = Record<string, PackemonPackageConfig>;
 
 export interface InitProps {
-	packageNames: string[];
-	onComplete: (configs: InitPackageConfigs) => Promise<unknown>;
+	packageName: string;
+	onComplete: (config: PackemonPackageConfig) => Promise<unknown>;
 }
 
-export function Init({ packageNames, onComplete }: InitProps) {
+export function Init({ packageName, onComplete }: InitProps) {
 	const { exit } = useProgram();
-	const [pkgsToConfigure, setPkgsToConfigure] = useState(() => packageNames);
-	const [pkgConfigs, setPkgConfigs] = useState<InitPackageConfigs>({});
-	const currentPkg = useMemo(() => pkgsToConfigure[0], [pkgsToConfigure]);
 
-	// Save config and move to next package
 	const handleSubmit = useCallback(
 		(config: PackemonPackageConfig) => {
-			setPkgConfigs((prev) => ({
-				...prev,
-				[currentPkg]: config,
-			}));
+			async function complete() {
+				try {
+					await onComplete(config);
+				} catch (error: unknown) {
+					exit(error as Error);
+				} finally {
+					exit();
+				}
+			}
 
-			setPkgsToConfigure((prev) => prev.slice(1));
+			void complete();
 		},
-		[currentPkg],
+		[exit, onComplete],
 	);
-
-	// Complete once all packages have been configured
-	useEffect(() => {
-		async function complete() {
-			if (pkgsToConfigure.length > 0) {
-				return;
-			}
-
-			try {
-				await onComplete(pkgConfigs);
-			} catch (error: unknown) {
-				exit(error as Error);
-			} finally {
-				exit();
-			}
-		}
-
-		void complete();
-	}, [pkgsToConfigure, pkgConfigs, onComplete, exit]);
-
-	// Exit when theres no packages
-	if (pkgsToConfigure.length === 0) {
-		return null;
-	}
 
 	return (
 		<Box flexDirection="column">
-			<Header label="Initializing packages" />
+			<Header label="Initializing package" />
 
 			<Box>
 				<Text>
-					<Text bold>Packages to configure: </Text>
-					<Style type="notice">{currentPkg}</Style>
-					{pkgsToConfigure.length > 1 && `, ${pkgsToConfigure.slice(1).join(', ')}`}
+					<Text bold>Package to configure: </Text>
+					<Style type="notice">{packageName}</Style>
 				</Text>
 			</Box>
 
 			<Box flexDirection="column" marginTop={1}>
-				<PackageForm key={currentPkg} onSubmit={handleSubmit} />
+				<PackageForm key={packageName} onSubmit={handleSubmit} />
 			</Box>
 		</Box>
 	);

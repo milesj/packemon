@@ -4,7 +4,14 @@ import execa from 'execa';
 import packList from 'npm-packlist';
 import semver from 'semver';
 import spdxLicenses from 'spdx-license-list';
-import { DependencyMap, isModuleName, isObject, PeopleSetting, toArray } from '@boost/common';
+import {
+	DependencyMap,
+	isModuleName,
+	isObject,
+	PeopleSetting,
+	Project,
+	toArray,
+} from '@boost/common';
 import { Package } from './Package';
 import { ValidateOptions } from './types';
 
@@ -76,15 +83,15 @@ export class PackageValidator {
 	protected checkDependencies() {
 		this.package.debug('Checking dependencies');
 
-		const usesLerna = this.package.project.isLernaManaged();
-		const workspacePackageNames = new Set(this.package.project.getWorkspacePackageNames());
+		const usesLerna = this.isLernaManaged();
+		const workspacePackageNames = new Set(this.getWorkspacePackageNames());
 		const {
 			dependencies = {},
 			devDependencies = {},
 			peerDependencies = {},
 			// peerDependenciesMeta = {},
 			optionalDependencies = {},
-		} = this.package.packageJson;
+		} = this.package.json;
 
 		this.checkDependencyRange(dependencies);
 		this.checkDependencyRange(devDependencies);
@@ -150,7 +157,7 @@ export class PackageValidator {
 	protected async checkEngines() {
 		this.package.debug('Checking engines');
 
-		const { engines } = this.package.packageJson;
+		const { engines } = this.package.json;
 		const nodeConstraint = engines?.node;
 		const npmConstraint = engines?.npm;
 		const yarnConstraint = engines?.yarn;
@@ -189,10 +196,10 @@ export class PackageValidator {
 	protected checkEntryPoints() {
 		this.package.debug('Checking entry points');
 
-		const { bin, man, exports: exp } = this.package.packageJson;
+		const { bin, man, exports: exp } = this.package.json;
 
 		PackageValidator.entryPoints.forEach((field) => {
-			const relPath = this.package.packageJson[field as 'main'];
+			const relPath = this.package.json[field as 'main'];
 
 			if (!relPath || typeof relPath !== 'string') {
 				if (field === 'main' && !exp) {
@@ -263,7 +270,7 @@ export class PackageValidator {
 	protected checkLicense() {
 		this.package.debug('Checking license');
 
-		const { license } = this.package.packageJson;
+		const { license } = this.package.json;
 		const spdxLicenseTypes = new Set(
 			Object.keys(spdxLicenses).map((key) => key.toLocaleLowerCase()),
 		);
@@ -290,7 +297,7 @@ export class PackageValidator {
 	protected async checkLinks() {
 		this.package.debug('Checking links');
 
-		const { bugs, homepage } = this.package.packageJson;
+		const { bugs, homepage } = this.package.json;
 		const bugsUrl = isObject(bugs) ? bugs.url : bugs;
 
 		if (homepage && !(await this.doesUrlExist(homepage))) {
@@ -305,7 +312,7 @@ export class PackageValidator {
 	protected checkMetadata() {
 		this.package.debug('Checking metadata');
 
-		const { name, version, description, keywords, private: isPrivate } = this.package.packageJson;
+		const { name, version, description, keywords, private: isPrivate } = this.package.json;
 
 		if (!name) {
 			this.errors.push('Missing name.');
@@ -338,7 +345,7 @@ export class PackageValidator {
 	protected async checkPeople() {
 		this.package.debug('Checking author and contributors');
 
-		const { author, contributors } = this.package.packageJson;
+		const { author, contributors } = this.package.json;
 
 		if (!author) {
 			this.warnings.push('Missing author.');
@@ -378,7 +385,7 @@ export class PackageValidator {
 	protected async checkRepository() {
 		this.package.debug('Checking repository');
 
-		const repo = this.package.packageJson.repository;
+		const repo = this.package.json.repository;
 		const url = isObject(repo) ? repo.url : repo;
 
 		if (!url) {
@@ -390,7 +397,7 @@ export class PackageValidator {
 		if (isObject(repo)) {
 			const dir = repo.directory;
 
-			if (dir && !this.package.project.root.append(dir).exists()) {
+			if (dir && !this.package.workspaceRoot.append(dir).exists()) {
 				this.errors.push(`Repository directory "${dir}" does not exist.`);
 			}
 		}
@@ -426,5 +433,15 @@ export class PackageValidator {
 			// istanbul ignore next
 			return '';
 		}
+	}
+
+	protected getWorkspacePackageNames(): string[] {
+		return new Project(this.package.workspaceRoot)
+			.getWorkspacePackages()
+			.map((wp) => wp.package.name);
+	}
+
+	protected isLernaManaged(): boolean {
+		return this.package.workspaceRoot.append('lerna.json').exists();
 	}
 }

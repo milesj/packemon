@@ -1,191 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`createConfig() returns the correct config 1`] = `
-{
-  "plugins": [
-    [
-      "@babel/plugin-transform-typescript",
-      {
-        "allowDeclareFields": true,
-      },
-    ],
-    [
-      "@babel/plugin-proposal-decorators",
-      {
-        "legacy": true,
-      },
-    ],
-    [
-      "@babel/plugin-proposal-class-properties",
-      {
-        "loose": true,
-      },
-    ],
-    [
-      "@babel/plugin-proposal-private-methods",
-      {
-        "loose": true,
-      },
-    ],
-    [
-      "@babel/plugin-proposal-private-property-in-object",
-      {
-        "loose": true,
-      },
-    ],
-    [
-      "@babel/plugin-transform-destructuring",
-      {
-        "useBuiltIns": true,
-      },
-    ],
-    [
-      "@babel/plugin-proposal-object-rest-spread",
-      {
-        "useBuiltIns": true,
-      },
-    ],
-    [
-      "babel-plugin-cjs-esm-interop",
-      {
-        "format": "cjs",
-      },
-    ],
-    "babel-plugin-conditional-invariant",
-    "babel-plugin-env-constants",
-  ],
-  "presets": [
-    [
-      "@babel/preset-env",
-      {
-        "bugfixes": true,
-        "exclude": [
-          "@babel/plugin-transform-regenerator",
-          "@babel/plugin-transform-async-to-generator",
-          "@babel/plugin-proposal-dynamic-import",
-        ],
-        "loose": false,
-        "modules": "cjs",
-        "shippedProposals": true,
-        "spec": true,
-        "targets": {
-          "node": "14.15.0",
-        },
-        "useBuiltIns": false,
-      },
-    ],
-    [
-      "@babel/preset-typescript",
-      {
-        "allowDeclareFields": true,
-      },
-    ],
-  ],
-}
-`;
-
-exports[`createRootConfig() returns the correct config 1`] = `
-{
-  "babelrc": false,
-  "babelrcRoots": [
-    "packages/*",
-    "scenarios/*",
-    "website",
-  ],
-  "overrides": [
-    {
-      "presets": [
-        "@babel/preset-flow",
-      ],
-      "test": /node_modules\\\\/\\(\\(jest-\\)\\?react-native\\|@react-native\\(-community\\)\\?\\)/iu,
-    },
-  ],
-  "plugins": [
-    [
-      "@babel/plugin-transform-typescript",
-      {
-        "allowDeclareFields": true,
-      },
-    ],
-    [
-      "@babel/plugin-proposal-decorators",
-      {
-        "legacy": true,
-      },
-    ],
-    [
-      "@babel/plugin-proposal-class-properties",
-      {
-        "loose": true,
-      },
-    ],
-    [
-      "@babel/plugin-proposal-private-methods",
-      {
-        "loose": true,
-      },
-    ],
-    [
-      "@babel/plugin-proposal-private-property-in-object",
-      {
-        "loose": true,
-      },
-    ],
-    [
-      "@babel/plugin-transform-destructuring",
-      {
-        "useBuiltIns": true,
-      },
-    ],
-    [
-      "@babel/plugin-proposal-object-rest-spread",
-      {
-        "useBuiltIns": true,
-      },
-    ],
-    [
-      "babel-plugin-cjs-esm-interop",
-      {
-        "format": "cjs",
-      },
-    ],
-    "babel-plugin-conditional-invariant",
-    "babel-plugin-env-constants",
-  ],
-  "presets": [
-    [
-      "@babel/preset-env",
-      {
-        "bugfixes": true,
-        "exclude": [
-          "@babel/plugin-transform-regenerator",
-          "@babel/plugin-transform-async-to-generator",
-          "@babel/plugin-proposal-dynamic-import",
-        ],
-        "loose": false,
-        "modules": "cjs",
-        "shippedProposals": true,
-        "spec": true,
-        "targets": {
-          "node": "14.15.0",
-        },
-        "useBuiltIns": false,
-      },
-    ],
-    [
-      "@babel/preset-typescript",
-      {
-        "allowDeclareFields": true,
-      },
-    ],
-  ],
-}
-`;
-
 exports[`getBabelInputConfig() can mutate config 1`] = `
 {
   "babelrc": false,
-  "babelrcRoots": undefined,
   "caller": {
     "name": "packemon",
   },
@@ -206,7 +23,6 @@ exports[`getBabelInputConfig() can mutate config 1`] = `
 exports[`getBabelInputConfig() doesnt include typescript decorators if \`typescript\` feature flag is false 1`] = `
 {
   "babelrc": false,
-  "babelrcRoots": undefined,
   "caller": {
     "name": "packemon",
   },
@@ -235,7 +51,6 @@ exports[`getBabelInputConfig() includes flow preset if \`flow\` feature flag is 
 exports[`getBabelInputConfig() includes no plugins or presets by default 1`] = `
 {
   "babelrc": false,
-  "babelrcRoots": undefined,
   "caller": {
     "name": "packemon",
   },
@@ -283,7 +98,6 @@ exports[`getBabelInputConfig() includes solid preset if \`solid\` feature flag i
 exports[`getBabelInputConfig() includes typescript decorators if \`typescript\` and \`decorators\` feature flag is true 1`] = `
 {
   "babelrc": false,
-  "babelrcRoots": undefined,
   "caller": {
     "name": "packemon",
   },
@@ -350,7 +164,6 @@ exports[`getBabelInputConfig() includes typescript preset if \`typescript\` feat
 exports[`getBabelInputConfig() supports private properties with decorators if dep exists 1`] = `
 {
   "babelrc": false,
-  "babelrcRoots": undefined,
   "caller": {
     "name": "packemon",
   },
@@ -406,7 +219,6 @@ exports[`getBabelInputConfig() supports private properties with decorators if de
 exports[`getBabelOutputConfig() can mutate config 1`] = `
 {
   "babelrc": false,
-  "babelrcRoots": undefined,
   "caller": {
     "name": "packemon",
   },
@@ -1109,7 +921,6 @@ exports[`getBabelOutputConfig() handles preset-env: node + mjs + stable 1`] = `
 exports[`getBabelOutputConfig() transforms async/await to promises when \`browser\` or \`native\` 1`] = `
 {
   "babelrc": false,
-  "babelrcRoots": undefined,
   "caller": {
     "name": "packemon",
   },
@@ -1165,7 +976,6 @@ exports[`getBabelOutputConfig() transforms async/await to promises when \`browse
 exports[`getBabelOutputConfig() transforms async/await to promises when \`browser\` or \`native\` 2`] = `
 {
   "babelrc": false,
-  "babelrcRoots": undefined,
   "caller": {
     "name": "packemon",
   },
@@ -1217,7 +1027,6 @@ exports[`getBabelOutputConfig() transforms async/await to promises when \`browse
 exports[`getBabelOutputConfig() uses built-in destructuring and object spread when \`current\` or \`experimental\` 1`] = `
 {
   "babelrc": false,
-  "babelrcRoots": undefined,
   "caller": {
     "name": "packemon",
   },
@@ -1276,7 +1085,6 @@ exports[`getBabelOutputConfig() uses built-in destructuring and object spread wh
 exports[`getBabelOutputConfig() uses built-in destructuring and object spread when \`current\` or \`experimental\` 2`] = `
 {
   "babelrc": false,
-  "babelrcRoots": undefined,
   "caller": {
     "name": "packemon",
   },

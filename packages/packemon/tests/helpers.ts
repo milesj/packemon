@@ -4,7 +4,6 @@ import { Path, PortablePath } from '@boost/common';
 import { getFixturePath } from '@boost/test-utils';
 import {
 	Artifact,
-	CodeArtifact,
 	Format,
 	FORMATS,
 	FORMATS_BROWSER,
@@ -12,49 +11,46 @@ import {
 	FORMATS_NODE,
 	Package,
 	PackageConfig,
+	PackemonPackage,
 	Platform,
 	PLATFORMS,
-	Project,
 	Support,
 	SUPPORTS,
 } from '../src';
 
-export function delay(time: number): Promise<void> {
-	return new Promise((resolve) => {
-		setTimeout(resolve, time);
+const builds = new Map<string, { format: Format; platform: Platform; support: Support }>();
+
+FORMATS.forEach((format) => {
+	PLATFORMS.forEach((platform) => {
+		SUPPORTS.forEach((support) => {
+			const key = `${format}:${platform}:${support}`;
+
+			if (
+				(platform === 'browser' && !(FORMATS_BROWSER as string[]).includes(format)) ||
+				(platform === 'native' && !(FORMATS_NATIVE as string[]).includes(format)) ||
+				(platform === 'node' && !(FORMATS_NODE as string[]).includes(format))
+			) {
+				return;
+			}
+
+			builds.set(key, {
+				format,
+				platform,
+				support,
+			});
+		});
 	});
-}
+});
 
 export function mockSpy(instance: unknown): jest.SpyInstance {
 	return instance as jest.SpyInstance;
 }
 
-export class TestArtifact extends Artifact {
-	log = this.logWithSource.bind(this);
+export function loadPackageAtPath(path: PortablePath, workspaceRoot?: PortablePath): Package {
+	const root = Path.create(path);
+	const json = fsx.readJsonSync(root.append('package.json').path()) as PackemonPackage;
 
-	build() {
-		return delay(50);
-	}
-
-	getBuildTargets() {
-		return ['test'];
-	}
-
-	getLabel() {
-		return 'test';
-	}
-
-	getPackageExports() {
-		return {};
-	}
-}
-
-export function createProjectPackage(root: Path, customProject?: Project): Package {
-	return new Package(
-		customProject ?? new Project(root),
-		root,
-		fsx.readJsonSync(root.append('package.json').path()),
-	);
+	return new Package(root, json, workspaceRoot ? Path.create(workspaceRoot) : root);
 }
 
 function formatSnapshotFilePath(file: string, root: string): string {
@@ -129,31 +125,6 @@ export function createSnapshotSpies(root: PortablePath, captureJson: boolean = f
 	};
 }
 
-const exampleRoot = new Path(getFixturePath('examples'));
-const builds = new Map<string, { format: Format; platform: Platform; support: Support }>();
-
-FORMATS.forEach((format) => {
-	PLATFORMS.forEach((platform) => {
-		SUPPORTS.forEach((support) => {
-			const key = `${format}:${platform}:${support}`;
-
-			if (
-				(platform === 'browser' && !(FORMATS_BROWSER as string[]).includes(format)) ||
-				(platform === 'native' && !(FORMATS_NATIVE as string[]).includes(format)) ||
-				(platform === 'node' && !(FORMATS_NODE as string[]).includes(format))
-			) {
-				return;
-			}
-
-			builds.set(key, {
-				format,
-				platform,
-				support,
-			});
-		});
-	});
-});
-
 export function testExampleOutput(
 	file: string,
 	transformer: 'babel' | 'swc',
@@ -162,7 +133,8 @@ export function testExampleOutput(
 ) {
 	// eslint-disable-next-line jest/valid-title
 	describe(transformer, () => {
-		const snapshots = createSnapshotSpies(customRoot ?? exampleRoot);
+		const root = customRoot ?? getFixturePath('examples');
+		const snapshots = createSnapshotSpies(root);
 
 		beforeEach(() => {
 			process.env.PACKEMON_TEST_WRITE = 'true';
@@ -178,11 +150,11 @@ export function testExampleOutput(
 		});
 
 		[...builds.values()].forEach((build) => {
-			const pkg = createProjectPackage(customRoot ?? exampleRoot);
+			const pkg = loadPackageAtPath(root);
 			const env = `${build.platform}-${build.support}-${build.format}`;
 
 			it(`transforms example test case: ${env}`, async () => {
-				const artifact = new CodeArtifact(pkg, [build]);
+				const artifact = new Artifact(pkg, [build]);
 				artifact.platform = build.platform;
 				artifact.support = build.support;
 				artifact.inputs = { [`index-${env}`]: file };
@@ -192,7 +164,7 @@ export function testExampleOutput(
 					Object.assign(artifact, options);
 				}
 
-				pkg.addArtifact(artifact);
+				pkg.artifacts.push(artifact);
 
 				try {
 					await pkg.build({}, {});
