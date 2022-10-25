@@ -154,7 +154,7 @@ export class Package {
 
 		files.sort();
 
-		return files;
+		return files.map((file) => new Path(file).path());
 	}
 
 	/**
