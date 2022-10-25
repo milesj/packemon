@@ -59,17 +59,22 @@ export class BuildCommand extends BaseCommand<Required<BuildOptions>> {
 			artifact.builds.forEach((build, index) => {
 				const icon = artifact.state === 'failed' ? figures.cross : figures.squareSmallFilled;
 
-				row.push(
+				const create = (tag: string) =>
 					applyStyle(
-						applyMarkdown(`**${icon} ${build.format}**`),
+						applyMarkdown(`**${icon} ${tag}**`),
 						STATE_COLORS[artifact.state] ?? 'default',
-					),
-				);
+					);
+
+				row.push(create(build.format));
 
 				const { stats } = artifact.builds[index];
 
 				if (stats) {
 					row.push(applyStyle(`(${fileSize(stats.size)})`, 'muted'));
+				}
+
+				if (build.declaration) {
+					row.push(create('dts'));
 				}
 			});
 
