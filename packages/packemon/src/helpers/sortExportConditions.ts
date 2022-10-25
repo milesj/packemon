@@ -3,6 +3,7 @@ import { PackageExportPaths } from '../types';
 // https://nodejs.org/api/packages.html#conditional-exports
 const WEIGHTS = {
 	types: 10, // Types must always be first
+	solid: 15,
 	misc: 20,
 	'node-addons': 30,
 	node: 31,
@@ -22,9 +23,9 @@ export function sortExportConditions<T extends PackageExportPaths | string | und
 
 	Object.entries(paths).forEach(([key, value]) => {
 		pathsList.push({
-			weight: key in WEIGHTS ? WEIGHTS[key as 'misc'] : WEIGHTS.misc,
 			key,
 			value: sortExportConditions(value),
+			weight: key in WEIGHTS ? WEIGHTS[key as 'misc'] : WEIGHTS.misc,
 		});
 	});
 

@@ -1,12 +1,48 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { applyStyle } from '@boost/cli';
 import { Input, MultiSelect, Select, SelectOptionLike } from '@boost/cli/react';
-import { DEFAULT_FORMATS, DEFAULT_INPUT, DEFAULT_SUPPORT } from '../../constants';
+import { toArray } from '@boost/common';
+import {
+	BROWSER_TARGETS,
+	DEFAULT_FORMATS,
+	DEFAULT_INPUT,
+	DEFAULT_SUPPORT,
+	NATIVE_TARGETS,
+	NODE_SUPPORTED_VERSIONS,
+} from '../../constants';
 import { Format, PackemonPackageConfig, Platform, Support } from '../../types';
-import { getVersionsCombo } from '../Environment';
 
 export interface PackageFormProps {
 	onSubmit: (config: PackemonPackageConfig) => void;
+}
+
+export function getVersionsCombo(platforms: Platform[], support: Support): Set<string> {
+	const versions = new Set<string>();
+
+	platforms.forEach((platform) => {
+		switch (platform) {
+			case 'native':
+				versions.add(`Native (${NATIVE_TARGETS[support]}+)`);
+				break;
+
+			case 'node':
+				versions.add(`Node v${NODE_SUPPORTED_VERSIONS[support]}+`);
+				break;
+
+			case 'browser': {
+				const targets =
+					support === 'experimental' ? ['last 2 versions'] : toArray(BROWSER_TARGETS[support]);
+
+				versions.add(`Browser (${targets[0]})`);
+
+				break;
+			}
+
+			// no default
+		}
+	});
+
+	return versions;
 }
 
 function getSupportVersions(platforms: Platform[], support: Support): string {

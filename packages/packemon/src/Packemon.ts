@@ -1,200 +1,126 @@
-/* eslint-disable @typescript-eslint/member-ordering */
-
 import fs from 'fs-extra';
-import rimraf from 'rimraf';
-import {
-	isObject,
-	json,
-	Memoize,
-	Path,
-	PortablePath,
-	toArray,
-	VirtualPath,
-	WorkspacePackage,
-} from '@boost/common';
+import { json, Path, PortablePath, Project } from '@boost/common';
 import { optimal } from '@boost/common/optimal';
 import { createDebugger, Debugger } from '@boost/debug';
-import { Event } from '@boost/event';
-import { Context, PooledPipeline } from '@boost/pipeline';
-import { CodeArtifact } from './CodeArtifact';
 import { Config } from './Config';
 import { matchesPattern } from './helpers/matchesPattern';
 import { Package } from './Package';
 import { PackageValidator } from './PackageValidator';
-import { Project } from './Project';
 import { buildBlueprint, validateBlueprint } from './schemas';
-import type {
-	ApiType,
-	BuildOptions,
-	FilterOptions,
-	PackemonPackage,
-	Platform,
-	TypesBuild,
-	ValidateOptions,
-} from './types';
-import { TypesArtifact } from './TypesArtifact';
+import type { BuildOptions, FilterOptions, PackemonPackage, ValidateOptions } from './types';
 
 export class Packemon {
 	readonly config: Config = new Config('packemon');
 
 	readonly debug: Debugger;
 
-	readonly onPackageBuilt = new Event<[Package]>('package-built');
-
-	readonly onPackagesLoaded = new Event<[Package[]]>('packages-loaded');
-
-	readonly project: Project;
-
-	readonly root: Path;
-
 	readonly workingDir: Path;
 
 	constructor(cwd: PortablePath = process.cwd()) {
 		this.workingDir = Path.resolve(cwd);
-		this.root = this.findWorkspaceRoot(this.workingDir) ?? this.workingDir;
-		this.project = new Project(this.root, this.workingDir);
 		this.debug = createDebugger('packemon:core');
 
-		this.debug('Initializing packemon in project %s', this.root);
-
-		this.project.checkEngineVersionConstraint();
-		this.config.setRootDir(this.root);
+		this.debug('Running packemon in %s', this.workingDir);
 	}
 
-	async build(baseOptions: BuildOptions) {
+	async build(pkg: Package, baseOptions: BuildOptions) {
 		this.debug('Starting `build` process');
 
 		const options = optimal(buildBlueprint).validate(baseOptions);
-		let packages = await this.loadConfiguredPackages(options);
 
-		packages = this.generateArtifacts(packages, options);
+		pkg.generateArtifacts(options);
 
-		if (packages.length === 0) {
-			throw new Error('No packages to build.');
-		}
+		if (options.loadConfigs) {
+			const { config } = await this.config.loadConfigFromBranchToRoot(pkg.path);
 
-		// Build packages in parallel using a pool
-		const pipeline = new PooledPipeline(new Context());
-
-		pipeline.configure({
-			concurrency: options.concurrency,
-			timeout: options.timeout,
-		});
-
-		packages.forEach((pkg) => {
-			pipeline.add(pkg.getName(), async () => {
-				if (options.loadConfigs) {
-					const { config } = await this.config.loadConfigFromBranchToRoot(pkg.path);
-
-					await pkg.build(options, config);
-				} else {
-					await pkg.build(options, {});
-				}
-
-				this.onPackageBuilt.emit([pkg]);
-			});
-		});
-
-		const { errors } = await pipeline.run();
-
-		// Always cleanup whether a successful or failed build
-		await this.cleanTemporaryFiles(packages);
-
-		// Throw to trigger an error screen in the terminal
-		if (errors.length > 0) {
-			throw errors[0];
+			await pkg.build(options, config);
+		} else {
+			await pkg.build(options, {});
 		}
 	}
 
-	async clean() {
+	async clean(pkg: Package) {
 		this.debug('Starting `clean` process');
 
-		const packages = await this.loadConfiguredPackages();
-
-		// Clean package specific files
-		await this.cleanTemporaryFiles(packages);
-
-		// Clean build formats
-		const formatFolders = '{assets,cjs,dts,esm,lib,mjs,umd}';
-		const pathsToRemove: string[] = [];
-
-		if (this.project.isRunningInWorkspaceRoot() && this.project.isWorkspacesEnabled()) {
-			this.project.workspaces.forEach((ws) => {
-				pathsToRemove.push(new VirtualPath(ws, formatFolders).path());
-			});
-		} else {
-			pathsToRemove.push(`./${formatFolders}`);
-		}
-
-		await Promise.all(
-			pathsToRemove.map(
-				(rfPath) =>
-					new Promise((resolve, reject) => {
-						this.debug(' - %s', rfPath);
-
-						rimraf(rfPath, (error) => {
-							if (error) {
-								reject(error);
-							} else {
-								resolve(undefined);
-							}
-						});
-					}),
-			),
-		);
+		await pkg.clean();
 	}
 
-	async validate(baseOptions: Partial<ValidateOptions>): Promise<PackageValidator[]> {
+	async validate(pkg: Package, baseOptions: Partial<ValidateOptions>): Promise<PackageValidator> {
 		this.debug('Starting `validate` process');
 
 		const options = optimal(validateBlueprint).validate(baseOptions);
-		const packages = await this.loadConfiguredPackages(options);
 
-		return Promise.all(packages.map((pkg) => new PackageValidator(pkg).validate(options)));
+		return new PackageValidator(pkg).validate(options);
+	}
+
+	/**
+	 * Find and load the package that has been configured with a `packemon`
+	 * block in the `package.json`. Once loaded, validate the configuration.
+	 */
+	async findPackage({ skipPrivate }: FilterOptions = {}): Promise<Package | null> {
+		this.debug('Finding package in %s', this.workingDir);
+
+		const pkgPath = this.workingDir.append('package.json');
+
+		if (!pkgPath.exists()) {
+			throw new Error(`No \`package.json\` found in ${this.workingDir}.`);
+		}
+
+		const pkgContents = json.parse<PackemonPackage>(await fs.readFile(pkgPath.path(), 'utf8'));
+
+		if (skipPrivate && pkgContents.private) {
+			this.debug('Package is private and `skipPrivate` has been provided');
+
+			return null;
+		}
+
+		if (!pkgContents.packemon) {
+			this.debug('No `packemon` configuration found for %s, skipping', pkgContents.name);
+
+			return null;
+		}
+
+		return new Package(this.workingDir, pkgContents, this.findWorkspaceRoot());
 	}
 
 	/**
 	 * Find all packages within a project. If using workspaces, return a list of packages
 	 * from each workspace glob. If not using workspaces, assume project is a package.
 	 */
-	async findPackagesInProject({ filter, skipPrivate }: FilterOptions = {}) {
+	async findPackages({ filter, skipPrivate }: FilterOptions = {}): Promise<Package[]> {
 		this.debug('Finding packages in project');
 
-		const pkgPaths: Path[] = [];
+		const workspaceRoot = this.findWorkspaceRoot();
+		const project = new Project(workspaceRoot);
+		const workspaces = project.getWorkspaceGlobs({ relative: true });
 
-		this.project.workspaces = this.project.getWorkspaceGlobs({ relative: true });
-
-		// Multi package repo
-		if (this.project.isRunningInWorkspaceRoot() && this.project.workspaces.length > 0) {
-			this.debug('Finding packages from root using workspace globs');
-
-			this.project.getWorkspacePackagePaths().forEach((filePath) => {
-				pkgPaths.push(Path.create(filePath).append('package.json'));
-			});
-
-			// Single package repo
-		} else {
-			this.debug('Using current directory as package');
-
-			pkgPaths.push(this.workingDir.append('package.json'));
+		if (workspaces.length === 0) {
+			throw new Error('No `workspaces` defined in root `package.json`.');
 		}
+
+		const pkgPaths = project
+			.getWorkspacePackagePaths()
+			.map((filePath) => Path.create(filePath).append('package.json'));
 
 		this.debug('Found %d package(s)', pkgPaths.length);
 
-		let packages: WorkspacePackage<PackemonPackage>[] = await Promise.all(
+		let packages: Package[] = [];
+
+		await Promise.all(
 			pkgPaths.map(async (pkgPath) => {
+				if (!pkgPath.exists()) {
+					return;
+				}
+
 				const contents = json.parse<PackemonPackage>(await fs.readFile(pkgPath.path(), 'utf8'));
 
-				this.debug(
-					' - %s: %s',
-					contents.name,
-					pkgPath.path().replace(this.root.path(), '').replace('package.json', ''),
-				);
+				if (contents.packemon) {
+					this.debug(' - %s (%s)', contents.name, pkgPath.path());
 
-				return {
-					metadata: this.project.createWorkspaceMetadata(pkgPath),
-					package: contents,
-				};
+					packages.push(new Package(pkgPath.parent(), contents, workspaceRoot));
+				} else {
+					this.debug('No `packemon` configuration found for %s, skipping', contents.name);
+				}
 			}),
 		);
 
@@ -203,8 +129,8 @@ export class Packemon {
 			const privatePackageNames: string[] = [];
 
 			packages = packages.filter((pkg) => {
-				if (pkg.package.private) {
-					privatePackageNames.push(pkg.package.name);
+				if (pkg.json.private) {
+					privatePackageNames.push(pkg.getName());
 
 					return false;
 				}
@@ -220,7 +146,7 @@ export class Packemon {
 			const filteredPackageNames: string[] = [];
 
 			packages = packages.filter((pkg) => {
-				const { name } = pkg.package;
+				const name = pkg.getName();
 
 				if (!matchesPattern(name, filter)) {
 					filteredPackageNames.push(name);
@@ -243,110 +169,13 @@ export class Packemon {
 	}
 
 	/**
-	 * Generate build and optional types artifacts for each package in the list.
-	 */
-	generateArtifacts(
-		packages: Package[],
-		{ declaration, filterFormats, filterPlatforms }: BuildOptions = {},
-	): Package[] {
-		this.debug('Generating artifacts for packages');
-
-		packages.forEach((pkg) => {
-			const typesBuilds: Record<string, TypesBuild> = {};
-			const sharedLib = this.requiresSharedLib(pkg);
-			const apiType = this.determineApiType(pkg);
-
-			pkg.configs.forEach((config, index) => {
-				let builds = config.formats.map((format) => ({
-					format,
-				}));
-
-				if (filterFormats) {
-					this.debug('Filtering formats with pattern: %s', filterFormats);
-
-					builds = builds.filter((build) => matchesPattern(build.format, filterFormats));
-				}
-
-				if (filterPlatforms) {
-					this.debug('Filtering platforms with pattern: %s', filterPlatforms);
-
-					if (!matchesPattern(config.platform, filterPlatforms)) {
-						return;
-					}
-				}
-
-				if (builds.length === 0) {
-					return;
-				}
-
-				const artifact = new CodeArtifact(pkg, builds);
-				artifact.api = apiType;
-				artifact.bundle = config.bundle;
-				artifact.configGroup = index;
-				artifact.externals = config.externals;
-				artifact.inputs = config.inputs;
-				artifact.namespace = config.namespace;
-				artifact.platform = config.platform;
-				artifact.sharedLib = sharedLib;
-				artifact.support = config.support;
-
-				pkg.addArtifact(artifact);
-
-				Object.entries(config.inputs).forEach(([outputName, inputFile]) => {
-					typesBuilds[outputName] = { inputFile, outputName };
-				});
-			});
-
-			if (declaration) {
-				const artifact = new TypesArtifact(pkg, Object.values(typesBuilds));
-				artifact.api = apiType;
-				artifact.bundle = pkg.configs.some((config) => config.bundle);
-
-				pkg.addArtifact(artifact);
-			}
-
-			this.debug(' - %s: %s', pkg.getName(), pkg.artifacts.join(', '));
-		});
-
-		// Remove packages that have no artifacts
-		return packages.filter((pkg) => pkg.artifacts.length > 0);
-	}
-
-	/**
-	 * Find and load all packages that have been configured with a `packemon`
-	 * block in their `package.json`. Once loaded, validate the configuration.
-	 */
-	@Memoize()
-	async loadConfiguredPackages(options?: FilterOptions): Promise<Package[]> {
-		const packages = this.validateAndPreparePackages(await this.findPackagesInProject(options));
-
-		this.onPackagesLoaded.emit([packages]);
-
-		return packages;
-	}
-
-	/**
-	 * Cleanup all package and artifact related files in all packages.
-	 */
-	protected async cleanTemporaryFiles(packages: Package[]) {
-		this.debug('Cleaning temporary build files');
-
-		await Promise.all(packages.map((pkg) => pkg.cleanup()));
-	}
-
-	/**
-	 * When 1 config needs a private API, all other configs should be private,
-	 * otherwise we will have conflicting output structures and exports.
-	 */
-	protected determineApiType(pkg: Package): ApiType {
-		return pkg.configs.some((cfg) => cfg.api === 'private') ? 'private' : 'public';
-	}
-
-	/**
 	 * Determine the workspace root when running in a monorepo.
 	 * This is necessary as it changes functionality.
 	 */
-	protected findWorkspaceRoot(dir: Path): Path | undefined {
+	// eslint-disable-next-line complexity
+	findWorkspaceRoot(startingDir?: Path): Path {
+		const dir = startingDir ?? this.workingDir;
+
 		if (
 			dir.append('yarn.lock').exists() ||
 			dir.append('package-lock.json').exists() ||
@@ -375,66 +204,9 @@ export class Packemon {
 		const isRoot = parentDir.path();
 
 		if (isRoot === '' || isRoot === '.' || isRoot === '/') {
-			return undefined;
+			return dir; // Oops
 		}
 
 		return this.findWorkspaceRoot(parentDir);
-	}
-
-	/**
-	 * Format "lib" is a shared format across all platforms,
-	 * and when a package wants to support multiple platforms,
-	 * we must account for this and alter the output paths.
-	 */
-	protected requiresSharedLib(pkg: Package): boolean {
-		const platformsToCheck = new Set<Platform>();
-		let libFormatCount = 0;
-
-		pkg.configs.forEach((config) => {
-			platformsToCheck.add(config.platform);
-
-			config.formats.forEach((format) => {
-				if (format === 'lib') {
-					libFormatCount += 1;
-				}
-			});
-		});
-
-		return platformsToCheck.size > 1 && libFormatCount > 1;
-	}
-
-	/**
-	 * Validate that every loaded package has a valid `packemon` configuration,
-	 * otherwise skip it. All valid packages will return a `Package` instance.
-	 */
-	protected validateAndPreparePackages(packages: WorkspacePackage<PackemonPackage>[]): Package[] {
-		this.debug('Validating found packages');
-
-		const nextPackages: Package[] = [];
-
-		packages.forEach(({ metadata, package: contents }) => {
-			if (!contents.packemon) {
-				this.debug('No `packemon` configuration found for %s, skipping', contents.name);
-
-				return;
-			}
-
-			if (!isObject(contents.packemon) && !Array.isArray(contents.packemon)) {
-				this.debug(
-					'Invalid `packemon` configuration for %s, must be an object or array of objects',
-					contents.name,
-				);
-
-				return;
-			}
-
-			const pkg = new Package(this.project, Path.create(metadata.packagePath), contents);
-
-			pkg.setConfigs(toArray(contents.packemon));
-
-			nextPackages.push(pkg);
-		});
-
-		return nextPackages;
 	}
 }

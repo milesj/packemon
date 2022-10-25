@@ -6,7 +6,12 @@ export function addBinShebang(): OutputPlugin {
 
 		generateBundle(options, bundle) {
 			Object.entries(bundle).forEach(([outputPath, chunk]) => {
-				if (outputPath.match(/bin\.(js|cjs|mjs)$/) && chunk.type === 'chunk') {
+				if (
+					(outputPath.match(/bin\.(js|cjs|mjs)$/) ||
+						outputPath.includes('bin/') ||
+						outputPath.includes('bins/')) &&
+					chunk.type === 'chunk'
+				) {
 					// eslint-disable-next-line no-param-reassign
 					chunk.code = `#!/usr/bin/env node\n${chunk.code}`;
 				}

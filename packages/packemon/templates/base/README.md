@@ -13,7 +13,8 @@ Congrats on your new project, powered by Packemon! Here are a few things to know
 To improve and automate the developer experience, the following tooling has been automatically
 installed and [pre-configured using moonrepo presets](https://github.com/moonrepo/dev).
 
-- [Babel](https://babeljs.io/) for transpiling, configured dynamically with Packemon.
+- [Babel](https://babeljs.io/) for transpiling, configured with
+  [babel-preset-moon](https://www.npmjs.com/package/babel-preset-moon).
 - [ESLint](https://eslint.org/) for linting, configured with
   [eslint-config-moon](https://www.npmjs.com/package/eslint-config-moon).
 - [Jest](https://jestjs.io/) for unit testing, configured with

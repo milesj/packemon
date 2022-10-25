@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-no-literals */
+
 import { useCallback, useEffect, useState } from 'react';
 import { Box, Text } from 'ink';
 import { Input, useProgram } from '@boost/cli/react';

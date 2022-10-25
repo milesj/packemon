@@ -2,7 +2,9 @@ import { rollup } from 'rollup';
 import { Path } from '@boost/common';
 import { getFixturePath } from '@boost/test-utils';
 import { Packemon } from '../src';
-import { createSnapshotSpies } from './helpers';
+import { createSnapshotSpies, loadPackageAtPath } from './helpers';
+
+jest.mock('execa');
 
 jest.mock('rollup', () => ({
 	...jest.requireActual('rollup'),
@@ -28,15 +30,18 @@ describe('Config files', () => {
 	});
 
 	describe('monorepo', () => {
-		const root = getFixturePath('config-files-monorepo');
+		const root = Path.create(getFixturePath('config-files-monorepo'));
+
 		createSnapshotSpies(root); // Mock fs
 
 		it('inherits config from root and branches', async () => {
 			const packemon = new Packemon(root);
 
-			await packemon.build({ loadConfigs: true });
-
 			// bar (using push)
+			await packemon.build(loadPackageAtPath(root.append('packages/bar'), root), {
+				loadConfigs: true,
+			});
+
 			expect(rollupSpy).toHaveBeenCalledWith(
 				expect.objectContaining({
 					plugins: expect.arrayContaining([
@@ -59,7 +64,7 @@ describe('Config files', () => {
 								[
 									'bar-plugin',
 									{
-										features: { workspaces: ['packages/*'] },
+										features: expect.any(Object),
 										format: 'mjs',
 										platform: 'node',
 										support: 'stable',
@@ -69,7 +74,7 @@ describe('Config files', () => {
 						}),
 						{ name: 'root-plugin' },
 						{
-							features: { workspaces: ['packages/*'] },
+							features: expect.any(Object),
 							format: 'mjs',
 							name: 'bar-plugin',
 							platform: 'node',
@@ -80,6 +85,10 @@ describe('Config files', () => {
 			);
 
 			// baz (using unshift)
+			await packemon.build(loadPackageAtPath(root.append('packages/baz'), root), {
+				loadConfigs: true,
+			});
+
 			expect(rollupSpy).toHaveBeenCalledWith(
 				expect.objectContaining({
 					plugins: expect.arrayContaining([
@@ -96,7 +105,7 @@ describe('Config files', () => {
 				expect.objectContaining({
 					plugins: expect.arrayContaining([
 						{
-							features: { workspaces: ['packages/*'] },
+							features: expect.any(Object),
 							format: 'lib',
 							name: 'baz-plugin',
 							platform: 'browser',
@@ -108,7 +117,7 @@ describe('Config files', () => {
 								[
 									'baz-plugin',
 									{
-										features: { workspaces: ['packages/*'] },
+										features: expect.any(Object),
 										format: 'lib',
 										platform: 'browser',
 										support: 'stable',
@@ -123,6 +132,10 @@ describe('Config files', () => {
 			);
 
 			// foo (using push)
+			await packemon.build(loadPackageAtPath(root.append('packages/foo'), root), {
+				loadConfigs: true,
+			});
+
 			expect(rollupSpy).toHaveBeenCalledWith(
 				expect.objectContaining({
 					plugins: expect.arrayContaining([
@@ -145,7 +158,7 @@ describe('Config files', () => {
 								[
 									'foo-plugin',
 									{
-										features: { workspaces: ['packages/*'] },
+										features: expect.any(Object),
 										format: 'mjs',
 										platform: 'node',
 										support: 'stable',
@@ -155,58 +168,9 @@ describe('Config files', () => {
 						}),
 						{ name: 'root-plugin' },
 						{
-							features: { workspaces: ['packages/*'] },
+							features: expect.any(Object),
 							format: 'mjs',
 							name: 'foo-plugin',
-							platform: 'node',
-							support: 'stable',
-						},
-					]),
-				}),
-			);
-		});
-
-		it('inherits config from root and branches when running in a sub-folder', async () => {
-			const packemon = new Packemon(Path.create(root).append('packages/bar'));
-
-			await packemon.build({ loadConfigs: true });
-
-			// bar (using push)
-			expect(rollupSpy).toHaveBeenCalledWith(
-				expect.objectContaining({
-					plugins: expect.arrayContaining([
-						expect.objectContaining({
-							name: '@rollup/plugin-babel-input',
-							plugins: expect.arrayContaining(['babel-plugin-bar']),
-						}),
-						{ name: 'rollup-plugin-root' },
-						{ name: 'rollup-plugin-bar' },
-					]),
-				}),
-			);
-			expect(generateSpy).toHaveBeenCalledWith(
-				expect.objectContaining({
-					plugins: expect.arrayContaining([
-						expect.objectContaining({
-							name: '@rollup/plugin-babel-output',
-							plugins: expect.arrayContaining([
-								'root-plugin',
-								[
-									'bar-plugin',
-									{
-										features: { workspaces: ['packages/*'] },
-										format: 'mjs',
-										platform: 'node',
-										support: 'stable',
-									},
-								],
-							]),
-						}),
-						{ name: 'root-plugin' },
-						{
-							features: { workspaces: ['packages/*'] },
-							format: 'mjs',
-							name: 'bar-plugin',
 							platform: 'node',
 							support: 'stable',
 						},
@@ -218,9 +182,11 @@ describe('Config files', () => {
 		it('doesnt inherit config if option is false', async () => {
 			const packemon = new Packemon(root);
 
-			await packemon.build({ loadConfigs: false });
-
 			// bar (using push)
+			await packemon.build(loadPackageAtPath(root.append('packages/bar'), root), {
+				loadConfigs: false,
+			});
+
 			expect(rollupSpy).not.toHaveBeenCalledWith(
 				expect.objectContaining({
 					plugins: expect.arrayContaining([
@@ -243,7 +209,7 @@ describe('Config files', () => {
 								[
 									'bar-plugin',
 									{
-										features: { workspaces: ['packages/*'] },
+										features: expect.any(Object),
 										format: 'mjs',
 										platform: 'node',
 										support: 'stable',
@@ -253,7 +219,7 @@ describe('Config files', () => {
 						}),
 						{ name: 'root-plugin' },
 						{
-							features: { workspaces: ['packages/*'] },
+							features: expect.any(Object),
 							format: 'mjs',
 							name: 'bar-plugin',
 							platform: 'node',
@@ -264,6 +230,10 @@ describe('Config files', () => {
 			);
 
 			// baz (using unshift)
+			await packemon.build(loadPackageAtPath(root.append('packages/baz'), root), {
+				loadConfigs: false,
+			});
+
 			expect(rollupSpy).not.toHaveBeenCalledWith(
 				expect.objectContaining({
 					plugins: expect.arrayContaining([
@@ -280,7 +250,7 @@ describe('Config files', () => {
 				expect.objectContaining({
 					plugins: expect.arrayContaining([
 						{
-							features: { workspaces: ['packages/*'] },
+							features: expect.any(Object),
 							format: 'lib',
 							name: 'baz-plugin',
 							platform: 'browser',
@@ -292,7 +262,7 @@ describe('Config files', () => {
 								[
 									'baz-plugin',
 									{
-										features: { workspaces: ['packages/*'] },
+										features: expect.any(Object),
 										format: 'lib',
 										platform: 'browser',
 										support: 'stable',
@@ -307,6 +277,10 @@ describe('Config files', () => {
 			);
 
 			// foo (using push)
+			await packemon.build(loadPackageAtPath(root.append('packages/foo'), root), {
+				loadConfigs: false,
+			});
+
 			expect(rollupSpy).not.toHaveBeenCalledWith(
 				expect.objectContaining({
 					plugins: expect.arrayContaining([
@@ -329,7 +303,7 @@ describe('Config files', () => {
 								[
 									'foo-plugin',
 									{
-										features: { workspaces: ['packages/*'] },
+										features: expect.any(Object),
 										format: 'mjs',
 										platform: 'node',
 										support: 'stable',
@@ -339,7 +313,7 @@ describe('Config files', () => {
 						}),
 						{ name: 'root-plugin' },
 						{
-							features: { workspaces: ['packages/*'] },
+							features: expect.any(Object),
 							format: 'mjs',
 							name: 'foo-plugin',
 							platform: 'node',
@@ -353,12 +327,15 @@ describe('Config files', () => {
 
 	describe('polyrepo', () => {
 		const root = getFixturePath('config-files-polyrepo');
+
 		createSnapshotSpies(root); // Mock fs
 
 		it('inherits config from root and branches', async () => {
 			const packemon = new Packemon(root);
 
-			await packemon.build({ loadConfigs: true });
+			await packemon.build(loadPackageAtPath(root), {
+				loadConfigs: true,
+			});
 
 			// input
 			expect(rollupSpy).toHaveBeenCalledWith(
@@ -379,7 +356,7 @@ describe('Config files', () => {
 					plugins: expect.arrayContaining([
 						{
 							name: 'poly-plugin-output',
-							features: {},
+							features: expect.any(Object),
 							format: 'lib',
 							platform: 'browser',
 							support: 'stable',
@@ -390,7 +367,7 @@ describe('Config files', () => {
 								[
 									'poly-plugin-output',
 									{
-										features: {},
+										features: expect.any(Object),
 										format: 'lib',
 										platform: 'browser',
 										support: 'stable',
@@ -406,7 +383,9 @@ describe('Config files', () => {
 		it('doesnt inherit config if option is false', async () => {
 			const packemon = new Packemon(root);
 
-			await packemon.build({ loadConfigs: false });
+			await packemon.build(loadPackageAtPath(root), {
+				loadConfigs: false,
+			});
 
 			// input
 			expect(rollupSpy).not.toHaveBeenCalledWith(
