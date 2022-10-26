@@ -1,5 +1,4 @@
 import os from 'os';
-import fileSize from 'filesize';
 import { applyMarkdown, applyStyle, Arg, Config } from '@boost/cli';
 import { formatMs } from '@boost/common';
 import { figures } from '@boost/terminal';
@@ -52,6 +51,7 @@ export class BuildCommand extends BaseCommand<Required<BuildOptions>> {
 		});
 
 		const output = [applyMarkdown(`**${pkg.getName()}**`)];
+		const { filesize } = await import('filesize');
 
 		pkg.artifacts.forEach((artifact) => {
 			const row: string[] = [' '];
@@ -70,7 +70,7 @@ export class BuildCommand extends BaseCommand<Required<BuildOptions>> {
 				const { stats } = artifact.builds[index];
 
 				if (stats) {
-					row.push(applyStyle(`(${fileSize(stats.size)})`, 'muted'));
+					row.push(applyStyle(`(${String(filesize(stats.size))})`, 'muted'));
 				}
 
 				if (build.declaration) {

@@ -6254,14 +6254,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:^17.0.48":
-  version: 17.0.48
-  resolution: "@types/react@npm:17.0.48"
+"@types/react@npm:*, @types/react@npm:^17.0.51":
+  version: 17.0.51
+  resolution: "@types/react@npm:17.0.51"
   dependencies:
     "@types/prop-types": "*"
     "@types/scheduler": "*"
     csstype: ^3.0.2
-  checksum: b683fa33f751ced0b8c8715df9f40de15513c1d7ce66064a75cdfb8805cc913b0b214a2e7022ef0b724bd62a1e8651d040cd265dd0452bde03cca9b8e495742d
+  checksum: a9680a17444df4edf89e91acb66fbe1eb8c3397ece0f279f67f3fd7f17c60460834e3be721947a7cddc916b76f7c62df3dbd1f6da1057643c5620e32a7a32ec5
   languageName: node
   linkType: hard
 
@@ -6460,7 +6460,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/types@npm:5.41.0, @typescript-eslint/types@npm:^5.36.2":
+"@typescript-eslint/types@npm:5.41.0, @typescript-eslint/types@npm:^5.41.0":
   version: 5.41.0
   resolution: "@typescript-eslint/types@npm:5.41.0"
   checksum: d7500bcc67b68032ccf19d983a69efa2750f4d82f5cc027090d2686d4e662b3a7b0b5fa55ed90710eca2528867d39964d76c207ac3c6f734505efbe21dccac7d
@@ -11314,17 +11314,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"filesize@npm:^10.0.5":
+  version: 10.0.5
+  resolution: "filesize@npm:10.0.5"
+  checksum: b373ebd877566a49566564709c221943741a6e264649ae1f5d6c87c31cd87e94c5e51dae8ee16abbe414fda3fdb6855d8fe4f0ed8d1e33327563d2b59176eaa1
+  languageName: node
+  linkType: hard
+
 "filesize@npm:^8.0.6":
   version: 8.0.7
   resolution: "filesize@npm:8.0.7"
   checksum: 8603d27c5287b984cb100733640645e078f5f5ad65c6d913173e01fb99e09b0747828498fd86647685ccecb69be31f3587b9739ab1e50732116b2374aff4cbf9
-  languageName: node
-  linkType: hard
-
-"filesize@npm:^9.0.11":
-  version: 9.0.11
-  resolution: "filesize@npm:9.0.11"
-  checksum: 7e8a9f9a4089e3ee29de64c241b50db8db4008351ace959873cb950bac0c2e1e09f4b45f42eaed8acd589a895dde978ed199e7a9982902fa06ca0be48e5ea92d
   languageName: node
   linkType: hard
 
@@ -14864,12 +14864,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"magic-string@npm:^0.26.3":
-  version: 0.26.3
-  resolution: "magic-string@npm:0.26.3"
+"magic-string@npm:^0.26.7":
+  version: 0.26.7
+  resolution: "magic-string@npm:0.26.7"
   dependencies:
     sourcemap-codec: ^1.4.8
-  checksum: e72c9b3d90ccbde088acc5937109f73fa4be8b6a2c2ea9bf9c3c01974f1ebf09842259a74ff2ba4081008a7d49941d883cfef8c460e6c33a6eb564b58482b750
+  checksum: 89b0d60cbb32bbf3d1e23c46ea93db082d18a8230b972027aecb10a40bba51be519ecce0674f995571e3affe917b76b09f59d8dbc9a1b2c9c4102a2b6e8a2b01
   languageName: node
   linkType: hard
 
@@ -15971,7 +15971,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"npm-packlist@npm:^5.1.0, npm-packlist@npm:^5.1.1":
+"npm-packlist@npm:^5.1.0, npm-packlist@npm:^5.1.1, npm-packlist@npm:^5.1.3":
   version: 5.1.3
   resolution: "npm-packlist@npm:5.1.3"
   dependencies:
@@ -16594,7 +16594,7 @@ __metadata:
     "@types/micromatch": ^4.0.2
     "@types/node": ^16.18.2
     "@types/npm-packlist": ^3.0.0
-    "@types/react": ^17.0.48
+    "@types/react": ^17.0.51
     "@types/semver": ^7.3.13
     babel-preset-moon: ^1.1.1
     chokidar: ^3.5.3
@@ -16634,7 +16634,7 @@ __metadata:
     "@rollup/plugin-node-resolve": ^13.3.0
     "@swc/cli": ^0.1.57
     "@swc/core": ^1.3.11
-    "@typescript-eslint/types": ^5.36.2
+    "@typescript-eslint/types": ^5.41.0
     babel-plugin-cjs-esm-interop: ^2.0.5
     babel-plugin-conditional-invariant: ^2.0.2
     babel-plugin-env-constants: ^2.0.2
@@ -16642,14 +16642,14 @@ __metadata:
     browserslist: ^4.21.4
     execa: ^5.1.1
     fast-glob: ^3.2.12
-    filesize: ^9.0.11
+    filesize: ^10.0.5
     fs-extra: ^10.1.0
     ink: ^3.2.0
     ink-progress-bar: ^3.0.0
     ink-spinner: ^4.0.3
-    magic-string: ^0.26.3
+    magic-string: ^0.26.7
     micromatch: ^4.0.5
-    npm-packlist: ^5.1.1
+    npm-packlist: ^5.1.3
     react: ^17.0.2
     resolve: ^1.22.1
     rollup: ^2.79.0
