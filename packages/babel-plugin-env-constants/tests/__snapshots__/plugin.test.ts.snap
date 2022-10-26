@@ -2,13 +2,9 @@
 
 exports[`envConstantsPlugin() transforms __DEV__ expressions 1`] = `
 "if (process.env.NODE_ENV !== 'production') {} else if (process.env.NODE_ENV !== 'production' && 123) {} else if (true || process.env.NODE_ENV !== 'production') {} else if (!(process.env.NODE_ENV !== 'production')) {} else {}
-
 switch (process.env.NODE_ENV !== 'production') {}
-
 while (process.env.NODE_ENV !== 'production') {}
-
 do {} while (process.env.NODE_ENV !== 'production');
-
 const ternary = process.env.NODE_ENV !== 'production' ? true : false;
 const objectValue = {
   foo: process.env.NODE_ENV !== 'production'
@@ -19,13 +15,9 @@ React.createElement(Foo, null, process.env.NODE_ENV !== 'production' ? 'Child' :
 
 exports[`envConstantsPlugin() transforms __PROD__ expressions 1`] = `
 "if (process.env.NODE_ENV === 'production') {} else if (process.env.NODE_ENV === 'production' && 123) {} else if (true || process.env.NODE_ENV === 'production') {} else if (!(process.env.NODE_ENV === 'production')) {} else {}
-
 switch (process.env.NODE_ENV === 'production') {}
-
 while (process.env.NODE_ENV === 'production') {}
-
 do {} while (process.env.NODE_ENV === 'production');
-
 const ternary = process.env.NODE_ENV === 'production' ? true : false;
 const objectValue = {
   foo: process.env.NODE_ENV === 'production'
@@ -36,13 +28,9 @@ React.createElement(Foo, null, process.env.NODE_ENV === 'production' ? 'Child' :
 
 exports[`envConstantsPlugin() transforms __TEST__ expressions 1`] = `
 "if (process.env.NODE_ENV === 'test') {} else if (process.env.NODE_ENV === 'test' && 123) {} else if (true || process.env.NODE_ENV === 'test') {} else if (!(process.env.NODE_ENV === 'test')) {} else {}
-
 switch (process.env.NODE_ENV === 'test') {}
-
 while (process.env.NODE_ENV === 'test') {}
-
 do {} while (process.env.NODE_ENV === 'test');
-
 const ternary = process.env.NODE_ENV === 'test' ? true : false;
 const objectValue = {
   foo: process.env.NODE_ENV === 'test'

@@ -5,6 +5,7 @@ exports[`CJS/ESM interop babel transforms example test case: browser-current-esm
   "esm/index-browser-current-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: esm
+
 __dirname;
 __filename;
 //# sourceMappingURL=index-browser-current-esm.js.map
@@ -17,6 +18,7 @@ exports[`CJS/ESM interop babel transforms example test case: browser-current-lib
   "lib/index-browser-current-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: lib
+
 'use strict';
 
 __dirname;
@@ -31,6 +33,7 @@ exports[`CJS/ESM interop babel transforms example test case: browser-current-umd
   "umd/index-browser-current-umd.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: umd
+
 __dirname;
 __filename;
 //# sourceMappingURL=index-browser-current-umd.js.map
@@ -43,6 +46,7 @@ exports[`CJS/ESM interop babel transforms example test case: browser-experimenta
   "esm/index-browser-experimental-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: experimental, Format: esm
+
 __dirname;
 __filename;
 //# sourceMappingURL=index-browser-experimental-esm.js.map
@@ -55,6 +59,7 @@ exports[`CJS/ESM interop babel transforms example test case: browser-experimenta
   "lib/index-browser-experimental-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: experimental, Format: lib
+
 'use strict';
 
 __dirname;
@@ -69,6 +74,7 @@ exports[`CJS/ESM interop babel transforms example test case: browser-experimenta
   "umd/index-browser-experimental-umd.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: experimental, Format: umd
+
 __dirname;
 __filename;
 //# sourceMappingURL=index-browser-experimental-umd.js.map
@@ -81,6 +87,7 @@ exports[`CJS/ESM interop babel transforms example test case: browser-legacy-esm 
   "esm/index-browser-legacy-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: esm
+
 __dirname;
 __filename;
 //# sourceMappingURL=index-browser-legacy-esm.js.map
@@ -93,6 +100,7 @@ exports[`CJS/ESM interop babel transforms example test case: browser-legacy-lib 
   "lib/index-browser-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: lib
+
 'use strict';
 
 __dirname;
@@ -107,6 +115,7 @@ exports[`CJS/ESM interop babel transforms example test case: browser-legacy-umd 
   "umd/index-browser-legacy-umd.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: umd
+
 __dirname;
 __filename;
 //# sourceMappingURL=index-browser-legacy-umd.js.map
@@ -119,6 +128,7 @@ exports[`CJS/ESM interop babel transforms example test case: browser-stable-esm 
   "esm/index-browser-stable-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: esm
+
 __dirname;
 __filename;
 //# sourceMappingURL=index-browser-stable-esm.js.map
@@ -131,6 +141,7 @@ exports[`CJS/ESM interop babel transforms example test case: browser-stable-lib 
   "lib/index-browser-stable-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: lib
+
 'use strict';
 
 __dirname;
@@ -145,6 +156,7 @@ exports[`CJS/ESM interop babel transforms example test case: browser-stable-umd 
   "umd/index-browser-stable-umd.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: umd
+
 __dirname;
 __filename;
 //# sourceMappingURL=index-browser-stable-umd.js.map
@@ -157,6 +169,7 @@ exports[`CJS/ESM interop babel transforms example test case: native-current-lib 
   "lib/index-native-current-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: current, Format: lib
+
 'use strict';
 
 __dirname;
@@ -171,6 +184,7 @@ exports[`CJS/ESM interop babel transforms example test case: native-experimental
   "lib/index-native-experimental-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: experimental, Format: lib
+
 'use strict';
 
 __dirname;
@@ -185,6 +199,7 @@ exports[`CJS/ESM interop babel transforms example test case: native-legacy-lib 1
   "lib/index-native-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: legacy, Format: lib
+
 'use strict';
 
 __dirname;
@@ -199,6 +214,7 @@ exports[`CJS/ESM interop babel transforms example test case: native-stable-lib 1
   "lib/index-native-stable-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: stable, Format: lib
+
 'use strict';
 
 __dirname;
@@ -223,6 +239,7 @@ exports[`CJS/ESM interop babel transforms example test case: node-current-cjs 2`
   "cjs/index-node-current-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: cjs
+
 'use strict';
 
 __dirname;
@@ -237,6 +254,7 @@ exports[`CJS/ESM interop babel transforms example test case: node-current-lib 1`
   "lib/index-node-current-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: lib
+
 'use strict';
 
 __dirname;
@@ -250,13 +268,11 @@ exports[`CJS/ESM interop babel transforms example test case: node-current-mjs 1`
 [
   "mjs/index-node-current-mjs.mjs",
   "var _path = _interopRequireDefault(require("path")).default;
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 // Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: mjs
-_path.dirname(import.meta.url);
 
+_path.dirname(import.meta.url);
 import.meta.url;
 //# sourceMappingURL=index-node-current-mjs.mjs.map
 ",
@@ -278,6 +294,7 @@ exports[`CJS/ESM interop babel transforms example test case: node-experimental-c
   "cjs/index-node-experimental-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: cjs
+
 'use strict';
 
 __dirname;
@@ -292,6 +309,7 @@ exports[`CJS/ESM interop babel transforms example test case: node-experimental-l
   "lib/index-node-experimental-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: lib
+
 'use strict';
 
 __dirname;
@@ -305,13 +323,11 @@ exports[`CJS/ESM interop babel transforms example test case: node-experimental-m
 [
   "mjs/index-node-experimental-mjs.mjs",
   "var _path = _interopRequireDefault(require("path")).default;
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 // Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: mjs
-_path.dirname(import.meta.url);
 
+_path.dirname(import.meta.url);
 import.meta.url;
 //# sourceMappingURL=index-node-experimental-mjs.mjs.map
 ",
@@ -333,6 +349,7 @@ exports[`CJS/ESM interop babel transforms example test case: node-legacy-cjs 2`]
   "cjs/index-node-legacy-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: cjs
+
 'use strict';
 
 __dirname;
@@ -347,6 +364,7 @@ exports[`CJS/ESM interop babel transforms example test case: node-legacy-lib 1`]
   "lib/index-node-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: lib
+
 'use strict';
 
 __dirname;
@@ -360,13 +378,11 @@ exports[`CJS/ESM interop babel transforms example test case: node-legacy-mjs 1`]
 [
   "mjs/index-node-legacy-mjs.mjs",
   "var _path = _interopRequireDefault(require("path")).default;
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 // Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: mjs
-_path.dirname(import.meta.url);
 
+_path.dirname(import.meta.url);
 import.meta.url;
 //# sourceMappingURL=index-node-legacy-mjs.mjs.map
 ",
@@ -388,6 +404,7 @@ exports[`CJS/ESM interop babel transforms example test case: node-stable-cjs 2`]
   "cjs/index-node-stable-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: cjs
+
 'use strict';
 
 __dirname;
@@ -402,6 +419,7 @@ exports[`CJS/ESM interop babel transforms example test case: node-stable-lib 1`]
   "lib/index-node-stable-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: lib
+
 'use strict';
 
 __dirname;
@@ -415,13 +433,11 @@ exports[`CJS/ESM interop babel transforms example test case: node-stable-mjs 1`]
 [
   "mjs/index-node-stable-mjs.mjs",
   "var _path = _interopRequireDefault(require("path")).default;
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 // Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: mjs
-_path.dirname(import.meta.url);
 
+_path.dirname(import.meta.url);
 import.meta.url;
 //# sourceMappingURL=index-node-stable-mjs.mjs.map
 ",

@@ -5,6 +5,7 @@ exports[`Rollup externals (regex) babel transforms example test case: browser-cu
   "esm/index-browser-current-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: esm
+
 import '@packemon/foo';
 import '@packemon/bar';
 //# sourceMappingURL=index-browser-current-esm.js.map
@@ -17,10 +18,10 @@ exports[`Rollup externals (regex) babel transforms example test case: browser-cu
   "lib/index-browser-current-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: lib
+
 'use strict';
 
 require('@packemon/foo');
-
 require('@packemon/bar');
 //# sourceMappingURL=index-browser-current-lib.js.map
 ",
@@ -55,6 +56,7 @@ exports[`Rollup externals (regex) babel transforms example test case: browser-ex
   "esm/index-browser-experimental-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: experimental, Format: esm
+
 import '@packemon/foo';
 import '@packemon/bar';
 //# sourceMappingURL=index-browser-experimental-esm.js.map
@@ -67,10 +69,10 @@ exports[`Rollup externals (regex) babel transforms example test case: browser-ex
   "lib/index-browser-experimental-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: experimental, Format: lib
+
 'use strict';
 
 require('@packemon/foo');
-
 require('@packemon/bar');
 //# sourceMappingURL=index-browser-experimental-lib.js.map
 ",
@@ -105,6 +107,7 @@ exports[`Rollup externals (regex) babel transforms example test case: browser-le
   "esm/index-browser-legacy-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: esm
+
 import '@packemon/foo';
 import '@packemon/bar';
 //# sourceMappingURL=index-browser-legacy-esm.js.map
@@ -117,10 +120,10 @@ exports[`Rollup externals (regex) babel transforms example test case: browser-le
   "lib/index-browser-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: lib
+
 'use strict';
 
 require('@packemon/foo');
-
 require('@packemon/bar');
 //# sourceMappingURL=index-browser-legacy-lib.js.map
 ",
@@ -155,6 +158,7 @@ exports[`Rollup externals (regex) babel transforms example test case: browser-st
   "esm/index-browser-stable-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: esm
+
 import '@packemon/foo';
 import '@packemon/bar';
 //# sourceMappingURL=index-browser-stable-esm.js.map
@@ -167,10 +171,10 @@ exports[`Rollup externals (regex) babel transforms example test case: browser-st
   "lib/index-browser-stable-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: lib
+
 'use strict';
 
 require('@packemon/foo');
-
 require('@packemon/bar');
 //# sourceMappingURL=index-browser-stable-lib.js.map
 ",
@@ -205,10 +209,10 @@ exports[`Rollup externals (regex) babel transforms example test case: native-cur
   "lib/index-native-current-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: current, Format: lib
+
 'use strict';
 
 require('@packemon/foo');
-
 require('@packemon/bar');
 //# sourceMappingURL=index-native-current-lib.js.map
 ",
@@ -220,10 +224,10 @@ exports[`Rollup externals (regex) babel transforms example test case: native-exp
   "lib/index-native-experimental-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: experimental, Format: lib
+
 'use strict';
 
 require('@packemon/foo');
-
 require('@packemon/bar');
 //# sourceMappingURL=index-native-experimental-lib.js.map
 ",
@@ -235,10 +239,10 @@ exports[`Rollup externals (regex) babel transforms example test case: native-leg
   "lib/index-native-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: legacy, Format: lib
+
 'use strict';
 
 require('@packemon/foo');
-
 require('@packemon/bar');
 //# sourceMappingURL=index-native-legacy-lib.js.map
 ",
@@ -250,10 +254,10 @@ exports[`Rollup externals (regex) babel transforms example test case: native-sta
   "lib/index-native-stable-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: stable, Format: lib
+
 'use strict';
 
 require('@packemon/foo');
-
 require('@packemon/bar');
 //# sourceMappingURL=index-native-stable-lib.js.map
 ",
@@ -275,10 +279,10 @@ exports[`Rollup externals (regex) babel transforms example test case: node-curre
   "cjs/index-node-current-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: cjs
+
 'use strict';
 
 require('@packemon/foo');
-
 require('@packemon/bar');
 //# sourceMappingURL=index-node-current-cjs.cjs.map
 ",
@@ -290,10 +294,10 @@ exports[`Rollup externals (regex) babel transforms example test case: node-curre
   "lib/index-node-current-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: lib
+
 'use strict';
 
 require('@packemon/foo');
-
 require('@packemon/bar');
 //# sourceMappingURL=index-node-current-lib.js.map
 ",
@@ -305,6 +309,7 @@ exports[`Rollup externals (regex) babel transforms example test case: node-curre
   "mjs/index-node-current-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: mjs
+
 import '@packemon/foo';
 import '@packemon/bar';
 //# sourceMappingURL=index-node-current-mjs.mjs.map
@@ -327,10 +332,10 @@ exports[`Rollup externals (regex) babel transforms example test case: node-exper
   "cjs/index-node-experimental-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: cjs
+
 'use strict';
 
 require('@packemon/foo');
-
 require('@packemon/bar');
 //# sourceMappingURL=index-node-experimental-cjs.cjs.map
 ",
@@ -342,10 +347,10 @@ exports[`Rollup externals (regex) babel transforms example test case: node-exper
   "lib/index-node-experimental-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: lib
+
 'use strict';
 
 require('@packemon/foo');
-
 require('@packemon/bar');
 //# sourceMappingURL=index-node-experimental-lib.js.map
 ",
@@ -357,6 +362,7 @@ exports[`Rollup externals (regex) babel transforms example test case: node-exper
   "mjs/index-node-experimental-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: mjs
+
 import '@packemon/foo';
 import '@packemon/bar';
 //# sourceMappingURL=index-node-experimental-mjs.mjs.map
@@ -379,10 +385,10 @@ exports[`Rollup externals (regex) babel transforms example test case: node-legac
   "cjs/index-node-legacy-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: cjs
+
 'use strict';
 
 require('@packemon/foo');
-
 require('@packemon/bar');
 //# sourceMappingURL=index-node-legacy-cjs.cjs.map
 ",
@@ -394,10 +400,10 @@ exports[`Rollup externals (regex) babel transforms example test case: node-legac
   "lib/index-node-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: lib
+
 'use strict';
 
 require('@packemon/foo');
-
 require('@packemon/bar');
 //# sourceMappingURL=index-node-legacy-lib.js.map
 ",
@@ -409,6 +415,7 @@ exports[`Rollup externals (regex) babel transforms example test case: node-legac
   "mjs/index-node-legacy-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: mjs
+
 import '@packemon/foo';
 import '@packemon/bar';
 //# sourceMappingURL=index-node-legacy-mjs.mjs.map
@@ -431,10 +438,10 @@ exports[`Rollup externals (regex) babel transforms example test case: node-stabl
   "cjs/index-node-stable-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: cjs
+
 'use strict';
 
 require('@packemon/foo');
-
 require('@packemon/bar');
 //# sourceMappingURL=index-node-stable-cjs.cjs.map
 ",
@@ -446,10 +453,10 @@ exports[`Rollup externals (regex) babel transforms example test case: node-stabl
   "lib/index-node-stable-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: lib
+
 'use strict';
 
 require('@packemon/foo');
-
 require('@packemon/bar');
 //# sourceMappingURL=index-node-stable-lib.js.map
 ",
@@ -461,6 +468,7 @@ exports[`Rollup externals (regex) babel transforms example test case: node-stabl
   "mjs/index-node-stable-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: mjs
+
 import '@packemon/foo';
 import '@packemon/bar';
 //# sourceMappingURL=index-node-stable-mjs.mjs.map
@@ -473,6 +481,7 @@ exports[`Rollup externals babel transforms example test case: browser-current-es
   "esm/index-browser-current-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: esm
+
 import '@packemon/foo';
 import '@packemon/bar';
 //# sourceMappingURL=index-browser-current-esm.js.map
@@ -485,10 +494,10 @@ exports[`Rollup externals babel transforms example test case: browser-current-li
   "lib/index-browser-current-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: lib
+
 'use strict';
 
 require('@packemon/foo');
-
 require('@packemon/bar');
 //# sourceMappingURL=index-browser-current-lib.js.map
 ",
@@ -523,6 +532,7 @@ exports[`Rollup externals babel transforms example test case: browser-experiment
   "esm/index-browser-experimental-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: experimental, Format: esm
+
 import '@packemon/foo';
 import '@packemon/bar';
 //# sourceMappingURL=index-browser-experimental-esm.js.map
@@ -535,10 +545,10 @@ exports[`Rollup externals babel transforms example test case: browser-experiment
   "lib/index-browser-experimental-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: experimental, Format: lib
+
 'use strict';
 
 require('@packemon/foo');
-
 require('@packemon/bar');
 //# sourceMappingURL=index-browser-experimental-lib.js.map
 ",
@@ -573,6 +583,7 @@ exports[`Rollup externals babel transforms example test case: browser-legacy-esm
   "esm/index-browser-legacy-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: esm
+
 import '@packemon/foo';
 import '@packemon/bar';
 //# sourceMappingURL=index-browser-legacy-esm.js.map
@@ -585,10 +596,10 @@ exports[`Rollup externals babel transforms example test case: browser-legacy-lib
   "lib/index-browser-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: lib
+
 'use strict';
 
 require('@packemon/foo');
-
 require('@packemon/bar');
 //# sourceMappingURL=index-browser-legacy-lib.js.map
 ",
@@ -623,6 +634,7 @@ exports[`Rollup externals babel transforms example test case: browser-stable-esm
   "esm/index-browser-stable-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: esm
+
 import '@packemon/foo';
 import '@packemon/bar';
 //# sourceMappingURL=index-browser-stable-esm.js.map
@@ -635,10 +647,10 @@ exports[`Rollup externals babel transforms example test case: browser-stable-lib
   "lib/index-browser-stable-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: lib
+
 'use strict';
 
 require('@packemon/foo');
-
 require('@packemon/bar');
 //# sourceMappingURL=index-browser-stable-lib.js.map
 ",
@@ -673,10 +685,10 @@ exports[`Rollup externals babel transforms example test case: native-current-lib
   "lib/index-native-current-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: current, Format: lib
+
 'use strict';
 
 require('@packemon/foo');
-
 require('@packemon/bar');
 //# sourceMappingURL=index-native-current-lib.js.map
 ",
@@ -688,10 +700,10 @@ exports[`Rollup externals babel transforms example test case: native-experimenta
   "lib/index-native-experimental-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: experimental, Format: lib
+
 'use strict';
 
 require('@packemon/foo');
-
 require('@packemon/bar');
 //# sourceMappingURL=index-native-experimental-lib.js.map
 ",
@@ -703,10 +715,10 @@ exports[`Rollup externals babel transforms example test case: native-legacy-lib 
   "lib/index-native-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: legacy, Format: lib
+
 'use strict';
 
 require('@packemon/foo');
-
 require('@packemon/bar');
 //# sourceMappingURL=index-native-legacy-lib.js.map
 ",
@@ -718,10 +730,10 @@ exports[`Rollup externals babel transforms example test case: native-stable-lib 
   "lib/index-native-stable-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: stable, Format: lib
+
 'use strict';
 
 require('@packemon/foo');
-
 require('@packemon/bar');
 //# sourceMappingURL=index-native-stable-lib.js.map
 ",
@@ -743,10 +755,10 @@ exports[`Rollup externals babel transforms example test case: node-current-cjs 2
   "cjs/index-node-current-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: cjs
+
 'use strict';
 
 require('@packemon/foo');
-
 require('@packemon/bar');
 //# sourceMappingURL=index-node-current-cjs.cjs.map
 ",
@@ -758,10 +770,10 @@ exports[`Rollup externals babel transforms example test case: node-current-lib 1
   "lib/index-node-current-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: lib
+
 'use strict';
 
 require('@packemon/foo');
-
 require('@packemon/bar');
 //# sourceMappingURL=index-node-current-lib.js.map
 ",
@@ -773,6 +785,7 @@ exports[`Rollup externals babel transforms example test case: node-current-mjs 1
   "mjs/index-node-current-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: mjs
+
 import '@packemon/foo';
 import '@packemon/bar';
 //# sourceMappingURL=index-node-current-mjs.mjs.map
@@ -795,10 +808,10 @@ exports[`Rollup externals babel transforms example test case: node-experimental-
   "cjs/index-node-experimental-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: cjs
+
 'use strict';
 
 require('@packemon/foo');
-
 require('@packemon/bar');
 //# sourceMappingURL=index-node-experimental-cjs.cjs.map
 ",
@@ -810,10 +823,10 @@ exports[`Rollup externals babel transforms example test case: node-experimental-
   "lib/index-node-experimental-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: lib
+
 'use strict';
 
 require('@packemon/foo');
-
 require('@packemon/bar');
 //# sourceMappingURL=index-node-experimental-lib.js.map
 ",
@@ -825,6 +838,7 @@ exports[`Rollup externals babel transforms example test case: node-experimental-
   "mjs/index-node-experimental-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: mjs
+
 import '@packemon/foo';
 import '@packemon/bar';
 //# sourceMappingURL=index-node-experimental-mjs.mjs.map
@@ -847,10 +861,10 @@ exports[`Rollup externals babel transforms example test case: node-legacy-cjs 2`
   "cjs/index-node-legacy-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: cjs
+
 'use strict';
 
 require('@packemon/foo');
-
 require('@packemon/bar');
 //# sourceMappingURL=index-node-legacy-cjs.cjs.map
 ",
@@ -862,10 +876,10 @@ exports[`Rollup externals babel transforms example test case: node-legacy-lib 1`
   "lib/index-node-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: lib
+
 'use strict';
 
 require('@packemon/foo');
-
 require('@packemon/bar');
 //# sourceMappingURL=index-node-legacy-lib.js.map
 ",
@@ -877,6 +891,7 @@ exports[`Rollup externals babel transforms example test case: node-legacy-mjs 1`
   "mjs/index-node-legacy-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: mjs
+
 import '@packemon/foo';
 import '@packemon/bar';
 //# sourceMappingURL=index-node-legacy-mjs.mjs.map
@@ -899,10 +914,10 @@ exports[`Rollup externals babel transforms example test case: node-stable-cjs 2`
   "cjs/index-node-stable-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: cjs
+
 'use strict';
 
 require('@packemon/foo');
-
 require('@packemon/bar');
 //# sourceMappingURL=index-node-stable-cjs.cjs.map
 ",
@@ -914,10 +929,10 @@ exports[`Rollup externals babel transforms example test case: node-stable-lib 1`
   "lib/index-node-stable-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: lib
+
 'use strict';
 
 require('@packemon/foo');
-
 require('@packemon/bar');
 //# sourceMappingURL=index-node-stable-lib.js.map
 ",
@@ -929,6 +944,7 @@ exports[`Rollup externals babel transforms example test case: node-stable-mjs 1`
   "mjs/index-node-stable-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: mjs
+
 import '@packemon/foo';
 import '@packemon/bar';
 //# sourceMappingURL=index-node-stable-mjs.mjs.map

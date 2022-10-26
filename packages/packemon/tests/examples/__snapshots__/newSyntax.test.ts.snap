@@ -5,6 +5,7 @@ exports[`New syntax babel transforms example test case: browser-current-esm 1`] 
   "esm/index-browser-current-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: esm
+
 const foo = {};
 const optionalChain = foo?.bar;
 const nullCoalesc = foo ?? 0;
@@ -21,6 +22,7 @@ exports[`New syntax babel transforms example test case: browser-current-lib 1`] 
   "lib/index-browser-current-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: lib
+
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -63,6 +65,7 @@ exports[`New syntax babel transforms example test case: browser-current-umd 1`] 
   _exports.optionalChain = _exports.nullCoalesc = _exports.foo = void 0;
   // Bundled with Packemon: https://packemon.dev
   // Platform: browser, Support: current, Format: umd
+
   const foo = {};
   _exports.foo = foo;
   const optionalChain = foo?.bar;
@@ -82,6 +85,7 @@ exports[`New syntax babel transforms example test case: browser-experimental-esm
   "esm/index-browser-experimental-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: experimental, Format: esm
+
 const foo = {};
 const optionalChain = foo?.bar;
 const nullCoalesc = foo ?? 0;
@@ -98,6 +102,7 @@ exports[`New syntax babel transforms example test case: browser-experimental-lib
   "lib/index-browser-experimental-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: experimental, Format: lib
+
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -140,6 +145,7 @@ exports[`New syntax babel transforms example test case: browser-experimental-umd
   _exports.optionalChain = _exports.nullCoalesc = _exports.foo = void 0;
   // Bundled with Packemon: https://packemon.dev
   // Platform: browser, Support: experimental, Format: umd
+
   const foo = {};
   _exports.foo = foo;
   const optionalChain = foo?.bar;
@@ -158,9 +164,9 @@ exports[`New syntax babel transforms example test case: browser-legacy-esm 1`] =
 [
   "esm/index-browser-legacy-esm.js",
   "var _foo$bar;
-
 // Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: esm
+
 var foo = {};
 var optionalChain = foo === null || foo === void 0 ? void 0 : foo.bar;
 var nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
@@ -177,10 +183,10 @@ exports[`New syntax babel transforms example test case: browser-legacy-lib 1`] =
   "lib/index-browser-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: lib
+
 'use strict';
 
 var _foo$bar;
-
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
@@ -219,11 +225,10 @@ exports[`New syntax babel transforms example test case: browser-legacy-umd 1`] =
     value: true
   });
   _exports.optionalChain = _exports.nullCoalesc = _exports.foo = void 0;
-
   var _foo$bar;
-
   // Bundled with Packemon: https://packemon.dev
   // Platform: browser, Support: legacy, Format: umd
+
   var foo = {};
   _exports.foo = foo;
   var optionalChain = foo === null || foo === void 0 ? void 0 : foo.bar;
@@ -241,15 +246,14 @@ exports[`New syntax babel transforms example test case: browser-legacy-umd 1`] =
 exports[`New syntax babel transforms example test case: browser-stable-esm 1`] = `
 [
   "esm/index-browser-stable-esm.js",
-  "var _foo$bar;
-
-// Bundled with Packemon: https://packemon.dev
+  "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: esm
+
 const foo = {};
-const optionalChain = foo === null || foo === void 0 ? void 0 : foo.bar;
-const nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
-(_foo$bar = foo.bar) !== null && _foo$bar !== void 0 ? _foo$bar : foo.bar = 'bar';
-foo.baz || (foo.baz = 'baz');
+const optionalChain = foo?.bar;
+const nullCoalesc = foo ?? 0;
+foo.bar ??= 'bar';
+foo.baz ||= 'baz';
 export { foo, nullCoalesc, optionalChain };
 //# sourceMappingURL=index-browser-stable-esm.js.map
 ",
@@ -261,18 +265,17 @@ exports[`New syntax babel transforms example test case: browser-stable-lib 1`] =
   "lib/index-browser-stable-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: lib
-'use strict';
 
-var _foo$bar;
+'use strict';
 
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
 const foo = {};
-const optionalChain = foo === null || foo === void 0 ? void 0 : foo.bar;
-const nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
-(_foo$bar = foo.bar) !== null && _foo$bar !== void 0 ? _foo$bar : foo.bar = 'bar';
-foo.baz || (foo.baz = 'baz');
+const optionalChain = foo?.bar;
+const nullCoalesc = foo ?? 0;
+foo.bar ??= 'bar';
+foo.baz ||= 'baz';
 exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
@@ -303,19 +306,17 @@ exports[`New syntax babel transforms example test case: browser-stable-umd 1`] =
     value: true
   });
   _exports.optionalChain = _exports.nullCoalesc = _exports.foo = void 0;
-
-  var _foo$bar;
-
   // Bundled with Packemon: https://packemon.dev
   // Platform: browser, Support: stable, Format: umd
+
   const foo = {};
   _exports.foo = foo;
-  const optionalChain = foo === null || foo === void 0 ? void 0 : foo.bar;
+  const optionalChain = foo?.bar;
   _exports.optionalChain = optionalChain;
-  const nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
+  const nullCoalesc = foo ?? 0;
   _exports.nullCoalesc = nullCoalesc;
-  (_foo$bar = foo.bar) !== null && _foo$bar !== void 0 ? _foo$bar : foo.bar = 'bar';
-  foo.baz || (foo.baz = 'baz');
+  foo.bar ??= 'bar';
+  foo.baz ||= 'baz';
 });
 //# sourceMappingURL=index-browser-stable-umd.js.map
 ",
@@ -327,6 +328,7 @@ exports[`New syntax babel transforms example test case: native-current-lib 1`] =
   "lib/index-native-current-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: current, Format: lib
+
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -350,6 +352,7 @@ exports[`New syntax babel transforms example test case: native-experimental-lib 
   "lib/index-native-experimental-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: experimental, Format: lib
+
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -373,10 +376,10 @@ exports[`New syntax babel transforms example test case: native-legacy-lib 1`] = 
   "lib/index-native-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: legacy, Format: lib
+
 'use strict';
 
 var _foo$bar;
-
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
@@ -398,10 +401,10 @@ exports[`New syntax babel transforms example test case: native-stable-lib 1`] = 
   "lib/index-native-stable-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: stable, Format: lib
+
 'use strict';
 
 var _foo$bar;
-
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
@@ -435,6 +438,7 @@ exports[`New syntax babel transforms example test case: node-current-cjs 2`] = `
   "cjs/index-node-current-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: cjs
+
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -458,6 +462,7 @@ exports[`New syntax babel transforms example test case: node-current-lib 1`] = `
   "lib/index-node-current-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: lib
+
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -481,6 +486,7 @@ exports[`New syntax babel transforms example test case: node-current-mjs 1`] = `
   "mjs/index-node-current-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: mjs
+
 const foo = {};
 const optionalChain = foo?.bar;
 const nullCoalesc = foo ?? 0;
@@ -509,6 +515,7 @@ exports[`New syntax babel transforms example test case: node-experimental-cjs 2`
   "cjs/index-node-experimental-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: cjs
+
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -532,6 +539,7 @@ exports[`New syntax babel transforms example test case: node-experimental-lib 1`
   "lib/index-node-experimental-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: lib
+
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -555,6 +563,7 @@ exports[`New syntax babel transforms example test case: node-experimental-mjs 1`
   "mjs/index-node-experimental-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: mjs
+
 const foo = {};
 const optionalChain = foo?.bar;
 const nullCoalesc = foo ?? 0;
@@ -583,10 +592,10 @@ exports[`New syntax babel transforms example test case: node-legacy-cjs 2`] = `
   "cjs/index-node-legacy-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: cjs
+
 'use strict';
 
 var _foo$bar;
-
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
@@ -608,10 +617,10 @@ exports[`New syntax babel transforms example test case: node-legacy-lib 1`] = `
   "lib/index-node-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: lib
+
 'use strict';
 
 var _foo$bar;
-
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
@@ -632,9 +641,9 @@ exports[`New syntax babel transforms example test case: node-legacy-mjs 1`] = `
 [
   "mjs/index-node-legacy-mjs.mjs",
   "var _foo$bar;
-
 // Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: mjs
+
 const foo = {};
 const optionalChain = foo === null || foo === void 0 ? void 0 : foo.bar;
 const nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
@@ -663,6 +672,7 @@ exports[`New syntax babel transforms example test case: node-stable-cjs 2`] = `
   "cjs/index-node-stable-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: cjs
+
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -686,6 +696,7 @@ exports[`New syntax babel transforms example test case: node-stable-lib 1`] = `
   "lib/index-node-stable-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: lib
+
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -709,6 +720,7 @@ exports[`New syntax babel transforms example test case: node-stable-mjs 1`] = `
   "mjs/index-node-stable-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: mjs
+
 const foo = {};
 const optionalChain = foo?.bar;
 const nullCoalesc = foo ?? 0;
