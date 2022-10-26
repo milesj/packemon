@@ -10513,6 +10513,8 @@ function relative(from, to) {
     outputParts = outputParts.concat(toParts.slice(samePartsLength));
     return outputParts.join('/');
 }
+var sep = '/';
+var delimiter = ':';
 function dirname(path) {
     var result = splitPath(path), root = result[0], dir = result[1];
     if (!root && !dir) // No dirname whatsoever
@@ -10534,8 +10536,8 @@ const path = {
     extname: extname,
     basename: basename,
     dirname: dirname,
-    sep: '/',
-    delimiter: ':',
+    sep: sep,
+    delimiter: delimiter,
     relative: relative,
     join: join,
     isAbsolute: isAbsolute,
@@ -11040,6 +11042,8 @@ function relative(from, to) {
     outputParts = outputParts.concat(toParts.slice(samePartsLength));
     return outputParts.join('/');
 }
+var sep = '/';
+var delimiter = ':';
 function dirname(path) {
     var result = splitPath(path), root = result[0], dir = result[1];
     if (!root && !dir) // No dirname whatsoever
@@ -11061,8 +11065,8 @@ const path = {
     extname: extname,
     basename: basename,
     dirname: dirname,
-    sep: '/',
-    delimiter: ':',
+    sep: sep,
+    delimiter: delimiter,
     relative: relative,
     join: join,
     isAbsolute: isAbsolute,
@@ -11585,6 +11589,8 @@ exports[`Node polyfills swc transforms example test case: browser-current-umd 1`
         outputParts = outputParts.concat(toParts.slice(samePartsLength));
         return outputParts.join('/');
     }
+    var sep = '/';
+    var delimiter = ':';
     function dirname(path) {
         var result = splitPath(path), root = result[0], dir = result[1];
         if (!root && !dir) // No dirname whatsoever
@@ -11606,8 +11612,8 @@ exports[`Node polyfills swc transforms example test case: browser-current-umd 1`
         extname: extname,
         basename: basename,
         dirname: dirname,
-        sep: '/',
-        delimiter: ':',
+        sep: sep,
+        delimiter: delimiter,
         relative: relative,
         join: join,
         isAbsolute: isAbsolute,
@@ -12108,6 +12114,8 @@ function relative(from, to) {
     outputParts = outputParts.concat(toParts.slice(samePartsLength));
     return outputParts.join('/');
 }
+var sep = '/';
+var delimiter = ':';
 function dirname(path) {
     var result = splitPath(path), root = result[0], dir = result[1];
     if (!root && !dir) // No dirname whatsoever
@@ -12129,8 +12137,8 @@ const path = {
     extname: extname,
     basename: basename,
     dirname: dirname,
-    sep: '/',
-    delimiter: ':',
+    sep: sep,
+    delimiter: delimiter,
     relative: relative,
     join: join,
     isAbsolute: isAbsolute,
@@ -12635,6 +12643,8 @@ function relative(from, to) {
     outputParts = outputParts.concat(toParts.slice(samePartsLength));
     return outputParts.join('/');
 }
+var sep = '/';
+var delimiter = ':';
 function dirname(path) {
     var result = splitPath(path), root = result[0], dir = result[1];
     if (!root && !dir) // No dirname whatsoever
@@ -12656,8 +12666,8 @@ const path = {
     extname: extname,
     basename: basename,
     dirname: dirname,
-    sep: '/',
-    delimiter: ':',
+    sep: sep,
+    delimiter: delimiter,
     relative: relative,
     join: join,
     isAbsolute: isAbsolute,
@@ -13180,6 +13190,8 @@ exports[`Node polyfills swc transforms example test case: browser-experimental-u
         outputParts = outputParts.concat(toParts.slice(samePartsLength));
         return outputParts.join('/');
     }
+    var sep = '/';
+    var delimiter = ':';
     function dirname(path) {
         var result = splitPath(path), root = result[0], dir = result[1];
         if (!root && !dir) // No dirname whatsoever
@@ -13201,8 +13213,8 @@ exports[`Node polyfills swc transforms example test case: browser-experimental-u
         extname: extname,
         basename: basename,
         dirname: dirname,
-        sep: '/',
-        delimiter: ':',
+        sep: sep,
+        delimiter: delimiter,
         relative: relative,
         join: join,
         isAbsolute: isAbsolute,
@@ -13788,6 +13800,8 @@ function relative(from, to) {
     outputParts = outputParts.concat(toParts.slice(samePartsLength));
     return outputParts.join("/");
 }
+var sep = "/";
+var delimiter = ":";
 function dirname(path) {
     var result = splitPath(path), root = result[0], dir = result[1];
     if (!root && !dir) // No dirname whatsoever
@@ -13809,8 +13823,8 @@ var path = {
     extname: extname,
     basename: basename,
     dirname: dirname,
-    sep: "/",
-    delimiter: ":",
+    sep: sep,
+    delimiter: delimiter,
     relative: relative,
     join: join,
     isAbsolute: isAbsolute,
@@ -14413,6 +14427,8 @@ function relative(from, to) {
     outputParts = outputParts.concat(toParts.slice(samePartsLength));
     return outputParts.join("/");
 }
+var sep = "/";
+var delimiter = ":";
 function dirname(path) {
     var result = splitPath(path), root = result[0], dir = result[1];
     if (!root && !dir) // No dirname whatsoever
@@ -14434,8 +14450,8 @@ var path = {
     extname: extname,
     basename: basename,
     dirname: dirname,
-    sep: "/",
-    delimiter: ":",
+    sep: sep,
+    delimiter: delimiter,
     relative: relative,
     join: join,
     isAbsolute: isAbsolute,
@@ -15061,6 +15077,8 @@ exports[`Node polyfills swc transforms example test case: browser-legacy-umd 1`]
         outputParts = outputParts.concat(toParts.slice(samePartsLength));
         return outputParts.join("/");
     }
+    var sep = "/";
+    var delimiter = ":";
     function dirname(path) {
         var result = splitPath(path), root = result[0], dir = result[1];
         if (!root && !dir) // No dirname whatsoever
@@ -15082,8 +15100,8 @@ exports[`Node polyfills swc transforms example test case: browser-legacy-umd 1`]
         extname: extname,
         basename: basename,
         dirname: dirname,
-        sep: "/",
-        delimiter: ":",
+        sep: sep,
+        delimiter: delimiter,
         relative: relative,
         join: join,
         isAbsolute: isAbsolute,
@@ -15597,6 +15615,8 @@ function relative(from, to) {
     outputParts = outputParts.concat(toParts.slice(samePartsLength));
     return outputParts.join('/');
 }
+var sep = '/';
+var delimiter = ':';
 function dirname(path) {
     var result = splitPath(path), root = result[0], dir = result[1];
     if (!root && !dir) // No dirname whatsoever
@@ -15618,8 +15638,8 @@ const path = {
     extname: extname,
     basename: basename,
     dirname: dirname,
-    sep: '/',
-    delimiter: ':',
+    sep: sep,
+    delimiter: delimiter,
     relative: relative,
     join: join,
     isAbsolute: isAbsolute,
@@ -16124,6 +16144,8 @@ function relative(from, to) {
     outputParts = outputParts.concat(toParts.slice(samePartsLength));
     return outputParts.join('/');
 }
+var sep = '/';
+var delimiter = ':';
 function dirname(path) {
     var result = splitPath(path), root = result[0], dir = result[1];
     if (!root && !dir) // No dirname whatsoever
@@ -16145,8 +16167,8 @@ const path = {
     extname: extname,
     basename: basename,
     dirname: dirname,
-    sep: '/',
-    delimiter: ':',
+    sep: sep,
+    delimiter: delimiter,
     relative: relative,
     join: join,
     isAbsolute: isAbsolute,
@@ -16669,6 +16691,8 @@ exports[`Node polyfills swc transforms example test case: browser-stable-umd 1`]
         outputParts = outputParts.concat(toParts.slice(samePartsLength));
         return outputParts.join('/');
     }
+    var sep = '/';
+    var delimiter = ':';
     function dirname(path) {
         var result = splitPath(path), root = result[0], dir = result[1];
         if (!root && !dir) // No dirname whatsoever
@@ -16690,8 +16714,8 @@ exports[`Node polyfills swc transforms example test case: browser-stable-umd 1`]
         extname: extname,
         basename: basename,
         dirname: dirname,
-        sep: '/',
-        delimiter: ':',
+        sep: sep,
+        delimiter: delimiter,
         relative: relative,
         join: join,
         isAbsolute: isAbsolute,
@@ -17196,6 +17220,8 @@ function relative(from, to) {
     outputParts = outputParts.concat(toParts.slice(samePartsLength));
     return outputParts.join('/');
 }
+var sep = '/';
+var delimiter = ':';
 function dirname(path) {
     var result = splitPath(path), root = result[0], dir = result[1];
     if (!root && !dir) // No dirname whatsoever
@@ -17217,8 +17243,8 @@ const path = {
     extname: extname,
     basename: basename,
     dirname: dirname,
-    sep: '/',
-    delimiter: ':',
+    sep: sep,
+    delimiter: delimiter,
     relative: relative,
     join: join,
     isAbsolute: isAbsolute,
@@ -17725,6 +17751,8 @@ function relative(from, to) {
     outputParts = outputParts.concat(toParts.slice(samePartsLength));
     return outputParts.join('/');
 }
+var sep = '/';
+var delimiter = ':';
 function dirname(path) {
     var result = splitPath(path), root = result[0], dir = result[1];
     if (!root && !dir) // No dirname whatsoever
@@ -17746,8 +17774,8 @@ const path = {
     extname: extname,
     basename: basename,
     dirname: dirname,
-    sep: '/',
-    delimiter: ':',
+    sep: sep,
+    delimiter: delimiter,
     relative: relative,
     join: join,
     isAbsolute: isAbsolute,
@@ -18254,6 +18282,8 @@ function relative(from, to) {
     outputParts = outputParts.concat(toParts.slice(samePartsLength));
     return outputParts.join("/");
 }
+var sep = "/";
+var delimiter = ":";
 function dirname(path) {
     var result = splitPath(path), root = result[0], dir = result[1];
     if (!root && !dir) // No dirname whatsoever
@@ -18275,8 +18305,8 @@ const path = {
     extname: extname,
     basename: basename,
     dirname: dirname,
-    sep: "/",
-    delimiter: ":",
+    sep: sep,
+    delimiter: delimiter,
     relative: relative,
     join: join,
     isAbsolute: isAbsolute,
@@ -18783,6 +18813,8 @@ function relative(from, to) {
     outputParts = outputParts.concat(toParts.slice(samePartsLength));
     return outputParts.join('/');
 }
+var sep = '/';
+var delimiter = ':';
 function dirname(path) {
     var result = splitPath(path), root = result[0], dir = result[1];
     if (!root && !dir) // No dirname whatsoever
@@ -18804,8 +18836,8 @@ const path = {
     extname: extname,
     basename: basename,
     dirname: dirname,
-    sep: '/',
-    delimiter: ':',
+    sep: sep,
+    delimiter: delimiter,
     relative: relative,
     join: join,
     isAbsolute: isAbsolute,
