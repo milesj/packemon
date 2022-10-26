@@ -23,14 +23,14 @@ to their configured build targets (platform, formats, etc).
 
 Build supports the following command line options.
 
-- `--addEngines` - Add Node.js and npm `engine` versions to each `package.json` when `platform` is
+- `--addEngines` - Add Node.js `engine` versions to `package.json` when `platform` is
   `node`. Uses the `support` setting to determine the version range.
-- `--addExports` - Add `exports` fields to each `package.json`, based on `api`, `bundle`, and
-  `inputs`. This is an experimental Node.js feature and may not work correctly
+- `--addExports` - Add `exports` fields to `package.json`, based on `api`, `bundle`, and `inputs`.
+  This is an experimental Node.js feature and may not work correctly
   ([more information](https://nodejs.org/api/packages.html#packages_package_entry_points)).
-- `--addFiles` - Add `files` whitelist entries to each `package.json`.
+- `--addFiles` - Add `files` whitelist entries to `package.json`.
 - `--concurrency` - Number of builds to run in parallel. Defaults to operating system CPU count.
-- `--declaration` - Generate TypeScript declarations for each package.
+- `--declaration` - Generate TypeScript declarations for the package.
 - `--filter` - Filter packages to build based on their name in `package.json`.
 - `--formats`, `-f` - Only generate specific output `format`s.
 - `--loadConfigs` - Search and load config files for customizing Babel and Rollup.

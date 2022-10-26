@@ -144,7 +144,7 @@ describe('Packemon', () => {
 			});
 		});
 
-		describe.skip('engines', () => {
+		describe('engines', () => {
 			it('does nothing if `addEngines` is false', async () => {
 				pkg.artifacts.push(createCodeArtifact([{ format: 'lib' }], 'browser'));
 
@@ -161,12 +161,12 @@ describe('Packemon', () => {
 				expect(pkg.json.engines).toBeUndefined();
 			});
 
-			it('adds npm and node engines for `node` build', async () => {
+			it('adds node engines for `node` build', async () => {
 				pkg.artifacts.push(createCodeArtifact([{ format: 'lib' }]));
 
 				await pkg.build({ addEngines: true }, config);
 
-				expect(pkg.json.engines).toEqual({ node: '>=14.15.0', npm: '>=6.14.0' });
+				expect(pkg.json.engines).toEqual({ node: '>=14.15.0' });
 			});
 
 			it('uses oldest `node` build', async () => {
@@ -178,7 +178,7 @@ describe('Packemon', () => {
 
 				await pkg.build({ addEngines: true }, config);
 
-				expect(pkg.json.engines).toEqual({ node: '>=12.22.0', npm: '>=6.14.0' });
+				expect(pkg.json.engines).toEqual({ node: '>=12.22.0' });
 			});
 
 			it('merges with existing engines', async () => {
@@ -195,7 +195,6 @@ describe('Packemon', () => {
 				expect(pkg.json.engines).toEqual({
 					packemon: '*',
 					node: '>=14.15.0',
-					npm: '>=6.14.0',
 				});
 			});
 		});
