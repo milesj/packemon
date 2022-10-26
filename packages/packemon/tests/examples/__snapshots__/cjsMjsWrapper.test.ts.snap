@@ -4277,7 +4277,7 @@ const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty(
 }, Symbol.toStringTag, {
     value: 'Module'
 }));
-let a;
+let a = 'abc';
 const b = 123;
 const { c  } = {
     c: true
@@ -4293,6 +4293,7 @@ const arrowFunc = ()=>{};
 const CONST = 123;
 let DefaultClass = class DefaultClass {
 };
+// Types should be ignored
 export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, foo as fooRenamed, func, helpers as ns1, helpers as ns2, helpers as ns3 };
 //# sourceMappingURL=index-browser-current-esm.js.map
 ",
@@ -4331,6 +4332,7 @@ const arrowFunc = ()=>{};
 const CONST = 123;
 let DefaultClass = class DefaultClass {
 };
+// Types should be ignored
 exports.CONST = CONST;
 exports.ClassName = ClassName;
 exports.a = a;
@@ -4374,6 +4376,7 @@ exports[`CJS -> MJS wrapper swc transforms example test case: browser-current-um
         });
     }
     _export(exports, {
+        // Types should be ignored
         CONST: ()=>CONST,
         ClassName: ()=>ClassName,
         a: ()=>a,
@@ -4399,7 +4402,7 @@ exports[`CJS -> MJS wrapper swc transforms example test case: browser-current-um
         foo,
         bar
     });
-    let a;
+    let a = 'abc';
     const b = 123;
     const { c  } = {
         c: true
@@ -4435,7 +4438,7 @@ const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty(
 }, Symbol.toStringTag, {
     value: 'Module'
 }));
-let a;
+let a = 'abc';
 const b = 123;
 const { c  } = {
     c: true
@@ -4451,6 +4454,7 @@ const arrowFunc = ()=>{};
 const CONST = 123;
 let DefaultClass = class DefaultClass {
 };
+// Types should be ignored
 export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, foo as fooRenamed, func, helpers as ns1, helpers as ns2, helpers as ns3 };
 //# sourceMappingURL=index-browser-experimental-esm.js.map
 ",
@@ -4489,6 +4493,7 @@ const arrowFunc = ()=>{};
 const CONST = 123;
 let DefaultClass = class DefaultClass {
 };
+// Types should be ignored
 exports.CONST = CONST;
 exports.ClassName = ClassName;
 exports.a = a;
@@ -4532,6 +4537,7 @@ exports[`CJS -> MJS wrapper swc transforms example test case: browser-experiment
         });
     }
     _export(exports, {
+        // Types should be ignored
         CONST: ()=>CONST,
         ClassName: ()=>ClassName,
         a: ()=>a,
@@ -4557,7 +4563,7 @@ exports[`CJS -> MJS wrapper swc transforms example test case: browser-experiment
         foo,
         bar
     });
-    let a;
+    let a = 'abc';
     const b = 123;
     const { c  } = {
         c: true
@@ -4598,7 +4604,7 @@ var helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty({
 }, Symbol.toStringTag, {
     value: "Module"
 }));
-var a;
+var a = "abc";
 var b = 123;
 var c = {
     c: true
@@ -4616,6 +4622,7 @@ var DefaultClass = function DefaultClass() {
     "use strict";
     _classCallCheck(this, DefaultClass);
 };
+// Types should be ignored
 export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, foo as fooRenamed, func, helpers as ns1, helpers as ns2, helpers as ns3 };
 //# sourceMappingURL=index-browser-legacy-esm.js.map
 ",
@@ -4659,6 +4666,7 @@ var CONST = 123;
 var DefaultClass = function DefaultClass() {
     _classCallCheck(this, DefaultClass);
 };
+// Types should be ignored
 exports.CONST = CONST;
 exports.ClassName = ClassName;
 exports.a = a;
@@ -4702,6 +4710,7 @@ exports[`CJS -> MJS wrapper swc transforms example test case: browser-legacy-umd
         });
     }
     _export(exports, {
+        // Types should be ignored
         CONST: function() {
             return CONST;
         },
@@ -4766,7 +4775,7 @@ exports[`CJS -> MJS wrapper swc transforms example test case: browser-legacy-umd
         foo: foo,
         bar: bar
     });
-    var a;
+    var a = "abc";
     var b = 123;
     var c = {
         c: true
@@ -4804,7 +4813,7 @@ const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty(
 }, Symbol.toStringTag, {
     value: 'Module'
 }));
-let a;
+let a = 'abc';
 const b = 123;
 const { c  } = {
     c: true
@@ -4820,6 +4829,7 @@ const arrowFunc = ()=>{};
 const CONST = 123;
 let DefaultClass = class DefaultClass {
 };
+// Types should be ignored
 export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, foo as fooRenamed, func, helpers as ns1, helpers as ns2, helpers as ns3 };
 //# sourceMappingURL=index-browser-stable-esm.js.map
 ",
@@ -4858,6 +4868,7 @@ const arrowFunc = ()=>{};
 const CONST = 123;
 let DefaultClass = class DefaultClass {
 };
+// Types should be ignored
 exports.CONST = CONST;
 exports.ClassName = ClassName;
 exports.a = a;
@@ -4901,6 +4912,7 @@ exports[`CJS -> MJS wrapper swc transforms example test case: browser-stable-umd
         });
     }
     _export(exports, {
+        // Types should be ignored
         CONST: ()=>CONST,
         ClassName: ()=>ClassName,
         a: ()=>a,
@@ -4926,7 +4938,7 @@ exports[`CJS -> MJS wrapper swc transforms example test case: browser-stable-umd
         foo,
         bar
     });
-    let a;
+    let a = 'abc';
     const b = 123;
     const { c  } = {
         c: true
@@ -4980,6 +4992,7 @@ const arrowFunc = ()=>{};
 const CONST = 123;
 let DefaultClass = class DefaultClass {
 };
+// Types should be ignored
 exports.CONST = CONST;
 exports.ClassName = ClassName;
 exports.a = a;
@@ -5034,6 +5047,7 @@ const arrowFunc = ()=>{};
 const CONST = 123;
 let DefaultClass = class DefaultClass {
 };
+// Types should be ignored
 exports.CONST = CONST;
 exports.ClassName = ClassName;
 exports.a = a;
@@ -5088,6 +5102,7 @@ const arrowFunc = ()=>{};
 const CONST = 123;
 let DefaultClass = class DefaultClass {
 };
+// Types should be ignored
 exports.CONST = CONST;
 exports.ClassName = ClassName;
 exports.a = a;
@@ -5142,6 +5157,7 @@ const arrowFunc = ()=>{};
 const CONST = 123;
 let DefaultClass = class DefaultClass {
 };
+// Types should be ignored
 exports.CONST = CONST;
 exports.ClassName = ClassName;
 exports.a = a;
@@ -5209,6 +5225,7 @@ const arrowFunc = ()=>{};
 const CONST = 123;
 let DefaultClass = class DefaultClass {
 };
+// Types should be ignored
 exports.CONST = CONST;
 exports.ClassName = ClassName;
 exports.a = a;
@@ -5263,6 +5280,7 @@ const arrowFunc = ()=>{};
 const CONST = 123;
 let DefaultClass = class DefaultClass {
 };
+// Types should be ignored
 exports.CONST = CONST;
 exports.ClassName = ClassName;
 exports.a = a;
@@ -5299,7 +5317,7 @@ const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty(
 }, Symbol.toStringTag, {
     value: 'Module'
 }));
-let a;
+let a = 'abc';
 const b = 123;
 const { c  } = {
     c: true
@@ -5315,6 +5333,7 @@ const arrowFunc = ()=>{};
 const CONST = 123;
 let DefaultClass = class DefaultClass {
 };
+// Types should be ignored
 export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, foo as fooRenamed, func, helpers as ns1, helpers as ns2, helpers as ns3 };
 //# sourceMappingURL=index-node-current-mjs.mjs.map
 ",
@@ -5366,6 +5385,7 @@ const arrowFunc = ()=>{};
 const CONST = 123;
 let DefaultClass = class DefaultClass {
 };
+// Types should be ignored
 exports.CONST = CONST;
 exports.ClassName = ClassName;
 exports.a = a;
@@ -5420,6 +5440,7 @@ const arrowFunc = ()=>{};
 const CONST = 123;
 let DefaultClass = class DefaultClass {
 };
+// Types should be ignored
 exports.CONST = CONST;
 exports.ClassName = ClassName;
 exports.a = a;
@@ -5456,7 +5477,7 @@ const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty(
 }, Symbol.toStringTag, {
     value: 'Module'
 }));
-let a;
+let a = 'abc';
 const b = 123;
 const { c  } = {
     c: true
@@ -5472,6 +5493,7 @@ const arrowFunc = ()=>{};
 const CONST = 123;
 let DefaultClass = class DefaultClass {
 };
+// Types should be ignored
 export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, foo as fooRenamed, func, helpers as ns1, helpers as ns2, helpers as ns3 };
 //# sourceMappingURL=index-node-experimental-mjs.mjs.map
 ",
@@ -5523,6 +5545,7 @@ const arrowFunc = ()=>{};
 const CONST = 123;
 let DefaultClass = class DefaultClass {
 };
+// Types should be ignored
 exports.CONST = CONST;
 exports.ClassName = ClassName;
 exports.a = a;
@@ -5577,6 +5600,7 @@ const arrowFunc = ()=>{};
 const CONST = 123;
 let DefaultClass = class DefaultClass {
 };
+// Types should be ignored
 exports.CONST = CONST;
 exports.ClassName = ClassName;
 exports.a = a;
@@ -5613,7 +5637,7 @@ const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty(
 }, Symbol.toStringTag, {
     value: "Module"
 }));
-let a;
+let a = "abc";
 const b = 123;
 const { c  } = {
     c: true
@@ -5629,6 +5653,7 @@ const arrowFunc = ()=>{};
 const CONST = 123;
 let DefaultClass = class DefaultClass {
 };
+// Types should be ignored
 export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, foo as fooRenamed, func, helpers as ns1, helpers as ns2, helpers as ns3 };
 //# sourceMappingURL=index-node-legacy-mjs.mjs.map
 ",
@@ -5680,6 +5705,7 @@ const arrowFunc = ()=>{};
 const CONST = 123;
 let DefaultClass = class DefaultClass {
 };
+// Types should be ignored
 exports.CONST = CONST;
 exports.ClassName = ClassName;
 exports.a = a;
@@ -5734,6 +5760,7 @@ const arrowFunc = ()=>{};
 const CONST = 123;
 let DefaultClass = class DefaultClass {
 };
+// Types should be ignored
 exports.CONST = CONST;
 exports.ClassName = ClassName;
 exports.a = a;
@@ -5770,7 +5797,7 @@ const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty(
 }, Symbol.toStringTag, {
     value: 'Module'
 }));
-let a;
+let a = 'abc';
 const b = 123;
 const { c  } = {
     c: true
@@ -5786,6 +5813,7 @@ const arrowFunc = ()=>{};
 const CONST = 123;
 let DefaultClass = class DefaultClass {
 };
+// Types should be ignored
 export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, foo as fooRenamed, func, helpers as ns1, helpers as ns2, helpers as ns3 };
 //# sourceMappingURL=index-node-stable-mjs.mjs.map
 ",
