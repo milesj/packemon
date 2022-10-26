@@ -101,7 +101,7 @@ export class Package {
 
 		// Add package `files` whitelist
 		if (options.addFiles) {
-			// this.addFiles();
+			this.addFiles();
 		}
 
 		// Stamp with a timestamp
@@ -379,6 +379,30 @@ export class Package {
 
 	async syncJson() {
 		await fs.writeJson(this.jsonPath.path(), this.json, { spaces: 2 });
+	}
+
+	protected addFiles() {
+		this.debug('Adding files to `package.json`');
+
+		const files = new Set<string>(this.json.files);
+
+		try {
+			if (this.path.append('assets').exists()) {
+				files.add('assets/**/*');
+			}
+		} catch {
+			// May throw ENOENT
+		}
+
+		this.artifacts.forEach((artifact) => {
+			artifact.builds.forEach(({ format }) => {
+				files.add(`${format}/**/*`);
+			});
+
+			files.add(`src/**/*`);
+		});
+
+		this.json.files = [...files].sort();
 	}
 
 	/**
