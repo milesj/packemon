@@ -5,6 +5,7 @@ exports[`JSON imports babel transforms example test case: browser-current-esm 1`
   "esm/index-browser-current-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: esm
+
 const data = {
   list: ["foo", "bar", "baz"],
   number: 123,
@@ -12,8 +13,9 @@ const data = {
   object: {
     foo: true
   }
-}; // @ts-expect-error resolveJsonModule is not on
+};
 
+// @ts-expect-error resolveJsonModule is not on
 const keys = Object.keys(data);
 export { keys };
 //# sourceMappingURL=index-browser-current-esm.js.map
@@ -26,6 +28,7 @@ exports[`JSON imports babel transforms example test case: browser-current-lib 1`
   "lib/index-browser-current-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: lib
+
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -38,8 +41,9 @@ const data = {
   object: {
     foo: true
   }
-}; // @ts-expect-error resolveJsonModule is not on
+};
 
+// @ts-expect-error resolveJsonModule is not on
 const keys = Object.keys(data);
 exports.keys = keys;
 //# sourceMappingURL=index-browser-current-lib.js.map
@@ -71,6 +75,7 @@ exports[`JSON imports babel transforms example test case: browser-current-umd 1`
   _exports.keys = void 0;
   // Bundled with Packemon: https://packemon.dev
   // Platform: browser, Support: current, Format: umd
+
   const data = {
     list: ["foo", "bar", "baz"],
     number: 123,
@@ -78,8 +83,9 @@ exports[`JSON imports babel transforms example test case: browser-current-umd 1`
     object: {
       foo: true
     }
-  }; // @ts-expect-error resolveJsonModule is not on
+  };
 
+  // @ts-expect-error resolveJsonModule is not on
   const keys = Object.keys(data);
   _exports.keys = keys;
 });
@@ -93,6 +99,7 @@ exports[`JSON imports babel transforms example test case: browser-experimental-e
   "esm/index-browser-experimental-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: experimental, Format: esm
+
 const data = {
   list: ["foo", "bar", "baz"],
   number: 123,
@@ -100,8 +107,9 @@ const data = {
   object: {
     foo: true
   }
-}; // @ts-expect-error resolveJsonModule is not on
+};
 
+// @ts-expect-error resolveJsonModule is not on
 const keys = Object.keys(data);
 export { keys };
 //# sourceMappingURL=index-browser-experimental-esm.js.map
@@ -114,6 +122,7 @@ exports[`JSON imports babel transforms example test case: browser-experimental-l
   "lib/index-browser-experimental-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: experimental, Format: lib
+
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -126,8 +135,9 @@ const data = {
   object: {
     foo: true
   }
-}; // @ts-expect-error resolveJsonModule is not on
+};
 
+// @ts-expect-error resolveJsonModule is not on
 const keys = Object.keys(data);
 exports.keys = keys;
 //# sourceMappingURL=index-browser-experimental-lib.js.map
@@ -159,6 +169,7 @@ exports[`JSON imports babel transforms example test case: browser-experimental-u
   _exports.keys = void 0;
   // Bundled with Packemon: https://packemon.dev
   // Platform: browser, Support: experimental, Format: umd
+
   const data = {
     list: ["foo", "bar", "baz"],
     number: 123,
@@ -166,8 +177,9 @@ exports[`JSON imports babel transforms example test case: browser-experimental-u
     object: {
       foo: true
     }
-  }; // @ts-expect-error resolveJsonModule is not on
+  };
 
+  // @ts-expect-error resolveJsonModule is not on
   const keys = Object.keys(data);
   _exports.keys = keys;
 });
@@ -181,6 +193,7 @@ exports[`JSON imports babel transforms example test case: browser-legacy-esm 1`]
   "esm/index-browser-legacy-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: esm
+
 var data = {
   list: ["foo", "bar", "baz"],
   number: 123,
@@ -188,8 +201,9 @@ var data = {
   object: {
     foo: true
   }
-}; // @ts-expect-error resolveJsonModule is not on
+};
 
+// @ts-expect-error resolveJsonModule is not on
 var keys = Object.keys(data);
 export { keys };
 //# sourceMappingURL=index-browser-legacy-esm.js.map
@@ -202,6 +216,7 @@ exports[`JSON imports babel transforms example test case: browser-legacy-lib 1`]
   "lib/index-browser-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: lib
+
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -214,8 +229,9 @@ var data = {
   object: {
     foo: true
   }
-}; // @ts-expect-error resolveJsonModule is not on
+};
 
+// @ts-expect-error resolveJsonModule is not on
 var keys = Object.keys(data);
 exports.keys = keys;
 //# sourceMappingURL=index-browser-legacy-lib.js.map
@@ -247,6 +263,7 @@ exports[`JSON imports babel transforms example test case: browser-legacy-umd 1`]
   _exports.keys = void 0;
   // Bundled with Packemon: https://packemon.dev
   // Platform: browser, Support: legacy, Format: umd
+
   var data = {
     list: ["foo", "bar", "baz"],
     number: 123,
@@ -254,8 +271,9 @@ exports[`JSON imports babel transforms example test case: browser-legacy-umd 1`]
     object: {
       foo: true
     }
-  }; // @ts-expect-error resolveJsonModule is not on
+  };
 
+  // @ts-expect-error resolveJsonModule is not on
   var keys = Object.keys(data);
   _exports.keys = keys;
 });
@@ -269,6 +287,7 @@ exports[`JSON imports babel transforms example test case: browser-stable-esm 1`]
   "esm/index-browser-stable-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: esm
+
 const data = {
   list: ["foo", "bar", "baz"],
   number: 123,
@@ -276,8 +295,9 @@ const data = {
   object: {
     foo: true
   }
-}; // @ts-expect-error resolveJsonModule is not on
+};
 
+// @ts-expect-error resolveJsonModule is not on
 const keys = Object.keys(data);
 export { keys };
 //# sourceMappingURL=index-browser-stable-esm.js.map
@@ -290,6 +310,7 @@ exports[`JSON imports babel transforms example test case: browser-stable-lib 1`]
   "lib/index-browser-stable-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: lib
+
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -302,8 +323,9 @@ const data = {
   object: {
     foo: true
   }
-}; // @ts-expect-error resolveJsonModule is not on
+};
 
+// @ts-expect-error resolveJsonModule is not on
 const keys = Object.keys(data);
 exports.keys = keys;
 //# sourceMappingURL=index-browser-stable-lib.js.map
@@ -335,6 +357,7 @@ exports[`JSON imports babel transforms example test case: browser-stable-umd 1`]
   _exports.keys = void 0;
   // Bundled with Packemon: https://packemon.dev
   // Platform: browser, Support: stable, Format: umd
+
   const data = {
     list: ["foo", "bar", "baz"],
     number: 123,
@@ -342,8 +365,9 @@ exports[`JSON imports babel transforms example test case: browser-stable-umd 1`]
     object: {
       foo: true
     }
-  }; // @ts-expect-error resolveJsonModule is not on
+  };
 
+  // @ts-expect-error resolveJsonModule is not on
   const keys = Object.keys(data);
   _exports.keys = keys;
 });
@@ -357,6 +381,7 @@ exports[`JSON imports babel transforms example test case: native-current-lib 1`]
   "lib/index-native-current-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: current, Format: lib
+
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -369,8 +394,9 @@ const data = {
   object: {
     foo: true
   }
-}; // @ts-expect-error resolveJsonModule is not on
+};
 
+// @ts-expect-error resolveJsonModule is not on
 const keys = Object.keys(data);
 exports.keys = keys;
 //# sourceMappingURL=index-native-current-lib.js.map
@@ -383,6 +409,7 @@ exports[`JSON imports babel transforms example test case: native-experimental-li
   "lib/index-native-experimental-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: experimental, Format: lib
+
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -395,8 +422,9 @@ const data = {
   object: {
     foo: true
   }
-}; // @ts-expect-error resolveJsonModule is not on
+};
 
+// @ts-expect-error resolveJsonModule is not on
 const keys = Object.keys(data);
 exports.keys = keys;
 //# sourceMappingURL=index-native-experimental-lib.js.map
@@ -409,6 +437,7 @@ exports[`JSON imports babel transforms example test case: native-legacy-lib 1`] 
   "lib/index-native-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: legacy, Format: lib
+
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -421,8 +450,9 @@ const data = {
   object: {
     foo: true
   }
-}; // @ts-expect-error resolveJsonModule is not on
+};
 
+// @ts-expect-error resolveJsonModule is not on
 const keys = Object.keys(data);
 exports.keys = keys;
 //# sourceMappingURL=index-native-legacy-lib.js.map
@@ -435,6 +465,7 @@ exports[`JSON imports babel transforms example test case: native-stable-lib 1`] 
   "lib/index-native-stable-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: stable, Format: lib
+
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -447,8 +478,9 @@ const data = {
   object: {
     foo: true
   }
-}; // @ts-expect-error resolveJsonModule is not on
+};
 
+// @ts-expect-error resolveJsonModule is not on
 const keys = Object.keys(data);
 exports.keys = keys;
 //# sourceMappingURL=index-native-stable-lib.js.map
@@ -473,6 +505,7 @@ exports[`JSON imports babel transforms example test case: node-current-cjs 2`] =
   "cjs/index-node-current-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: cjs
+
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -485,8 +518,9 @@ const data = {
   object: {
     foo: true
   }
-}; // @ts-expect-error resolveJsonModule is not on
+};
 
+// @ts-expect-error resolveJsonModule is not on
 const keys = Object.keys(data);
 exports.keys = keys;
 //# sourceMappingURL=index-node-current-cjs.cjs.map
@@ -499,6 +533,7 @@ exports[`JSON imports babel transforms example test case: node-current-lib 1`] =
   "lib/index-node-current-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: lib
+
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -511,8 +546,9 @@ const data = {
   object: {
     foo: true
   }
-}; // @ts-expect-error resolveJsonModule is not on
+};
 
+// @ts-expect-error resolveJsonModule is not on
 const keys = Object.keys(data);
 exports.keys = keys;
 //# sourceMappingURL=index-node-current-lib.js.map
@@ -525,6 +561,7 @@ exports[`JSON imports babel transforms example test case: node-current-mjs 1`] =
   "mjs/index-node-current-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: mjs
+
 const data = {
   list: ["foo", "bar", "baz"],
   number: 123,
@@ -532,8 +569,9 @@ const data = {
   object: {
     foo: true
   }
-}; // @ts-expect-error resolveJsonModule is not on
+};
 
+// @ts-expect-error resolveJsonModule is not on
 const keys = Object.keys(data);
 export { keys };
 //# sourceMappingURL=index-node-current-mjs.mjs.map
@@ -558,6 +596,7 @@ exports[`JSON imports babel transforms example test case: node-experimental-cjs 
   "cjs/index-node-experimental-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: cjs
+
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -570,8 +609,9 @@ const data = {
   object: {
     foo: true
   }
-}; // @ts-expect-error resolveJsonModule is not on
+};
 
+// @ts-expect-error resolveJsonModule is not on
 const keys = Object.keys(data);
 exports.keys = keys;
 //# sourceMappingURL=index-node-experimental-cjs.cjs.map
@@ -584,6 +624,7 @@ exports[`JSON imports babel transforms example test case: node-experimental-lib 
   "lib/index-node-experimental-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: lib
+
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -596,8 +637,9 @@ const data = {
   object: {
     foo: true
   }
-}; // @ts-expect-error resolveJsonModule is not on
+};
 
+// @ts-expect-error resolveJsonModule is not on
 const keys = Object.keys(data);
 exports.keys = keys;
 //# sourceMappingURL=index-node-experimental-lib.js.map
@@ -610,6 +652,7 @@ exports[`JSON imports babel transforms example test case: node-experimental-mjs 
   "mjs/index-node-experimental-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: mjs
+
 const data = {
   list: ["foo", "bar", "baz"],
   number: 123,
@@ -617,8 +660,9 @@ const data = {
   object: {
     foo: true
   }
-}; // @ts-expect-error resolveJsonModule is not on
+};
 
+// @ts-expect-error resolveJsonModule is not on
 const keys = Object.keys(data);
 export { keys };
 //# sourceMappingURL=index-node-experimental-mjs.mjs.map
@@ -643,6 +687,7 @@ exports[`JSON imports babel transforms example test case: node-legacy-cjs 2`] = 
   "cjs/index-node-legacy-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: cjs
+
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -655,8 +700,9 @@ const data = {
   object: {
     foo: true
   }
-}; // @ts-expect-error resolveJsonModule is not on
+};
 
+// @ts-expect-error resolveJsonModule is not on
 const keys = Object.keys(data);
 exports.keys = keys;
 //# sourceMappingURL=index-node-legacy-cjs.cjs.map
@@ -669,6 +715,7 @@ exports[`JSON imports babel transforms example test case: node-legacy-lib 1`] = 
   "lib/index-node-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: lib
+
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -681,8 +728,9 @@ const data = {
   object: {
     foo: true
   }
-}; // @ts-expect-error resolveJsonModule is not on
+};
 
+// @ts-expect-error resolveJsonModule is not on
 const keys = Object.keys(data);
 exports.keys = keys;
 //# sourceMappingURL=index-node-legacy-lib.js.map
@@ -695,6 +743,7 @@ exports[`JSON imports babel transforms example test case: node-legacy-mjs 1`] = 
   "mjs/index-node-legacy-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: mjs
+
 const data = {
   list: ["foo", "bar", "baz"],
   number: 123,
@@ -702,8 +751,9 @@ const data = {
   object: {
     foo: true
   }
-}; // @ts-expect-error resolveJsonModule is not on
+};
 
+// @ts-expect-error resolveJsonModule is not on
 const keys = Object.keys(data);
 export { keys };
 //# sourceMappingURL=index-node-legacy-mjs.mjs.map
@@ -728,6 +778,7 @@ exports[`JSON imports babel transforms example test case: node-stable-cjs 2`] = 
   "cjs/index-node-stable-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: cjs
+
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -740,8 +791,9 @@ const data = {
   object: {
     foo: true
   }
-}; // @ts-expect-error resolveJsonModule is not on
+};
 
+// @ts-expect-error resolveJsonModule is not on
 const keys = Object.keys(data);
 exports.keys = keys;
 //# sourceMappingURL=index-node-stable-cjs.cjs.map
@@ -754,6 +806,7 @@ exports[`JSON imports babel transforms example test case: node-stable-lib 1`] = 
   "lib/index-node-stable-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: lib
+
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -766,8 +819,9 @@ const data = {
   object: {
     foo: true
   }
-}; // @ts-expect-error resolveJsonModule is not on
+};
 
+// @ts-expect-error resolveJsonModule is not on
 const keys = Object.keys(data);
 exports.keys = keys;
 //# sourceMappingURL=index-node-stable-lib.js.map
@@ -780,6 +834,7 @@ exports[`JSON imports babel transforms example test case: node-stable-mjs 1`] = 
   "mjs/index-node-stable-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: mjs
+
 const data = {
   list: ["foo", "bar", "baz"],
   number: 123,
@@ -787,8 +842,9 @@ const data = {
   object: {
     foo: true
   }
-}; // @ts-expect-error resolveJsonModule is not on
+};
 
+// @ts-expect-error resolveJsonModule is not on
 const keys = Object.keys(data);
 export { keys };
 //# sourceMappingURL=index-node-stable-mjs.mjs.map
