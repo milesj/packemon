@@ -276,7 +276,6 @@ describe('cjsEsmInterop()', () => {
 			await expect(transform('const dir = __dirname;', { filename: 'file.ts' }, { format: 'mjs' }))
 				.resolves.toMatchInlineSnapshot(`
 			"import _path from 'path';
-
 			const dir = _path.dirname(import.meta.url);"
 		`);
 		});
@@ -285,7 +284,6 @@ describe('cjsEsmInterop()', () => {
 			await expect(transform('const dir = __dirname;', { filename: 'file.mjs' }, { format: 'mjs' }))
 				.resolves.toMatchInlineSnapshot(`
 			"import _path from 'path';
-
 			const dir = _path.dirname(import.meta.url);"
 		`);
 		});
@@ -294,7 +292,6 @@ describe('cjsEsmInterop()', () => {
 			await expect(transform('const dir = __dirname;', { filename: 'file.js' }, { format: 'mjs' }))
 				.resolves.toMatchInlineSnapshot(`
 			"import _path from 'path';
-
 			const dir = _path.dirname(import.meta.url);"
 		`);
 		});
@@ -303,7 +300,6 @@ describe('cjsEsmInterop()', () => {
 			await expect(transform('const dir = __dirname;', { filename: 'file.cjs' }, { format: 'mjs' }))
 				.resolves.toMatchInlineSnapshot(`
 			"import _path from 'path';
-
 			const dir = _path.dirname(import.meta.url);"
 		`);
 		});

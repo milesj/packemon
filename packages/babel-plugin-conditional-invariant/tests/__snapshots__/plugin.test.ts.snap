@@ -40,41 +40,33 @@ exports[`conditionalInvariantPlugin() will transform valid expressions 1`] = `
 "if (process.env.NODE_ENV !== 'production') {
   invariant();
 }
-
 if (process.env.NODE_ENV !== 'production') {
   invariant(false);
 }
-
 while (true) {
   if (process.env.NODE_ENV !== 'production') {
     invariant(true);
   }
 }
-
 do {
   if (process.env.NODE_ENV !== 'production') {
     invariant(value === false, 'Some message');
   }
 } while (true);
-
 switch (value) {
   case 1:
     if (process.env.NODE_ENV !== 'production') {
       invariant(value === true, 'Some message');
     }
-
     break;
-
   case 2:
     {
       if (process.env.NODE_ENV !== 'production') {
         invariant(value === true, 'Some message');
       }
-
       break;
     }
 }
-
 if (1) {
   if (process.env.NODE_ENV !== 'production') {
     invariant(!value, 'Some message', 'another arg');

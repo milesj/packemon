@@ -5,12 +5,12 @@ exports[`Async/await babel transforms example test case: browser-current-esm 1`]
   "esm/index-browser-current-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: esm
+
 async function wait() {
   return new Promise(resolve => {
     setTimeout(resolve, 100);
   });
 }
-
 async function run() {
   try {
     await wait();
@@ -18,7 +18,6 @@ async function run() {
     throw new Error('Fail');
   }
 }
-
 export { run, wait };
 //# sourceMappingURL=index-browser-current-esm.js.map
 ",
@@ -30,18 +29,17 @@ exports[`Async/await babel transforms example test case: browser-current-lib 1`]
   "lib/index-browser-current-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: lib
+
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-
 async function wait() {
   return new Promise(resolve => {
     setTimeout(resolve, 100);
   });
 }
-
 async function run() {
   try {
     await wait();
@@ -49,7 +47,6 @@ async function run() {
     throw new Error('Fail');
   }
 }
-
 exports.run = run;
 exports.wait = wait;
 //# sourceMappingURL=index-browser-current-lib.js.map
@@ -80,15 +77,14 @@ exports[`Async/await babel transforms example test case: browser-current-umd 1`]
   });
   _exports.run = run;
   _exports.wait = wait;
-
   // Bundled with Packemon: https://packemon.dev
   // Platform: browser, Support: current, Format: umd
+
   async function wait() {
     return new Promise(resolve => {
       setTimeout(resolve, 100);
     });
   }
-
   async function run() {
     try {
       await wait();
@@ -107,12 +103,12 @@ exports[`Async/await babel transforms example test case: browser-experimental-es
   "esm/index-browser-experimental-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: experimental, Format: esm
+
 async function wait() {
   return new Promise(resolve => {
     setTimeout(resolve, 100);
   });
 }
-
 async function run() {
   try {
     await wait();
@@ -120,7 +116,6 @@ async function run() {
     throw new Error('Fail');
   }
 }
-
 export { run, wait };
 //# sourceMappingURL=index-browser-experimental-esm.js.map
 ",
@@ -132,18 +127,17 @@ exports[`Async/await babel transforms example test case: browser-experimental-li
   "lib/index-browser-experimental-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: experimental, Format: lib
+
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-
 async function wait() {
   return new Promise(resolve => {
     setTimeout(resolve, 100);
   });
 }
-
 async function run() {
   try {
     await wait();
@@ -151,7 +145,6 @@ async function run() {
     throw new Error('Fail');
   }
 }
-
 exports.run = run;
 exports.wait = wait;
 //# sourceMappingURL=index-browser-experimental-lib.js.map
@@ -182,15 +175,14 @@ exports[`Async/await babel transforms example test case: browser-experimental-um
   });
   _exports.run = run;
   _exports.wait = wait;
-
   // Bundled with Packemon: https://packemon.dev
   // Platform: browser, Support: experimental, Format: umd
+
   async function wait() {
     return new Promise(resolve => {
       setTimeout(resolve, 100);
     });
   }
-
   async function run() {
     try {
       await wait();
@@ -208,19 +200,16 @@ exports[`Async/await babel transforms example test case: browser-legacy-esm 1`] 
 [
   "esm/index-browser-legacy-esm.js",
   "function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError("Cannot instantiate an arrow function"); } }
-
 // Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: esm
+
 async function wait() {
   var _this = this;
-
   return new Promise(function (resolve) {
     _newArrowCheck(this, _this);
-
     setTimeout(resolve, 100);
   }.bind(this));
 }
-
 async function run() {
   try {
     await wait();
@@ -228,7 +217,6 @@ async function run() {
     throw new Error('Fail');
   }
 }
-
 export { run, wait };
 //# sourceMappingURL=index-browser-legacy-esm.js.map
 ",
@@ -240,24 +228,20 @@ exports[`Async/await babel transforms example test case: browser-legacy-lib 1`] 
   "lib/index-browser-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: lib
+
 'use strict';
 
 function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError("Cannot instantiate an arrow function"); } }
-
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-
 async function wait() {
   var _this = this;
-
   return new Promise(function (resolve) {
     _newArrowCheck(this, _this);
-
     setTimeout(resolve, 100);
   }.bind(this));
 }
-
 async function run() {
   try {
     await wait();
@@ -265,7 +249,6 @@ async function run() {
     throw new Error('Fail');
   }
 }
-
 exports.run = run;
 exports.wait = wait;
 //# sourceMappingURL=index-browser-legacy-lib.js.map
@@ -296,21 +279,17 @@ exports[`Async/await babel transforms example test case: browser-legacy-umd 1`] 
   });
   _exports.run = run;
   _exports.wait = wait;
-
   function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError("Cannot instantiate an arrow function"); } }
-
   // Bundled with Packemon: https://packemon.dev
   // Platform: browser, Support: legacy, Format: umd
+
   async function wait() {
     var _this = this;
-
     return new Promise(function (resolve) {
       _newArrowCheck(this, _this);
-
       setTimeout(resolve, 100);
     }.bind(this));
   }
-
   async function run() {
     try {
       await wait();
@@ -329,12 +308,12 @@ exports[`Async/await babel transforms example test case: browser-stable-esm 1`] 
   "esm/index-browser-stable-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: esm
+
 async function wait() {
   return new Promise(resolve => {
     setTimeout(resolve, 100);
   });
 }
-
 async function run() {
   try {
     await wait();
@@ -342,7 +321,6 @@ async function run() {
     throw new Error('Fail');
   }
 }
-
 export { run, wait };
 //# sourceMappingURL=index-browser-stable-esm.js.map
 ",
@@ -354,18 +332,17 @@ exports[`Async/await babel transforms example test case: browser-stable-lib 1`] 
   "lib/index-browser-stable-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: lib
+
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-
 async function wait() {
   return new Promise(resolve => {
     setTimeout(resolve, 100);
   });
 }
-
 async function run() {
   try {
     await wait();
@@ -373,7 +350,6 @@ async function run() {
     throw new Error('Fail');
   }
 }
-
 exports.run = run;
 exports.wait = wait;
 //# sourceMappingURL=index-browser-stable-lib.js.map
@@ -404,15 +380,14 @@ exports[`Async/await babel transforms example test case: browser-stable-umd 1`] 
   });
   _exports.run = run;
   _exports.wait = wait;
-
   // Bundled with Packemon: https://packemon.dev
   // Platform: browser, Support: stable, Format: umd
+
   async function wait() {
     return new Promise(resolve => {
       setTimeout(resolve, 100);
     });
   }
-
   async function run() {
     try {
       await wait();
@@ -431,18 +406,17 @@ exports[`Async/await babel transforms example test case: native-current-lib 1`] 
   "lib/index-native-current-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: current, Format: lib
+
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-
 async function wait() {
   return new Promise(resolve => {
     setTimeout(resolve, 100);
   });
 }
-
 async function run() {
   try {
     await wait();
@@ -450,7 +424,6 @@ async function run() {
     throw new Error('Fail');
   }
 }
-
 exports.run = run;
 exports.wait = wait;
 //# sourceMappingURL=index-native-current-lib.js.map
@@ -463,18 +436,17 @@ exports[`Async/await babel transforms example test case: native-experimental-lib
   "lib/index-native-experimental-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: experimental, Format: lib
+
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-
 async function wait() {
   return new Promise(resolve => {
     setTimeout(resolve, 100);
   });
 }
-
 async function run() {
   try {
     await wait();
@@ -482,7 +454,6 @@ async function run() {
     throw new Error('Fail');
   }
 }
-
 exports.run = run;
 exports.wait = wait;
 //# sourceMappingURL=index-native-experimental-lib.js.map
@@ -495,18 +466,17 @@ exports[`Async/await babel transforms example test case: native-legacy-lib 1`] =
   "lib/index-native-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: legacy, Format: lib
+
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-
 async function wait() {
   return new Promise(resolve => {
     setTimeout(resolve, 100);
   });
 }
-
 async function run() {
   try {
     await wait();
@@ -514,7 +484,6 @@ async function run() {
     throw new Error('Fail');
   }
 }
-
 exports.run = run;
 exports.wait = wait;
 //# sourceMappingURL=index-native-legacy-lib.js.map
@@ -527,18 +496,17 @@ exports[`Async/await babel transforms example test case: native-stable-lib 1`] =
   "lib/index-native-stable-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: stable, Format: lib
+
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-
 async function wait() {
   return new Promise(resolve => {
     setTimeout(resolve, 100);
   });
 }
-
 async function run() {
   try {
     await wait();
@@ -546,7 +514,6 @@ async function run() {
     throw new Error('Fail');
   }
 }
-
 exports.run = run;
 exports.wait = wait;
 //# sourceMappingURL=index-native-stable-lib.js.map
@@ -571,18 +538,17 @@ exports[`Async/await babel transforms example test case: node-current-cjs 2`] = 
   "cjs/index-node-current-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: cjs
+
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-
 async function wait() {
   return new Promise(resolve => {
     setTimeout(resolve, 100);
   });
 }
-
 async function run() {
   try {
     await wait();
@@ -590,7 +556,6 @@ async function run() {
     throw new Error('Fail');
   }
 }
-
 exports.run = run;
 exports.wait = wait;
 //# sourceMappingURL=index-node-current-cjs.cjs.map
@@ -603,18 +568,17 @@ exports[`Async/await babel transforms example test case: node-current-lib 1`] = 
   "lib/index-node-current-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: lib
+
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-
 async function wait() {
   return new Promise(resolve => {
     setTimeout(resolve, 100);
   });
 }
-
 async function run() {
   try {
     await wait();
@@ -622,7 +586,6 @@ async function run() {
     throw new Error('Fail');
   }
 }
-
 exports.run = run;
 exports.wait = wait;
 //# sourceMappingURL=index-node-current-lib.js.map
@@ -635,12 +598,12 @@ exports[`Async/await babel transforms example test case: node-current-mjs 1`] = 
   "mjs/index-node-current-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: mjs
+
 async function wait() {
   return new Promise(resolve => {
     setTimeout(resolve, 100);
   });
 }
-
 async function run() {
   try {
     await wait();
@@ -648,7 +611,6 @@ async function run() {
     throw new Error('Fail');
   }
 }
-
 export { run, wait };
 //# sourceMappingURL=index-node-current-mjs.mjs.map
 ",
@@ -672,18 +634,17 @@ exports[`Async/await babel transforms example test case: node-experimental-cjs 2
   "cjs/index-node-experimental-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: cjs
+
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-
 async function wait() {
   return new Promise(resolve => {
     setTimeout(resolve, 100);
   });
 }
-
 async function run() {
   try {
     await wait();
@@ -691,7 +652,6 @@ async function run() {
     throw new Error('Fail');
   }
 }
-
 exports.run = run;
 exports.wait = wait;
 //# sourceMappingURL=index-node-experimental-cjs.cjs.map
@@ -704,18 +664,17 @@ exports[`Async/await babel transforms example test case: node-experimental-lib 1
   "lib/index-node-experimental-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: lib
+
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-
 async function wait() {
   return new Promise(resolve => {
     setTimeout(resolve, 100);
   });
 }
-
 async function run() {
   try {
     await wait();
@@ -723,7 +682,6 @@ async function run() {
     throw new Error('Fail');
   }
 }
-
 exports.run = run;
 exports.wait = wait;
 //# sourceMappingURL=index-node-experimental-lib.js.map
@@ -736,12 +694,12 @@ exports[`Async/await babel transforms example test case: node-experimental-mjs 1
   "mjs/index-node-experimental-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: mjs
+
 async function wait() {
   return new Promise(resolve => {
     setTimeout(resolve, 100);
   });
 }
-
 async function run() {
   try {
     await wait();
@@ -749,7 +707,6 @@ async function run() {
     throw new Error('Fail');
   }
 }
-
 export { run, wait };
 //# sourceMappingURL=index-node-experimental-mjs.mjs.map
 ",
@@ -773,18 +730,17 @@ exports[`Async/await babel transforms example test case: node-legacy-cjs 2`] = `
   "cjs/index-node-legacy-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: cjs
+
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-
 async function wait() {
   return new Promise(resolve => {
     setTimeout(resolve, 100);
   });
 }
-
 async function run() {
   try {
     await wait();
@@ -792,7 +748,6 @@ async function run() {
     throw new Error('Fail');
   }
 }
-
 exports.run = run;
 exports.wait = wait;
 //# sourceMappingURL=index-node-legacy-cjs.cjs.map
@@ -805,18 +760,17 @@ exports[`Async/await babel transforms example test case: node-legacy-lib 1`] = `
   "lib/index-node-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: lib
+
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-
 async function wait() {
   return new Promise(resolve => {
     setTimeout(resolve, 100);
   });
 }
-
 async function run() {
   try {
     await wait();
@@ -824,7 +778,6 @@ async function run() {
     throw new Error('Fail');
   }
 }
-
 exports.run = run;
 exports.wait = wait;
 //# sourceMappingURL=index-node-legacy-lib.js.map
@@ -837,12 +790,12 @@ exports[`Async/await babel transforms example test case: node-legacy-mjs 1`] = `
   "mjs/index-node-legacy-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: mjs
+
 async function wait() {
   return new Promise(resolve => {
     setTimeout(resolve, 100);
   });
 }
-
 async function run() {
   try {
     await wait();
@@ -850,7 +803,6 @@ async function run() {
     throw new Error('Fail');
   }
 }
-
 export { run, wait };
 //# sourceMappingURL=index-node-legacy-mjs.mjs.map
 ",
@@ -874,18 +826,17 @@ exports[`Async/await babel transforms example test case: node-stable-cjs 2`] = `
   "cjs/index-node-stable-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: cjs
+
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-
 async function wait() {
   return new Promise(resolve => {
     setTimeout(resolve, 100);
   });
 }
-
 async function run() {
   try {
     await wait();
@@ -893,7 +844,6 @@ async function run() {
     throw new Error('Fail');
   }
 }
-
 exports.run = run;
 exports.wait = wait;
 //# sourceMappingURL=index-node-stable-cjs.cjs.map
@@ -906,18 +856,17 @@ exports[`Async/await babel transforms example test case: node-stable-lib 1`] = `
   "lib/index-node-stable-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: lib
+
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-
 async function wait() {
   return new Promise(resolve => {
     setTimeout(resolve, 100);
   });
 }
-
 async function run() {
   try {
     await wait();
@@ -925,7 +874,6 @@ async function run() {
     throw new Error('Fail');
   }
 }
-
 exports.run = run;
 exports.wait = wait;
 //# sourceMappingURL=index-node-stable-lib.js.map
@@ -938,12 +886,12 @@ exports[`Async/await babel transforms example test case: node-stable-mjs 1`] = `
   "mjs/index-node-stable-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: mjs
+
 async function wait() {
   return new Promise(resolve => {
     setTimeout(resolve, 100);
   });
 }
-
 async function run() {
   try {
     await wait();
@@ -951,7 +899,6 @@ async function run() {
     throw new Error('Fail');
   }
 }
-
 export { run, wait };
 //# sourceMappingURL=index-node-stable-mjs.mjs.map
 ",
