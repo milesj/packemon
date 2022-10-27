@@ -16,6 +16,8 @@ import {
 	FORMATS_BROWSER,
 	FORMATS_NATIVE,
 	FORMATS_NODE,
+	NODE_SUPPORTED_VERSIONS,
+	SUPPORT_PRIORITY,
 } from './constants';
 import { loadTsconfigJson } from './helpers/loadTsconfigJson';
 import { matchesPattern } from './helpers/matchesPattern';
@@ -91,7 +93,7 @@ export class Package {
 
 		// Add package `engines` based on artifacts
 		if (options.addEngines) {
-			// this.addEngines();
+			this.addEngines();
 		}
 
 		// Add package `exports` based on artifacts
@@ -101,7 +103,7 @@ export class Package {
 
 		// Add package `files` whitelist
 		if (options.addFiles) {
-			// this.addFiles();
+			this.addFiles();
 		}
 
 		// Stamp with a timestamp
@@ -379,6 +381,56 @@ export class Package {
 
 	async syncJson() {
 		await fs.writeJson(this.jsonPath.path(), this.json, { spaces: 2 });
+	}
+
+	protected addEngines() {
+		const artifact = this.artifacts
+			.filter((art) => art.platform === 'node')
+			.reduce<Artifact | null>(
+				(oldest, art) =>
+					!oldest || SUPPORT_PRIORITY[art.support] < SUPPORT_PRIORITY[oldest.support]
+						? art
+						: oldest,
+				null,
+			);
+
+		if (!artifact) {
+			return;
+		}
+
+		this.debug('Adding `engines` to `package.json`');
+
+		if (!this.json.engines) {
+			this.json.engines = {};
+		}
+
+		Object.assign(this.json.engines, {
+			node: `>=${NODE_SUPPORTED_VERSIONS[artifact.support]}`,
+		});
+	}
+
+	protected addFiles() {
+		this.debug('Adding files to `package.json`');
+
+		const files = new Set<string>(this.json.files);
+
+		try {
+			if (this.path.append('assets').exists()) {
+				files.add('assets/**/*');
+			}
+		} catch {
+			// May throw ENOENT
+		}
+
+		this.artifacts.forEach((artifact) => {
+			artifact.builds.forEach(({ format }) => {
+				files.add(`${format}/**/*`);
+			});
+
+			files.add(`src/**/*`);
+		});
+
+		this.json.files = [...files].sort();
 	}
 
 	/**

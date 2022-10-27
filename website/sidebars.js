@@ -19,7 +19,7 @@ module.exports = {
 		{
 			type: 'category',
 			label: 'Migration',
-			items: ['migrate/2.0'],
+			items: ['migrate/2.0', 'migrate/3.0'],
 		},
 		{
 			type: 'link',
