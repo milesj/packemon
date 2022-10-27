@@ -199,7 +199,7 @@ describe('Packemon', () => {
 			});
 		});
 
-		describe.skip('entries', () => {
+		describe('entries', () => {
 			describe('main', () => {
 				it('adds "main" for node `lib` format', async () => {
 					pkg.artifacts.push(createCodeArtifact([{ format: 'lib' }]));
@@ -221,7 +221,6 @@ describe('Packemon', () => {
 					expect(pkg.json).toEqual(
 						expect.objectContaining({
 							main: './cjs/index.cjs',
-							type: 'commonjs',
 						}),
 					);
 				});
@@ -234,7 +233,6 @@ describe('Packemon', () => {
 					expect(pkg.json).toEqual(
 						expect.objectContaining({
 							main: './mjs/index.mjs',
-							type: 'module',
 						}),
 					);
 				});
@@ -260,7 +258,6 @@ describe('Packemon', () => {
 					expect(pkg.json).toEqual(
 						expect.objectContaining({
 							main: './esm/index.js',
-							type: 'module',
 						}),
 					);
 				});
@@ -335,7 +332,6 @@ describe('Packemon', () => {
 					expect(pkg.json).toEqual(
 						expect.objectContaining({
 							module: './esm/index.js',
-							type: 'module',
 						}),
 					);
 				});
@@ -393,16 +389,13 @@ describe('Packemon', () => {
 
 			describe('types', () => {
 				it('adds "types" when a types artifact exists', async () => {
-					// TODO
-					// pkg.artifacts.push(
-					// 	createTypesArtifact([{ outputName: 'index', inputFile: 'src/some/path.ts' }]),
-					// );
+					pkg.artifacts.push(createCodeArtifact([{ declaration: true, format: 'lib' }]));
 
 					await pkg.build({}, config);
 
 					expect(pkg.json).toEqual(
 						expect.objectContaining({
-							types: './dts/some/path.d.ts',
+							types: './lib/index.d.ts',
 						}),
 					);
 				});
