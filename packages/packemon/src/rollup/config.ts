@@ -88,7 +88,7 @@ export function getRollupOutputConfig(
 	packemonConfig: ConfigFile = {},
 ): OutputOptions {
 	const { platform, support } = artifact;
-	const { entryExt, folder } = artifact.getBuildOutput(format);
+	const { entryExt, folder } = artifact.getBuildOutput(format, 'index');
 	// eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
 	const isSwc = packemonConfig.swc || !!process.env.PACKEMON_SWC;
 	const isEsm = format === 'esm' || format === 'mjs';

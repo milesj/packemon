@@ -212,7 +212,7 @@ export class Artifact {
 	}
 
 	// eslint-disable-next-line complexity
-	getBuildOutput(format: Format, outputName: string = '', declaration: boolean = false) {
+	getBuildOutput(format: Format, outputName: string, declaration: boolean = false) {
 		const inputFile = this.inputs[outputName];
 		let name = outputName;
 
@@ -226,19 +226,19 @@ export class Artifact {
 		const entryExt = format === 'cjs' || format === 'mjs' ? format : 'js';
 		let declExt: string | undefined;
 
-		if (declaration && inputFile) {
-			if (inputFile.endsWith('.cts')) {
+		if (declaration) {
+			if (!inputFile || inputFile.endsWith('.ts')) {
+				declExt = 'd.ts';
+			} else if (inputFile.endsWith('.cts')) {
 				declExt = 'd.cts';
 			} else if (inputFile.endsWith('.mts')) {
 				declExt = 'd.mts';
-			} else if (inputFile.endsWith('.ts')) {
-				declExt = 'd.ts';
 			}
 		}
 
 		return {
 			declExt,
-			declPath: declaration ? `./${new VirtualPath(folder, `${name}.${declExt}`)}` : undefined,
+			declPath: declExt ? `./${new VirtualPath(folder, `${name}.${declExt}`)}` : undefined,
 			entryExt,
 			entryPath: `./${new VirtualPath(folder, `${name}.${entryExt}`)}`,
 			folder,
@@ -344,7 +344,10 @@ export class Artifact {
 
 					// Automatically apply the mjs wrapper for cjs
 					if (!paths.import && outputName !== '*' && cjsEntry) {
-						paths.import = cjsEntry.entryPath.replace('.cjs', '-wrapper.mjs');
+						paths.import = {
+							types: cjsEntry.declPath,
+							default: cjsEntry.entryPath.replace('.cjs', '-wrapper.mjs'),
+						};
 					}
 
 					if (!paths.require && defaultEntry) {
