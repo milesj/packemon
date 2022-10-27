@@ -45,14 +45,6 @@ export class TypesArtifact extends Artifact<TypesBuild> {
 		return 'd.ts';
 	}
 
-	getLabel(): string {
-		return 'dts';
-	}
-
-	getBuildTargets(): string[] {
-		return ['dts'];
-	}
-
 	getPackageExports(): PackageExports {
 		const exportMap: PackageExports = {};
 
