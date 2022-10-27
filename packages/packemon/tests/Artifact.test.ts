@@ -280,6 +280,44 @@ describe('Artifact', () => {
 				folder: 'mjs',
 			});
 		});
+
+		describe('types', () => {
+			it('returns declaration fields', () => {
+				expect(artifact.getBuildOutput('lib', 'index', true)).toEqual({
+					declExt: 'd.ts',
+					declPath: './lib/index.d.ts',
+					entryExt: 'js',
+					entryPath: './lib/index.js',
+					folder: 'lib',
+				});
+			});
+
+			it('supports cts', () => {
+				artifact.inputs = { index: 'src/index.cts' };
+				artifact.builds = [{ format: 'cjs' }];
+
+				expect(artifact.getBuildOutput('cjs', 'index', true)).toEqual({
+					declExt: 'd.cts',
+					declPath: './cjs/index.d.cts',
+					entryExt: 'cjs',
+					entryPath: './cjs/index.cjs',
+					folder: 'cjs',
+				});
+			});
+
+			it('supports mts', () => {
+				artifact.inputs = { index: 'src/index.mts' };
+				artifact.builds = [{ format: 'mjs' }];
+
+				expect(artifact.getBuildOutput('mjs', 'index', true)).toEqual({
+					declExt: 'd.mts',
+					declPath: './mjs/index.d.mts',
+					entryExt: 'mjs',
+					entryPath: './mjs/index.mjs',
+					folder: 'mjs',
+				});
+			});
+		});
 	});
 
 	describe('getInputPaths()', () => {
