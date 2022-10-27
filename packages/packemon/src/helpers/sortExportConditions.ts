@@ -12,6 +12,40 @@ const WEIGHTS = {
 	default: 100, // Default must be last
 };
 
+export function flattenExportConditions(paths: PackageExportPaths): PackageExportPaths | string {
+	const map: PackageExportPaths = {};
+	let count = 0;
+
+	Object.entries(paths).forEach(([path, condition]) => {
+		// Remove undefined and empty values
+		if (!condition) {
+			return;
+		}
+
+		const key = path as keyof PackageExportPaths;
+
+		if (typeof condition === 'string') {
+			map[key] = condition;
+		} else {
+			map[key] = flattenExportConditions(condition);
+		}
+
+		count += 1;
+	});
+
+	if (count === 1) {
+		if (map.default) {
+			return map.default;
+		}
+
+		if (map.require) {
+			return map.require;
+		}
+	}
+
+	return map;
+}
+
 export function sortExportConditions<T extends PackageExportPaths | string | undefined>(
 	paths: T,
 ): T {
@@ -22,6 +56,10 @@ export function sortExportConditions<T extends PackageExportPaths | string | und
 	const pathsList: { weight: number; key: string; value: PackageExportPaths | string }[] = [];
 
 	Object.entries(paths).forEach(([key, value]) => {
+		if (!value) {
+			return;
+		}
+
 		pathsList.push({
 			key,
 			value: sortExportConditions(value),
@@ -35,5 +73,12 @@ export function sortExportConditions<T extends PackageExportPaths | string | und
 		return diff === 0 ? a.key.localeCompare(d.key) : diff;
 	});
 
-	return Object.fromEntries(pathsList.map((path) => [path.key, path.value])) as T;
+	const map = Object.fromEntries(
+		pathsList.map((path) => [
+			path.key,
+			typeof path.value === 'string' ? path.value : flattenExportConditions(path.value),
+		]),
+	) as PackageExportPaths;
+
+	return map as T;
 }

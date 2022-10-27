@@ -5,7 +5,7 @@
 import glob from 'fast-glob';
 import fs from 'fs-extra';
 import semver from 'semver';
-import { deepMerge, isObject, Memoize, PackageStructure, Path, toArray } from '@boost/common';
+import { isObject, Memoize, PackageStructure, Path, toArray } from '@boost/common';
 import { optimal } from '@boost/common/optimal';
 import { createDebugger, Debugger } from '@boost/debug';
 import { Artifact } from './Artifact';
@@ -21,6 +21,7 @@ import {
 } from './constants';
 import { loadTsconfigJson } from './helpers/loadTsconfigJson';
 import { matchesPattern } from './helpers/matchesPattern';
+import { mergeExports } from './helpers/mergeExports';
 import { sortExports } from './helpers/sortExports';
 import { packemonBlueprint } from './schemas';
 import {
@@ -29,7 +30,6 @@ import {
 	ConfigFile,
 	FeatureFlags,
 	PackageConfig,
-	PackageExportPaths,
 	PackageExports,
 	PackemonPackage,
 	PackemonPackageConfig,
@@ -478,26 +478,13 @@ export class Package {
 
 		this.artifacts.forEach((artifact) => {
 			Object.entries(artifact.getPackageExports()).forEach(([path, conditions]) => {
-				if (!conditions) {
-					return;
+				if (conditions) {
+					exportMap[path] = mergeExports(exportMap[path] ?? {}, conditions);
 				}
-
-				if (!exportMap[path]) {
-					exportMap[path] = conditions;
-					return;
-				}
-
-				if (typeof exportMap[path] === 'string') {
-					exportMap[path] = { default: exportMap[path] };
-				}
-
-				exportMap[path] = deepMerge<PackageExportPaths, PackageExportPaths>(
-					exportMap[path] as PackageExportPaths,
-					typeof conditions === 'string' ? { default: conditions } : conditions,
-				);
 			});
 		});
 
+		// Sort and flatten exports
 		exportMap = sortExports(exportMap);
 
 		if (isObject(this.json.exports)) {

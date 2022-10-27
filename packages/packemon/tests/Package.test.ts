@@ -495,15 +495,8 @@ describe('Packemon', () => {
 				expect(pkg.json.exports).toEqual({
 					'.': {
 						node: {
-							import: {
-								types: undefined,
-								default: './mjs/index.mjs',
-							},
-							require: {
-								types: undefined,
-								default: './cjs/index.cjs',
-							},
-							default: './lib/index.js',
+							import: './mjs/index.mjs',
+							require: './cjs/index.cjs',
 						},
 						default: './lib/index.js',
 					},
@@ -552,14 +545,8 @@ describe('Packemon', () => {
 				expect(pkg.json.exports).toEqual({
 					'.': {
 						node: {
-							import: {
-								types: undefined,
-								default: './mjs/index.mjs',
-							},
-							require: {
-								types: undefined,
-								default: './cjs/index.cjs',
-							},
+							import: './mjs/index.mjs',
+							require: './cjs/index.cjs',
 						},
 						browser: {
 							import: './esm/index.js',
@@ -628,7 +615,13 @@ describe('Packemon', () => {
 				await pkg.build({ addExports: true }, config);
 
 				expect(pkg.json.exports).toEqual({
-					'.': { node: './lib/index.js', types: './dts/index.d.ts', default: './lib/index.js' },
+					'.': {
+						node: {
+							types: './lib/index.d.ts',
+							default: './lib/index.js',
+						},
+						default: './lib/index.js',
+					},
 					'./package.json': './package.json',
 				});
 			});
@@ -855,7 +848,7 @@ describe('Packemon', () => {
 						'./package.json': './package.json',
 						'./*': {
 							browser: { import: './esm/*.js', module: './esm/*.js', default: './lib/*.js' },
-							node: { import: './mjs/*.mjs' },
+							node: { import: './mjs/*.mjs', require: './cjs/*.cjs', default: './lib/*.js' },
 							default: './lib/*.js',
 						},
 						'.': {
@@ -864,7 +857,7 @@ describe('Packemon', () => {
 								module: './esm/web.js',
 								default: './lib/web.js',
 							},
-							node: { import: './mjs/index.mjs' },
+							node: { import: './mjs/web.mjs', require: './cjs/node.cjs', default: './lib/cli.js' },
 							default: './lib/web.js',
 						},
 					},
