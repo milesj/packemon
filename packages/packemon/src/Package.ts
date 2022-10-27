@@ -89,7 +89,7 @@ export class Package {
 		);
 
 		// Add package entry points based on artifacts
-		// this.addEntryPoints();
+		this.addEntryPoints();
 
 		// Add package `engines` based on artifacts
 		if (options.addEngines) {
@@ -407,6 +407,63 @@ export class Package {
 		Object.assign(this.json.engines, {
 			node: `>=${NODE_SUPPORTED_VERSIONS[artifact.support]}`,
 		});
+	}
+
+	protected addEntryPoints() {
+		this.debug('Adding entry points to `package.json`');
+
+		let mainEntry: string | undefined;
+		let typesEntry: string | undefined;
+		let moduleEntry: string | undefined;
+		let browserEntry: string | undefined;
+
+		// eslint-disable-next-line complexity
+		this.artifacts.forEach((artifact) => {
+			const mainEntryName = artifact.inputs.index ? 'index' : Object.keys(artifact.inputs)[0];
+
+			// Generate `main`, `module`, and `browser` fields
+			if (!mainEntry || (artifact.platform === 'node' && mainEntryName === 'index')) {
+				const entry = artifact.findEntryPoint(['lib', 'cjs', 'mjs', 'esm'], mainEntryName);
+
+				if (entry) {
+					mainEntry = entry.entryPath;
+					typesEntry = entry.declPath;
+				}
+			}
+
+			if (!moduleEntry || (artifact.platform === 'browser' && mainEntryName === 'index')) {
+				moduleEntry = artifact.findEntryPoint(['esm'], mainEntryName)?.entryPath;
+			}
+
+			// Only include when we share a lib with another platform
+			if (!browserEntry && artifact.platform === 'browser') {
+				browserEntry = artifact.findEntryPoint(
+					artifact.sharedLib ? ['lib', 'umd'] : ['umd'],
+					mainEntryName,
+				)?.entryPath;
+			}
+
+			// Generate `bin` field
+			if (artifact.inputs.bin && artifact.platform === 'node' && !isObject(this.json.bin)) {
+				this.json.bin = artifact.findEntryPoint(['lib', 'cjs', 'mjs'], 'bin')?.entryPath;
+			}
+		});
+
+		if (mainEntry) {
+			this.json.main = mainEntry;
+		}
+
+		if (typesEntry) {
+			this.json.types = typesEntry;
+		}
+
+		if (moduleEntry) {
+			this.json.module = moduleEntry;
+		}
+
+		if (browserEntry && !isObject(this.json.browser)) {
+			this.json.browser = browserEntry;
+		}
 	}
 
 	protected addFiles() {

@@ -194,51 +194,51 @@ describe('Artifact', () => {
 
 		it('returns metadata for `lib` format', () => {
 			expect(artifact.getBuildOutput('lib', 'index')).toEqual({
-				ext: 'js',
-				extGroup: 'js,map',
-				file: 'index.js',
+				declExt: undefined,
+				declPath: undefined,
+				entryExt: 'js',
+				entryPath: './lib/index.js',
 				folder: 'lib',
-				path: './lib/index.js',
 			});
 		});
 
 		it('returns metadata for `esm` format', () => {
 			expect(artifact.getBuildOutput('esm', 'index')).toEqual({
-				ext: 'js',
-				extGroup: 'js,map',
-				file: 'index.js',
+				declExt: undefined,
+				declPath: undefined,
+				entryExt: 'js',
+				entryPath: './esm/index.js',
 				folder: 'esm',
-				path: './esm/index.js',
 			});
 		});
 
 		it('returns metadata for `umd` format', () => {
 			expect(artifact.getBuildOutput('umd', 'index')).toEqual({
-				ext: 'js',
-				extGroup: 'js,map',
-				file: 'index.js',
+				declExt: undefined,
+				declPath: undefined,
+				entryExt: 'js',
+				entryPath: './umd/index.js',
 				folder: 'umd',
-				path: './umd/index.js',
 			});
 		});
 
 		it('returns metadata for `cjs` format', () => {
 			expect(artifact.getBuildOutput('cjs', 'index')).toEqual({
-				ext: 'cjs',
-				extGroup: 'cjs,mjs,map',
-				file: 'index.cjs',
+				declExt: undefined,
+				declPath: undefined,
+				entryExt: 'cjs',
+				entryPath: './cjs/index.cjs',
 				folder: 'cjs',
-				path: './cjs/index.cjs',
 			});
 		});
 
 		it('returns metadata for `mjs` format', () => {
 			expect(artifact.getBuildOutput('mjs', 'index')).toEqual({
-				ext: 'mjs',
-				extGroup: 'mjs,map',
-				file: 'index.mjs',
+				declExt: undefined,
+				declPath: undefined,
+				entryExt: 'mjs',
+				entryPath: './mjs/index.mjs',
 				folder: 'mjs',
-				path: './mjs/index.mjs',
 			});
 		});
 
@@ -247,11 +247,11 @@ describe('Artifact', () => {
 				artifact.sharedLib = true;
 
 				expect(artifact.getBuildOutput('lib', 'index')).toEqual({
-					ext: 'js',
-					extGroup: 'js,map',
-					file: 'index.js',
+					declExt: undefined,
+					declPath: undefined,
+					entryExt: 'js',
+					entryPath: './lib/node/index.js',
 					folder: 'lib/node',
-					path: './lib/node/index.js',
 				});
 			});
 
@@ -259,11 +259,11 @@ describe('Artifact', () => {
 				artifact.sharedLib = true;
 
 				expect(artifact.getBuildOutput('esm', 'index')).toEqual({
-					ext: 'js',
-					extGroup: 'js,map',
-					file: 'index.js',
+					declExt: undefined,
+					declPath: undefined,
+					entryExt: 'js',
+					entryPath: './esm/index.js',
 					folder: 'esm',
-					path: './esm/index.js',
 				});
 			});
 		});
@@ -273,11 +273,11 @@ describe('Artifact', () => {
 			artifact.inputs = { index: 'src/some/other/file.ts' };
 
 			expect(artifact.getBuildOutput('mjs', 'index')).toEqual({
-				ext: 'mjs',
-				extGroup: 'mjs,map',
-				file: 'some/other/file.mjs',
+				declExt: undefined,
+				declPath: undefined,
+				entryExt: 'mjs',
+				entryPath: './mjs/some/other/file.mjs',
 				folder: 'mjs',
-				path: './mjs/some/other/file.mjs',
 			});
 		});
 	});

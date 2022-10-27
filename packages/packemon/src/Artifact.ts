@@ -197,36 +197,49 @@ export class Artifact {
 		);
 	}
 
-	findEntryPoint(formats: Format[], outputName: string): string | undefined {
+	findEntryPoint(formats: Format[], outputName: string) {
 		for (const format of formats) {
-			if (this.builds.some((build) => build.format === format)) {
-				return this.getBuildOutput(format, outputName).path;
+			const build = this.builds.find((build) => build.format === format);
+
+			if (build) {
+				return this.getBuildOutput(format, outputName, build.declaration);
 			}
 		}
 
 		return undefined;
 	}
 
-	getBuildOutput(format: Format, outputName: string = '') {
+	// eslint-disable-next-line complexity
+	getBuildOutput(format: Format, outputName: string = '', declaration: boolean = false) {
+		const inputFile = this.inputs[outputName];
 		let name = outputName;
 
 		// When using a public API, we do not create output files based on the input map.
 		// Instead files mirror the source file structure, so we need to take that into account!
-		if (this.api === 'public' && this.inputs[outputName]) {
-			name = removeSourcePath(this.inputs[outputName]);
+		if (this.api === 'public' && inputFile) {
+			name = removeSourcePath(inputFile);
 		}
 
-		const ext = format === 'cjs' || format === 'mjs' ? format : 'js';
-		const extGroup = format === 'cjs' ? 'cjs,mjs,map' : `${ext},map`;
 		const folder = format === 'lib' && this.sharedLib ? `lib/${this.platform}` : format;
-		const file = `${name}.${ext}`;
+		const entryExt = format === 'cjs' || format === 'mjs' ? format : 'js';
+		let declExt: string | undefined;
+
+		if (declaration && inputFile) {
+			if (inputFile.endsWith('.cts')) {
+				declExt = 'd.cts';
+			} else if (inputFile.endsWith('.mts')) {
+				declExt = 'd.mts';
+			} else if (inputFile.endsWith('.ts')) {
+				declExt = 'd.ts';
+			}
+		}
 
 		return {
-			ext,
-			extGroup,
-			file,
+			declExt,
+			declPath: declaration ? `./${new VirtualPath(folder, `${name}.${declExt}`)}` : undefined,
+			entryExt,
+			entryPath: `./${new VirtualPath(folder, `${name}.${entryExt}`)}`,
 			folder,
-			path: `./${new VirtualPath(folder, file)}`,
 		};
 	}
 
