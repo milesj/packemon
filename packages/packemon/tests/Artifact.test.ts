@@ -504,8 +504,10 @@ describe('Artifact', () => {
 			expect(artifact.getPackageExports()).toEqual({
 				'.': {
 					node: {
-						types: undefined,
-						import: './cjs/index-wrapper.mjs',
+						import: {
+							types: undefined,
+							default: './cjs/index-wrapper.mjs',
+						},
 						require: {
 							types: undefined,
 							default: './cjs/index.cjs',
@@ -521,7 +523,10 @@ describe('Artifact', () => {
 			expect(artifact.getPackageExports()).toEqual({
 				'.': {
 					node: {
-						import: './cjs/index-wrapper.mjs',
+						import: {
+							types: './cjs/index.d.ts',
+							default: './cjs/index-wrapper.mjs',
+						},
 						require: {
 							types: './cjs/index.d.ts',
 							default: './cjs/index.cjs',
@@ -538,7 +543,10 @@ describe('Artifact', () => {
 			expect(artifact.getPackageExports()).toEqual({
 				'.': {
 					node: {
-						import: './cjs/index-wrapper.mjs',
+						import: {
+							types: './cjs/index.d.cts',
+							default: './cjs/index-wrapper.mjs',
+						},
 						require: {
 							types: './cjs/index.d.cts',
 							default: './cjs/index.cjs',
