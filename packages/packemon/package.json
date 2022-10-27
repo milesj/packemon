@@ -17,12 +17,11 @@
   "author": "Miles Johnson",
   "license": "MIT",
   "main": "./cjs/index.cjs",
-  "types": "./dts/index.d.ts",
+  "types": "./cjs/index.d.ts",
   "bin": "./cjs/bin.cjs",
   "files": [
-    "cjs/**/*.{cjs,mjs,map}",
-    "dts/**/*.d.ts",
-    "src/**/*.{ts,tsx,json}",
+    "cjs/**/*",
+    "src/**/*",
     "templates/**/*"
   ],
   "exports": {

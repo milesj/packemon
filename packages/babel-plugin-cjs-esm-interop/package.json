@@ -19,11 +19,10 @@
   "author": "Miles Johnson",
   "license": "MIT",
   "main": "./lib/index.js",
-  "types": "./dts/index.d.ts",
+  "types": "./lib/index.d.ts",
   "files": [
-    "dts/**/*.d.ts",
-    "lib/**/*.{js,map}",
-    "src/**/*.{ts,tsx,json}"
+    "lib/**/*",
+    "src/**/*"
   ],
   "engines": {
     "node": ">=14.15.0",
