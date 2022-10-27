@@ -713,6 +713,10 @@ describe('Packemon', () => {
 			it('includes assets folder if it exists', async () => {
 				pkg = loadPackageAtPath(getFixturePath('project-assets'));
 
+				try {
+					fsx.mkdirSync(pkg.path.append('assets').path());
+				} catch {}
+
 				await pkg.build({ addFiles: true }, config);
 
 				expect(pkg.json).toEqual(
