@@ -5,7 +5,7 @@
 import glob from 'fast-glob';
 import fs from 'fs-extra';
 import semver from 'semver';
-import { isObject, Memoize, Path, toArray } from '@boost/common';
+import { deepMerge, isObject, Memoize, PackageStructure, Path, toArray } from '@boost/common';
 import { optimal } from '@boost/common/optimal';
 import { createDebugger, Debugger } from '@boost/debug';
 import { Artifact } from './Artifact';
@@ -21,6 +21,7 @@ import {
 } from './constants';
 import { loadTsconfigJson } from './helpers/loadTsconfigJson';
 import { matchesPattern } from './helpers/matchesPattern';
+import { sortExports } from './helpers/sortExports';
 import { packemonBlueprint } from './schemas';
 import {
 	ApiType,
@@ -28,6 +29,8 @@ import {
 	ConfigFile,
 	FeatureFlags,
 	PackageConfig,
+	PackageExportPaths,
+	PackageExports,
 	PackemonPackage,
 	PackemonPackageConfig,
 	Platform,
@@ -98,7 +101,7 @@ export class Package {
 
 		// Add package `exports` based on artifacts
 		if (options.addExports) {
-			// this.addExports();
+			this.addExports();
 		}
 
 		// Add package `files` whitelist
@@ -419,7 +422,7 @@ export class Package {
 
 		// eslint-disable-next-line complexity
 		this.artifacts.forEach((artifact) => {
-			const mainEntryName = artifact.inputs.index ? 'index' : Object.keys(artifact.inputs)[0];
+			const mainEntryName = artifact.getIndexInput();
 
 			// Generate `main`, `module`, and `browser` fields
 			if (!mainEntry || (artifact.platform === 'node' && mainEntryName === 'index')) {
@@ -463,6 +466,44 @@ export class Package {
 
 		if (browserEntry && !isObject(this.json.browser)) {
 			this.json.browser = browserEntry;
+		}
+	}
+
+	protected addExports() {
+		this.debug('Adding `exports` to `package.json`');
+
+		let exportMap: PackageExports = {
+			'./package.json': './package.json',
+		};
+
+		this.artifacts.forEach((artifact) => {
+			Object.entries(artifact.getPackageExports()).forEach(([path, conditions]) => {
+				if (!conditions) {
+					return;
+				}
+
+				if (!exportMap[path]) {
+					exportMap[path] = conditions;
+					return;
+				}
+
+				if (typeof exportMap[path] === 'string') {
+					exportMap[path] = { default: exportMap[path] };
+				}
+
+				exportMap[path] = deepMerge<PackageExportPaths, PackageExportPaths>(
+					exportMap[path] as PackageExportPaths,
+					typeof conditions === 'string' ? { default: conditions } : conditions,
+				);
+			});
+		});
+
+		exportMap = sortExports(exportMap);
+
+		if (isObject(this.json.exports)) {
+			Object.assign(this.json.exports, exportMap);
+		} else {
+			this.json.exports = exportMap as PackageStructure['exports'];
 		}
 	}
 

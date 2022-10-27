@@ -18,6 +18,8 @@ import type {
 	FeatureFlags,
 	Format,
 	InputMap,
+	PackageExportPaths,
+	PackageExports,
 	Platform,
 	Support,
 } from './types';
@@ -243,6 +245,10 @@ export class Artifact {
 		};
 	}
 
+	getIndexInput(): string {
+		return this.inputs.index ? 'index' : Object.keys(this.inputs)[0];
+	}
+
 	getInputPaths(): InputMap {
 		return Object.fromEntries(
 			Object.entries(this.inputs).map(([outputName, inputFile]) => [
@@ -257,6 +263,23 @@ export class Artifact {
 		return `${this.platform}:${this.support}:${this.builds.map((build) => build.format).join(',')}`;
 	}
 
+	getPackageExports(): PackageExports {
+		const exportMap: PackageExports = {};
+
+		if (this.api === 'private' || this.bundle) {
+			Object.keys(this.inputs).forEach((outputName) => {
+				this.mapPackageExportsFromBuilds(outputName, exportMap);
+			});
+		} else {
+			// Use subpath export patterns when not bundling
+			// https://nodejs.org/api/packages.html#subpath-patterns
+			this.mapPackageExportsFromBuilds('*', exportMap);
+			this.mapPackageExportsFromBuilds(this.getIndexInput(), exportMap, true);
+		}
+
+		return exportMap;
+	}
+
 	isComplete(): boolean {
 		return this.state === 'passed' || this.state === 'failed';
 	}
@@ -267,6 +290,98 @@ export class Artifact {
 
 	toString(): string {
 		return this.getLabel();
+	}
+
+	// eslint-disable-next-line complexity
+	protected mapPackageExportsFromBuilds(
+		outputName: string,
+		exportMap: PackageExports,
+		index: boolean = false,
+	) {
+		const defaultEntry = this.findEntryPoint(['lib'], outputName);
+		let paths: PackageExportPaths = {};
+
+		switch (this.platform) {
+			case 'browser': {
+				const esmEntry = this.findEntryPoint(['esm'], outputName);
+
+				if (esmEntry) {
+					paths = {
+						types: esmEntry.declPath,
+						module: esmEntry.entryPath, // Bundlers
+						import: esmEntry.entryPath,
+					};
+				}
+
+				// Node.js tooling
+				const libEntry = this.findEntryPoint(['umd', 'lib'], outputName);
+
+				paths.types ??= libEntry?.declPath;
+				paths.default = libEntry?.entryPath;
+
+				break;
+			}
+
+			case 'node': {
+				const mjsEntry = this.findEntryPoint(['mjs'], outputName);
+				const cjsEntry = this.findEntryPoint(['cjs'], outputName);
+
+				if (mjsEntry) {
+					paths = {
+						types: mjsEntry.declPath,
+						import: mjsEntry.entryPath,
+					};
+				} else if (cjsEntry) {
+					paths = {
+						types: cjsEntry.declPath,
+						require: cjsEntry.entryPath,
+					};
+				}
+
+				// Automatically apply the mjs wrapper for cjs
+				if (!paths.import && outputName !== '*' && paths.require) {
+					paths.import = (paths.require as string).replace('.cjs', '-wrapper.mjs');
+				}
+
+				if (!paths.require && defaultEntry) {
+					paths.default = defaultEntry.entryPath;
+				}
+				break;
+			}
+
+			case 'native':
+				paths.default = defaultEntry?.entryPath;
+				break;
+
+			default:
+				break;
+		}
+
+		// Remove undefined values
+		for (const key in paths) {
+			if (paths[key as keyof typeof paths] === undefined) {
+				delete paths[key as keyof typeof paths];
+			}
+		}
+
+		const pathsCount = Object.keys(paths).length;
+		const pathsMap = {
+			[this.platform === 'native' ? 'react-native' : this.platform]:
+				// eslint-disable-next-line no-nested-ternary
+				pathsCount === 0 && defaultEntry
+					? defaultEntry
+					: pathsCount === 1 && paths.default
+					? paths.default
+					: paths,
+		};
+
+		// Provide fallbacks if condition above is not
+		if (defaultEntry) {
+			pathsMap.default = defaultEntry;
+		}
+
+		// eslint-disable-next-line no-param-reassign
+		exportMap[index ? '.' : `./${outputName}`] = pathsMap;
 	}
 
 	protected logWithSource(
