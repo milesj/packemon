@@ -715,7 +715,9 @@ describe('Packemon', () => {
 
 				try {
 					fsx.mkdirSync(pkg.path.append('assets').path());
-				} catch {}
+				} catch {
+					// Ignore
+				}
 
 				await pkg.build({ addFiles: true }, config);
 
