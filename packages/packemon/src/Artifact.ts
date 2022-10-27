@@ -326,26 +326,35 @@ export class Artifact {
 				const mjsEntry = this.findEntryPoint(['mjs'], outputName);
 				const cjsEntry = this.findEntryPoint(['cjs'], outputName);
 
-				if (mjsEntry) {
+				if (mjsEntry || cjsEntry) {
 					paths = {
-						types: mjsEntry.declPath,
-						import: mjsEntry.entryPath,
+						import: mjsEntry
+							? {
+									types: mjsEntry.declPath,
+									default: mjsEntry.entryPath,
+							  }
+							: undefined,
+						require: cjsEntry
+							? {
+									types: cjsEntry.declPath,
+									default: cjsEntry.entryPath,
+							  }
+							: undefined,
 					};
-				} else if (cjsEntry) {
-					paths = {
-						types: cjsEntry.declPath,
-						require: cjsEntry.entryPath,
-					};
+
+					// Automatically apply the mjs wrapper for cjs
+					if (!paths.import && outputName !== '*' && cjsEntry) {
+						paths.import = cjsEntry.entryPath.replace('.cjs', '-wrapper.mjs');
+					}
+
+					if (!paths.require && defaultEntry) {
+						paths.default = defaultEntry.entryPath;
+					}
+				} else {
+					paths.types = defaultEntry?.declPath;
+					paths.default = defaultEntry?.entryPath;
 				}
 
-				// Automatically apply the mjs wrapper for cjs
-				if (!paths.import && outputName !== '*' && paths.require) {
-					paths.import = (paths.require as string).replace('.cjs', '-wrapper.mjs');
-				}
-
-				if (!paths.require && defaultEntry) {
-					paths.default = defaultEntry.entryPath;
-				}
 				break;
 			}
 
@@ -357,31 +366,19 @@ export class Artifact {
 				break;
 		}
 
-		// Remove undefined values
-		for (const key in paths) {
-			if (paths[key as keyof typeof paths] === undefined) {
-				delete paths[key as keyof typeof paths];
-			}
-		}
-
-		const pathsCount = Object.keys(paths).length;
 		const pathsMap = {
-			[this.platform === 'native' ? 'react-native' : this.platform]:
-				// eslint-disable-next-line no-nested-ternary
-				pathsCount === 0 && defaultEntry
-					? defaultEntry
-					: pathsCount === 1 && paths.default
-					? paths.default
-					: paths,
+			[this.platform === 'native' ? 'react-native' : this.platform]: paths,
 		};
 
 		// Provide fallbacks if condition above is not
 		if (defaultEntry) {
-			pathsMap.default = defaultEntry;
+			Object.assign(pathsMap, {
+				default: defaultEntry.entryPath,
+			});
 		}
 
 		// eslint-disable-next-line no-param-reassign
-		exportMap[index ? '.' : `./${outputName}`] = pathsMap;
+		exportMap[index || outputName === 'index' ? '.' : `./${outputName}`] = pathsMap;
 	}
 
 	protected logWithSource(

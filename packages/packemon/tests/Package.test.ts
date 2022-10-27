@@ -1,4 +1,3 @@
-/* eslint-disable jest/no-disabled-tests */
 import fsx from 'fs-extra';
 import { Path } from '@boost/common';
 import { mockNormalizedFilePath } from '@boost/common/test';
@@ -458,7 +457,7 @@ describe('Packemon', () => {
 			});
 		});
 
-		describe.skip('exports', () => {
+		describe('exports', () => {
 			it('does nothing if no builds', async () => {
 				pkg.artifacts.push(new Artifact(pkg, []));
 
@@ -496,8 +495,15 @@ describe('Packemon', () => {
 				expect(pkg.json.exports).toEqual({
 					'.': {
 						node: {
-							import: './mjs/index.mjs',
-							require: './cjs/index.cjs',
+							import: {
+								types: undefined,
+								default: './mjs/index.mjs',
+							},
+							require: {
+								types: undefined,
+								default: './cjs/index.cjs',
+							},
+							default: './lib/index.js',
 						},
 						default: './lib/index.js',
 					},
@@ -546,8 +552,14 @@ describe('Packemon', () => {
 				expect(pkg.json.exports).toEqual({
 					'.': {
 						node: {
-							import: './mjs/index.mjs',
-							require: './cjs/index.cjs',
+							import: {
+								types: undefined,
+								default: './mjs/index.mjs',
+							},
+							require: {
+								types: undefined,
+								default: './cjs/index.cjs',
+							},
 						},
 						browser: {
 							import: './esm/index.js',
@@ -723,7 +735,7 @@ describe('Packemon', () => {
 		});
 
 		// https://github.com/milesj/packemon/issues/42#issuecomment-808793241
-		it.skip('private api: uses inputs as subpath imports', async () => {
+		it('private api: uses inputs as subpath imports', async () => {
 			const a = createCodeArtifact([{ format: 'cjs' }]);
 			a.api = 'private';
 			a.inputs = { index: 'src/node.ts' };
@@ -766,7 +778,7 @@ describe('Packemon', () => {
 			);
 		});
 
-		it.skip('public api + bundle: uses inputs as subpath imports (non-deep imports)', async () => {
+		it('public api + bundle: uses inputs as subpath imports (non-deep imports)', async () => {
 			const a = createCodeArtifact([{ format: 'cjs' }]);
 			a.api = 'public';
 			a.bundle = true;
@@ -809,7 +821,7 @@ describe('Packemon', () => {
 			);
 		});
 
-		it.skip('public api + no bundle: uses patterns as subpath imports (deep imports)', async () => {
+		it('public api + no bundle: uses patterns as subpath imports (deep imports)', async () => {
 			const a = createCodeArtifact([{ format: 'cjs' }]);
 			a.api = 'public';
 			a.bundle = false;
@@ -837,6 +849,7 @@ describe('Packemon', () => {
 			expect(pkg.json).toEqual(
 				expect.objectContaining({
 					main: './cjs/node.cjs',
+					module: './esm/web.js',
 					bin: './lib/cli.js',
 					exports: {
 						'./package.json': './package.json',
@@ -847,12 +860,12 @@ describe('Packemon', () => {
 						},
 						'.': {
 							browser: {
-								import: './esm/index.js',
-								module: './esm/index.js',
-								default: './lib/index.js',
+								import: './esm/web.js',
+								module: './esm/web.js',
+								default: './lib/web.js',
 							},
 							node: { import: './mjs/index.mjs' },
-							default: './lib/index.js',
+							default: './lib/web.js',
 						},
 					},
 				}),
