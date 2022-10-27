@@ -8,5 +8,7 @@ module.exports = {
 	rules: {
 		// Doesnt work with `package.json` exports
 		'import/no-unresolved': 'off',
+		// Very buggy?
+		'node/no-unpublished-import': 'off',
 	},
 };
