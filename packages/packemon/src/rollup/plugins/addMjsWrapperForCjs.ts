@@ -1,4 +1,4 @@
-import path from 'path';
+import path from 'node:path';
 import { GetModuleInfo, Plugin } from 'rollup';
 import { Path } from '@boost/common';
 import type { TSESTree } from '@typescript-eslint/types';

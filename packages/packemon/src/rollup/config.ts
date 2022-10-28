@@ -1,5 +1,5 @@
 import { ModuleFormat, OutputOptions, RollupOptions } from 'rollup';
-import nodeExternals from 'rollup-plugin-node-externals';
+import { externals as nodeExternals } from 'rollup-plugin-node-externals';
 import nodePolyfills from 'rollup-plugin-polyfill-node';
 import { getBabelInputPlugin, getBabelOutputPlugin } from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
@@ -175,6 +175,7 @@ export async function getRollupConfig(
 			// Mark all dependencies in `package.json` as external
 			nodeExternals({
 				builtins: isNode,
+				builtinsPrefix: isNode && artifact.support !== 'legacy' ? 'add' : 'strip',
 				deps: true,
 				devDeps: true,
 				optDeps: true,

@@ -51,4 +51,6 @@ async function run() {
 	await program.runAndExit(process.argv);
 }
 
+// We need to be using modules first!
+// eslint-disable-next-line unicorn/prefer-top-level-await
 void run();

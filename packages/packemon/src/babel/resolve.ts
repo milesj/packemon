@@ -1,8 +1,8 @@
 // This is in a separate file so that we can mock in tests
 
-import { createRequire } from 'module';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import { createRequire } from 'node:module';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import doResolve from 'resolve';
 
 // Babel resolves plugins against the current working directory

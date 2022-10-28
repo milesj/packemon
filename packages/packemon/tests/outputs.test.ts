@@ -1,6 +1,6 @@
 /* eslint-disable jest/no-conditional-in-test */
 
-import fs from 'fs';
+import fs from 'node:fs';
 import { Path } from '@boost/common';
 import { getFixturePath } from '@boost/test-utils';
 import { Artifact } from '../src';

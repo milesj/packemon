@@ -1,5 +1,5 @@
-import { createHash } from 'crypto';
-import path from 'path';
+import { createHash } from 'node:crypto';
+import path from 'node:path';
 import fs from 'fs-extra';
 import MagicString from 'magic-string';
 import { Plugin } from 'rollup';

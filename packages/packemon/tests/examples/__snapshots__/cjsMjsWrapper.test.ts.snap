@@ -1665,11 +1665,11 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: browse
   "esm/index-browser-legacy-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: esm
-export * from "optimal";
-import * as optimal from "optimal";
+export * from 'optimal';
+import * as optimal from 'optimal';
 export { optimal };
-export { func, string } from "optimal";
-export { useState } from "react";
+export { func, string } from 'optimal';
+export { useState } from 'react';
 //# sourceMappingURL=index-browser-legacy-esm.js.map
 ",
 ]
@@ -1680,26 +1680,26 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: browse
   "lib/index-browser-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: lib
-"use strict";
+'use strict';
 var _loop = function(k) {
-    if (k !== "default" && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
+    if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
         enumerable: true,
         get: function() {
             return optimal[k];
         }
     });
 };
-Object.defineProperty(exports, "__esModule", {
+Object.defineProperty(exports, '__esModule', {
     value: true
 });
-var optimal = require("optimal");
-var react = require("react");
+var optimal = require('optimal');
+var react = require('react');
 function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     var n = Object.create(null);
     if (e) {
         var _loop = function(k) {
-            if (k !== "default") {
+            if (k !== 'default') {
                 var d = Object.getOwnPropertyDescriptor(e, k);
                 Object.defineProperty(n, k, d.get ? d : {
                     enumerable: true,
@@ -1715,20 +1715,20 @@ function _interopNamespace(e) {
     return Object.freeze(n);
 }
 var optimal__namespace = /*#__PURE__*/ _interopNamespace(optimal);
-Object.defineProperty(exports, "func", {
+Object.defineProperty(exports, 'func', {
     enumerable: true,
     get: function() {
         return optimal.func;
     }
 });
 exports.optimal = optimal__namespace;
-Object.defineProperty(exports, "string", {
+Object.defineProperty(exports, 'string', {
     enumerable: true,
     get: function() {
         return optimal.string;
     }
 });
-Object.defineProperty(exports, "useState", {
+Object.defineProperty(exports, 'useState', {
     enumerable: true,
     get: function() {
         return react.useState;
@@ -2085,17 +2085,17 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: native
   "lib/index-native-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: legacy, Format: lib
-"use strict";
-Object.defineProperty(exports, "__esModule", {
+'use strict';
+Object.defineProperty(exports, '__esModule', {
     value: true
 });
-const optimal = require("optimal");
-const react = require("react");
+const optimal = require('optimal');
+const react = require('react');
 function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
-        for(const k in e)if (k !== "default") {
+        for(const k in e)if (k !== 'default') {
             const d = Object.getOwnPropertyDescriptor(e, k);
             Object.defineProperty(n, k, d.get ? d : {
                 enumerable: true,
@@ -2107,20 +2107,20 @@ function _interopNamespace(e) {
     return Object.freeze(n);
 }
 const optimal__namespace = /*#__PURE__*/ _interopNamespace(optimal);
-Object.defineProperty(exports, "func", {
+Object.defineProperty(exports, 'func', {
     enumerable: true,
     get: ()=>optimal.func
 });
 exports.optimal = optimal__namespace;
-Object.defineProperty(exports, "string", {
+Object.defineProperty(exports, 'string', {
     enumerable: true,
     get: ()=>optimal.string
 });
-Object.defineProperty(exports, "useState", {
+Object.defineProperty(exports, 'useState', {
     enumerable: true,
     get: ()=>react.useState
 });
-for(const k in optimal)if (k !== "default" && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
+for(const k in optimal)if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
     enumerable: true,
     get: ()=>optimal[k]
 });
@@ -2454,17 +2454,17 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: node-l
   "cjs/index-node-legacy-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: cjs
-"use strict";
-Object.defineProperty(exports, "__esModule", {
+'use strict';
+Object.defineProperty(exports, '__esModule', {
     value: true
 });
-const optimal = require("optimal");
-const react = require("react");
+const optimal = require('optimal');
+const react = require('react');
 function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
-        for(const k in e)if (k !== "default") {
+        for(const k in e)if (k !== 'default') {
             const d = Object.getOwnPropertyDescriptor(e, k);
             Object.defineProperty(n, k, d.get ? d : {
                 enumerable: true,
@@ -2476,20 +2476,20 @@ function _interopNamespace(e) {
     return Object.freeze(n);
 }
 const optimal__namespace = /*#__PURE__*/ _interopNamespace(optimal);
-Object.defineProperty(exports, "func", {
+Object.defineProperty(exports, 'func', {
     enumerable: true,
     get: ()=>optimal.func
 });
 exports.optimal = optimal__namespace;
-Object.defineProperty(exports, "string", {
+Object.defineProperty(exports, 'string', {
     enumerable: true,
     get: ()=>optimal.string
 });
-Object.defineProperty(exports, "useState", {
+Object.defineProperty(exports, 'useState', {
     enumerable: true,
     get: ()=>react.useState
 });
-for(const k in optimal)if (k !== "default" && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
+for(const k in optimal)if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
     enumerable: true,
     get: ()=>optimal[k]
 });
@@ -2503,17 +2503,17 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: node-l
   "lib/index-node-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: lib
-"use strict";
-Object.defineProperty(exports, "__esModule", {
+'use strict';
+Object.defineProperty(exports, '__esModule', {
     value: true
 });
-const optimal = require("optimal");
-const react = require("react");
+const optimal = require('optimal');
+const react = require('react');
 function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
-        for(const k in e)if (k !== "default") {
+        for(const k in e)if (k !== 'default') {
             const d = Object.getOwnPropertyDescriptor(e, k);
             Object.defineProperty(n, k, d.get ? d : {
                 enumerable: true,
@@ -2525,20 +2525,20 @@ function _interopNamespace(e) {
     return Object.freeze(n);
 }
 const optimal__namespace = /*#__PURE__*/ _interopNamespace(optimal);
-Object.defineProperty(exports, "func", {
+Object.defineProperty(exports, 'func', {
     enumerable: true,
     get: ()=>optimal.func
 });
 exports.optimal = optimal__namespace;
-Object.defineProperty(exports, "string", {
+Object.defineProperty(exports, 'string', {
     enumerable: true,
     get: ()=>optimal.string
 });
-Object.defineProperty(exports, "useState", {
+Object.defineProperty(exports, 'useState', {
     enumerable: true,
     get: ()=>react.useState
 });
-for(const k in optimal)if (k !== "default" && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
+for(const k in optimal)if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
     enumerable: true,
     get: ()=>optimal[k]
 });
@@ -2552,11 +2552,11 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: node-l
   "mjs/index-node-legacy-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: mjs
-export * from "optimal";
-import * as optimal from "optimal";
+export * from 'optimal';
+import * as optimal from 'optimal';
 export { optimal };
-export { func, string } from "optimal";
-export { useState } from "react";
+export { func, string } from 'optimal';
+export { useState } from 'react';
 //# sourceMappingURL=index-node-legacy-mjs.mjs.map
 ",
 ]
@@ -4602,15 +4602,15 @@ var helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty({
     foo: foo,
     bar: bar
 }, Symbol.toStringTag, {
-    value: "Module"
+    value: 'Module'
 }));
-var a = "abc";
+var a = 'abc';
 var b = 123;
 var c = {
     c: true
 }.c;
 var d = {};
-var e = 456, f = "xyz";
+var e = 456, f = 'xyz';
 var ClassName = function ClassName() {
     "use strict";
     _classCallCheck(this, ClassName);
@@ -4634,13 +4634,13 @@ exports[`CJS -> MJS wrapper swc transforms example test case: browser-legacy-lib
   "lib/index-browser-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: lib
-"use strict";
+'use strict';
 function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
         throw new TypeError("Cannot call a class as a function");
     }
 }
-Object.defineProperty(exports, "__esModule", {
+Object.defineProperty(exports, '__esModule', {
     value: true
 });
 function foo() {}
@@ -4650,13 +4650,13 @@ var helpers = /*#__PURE__*/ Object.freeze({
     foo: foo,
     bar: bar
 });
-var a = "abc";
+var a = 'abc';
 var b = 123;
 var c = {
     c: true
 }.c;
 var d = {};
-var e = 456, f = "xyz";
+var e = 456, f = 'xyz';
 var ClassName = function ClassName() {
     _classCallCheck(this, ClassName);
 };
@@ -4775,13 +4775,13 @@ exports[`CJS -> MJS wrapper swc transforms example test case: browser-legacy-umd
         foo: foo,
         bar: bar
     });
-    var a = "abc";
+    var a = 'abc';
     var b = 123;
     var c = {
         c: true
     }.c;
     var d = {};
-    var e = 456, f = "xyz";
+    var e = 456, f = 'xyz';
     var ClassName = function ClassName() {
         "use strict";
         _classCallCheck(this, ClassName);
@@ -5075,8 +5075,8 @@ exports[`CJS -> MJS wrapper swc transforms example test case: native-legacy-lib 
   "lib/index-native-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: legacy, Format: lib
-"use strict";
-Object.defineProperty(exports, "__esModule", {
+'use strict';
+Object.defineProperty(exports, '__esModule', {
     value: true
 });
 function foo() {}
@@ -5086,7 +5086,7 @@ const helpers = /*#__PURE__*/ Object.freeze({
     foo,
     bar
 });
-let a = "abc";
+let a = 'abc';
 const b = 123;
 const { c  } = {
     c: true
@@ -5094,7 +5094,7 @@ const { c  } = {
 const [d] = [
     {}
 ];
-const e = 456, f = "xyz";
+const e = 456, f = 'xyz';
 let ClassName = class ClassName {
 };
 function func() {}
@@ -5518,8 +5518,8 @@ exports[`CJS -> MJS wrapper swc transforms example test case: node-legacy-cjs 2`
   "cjs/index-node-legacy-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: cjs
-"use strict";
-Object.defineProperty(exports, "__esModule", {
+'use strict';
+Object.defineProperty(exports, '__esModule', {
     value: true
 });
 function foo() {}
@@ -5529,7 +5529,7 @@ const helpers = /*#__PURE__*/ Object.freeze({
     foo,
     bar
 });
-let a = "abc";
+let a = 'abc';
 const b = 123;
 const { c  } = {
     c: true
@@ -5537,7 +5537,7 @@ const { c  } = {
 const [d] = [
     {}
 ];
-const e = 456, f = "xyz";
+const e = 456, f = 'xyz';
 let ClassName = class ClassName {
 };
 function func() {}
@@ -5573,8 +5573,8 @@ exports[`CJS -> MJS wrapper swc transforms example test case: node-legacy-lib 1`
   "lib/index-node-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: lib
-"use strict";
-Object.defineProperty(exports, "__esModule", {
+'use strict';
+Object.defineProperty(exports, '__esModule', {
     value: true
 });
 function foo() {}
@@ -5584,7 +5584,7 @@ const helpers = /*#__PURE__*/ Object.freeze({
     foo,
     bar
 });
-let a = "abc";
+let a = 'abc';
 const b = 123;
 const { c  } = {
     c: true
@@ -5592,7 +5592,7 @@ const { c  } = {
 const [d] = [
     {}
 ];
-const e = 456, f = "xyz";
+const e = 456, f = 'xyz';
 let ClassName = class ClassName {
 };
 function func() {}
@@ -5635,9 +5635,9 @@ const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty(
     foo,
     bar
 }, Symbol.toStringTag, {
-    value: "Module"
+    value: 'Module'
 }));
-let a = "abc";
+let a = 'abc';
 const b = 123;
 const { c  } = {
     c: true
@@ -5645,7 +5645,7 @@ const { c  } = {
 const [d] = [
     {}
 ];
-const e = 456, f = "xyz";
+const e = 456, f = 'xyz';
 let ClassName = class ClassName {
 };
 function func() {}

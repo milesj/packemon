@@ -404,15 +404,14 @@ exports[`New syntax babel transforms example test case: native-stable-lib 1`] = 
 
 'use strict';
 
-var _foo$bar;
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
 const foo = {};
-const optionalChain = foo === null || foo === void 0 ? void 0 : foo.bar;
-const nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
-(_foo$bar = foo.bar) !== null && _foo$bar !== void 0 ? _foo$bar : foo.bar = 'bar';
-foo.baz || (foo.baz = 'baz');
+const optionalChain = foo?.bar;
+const nullCoalesc = foo ?? 0;
+foo.bar ??= 'bar';
+foo.baz ||= 'baz';
 exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
@@ -595,14 +594,13 @@ exports[`New syntax babel transforms example test case: node-legacy-cjs 2`] = `
 
 'use strict';
 
-var _foo$bar;
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
 const foo = {};
-const optionalChain = foo === null || foo === void 0 ? void 0 : foo.bar;
-const nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
-(_foo$bar = foo.bar) !== null && _foo$bar !== void 0 ? _foo$bar : foo.bar = 'bar';
+const optionalChain = foo?.bar;
+const nullCoalesc = foo ?? 0;
+foo.bar ?? (foo.bar = 'bar');
 foo.baz || (foo.baz = 'baz');
 exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
@@ -620,14 +618,13 @@ exports[`New syntax babel transforms example test case: node-legacy-lib 1`] = `
 
 'use strict';
 
-var _foo$bar;
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
 const foo = {};
-const optionalChain = foo === null || foo === void 0 ? void 0 : foo.bar;
-const nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
-(_foo$bar = foo.bar) !== null && _foo$bar !== void 0 ? _foo$bar : foo.bar = 'bar';
+const optionalChain = foo?.bar;
+const nullCoalesc = foo ?? 0;
+foo.bar ?? (foo.bar = 'bar');
 foo.baz || (foo.baz = 'baz');
 exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
@@ -640,14 +637,13 @@ exports.optionalChain = optionalChain;
 exports[`New syntax babel transforms example test case: node-legacy-mjs 1`] = `
 [
   "mjs/index-node-legacy-mjs.mjs",
-  "var _foo$bar;
-// Bundled with Packemon: https://packemon.dev
+  "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: mjs
 
 const foo = {};
-const optionalChain = foo === null || foo === void 0 ? void 0 : foo.bar;
-const nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
-(_foo$bar = foo.bar) !== null && _foo$bar !== void 0 ? _foo$bar : foo.bar = 'bar';
+const optionalChain = foo?.bar;
+const nullCoalesc = foo ?? 0;
+foo.bar ?? (foo.bar = 'bar');
 foo.baz || (foo.baz = 'baz');
 export { foo, nullCoalesc, optionalChain };
 //# sourceMappingURL=index-node-legacy-mjs.mjs.map
@@ -681,8 +677,8 @@ Object.defineProperty(exports, '__esModule', {
 const foo = {};
 const optionalChain = foo?.bar;
 const nullCoalesc = foo ?? 0;
-foo.bar ?? (foo.bar = 'bar');
-foo.baz || (foo.baz = 'baz');
+foo.bar ??= 'bar';
+foo.baz ||= 'baz';
 exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
@@ -705,8 +701,8 @@ Object.defineProperty(exports, '__esModule', {
 const foo = {};
 const optionalChain = foo?.bar;
 const nullCoalesc = foo ?? 0;
-foo.bar ?? (foo.bar = 'bar');
-foo.baz || (foo.baz = 'baz');
+foo.bar ??= 'bar';
+foo.baz ||= 'baz';
 exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
@@ -724,8 +720,8 @@ exports[`New syntax babel transforms example test case: node-stable-mjs 1`] = `
 const foo = {};
 const optionalChain = foo?.bar;
 const nullCoalesc = foo ?? 0;
-foo.bar ?? (foo.bar = 'bar');
-foo.baz || (foo.baz = 'baz');
+foo.bar ??= 'bar';
+foo.baz ||= 'baz';
 export { foo, nullCoalesc, optionalChain };
 //# sourceMappingURL=index-node-stable-mjs.mjs.map
 ",
@@ -890,8 +886,8 @@ var foo = {};
 var optionalChain = foo === null || foo === void 0 ? void 0 : foo.bar;
 var nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
 var _bar;
-(_bar = (_foo = foo).bar) !== null && _bar !== void 0 ? _bar : _foo.bar = "bar";
-(_foo1 = foo).baz || (_foo1.baz = "baz");
+(_bar = (_foo = foo).bar) !== null && _bar !== void 0 ? _bar : _foo.bar = 'bar';
+(_foo1 = foo).baz || (_foo1.baz = 'baz');
 export { foo, nullCoalesc, optionalChain };
 //# sourceMappingURL=index-browser-legacy-esm.js.map
 ",
@@ -903,17 +899,17 @@ exports[`New syntax swc transforms example test case: browser-legacy-lib 1`] = `
   "lib/index-browser-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: lib
-"use strict";
+'use strict';
 var _foo, _foo1;
-Object.defineProperty(exports, "__esModule", {
+Object.defineProperty(exports, '__esModule', {
     value: true
 });
 var foo = {};
 var optionalChain = foo === null || foo === void 0 ? void 0 : foo.bar;
 var nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
 var _bar;
-(_bar = (_foo = foo).bar) !== null && _bar !== void 0 ? _bar : _foo.bar = "bar";
-(_foo1 = foo).baz || (_foo1.baz = "baz");
+(_bar = (_foo = foo).bar) !== null && _bar !== void 0 ? _bar : _foo.bar = 'bar';
+(_foo1 = foo).baz || (_foo1.baz = 'baz');
 exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
@@ -958,8 +954,8 @@ exports[`New syntax swc transforms example test case: browser-legacy-umd 1`] = `
     var optionalChain = foo === null || foo === void 0 ? void 0 : foo.bar;
     var nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
     var _bar;
-    (_bar = (_foo = foo).bar) !== null && _bar !== void 0 ? _bar : _foo.bar = "bar";
-    (_foo1 = foo).baz || (_foo1.baz = "baz");
+    (_bar = (_foo = foo).bar) !== null && _bar !== void 0 ? _bar : _foo.bar = 'bar';
+    (_foo1 = foo).baz || (_foo1.baz = 'baz');
 });
 //# sourceMappingURL=index-browser-legacy-umd.js.map
 ",
@@ -1095,17 +1091,17 @@ exports[`New syntax swc transforms example test case: native-legacy-lib 1`] = `
   "lib/index-native-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: legacy, Format: lib
-"use strict";
+'use strict';
 var _foo, _foo1;
-Object.defineProperty(exports, "__esModule", {
+Object.defineProperty(exports, '__esModule', {
     value: true
 });
 const foo = {};
 const optionalChain = foo === null || foo === void 0 ? void 0 : foo.bar;
 const nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
 var _bar;
-(_bar = (_foo = foo).bar) !== null && _bar !== void 0 ? _bar : _foo.bar = "bar";
-(_foo1 = foo).baz || (_foo1.baz = "baz");
+(_bar = (_foo = foo).bar) !== null && _bar !== void 0 ? _bar : _foo.bar = 'bar';
+(_foo1 = foo).baz || (_foo1.baz = 'baz');
 exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
@@ -1120,16 +1116,14 @@ exports[`New syntax swc transforms example test case: native-stable-lib 1`] = `
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: stable, Format: lib
 'use strict';
-var _foo, _foo1;
 Object.defineProperty(exports, '__esModule', {
     value: true
 });
 const foo = {};
-const optionalChain = foo === null || foo === void 0 ? void 0 : foo.bar;
-const nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
-var _bar;
-(_bar = (_foo = foo).bar) !== null && _bar !== void 0 ? _bar : _foo.bar = 'bar';
-(_foo1 = foo).baz || (_foo1.baz = 'baz');
+const optionalChain = foo?.bar;
+const nullCoalesc = foo ?? 0;
+foo.bar ??= 'bar';
+foo.baz ||= 'baz';
 exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
@@ -1299,17 +1293,16 @@ exports[`New syntax swc transforms example test case: node-legacy-cjs 2`] = `
   "cjs/index-node-legacy-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: cjs
-"use strict";
+'use strict';
 var _foo, _foo1;
-Object.defineProperty(exports, "__esModule", {
+Object.defineProperty(exports, '__esModule', {
     value: true
 });
 const foo = {};
-const optionalChain = foo === null || foo === void 0 ? void 0 : foo.bar;
-const nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
-var _bar;
-(_bar = (_foo = foo).bar) !== null && _bar !== void 0 ? _bar : _foo.bar = "bar";
-(_foo1 = foo).baz || (_foo1.baz = "baz");
+const optionalChain = foo?.bar;
+const nullCoalesc = foo ?? 0;
+(_foo = foo).bar ?? (_foo.bar = 'bar');
+(_foo1 = foo).baz || (_foo1.baz = 'baz');
 exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
@@ -1323,17 +1316,16 @@ exports[`New syntax swc transforms example test case: node-legacy-lib 1`] = `
   "lib/index-node-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: lib
-"use strict";
+'use strict';
 var _foo, _foo1;
-Object.defineProperty(exports, "__esModule", {
+Object.defineProperty(exports, '__esModule', {
     value: true
 });
 const foo = {};
-const optionalChain = foo === null || foo === void 0 ? void 0 : foo.bar;
-const nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
-var _bar;
-(_bar = (_foo = foo).bar) !== null && _bar !== void 0 ? _bar : _foo.bar = "bar";
-(_foo1 = foo).baz || (_foo1.baz = "baz");
+const optionalChain = foo?.bar;
+const nullCoalesc = foo ?? 0;
+(_foo = foo).bar ?? (_foo.bar = 'bar');
+(_foo1 = foo).baz || (_foo1.baz = 'baz');
 exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
@@ -1349,11 +1341,10 @@ exports[`New syntax swc transforms example test case: node-legacy-mjs 1`] = `
 // Platform: node, Support: legacy, Format: mjs
 var _foo, _foo1;
 const foo = {};
-const optionalChain = foo === null || foo === void 0 ? void 0 : foo.bar;
-const nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
-var _bar;
-(_bar = (_foo = foo).bar) !== null && _bar !== void 0 ? _bar : _foo.bar = "bar";
-(_foo1 = foo).baz || (_foo1.baz = "baz");
+const optionalChain = foo?.bar;
+const nullCoalesc = foo ?? 0;
+(_foo = foo).bar ?? (_foo.bar = 'bar');
+(_foo1 = foo).baz || (_foo1.baz = 'baz');
 export { foo, nullCoalesc, optionalChain };
 //# sourceMappingURL=index-node-legacy-mjs.mjs.map
 ",
@@ -1378,15 +1369,14 @@ exports[`New syntax swc transforms example test case: node-stable-cjs 2`] = `
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: cjs
 'use strict';
-var _foo, _foo1;
 Object.defineProperty(exports, '__esModule', {
     value: true
 });
 const foo = {};
 const optionalChain = foo?.bar;
 const nullCoalesc = foo ?? 0;
-(_foo = foo).bar ?? (_foo.bar = 'bar');
-(_foo1 = foo).baz || (_foo1.baz = 'baz');
+foo.bar ??= 'bar';
+foo.baz ||= 'baz';
 exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
@@ -1401,15 +1391,14 @@ exports[`New syntax swc transforms example test case: node-stable-lib 1`] = `
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: lib
 'use strict';
-var _foo, _foo1;
 Object.defineProperty(exports, '__esModule', {
     value: true
 });
 const foo = {};
 const optionalChain = foo?.bar;
 const nullCoalesc = foo ?? 0;
-(_foo = foo).bar ?? (_foo.bar = 'bar');
-(_foo1 = foo).baz || (_foo1.baz = 'baz');
+foo.bar ??= 'bar';
+foo.baz ||= 'baz';
 exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
@@ -1423,12 +1412,11 @@ exports[`New syntax swc transforms example test case: node-stable-mjs 1`] = `
   "mjs/index-node-stable-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: mjs
-var _foo, _foo1;
 const foo = {};
 const optionalChain = foo?.bar;
 const nullCoalesc = foo ?? 0;
-(_foo = foo).bar ?? (_foo.bar = 'bar');
-(_foo1 = foo).baz || (_foo1.baz = 'baz');
+foo.bar ??= 'bar';
+foo.baz ||= 'baz';
 export { foo, nullCoalesc, optionalChain };
 //# sourceMappingURL=index-node-stable-mjs.mjs.map
 ",
