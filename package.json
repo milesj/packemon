@@ -5,7 +5,7 @@
   "description": "",
   "scripts": {
     "docs": "cd website && yarn run start",
-    "setup": "yarn dlx --package packemon@latest --package typescript --quiet packemon build",
+    "setup": "yarn dlx --package packemon@latest --package typescript --quiet packemon build --no-addFiles",
     "build": "yarn run packemon build-workspace",
     "validate": "yarn run packemon validate",
     "check": "yarn run type && yarn run test && yarn run lint",
