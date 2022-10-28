@@ -97,7 +97,7 @@ export function getRollupOutputConfig(
 		dir: artifact.package.path.append(folder).path(),
 		format: getRollupModuleFormat(format),
 		originalFormat: format,
-		interop: 'auto',
+		interop: 'default',
 		// Map our externals to local paths with trailing extension
 		paths: getRollupPaths(artifact, entryExt),
 		// Use our extension for file names
@@ -108,9 +108,11 @@ export function getRollupOutputConfig(
 		// Use ESM features when not supporting old targets
 		generatedCode: {
 			preset: 'es2015',
+			arrowFunctions: true,
+			constBindings: true,
+			objectShorthand: true,
 			symbols: isEsm,
 		},
-		preferConst: true,
 		// Output specific plugins
 		plugins: [
 			preserveDynamicImport(platform, support),
