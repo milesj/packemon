@@ -165,7 +165,7 @@ describe('Packemon', () => {
 
 				await pkg.build({ addEngines: true }, config);
 
-				expect(pkg.json.engines).toEqual({ node: '>=14.15.0' });
+				expect(pkg.json.engines).toEqual({ node: '>=16.12.0' });
 			});
 
 			it('uses oldest `node` build', async () => {
@@ -177,7 +177,7 @@ describe('Packemon', () => {
 
 				await pkg.build({ addEngines: true }, config);
 
-				expect(pkg.json.engines).toEqual({ node: '>=12.22.0' });
+				expect(pkg.json.engines).toEqual({ node: '>=14.15.0' });
 			});
 
 			it('merges with existing engines', async () => {
@@ -193,7 +193,7 @@ describe('Packemon', () => {
 
 				expect(pkg.json.engines).toEqual({
 					packemon: '*',
-					node: '>=14.15.0',
+					node: '>=16.12.0',
 				});
 			});
 		});

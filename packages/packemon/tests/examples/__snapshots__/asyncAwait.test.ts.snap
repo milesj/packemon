@@ -1263,7 +1263,7 @@ function _run() {
                     ];
                 case 2:
                     e = _state.sent();
-                    throw new Error("Fail");
+                    throw new Error('Fail');
                 case 3:
                     return [
                         2
@@ -1284,7 +1284,7 @@ exports[`Async/await swc transforms example test case: browser-legacy-lib 1`] = 
   "lib/index-browser-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: lib
-"use strict";
+'use strict';
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
     try {
         var info = gen[key](arg);
@@ -1409,7 +1409,7 @@ var __generator = (void 0) && (void 0).__generator || function(thisArg, body) {
         };
     }
 };
-Object.defineProperty(exports, "__esModule", {
+Object.defineProperty(exports, '__esModule', {
     value: true
 });
 function wait() {
@@ -1455,7 +1455,7 @@ function _run() {
                     ];
                 case 2:
                     e = _state.sent();
-                    throw new Error("Fail");
+                    throw new Error('Fail');
                 case 3:
                     return [
                         2
@@ -1667,7 +1667,7 @@ exports[`Async/await swc transforms example test case: browser-legacy-umd 1`] = 
                         ];
                     case 2:
                         e = _state.sent();
-                        throw new Error("Fail");
+                        throw new Error('Fail');
                     case 3:
                         return [
                             2
@@ -1837,8 +1837,8 @@ exports[`Async/await swc transforms example test case: native-legacy-lib 1`] = `
   "lib/index-native-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: legacy, Format: lib
-"use strict";
-Object.defineProperty(exports, "__esModule", {
+'use strict';
+Object.defineProperty(exports, '__esModule', {
     value: true
 });
 async function wait() {
@@ -1850,7 +1850,7 @@ async function run() {
     try {
         await wait();
     } catch  {
-        throw new Error("Fail");
+        throw new Error('Fail');
     }
 }
 exports.run = run;
@@ -2087,8 +2087,8 @@ exports[`Async/await swc transforms example test case: node-legacy-cjs 2`] = `
   "cjs/index-node-legacy-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: cjs
-"use strict";
-Object.defineProperty(exports, "__esModule", {
+'use strict';
+Object.defineProperty(exports, '__esModule', {
     value: true
 });
 async function wait() {
@@ -2100,7 +2100,7 @@ async function run() {
     try {
         await wait();
     } catch  {
-        throw new Error("Fail");
+        throw new Error('Fail');
     }
 }
 exports.run = run;
@@ -2115,8 +2115,8 @@ exports[`Async/await swc transforms example test case: node-legacy-lib 1`] = `
   "lib/index-node-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: lib
-"use strict";
-Object.defineProperty(exports, "__esModule", {
+'use strict';
+Object.defineProperty(exports, '__esModule', {
     value: true
 });
 async function wait() {
@@ -2128,7 +2128,7 @@ async function run() {
     try {
         await wait();
     } catch  {
-        throw new Error("Fail");
+        throw new Error('Fail');
     }
 }
 exports.run = run;
@@ -2152,7 +2152,7 @@ async function run() {
     try {
         await wait();
     } catch  {
-        throw new Error("Fail");
+        throw new Error('Fail');
     }
 }
 export { run, wait };

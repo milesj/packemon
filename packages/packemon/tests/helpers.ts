@@ -1,4 +1,4 @@
-import fs from 'fs';
+import fs from 'node:fs';
 import fsx from 'fs-extra';
 import { Path, PortablePath } from '@boost/common';
 import { getFixturePath } from '@boost/test-utils';

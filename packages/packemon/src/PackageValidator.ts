@@ -1,5 +1,5 @@
-import http from 'http';
-import https from 'https';
+import http from 'node:http';
+import https from 'node:https';
 import execa from 'execa';
 import packList from 'npm-packlist';
 import semver from 'semver';

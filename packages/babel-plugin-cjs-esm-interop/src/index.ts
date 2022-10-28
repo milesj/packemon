@@ -1,6 +1,6 @@
 /* eslint-disable complexity */
 
-import paths from 'path';
+import paths from 'node:path';
 import { NodePath, PluginObj, PluginPass, types as t } from '@babel/core';
 // @ts-expect-error Not typed
 import { addDefault } from '@babel/helper-module-imports';

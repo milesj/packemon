@@ -17,10 +17,9 @@ jest.mock('@rollup/plugin-babel', () => ({
 	getBabelOutputPlugin: (options: any) =>
 		`babelOutput(${options.filename}, ${options.moduleId || '*'})`,
 }));
-jest.mock(
-	'rollup-plugin-node-externals',
-	() => (options: any) => `externals(${options.packagePath})`,
-);
+jest.mock('rollup-plugin-node-externals', () => ({
+	externals: (options: any) => `externals(${options.packagePath})`,
+}));
 jest.mock('rollup-plugin-polyfill-node', () => () => `polyfillNode()`);
 
 const fixturePath = new Path(getFixturePath('project-rollup'));

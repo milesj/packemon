@@ -944,7 +944,7 @@ var helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty({
     foo: foo,
     bar: bar
 }, Symbol.toStringTag, {
-    value: "Module"
+    value: 'Module'
 }));
 export { helpers as ns1, helpers as ns2 };
 //# sourceMappingURL=index-browser-legacy-esm.js.map
@@ -957,8 +957,8 @@ exports[`Namespaces swc transforms example test case: browser-legacy-lib 1`] = `
   "lib/index-browser-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: lib
-"use strict";
-Object.defineProperty(exports, "__esModule", {
+'use strict';
+Object.defineProperty(exports, '__esModule', {
     value: true
 });
 function foo() {}
@@ -1147,8 +1147,8 @@ exports[`Namespaces swc transforms example test case: native-legacy-lib 1`] = `
   "lib/index-native-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: legacy, Format: lib
-"use strict";
-Object.defineProperty(exports, "__esModule", {
+'use strict';
+Object.defineProperty(exports, '__esModule', {
     value: true
 });
 function foo() {}
@@ -1361,8 +1361,8 @@ exports[`Namespaces swc transforms example test case: node-legacy-cjs 2`] = `
   "cjs/index-node-legacy-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: cjs
-"use strict";
-Object.defineProperty(exports, "__esModule", {
+'use strict';
+Object.defineProperty(exports, '__esModule', {
     value: true
 });
 function foo() {}
@@ -1384,8 +1384,8 @@ exports[`Namespaces swc transforms example test case: node-legacy-lib 1`] = `
   "lib/index-node-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: lib
-"use strict";
-Object.defineProperty(exports, "__esModule", {
+'use strict';
+Object.defineProperty(exports, '__esModule', {
     value: true
 });
 function foo() {}
@@ -1414,7 +1414,7 @@ const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty(
     foo,
     bar
 }, Symbol.toStringTag, {
-    value: "Module"
+    value: 'Module'
 }));
 export { helpers as ns1, helpers as ns2 };
 //# sourceMappingURL=index-node-legacy-mjs.mjs.map

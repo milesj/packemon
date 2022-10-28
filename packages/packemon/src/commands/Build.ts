@@ -1,4 +1,4 @@
-import os from 'os';
+import os from 'node:os';
 import { applyMarkdown, applyStyle, Arg, Config } from '@boost/cli';
 import { formatMs } from '@boost/common';
 import { figures } from '@boost/terminal';

@@ -1,4 +1,4 @@
-import fs from 'fs';
+import fs from 'node:fs';
 import { Path, PortablePath } from '@boost/common';
 import { TSConfigStructure } from '../types';
 import { loadModule } from './loadModule';

@@ -1,4 +1,4 @@
-import path from 'path';
+import path from 'node:path';
 import { InputOption, OutputOptions, rollup } from 'rollup';
 import { addBinShebang } from '../../../src/rollup/plugins/addBinShebang';
 
