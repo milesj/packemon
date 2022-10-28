@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-bind, react-perf/jsx-no-new-function-as-prop */
 
-import path from 'path';
-import { fileURLToPath } from 'url';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import glob from 'fast-glob';
 import fs from 'fs-extra';
 import { Arg, Command, Config } from '@boost/cli';

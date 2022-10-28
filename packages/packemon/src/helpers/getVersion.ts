@@ -1,4 +1,4 @@
-import fs from 'fs';
+import fs from 'node:fs';
 import { PackageStructure } from '@boost/common';
 
 export function getVersion(): string {
