@@ -65,25 +65,25 @@ export const EXCLUDE_RUST = [
 // https://reactnative.dev/docs/javascript-environment
 // Based on browserslist: https://github.com/browserslist/browserslist
 export const NATIVE_TARGETS: { [K in Support]: string } = {
-	legacy: 'iOS 12', // 2018
-	stable: 'iOS 13', // 2019
-	current: 'iOS 14', // 2020
-	experimental: 'iOS 15', // 2021
+	legacy: 'iOS 13', // 2019
+	stable: 'iOS 14', // 2020
+	current: 'iOS 15', // 2021
+	experimental: 'iOS 16', // 2022
 };
 
 // Based on LTS schedule: https://nodejs.org/en/about/releases/
 export const NODE_SUPPORTED_VERSIONS: { [K in Support]: string } = {
-	legacy: '12.22.0',
-	stable: '14.15.0', // LTS support started
-	current: '16.12.0', // ESM loader hooks
-	experimental: '18.0.0',
+	legacy: '14.15.0', // LTS support started
+	stable: '16.12.0', // ESM loader hooks
+	current: '18.12.0', // LTS support started
+	experimental: '19.0.0',
 };
 
 export const NPM_SUPPORTED_VERSIONS: { [K in Support]: string[] | string } = {
 	legacy: '6.14.0',
-	stable: '6.14.0',
-	current: '8.1.0',
-	experimental: '8.5.0',
+	stable: '8.1.0',
+	current: '8.19.0',
+	experimental: '9.0.0',
 };
 
 // Based on browserslist: https://github.com/browserslist/browserslist
@@ -95,8 +95,8 @@ export const BROWSER_TARGETS: { [K in Support]: string[] | string } = {
 };
 
 export const SUPPORT_TO_ESM_SPEC = {
-	legacy: 'es5',
-	stable: 'es2018',
+	legacy: 'es2018',
+	stable: 'es2019',
 	current: 'es2020',
 	experimental: 'es2022',
 } as const;
