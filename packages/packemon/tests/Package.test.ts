@@ -1,4 +1,3 @@
-/* eslint-disable jest/no-disabled-tests */
 import fsx from 'fs-extra';
 import { Path } from '@boost/common';
 import { mockNormalizedFilePath } from '@boost/common/test';
@@ -199,7 +198,7 @@ describe('Packemon', () => {
 			});
 		});
 
-		describe.skip('entries', () => {
+		describe('entries', () => {
 			describe('main', () => {
 				it('adds "main" for node `lib` format', async () => {
 					pkg.artifacts.push(createCodeArtifact([{ format: 'lib' }]));
@@ -221,7 +220,6 @@ describe('Packemon', () => {
 					expect(pkg.json).toEqual(
 						expect.objectContaining({
 							main: './cjs/index.cjs',
-							type: 'commonjs',
 						}),
 					);
 				});
@@ -234,7 +232,6 @@ describe('Packemon', () => {
 					expect(pkg.json).toEqual(
 						expect.objectContaining({
 							main: './mjs/index.mjs',
-							type: 'module',
 						}),
 					);
 				});
@@ -260,7 +257,6 @@ describe('Packemon', () => {
 					expect(pkg.json).toEqual(
 						expect.objectContaining({
 							main: './esm/index.js',
-							type: 'module',
 						}),
 					);
 				});
@@ -335,7 +331,6 @@ describe('Packemon', () => {
 					expect(pkg.json).toEqual(
 						expect.objectContaining({
 							module: './esm/index.js',
-							type: 'module',
 						}),
 					);
 				});
@@ -393,16 +388,13 @@ describe('Packemon', () => {
 
 			describe('types', () => {
 				it('adds "types" when a types artifact exists', async () => {
-					// TODO
-					// pkg.artifacts.push(
-					// 	createTypesArtifact([{ outputName: 'index', inputFile: 'src/some/path.ts' }]),
-					// );
+					pkg.artifacts.push(createCodeArtifact([{ declaration: true, format: 'lib' }]));
 
 					await pkg.build({}, config);
 
 					expect(pkg.json).toEqual(
 						expect.objectContaining({
-							types: './dts/some/path.d.ts',
+							types: './lib/index.d.ts',
 						}),
 					);
 				});
@@ -465,7 +457,7 @@ describe('Packemon', () => {
 			});
 		});
 
-		describe.skip('exports', () => {
+		describe('exports', () => {
 			it('does nothing if no builds', async () => {
 				pkg.artifacts.push(new Artifact(pkg, []));
 
@@ -623,7 +615,13 @@ describe('Packemon', () => {
 				await pkg.build({ addExports: true }, config);
 
 				expect(pkg.json.exports).toEqual({
-					'.': { node: './lib/index.js', types: './dts/index.d.ts', default: './lib/index.js' },
+					'.': {
+						node: {
+							types: './lib/index.d.ts',
+							default: './lib/index.js',
+						},
+						default: './lib/index.js',
+					},
 					'./package.json': './package.json',
 				});
 			});
@@ -730,7 +728,7 @@ describe('Packemon', () => {
 		});
 
 		// https://github.com/milesj/packemon/issues/42#issuecomment-808793241
-		it.skip('private api: uses inputs as subpath imports', async () => {
+		it('private api: uses inputs as subpath imports', async () => {
 			const a = createCodeArtifact([{ format: 'cjs' }]);
 			a.api = 'private';
 			a.inputs = { index: 'src/node.ts' };
@@ -773,7 +771,7 @@ describe('Packemon', () => {
 			);
 		});
 
-		it.skip('public api + bundle: uses inputs as subpath imports (non-deep imports)', async () => {
+		it('public api + bundle: uses inputs as subpath imports (non-deep imports)', async () => {
 			const a = createCodeArtifact([{ format: 'cjs' }]);
 			a.api = 'public';
 			a.bundle = true;
@@ -816,7 +814,7 @@ describe('Packemon', () => {
 			);
 		});
 
-		it.skip('public api + no bundle: uses patterns as subpath imports (deep imports)', async () => {
+		it('public api + no bundle: uses patterns as subpath imports (deep imports)', async () => {
 			const a = createCodeArtifact([{ format: 'cjs' }]);
 			a.api = 'public';
 			a.bundle = false;
@@ -844,22 +842,23 @@ describe('Packemon', () => {
 			expect(pkg.json).toEqual(
 				expect.objectContaining({
 					main: './cjs/node.cjs',
+					module: './esm/web.js',
 					bin: './lib/cli.js',
 					exports: {
 						'./package.json': './package.json',
 						'./*': {
 							browser: { import: './esm/*.js', module: './esm/*.js', default: './lib/*.js' },
-							node: { import: './mjs/*.mjs' },
+							node: { import: './mjs/*.mjs', require: './cjs/*.cjs', default: './lib/*.js' },
 							default: './lib/*.js',
 						},
 						'.': {
 							browser: {
-								import: './esm/index.js',
-								module: './esm/index.js',
-								default: './lib/index.js',
+								import: './esm/web.js',
+								module: './esm/web.js',
+								default: './lib/web.js',
 							},
-							node: { import: './mjs/index.mjs' },
-							default: './lib/index.js',
+							node: { import: './mjs/web.mjs', require: './cjs/node.cjs', default: './lib/cli.js' },
+							default: './lib/web.js',
 						},
 					},
 				}),

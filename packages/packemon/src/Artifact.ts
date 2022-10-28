@@ -18,6 +18,8 @@ import type {
 	FeatureFlags,
 	Format,
 	InputMap,
+	PackageExportPaths,
+	PackageExports,
 	Platform,
 	Support,
 } from './types';
@@ -197,37 +199,54 @@ export class Artifact {
 		);
 	}
 
-	findEntryPoint(formats: Format[], outputName: string): string | undefined {
+	findEntryPoint(formats: Format[], outputName: string) {
 		for (const format of formats) {
-			if (this.builds.some((build) => build.format === format)) {
-				return this.getBuildOutput(format, outputName).path;
+			const build = this.builds.find((build) => build.format === format);
+
+			if (build) {
+				return this.getBuildOutput(format, outputName, build.declaration);
 			}
 		}
 
 		return undefined;
 	}
 
-	getBuildOutput(format: Format, outputName: string = '') {
+	// eslint-disable-next-line complexity
+	getBuildOutput(format: Format, outputName: string, declaration: boolean = false) {
+		const inputFile = this.inputs[outputName];
 		let name = outputName;
 
 		// When using a public API, we do not create output files based on the input map.
 		// Instead files mirror the source file structure, so we need to take that into account!
-		if (this.api === 'public' && this.inputs[outputName]) {
-			name = removeSourcePath(this.inputs[outputName]);
+		if (this.api === 'public' && inputFile) {
+			name = removeSourcePath(inputFile);
 		}
 
-		const ext = format === 'cjs' || format === 'mjs' ? format : 'js';
-		const extGroup = format === 'cjs' ? 'cjs,mjs,map' : `${ext},map`;
 		const folder = format === 'lib' && this.sharedLib ? `lib/${this.platform}` : format;
-		const file = `${name}.${ext}`;
+		const entryExt = format === 'cjs' || format === 'mjs' ? format : 'js';
+		let declExt: string | undefined;
+
+		if (declaration) {
+			if (!inputFile || inputFile.endsWith('.ts')) {
+				declExt = 'd.ts';
+			} else if (inputFile.endsWith('.cts')) {
+				declExt = 'd.cts';
+			} else if (inputFile.endsWith('.mts')) {
+				declExt = 'd.mts';
+			}
+		}
 
 		return {
-			ext,
-			extGroup,
-			file,
+			declExt,
+			declPath: declExt ? `./${new VirtualPath(folder, `${name}.${declExt}`)}` : undefined,
+			entryExt,
+			entryPath: `./${new VirtualPath(folder, `${name}.${entryExt}`)}`,
 			folder,
-			path: `./${new VirtualPath(folder, file)}`,
 		};
+	}
+
+	getIndexInput(): string {
+		return this.inputs.index ? 'index' : Object.keys(this.inputs)[0];
 	}
 
 	getInputPaths(): InputMap {
@@ -244,6 +263,23 @@ export class Artifact {
 		return `${this.platform}:${this.support}:${this.builds.map((build) => build.format).join(',')}`;
 	}
 
+	getPackageExports(): PackageExports {
+		const exportMap: PackageExports = {};
+
+		if (this.api === 'private' || this.bundle) {
+			Object.keys(this.inputs).forEach((outputName) => {
+				this.mapPackageExportsFromBuilds(outputName, exportMap);
+			});
+		} else {
+			// Use subpath export patterns when not bundling
+			// https://nodejs.org/api/packages.html#subpath-patterns
+			this.mapPackageExportsFromBuilds('*', exportMap);
+			this.mapPackageExportsFromBuilds(this.getIndexInput(), exportMap, true);
+		}
+
+		return exportMap;
+	}
+
 	isComplete(): boolean {
 		return this.state === 'passed' || this.state === 'failed';
 	}
@@ -254,6 +290,98 @@ export class Artifact {
 
 	toString(): string {
 		return this.getLabel();
+	}
+
+	// eslint-disable-next-line complexity
+	protected mapPackageExportsFromBuilds(
+		outputName: string,
+		exportMap: PackageExports,
+		index: boolean = false,
+	) {
+		const defaultEntry = this.findEntryPoint(['lib'], outputName);
+		let paths: PackageExportPaths = {};
+
+		switch (this.platform) {
+			case 'browser': {
+				const esmEntry = this.findEntryPoint(['esm'], outputName);
+
+				if (esmEntry) {
+					paths = {
+						types: esmEntry.declPath,
+						module: esmEntry.entryPath, // Bundlers
+						import: esmEntry.entryPath,
+					};
+				}
+
+				// Node.js tooling
+				const libEntry = this.findEntryPoint(['umd', 'lib'], outputName);
+
+				paths.types ??= libEntry?.declPath;
+				paths.default = libEntry?.entryPath;
+
+				break;
+			}
+
+			case 'node': {
+				const mjsEntry = this.findEntryPoint(['mjs'], outputName);
+				const cjsEntry = this.findEntryPoint(['cjs'], outputName);
+
+				if (mjsEntry || cjsEntry) {
+					paths = {
+						import: mjsEntry
+							? {
+									types: mjsEntry.declPath,
+									default: mjsEntry.entryPath,
+							  }
+							: undefined,
+						require: cjsEntry
+							? {
+									types: cjsEntry.declPath,
+									default: cjsEntry.entryPath,
+							  }
+							: undefined,
+					};
+
+					// Automatically apply the mjs wrapper for cjs
+					if (!paths.import && outputName !== '*' && cjsEntry) {
+						paths.import = {
+							types: cjsEntry.declPath,
+							default: cjsEntry.entryPath.replace('.cjs', '-wrapper.mjs'),
+						};
+					}
+
+					if (!paths.require && defaultEntry) {
+						paths.default = defaultEntry.entryPath;
+					}
+				} else {
+					paths.types = defaultEntry?.declPath;
+					paths.default = defaultEntry?.entryPath;
+				}
+
+				break;
+			}
+
+			case 'native':
+				paths.default = defaultEntry?.entryPath;
+				break;
+
+			default:
+				break;
+		}
+
+		const pathsMap = {
+			[this.platform === 'native' ? 'react-native' : this.platform]: paths,
+		};
+
+		// Provide fallbacks if condition above is not
+		if (defaultEntry) {
+			Object.assign(pathsMap, {
+				default: defaultEntry.entryPath,
+			});
+		}
+
+		// eslint-disable-next-line no-param-reassign
+		exportMap[index || outputName === 'index' ? '.' : `./${outputName}`] = pathsMap;
 	}
 
 	protected logWithSource(
