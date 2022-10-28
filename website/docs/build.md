@@ -23,8 +23,8 @@ to their configured build targets (platform, formats, etc).
 
 Build supports the following command line options.
 
-- `--addEngines` - Add Node.js `engine` versions to `package.json` when `platform` is
-  `node`. Uses the `support` setting to determine the version range.
+- `--addEngines` - Add Node.js `engine` versions to `package.json` when `platform` is `node`. Uses
+  the `support` setting to determine the version range.
 - `--addExports` - Add `exports` fields to `package.json`, based on `api`, `bundle`, and `inputs`.
   This is an experimental Node.js feature and may not work correctly
   ([more information](https://nodejs.org/api/packages.html#packages_package_entry_points)).
@@ -80,11 +80,11 @@ like the following (when also using `--declaration`).
 
 ```
 /
-├── dts/
-|   └── index.d.ts
 ├── esm/
+|   ├── index.d.ts
 |   └── index.js
 ├── lib/
+|   ├── index.d.ts
 |   └── browser/index.js
 |   └── node/index.js
 ├── src/
@@ -105,8 +105,8 @@ and files list, as demonstrated below. This can further be expanded upon using t
   "name": "package",
   "main": "./lib/index.js",
   "module": "./esm/index.js",
-  "types": "./dts/index.d.ts",
-  "files": ["dts/", "esm/", "lib/", "src/"],
+  "types": "./lib/index.d.ts",
+  "files": ["esm/**/*", "lib/**/*", "src/**/*"],
   "packemon": {
     "inputs": { "index": "src/index.ts" },
     "platform": ["node", "browser"],
@@ -123,7 +123,6 @@ much everything except tests).
 
 ```
 /
-├── dts/
 ├── esm/
 ├── lib/
 ├── src/

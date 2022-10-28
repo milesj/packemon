@@ -194,51 +194,51 @@ describe('Artifact', () => {
 
 		it('returns metadata for `lib` format', () => {
 			expect(artifact.getBuildOutput('lib', 'index')).toEqual({
-				ext: 'js',
-				extGroup: 'js,map',
-				file: 'index.js',
+				declExt: undefined,
+				declPath: undefined,
+				entryExt: 'js',
+				entryPath: './lib/index.js',
 				folder: 'lib',
-				path: './lib/index.js',
 			});
 		});
 
 		it('returns metadata for `esm` format', () => {
 			expect(artifact.getBuildOutput('esm', 'index')).toEqual({
-				ext: 'js',
-				extGroup: 'js,map',
-				file: 'index.js',
+				declExt: undefined,
+				declPath: undefined,
+				entryExt: 'js',
+				entryPath: './esm/index.js',
 				folder: 'esm',
-				path: './esm/index.js',
 			});
 		});
 
 		it('returns metadata for `umd` format', () => {
 			expect(artifact.getBuildOutput('umd', 'index')).toEqual({
-				ext: 'js',
-				extGroup: 'js,map',
-				file: 'index.js',
+				declExt: undefined,
+				declPath: undefined,
+				entryExt: 'js',
+				entryPath: './umd/index.js',
 				folder: 'umd',
-				path: './umd/index.js',
 			});
 		});
 
 		it('returns metadata for `cjs` format', () => {
 			expect(artifact.getBuildOutput('cjs', 'index')).toEqual({
-				ext: 'cjs',
-				extGroup: 'cjs,mjs,map',
-				file: 'index.cjs',
+				declExt: undefined,
+				declPath: undefined,
+				entryExt: 'cjs',
+				entryPath: './cjs/index.cjs',
 				folder: 'cjs',
-				path: './cjs/index.cjs',
 			});
 		});
 
 		it('returns metadata for `mjs` format', () => {
 			expect(artifact.getBuildOutput('mjs', 'index')).toEqual({
-				ext: 'mjs',
-				extGroup: 'mjs,map',
-				file: 'index.mjs',
+				declExt: undefined,
+				declPath: undefined,
+				entryExt: 'mjs',
+				entryPath: './mjs/index.mjs',
 				folder: 'mjs',
-				path: './mjs/index.mjs',
 			});
 		});
 
@@ -247,11 +247,11 @@ describe('Artifact', () => {
 				artifact.sharedLib = true;
 
 				expect(artifact.getBuildOutput('lib', 'index')).toEqual({
-					ext: 'js',
-					extGroup: 'js,map',
-					file: 'index.js',
+					declExt: undefined,
+					declPath: undefined,
+					entryExt: 'js',
+					entryPath: './lib/node/index.js',
 					folder: 'lib/node',
-					path: './lib/node/index.js',
 				});
 			});
 
@@ -259,11 +259,11 @@ describe('Artifact', () => {
 				artifact.sharedLib = true;
 
 				expect(artifact.getBuildOutput('esm', 'index')).toEqual({
-					ext: 'js',
-					extGroup: 'js,map',
-					file: 'index.js',
+					declExt: undefined,
+					declPath: undefined,
+					entryExt: 'js',
+					entryPath: './esm/index.js',
 					folder: 'esm',
-					path: './esm/index.js',
 				});
 			});
 		});
@@ -273,11 +273,49 @@ describe('Artifact', () => {
 			artifact.inputs = { index: 'src/some/other/file.ts' };
 
 			expect(artifact.getBuildOutput('mjs', 'index')).toEqual({
-				ext: 'mjs',
-				extGroup: 'mjs,map',
-				file: 'some/other/file.mjs',
+				declExt: undefined,
+				declPath: undefined,
+				entryExt: 'mjs',
+				entryPath: './mjs/some/other/file.mjs',
 				folder: 'mjs',
-				path: './mjs/some/other/file.mjs',
+			});
+		});
+
+		describe('types', () => {
+			it('returns declaration fields', () => {
+				expect(artifact.getBuildOutput('lib', 'index', true)).toEqual({
+					declExt: 'd.ts',
+					declPath: './lib/index.d.ts',
+					entryExt: 'js',
+					entryPath: './lib/index.js',
+					folder: 'lib',
+				});
+			});
+
+			it('supports cts', () => {
+				artifact.inputs = { index: 'src/index.cts' };
+				artifact.builds = [{ format: 'cjs' }];
+
+				expect(artifact.getBuildOutput('cjs', 'index', true)).toEqual({
+					declExt: 'd.cts',
+					declPath: './cjs/index.d.cts',
+					entryExt: 'cjs',
+					entryPath: './cjs/index.cjs',
+					folder: 'cjs',
+				});
+			});
+
+			it('supports mts', () => {
+				artifact.inputs = { index: 'src/index.mts' };
+				artifact.builds = [{ format: 'mjs' }];
+
+				expect(artifact.getBuildOutput('mjs', 'index', true)).toEqual({
+					declExt: 'd.mts',
+					declPath: './mjs/index.d.mts',
+					entryExt: 'mjs',
+					entryPath: './mjs/index.mjs',
+					folder: 'mjs',
+				});
 			});
 		});
 	});
@@ -286,6 +324,284 @@ describe('Artifact', () => {
 		it('returns an absolute path for every input', () => {
 			expect(artifact.getInputPaths()).toEqual({
 				index: fixturePath.append('src/index.ts').path(),
+			});
+		});
+	});
+
+	describe('getPackageExports()', () => {
+		beforeEach(() => {
+			artifact.builds = [];
+		});
+
+		it('adds exports based on input file and output name', () => {
+			artifact.builds.push({ format: 'lib' });
+
+			expect(artifact.getPackageExports()).toEqual({
+				'.': {
+					node: {
+						types: undefined,
+						default: './lib/index.js',
+					},
+					default: './lib/index.js',
+				},
+			});
+		});
+
+		it('adds exports based on input file and output name when shared lib required', () => {
+			artifact.sharedLib = true;
+			artifact.builds.push({ format: 'lib' });
+
+			expect(artifact.getPackageExports()).toEqual({
+				'.': {
+					node: {
+						types: undefined,
+						default: './lib/node/index.js',
+					},
+					default: './lib/node/index.js',
+				},
+			});
+		});
+
+		it('supports subpath file exports when output name is not "index"', () => {
+			artifact.inputs = { sub: './src/sub.ts' };
+			artifact.builds.push({ format: 'lib' });
+
+			expect(artifact.getPackageExports()).toEqual({
+				'./sub': {
+					node: {
+						types: undefined,
+						default: './lib/sub.js',
+					},
+					default: './lib/sub.js',
+				},
+			});
+		});
+
+		it('supports conditional exports when there are multiple builds', () => {
+			artifact.builds.push({ format: 'lib' }, { format: 'mjs' }, { format: 'cjs' });
+
+			expect(artifact.getPackageExports()).toEqual({
+				'.': {
+					node: {
+						import: {
+							types: undefined,
+							default: './mjs/index.mjs',
+						},
+						require: {
+							types: undefined,
+							default: './cjs/index.cjs',
+						},
+					},
+					default: './lib/index.js',
+				},
+			});
+		});
+
+		it('supports conditional exports with types when there are multiple builds', () => {
+			artifact.builds.push(
+				{ declaration: true, format: 'lib' },
+				{ declaration: true, format: 'mjs' },
+				{ declaration: true, format: 'cjs' },
+			);
+
+			expect(artifact.getPackageExports()).toEqual({
+				'.': {
+					node: {
+						import: {
+							types: './mjs/index.d.ts',
+							default: './mjs/index.mjs',
+						},
+						require: {
+							types: './cjs/index.d.ts',
+							default: './cjs/index.cjs',
+						},
+					},
+					default: './lib/index.js',
+				},
+			});
+		});
+
+		it('skips `default` export when there is no `lib` build', () => {
+			artifact.inputs = { sub: './src/sub.ts' };
+			artifact.builds.push({ format: 'mjs' }, { format: 'cjs' });
+
+			expect(artifact.getPackageExports()).toEqual({
+				'./sub': {
+					node: {
+						import: {
+							types: undefined,
+							default: './mjs/sub.mjs',
+						},
+						require: {
+							types: undefined,
+							default: './cjs/sub.cjs',
+						},
+					},
+				},
+			});
+		});
+
+		it('changes export namespace to "browser" when a `browser` platform', () => {
+			artifact.platform = 'browser';
+			artifact.builds.push({ format: 'lib' });
+
+			expect(artifact.getPackageExports()).toEqual({
+				'.': {
+					browser: {
+						types: undefined,
+						default: './lib/index.js',
+					},
+					default: './lib/index.js',
+				},
+			});
+		});
+
+		it('changes export namespace to "react-native" when a `native` platform', () => {
+			artifact.platform = 'native';
+			artifact.builds.push({ format: 'lib' });
+
+			expect(artifact.getPackageExports()).toEqual({
+				'.': {
+					'react-native': {
+						default: './lib/index.js',
+					},
+					default: './lib/index.js',
+				},
+			});
+		});
+
+		it('supports lib', () => {
+			artifact.builds.push({ format: 'lib' });
+
+			expect(artifact.getPackageExports()).toEqual({
+				'.': {
+					node: {
+						types: undefined,
+						default: './lib/index.js',
+					},
+					default: './lib/index.js',
+				},
+			});
+		});
+
+		it('supports lib with types', () => {
+			artifact.builds.push({ declaration: true, format: 'lib' });
+
+			expect(artifact.getPackageExports()).toEqual({
+				'.': {
+					node: {
+						types: './lib/index.d.ts',
+						default: './lib/index.js',
+					},
+					default: './lib/index.js',
+				},
+			});
+		});
+
+		it('supports cjs', () => {
+			artifact.builds.push({ format: 'cjs' });
+
+			expect(artifact.getPackageExports()).toEqual({
+				'.': {
+					node: {
+						import: {
+							types: undefined,
+							default: './cjs/index-wrapper.mjs',
+						},
+						require: {
+							types: undefined,
+							default: './cjs/index.cjs',
+						},
+					},
+				},
+			});
+		});
+
+		it('supports cjs with types', () => {
+			artifact.builds.push({ declaration: true, format: 'cjs' });
+
+			expect(artifact.getPackageExports()).toEqual({
+				'.': {
+					node: {
+						import: {
+							types: './cjs/index.d.ts',
+							default: './cjs/index-wrapper.mjs',
+						},
+						require: {
+							types: './cjs/index.d.ts',
+							default: './cjs/index.cjs',
+						},
+					},
+				},
+			});
+		});
+
+		it('supports .d.cts', () => {
+			artifact.builds.push({ declaration: true, format: 'cjs' });
+			artifact.inputs = { index: 'src/index.cts' };
+
+			expect(artifact.getPackageExports()).toEqual({
+				'.': {
+					node: {
+						import: {
+							types: './cjs/index.d.cts',
+							default: './cjs/index-wrapper.mjs',
+						},
+						require: {
+							types: './cjs/index.d.cts',
+							default: './cjs/index.cjs',
+						},
+					},
+				},
+			});
+		});
+
+		it('supports mjs', () => {
+			artifact.builds.push({ format: 'mjs' });
+
+			expect(artifact.getPackageExports()).toEqual({
+				'.': {
+					node: {
+						import: {
+							types: undefined,
+							default: './mjs/index.mjs',
+						},
+						require: undefined,
+					},
+				},
+			});
+		});
+
+		it('supports mjs with types', () => {
+			artifact.builds.push({ declaration: true, format: 'mjs' });
+
+			expect(artifact.getPackageExports()).toEqual({
+				'.': {
+					node: {
+						import: {
+							types: './mjs/index.d.ts',
+							default: './mjs/index.mjs',
+						},
+						require: undefined,
+					},
+				},
+			});
+		});
+
+		it('supports .d.mts', () => {
+			artifact.builds.push({ declaration: true, format: 'mjs' });
+			artifact.inputs = { index: 'src/index.mts' };
+
+			expect(artifact.getPackageExports()).toEqual({
+				'.': {
+					node: {
+						import: {
+							types: './mjs/index.d.mts',
+							default: './mjs/index.mjs',
+						},
+						require: undefined,
+					},
+				},
 			});
 		});
 	});

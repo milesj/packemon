@@ -84,21 +84,6 @@ Integrating with TypeScript can sometimes be tricky, and with Packemon, that is 
 Since Packemon now handles the build process, TypeScript should be configured for type checking and
 declaration generation only.
 
-### Update output directories
-
-Both the `outDir` and `declarationDir` settings should be updated to `dts`, and should _not_ be set
-to `lib`, `build`, or some other variant. This is especially true if using project references.
-
-```json title="tsconfig.json"
-{
-  "compilerOptions": {
-    "declaration": true,
-    "declarationDir": "dts",
-    "outDir": "dts"
-  }
-}
-```
-
 ### Enable emitting
 
 The `noEmit` setting should _only_ be used on the command line (via an npm script) and should not be
@@ -131,14 +116,14 @@ guarantees that Packemon needs for handling declarations.
 ### Supporting project references
 
 Alongside the requirements listed above, the `tsconfig.json` within each project reference package
-should be updated to only emit declarations to `dts`, like so.
+should be updated to only emit declarations to each format, like so. This may require multiple
+configs.
 
 ```json title="tsconfig.json"
 {
   "compilerOptions": {
     "declaration": true,
-    "declarationDir": "dts",
-    "outDir": "dts",
+    "outDir": "lib",
     "rootDir": "src",
     "emitDeclarationOnly": true
   }

@@ -88,7 +88,7 @@ export function getRollupOutputConfig(
 	packemonConfig: ConfigFile = {},
 ): OutputOptions {
 	const { platform, support } = artifact;
-	const { ext, folder } = artifact.getBuildOutput(format);
+	const { entryExt, folder } = artifact.getBuildOutput(format, 'index');
 	// eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
 	const isSwc = packemonConfig.swc || !!process.env.PACKEMON_SWC;
 	const isEsm = format === 'esm' || format === 'mjs';
@@ -99,11 +99,11 @@ export function getRollupOutputConfig(
 		originalFormat: format,
 		interop: 'auto',
 		// Map our externals to local paths with trailing extension
-		paths: getRollupPaths(artifact, ext),
+		paths: getRollupPaths(artifact, entryExt),
 		// Use our extension for file names
 		assetFileNames: 'assets/[name].[ext]',
-		chunkFileNames: `${artifact.bundle ? 'bundle' : '[name]'}-[hash].${ext}`,
-		entryFileNames: `[name].${ext}`,
+		chunkFileNames: `${artifact.bundle ? 'bundle' : '[name]'}-[hash].${entryExt}`,
+		entryFileNames: `[name].${entryExt}`,
 		preserveModules: !artifact.bundle,
 		// Use ESM features when not supporting old targets
 		generatedCode: {

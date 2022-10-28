@@ -24,9 +24,8 @@ Example output using our own package.
 ### Tree format
 
 ```
-┌─ dts
-│ └─ index.d.ts
-├─ lib
+┌─ lib
+│ ├─ index.d.ts
 │ ├─ index.js
 │ └─ index.js.map
 ├─ src
@@ -39,7 +38,7 @@ Example output using our own package.
 ### List format
 
 ```
-┌─ dts/index.d.ts
+┌─ lib/index.d.ts
 ├─ lib/index.js
 ├─ lib/index.js.map
 ├─ src/index.ts
