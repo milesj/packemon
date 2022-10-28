@@ -1,0 +1,22 @@
+{
+	"module": {
+		"type": "commonjs"
+	},
+	"jsc": {
+		"parser": {
+			"syntax": "typescript",
+			"tsx": true,
+			"dynamicImport": true,
+			"decorators": true
+		},
+		"transform": {
+			"legacyDecorator": true,
+			"react": {
+				"runtime": "automatic"
+			}
+		},
+		"externalHelpers": false,
+		"loose": false,
+		"target": "es2018"
+	}
+}
