@@ -587,7 +587,7 @@ exports[`getBabelOutputConfig() handles preset-env: native + lib + current 1`] =
     "shippedProposals": true,
     "spec": true,
     "targets": {
-      "browsers": "iOS 14",
+      "browsers": "iOS 15",
     },
     "useBuiltIns": false,
   },
@@ -608,7 +608,7 @@ exports[`getBabelOutputConfig() handles preset-env: native + lib + experimental 
     "shippedProposals": true,
     "spec": true,
     "targets": {
-      "browsers": "iOS 15",
+      "browsers": "iOS 16",
     },
     "useBuiltIns": false,
   },
@@ -629,7 +629,7 @@ exports[`getBabelOutputConfig() handles preset-env: native + lib + legacy 1`] = 
     "shippedProposals": true,
     "spec": true,
     "targets": {
-      "browsers": "iOS 12",
+      "browsers": "iOS 13",
     },
     "useBuiltIns": false,
   },
@@ -650,7 +650,7 @@ exports[`getBabelOutputConfig() handles preset-env: native + lib + stable 1`] = 
     "shippedProposals": true,
     "spec": true,
     "targets": {
-      "browsers": "iOS 13",
+      "browsers": "iOS 14",
     },
     "useBuiltIns": false,
   },
@@ -672,7 +672,7 @@ exports[`getBabelOutputConfig() handles preset-env: node + cjs + current 1`] = `
     "shippedProposals": true,
     "spec": true,
     "targets": {
-      "node": "16.12.0",
+      "node": "18.12.0",
     },
     "useBuiltIns": false,
   },
@@ -694,7 +694,7 @@ exports[`getBabelOutputConfig() handles preset-env: node + cjs + experimental 1`
     "shippedProposals": true,
     "spec": true,
     "targets": {
-      "node": "18.0.0",
+      "node": "19.0.0",
     },
     "useBuiltIns": false,
   },
@@ -709,13 +709,14 @@ exports[`getBabelOutputConfig() handles preset-env: node + cjs + legacy 1`] = `
     "exclude": [
       "@babel/plugin-transform-regenerator",
       "@babel/plugin-transform-async-to-generator",
+      "@babel/plugin-proposal-dynamic-import",
     ],
     "loose": false,
     "modules": "cjs",
     "shippedProposals": true,
     "spec": true,
     "targets": {
-      "node": "12.22.0",
+      "node": "14.15.0",
     },
     "useBuiltIns": false,
   },
@@ -737,7 +738,7 @@ exports[`getBabelOutputConfig() handles preset-env: node + cjs + stable 1`] = `
     "shippedProposals": true,
     "spec": true,
     "targets": {
-      "node": "14.15.0",
+      "node": "16.12.0",
     },
     "useBuiltIns": false,
   },
@@ -759,7 +760,7 @@ exports[`getBabelOutputConfig() handles preset-env: node + lib + current 1`] = `
     "shippedProposals": true,
     "spec": true,
     "targets": {
-      "node": "16.12.0",
+      "node": "18.12.0",
     },
     "useBuiltIns": false,
   },
@@ -781,7 +782,7 @@ exports[`getBabelOutputConfig() handles preset-env: node + lib + experimental 1`
     "shippedProposals": true,
     "spec": true,
     "targets": {
-      "node": "18.0.0",
+      "node": "19.0.0",
     },
     "useBuiltIns": false,
   },
@@ -796,13 +797,14 @@ exports[`getBabelOutputConfig() handles preset-env: node + lib + legacy 1`] = `
     "exclude": [
       "@babel/plugin-transform-regenerator",
       "@babel/plugin-transform-async-to-generator",
+      "@babel/plugin-proposal-dynamic-import",
     ],
     "loose": false,
     "modules": "cjs",
     "shippedProposals": true,
     "spec": true,
     "targets": {
-      "node": "12.22.0",
+      "node": "14.15.0",
     },
     "useBuiltIns": false,
   },
@@ -824,7 +826,7 @@ exports[`getBabelOutputConfig() handles preset-env: node + lib + stable 1`] = `
     "shippedProposals": true,
     "spec": true,
     "targets": {
-      "node": "14.15.0",
+      "node": "16.12.0",
     },
     "useBuiltIns": false,
   },
@@ -846,7 +848,7 @@ exports[`getBabelOutputConfig() handles preset-env: node + mjs + current 1`] = `
     "shippedProposals": true,
     "spec": true,
     "targets": {
-      "node": "16.12.0",
+      "node": "18.12.0",
     },
     "useBuiltIns": false,
   },
@@ -868,7 +870,7 @@ exports[`getBabelOutputConfig() handles preset-env: node + mjs + experimental 1`
     "shippedProposals": true,
     "spec": true,
     "targets": {
-      "node": "18.0.0",
+      "node": "19.0.0",
     },
     "useBuiltIns": false,
   },
@@ -883,13 +885,14 @@ exports[`getBabelOutputConfig() handles preset-env: node + mjs + legacy 1`] = `
     "exclude": [
       "@babel/plugin-transform-regenerator",
       "@babel/plugin-transform-async-to-generator",
+      "@babel/plugin-proposal-dynamic-import",
     ],
     "loose": false,
     "modules": false,
     "shippedProposals": true,
     "spec": true,
     "targets": {
-      "node": "12.22.0",
+      "node": "14.15.0",
     },
     "useBuiltIns": false,
   },
@@ -911,7 +914,7 @@ exports[`getBabelOutputConfig() handles preset-env: node + mjs + stable 1`] = `
     "shippedProposals": true,
     "spec": true,
     "targets": {
-      "node": "14.15.0",
+      "node": "16.12.0",
     },
     "useBuiltIns": false,
   },
@@ -1015,7 +1018,7 @@ exports[`getBabelOutputConfig() transforms async/await to promises when \`browse
         "shippedProposals": true,
         "spec": true,
         "targets": {
-          "browsers": "iOS 15",
+          "browsers": "iOS 16",
         },
         "useBuiltIns": false,
       },
@@ -1073,7 +1076,7 @@ exports[`getBabelOutputConfig() uses built-in destructuring and object spread wh
         "shippedProposals": true,
         "spec": true,
         "targets": {
-          "node": "16.12.0",
+          "node": "18.12.0",
         },
         "useBuiltIns": false,
       },
@@ -1131,7 +1134,7 @@ exports[`getBabelOutputConfig() uses built-in destructuring and object spread wh
         "shippedProposals": true,
         "spec": true,
         "targets": {
-          "node": "18.0.0",
+          "node": "19.0.0",
         },
         "useBuiltIns": false,
       },

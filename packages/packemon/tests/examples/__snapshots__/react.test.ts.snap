@@ -723,7 +723,7 @@ exports[`React/JSX swc transforms example test case: browser-legacy-esm 1`] = `
   "esm/index-browser-legacy-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: esm
-import { jsx } from "react/jsx-runtime";
+import { jsx } from 'react/jsx-runtime';
 function Button() {
     return /*#__PURE__*/ jsx("button", {});
 }
@@ -738,8 +738,8 @@ exports[`React/JSX swc transforms example test case: browser-legacy-lib 1`] = `
   "lib/index-browser-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: lib
-"use strict";
-var jsxRuntime = require("react/jsx-runtime");
+'use strict';
+var jsxRuntime = require('react/jsx-runtime');
 function Button() {
     return /*#__PURE__*/ jsxRuntime.jsx("button", {});
 }
@@ -875,8 +875,8 @@ exports[`React/JSX swc transforms example test case: native-legacy-lib 1`] = `
   "lib/index-native-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: legacy, Format: lib
-"use strict";
-const jsxRuntime = require("react/jsx-runtime");
+'use strict';
+const jsxRuntime = require('react/jsx-runtime');
 function Button() {
     return /*#__PURE__*/ jsxRuntime.jsx("button", {});
 }
@@ -1037,8 +1037,8 @@ exports[`React/JSX swc transforms example test case: node-legacy-cjs 2`] = `
   "cjs/index-node-legacy-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: cjs
-"use strict";
-const jsxRuntime = require("react/jsx-runtime");
+'use strict';
+const jsxRuntime = require('react/jsx-runtime');
 function Button() {
     return /*#__PURE__*/ jsxRuntime.jsx("button", {});
 }
@@ -1053,8 +1053,8 @@ exports[`React/JSX swc transforms example test case: node-legacy-lib 1`] = `
   "lib/index-node-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: lib
-"use strict";
-const jsxRuntime = require("react/jsx-runtime");
+'use strict';
+const jsxRuntime = require('react/jsx-runtime');
 function Button() {
     return /*#__PURE__*/ jsxRuntime.jsx("button", {});
 }
@@ -1069,7 +1069,7 @@ exports[`React/JSX swc transforms example test case: node-legacy-mjs 1`] = `
   "mjs/index-node-legacy-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: mjs
-import { jsx } from "react/jsx-runtime";
+import { jsx } from 'react/jsx-runtime';
 function Button() {
     return /*#__PURE__*/ jsx("button", {});
 }
