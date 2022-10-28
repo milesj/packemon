@@ -16692,7 +16692,7 @@ __metadata:
     react: ^17.0.2
     resolve: ^1.22.1
     rollup: ^2.79.0
-    rollup-plugin-node-externals: ^4.1.1
+    rollup-plugin-node-externals: ^5.0.1
     rollup-plugin-polyfill-node: ^0.11.0
     semver: ^7.3.8
     spdx-license-list: ^6.6.0
@@ -18844,25 +18844,12 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"rollup-plugin-node-externals@npm:4.0.0":
-  version: 4.0.0
-  resolution: "rollup-plugin-node-externals@npm:4.0.0"
-  dependencies:
-    find-up: ^5.0.0
+"rollup-plugin-node-externals@npm:^5.0.1":
+  version: 5.0.1
+  resolution: "rollup-plugin-node-externals@npm:5.0.1"
   peerDependencies:
-    rollup: ^2.60.0
-  checksum: 8f4e7faed64332f69f3751b0eb2e4786c05653275c141536e62a69d1c1335d6c9e1b82cf53d24d4511b22c50e9acece65d9217669321c0a87bed4c44ae81789e
-  languageName: node
-  linkType: hard
-
-"rollup-plugin-node-externals@patch:rollup-plugin-node-externals@npm:4.0.0#.yarn/patches/rollup-plugin-node-externals-npm-4.0.0-ff7f4cacfc.patch::locator=packemon-root%40workspace%3A.":
-  version: 4.0.0
-  resolution: "rollup-plugin-node-externals@patch:rollup-plugin-node-externals@npm%3A4.0.0#.yarn/patches/rollup-plugin-node-externals-npm-4.0.0-ff7f4cacfc.patch::version=4.0.0&hash=3617f4&locator=packemon-root%40workspace%3A."
-  dependencies:
-    find-up: ^5.0.0
-  peerDependencies:
-    rollup: ^2.60.0
-  checksum: decbcb44721f6a47e7e513692972f0a42bc63b7199de869204dd8afc172d7d39bb51c1c8fd9f8772217e83879ed093d4e8212cc7ad174be7ab3ee850aef37608
+    rollup: ^2.60.0 || ^3.0.0
+  checksum: 7089bfc19b370293b0aee9063b541d06e66cc0855141eb33e2ece1d8db7f22a8d437b04fc8464854fef21f558aa6f8b54a0a29cb8984d139ebf5278d6d8b7019
   languageName: node
   linkType: hard
 

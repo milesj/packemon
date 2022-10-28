@@ -8,7 +8,7 @@ exports[`Outputs (babel) artifacts builds all the artifacts with rollup 1`] = `
 
 'use strict';
 
-const https = require('https');
+const https = require('node:https');
 const _interopDefault = e => e && e.__esModule ? e : {
   default: e
 };
@@ -597,7 +597,7 @@ exports[`Outputs (swc) artifacts builds all the artifacts with rollup 1`] = `
 
 'use strict';
 
-const https = require('https');
+const https = require('node:https');
 const _interopDefault = e => e && e.__esModule ? e : {
   default: e
 };

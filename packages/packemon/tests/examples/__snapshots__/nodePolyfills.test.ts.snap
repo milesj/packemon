@@ -9702,15 +9702,15 @@ exports[`Node polyfills babel transforms example test case: node-current-cjs 2`]
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-const events = require('events');
-const path = require('path');
+const node_events = require('node:events');
+const path = require('node:path');
 const _interopDefault = e => e && e.__esModule ? e : {
   default: e
 };
 const path__default = /*#__PURE__*/_interopDefault(path);
 const test = path__default.default.join('foo', 'bar');
-const emitter = new events.EventEmitter();
-class Example extends events.EventEmitter {
+const emitter = new node_events.EventEmitter();
+class Example extends node_events.EventEmitter {
   log() {}
 }
 exports.Example = Example;
@@ -9732,15 +9732,15 @@ exports[`Node polyfills babel transforms example test case: node-current-lib 1`]
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-const events = require('events');
-const path = require('path');
+const node_events = require('node:events');
+const path = require('node:path');
 const _interopDefault = e => e && e.__esModule ? e : {
   default: e
 };
 const path__default = /*#__PURE__*/_interopDefault(path);
 const test = path__default.default.join('foo', 'bar');
-const emitter = new events.EventEmitter();
-class Example extends events.EventEmitter {
+const emitter = new node_events.EventEmitter();
+class Example extends node_events.EventEmitter {
   log() {}
 }
 exports.Example = Example;
@@ -9757,8 +9757,8 @@ exports[`Node polyfills babel transforms example test case: node-current-mjs 1`]
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: mjs
 
-import { EventEmitter } from 'events';
-import path from 'path';
+import { EventEmitter } from 'node:events';
+import path from 'node:path';
 const test = path.join('foo', 'bar');
 const emitter = new EventEmitter();
 class Example extends EventEmitter {
@@ -9793,15 +9793,15 @@ exports[`Node polyfills babel transforms example test case: node-experimental-cj
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-const events = require('events');
-const path = require('path');
+const node_events = require('node:events');
+const path = require('node:path');
 const _interopDefault = e => e && e.__esModule ? e : {
   default: e
 };
 const path__default = /*#__PURE__*/_interopDefault(path);
 const test = path__default.default.join('foo', 'bar');
-const emitter = new events.EventEmitter();
-class Example extends events.EventEmitter {
+const emitter = new node_events.EventEmitter();
+class Example extends node_events.EventEmitter {
   log() {}
 }
 exports.Example = Example;
@@ -9823,15 +9823,15 @@ exports[`Node polyfills babel transforms example test case: node-experimental-li
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-const events = require('events');
-const path = require('path');
+const node_events = require('node:events');
+const path = require('node:path');
 const _interopDefault = e => e && e.__esModule ? e : {
   default: e
 };
 const path__default = /*#__PURE__*/_interopDefault(path);
 const test = path__default.default.join('foo', 'bar');
-const emitter = new events.EventEmitter();
-class Example extends events.EventEmitter {
+const emitter = new node_events.EventEmitter();
+class Example extends node_events.EventEmitter {
   log() {}
 }
 exports.Example = Example;
@@ -9848,8 +9848,8 @@ exports[`Node polyfills babel transforms example test case: node-experimental-mj
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: mjs
 
-import { EventEmitter } from 'events';
-import path from 'path';
+import { EventEmitter } from 'node:events';
+import path from 'node:path';
 const test = path.join('foo', 'bar');
 const emitter = new EventEmitter();
 class Example extends EventEmitter {
@@ -9975,15 +9975,15 @@ exports[`Node polyfills babel transforms example test case: node-stable-cjs 2`] 
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-const events = require('events');
-const path = require('path');
+const node_events = require('node:events');
+const path = require('node:path');
 const _interopDefault = e => e && e.__esModule ? e : {
   default: e
 };
 const path__default = /*#__PURE__*/_interopDefault(path);
 const test = path__default.default.join('foo', 'bar');
-const emitter = new events.EventEmitter();
-class Example extends events.EventEmitter {
+const emitter = new node_events.EventEmitter();
+class Example extends node_events.EventEmitter {
   log() {}
 }
 exports.Example = Example;
@@ -10005,15 +10005,15 @@ exports[`Node polyfills babel transforms example test case: node-stable-lib 1`] 
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-const events = require('events');
-const path = require('path');
+const node_events = require('node:events');
+const path = require('node:path');
 const _interopDefault = e => e && e.__esModule ? e : {
   default: e
 };
 const path__default = /*#__PURE__*/_interopDefault(path);
 const test = path__default.default.join('foo', 'bar');
-const emitter = new events.EventEmitter();
-class Example extends events.EventEmitter {
+const emitter = new node_events.EventEmitter();
+class Example extends node_events.EventEmitter {
   log() {}
 }
 exports.Example = Example;
@@ -10030,8 +10030,8 @@ exports[`Node polyfills babel transforms example test case: node-stable-mjs 1`] 
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: mjs
 
-import { EventEmitter } from 'events';
-import path from 'path';
+import { EventEmitter } from 'node:events';
+import path from 'node:path';
 const test = path.join('foo', 'bar');
 const emitter = new EventEmitter();
 class Example extends EventEmitter {
@@ -18891,15 +18891,15 @@ exports[`Node polyfills swc transforms example test case: node-current-cjs 2`] =
 Object.defineProperty(exports, '__esModule', {
     value: true
 });
-const events = require('events');
-const path = require('path');
+const node_events = require('node:events');
+const path = require('node:path');
 const _interopDefault = (e)=>e && e.__esModule ? e : {
         default: e
     };
 const path__default = /*#__PURE__*/ _interopDefault(path);
 const test = path__default.default.join('foo', 'bar');
-const emitter = new events.EventEmitter();
-let Example = class Example extends events.EventEmitter {
+const emitter = new node_events.EventEmitter();
+let Example = class Example extends node_events.EventEmitter {
     log() {}
 };
 exports.Example = Example;
@@ -18919,15 +18919,15 @@ exports[`Node polyfills swc transforms example test case: node-current-lib 1`] =
 Object.defineProperty(exports, '__esModule', {
     value: true
 });
-const events = require('events');
-const path = require('path');
+const node_events = require('node:events');
+const path = require('node:path');
 const _interopDefault = (e)=>e && e.__esModule ? e : {
         default: e
     };
 const path__default = /*#__PURE__*/ _interopDefault(path);
 const test = path__default.default.join('foo', 'bar');
-const emitter = new events.EventEmitter();
-let Example = class Example extends events.EventEmitter {
+const emitter = new node_events.EventEmitter();
+let Example = class Example extends node_events.EventEmitter {
     log() {}
 };
 exports.Example = Example;
@@ -18943,8 +18943,8 @@ exports[`Node polyfills swc transforms example test case: node-current-mjs 1`] =
   "mjs/index-node-current-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: mjs
-import { EventEmitter } from 'events';
-import path from 'path';
+import { EventEmitter } from 'node:events';
+import path from 'node:path';
 const test = path.join('foo', 'bar');
 const emitter = new EventEmitter();
 let Example = class Example extends EventEmitter {
@@ -18977,15 +18977,15 @@ exports[`Node polyfills swc transforms example test case: node-experimental-cjs 
 Object.defineProperty(exports, '__esModule', {
     value: true
 });
-const events = require('events');
-const path = require('path');
+const node_events = require('node:events');
+const path = require('node:path');
 const _interopDefault = (e)=>e && e.__esModule ? e : {
         default: e
     };
 const path__default = /*#__PURE__*/ _interopDefault(path);
 const test = path__default.default.join('foo', 'bar');
-const emitter = new events.EventEmitter();
-let Example = class Example extends events.EventEmitter {
+const emitter = new node_events.EventEmitter();
+let Example = class Example extends node_events.EventEmitter {
     log() {}
 };
 exports.Example = Example;
@@ -19005,15 +19005,15 @@ exports[`Node polyfills swc transforms example test case: node-experimental-lib 
 Object.defineProperty(exports, '__esModule', {
     value: true
 });
-const events = require('events');
-const path = require('path');
+const node_events = require('node:events');
+const path = require('node:path');
 const _interopDefault = (e)=>e && e.__esModule ? e : {
         default: e
     };
 const path__default = /*#__PURE__*/ _interopDefault(path);
 const test = path__default.default.join('foo', 'bar');
-const emitter = new events.EventEmitter();
-let Example = class Example extends events.EventEmitter {
+const emitter = new node_events.EventEmitter();
+let Example = class Example extends node_events.EventEmitter {
     log() {}
 };
 exports.Example = Example;
@@ -19029,8 +19029,8 @@ exports[`Node polyfills swc transforms example test case: node-experimental-mjs 
   "mjs/index-node-experimental-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: mjs
-import { EventEmitter } from 'events';
-import path from 'path';
+import { EventEmitter } from 'node:events';
+import path from 'node:path';
 const test = path.join('foo', 'bar');
 const emitter = new EventEmitter();
 let Example = class Example extends EventEmitter {
@@ -19149,15 +19149,15 @@ exports[`Node polyfills swc transforms example test case: node-stable-cjs 2`] = 
 Object.defineProperty(exports, '__esModule', {
     value: true
 });
-const events = require('events');
-const path = require('path');
+const node_events = require('node:events');
+const path = require('node:path');
 const _interopDefault = (e)=>e && e.__esModule ? e : {
         default: e
     };
 const path__default = /*#__PURE__*/ _interopDefault(path);
 const test = path__default.default.join('foo', 'bar');
-const emitter = new events.EventEmitter();
-let Example = class Example extends events.EventEmitter {
+const emitter = new node_events.EventEmitter();
+let Example = class Example extends node_events.EventEmitter {
     log() {}
 };
 exports.Example = Example;
@@ -19177,15 +19177,15 @@ exports[`Node polyfills swc transforms example test case: node-stable-lib 1`] = 
 Object.defineProperty(exports, '__esModule', {
     value: true
 });
-const events = require('events');
-const path = require('path');
+const node_events = require('node:events');
+const path = require('node:path');
 const _interopDefault = (e)=>e && e.__esModule ? e : {
         default: e
     };
 const path__default = /*#__PURE__*/ _interopDefault(path);
 const test = path__default.default.join('foo', 'bar');
-const emitter = new events.EventEmitter();
-let Example = class Example extends events.EventEmitter {
+const emitter = new node_events.EventEmitter();
+let Example = class Example extends node_events.EventEmitter {
     log() {}
 };
 exports.Example = Example;
@@ -19201,8 +19201,8 @@ exports[`Node polyfills swc transforms example test case: node-stable-mjs 1`] = 
   "mjs/index-node-stable-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: mjs
-import { EventEmitter } from 'events';
-import path from 'path';
+import { EventEmitter } from 'node:events';
+import path from 'node:path';
 const test = path.join('foo', 'bar');
 const emitter = new EventEmitter();
 let Example = class Example extends EventEmitter {
