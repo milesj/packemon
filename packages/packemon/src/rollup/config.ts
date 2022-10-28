@@ -1,4 +1,4 @@
-import { ModuleFormat, OutputOptions, RollupOptions } from 'rollup';
+import { ModuleFormat, OutputOptions, Plugin, RollupOptions } from 'rollup';
 import { externals as nodeExternals } from 'rollup-plugin-node-externals';
 import nodePolyfills from 'rollup-plugin-polyfill-node';
 import { getBabelInputPlugin, getBabelOutputPlugin } from '@rollup/plugin-babel';
@@ -217,13 +217,13 @@ export async function getRollupConfig(
 
 	// Polyfill node modules when platform is not node
 	if (!isNode) {
-		config.plugins!.unshift(nodePolyfills());
+		(config.plugins as Plugin[]).unshift(nodePolyfills());
 	}
 
 	// Add an output for each format
 	config.output = artifact.builds.map((build) => {
 		if (build.format === 'cjs') {
-			config.plugins!.push(
+			(config.plugins as Plugin[]).push(
 				addMjsWrapperForCjs({
 					inputs: artifact.inputs,
 					packageRoot: artifact.package.path,
