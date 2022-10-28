@@ -21,30 +21,36 @@ try {
 	// Ignore
 }
 
-const program = new Program({
-	bin: 'packemon',
-	footer: 'Documentation: https://packemon.dev',
-	name: 'Packemon',
-	version,
-});
+async function run() {
+	const program = new Program({
+		bin: 'packemon',
+		footer: 'Documentation: https://packemon.dev',
+		name: 'Packemon',
+		version,
+	});
 
-program
-	.categories({
-		filter: 'Filtering',
-	})
-	.register(new BuildCommand())
-	.register(new BuildWorkspaceCommand())
-	.register(new CleanCommand())
-	.register(new FilesCommand())
-	.register(new InitCommand())
-	.register(new PackCommand())
-	.register(new PackWorkspaceCommand())
-	.register(new ScaffoldCommand())
-	.register(new ValidateCommand())
-	.register(new WatchCommand());
+	program
+		.categories({
+			filter: 'Filtering',
+		})
+		.register(new BuildCommand())
+		.register(new BuildWorkspaceCommand())
+		.register(new CleanCommand())
+		.register(new FilesCommand())
+		.register(new InitCommand())
+		.register(new PackCommand())
+		.register(new PackWorkspaceCommand())
+		.register(new ScaffoldCommand())
+		.register(new ValidateCommand())
+		.register(new WatchCommand());
 
-if (!process.env.CI && !process.argv.includes('--quiet')) {
-	program.middleware(checkPackageOutdated('packemon', version));
+	if (!process.env.CI && !process.argv.includes('--quiet')) {
+		program.middleware(checkPackageOutdated('packemon', version));
+	}
+
+	await program.runAndExit(process.argv);
 }
 
-await program.runAndExit(process.argv);
+// We need to be using modules first!
+// eslint-disable-next-line unicorn/prefer-top-level-await
+void run();
