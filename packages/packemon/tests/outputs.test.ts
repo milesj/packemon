@@ -101,7 +101,7 @@ import { createSnapshotSpies, loadPackageAtPath } from './helpers';
 					if (ss[0].endsWith('index.js')) {
 						expect(String(ss[1])).toContain("'../assets/globals-107ab52e.css'");
 						expect(String(ss[1])).toContain("'../assets/fonts-4e5dc96c.css'");
-						expect(String(ss[1])).toContain("'../assets/styles-b11c3a83.css'");
+						expect(String(ss[1])).toContain("'../assets/styles-a82c1676.css'");
 					}
 				});
 			});
@@ -175,7 +175,7 @@ import { createSnapshotSpies, loadPackageAtPath } from './helpers';
 					}
 
 					if (ss[0].endsWith('lib/button/index2.js')) {
-						expect(String(ss[1])).toContain("'../../assets/styles-b11c3a83.css'");
+						expect(String(ss[1])).toContain("'../../assets/styles-a82c1676.css'");
 					}
 				});
 			});
