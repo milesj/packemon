@@ -13,6 +13,13 @@
 			"legacyDecorator": true,
 			"react": {
 				"runtime": "automatic"
+			},
+			"optimizer": {
+				"globals": {
+					"vars": {
+						"__DEV__": "process.env.NODE_ENV !== 'production'"
+					}
+				}
 			}
 		},
 		"externalHelpers": false,
