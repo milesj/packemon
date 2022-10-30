@@ -597,9 +597,6 @@ exports[`Node polyfills babel transforms example test case: browser-current-lib 
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 var domain;
 
 // This constructor is used to store event handlers. Instantiating this is
@@ -2393,9 +2390,6 @@ exports[`Node polyfills babel transforms example test case: browser-experimental
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 var domain;
 
 // This constructor is used to store event handlers. Instantiating this is
@@ -4237,9 +4231,6 @@ function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) ===
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 var domain;
 
 // This constructor is used to store event handlers. Instantiating this is
@@ -6096,9 +6087,6 @@ exports[`Node polyfills babel transforms example test case: browser-stable-lib 1
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 var domain;
 
 // This constructor is used to store event handlers. Instantiating this is
@@ -7303,9 +7291,6 @@ exports[`Node polyfills babel transforms example test case: native-current-lib 1
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 var domain;
 
 // This constructor is used to store event handlers. Instantiating this is
@@ -7899,9 +7884,6 @@ exports[`Node polyfills babel transforms example test case: native-experimental-
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 var domain;
 
 // This constructor is used to store event handlers. Instantiating this is
@@ -8495,9 +8477,6 @@ exports[`Node polyfills babel transforms example test case: native-legacy-lib 1`
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 var domain;
 
 // This constructor is used to store event handlers. Instantiating this is
@@ -9091,9 +9070,6 @@ exports[`Node polyfills babel transforms example test case: native-stable-lib 1`
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 var domain;
 
 // This constructor is used to store event handlers. Instantiating this is
@@ -9699,9 +9675,6 @@ exports[`Node polyfills babel transforms example test case: node-current-cjs 2`]
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 const node_events = require('node:events');
 const path = require('node:path');
 const _interopDefault = e => e && e.__esModule ? e : {
@@ -9729,9 +9702,6 @@ exports[`Node polyfills babel transforms example test case: node-current-lib 1`]
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 const node_events = require('node:events');
 const path = require('node:path');
 const _interopDefault = e => e && e.__esModule ? e : {
@@ -9790,9 +9760,6 @@ exports[`Node polyfills babel transforms example test case: node-experimental-cj
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 const node_events = require('node:events');
 const path = require('node:path');
 const _interopDefault = e => e && e.__esModule ? e : {
@@ -9820,9 +9787,6 @@ exports[`Node polyfills babel transforms example test case: node-experimental-li
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 const node_events = require('node:events');
 const path = require('node:path');
 const _interopDefault = e => e && e.__esModule ? e : {
@@ -9881,9 +9845,6 @@ exports[`Node polyfills babel transforms example test case: node-legacy-cjs 2`] 
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 const events = require('events');
 const path = require('path');
 const _interopDefault = e => e && e.__esModule ? e : {
@@ -9911,9 +9872,6 @@ exports[`Node polyfills babel transforms example test case: node-legacy-lib 1`] 
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 const events = require('events');
 const path = require('path');
 const _interopDefault = e => e && e.__esModule ? e : {
@@ -9972,9 +9930,6 @@ exports[`Node polyfills babel transforms example test case: node-stable-cjs 2`] 
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 const node_events = require('node:events');
 const path = require('node:path');
 const _interopDefault = e => e && e.__esModule ? e : {
@@ -10002,9 +9957,6 @@ exports[`Node polyfills babel transforms example test case: node-stable-lib 1`] 
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 const node_events = require('node:events');
 const path = require('node:path');
 const _interopDefault = e => e && e.__esModule ? e : {
@@ -10574,9 +10526,6 @@ exports[`Node polyfills swc transforms example test case: browser-current-lib 1`
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: lib
 'use strict';
-Object.defineProperty(exports, '__esModule', {
-    value: true
-});
 var domain;
 // This constructor is used to store event handlers. Instantiating this is
 // faster than explicitly calling \`Object.create(null)\` to get a "clean" empty
@@ -12175,9 +12124,6 @@ exports[`Node polyfills swc transforms example test case: browser-experimental-l
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: experimental, Format: lib
 'use strict';
-Object.defineProperty(exports, '__esModule', {
-    value: true
-});
 var domain;
 // This constructor is used to store event handlers. Instantiating this is
 // faster than explicitly calling \`Object.create(null)\` to get a "clean" empty
@@ -13959,9 +13905,6 @@ function _createSuper(Derived) {
         return _possibleConstructorReturn(this, result);
     };
 }
-Object.defineProperty(exports, '__esModule', {
-    value: true
-});
 var domain;
 // This constructor is used to store event handlers. Instantiating this is
 // faster than explicitly calling \`Object.create(null)\` to get a "clean" empty
@@ -15676,9 +15619,6 @@ exports[`Node polyfills swc transforms example test case: browser-stable-lib 1`]
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: lib
 'use strict';
-Object.defineProperty(exports, '__esModule', {
-    value: true
-});
 var domain;
 // This constructor is used to store event handlers. Instantiating this is
 // faster than explicitly calling \`Object.create(null)\` to get a "clean" empty
@@ -16752,9 +16692,6 @@ exports[`Node polyfills swc transforms example test case: native-current-lib 1`]
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: current, Format: lib
 'use strict';
-Object.defineProperty(exports, '__esModule', {
-    value: true
-});
 var domain;
 // This constructor is used to store event handlers. Instantiating this is
 // faster than explicitly calling \`Object.create(null)\` to get a "clean" empty
@@ -17283,9 +17220,6 @@ exports[`Node polyfills swc transforms example test case: native-experimental-li
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: experimental, Format: lib
 'use strict';
-Object.defineProperty(exports, '__esModule', {
-    value: true
-});
 var domain;
 // This constructor is used to store event handlers. Instantiating this is
 // faster than explicitly calling \`Object.create(null)\` to get a "clean" empty
@@ -17814,9 +17748,6 @@ exports[`Node polyfills swc transforms example test case: native-legacy-lib 1`] 
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: legacy, Format: lib
 'use strict';
-Object.defineProperty(exports, '__esModule', {
-    value: true
-});
 var domain;
 // This constructor is used to store event handlers. Instantiating this is
 // faster than explicitly calling \`Object.create(null)\` to get a "clean" empty
@@ -18345,9 +18276,6 @@ exports[`Node polyfills swc transforms example test case: native-stable-lib 1`] 
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: stable, Format: lib
 'use strict';
-Object.defineProperty(exports, '__esModule', {
-    value: true
-});
 var domain;
 // This constructor is used to store event handlers. Instantiating this is
 // faster than explicitly calling \`Object.create(null)\` to get a "clean" empty
@@ -18888,9 +18816,6 @@ exports[`Node polyfills swc transforms example test case: node-current-cjs 2`] =
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: cjs
 'use strict';
-Object.defineProperty(exports, '__esModule', {
-    value: true
-});
 const node_events = require('node:events');
 const path = require('node:path');
 const _interopDefault = (e)=>e && e.__esModule ? e : {
@@ -18916,9 +18841,6 @@ exports[`Node polyfills swc transforms example test case: node-current-lib 1`] =
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: lib
 'use strict';
-Object.defineProperty(exports, '__esModule', {
-    value: true
-});
 const node_events = require('node:events');
 const path = require('node:path');
 const _interopDefault = (e)=>e && e.__esModule ? e : {
@@ -18974,9 +18896,6 @@ exports[`Node polyfills swc transforms example test case: node-experimental-cjs 
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: cjs
 'use strict';
-Object.defineProperty(exports, '__esModule', {
-    value: true
-});
 const node_events = require('node:events');
 const path = require('node:path');
 const _interopDefault = (e)=>e && e.__esModule ? e : {
@@ -19002,9 +18921,6 @@ exports[`Node polyfills swc transforms example test case: node-experimental-lib 
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: lib
 'use strict';
-Object.defineProperty(exports, '__esModule', {
-    value: true
-});
 const node_events = require('node:events');
 const path = require('node:path');
 const _interopDefault = (e)=>e && e.__esModule ? e : {
@@ -19060,9 +18976,6 @@ exports[`Node polyfills swc transforms example test case: node-legacy-cjs 2`] = 
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: cjs
 'use strict';
-Object.defineProperty(exports, '__esModule', {
-    value: true
-});
 const events = require('events');
 const path = require('path');
 const _interopDefault = (e)=>e && e.__esModule ? e : {
@@ -19088,9 +19001,6 @@ exports[`Node polyfills swc transforms example test case: node-legacy-lib 1`] = 
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: lib
 'use strict';
-Object.defineProperty(exports, '__esModule', {
-    value: true
-});
 const events = require('events');
 const path = require('path');
 const _interopDefault = (e)=>e && e.__esModule ? e : {
@@ -19146,9 +19056,6 @@ exports[`Node polyfills swc transforms example test case: node-stable-cjs 2`] = 
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: cjs
 'use strict';
-Object.defineProperty(exports, '__esModule', {
-    value: true
-});
 const node_events = require('node:events');
 const path = require('node:path');
 const _interopDefault = (e)=>e && e.__esModule ? e : {
@@ -19174,9 +19081,6 @@ exports[`Node polyfills swc transforms example test case: node-stable-lib 1`] = 
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: lib
 'use strict';
-Object.defineProperty(exports, '__esModule', {
-    value: true
-});
 const node_events = require('node:events');
 const path = require('node:path');
 const _interopDefault = (e)=>e && e.__esModule ? e : {

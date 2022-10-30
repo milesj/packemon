@@ -32,9 +32,6 @@ exports[`Async/await babel transforms example test case: browser-current-lib 1`]
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 async function wait() {
   return new Promise(resolve => {
     setTimeout(resolve, 100);
@@ -130,9 +127,6 @@ exports[`Async/await babel transforms example test case: browser-experimental-li
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 async function wait() {
   return new Promise(resolve => {
     setTimeout(resolve, 100);
@@ -232,9 +226,6 @@ exports[`Async/await babel transforms example test case: browser-legacy-lib 1`] 
 'use strict';
 
 function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError("Cannot instantiate an arrow function"); } }
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 async function wait() {
   var _this = this;
   return new Promise(function (resolve) {
@@ -335,9 +326,6 @@ exports[`Async/await babel transforms example test case: browser-stable-lib 1`] 
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 async function wait() {
   return new Promise(resolve => {
     setTimeout(resolve, 100);
@@ -409,9 +397,6 @@ exports[`Async/await babel transforms example test case: native-current-lib 1`] 
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 async function wait() {
   return new Promise(resolve => {
     setTimeout(resolve, 100);
@@ -439,9 +424,6 @@ exports[`Async/await babel transforms example test case: native-experimental-lib
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 async function wait() {
   return new Promise(resolve => {
     setTimeout(resolve, 100);
@@ -469,9 +451,6 @@ exports[`Async/await babel transforms example test case: native-legacy-lib 1`] =
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 async function wait() {
   return new Promise(resolve => {
     setTimeout(resolve, 100);
@@ -499,9 +478,6 @@ exports[`Async/await babel transforms example test case: native-stable-lib 1`] =
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 async function wait() {
   return new Promise(resolve => {
     setTimeout(resolve, 100);
@@ -541,9 +517,6 @@ exports[`Async/await babel transforms example test case: node-current-cjs 2`] = 
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 async function wait() {
   return new Promise(resolve => {
     setTimeout(resolve, 100);
@@ -571,9 +544,6 @@ exports[`Async/await babel transforms example test case: node-current-lib 1`] = 
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 async function wait() {
   return new Promise(resolve => {
     setTimeout(resolve, 100);
@@ -637,9 +607,6 @@ exports[`Async/await babel transforms example test case: node-experimental-cjs 2
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 async function wait() {
   return new Promise(resolve => {
     setTimeout(resolve, 100);
@@ -667,9 +634,6 @@ exports[`Async/await babel transforms example test case: node-experimental-lib 1
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 async function wait() {
   return new Promise(resolve => {
     setTimeout(resolve, 100);
@@ -733,9 +697,6 @@ exports[`Async/await babel transforms example test case: node-legacy-cjs 2`] = `
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 async function wait() {
   return new Promise(resolve => {
     setTimeout(resolve, 100);
@@ -763,9 +724,6 @@ exports[`Async/await babel transforms example test case: node-legacy-lib 1`] = `
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 async function wait() {
   return new Promise(resolve => {
     setTimeout(resolve, 100);
@@ -829,9 +787,6 @@ exports[`Async/await babel transforms example test case: node-stable-cjs 2`] = `
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 async function wait() {
   return new Promise(resolve => {
     setTimeout(resolve, 100);
@@ -859,9 +814,6 @@ exports[`Async/await babel transforms example test case: node-stable-lib 1`] = `
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 async function wait() {
   return new Promise(resolve => {
     setTimeout(resolve, 100);
@@ -934,9 +886,6 @@ exports[`Async/await swc transforms example test case: browser-current-lib 1`] =
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: lib
 'use strict';
-Object.defineProperty(exports, '__esModule', {
-    value: true
-});
 async function wait() {
     return new Promise((resolve)=>{
         setTimeout(resolve, 100);
@@ -1027,9 +976,6 @@ exports[`Async/await swc transforms example test case: browser-experimental-lib 
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: experimental, Format: lib
 'use strict';
-Object.defineProperty(exports, '__esModule', {
-    value: true
-});
 async function wait() {
     return new Promise((resolve)=>{
         setTimeout(resolve, 100);
@@ -1409,9 +1355,6 @@ var __generator = (void 0) && (void 0).__generator || function(thisArg, body) {
         };
     }
 };
-Object.defineProperty(exports, '__esModule', {
-    value: true
-});
 function wait() {
     return _wait.apply(this, arguments);
 }
@@ -1712,9 +1655,6 @@ exports[`Async/await swc transforms example test case: browser-stable-lib 1`] = 
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: lib
 'use strict';
-Object.defineProperty(exports, '__esModule', {
-    value: true
-});
 async function wait() {
     return new Promise((resolve)=>{
         setTimeout(resolve, 100);
@@ -1782,9 +1722,6 @@ exports[`Async/await swc transforms example test case: native-current-lib 1`] = 
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: current, Format: lib
 'use strict';
-Object.defineProperty(exports, '__esModule', {
-    value: true
-});
 async function wait() {
     return new Promise((resolve)=>{
         setTimeout(resolve, 100);
@@ -1810,9 +1747,6 @@ exports[`Async/await swc transforms example test case: native-experimental-lib 1
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: experimental, Format: lib
 'use strict';
-Object.defineProperty(exports, '__esModule', {
-    value: true
-});
 async function wait() {
     return new Promise((resolve)=>{
         setTimeout(resolve, 100);
@@ -1838,9 +1772,6 @@ exports[`Async/await swc transforms example test case: native-legacy-lib 1`] = `
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: legacy, Format: lib
 'use strict';
-Object.defineProperty(exports, '__esModule', {
-    value: true
-});
 async function wait() {
     return new Promise((resolve)=>{
         setTimeout(resolve, 100);
@@ -1866,9 +1797,6 @@ exports[`Async/await swc transforms example test case: native-stable-lib 1`] = `
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: stable, Format: lib
 'use strict';
-Object.defineProperty(exports, '__esModule', {
-    value: true
-});
 async function wait() {
     return new Promise((resolve)=>{
         setTimeout(resolve, 100);
@@ -1906,9 +1834,6 @@ exports[`Async/await swc transforms example test case: node-current-cjs 2`] = `
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: cjs
 'use strict';
-Object.defineProperty(exports, '__esModule', {
-    value: true
-});
 async function wait() {
     return new Promise((resolve)=>{
         setTimeout(resolve, 100);
@@ -1934,9 +1859,6 @@ exports[`Async/await swc transforms example test case: node-current-lib 1`] = `
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: lib
 'use strict';
-Object.defineProperty(exports, '__esModule', {
-    value: true
-});
 async function wait() {
     return new Promise((resolve)=>{
         setTimeout(resolve, 100);
@@ -1997,9 +1919,6 @@ exports[`Async/await swc transforms example test case: node-experimental-cjs 2`]
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: cjs
 'use strict';
-Object.defineProperty(exports, '__esModule', {
-    value: true
-});
 async function wait() {
     return new Promise((resolve)=>{
         setTimeout(resolve, 100);
@@ -2025,9 +1944,6 @@ exports[`Async/await swc transforms example test case: node-experimental-lib 1`]
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: lib
 'use strict';
-Object.defineProperty(exports, '__esModule', {
-    value: true
-});
 async function wait() {
     return new Promise((resolve)=>{
         setTimeout(resolve, 100);
@@ -2088,9 +2004,6 @@ exports[`Async/await swc transforms example test case: node-legacy-cjs 2`] = `
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: cjs
 'use strict';
-Object.defineProperty(exports, '__esModule', {
-    value: true
-});
 async function wait() {
     return new Promise((resolve)=>{
         setTimeout(resolve, 100);
@@ -2116,9 +2029,6 @@ exports[`Async/await swc transforms example test case: node-legacy-lib 1`] = `
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: lib
 'use strict';
-Object.defineProperty(exports, '__esModule', {
-    value: true
-});
 async function wait() {
     return new Promise((resolve)=>{
         setTimeout(resolve, 100);
@@ -2179,9 +2089,6 @@ exports[`Async/await swc transforms example test case: node-stable-cjs 2`] = `
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: cjs
 'use strict';
-Object.defineProperty(exports, '__esModule', {
-    value: true
-});
 async function wait() {
     return new Promise((resolve)=>{
         setTimeout(resolve, 100);
@@ -2207,9 +2114,6 @@ exports[`Async/await swc transforms example test case: node-stable-lib 1`] = `
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: lib
 'use strict';
-Object.defineProperty(exports, '__esModule', {
-    value: true
-});
 async function wait() {
     return new Promise((resolve)=>{
         setTimeout(resolve, 100);

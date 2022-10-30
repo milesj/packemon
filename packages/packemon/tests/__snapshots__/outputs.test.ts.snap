@@ -20,6 +20,7 @@ https__default.default.createServer((req, res) => {
   res.write('Hello World!');
   res.end();
 }).listen(8080);
+//# sourceMappingURL=server.cjs.map
 ",
 ]
 `;
@@ -59,6 +60,7 @@ async function createClient() {
   return new Client();
 }
 export { createClient };
+//# sourceMappingURL=client.js.map
 ",
 ]
 `;
@@ -78,9 +80,6 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 var Client = /*#__PURE__*/_createClass(function Client() {
   _classCallCheck(this, Client);
   _defineProperty(this, "prop", 123);
@@ -104,6 +103,7 @@ async function createClient() {
   return new Client();
 }
 exports.createClient = createClient;
+//# sourceMappingURL=client.js.map
 ",
 ]
 `;
@@ -116,11 +116,9 @@ exports[`Outputs (babel) artifacts builds all the artifacts with rollup 4`] = `
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 const EXAMPLE = 'foo';
 exports.EXAMPLE = EXAMPLE;
+//# sourceMappingURL=index.js.map
 ",
 ]
 `;
@@ -133,9 +131,6 @@ exports[`Outputs (babel) artifacts builds all the artifacts with rollup 5`] = `
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 class Spy {
   called = false;
   mock = () => {};
@@ -148,6 +143,7 @@ function spy() {
 async function wait() {}
 exports.spy = spy;
 exports.wait = wait;
+//# sourceMappingURL=test.js.map
 ",
 ]
 `;
@@ -229,6 +225,7 @@ exports[`Outputs (babel) artifacts builds all the artifacts with rollup 7`] = `
     return new Client();
   }
 });
+//# sourceMappingURL=client.js.map
 ",
 ]
 `;
@@ -238,7 +235,7 @@ exports[`Outputs (babel) artifacts builds all the artifacts with rollup 8`] = `
   {
     "format": "lib",
     "stats": {
-      "size": 226,
+      "size": 195,
     },
   },
 ]
@@ -252,13 +249,11 @@ exports[`Outputs (babel) bundle bundles all files into a single file with rollup
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 function foo() {}
 function bar() {}
 exports.bar = bar;
 exports.foo = foo;
+//# sourceMappingURL=index.js.map
 ",
 ]
 `;
@@ -285,14 +280,12 @@ exports[`Outputs (babel) bundle with assets bundles all files and references ass
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 require('../assets/globals-107ab52e.css');
 require('../assets/fonts-4e5dc96c.css');
-require('../assets/styles-b11c3a83.css');
+require('../assets/styles-a82c1676.css');
 function button() {}
 exports.button = button;
+//# sourceMappingURL=index.js.map
 ",
 ]
 `;
@@ -313,22 +306,22 @@ exports[`Outputs (babel) bundle with assets bundles all files and references ass
 
 exports[`Outputs (babel) bundle with assets bundles all files and references assets 3`] = `
 [
-  "src/button/styles.css",
-  "assets/styles-b11c3a83.css",
-]
-`;
-
-exports[`Outputs (babel) bundle with assets bundles all files and references assets 4`] = `
-[
   "src/globals.css",
   "assets/globals-107ab52e.css",
 ]
 `;
 
-exports[`Outputs (babel) bundle with assets bundles all files and references assets 5`] = `
+exports[`Outputs (babel) bundle with assets bundles all files and references assets 4`] = `
 [
   "src/shared/fonts.css",
   "assets/fonts-4e5dc96c.css",
+]
+`;
+
+exports[`Outputs (babel) bundle with assets bundles all files and references assets 5`] = `
+[
+  "src/styles.css",
+  "assets/styles-a82c1676.css",
 ]
 `;
 
@@ -340,14 +333,12 @@ exports[`Outputs (babel) bundle with assets uses same assets across multiple for
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 require('../assets/globals-107ab52e.css');
 require('../assets/fonts-4e5dc96c.css');
-require('../assets/styles-b11c3a83.css');
+require('../assets/styles-a82c1676.css');
 function button() {}
 exports.button = button;
+//# sourceMappingURL=index.cjs.map
 ",
 ]
 `;
@@ -360,9 +351,10 @@ exports[`Outputs (babel) bundle with assets uses same assets across multiple for
 
 import '../assets/globals-107ab52e.css';
 import '../assets/fonts-4e5dc96c.css';
-import '../assets/styles-b11c3a83.css';
+import '../assets/styles-a82c1676.css';
 function button() {}
 export { button };
+//# sourceMappingURL=index.js.map
 ",
 ]
 `;
@@ -375,14 +367,12 @@ exports[`Outputs (babel) bundle with assets uses same assets across multiple for
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 require('../assets/globals-107ab52e.css');
 require('../assets/fonts-4e5dc96c.css');
-require('../assets/styles-b11c3a83.css');
+require('../assets/styles-a82c1676.css');
 function button() {}
 exports.button = button;
+//# sourceMappingURL=index.js.map
 ",
 ]
 `;
@@ -404,64 +394,64 @@ exports[`Outputs (babel) bundle with assets uses same assets across multiple for
 
 exports[`Outputs (babel) bundle with assets uses same assets across multiple formats 5`] = `
 [
-  "src/button/styles.css",
-  "assets/styles-b11c3a83.css",
+  "src/globals.css",
+  "assets/globals-107ab52e.css",
 ]
 `;
 
 exports[`Outputs (babel) bundle with assets uses same assets across multiple formats 6`] = `
 [
-  "src/button/styles.css",
-  "assets/styles-b11c3a83.css",
+  "src/globals.css",
+  "assets/globals-107ab52e.css",
 ]
 `;
 
 exports[`Outputs (babel) bundle with assets uses same assets across multiple formats 7`] = `
 [
-  "src/button/styles.css",
-  "assets/styles-b11c3a83.css",
+  "src/globals.css",
+  "assets/globals-107ab52e.css",
 ]
 `;
 
 exports[`Outputs (babel) bundle with assets uses same assets across multiple formats 8`] = `
 [
-  "src/globals.css",
-  "assets/globals-107ab52e.css",
+  "src/shared/fonts.css",
+  "assets/fonts-4e5dc96c.css",
 ]
 `;
 
 exports[`Outputs (babel) bundle with assets uses same assets across multiple formats 9`] = `
 [
-  "src/globals.css",
-  "assets/globals-107ab52e.css",
+  "src/shared/fonts.css",
+  "assets/fonts-4e5dc96c.css",
 ]
 `;
 
 exports[`Outputs (babel) bundle with assets uses same assets across multiple formats 10`] = `
 [
-  "src/globals.css",
-  "assets/globals-107ab52e.css",
+  "src/shared/fonts.css",
+  "assets/fonts-4e5dc96c.css",
 ]
 `;
 
 exports[`Outputs (babel) bundle with assets uses same assets across multiple formats 11`] = `
 [
-  "src/shared/fonts.css",
-  "assets/fonts-4e5dc96c.css",
+  "src/styles.css",
+  "assets/styles-a82c1676.css",
 ]
 `;
 
 exports[`Outputs (babel) bundle with assets uses same assets across multiple formats 12`] = `
 [
-  "src/shared/fonts.css",
-  "assets/fonts-4e5dc96c.css",
+  "src/styles.css",
+  "assets/styles-a82c1676.css",
 ]
 `;
 
 exports[`Outputs (babel) bundle with assets uses same assets across multiple formats 13`] = `
 [
-  "src/shared/fonts.css",
-  "assets/fonts-4e5dc96c.css",
+  "src/styles.css",
+  "assets/styles-a82c1676.css",
 ]
 `;
 
@@ -470,13 +460,11 @@ exports[`Outputs (babel) no bundle creates individual files for every source fil
   "lib/index.js",
   "'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 const other = require('./other.js');
 function bar() {}
 exports.foo = other.foo;
 exports.bar = bar;
+//# sourceMappingURL=index.js.map
 ",
 ]
 `;
@@ -486,11 +474,9 @@ exports[`Outputs (babel) no bundle creates individual files for every source fil
   "lib/not-imported.js",
   "'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 function baz() {}
 exports.baz = baz;
+//# sourceMappingURL=not-imported.js.map
 ",
 ]
 `;
@@ -500,11 +486,9 @@ exports[`Outputs (babel) no bundle creates individual files for every source fil
   "lib/other.js",
   "'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 function foo() {}
 exports.foo = foo;
+//# sourceMappingURL=other.js.map
 ",
 ]
 `;
@@ -528,12 +512,10 @@ exports[`Outputs (babel) no bundle with assets creates individual files and refe
   "lib/button/index.js",
   "'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 require('../../assets/styles-b11c3a83.css');
 function button() {}
 exports.button = button;
+//# sourceMappingURL=index.js.map
 ",
 ]
 `;
@@ -543,13 +525,11 @@ exports[`Outputs (babel) no bundle with assets creates individual files and refe
   "lib/index.js",
   "'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 require('../assets/globals-107ab52e.css');
 require('../assets/fonts-4e5dc96c.css');
 const index = require('./button/index.js');
 exports.button = index.button;
+//# sourceMappingURL=index.js.map
 ",
 ]
 `;
@@ -609,6 +589,7 @@ https__default.default.createServer((req, res) => {
   res.write('Hello World!');
   res.end();
 }).listen(8080);
+//# sourceMappingURL=server.cjs.map
 ",
 ]
 `;
@@ -648,6 +629,7 @@ async function createClient() {
   return new Client();
 }
 export { createClient };
+//# sourceMappingURL=client.js.map
 ",
 ]
 `;
@@ -667,9 +649,6 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 var Client = /*#__PURE__*/_createClass(function Client() {
   _classCallCheck(this, Client);
   _defineProperty(this, "prop", 123);
@@ -693,6 +672,7 @@ async function createClient() {
   return new Client();
 }
 exports.createClient = createClient;
+//# sourceMappingURL=client.js.map
 ",
 ]
 `;
@@ -705,11 +685,9 @@ exports[`Outputs (swc) artifacts builds all the artifacts with rollup 4`] = `
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 const EXAMPLE = 'foo';
 exports.EXAMPLE = EXAMPLE;
+//# sourceMappingURL=index.js.map
 ",
 ]
 `;
@@ -722,9 +700,6 @@ exports[`Outputs (swc) artifacts builds all the artifacts with rollup 5`] = `
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 class Spy {
   called = false;
   mock = () => {};
@@ -737,6 +712,7 @@ function spy() {
 async function wait() {}
 exports.spy = spy;
 exports.wait = wait;
+//# sourceMappingURL=test.js.map
 ",
 ]
 `;
@@ -818,6 +794,7 @@ exports[`Outputs (swc) artifacts builds all the artifacts with rollup 7`] = `
     return new Client();
   }
 });
+//# sourceMappingURL=client.js.map
 ",
 ]
 `;
@@ -827,7 +804,7 @@ exports[`Outputs (swc) artifacts builds all the artifacts with rollup 8`] = `
   {
     "format": "lib",
     "stats": {
-      "size": 226,
+      "size": 195,
     },
   },
 ]
@@ -841,13 +818,11 @@ exports[`Outputs (swc) bundle bundles all files into a single file with rollup 1
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 function foo() {}
 function bar() {}
 exports.bar = bar;
 exports.foo = foo;
+//# sourceMappingURL=index.js.map
 ",
 ]
 `;
@@ -874,14 +849,12 @@ exports[`Outputs (swc) bundle with assets bundles all files and references asset
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 require('../assets/globals-107ab52e.css');
 require('../assets/fonts-4e5dc96c.css');
-require('../assets/styles-b11c3a83.css');
+require('../assets/styles-a82c1676.css');
 function button() {}
 exports.button = button;
+//# sourceMappingURL=index.js.map
 ",
 ]
 `;
@@ -902,22 +875,22 @@ exports[`Outputs (swc) bundle with assets bundles all files and references asset
 
 exports[`Outputs (swc) bundle with assets bundles all files and references assets 3`] = `
 [
-  "src/button/styles.css",
-  "assets/styles-b11c3a83.css",
-]
-`;
-
-exports[`Outputs (swc) bundle with assets bundles all files and references assets 4`] = `
-[
   "src/globals.css",
   "assets/globals-107ab52e.css",
 ]
 `;
 
-exports[`Outputs (swc) bundle with assets bundles all files and references assets 5`] = `
+exports[`Outputs (swc) bundle with assets bundles all files and references assets 4`] = `
 [
   "src/shared/fonts.css",
   "assets/fonts-4e5dc96c.css",
+]
+`;
+
+exports[`Outputs (swc) bundle with assets bundles all files and references assets 5`] = `
+[
+  "src/styles.css",
+  "assets/styles-a82c1676.css",
 ]
 `;
 
@@ -929,14 +902,12 @@ exports[`Outputs (swc) bundle with assets uses same assets across multiple forma
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 require('../assets/globals-107ab52e.css');
 require('../assets/fonts-4e5dc96c.css');
-require('../assets/styles-b11c3a83.css');
+require('../assets/styles-a82c1676.css');
 function button() {}
 exports.button = button;
+//# sourceMappingURL=index.cjs.map
 ",
 ]
 `;
@@ -949,9 +920,10 @@ exports[`Outputs (swc) bundle with assets uses same assets across multiple forma
 
 import '../assets/globals-107ab52e.css';
 import '../assets/fonts-4e5dc96c.css';
-import '../assets/styles-b11c3a83.css';
+import '../assets/styles-a82c1676.css';
 function button() {}
 export { button };
+//# sourceMappingURL=index.js.map
 ",
 ]
 `;
@@ -964,14 +936,12 @@ exports[`Outputs (swc) bundle with assets uses same assets across multiple forma
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 require('../assets/globals-107ab52e.css');
 require('../assets/fonts-4e5dc96c.css');
-require('../assets/styles-b11c3a83.css');
+require('../assets/styles-a82c1676.css');
 function button() {}
 exports.button = button;
+//# sourceMappingURL=index.js.map
 ",
 ]
 `;
@@ -993,64 +963,64 @@ exports[`Outputs (swc) bundle with assets uses same assets across multiple forma
 
 exports[`Outputs (swc) bundle with assets uses same assets across multiple formats 5`] = `
 [
-  "src/button/styles.css",
-  "assets/styles-b11c3a83.css",
+  "src/globals.css",
+  "assets/globals-107ab52e.css",
 ]
 `;
 
 exports[`Outputs (swc) bundle with assets uses same assets across multiple formats 6`] = `
 [
-  "src/button/styles.css",
-  "assets/styles-b11c3a83.css",
+  "src/globals.css",
+  "assets/globals-107ab52e.css",
 ]
 `;
 
 exports[`Outputs (swc) bundle with assets uses same assets across multiple formats 7`] = `
 [
-  "src/button/styles.css",
-  "assets/styles-b11c3a83.css",
+  "src/globals.css",
+  "assets/globals-107ab52e.css",
 ]
 `;
 
 exports[`Outputs (swc) bundle with assets uses same assets across multiple formats 8`] = `
 [
-  "src/globals.css",
-  "assets/globals-107ab52e.css",
+  "src/shared/fonts.css",
+  "assets/fonts-4e5dc96c.css",
 ]
 `;
 
 exports[`Outputs (swc) bundle with assets uses same assets across multiple formats 9`] = `
 [
-  "src/globals.css",
-  "assets/globals-107ab52e.css",
+  "src/shared/fonts.css",
+  "assets/fonts-4e5dc96c.css",
 ]
 `;
 
 exports[`Outputs (swc) bundle with assets uses same assets across multiple formats 10`] = `
 [
-  "src/globals.css",
-  "assets/globals-107ab52e.css",
+  "src/shared/fonts.css",
+  "assets/fonts-4e5dc96c.css",
 ]
 `;
 
 exports[`Outputs (swc) bundle with assets uses same assets across multiple formats 11`] = `
 [
-  "src/shared/fonts.css",
-  "assets/fonts-4e5dc96c.css",
+  "src/styles.css",
+  "assets/styles-a82c1676.css",
 ]
 `;
 
 exports[`Outputs (swc) bundle with assets uses same assets across multiple formats 12`] = `
 [
-  "src/shared/fonts.css",
-  "assets/fonts-4e5dc96c.css",
+  "src/styles.css",
+  "assets/styles-a82c1676.css",
 ]
 `;
 
 exports[`Outputs (swc) bundle with assets uses same assets across multiple formats 13`] = `
 [
-  "src/shared/fonts.css",
-  "assets/fonts-4e5dc96c.css",
+  "src/styles.css",
+  "assets/styles-a82c1676.css",
 ]
 `;
 
@@ -1059,13 +1029,11 @@ exports[`Outputs (swc) no bundle creates individual files for every source file 
   "lib/index.js",
   "'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 const other = require('./other.js');
 function bar() {}
 exports.foo = other.foo;
 exports.bar = bar;
+//# sourceMappingURL=index.js.map
 ",
 ]
 `;
@@ -1075,11 +1043,9 @@ exports[`Outputs (swc) no bundle creates individual files for every source file 
   "lib/not-imported.js",
   "'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 function baz() {}
 exports.baz = baz;
+//# sourceMappingURL=not-imported.js.map
 ",
 ]
 `;
@@ -1089,11 +1055,9 @@ exports[`Outputs (swc) no bundle creates individual files for every source file 
   "lib/other.js",
   "'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 function foo() {}
 exports.foo = foo;
+//# sourceMappingURL=other.js.map
 ",
 ]
 `;
@@ -1117,12 +1081,10 @@ exports[`Outputs (swc) no bundle with assets creates individual files and refere
   "lib/button/index.js",
   "'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 require('../../assets/styles-b11c3a83.css');
 function button() {}
 exports.button = button;
+//# sourceMappingURL=index.js.map
 ",
 ]
 `;
@@ -1132,13 +1094,11 @@ exports[`Outputs (swc) no bundle with assets creates individual files and refere
   "lib/index.js",
   "'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 require('../assets/globals-107ab52e.css');
 require('../assets/fonts-4e5dc96c.css');
 const index = require('./button/index.js');
 exports.button = index.button;
+//# sourceMappingURL=index.js.map
 ",
 ]
 `;
@@ -1190,6 +1150,7 @@ function test() {
   return 123;
 }
 module.exports = test;
+//# sourceMappingURL=index.cjs.map
 ",
 ]
 `;
@@ -1227,6 +1188,7 @@ function test() {
   return 'abc';
 }
 export { test as default };
+//# sourceMappingURL=index.mjs.map
 ",
 ]
 `;

@@ -64,20 +64,27 @@ exports[`Assets babel transforms example test case: browser-current-lib 2`] = `
 
 exports[`Assets babel transforms example test case: browser-current-umd 1`] = `
 [
+  "styles.css",
+  "assets/styles-17df299b.css",
+]
+`;
+
+exports[`Assets babel transforms example test case: browser-current-umd 2`] = `
+[
   "umd/index-browser-current-umd.js",
   "(function (global, factory) {
   if (typeof define === "function" && define.amd) {
-    define(["./styles.css", "./logo.svg", "website/src/css/custom.css"], factory);
+    define(["../assets/styles-17df299b.css", "../assets/logo-c21f559f.svg", "website/src/css/custom.css"], factory);
   } else if (typeof exports !== "undefined") {
-    factory(require("./styles.css"), require("./logo.svg"), require("website/src/css/custom.css"));
+    factory(require("../assets/styles-17df299b.css"), require("../assets/logo-c21f559f.svg"), require("website/src/css/custom.css"));
   } else {
     var mod = {
       exports: {}
     };
-    factory(global.styles, global.logo, global.custom);
+    factory(global.styles17df299b, global.logoC21f559f, global.custom);
     global.examples = mod.exports;
   }
-})(typeof globalThis !== "undefined" ? globalThis : typeof self !== "undefined" ? self : this, function (_styles, _logo, _custom) {
+})(typeof globalThis !== "undefined" ? globalThis : typeof self !== "undefined" ? self : this, function (_styles17df299b, _logoC21f559f, _custom) {
   "use strict";
 
   // Bundled with Packemon: https://packemon.dev
@@ -162,20 +169,27 @@ exports[`Assets babel transforms example test case: browser-experimental-lib 2`]
 
 exports[`Assets babel transforms example test case: browser-experimental-umd 1`] = `
 [
+  "styles.css",
+  "assets/styles-17df299b.css",
+]
+`;
+
+exports[`Assets babel transforms example test case: browser-experimental-umd 2`] = `
+[
   "umd/index-browser-experimental-umd.js",
   "(function (global, factory) {
   if (typeof define === "function" && define.amd) {
-    define(["./styles.css", "./logo.svg", "website/src/css/custom.css"], factory);
+    define(["../assets/styles-17df299b.css", "../assets/logo-c21f559f.svg", "website/src/css/custom.css"], factory);
   } else if (typeof exports !== "undefined") {
-    factory(require("./styles.css"), require("./logo.svg"), require("website/src/css/custom.css"));
+    factory(require("../assets/styles-17df299b.css"), require("../assets/logo-c21f559f.svg"), require("website/src/css/custom.css"));
   } else {
     var mod = {
       exports: {}
     };
-    factory(global.styles, global.logo, global.custom);
+    factory(global.styles17df299b, global.logoC21f559f, global.custom);
     global.examples = mod.exports;
   }
-})(typeof globalThis !== "undefined" ? globalThis : typeof self !== "undefined" ? self : this, function (_styles, _logo, _custom) {
+})(typeof globalThis !== "undefined" ? globalThis : typeof self !== "undefined" ? self : this, function (_styles17df299b, _logoC21f559f, _custom) {
   "use strict";
 
   // Bundled with Packemon: https://packemon.dev
@@ -260,20 +274,27 @@ exports[`Assets babel transforms example test case: browser-legacy-lib 2`] = `
 
 exports[`Assets babel transforms example test case: browser-legacy-umd 1`] = `
 [
+  "styles.css",
+  "assets/styles-17df299b.css",
+]
+`;
+
+exports[`Assets babel transforms example test case: browser-legacy-umd 2`] = `
+[
   "umd/index-browser-legacy-umd.js",
   "(function (global, factory) {
   if (typeof define === "function" && define.amd) {
-    define(["./styles.css", "./logo.svg", "website/src/css/custom.css"], factory);
+    define(["../assets/styles-17df299b.css", "../assets/logo-c21f559f.svg", "website/src/css/custom.css"], factory);
   } else if (typeof exports !== "undefined") {
-    factory(require("./styles.css"), require("./logo.svg"), require("website/src/css/custom.css"));
+    factory(require("../assets/styles-17df299b.css"), require("../assets/logo-c21f559f.svg"), require("website/src/css/custom.css"));
   } else {
     var mod = {
       exports: {}
     };
-    factory(global.styles, global.logo, global.custom);
+    factory(global.styles17df299b, global.logoC21f559f, global.custom);
     global.examples = mod.exports;
   }
-})(typeof globalThis !== "undefined" ? globalThis : typeof self !== "undefined" ? self : this, function (_styles, _logo, _custom) {
+})(typeof globalThis !== "undefined" ? globalThis : typeof self !== "undefined" ? self : this, function (_styles17df299b, _logoC21f559f, _custom) {
   "use strict";
 
   // Bundled with Packemon: https://packemon.dev
@@ -358,20 +379,27 @@ exports[`Assets babel transforms example test case: browser-stable-lib 2`] = `
 
 exports[`Assets babel transforms example test case: browser-stable-umd 1`] = `
 [
+  "styles.css",
+  "assets/styles-17df299b.css",
+]
+`;
+
+exports[`Assets babel transforms example test case: browser-stable-umd 2`] = `
+[
   "umd/index-browser-stable-umd.js",
   "(function (global, factory) {
   if (typeof define === "function" && define.amd) {
-    define(["./styles.css", "./logo.svg", "website/src/css/custom.css"], factory);
+    define(["../assets/styles-17df299b.css", "../assets/logo-c21f559f.svg", "website/src/css/custom.css"], factory);
   } else if (typeof exports !== "undefined") {
-    factory(require("./styles.css"), require("./logo.svg"), require("website/src/css/custom.css"));
+    factory(require("../assets/styles-17df299b.css"), require("../assets/logo-c21f559f.svg"), require("website/src/css/custom.css"));
   } else {
     var mod = {
       exports: {}
     };
-    factory(global.styles, global.logo, global.custom);
+    factory(global.styles17df299b, global.logoC21f559f, global.custom);
     global.examples = mod.exports;
   }
-})(typeof globalThis !== "undefined" ? globalThis : typeof self !== "undefined" ? self : this, function (_styles, _logo, _custom) {
+})(typeof globalThis !== "undefined" ? globalThis : typeof self !== "undefined" ? self : this, function (_styles17df299b, _logoC21f559f, _custom) {
   "use strict";
 
   // Bundled with Packemon: https://packemon.dev
@@ -1005,17 +1033,24 @@ exports[`Assets swc transforms example test case: browser-current-lib 2`] = `
 
 exports[`Assets swc transforms example test case: browser-current-umd 1`] = `
 [
+  "styles.css",
+  "assets/styles-17df299b.css",
+]
+`;
+
+exports[`Assets swc transforms example test case: browser-current-umd 2`] = `
+[
   "umd/index-browser-current-umd.js",
   "(function(global, factory) {
-    if (typeof module === "object" && typeof module.exports === "object") factory(exports, require("./styles.css"), require("./logo.svg"), require("website/src/css/custom.css"));
+    if (typeof module === "object" && typeof module.exports === "object") factory(exports, require("../assets/styles-17df299b.css"), require("../assets/logo-c21f559f.svg"), require("website/src/css/custom.css"));
     else if (typeof define === "function" && define.amd) define([
         "exports",
-        "./styles.css",
-        "./logo.svg",
+        "../assets/styles-17df299b.css",
+        "../assets/logo-c21f559f.svg",
         "website/src/css/custom.css"
     ], factory);
-    else if (global = typeof globalThis !== "undefined" ? globalThis : global || self) factory(global.examples = {}, global.stylesCss, global.logoSvg, global.customCss);
-})(this, function(exports, _stylesCss, _logoSvg, _customCss) {
+    else if (global = typeof globalThis !== "undefined" ? globalThis : global || self) factory(global.examples = {}, global.styles17Df299BCss, global.logoC21F559FSvg, global.customCss);
+})(this, function(exports, _styles17Df299BCss, _logoC21F559FSvg, _customCss) {
     "use strict";
     Object.defineProperty(exports, "__esModule", {
         value: true
@@ -1108,17 +1143,24 @@ exports[`Assets swc transforms example test case: browser-experimental-lib 2`] =
 
 exports[`Assets swc transforms example test case: browser-experimental-umd 1`] = `
 [
+  "styles.css",
+  "assets/styles-17df299b.css",
+]
+`;
+
+exports[`Assets swc transforms example test case: browser-experimental-umd 2`] = `
+[
   "umd/index-browser-experimental-umd.js",
   "(function(global, factory) {
-    if (typeof module === "object" && typeof module.exports === "object") factory(exports, require("./styles.css"), require("./logo.svg"), require("website/src/css/custom.css"));
+    if (typeof module === "object" && typeof module.exports === "object") factory(exports, require("../assets/styles-17df299b.css"), require("../assets/logo-c21f559f.svg"), require("website/src/css/custom.css"));
     else if (typeof define === "function" && define.amd) define([
         "exports",
-        "./styles.css",
-        "./logo.svg",
+        "../assets/styles-17df299b.css",
+        "../assets/logo-c21f559f.svg",
         "website/src/css/custom.css"
     ], factory);
-    else if (global = typeof globalThis !== "undefined" ? globalThis : global || self) factory(global.examples = {}, global.stylesCss, global.logoSvg, global.customCss);
-})(this, function(exports, _stylesCss, _logoSvg, _customCss) {
+    else if (global = typeof globalThis !== "undefined" ? globalThis : global || self) factory(global.examples = {}, global.styles17Df299BCss, global.logoC21F559FSvg, global.customCss);
+})(this, function(exports, _styles17Df299BCss, _logoC21F559FSvg, _customCss) {
     "use strict";
     Object.defineProperty(exports, "__esModule", {
         value: true
@@ -1211,17 +1253,24 @@ exports[`Assets swc transforms example test case: browser-legacy-lib 2`] = `
 
 exports[`Assets swc transforms example test case: browser-legacy-umd 1`] = `
 [
+  "styles.css",
+  "assets/styles-17df299b.css",
+]
+`;
+
+exports[`Assets swc transforms example test case: browser-legacy-umd 2`] = `
+[
   "umd/index-browser-legacy-umd.js",
   "(function(global, factory) {
-    if (typeof module === "object" && typeof module.exports === "object") factory(exports, require("./styles.css"), require("./logo.svg"), require("website/src/css/custom.css"));
+    if (typeof module === "object" && typeof module.exports === "object") factory(exports, require("../assets/styles-17df299b.css"), require("../assets/logo-c21f559f.svg"), require("website/src/css/custom.css"));
     else if (typeof define === "function" && define.amd) define([
         "exports",
-        "./styles.css",
-        "./logo.svg",
+        "../assets/styles-17df299b.css",
+        "../assets/logo-c21f559f.svg",
         "website/src/css/custom.css"
     ], factory);
-    else if (global = typeof globalThis !== "undefined" ? globalThis : global || self) factory(global.examples = {}, global.stylesCss, global.logoSvg, global.customCss);
-})(this, function(exports, _stylesCss, _logoSvg, _customCss) {
+    else if (global = typeof globalThis !== "undefined" ? globalThis : global || self) factory(global.examples = {}, global.styles17Df299BCss, global.logoC21F559FSvg, global.customCss);
+})(this, function(exports, _styles17Df299BCss, _logoC21F559FSvg, _customCss) {
     "use strict";
     Object.defineProperty(exports, "__esModule", {
         value: true
@@ -1314,17 +1363,24 @@ exports[`Assets swc transforms example test case: browser-stable-lib 2`] = `
 
 exports[`Assets swc transforms example test case: browser-stable-umd 1`] = `
 [
+  "styles.css",
+  "assets/styles-17df299b.css",
+]
+`;
+
+exports[`Assets swc transforms example test case: browser-stable-umd 2`] = `
+[
   "umd/index-browser-stable-umd.js",
   "(function(global, factory) {
-    if (typeof module === "object" && typeof module.exports === "object") factory(exports, require("./styles.css"), require("./logo.svg"), require("website/src/css/custom.css"));
+    if (typeof module === "object" && typeof module.exports === "object") factory(exports, require("../assets/styles-17df299b.css"), require("../assets/logo-c21f559f.svg"), require("website/src/css/custom.css"));
     else if (typeof define === "function" && define.amd) define([
         "exports",
-        "./styles.css",
-        "./logo.svg",
+        "../assets/styles-17df299b.css",
+        "../assets/logo-c21f559f.svg",
         "website/src/css/custom.css"
     ], factory);
-    else if (global = typeof globalThis !== "undefined" ? globalThis : global || self) factory(global.examples = {}, global.stylesCss, global.logoSvg, global.customCss);
-})(this, function(exports, _stylesCss, _logoSvg, _customCss) {
+    else if (global = typeof globalThis !== "undefined" ? globalThis : global || self) factory(global.examples = {}, global.styles17Df299BCss, global.logoC21F559FSvg, global.customCss);
+})(this, function(exports, _styles17Df299BCss, _logoC21F559FSvg, _customCss) {
     "use strict";
     Object.defineProperty(exports, "__esModule", {
         value: true
