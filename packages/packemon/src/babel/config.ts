@@ -64,7 +64,7 @@ function getPlatformEnvOptions(
 			return {
 				exclude,
 				modules,
-				targets: { browsers: ELECTRON_TARGETS[support] },
+				targets: { electron: ELECTRON_TARGETS[support] },
 			};
 
 		case 'native':

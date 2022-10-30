@@ -566,6 +566,278 @@ exports[`CJS -> MJS wrapper (externals) babel transforms example test case: brow
 ]
 `;
 
+exports[`CJS -> MJS wrapper (externals) babel transforms example test case: electron-current-esm 1`] = `
+[
+  "esm/index-electron-current-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: current, Format: esm
+
+export * from 'optimal';
+import * as optimal from 'optimal';
+export { optimal };
+export { func, string } from 'optimal';
+export { useState } from 'react';
+//# sourceMappingURL=index-electron-current-esm.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) babel transforms example test case: electron-current-lib 1`] = `
+[
+  "lib/index-electron-current-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: current, Format: lib
+
+'use strict';
+
+const optimal = require('optimal');
+const react = require('react');
+function _interopNamespace(e) {
+  if (e && e.__esModule) return e;
+  const n = Object.create(null);
+  if (e) {
+    for (const k in e) {
+      if (k !== 'default') {
+        const d = Object.getOwnPropertyDescriptor(e, k);
+        Object.defineProperty(n, k, d.get ? d : {
+          enumerable: true,
+          get: () => e[k]
+        });
+      }
+    }
+  }
+  n.default = e;
+  return Object.freeze(n);
+}
+const optimal__namespace = /*#__PURE__*/_interopNamespace(optimal);
+Object.defineProperty(exports, 'func', {
+  enumerable: true,
+  get: () => optimal.func
+});
+exports.optimal = optimal__namespace;
+Object.defineProperty(exports, 'string', {
+  enumerable: true,
+  get: () => optimal.string
+});
+Object.defineProperty(exports, 'useState', {
+  enumerable: true,
+  get: () => react.useState
+});
+for (const k in optimal) {
+  if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
+    enumerable: true,
+    get: () => optimal[k]
+  });
+}
+//# sourceMappingURL=index-electron-current-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) babel transforms example test case: electron-experimental-esm 1`] = `
+[
+  "esm/index-electron-experimental-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: experimental, Format: esm
+
+export * from 'optimal';
+import * as optimal from 'optimal';
+export { optimal };
+export { func, string } from 'optimal';
+export { useState } from 'react';
+//# sourceMappingURL=index-electron-experimental-esm.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) babel transforms example test case: electron-experimental-lib 1`] = `
+[
+  "lib/index-electron-experimental-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: experimental, Format: lib
+
+'use strict';
+
+const optimal = require('optimal');
+const react = require('react');
+function _interopNamespace(e) {
+  if (e && e.__esModule) return e;
+  const n = Object.create(null);
+  if (e) {
+    for (const k in e) {
+      if (k !== 'default') {
+        const d = Object.getOwnPropertyDescriptor(e, k);
+        Object.defineProperty(n, k, d.get ? d : {
+          enumerable: true,
+          get: () => e[k]
+        });
+      }
+    }
+  }
+  n.default = e;
+  return Object.freeze(n);
+}
+const optimal__namespace = /*#__PURE__*/_interopNamespace(optimal);
+Object.defineProperty(exports, 'func', {
+  enumerable: true,
+  get: () => optimal.func
+});
+exports.optimal = optimal__namespace;
+Object.defineProperty(exports, 'string', {
+  enumerable: true,
+  get: () => optimal.string
+});
+Object.defineProperty(exports, 'useState', {
+  enumerable: true,
+  get: () => react.useState
+});
+for (const k in optimal) {
+  if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
+    enumerable: true,
+    get: () => optimal[k]
+  });
+}
+//# sourceMappingURL=index-electron-experimental-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) babel transforms example test case: electron-legacy-esm 1`] = `
+[
+  "esm/index-electron-legacy-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: legacy, Format: esm
+
+export * from 'optimal';
+import * as optimal from 'optimal';
+export { optimal };
+export { func, string } from 'optimal';
+export { useState } from 'react';
+//# sourceMappingURL=index-electron-legacy-esm.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) babel transforms example test case: electron-legacy-lib 1`] = `
+[
+  "lib/index-electron-legacy-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: legacy, Format: lib
+
+'use strict';
+
+const optimal = require('optimal');
+const react = require('react');
+function _interopNamespace(e) {
+  if (e && e.__esModule) return e;
+  const n = Object.create(null);
+  if (e) {
+    for (const k in e) {
+      if (k !== 'default') {
+        const d = Object.getOwnPropertyDescriptor(e, k);
+        Object.defineProperty(n, k, d.get ? d : {
+          enumerable: true,
+          get: () => e[k]
+        });
+      }
+    }
+  }
+  n.default = e;
+  return Object.freeze(n);
+}
+const optimal__namespace = /*#__PURE__*/_interopNamespace(optimal);
+Object.defineProperty(exports, 'func', {
+  enumerable: true,
+  get: () => optimal.func
+});
+exports.optimal = optimal__namespace;
+Object.defineProperty(exports, 'string', {
+  enumerable: true,
+  get: () => optimal.string
+});
+Object.defineProperty(exports, 'useState', {
+  enumerable: true,
+  get: () => react.useState
+});
+for (const k in optimal) {
+  if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
+    enumerable: true,
+    get: () => optimal[k]
+  });
+}
+//# sourceMappingURL=index-electron-legacy-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) babel transforms example test case: electron-stable-esm 1`] = `
+[
+  "esm/index-electron-stable-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: stable, Format: esm
+
+export * from 'optimal';
+import * as optimal from 'optimal';
+export { optimal };
+export { func, string } from 'optimal';
+export { useState } from 'react';
+//# sourceMappingURL=index-electron-stable-esm.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) babel transforms example test case: electron-stable-lib 1`] = `
+[
+  "lib/index-electron-stable-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: stable, Format: lib
+
+'use strict';
+
+const optimal = require('optimal');
+const react = require('react');
+function _interopNamespace(e) {
+  if (e && e.__esModule) return e;
+  const n = Object.create(null);
+  if (e) {
+    for (const k in e) {
+      if (k !== 'default') {
+        const d = Object.getOwnPropertyDescriptor(e, k);
+        Object.defineProperty(n, k, d.get ? d : {
+          enumerable: true,
+          get: () => e[k]
+        });
+      }
+    }
+  }
+  n.default = e;
+  return Object.freeze(n);
+}
+const optimal__namespace = /*#__PURE__*/_interopNamespace(optimal);
+Object.defineProperty(exports, 'func', {
+  enumerable: true,
+  get: () => optimal.func
+});
+exports.optimal = optimal__namespace;
+Object.defineProperty(exports, 'string', {
+  enumerable: true,
+  get: () => optimal.string
+});
+Object.defineProperty(exports, 'useState', {
+  enumerable: true,
+  get: () => react.useState
+});
+for (const k in optimal) {
+  if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
+    enumerable: true,
+    get: () => optimal[k]
+  });
+}
+//# sourceMappingURL=index-electron-stable-lib.js.map
+",
+]
+`;
+
 exports[`CJS -> MJS wrapper (externals) babel transforms example test case: native-current-lib 1`] = `
 [
   "lib/index-native-current-lib.js",
@@ -1918,6 +2190,250 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: browse
     }
 });
 //# sourceMappingURL=index-browser-stable-umd.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) swc transforms example test case: electron-current-esm 1`] = `
+[
+  "esm/index-electron-current-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: current, Format: esm
+export * from 'optimal';
+import * as optimal from 'optimal';
+export { optimal };
+export { func, string } from 'optimal';
+export { useState } from 'react';
+//# sourceMappingURL=index-electron-current-esm.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) swc transforms example test case: electron-current-lib 1`] = `
+[
+  "lib/index-electron-current-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: current, Format: lib
+'use strict';
+const optimal = require('optimal');
+const react = require('react');
+function _interopNamespace(e) {
+    if (e && e.__esModule) return e;
+    const n = Object.create(null);
+    if (e) {
+        for(const k in e)if (k !== 'default') {
+            const d = Object.getOwnPropertyDescriptor(e, k);
+            Object.defineProperty(n, k, d.get ? d : {
+                enumerable: true,
+                get: ()=>e[k]
+            });
+        }
+    }
+    n.default = e;
+    return Object.freeze(n);
+}
+const optimal__namespace = /*#__PURE__*/ _interopNamespace(optimal);
+Object.defineProperty(exports, 'func', {
+    enumerable: true,
+    get: ()=>optimal.func
+});
+exports.optimal = optimal__namespace;
+Object.defineProperty(exports, 'string', {
+    enumerable: true,
+    get: ()=>optimal.string
+});
+Object.defineProperty(exports, 'useState', {
+    enumerable: true,
+    get: ()=>react.useState
+});
+for(const k in optimal)if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
+    enumerable: true,
+    get: ()=>optimal[k]
+});
+//# sourceMappingURL=index-electron-current-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) swc transforms example test case: electron-experimental-esm 1`] = `
+[
+  "esm/index-electron-experimental-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: experimental, Format: esm
+export * from 'optimal';
+import * as optimal from 'optimal';
+export { optimal };
+export { func, string } from 'optimal';
+export { useState } from 'react';
+//# sourceMappingURL=index-electron-experimental-esm.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) swc transforms example test case: electron-experimental-lib 1`] = `
+[
+  "lib/index-electron-experimental-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: experimental, Format: lib
+'use strict';
+const optimal = require('optimal');
+const react = require('react');
+function _interopNamespace(e) {
+    if (e && e.__esModule) return e;
+    const n = Object.create(null);
+    if (e) {
+        for(const k in e)if (k !== 'default') {
+            const d = Object.getOwnPropertyDescriptor(e, k);
+            Object.defineProperty(n, k, d.get ? d : {
+                enumerable: true,
+                get: ()=>e[k]
+            });
+        }
+    }
+    n.default = e;
+    return Object.freeze(n);
+}
+const optimal__namespace = /*#__PURE__*/ _interopNamespace(optimal);
+Object.defineProperty(exports, 'func', {
+    enumerable: true,
+    get: ()=>optimal.func
+});
+exports.optimal = optimal__namespace;
+Object.defineProperty(exports, 'string', {
+    enumerable: true,
+    get: ()=>optimal.string
+});
+Object.defineProperty(exports, 'useState', {
+    enumerable: true,
+    get: ()=>react.useState
+});
+for(const k in optimal)if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
+    enumerable: true,
+    get: ()=>optimal[k]
+});
+//# sourceMappingURL=index-electron-experimental-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) swc transforms example test case: electron-legacy-esm 1`] = `
+[
+  "esm/index-electron-legacy-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: legacy, Format: esm
+export * from 'optimal';
+import * as optimal from 'optimal';
+export { optimal };
+export { func, string } from 'optimal';
+export { useState } from 'react';
+//# sourceMappingURL=index-electron-legacy-esm.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) swc transforms example test case: electron-legacy-lib 1`] = `
+[
+  "lib/index-electron-legacy-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: legacy, Format: lib
+'use strict';
+const optimal = require('optimal');
+const react = require('react');
+function _interopNamespace(e) {
+    if (e && e.__esModule) return e;
+    const n = Object.create(null);
+    if (e) {
+        for(const k in e)if (k !== 'default') {
+            const d = Object.getOwnPropertyDescriptor(e, k);
+            Object.defineProperty(n, k, d.get ? d : {
+                enumerable: true,
+                get: ()=>e[k]
+            });
+        }
+    }
+    n.default = e;
+    return Object.freeze(n);
+}
+const optimal__namespace = /*#__PURE__*/ _interopNamespace(optimal);
+Object.defineProperty(exports, 'func', {
+    enumerable: true,
+    get: ()=>optimal.func
+});
+exports.optimal = optimal__namespace;
+Object.defineProperty(exports, 'string', {
+    enumerable: true,
+    get: ()=>optimal.string
+});
+Object.defineProperty(exports, 'useState', {
+    enumerable: true,
+    get: ()=>react.useState
+});
+for(const k in optimal)if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
+    enumerable: true,
+    get: ()=>optimal[k]
+});
+//# sourceMappingURL=index-electron-legacy-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) swc transforms example test case: electron-stable-esm 1`] = `
+[
+  "esm/index-electron-stable-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: stable, Format: esm
+export * from 'optimal';
+import * as optimal from 'optimal';
+export { optimal };
+export { func, string } from 'optimal';
+export { useState } from 'react';
+//# sourceMappingURL=index-electron-stable-esm.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper (externals) swc transforms example test case: electron-stable-lib 1`] = `
+[
+  "lib/index-electron-stable-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: stable, Format: lib
+'use strict';
+const optimal = require('optimal');
+const react = require('react');
+function _interopNamespace(e) {
+    if (e && e.__esModule) return e;
+    const n = Object.create(null);
+    if (e) {
+        for(const k in e)if (k !== 'default') {
+            const d = Object.getOwnPropertyDescriptor(e, k);
+            Object.defineProperty(n, k, d.get ? d : {
+                enumerable: true,
+                get: ()=>e[k]
+            });
+        }
+    }
+    n.default = e;
+    return Object.freeze(n);
+}
+const optimal__namespace = /*#__PURE__*/ _interopNamespace(optimal);
+Object.defineProperty(exports, 'func', {
+    enumerable: true,
+    get: ()=>optimal.func
+});
+exports.optimal = optimal__namespace;
+Object.defineProperty(exports, 'string', {
+    enumerable: true,
+    get: ()=>optimal.string
+});
+Object.defineProperty(exports, 'useState', {
+    enumerable: true,
+    get: ()=>react.useState
+});
+for(const k in optimal)if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
+    enumerable: true,
+    get: ()=>optimal[k]
+});
+//# sourceMappingURL=index-electron-stable-lib.js.map
 ",
 ]
 `;
@@ -3275,6 +3791,386 @@ exports[`CJS -> MJS wrapper babel transforms example test case: browser-stable-u
   _exports.default = DefaultClass;
 });
 //# sourceMappingURL=index-browser-stable-umd.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper babel transforms example test case: electron-current-esm 1`] = `
+[
+  "esm/index-electron-current-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: current, Format: esm
+
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
+  __proto__: null,
+  foo,
+  bar
+}, Symbol.toStringTag, {
+  value: 'Module'
+}));
+let a = 'abc';
+const b = 123;
+const _c = {
+    c: true
+  },
+  c = _c.c;
+const d = {};
+const e = 456,
+  f = 'xyz';
+class ClassName {}
+function func() {}
+const arrowFunc = () => {};
+const CONST = 123;
+class DefaultClass {}
+
+// Types should be ignored
+
+export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, foo as fooRenamed, func, helpers as ns1, helpers as ns2, helpers as ns3 };
+//# sourceMappingURL=index-electron-current-esm.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper babel transforms example test case: electron-current-lib 1`] = `
+[
+  "lib/index-electron-current-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: current, Format: lib
+
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  foo,
+  bar
+});
+let a = 'abc';
+const b = 123;
+const _c = {
+    c: true
+  },
+  c = _c.c;
+const d = {};
+const e = 456,
+  f = 'xyz';
+class ClassName {}
+function func() {}
+const arrowFunc = () => {};
+const CONST = 123;
+class DefaultClass {}
+
+// Types should be ignored
+
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.fooRenamed = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-electron-current-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper babel transforms example test case: electron-experimental-esm 1`] = `
+[
+  "esm/index-electron-experimental-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: experimental, Format: esm
+
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
+  __proto__: null,
+  foo,
+  bar
+}, Symbol.toStringTag, {
+  value: 'Module'
+}));
+let a = 'abc';
+const b = 123;
+const _c = {
+    c: true
+  },
+  c = _c.c;
+const d = {};
+const e = 456,
+  f = 'xyz';
+class ClassName {}
+function func() {}
+const arrowFunc = () => {};
+const CONST = 123;
+class DefaultClass {}
+
+// Types should be ignored
+
+export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, foo as fooRenamed, func, helpers as ns1, helpers as ns2, helpers as ns3 };
+//# sourceMappingURL=index-electron-experimental-esm.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper babel transforms example test case: electron-experimental-lib 1`] = `
+[
+  "lib/index-electron-experimental-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: experimental, Format: lib
+
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  foo,
+  bar
+});
+let a = 'abc';
+const b = 123;
+const _c = {
+    c: true
+  },
+  c = _c.c;
+const d = {};
+const e = 456,
+  f = 'xyz';
+class ClassName {}
+function func() {}
+const arrowFunc = () => {};
+const CONST = 123;
+class DefaultClass {}
+
+// Types should be ignored
+
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.fooRenamed = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-electron-experimental-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper babel transforms example test case: electron-legacy-esm 1`] = `
+[
+  "esm/index-electron-legacy-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: legacy, Format: esm
+
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
+  __proto__: null,
+  foo,
+  bar
+}, Symbol.toStringTag, {
+  value: 'Module'
+}));
+let a = 'abc';
+const b = 123;
+const _c = {
+    c: true
+  },
+  c = _c.c;
+const d = {};
+const e = 456,
+  f = 'xyz';
+class ClassName {}
+function func() {}
+const arrowFunc = () => {};
+const CONST = 123;
+class DefaultClass {}
+
+// Types should be ignored
+
+export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, foo as fooRenamed, func, helpers as ns1, helpers as ns2, helpers as ns3 };
+//# sourceMappingURL=index-electron-legacy-esm.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper babel transforms example test case: electron-legacy-lib 1`] = `
+[
+  "lib/index-electron-legacy-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: legacy, Format: lib
+
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  foo,
+  bar
+});
+let a = 'abc';
+const b = 123;
+const _c = {
+    c: true
+  },
+  c = _c.c;
+const d = {};
+const e = 456,
+  f = 'xyz';
+class ClassName {}
+function func() {}
+const arrowFunc = () => {};
+const CONST = 123;
+class DefaultClass {}
+
+// Types should be ignored
+
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.fooRenamed = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-electron-legacy-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper babel transforms example test case: electron-stable-esm 1`] = `
+[
+  "esm/index-electron-stable-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: stable, Format: esm
+
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
+  __proto__: null,
+  foo,
+  bar
+}, Symbol.toStringTag, {
+  value: 'Module'
+}));
+let a = 'abc';
+const b = 123;
+const _c = {
+    c: true
+  },
+  c = _c.c;
+const d = {};
+const e = 456,
+  f = 'xyz';
+class ClassName {}
+function func() {}
+const arrowFunc = () => {};
+const CONST = 123;
+class DefaultClass {}
+
+// Types should be ignored
+
+export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, foo as fooRenamed, func, helpers as ns1, helpers as ns2, helpers as ns3 };
+//# sourceMappingURL=index-electron-stable-esm.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper babel transforms example test case: electron-stable-lib 1`] = `
+[
+  "lib/index-electron-stable-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: stable, Format: lib
+
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  foo,
+  bar
+});
+let a = 'abc';
+const b = 123;
+const _c = {
+    c: true
+  },
+  c = _c.c;
+const d = {};
+const e = 456,
+  f = 'xyz';
+class ClassName {}
+function func() {}
+const arrowFunc = () => {};
+const CONST = 123;
+class DefaultClass {}
+
+// Types should be ignored
+
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.fooRenamed = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-electron-stable-lib.js.map
 ",
 ]
 `;
@@ -4860,6 +5756,374 @@ exports[`CJS -> MJS wrapper swc transforms example test case: browser-stable-umd
     };
 });
 //# sourceMappingURL=index-browser-stable-umd.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: electron-current-esm 1`] = `
+[
+  "esm/index-electron-current-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: current, Format: esm
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty({
+    __proto__: null,
+    foo,
+    bar
+}, Symbol.toStringTag, {
+    value: 'Module'
+}));
+let a = 'abc';
+const b = 123;
+const { c  } = {
+    c: true
+};
+const [d] = [
+    {}
+];
+const e = 456, f = 'xyz';
+let ClassName = class ClassName {
+};
+function func() {}
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
+};
+// Types should be ignored
+export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, foo as fooRenamed, func, helpers as ns1, helpers as ns2, helpers as ns3 };
+//# sourceMappingURL=index-electron-current-esm.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: electron-current-lib 1`] = `
+[
+  "lib/index-electron-current-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: current, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+});
+let a = 'abc';
+const b = 123;
+const { c  } = {
+    c: true
+};
+const [d] = [
+    {}
+];
+const e = 456, f = 'xyz';
+let ClassName = class ClassName {
+};
+function func() {}
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
+};
+// Types should be ignored
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.fooRenamed = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-electron-current-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: electron-experimental-esm 1`] = `
+[
+  "esm/index-electron-experimental-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: experimental, Format: esm
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty({
+    __proto__: null,
+    foo,
+    bar
+}, Symbol.toStringTag, {
+    value: 'Module'
+}));
+let a = 'abc';
+const b = 123;
+const { c  } = {
+    c: true
+};
+const [d] = [
+    {}
+];
+const e = 456, f = 'xyz';
+let ClassName = class ClassName {
+};
+function func() {}
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
+};
+// Types should be ignored
+export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, foo as fooRenamed, func, helpers as ns1, helpers as ns2, helpers as ns3 };
+//# sourceMappingURL=index-electron-experimental-esm.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: electron-experimental-lib 1`] = `
+[
+  "lib/index-electron-experimental-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: experimental, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+});
+let a = 'abc';
+const b = 123;
+const { c  } = {
+    c: true
+};
+const [d] = [
+    {}
+];
+const e = 456, f = 'xyz';
+let ClassName = class ClassName {
+};
+function func() {}
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
+};
+// Types should be ignored
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.fooRenamed = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-electron-experimental-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: electron-legacy-esm 1`] = `
+[
+  "esm/index-electron-legacy-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: legacy, Format: esm
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty({
+    __proto__: null,
+    foo,
+    bar
+}, Symbol.toStringTag, {
+    value: 'Module'
+}));
+let a = 'abc';
+const b = 123;
+const { c  } = {
+    c: true
+};
+const [d] = [
+    {}
+];
+const e = 456, f = 'xyz';
+let ClassName = class ClassName {
+};
+function func() {}
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
+};
+// Types should be ignored
+export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, foo as fooRenamed, func, helpers as ns1, helpers as ns2, helpers as ns3 };
+//# sourceMappingURL=index-electron-legacy-esm.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: electron-legacy-lib 1`] = `
+[
+  "lib/index-electron-legacy-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: legacy, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+});
+let a = 'abc';
+const b = 123;
+const { c  } = {
+    c: true
+};
+const [d] = [
+    {}
+];
+const e = 456, f = 'xyz';
+let ClassName = class ClassName {
+};
+function func() {}
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
+};
+// Types should be ignored
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.fooRenamed = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-electron-legacy-lib.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: electron-stable-esm 1`] = `
+[
+  "esm/index-electron-stable-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: stable, Format: esm
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty({
+    __proto__: null,
+    foo,
+    bar
+}, Symbol.toStringTag, {
+    value: 'Module'
+}));
+let a = 'abc';
+const b = 123;
+const { c  } = {
+    c: true
+};
+const [d] = [
+    {}
+];
+const e = 456, f = 'xyz';
+let ClassName = class ClassName {
+};
+function func() {}
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
+};
+// Types should be ignored
+export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, foo as fooRenamed, func, helpers as ns1, helpers as ns2, helpers as ns3 };
+//# sourceMappingURL=index-electron-stable-esm.js.map
+",
+]
+`;
+
+exports[`CJS -> MJS wrapper swc transforms example test case: electron-stable-lib 1`] = `
+[
+  "lib/index-electron-stable-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: stable, Format: lib
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    foo,
+    bar
+});
+let a = 'abc';
+const b = 123;
+const { c  } = {
+    c: true
+};
+const [d] = [
+    {}
+];
+const e = 456, f = 'xyz';
+let ClassName = class ClassName {
+};
+function func() {}
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
+};
+// Types should be ignored
+exports.CONST = CONST;
+exports.ClassName = ClassName;
+exports.a = a;
+exports.arrowFunc = arrowFunc;
+exports.b = b;
+exports.bar = bar;
+exports.c = c;
+exports.d = d;
+exports.default = DefaultClass;
+exports.e = e;
+exports.f = f;
+exports.foo = foo;
+exports.fooRenamed = foo;
+exports.func = func;
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+exports.ns3 = helpers;
+//# sourceMappingURL=index-electron-stable-lib.js.map
 ",
 ]
 `;

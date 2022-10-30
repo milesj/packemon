@@ -95,10 +95,10 @@ export const BROWSER_TARGETS: { [K in Support]: string[] | string } = {
 };
 
 export const ELECTRON_TARGETS: { [K in Support]: string } = {
-	legacy: '7', // Oct 2019
-	stable: '11', // Nov 2020
-	current: '16', // Nov 2021
-	experimental: '21', // Sep 2022
+	legacy: '7.0.0', // Oct 2019
+	stable: '11.0.0', // Nov 2020
+	current: '16.0.0', // Nov 2021
+	experimental: '21.0.0', // Sep 2022
 };
 
 export const SUPPORT_TO_ESM_SPEC = {
