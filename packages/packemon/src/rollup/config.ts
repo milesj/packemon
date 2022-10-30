@@ -1,4 +1,4 @@
-import { ModuleFormat, OutputOptions, RollupOptions } from 'rollup';
+import { ModuleFormat, OutputOptions, Plugin, RollupOptions } from 'rollup';
 import { externals as nodeExternals } from 'rollup-plugin-node-externals';
 import nodePolyfills from 'rollup-plugin-polyfill-node';
 import { getBabelInputPlugin, getBabelOutputPlugin } from '@rollup/plugin-babel';
@@ -108,9 +108,11 @@ export function getRollupOutputConfig(
 		// Use ESM features when not supporting old targets
 		generatedCode: {
 			preset: 'es2015',
+			arrowFunctions: true,
+			constBindings: true,
+			objectShorthand: true,
 			symbols: isEsm,
 		},
-		preferConst: true,
 		// Output specific plugins
 		plugins: [
 			preserveDynamicImport(platform, support),
@@ -215,13 +217,13 @@ export async function getRollupConfig(
 
 	// Polyfill node modules when platform is not node
 	if (!isNode) {
-		config.plugins!.unshift(nodePolyfills());
+		(config.plugins as Plugin[]).unshift(nodePolyfills());
 	}
 
 	// Add an output for each format
 	config.output = artifact.builds.map((build) => {
 		if (build.format === 'cjs') {
-			config.plugins!.push(
+			(config.plugins as Plugin[]).push(
 				addMjsWrapperForCjs({
 					inputs: artifact.inputs,
 					packageRoot: artifact.package.path,

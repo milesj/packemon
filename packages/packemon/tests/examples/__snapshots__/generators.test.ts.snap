@@ -26,9 +26,6 @@ exports[`Generators babel transforms example test case: browser-current-lib 1`] 
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 function* gen() {}
 function runGen() {
   for (const iterator of gen()) {
@@ -106,9 +103,6 @@ exports[`Generators babel transforms example test case: browser-experimental-lib
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 function* gen() {}
 function runGen() {
   for (const iterator of gen()) {
@@ -201,9 +195,6 @@ exports[`Generators babel transforms example test case: browser-legacy-lib 1`] =
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 function* gen() {}
 function runGen() {
   var _iterator = _createForOfIteratorHelper(gen()),
@@ -302,9 +293,6 @@ exports[`Generators babel transforms example test case: browser-stable-lib 1`] =
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 function* gen() {}
 function runGen() {
   for (const iterator of gen()) {
@@ -364,9 +352,6 @@ exports[`Generators babel transforms example test case: native-current-lib 1`] =
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 function* gen() {}
 function runGen() {
   for (const iterator of gen()) {
@@ -388,9 +373,6 @@ exports[`Generators babel transforms example test case: native-experimental-lib 
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 function* gen() {}
 function runGen() {
   for (const iterator of gen()) {
@@ -412,9 +394,6 @@ exports[`Generators babel transforms example test case: native-legacy-lib 1`] = 
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 function* gen() {}
 function runGen() {
   for (const iterator of gen()) {
@@ -436,9 +415,6 @@ exports[`Generators babel transforms example test case: native-stable-lib 1`] = 
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 function* gen() {}
 function runGen() {
   for (const iterator of gen()) {
@@ -472,9 +448,6 @@ exports[`Generators babel transforms example test case: node-current-cjs 2`] = `
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 function* gen() {}
 function runGen() {
   for (const iterator of gen()) {
@@ -496,9 +469,6 @@ exports[`Generators babel transforms example test case: node-current-lib 1`] = `
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 function* gen() {}
 function runGen() {
   for (const iterator of gen()) {
@@ -550,9 +520,6 @@ exports[`Generators babel transforms example test case: node-experimental-cjs 2`
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 function* gen() {}
 function runGen() {
   for (const iterator of gen()) {
@@ -574,9 +541,6 @@ exports[`Generators babel transforms example test case: node-experimental-lib 1`
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 function* gen() {}
 function runGen() {
   for (const iterator of gen()) {
@@ -628,9 +592,6 @@ exports[`Generators babel transforms example test case: node-legacy-cjs 2`] = `
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 function* gen() {}
 function runGen() {
   for (const iterator of gen()) {
@@ -652,9 +613,6 @@ exports[`Generators babel transforms example test case: node-legacy-lib 1`] = `
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 function* gen() {}
 function runGen() {
   for (const iterator of gen()) {
@@ -706,9 +664,6 @@ exports[`Generators babel transforms example test case: node-stable-cjs 2`] = `
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 function* gen() {}
 function runGen() {
   for (const iterator of gen()) {
@@ -730,9 +685,6 @@ exports[`Generators babel transforms example test case: node-stable-lib 1`] = `
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 function* gen() {}
 function runGen() {
   for (const iterator of gen()) {
@@ -785,9 +737,6 @@ exports[`Generators swc transforms example test case: browser-current-lib 1`] = 
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: lib
 'use strict';
-Object.defineProperty(exports, '__esModule', {
-    value: true
-});
 function* gen() {}
 function runGen() {
     for (const iterator of gen())console.log(iterator);
@@ -854,9 +803,6 @@ exports[`Generators swc transforms example test case: browser-experimental-lib 1
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: experimental, Format: lib
 'use strict';
-Object.defineProperty(exports, '__esModule', {
-    value: true
-});
 function* gen() {}
 function runGen() {
     for (const iterator of gen())console.log(iterator);
@@ -1138,9 +1084,6 @@ var __generator = (void 0) && (void 0).__generator || function(thisArg, body) {
         };
     }
 };
-Object.defineProperty(exports, '__esModule', {
-    value: true
-});
 function gen() {
     return __generator(this, function(_state) {
         return [
@@ -1356,9 +1299,6 @@ exports[`Generators swc transforms example test case: browser-stable-lib 1`] = `
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: lib
 'use strict';
-Object.defineProperty(exports, '__esModule', {
-    value: true
-});
 function* gen() {}
 function runGen() {
     for (const iterator of gen())console.log(iterator);
@@ -1410,9 +1350,6 @@ exports[`Generators swc transforms example test case: native-current-lib 1`] = `
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: current, Format: lib
 'use strict';
-Object.defineProperty(exports, '__esModule', {
-    value: true
-});
 function* gen() {}
 function runGen() {
     for (const iterator of gen())console.log(iterator);
@@ -1430,9 +1367,6 @@ exports[`Generators swc transforms example test case: native-experimental-lib 1`
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: experimental, Format: lib
 'use strict';
-Object.defineProperty(exports, '__esModule', {
-    value: true
-});
 function* gen() {}
 function runGen() {
     for (const iterator of gen())console.log(iterator);
@@ -1450,9 +1384,6 @@ exports[`Generators swc transforms example test case: native-legacy-lib 1`] = `
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: legacy, Format: lib
 'use strict';
-Object.defineProperty(exports, '__esModule', {
-    value: true
-});
 function* gen() {}
 function runGen() {
     for (const iterator of gen())console.log(iterator);
@@ -1470,9 +1401,6 @@ exports[`Generators swc transforms example test case: native-stable-lib 1`] = `
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: stable, Format: lib
 'use strict';
-Object.defineProperty(exports, '__esModule', {
-    value: true
-});
 function* gen() {}
 function runGen() {
     for (const iterator of gen())console.log(iterator);
@@ -1502,9 +1430,6 @@ exports[`Generators swc transforms example test case: node-current-cjs 2`] = `
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: cjs
 'use strict';
-Object.defineProperty(exports, '__esModule', {
-    value: true
-});
 function* gen() {}
 function runGen() {
     for (const iterator of gen())console.log(iterator);
@@ -1522,9 +1447,6 @@ exports[`Generators swc transforms example test case: node-current-lib 1`] = `
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: lib
 'use strict';
-Object.defineProperty(exports, '__esModule', {
-    value: true
-});
 function* gen() {}
 function runGen() {
     for (const iterator of gen())console.log(iterator);
@@ -1569,9 +1491,6 @@ exports[`Generators swc transforms example test case: node-experimental-cjs 2`] 
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: cjs
 'use strict';
-Object.defineProperty(exports, '__esModule', {
-    value: true
-});
 function* gen() {}
 function runGen() {
     for (const iterator of gen())console.log(iterator);
@@ -1589,9 +1508,6 @@ exports[`Generators swc transforms example test case: node-experimental-lib 1`] 
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: lib
 'use strict';
-Object.defineProperty(exports, '__esModule', {
-    value: true
-});
 function* gen() {}
 function runGen() {
     for (const iterator of gen())console.log(iterator);
@@ -1636,9 +1552,6 @@ exports[`Generators swc transforms example test case: node-legacy-cjs 2`] = `
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: cjs
 'use strict';
-Object.defineProperty(exports, '__esModule', {
-    value: true
-});
 function* gen() {}
 function runGen() {
     for (const iterator of gen())console.log(iterator);
@@ -1656,9 +1569,6 @@ exports[`Generators swc transforms example test case: node-legacy-lib 1`] = `
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: lib
 'use strict';
-Object.defineProperty(exports, '__esModule', {
-    value: true
-});
 function* gen() {}
 function runGen() {
     for (const iterator of gen())console.log(iterator);
@@ -1703,9 +1613,6 @@ exports[`Generators swc transforms example test case: node-stable-cjs 2`] = `
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: cjs
 'use strict';
-Object.defineProperty(exports, '__esModule', {
-    value: true
-});
 function* gen() {}
 function runGen() {
     for (const iterator of gen())console.log(iterator);
@@ -1723,9 +1630,6 @@ exports[`Generators swc transforms example test case: node-stable-lib 1`] = `
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: lib
 'use strict';
-Object.defineProperty(exports, '__esModule', {
-    value: true
-});
 function* gen() {}
 function runGen() {
     for (const iterator of gen())console.log(iterator);
