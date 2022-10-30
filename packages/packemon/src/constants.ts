@@ -79,7 +79,7 @@ export const NODE_SUPPORTED_VERSIONS: { [K in Support]: string } = {
 	experimental: '19.0.0',
 };
 
-export const NPM_SUPPORTED_VERSIONS: { [K in Support]: string[] | string } = {
+export const NPM_SUPPORTED_VERSIONS: { [K in Support]: string } = {
 	legacy: '6.14.0',
 	stable: '8.1.0',
 	current: '8.19.0',
@@ -92,6 +92,13 @@ export const BROWSER_TARGETS: { [K in Support]: string[] | string } = {
 	stable: ['defaults', 'not IE 11'],
 	current: ['>=1%', 'not dead'],
 	experimental: ['last 2 chrome versions', 'last 2 firefox versions'],
+};
+
+export const ELECTRON_TARGETS: { [K in Support]: string } = {
+	legacy: '7', // Oct 2019
+	stable: '11', // Nov 2020
+	current: '16', // Nov 2021
+	experimental: '21', // Sep 2022
 };
 
 export const SUPPORT_TO_ESM_SPEC = {
@@ -109,11 +116,14 @@ export const STATE_COLORS: { [K in ArtifactState]?: StyleType } = {
 
 export const DEFAULT_FORMATS: Record<Platform, Format> = {
 	browser: 'esm',
+	electron: 'esm',
 	native: 'lib',
 	node: 'mjs',
 };
 
 export const FORMATS_BROWSER: BrowserFormat[] = ['lib', 'esm', 'umd'];
+
+export const FORMATS_ELECTRON: BrowserFormat[] = ['lib', 'esm'];
 
 export const FORMATS_NATIVE: NativeFormat[] = ['lib'];
 
@@ -125,7 +135,7 @@ export const DEFAULT_INPUT = 'src/index.ts';
 
 export const DEFAULT_PLATFORM: Platform = 'browser';
 
-export const PLATFORMS: Platform[] = ['native', 'node', 'browser'];
+export const PLATFORMS: Platform[] = ['native', 'electron', 'node', 'browser'];
 
 export const DEFAULT_SUPPORT: Support = 'stable';
 

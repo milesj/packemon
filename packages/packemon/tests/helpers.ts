@@ -7,6 +7,7 @@ import {
 	Format,
 	FORMATS,
 	FORMATS_BROWSER,
+	FORMATS_ELECTRON,
 	FORMATS_NATIVE,
 	FORMATS_NODE,
 	Package,
@@ -27,6 +28,7 @@ FORMATS.forEach((format) => {
 
 			if (
 				(platform === 'browser' && !(FORMATS_BROWSER as string[]).includes(format)) ||
+				(platform === 'electron' && !(FORMATS_ELECTRON as string[]).includes(format)) ||
 				(platform === 'native' && !(FORMATS_NATIVE as string[]).includes(format)) ||
 				(platform === 'node' && !(FORMATS_NODE as string[]).includes(format))
 			) {

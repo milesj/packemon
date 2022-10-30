@@ -1,6 +1,11 @@
 import { PluginItem, TransformOptions as ConfigStructure } from '@babel/core';
 import { Artifact } from '../Artifact';
-import { BROWSER_TARGETS, NATIVE_TARGETS, NODE_SUPPORTED_VERSIONS } from '../constants';
+import {
+	BROWSER_TARGETS,
+	ELECTRON_TARGETS,
+	NATIVE_TARGETS,
+	NODE_SUPPORTED_VERSIONS,
+} from '../constants';
 import { shouldKeepDynamicImport } from '../helpers/shouldKeepDynamicImport';
 import { ConfigFile, FeatureFlags, Format, Platform, Support } from '../types';
 import { resolve, resolveFromBabel } from './resolve';
@@ -53,6 +58,13 @@ function getPlatformEnvOptions(
 				exclude,
 				modules,
 				targets: { browsers: BROWSER_TARGETS[support] },
+			};
+
+		case 'electron':
+			return {
+				exclude,
+				modules,
+				targets: { browsers: ELECTRON_TARGETS[support] },
 			};
 
 		case 'native':
