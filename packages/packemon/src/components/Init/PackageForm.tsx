@@ -31,7 +31,7 @@ export function getVersionsCombo(platforms: Platform[], support: Support): Set<s
 				break;
 
 			case 'electron':
-				versions.add(`Node v${ELECTRON_TARGETS[support]}+`);
+				versions.add(`Electron v${ELECTRON_TARGETS[support]}+`);
 				break;
 
 			case 'browser': {
