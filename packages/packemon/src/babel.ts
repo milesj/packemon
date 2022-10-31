@@ -61,6 +61,8 @@ export function createConfig(folder: string, options: ConfigOptions = {}): Confi
 	// istanbul ignore next
 	if (platforms.includes('browser')) {
 		lowestPlatform = 'browser';
+	} else if (platforms.includes('electron')) {
+		lowestPlatform = 'electron';
 	} else if (platforms.includes('native')) {
 		lowestPlatform = 'native';
 	}

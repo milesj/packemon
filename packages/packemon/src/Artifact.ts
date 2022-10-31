@@ -302,6 +302,7 @@ export class Artifact {
 		let paths: PackageExportPaths = {};
 
 		switch (this.platform) {
+			case 'electron':
 			case 'browser': {
 				const esmEntry = this.findEntryPoint(['esm'], outputName);
 

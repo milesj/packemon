@@ -18,8 +18,8 @@ configured to support all formats.
 ## Features
 
 - Scaffold TypeScript packages, in either a monorepo or polyrepo project setup.
-- Configure packages for Node.js, Web browsers, or React Native, with multiple output formats like
-  CommonJS and ECMAScript (default).
+- Configure packages for Node.js, Web browsers, React Native, or Electron, with multiple output
+  formats like CommonJS and ECMAScript.
 - Build packages with Rollup to create self-contained and tree-shaken bundles. Provide the smallest
   file sizes possible!
 - Support a single index import, multiple imports, deep imports, or any kind of entry point.
@@ -32,4 +32,4 @@ configured to support all formats.
 ## Requirements
 
 - Linux, OSX, Windows
-- Node 14.15+
+- Node 16.12+

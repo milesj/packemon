@@ -7,6 +7,7 @@ export function shouldKeepDynamicImport(platform: Platform, support: Support): b
 			// >= v13.2
 			// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import#browser_compatibility
 			return true;
+		case 'electron':
 		case 'browser':
 			// >= 2019
 			// https://caniuse.com/es6-module-dynamic-import

@@ -311,6 +311,160 @@ exports[`New syntax babel transforms example test case: browser-stable-umd 1`] =
 ]
 `;
 
+exports[`New syntax babel transforms example test case: electron-current-esm 1`] = `
+[
+  "esm/index-electron-current-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: current, Format: esm
+
+const foo = {};
+const optionalChain = foo?.bar;
+const nullCoalesc = foo ?? 0;
+foo.bar ??= 'bar';
+foo.baz ||= 'baz';
+export { foo, nullCoalesc, optionalChain };
+//# sourceMappingURL=index-electron-current-esm.js.map
+",
+]
+`;
+
+exports[`New syntax babel transforms example test case: electron-current-lib 1`] = `
+[
+  "lib/index-electron-current-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: current, Format: lib
+
+'use strict';
+
+const foo = {};
+const optionalChain = foo?.bar;
+const nullCoalesc = foo ?? 0;
+foo.bar ??= 'bar';
+foo.baz ||= 'baz';
+exports.foo = foo;
+exports.nullCoalesc = nullCoalesc;
+exports.optionalChain = optionalChain;
+//# sourceMappingURL=index-electron-current-lib.js.map
+",
+]
+`;
+
+exports[`New syntax babel transforms example test case: electron-experimental-esm 1`] = `
+[
+  "esm/index-electron-experimental-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: experimental, Format: esm
+
+const foo = {};
+const optionalChain = foo?.bar;
+const nullCoalesc = foo ?? 0;
+foo.bar ??= 'bar';
+foo.baz ||= 'baz';
+export { foo, nullCoalesc, optionalChain };
+//# sourceMappingURL=index-electron-experimental-esm.js.map
+",
+]
+`;
+
+exports[`New syntax babel transforms example test case: electron-experimental-lib 1`] = `
+[
+  "lib/index-electron-experimental-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: experimental, Format: lib
+
+'use strict';
+
+const foo = {};
+const optionalChain = foo?.bar;
+const nullCoalesc = foo ?? 0;
+foo.bar ??= 'bar';
+foo.baz ||= 'baz';
+exports.foo = foo;
+exports.nullCoalesc = nullCoalesc;
+exports.optionalChain = optionalChain;
+//# sourceMappingURL=index-electron-experimental-lib.js.map
+",
+]
+`;
+
+exports[`New syntax babel transforms example test case: electron-legacy-esm 1`] = `
+[
+  "esm/index-electron-legacy-esm.js",
+  "var _foo$bar;
+// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: legacy, Format: esm
+
+const foo = {};
+const optionalChain = foo === null || foo === void 0 ? void 0 : foo.bar;
+const nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
+(_foo$bar = foo.bar) !== null && _foo$bar !== void 0 ? _foo$bar : foo.bar = 'bar';
+foo.baz || (foo.baz = 'baz');
+export { foo, nullCoalesc, optionalChain };
+//# sourceMappingURL=index-electron-legacy-esm.js.map
+",
+]
+`;
+
+exports[`New syntax babel transforms example test case: electron-legacy-lib 1`] = `
+[
+  "lib/index-electron-legacy-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: legacy, Format: lib
+
+'use strict';
+
+var _foo$bar;
+const foo = {};
+const optionalChain = foo === null || foo === void 0 ? void 0 : foo.bar;
+const nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
+(_foo$bar = foo.bar) !== null && _foo$bar !== void 0 ? _foo$bar : foo.bar = 'bar';
+foo.baz || (foo.baz = 'baz');
+exports.foo = foo;
+exports.nullCoalesc = nullCoalesc;
+exports.optionalChain = optionalChain;
+//# sourceMappingURL=index-electron-legacy-lib.js.map
+",
+]
+`;
+
+exports[`New syntax babel transforms example test case: electron-stable-esm 1`] = `
+[
+  "esm/index-electron-stable-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: stable, Format: esm
+
+const foo = {};
+const optionalChain = foo?.bar;
+const nullCoalesc = foo ?? 0;
+foo.bar ??= 'bar';
+foo.baz ||= 'baz';
+export { foo, nullCoalesc, optionalChain };
+//# sourceMappingURL=index-electron-stable-esm.js.map
+",
+]
+`;
+
+exports[`New syntax babel transforms example test case: electron-stable-lib 1`] = `
+[
+  "lib/index-electron-stable-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: stable, Format: lib
+
+'use strict';
+
+const foo = {};
+const optionalChain = foo?.bar;
+const nullCoalesc = foo ?? 0;
+foo.bar ??= 'bar';
+foo.baz ||= 'baz';
+exports.foo = foo;
+exports.nullCoalesc = nullCoalesc;
+exports.optionalChain = optionalChain;
+//# sourceMappingURL=index-electron-stable-lib.js.map
+",
+]
+`;
+
 exports[`New syntax babel transforms example test case: native-current-lib 1`] = `
 [
   "lib/index-native-current-lib.js",
@@ -978,6 +1132,150 @@ exports[`New syntax swc transforms example test case: browser-stable-umd 1`] = `
     (_foo1 = foo).baz || (_foo1.baz = 'baz');
 });
 //# sourceMappingURL=index-browser-stable-umd.js.map
+",
+]
+`;
+
+exports[`New syntax swc transforms example test case: electron-current-esm 1`] = `
+[
+  "esm/index-electron-current-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: current, Format: esm
+const foo = {};
+const optionalChain = foo?.bar;
+const nullCoalesc = foo ?? 0;
+foo.bar ??= 'bar';
+foo.baz ||= 'baz';
+export { foo, nullCoalesc, optionalChain };
+//# sourceMappingURL=index-electron-current-esm.js.map
+",
+]
+`;
+
+exports[`New syntax swc transforms example test case: electron-current-lib 1`] = `
+[
+  "lib/index-electron-current-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: current, Format: lib
+'use strict';
+const foo = {};
+const optionalChain = foo?.bar;
+const nullCoalesc = foo ?? 0;
+foo.bar ??= 'bar';
+foo.baz ||= 'baz';
+exports.foo = foo;
+exports.nullCoalesc = nullCoalesc;
+exports.optionalChain = optionalChain;
+//# sourceMappingURL=index-electron-current-lib.js.map
+",
+]
+`;
+
+exports[`New syntax swc transforms example test case: electron-experimental-esm 1`] = `
+[
+  "esm/index-electron-experimental-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: experimental, Format: esm
+const foo = {};
+const optionalChain = foo?.bar;
+const nullCoalesc = foo ?? 0;
+foo.bar ??= 'bar';
+foo.baz ||= 'baz';
+export { foo, nullCoalesc, optionalChain };
+//# sourceMappingURL=index-electron-experimental-esm.js.map
+",
+]
+`;
+
+exports[`New syntax swc transforms example test case: electron-experimental-lib 1`] = `
+[
+  "lib/index-electron-experimental-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: experimental, Format: lib
+'use strict';
+const foo = {};
+const optionalChain = foo?.bar;
+const nullCoalesc = foo ?? 0;
+foo.bar ??= 'bar';
+foo.baz ||= 'baz';
+exports.foo = foo;
+exports.nullCoalesc = nullCoalesc;
+exports.optionalChain = optionalChain;
+//# sourceMappingURL=index-electron-experimental-lib.js.map
+",
+]
+`;
+
+exports[`New syntax swc transforms example test case: electron-legacy-esm 1`] = `
+[
+  "esm/index-electron-legacy-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: legacy, Format: esm
+var _foo, _foo1;
+const foo = {};
+const optionalChain = foo === null || foo === void 0 ? void 0 : foo.bar;
+const nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
+var _bar;
+(_bar = (_foo = foo).bar) !== null && _bar !== void 0 ? _bar : _foo.bar = 'bar';
+(_foo1 = foo).baz || (_foo1.baz = 'baz');
+export { foo, nullCoalesc, optionalChain };
+//# sourceMappingURL=index-electron-legacy-esm.js.map
+",
+]
+`;
+
+exports[`New syntax swc transforms example test case: electron-legacy-lib 1`] = `
+[
+  "lib/index-electron-legacy-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: legacy, Format: lib
+'use strict';
+var _foo, _foo1;
+const foo = {};
+const optionalChain = foo === null || foo === void 0 ? void 0 : foo.bar;
+const nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
+var _bar;
+(_bar = (_foo = foo).bar) !== null && _bar !== void 0 ? _bar : _foo.bar = 'bar';
+(_foo1 = foo).baz || (_foo1.baz = 'baz');
+exports.foo = foo;
+exports.nullCoalesc = nullCoalesc;
+exports.optionalChain = optionalChain;
+//# sourceMappingURL=index-electron-legacy-lib.js.map
+",
+]
+`;
+
+exports[`New syntax swc transforms example test case: electron-stable-esm 1`] = `
+[
+  "esm/index-electron-stable-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: stable, Format: esm
+const foo = {};
+const optionalChain = foo?.bar;
+const nullCoalesc = foo ?? 0;
+foo.bar ??= 'bar';
+foo.baz ||= 'baz';
+export { foo, nullCoalesc, optionalChain };
+//# sourceMappingURL=index-electron-stable-esm.js.map
+",
+]
+`;
+
+exports[`New syntax swc transforms example test case: electron-stable-lib 1`] = `
+[
+  "lib/index-electron-stable-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: stable, Format: lib
+'use strict';
+const foo = {};
+const optionalChain = foo?.bar;
+const nullCoalesc = foo ?? 0;
+foo.bar ??= 'bar';
+foo.baz ||= 'baz';
+exports.foo = foo;
+exports.nullCoalesc = nullCoalesc;
+exports.optionalChain = optionalChain;
+//# sourceMappingURL=index-electron-stable-lib.js.map
 ",
 ]
 `;

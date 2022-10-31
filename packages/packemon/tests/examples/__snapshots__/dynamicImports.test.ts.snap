@@ -505,6 +505,290 @@ import( /* webpackChunkName: "helpers" */'./bundle-911ab4c8.js').then(({
 ]
 `;
 
+exports[`Dynamic imports babel transforms example test case: electron-current-esm 1`] = `
+[
+  "esm/bundle-d65af2bf.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: current, Format: esm
+
+function foo() {}
+function bar() {}
+export { bar, foo };
+//# sourceMappingURL=bundle-d65af2bf.js.map
+",
+]
+`;
+
+exports[`Dynamic imports babel transforms example test case: electron-current-esm 2`] = `
+[
+  "esm/index-electron-current-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: current, Format: esm
+
+import('./bundle-d65af2bf.js').then(result => {
+  result.foo();
+});
+import( /* webpackChunkName: "helpers" */'./bundle-d65af2bf.js').then(({
+  bar
+}) => {
+  bar();
+});
+//# sourceMappingURL=index-electron-current-esm.js.map
+",
+]
+`;
+
+exports[`Dynamic imports babel transforms example test case: electron-current-lib 1`] = `
+[
+  "lib/bundle-2a40adc9.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: current, Format: lib
+
+'use strict';
+
+function foo() {}
+function bar() {}
+exports.bar = bar;
+exports.foo = foo;
+//# sourceMappingURL=bundle-2a40adc9.js.map
+",
+]
+`;
+
+exports[`Dynamic imports babel transforms example test case: electron-current-lib 2`] = `
+[
+  "lib/index-electron-current-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: current, Format: lib
+
+'use strict';
+
+import('./bundle-2a40adc9.js').then(result => {
+  result.foo();
+});
+import( /* webpackChunkName: "helpers" */'./bundle-2a40adc9.js').then(({
+  bar
+}) => {
+  bar();
+});
+//# sourceMappingURL=index-electron-current-lib.js.map
+",
+]
+`;
+
+exports[`Dynamic imports babel transforms example test case: electron-experimental-esm 1`] = `
+[
+  "esm/bundle-9c86223f.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: experimental, Format: esm
+
+function foo() {}
+function bar() {}
+export { bar, foo };
+//# sourceMappingURL=bundle-9c86223f.js.map
+",
+]
+`;
+
+exports[`Dynamic imports babel transforms example test case: electron-experimental-esm 2`] = `
+[
+  "esm/index-electron-experimental-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: experimental, Format: esm
+
+import('./bundle-9c86223f.js').then(result => {
+  result.foo();
+});
+import( /* webpackChunkName: "helpers" */'./bundle-9c86223f.js').then(({
+  bar
+}) => {
+  bar();
+});
+//# sourceMappingURL=index-electron-experimental-esm.js.map
+",
+]
+`;
+
+exports[`Dynamic imports babel transforms example test case: electron-experimental-lib 1`] = `
+[
+  "lib/bundle-4903b874.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: experimental, Format: lib
+
+'use strict';
+
+function foo() {}
+function bar() {}
+exports.bar = bar;
+exports.foo = foo;
+//# sourceMappingURL=bundle-4903b874.js.map
+",
+]
+`;
+
+exports[`Dynamic imports babel transforms example test case: electron-experimental-lib 2`] = `
+[
+  "lib/index-electron-experimental-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: experimental, Format: lib
+
+'use strict';
+
+import('./bundle-4903b874.js').then(result => {
+  result.foo();
+});
+import( /* webpackChunkName: "helpers" */'./bundle-4903b874.js').then(({
+  bar
+}) => {
+  bar();
+});
+//# sourceMappingURL=index-electron-experimental-lib.js.map
+",
+]
+`;
+
+exports[`Dynamic imports babel transforms example test case: electron-legacy-esm 1`] = `
+[
+  "esm/bundle-fa788f98.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: legacy, Format: esm
+
+function foo() {}
+function bar() {}
+export { bar, foo };
+//# sourceMappingURL=bundle-fa788f98.js.map
+",
+]
+`;
+
+exports[`Dynamic imports babel transforms example test case: electron-legacy-esm 2`] = `
+[
+  "esm/index-electron-legacy-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: legacy, Format: esm
+
+import('./bundle-fa788f98.js').then(result => {
+  result.foo();
+});
+import( /* webpackChunkName: "helpers" */'./bundle-fa788f98.js').then(({
+  bar
+}) => {
+  bar();
+});
+//# sourceMappingURL=index-electron-legacy-esm.js.map
+",
+]
+`;
+
+exports[`Dynamic imports babel transforms example test case: electron-legacy-lib 1`] = `
+[
+  "lib/bundle-4c7325f0.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: legacy, Format: lib
+
+'use strict';
+
+function foo() {}
+function bar() {}
+exports.bar = bar;
+exports.foo = foo;
+//# sourceMappingURL=bundle-4c7325f0.js.map
+",
+]
+`;
+
+exports[`Dynamic imports babel transforms example test case: electron-legacy-lib 2`] = `
+[
+  "lib/index-electron-legacy-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: legacy, Format: lib
+
+'use strict';
+
+import('./bundle-4c7325f0.js').then(result => {
+  result.foo();
+});
+import( /* webpackChunkName: "helpers" */'./bundle-4c7325f0.js').then(({
+  bar
+}) => {
+  bar();
+});
+//# sourceMappingURL=index-electron-legacy-lib.js.map
+",
+]
+`;
+
+exports[`Dynamic imports babel transforms example test case: electron-stable-esm 1`] = `
+[
+  "esm/bundle-90e23c62.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: stable, Format: esm
+
+function foo() {}
+function bar() {}
+export { bar, foo };
+//# sourceMappingURL=bundle-90e23c62.js.map
+",
+]
+`;
+
+exports[`Dynamic imports babel transforms example test case: electron-stable-esm 2`] = `
+[
+  "esm/index-electron-stable-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: stable, Format: esm
+
+import('./bundle-90e23c62.js').then(result => {
+  result.foo();
+});
+import( /* webpackChunkName: "helpers" */'./bundle-90e23c62.js').then(({
+  bar
+}) => {
+  bar();
+});
+//# sourceMappingURL=index-electron-stable-esm.js.map
+",
+]
+`;
+
+exports[`Dynamic imports babel transforms example test case: electron-stable-lib 1`] = `
+[
+  "lib/bundle-8a2525df.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: stable, Format: lib
+
+'use strict';
+
+function foo() {}
+function bar() {}
+exports.bar = bar;
+exports.foo = foo;
+//# sourceMappingURL=bundle-8a2525df.js.map
+",
+]
+`;
+
+exports[`Dynamic imports babel transforms example test case: electron-stable-lib 2`] = `
+[
+  "lib/index-electron-stable-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: stable, Format: lib
+
+'use strict';
+
+import('./bundle-8a2525df.js').then(result => {
+  result.foo();
+});
+import( /* webpackChunkName: "helpers" */'./bundle-8a2525df.js').then(({
+  bar
+}) => {
+  bar();
+});
+//# sourceMappingURL=index-electron-stable-lib.js.map
+",
+]
+`;
+
 exports[`Dynamic imports babel transforms example test case: native-current-lib 1`] = `
 [
   "lib/bundle-b7039f8d.js",
@@ -1592,6 +1876,250 @@ exports[`Dynamic imports swc transforms example test case: browser-stable-umd 2`
     });
 });
 //# sourceMappingURL=index-browser-stable-umd.js.map
+",
+]
+`;
+
+exports[`Dynamic imports swc transforms example test case: electron-current-esm 1`] = `
+[
+  "esm/bundle-0e22177c.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: current, Format: esm
+function foo() {}
+function bar() {}
+export { bar, foo };
+//# sourceMappingURL=bundle-0e22177c.js.map
+",
+]
+`;
+
+exports[`Dynamic imports swc transforms example test case: electron-current-esm 2`] = `
+[
+  "esm/index-electron-current-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: current, Format: esm
+import('./bundle-0e22177c.js').then((result)=>{
+    result.foo();
+});
+import(/* webpackChunkName: "helpers" */ './bundle-0e22177c.js').then(({ bar  })=>{
+    bar();
+});
+//# sourceMappingURL=index-electron-current-esm.js.map
+",
+]
+`;
+
+exports[`Dynamic imports swc transforms example test case: electron-current-lib 1`] = `
+[
+  "lib/bundle-0f05df70.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: current, Format: lib
+'use strict';
+function foo() {}
+function bar() {}
+exports.bar = bar;
+exports.foo = foo;
+//# sourceMappingURL=bundle-0f05df70.js.map
+",
+]
+`;
+
+exports[`Dynamic imports swc transforms example test case: electron-current-lib 2`] = `
+[
+  "lib/index-electron-current-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: current, Format: lib
+'use strict';
+import('./bundle-0f05df70.js').then((result)=>{
+    result.foo();
+});
+import(/* webpackChunkName: "helpers" */ './bundle-0f05df70.js').then(({ bar  })=>{
+    bar();
+});
+//# sourceMappingURL=index-electron-current-lib.js.map
+",
+]
+`;
+
+exports[`Dynamic imports swc transforms example test case: electron-experimental-esm 1`] = `
+[
+  "esm/bundle-760a74b4.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: experimental, Format: esm
+function foo() {}
+function bar() {}
+export { bar, foo };
+//# sourceMappingURL=bundle-760a74b4.js.map
+",
+]
+`;
+
+exports[`Dynamic imports swc transforms example test case: electron-experimental-esm 2`] = `
+[
+  "esm/index-electron-experimental-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: experimental, Format: esm
+import('./bundle-760a74b4.js').then((result)=>{
+    result.foo();
+});
+import(/* webpackChunkName: "helpers" */ './bundle-760a74b4.js').then(({ bar  })=>{
+    bar();
+});
+//# sourceMappingURL=index-electron-experimental-esm.js.map
+",
+]
+`;
+
+exports[`Dynamic imports swc transforms example test case: electron-experimental-lib 1`] = `
+[
+  "lib/bundle-4c9550cb.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: experimental, Format: lib
+'use strict';
+function foo() {}
+function bar() {}
+exports.bar = bar;
+exports.foo = foo;
+//# sourceMappingURL=bundle-4c9550cb.js.map
+",
+]
+`;
+
+exports[`Dynamic imports swc transforms example test case: electron-experimental-lib 2`] = `
+[
+  "lib/index-electron-experimental-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: experimental, Format: lib
+'use strict';
+import('./bundle-4c9550cb.js').then((result)=>{
+    result.foo();
+});
+import(/* webpackChunkName: "helpers" */ './bundle-4c9550cb.js').then(({ bar  })=>{
+    bar();
+});
+//# sourceMappingURL=index-electron-experimental-lib.js.map
+",
+]
+`;
+
+exports[`Dynamic imports swc transforms example test case: electron-legacy-esm 1`] = `
+[
+  "esm/bundle-a1efeb31.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: legacy, Format: esm
+function foo() {}
+function bar() {}
+export { bar, foo };
+//# sourceMappingURL=bundle-a1efeb31.js.map
+",
+]
+`;
+
+exports[`Dynamic imports swc transforms example test case: electron-legacy-esm 2`] = `
+[
+  "esm/index-electron-legacy-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: legacy, Format: esm
+import('./bundle-a1efeb31.js').then((result)=>{
+    result.foo();
+});
+import(/* webpackChunkName: "helpers" */ './bundle-a1efeb31.js').then(({ bar  })=>{
+    bar();
+});
+//# sourceMappingURL=index-electron-legacy-esm.js.map
+",
+]
+`;
+
+exports[`Dynamic imports swc transforms example test case: electron-legacy-lib 1`] = `
+[
+  "lib/bundle-c42cc57f.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: legacy, Format: lib
+'use strict';
+function foo() {}
+function bar() {}
+exports.bar = bar;
+exports.foo = foo;
+//# sourceMappingURL=bundle-c42cc57f.js.map
+",
+]
+`;
+
+exports[`Dynamic imports swc transforms example test case: electron-legacy-lib 2`] = `
+[
+  "lib/index-electron-legacy-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: legacy, Format: lib
+'use strict';
+import('./bundle-c42cc57f.js').then((result)=>{
+    result.foo();
+});
+import(/* webpackChunkName: "helpers" */ './bundle-c42cc57f.js').then(({ bar  })=>{
+    bar();
+});
+//# sourceMappingURL=index-electron-legacy-lib.js.map
+",
+]
+`;
+
+exports[`Dynamic imports swc transforms example test case: electron-stable-esm 1`] = `
+[
+  "esm/bundle-b7ad37aa.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: stable, Format: esm
+function foo() {}
+function bar() {}
+export { bar, foo };
+//# sourceMappingURL=bundle-b7ad37aa.js.map
+",
+]
+`;
+
+exports[`Dynamic imports swc transforms example test case: electron-stable-esm 2`] = `
+[
+  "esm/index-electron-stable-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: stable, Format: esm
+import('./bundle-b7ad37aa.js').then((result)=>{
+    result.foo();
+});
+import(/* webpackChunkName: "helpers" */ './bundle-b7ad37aa.js').then(({ bar  })=>{
+    bar();
+});
+//# sourceMappingURL=index-electron-stable-esm.js.map
+",
+]
+`;
+
+exports[`Dynamic imports swc transforms example test case: electron-stable-lib 1`] = `
+[
+  "lib/bundle-8b301a85.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: stable, Format: lib
+'use strict';
+function foo() {}
+function bar() {}
+exports.bar = bar;
+exports.foo = foo;
+//# sourceMappingURL=bundle-8b301a85.js.map
+",
+]
+`;
+
+exports[`Dynamic imports swc transforms example test case: electron-stable-lib 2`] = `
+[
+  "lib/index-electron-stable-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: stable, Format: lib
+'use strict';
+import('./bundle-8b301a85.js').then((result)=>{
+    result.foo();
+});
+import(/* webpackChunkName: "helpers" */ './bundle-8b301a85.js').then(({ bar  })=>{
+    bar();
+});
+//# sourceMappingURL=index-electron-stable-lib.js.map
 ",
 ]
 `;

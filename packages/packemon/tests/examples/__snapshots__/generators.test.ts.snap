@@ -344,6 +344,162 @@ exports[`Generators babel transforms example test case: browser-stable-umd 1`] =
 ]
 `;
 
+exports[`Generators babel transforms example test case: electron-current-esm 1`] = `
+[
+  "esm/index-electron-current-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: current, Format: esm
+
+function* gen() {}
+function runGen() {
+  for (const iterator of gen()) {
+    console.log(iterator);
+  }
+}
+export { gen, runGen };
+//# sourceMappingURL=index-electron-current-esm.js.map
+",
+]
+`;
+
+exports[`Generators babel transforms example test case: electron-current-lib 1`] = `
+[
+  "lib/index-electron-current-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: current, Format: lib
+
+'use strict';
+
+function* gen() {}
+function runGen() {
+  for (const iterator of gen()) {
+    console.log(iterator);
+  }
+}
+exports.gen = gen;
+exports.runGen = runGen;
+//# sourceMappingURL=index-electron-current-lib.js.map
+",
+]
+`;
+
+exports[`Generators babel transforms example test case: electron-experimental-esm 1`] = `
+[
+  "esm/index-electron-experimental-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: experimental, Format: esm
+
+function* gen() {}
+function runGen() {
+  for (const iterator of gen()) {
+    console.log(iterator);
+  }
+}
+export { gen, runGen };
+//# sourceMappingURL=index-electron-experimental-esm.js.map
+",
+]
+`;
+
+exports[`Generators babel transforms example test case: electron-experimental-lib 1`] = `
+[
+  "lib/index-electron-experimental-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: experimental, Format: lib
+
+'use strict';
+
+function* gen() {}
+function runGen() {
+  for (const iterator of gen()) {
+    console.log(iterator);
+  }
+}
+exports.gen = gen;
+exports.runGen = runGen;
+//# sourceMappingURL=index-electron-experimental-lib.js.map
+",
+]
+`;
+
+exports[`Generators babel transforms example test case: electron-legacy-esm 1`] = `
+[
+  "esm/index-electron-legacy-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: legacy, Format: esm
+
+function* gen() {}
+function runGen() {
+  for (const iterator of gen()) {
+    console.log(iterator);
+  }
+}
+export { gen, runGen };
+//# sourceMappingURL=index-electron-legacy-esm.js.map
+",
+]
+`;
+
+exports[`Generators babel transforms example test case: electron-legacy-lib 1`] = `
+[
+  "lib/index-electron-legacy-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: legacy, Format: lib
+
+'use strict';
+
+function* gen() {}
+function runGen() {
+  for (const iterator of gen()) {
+    console.log(iterator);
+  }
+}
+exports.gen = gen;
+exports.runGen = runGen;
+//# sourceMappingURL=index-electron-legacy-lib.js.map
+",
+]
+`;
+
+exports[`Generators babel transforms example test case: electron-stable-esm 1`] = `
+[
+  "esm/index-electron-stable-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: stable, Format: esm
+
+function* gen() {}
+function runGen() {
+  for (const iterator of gen()) {
+    console.log(iterator);
+  }
+}
+export { gen, runGen };
+//# sourceMappingURL=index-electron-stable-esm.js.map
+",
+]
+`;
+
+exports[`Generators babel transforms example test case: electron-stable-lib 1`] = `
+[
+  "lib/index-electron-stable-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: stable, Format: lib
+
+'use strict';
+
+function* gen() {}
+function runGen() {
+  for (const iterator of gen()) {
+    console.log(iterator);
+  }
+}
+exports.gen = gen;
+exports.runGen = runGen;
+//# sourceMappingURL=index-electron-stable-lib.js.map
+",
+]
+`;
+
 exports[`Generators babel transforms example test case: native-current-lib 1`] = `
 [
   "lib/index-native-current-lib.js",
@@ -1340,6 +1496,134 @@ exports[`Generators swc transforms example test case: browser-stable-umd 1`] = `
     }
 });
 //# sourceMappingURL=index-browser-stable-umd.js.map
+",
+]
+`;
+
+exports[`Generators swc transforms example test case: electron-current-esm 1`] = `
+[
+  "esm/index-electron-current-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: current, Format: esm
+function* gen() {}
+function runGen() {
+    for (const iterator of gen())console.log(iterator);
+}
+export { gen, runGen };
+//# sourceMappingURL=index-electron-current-esm.js.map
+",
+]
+`;
+
+exports[`Generators swc transforms example test case: electron-current-lib 1`] = `
+[
+  "lib/index-electron-current-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: current, Format: lib
+'use strict';
+function* gen() {}
+function runGen() {
+    for (const iterator of gen())console.log(iterator);
+}
+exports.gen = gen;
+exports.runGen = runGen;
+//# sourceMappingURL=index-electron-current-lib.js.map
+",
+]
+`;
+
+exports[`Generators swc transforms example test case: electron-experimental-esm 1`] = `
+[
+  "esm/index-electron-experimental-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: experimental, Format: esm
+function* gen() {}
+function runGen() {
+    for (const iterator of gen())console.log(iterator);
+}
+export { gen, runGen };
+//# sourceMappingURL=index-electron-experimental-esm.js.map
+",
+]
+`;
+
+exports[`Generators swc transforms example test case: electron-experimental-lib 1`] = `
+[
+  "lib/index-electron-experimental-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: experimental, Format: lib
+'use strict';
+function* gen() {}
+function runGen() {
+    for (const iterator of gen())console.log(iterator);
+}
+exports.gen = gen;
+exports.runGen = runGen;
+//# sourceMappingURL=index-electron-experimental-lib.js.map
+",
+]
+`;
+
+exports[`Generators swc transforms example test case: electron-legacy-esm 1`] = `
+[
+  "esm/index-electron-legacy-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: legacy, Format: esm
+function* gen() {}
+function runGen() {
+    for (const iterator of gen())console.log(iterator);
+}
+export { gen, runGen };
+//# sourceMappingURL=index-electron-legacy-esm.js.map
+",
+]
+`;
+
+exports[`Generators swc transforms example test case: electron-legacy-lib 1`] = `
+[
+  "lib/index-electron-legacy-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: legacy, Format: lib
+'use strict';
+function* gen() {}
+function runGen() {
+    for (const iterator of gen())console.log(iterator);
+}
+exports.gen = gen;
+exports.runGen = runGen;
+//# sourceMappingURL=index-electron-legacy-lib.js.map
+",
+]
+`;
+
+exports[`Generators swc transforms example test case: electron-stable-esm 1`] = `
+[
+  "esm/index-electron-stable-esm.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: stable, Format: esm
+function* gen() {}
+function runGen() {
+    for (const iterator of gen())console.log(iterator);
+}
+export { gen, runGen };
+//# sourceMappingURL=index-electron-stable-esm.js.map
+",
+]
+`;
+
+exports[`Generators swc transforms example test case: electron-stable-lib 1`] = `
+[
+  "lib/index-electron-stable-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: stable, Format: lib
+'use strict';
+function* gen() {}
+function runGen() {
+    for (const iterator of gen())console.log(iterator);
+}
+exports.gen = gen;
+exports.runGen = runGen;
+//# sourceMappingURL=index-electron-stable-lib.js.map
 ",
 ]
 `;
