@@ -8,8 +8,8 @@ Building is the process of parsing, transforming, and bundling a package's sourc
 distributable and consumable files for npm, using community favorite tools like [Babel][babel] and
 [Rollup][rollup].
 
-With that being said, the `build` command can be used to build all packages in a project according
-to their configured build targets (platform, formats, etc).
+With that being said, the `build` command can be used to build a single package, in the current
+working directory, according to their configured build targets (platform, formats, etc).
 
 ```json title="package.json"
 {

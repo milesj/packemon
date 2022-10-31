@@ -5,6 +5,7 @@ import {
 	DEFAULT_PLATFORM,
 	DEFAULT_SUPPORT,
 	FORMATS_BROWSER,
+	FORMATS_ELECTRON,
 	FORMATS_NATIVE,
 	FORMATS_NODE,
 	PLATFORMS,
@@ -14,6 +15,7 @@ import {
 	ApiType,
 	BrowserFormat,
 	BuildOptions,
+	ElectronFormat,
 	Format,
 	NativeFormat,
 	NodeFormat,
@@ -34,6 +36,7 @@ const platform = string<Platform>(DEFAULT_PLATFORM).oneOf(PLATFORMS);
 const nativeFormat = string<NativeFormat>('lib').oneOf(FORMATS_NATIVE);
 const nodeFormat = string<NodeFormat>('mjs').oneOf(FORMATS_NODE);
 const browserFormat = string<BrowserFormat>('esm').oneOf(FORMATS_BROWSER);
+const electronFormat = string<ElectronFormat>('esm').oneOf(FORMATS_ELECTRON);
 
 const format = string<Format>().custom((value, path, options) => {
 	if (!value) {
@@ -50,6 +53,8 @@ const format = string<Format>().custom((value, path, options) => {
 		nativeFormat.validate(value as NativeFormat, path, options);
 	} else if (platforms.has('node') && platforms.size === 1) {
 		nodeFormat.validate(value as NodeFormat, path, options);
+	} else if (platforms.has('electron') && platforms.size === 1) {
+		electronFormat.validate(value as ElectronFormat, path, options);
 	}
 });
 

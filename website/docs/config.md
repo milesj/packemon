@@ -46,6 +46,7 @@ with caution.
 The platform in which built code will be ran.
 
 - `browser` _(default)_ - Web browsers on desktop and mobile.
+- `electron` - Electron applications.
 - `native` - Native devices, primarily for React Native.
 - `node` - Node.js runtime.
 
@@ -62,8 +63,6 @@ To support multiple platforms, pass an array.
   "platform": ["browser", "node"]
 }
 ```
-
-> In the future, we hope to support other platforms like Electron.
 
 ## Support
 
@@ -88,12 +87,12 @@ The supported environment and or version for the configured platform(s).
 
 The supported environments above map to the following platform targets.
 
-|         | Legacy              | Stable              | Current         | Experimental           |
-| ------- | ------------------- | ------------------- | --------------- | ---------------------- |
-| Browser | >= 0.10%, not IE 11 | defaults, not IE 11 | >= 1%, not dead | last 2 chrome versions |
-| Native  | >= iOS 12           | >= iOS 13           | >= iOS 14       | >= iOS 15              |
-| Node    | >= 12.22.0          | >= 14.15.0          | >= 16.12.0      | >= 18.0.0              |
-| npm     | >= 6.14.0           | >= 6.14.0           | >= 8.1.0        | >= 8.5.0               |
+|          | Legacy              | Stable              | Current         | Experimental           |
+| -------- | ------------------- | ------------------- | --------------- | ---------------------- |
+| Browser  | >= 0.10%, not IE 11 | defaults, not IE 11 | >= 1%, not dead | last 2 chrome versions |
+| Electron | >= 7.0.0            | >= 11.0.0           | >= 16.0.0       | >= 21.0.0              |
+| Native   | >= iOS 13           | >= iOS 14           | >= iOS 15       | >= iOS 16              |
+| Node     | >= 14.15.0          | >= 16.12.0          | >= 18.12.0      | >= 19.0.0              |
 
 ## Formats
 
@@ -112,6 +111,14 @@ project root that will house the built files.
 - `umd` - Universal Module Definition output using `.js` file extension. Meant to be used directly
   in the browser (via CDN) instead of being bundled. Will be automatically enabled if
   [namespace](#namespace) is provided and using default formats.
+
+### Electron
+
+- `lib` - [CommonJS](https://nodejs.org/api/modules.html) output using `.js` file extension. For
+  standard JavaScript and TypeScript projects.
+- `esm` _(default)_ - ECMAScript module output using `.js` file extension. The same as `lib`, but
+  uses `import/export` instead of `require`. _Will automatically enable `lib` for backwards
+  compatibility!_
 
 ### Native
 

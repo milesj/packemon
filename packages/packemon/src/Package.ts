@@ -434,12 +434,16 @@ export class Package {
 				}
 			}
 
-			if (!moduleEntry || (artifact.platform === 'browser' && mainEntryName === 'index')) {
+			if (
+				!moduleEntry ||
+				((artifact.platform === 'browser' || artifact.platform === 'electron') &&
+					mainEntryName === 'index')
+			) {
 				moduleEntry = artifact.findEntryPoint(['esm'], mainEntryName)?.entryPath;
 			}
 
 			// Only include when we share a lib with another platform
-			if (!browserEntry && artifact.platform === 'browser') {
+			if (!browserEntry && (artifact.platform === 'browser' || artifact.platform === 'electron')) {
 				browserEntry = artifact.findEntryPoint(
 					artifact.sharedLib ? ['lib', 'umd'] : ['umd'],
 					mainEntryName,

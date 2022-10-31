@@ -17,7 +17,7 @@ declare global {
 	const __TEST__: boolean;
 }
 
-export type Platform = 'browser' | 'native' | 'node'; // electron
+export type Platform = 'browser' | 'electron' | 'native' | 'node';
 
 export type Support =
 	// Latest version
@@ -41,6 +41,11 @@ export type BrowserFormat =
 	| 'esm'
 	// Universal Module Definition with ".js" file extension
 	| 'umd';
+
+export type ElectronFormat =
+	| CommonFormat
+	// ECMAScript modules with ".js" file extension
+	| 'esm';
 
 export type NativeFormat = CommonFormat;
 

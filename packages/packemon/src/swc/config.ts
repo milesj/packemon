@@ -9,6 +9,7 @@ import {
 import { Artifact } from '../Artifact';
 import {
 	BROWSER_TARGETS,
+	ELECTRON_TARGETS,
 	NATIVE_TARGETS,
 	NODE_SUPPORTED_VERSIONS,
 	SUPPORT_TO_ESM_SPEC,
@@ -35,6 +36,13 @@ function getPlatformEnvOptions(platform: Platform, support: Support, format: For
 				targets: Array.isArray(BROWSER_TARGETS[support])
 					? (BROWSER_TARGETS[support] as string[]).join(', ')
 					: BROWSER_TARGETS[support],
+			};
+
+		case 'electron':
+			return {
+				targets: {
+					electron: ELECTRON_TARGETS[support],
+				},
 			};
 
 		case 'native':

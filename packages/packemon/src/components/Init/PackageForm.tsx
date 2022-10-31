@@ -7,6 +7,7 @@ import {
 	DEFAULT_FORMATS,
 	DEFAULT_INPUT,
 	DEFAULT_SUPPORT,
+	ELECTRON_TARGETS,
 	NATIVE_TARGETS,
 	NODE_SUPPORTED_VERSIONS,
 } from '../../constants';
@@ -27,6 +28,10 @@ export function getVersionsCombo(platforms: Platform[], support: Support): Set<s
 
 			case 'node':
 				versions.add(`Node v${NODE_SUPPORTED_VERSIONS[support]}+`);
+				break;
+
+			case 'electron':
+				versions.add(`Electron v${ELECTRON_TARGETS[support]}+`);
 				break;
 
 			case 'browser': {
@@ -95,6 +100,7 @@ export function PackageForm({ onSubmit }: PackageFormProps) {
 	const platformOptions = useMemo<SelectOptionLike<Platform>[]>(
 		() => [
 			{ label: 'Browsers', value: 'browser' },
+			{ label: 'Electron', value: 'electron' },
 			{ label: 'Node', value: 'node' },
 			{ label: 'React Native', value: 'native' },
 		],
@@ -147,6 +153,10 @@ export function PackageForm({ onSubmit }: PackageFormProps) {
 				{ label: `Node - CommonJS ${applyStyle('(.cjs)', 'muted')}`, value: 'cjs' },
 				{ label: `Node - ECMAScript ${applyStyle('(.mjs)', 'muted')}`, value: 'mjs' },
 			);
+		}
+
+		if (platform.includes('electron')) {
+			options.push({ label: 'Electron - ECMAScript', value: 'esm' });
 		}
 
 		if (platform.includes('browser')) {
