@@ -143,7 +143,6 @@ describe('Packemon', () => {
 				deps: false,
 				engines: true,
 				entries: true,
-				files: true,
 				license: true,
 				links: true,
 				meta: true,
