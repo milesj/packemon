@@ -72,6 +72,8 @@ exports[`getBabelInputConfig() includes react preset if \`react\` feature flag i
     {
       "runtime": "classic",
       "throwIfNamespace": true,
+      "useBuiltIns": true,
+      "useSpread": true,
     },
   ],
 ]
@@ -84,6 +86,8 @@ exports[`getBabelInputConfig() includes react preset if \`react\` feature flag i
     {
       "runtime": "automatic",
       "throwIfNamespace": true,
+      "useBuiltIns": true,
+      "useSpread": true,
     },
   ],
 ]
@@ -112,6 +116,8 @@ exports[`getBabelInputConfig() includes typescript decorators if \`typescript\` 
       "@babel/plugin-transform-typescript",
       {
         "allowDeclareFields": true,
+        "onlyRemoveTypeImports": true,
+        "optimizeConstEnums": true,
       },
     ],
     [
@@ -144,6 +150,8 @@ exports[`getBabelInputConfig() includes typescript decorators if \`typescript\` 
       "@babel/preset-typescript",
       {
         "allowDeclareFields": true,
+        "onlyRemoveTypeImports": true,
+        "optimizeConstEnums": true,
       },
     ],
   ],
@@ -156,6 +164,8 @@ exports[`getBabelInputConfig() includes typescript preset if \`typescript\` feat
     "@babel/preset-typescript",
     {
       "allowDeclareFields": true,
+      "onlyRemoveTypeImports": true,
+      "optimizeConstEnums": true,
     },
   ],
 ]
@@ -178,6 +188,8 @@ exports[`getBabelInputConfig() supports private properties with decorators if de
       "@babel/plugin-transform-typescript",
       {
         "allowDeclareFields": true,
+        "onlyRemoveTypeImports": true,
+        "optimizeConstEnums": true,
       },
     ],
     [
@@ -210,6 +222,8 @@ exports[`getBabelInputConfig() supports private properties with decorators if de
       "@babel/preset-typescript",
       {
         "allowDeclareFields": true,
+        "onlyRemoveTypeImports": true,
+        "optimizeConstEnums": true,
       },
     ],
   ],
