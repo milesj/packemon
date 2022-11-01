@@ -117,18 +117,23 @@ export function getBabelInputConfig(
 ): Omit<ConfigStructure, 'exclude' | 'include'> {
 	const plugins: PluginItem[] = [];
 	const presets: PluginItem[] = [];
+	const tsOptions = {
+		allowDeclareFields: true,
+		onlyRemoveTypeImports: true,
+		optimizeConstEnums: true,
+	};
 
 	if (features.flow) {
 		presets.push([resolve('@babel/preset-flow'), { allowDeclareFields: true }]);
 	}
 
 	if (features.typescript) {
-		presets.push([resolve('@babel/preset-typescript'), { allowDeclareFields: true }]);
+		presets.push([resolve('@babel/preset-typescript'), tsOptions]);
 
 		// When decorators are used, class properties must be loose
 		if (features.decorators) {
 			plugins.push(
-				[resolve('@babel/plugin-transform-typescript'), { allowDeclareFields: true }],
+				[resolve('@babel/plugin-transform-typescript'), tsOptions],
 				[resolve('@babel/plugin-proposal-decorators'), { legacy: true }],
 				[resolveFromBabel('@babel/plugin-proposal-class-properties'), { loose: true }],
 				[resolveFromBabel('@babel/plugin-proposal-private-methods'), { loose: true }],
@@ -141,8 +146,11 @@ export function getBabelInputConfig(
 		presets.push([
 			resolve('@babel/preset-react'),
 			{
+				// development: __DEV__,
 				runtime: features.react,
 				throwIfNamespace: true,
+				useBuiltIns: true,
+				useSpread: true,
 			},
 		]);
 	}
