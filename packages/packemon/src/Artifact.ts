@@ -327,37 +327,69 @@ export class Artifact {
 				const mjsEntry = this.findEntryPoint(['mjs'], outputName);
 				const cjsEntry = this.findEntryPoint(['cjs'], outputName);
 
-				if (mjsEntry || cjsEntry) {
+				if (mjsEntry && cjsEntry) {
 					paths = {
-						import: mjsEntry
-							? {
-									types: mjsEntry.declPath,
-									default: mjsEntry.entryPath,
-							  }
-							: undefined,
-						require: cjsEntry
-							? {
-									types: cjsEntry.declPath,
-									default: cjsEntry.entryPath,
-							  }
-							: undefined,
+						import: {
+							types: mjsEntry.declPath,
+							default: mjsEntry.entryPath,
+						},
+						require: {
+							types: cjsEntry.declPath,
+							default: cjsEntry.entryPath,
+						},
+					};
+				} else if (mjsEntry) {
+					paths = {
+						types: mjsEntry.declPath,
+						import: mjsEntry.entryPath,
+					};
+				} else if (cjsEntry) {
+					paths = {
+						types: cjsEntry.declPath,
+						require: cjsEntry.entryPath,
 					};
 
 					// Automatically apply the mjs wrapper for cjs
-					if (!paths.import && outputName !== '*' && cjsEntry) {
-						paths.import = {
-							types: cjsEntry.declPath,
-							default: cjsEntry.entryPath.replace('.cjs', '-wrapper.mjs'),
-						};
+					if (!paths.import && outputName !== '*') {
+						paths.import = cjsEntry.entryPath.replace('.cjs', '-wrapper.mjs');
 					}
-
-					if (!paths.require && defaultEntry) {
-						paths.default = defaultEntry.entryPath;
-					}
-				} else {
-					paths.types = defaultEntry?.declPath;
-					paths.default = defaultEntry?.entryPath;
 				}
+
+				if (!paths.require && defaultEntry) {
+					paths.default = defaultEntry.entryPath;
+				}
+
+				// if (mjsEntry || cjsEntry) {
+				// 	paths = {
+				// 		import: mjsEntry
+				// 			? {
+				// 					types: mjsEntry.declPath,
+				// 					default: mjsEntry.entryPath,
+				// 			  }
+				// 			: undefined,
+				// 		require: cjsEntry
+				// 			? {
+				// 					types: cjsEntry.declPath,
+				// 					default: cjsEntry.entryPath,
+				// 			  }
+				// 			: undefined,
+				// 	};
+
+				// 	// Automatically apply the mjs wrapper for cjs
+				// 	if (!paths.import && outputName !== '*' && cjsEntry) {
+				// 		paths.import = {
+				// 			types: cjsEntry.declPath,
+				// 			default: cjsEntry.entryPath.replace('.cjs', '-wrapper.mjs'),
+				// 		};
+				// 	}
+
+				// 	if (!paths.require && defaultEntry) {
+				// 		paths.default = defaultEntry.entryPath;
+				// 	}
+				// } else {
+				// 	paths.types = defaultEntry?.declPath;
+				// 	paths.default = defaultEntry?.entryPath;
+				// }
 
 				break;
 			}
