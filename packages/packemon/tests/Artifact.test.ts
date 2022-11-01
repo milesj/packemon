@@ -54,7 +54,7 @@ describe('Artifact', () => {
 			const codeSpy = jest.spyOn(artifact, 'buildCode').mockImplementation();
 			const typesSpy = jest.spyOn(artifact, 'buildTypes').mockImplementation();
 
-			await artifact.build({}, {});
+			await artifact.build({}, {}, {});
 
 			expect(codeSpy).toHaveBeenCalled();
 			expect(typesSpy).toHaveBeenCalled();

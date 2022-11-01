@@ -73,9 +73,11 @@ export class Artifact {
 	/**
 	 * Build code and types in parallel.
 	 */
-	async build(options: BuildOptions, packemonConfig: ConfigFile): Promise<void> {
-		const features = this.package.getFeatureFlags();
-
+	async build(
+		options: BuildOptions,
+		features: FeatureFlags,
+		packemonConfig: ConfigFile,
+	): Promise<void> {
 		await Promise.all([this.buildCode(features, packemonConfig), this.buildTypes(features)]);
 	}
 

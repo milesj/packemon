@@ -75,9 +75,9 @@ describe('Packemon', () => {
 
 			await pkg.build({ concurrency: 1 }, config);
 
-			expect(aSpy).toHaveBeenCalledWith({ concurrency: 1 }, expect.any(Object));
-			expect(bSpy).toHaveBeenCalledWith({ concurrency: 1 }, expect.any(Object));
-			expect(cSpy).toHaveBeenCalledWith({ concurrency: 1 }, expect.any(Object));
+			expect(aSpy).toHaveBeenCalledWith({ concurrency: 1 }, expect.any(Object), expect.any(Object));
+			expect(bSpy).toHaveBeenCalledWith({ concurrency: 1 }, expect.any(Object), expect.any(Object));
+			expect(cSpy).toHaveBeenCalledWith({ concurrency: 1 }, expect.any(Object), expect.any(Object));
 		});
 
 		it('sets passed state and result time', async () => {

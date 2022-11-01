@@ -71,6 +71,8 @@ export class Package {
 		this.debug('Building artifacts');
 
 		// Build artifacts in parallel
+		const features = this.getFeatureFlags();
+
 		await Promise.all(
 			this.artifacts.map(async (artifact) => {
 				const start = Date.now();
@@ -78,7 +80,7 @@ export class Package {
 				try {
 					artifact.state = 'building';
 
-					await artifact.build(options, packemonConfig);
+					await artifact.build(options, features, packemonConfig);
 
 					artifact.state = 'passed';
 				} catch (error: unknown) {
