@@ -36,7 +36,6 @@ Validate supports the following command line options.
   points are valid by:
   - Requiring either `main` or `exports` to be configured.
   - Verifying the relative path exists on the file system.
-- `--files` - Check that distributable files are not being accidentally ignored.
 - `--license` - Check that `license` is a valid SPDX license and a `LICENSE` (or `LICENSE.md`) file
   exists.
 - `--links` - Check that `homepage` and `bugs` links are valid URLs.

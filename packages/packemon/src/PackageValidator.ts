@@ -1,7 +1,6 @@
 import http from 'node:http';
 import https from 'node:https';
 import execa from 'execa';
-import packList from 'npm-packlist';
 import semver from 'semver';
 import spdxLicenses from 'spdx-license-list';
 import {
@@ -53,10 +52,6 @@ export class PackageValidator {
 
 		if (options.entries) {
 			this.checkEntryPoints();
-		}
-
-		if (options.files) {
-			promises.push(this.checkFiles());
 		}
 
 		if (options.license) {
@@ -228,42 +223,6 @@ export class PackageValidator {
 					this.errors.push(`Manual "${path}" resolves to an invalid or missing file.`);
 				}
 			});
-		}
-	}
-
-	protected async checkFiles() {
-		const packListFiles = await packList({ path: this.package.path.path() });
-		const futureFiles = new Set(packListFiles.map((file) => file.replace(/^\.\//, '')));
-		const presentFiles = new Set(await this.package.findDistributableFiles());
-
-		// First check that our files are in the potential npm list
-		const ignored = new Set<string>();
-
-		presentFiles.forEach((file) => {
-			if (!futureFiles.has(file)) {
-				ignored.add(file);
-			}
-		});
-
-		if (ignored.size > 0) {
-			this.errors.push(
-				`The following files are being ignored from publishing: ${[...ignored].join(', ')}`,
-			);
-		}
-
-		// Then check that npm isnt adding something unwanted
-		const unwanted = new Set<string>();
-
-		futureFiles.forEach((file) => {
-			if (!presentFiles.has(file)) {
-				unwanted.add(file);
-			}
-		});
-
-		if (unwanted.size > 0) {
-			this.warnings.push(
-				`The following files are being inadvertently published: ${[...unwanted].join(', ')}`,
-			);
 		}
 	}
 
