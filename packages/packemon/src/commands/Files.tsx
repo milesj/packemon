@@ -1,6 +1,5 @@
 /* eslint-disable no-param-reassign */
 
-import packList from 'npm-packlist';
 import { Arg, Config } from '@boost/cli';
 import type { FileFormat } from '../components/Files';
 import type { FileTree } from '../components/Files/Tree';
@@ -14,7 +13,7 @@ export class FilesCommand extends BaseCommand {
 	format: FileFormat = 'tree';
 	async run() {
 		const pkg = await this.getPackage();
-		const files = await packList({ path: pkg.path.path() });
+		const files = await pkg.findDistributableFiles();
 		const tree = this.convertFilesToTree(files);
 
 		// eslint-disable-next-line import/no-useless-path-segments
