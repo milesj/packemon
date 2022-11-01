@@ -2,7 +2,7 @@ import execa from 'execa';
 import fs from 'fs-extra';
 import { rollup } from 'rollup';
 import { applyStyle } from '@boost/cli';
-import { Path, toArray, VirtualPath } from '@boost/common';
+import { isObject, Path, toArray, VirtualPath } from '@boost/common';
 import { createDebugger, Debugger } from '@boost/debug';
 import { removeSourcePath } from './helpers/removeSourcePath';
 import type { Package } from './Package';
@@ -355,8 +355,14 @@ export class Artifact {
 					}
 				}
 
-				if (!paths.require && defaultEntry) {
-					paths.default = defaultEntry.entryPath;
+				if (defaultEntry) {
+					if (!paths.types && !isObject(paths.import) && !isObject(paths.require)) {
+						paths.types = defaultEntry.declPath;
+					}
+
+					if (!paths.require) {
+						paths.default = defaultEntry.entryPath;
+					}
 				}
 
 				// if (mjsEntry || cjsEntry) {
@@ -395,6 +401,7 @@ export class Artifact {
 			}
 
 			case 'native':
+				paths.types = defaultEntry?.declPath;
 				paths.default = defaultEntry?.entryPath;
 				break;
 

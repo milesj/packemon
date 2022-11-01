@@ -504,14 +504,8 @@ describe('Artifact', () => {
 			expect(artifact.getPackageExports()).toEqual({
 				'.': {
 					node: {
-						import: {
-							types: undefined,
-							default: './cjs/index-wrapper.mjs',
-						},
-						require: {
-							types: undefined,
-							default: './cjs/index.cjs',
-						},
+						import: './cjs/index-wrapper.mjs',
+						require: './cjs/index.cjs',
 					},
 				},
 			});
@@ -523,14 +517,9 @@ describe('Artifact', () => {
 			expect(artifact.getPackageExports()).toEqual({
 				'.': {
 					node: {
-						import: {
-							types: './cjs/index.d.ts',
-							default: './cjs/index-wrapper.mjs',
-						},
-						require: {
-							types: './cjs/index.d.ts',
-							default: './cjs/index.cjs',
-						},
+						types: './cjs/index.d.ts',
+						import: './cjs/index-wrapper.mjs',
+						require: './cjs/index.cjs',
 					},
 				},
 			});
@@ -543,14 +532,9 @@ describe('Artifact', () => {
 			expect(artifact.getPackageExports()).toEqual({
 				'.': {
 					node: {
-						import: {
-							types: './cjs/index.d.cts',
-							default: './cjs/index-wrapper.mjs',
-						},
-						require: {
-							types: './cjs/index.d.cts',
-							default: './cjs/index.cjs',
-						},
+						types: './cjs/index.d.cts',
+						import: './cjs/index-wrapper.mjs',
+						require: './cjs/index.cjs',
 					},
 				},
 			});
@@ -562,11 +546,7 @@ describe('Artifact', () => {
 			expect(artifact.getPackageExports()).toEqual({
 				'.': {
 					node: {
-						import: {
-							types: undefined,
-							default: './mjs/index.mjs',
-						},
-						require: undefined,
+						import: './mjs/index.mjs',
 					},
 				},
 			});
@@ -578,11 +558,8 @@ describe('Artifact', () => {
 			expect(artifact.getPackageExports()).toEqual({
 				'.': {
 					node: {
-						import: {
-							types: './mjs/index.d.ts',
-							default: './mjs/index.mjs',
-						},
-						require: undefined,
+						types: './mjs/index.d.ts',
+						import: './mjs/index.mjs',
 					},
 				},
 			});
@@ -595,11 +572,8 @@ describe('Artifact', () => {
 			expect(artifact.getPackageExports()).toEqual({
 				'.': {
 					node: {
-						import: {
-							types: './mjs/index.d.mts',
-							default: './mjs/index.mjs',
-						},
-						require: undefined,
+						types: './mjs/index.d.mts',
+						import: './mjs/index.mjs',
 					},
 				},
 			});
