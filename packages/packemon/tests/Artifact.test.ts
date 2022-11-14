@@ -589,8 +589,33 @@ describe('Artifact', () => {
 							types: undefined,
 							default: './lib/index.js',
 						},
-						solid: 'src/index.ts',
+						solid: './src/index.ts',
 						default: './lib/index.js',
+					},
+				});
+			});
+
+			it('supports non-bundle', () => {
+				artifact.api = 'public';
+				artifact.bundle = false;
+				artifact.builds.push({ format: 'lib' });
+
+				expect(artifact.getPackageExports({ solid: true })).toEqual({
+					'.': {
+						node: {
+							types: undefined,
+							default: './lib/index.js',
+						},
+						solid: './src/index.ts',
+						default: './lib/index.js',
+					},
+					'./*': {
+						node: {
+							types: undefined,
+							default: './lib/*.js',
+						},
+						solid: './src/*.js',
+						default: './lib/*.js',
 					},
 				});
 			});
@@ -605,7 +630,7 @@ describe('Artifact', () => {
 							types: undefined,
 							default: './lib/node/index.js',
 						},
-						solid: 'src/index.ts',
+						solid: './src/index.ts',
 						default: './lib/node/index.js',
 					},
 				});
@@ -623,7 +648,7 @@ describe('Artifact', () => {
 							module: './esm/index.js',
 							types: './esm/index.d.ts',
 						},
-						solid: 'src/index.ts',
+						solid: './src/index.ts',
 					},
 				});
 			});

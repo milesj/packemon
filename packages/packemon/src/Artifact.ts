@@ -385,8 +385,14 @@ export class Artifact {
 		};
 
 		// Point to the source files when using solid
-		if (features.solid && outputName !== '*') {
-			pathsMap.solid = this.inputs[outputName];
+		if (features.solid) {
+			if (outputName === '*') {
+				pathsMap.solid = `./src/*.${features.typescript ? 'tsx' : 'js'}`;
+			} else {
+				const input = this.inputs[outputName];
+
+				pathsMap.solid = input.startsWith('./') ? input : `./${input}`;
+			}
 		}
 
 		// Provide fallbacks if condition above is not
