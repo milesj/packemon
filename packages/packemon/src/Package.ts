@@ -71,6 +71,8 @@ export class Package {
 		this.debug('Building artifacts');
 
 		// Build artifacts in parallel
+		const features = this.getFeatureFlags();
+
 		await Promise.all(
 			this.artifacts.map(async (artifact) => {
 				const start = Date.now();
@@ -78,7 +80,7 @@ export class Package {
 				try {
 					artifact.state = 'building';
 
-					await artifact.build(options, packemonConfig);
+					await artifact.build(options, features, packemonConfig);
 
 					artifact.state = 'passed';
 				} catch (error: unknown) {
@@ -101,7 +103,7 @@ export class Package {
 
 		// Add package `exports` based on artifacts
 		if (options.addExports) {
-			this.addExports();
+			this.addExports(features);
 		}
 
 		// Add package `files` whitelist
@@ -473,7 +475,7 @@ export class Package {
 		}
 	}
 
-	protected addExports() {
+	protected addExports(features: FeatureFlags) {
 		this.debug('Adding `exports` to `package.json`');
 
 		let exportMap: PackageExports = {
@@ -481,7 +483,7 @@ export class Package {
 		};
 
 		this.artifacts.forEach((artifact) => {
-			Object.entries(artifact.getPackageExports()).forEach(([path, conditions]) => {
+			Object.entries(artifact.getPackageExports(features)).forEach(([path, conditions]) => {
 				if (conditions) {
 					exportMap[path] = mergeExports(exportMap[path] ?? {}, conditions);
 				}

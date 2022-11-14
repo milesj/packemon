@@ -119,7 +119,7 @@ export function getBabelInputConfig(
 	const presets: PluginItem[] = [];
 	const tsOptions = {
 		allowDeclareFields: true,
-		onlyRemoveTypeImports: true,
+		onlyRemoveTypeImports: false,
 		optimizeConstEnums: true,
 	};
 
