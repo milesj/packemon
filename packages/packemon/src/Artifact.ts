@@ -2,7 +2,7 @@ import execa from 'execa';
 import fs from 'fs-extra';
 import { rollup } from 'rollup';
 import { applyStyle } from '@boost/cli';
-import { Path, toArray, VirtualPath } from '@boost/common';
+import { isObject, Path, toArray, VirtualPath } from '@boost/common';
 import { createDebugger, Debugger } from '@boost/debug';
 import { removeSourcePath } from './helpers/removeSourcePath';
 import type { Package } from './Package';
@@ -73,9 +73,11 @@ export class Artifact {
 	/**
 	 * Build code and types in parallel.
 	 */
-	async build(options: BuildOptions, packemonConfig: ConfigFile): Promise<void> {
-		const features = this.package.getFeatureFlags();
-
+	async build(
+		options: BuildOptions,
+		features: FeatureFlags,
+		packemonConfig: ConfigFile,
+	): Promise<void> {
 		await Promise.all([this.buildCode(features, packemonConfig), this.buildTypes(features)]);
 	}
 
@@ -263,18 +265,18 @@ export class Artifact {
 		return `${this.platform}:${this.support}:${this.builds.map((build) => build.format).join(',')}`;
 	}
 
-	getPackageExports(): PackageExports {
+	getPackageExports(features: FeatureFlags): PackageExports {
 		const exportMap: PackageExports = {};
 
 		if (this.api === 'private' || this.bundle) {
 			Object.keys(this.inputs).forEach((outputName) => {
-				this.mapPackageExportsFromBuilds(outputName, exportMap);
+				this.mapPackageExportsFromBuilds(outputName, exportMap, features);
 			});
 		} else {
 			// Use subpath export patterns when not bundling
 			// https://nodejs.org/api/packages.html#subpath-patterns
-			this.mapPackageExportsFromBuilds('*', exportMap);
-			this.mapPackageExportsFromBuilds(this.getIndexInput(), exportMap, true);
+			this.mapPackageExportsFromBuilds('*', exportMap, features);
+			this.mapPackageExportsFromBuilds(this.getIndexInput(), exportMap, features, true);
 		}
 
 		return exportMap;
@@ -296,6 +298,7 @@ export class Artifact {
 	protected mapPackageExportsFromBuilds(
 		outputName: string,
 		exportMap: PackageExports,
+		features: FeatureFlags,
 		index: boolean = false,
 	) {
 		const defaultEntry = this.findEntryPoint(['lib'], outputName);
@@ -327,42 +330,49 @@ export class Artifact {
 				const mjsEntry = this.findEntryPoint(['mjs'], outputName);
 				const cjsEntry = this.findEntryPoint(['cjs'], outputName);
 
-				if (mjsEntry || cjsEntry) {
+				if (mjsEntry && cjsEntry) {
 					paths = {
-						import: mjsEntry
-							? {
-									types: mjsEntry.declPath,
-									default: mjsEntry.entryPath,
-							  }
-							: undefined,
-						require: cjsEntry
-							? {
-									types: cjsEntry.declPath,
-									default: cjsEntry.entryPath,
-							  }
-							: undefined,
+						import: {
+							types: mjsEntry.declPath,
+							default: mjsEntry.entryPath,
+						},
+						require: {
+							types: cjsEntry.declPath,
+							default: cjsEntry.entryPath,
+						},
+					};
+				} else if (mjsEntry) {
+					paths = {
+						types: mjsEntry.declPath,
+						import: mjsEntry.entryPath,
+					};
+				} else if (cjsEntry) {
+					paths = {
+						types: cjsEntry.declPath,
+						require: cjsEntry.entryPath,
 					};
 
 					// Automatically apply the mjs wrapper for cjs
-					if (!paths.import && outputName !== '*' && cjsEntry) {
-						paths.import = {
-							types: cjsEntry.declPath,
-							default: cjsEntry.entryPath.replace('.cjs', '-wrapper.mjs'),
-						};
+					if (!paths.import && outputName !== '*') {
+						paths.import = cjsEntry.entryPath.replace('.cjs', '-wrapper.mjs');
+					}
+				}
+
+				if (defaultEntry) {
+					if (!paths.types && !isObject(paths.import) && !isObject(paths.require)) {
+						paths.types = defaultEntry.declPath;
 					}
 
-					if (!paths.require && defaultEntry) {
+					if (!paths.require) {
 						paths.default = defaultEntry.entryPath;
 					}
-				} else {
-					paths.types = defaultEntry?.declPath;
-					paths.default = defaultEntry?.entryPath;
 				}
 
 				break;
 			}
 
 			case 'native':
+				paths.types = defaultEntry?.declPath;
 				paths.default = defaultEntry?.entryPath;
 				break;
 
@@ -370,15 +380,24 @@ export class Artifact {
 				break;
 		}
 
-		const pathsMap = {
+		const pathsMap: Record<string, PackageExportPaths | string> = {
 			[this.platform === 'native' ? 'react-native' : this.platform]: paths,
 		};
 
+		// Point to the source files when using solid
+		if (features.solid) {
+			if (outputName === '*') {
+				pathsMap.solid = `./src/*.${features.typescript ? 'tsx' : 'js'}`;
+			} else {
+				const input = this.inputs[outputName];
+
+				pathsMap.solid = input.startsWith('./') ? input : `./${input}`;
+			}
+		}
+
 		// Provide fallbacks if condition above is not
 		if (defaultEntry) {
-			Object.assign(pathsMap, {
-				default: defaultEntry.entryPath,
-			});
+			pathsMap.default = defaultEntry.entryPath;
 		}
 
 		// eslint-disable-next-line no-param-reassign

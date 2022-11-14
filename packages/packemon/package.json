@@ -28,38 +28,23 @@
     "./package.json": "./package.json",
     "./babel": {
       "node": {
-        "import": {
-          "types": "./cjs/babel.d.ts",
-          "default": "./cjs/babel-wrapper.mjs"
-        },
-        "require": {
-          "types": "./cjs/babel.d.ts",
-          "default": "./cjs/babel.cjs"
-        }
+        "types": "./cjs/babel.d.ts",
+        "import": "./cjs/babel-wrapper.mjs",
+        "require": "./cjs/babel.cjs"
       }
     },
     "./bin": {
       "node": {
-        "import": {
-          "types": "./cjs/bin.d.ts",
-          "default": "./cjs/bin-wrapper.mjs"
-        },
-        "require": {
-          "types": "./cjs/bin.d.ts",
-          "default": "./cjs/bin.cjs"
-        }
+        "types": "./cjs/bin.d.ts",
+        "import": "./cjs/bin-wrapper.mjs",
+        "require": "./cjs/bin.cjs"
       }
     },
     ".": {
       "node": {
-        "import": {
-          "types": "./cjs/index.d.ts",
-          "default": "./cjs/index-wrapper.mjs"
-        },
-        "require": {
-          "types": "./cjs/index.d.ts",
-          "default": "./cjs/index.cjs"
-        }
+        "types": "./cjs/index.d.ts",
+        "import": "./cjs/index-wrapper.mjs",
+        "require": "./cjs/index.cjs"
       }
     }
   },
