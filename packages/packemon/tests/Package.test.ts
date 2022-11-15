@@ -90,6 +90,8 @@ describe('Packemon', () => {
 
 			await pkg.build({}, config);
 
+			console.log(artifact);
+
 			expect(artifact.state).toBe('passed');
 			expect(artifact.buildResult.time).not.toBe(0);
 		});
