@@ -33,3 +33,6 @@ await fs.promises.writeFile(
 	path.join(process.cwd(), 'packages/packemon/cjs/bin.cjs'),
 	`require('./bin.js');`,
 );
+
+// We need to link the new binaries to node_modules/.bin
+await execa('yarn', ['install']);
