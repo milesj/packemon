@@ -12,6 +12,12 @@ tasks:
     env:
       NODE_OPTIONS: '--openssl-legacy-provider'
 
+  deploy:
+    command: 'docusaurus deploy'
+    local: true
+
   start:
     command: 'docusaurus start'
     local: true
+    env:
+      NODE_OPTIONS: '--openssl-legacy-provider'

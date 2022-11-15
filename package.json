@@ -1,21 +1,13 @@
 {
   "private": true,
   "name": "packemon-root",
-  "version": "0.0.0",
-  "description": "",
   "scripts": {
-    "build": "yarn run packemon build-workspace",
-    "check": "yarn run type && yarn run test && yarn run lint",
-    "clean": "yarn run packemon clean",
-    "coverage": "yarn run test --coverage",
-    "docs": "cd website && yarn run start",
-    "pack": "yarn run packemon build-workspace --addEngines --addExports --declaration",
+    "docs": "yarn moon run website:start",
+    "moon": "$(yarn bin moon)",
     "packemon": "node ./packages/packemon/cjs/bin.cjs",
-    "prerelease": "yarn run clean && yarn run setup && yarn run pack && yarn run check",
+    "prerelease": "yarn run setup && yarn moon check --all",
     "release": "yarn prerelease && lerna-release",
     "setup": "node ./scripts/buildPackages.mjs",
-    "test": "jest --colors --logHeapUsage",
-    "validate": "yarn run packemon validate",
     "version": "yarn install && git add yarn.lock"
   },
   "workspaces": [
