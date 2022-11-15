@@ -5,25 +5,25 @@ on:
       - master
   pull_request:
 jobs:
-  test:
-    name: Test
+  ci:
+    name: CI
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
-        node-version: [14, 16, 17]
+        node-version: [14, 16, 18]
       fail-fast: true
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           cache: yarn
-          node-version: ${{ matrix.node-version }}
+      - uses: moonrepo/tool-version-action@v1
+        with:
+          node: ${{ matrix.node-version }}
       - run: yarn install --immutable
-      - run: yarn run setup
-      - run: yarn run type
-      - run: yarn run test # coverage
-      - run: yarn run lint
+      - run: yarn setup
+      - run: yarn moon ci
   integrate:
     name: Integrations
     runs-on: ubuntu-latest
@@ -48,23 +48,10 @@ jobs:
           cache: yarn
       - run: yarn install --immutable
       - run: yarn run setup
-      - run: yarn run pack
+      - run: yarn moon run :build
       - run: yarn ts-node --cwd ./tests ./testPackemonImports.ts
       - run: node ./tests/testPackemonImports.cjs
       - run: node ./tests/testPackemonImports.mjs
-  pack:
-    name: Pack
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          cache: yarn
-      - run: yarn install --immutable
-      - run: yarn run setup
-      - run: yarn run pack
-      # Run again with packemon built files
-      - run: yarn run pack
   scaffold-mono:
     name: Scaffold (monorepo)
     runs-on: ubuntu-latest
@@ -99,13 +86,3 @@ jobs:
       - run: cd ../work
       - run: ls -R .
       - run: yarn run check
-  docs:
-    name: Docs
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          cache: yarn
-      - run: yarn install --immutable
-      - run: cd website && yarn run build
