@@ -178,7 +178,7 @@ export function PackageForm({ onSubmit }: PackageFormProps) {
 	// INPUT
 
 	const validateInput = useCallback((value: string) => {
-		if (!value || !value.match(/[-_a-z\d./\\]+/iu)) {
+		if (!value?.match(/[-_a-z\d./\\]+/iu)) {
 			throw new Error('Must be a valid file path');
 		}
 	}, []);
@@ -186,7 +186,7 @@ export function PackageForm({ onSubmit }: PackageFormProps) {
 	// NAMESPACE
 
 	const validateNamespace = useCallback((value: string) => {
-		if (!value || !value.match(/[a-z]\w+/iu)) {
+		if (!value?.match(/[a-z]\w+/iu)) {
 			throw new Error('Must be in pascal-case or camel-case and start with an alpha character');
 		}
 	}, []);

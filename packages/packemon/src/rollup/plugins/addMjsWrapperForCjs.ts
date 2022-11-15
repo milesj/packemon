@@ -108,7 +108,7 @@ function extractScopedIdentifiers(node: TSESTree.Program) {
 export function extractExports(id: string, getModuleInfo: GetModuleInfo): ExtractedExports {
 	const info = getModuleInfo(id);
 
-	if (!info || !info.ast) {
+	if (!info?.ast) {
 		throw new Error(`Cannot get module info for ID: ${id}`);
 	}
 

@@ -64,25 +64,25 @@ export function Scaffold({ defaultTemplate, onComplete }: ScaffoldProps) {
 	}, [author, template, packageName, projectName, repoUrl, onComplete, exit]);
 
 	const validatePackageName = useCallback((value: string) => {
-		if (!value || !value.trim() || !isModuleName(value)) {
+		if (!value?.trim() || !isModuleName(value)) {
 			throw new Error('Please provide a valid npm package name');
 		}
 	}, []);
 
 	const validateProjectName = useCallback((value: string) => {
-		if (!value || !value.trim() || !isModuleName(value)) {
+		if (!value?.trim() || !isModuleName(value)) {
 			throw new Error('Please provide a valid project name (alphanumeric characters and dashes)');
 		}
 	}, []);
 
 	const validateRepoUrl = useCallback((value: string) => {
-		if (!value || !value.trim() || (!value.startsWith('http') && !value.startsWith('git@'))) {
+		if (!value?.trim() || (!value.startsWith('http') && !value.startsWith('git@'))) {
 			throw new Error('Please provide a valid repository URL (https or git)');
 		}
 	}, []);
 
 	const validateAuthor = useCallback((value: string) => {
-		if (!value || !value.trim()) {
+		if (!value?.trim()) {
 			throw new Error('Please provide an author or company name');
 		}
 	}, []);
