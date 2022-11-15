@@ -199,7 +199,7 @@ export async function getRollupConfig(
 						exclude: isTest ? [] : EXCLUDE_RUST,
 						filename: artifact.package.path.path(),
 						// Extract maps from the original source
-						sourceMaps: true,
+						sourceMaps: !isNode,
 				  })
 				: getBabelInputPlugin({
 						...getBabelInputConfig(artifact, features, packemonConfig),
@@ -208,7 +208,7 @@ export async function getRollupConfig(
 						extensions: EXTENSIONS,
 						filename: artifact.package.path.path(),
 						// Extract maps from the original source
-						sourceMaps: true,
+						sourceMaps: !isNode,
 				  }),
 		],
 		// Treeshake for smaller builds

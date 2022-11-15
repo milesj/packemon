@@ -131,8 +131,8 @@ much everything except tests).
 └── README.md
 ```
 
-> Why are source files published? For source maps! Packemon will always generate source maps
-> regardless of format, and the `src` directory is necessary for proper linking.
+> Why are source files published? For source maps! Packemon will always generate source maps for
+> non-node formats, and the `src` directory is necessary for proper linking.
 
 [babel]: https://babeljs.io
 [rollup]: https://rollupjs.org
