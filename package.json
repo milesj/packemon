@@ -4,22 +4,20 @@
   "version": "0.0.0",
   "description": "",
   "scripts": {
-    "docs": "cd website && yarn run start",
-    "setup": "node ./scripts/buildPackages.mjs",
     "build": "yarn run packemon build-workspace",
-    "validate": "yarn run packemon validate",
     "check": "yarn run type && yarn run test && yarn run lint",
     "clean": "yarn run packemon clean",
     "coverage": "yarn run test --coverage",
-    "format": "prettier --write .",
+    "docs": "cd website && yarn run start",
     "lint": "eslint --cache --color --fix --ext .ts,.tsx ./packages/*/{src,tests}",
-    "test": "jest --colors --logHeapUsage",
-    "type": "tsc --build",
+    "pack": "yarn run packemon build-workspace --addEngines --addExports --declaration",
+    "packemon": "node ./packages/packemon/cjs/bin.cjs",
     "prerelease": "yarn run clean && yarn run setup && yarn run pack && yarn run check",
     "release": "yarn prerelease && lerna-release",
-    "version": "yarn install && git add yarn.lock",
-    "pack": "yarn run packemon build-workspace --addEngines --addExports --declaration",
-    "packemon": "node ./packages/packemon/cjs/bin.cjs"
+    "setup": "node ./scripts/buildPackages.mjs",
+    "test": "jest --colors --logHeapUsage",
+    "validate": "yarn run packemon validate",
+    "version": "yarn install && git add yarn.lock"
   },
   "workspaces": [
     "packages/*",
@@ -59,7 +57,7 @@
     "type": "ko-fi",
     "url": "https://ko-fi.com/milesjohnson"
   },
-  "packageManager": "yarn@3.2.0",
+  "packageManager": "yarn@3.2.4",
   "resolutions": {
     "@rollup/plugin-commonjs@^22.0.2": "patch:@rollup/plugin-commonjs@npm:22.0.2#.yarn/patches/@rollup-plugin-commonjs-npm-22.0.2-6275b92096.patch",
     "@rollup/plugin-node-resolve@^13.3.0": "patch:@rollup/plugin-node-resolve@npm:13.3.0#.yarn/patches/@rollup-plugin-node-resolve-npm-13.3.0-a93dd11647.patch"

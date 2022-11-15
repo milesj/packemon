@@ -1,7 +1,7 @@
 {
   "extends": "../tsconfig.options.json",
   "compilerOptions": {
-    "outDir": "dts",
+    "outDir": "../.moon/cache/types/website",
     "rootDir": ".",
     "jsx": "react"
   },
