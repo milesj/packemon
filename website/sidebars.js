@@ -1,4 +1,4 @@
-/* eslint-disable sort-keys */
+/* eslint-disable sort-keys, import/no-commonjs, unicorn/prefer-module */
 
 module.exports = {
 	docs: [

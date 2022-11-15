@@ -9,7 +9,6 @@
     "clean": "yarn run packemon clean",
     "coverage": "yarn run test --coverage",
     "docs": "cd website && yarn run start",
-    "lint": "eslint --cache --color --fix --ext .ts,.tsx ./packages/*/{src,tests}",
     "pack": "yarn run packemon build-workspace --addEngines --addExports --declaration",
     "packemon": "node ./packages/packemon/cjs/bin.cjs",
     "prerelease": "yarn run clean && yarn run setup && yarn run pack && yarn run check",
