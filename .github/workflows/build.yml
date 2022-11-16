@@ -25,7 +25,7 @@ jobs:
           node: ${{ matrix.node-version }}
       - run: yarn install --immutable
       - run: yarn run setup
-      - run: yarn moon ci --color
+      - run: yarn moon --color ci
   integrate:
     name: Integrations
     runs-on: ubuntu-latest
