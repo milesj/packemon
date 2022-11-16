@@ -25,7 +25,7 @@ jobs:
           node: ${{ matrix.node-version }}
       - run: yarn install --immutable
       - run: yarn run setup
-      - run: yarn moon ci
+      - run: yarn moon ci --color
   integrate:
     name: Integrations
     runs-on: ubuntu-latest
@@ -70,7 +70,7 @@ jobs:
       # Test all the things
       - run: cd ../work
       - run: ls -R .
-      - run: yarn run check
+      - run: yarn moon check --all
   scaffold-poly:
     name: Scaffold (polyrepo)
     runs-on: ubuntu-latest
@@ -87,4 +87,4 @@ jobs:
       # Test all the things
       - run: cd ../work
       - run: ls -R .
-      - run: yarn run check
+      - run: yarn moon check --all
