@@ -3,7 +3,7 @@
 import fs from 'node:fs';
 import { Path } from '@boost/common';
 import { Artifact } from '../src';
-import { getFixturePath, createSnapshotSpies, loadPackageAtPath } from './helpers';
+import { createSnapshotSpies, getFixturePath, loadPackageAtPath } from './helpers';
 
 ['babel', 'swc'].forEach((transformer) => {
 	describe(`Outputs (${transformer})`, () => {

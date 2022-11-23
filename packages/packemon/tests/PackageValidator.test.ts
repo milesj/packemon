@@ -3,7 +3,7 @@ import fs from 'fs-extra';
 import { Path } from '@boost/common';
 import { Package } from '../src/Package';
 import { PackageValidator } from '../src/PackageValidator';
-import { mockSpy, getFixturePath } from './helpers';
+import { getFixturePath, mockSpy } from './helpers';
 
 jest.mock('execa');
 

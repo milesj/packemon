@@ -3836,17 +3836,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@moonrepo/cli@npm:^0.19.0":
-  version: 0.19.0
-  resolution: "@moonrepo/cli@npm:0.19.0"
+"@moonrepo/cli@npm:^0.19.1":
+  version: 0.19.1
+  resolution: "@moonrepo/cli@npm:0.19.1"
   dependencies:
-    "@moonrepo/core-linux-arm64-gnu": ^0.19.0
-    "@moonrepo/core-linux-arm64-musl": ^0.19.0
-    "@moonrepo/core-linux-x64-gnu": ^0.19.0
-    "@moonrepo/core-linux-x64-musl": ^0.19.0
-    "@moonrepo/core-macos-arm64": ^0.19.0
-    "@moonrepo/core-macos-x64": ^0.19.0
-    "@moonrepo/core-windows-x64-msvc": ^0.19.0
+    "@moonrepo/core-linux-arm64-gnu": ^0.19.1
+    "@moonrepo/core-linux-arm64-musl": ^0.19.1
+    "@moonrepo/core-linux-x64-gnu": ^0.19.1
+    "@moonrepo/core-linux-x64-musl": ^0.19.1
+    "@moonrepo/core-macos-arm64": ^0.19.1
+    "@moonrepo/core-macos-x64": ^0.19.1
+    "@moonrepo/core-windows-x64-msvc": ^0.19.1
     detect-libc: ^2.0.1
   dependenciesMeta:
     "@moonrepo/core-linux-arm64-gnu":
@@ -3865,68 +3865,68 @@ __metadata:
       optional: true
   bin:
     moon: moon
-  checksum: 13421c1bc23a1956a79bc16acfe1a0dd9dc7732073daced1f997af25f79995df2846fc88edf1d7ab2f012ba2da4ac800c1bcd2feffe45d76a5d42766f12e5b8a
+  checksum: 1d1ed43c6351e36b02f16143c2c8b14c14b9ef049d9aef46ec2ea5139a786fda34278c809a70b194910306bb6d87ae2811c29b9573794422e6989500aeb67a0b
   languageName: node
   linkType: hard
 
-"@moonrepo/core-linux-arm64-gnu@npm:^0.19.0":
-  version: 0.19.0
-  resolution: "@moonrepo/core-linux-arm64-gnu@npm:0.19.0"
+"@moonrepo/core-linux-arm64-gnu@npm:^0.19.1":
+  version: 0.19.1
+  resolution: "@moonrepo/core-linux-arm64-gnu@npm:0.19.1"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@moonrepo/core-linux-arm64-musl@npm:^0.19.0":
-  version: 0.19.0
-  resolution: "@moonrepo/core-linux-arm64-musl@npm:0.19.0"
+"@moonrepo/core-linux-arm64-musl@npm:^0.19.1":
+  version: 0.19.1
+  resolution: "@moonrepo/core-linux-arm64-musl@npm:0.19.1"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@moonrepo/core-linux-x64-gnu@npm:^0.19.0":
-  version: 0.19.0
-  resolution: "@moonrepo/core-linux-x64-gnu@npm:0.19.0"
+"@moonrepo/core-linux-x64-gnu@npm:^0.19.1":
+  version: 0.19.1
+  resolution: "@moonrepo/core-linux-x64-gnu@npm:0.19.1"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@moonrepo/core-linux-x64-musl@npm:^0.19.0":
-  version: 0.19.0
-  resolution: "@moonrepo/core-linux-x64-musl@npm:0.19.0"
+"@moonrepo/core-linux-x64-musl@npm:^0.19.1":
+  version: 0.19.1
+  resolution: "@moonrepo/core-linux-x64-musl@npm:0.19.1"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@moonrepo/core-macos-arm64@npm:^0.19.0":
-  version: 0.19.0
-  resolution: "@moonrepo/core-macos-arm64@npm:0.19.0"
+"@moonrepo/core-macos-arm64@npm:^0.19.1":
+  version: 0.19.1
+  resolution: "@moonrepo/core-macos-arm64@npm:0.19.1"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@moonrepo/core-macos-x64@npm:^0.19.0":
-  version: 0.19.0
-  resolution: "@moonrepo/core-macos-x64@npm:0.19.0"
+"@moonrepo/core-macos-x64@npm:^0.19.1":
+  version: 0.19.1
+  resolution: "@moonrepo/core-macos-x64@npm:0.19.1"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@moonrepo/core-windows-x64-msvc@npm:^0.19.0":
-  version: 0.19.0
-  resolution: "@moonrepo/core-windows-x64-msvc@npm:0.19.0"
+"@moonrepo/core-windows-x64-msvc@npm:^0.19.1":
+  version: 0.19.1
+  resolution: "@moonrepo/core-windows-x64-msvc@npm:0.19.1"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"@moonrepo/dev@npm:^1.2.0":
-  version: 1.2.0
-  resolution: "@moonrepo/dev@npm:1.2.0"
+"@moonrepo/dev@npm:^1.3.0":
+  version: 1.3.0
+  resolution: "@moonrepo/dev@npm:1.3.0"
   dependencies:
     conventional-changelog-beemo: ^3.0.1
     execa: ^5.1.1
   bin:
     lerna-release: lib/bin/lernaRelease.js
-  checksum: 22c476fd2643ffb9f806f470f23c77f0dd3e93091dec560c3f46c236491a95b13784036128f703b9400e1a49282408601261d6a4cfdd3f2382ac920cbe7b72a9
+  checksum: d2a0cbe60d567bcbf0c0925f21cca097ff2adbc3e1ad5a95e073f59eb54416c47073f7b1866cff8b19a5f4a0b90f71539536239433cee9679d1394dd163c2e8e
   languageName: node
   linkType: hard
 
@@ -7629,9 +7629,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"babel-preset-moon@npm:^1.1.2":
-  version: 1.1.2
-  resolution: "babel-preset-moon@npm:1.1.2"
+"babel-preset-moon@npm:^1.1.3":
+  version: 1.1.3
+  resolution: "babel-preset-moon@npm:1.1.3"
   dependencies:
     "@babel/plugin-proposal-class-properties": ^7.18.6
     "@babel/plugin-proposal-decorators": ^7.20.2
@@ -7646,7 +7646,7 @@ __metadata:
     babel-preset-solid: ^1.6.2
   peerDependencies:
     "@babel/core": ">=7.0.0"
-  checksum: 25c5bd8d6ee00a5ca59726bfcba27a9f0be93b9977145c5d1489c790b7c8ff6c9fa46d5889fae491a991f071f919a241a82e738f01cdb09d05460e3827dd4914
+  checksum: e0e82f45e30f64cfbdf3ac8433d5528d07b1cea80cfe2c3bf68bfee2a2c7ef43b1be3a79a87144fe0b1d85d74a2be8a422bb2c2e048d0aa8394d2d47e9fca3c2
   languageName: node
   linkType: hard
 
@@ -10512,11 +10512,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-moon@npm:^1.3.0":
-  version: 1.3.0
-  resolution: "eslint-config-moon@npm:1.3.0"
+"eslint-config-moon@npm:^1.4.0":
+  version: 1.4.0
+  resolution: "eslint-config-moon@npm:1.4.0"
   dependencies:
-    "@moonrepo/dev": ^1.2.0
+    "@moonrepo/dev": ^1.3.0
     "@typescript-eslint/eslint-plugin": ^5.43.0
     "@typescript-eslint/parser": ^5.43.0
     eslint-config-airbnb-base: ^15.0.0
@@ -10535,7 +10535,7 @@ __metadata:
     eslint-plugin-unicorn: ^44.0.2
   peerDependencies:
     eslint: ^8.0.0
-  checksum: 73d735dc6faa99c572cde31bb73fed663ec7824bfe648f01ca2e80e4f63cac2eed519e88c4b7354762c902d49b037cfa9345bb4aa5dc95306c17dab2510b82b5
+  checksum: 1bd692e62d885100e600e4f4000dbb72474982a6d2aea43cd5f5ec26b13a32d665d215e916496965d43bf75e3231778b0b87d9c3e326ebc0ed01516c2dacad7b
   languageName: node
   linkType: hard
 
@@ -10840,9 +10840,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:^8.27.0":
-  version: 8.27.0
-  resolution: "eslint@npm:8.27.0"
+"eslint@npm:^8.28.0":
+  version: 8.28.0
+  resolution: "eslint@npm:8.28.0"
   dependencies:
     "@eslint/eslintrc": ^1.3.3
     "@humanwhocodes/config-array": ^0.11.6
@@ -10885,7 +10885,7 @@ __metadata:
     text-table: ^0.2.0
   bin:
     eslint: bin/eslint.js
-  checksum: 153b022d309e1b647a73b1bb0fa98912add699b06e279084155f23c6f2b5fc5abd05411fc1ba81608a24bbfaf044ca079544c16fffa6fc987b8f676c9960a2c4
+  checksum: 1b793486b2ec80f0602d75fff7116f7c39a3286f523608a999eead9bec4154a06841785d2b4fb87f8292a94cf85778c1dbfaec727772a09c4d604fdb9ff0809a
   languageName: node
   linkType: hard
 
@@ -13913,17 +13913,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-preset-moon@npm:^1.1.2":
-  version: 1.1.2
-  resolution: "jest-preset-moon@npm:1.1.2"
+"jest-preset-moon@npm:^1.1.3":
+  version: 1.1.3
+  resolution: "jest-preset-moon@npm:1.1.3"
   dependencies:
-    "@moonrepo/dev": ^1.2.0
+    "@moonrepo/dev": ^1.3.0
     "@types/jest": ^29.2.2
     jest-circus: ^29.3.1
     jest-environment-jsdom: ^29.3.1
   peerDependencies:
     jest: ">=26.0.0"
-  checksum: 8a9b11293360d1017828880f3739ff0e43cea78b21f494f5e18a8067a48755bfdd7a21fe5163a3fabd5458cd36dc4ec73ef0e36ebbbfcca1a8e09dcfca1c660c
+  checksum: 2313c19ed7a27a2d1e6c68fb9c104094ddcfc909fd739698b4b4aefafc22ea6c0ec7c2b3021945b5a186fa28d2e599e3d3aa35db7b747b1fd532f35558268956
   languageName: node
   linkType: hard
 
@@ -16709,26 +16709,26 @@ __metadata:
   dependencies:
     "@babel/cli": ^7.19.3
     "@babel/core": ^7.19.6
-    "@moonrepo/cli": ^0.19.0
-    "@moonrepo/dev": ^1.2.0
+    "@moonrepo/cli": ^0.19.1
+    "@moonrepo/dev": ^1.3.0
     "@types/fs-extra": ^9.0.13
     "@types/jest": ^29.2.3
     "@types/micromatch": ^4.0.2
     "@types/node": ^16.18.3
     "@types/react": ^17.0.51
     "@types/semver": ^7.3.13
-    babel-preset-moon: ^1.1.2
+    babel-preset-moon: ^1.1.3
     chokidar: ^3.5.3
     electron-to-chromium: ^1.4.284
-    eslint: ^8.27.0
-    eslint-config-moon: ^1.3.0
+    eslint: ^8.28.0
+    eslint-config-moon: ^1.4.0
     jest: ^29.3.1
-    jest-preset-moon: ^1.1.2
+    jest-preset-moon: ^1.1.3
     lerna: ^6.0.3
-    prettier: ^2.7.1
+    prettier: ^2.8.0
     prettier-config-moon: ^1.1.0
     ts-node: ^10.9.1
-    tsconfig-moon: ^1.1.0
+    tsconfig-moon: ^1.2.0
     typescript: ^4.8.4
   languageName: unknown
   linkType: soft
@@ -17752,12 +17752,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:^2.7.1":
-  version: 2.7.1
-  resolution: "prettier@npm:2.7.1"
+"prettier@npm:^2.8.0":
+  version: 2.8.0
+  resolution: "prettier@npm:2.8.0"
   bin:
     prettier: bin-prettier.js
-  checksum: 55a4409182260866ab31284d929b3cb961e5fdb91fe0d2e099dac92eaecec890f36e524b4c19e6ceae839c99c6d7195817579cdffc8e2c80da0cb794463a748b
+  checksum: 72004ce0cc9bb097daf3e3833f62495768724392c1d5b178dd47372337616e9e50ecbb0804f236596223f7b5eb1bbe69cefc8957dca21112c5777e77ef73a564
   languageName: node
   linkType: hard
 
@@ -20573,10 +20573,10 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"tsconfig-moon@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "tsconfig-moon@npm:1.1.0"
-  checksum: 99ceb80e5c0b490f311b30e6edcfa490c24f22bd145c852f77439cfe5f9c0eaf93b8400ce75c4ad1b60ac9b804ed6bc3ef7b36657747d065a20c57810a2c5bb9
+"tsconfig-moon@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "tsconfig-moon@npm:1.2.0"
+  checksum: ab5aabb0cded6bd5c6c6022cc5d96fcf1da89cb4cc1560214329cce6c42c1b5c5d4fa5feff626343bbd3175c9cb55240ee967b20ce68a30aeab65d8f6f6dba33
   languageName: node
   linkType: hard
 
