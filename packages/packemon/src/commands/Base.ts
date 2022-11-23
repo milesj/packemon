@@ -15,6 +15,9 @@ export abstract class BaseCommand<
 	@Arg.String('Current working directory to run in', { category: 'global' })
 	cwd: string = '';
 
+	@Arg.Flag('Enable debug logs', { category: 'global' })
+	debug: boolean = false;
+
 	@Arg.String('Only generate specific output formats', { category: 'filter', short: 'f' })
 	formats: string = '';
 

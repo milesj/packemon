@@ -1,3 +1,4 @@
+import debug from 'debug';
 import { checkPackageOutdated, Program } from '@boost/cli';
 import { getVersion } from './helpers/getVersion';
 import {
@@ -19,6 +20,10 @@ try {
 	version = getVersion();
 } catch {
 	// Ignore
+}
+
+if (process.argv.includes('--debug')) {
+	debug.enable('packemon:*');
 }
 
 async function run() {
