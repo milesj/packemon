@@ -1,8 +1,7 @@
 {
   "extends": "../../tsconfig.options.json",
   "compilerOptions": {
-    "outDir": "../../.moon/cache/types/packages/babel-plugin-conditional-invariant",
-    "rootDir": "."
+    "outDir": "../../.moon/cache/types/packages/babel-plugin-conditional-invariant"
   },
   "include": [
     "src/**/*",
@@ -10,5 +9,9 @@
     "types/**/*",
     "../../types/**/*"
   ],
-  "references": []
+  "references": [
+    {
+      "path": "./tsconfig.lib.json"
+    }
+  ]
 }

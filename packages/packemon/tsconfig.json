@@ -1,8 +1,7 @@
 {
   "extends": "../../tsconfig.options.json",
   "compilerOptions": {
-    "outDir": "../../.moon/cache/types/packages/packemon",
-    "rootDir": "."
+    "outDir": "../../.moon/cache/types/packages/packemon"
   },
   "include": [
     "src/**/*",
@@ -19,6 +18,9 @@
     },
     {
       "path": "../babel-plugin-env-constants"
+    },
+    {
+      "path": "./tsconfig.cjs.json"
     }
   ]
 }
