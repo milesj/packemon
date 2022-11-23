@@ -1,11 +1,10 @@
 import fsx from 'fs-extra';
 import { Path } from '@boost/common';
 import { mockNormalizedFilePath } from '@boost/common/test';
-import { getFixturePath } from '@boost/test-utils';
 import { Artifact } from '../src/Artifact';
 import { Package } from '../src/Package';
 import { Build, ConfigFile, Platform, Support } from '../src/types';
-import { loadPackageAtPath } from './helpers';
+import { getFixturePath, loadPackageAtPath } from './helpers';
 
 jest.mock('rollup', () => ({ rollup: jest.fn() }));
 

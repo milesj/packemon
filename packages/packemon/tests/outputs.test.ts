@@ -2,9 +2,8 @@
 
 import fs from 'node:fs';
 import { Path } from '@boost/common';
-import { getFixturePath } from '@boost/test-utils';
 import { Artifact } from '../src';
-import { createSnapshotSpies, loadPackageAtPath } from './helpers';
+import { getFixturePath, createSnapshotSpies, loadPackageAtPath } from './helpers';
 
 ['babel', 'swc'].forEach((transformer) => {
 	describe(`Outputs (${transformer})`, () => {

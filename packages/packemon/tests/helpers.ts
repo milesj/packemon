@@ -1,7 +1,7 @@
 import fs from 'node:fs';
+import path from 'node:path';
 import fsx from 'fs-extra';
 import { Path, PortablePath } from '@boost/common';
-import { getFixturePath } from '@boost/test-utils';
 import {
 	Artifact,
 	Format,
@@ -18,6 +18,25 @@ import {
 	Support,
 	SUPPORTS,
 } from '../src';
+
+const FIXTURES_DIR = path.join(
+	// eslint-disable-next-line unicorn/prefer-module
+	process.env.MOON_WORKSPACE_ROOT ?? path.join(__dirname, '../../..'),
+	'tests',
+	'__fixtures__',
+);
+
+export function normalizeSeparators(part: string) {
+	if (process.platform === 'win32') {
+		return part.replace(/\//g, '\\');
+	}
+
+	return part.replace(/\\/g, '/');
+}
+
+export function getFixturePath(fixture: string, file: string = ''): string {
+	return path.normalize(path.join(...[FIXTURES_DIR, fixture, file].map(normalizeSeparators)));
+}
 
 const builds = new Map<string, { format: Format; platform: Platform; support: Support }>();
 
@@ -48,8 +67,8 @@ export function mockSpy(instance: unknown): jest.SpyInstance {
 	return instance as jest.SpyInstance;
 }
 
-export function loadPackageAtPath(path: PortablePath, workspaceRoot?: PortablePath): Package {
-	const root = Path.create(path);
+export function loadPackageAtPath(pkgPath: PortablePath, workspaceRoot?: PortablePath): Package {
+	const root = Path.create(pkgPath);
 	const json = fsx.readJsonSync(root.append('package.json').path()) as PackemonPackage;
 
 	return new Package(root, json, workspaceRoot ? Path.create(workspaceRoot) : root);

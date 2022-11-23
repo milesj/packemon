@@ -1,9 +1,8 @@
 import { Path } from '@boost/common';
-import { getFixturePath } from '@boost/test-utils';
 import { Package } from '../src/Package';
 import { Packemon } from '../src/Packemon';
 import { BuildOptions } from '../src/types';
-import { loadPackageAtPath } from './helpers';
+import { getFixturePath, loadPackageAtPath } from './helpers';
 
 jest.mock('../src/PackageValidator', () => ({
 	PackageValidator: class MockValidator {

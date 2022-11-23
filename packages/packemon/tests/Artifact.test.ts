@@ -3,10 +3,9 @@ import fsx from 'fs-extra';
 import { rollup } from 'rollup';
 import { applyStyle } from '@boost/cli';
 import { Path } from '@boost/common';
-import { getFixturePath } from '@boost/test-utils';
 import { Artifact } from '../src/Artifact';
 import { getRollupConfig } from '../src/rollup/config';
-import { loadPackageAtPath, mockSpy } from './helpers';
+import { getFixturePath, loadPackageAtPath, mockSpy } from './helpers';
 
 jest.mock('../src/rollup/config', () => ({
 	getRollupConfig: jest.fn(() => ({
