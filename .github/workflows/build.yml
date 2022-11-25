@@ -25,7 +25,9 @@ jobs:
           node: ${{ matrix.node-version }}
       - run: yarn install --immutable
       - run: yarn run setup
-      - run: yarn moon --color ci
+      - run: yarn moon --color --log trace ci
+        env:
+          RUST_BACKTRACE: '1'
   integrate:
     name: Integrations
     runs-on: ubuntu-latest
