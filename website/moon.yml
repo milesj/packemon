@@ -9,8 +9,8 @@ tasks:
     command: 'docusaurus build'
     outputs:
       - '.docusaurus'
-    env:
-      NODE_OPTIONS: '--openssl-legacy-provider'
+    # env:
+    #   NODE_OPTIONS: '--openssl-legacy-provider'
 
   deploy:
     command: 'docusaurus deploy'
@@ -19,5 +19,5 @@ tasks:
   start:
     command: 'docusaurus start'
     local: true
-    env:
-      NODE_OPTIONS: '--openssl-legacy-provider'
+    # env:
+    #   NODE_OPTIONS: '--openssl-legacy-provider'
