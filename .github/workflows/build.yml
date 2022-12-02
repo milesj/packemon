@@ -25,7 +25,7 @@ jobs:
           node: ${{ matrix.node-version }}
       - run: yarn install --immutable
       - run: yarn run setup
-      - run: yarn moon --color --log trace ci
+      - run: yarn run moon --color --log debug ci
         env:
           RUST_BACKTRACE: '1'
   integrate:
@@ -52,7 +52,7 @@ jobs:
           cache: yarn
       - run: yarn install --immutable
       - run: yarn run setup
-      - run: yarn moon run :build
+      - run: yarn run moon run :build
       - run: yarn ts-node --cwd ./tests ./testPackemonImports.ts
       - run: node ./tests/testPackemonImports.cjs
       - run: node ./tests/testPackemonImports.mjs
@@ -72,7 +72,7 @@ jobs:
       # Test all the things
       - run: cd ../work
       - run: ls -R .
-      - run: yarn moon check --all
+      - run: yarn run moon check --all
   scaffold-poly:
     name: Scaffold (polyrepo)
     runs-on: ubuntu-latest
@@ -89,4 +89,4 @@ jobs:
       # Test all the things
       - run: cd ../work
       - run: ls -R .
-      - run: yarn moon check --all
+      - run: yarn run moon check --all

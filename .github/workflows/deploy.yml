@@ -33,4 +33,4 @@ jobs:
           git config --global user.email "actions@github.com"
           git config --global user.name "gh-actions"
           yarn install --immutable
-          yarn moon run website:deploy
+          yarn run moon run website:deploy
