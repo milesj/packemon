@@ -712,10 +712,11 @@ exports[`New syntax babel transforms example test case: node-legacy-cjs 2`] = `
 
 'use strict';
 
+var _foo$bar;
 const foo = {};
 const optionalChain = foo?.bar;
-const nullCoalesc = foo ?? 0;
-foo.bar ?? (foo.bar = 'bar');
+const nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
+(_foo$bar = foo.bar) !== null && _foo$bar !== void 0 ? _foo$bar : foo.bar = 'bar';
 foo.baz || (foo.baz = 'baz');
 exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
@@ -733,10 +734,11 @@ exports[`New syntax babel transforms example test case: node-legacy-lib 1`] = `
 
 'use strict';
 
+var _foo$bar;
 const foo = {};
 const optionalChain = foo?.bar;
-const nullCoalesc = foo ?? 0;
-foo.bar ?? (foo.bar = 'bar');
+const nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
+(_foo$bar = foo.bar) !== null && _foo$bar !== void 0 ? _foo$bar : foo.bar = 'bar';
 foo.baz || (foo.baz = 'baz');
 exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
@@ -749,13 +751,14 @@ exports.optionalChain = optionalChain;
 exports[`New syntax babel transforms example test case: node-legacy-mjs 1`] = `
 [
   "mjs/index-node-legacy-mjs.mjs",
-  "// Bundled with Packemon: https://packemon.dev
+  "var _foo$bar;
+// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: mjs
 
 const foo = {};
 const optionalChain = foo?.bar;
-const nullCoalesc = foo ?? 0;
-foo.bar ?? (foo.bar = 'bar');
+const nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
+(_foo$bar = foo.bar) !== null && _foo$bar !== void 0 ? _foo$bar : foo.bar = 'bar';
 foo.baz || (foo.baz = 'baz');
 export { foo, nullCoalesc, optionalChain };
 //# sourceMappingURL=index-node-legacy-mjs.mjs.map
@@ -1064,13 +1067,11 @@ exports[`New syntax swc transforms example test case: browser-stable-esm 1`] = `
   "esm/index-browser-stable-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: esm
-var _foo, _foo1;
 const foo = {};
-const optionalChain = foo === null || foo === void 0 ? void 0 : foo.bar;
-const nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
-var _bar;
-(_bar = (_foo = foo).bar) !== null && _bar !== void 0 ? _bar : _foo.bar = 'bar';
-(_foo1 = foo).baz || (_foo1.baz = 'baz');
+const optionalChain = foo?.bar;
+const nullCoalesc = foo ?? 0;
+foo.bar ??= 'bar';
+foo.baz ||= 'baz';
 export { foo, nullCoalesc, optionalChain };
 //# sourceMappingURL=index-browser-stable-esm.js.map
 ",
@@ -1083,13 +1084,11 @@ exports[`New syntax swc transforms example test case: browser-stable-lib 1`] = `
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: lib
 'use strict';
-var _foo, _foo1;
 const foo = {};
-const optionalChain = foo === null || foo === void 0 ? void 0 : foo.bar;
-const nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
-var _bar;
-(_bar = (_foo = foo).bar) !== null && _bar !== void 0 ? _bar : _foo.bar = 'bar';
-(_foo1 = foo).baz || (_foo1.baz = 'baz');
+const optionalChain = foo?.bar;
+const nullCoalesc = foo ?? 0;
+foo.bar ??= 'bar';
+foo.baz ||= 'baz';
 exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
@@ -1123,13 +1122,11 @@ exports[`New syntax swc transforms example test case: browser-stable-umd 1`] = `
         nullCoalesc: ()=>nullCoalesc,
         optionalChain: ()=>optionalChain
     });
-    var _foo, _foo1;
     const foo = {};
-    const optionalChain = foo === null || foo === void 0 ? void 0 : foo.bar;
-    const nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
-    var _bar;
-    (_bar = (_foo = foo).bar) !== null && _bar !== void 0 ? _bar : _foo.bar = 'bar';
-    (_foo1 = foo).baz || (_foo1.baz = 'baz');
+    const optionalChain = foo?.bar;
+    const nullCoalesc = foo ?? 0;
+    foo.bar ??= 'bar';
+    foo.baz ||= 'baz';
 });
 //# sourceMappingURL=index-browser-stable-umd.js.map
 ",

@@ -210,10 +210,10 @@ export function getBabelOutputConfig(
 
 		// Node 14 does not support ??=, etc
 		if (support === 'legacy') {
-			plugins.push([
+			plugins.push(
 				resolveFromBabel('@babel/plugin-proposal-logical-assignment-operators'),
 				resolveFromBabel('@babel/plugin-proposal-nullish-coalescing-operator'),
-			]);
+			);
 		}
 	}
 
