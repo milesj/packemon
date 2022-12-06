@@ -11,7 +11,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
-        node-version: [14, 16, 18]
+        node-version: [16, 18]
       fail-fast: false # true
     steps:
       - uses: actions/checkout@v3
@@ -26,8 +26,6 @@ jobs:
       - run: yarn install --immutable
       - run: yarn run setup
       - run: yarn run moon --color --log debug ci
-        env:
-          RUST_BACKTRACE: '1'
   integrate:
     name: Integrations
     runs-on: ubuntu-latest
