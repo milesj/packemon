@@ -207,6 +207,14 @@ export function getBabelOutputConfig(
 
 	if (platform === 'node') {
 		plugins.push([resolve('babel-plugin-cjs-esm-interop'), { format: isESM ? 'mjs' : 'cjs' }]);
+
+		// Node 14 does not support ??=, etc
+		if (support === 'legacy') {
+			plugins.push(
+				resolveFromBabel('@babel/plugin-proposal-logical-assignment-operators'),
+				resolveFromBabel('@babel/plugin-proposal-nullish-coalescing-operator'),
+			);
+		}
 	}
 
 	plugins.push(

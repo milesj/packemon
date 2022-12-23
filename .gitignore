@@ -3,6 +3,7 @@ logs/
 *.log
 
 # Cache
+.docusaurus
 .eslintcache
 .idea
 .npm
@@ -23,6 +24,7 @@ mjs/
 tmp/
 umd/
 node_modules/
+templates/
 test/
 scenarios/*/build.js
 
@@ -50,3 +52,7 @@ scripts/swc
 !.yarn/sdks
 !.yarn/versions
 .pnp.*
+
+# moon
+.moon/cache
+.moon/docker

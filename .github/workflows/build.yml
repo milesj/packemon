@@ -5,25 +5,27 @@ on:
       - master
   pull_request:
 jobs:
-  test:
-    name: Test
+  ci:
+    name: CI
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest]
-        node-version: [14, 16, 17]
-      fail-fast: true
+        os: [ubuntu-latest] # , windows-latest]
+        node-version: [16, 18]
+      fail-fast: false # true
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v3
         with:
           cache: yarn
-          node-version: ${{ matrix.node-version }}
+      - uses: moonrepo/tool-version-action@v1
+        with:
+          node: ${{ matrix.node-version }}
       - run: yarn install --immutable
       - run: yarn run setup
-      - run: yarn run type
-      - run: yarn run test # coverage
-      - run: yarn run lint
+      - run: yarn run moon --color --log debug ci
   integrate:
     name: Integrations
     runs-on: ubuntu-latest
@@ -43,33 +45,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v3
         with:
           cache: yarn
       - run: yarn install --immutable
       - run: yarn run setup
-      - run: yarn run pack
+      - run: yarn run moon run :build
       - run: yarn ts-node --cwd ./tests ./testPackemonImports.ts
       - run: node ./tests/testPackemonImports.cjs
       - run: node ./tests/testPackemonImports.mjs
-  pack:
-    name: Pack
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          cache: yarn
-      - run: yarn install --immutable
-      - run: yarn run setup
-      - run: yarn run pack
-      # Run again with packemon built files
-      - run: yarn run pack
   scaffold-mono:
     name: Scaffold (monorepo)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v3
         with:
           cache: yarn
@@ -81,12 +74,14 @@ jobs:
       # Test all the things
       - run: cd ../work
       - run: ls -R .
-      - run: yarn run check
+      - run: yarn run moon check --all
   scaffold-poly:
     name: Scaffold (polyrepo)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v3
         with:
           cache: yarn
@@ -98,14 +93,4 @@ jobs:
       # Test all the things
       - run: cd ../work
       - run: ls -R .
-      - run: yarn run check
-  docs:
-    name: Docs
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          cache: yarn
-      - run: yarn install --immutable
-      - run: cd website && yarn run build
+      - run: yarn run moon check --all

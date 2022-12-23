@@ -1,7 +1,9 @@
 {
   "extends": "./tsconfig.options.json",
   "include": [
-    "packages/**/*"
+    "packages/**/*",
+    "website/**/*",
+    "**/.eslintrc.js"
   ],
   "exclude": [
     "**/cjs/**/*",

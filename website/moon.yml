@@ -1,0 +1,23 @@
+type: 'application'
+
+workspace:
+  inheritedTasks:
+    exclude: ['build']
+
+tasks:
+  build:
+    command: 'docusaurus build'
+    outputs:
+      - '.docusaurus'
+    # env:
+    #   NODE_OPTIONS: '--openssl-legacy-provider'
+
+  deploy:
+    command: 'docusaurus deploy'
+    local: true
+
+  start:
+    command: 'docusaurus start'
+    local: true
+    # env:
+    #   NODE_OPTIONS: '--openssl-legacy-provider'

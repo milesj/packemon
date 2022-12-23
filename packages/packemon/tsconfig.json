@@ -1,8 +1,7 @@
 {
   "extends": "../../tsconfig.options.json",
   "compilerOptions": {
-    "outDir": "dts",
-    "rootDir": "."
+    "outDir": "../../.moon/cache/types/packages/packemon"
   },
   "include": [
     "src/**/*",
@@ -12,10 +11,16 @@
   ],
   "references": [
     {
+      "path": "../babel-plugin-cjs-esm-interop"
+    },
+    {
       "path": "../babel-plugin-conditional-invariant"
     },
     {
       "path": "../babel-plugin-env-constants"
+    },
+    {
+      "path": "./tsconfig.cjs.json"
     }
   ]
 }

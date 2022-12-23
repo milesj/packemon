@@ -1,8 +1,7 @@
 import { rollup } from 'rollup';
 import { Path } from '@boost/common';
-import { getFixturePath } from '@boost/test-utils';
 import { Packemon } from '../src';
-import { createSnapshotSpies, loadPackageAtPath } from './helpers';
+import { createSnapshotSpies, getFixturePath, loadPackageAtPath } from './helpers';
 
 jest.mock('execa');
 

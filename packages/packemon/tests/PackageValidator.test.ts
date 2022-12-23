@@ -1,10 +1,9 @@
 import execa from 'execa';
 import fs from 'fs-extra';
 import { Path } from '@boost/common';
-import { getFixturePath } from '@boost/test-utils';
 import { Package } from '../src/Package';
 import { PackageValidator } from '../src/PackageValidator';
-import { mockSpy } from './helpers';
+import { getFixturePath, mockSpy } from './helpers';
 
 jest.mock('execa');
 

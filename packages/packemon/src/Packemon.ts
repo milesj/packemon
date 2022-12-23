@@ -197,7 +197,7 @@ export class Packemon {
 		const parentDir = dir.parent();
 
 		// This is a special case to handle our fixtures
-		if (__TEST__ && parentDir.name() === '__fixtures__') {
+		if (process.env.NODE_ENV === 'test' && parentDir.name() === '__fixtures__') {
 			return dir;
 		}
 

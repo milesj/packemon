@@ -89,7 +89,7 @@ export class BuildCommand extends BaseCommand<Required<BuildOptions>> {
 
 		output.push('\n');
 
-		this.log(output.join('\n'));
+		this.log(output.join('\n').trim());
 	}
 
 	protected async pack(pkg: Package) {

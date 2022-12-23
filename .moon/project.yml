@@ -1,0 +1,21 @@
+$schema: 'https://moonrepo.dev/schemas/global-project.json'
+
+extends: 'https://raw.githubusercontent.com/moonrepo/dev/master/.moon/oss/project-packages.yml'
+
+tasks:
+  # Till V3 compat
+  build:
+    command: 'packemon'
+    args:
+      - 'build'
+      - '--addEngines'
+      - '--addExports'
+      - '--declaration'
+    inputs:
+      - '@globs(sources)'
+      - '@globs(typescript)'
+      - 'package.json'
+    outputs:
+      - 'lib'
+    env:
+      NODE_ENV: 'production'

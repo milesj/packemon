@@ -1,6 +1,5 @@
 /* eslint-disable no-param-reassign */
 import { Path } from '@boost/common';
-import { getFixturePath } from '@boost/test-utils';
 import { Artifact } from '../../src/Artifact';
 import { Package } from '../../src/Package';
 import {
@@ -8,6 +7,7 @@ import {
 	getRollupExternals,
 	getRollupOutputConfig,
 } from '../../src/rollup/config';
+import { getFixturePath } from '../helpers';
 
 jest.mock('@rollup/plugin-commonjs', () => () => 'commonjs()');
 jest.mock('@rollup/plugin-json', () => () => 'json()');

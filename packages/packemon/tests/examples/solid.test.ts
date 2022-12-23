@@ -1,6 +1,5 @@
 import { Path } from '@boost/common';
-import { getFixturePath } from '@boost/test-utils';
-import { testExampleOutput } from '../helpers';
+import { getFixturePath, testExampleOutput } from '../helpers';
 
 // Automatic only
 describe('Solid/JSX', () => {
