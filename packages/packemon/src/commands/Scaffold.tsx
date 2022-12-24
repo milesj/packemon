@@ -98,11 +98,7 @@ export class ScaffoldCommand extends Command {
 	async scaffoldMonorepoPackage(params: ScaffoldParams) {
 		const packagesDir = path.join(this.destDir, this.packagesFolder);
 
-		if (!fs.existsSync(packagesDir)) {
-			throw new Error(
-				`Cannot create a monorepo package as the monorepo infrastructure has not been scaffolded, or the ${this.packagesFolder} folder is missing. Please run \`packemon scaffold --template monorepo ${this.dest}\`.`,
-			);
-		}
+		fs.mkdirSync(packagesDir, { recursive: true });
 
 		const { packageName } = params;
 		const folderName = packageName.startsWith('@') ? packageName.split('/')[1] : packageName;
@@ -139,14 +135,9 @@ export class ScaffoldCommand extends Command {
 			tsconfig.references = [];
 		}
 
-		tsconfig.references.push(
-			{
-				path: packagePath,
-			},
-			{
-				path: path.join(packagePath, 'tests'),
-			},
-		);
+		tsconfig.references.push({
+			path: packagePath,
+		});
 
 		tsconfig.references.sort((a, b) => a.path.localeCompare(b.path));
 
@@ -207,11 +198,11 @@ export class ScaffoldCommand extends Command {
 
 		if (pkg.infra === undefined) {
 			throw new Error(
-				`A package.json already exists, cannot setup ${type} infrastructure. Perhaps you want "${type}-package"?`,
+				`A package.json already exists, cannot setup ${type}. Perhaps you want "${type}-package"?`,
 			);
 		} else if (pkg.infra !== type) {
 			throw new Error(
-				`Cannot scaffold ${type} infrastructure, as destination has already been setup as a ${pkg.infra}.`,
+				`Cannot scaffold ${type}, as destination has already been setup as a ${pkg.infra}.`,
 			);
 		}
 	}

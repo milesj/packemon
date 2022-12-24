@@ -28,10 +28,10 @@ installed and [pre-configured using moonrepo presets](https://github.com/moonrep
 
 Feel free to use the configuration as-is, or to modify, or to not use moon, the choice is yours!
 
-### React support
+### React/Solid support
 
-Scaffolded projects are not configured for React by default, but enabling React support is rather
-simple! Open the following files and remove the `// Uncomment if using React/JSX` comment and any
+Scaffolded projects are not configured for these libraries by default, but enabling support is rather
+simple! Open the following files and remove the `// Uncomment if using React/Solid` comment and any
 surrounding comments.
 
 - root `.eslintrc.js` (also replace `moon/node` with `moon/browser`)
@@ -42,8 +42,12 @@ surrounding comments.
 Don't forget to install the dependencies also!
 
 ```bash
+// React
 yarn add react react-dom
 yarn add --dev @types/react @types/react-dom
+
+// Solid
+yarn add solid-js
 ```
 
 ## Commands

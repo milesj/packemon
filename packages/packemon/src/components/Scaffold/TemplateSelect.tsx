@@ -12,8 +12,7 @@ export function TemplateSelect({ defaultTemplate, onSelect }: TemplateSelectProp
 		() => [
 			{ label: 'Monorepo infrastructure (many packages)', value: 'monorepo' },
 			{ label: 'Monorepo package', value: 'monorepo-package' },
-			{ label: 'Polyrepo infrastructure (single package)', value: 'polyrepo' },
-			{ label: 'Polyrepo package', value: 'polyrepo-package' },
+			{ label: 'Polyrepo (single package)', value: 'polyrepo-package' },
 		],
 		[],
 	);

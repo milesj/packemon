@@ -6,7 +6,9 @@ module.exports = {
 		'moon/node',
 		// Uncomment when targeting browsers
 		// 'moon/browser',
-		// Uncomment if using React/JSX
+		// Uncomment if using React
 		// 'moon/react',
+		// Uncomment if using Solid
+		// 'moon/solid',
 	],
 };
