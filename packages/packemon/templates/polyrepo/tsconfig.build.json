@@ -1,0 +1,12 @@
+// https://www.npmjs.com/package/tsconfig-moon
+{
+  "extends": "tsconfig-moon/tsconfig.json",
+  "compilerOptions": {
+    "declaration": true,
+    "declarationDir": "dts",
+    "emitDeclarationOnly": true,
+    "outDir": "dts",
+    "rootDir": "src"
+  },
+  "include": ["src/**/*", "types/**/*"]
+}

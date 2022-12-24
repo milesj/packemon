@@ -1,18 +1,12 @@
 {
   "extends": "../../tsconfig.options.json",
   "compilerOptions": {
-    "emitDeclarationOnly": false,
-    "noEmit": true
+    "outDir": "dts",
+    "rootDir": "src"
   },
   "include": [
     "src/**/*",
-    "tests/**/*",
     "types/**/*",
     "../../types/**/*"
-  ],
-  "references": [
-    {
-      "path": "tsconfig.build.json"
-    }
   ]
 }
