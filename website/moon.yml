@@ -7,17 +7,17 @@ workspace:
 tasks:
   build:
     command: 'docusaurus build'
+    deps: ['packemon:build']
     outputs:
       - '.docusaurus'
-    # env:
-    #   NODE_OPTIONS: '--openssl-legacy-provider'
+      - 'build'
 
   deploy:
     command: 'docusaurus deploy'
+    deps: ['packemon:build']
     local: true
 
   start:
     command: 'docusaurus start'
+    deps: ['packemon:build']
     local: true
-    # env:
-    #   NODE_OPTIONS: '--openssl-legacy-provider'
