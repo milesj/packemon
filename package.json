@@ -5,7 +5,7 @@
     "docs": "yarn run moon run website:start",
     "moon": "$(yarn bin moon)",
     "packemon": "node ./packages/packemon/cjs/bin.cjs",
-    "prerelease": "yarn run setup && yarn run moon check --all",
+    "prerelease": "yarn run setup && yarn run moon run :build",
     "release": "yarn prerelease && lerna-release",
     "setup": "node ./scripts/buildPackages.mjs",
     "version": "yarn install && git add yarn.lock"

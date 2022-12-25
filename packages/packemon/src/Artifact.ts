@@ -164,7 +164,7 @@ export class Artifact {
 				const args: string[] = [];
 
 				if (features.typescriptComposite) {
-					args.push('--build', `tsconfig.${build.format}.json`);
+					args.push('--build', '--force', `tsconfig.${build.format}.json`);
 				} else {
 					args.push(
 						'--declaration',

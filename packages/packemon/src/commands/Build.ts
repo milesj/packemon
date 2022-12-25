@@ -7,7 +7,7 @@ import { Package } from '../Package';
 import { BuildOptions } from '../types';
 import { BaseCommand } from './Base';
 
-@Config('build', 'Build standardized packages for distribution')
+@Config('build', 'Build a standardized package for distribution')
 export class BuildCommand extends BaseCommand<Required<BuildOptions>> {
 	@Arg.Flag('Add `engine` versions to each `package.json`')
 	addEngines: boolean = false;
