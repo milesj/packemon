@@ -8,7 +8,7 @@ import { getFixturePath, loadPackageAtPath } from './helpers';
 
 jest.mock('rollup', () => ({ rollup: jest.fn() }));
 
-describe('Packemon', () => {
+describe('Package', () => {
 	const fixturePath = getFixturePath('project');
 	let pkg: Package;
 
@@ -1019,17 +1019,13 @@ describe('Packemon', () => {
 			expect(pkg1.artifacts[0].builds).toEqual([{ format: 'lib' }]);
 
 			expect(pkg1.artifacts[1].inputs).toEqual({ index: 'src/index.ts' });
-			expect(pkg1.artifacts[1].builds).toEqual([{ format: 'esm' }, { format: 'lib' }]);
+			expect(pkg1.artifacts[1].builds).toEqual([{ format: 'esm' }]);
 
 			expect(pkg2.artifacts).toHaveLength(1);
 			expect(pkg2.artifacts[0].builds).toEqual([{ format: 'mjs' }]);
 
 			expect(pkg3.artifacts).toHaveLength(1);
-			expect(pkg3.artifacts[0].builds).toEqual([
-				{ format: 'esm' },
-				{ format: 'lib' },
-				{ format: 'umd' },
-			]);
+			expect(pkg3.artifacts[0].builds).toEqual([{ format: 'esm' }, { format: 'umd' }]);
 		});
 
 		it('generates type artifacts for each config in a package', () => {
@@ -1043,10 +1039,7 @@ describe('Packemon', () => {
 
 			expect(pkg1.artifacts).toHaveLength(2);
 			expect(pkg1.artifacts[0].builds).toEqual([{ declaration: true, format: 'lib' }]);
-			expect(pkg1.artifacts[1].builds).toEqual([
-				{ declaration: true, format: 'esm' },
-				{ declaration: true, format: 'lib' },
-			]);
+			expect(pkg1.artifacts[1].builds).toEqual([{ declaration: true, format: 'esm' }]);
 
 			expect(pkg2.artifacts).toHaveLength(1);
 			expect(pkg2.artifacts[0].builds).toEqual([{ declaration: true, format: 'mjs' }]);
@@ -1054,7 +1047,6 @@ describe('Packemon', () => {
 			expect(pkg3.artifacts).toHaveLength(1);
 			expect(pkg3.artifacts[0].builds).toEqual([
 				{ declaration: true, format: 'esm' },
-				{ declaration: true, format: 'lib' },
 				{ declaration: true, format: 'umd' },
 			]);
 		});
@@ -1064,7 +1056,7 @@ describe('Packemon', () => {
 
 			pkg.generateArtifacts({});
 
-			expect(pkg.artifacts[0].builds).toEqual([{ format: 'esm' }, { format: 'lib' }]);
+			expect(pkg.artifacts[0].builds).toEqual([{ format: 'esm' }]);
 			expect(pkg.artifacts[0].platform).toBe('browser');
 
 			expect(pkg.artifacts[1].builds).toEqual([{ format: 'mjs' }]);
@@ -1118,7 +1110,7 @@ describe('Packemon', () => {
 					api: 'private',
 					bundle: true,
 					externals: [],
-					formats: ['esm', 'lib'],
+					formats: ['esm'],
 					inputs: {},
 					platform: 'browser',
 					namespace: '',
@@ -1144,7 +1136,7 @@ describe('Packemon', () => {
 					api: 'private',
 					bundle: true,
 					externals: [],
-					formats: ['esm', 'lib', 'umd'],
+					formats: ['esm', 'umd'],
 					inputs: {},
 					platform: 'browser',
 					namespace: 'test',
@@ -1243,7 +1235,7 @@ describe('Packemon', () => {
 					api: 'private',
 					bundle: true,
 					externals: [],
-					formats: ['esm', 'lib'],
+					formats: ['esm'],
 					inputs: {},
 					platform: 'browser',
 					namespace: '',
@@ -1276,7 +1268,7 @@ describe('Packemon', () => {
 					api: 'private',
 					bundle: true,
 					externals: [],
-					formats: ['esm', 'lib'],
+					formats: ['esm'],
 					inputs: {},
 					platform: 'browser',
 					namespace: '',
@@ -1334,7 +1326,7 @@ describe('Packemon', () => {
 					api: 'public',
 					bundle: false,
 					externals: [],
-					formats: ['esm', 'lib'],
+					formats: ['esm'],
 					inputs: { index: 'src/index.ts' },
 					platform: 'browser',
 					namespace: '',
@@ -1355,7 +1347,7 @@ describe('Packemon', () => {
 					api: 'private',
 					bundle: true,
 					externals: ['foo', 'bar'],
-					formats: ['esm', 'lib'],
+					formats: ['esm'],
 					inputs: { index: 'src/index.ts' },
 					platform: 'browser',
 					namespace: '',
@@ -1376,7 +1368,7 @@ describe('Packemon', () => {
 					api: 'private',
 					bundle: true,
 					externals: ['foo'],
-					formats: ['esm', 'lib'],
+					formats: ['esm'],
 					inputs: { index: 'src/index.ts' },
 					platform: 'browser',
 					namespace: '',

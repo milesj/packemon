@@ -676,6 +676,60 @@ exports.wait = wait;
 
 exports[`Async/await babel transforms example test case: native-stable-lib 1`] = `
 [
+  "lib/index-native-legacy-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: legacy, Format: lib
+
+'use strict';
+
+async function wait() {
+  return new Promise(resolve => {
+    setTimeout(resolve, 100);
+  });
+}
+async function run() {
+  try {
+    await wait();
+  } catch {
+    throw new Error('Fail');
+  }
+}
+exports.run = run;
+exports.wait = wait;
+//# sourceMappingURL=index-native-legacy-lib.js.map
+",
+]
+`;
+
+exports[`Async/await babel transforms example test case: native-stable-lib 2`] = `
+[
+  "lib/index-native-legacy-lib.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: legacy, Format: lib
+
+'use strict';
+
+async function wait() {
+  return new Promise(resolve => {
+    setTimeout(resolve, 100);
+  });
+}
+async function run() {
+  try {
+    await wait();
+  } catch {
+    throw new Error('Fail');
+  }
+}
+exports.run = run;
+exports.wait = wait;
+//# sourceMappingURL=index-native-legacy-lib.js.map
+",
+]
+`;
+
+exports[`Async/await babel transforms example test case: native-stable-lib 3`] = `
+[
   "lib/index-native-stable-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: stable, Format: lib

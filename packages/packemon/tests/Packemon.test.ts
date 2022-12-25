@@ -223,7 +223,7 @@ describe('Packemon', () => {
 					api: 'private',
 					bundle: true,
 					externals: [],
-					formats: ['esm', 'lib'],
+					formats: ['esm'],
 					inputs: { index: 'src/index.ts' },
 					namespace: '',
 					platform: 'browser',

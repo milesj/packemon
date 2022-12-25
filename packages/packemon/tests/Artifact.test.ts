@@ -161,12 +161,12 @@ describe('Artifact', () => {
 
 			await artifact.buildTypes({ typescript: true, typescriptComposite: true });
 
-			expect(execa).toHaveBeenCalledWith('tsc', ['--build', 'tsconfig.cjs.json'], {
+			expect(execa).toHaveBeenCalledWith('tsc', ['--build', '--force', 'tsconfig.cjs.json'], {
 				cwd: fixturePath.path(),
 				preferLocal: true,
 			});
 
-			expect(execa).toHaveBeenCalledWith('tsc', ['--build', 'tsconfig.mjs.json'], {
+			expect(execa).toHaveBeenCalledWith('tsc', ['--build', '--force', 'tsconfig.mjs.json'], {
 				cwd: fixturePath.path(),
 				preferLocal: true,
 			});

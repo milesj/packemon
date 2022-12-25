@@ -322,7 +322,6 @@ export class Package {
 				name: this.getName(),
 			}).validate(cfg);
 
-			// eslint-disable-next-line complexity
 			toArray(config.platform).forEach((platform) => {
 				let { api, bundle } = config;
 				let formats = config.format ? [config.format] : [];
@@ -357,11 +356,6 @@ export class Package {
 
 						if (formats.length === 0) {
 							formats.push(DEFAULT_FORMATS.browser);
-						}
-
-						// Auto-support lib builds for test environments
-						if (formats.includes('esm') && !formats.includes('lib')) {
-							formats.push('lib');
 						}
 
 						if (config.namespace && !formats.includes('umd')) {
