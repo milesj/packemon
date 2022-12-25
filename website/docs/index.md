@@ -13,7 +13,7 @@ with the proper tooling and plugins, provide sane defaults and configurations, v
 requirements, and much more! By default Packemon will generate ECMAScript modules, but can be
 configured to support all formats.
 
-[Sound great? Let's get started!](./install.mdx)
+[Sound great? Let's get started!](./install)
 
 ## Features
 
@@ -27,7 +27,7 @@ configured to support all formats.
   polyfill what's truly necessary!
 - Generate and combine TypeScript declarations into a single public-only API representation.
 - Generate compact source maps for platform + format based builds.
-- [And many more...](./features.md)
+- [And many more...](./features)
 
 ## Requirements
 

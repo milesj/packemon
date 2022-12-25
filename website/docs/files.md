@@ -1,10 +1,9 @@
 ---
-title: Files
-sidebar_label: files
+title: files
 ---
 
 The `files` command will list all files within a package that will be distributed, based on the
-`files` property in `package.json` (if declared), and taking into account any ignore files. This is
+`files` property in `package.json` (if declared), and taking into account any ignored files. This is
 useful for verifying the contents of a package is what you expect before publishing.
 
 ```bash

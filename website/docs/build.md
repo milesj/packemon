@@ -1,6 +1,5 @@
 ---
-title: Build
-sidebar_label: build
+title: build
 ---
 
 Packemon was primarily designed and engineered for building packages. But what is building you ask?
@@ -31,12 +30,9 @@ Build supports the following command line options.
 - `--addFiles` - Add `files` whitelist entries to `package.json`.
 - `--concurrency` - Number of builds to run in parallel. Defaults to operating system CPU count.
 - `--declaration` - Generate TypeScript declarations for the package.
-- `--filter` - Filter packages to build based on their name in `package.json`.
-- `--formats`, `-f` - Only generate specific output `format`s.
 - `--loadConfigs` - Search and load config files for customizing Babel and Rollup.
-- `--platforms`, `-p` - Only target specific `platform`s.
 - `--skipPrivate` - Skip `private` packages from being built.
-- `--stamp` - Stamp all `package.json`s with a release timestamp.
+- `--stamp` - Stamp the `package.json` with a release timestamp.
 - `--timeout` - Timeout in milliseconds before a build is cancelled. Defaults to no timeout.
 
 > All filtering options support standard patterns (`foo-*`), comma separated lists (`foo,bar`), or
@@ -44,7 +40,7 @@ Build supports the following command line options.
 
 ## How it works
 
-When the build process is ran, Packemon will find all viable packages within the current project and
+When the build process is ran, Packemon will find a viable package within the current directry and
 generate build artifacts. A build artifact is an output file that _will be_ distributed with the npm
 package, but _will **not** be_ committed to the project (ideally git ignored).
 

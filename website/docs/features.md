@@ -278,8 +278,8 @@ import { name } from 'package';
 
 ## CommonJS & ECMAScript interoperability
 
-Packemon by default encourages [ECMAScript modules](./esm.md), but not everyone is there yet. To
-bridge this gap, we enable the
+Packemon by default encourages [ECMAScript modules](./esm), but not everyone is there yet. To bridge
+this gap, we enable the
 [babel-plugin-cjs-esm-interop](https://www.npmjs.com/package/babel-plugin-cjs-esm-interop) plugin,
 which transforms CommonJS code (`.cjs`, `.js`) into ECMAScript module code (`.mjs`, `.js` with
 module type), and vice versa, based on the

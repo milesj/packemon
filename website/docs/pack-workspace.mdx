@@ -1,0 +1,19 @@
+---
+title: pack-workspace
+---
+
+Like [`pack`](./build), but when ran in the monorepo root, will pack _all_ packages in the
+workspace, as denoted by the `workspaces` field in `package.json`.
+
+```json title="package.json"
+{
+  "scripts": {
+    "pack": "packemon pack-workspace --addEngines --declaration",
+    "release": "yarn run pack && yarn publish"
+  }
+}
+```
+
+## Options
+
+Supports all the same command line options as [`build-workspace`](./build-workspace).

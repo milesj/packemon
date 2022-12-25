@@ -1,14 +1,13 @@
 ---
-title: Watch
-sidebar_label: watch
+title: watch
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 The `watch` command will monitor the local file system for any changes and trigger a
-[rebuild](./build.md) for affected package(s). The watcher will only monitor files within the `src`
-folder of each found package, and will rebuild using default build options.
+[rebuild](./build) for a package. The watcher will only monitor files within the `src` folder of the
+package, and will rebuild using default build options.
 
 ```json title="package.json"
 {

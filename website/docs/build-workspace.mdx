@@ -1,0 +1,22 @@
+---
+title: build-workspace
+---
+
+Like [`build`](./build), but when ran in the monorepo root, will build _all_ packages in the
+workspace, as denoted by the `workspaces` field in `package.json`.
+
+```json title="package.json"
+{
+  "scripts": {
+    "build": "packemon build-workspace --addEngines"
+  }
+}
+```
+
+## Options
+
+Supports all the same command line options as [`build`](./build), with the addition of:
+
+- `--filter` - Filter packages to build based on their name in `package.json`.
+- `--formats`, `-f` - Only generate specific output `format`s.
+- `--platforms`, `-p` - Only target specific `platform`s.

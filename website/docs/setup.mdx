@@ -10,8 +10,8 @@ workspaces (monorepos) or single packages (polyrepo). By default, only packages 
 Packemon will be built (denoted by a `packemon` block in `package.json`). This allows specific
 packages to be completely ignored if need be.
 
-To ease the setup process, Packemon provides an interactive [`init`](./init.md) command that will
-configure each package one-by-one. This _must_ be ran in the project root.
+To ease the setup process, Packemon provides an interactive [`init`](./init) command that will
+configure each package one-by-one. This _must_ be ran in each project.
 
 ```bash
 packemon init
@@ -24,7 +24,7 @@ requirements.
 
 - Each package _must_ contain a `package.json` (of course).
 - Each package _must_ have a source folder named `src`. Builds will output relative to this.
-- Each package _must_ have a source entry point, typically a `src/index.(js|ts)` file.
+- Each package _must_ have a source entry point, typically a `src/index.*` file.
 - Each package may contain a `tsconfig.json`.
 - Each package should contain a `LICENSE(.md)?` and `README(.md)?`.
 
@@ -87,7 +87,7 @@ declaration generation only.
 ### Enable emitting
 
 The `noEmit` setting should _only_ be used on the command line (via an npm script) and should not be
-configured explicitly. We require emitting of declarations.
+configured explicitly. We require emitting of declarations (only for the build oriented config).
 
 ```diff title="tsconfig.json"
 {

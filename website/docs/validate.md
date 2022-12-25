@@ -1,6 +1,5 @@
 ---
-title: Validate
-sidebar_label: validate
+title: validate
 ---
 
 Before a package can be published, there are many requirements that should be checked and validated.
@@ -8,8 +7,8 @@ Does the package have a valid entry point? Does it have a license? Is the `packa
 correctly? So on and so forth.
 
 The `validate` command does just that and can be used to validate an array of options as a thorough
-pre-publish step. It accomplishes this by inspecting each package's `package.json` and
-[build artifacts](./build.md).
+pre-publish step. It accomplishes this by inspecting the package's `package.json` and
+[build artifacts](./build).
 
 ```json title="package.json"
 {

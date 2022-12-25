@@ -1,6 +1,5 @@
 ---
-title: Scaffold
-sidebar_label: scaffold
+title: scaffold
 ---
 
 The `scaffold` command is an interactive prompt that scaffolds a project or package from scratch. It
@@ -49,19 +48,13 @@ first!
 - Configures package `tsconfig.json`s to use project references.
 - Adds a reference to the root `tsconfig.json`.
 
-### `polyrepo`
+### `polyrepo-package`
 
-Structures a project to be a polyrepo of 1 package.
+Structures a project to be a polyrepo. Creates a single npm package within the current folder.
 
 - Creates config files for common developer tools (Babel, ESLint, Jest, TypeScript, etc), based on
   [moonrepo presets](https://github.com/moonrepo/dev).
-- Configures `package.json` with pre-defined scripts.
-- Configures `tsconfig.json` for type-checking.
-
-### `polyrepo-package`
-
-Creates a single npm package within the current folder. This will scaffold `polyrepo` if it hasn't
-been!
-
 - Creates `src` and `tests` folders with example TypeScript files.
 - Creates a `package.json` with information gathered from the prompts.
+- Configures `package.json` with pre-defined scripts.
+- Configures `tsconfig.json` for type-checking.
