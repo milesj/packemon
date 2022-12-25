@@ -105,7 +105,7 @@ describe('Config files', () => {
 					plugins: expect.arrayContaining([
 						{
 							features: expect.any(Object),
-							format: 'lib',
+							format: 'esm',
 							name: 'baz-plugin',
 							platform: 'browser',
 							support: 'stable',
@@ -117,7 +117,7 @@ describe('Config files', () => {
 									'baz-plugin',
 									{
 										features: expect.any(Object),
-										format: 'lib',
+										format: 'esm',
 										platform: 'browser',
 										support: 'stable',
 									},
@@ -250,7 +250,7 @@ describe('Config files', () => {
 					plugins: expect.arrayContaining([
 						{
 							features: expect.any(Object),
-							format: 'lib',
+							format: 'esm',
 							name: 'baz-plugin',
 							platform: 'browser',
 							support: 'stable',
@@ -262,7 +262,7 @@ describe('Config files', () => {
 									'baz-plugin',
 									{
 										features: expect.any(Object),
-										format: 'lib',
+										format: 'esm',
 										platform: 'browser',
 										support: 'stable',
 									},
@@ -356,7 +356,7 @@ describe('Config files', () => {
 						{
 							name: 'poly-plugin-output',
 							features: expect.any(Object),
-							format: 'lib',
+							format: 'esm',
 							platform: 'browser',
 							support: 'stable',
 						},
@@ -367,7 +367,7 @@ describe('Config files', () => {
 									'poly-plugin-output',
 									{
 										features: expect.any(Object),
-										format: 'lib',
+										format: 'esm',
 										platform: 'browser',
 										support: 'stable',
 									},
@@ -406,7 +406,7 @@ describe('Config files', () => {
 						{
 							name: 'poly-plugin-output',
 							features: {},
-							format: 'lib',
+							format: 'esm',
 							platform: 'browser',
 							support: 'stable',
 						},
@@ -417,7 +417,7 @@ describe('Config files', () => {
 									'poly-plugin-output',
 									{
 										features: {},
-										format: 'lib',
+										format: 'esm',
 										platform: 'browser',
 										support: 'stable',
 									},
