@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 3.0.0-alpha.2 - 2023-01-06
+
+#### 🐞 Fixes
+
+- Don't set `lib` format when using `esm`. (#172)
+  ([0534522](https://github.com/milesj/packemon/commit/0534522)), closes
+  [#172](https://github.com/milesj/packemon/issues/172)
+
+**Note:** Version bump only for package packemon
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # 3.0.0-alpha.1 - 2022-12-25
 
 #### 💥 Breaking
