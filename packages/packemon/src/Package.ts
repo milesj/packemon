@@ -324,7 +324,7 @@ export class Package {
 
 			toArray(config.platform).forEach((platform) => {
 				let { api, bundle } = config;
-				let formats = config.format ? [config.format] : [];
+				let formats = toArray(config.format);
 
 				switch (platform) {
 					case 'native':

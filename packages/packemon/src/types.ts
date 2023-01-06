@@ -68,7 +68,7 @@ export interface PackemonPackageConfig {
 	api?: ApiType;
 	bundle?: boolean;
 	externals?: string[] | string;
-	format?: Format;
+	format?: Format | Format[];
 	inputs?: InputMap;
 	namespace?: string;
 	platform?: Platform | Platform[];

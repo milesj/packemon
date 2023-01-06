@@ -142,6 +142,14 @@ project root that will house the built files.
 }
 ```
 
+To support multiple formats, pass an array.
+
+```json
+{
+  "format": ["lib", "esm"]
+}
+```
+
 ## Inputs
 
 A mapping of entry points for the library (only when [bundling](#bundle)), where the object key is
