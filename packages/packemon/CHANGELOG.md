@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 3.0.0-alpha.3 - 2023-01-08
+
+#### 🐞 Fixes
+
+- Allow multiple formats to be passed.
+  ([5ade653](https://github.com/milesj/packemon/commit/5ade653))
+
+#### 📦 Dependencies
+
+- **[moon]** Update to v0.21.4. ([3d76410](https://github.com/milesj/packemon/commit/3d76410))
+- **[rollup]** Update to v3.9. ([108be07](https://github.com/milesj/packemon/commit/108be07))
+- **[swc]** Update to v1.3.24. ([f230944](https://github.com/milesj/packemon/commit/f230944))
+
+**Note:** Version bump only for package packemon
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ### 3.0.0-alpha.2 - 2023-01-06
 
 #### 🐞 Fixes
