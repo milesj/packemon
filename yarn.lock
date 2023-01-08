@@ -5181,22 +5181,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/plugin-commonjs@npm:^23.0.2":
-  version: 23.0.2
-  resolution: "@rollup/plugin-commonjs@npm:23.0.2"
+"@rollup/plugin-commonjs@npm:^24.0.0":
+  version: 24.0.0
+  resolution: "@rollup/plugin-commonjs@npm:24.0.0"
   dependencies:
     "@rollup/pluginutils": ^5.0.1
     commondir: ^1.0.1
     estree-walker: ^2.0.2
     glob: ^8.0.3
     is-reference: 1.2.1
-    magic-string: ^0.26.4
+    magic-string: ^0.27.0
   peerDependencies:
     rollup: ^2.68.0||^3.0.0
   peerDependenciesMeta:
     rollup:
       optional: true
-  checksum: bd203a6e6fbcdc523f5d47a8a9e6b719f853270fbfa608c636124c213ec4b2a15026121e1e4faa820f52546425050f4c833bbf6bc58959909025cbc99c6d5df3
+  checksum: e2a1bf295bbb45ab56747f7ce636d4b94046bfecc758a64c7276823b80271e0ba1196642c232aa61d1b1a98abeaddad45486c7227ec19a97d19d16f7661d49a6
   languageName: node
   linkType: hard
 
@@ -16747,7 +16747,7 @@ __metadata:
     "@boost/pipeline": ^4.0.0
     "@boost/terminal": ^4.0.0
     "@rollup/plugin-babel": ^6.0.3
-    "@rollup/plugin-commonjs": ^23.0.2
+    "@rollup/plugin-commonjs": ^24.0.0
     "@rollup/plugin-json": ^5.0.1
     "@rollup/plugin-node-resolve": ^15.0.1
     "@swc/cli": ^0.1.57
