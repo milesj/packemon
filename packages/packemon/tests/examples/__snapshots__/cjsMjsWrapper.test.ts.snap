@@ -3120,8 +3120,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
   __proto__: null,
-  foo,
-  bar
+  bar,
+  foo
 }, Symbol.toStringTag, {
   value: 'Module'
 }));
@@ -3163,8 +3163,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  foo,
-  bar
+  bar,
+  foo
 });
 let a = 'abc';
 const b = 123;
@@ -3239,8 +3239,8 @@ exports[`CJS -> MJS wrapper babel transforms example test case: browser-current-
   function bar() {}
   const helpers = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    foo,
-    bar
+    bar,
+    foo
   });
   _exports.ns3 = _exports.ns2 = _exports.ns1 = helpers;
   let a = 'abc';
@@ -3285,8 +3285,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
   __proto__: null,
-  foo,
-  bar
+  bar,
+  foo
 }, Symbol.toStringTag, {
   value: 'Module'
 }));
@@ -3328,8 +3328,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  foo,
-  bar
+  bar,
+  foo
 });
 let a = 'abc';
 const b = 123;
@@ -3404,8 +3404,8 @@ exports[`CJS -> MJS wrapper babel transforms example test case: browser-experime
   function bar() {}
   const helpers = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    foo,
-    bar
+    bar,
+    foo
   });
   _exports.ns3 = _exports.ns2 = _exports.ns1 = helpers;
   let a = 'abc';
@@ -3458,8 +3458,8 @@ function foo() {}
 function bar() {}
 var helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
   __proto__: null,
-  foo: foo,
-  bar: bar
+  bar: bar,
+  foo: foo
 }, Symbol.toStringTag, {
   value: 'Module'
 }));
@@ -3512,8 +3512,8 @@ function foo() {}
 function bar() {}
 var helpers = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  foo: foo,
-  bar: bar
+  bar: bar,
+  foo: foo
 });
 var a = 'abc';
 var b = 123;
@@ -3599,8 +3599,8 @@ exports[`CJS -> MJS wrapper babel transforms example test case: browser-legacy-u
   function bar() {}
   var helpers = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    foo: foo,
-    bar: bar
+    bar: bar,
+    foo: foo
   });
   _exports.ns3 = _exports.ns2 = _exports.ns1 = helpers;
   var a = 'abc';
@@ -3649,8 +3649,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
   __proto__: null,
-  foo,
-  bar
+  bar,
+  foo
 }, Symbol.toStringTag, {
   value: 'Module'
 }));
@@ -3692,8 +3692,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  foo,
-  bar
+  bar,
+  foo
 });
 let a = 'abc';
 const b = 123;
@@ -3768,8 +3768,8 @@ exports[`CJS -> MJS wrapper babel transforms example test case: browser-stable-u
   function bar() {}
   const helpers = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    foo,
-    bar
+    bar,
+    foo
   });
   _exports.ns3 = _exports.ns2 = _exports.ns1 = helpers;
   let a = 'abc';
@@ -3814,8 +3814,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
   __proto__: null,
-  foo,
-  bar
+  bar,
+  foo
 }, Symbol.toStringTag, {
   value: 'Module'
 }));
@@ -3857,8 +3857,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  foo,
-  bar
+  bar,
+  foo
 });
 let a = 'abc';
 const b = 123;
@@ -3909,8 +3909,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
   __proto__: null,
-  foo,
-  bar
+  bar,
+  foo
 }, Symbol.toStringTag, {
   value: 'Module'
 }));
@@ -3952,8 +3952,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  foo,
-  bar
+  bar,
+  foo
 });
 let a = 'abc';
 const b = 123;
@@ -4004,8 +4004,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
   __proto__: null,
-  foo,
-  bar
+  bar,
+  foo
 }, Symbol.toStringTag, {
   value: 'Module'
 }));
@@ -4047,8 +4047,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  foo,
-  bar
+  bar,
+  foo
 });
 let a = 'abc';
 const b = 123;
@@ -4099,8 +4099,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
   __proto__: null,
-  foo,
-  bar
+  bar,
+  foo
 }, Symbol.toStringTag, {
   value: 'Module'
 }));
@@ -4142,8 +4142,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  foo,
-  bar
+  bar,
+  foo
 });
 let a = 'abc';
 const b = 123;
@@ -4199,8 +4199,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  foo,
-  bar
+  bar,
+  foo
 });
 let a = 'abc';
 const b = 123;
@@ -4256,8 +4256,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  foo,
-  bar
+  bar,
+  foo
 });
 let a = 'abc';
 const b = 123;
@@ -4313,8 +4313,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  foo,
-  bar
+  bar,
+  foo
 });
 let a = 'abc';
 const b = 123;
@@ -4370,8 +4370,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  foo,
-  bar
+  bar,
+  foo
 });
 let a = 'abc';
 const b = 123;
@@ -4440,8 +4440,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  foo,
-  bar
+  bar,
+  foo
 });
 let a = 'abc';
 const b = 123;
@@ -4497,8 +4497,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  foo,
-  bar
+  bar,
+  foo
 });
 let a = 'abc';
 const b = 123;
@@ -4549,8 +4549,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
   __proto__: null,
-  foo,
-  bar
+  bar,
+  foo
 }, Symbol.toStringTag, {
   value: 'Module'
 }));
@@ -4605,8 +4605,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  foo,
-  bar
+  bar,
+  foo
 });
 let a = 'abc';
 const b = 123;
@@ -4662,8 +4662,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  foo,
-  bar
+  bar,
+  foo
 });
 let a = 'abc';
 const b = 123;
@@ -4714,8 +4714,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
   __proto__: null,
-  foo,
-  bar
+  bar,
+  foo
 }, Symbol.toStringTag, {
   value: 'Module'
 }));
@@ -4770,8 +4770,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  foo,
-  bar
+  bar,
+  foo
 });
 let a = 'abc';
 const b = 123;
@@ -4827,8 +4827,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  foo,
-  bar
+  bar,
+  foo
 });
 let a = 'abc';
 const b = 123;
@@ -4879,8 +4879,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
   __proto__: null,
-  foo,
-  bar
+  bar,
+  foo
 }, Symbol.toStringTag, {
   value: 'Module'
 }));
@@ -4935,8 +4935,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  foo,
-  bar
+  bar,
+  foo
 });
 let a = 'abc';
 const b = 123;
@@ -4992,8 +4992,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  foo,
-  bar
+  bar,
+  foo
 });
 let a = 'abc';
 const b = 123;
@@ -5044,8 +5044,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
   __proto__: null,
-  foo,
-  bar
+  bar,
+  foo
 }, Symbol.toStringTag, {
   value: 'Module'
 }));
@@ -5081,8 +5081,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty({
     __proto__: null,
-    foo,
-    bar
+    bar,
+    foo
 }, Symbol.toStringTag, {
     value: 'Module'
 }));
@@ -5122,8 +5122,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/ Object.freeze({
     __proto__: null,
-    foo,
-    bar
+    bar,
+    foo
 });
 let a = 'abc';
 const b = 123;
@@ -5208,8 +5208,8 @@ exports[`CJS -> MJS wrapper swc transforms example test case: browser-current-um
     function bar() {}
     const helpers = /*#__PURE__*/ Object.freeze({
         __proto__: null,
-        foo,
-        bar
+        bar,
+        foo
     });
     let a = 'abc';
     const b = 123;
@@ -5242,8 +5242,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty({
     __proto__: null,
-    foo,
-    bar
+    bar,
+    foo
 }, Symbol.toStringTag, {
     value: 'Module'
 }));
@@ -5283,8 +5283,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/ Object.freeze({
     __proto__: null,
-    foo,
-    bar
+    bar,
+    foo
 });
 let a = 'abc';
 const b = 123;
@@ -5369,8 +5369,8 @@ exports[`CJS -> MJS wrapper swc transforms example test case: browser-experiment
     function bar() {}
     const helpers = /*#__PURE__*/ Object.freeze({
         __proto__: null,
-        foo,
-        bar
+        bar,
+        foo
     });
     let a = 'abc';
     const b = 123;
@@ -5408,8 +5408,8 @@ function foo() {}
 function bar() {}
 var helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty({
     __proto__: null,
-    foo: foo,
-    bar: bar
+    bar: bar,
+    foo: foo
 }, Symbol.toStringTag, {
     value: 'Module'
 }));
@@ -5456,8 +5456,8 @@ function foo() {}
 function bar() {}
 var helpers = /*#__PURE__*/ Object.freeze({
     __proto__: null,
-    foo: foo,
-    bar: bar
+    bar: bar,
+    foo: foo
 });
 var a = 'abc';
 var b = 123;
@@ -5581,8 +5581,8 @@ exports[`CJS -> MJS wrapper swc transforms example test case: browser-legacy-umd
     function bar() {}
     var helpers = /*#__PURE__*/ Object.freeze({
         __proto__: null,
-        foo: foo,
-        bar: bar
+        bar: bar,
+        foo: foo
     });
     var a = 'abc';
     var b = 123;
@@ -5617,8 +5617,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty({
     __proto__: null,
-    foo,
-    bar
+    bar,
+    foo
 }, Symbol.toStringTag, {
     value: 'Module'
 }));
@@ -5658,8 +5658,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/ Object.freeze({
     __proto__: null,
-    foo,
-    bar
+    bar,
+    foo
 });
 let a = 'abc';
 const b = 123;
@@ -5744,8 +5744,8 @@ exports[`CJS -> MJS wrapper swc transforms example test case: browser-stable-umd
     function bar() {}
     const helpers = /*#__PURE__*/ Object.freeze({
         __proto__: null,
-        foo,
-        bar
+        bar,
+        foo
     });
     let a = 'abc';
     const b = 123;
@@ -5778,8 +5778,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty({
     __proto__: null,
-    foo,
-    bar
+    bar,
+    foo
 }, Symbol.toStringTag, {
     value: 'Module'
 }));
@@ -5819,8 +5819,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/ Object.freeze({
     __proto__: null,
-    foo,
-    bar
+    bar,
+    foo
 });
 let a = 'abc';
 const b = 123;
@@ -5870,8 +5870,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty({
     __proto__: null,
-    foo,
-    bar
+    bar,
+    foo
 }, Symbol.toStringTag, {
     value: 'Module'
 }));
@@ -5911,8 +5911,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/ Object.freeze({
     __proto__: null,
-    foo,
-    bar
+    bar,
+    foo
 });
 let a = 'abc';
 const b = 123;
@@ -5962,8 +5962,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty({
     __proto__: null,
-    foo,
-    bar
+    bar,
+    foo
 }, Symbol.toStringTag, {
     value: 'Module'
 }));
@@ -6003,8 +6003,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/ Object.freeze({
     __proto__: null,
-    foo,
-    bar
+    bar,
+    foo
 });
 let a = 'abc';
 const b = 123;
@@ -6054,8 +6054,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty({
     __proto__: null,
-    foo,
-    bar
+    bar,
+    foo
 }, Symbol.toStringTag, {
     value: 'Module'
 }));
@@ -6095,8 +6095,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/ Object.freeze({
     __proto__: null,
-    foo,
-    bar
+    bar,
+    foo
 });
 let a = 'abc';
 const b = 123;
@@ -6150,8 +6150,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/ Object.freeze({
     __proto__: null,
-    foo,
-    bar
+    bar,
+    foo
 });
 let a = 'abc';
 const b = 123;
@@ -6205,8 +6205,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/ Object.freeze({
     __proto__: null,
-    foo,
-    bar
+    bar,
+    foo
 });
 let a = 'abc';
 const b = 123;
@@ -6260,8 +6260,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/ Object.freeze({
     __proto__: null,
-    foo,
-    bar
+    bar,
+    foo
 });
 let a = 'abc';
 const b = 123;
@@ -6315,8 +6315,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/ Object.freeze({
     __proto__: null,
-    foo,
-    bar
+    bar,
+    foo
 });
 let a = 'abc';
 const b = 123;
@@ -6383,8 +6383,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/ Object.freeze({
     __proto__: null,
-    foo,
-    bar
+    bar,
+    foo
 });
 let a = 'abc';
 const b = 123;
@@ -6438,8 +6438,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/ Object.freeze({
     __proto__: null,
-    foo,
-    bar
+    bar,
+    foo
 });
 let a = 'abc';
 const b = 123;
@@ -6489,8 +6489,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty({
     __proto__: null,
-    foo,
-    bar
+    bar,
+    foo
 }, Symbol.toStringTag, {
     value: 'Module'
 }));
@@ -6543,8 +6543,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/ Object.freeze({
     __proto__: null,
-    foo,
-    bar
+    bar,
+    foo
 });
 let a = 'abc';
 const b = 123;
@@ -6598,8 +6598,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/ Object.freeze({
     __proto__: null,
-    foo,
-    bar
+    bar,
+    foo
 });
 let a = 'abc';
 const b = 123;
@@ -6649,8 +6649,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty({
     __proto__: null,
-    foo,
-    bar
+    bar,
+    foo
 }, Symbol.toStringTag, {
     value: 'Module'
 }));
@@ -6703,8 +6703,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/ Object.freeze({
     __proto__: null,
-    foo,
-    bar
+    bar,
+    foo
 });
 let a = 'abc';
 const b = 123;
@@ -6758,8 +6758,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/ Object.freeze({
     __proto__: null,
-    foo,
-    bar
+    bar,
+    foo
 });
 let a = 'abc';
 const b = 123;
@@ -6809,8 +6809,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty({
     __proto__: null,
-    foo,
-    bar
+    bar,
+    foo
 }, Symbol.toStringTag, {
     value: 'Module'
 }));
@@ -6863,8 +6863,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/ Object.freeze({
     __proto__: null,
-    foo,
-    bar
+    bar,
+    foo
 });
 let a = 'abc';
 const b = 123;
@@ -6918,8 +6918,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/ Object.freeze({
     __proto__: null,
-    foo,
-    bar
+    bar,
+    foo
 });
 let a = 'abc';
 const b = 123;
@@ -6969,8 +6969,8 @@ function foo() {}
 function bar() {}
 const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty({
     __proto__: null,
-    foo,
-    bar
+    bar,
+    foo
 }, Symbol.toStringTag, {
     value: 'Module'
 }));
