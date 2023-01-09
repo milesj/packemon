@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 3.0.0-alpha.4 - 2023-01-09
+
+#### 🐞 Fixes
+
+- Fix format validation issues. ([89a5a2f](https://github.com/milesj/packemon/commit/89a5a2f))
+
+**Note:** Version bump only for package packemon
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ### 3.0.0-alpha.3 - 2023-01-08
 
 #### 🐞 Fixes
