@@ -68,7 +68,9 @@ export const packemonBlueprint: Blueprint<PackemonPackageConfig> = {
 	api: string('private').oneOf<ApiType>(['public', 'private']),
 	bundle: bool(true),
 	externals: union([]).of([string(), array().of(string())]),
-	format,
+	format: union(undefined)
+		.of([format, array().of(format)])
+		.undefinable(),
 	inputs: object({ index: DEFAULT_INPUT })
 		.of(string())
 		.keysOf(string().match(/^[a-zA-Z0-9-_]+$/u)),

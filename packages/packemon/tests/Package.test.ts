@@ -1254,6 +1254,17 @@ describe('Package', () => {
 			]);
 		});
 
+		it('sets multiple formats', () => {
+			pkg.setConfigs([
+				{
+					inputs: {},
+					format: ['lib', 'esm'],
+				},
+			]);
+
+			expect(pkg.configs[0].formats).toEqual(['lib', 'esm']);
+		});
+
 		it('filters and divides formats for multiple platforms', () => {
 			pkg.setConfigs([
 				{
