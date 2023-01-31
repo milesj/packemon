@@ -1,5 +1,30 @@
 # Change Log
 
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+### 3.0.0 - 2023-01-31
+
+#### 📦 Dependencies
+
+- **[fs-extra]** Update to v11. ([41c627f](https://github.com/milesj/packemon/commit/41c627f))
+- **[rollup-plugin-node-externals]** Update to v5.1. ([10b6dc8](https://github.com/milesj/packemon/commit/10b6dc8))
+- **[rollup-plugin-polyfill-node]** Update to v0.12. ([0fc6c06](https://github.com/milesj/packemon/commit/0fc6c06))
+- **[rollup]** Update to v3.12. ([da5117c](https://github.com/milesj/packemon/commit/da5117c))
+- **[swc]** Update to v1.3.31. ([4125717](https://github.com/milesj/packemon/commit/4125717))
+
+#### 🛠 Internals
+
+- Random updates. ([6db2c12](https://github.com/milesj/packemon/commit/6db2c12))
+
+**Note:** Version bump only for package packemon
+
+
+
+
+
+# Change Log
+
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
