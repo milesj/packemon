@@ -1,9 +1,8 @@
-$schema: 'https://moonrepo.dev/schemas/global-project.json'
+$schema: 'https://moonrepo.dev/schemas/tasks.json'
 
-extends: 'https://raw.githubusercontent.com/moonrepo/dev/master/.moon/oss/project-packages.yml'
+extends: 'https://raw.githubusercontent.com/moonrepo/dev/master/.moon/tasks/node.yml'
 
 tasks:
-  # Till V3 compat
   build:
     command: 'packemon'
     args:
