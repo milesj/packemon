@@ -121,6 +121,7 @@ export function createSnapshotSpies(root: PortablePath, captureJson: boolean = f
 			// Rollup
 			jest.spyOn(fs.promises, 'writeFile').mockImplementation(asyncHandler),
 			// Packemon
+			// @ts-expect-error Bad types
 			jest.spyOn(fsx, 'writeJson').mockImplementation(handler),
 			// Assets
 			jest.spyOn(fsx, 'copyFile').mockImplementation(handler),
