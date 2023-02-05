@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 3.0.1 - 2023-02-05
+
+#### 🐞 Fixes
+
+- Dont validate packages if theres no packemon block. (#178) ([e355314](https://github.com/milesj/packemon/commit/e355314)), closes [#178](https://github.com/milesj/packemon/issues/178)
+
+**Note:** Version bump only for package packemon
+
+
+
+
+
 ### 3.0.0 - 2023-01-31
 
 #### 📦 Dependencies
