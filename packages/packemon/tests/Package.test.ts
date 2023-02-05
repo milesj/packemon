@@ -51,6 +51,17 @@ describe('Package', () => {
 		);
 	});
 
+	it('supports packages without a `packemon` block', () => {
+		expect(() => {
+			pkg = new Package(new Path(getFixturePath('project')), {
+				name: 'test',
+				version: '0.0.0',
+				description: 'Test',
+				keywords: ['test'],
+			});
+		}).not.toThrow();
+	});
+
 	describe('build()', () => {
 		let writeSpy: jest.SpyInstance;
 		let config: ConfigFile;
