@@ -51,20 +51,22 @@ export class Package {
 
 	readonly workspaceRoot: Path;
 
-	constructor(path: Path, contents: PackemonPackage, workspaceRoot?: Path) {
+	constructor(path: Path, contents: Partial<PackemonPackage>, workspaceRoot?: Path) {
 		this.path = path;
 		this.jsonPath = this.path.append('package.json');
-		this.json = contents;
+		this.json = contents as PackemonPackage;
 		this.workspaceRoot = workspaceRoot ?? path;
 		this.debug = createDebugger(['packemon', 'package', this.getSlug()]);
 
-		if (!isObject(contents.packemon) && !Array.isArray(contents.packemon)) {
-			throw new Error(
-				`Invalid \`packemon\` configuration for ${contents.name}, must be an object or array of objects.`,
-			);
-		}
+		if (contents.packemon) {
+			if (!isObject(contents.packemon) && !Array.isArray(contents.packemon)) {
+				throw new Error(
+					`Invalid \`packemon\` configuration for ${contents.name}, must be an object or array of objects.`,
+				);
+			}
 
-		this.setConfigs(toArray(contents.packemon));
+			this.setConfigs(toArray(contents.packemon));
+		}
 	}
 
 	async build(options: BuildOptions, packemonConfig: ConfigFile): Promise<void> {
