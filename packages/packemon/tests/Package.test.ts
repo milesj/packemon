@@ -782,19 +782,26 @@ describe('Package', () => {
 
 		// https://github.com/milesj/packemon/issues/42#issuecomment-808793241
 		it('private api: uses inputs as subpath imports', async () => {
-			const a = createCodeArtifact([{ format: 'cjs' }]);
+			const a = createCodeArtifact([{ format: 'cjs', declaration: true }]);
 			a.api = 'private';
 			a.inputs = { index: 'src/node.ts' };
 
-			const b = createCodeArtifact([{ format: 'lib' }]);
+			const b = createCodeArtifact([{ format: 'lib', declaration: true }]);
 			b.api = 'private';
 			b.inputs = { bin: 'src/cli.ts' };
 
-			const c = createCodeArtifact([{ format: 'lib' }, { format: 'esm' }], 'browser', 'current');
+			const c = createCodeArtifact(
+				[
+					{ format: 'lib', declaration: true },
+					{ format: 'esm', declaration: true },
+				],
+				'browser',
+				'current',
+			);
 			c.api = 'private';
 			c.inputs = { web: 'src/web.ts' };
 
-			const d = createCodeArtifact([{ format: 'mjs' }], 'node', 'current');
+			const d = createCodeArtifact([{ format: 'mjs', declaration: true }], 'node', 'current');
 			d.api = 'private';
 			d.inputs = { import: 'src/web.ts' };
 
@@ -808,39 +815,56 @@ describe('Package', () => {
 					bin: './lib/bin.js',
 					exports: {
 						'./package.json': './package.json',
-						'.': { node: { import: './cjs/index-wrapper.mjs', require: './cjs/index.cjs' } },
-						'./bin': { node: './lib/bin.js', default: './lib/bin.js' },
+						'.': {
+							node: {
+								import: './cjs/index-wrapper.mjs',
+								require: './cjs/index.cjs',
+								types: './cjs/node.d.ts',
+							},
+						},
+						'./bin': {
+							node: { default: './lib/bin.js', types: './lib/cli.d.ts' },
+							default: './lib/bin.js',
+						},
 						'./web': {
 							browser: {
 								import: './esm/web.js',
 								module: './esm/web.js',
 								default: './lib/web.js',
+								types: './esm/web.d.ts',
 							},
 							default: './lib/web.js',
 						},
-						'./import': { node: { import: './mjs/import.mjs' } },
+						'./import': { node: { import: './mjs/import.mjs', types: './mjs/web.d.ts' } },
 					},
 				}),
 			);
 		});
 
 		it('public api + bundle: uses inputs as subpath imports (non-deep imports)', async () => {
-			const a = createCodeArtifact([{ format: 'cjs' }]);
+			const a = createCodeArtifact([{ format: 'cjs', declaration: true }]);
 			a.api = 'public';
 			a.bundle = true;
 			a.inputs = { index: 'src/node.ts' };
 
-			const b = createCodeArtifact([{ format: 'lib' }]);
+			const b = createCodeArtifact([{ format: 'lib', declaration: true }]);
 			b.api = 'public';
 			b.bundle = true;
 			b.inputs = { bin: 'src/cli.ts' };
 
-			const c = createCodeArtifact([{ format: 'lib' }, { format: 'esm' }], 'browser', 'current');
+			const c = createCodeArtifact(
+				[
+					{ format: 'lib', declaration: true },
+					{ format: 'esm', declaration: true },
+				],
+				'browser',
+				'current',
+			);
 			c.api = 'public';
 			c.bundle = true;
 			c.inputs = { web: 'src/web.ts' };
 
-			const d = createCodeArtifact([{ format: 'mjs' }], 'node', 'current');
+			const d = createCodeArtifact([{ format: 'mjs', declaration: true }], 'node', 'current');
 			d.api = 'public';
 			d.bundle = true;
 			d.inputs = { import: 'src/web.ts' };
@@ -855,35 +879,59 @@ describe('Package', () => {
 					bin: './lib/cli.js',
 					exports: {
 						'./package.json': './package.json',
-						'./bin': { node: './lib/cli.js', default: './lib/cli.js' },
-						'./import': { node: { import: './mjs/web.mjs' } },
+						'./bin': {
+							node: {
+								default: './lib/cli.js',
+								types: './lib/cli.d.ts',
+							},
+							default: './lib/cli.js',
+						},
+						'./import': { node: { import: './mjs/web.mjs', types: './mjs/web.d.ts' } },
 						'./web': {
-							browser: { import: './esm/web.js', module: './esm/web.js', default: './lib/web.js' },
+							browser: {
+								import: './esm/web.js',
+								module: './esm/web.js',
+								default: './lib/web.js',
+								types: './esm/web.d.ts',
+							},
 							default: './lib/web.js',
 						},
-						'.': { node: { import: './cjs/node-wrapper.mjs', require: './cjs/node.cjs' } },
+						'.': {
+							node: {
+								import: './cjs/node-wrapper.mjs',
+								require: './cjs/node.cjs',
+								types: './cjs/node.d.ts',
+							},
+						},
 					},
 				}),
 			);
 		});
 
 		it('public api + no bundle: uses patterns as subpath imports (deep imports)', async () => {
-			const a = createCodeArtifact([{ format: 'cjs' }]);
+			const a = createCodeArtifact([{ format: 'cjs', declaration: true }]);
 			a.api = 'public';
 			a.bundle = false;
 			a.inputs = { index: 'src/node.ts' };
 
-			const b = createCodeArtifact([{ format: 'lib' }]);
+			const b = createCodeArtifact([{ format: 'lib', declaration: true }]);
 			b.api = 'public';
 			b.bundle = false;
 			b.inputs = { bin: 'src/cli.ts' };
 
-			const c = createCodeArtifact([{ format: 'lib' }, { format: 'esm' }], 'browser', 'current');
+			const c = createCodeArtifact(
+				[
+					{ format: 'lib', declaration: true },
+					{ format: 'esm', declaration: true },
+				],
+				'browser',
+				'current',
+			);
 			c.api = 'public';
 			c.bundle = false;
 			c.inputs = { web: 'src/web.ts' };
 
-			const d = createCodeArtifact([{ format: 'mjs' }], 'node', 'current');
+			const d = createCodeArtifact([{ format: 'mjs', declaration: true }], 'node', 'current');
 			d.api = 'public';
 			d.bundle = false;
 			d.inputs = { import: 'src/web.ts' };
@@ -900,8 +948,18 @@ describe('Package', () => {
 					exports: {
 						'./package.json': './package.json',
 						'./*': {
-							browser: { import: './esm/*.js', module: './esm/*.js', default: './lib/*.js' },
-							node: { import: './mjs/*.mjs', require: './cjs/*.cjs', default: './lib/*.js' },
+							browser: {
+								import: './esm/*.js',
+								module: './esm/*.js',
+								default: './lib/*.js',
+								types: './esm/*.d.ts',
+							},
+							node: {
+								import: './mjs/*.mjs',
+								require: './cjs/*.cjs',
+								default: './lib/*.js',
+								types: './mjs/*.d.ts',
+							},
 							default: './lib/*.js',
 						},
 						'.': {
@@ -909,8 +967,14 @@ describe('Package', () => {
 								import: './esm/web.js',
 								module: './esm/web.js',
 								default: './lib/web.js',
+								types: './esm/web.d.ts',
 							},
-							node: { import: './mjs/web.mjs', require: './cjs/node.cjs', default: './lib/cli.js' },
+							node: {
+								import: './mjs/web.mjs',
+								require: './cjs/node.cjs',
+								default: './lib/cli.js',
+								types: './mjs/web.d.ts',
+							},
 							default: './lib/web.js',
 						},
 					},

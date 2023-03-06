@@ -216,12 +216,12 @@ export class Artifact {
 	// eslint-disable-next-line complexity
 	getBuildOutput(format: Format, outputName: string, declaration: boolean = false) {
 		const inputFile = this.inputs[outputName];
-		const inputPath = inputFile ? removeSourcePath(inputFile) : '';
+		const inputPath = inputFile ? removeSourcePath(inputFile) : undefined;
 		let outputPath = outputName;
 
 		// When using a public API, we do not create output files based on the input map.
 		// Instead files mirror the source file structure, so we need to take that into account!
-		if ((this.api === 'public' || !this.bundle) && inputFile) {
+		if ((this.api === 'public' || !this.bundle) && inputPath) {
 			outputPath = inputPath;
 		}
 
