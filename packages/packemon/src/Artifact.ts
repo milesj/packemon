@@ -216,12 +216,13 @@ export class Artifact {
 	// eslint-disable-next-line complexity
 	getBuildOutput(format: Format, outputName: string, declaration: boolean = false) {
 		const inputFile = this.inputs[outputName];
-		let name = outputName;
+		const inputPath = inputFile ? removeSourcePath(inputFile) : '';
+		let outputPath = outputName;
 
 		// When using a public API, we do not create output files based on the input map.
 		// Instead files mirror the source file structure, so we need to take that into account!
-		if (this.api === 'public' && inputFile) {
-			name = removeSourcePath(inputFile);
+		if ((this.api === 'public' || !this.bundle) && inputFile) {
+			outputPath = inputPath;
 		}
 
 		const folder = format === 'lib' && this.sharedLib ? `lib/${this.platform}` : format;
@@ -240,9 +241,11 @@ export class Artifact {
 
 		return {
 			declExt,
-			declPath: declExt ? `./${new VirtualPath(folder, `${name}.${declExt}`)}` : undefined,
+			declPath: declExt
+				? `./${new VirtualPath(folder, `${inputPath ?? outputPath}.${declExt}`)}`
+				: undefined,
 			entryExt,
-			entryPath: `./${new VirtualPath(folder, `${name}.${entryExt}`)}`,
+			entryPath: `./${new VirtualPath(folder, `${outputPath}.${entryExt}`)}`,
 			folder,
 		};
 	}
