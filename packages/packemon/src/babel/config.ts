@@ -150,7 +150,6 @@ export function getBabelInputConfig(
 				runtime: features.react,
 				throwIfNamespace: true,
 				useBuiltIns: true,
-				useSpread: true,
 			},
 		]);
 	}
