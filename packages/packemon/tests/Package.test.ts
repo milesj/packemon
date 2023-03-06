@@ -620,6 +620,48 @@ describe('Package', () => {
 				});
 			});
 
+			it('adds exports for multiple artifacts with different bundle types', async () => {
+				const a = createCodeArtifact([{ format: 'esm', declaration: true }], 'browser');
+				a.inputs.utils = 'src/utils/index.ts';
+				a.bundle = true;
+				pkg.artifacts.push(a);
+
+				const b = createCodeArtifact([{ format: 'lib', declaration: true }], 'node');
+				b.inputs.utils = 'src/utils/index.ts';
+				b.bundle = false;
+				pkg.artifacts.push(b);
+
+				await pkg.build({ addExports: true }, config);
+
+				expect(pkg.json.exports).toEqual({
+					'.': {
+						node: {
+							default: './lib/index.js',
+							types: './lib/index.d.ts',
+						},
+						browser: {
+							import: './esm/index.js',
+							module: './esm/index.js',
+							types: './esm/index.d.ts',
+						},
+						default: './lib/index.js',
+					},
+					'./utils': {
+						node: {
+							default: './lib/utils/index.js',
+							types: './lib/utils/index.d.ts',
+						},
+						browser: {
+							import: './esm/utils.js',
+							module: './esm/utils.js',
+							types: './esm/utils/index.d.ts',
+						},
+						default: './lib/utils/index.js',
+					},
+					'./package.json': './package.json',
+				});
+			});
+
 			it('adds exports for bundle and types artifacts in parallel', async () => {
 				pkg.artifacts.push(createCodeArtifact([{ declaration: true, format: 'lib' }]));
 
