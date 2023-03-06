@@ -24,11 +24,7 @@ export function flattenExportConditions(paths: PackageExportPaths): PackageExpor
 
 		const key = path as keyof PackageExportPaths;
 
-		if (typeof condition === 'string') {
-			map[key] = condition;
-		} else {
-			map[key] = flattenExportConditions(condition);
-		}
+		map[key] = typeof condition === 'string' ? condition : flattenExportConditions(condition);
 
 		count += 1;
 	});
