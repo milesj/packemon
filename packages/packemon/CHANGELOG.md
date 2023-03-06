@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 3.0.2 - 2023-03-06
+
+#### 🐞 Fixes
+
+- Fix sub-path types exports being wrong. ([e151564](https://github.com/milesj/packemon/commit/e151564))
+
+#### 📦 Dependencies
+
+- **[babel]** Update to v7.21 latest. ([597304c](https://github.com/milesj/packemon/commit/597304c))
+- **[magic-string]** Update to v0.30. ([21ca2dd](https://github.com/milesj/packemon/commit/21ca2dd))
+- **[rollup]** Update to v3.18. ([79cfb9d](https://github.com/milesj/packemon/commit/79cfb9d))
+- **[swc]** Update to v1.3.37. ([874a394](https://github.com/milesj/packemon/commit/874a394))
+
+**Note:** Version bump only for package packemon
+
+
+
+
+
 ### 3.0.1 - 2023-02-05
 
 #### 🐞 Fixes
