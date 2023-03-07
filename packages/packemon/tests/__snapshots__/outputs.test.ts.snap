@@ -281,7 +281,391 @@ exports[`Outputs (babel) bundle bundles all files into a single file with rollup
 ]
 `;
 
-exports[`Outputs (babel) bundle with assets bundles all files and references assets 1`] = `
+exports[`Outputs (babel) bundle with assets bundles all files and references assets (browser, esm) 1`] = `
+[
+  "esm/index.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: stable, Format: esm
+
+import '../assets/globals-107ab52e.css';
+import '../assets/fonts-4e5dc96c.css';
+import '../assets/styles-a82c1676.css';
+function button() {}
+export { button };
+//# sourceMappingURL=index.js.map
+",
+]
+`;
+
+exports[`Outputs (babel) bundle with assets bundles all files and references assets (browser, esm) 2`] = `
+[
+  "package.json",
+  {
+    "main": "./esm/index.js",
+    "module": "./esm/index.js",
+    "name": "project-assets",
+    "packemon": {
+      "bundle": true,
+      "platform": "node",
+    },
+  },
+]
+`;
+
+exports[`Outputs (babel) bundle with assets bundles all files and references assets (browser, esm) 3`] = `
+[
+  "src/globals.css",
+  "assets/globals-107ab52e.css",
+]
+`;
+
+exports[`Outputs (babel) bundle with assets bundles all files and references assets (browser, esm) 4`] = `
+[
+  "src/shared/fonts.css",
+  "assets/fonts-4e5dc96c.css",
+]
+`;
+
+exports[`Outputs (babel) bundle with assets bundles all files and references assets (browser, esm) 5`] = `
+[
+  "src/styles.css",
+  "assets/styles-a82c1676.css",
+]
+`;
+
+exports[`Outputs (babel) bundle with assets bundles all files and references assets (browser, lib) 1`] = `
+[
+  "lib/index.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: stable, Format: lib
+
+'use strict';
+
+require('../assets/globals-107ab52e.css');
+require('../assets/fonts-4e5dc96c.css');
+require('../assets/styles-a82c1676.css');
+function button() {}
+exports.button = button;
+//# sourceMappingURL=index.js.map
+",
+]
+`;
+
+exports[`Outputs (babel) bundle with assets bundles all files and references assets (browser, lib) 2`] = `
+[
+  "package.json",
+  {
+    "main": "./lib/index.js",
+    "name": "project-assets",
+    "packemon": {
+      "bundle": true,
+      "platform": "node",
+    },
+  },
+]
+`;
+
+exports[`Outputs (babel) bundle with assets bundles all files and references assets (browser, lib) 3`] = `
+[
+  "src/globals.css",
+  "assets/globals-107ab52e.css",
+]
+`;
+
+exports[`Outputs (babel) bundle with assets bundles all files and references assets (browser, lib) 4`] = `
+[
+  "src/shared/fonts.css",
+  "assets/fonts-4e5dc96c.css",
+]
+`;
+
+exports[`Outputs (babel) bundle with assets bundles all files and references assets (browser, lib) 5`] = `
+[
+  "src/styles.css",
+  "assets/styles-a82c1676.css",
+]
+`;
+
+exports[`Outputs (babel) bundle with assets bundles all files and references assets (browser, umd) 1`] = `
+[
+  "package.json",
+  {
+    "browser": "./umd/index.js",
+    "main": "./lib/index.js",
+    "name": "project-assets",
+    "packemon": {
+      "bundle": true,
+      "platform": "node",
+    },
+  },
+]
+`;
+
+exports[`Outputs (babel) bundle with assets bundles all files and references assets (browser, umd) 2`] = `
+[
+  "src/globals.css",
+  "assets/globals-107ab52e.css",
+]
+`;
+
+exports[`Outputs (babel) bundle with assets bundles all files and references assets (browser, umd) 3`] = `
+[
+  "src/shared/fonts.css",
+  "assets/fonts-4e5dc96c.css",
+]
+`;
+
+exports[`Outputs (babel) bundle with assets bundles all files and references assets (browser, umd) 4`] = `
+[
+  "src/styles.css",
+  "assets/styles-a82c1676.css",
+]
+`;
+
+exports[`Outputs (babel) bundle with assets bundles all files and references assets (browser, umd) 5`] = `
+[
+  "umd/index.js",
+  "(function (global, factory) {
+  if (typeof define === "function" && define.amd) {
+    define(["exports", "../assets/globals-107ab52e.css", "../assets/fonts-4e5dc96c.css", "../assets/styles-a82c1676.css"], factory);
+  } else if (typeof exports !== "undefined") {
+    factory(exports, require("../assets/globals-107ab52e.css"), require("../assets/fonts-4e5dc96c.css"), require("../assets/styles-a82c1676.css"));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.globals107ab52e, global.fonts4e5dc96c, global.stylesA82c1676);
+    global.projectAssets = mod.exports;
+  }
+})(typeof globalThis !== "undefined" ? globalThis : typeof self !== "undefined" ? self : this, function (_exports, _globals107ab52e, _fonts4e5dc96c, _stylesA82c) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  _exports.button = button;
+  // Bundled with Packemon: https://packemon.dev
+  // Platform: browser, Support: stable, Format: umd
+
+  function button() {}
+});
+//# sourceMappingURL=index.js.map
+",
+]
+`;
+
+exports[`Outputs (babel) bundle with assets bundles all files and references assets (electron, esm) 1`] = `
+[
+  "esm/index.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: stable, Format: esm
+
+import '../assets/globals-107ab52e.css';
+import '../assets/fonts-4e5dc96c.css';
+import '../assets/styles-a82c1676.css';
+function button() {}
+export { button };
+//# sourceMappingURL=index.js.map
+",
+]
+`;
+
+exports[`Outputs (babel) bundle with assets bundles all files and references assets (electron, esm) 2`] = `
+[
+  "package.json",
+  {
+    "main": "./esm/index.js",
+    "module": "./esm/index.js",
+    "name": "project-assets",
+    "packemon": {
+      "bundle": true,
+      "platform": "node",
+    },
+  },
+]
+`;
+
+exports[`Outputs (babel) bundle with assets bundles all files and references assets (electron, esm) 3`] = `
+[
+  "src/globals.css",
+  "assets/globals-107ab52e.css",
+]
+`;
+
+exports[`Outputs (babel) bundle with assets bundles all files and references assets (electron, esm) 4`] = `
+[
+  "src/shared/fonts.css",
+  "assets/fonts-4e5dc96c.css",
+]
+`;
+
+exports[`Outputs (babel) bundle with assets bundles all files and references assets (electron, esm) 5`] = `
+[
+  "src/styles.css",
+  "assets/styles-a82c1676.css",
+]
+`;
+
+exports[`Outputs (babel) bundle with assets bundles all files and references assets (electron, lib) 1`] = `
+[
+  "lib/index.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: stable, Format: lib
+
+'use strict';
+
+require('../assets/globals-107ab52e.css');
+require('../assets/fonts-4e5dc96c.css');
+require('../assets/styles-a82c1676.css');
+function button() {}
+exports.button = button;
+//# sourceMappingURL=index.js.map
+",
+]
+`;
+
+exports[`Outputs (babel) bundle with assets bundles all files and references assets (electron, lib) 2`] = `
+[
+  "package.json",
+  {
+    "main": "./lib/index.js",
+    "name": "project-assets",
+    "packemon": {
+      "bundle": true,
+      "platform": "node",
+    },
+  },
+]
+`;
+
+exports[`Outputs (babel) bundle with assets bundles all files and references assets (electron, lib) 3`] = `
+[
+  "src/globals.css",
+  "assets/globals-107ab52e.css",
+]
+`;
+
+exports[`Outputs (babel) bundle with assets bundles all files and references assets (electron, lib) 4`] = `
+[
+  "src/shared/fonts.css",
+  "assets/fonts-4e5dc96c.css",
+]
+`;
+
+exports[`Outputs (babel) bundle with assets bundles all files and references assets (electron, lib) 5`] = `
+[
+  "src/styles.css",
+  "assets/styles-a82c1676.css",
+]
+`;
+
+exports[`Outputs (babel) bundle with assets bundles all files and references assets (native, lib) 1`] = `
+[
+  "lib/index.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: stable, Format: lib
+
+'use strict';
+
+require('../assets/globals-107ab52e.css');
+require('../assets/fonts-4e5dc96c.css');
+require('../assets/styles-a82c1676.css');
+function button() {}
+exports.button = button;
+//# sourceMappingURL=index.js.map
+",
+]
+`;
+
+exports[`Outputs (babel) bundle with assets bundles all files and references assets (native, lib) 2`] = `
+[
+  "package.json",
+  {
+    "main": "./lib/index.js",
+    "name": "project-assets",
+    "packemon": {
+      "bundle": true,
+      "platform": "node",
+    },
+  },
+]
+`;
+
+exports[`Outputs (babel) bundle with assets bundles all files and references assets (native, lib) 3`] = `
+[
+  "src/globals.css",
+  "assets/globals-107ab52e.css",
+]
+`;
+
+exports[`Outputs (babel) bundle with assets bundles all files and references assets (native, lib) 4`] = `
+[
+  "src/shared/fonts.css",
+  "assets/fonts-4e5dc96c.css",
+]
+`;
+
+exports[`Outputs (babel) bundle with assets bundles all files and references assets (native, lib) 5`] = `
+[
+  "src/styles.css",
+  "assets/styles-a82c1676.css",
+]
+`;
+
+exports[`Outputs (babel) bundle with assets bundles all files and references assets (node, cjs) 1`] = `
+[
+  "cjs/index.cjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: cjs
+
+'use strict';
+
+require('../assets/globals-107ab52e.css');
+require('../assets/fonts-4e5dc96c.css');
+require('../assets/styles-a82c1676.css');
+function button() {}
+exports.button = button;
+//# sourceMappingURL=index.cjs.map
+",
+]
+`;
+
+exports[`Outputs (babel) bundle with assets bundles all files and references assets (node, cjs) 2`] = `
+[
+  "package.json",
+  {
+    "main": "./cjs/index.cjs",
+    "name": "project-assets",
+    "packemon": {
+      "bundle": true,
+      "platform": "node",
+    },
+  },
+]
+`;
+
+exports[`Outputs (babel) bundle with assets bundles all files and references assets (node, cjs) 3`] = `
+[
+  "src/globals.css",
+  "assets/globals-107ab52e.css",
+]
+`;
+
+exports[`Outputs (babel) bundle with assets bundles all files and references assets (node, cjs) 4`] = `
+[
+  "src/shared/fonts.css",
+  "assets/fonts-4e5dc96c.css",
+]
+`;
+
+exports[`Outputs (babel) bundle with assets bundles all files and references assets (node, cjs) 5`] = `
+[
+  "src/styles.css",
+  "assets/styles-a82c1676.css",
+]
+`;
+
+exports[`Outputs (babel) bundle with assets bundles all files and references assets (node, lib) 1`] = `
 [
   "lib/index.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -299,7 +683,7 @@ exports.button = button;
 ]
 `;
 
-exports[`Outputs (babel) bundle with assets bundles all files and references assets 2`] = `
+exports[`Outputs (babel) bundle with assets bundles all files and references assets (node, lib) 2`] = `
 [
   "package.json",
   {
@@ -313,21 +697,72 @@ exports[`Outputs (babel) bundle with assets bundles all files and references ass
 ]
 `;
 
-exports[`Outputs (babel) bundle with assets bundles all files and references assets 3`] = `
+exports[`Outputs (babel) bundle with assets bundles all files and references assets (node, lib) 3`] = `
 [
   "src/globals.css",
   "assets/globals-107ab52e.css",
 ]
 `;
 
-exports[`Outputs (babel) bundle with assets bundles all files and references assets 4`] = `
+exports[`Outputs (babel) bundle with assets bundles all files and references assets (node, lib) 4`] = `
 [
   "src/shared/fonts.css",
   "assets/fonts-4e5dc96c.css",
 ]
 `;
 
-exports[`Outputs (babel) bundle with assets bundles all files and references assets 5`] = `
+exports[`Outputs (babel) bundle with assets bundles all files and references assets (node, lib) 5`] = `
+[
+  "src/styles.css",
+  "assets/styles-a82c1676.css",
+]
+`;
+
+exports[`Outputs (babel) bundle with assets bundles all files and references assets (node, mjs) 1`] = `
+[
+  "mjs/index.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: mjs
+
+import '../assets/globals-107ab52e.css';
+import '../assets/fonts-4e5dc96c.css';
+import '../assets/styles-a82c1676.css';
+function button() {}
+export { button };
+//# sourceMappingURL=index.mjs.map
+",
+]
+`;
+
+exports[`Outputs (babel) bundle with assets bundles all files and references assets (node, mjs) 2`] = `
+[
+  "package.json",
+  {
+    "main": "./mjs/index.mjs",
+    "name": "project-assets",
+    "packemon": {
+      "bundle": true,
+      "platform": "node",
+    },
+  },
+]
+`;
+
+exports[`Outputs (babel) bundle with assets bundles all files and references assets (node, mjs) 3`] = `
+[
+  "src/globals.css",
+  "assets/globals-107ab52e.css",
+]
+`;
+
+exports[`Outputs (babel) bundle with assets bundles all files and references assets (node, mjs) 4`] = `
+[
+  "src/shared/fonts.css",
+  "assets/fonts-4e5dc96c.css",
+]
+`;
+
+exports[`Outputs (babel) bundle with assets bundles all files and references assets (node, mjs) 5`] = `
 [
   "src/styles.css",
   "assets/styles-a82c1676.css",
@@ -1378,7 +1813,391 @@ exports[`Outputs (swc) bundle bundles all files into a single file with rollup 2
 ]
 `;
 
-exports[`Outputs (swc) bundle with assets bundles all files and references assets 1`] = `
+exports[`Outputs (swc) bundle with assets bundles all files and references assets (browser, esm) 1`] = `
+[
+  "esm/index.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: stable, Format: esm
+
+import '../assets/globals-107ab52e.css';
+import '../assets/fonts-4e5dc96c.css';
+import '../assets/styles-a82c1676.css';
+function button() {}
+export { button };
+//# sourceMappingURL=index.js.map
+",
+]
+`;
+
+exports[`Outputs (swc) bundle with assets bundles all files and references assets (browser, esm) 2`] = `
+[
+  "package.json",
+  {
+    "main": "./esm/index.js",
+    "module": "./esm/index.js",
+    "name": "project-assets",
+    "packemon": {
+      "bundle": true,
+      "platform": "node",
+    },
+  },
+]
+`;
+
+exports[`Outputs (swc) bundle with assets bundles all files and references assets (browser, esm) 3`] = `
+[
+  "src/globals.css",
+  "assets/globals-107ab52e.css",
+]
+`;
+
+exports[`Outputs (swc) bundle with assets bundles all files and references assets (browser, esm) 4`] = `
+[
+  "src/shared/fonts.css",
+  "assets/fonts-4e5dc96c.css",
+]
+`;
+
+exports[`Outputs (swc) bundle with assets bundles all files and references assets (browser, esm) 5`] = `
+[
+  "src/styles.css",
+  "assets/styles-a82c1676.css",
+]
+`;
+
+exports[`Outputs (swc) bundle with assets bundles all files and references assets (browser, lib) 1`] = `
+[
+  "lib/index.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: stable, Format: lib
+
+'use strict';
+
+require('../assets/globals-107ab52e.css');
+require('../assets/fonts-4e5dc96c.css');
+require('../assets/styles-a82c1676.css');
+function button() {}
+exports.button = button;
+//# sourceMappingURL=index.js.map
+",
+]
+`;
+
+exports[`Outputs (swc) bundle with assets bundles all files and references assets (browser, lib) 2`] = `
+[
+  "package.json",
+  {
+    "main": "./lib/index.js",
+    "name": "project-assets",
+    "packemon": {
+      "bundle": true,
+      "platform": "node",
+    },
+  },
+]
+`;
+
+exports[`Outputs (swc) bundle with assets bundles all files and references assets (browser, lib) 3`] = `
+[
+  "src/globals.css",
+  "assets/globals-107ab52e.css",
+]
+`;
+
+exports[`Outputs (swc) bundle with assets bundles all files and references assets (browser, lib) 4`] = `
+[
+  "src/shared/fonts.css",
+  "assets/fonts-4e5dc96c.css",
+]
+`;
+
+exports[`Outputs (swc) bundle with assets bundles all files and references assets (browser, lib) 5`] = `
+[
+  "src/styles.css",
+  "assets/styles-a82c1676.css",
+]
+`;
+
+exports[`Outputs (swc) bundle with assets bundles all files and references assets (browser, umd) 1`] = `
+[
+  "package.json",
+  {
+    "browser": "./umd/index.js",
+    "main": "./lib/index.js",
+    "name": "project-assets",
+    "packemon": {
+      "bundle": true,
+      "platform": "node",
+    },
+  },
+]
+`;
+
+exports[`Outputs (swc) bundle with assets bundles all files and references assets (browser, umd) 2`] = `
+[
+  "src/globals.css",
+  "assets/globals-107ab52e.css",
+]
+`;
+
+exports[`Outputs (swc) bundle with assets bundles all files and references assets (browser, umd) 3`] = `
+[
+  "src/shared/fonts.css",
+  "assets/fonts-4e5dc96c.css",
+]
+`;
+
+exports[`Outputs (swc) bundle with assets bundles all files and references assets (browser, umd) 4`] = `
+[
+  "src/styles.css",
+  "assets/styles-a82c1676.css",
+]
+`;
+
+exports[`Outputs (swc) bundle with assets bundles all files and references assets (browser, umd) 5`] = `
+[
+  "umd/index.js",
+  "(function (global, factory) {
+  if (typeof define === "function" && define.amd) {
+    define(["exports", "../assets/globals-107ab52e.css", "../assets/fonts-4e5dc96c.css", "../assets/styles-a82c1676.css"], factory);
+  } else if (typeof exports !== "undefined") {
+    factory(exports, require("../assets/globals-107ab52e.css"), require("../assets/fonts-4e5dc96c.css"), require("../assets/styles-a82c1676.css"));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.globals107ab52e, global.fonts4e5dc96c, global.stylesA82c1676);
+    global.projectAssets = mod.exports;
+  }
+})(typeof globalThis !== "undefined" ? globalThis : typeof self !== "undefined" ? self : this, function (_exports, _globals107ab52e, _fonts4e5dc96c, _stylesA82c) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  _exports.button = button;
+  // Bundled with Packemon: https://packemon.dev
+  // Platform: browser, Support: stable, Format: umd
+
+  function button() {}
+});
+//# sourceMappingURL=index.js.map
+",
+]
+`;
+
+exports[`Outputs (swc) bundle with assets bundles all files and references assets (electron, esm) 1`] = `
+[
+  "esm/index.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: stable, Format: esm
+
+import '../assets/globals-107ab52e.css';
+import '../assets/fonts-4e5dc96c.css';
+import '../assets/styles-a82c1676.css';
+function button() {}
+export { button };
+//# sourceMappingURL=index.js.map
+",
+]
+`;
+
+exports[`Outputs (swc) bundle with assets bundles all files and references assets (electron, esm) 2`] = `
+[
+  "package.json",
+  {
+    "main": "./esm/index.js",
+    "module": "./esm/index.js",
+    "name": "project-assets",
+    "packemon": {
+      "bundle": true,
+      "platform": "node",
+    },
+  },
+]
+`;
+
+exports[`Outputs (swc) bundle with assets bundles all files and references assets (electron, esm) 3`] = `
+[
+  "src/globals.css",
+  "assets/globals-107ab52e.css",
+]
+`;
+
+exports[`Outputs (swc) bundle with assets bundles all files and references assets (electron, esm) 4`] = `
+[
+  "src/shared/fonts.css",
+  "assets/fonts-4e5dc96c.css",
+]
+`;
+
+exports[`Outputs (swc) bundle with assets bundles all files and references assets (electron, esm) 5`] = `
+[
+  "src/styles.css",
+  "assets/styles-a82c1676.css",
+]
+`;
+
+exports[`Outputs (swc) bundle with assets bundles all files and references assets (electron, lib) 1`] = `
+[
+  "lib/index.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: stable, Format: lib
+
+'use strict';
+
+require('../assets/globals-107ab52e.css');
+require('../assets/fonts-4e5dc96c.css');
+require('../assets/styles-a82c1676.css');
+function button() {}
+exports.button = button;
+//# sourceMappingURL=index.js.map
+",
+]
+`;
+
+exports[`Outputs (swc) bundle with assets bundles all files and references assets (electron, lib) 2`] = `
+[
+  "package.json",
+  {
+    "main": "./lib/index.js",
+    "name": "project-assets",
+    "packemon": {
+      "bundle": true,
+      "platform": "node",
+    },
+  },
+]
+`;
+
+exports[`Outputs (swc) bundle with assets bundles all files and references assets (electron, lib) 3`] = `
+[
+  "src/globals.css",
+  "assets/globals-107ab52e.css",
+]
+`;
+
+exports[`Outputs (swc) bundle with assets bundles all files and references assets (electron, lib) 4`] = `
+[
+  "src/shared/fonts.css",
+  "assets/fonts-4e5dc96c.css",
+]
+`;
+
+exports[`Outputs (swc) bundle with assets bundles all files and references assets (electron, lib) 5`] = `
+[
+  "src/styles.css",
+  "assets/styles-a82c1676.css",
+]
+`;
+
+exports[`Outputs (swc) bundle with assets bundles all files and references assets (native, lib) 1`] = `
+[
+  "lib/index.js",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: stable, Format: lib
+
+'use strict';
+
+require('../assets/globals-107ab52e.css');
+require('../assets/fonts-4e5dc96c.css');
+require('../assets/styles-a82c1676.css');
+function button() {}
+exports.button = button;
+//# sourceMappingURL=index.js.map
+",
+]
+`;
+
+exports[`Outputs (swc) bundle with assets bundles all files and references assets (native, lib) 2`] = `
+[
+  "package.json",
+  {
+    "main": "./lib/index.js",
+    "name": "project-assets",
+    "packemon": {
+      "bundle": true,
+      "platform": "node",
+    },
+  },
+]
+`;
+
+exports[`Outputs (swc) bundle with assets bundles all files and references assets (native, lib) 3`] = `
+[
+  "src/globals.css",
+  "assets/globals-107ab52e.css",
+]
+`;
+
+exports[`Outputs (swc) bundle with assets bundles all files and references assets (native, lib) 4`] = `
+[
+  "src/shared/fonts.css",
+  "assets/fonts-4e5dc96c.css",
+]
+`;
+
+exports[`Outputs (swc) bundle with assets bundles all files and references assets (native, lib) 5`] = `
+[
+  "src/styles.css",
+  "assets/styles-a82c1676.css",
+]
+`;
+
+exports[`Outputs (swc) bundle with assets bundles all files and references assets (node, cjs) 1`] = `
+[
+  "cjs/index.cjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: cjs
+
+'use strict';
+
+require('../assets/globals-107ab52e.css');
+require('../assets/fonts-4e5dc96c.css');
+require('../assets/styles-a82c1676.css');
+function button() {}
+exports.button = button;
+//# sourceMappingURL=index.cjs.map
+",
+]
+`;
+
+exports[`Outputs (swc) bundle with assets bundles all files and references assets (node, cjs) 2`] = `
+[
+  "package.json",
+  {
+    "main": "./cjs/index.cjs",
+    "name": "project-assets",
+    "packemon": {
+      "bundle": true,
+      "platform": "node",
+    },
+  },
+]
+`;
+
+exports[`Outputs (swc) bundle with assets bundles all files and references assets (node, cjs) 3`] = `
+[
+  "src/globals.css",
+  "assets/globals-107ab52e.css",
+]
+`;
+
+exports[`Outputs (swc) bundle with assets bundles all files and references assets (node, cjs) 4`] = `
+[
+  "src/shared/fonts.css",
+  "assets/fonts-4e5dc96c.css",
+]
+`;
+
+exports[`Outputs (swc) bundle with assets bundles all files and references assets (node, cjs) 5`] = `
+[
+  "src/styles.css",
+  "assets/styles-a82c1676.css",
+]
+`;
+
+exports[`Outputs (swc) bundle with assets bundles all files and references assets (node, lib) 1`] = `
 [
   "lib/index.js",
   "// Bundled with Packemon: https://packemon.dev
@@ -1396,7 +2215,7 @@ exports.button = button;
 ]
 `;
 
-exports[`Outputs (swc) bundle with assets bundles all files and references assets 2`] = `
+exports[`Outputs (swc) bundle with assets bundles all files and references assets (node, lib) 2`] = `
 [
   "package.json",
   {
@@ -1410,21 +2229,72 @@ exports[`Outputs (swc) bundle with assets bundles all files and references asset
 ]
 `;
 
-exports[`Outputs (swc) bundle with assets bundles all files and references assets 3`] = `
+exports[`Outputs (swc) bundle with assets bundles all files and references assets (node, lib) 3`] = `
 [
   "src/globals.css",
   "assets/globals-107ab52e.css",
 ]
 `;
 
-exports[`Outputs (swc) bundle with assets bundles all files and references assets 4`] = `
+exports[`Outputs (swc) bundle with assets bundles all files and references assets (node, lib) 4`] = `
 [
   "src/shared/fonts.css",
   "assets/fonts-4e5dc96c.css",
 ]
 `;
 
-exports[`Outputs (swc) bundle with assets bundles all files and references assets 5`] = `
+exports[`Outputs (swc) bundle with assets bundles all files and references assets (node, lib) 5`] = `
+[
+  "src/styles.css",
+  "assets/styles-a82c1676.css",
+]
+`;
+
+exports[`Outputs (swc) bundle with assets bundles all files and references assets (node, mjs) 1`] = `
+[
+  "mjs/index.mjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: mjs
+
+import '../assets/globals-107ab52e.css';
+import '../assets/fonts-4e5dc96c.css';
+import '../assets/styles-a82c1676.css';
+function button() {}
+export { button };
+//# sourceMappingURL=index.mjs.map
+",
+]
+`;
+
+exports[`Outputs (swc) bundle with assets bundles all files and references assets (node, mjs) 2`] = `
+[
+  "package.json",
+  {
+    "main": "./mjs/index.mjs",
+    "name": "project-assets",
+    "packemon": {
+      "bundle": true,
+      "platform": "node",
+    },
+  },
+]
+`;
+
+exports[`Outputs (swc) bundle with assets bundles all files and references assets (node, mjs) 3`] = `
+[
+  "src/globals.css",
+  "assets/globals-107ab52e.css",
+]
+`;
+
+exports[`Outputs (swc) bundle with assets bundles all files and references assets (node, mjs) 4`] = `
+[
+  "src/shared/fonts.css",
+  "assets/fonts-4e5dc96c.css",
+]
+`;
+
+exports[`Outputs (swc) bundle with assets bundles all files and references assets (node, mjs) 5`] = `
 [
   "src/styles.css",
   "assets/styles-a82c1676.css",

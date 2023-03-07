@@ -1,5 +1,3 @@
-/* eslint-disable jest/no-conditional-in-test */
-
 import fs from 'node:fs';
 import { Path } from '@boost/common';
 import { Artifact } from '../src';
@@ -85,28 +83,23 @@ import {
 			const root = new Path(getFixturePath('project-assets'));
 			const snapshots = createSnapshotSpies(root, true);
 
-			it('bundles all files and references assets', async () => {
-				const pkg = loadPackageAtPath(root);
+			BUILDS_NO_SUPPORT.forEach((build) => {
+				it(`bundles all files and references assets (${build.platform}, ${build.format})`, async () => {
+					const pkg = loadPackageAtPath(root);
 
-				const index = new Artifact(pkg, [{ format: 'lib' }]);
-				index.bundle = true;
-				index.platform = 'node';
-				index.support = 'stable';
-				index.inputs = { index: 'src/index.ts' };
+					const index = new Artifact(pkg, [{ format: build.format }]);
+					index.bundle = true;
+					index.platform = build.platform;
+					index.support = 'stable';
+					index.inputs = { index: 'src/index.ts' };
 
-				pkg.artifacts.push(index);
+					pkg.artifacts.push(index);
 
-				await pkg.build({}, {});
+					await pkg.build({}, {});
 
-				snapshots(pkg).forEach((ss) => {
-					expect(ss).toMatchSnapshot();
-
-					// Check import paths are correct
-					if (ss[0].endsWith('index.js')) {
-						expect(String(ss[1])).toContain("'../assets/globals-107ab52e.css'");
-						expect(String(ss[1])).toContain("'../assets/fonts-4e5dc96c.css'");
-						expect(String(ss[1])).toContain("'../assets/styles-a82c1676.css'");
-					}
+					snapshots(pkg).forEach((ss) => {
+						expect(ss).toMatchSnapshot();
+					});
 				});
 			});
 
@@ -152,7 +145,7 @@ import {
 			});
 		});
 
-		describe.only('no bundle with assets', () => {
+		describe('no bundle with assets', () => {
 			const root = new Path(getFixturePath('project-assets'));
 			const snapshots = createSnapshotSpies(root, true);
 
