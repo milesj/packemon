@@ -60,9 +60,14 @@ export function copyAndRefAssets({ dir }: CopyAssetsOptions): Plugin {
 		},
 
 		// Find assets and mark as external
-		resolveId(source) {
+		resolveId(source, importer) {
 			if (isAsset(source)) {
-				return { id: source, external: true };
+				if (source.startsWith('.')) {
+					return { id: path.join(path.dirname(importer!), source), external: true };
+				}
+
+				// Ignore files coming from node modules
+				return false;
 			}
 
 			return null;

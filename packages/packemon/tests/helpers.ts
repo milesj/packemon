@@ -38,13 +38,12 @@ export function getFixturePath(fixture: string, file: string = ''): string {
 	return path.normalize(path.join(...[FIXTURES_DIR, fixture, file].map(normalizeSeparators)));
 }
 
-const builds = new Map<string, { format: Format; platform: Platform; support: Support }>();
+export const BUILDS = new Map<string, { format: Format; platform: Platform; support: Support }>();
+export const BUILDS_NO_SUPPORT = new Map<string, { format: Format; platform: Platform }>();
 
 FORMATS.forEach((format) => {
 	PLATFORMS.forEach((platform) => {
 		SUPPORTS.forEach((support) => {
-			const key = `${format}:${platform}:${support}`;
-
 			if (
 				(platform === 'browser' && !(FORMATS_BROWSER as string[]).includes(format)) ||
 				(platform === 'electron' && !(FORMATS_ELECTRON as string[]).includes(format)) ||
@@ -54,10 +53,15 @@ FORMATS.forEach((format) => {
 				return;
 			}
 
-			builds.set(key, {
+			BUILDS.set(`${format}:${platform}:${support}`, {
 				format,
 				platform,
 				support,
+			});
+
+			BUILDS_NO_SUPPORT.set(`${format}:${platform}`, {
+				format,
+				platform,
 			});
 		});
 	});
@@ -171,7 +175,7 @@ export function testExampleOutput(
 			delete process.env.PACKEMON_SWC;
 		});
 
-		[...builds.values()].forEach((build) => {
+		[...BUILDS.values()].forEach((build) => {
 			const pkg = loadPackageAtPath(root);
 			const env = `${build.platform}-${build.support}-${build.format}`;
 
