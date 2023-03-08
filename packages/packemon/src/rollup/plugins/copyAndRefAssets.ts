@@ -60,9 +60,9 @@ export function copyAndRefAssets({ dir }: CopyAssetsOptions): Plugin {
 		},
 
 		// Find assets and mark as external
-		resolveId(source) {
+		resolveId(source, importer) {
 			if (isAsset(source)) {
-				return { id: source, external: true };
+				return { id: path.join(path.dirname(importer!), source), external: true };
 			}
 
 			return null;
