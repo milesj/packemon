@@ -60,9 +60,11 @@ export function copyAndRefAssets({ dir }: CopyAssetsOptions): Plugin {
 		},
 
 		// Find assets and mark as external
-		resolveId(source, importer) {
+		async resolveId(source, importer, options) {
 			if (isAsset(source)) {
-				return { id: path.join(path.dirname(importer!), source), external: true };
+				const resolved = await this.resolve(source, importer, { ...options, skipSelf: true });
+
+				return { id: resolved!.id, external: true };
 			}
 
 			return null;
