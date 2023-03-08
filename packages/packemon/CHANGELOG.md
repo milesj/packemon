@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 3.0.3 - 2023-03-08
+
+#### 🐞 Fixes
+
+- Fix assets paths not resolving to the correct location. (#187) ([fc83a17](https://github.com/milesj/packemon/commit/fc83a17)), closes [#187](https://github.com/milesj/packemon/issues/187)
+
+**Note:** Version bump only for package packemon
+
+
+
+
+
 ### 3.0.2 - 2023-03-06
 
 #### 🐞 Fixes
