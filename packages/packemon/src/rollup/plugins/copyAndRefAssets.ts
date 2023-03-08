@@ -67,7 +67,7 @@ export function copyAndRefAssets({ dir }: CopyAssetsOptions): Plugin {
 				}
 
 				// Ignore files coming from node modules
-				return { id: source, externa: true };
+				return false;
 			}
 
 			return null;

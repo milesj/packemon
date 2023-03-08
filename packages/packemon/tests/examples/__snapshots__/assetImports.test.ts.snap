@@ -8,7 +8,7 @@ exports[`Assets babel transforms example test case: browser-current-esm 1`] = `
 
 import '../assets/styles-17df299b.css';
 import '../assets/logo-c21f559f.svg';
-import '/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css';
+import 'website/src/css/custom.css';
 const json = {
   list: ["foo", "bar", "baz"],
   number: 123,
@@ -40,7 +40,7 @@ exports[`Assets babel transforms example test case: browser-current-lib 1`] = `
 
 require('../assets/styles-17df299b.css');
 require('../assets/logo-c21f559f.svg');
-require('/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css');
+require('website/src/css/custom.css');
 const json = {
   list: ["foo", "bar", "baz"],
   number: 123,
@@ -74,9 +74,9 @@ exports[`Assets babel transforms example test case: browser-current-umd 2`] = `
   "umd/index-browser-current-umd.js",
   "(function (global, factory) {
   if (typeof define === "function" && define.amd) {
-    define(["../assets/styles-17df299b.css", "../assets/logo-c21f559f.svg", "/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css"], factory);
+    define(["../assets/styles-17df299b.css", "../assets/logo-c21f559f.svg", "website/src/css/custom.css"], factory);
   } else if (typeof exports !== "undefined") {
-    factory(require("../assets/styles-17df299b.css"), require("../assets/logo-c21f559f.svg"), require("/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css"));
+    factory(require("../assets/styles-17df299b.css"), require("../assets/logo-c21f559f.svg"), require("website/src/css/custom.css"));
   } else {
     var mod = {
       exports: {}
@@ -113,7 +113,7 @@ exports[`Assets babel transforms example test case: browser-experimental-esm 1`]
 
 import '../assets/styles-17df299b.css';
 import '../assets/logo-c21f559f.svg';
-import '/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css';
+import 'website/src/css/custom.css';
 const json = {
   list: ["foo", "bar", "baz"],
   number: 123,
@@ -145,7 +145,7 @@ exports[`Assets babel transforms example test case: browser-experimental-lib 1`]
 
 require('../assets/styles-17df299b.css');
 require('../assets/logo-c21f559f.svg');
-require('/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css');
+require('website/src/css/custom.css');
 const json = {
   list: ["foo", "bar", "baz"],
   number: 123,
@@ -179,9 +179,9 @@ exports[`Assets babel transforms example test case: browser-experimental-umd 2`]
   "umd/index-browser-experimental-umd.js",
   "(function (global, factory) {
   if (typeof define === "function" && define.amd) {
-    define(["../assets/styles-17df299b.css", "../assets/logo-c21f559f.svg", "/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css"], factory);
+    define(["../assets/styles-17df299b.css", "../assets/logo-c21f559f.svg", "website/src/css/custom.css"], factory);
   } else if (typeof exports !== "undefined") {
-    factory(require("../assets/styles-17df299b.css"), require("../assets/logo-c21f559f.svg"), require("/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css"));
+    factory(require("../assets/styles-17df299b.css"), require("../assets/logo-c21f559f.svg"), require("website/src/css/custom.css"));
   } else {
     var mod = {
       exports: {}
@@ -218,7 +218,7 @@ exports[`Assets babel transforms example test case: browser-legacy-esm 1`] = `
 
 import '../assets/styles-17df299b.css';
 import '../assets/logo-c21f559f.svg';
-import '/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css';
+import 'website/src/css/custom.css';
 var json = {
   list: ["foo", "bar", "baz"],
   number: 123,
@@ -250,7 +250,7 @@ exports[`Assets babel transforms example test case: browser-legacy-lib 1`] = `
 
 require('../assets/styles-17df299b.css');
 require('../assets/logo-c21f559f.svg');
-require('/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css');
+require('website/src/css/custom.css');
 var json = {
   list: ["foo", "bar", "baz"],
   number: 123,
@@ -284,9 +284,9 @@ exports[`Assets babel transforms example test case: browser-legacy-umd 2`] = `
   "umd/index-browser-legacy-umd.js",
   "(function (global, factory) {
   if (typeof define === "function" && define.amd) {
-    define(["../assets/styles-17df299b.css", "../assets/logo-c21f559f.svg", "/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css"], factory);
+    define(["../assets/styles-17df299b.css", "../assets/logo-c21f559f.svg", "website/src/css/custom.css"], factory);
   } else if (typeof exports !== "undefined") {
-    factory(require("../assets/styles-17df299b.css"), require("../assets/logo-c21f559f.svg"), require("/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css"));
+    factory(require("../assets/styles-17df299b.css"), require("../assets/logo-c21f559f.svg"), require("website/src/css/custom.css"));
   } else {
     var mod = {
       exports: {}
@@ -323,7 +323,7 @@ exports[`Assets babel transforms example test case: browser-stable-esm 1`] = `
 
 import '../assets/styles-17df299b.css';
 import '../assets/logo-c21f559f.svg';
-import '/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css';
+import 'website/src/css/custom.css';
 const json = {
   list: ["foo", "bar", "baz"],
   number: 123,
@@ -355,7 +355,7 @@ exports[`Assets babel transforms example test case: browser-stable-lib 1`] = `
 
 require('../assets/styles-17df299b.css');
 require('../assets/logo-c21f559f.svg');
-require('/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css');
+require('website/src/css/custom.css');
 const json = {
   list: ["foo", "bar", "baz"],
   number: 123,
@@ -389,9 +389,9 @@ exports[`Assets babel transforms example test case: browser-stable-umd 2`] = `
   "umd/index-browser-stable-umd.js",
   "(function (global, factory) {
   if (typeof define === "function" && define.amd) {
-    define(["../assets/styles-17df299b.css", "../assets/logo-c21f559f.svg", "/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css"], factory);
+    define(["../assets/styles-17df299b.css", "../assets/logo-c21f559f.svg", "website/src/css/custom.css"], factory);
   } else if (typeof exports !== "undefined") {
-    factory(require("../assets/styles-17df299b.css"), require("../assets/logo-c21f559f.svg"), require("/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css"));
+    factory(require("../assets/styles-17df299b.css"), require("../assets/logo-c21f559f.svg"), require("website/src/css/custom.css"));
   } else {
     var mod = {
       exports: {}
@@ -428,7 +428,7 @@ exports[`Assets babel transforms example test case: electron-current-esm 1`] = `
 
 import '../assets/styles-17df299b.css';
 import '../assets/logo-c21f559f.svg';
-import '/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css';
+import 'website/src/css/custom.css';
 const json = {
   list: ["foo", "bar", "baz"],
   number: 123,
@@ -460,7 +460,7 @@ exports[`Assets babel transforms example test case: electron-current-lib 1`] = `
 
 require('../assets/styles-17df299b.css');
 require('../assets/logo-c21f559f.svg');
-require('/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css');
+require('website/src/css/custom.css');
 const json = {
   list: ["foo", "bar", "baz"],
   number: 123,
@@ -490,7 +490,7 @@ exports[`Assets babel transforms example test case: electron-experimental-esm 1`
 
 import '../assets/styles-17df299b.css';
 import '../assets/logo-c21f559f.svg';
-import '/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css';
+import 'website/src/css/custom.css';
 const json = {
   list: ["foo", "bar", "baz"],
   number: 123,
@@ -522,7 +522,7 @@ exports[`Assets babel transforms example test case: electron-experimental-lib 1`
 
 require('../assets/styles-17df299b.css');
 require('../assets/logo-c21f559f.svg');
-require('/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css');
+require('website/src/css/custom.css');
 const json = {
   list: ["foo", "bar", "baz"],
   number: 123,
@@ -552,7 +552,7 @@ exports[`Assets babel transforms example test case: electron-legacy-esm 1`] = `
 
 import '../assets/styles-17df299b.css';
 import '../assets/logo-c21f559f.svg';
-import '/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css';
+import 'website/src/css/custom.css';
 const json = {
   list: ["foo", "bar", "baz"],
   number: 123,
@@ -584,7 +584,7 @@ exports[`Assets babel transforms example test case: electron-legacy-lib 1`] = `
 
 require('../assets/styles-17df299b.css');
 require('../assets/logo-c21f559f.svg');
-require('/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css');
+require('website/src/css/custom.css');
 const json = {
   list: ["foo", "bar", "baz"],
   number: 123,
@@ -614,7 +614,7 @@ exports[`Assets babel transforms example test case: electron-stable-esm 1`] = `
 
 import '../assets/styles-17df299b.css';
 import '../assets/logo-c21f559f.svg';
-import '/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css';
+import 'website/src/css/custom.css';
 const json = {
   list: ["foo", "bar", "baz"],
   number: 123,
@@ -646,7 +646,7 @@ exports[`Assets babel transforms example test case: electron-stable-lib 1`] = `
 
 require('../assets/styles-17df299b.css');
 require('../assets/logo-c21f559f.svg');
-require('/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css');
+require('website/src/css/custom.css');
 const json = {
   list: ["foo", "bar", "baz"],
   number: 123,
@@ -678,7 +678,7 @@ exports[`Assets babel transforms example test case: native-current-lib 1`] = `
 
 require('../assets/styles-17df299b.css');
 require('../assets/logo-c21f559f.svg');
-require('/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css');
+require('website/src/css/custom.css');
 const json = {
   list: ["foo", "bar", "baz"],
   number: 123,
@@ -710,7 +710,7 @@ exports[`Assets babel transforms example test case: native-experimental-lib 1`] 
 
 require('../assets/styles-17df299b.css');
 require('../assets/logo-c21f559f.svg');
-require('/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css');
+require('website/src/css/custom.css');
 const json = {
   list: ["foo", "bar", "baz"],
   number: 123,
@@ -742,7 +742,7 @@ exports[`Assets babel transforms example test case: native-legacy-lib 1`] = `
 
 require('../assets/styles-17df299b.css');
 require('../assets/logo-c21f559f.svg');
-require('/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css');
+require('website/src/css/custom.css');
 const json = {
   list: ["foo", "bar", "baz"],
   number: 123,
@@ -774,7 +774,7 @@ exports[`Assets babel transforms example test case: native-stable-lib 1`] = `
 
 require('../assets/styles-17df299b.css');
 require('../assets/logo-c21f559f.svg');
-require('/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css');
+require('website/src/css/custom.css');
 const json = {
   list: ["foo", "bar", "baz"],
   number: 123,
@@ -816,7 +816,7 @@ exports[`Assets babel transforms example test case: node-current-cjs 2`] = `
 
 require('../assets/styles-17df299b.css');
 require('../assets/logo-c21f559f.svg');
-require('/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css');
+require('website/src/css/custom.css');
 const json = {
   list: ["foo", "bar", "baz"],
   number: 123,
@@ -848,7 +848,7 @@ exports[`Assets babel transforms example test case: node-current-lib 1`] = `
 
 require('../assets/styles-17df299b.css');
 require('../assets/logo-c21f559f.svg');
-require('/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css');
+require('website/src/css/custom.css');
 const json = {
   list: ["foo", "bar", "baz"],
   number: 123,
@@ -878,7 +878,7 @@ exports[`Assets babel transforms example test case: node-current-mjs 1`] = `
 
 import '../assets/styles-17df299b.css';
 import '../assets/logo-c21f559f.svg';
-import '/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css';
+import 'website/src/css/custom.css';
 const json = {
   list: ["foo", "bar", "baz"],
   number: 123,
@@ -920,7 +920,7 @@ exports[`Assets babel transforms example test case: node-experimental-cjs 2`] = 
 
 require('../assets/styles-17df299b.css');
 require('../assets/logo-c21f559f.svg');
-require('/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css');
+require('website/src/css/custom.css');
 const json = {
   list: ["foo", "bar", "baz"],
   number: 123,
@@ -952,7 +952,7 @@ exports[`Assets babel transforms example test case: node-experimental-lib 1`] = 
 
 require('../assets/styles-17df299b.css');
 require('../assets/logo-c21f559f.svg');
-require('/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css');
+require('website/src/css/custom.css');
 const json = {
   list: ["foo", "bar", "baz"],
   number: 123,
@@ -982,7 +982,7 @@ exports[`Assets babel transforms example test case: node-experimental-mjs 1`] = 
 
 import '../assets/styles-17df299b.css';
 import '../assets/logo-c21f559f.svg';
-import '/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css';
+import 'website/src/css/custom.css';
 const json = {
   list: ["foo", "bar", "baz"],
   number: 123,
@@ -1024,7 +1024,7 @@ exports[`Assets babel transforms example test case: node-legacy-cjs 2`] = `
 
 require('../assets/styles-17df299b.css');
 require('../assets/logo-c21f559f.svg');
-require('/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css');
+require('website/src/css/custom.css');
 const json = {
   list: ["foo", "bar", "baz"],
   number: 123,
@@ -1056,7 +1056,7 @@ exports[`Assets babel transforms example test case: node-legacy-lib 1`] = `
 
 require('../assets/styles-17df299b.css');
 require('../assets/logo-c21f559f.svg');
-require('/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css');
+require('website/src/css/custom.css');
 const json = {
   list: ["foo", "bar", "baz"],
   number: 123,
@@ -1086,7 +1086,7 @@ exports[`Assets babel transforms example test case: node-legacy-mjs 1`] = `
 
 import '../assets/styles-17df299b.css';
 import '../assets/logo-c21f559f.svg';
-import '/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css';
+import 'website/src/css/custom.css';
 const json = {
   list: ["foo", "bar", "baz"],
   number: 123,
@@ -1128,7 +1128,7 @@ exports[`Assets babel transforms example test case: node-stable-cjs 2`] = `
 
 require('../assets/styles-17df299b.css');
 require('../assets/logo-c21f559f.svg');
-require('/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css');
+require('website/src/css/custom.css');
 const json = {
   list: ["foo", "bar", "baz"],
   number: 123,
@@ -1160,7 +1160,7 @@ exports[`Assets babel transforms example test case: node-stable-lib 1`] = `
 
 require('../assets/styles-17df299b.css');
 require('../assets/logo-c21f559f.svg');
-require('/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css');
+require('website/src/css/custom.css');
 const json = {
   list: ["foo", "bar", "baz"],
   number: 123,
@@ -1190,7 +1190,7 @@ exports[`Assets babel transforms example test case: node-stable-mjs 1`] = `
 
 import '../assets/styles-17df299b.css';
 import '../assets/logo-c21f559f.svg';
-import '/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css';
+import 'website/src/css/custom.css';
 const json = {
   list: ["foo", "bar", "baz"],
   number: 123,
@@ -1219,7 +1219,7 @@ exports[`Assets swc transforms example test case: browser-current-esm 1`] = `
 // Platform: browser, Support: current, Format: esm
 import '../assets/styles-17df299b.css';
 import '../assets/logo-c21f559f.svg';
-import '/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css';
+import 'website/src/css/custom.css';
 const json = {
     list: [
         "foo",
@@ -1253,7 +1253,7 @@ exports[`Assets swc transforms example test case: browser-current-lib 1`] = `
 'use strict';
 require('../assets/styles-17df299b.css');
 require('../assets/logo-c21f559f.svg');
-require('/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css');
+require('website/src/css/custom.css');
 const json = {
     list: [
         "foo",
@@ -1290,12 +1290,12 @@ exports[`Assets swc transforms example test case: browser-current-umd 2`] = `
 [
   "umd/index-browser-current-umd.js",
   "(function(global, factory) {
-    if (typeof module === "object" && typeof module.exports === "object") factory(exports, require("../assets/styles-17df299b.css"), require("../assets/logo-c21f559f.svg"), require("/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css"));
+    if (typeof module === "object" && typeof module.exports === "object") factory(exports, require("../assets/styles-17df299b.css"), require("../assets/logo-c21f559f.svg"), require("website/src/css/custom.css"));
     else if (typeof define === "function" && define.amd) define([
         "exports",
         "../assets/styles-17df299b.css",
         "../assets/logo-c21f559f.svg",
-        "/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css"
+        "website/src/css/custom.css"
     ], factory);
     else if (global = typeof globalThis !== "undefined" ? globalThis : global || self) factory(global.examples = {}, global.styles17Df299BCss, global.logoC21F559FSvg, global.customCss);
 })(this, function(exports, _styles17Df299BCss, _logoC21F559FSvg, _customCss) {
@@ -1329,7 +1329,7 @@ exports[`Assets swc transforms example test case: browser-experimental-esm 1`] =
 // Platform: browser, Support: experimental, Format: esm
 import '../assets/styles-17df299b.css';
 import '../assets/logo-c21f559f.svg';
-import '/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css';
+import 'website/src/css/custom.css';
 const json = {
     list: [
         "foo",
@@ -1363,7 +1363,7 @@ exports[`Assets swc transforms example test case: browser-experimental-lib 1`] =
 'use strict';
 require('../assets/styles-17df299b.css');
 require('../assets/logo-c21f559f.svg');
-require('/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css');
+require('website/src/css/custom.css');
 const json = {
     list: [
         "foo",
@@ -1400,12 +1400,12 @@ exports[`Assets swc transforms example test case: browser-experimental-umd 2`] =
 [
   "umd/index-browser-experimental-umd.js",
   "(function(global, factory) {
-    if (typeof module === "object" && typeof module.exports === "object") factory(exports, require("../assets/styles-17df299b.css"), require("../assets/logo-c21f559f.svg"), require("/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css"));
+    if (typeof module === "object" && typeof module.exports === "object") factory(exports, require("../assets/styles-17df299b.css"), require("../assets/logo-c21f559f.svg"), require("website/src/css/custom.css"));
     else if (typeof define === "function" && define.amd) define([
         "exports",
         "../assets/styles-17df299b.css",
         "../assets/logo-c21f559f.svg",
-        "/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css"
+        "website/src/css/custom.css"
     ], factory);
     else if (global = typeof globalThis !== "undefined" ? globalThis : global || self) factory(global.examples = {}, global.styles17Df299BCss, global.logoC21F559FSvg, global.customCss);
 })(this, function(exports, _styles17Df299BCss, _logoC21F559FSvg, _customCss) {
@@ -1439,7 +1439,7 @@ exports[`Assets swc transforms example test case: browser-legacy-esm 1`] = `
 // Platform: browser, Support: legacy, Format: esm
 import '../assets/styles-17df299b.css';
 import '../assets/logo-c21f559f.svg';
-import '/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css';
+import 'website/src/css/custom.css';
 var json = {
     list: [
         "foo",
@@ -1473,7 +1473,7 @@ exports[`Assets swc transforms example test case: browser-legacy-lib 1`] = `
 'use strict';
 require('../assets/styles-17df299b.css');
 require('../assets/logo-c21f559f.svg');
-require('/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css');
+require('website/src/css/custom.css');
 var json = {
     list: [
         "foo",
@@ -1510,12 +1510,12 @@ exports[`Assets swc transforms example test case: browser-legacy-umd 2`] = `
 [
   "umd/index-browser-legacy-umd.js",
   "(function(global, factory) {
-    if (typeof module === "object" && typeof module.exports === "object") factory(exports, require("../assets/styles-17df299b.css"), require("../assets/logo-c21f559f.svg"), require("/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css"));
+    if (typeof module === "object" && typeof module.exports === "object") factory(exports, require("../assets/styles-17df299b.css"), require("../assets/logo-c21f559f.svg"), require("website/src/css/custom.css"));
     else if (typeof define === "function" && define.amd) define([
         "exports",
         "../assets/styles-17df299b.css",
         "../assets/logo-c21f559f.svg",
-        "/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css"
+        "website/src/css/custom.css"
     ], factory);
     else if (global = typeof globalThis !== "undefined" ? globalThis : global || self) factory(global.examples = {}, global.styles17Df299BCss, global.logoC21F559FSvg, global.customCss);
 })(this, function(exports, _styles17Df299BCss, _logoC21F559FSvg, _customCss) {
@@ -1549,7 +1549,7 @@ exports[`Assets swc transforms example test case: browser-stable-esm 1`] = `
 // Platform: browser, Support: stable, Format: esm
 import '../assets/styles-17df299b.css';
 import '../assets/logo-c21f559f.svg';
-import '/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css';
+import 'website/src/css/custom.css';
 const json = {
     list: [
         "foo",
@@ -1583,7 +1583,7 @@ exports[`Assets swc transforms example test case: browser-stable-lib 1`] = `
 'use strict';
 require('../assets/styles-17df299b.css');
 require('../assets/logo-c21f559f.svg');
-require('/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css');
+require('website/src/css/custom.css');
 const json = {
     list: [
         "foo",
@@ -1620,12 +1620,12 @@ exports[`Assets swc transforms example test case: browser-stable-umd 2`] = `
 [
   "umd/index-browser-stable-umd.js",
   "(function(global, factory) {
-    if (typeof module === "object" && typeof module.exports === "object") factory(exports, require("../assets/styles-17df299b.css"), require("../assets/logo-c21f559f.svg"), require("/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css"));
+    if (typeof module === "object" && typeof module.exports === "object") factory(exports, require("../assets/styles-17df299b.css"), require("../assets/logo-c21f559f.svg"), require("website/src/css/custom.css"));
     else if (typeof define === "function" && define.amd) define([
         "exports",
         "../assets/styles-17df299b.css",
         "../assets/logo-c21f559f.svg",
-        "/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css"
+        "website/src/css/custom.css"
     ], factory);
     else if (global = typeof globalThis !== "undefined" ? globalThis : global || self) factory(global.examples = {}, global.styles17Df299BCss, global.logoC21F559FSvg, global.customCss);
 })(this, function(exports, _styles17Df299BCss, _logoC21F559FSvg, _customCss) {
@@ -1659,7 +1659,7 @@ exports[`Assets swc transforms example test case: electron-current-esm 1`] = `
 // Platform: electron, Support: current, Format: esm
 import '../assets/styles-17df299b.css';
 import '../assets/logo-c21f559f.svg';
-import '/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css';
+import 'website/src/css/custom.css';
 const json = {
     list: [
         "foo",
@@ -1693,7 +1693,7 @@ exports[`Assets swc transforms example test case: electron-current-lib 1`] = `
 'use strict';
 require('../assets/styles-17df299b.css');
 require('../assets/logo-c21f559f.svg');
-require('/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css');
+require('website/src/css/custom.css');
 const json = {
     list: [
         "foo",
@@ -1726,7 +1726,7 @@ exports[`Assets swc transforms example test case: electron-experimental-esm 1`] 
 // Platform: electron, Support: experimental, Format: esm
 import '../assets/styles-17df299b.css';
 import '../assets/logo-c21f559f.svg';
-import '/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css';
+import 'website/src/css/custom.css';
 const json = {
     list: [
         "foo",
@@ -1760,7 +1760,7 @@ exports[`Assets swc transforms example test case: electron-experimental-lib 1`] 
 'use strict';
 require('../assets/styles-17df299b.css');
 require('../assets/logo-c21f559f.svg');
-require('/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css');
+require('website/src/css/custom.css');
 const json = {
     list: [
         "foo",
@@ -1793,7 +1793,7 @@ exports[`Assets swc transforms example test case: electron-legacy-esm 1`] = `
 // Platform: electron, Support: legacy, Format: esm
 import '../assets/styles-17df299b.css';
 import '../assets/logo-c21f559f.svg';
-import '/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css';
+import 'website/src/css/custom.css';
 const json = {
     list: [
         "foo",
@@ -1827,7 +1827,7 @@ exports[`Assets swc transforms example test case: electron-legacy-lib 1`] = `
 'use strict';
 require('../assets/styles-17df299b.css');
 require('../assets/logo-c21f559f.svg');
-require('/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css');
+require('website/src/css/custom.css');
 const json = {
     list: [
         "foo",
@@ -1860,7 +1860,7 @@ exports[`Assets swc transforms example test case: electron-stable-esm 1`] = `
 // Platform: electron, Support: stable, Format: esm
 import '../assets/styles-17df299b.css';
 import '../assets/logo-c21f559f.svg';
-import '/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css';
+import 'website/src/css/custom.css';
 const json = {
     list: [
         "foo",
@@ -1894,7 +1894,7 @@ exports[`Assets swc transforms example test case: electron-stable-lib 1`] = `
 'use strict';
 require('../assets/styles-17df299b.css');
 require('../assets/logo-c21f559f.svg');
-require('/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css');
+require('website/src/css/custom.css');
 const json = {
     list: [
         "foo",
@@ -1928,7 +1928,7 @@ exports[`Assets swc transforms example test case: native-current-lib 1`] = `
 'use strict';
 require('../assets/styles-17df299b.css');
 require('../assets/logo-c21f559f.svg');
-require('/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css');
+require('website/src/css/custom.css');
 const json = {
     list: [
         "foo",
@@ -1962,7 +1962,7 @@ exports[`Assets swc transforms example test case: native-experimental-lib 1`] = 
 'use strict';
 require('../assets/styles-17df299b.css');
 require('../assets/logo-c21f559f.svg');
-require('/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css');
+require('website/src/css/custom.css');
 const json = {
     list: [
         "foo",
@@ -1996,7 +1996,7 @@ exports[`Assets swc transforms example test case: native-legacy-lib 1`] = `
 'use strict';
 require('../assets/styles-17df299b.css');
 require('../assets/logo-c21f559f.svg');
-require('/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css');
+require('website/src/css/custom.css');
 const json = {
     list: [
         "foo",
@@ -2030,7 +2030,7 @@ exports[`Assets swc transforms example test case: native-stable-lib 1`] = `
 'use strict';
 require('../assets/styles-17df299b.css');
 require('../assets/logo-c21f559f.svg');
-require('/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css');
+require('website/src/css/custom.css');
 const json = {
     list: [
         "foo",
@@ -2074,7 +2074,7 @@ exports[`Assets swc transforms example test case: node-current-cjs 2`] = `
 'use strict';
 require('../assets/styles-17df299b.css');
 require('../assets/logo-c21f559f.svg');
-require('/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css');
+require('website/src/css/custom.css');
 const json = {
     list: [
         "foo",
@@ -2108,7 +2108,7 @@ exports[`Assets swc transforms example test case: node-current-lib 1`] = `
 'use strict';
 require('../assets/styles-17df299b.css');
 require('../assets/logo-c21f559f.svg');
-require('/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css');
+require('website/src/css/custom.css');
 const json = {
     list: [
         "foo",
@@ -2141,7 +2141,7 @@ exports[`Assets swc transforms example test case: node-current-mjs 1`] = `
 // Platform: node, Support: current, Format: mjs
 import '../assets/styles-17df299b.css';
 import '../assets/logo-c21f559f.svg';
-import '/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css';
+import 'website/src/css/custom.css';
 const json = {
     list: [
         "foo",
@@ -2185,7 +2185,7 @@ exports[`Assets swc transforms example test case: node-experimental-cjs 2`] = `
 'use strict';
 require('../assets/styles-17df299b.css');
 require('../assets/logo-c21f559f.svg');
-require('/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css');
+require('website/src/css/custom.css');
 const json = {
     list: [
         "foo",
@@ -2219,7 +2219,7 @@ exports[`Assets swc transforms example test case: node-experimental-lib 1`] = `
 'use strict';
 require('../assets/styles-17df299b.css');
 require('../assets/logo-c21f559f.svg');
-require('/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css');
+require('website/src/css/custom.css');
 const json = {
     list: [
         "foo",
@@ -2252,7 +2252,7 @@ exports[`Assets swc transforms example test case: node-experimental-mjs 1`] = `
 // Platform: node, Support: experimental, Format: mjs
 import '../assets/styles-17df299b.css';
 import '../assets/logo-c21f559f.svg';
-import '/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css';
+import 'website/src/css/custom.css';
 const json = {
     list: [
         "foo",
@@ -2296,7 +2296,7 @@ exports[`Assets swc transforms example test case: node-legacy-cjs 2`] = `
 'use strict';
 require('../assets/styles-17df299b.css');
 require('../assets/logo-c21f559f.svg');
-require('/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css');
+require('website/src/css/custom.css');
 const json = {
     list: [
         "foo",
@@ -2330,7 +2330,7 @@ exports[`Assets swc transforms example test case: node-legacy-lib 1`] = `
 'use strict';
 require('../assets/styles-17df299b.css');
 require('../assets/logo-c21f559f.svg');
-require('/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css');
+require('website/src/css/custom.css');
 const json = {
     list: [
         "foo",
@@ -2363,7 +2363,7 @@ exports[`Assets swc transforms example test case: node-legacy-mjs 1`] = `
 // Platform: node, Support: legacy, Format: mjs
 import '../assets/styles-17df299b.css';
 import '../assets/logo-c21f559f.svg';
-import '/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css';
+import 'website/src/css/custom.css';
 const json = {
     list: [
         "foo",
@@ -2407,7 +2407,7 @@ exports[`Assets swc transforms example test case: node-stable-cjs 2`] = `
 'use strict';
 require('../assets/styles-17df299b.css');
 require('../assets/logo-c21f559f.svg');
-require('/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css');
+require('website/src/css/custom.css');
 const json = {
     list: [
         "foo",
@@ -2441,7 +2441,7 @@ exports[`Assets swc transforms example test case: node-stable-lib 1`] = `
 'use strict';
 require('../assets/styles-17df299b.css');
 require('../assets/logo-c21f559f.svg');
-require('/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css');
+require('website/src/css/custom.css');
 const json = {
     list: [
         "foo",
@@ -2474,7 +2474,7 @@ exports[`Assets swc transforms example test case: node-stable-mjs 1`] = `
 // Platform: node, Support: stable, Format: mjs
 import '../assets/styles-17df299b.css';
 import '../assets/logo-c21f559f.svg';
-import '/Users/miles/Projects/packemon/tests/__fixtures__/examples/website/src/css/custom.css';
+import 'website/src/css/custom.css';
 const json = {
     list: [
         "foo",
