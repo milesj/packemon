@@ -289,7 +289,7 @@ exports[`Outputs (babel) bundle with assets bundles all files and references ass
 
 import '../assets/globals-107ab52e.css';
 import '../assets/fonts-4e5dc96c.css';
-import '../assets/styles-a82c1676.css';
+import '../assets/styles-b11c3a83.css';
 function button() {}
 export { button };
 //# sourceMappingURL=index.js.map
@@ -314,22 +314,22 @@ exports[`Outputs (babel) bundle with assets bundles all files and references ass
 
 exports[`Outputs (babel) bundle with assets bundles all files and references assets (browser, esm) 3`] = `
 [
-  "src/globals.css",
-  "assets/globals-107ab52e.css",
+  "src/button/styles.css",
+  "assets/styles-b11c3a83.css",
 ]
 `;
 
 exports[`Outputs (babel) bundle with assets bundles all files and references assets (browser, esm) 4`] = `
 [
-  "src/shared/fonts.css",
-  "assets/fonts-4e5dc96c.css",
+  "src/globals.css",
+  "assets/globals-107ab52e.css",
 ]
 `;
 
 exports[`Outputs (babel) bundle with assets bundles all files and references assets (browser, esm) 5`] = `
 [
-  "src/styles.css",
-  "assets/styles-a82c1676.css",
+  "src/shared/fonts.css",
+  "assets/fonts-4e5dc96c.css",
 ]
 `;
 
@@ -343,7 +343,7 @@ exports[`Outputs (babel) bundle with assets bundles all files and references ass
 
 require('../assets/globals-107ab52e.css');
 require('../assets/fonts-4e5dc96c.css');
-require('../assets/styles-a82c1676.css');
+require('../assets/styles-b11c3a83.css');
 function button() {}
 exports.button = button;
 //# sourceMappingURL=index.js.map
@@ -367,22 +367,22 @@ exports[`Outputs (babel) bundle with assets bundles all files and references ass
 
 exports[`Outputs (babel) bundle with assets bundles all files and references assets (browser, lib) 3`] = `
 [
-  "src/globals.css",
-  "assets/globals-107ab52e.css",
+  "src/button/styles.css",
+  "assets/styles-b11c3a83.css",
 ]
 `;
 
 exports[`Outputs (babel) bundle with assets bundles all files and references assets (browser, lib) 4`] = `
 [
-  "src/shared/fonts.css",
-  "assets/fonts-4e5dc96c.css",
+  "src/globals.css",
+  "assets/globals-107ab52e.css",
 ]
 `;
 
 exports[`Outputs (babel) bundle with assets bundles all files and references assets (browser, lib) 5`] = `
 [
-  "src/styles.css",
-  "assets/styles-a82c1676.css",
+  "src/shared/fonts.css",
+  "assets/fonts-4e5dc96c.css",
 ]
 `;
 
@@ -403,22 +403,22 @@ exports[`Outputs (babel) bundle with assets bundles all files and references ass
 
 exports[`Outputs (babel) bundle with assets bundles all files and references assets (browser, umd) 2`] = `
 [
-  "src/globals.css",
-  "assets/globals-107ab52e.css",
+  "src/button/styles.css",
+  "assets/styles-b11c3a83.css",
 ]
 `;
 
 exports[`Outputs (babel) bundle with assets bundles all files and references assets (browser, umd) 3`] = `
 [
-  "src/shared/fonts.css",
-  "assets/fonts-4e5dc96c.css",
+  "src/globals.css",
+  "assets/globals-107ab52e.css",
 ]
 `;
 
 exports[`Outputs (babel) bundle with assets bundles all files and references assets (browser, umd) 4`] = `
 [
-  "src/styles.css",
-  "assets/styles-a82c1676.css",
+  "src/shared/fonts.css",
+  "assets/fonts-4e5dc96c.css",
 ]
 `;
 
@@ -427,17 +427,17 @@ exports[`Outputs (babel) bundle with assets bundles all files and references ass
   "umd/index.js",
   "(function (global, factory) {
   if (typeof define === "function" && define.amd) {
-    define(["exports", "../assets/globals-107ab52e.css", "../assets/fonts-4e5dc96c.css", "../assets/styles-a82c1676.css"], factory);
+    define(["exports", "../assets/globals-107ab52e.css", "../assets/fonts-4e5dc96c.css", "../assets/styles-b11c3a83.css"], factory);
   } else if (typeof exports !== "undefined") {
-    factory(exports, require("../assets/globals-107ab52e.css"), require("../assets/fonts-4e5dc96c.css"), require("../assets/styles-a82c1676.css"));
+    factory(exports, require("../assets/globals-107ab52e.css"), require("../assets/fonts-4e5dc96c.css"), require("../assets/styles-b11c3a83.css"));
   } else {
     var mod = {
       exports: {}
     };
-    factory(mod.exports, global.globals107ab52e, global.fonts4e5dc96c, global.stylesA82c1676);
+    factory(mod.exports, global.globals107ab52e, global.fonts4e5dc96c, global.stylesB11c3a83);
     global.projectAssets = mod.exports;
   }
-})(typeof globalThis !== "undefined" ? globalThis : typeof self !== "undefined" ? self : this, function (_exports, _globals107ab52e, _fonts4e5dc96c, _stylesA82c) {
+})(typeof globalThis !== "undefined" ? globalThis : typeof self !== "undefined" ? self : this, function (_exports, _globals107ab52e, _fonts4e5dc96c, _stylesB11c3a) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -462,7 +462,7 @@ exports[`Outputs (babel) bundle with assets bundles all files and references ass
 
 import '../assets/globals-107ab52e.css';
 import '../assets/fonts-4e5dc96c.css';
-import '../assets/styles-a82c1676.css';
+import '../assets/styles-b11c3a83.css';
 function button() {}
 export { button };
 //# sourceMappingURL=index.js.map
@@ -487,22 +487,22 @@ exports[`Outputs (babel) bundle with assets bundles all files and references ass
 
 exports[`Outputs (babel) bundle with assets bundles all files and references assets (electron, esm) 3`] = `
 [
-  "src/globals.css",
-  "assets/globals-107ab52e.css",
+  "src/button/styles.css",
+  "assets/styles-b11c3a83.css",
 ]
 `;
 
 exports[`Outputs (babel) bundle with assets bundles all files and references assets (electron, esm) 4`] = `
 [
-  "src/shared/fonts.css",
-  "assets/fonts-4e5dc96c.css",
+  "src/globals.css",
+  "assets/globals-107ab52e.css",
 ]
 `;
 
 exports[`Outputs (babel) bundle with assets bundles all files and references assets (electron, esm) 5`] = `
 [
-  "src/styles.css",
-  "assets/styles-a82c1676.css",
+  "src/shared/fonts.css",
+  "assets/fonts-4e5dc96c.css",
 ]
 `;
 
@@ -516,7 +516,7 @@ exports[`Outputs (babel) bundle with assets bundles all files and references ass
 
 require('../assets/globals-107ab52e.css');
 require('../assets/fonts-4e5dc96c.css');
-require('../assets/styles-a82c1676.css');
+require('../assets/styles-b11c3a83.css');
 function button() {}
 exports.button = button;
 //# sourceMappingURL=index.js.map
@@ -540,22 +540,22 @@ exports[`Outputs (babel) bundle with assets bundles all files and references ass
 
 exports[`Outputs (babel) bundle with assets bundles all files and references assets (electron, lib) 3`] = `
 [
-  "src/globals.css",
-  "assets/globals-107ab52e.css",
+  "src/button/styles.css",
+  "assets/styles-b11c3a83.css",
 ]
 `;
 
 exports[`Outputs (babel) bundle with assets bundles all files and references assets (electron, lib) 4`] = `
 [
-  "src/shared/fonts.css",
-  "assets/fonts-4e5dc96c.css",
+  "src/globals.css",
+  "assets/globals-107ab52e.css",
 ]
 `;
 
 exports[`Outputs (babel) bundle with assets bundles all files and references assets (electron, lib) 5`] = `
 [
-  "src/styles.css",
-  "assets/styles-a82c1676.css",
+  "src/shared/fonts.css",
+  "assets/fonts-4e5dc96c.css",
 ]
 `;
 
@@ -569,7 +569,7 @@ exports[`Outputs (babel) bundle with assets bundles all files and references ass
 
 require('../assets/globals-107ab52e.css');
 require('../assets/fonts-4e5dc96c.css');
-require('../assets/styles-a82c1676.css');
+require('../assets/styles-b11c3a83.css');
 function button() {}
 exports.button = button;
 //# sourceMappingURL=index.js.map
@@ -593,22 +593,22 @@ exports[`Outputs (babel) bundle with assets bundles all files and references ass
 
 exports[`Outputs (babel) bundle with assets bundles all files and references assets (native, lib) 3`] = `
 [
-  "src/globals.css",
-  "assets/globals-107ab52e.css",
+  "src/button/styles.css",
+  "assets/styles-b11c3a83.css",
 ]
 `;
 
 exports[`Outputs (babel) bundle with assets bundles all files and references assets (native, lib) 4`] = `
 [
-  "src/shared/fonts.css",
-  "assets/fonts-4e5dc96c.css",
+  "src/globals.css",
+  "assets/globals-107ab52e.css",
 ]
 `;
 
 exports[`Outputs (babel) bundle with assets bundles all files and references assets (native, lib) 5`] = `
 [
-  "src/styles.css",
-  "assets/styles-a82c1676.css",
+  "src/shared/fonts.css",
+  "assets/fonts-4e5dc96c.css",
 ]
 `;
 
@@ -622,7 +622,7 @@ exports[`Outputs (babel) bundle with assets bundles all files and references ass
 
 require('../assets/globals-107ab52e.css');
 require('../assets/fonts-4e5dc96c.css');
-require('../assets/styles-a82c1676.css');
+require('../assets/styles-b11c3a83.css');
 function button() {}
 exports.button = button;
 //# sourceMappingURL=index.cjs.map
@@ -646,22 +646,22 @@ exports[`Outputs (babel) bundle with assets bundles all files and references ass
 
 exports[`Outputs (babel) bundle with assets bundles all files and references assets (node, cjs) 3`] = `
 [
-  "src/globals.css",
-  "assets/globals-107ab52e.css",
+  "src/button/styles.css",
+  "assets/styles-b11c3a83.css",
 ]
 `;
 
 exports[`Outputs (babel) bundle with assets bundles all files and references assets (node, cjs) 4`] = `
 [
-  "src/shared/fonts.css",
-  "assets/fonts-4e5dc96c.css",
+  "src/globals.css",
+  "assets/globals-107ab52e.css",
 ]
 `;
 
 exports[`Outputs (babel) bundle with assets bundles all files and references assets (node, cjs) 5`] = `
 [
-  "src/styles.css",
-  "assets/styles-a82c1676.css",
+  "src/shared/fonts.css",
+  "assets/fonts-4e5dc96c.css",
 ]
 `;
 
@@ -675,7 +675,7 @@ exports[`Outputs (babel) bundle with assets bundles all files and references ass
 
 require('../assets/globals-107ab52e.css');
 require('../assets/fonts-4e5dc96c.css');
-require('../assets/styles-a82c1676.css');
+require('../assets/styles-b11c3a83.css');
 function button() {}
 exports.button = button;
 //# sourceMappingURL=index.js.map
@@ -699,22 +699,22 @@ exports[`Outputs (babel) bundle with assets bundles all files and references ass
 
 exports[`Outputs (babel) bundle with assets bundles all files and references assets (node, lib) 3`] = `
 [
-  "src/globals.css",
-  "assets/globals-107ab52e.css",
+  "src/button/styles.css",
+  "assets/styles-b11c3a83.css",
 ]
 `;
 
 exports[`Outputs (babel) bundle with assets bundles all files and references assets (node, lib) 4`] = `
 [
-  "src/shared/fonts.css",
-  "assets/fonts-4e5dc96c.css",
+  "src/globals.css",
+  "assets/globals-107ab52e.css",
 ]
 `;
 
 exports[`Outputs (babel) bundle with assets bundles all files and references assets (node, lib) 5`] = `
 [
-  "src/styles.css",
-  "assets/styles-a82c1676.css",
+  "src/shared/fonts.css",
+  "assets/fonts-4e5dc96c.css",
 ]
 `;
 
@@ -726,7 +726,7 @@ exports[`Outputs (babel) bundle with assets bundles all files and references ass
 
 import '../assets/globals-107ab52e.css';
 import '../assets/fonts-4e5dc96c.css';
-import '../assets/styles-a82c1676.css';
+import '../assets/styles-b11c3a83.css';
 function button() {}
 export { button };
 //# sourceMappingURL=index.mjs.map
@@ -750,22 +750,22 @@ exports[`Outputs (babel) bundle with assets bundles all files and references ass
 
 exports[`Outputs (babel) bundle with assets bundles all files and references assets (node, mjs) 3`] = `
 [
-  "src/globals.css",
-  "assets/globals-107ab52e.css",
+  "src/button/styles.css",
+  "assets/styles-b11c3a83.css",
 ]
 `;
 
 exports[`Outputs (babel) bundle with assets bundles all files and references assets (node, mjs) 4`] = `
 [
-  "src/shared/fonts.css",
-  "assets/fonts-4e5dc96c.css",
+  "src/globals.css",
+  "assets/globals-107ab52e.css",
 ]
 `;
 
 exports[`Outputs (babel) bundle with assets bundles all files and references assets (node, mjs) 5`] = `
 [
-  "src/styles.css",
-  "assets/styles-a82c1676.css",
+  "src/shared/fonts.css",
+  "assets/fonts-4e5dc96c.css",
 ]
 `;
 
@@ -779,7 +779,7 @@ exports[`Outputs (babel) bundle with assets uses same assets across multiple for
 
 require('../assets/globals-107ab52e.css');
 require('../assets/fonts-4e5dc96c.css');
-require('../assets/styles-a82c1676.css');
+require('../assets/styles-b11c3a83.css');
 function button() {}
 exports.button = button;
 //# sourceMappingURL=index.cjs.map
@@ -795,7 +795,7 @@ exports[`Outputs (babel) bundle with assets uses same assets across multiple for
 
 import '../assets/globals-107ab52e.css';
 import '../assets/fonts-4e5dc96c.css';
-import '../assets/styles-a82c1676.css';
+import '../assets/styles-b11c3a83.css';
 function button() {}
 export { button };
 //# sourceMappingURL=index.js.map
@@ -813,7 +813,7 @@ exports[`Outputs (babel) bundle with assets uses same assets across multiple for
 
 require('../assets/globals-107ab52e.css');
 require('../assets/fonts-4e5dc96c.css');
-require('../assets/styles-a82c1676.css');
+require('../assets/styles-b11c3a83.css');
 function button() {}
 exports.button = button;
 //# sourceMappingURL=index.js.map
@@ -838,64 +838,64 @@ exports[`Outputs (babel) bundle with assets uses same assets across multiple for
 
 exports[`Outputs (babel) bundle with assets uses same assets across multiple formats 5`] = `
 [
-  "src/globals.css",
-  "assets/globals-107ab52e.css",
+  "src/button/styles.css",
+  "assets/styles-b11c3a83.css",
 ]
 `;
 
 exports[`Outputs (babel) bundle with assets uses same assets across multiple formats 6`] = `
 [
-  "src/globals.css",
-  "assets/globals-107ab52e.css",
+  "src/button/styles.css",
+  "assets/styles-b11c3a83.css",
 ]
 `;
 
 exports[`Outputs (babel) bundle with assets uses same assets across multiple formats 7`] = `
 [
-  "src/globals.css",
-  "assets/globals-107ab52e.css",
+  "src/button/styles.css",
+  "assets/styles-b11c3a83.css",
 ]
 `;
 
 exports[`Outputs (babel) bundle with assets uses same assets across multiple formats 8`] = `
 [
-  "src/shared/fonts.css",
-  "assets/fonts-4e5dc96c.css",
+  "src/globals.css",
+  "assets/globals-107ab52e.css",
 ]
 `;
 
 exports[`Outputs (babel) bundle with assets uses same assets across multiple formats 9`] = `
 [
-  "src/shared/fonts.css",
-  "assets/fonts-4e5dc96c.css",
+  "src/globals.css",
+  "assets/globals-107ab52e.css",
 ]
 `;
 
 exports[`Outputs (babel) bundle with assets uses same assets across multiple formats 10`] = `
 [
-  "src/shared/fonts.css",
-  "assets/fonts-4e5dc96c.css",
+  "src/globals.css",
+  "assets/globals-107ab52e.css",
 ]
 `;
 
 exports[`Outputs (babel) bundle with assets uses same assets across multiple formats 11`] = `
 [
-  "src/styles.css",
-  "assets/styles-a82c1676.css",
+  "src/shared/fonts.css",
+  "assets/fonts-4e5dc96c.css",
 ]
 `;
 
 exports[`Outputs (babel) bundle with assets uses same assets across multiple formats 12`] = `
 [
-  "src/styles.css",
-  "assets/styles-a82c1676.css",
+  "src/shared/fonts.css",
+  "assets/fonts-4e5dc96c.css",
 ]
 `;
 
 exports[`Outputs (babel) bundle with assets uses same assets across multiple formats 13`] = `
 [
-  "src/styles.css",
-  "assets/styles-a82c1676.css",
+  "src/shared/fonts.css",
+  "assets/fonts-4e5dc96c.css",
 ]
 `;
 
@@ -1821,7 +1821,7 @@ exports[`Outputs (swc) bundle with assets bundles all files and references asset
 
 import '../assets/globals-107ab52e.css';
 import '../assets/fonts-4e5dc96c.css';
-import '../assets/styles-a82c1676.css';
+import '../assets/styles-b11c3a83.css';
 function button() {}
 export { button };
 //# sourceMappingURL=index.js.map
@@ -1846,22 +1846,22 @@ exports[`Outputs (swc) bundle with assets bundles all files and references asset
 
 exports[`Outputs (swc) bundle with assets bundles all files and references assets (browser, esm) 3`] = `
 [
-  "src/globals.css",
-  "assets/globals-107ab52e.css",
+  "src/button/styles.css",
+  "assets/styles-b11c3a83.css",
 ]
 `;
 
 exports[`Outputs (swc) bundle with assets bundles all files and references assets (browser, esm) 4`] = `
 [
-  "src/shared/fonts.css",
-  "assets/fonts-4e5dc96c.css",
+  "src/globals.css",
+  "assets/globals-107ab52e.css",
 ]
 `;
 
 exports[`Outputs (swc) bundle with assets bundles all files and references assets (browser, esm) 5`] = `
 [
-  "src/styles.css",
-  "assets/styles-a82c1676.css",
+  "src/shared/fonts.css",
+  "assets/fonts-4e5dc96c.css",
 ]
 `;
 
@@ -1875,7 +1875,7 @@ exports[`Outputs (swc) bundle with assets bundles all files and references asset
 
 require('../assets/globals-107ab52e.css');
 require('../assets/fonts-4e5dc96c.css');
-require('../assets/styles-a82c1676.css');
+require('../assets/styles-b11c3a83.css');
 function button() {}
 exports.button = button;
 //# sourceMappingURL=index.js.map
@@ -1899,22 +1899,22 @@ exports[`Outputs (swc) bundle with assets bundles all files and references asset
 
 exports[`Outputs (swc) bundle with assets bundles all files and references assets (browser, lib) 3`] = `
 [
-  "src/globals.css",
-  "assets/globals-107ab52e.css",
+  "src/button/styles.css",
+  "assets/styles-b11c3a83.css",
 ]
 `;
 
 exports[`Outputs (swc) bundle with assets bundles all files and references assets (browser, lib) 4`] = `
 [
-  "src/shared/fonts.css",
-  "assets/fonts-4e5dc96c.css",
+  "src/globals.css",
+  "assets/globals-107ab52e.css",
 ]
 `;
 
 exports[`Outputs (swc) bundle with assets bundles all files and references assets (browser, lib) 5`] = `
 [
-  "src/styles.css",
-  "assets/styles-a82c1676.css",
+  "src/shared/fonts.css",
+  "assets/fonts-4e5dc96c.css",
 ]
 `;
 
@@ -1935,22 +1935,22 @@ exports[`Outputs (swc) bundle with assets bundles all files and references asset
 
 exports[`Outputs (swc) bundle with assets bundles all files and references assets (browser, umd) 2`] = `
 [
-  "src/globals.css",
-  "assets/globals-107ab52e.css",
+  "src/button/styles.css",
+  "assets/styles-b11c3a83.css",
 ]
 `;
 
 exports[`Outputs (swc) bundle with assets bundles all files and references assets (browser, umd) 3`] = `
 [
-  "src/shared/fonts.css",
-  "assets/fonts-4e5dc96c.css",
+  "src/globals.css",
+  "assets/globals-107ab52e.css",
 ]
 `;
 
 exports[`Outputs (swc) bundle with assets bundles all files and references assets (browser, umd) 4`] = `
 [
-  "src/styles.css",
-  "assets/styles-a82c1676.css",
+  "src/shared/fonts.css",
+  "assets/fonts-4e5dc96c.css",
 ]
 `;
 
@@ -1959,17 +1959,17 @@ exports[`Outputs (swc) bundle with assets bundles all files and references asset
   "umd/index.js",
   "(function (global, factory) {
   if (typeof define === "function" && define.amd) {
-    define(["exports", "../assets/globals-107ab52e.css", "../assets/fonts-4e5dc96c.css", "../assets/styles-a82c1676.css"], factory);
+    define(["exports", "../assets/globals-107ab52e.css", "../assets/fonts-4e5dc96c.css", "../assets/styles-b11c3a83.css"], factory);
   } else if (typeof exports !== "undefined") {
-    factory(exports, require("../assets/globals-107ab52e.css"), require("../assets/fonts-4e5dc96c.css"), require("../assets/styles-a82c1676.css"));
+    factory(exports, require("../assets/globals-107ab52e.css"), require("../assets/fonts-4e5dc96c.css"), require("../assets/styles-b11c3a83.css"));
   } else {
     var mod = {
       exports: {}
     };
-    factory(mod.exports, global.globals107ab52e, global.fonts4e5dc96c, global.stylesA82c1676);
+    factory(mod.exports, global.globals107ab52e, global.fonts4e5dc96c, global.stylesB11c3a83);
     global.projectAssets = mod.exports;
   }
-})(typeof globalThis !== "undefined" ? globalThis : typeof self !== "undefined" ? self : this, function (_exports, _globals107ab52e, _fonts4e5dc96c, _stylesA82c) {
+})(typeof globalThis !== "undefined" ? globalThis : typeof self !== "undefined" ? self : this, function (_exports, _globals107ab52e, _fonts4e5dc96c, _stylesB11c3a) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -1994,7 +1994,7 @@ exports[`Outputs (swc) bundle with assets bundles all files and references asset
 
 import '../assets/globals-107ab52e.css';
 import '../assets/fonts-4e5dc96c.css';
-import '../assets/styles-a82c1676.css';
+import '../assets/styles-b11c3a83.css';
 function button() {}
 export { button };
 //# sourceMappingURL=index.js.map
@@ -2019,22 +2019,22 @@ exports[`Outputs (swc) bundle with assets bundles all files and references asset
 
 exports[`Outputs (swc) bundle with assets bundles all files and references assets (electron, esm) 3`] = `
 [
-  "src/globals.css",
-  "assets/globals-107ab52e.css",
+  "src/button/styles.css",
+  "assets/styles-b11c3a83.css",
 ]
 `;
 
 exports[`Outputs (swc) bundle with assets bundles all files and references assets (electron, esm) 4`] = `
 [
-  "src/shared/fonts.css",
-  "assets/fonts-4e5dc96c.css",
+  "src/globals.css",
+  "assets/globals-107ab52e.css",
 ]
 `;
 
 exports[`Outputs (swc) bundle with assets bundles all files and references assets (electron, esm) 5`] = `
 [
-  "src/styles.css",
-  "assets/styles-a82c1676.css",
+  "src/shared/fonts.css",
+  "assets/fonts-4e5dc96c.css",
 ]
 `;
 
@@ -2048,7 +2048,7 @@ exports[`Outputs (swc) bundle with assets bundles all files and references asset
 
 require('../assets/globals-107ab52e.css');
 require('../assets/fonts-4e5dc96c.css');
-require('../assets/styles-a82c1676.css');
+require('../assets/styles-b11c3a83.css');
 function button() {}
 exports.button = button;
 //# sourceMappingURL=index.js.map
@@ -2072,22 +2072,22 @@ exports[`Outputs (swc) bundle with assets bundles all files and references asset
 
 exports[`Outputs (swc) bundle with assets bundles all files and references assets (electron, lib) 3`] = `
 [
-  "src/globals.css",
-  "assets/globals-107ab52e.css",
+  "src/button/styles.css",
+  "assets/styles-b11c3a83.css",
 ]
 `;
 
 exports[`Outputs (swc) bundle with assets bundles all files and references assets (electron, lib) 4`] = `
 [
-  "src/shared/fonts.css",
-  "assets/fonts-4e5dc96c.css",
+  "src/globals.css",
+  "assets/globals-107ab52e.css",
 ]
 `;
 
 exports[`Outputs (swc) bundle with assets bundles all files and references assets (electron, lib) 5`] = `
 [
-  "src/styles.css",
-  "assets/styles-a82c1676.css",
+  "src/shared/fonts.css",
+  "assets/fonts-4e5dc96c.css",
 ]
 `;
 
@@ -2101,7 +2101,7 @@ exports[`Outputs (swc) bundle with assets bundles all files and references asset
 
 require('../assets/globals-107ab52e.css');
 require('../assets/fonts-4e5dc96c.css');
-require('../assets/styles-a82c1676.css');
+require('../assets/styles-b11c3a83.css');
 function button() {}
 exports.button = button;
 //# sourceMappingURL=index.js.map
@@ -2125,22 +2125,22 @@ exports[`Outputs (swc) bundle with assets bundles all files and references asset
 
 exports[`Outputs (swc) bundle with assets bundles all files and references assets (native, lib) 3`] = `
 [
-  "src/globals.css",
-  "assets/globals-107ab52e.css",
+  "src/button/styles.css",
+  "assets/styles-b11c3a83.css",
 ]
 `;
 
 exports[`Outputs (swc) bundle with assets bundles all files and references assets (native, lib) 4`] = `
 [
-  "src/shared/fonts.css",
-  "assets/fonts-4e5dc96c.css",
+  "src/globals.css",
+  "assets/globals-107ab52e.css",
 ]
 `;
 
 exports[`Outputs (swc) bundle with assets bundles all files and references assets (native, lib) 5`] = `
 [
-  "src/styles.css",
-  "assets/styles-a82c1676.css",
+  "src/shared/fonts.css",
+  "assets/fonts-4e5dc96c.css",
 ]
 `;
 
@@ -2154,7 +2154,7 @@ exports[`Outputs (swc) bundle with assets bundles all files and references asset
 
 require('../assets/globals-107ab52e.css');
 require('../assets/fonts-4e5dc96c.css');
-require('../assets/styles-a82c1676.css');
+require('../assets/styles-b11c3a83.css');
 function button() {}
 exports.button = button;
 //# sourceMappingURL=index.cjs.map
@@ -2178,22 +2178,22 @@ exports[`Outputs (swc) bundle with assets bundles all files and references asset
 
 exports[`Outputs (swc) bundle with assets bundles all files and references assets (node, cjs) 3`] = `
 [
-  "src/globals.css",
-  "assets/globals-107ab52e.css",
+  "src/button/styles.css",
+  "assets/styles-b11c3a83.css",
 ]
 `;
 
 exports[`Outputs (swc) bundle with assets bundles all files and references assets (node, cjs) 4`] = `
 [
-  "src/shared/fonts.css",
-  "assets/fonts-4e5dc96c.css",
+  "src/globals.css",
+  "assets/globals-107ab52e.css",
 ]
 `;
 
 exports[`Outputs (swc) bundle with assets bundles all files and references assets (node, cjs) 5`] = `
 [
-  "src/styles.css",
-  "assets/styles-a82c1676.css",
+  "src/shared/fonts.css",
+  "assets/fonts-4e5dc96c.css",
 ]
 `;
 
@@ -2207,7 +2207,7 @@ exports[`Outputs (swc) bundle with assets bundles all files and references asset
 
 require('../assets/globals-107ab52e.css');
 require('../assets/fonts-4e5dc96c.css');
-require('../assets/styles-a82c1676.css');
+require('../assets/styles-b11c3a83.css');
 function button() {}
 exports.button = button;
 //# sourceMappingURL=index.js.map
@@ -2231,22 +2231,22 @@ exports[`Outputs (swc) bundle with assets bundles all files and references asset
 
 exports[`Outputs (swc) bundle with assets bundles all files and references assets (node, lib) 3`] = `
 [
-  "src/globals.css",
-  "assets/globals-107ab52e.css",
+  "src/button/styles.css",
+  "assets/styles-b11c3a83.css",
 ]
 `;
 
 exports[`Outputs (swc) bundle with assets bundles all files and references assets (node, lib) 4`] = `
 [
-  "src/shared/fonts.css",
-  "assets/fonts-4e5dc96c.css",
+  "src/globals.css",
+  "assets/globals-107ab52e.css",
 ]
 `;
 
 exports[`Outputs (swc) bundle with assets bundles all files and references assets (node, lib) 5`] = `
 [
-  "src/styles.css",
-  "assets/styles-a82c1676.css",
+  "src/shared/fonts.css",
+  "assets/fonts-4e5dc96c.css",
 ]
 `;
 
@@ -2258,7 +2258,7 @@ exports[`Outputs (swc) bundle with assets bundles all files and references asset
 
 import '../assets/globals-107ab52e.css';
 import '../assets/fonts-4e5dc96c.css';
-import '../assets/styles-a82c1676.css';
+import '../assets/styles-b11c3a83.css';
 function button() {}
 export { button };
 //# sourceMappingURL=index.mjs.map
@@ -2282,22 +2282,22 @@ exports[`Outputs (swc) bundle with assets bundles all files and references asset
 
 exports[`Outputs (swc) bundle with assets bundles all files and references assets (node, mjs) 3`] = `
 [
-  "src/globals.css",
-  "assets/globals-107ab52e.css",
+  "src/button/styles.css",
+  "assets/styles-b11c3a83.css",
 ]
 `;
 
 exports[`Outputs (swc) bundle with assets bundles all files and references assets (node, mjs) 4`] = `
 [
-  "src/shared/fonts.css",
-  "assets/fonts-4e5dc96c.css",
+  "src/globals.css",
+  "assets/globals-107ab52e.css",
 ]
 `;
 
 exports[`Outputs (swc) bundle with assets bundles all files and references assets (node, mjs) 5`] = `
 [
-  "src/styles.css",
-  "assets/styles-a82c1676.css",
+  "src/shared/fonts.css",
+  "assets/fonts-4e5dc96c.css",
 ]
 `;
 
@@ -2311,7 +2311,7 @@ exports[`Outputs (swc) bundle with assets uses same assets across multiple forma
 
 require('../assets/globals-107ab52e.css');
 require('../assets/fonts-4e5dc96c.css');
-require('../assets/styles-a82c1676.css');
+require('../assets/styles-b11c3a83.css');
 function button() {}
 exports.button = button;
 //# sourceMappingURL=index.cjs.map
@@ -2327,7 +2327,7 @@ exports[`Outputs (swc) bundle with assets uses same assets across multiple forma
 
 import '../assets/globals-107ab52e.css';
 import '../assets/fonts-4e5dc96c.css';
-import '../assets/styles-a82c1676.css';
+import '../assets/styles-b11c3a83.css';
 function button() {}
 export { button };
 //# sourceMappingURL=index.js.map
@@ -2345,7 +2345,7 @@ exports[`Outputs (swc) bundle with assets uses same assets across multiple forma
 
 require('../assets/globals-107ab52e.css');
 require('../assets/fonts-4e5dc96c.css');
-require('../assets/styles-a82c1676.css');
+require('../assets/styles-b11c3a83.css');
 function button() {}
 exports.button = button;
 //# sourceMappingURL=index.js.map
@@ -2370,64 +2370,64 @@ exports[`Outputs (swc) bundle with assets uses same assets across multiple forma
 
 exports[`Outputs (swc) bundle with assets uses same assets across multiple formats 5`] = `
 [
-  "src/globals.css",
-  "assets/globals-107ab52e.css",
+  "src/button/styles.css",
+  "assets/styles-b11c3a83.css",
 ]
 `;
 
 exports[`Outputs (swc) bundle with assets uses same assets across multiple formats 6`] = `
 [
-  "src/globals.css",
-  "assets/globals-107ab52e.css",
+  "src/button/styles.css",
+  "assets/styles-b11c3a83.css",
 ]
 `;
 
 exports[`Outputs (swc) bundle with assets uses same assets across multiple formats 7`] = `
 [
-  "src/globals.css",
-  "assets/globals-107ab52e.css",
+  "src/button/styles.css",
+  "assets/styles-b11c3a83.css",
 ]
 `;
 
 exports[`Outputs (swc) bundle with assets uses same assets across multiple formats 8`] = `
 [
-  "src/shared/fonts.css",
-  "assets/fonts-4e5dc96c.css",
+  "src/globals.css",
+  "assets/globals-107ab52e.css",
 ]
 `;
 
 exports[`Outputs (swc) bundle with assets uses same assets across multiple formats 9`] = `
 [
-  "src/shared/fonts.css",
-  "assets/fonts-4e5dc96c.css",
+  "src/globals.css",
+  "assets/globals-107ab52e.css",
 ]
 `;
 
 exports[`Outputs (swc) bundle with assets uses same assets across multiple formats 10`] = `
 [
-  "src/shared/fonts.css",
-  "assets/fonts-4e5dc96c.css",
+  "src/globals.css",
+  "assets/globals-107ab52e.css",
 ]
 `;
 
 exports[`Outputs (swc) bundle with assets uses same assets across multiple formats 11`] = `
 [
-  "src/styles.css",
-  "assets/styles-a82c1676.css",
+  "src/shared/fonts.css",
+  "assets/fonts-4e5dc96c.css",
 ]
 `;
 
 exports[`Outputs (swc) bundle with assets uses same assets across multiple formats 12`] = `
 [
-  "src/styles.css",
-  "assets/styles-a82c1676.css",
+  "src/shared/fonts.css",
+  "assets/fonts-4e5dc96c.css",
 ]
 `;
 
 exports[`Outputs (swc) bundle with assets uses same assets across multiple formats 13`] = `
 [
-  "src/styles.css",
-  "assets/styles-a82c1676.css",
+  "src/shared/fonts.css",
+  "assets/fonts-4e5dc96c.css",
 ]
 `;
 
