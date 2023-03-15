@@ -729,6 +729,49 @@ describe('Package', () => {
 					'./package.json': './package.json',
 				});
 			});
+
+			// https://github.com/milesj/packemon/issues/188
+			it('handles complex bundled native + mobile + web', async () => {
+				const node = createCodeArtifact([{ format: 'lib', declaration: true }], 'node');
+				node.bundle = true;
+				node.inputs = { index: 'src/index.ts' };
+				node.sharedLib = true;
+
+				const browser = createCodeArtifact([{ format: 'esm', declaration: true }], 'browser');
+				browser.bundle = true;
+				browser.inputs = { web: 'src/web/index.ts' };
+
+				const native = createCodeArtifact([{ format: 'lib', declaration: true }], 'native');
+				native.bundle = true;
+				native.inputs = { mobile: 'src/mobile/index.ts' };
+				native.sharedLib = true;
+
+				pkg.artifacts.push(node, browser, native);
+
+				await pkg.build({ addExports: true }, config);
+
+				expect(pkg.json.exports).toEqual({
+					'./package.json': './package.json',
+					'./mobile': {
+						'react-native': {
+							types: './lib/mobile/index.d.ts',
+							default: './lib/native/mobile.js',
+						},
+						default: './lib/native/mobile.js',
+					},
+					'./web': {
+						browser: {
+							types: './esm/web/index.d.ts',
+							module: './esm/web.js',
+							import: './esm/web.js',
+						},
+					},
+					'.': {
+						node: { types: './lib/index.d.ts', default: './lib/node/index.js' },
+						default: './lib/node/index.js',
+					},
+				});
+			});
 		});
 
 		describe('files', () => {

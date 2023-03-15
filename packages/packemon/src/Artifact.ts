@@ -242,7 +242,7 @@ export class Artifact {
 		return {
 			declExt,
 			declPath: declExt
-				? `./${new VirtualPath(folder, `${inputPath ?? outputPath}.${declExt}`)}`
+				? `./${new VirtualPath(format, `${inputPath ?? outputPath}.${declExt}`)}`
 				: undefined,
 			entryExt,
 			entryPath: `./${new VirtualPath(folder, `${outputPath}.${entryExt}`)}`,

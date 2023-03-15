@@ -1,0 +1,56 @@
+{
+  "name": "test-fixes-188",
+  "packemon": [
+    {
+      "bundle": true,
+      "format": "lib",
+      "platform": "node"
+    },
+    {
+      "bundle": true,
+      "format": "esm",
+      "platform": "browser",
+      "inputs": {
+        "web": "src/web/index.ts"
+      }
+    },
+    {
+      "bundle": true,
+      "format": "lib",
+      "platform": "native",
+      "inputs": {
+        "mobile": "src/mobile/index.ts"
+      }
+    }
+  ],
+  "dependencies": {
+    "typescript": "*"
+  },
+  "main": "./lib/node/index.js",
+  "types": "./lib/index.d.ts",
+  "module": "./esm/web.js",
+  "exports": {
+    "./package.json": "./package.json",
+    "./mobile": {
+      "react-native": {
+        "types": "./lib/mobile/index.d.ts",
+        "default": "./lib/native/mobile.js"
+      },
+      "default": "./lib/native/mobile.js"
+    },
+    "./web": {
+      "browser": {
+        "types": "./esm/web/index.d.ts",
+        "module": "./esm/web.js",
+        "import": "./esm/web.js"
+      }
+    },
+    ".": {
+      "node": {
+        "types": "./lib/index.d.ts",
+        "default": "./lib/node/index.js"
+      },
+      "default": "./lib/node/index.js"
+    }
+  }
+}
