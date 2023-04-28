@@ -401,6 +401,7 @@ export class Artifact {
 		// Provide fallbacks if condition above is not
 		if (defaultEntry) {
 			pathsMap.default = defaultEntry.entryPath;
+			pathsMap.types = defaultEntry.declPath;
 		}
 
 		// eslint-disable-next-line no-param-reassign
