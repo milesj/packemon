@@ -226,6 +226,9 @@ export class Artifact {
 		}
 
 		const folder = format === 'lib' && this.sharedLib ? `lib/${this.platform}` : format;
+		// Folder path for declarations cannot have the platform subpath, since multiple builds can 
+		// share the same tsconfig
+		const declFolder = format;
 		const entryExt = format === 'cjs' || format === 'mjs' ? format : 'js';
 		let declExt: string | undefined;
 
@@ -242,7 +245,7 @@ export class Artifact {
 		return {
 			declExt,
 			declPath: declExt
-				? `./${new VirtualPath(folder, `${inputPath ?? outputPath}.${declExt}`)}`
+				? `./${new VirtualPath(declFolder, `${inputPath ?? outputPath}.${declExt}`)}`
 				: undefined,
 			entryExt,
 			entryPath: `./${new VirtualPath(folder, `${outputPath}.${entryExt}`)}`,
