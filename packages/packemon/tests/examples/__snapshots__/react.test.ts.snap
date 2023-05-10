@@ -777,17 +777,19 @@ exports[`React/JSX swc transforms example test case: browser-current-umd 1`] = `
         "react/jsx-runtime"
     ], factory);
     else if (global = typeof globalThis !== "undefined" ? globalThis : global || self) factory(global.examples = {}, global.jsxRuntime);
-})(this, function(exports, _jsxRuntime) {
+})(this, function(exports, _jsxruntime) {
     "use strict";
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
     Object.defineProperty(exports, "default", {
         enumerable: true,
-        get: ()=>Button
+        get: function() {
+            return Button;
+        }
     });
     function Button() {
-        return /*#__PURE__*/ (0, _jsxRuntime.jsx)("button", {});
+        return /*#__PURE__*/ (0, _jsxruntime.jsx)("button", {});
     }
 });
 //# sourceMappingURL=index-browser-current-umd.js.map
@@ -836,17 +838,19 @@ exports[`React/JSX swc transforms example test case: browser-experimental-umd 1`
         "react/jsx-runtime"
     ], factory);
     else if (global = typeof globalThis !== "undefined" ? globalThis : global || self) factory(global.examples = {}, global.jsxRuntime);
-})(this, function(exports, _jsxRuntime) {
+})(this, function(exports, _jsxruntime) {
     "use strict";
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
     Object.defineProperty(exports, "default", {
         enumerable: true,
-        get: ()=>Button
+        get: function() {
+            return Button;
+        }
     });
     function Button() {
-        return /*#__PURE__*/ (0, _jsxRuntime.jsx)("button", {});
+        return /*#__PURE__*/ (0, _jsxruntime.jsx)("button", {});
     }
 });
 //# sourceMappingURL=index-browser-experimental-umd.js.map
@@ -895,7 +899,7 @@ exports[`React/JSX swc transforms example test case: browser-legacy-umd 1`] = `
         "react/jsx-runtime"
     ], factory);
     else if (global = typeof globalThis !== "undefined" ? globalThis : global || self) factory(global.examples = {}, global.jsxRuntime);
-})(this, function(exports, _jsxRuntime) {
+})(this, function(exports, _jsxruntime) {
     "use strict";
     Object.defineProperty(exports, "__esModule", {
         value: true
@@ -907,7 +911,7 @@ exports[`React/JSX swc transforms example test case: browser-legacy-umd 1`] = `
         }
     });
     function Button() {
-        return /*#__PURE__*/ (0, _jsxRuntime.jsx)("button", {});
+        return /*#__PURE__*/ (0, _jsxruntime.jsx)("button", {});
     }
 });
 //# sourceMappingURL=index-browser-legacy-umd.js.map
@@ -956,17 +960,19 @@ exports[`React/JSX swc transforms example test case: browser-stable-umd 1`] = `
         "react/jsx-runtime"
     ], factory);
     else if (global = typeof globalThis !== "undefined" ? globalThis : global || self) factory(global.examples = {}, global.jsxRuntime);
-})(this, function(exports, _jsxRuntime) {
+})(this, function(exports, _jsxruntime) {
     "use strict";
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
     Object.defineProperty(exports, "default", {
         enumerable: true,
-        get: ()=>Button
+        get: function() {
+            return Button;
+        }
     });
     function Button() {
-        return /*#__PURE__*/ (0, _jsxRuntime.jsx)("button", {});
+        return /*#__PURE__*/ (0, _jsxruntime.jsx)("button", {});
     }
 });
 //# sourceMappingURL=index-browser-stable-umd.js.map

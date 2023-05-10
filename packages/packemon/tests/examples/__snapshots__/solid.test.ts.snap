@@ -1028,8 +1028,12 @@ exports[`Solid/JSX swc transforms example test case: browser-current-umd 1`] = `
         });
     }
     _export(exports, {
-        Button: ()=>Button,
-        default: ()=>Element
+        Button: function() {
+            return Button;
+        },
+        default: function() {
+            return Element;
+        }
     });
     function Button() {
         return /*#__PURE__*/ React.createElement("button", null);
@@ -1103,8 +1107,12 @@ exports[`Solid/JSX swc transforms example test case: browser-experimental-umd 1`
         });
     }
     _export(exports, {
-        Button: ()=>Button,
-        default: ()=>Element
+        Button: function() {
+            return Button;
+        },
+        default: function() {
+            return Element;
+        }
     });
     function Button() {
         return /*#__PURE__*/ React.createElement("button", null);
@@ -1257,8 +1265,12 @@ exports[`Solid/JSX swc transforms example test case: browser-stable-umd 1`] = `
         });
     }
     _export(exports, {
-        Button: ()=>Button,
-        default: ()=>Element
+        Button: function() {
+            return Button;
+        },
+        default: function() {
+            return Element;
+        }
     });
     function Button() {
         return /*#__PURE__*/ React.createElement("button", null);

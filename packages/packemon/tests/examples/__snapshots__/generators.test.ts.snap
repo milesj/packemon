@@ -879,7 +879,9 @@ exports[`Generators swc transforms example test case: browser-current-esm 1`] = 
 // Platform: browser, Support: current, Format: esm
 function* gen() {}
 function runGen() {
-    for (const iterator of gen())console.log(iterator);
+    for (const iterator of gen()){
+        console.log(iterator);
+    }
 }
 export { gen, runGen };
 //# sourceMappingURL=index-browser-current-esm.js.map
@@ -895,7 +897,9 @@ exports[`Generators swc transforms example test case: browser-current-lib 1`] = 
 'use strict';
 function* gen() {}
 function runGen() {
-    for (const iterator of gen())console.log(iterator);
+    for (const iterator of gen()){
+        console.log(iterator);
+    }
 }
 exports.gen = gen;
 exports.runGen = runGen;
@@ -925,12 +929,18 @@ exports[`Generators swc transforms example test case: browser-current-umd 1`] = 
         });
     }
     _export(exports, {
-        gen: ()=>gen,
-        runGen: ()=>runGen
+        gen: function() {
+            return gen;
+        },
+        runGen: function() {
+            return runGen;
+        }
     });
     function* gen() {}
     function runGen() {
-        for (const iterator of gen())console.log(iterator);
+        for (const iterator of gen()){
+            console.log(iterator);
+        }
     }
 });
 //# sourceMappingURL=index-browser-current-umd.js.map
@@ -945,7 +955,9 @@ exports[`Generators swc transforms example test case: browser-experimental-esm 1
 // Platform: browser, Support: experimental, Format: esm
 function* gen() {}
 function runGen() {
-    for (const iterator of gen())console.log(iterator);
+    for (const iterator of gen()){
+        console.log(iterator);
+    }
 }
 export { gen, runGen };
 //# sourceMappingURL=index-browser-experimental-esm.js.map
@@ -961,7 +973,9 @@ exports[`Generators swc transforms example test case: browser-experimental-lib 1
 'use strict';
 function* gen() {}
 function runGen() {
-    for (const iterator of gen())console.log(iterator);
+    for (const iterator of gen()){
+        console.log(iterator);
+    }
 }
 exports.gen = gen;
 exports.runGen = runGen;
@@ -991,12 +1005,18 @@ exports[`Generators swc transforms example test case: browser-experimental-umd 1
         });
     }
     _export(exports, {
-        gen: ()=>gen,
-        runGen: ()=>runGen
+        gen: function() {
+            return gen;
+        },
+        runGen: function() {
+            return runGen;
+        }
     });
     function* gen() {}
     function runGen() {
-        for (const iterator of gen())console.log(iterator);
+        for (const iterator of gen()){
+            console.log(iterator);
+        }
     }
 });
 //# sourceMappingURL=index-browser-experimental-umd.js.map
@@ -1009,7 +1029,7 @@ exports[`Generators swc transforms example test case: browser-legacy-esm 1`] = `
   "esm/index-browser-legacy-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: esm
-var __generator = this && this.__generator || function(thisArg, body) {
+function _ts_generator(thisArg, body) {
     var f, y, t, g, _ = {
         label: 0,
         sent: function() {
@@ -1103,9 +1123,9 @@ var __generator = this && this.__generator || function(thisArg, body) {
             done: true
         };
     }
-};
+}
 function gen() {
-    return __generator(this, function(_state) {
+    return _ts_generator(this, function(_state) {
         return [
             2
         ];
@@ -1145,7 +1165,7 @@ exports[`Generators swc transforms example test case: browser-legacy-lib 1`] = `
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: lib
 'use strict';
-var __generator = (void 0) && (void 0).__generator || function(thisArg, body) {
+function _ts_generator(thisArg, body) {
     var f, y, t, g, _ = {
         label: 0,
         sent: function() {
@@ -1239,9 +1259,9 @@ var __generator = (void 0) && (void 0).__generator || function(thisArg, body) {
             done: true
         };
     }
-};
+}
 function gen() {
-    return __generator(this, function(_state) {
+    return _ts_generator(this, function(_state) {
         return [
             2
         ];
@@ -1304,7 +1324,7 @@ exports[`Generators swc transforms example test case: browser-legacy-umd 1`] = `
             return runGen;
         }
     });
-    var __generator = (void 0) && (void 0).__generator || function(thisArg, body) {
+    function _ts_generator(thisArg, body) {
         var f, y, t, g, _ = {
             label: 0,
             sent: function() {
@@ -1398,9 +1418,9 @@ exports[`Generators swc transforms example test case: browser-legacy-umd 1`] = `
                 done: true
             };
         }
-    };
+    }
     function gen() {
-        return __generator(this, function(_state) {
+        return _ts_generator(this, function(_state) {
             return [
                 2
             ];
@@ -1441,7 +1461,9 @@ exports[`Generators swc transforms example test case: browser-stable-esm 1`] = `
 // Platform: browser, Support: stable, Format: esm
 function* gen() {}
 function runGen() {
-    for (const iterator of gen())console.log(iterator);
+    for (const iterator of gen()){
+        console.log(iterator);
+    }
 }
 export { gen, runGen };
 //# sourceMappingURL=index-browser-stable-esm.js.map
@@ -1457,7 +1479,9 @@ exports[`Generators swc transforms example test case: browser-stable-lib 1`] = `
 'use strict';
 function* gen() {}
 function runGen() {
-    for (const iterator of gen())console.log(iterator);
+    for (const iterator of gen()){
+        console.log(iterator);
+    }
 }
 exports.gen = gen;
 exports.runGen = runGen;
@@ -1487,12 +1511,18 @@ exports[`Generators swc transforms example test case: browser-stable-umd 1`] = `
         });
     }
     _export(exports, {
-        gen: ()=>gen,
-        runGen: ()=>runGen
+        gen: function() {
+            return gen;
+        },
+        runGen: function() {
+            return runGen;
+        }
     });
     function* gen() {}
     function runGen() {
-        for (const iterator of gen())console.log(iterator);
+        for (const iterator of gen()){
+            console.log(iterator);
+        }
     }
 });
 //# sourceMappingURL=index-browser-stable-umd.js.map
@@ -1507,7 +1537,9 @@ exports[`Generators swc transforms example test case: electron-current-esm 1`] =
 // Platform: electron, Support: current, Format: esm
 function* gen() {}
 function runGen() {
-    for (const iterator of gen())console.log(iterator);
+    for (const iterator of gen()){
+        console.log(iterator);
+    }
 }
 export { gen, runGen };
 //# sourceMappingURL=index-electron-current-esm.js.map
@@ -1523,7 +1555,9 @@ exports[`Generators swc transforms example test case: electron-current-lib 1`] =
 'use strict';
 function* gen() {}
 function runGen() {
-    for (const iterator of gen())console.log(iterator);
+    for (const iterator of gen()){
+        console.log(iterator);
+    }
 }
 exports.gen = gen;
 exports.runGen = runGen;
@@ -1539,7 +1573,9 @@ exports[`Generators swc transforms example test case: electron-experimental-esm 
 // Platform: electron, Support: experimental, Format: esm
 function* gen() {}
 function runGen() {
-    for (const iterator of gen())console.log(iterator);
+    for (const iterator of gen()){
+        console.log(iterator);
+    }
 }
 export { gen, runGen };
 //# sourceMappingURL=index-electron-experimental-esm.js.map
@@ -1555,7 +1591,9 @@ exports[`Generators swc transforms example test case: electron-experimental-lib 
 'use strict';
 function* gen() {}
 function runGen() {
-    for (const iterator of gen())console.log(iterator);
+    for (const iterator of gen()){
+        console.log(iterator);
+    }
 }
 exports.gen = gen;
 exports.runGen = runGen;
@@ -1571,7 +1609,9 @@ exports[`Generators swc transforms example test case: electron-legacy-esm 1`] = 
 // Platform: electron, Support: legacy, Format: esm
 function* gen() {}
 function runGen() {
-    for (const iterator of gen())console.log(iterator);
+    for (const iterator of gen()){
+        console.log(iterator);
+    }
 }
 export { gen, runGen };
 //# sourceMappingURL=index-electron-legacy-esm.js.map
@@ -1587,7 +1627,9 @@ exports[`Generators swc transforms example test case: electron-legacy-lib 1`] = 
 'use strict';
 function* gen() {}
 function runGen() {
-    for (const iterator of gen())console.log(iterator);
+    for (const iterator of gen()){
+        console.log(iterator);
+    }
 }
 exports.gen = gen;
 exports.runGen = runGen;
@@ -1603,7 +1645,9 @@ exports[`Generators swc transforms example test case: electron-stable-esm 1`] = 
 // Platform: electron, Support: stable, Format: esm
 function* gen() {}
 function runGen() {
-    for (const iterator of gen())console.log(iterator);
+    for (const iterator of gen()){
+        console.log(iterator);
+    }
 }
 export { gen, runGen };
 //# sourceMappingURL=index-electron-stable-esm.js.map
@@ -1619,7 +1663,9 @@ exports[`Generators swc transforms example test case: electron-stable-lib 1`] = 
 'use strict';
 function* gen() {}
 function runGen() {
-    for (const iterator of gen())console.log(iterator);
+    for (const iterator of gen()){
+        console.log(iterator);
+    }
 }
 exports.gen = gen;
 exports.runGen = runGen;
@@ -1636,7 +1682,9 @@ exports[`Generators swc transforms example test case: native-current-lib 1`] = `
 'use strict';
 function* gen() {}
 function runGen() {
-    for (const iterator of gen())console.log(iterator);
+    for (const iterator of gen()){
+        console.log(iterator);
+    }
 }
 exports.gen = gen;
 exports.runGen = runGen;
@@ -1653,7 +1701,9 @@ exports[`Generators swc transforms example test case: native-experimental-lib 1`
 'use strict';
 function* gen() {}
 function runGen() {
-    for (const iterator of gen())console.log(iterator);
+    for (const iterator of gen()){
+        console.log(iterator);
+    }
 }
 exports.gen = gen;
 exports.runGen = runGen;
@@ -1670,7 +1720,9 @@ exports[`Generators swc transforms example test case: native-legacy-lib 1`] = `
 'use strict';
 function* gen() {}
 function runGen() {
-    for (const iterator of gen())console.log(iterator);
+    for (const iterator of gen()){
+        console.log(iterator);
+    }
 }
 exports.gen = gen;
 exports.runGen = runGen;
@@ -1687,7 +1739,9 @@ exports[`Generators swc transforms example test case: native-stable-lib 1`] = `
 'use strict';
 function* gen() {}
 function runGen() {
-    for (const iterator of gen())console.log(iterator);
+    for (const iterator of gen()){
+        console.log(iterator);
+    }
 }
 exports.gen = gen;
 exports.runGen = runGen;
@@ -1716,7 +1770,9 @@ exports[`Generators swc transforms example test case: node-current-cjs 2`] = `
 'use strict';
 function* gen() {}
 function runGen() {
-    for (const iterator of gen())console.log(iterator);
+    for (const iterator of gen()){
+        console.log(iterator);
+    }
 }
 exports.gen = gen;
 exports.runGen = runGen;
@@ -1733,7 +1789,9 @@ exports[`Generators swc transforms example test case: node-current-lib 1`] = `
 'use strict';
 function* gen() {}
 function runGen() {
-    for (const iterator of gen())console.log(iterator);
+    for (const iterator of gen()){
+        console.log(iterator);
+    }
 }
 exports.gen = gen;
 exports.runGen = runGen;
@@ -1749,7 +1807,9 @@ exports[`Generators swc transforms example test case: node-current-mjs 1`] = `
 // Platform: node, Support: current, Format: mjs
 function* gen() {}
 function runGen() {
-    for (const iterator of gen())console.log(iterator);
+    for (const iterator of gen()){
+        console.log(iterator);
+    }
 }
 export { gen, runGen };
 //# sourceMappingURL=index-node-current-mjs.mjs.map
@@ -1777,7 +1837,9 @@ exports[`Generators swc transforms example test case: node-experimental-cjs 2`] 
 'use strict';
 function* gen() {}
 function runGen() {
-    for (const iterator of gen())console.log(iterator);
+    for (const iterator of gen()){
+        console.log(iterator);
+    }
 }
 exports.gen = gen;
 exports.runGen = runGen;
@@ -1794,7 +1856,9 @@ exports[`Generators swc transforms example test case: node-experimental-lib 1`] 
 'use strict';
 function* gen() {}
 function runGen() {
-    for (const iterator of gen())console.log(iterator);
+    for (const iterator of gen()){
+        console.log(iterator);
+    }
 }
 exports.gen = gen;
 exports.runGen = runGen;
@@ -1810,7 +1874,9 @@ exports[`Generators swc transforms example test case: node-experimental-mjs 1`] 
 // Platform: node, Support: experimental, Format: mjs
 function* gen() {}
 function runGen() {
-    for (const iterator of gen())console.log(iterator);
+    for (const iterator of gen()){
+        console.log(iterator);
+    }
 }
 export { gen, runGen };
 //# sourceMappingURL=index-node-experimental-mjs.mjs.map
@@ -1838,7 +1904,9 @@ exports[`Generators swc transforms example test case: node-legacy-cjs 2`] = `
 'use strict';
 function* gen() {}
 function runGen() {
-    for (const iterator of gen())console.log(iterator);
+    for (const iterator of gen()){
+        console.log(iterator);
+    }
 }
 exports.gen = gen;
 exports.runGen = runGen;
@@ -1855,7 +1923,9 @@ exports[`Generators swc transforms example test case: node-legacy-lib 1`] = `
 'use strict';
 function* gen() {}
 function runGen() {
-    for (const iterator of gen())console.log(iterator);
+    for (const iterator of gen()){
+        console.log(iterator);
+    }
 }
 exports.gen = gen;
 exports.runGen = runGen;
@@ -1871,7 +1941,9 @@ exports[`Generators swc transforms example test case: node-legacy-mjs 1`] = `
 // Platform: node, Support: legacy, Format: mjs
 function* gen() {}
 function runGen() {
-    for (const iterator of gen())console.log(iterator);
+    for (const iterator of gen()){
+        console.log(iterator);
+    }
 }
 export { gen, runGen };
 //# sourceMappingURL=index-node-legacy-mjs.mjs.map
@@ -1899,7 +1971,9 @@ exports[`Generators swc transforms example test case: node-stable-cjs 2`] = `
 'use strict';
 function* gen() {}
 function runGen() {
-    for (const iterator of gen())console.log(iterator);
+    for (const iterator of gen()){
+        console.log(iterator);
+    }
 }
 exports.gen = gen;
 exports.runGen = runGen;
@@ -1916,7 +1990,9 @@ exports[`Generators swc transforms example test case: node-stable-lib 1`] = `
 'use strict';
 function* gen() {}
 function runGen() {
-    for (const iterator of gen())console.log(iterator);
+    for (const iterator of gen()){
+        console.log(iterator);
+    }
 }
 exports.gen = gen;
 exports.runGen = runGen;
@@ -1932,7 +2008,9 @@ exports[`Generators swc transforms example test case: node-stable-mjs 1`] = `
 // Platform: node, Support: stable, Format: mjs
 function* gen() {}
 function runGen() {
-    for (const iterator of gen())console.log(iterator);
+    for (const iterator of gen()){
+        console.log(iterator);
+    }
 }
 export { gen, runGen };
 //# sourceMappingURL=index-node-stable-mjs.mjs.map

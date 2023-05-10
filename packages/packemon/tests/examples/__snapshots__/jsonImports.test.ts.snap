@@ -1063,7 +1063,9 @@ exports[`JSON imports swc transforms example test case: browser-current-umd 1`] 
     });
     Object.defineProperty(exports, "keys", {
         enumerable: true,
-        get: ()=>keys
+        get: function() {
+            return keys;
+        }
     });
     const data = {
         list: [
@@ -1152,7 +1154,9 @@ exports[`JSON imports swc transforms example test case: browser-experimental-umd
     });
     Object.defineProperty(exports, "keys", {
         enumerable: true,
-        get: ()=>keys
+        get: function() {
+            return keys;
+        }
     });
     const data = {
         list: [
@@ -1332,7 +1336,9 @@ exports[`JSON imports swc transforms example test case: browser-stable-umd 1`] =
     });
     Object.defineProperty(exports, "keys", {
         enumerable: true,
-        get: ()=>keys
+        get: function() {
+            return keys;
+        }
     });
     const data = {
         list: [
