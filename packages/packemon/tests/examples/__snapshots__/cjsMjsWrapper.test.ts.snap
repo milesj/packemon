@@ -1611,12 +1611,14 @@ function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
-        for(const k in e)if (k !== 'default') {
-            const d = Object.getOwnPropertyDescriptor(e, k);
-            Object.defineProperty(n, k, d.get ? d : {
-                enumerable: true,
-                get: ()=>e[k]
-            });
+        for(const k in e){
+            if (k !== 'default') {
+                const d = Object.getOwnPropertyDescriptor(e, k);
+                Object.defineProperty(n, k, d.get ? d : {
+                    enumerable: true,
+                    get: ()=>e[k]
+                });
+            }
         }
     }
     n.default = e;
@@ -1670,20 +1672,30 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: browse
         });
     }
     _export(exports, {
-        optimal: ()=>_optimal,
-        func: ()=>_optimal.func,
-        string: ()=>_optimal.string,
-        useState: ()=>_react.useState
+        optimal: function() {
+            return _optimal;
+        },
+        func: function() {
+            return _optimal.func;
+        },
+        string: function() {
+            return _optimal.string;
+        },
+        useState: function() {
+            return _react.useState;
+        }
     });
-    _optimal = _interopRequireWildcard(_exportStar(_optimal, exports));
-    function _exportStar(from, to) {
+    _optimal = _interop_require_wildcard(_export_star(_optimal, exports));
+    function _export_star(from, to) {
         Object.keys(from).forEach(function(k) {
-            if (k !== "default" && !Object.prototype.hasOwnProperty.call(to, k)) Object.defineProperty(to, k, {
-                enumerable: true,
-                get: function() {
-                    return from[k];
-                }
-            });
+            if (k !== "default" && !Object.prototype.hasOwnProperty.call(to, k)) {
+                Object.defineProperty(to, k, {
+                    enumerable: true,
+                    get: function() {
+                        return from[k];
+                    }
+                });
+            }
         });
         return from;
     }
@@ -1695,7 +1707,7 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: browse
             return nodeInterop ? cacheNodeInterop : cacheBabelInterop;
         })(nodeInterop);
     }
-    function _interopRequireWildcard(obj, nodeInterop) {
+    function _interop_require_wildcard(obj, nodeInterop) {
         if (!nodeInterop && obj && obj.__esModule) {
             return obj;
         }
@@ -1759,12 +1771,14 @@ function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
-        for(const k in e)if (k !== 'default') {
-            const d = Object.getOwnPropertyDescriptor(e, k);
-            Object.defineProperty(n, k, d.get ? d : {
-                enumerable: true,
-                get: ()=>e[k]
-            });
+        for(const k in e){
+            if (k !== 'default') {
+                const d = Object.getOwnPropertyDescriptor(e, k);
+                Object.defineProperty(n, k, d.get ? d : {
+                    enumerable: true,
+                    get: ()=>e[k]
+                });
+            }
         }
     }
     n.default = e;
@@ -1818,20 +1832,30 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: browse
         });
     }
     _export(exports, {
-        optimal: ()=>_optimal,
-        func: ()=>_optimal.func,
-        string: ()=>_optimal.string,
-        useState: ()=>_react.useState
+        optimal: function() {
+            return _optimal;
+        },
+        func: function() {
+            return _optimal.func;
+        },
+        string: function() {
+            return _optimal.string;
+        },
+        useState: function() {
+            return _react.useState;
+        }
     });
-    _optimal = _interopRequireWildcard(_exportStar(_optimal, exports));
-    function _exportStar(from, to) {
+    _optimal = _interop_require_wildcard(_export_star(_optimal, exports));
+    function _export_star(from, to) {
         Object.keys(from).forEach(function(k) {
-            if (k !== "default" && !Object.prototype.hasOwnProperty.call(to, k)) Object.defineProperty(to, k, {
-                enumerable: true,
-                get: function() {
-                    return from[k];
-                }
-            });
+            if (k !== "default" && !Object.prototype.hasOwnProperty.call(to, k)) {
+                Object.defineProperty(to, k, {
+                    enumerable: true,
+                    get: function() {
+                        return from[k];
+                    }
+                });
+            }
         });
         return from;
     }
@@ -1843,7 +1867,7 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: browse
             return nodeInterop ? cacheNodeInterop : cacheBabelInterop;
         })(nodeInterop);
     }
-    function _interopRequireWildcard(obj, nodeInterop) {
+    function _interop_require_wildcard(obj, nodeInterop) {
         if (!nodeInterop && obj && obj.__esModule) {
             return obj;
         }
@@ -1992,15 +2016,17 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: browse
             return _react.useState;
         }
     });
-    _optimal = _interopRequireWildcard(_exportStar(_optimal, exports));
-    function _exportStar(from, to) {
+    _optimal = _interop_require_wildcard(_export_star(_optimal, exports));
+    function _export_star(from, to) {
         Object.keys(from).forEach(function(k) {
-            if (k !== "default" && !Object.prototype.hasOwnProperty.call(to, k)) Object.defineProperty(to, k, {
-                enumerable: true,
-                get: function() {
-                    return from[k];
-                }
-            });
+            if (k !== "default" && !Object.prototype.hasOwnProperty.call(to, k)) {
+                Object.defineProperty(to, k, {
+                    enumerable: true,
+                    get: function() {
+                        return from[k];
+                    }
+                });
+            }
         });
         return from;
     }
@@ -2012,7 +2038,7 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: browse
             return nodeInterop ? cacheNodeInterop : cacheBabelInterop;
         })(nodeInterop);
     }
-    function _interopRequireWildcard(obj, nodeInterop) {
+    function _interop_require_wildcard(obj, nodeInterop) {
         if (!nodeInterop && obj && obj.__esModule) {
             return obj;
         }
@@ -2076,12 +2102,14 @@ function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
-        for(const k in e)if (k !== 'default') {
-            const d = Object.getOwnPropertyDescriptor(e, k);
-            Object.defineProperty(n, k, d.get ? d : {
-                enumerable: true,
-                get: ()=>e[k]
-            });
+        for(const k in e){
+            if (k !== 'default') {
+                const d = Object.getOwnPropertyDescriptor(e, k);
+                Object.defineProperty(n, k, d.get ? d : {
+                    enumerable: true,
+                    get: ()=>e[k]
+                });
+            }
         }
     }
     n.default = e;
@@ -2135,20 +2163,30 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: browse
         });
     }
     _export(exports, {
-        optimal: ()=>_optimal,
-        func: ()=>_optimal.func,
-        string: ()=>_optimal.string,
-        useState: ()=>_react.useState
+        optimal: function() {
+            return _optimal;
+        },
+        func: function() {
+            return _optimal.func;
+        },
+        string: function() {
+            return _optimal.string;
+        },
+        useState: function() {
+            return _react.useState;
+        }
     });
-    _optimal = _interopRequireWildcard(_exportStar(_optimal, exports));
-    function _exportStar(from, to) {
+    _optimal = _interop_require_wildcard(_export_star(_optimal, exports));
+    function _export_star(from, to) {
         Object.keys(from).forEach(function(k) {
-            if (k !== "default" && !Object.prototype.hasOwnProperty.call(to, k)) Object.defineProperty(to, k, {
-                enumerable: true,
-                get: function() {
-                    return from[k];
-                }
-            });
+            if (k !== "default" && !Object.prototype.hasOwnProperty.call(to, k)) {
+                Object.defineProperty(to, k, {
+                    enumerable: true,
+                    get: function() {
+                        return from[k];
+                    }
+                });
+            }
         });
         return from;
     }
@@ -2160,7 +2198,7 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: browse
             return nodeInterop ? cacheNodeInterop : cacheBabelInterop;
         })(nodeInterop);
     }
-    function _interopRequireWildcard(obj, nodeInterop) {
+    function _interop_require_wildcard(obj, nodeInterop) {
         if (!nodeInterop && obj && obj.__esModule) {
             return obj;
         }
@@ -2224,12 +2262,14 @@ function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
-        for(const k in e)if (k !== 'default') {
-            const d = Object.getOwnPropertyDescriptor(e, k);
-            Object.defineProperty(n, k, d.get ? d : {
-                enumerable: true,
-                get: ()=>e[k]
-            });
+        for(const k in e){
+            if (k !== 'default') {
+                const d = Object.getOwnPropertyDescriptor(e, k);
+                Object.defineProperty(n, k, d.get ? d : {
+                    enumerable: true,
+                    get: ()=>e[k]
+                });
+            }
         }
     }
     n.default = e;
@@ -2287,12 +2327,14 @@ function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
-        for(const k in e)if (k !== 'default') {
-            const d = Object.getOwnPropertyDescriptor(e, k);
-            Object.defineProperty(n, k, d.get ? d : {
-                enumerable: true,
-                get: ()=>e[k]
-            });
+        for(const k in e){
+            if (k !== 'default') {
+                const d = Object.getOwnPropertyDescriptor(e, k);
+                Object.defineProperty(n, k, d.get ? d : {
+                    enumerable: true,
+                    get: ()=>e[k]
+                });
+            }
         }
     }
     n.default = e;
@@ -2350,12 +2392,14 @@ function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
-        for(const k in e)if (k !== 'default') {
-            const d = Object.getOwnPropertyDescriptor(e, k);
-            Object.defineProperty(n, k, d.get ? d : {
-                enumerable: true,
-                get: ()=>e[k]
-            });
+        for(const k in e){
+            if (k !== 'default') {
+                const d = Object.getOwnPropertyDescriptor(e, k);
+                Object.defineProperty(n, k, d.get ? d : {
+                    enumerable: true,
+                    get: ()=>e[k]
+                });
+            }
         }
     }
     n.default = e;
@@ -2413,12 +2457,14 @@ function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
-        for(const k in e)if (k !== 'default') {
-            const d = Object.getOwnPropertyDescriptor(e, k);
-            Object.defineProperty(n, k, d.get ? d : {
-                enumerable: true,
-                get: ()=>e[k]
-            });
+        for(const k in e){
+            if (k !== 'default') {
+                const d = Object.getOwnPropertyDescriptor(e, k);
+                Object.defineProperty(n, k, d.get ? d : {
+                    enumerable: true,
+                    get: ()=>e[k]
+                });
+            }
         }
     }
     n.default = e;
@@ -2461,12 +2507,14 @@ function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
-        for(const k in e)if (k !== 'default') {
-            const d = Object.getOwnPropertyDescriptor(e, k);
-            Object.defineProperty(n, k, d.get ? d : {
-                enumerable: true,
-                get: ()=>e[k]
-            });
+        for(const k in e){
+            if (k !== 'default') {
+                const d = Object.getOwnPropertyDescriptor(e, k);
+                Object.defineProperty(n, k, d.get ? d : {
+                    enumerable: true,
+                    get: ()=>e[k]
+                });
+            }
         }
     }
     n.default = e;
@@ -2509,12 +2557,14 @@ function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
-        for(const k in e)if (k !== 'default') {
-            const d = Object.getOwnPropertyDescriptor(e, k);
-            Object.defineProperty(n, k, d.get ? d : {
-                enumerable: true,
-                get: ()=>e[k]
-            });
+        for(const k in e){
+            if (k !== 'default') {
+                const d = Object.getOwnPropertyDescriptor(e, k);
+                Object.defineProperty(n, k, d.get ? d : {
+                    enumerable: true,
+                    get: ()=>e[k]
+                });
+            }
         }
     }
     n.default = e;
@@ -2557,12 +2607,14 @@ function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
-        for(const k in e)if (k !== 'default') {
-            const d = Object.getOwnPropertyDescriptor(e, k);
-            Object.defineProperty(n, k, d.get ? d : {
-                enumerable: true,
-                get: ()=>e[k]
-            });
+        for(const k in e){
+            if (k !== 'default') {
+                const d = Object.getOwnPropertyDescriptor(e, k);
+                Object.defineProperty(n, k, d.get ? d : {
+                    enumerable: true,
+                    get: ()=>e[k]
+                });
+            }
         }
     }
     n.default = e;
@@ -2605,12 +2657,14 @@ function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
-        for(const k in e)if (k !== 'default') {
-            const d = Object.getOwnPropertyDescriptor(e, k);
-            Object.defineProperty(n, k, d.get ? d : {
-                enumerable: true,
-                get: ()=>e[k]
-            });
+        for(const k in e){
+            if (k !== 'default') {
+                const d = Object.getOwnPropertyDescriptor(e, k);
+                Object.defineProperty(n, k, d.get ? d : {
+                    enumerable: true,
+                    get: ()=>e[k]
+                });
+            }
         }
     }
     n.default = e;
@@ -2668,12 +2722,14 @@ function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
-        for(const k in e)if (k !== 'default') {
-            const d = Object.getOwnPropertyDescriptor(e, k);
-            Object.defineProperty(n, k, d.get ? d : {
-                enumerable: true,
-                get: ()=>e[k]
-            });
+        for(const k in e){
+            if (k !== 'default') {
+                const d = Object.getOwnPropertyDescriptor(e, k);
+                Object.defineProperty(n, k, d.get ? d : {
+                    enumerable: true,
+                    get: ()=>e[k]
+                });
+            }
         }
     }
     n.default = e;
@@ -2716,12 +2772,14 @@ function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
-        for(const k in e)if (k !== 'default') {
-            const d = Object.getOwnPropertyDescriptor(e, k);
-            Object.defineProperty(n, k, d.get ? d : {
-                enumerable: true,
-                get: ()=>e[k]
-            });
+        for(const k in e){
+            if (k !== 'default') {
+                const d = Object.getOwnPropertyDescriptor(e, k);
+                Object.defineProperty(n, k, d.get ? d : {
+                    enumerable: true,
+                    get: ()=>e[k]
+                });
+            }
         }
     }
     n.default = e;
@@ -2794,12 +2852,14 @@ function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
-        for(const k in e)if (k !== 'default') {
-            const d = Object.getOwnPropertyDescriptor(e, k);
-            Object.defineProperty(n, k, d.get ? d : {
-                enumerable: true,
-                get: ()=>e[k]
-            });
+        for(const k in e){
+            if (k !== 'default') {
+                const d = Object.getOwnPropertyDescriptor(e, k);
+                Object.defineProperty(n, k, d.get ? d : {
+                    enumerable: true,
+                    get: ()=>e[k]
+                });
+            }
         }
     }
     n.default = e;
@@ -2842,12 +2902,14 @@ function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
-        for(const k in e)if (k !== 'default') {
-            const d = Object.getOwnPropertyDescriptor(e, k);
-            Object.defineProperty(n, k, d.get ? d : {
-                enumerable: true,
-                get: ()=>e[k]
-            });
+        for(const k in e){
+            if (k !== 'default') {
+                const d = Object.getOwnPropertyDescriptor(e, k);
+                Object.defineProperty(n, k, d.get ? d : {
+                    enumerable: true,
+                    get: ()=>e[k]
+                });
+            }
         }
     }
     n.default = e;
@@ -2920,12 +2982,14 @@ function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
-        for(const k in e)if (k !== 'default') {
-            const d = Object.getOwnPropertyDescriptor(e, k);
-            Object.defineProperty(n, k, d.get ? d : {
-                enumerable: true,
-                get: ()=>e[k]
-            });
+        for(const k in e){
+            if (k !== 'default') {
+                const d = Object.getOwnPropertyDescriptor(e, k);
+                Object.defineProperty(n, k, d.get ? d : {
+                    enumerable: true,
+                    get: ()=>e[k]
+                });
+            }
         }
     }
     n.default = e;
@@ -2968,12 +3032,14 @@ function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
-        for(const k in e)if (k !== 'default') {
-            const d = Object.getOwnPropertyDescriptor(e, k);
-            Object.defineProperty(n, k, d.get ? d : {
-                enumerable: true,
-                get: ()=>e[k]
-            });
+        for(const k in e){
+            if (k !== 'default') {
+                const d = Object.getOwnPropertyDescriptor(e, k);
+                Object.defineProperty(n, k, d.get ? d : {
+                    enumerable: true,
+                    get: ()=>e[k]
+                });
+            }
         }
     }
     n.default = e;
@@ -3046,12 +3112,14 @@ function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
-        for(const k in e)if (k !== 'default') {
-            const d = Object.getOwnPropertyDescriptor(e, k);
-            Object.defineProperty(n, k, d.get ? d : {
-                enumerable: true,
-                get: ()=>e[k]
-            });
+        for(const k in e){
+            if (k !== 'default') {
+                const d = Object.getOwnPropertyDescriptor(e, k);
+                Object.defineProperty(n, k, d.get ? d : {
+                    enumerable: true,
+                    get: ()=>e[k]
+                });
+            }
         }
     }
     n.default = e;
@@ -3094,12 +3162,14 @@ function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
-        for(const k in e)if (k !== 'default') {
-            const d = Object.getOwnPropertyDescriptor(e, k);
-            Object.defineProperty(n, k, d.get ? d : {
-                enumerable: true,
-                get: ()=>e[k]
-            });
+        for(const k in e){
+            if (k !== 'default') {
+                const d = Object.getOwnPropertyDescriptor(e, k);
+                Object.defineProperty(n, k, d.get ? d : {
+                    enumerable: true,
+                    get: ()=>e[k]
+                });
+            }
         }
     }
     n.default = e;
@@ -5221,23 +5291,57 @@ exports[`CJS -> MJS wrapper swc transforms example test case: browser-current-um
     }
     _export(exports, {
         // Types should be ignored
-        CONST: ()=>CONST,
-        ClassName: ()=>ClassName,
-        a: ()=>a,
-        arrowFunc: ()=>arrowFunc,
-        b: ()=>b,
-        bar: ()=>bar,
-        c: ()=>c,
-        d: ()=>d,
-        default: ()=>DefaultClass,
-        e: ()=>e,
-        f: ()=>f,
-        foo: ()=>foo,
-        fooRenamed: ()=>foo,
-        func: ()=>func,
-        ns1: ()=>helpers,
-        ns2: ()=>helpers,
-        ns3: ()=>helpers
+        CONST: function() {
+            return CONST;
+        },
+        ClassName: function() {
+            return ClassName;
+        },
+        a: function() {
+            return a;
+        },
+        arrowFunc: function() {
+            return arrowFunc;
+        },
+        b: function() {
+            return b;
+        },
+        bar: function() {
+            return bar;
+        },
+        c: function() {
+            return c;
+        },
+        d: function() {
+            return d;
+        },
+        default: function() {
+            return DefaultClass;
+        },
+        e: function() {
+            return e;
+        },
+        f: function() {
+            return f;
+        },
+        foo: function() {
+            return foo;
+        },
+        fooRenamed: function() {
+            return foo;
+        },
+        func: function() {
+            return func;
+        },
+        ns1: function() {
+            return helpers;
+        },
+        ns2: function() {
+            return helpers;
+        },
+        ns3: function() {
+            return helpers;
+        }
     });
     function foo() {}
     function bar() {}
@@ -5382,23 +5486,57 @@ exports[`CJS -> MJS wrapper swc transforms example test case: browser-experiment
     }
     _export(exports, {
         // Types should be ignored
-        CONST: ()=>CONST,
-        ClassName: ()=>ClassName,
-        a: ()=>a,
-        arrowFunc: ()=>arrowFunc,
-        b: ()=>b,
-        bar: ()=>bar,
-        c: ()=>c,
-        d: ()=>d,
-        default: ()=>DefaultClass,
-        e: ()=>e,
-        f: ()=>f,
-        foo: ()=>foo,
-        fooRenamed: ()=>foo,
-        func: ()=>func,
-        ns1: ()=>helpers,
-        ns2: ()=>helpers,
-        ns3: ()=>helpers
+        CONST: function() {
+            return CONST;
+        },
+        ClassName: function() {
+            return ClassName;
+        },
+        a: function() {
+            return a;
+        },
+        arrowFunc: function() {
+            return arrowFunc;
+        },
+        b: function() {
+            return b;
+        },
+        bar: function() {
+            return bar;
+        },
+        c: function() {
+            return c;
+        },
+        d: function() {
+            return d;
+        },
+        default: function() {
+            return DefaultClass;
+        },
+        e: function() {
+            return e;
+        },
+        f: function() {
+            return f;
+        },
+        foo: function() {
+            return foo;
+        },
+        fooRenamed: function() {
+            return foo;
+        },
+        func: function() {
+            return func;
+        },
+        ns1: function() {
+            return helpers;
+        },
+        ns2: function() {
+            return helpers;
+        },
+        ns3: function() {
+            return helpers;
+        }
     });
     function foo() {}
     function bar() {}
@@ -5434,7 +5572,7 @@ exports[`CJS -> MJS wrapper swc transforms example test case: browser-legacy-esm
   "esm/index-browser-legacy-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: esm
-function _classCallCheck(instance, Constructor) {
+function _class_call_check(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
         throw new TypeError("Cannot call a class as a function");
     }
@@ -5457,14 +5595,14 @@ var d = {};
 var e = 456, f = 'xyz';
 var ClassName = function ClassName() {
     "use strict";
-    _classCallCheck(this, ClassName);
+    _class_call_check(this, ClassName);
 };
 function func() {}
 var arrowFunc = function() {};
 var CONST = 123;
 var DefaultClass = function DefaultClass() {
     "use strict";
-    _classCallCheck(this, DefaultClass);
+    _class_call_check(this, DefaultClass);
 };
 // Types should be ignored
 export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, foo as fooRenamed, func, helpers as ns1, helpers as ns2, helpers as ns3 };
@@ -5479,7 +5617,7 @@ exports[`CJS -> MJS wrapper swc transforms example test case: browser-legacy-lib
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: lib
 'use strict';
-function _classCallCheck(instance, Constructor) {
+function _class_call_check(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
         throw new TypeError("Cannot call a class as a function");
     }
@@ -5502,13 +5640,13 @@ var c = {
 var d = {};
 var e = 456, f = 'xyz';
 var ClassName = function ClassName() {
-    _classCallCheck(this, ClassName);
+    _class_call_check(this, ClassName);
 };
 function func() {}
 var arrowFunc = function() {};
 var CONST = 123;
 var DefaultClass = function DefaultClass() {
-    _classCallCheck(this, DefaultClass);
+    _class_call_check(this, DefaultClass);
 };
 // Types should be ignored
 exports.CONST = CONST;
@@ -5607,7 +5745,7 @@ exports[`CJS -> MJS wrapper swc transforms example test case: browser-legacy-umd
             return helpers;
         }
     });
-    function _classCallCheck(instance, Constructor) {
+    function _class_call_check(instance, Constructor) {
         if (!(instance instanceof Constructor)) {
             throw new TypeError("Cannot call a class as a function");
         }
@@ -5628,14 +5766,14 @@ exports[`CJS -> MJS wrapper swc transforms example test case: browser-legacy-umd
     var e = 456, f = 'xyz';
     var ClassName = function ClassName() {
         "use strict";
-        _classCallCheck(this, ClassName);
+        _class_call_check(this, ClassName);
     };
     function func() {}
     var arrowFunc = function() {};
     var CONST = 123;
     var DefaultClass = function DefaultClass() {
         "use strict";
-        _classCallCheck(this, DefaultClass);
+        _class_call_check(this, DefaultClass);
     };
 });
 //# sourceMappingURL=index-browser-legacy-umd.js.map
@@ -5757,23 +5895,57 @@ exports[`CJS -> MJS wrapper swc transforms example test case: browser-stable-umd
     }
     _export(exports, {
         // Types should be ignored
-        CONST: ()=>CONST,
-        ClassName: ()=>ClassName,
-        a: ()=>a,
-        arrowFunc: ()=>arrowFunc,
-        b: ()=>b,
-        bar: ()=>bar,
-        c: ()=>c,
-        d: ()=>d,
-        default: ()=>DefaultClass,
-        e: ()=>e,
-        f: ()=>f,
-        foo: ()=>foo,
-        fooRenamed: ()=>foo,
-        func: ()=>func,
-        ns1: ()=>helpers,
-        ns2: ()=>helpers,
-        ns3: ()=>helpers
+        CONST: function() {
+            return CONST;
+        },
+        ClassName: function() {
+            return ClassName;
+        },
+        a: function() {
+            return a;
+        },
+        arrowFunc: function() {
+            return arrowFunc;
+        },
+        b: function() {
+            return b;
+        },
+        bar: function() {
+            return bar;
+        },
+        c: function() {
+            return c;
+        },
+        d: function() {
+            return d;
+        },
+        default: function() {
+            return DefaultClass;
+        },
+        e: function() {
+            return e;
+        },
+        f: function() {
+            return f;
+        },
+        foo: function() {
+            return foo;
+        },
+        fooRenamed: function() {
+            return foo;
+        },
+        func: function() {
+            return func;
+        },
+        ns1: function() {
+            return helpers;
+        },
+        ns2: function() {
+            return helpers;
+        },
+        ns3: function() {
+            return helpers;
+        }
     });
     function foo() {}
     function bar() {}

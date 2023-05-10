@@ -893,9 +893,15 @@ exports[`New syntax swc transforms example test case: browser-current-umd 1`] = 
         });
     }
     _export(exports, {
-        foo: ()=>foo,
-        nullCoalesc: ()=>nullCoalesc,
-        optionalChain: ()=>optionalChain
+        foo: function() {
+            return foo;
+        },
+        nullCoalesc: function() {
+            return nullCoalesc;
+        },
+        optionalChain: function() {
+            return optionalChain;
+        }
     });
     const foo = {};
     const optionalChain = foo?.bar;
@@ -964,9 +970,15 @@ exports[`New syntax swc transforms example test case: browser-experimental-umd 1
         });
     }
     _export(exports, {
-        foo: ()=>foo,
-        nullCoalesc: ()=>nullCoalesc,
-        optionalChain: ()=>optionalChain
+        foo: function() {
+            return foo;
+        },
+        nullCoalesc: function() {
+            return nullCoalesc;
+        },
+        optionalChain: function() {
+            return optionalChain;
+        }
     });
     const foo = {};
     const optionalChain = foo?.bar;
@@ -1118,9 +1130,15 @@ exports[`New syntax swc transforms example test case: browser-stable-umd 1`] = `
         });
     }
     _export(exports, {
-        foo: ()=>foo,
-        nullCoalesc: ()=>nullCoalesc,
-        optionalChain: ()=>optionalChain
+        foo: function() {
+            return foo;
+        },
+        nullCoalesc: function() {
+            return nullCoalesc;
+        },
+        optionalChain: function() {
+            return optionalChain;
+        }
     });
     const foo = {};
     const optionalChain = foo?.bar;

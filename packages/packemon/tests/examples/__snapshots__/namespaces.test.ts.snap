@@ -957,8 +957,12 @@ exports[`Namespaces swc transforms example test case: browser-current-umd 1`] = 
         });
     }
     _export(exports, {
-        ns1: ()=>helpers,
-        ns2: ()=>helpers
+        ns1: function() {
+            return helpers;
+        },
+        ns2: function() {
+            return helpers;
+        }
     });
     function foo() {}
     function bar() {}
@@ -1034,8 +1038,12 @@ exports[`Namespaces swc transforms example test case: browser-experimental-umd 1
         });
     }
     _export(exports, {
-        ns1: ()=>helpers,
-        ns2: ()=>helpers
+        ns1: function() {
+            return helpers;
+        },
+        ns2: function() {
+            return helpers;
+        }
     });
     function foo() {}
     function bar() {}
@@ -1192,8 +1200,12 @@ exports[`Namespaces swc transforms example test case: browser-stable-umd 1`] = `
         });
     }
     _export(exports, {
-        ns1: ()=>helpers,
-        ns2: ()=>helpers
+        ns1: function() {
+            return helpers;
+        },
+        ns2: function() {
+            return helpers;
+        }
     });
     function foo() {}
     function bar() {}
