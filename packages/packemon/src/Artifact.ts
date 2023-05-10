@@ -233,7 +233,7 @@ export class Artifact {
 		let declExt: string | undefined;
 
 		if (declaration) {
-			if (!inputFile || inputFile.endsWith('.ts')) {
+			if (!inputFile || /\.tsx?$/.test(inputFile)) {
 				declExt = 'd.ts';
 			} else if (inputFile.endsWith('.cts')) {
 				declExt = 'd.cts';
