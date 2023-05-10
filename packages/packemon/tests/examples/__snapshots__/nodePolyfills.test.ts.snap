@@ -3664,45 +3664,35 @@ function emitNone(handler, isFn, self) {
   if (isFn) handler.call(self);else {
     var len = handler.length;
     var listeners = arrayClone(handler, len);
-    for (var i = 0; i < len; ++i) {
-      listeners[i].call(self);
-    }
+    for (var i = 0; i < len; ++i) listeners[i].call(self);
   }
 }
 function emitOne(handler, isFn, self, arg1) {
   if (isFn) handler.call(self, arg1);else {
     var len = handler.length;
     var listeners = arrayClone(handler, len);
-    for (var i = 0; i < len; ++i) {
-      listeners[i].call(self, arg1);
-    }
+    for (var i = 0; i < len; ++i) listeners[i].call(self, arg1);
   }
 }
 function emitTwo(handler, isFn, self, arg1, arg2) {
   if (isFn) handler.call(self, arg1, arg2);else {
     var len = handler.length;
     var listeners = arrayClone(handler, len);
-    for (var i = 0; i < len; ++i) {
-      listeners[i].call(self, arg1, arg2);
-    }
+    for (var i = 0; i < len; ++i) listeners[i].call(self, arg1, arg2);
   }
 }
 function emitThree(handler, isFn, self, arg1, arg2, arg3) {
   if (isFn) handler.call(self, arg1, arg2, arg3);else {
     var len = handler.length;
     var listeners = arrayClone(handler, len);
-    for (var i = 0; i < len; ++i) {
-      listeners[i].call(self, arg1, arg2, arg3);
-    }
+    for (var i = 0; i < len; ++i) listeners[i].call(self, arg1, arg2, arg3);
   }
 }
 function emitMany(handler, isFn, self, args) {
   if (isFn) handler.apply(self, args);else {
     var len = handler.length;
     var listeners = arrayClone(handler, len);
-    for (var i = 0; i < len; ++i) {
-      listeners[i].apply(self, args);
-    }
+    for (var i = 0; i < len; ++i) listeners[i].apply(self, args);
   }
 }
 EventEmitter.prototype.emit = function emit(type) {
@@ -3752,9 +3742,7 @@ EventEmitter.prototype.emit = function emit(type) {
     // slower
     default:
       args = new Array(len - 1);
-      for (i = 1; i < len; i++) {
-        args[i - 1] = arguments[i];
-      }
+      for (i = 1; i < len; i++) args[i - 1] = arguments[i];
       emitMany(handler, isFn, this, args);
   }
   return true;
@@ -3966,16 +3954,12 @@ EventEmitter.prototype.eventNames = function eventNames() {
 
 // About 1.5x faster than the two-arg version of Array#splice().
 function spliceOne(list, index) {
-  for (var i = index, k = i + 1, n = list.length; k < n; i += 1, k += 1) {
-    list[i] = list[k];
-  }
+  for (var i = index, k = i + 1, n = list.length; k < n; i += 1, k += 1) list[i] = list[k];
   list.pop();
 }
 function arrayClone(arr, i) {
   var copy = new Array(i);
-  while (i--) {
-    copy[i] = arr[i];
-  }
+  while (i--) copy[i] = arr[i];
   return copy;
 }
 function unwrapListeners(arr) {
@@ -4294,45 +4278,35 @@ function emitNone(handler, isFn, self) {
   if (isFn) handler.call(self);else {
     var len = handler.length;
     var listeners = arrayClone(handler, len);
-    for (var i = 0; i < len; ++i) {
-      listeners[i].call(self);
-    }
+    for (var i = 0; i < len; ++i) listeners[i].call(self);
   }
 }
 function emitOne(handler, isFn, self, arg1) {
   if (isFn) handler.call(self, arg1);else {
     var len = handler.length;
     var listeners = arrayClone(handler, len);
-    for (var i = 0; i < len; ++i) {
-      listeners[i].call(self, arg1);
-    }
+    for (var i = 0; i < len; ++i) listeners[i].call(self, arg1);
   }
 }
 function emitTwo(handler, isFn, self, arg1, arg2) {
   if (isFn) handler.call(self, arg1, arg2);else {
     var len = handler.length;
     var listeners = arrayClone(handler, len);
-    for (var i = 0; i < len; ++i) {
-      listeners[i].call(self, arg1, arg2);
-    }
+    for (var i = 0; i < len; ++i) listeners[i].call(self, arg1, arg2);
   }
 }
 function emitThree(handler, isFn, self, arg1, arg2, arg3) {
   if (isFn) handler.call(self, arg1, arg2, arg3);else {
     var len = handler.length;
     var listeners = arrayClone(handler, len);
-    for (var i = 0; i < len; ++i) {
-      listeners[i].call(self, arg1, arg2, arg3);
-    }
+    for (var i = 0; i < len; ++i) listeners[i].call(self, arg1, arg2, arg3);
   }
 }
 function emitMany(handler, isFn, self, args) {
   if (isFn) handler.apply(self, args);else {
     var len = handler.length;
     var listeners = arrayClone(handler, len);
-    for (var i = 0; i < len; ++i) {
-      listeners[i].apply(self, args);
-    }
+    for (var i = 0; i < len; ++i) listeners[i].apply(self, args);
   }
 }
 EventEmitter.prototype.emit = function emit(type) {
@@ -4382,9 +4356,7 @@ EventEmitter.prototype.emit = function emit(type) {
     // slower
     default:
       args = new Array(len - 1);
-      for (i = 1; i < len; i++) {
-        args[i - 1] = arguments[i];
-      }
+      for (i = 1; i < len; i++) args[i - 1] = arguments[i];
       emitMany(handler, isFn, this, args);
   }
   return true;
@@ -4596,16 +4568,12 @@ EventEmitter.prototype.eventNames = function eventNames() {
 
 // About 1.5x faster than the two-arg version of Array#splice().
 function spliceOne(list, index) {
-  for (var i = index, k = i + 1, n = list.length; k < n; i += 1, k += 1) {
-    list[i] = list[k];
-  }
+  for (var i = index, k = i + 1, n = list.length; k < n; i += 1, k += 1) list[i] = list[k];
   list.pop();
 }
 function arrayClone(arr, i) {
   var copy = new Array(i);
-  while (i--) {
-    copy[i] = arr[i];
-  }
+  while (i--) copy[i] = arr[i];
   return copy;
 }
 function unwrapListeners(arr) {
@@ -4943,45 +4911,35 @@ exports[`Node polyfills babel transforms example test case: browser-legacy-umd 1
     if (isFn) handler.call(self);else {
       var len = handler.length;
       var listeners = arrayClone(handler, len);
-      for (var i = 0; i < len; ++i) {
-        listeners[i].call(self);
-      }
+      for (var i = 0; i < len; ++i) listeners[i].call(self);
     }
   }
   function emitOne(handler, isFn, self, arg1) {
     if (isFn) handler.call(self, arg1);else {
       var len = handler.length;
       var listeners = arrayClone(handler, len);
-      for (var i = 0; i < len; ++i) {
-        listeners[i].call(self, arg1);
-      }
+      for (var i = 0; i < len; ++i) listeners[i].call(self, arg1);
     }
   }
   function emitTwo(handler, isFn, self, arg1, arg2) {
     if (isFn) handler.call(self, arg1, arg2);else {
       var len = handler.length;
       var listeners = arrayClone(handler, len);
-      for (var i = 0; i < len; ++i) {
-        listeners[i].call(self, arg1, arg2);
-      }
+      for (var i = 0; i < len; ++i) listeners[i].call(self, arg1, arg2);
     }
   }
   function emitThree(handler, isFn, self, arg1, arg2, arg3) {
     if (isFn) handler.call(self, arg1, arg2, arg3);else {
       var len = handler.length;
       var listeners = arrayClone(handler, len);
-      for (var i = 0; i < len; ++i) {
-        listeners[i].call(self, arg1, arg2, arg3);
-      }
+      for (var i = 0; i < len; ++i) listeners[i].call(self, arg1, arg2, arg3);
     }
   }
   function emitMany(handler, isFn, self, args) {
     if (isFn) handler.apply(self, args);else {
       var len = handler.length;
       var listeners = arrayClone(handler, len);
-      for (var i = 0; i < len; ++i) {
-        listeners[i].apply(self, args);
-      }
+      for (var i = 0; i < len; ++i) listeners[i].apply(self, args);
     }
   }
   EventEmitter.prototype.emit = function emit(type) {
@@ -5031,9 +4989,7 @@ exports[`Node polyfills babel transforms example test case: browser-legacy-umd 1
       // slower
       default:
         args = new Array(len - 1);
-        for (i = 1; i < len; i++) {
-          args[i - 1] = arguments[i];
-        }
+        for (i = 1; i < len; i++) args[i - 1] = arguments[i];
         emitMany(handler, isFn, this, args);
     }
     return true;
@@ -5245,16 +5201,12 @@ exports[`Node polyfills babel transforms example test case: browser-legacy-umd 1
 
   // About 1.5x faster than the two-arg version of Array#splice().
   function spliceOne(list, index) {
-    for (var i = index, k = i + 1, n = list.length; k < n; i += 1, k += 1) {
-      list[i] = list[k];
-    }
+    for (var i = index, k = i + 1, n = list.length; k < n; i += 1, k += 1) list[i] = list[k];
     list.pop();
   }
   function arrayClone(arr, i) {
     var copy = new Array(i);
-    while (i--) {
-      copy[i] = arr[i];
-    }
+    while (i--) copy[i] = arr[i];
     return copy;
   }
   function unwrapListeners(arr) {
