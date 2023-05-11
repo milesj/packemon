@@ -405,6 +405,7 @@ describe('Artifact', () => {
 
 			expect(artifact.getPackageExports({})).toEqual({
 				'.': {
+					types: './lib/index.d.ts',
 					node: {
 						import: {
 							types: './mjs/index.d.ts',
@@ -488,6 +489,7 @@ describe('Artifact', () => {
 
 			expect(artifact.getPackageExports({})).toEqual({
 				'.': {
+					types: './lib/index.d.ts',
 					node: {
 						types: './lib/index.d.ts',
 						default: './lib/index.js',

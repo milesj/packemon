@@ -635,6 +635,7 @@ describe('Package', () => {
 
 				expect(pkg.json.exports).toEqual({
 					'.': {
+						types: './lib/index.d.ts',
 						node: {
 							default: './lib/index.js',
 							types: './lib/index.d.ts',
@@ -647,6 +648,7 @@ describe('Package', () => {
 						default: './lib/index.js',
 					},
 					'./utils': {
+						types: './lib/utils/index.d.ts',
 						node: {
 							default: './lib/utils/index.js',
 							types: './lib/utils/index.d.ts',
@@ -669,6 +671,7 @@ describe('Package', () => {
 
 				expect(pkg.json.exports).toEqual({
 					'.': {
+						types: './lib/index.d.ts',
 						node: {
 							types: './lib/index.d.ts',
 							default: './lib/index.js',
@@ -823,10 +826,12 @@ describe('Package', () => {
 							},
 						},
 						'./bin': {
+							types: './lib/cli.d.ts',
 							node: { default: './lib/bin.js', types: './lib/cli.d.ts' },
 							default: './lib/bin.js',
 						},
 						'./web': {
+							types: './lib/web.d.ts',
 							browser: {
 								import: './esm/web.js',
 								module: './esm/web.js',
@@ -880,6 +885,7 @@ describe('Package', () => {
 					exports: {
 						'./package.json': './package.json',
 						'./bin': {
+							types: './lib/cli.d.ts',
 							node: {
 								default: './lib/cli.js',
 								types: './lib/cli.d.ts',
@@ -888,6 +894,7 @@ describe('Package', () => {
 						},
 						'./import': { node: { import: './mjs/web.mjs', types: './mjs/web.d.ts' } },
 						'./web': {
+							types: './lib/web.d.ts',
 							browser: {
 								import: './esm/web.js',
 								module: './esm/web.js',
@@ -948,6 +955,7 @@ describe('Package', () => {
 					exports: {
 						'./package.json': './package.json',
 						'./*': {
+							types: './lib/*.d.ts',
 							browser: {
 								import: './esm/*.js',
 								module: './esm/*.js',
@@ -963,6 +971,7 @@ describe('Package', () => {
 							default: './lib/*.js',
 						},
 						'.': {
+							types: './lib/web.d.ts',
 							browser: {
 								import: './esm/web.js',
 								module: './esm/web.js',
