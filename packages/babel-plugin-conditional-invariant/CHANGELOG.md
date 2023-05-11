@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 3.0.1 - 2023-05-11
+
+#### 🛠 Internals
+
+- Update manifests. ([86d15d1](https://github.com/milesj/packemon/commit/86d15d1))
+
+**Note:** Version bump only for package babel-plugin-conditional-invariant
+
+
+
+
+
 ### 3.0.0 - 2023-01-31
 
 **Note:** Version bump only for package babel-plugin-conditional-invariant

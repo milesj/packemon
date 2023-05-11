@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.1.0 - 2023-05-11
+
+#### 🚀 Updates
+
+- Support TypeScript v5. ([a953cd5](https://github.com/milesj/packemon/commit/a953cd5))
+
+#### 🐞 Fixes
+
+- Add missing default types to export paths (#194) ([1c09aa1](https://github.com/milesj/packemon/commit/1c09aa1)), closes [#194](https://github.com/milesj/packemon/issues/194)
+- Fix types not added to export map for tsx input files (#199) ([dd5cb44](https://github.com/milesj/packemon/commit/dd5cb44)), closes [#199](https://github.com/milesj/packemon/issues/199)
+
+#### 📦 Dependencies
+
+- **[babel]** Update to v7.21 latest. ([4ef89f6](https://github.com/milesj/packemon/commit/4ef89f6))
+- **[boost]** Update to latest. ([2182a63](https://github.com/milesj/packemon/commit/2182a63))
+- **[resolve]** Update to latest. ([7769303](https://github.com/milesj/packemon/commit/7769303))
+- **[rollup]** Update to v3.21. ([526b0ab](https://github.com/milesj/packemon/commit/526b0ab))
+- **[semver]** Update to v7.5. ([e2d917c](https://github.com/milesj/packemon/commit/e2d917c))
+- **[swc]** Update to v1.3.57. ([3b892f0](https://github.com/milesj/packemon/commit/3b892f0))
+- Update dev and test dependencies. ([4ca194d](https://github.com/milesj/packemon/commit/4ca194d))
+
+**Note:** Version bump only for package packemon
+
+
+
+
+
 ### 3.0.3 - 2023-03-08
 
 #### 🐞 Fixes
