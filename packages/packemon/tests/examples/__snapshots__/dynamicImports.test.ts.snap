@@ -1480,7 +1480,7 @@ import(/* webpackChunkName: "helpers" */ './bundle-818b27e2.js').then(({ bar  })
 
 exports[`Dynamic imports swc transforms example test case: browser-current-umd 1`] = `
 [
-  "umd/bundle-e23d2554.js",
+  "umd/bundle-b2e77bb6.js",
   "(function(global, factory) {
     if (typeof module === "object" && typeof module.exports === "object") factory(exports);
     else if (typeof define === "function" && define.amd) define([
@@ -1499,13 +1499,17 @@ exports[`Dynamic imports swc transforms example test case: browser-current-umd 1
         });
     }
     _export(exports, {
-        bar: ()=>bar,
-        foo: ()=>foo
+        bar: function() {
+            return bar;
+        },
+        foo: function() {
+            return foo;
+        }
     });
     function foo() {}
     function bar() {}
 });
-//# sourceMappingURL=bundle-e23d2554.js.map
+//# sourceMappingURL=bundle-b2e77bb6.js.map
 ",
 ]
 `;
@@ -1519,10 +1523,10 @@ exports[`Dynamic imports swc transforms example test case: browser-current-umd 2
     else if (global = typeof globalThis !== "undefined" ? globalThis : global || self) factory();
 })(this, function() {
     "use strict";
-    import('./bundle-e23d2554.js').then((result)=>{
+    import('./bundle-b2e77bb6.js').then((result)=>{
         result.foo();
     });
-    import(/* webpackChunkName: "helpers" */ './bundle-e23d2554.js').then(({ bar  })=>{
+    import(/* webpackChunkName: "helpers" */ './bundle-b2e77bb6.js').then(({ bar  })=>{
         bar();
     });
 });
@@ -1594,7 +1598,7 @@ import(/* webpackChunkName: "helpers" */ './bundle-b2bc6bd5.js').then(({ bar  })
 
 exports[`Dynamic imports swc transforms example test case: browser-experimental-umd 1`] = `
 [
-  "umd/bundle-e23d2554.js",
+  "umd/bundle-b2e77bb6.js",
   "(function(global, factory) {
     if (typeof module === "object" && typeof module.exports === "object") factory(exports);
     else if (typeof define === "function" && define.amd) define([
@@ -1613,13 +1617,17 @@ exports[`Dynamic imports swc transforms example test case: browser-experimental-
         });
     }
     _export(exports, {
-        bar: ()=>bar,
-        foo: ()=>foo
+        bar: function() {
+            return bar;
+        },
+        foo: function() {
+            return foo;
+        }
     });
     function foo() {}
     function bar() {}
 });
-//# sourceMappingURL=bundle-e23d2554.js.map
+//# sourceMappingURL=bundle-b2e77bb6.js.map
 ",
 ]
 `;
@@ -1633,10 +1641,10 @@ exports[`Dynamic imports swc transforms example test case: browser-experimental-
     else if (global = typeof globalThis !== "undefined" ? globalThis : global || self) factory();
 })(this, function() {
     "use strict";
-    import('./bundle-e23d2554.js').then((result)=>{
+    import('./bundle-b2e77bb6.js').then((result)=>{
         result.foo();
     });
-    import(/* webpackChunkName: "helpers" */ './bundle-e23d2554.js').then(({ bar  })=>{
+    import(/* webpackChunkName: "helpers" */ './bundle-b2e77bb6.js').then(({ bar  })=>{
         bar();
     });
 });
@@ -1829,7 +1837,7 @@ import(/* webpackChunkName: "helpers" */ './bundle-20370263.js').then(({ bar  })
 
 exports[`Dynamic imports swc transforms example test case: browser-stable-umd 1`] = `
 [
-  "umd/bundle-e23d2554.js",
+  "umd/bundle-b2e77bb6.js",
   "(function(global, factory) {
     if (typeof module === "object" && typeof module.exports === "object") factory(exports);
     else if (typeof define === "function" && define.amd) define([
@@ -1848,13 +1856,17 @@ exports[`Dynamic imports swc transforms example test case: browser-stable-umd 1`
         });
     }
     _export(exports, {
-        bar: ()=>bar,
-        foo: ()=>foo
+        bar: function() {
+            return bar;
+        },
+        foo: function() {
+            return foo;
+        }
     });
     function foo() {}
     function bar() {}
 });
-//# sourceMappingURL=bundle-e23d2554.js.map
+//# sourceMappingURL=bundle-b2e77bb6.js.map
 ",
 ]
 `;
@@ -1868,10 +1880,10 @@ exports[`Dynamic imports swc transforms example test case: browser-stable-umd 2`
     else if (global = typeof globalThis !== "undefined" ? globalThis : global || self) factory();
 })(this, function() {
     "use strict";
-    import('./bundle-e23d2554.js').then((result)=>{
+    import('./bundle-b2e77bb6.js').then((result)=>{
         result.foo();
     });
-    import(/* webpackChunkName: "helpers" */ './bundle-e23d2554.js').then(({ bar  })=>{
+    import(/* webpackChunkName: "helpers" */ './bundle-b2e77bb6.js').then(({ bar  })=>{
         bar();
     });
 });
