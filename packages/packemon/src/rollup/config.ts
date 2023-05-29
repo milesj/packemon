@@ -207,6 +207,7 @@ export async function getRollupConfig(
 						exclude: isTest ? [] : EXCLUDE,
 						extensions: EXTENSIONS,
 						filename: artifact.package.path.path(),
+						skipPreflightCheck: true,
 						// Extract maps from the original source
 						sourceMaps: !isNode,
 				  }),
