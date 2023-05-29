@@ -135,9 +135,9 @@ export function getBabelInputConfig(
 			plugins.push(
 				[resolve('@babel/plugin-transform-typescript'), tsOptions],
 				[resolve('@babel/plugin-proposal-decorators'), { legacy: true }],
-				[resolveFromBabel('@babel/plugin-proposal-class-properties'), { loose: true }],
-				[resolveFromBabel('@babel/plugin-proposal-private-methods'), { loose: true }],
-				[resolveFromBabel('@babel/plugin-proposal-private-property-in-object'), { loose: true }],
+				[resolveFromBabel('@babel/plugin-transform-class-properties'), { loose: true }],
+				[resolveFromBabel('@babel/plugin-transform-private-methods'), { loose: true }],
+				[resolveFromBabel('@babel/plugin-transform-private-property-in-object'), { loose: true }],
 			);
 		}
 	}
@@ -201,7 +201,7 @@ export function getBabelOutputConfig(
 	plugins.push(
 		// Use `Object.assign` when available
 		[resolveFromBabel('@babel/plugin-transform-destructuring'), { useBuiltIns: true }],
-		[resolveFromBabel('@babel/plugin-proposal-object-rest-spread'), { useBuiltIns: true }],
+		[resolveFromBabel('@babel/plugin-transform-object-rest-spread'), { useBuiltIns: true }],
 	);
 
 	if (platform === 'node') {
@@ -210,8 +210,8 @@ export function getBabelOutputConfig(
 		// Node 14 does not support ??=, etc
 		if (support === 'legacy') {
 			plugins.push(
-				resolveFromBabel('@babel/plugin-proposal-logical-assignment-operators'),
-				resolveFromBabel('@babel/plugin-proposal-nullish-coalescing-operator'),
+				resolveFromBabel('@babel/plugin-transform-logical-assignment-operators'),
+				resolveFromBabel('@babel/plugin-transform-nullish-coalescing-operator'),
 			);
 		}
 	}
