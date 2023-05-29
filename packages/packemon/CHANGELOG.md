@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 3.1.1 - 2023-05-29
+
+#### 📦 Dependencies
+
+- **[babel]** Update to v7.22. ([58e055c](https://github.com/milesj/packemon/commit/58e055c))
+- **[eslint]** Update to v8.41. ([7a1d7cf](https://github.com/milesj/packemon/commit/7a1d7cf))
+- **[resolve]** Update to latest. ([bbd7a1b](https://github.com/milesj/packemon/commit/bbd7a1b))
+- **[rollup]** Update to v3.23. ([7c20dfe](https://github.com/milesj/packemon/commit/7c20dfe))
+- **[semver]** Update to v7.5.1. ([cc09035](https://github.com/milesj/packemon/commit/cc09035))
+- **[swc]** Update to v1.3.60. ([f2f3983](https://github.com/milesj/packemon/commit/f2f3983))
+- Update bundler tests. ([7a10b68](https://github.com/milesj/packemon/commit/7a10b68))
+
+**Note:** Version bump only for package packemon
+
+
+
+
+
 ## 3.1.0 - 2023-05-11
 
 #### 🚀 Updates
