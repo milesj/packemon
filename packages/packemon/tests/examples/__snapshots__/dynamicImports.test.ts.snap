@@ -1438,7 +1438,7 @@ exports[`Dynamic imports swc transforms example test case: browser-current-esm 2
 import('./bundle-f138f6a8.js').then((result)=>{
     result.foo();
 });
-import(/* webpackChunkName: "helpers" */ './bundle-f138f6a8.js').then(({ bar  })=>{
+import(/* webpackChunkName: "helpers" */ './bundle-f138f6a8.js').then(({ bar })=>{
     bar();
 });
 //# sourceMappingURL=index-browser-current-esm.js.map
@@ -1470,7 +1470,7 @@ exports[`Dynamic imports swc transforms example test case: browser-current-lib 2
 import('./bundle-818b27e2.js').then((result)=>{
     result.foo();
 });
-import(/* webpackChunkName: "helpers" */ './bundle-818b27e2.js').then(({ bar  })=>{
+import(/* webpackChunkName: "helpers" */ './bundle-818b27e2.js').then(({ bar })=>{
     bar();
 });
 //# sourceMappingURL=index-browser-current-lib.js.map
@@ -1526,7 +1526,7 @@ exports[`Dynamic imports swc transforms example test case: browser-current-umd 2
     import('./bundle-b2e77bb6.js').then((result)=>{
         result.foo();
     });
-    import(/* webpackChunkName: "helpers" */ './bundle-b2e77bb6.js').then(({ bar  })=>{
+    import(/* webpackChunkName: "helpers" */ './bundle-b2e77bb6.js').then(({ bar })=>{
         bar();
     });
 });
@@ -1556,7 +1556,7 @@ exports[`Dynamic imports swc transforms example test case: browser-experimental-
 import('./bundle-b169a69b.js').then((result)=>{
     result.foo();
 });
-import(/* webpackChunkName: "helpers" */ './bundle-b169a69b.js').then(({ bar  })=>{
+import(/* webpackChunkName: "helpers" */ './bundle-b169a69b.js').then(({ bar })=>{
     bar();
 });
 //# sourceMappingURL=index-browser-experimental-esm.js.map
@@ -1588,7 +1588,7 @@ exports[`Dynamic imports swc transforms example test case: browser-experimental-
 import('./bundle-b2bc6bd5.js').then((result)=>{
     result.foo();
 });
-import(/* webpackChunkName: "helpers" */ './bundle-b2bc6bd5.js').then(({ bar  })=>{
+import(/* webpackChunkName: "helpers" */ './bundle-b2bc6bd5.js').then(({ bar })=>{
     bar();
 });
 //# sourceMappingURL=index-browser-experimental-lib.js.map
@@ -1644,7 +1644,7 @@ exports[`Dynamic imports swc transforms example test case: browser-experimental-
     import('./bundle-b2e77bb6.js').then((result)=>{
         result.foo();
     });
-    import(/* webpackChunkName: "helpers" */ './bundle-b2e77bb6.js').then(({ bar  })=>{
+    import(/* webpackChunkName: "helpers" */ './bundle-b2e77bb6.js').then(({ bar })=>{
         bar();
     });
 });
@@ -1795,7 +1795,7 @@ exports[`Dynamic imports swc transforms example test case: browser-stable-esm 2`
 import('./bundle-a0331695.js').then((result)=>{
     result.foo();
 });
-import(/* webpackChunkName: "helpers" */ './bundle-a0331695.js').then(({ bar  })=>{
+import(/* webpackChunkName: "helpers" */ './bundle-a0331695.js').then(({ bar })=>{
     bar();
 });
 //# sourceMappingURL=index-browser-stable-esm.js.map
@@ -1827,7 +1827,7 @@ exports[`Dynamic imports swc transforms example test case: browser-stable-lib 2`
 import('./bundle-20370263.js').then((result)=>{
     result.foo();
 });
-import(/* webpackChunkName: "helpers" */ './bundle-20370263.js').then(({ bar  })=>{
+import(/* webpackChunkName: "helpers" */ './bundle-20370263.js').then(({ bar })=>{
     bar();
 });
 //# sourceMappingURL=index-browser-stable-lib.js.map
@@ -1883,7 +1883,7 @@ exports[`Dynamic imports swc transforms example test case: browser-stable-umd 2`
     import('./bundle-b2e77bb6.js').then((result)=>{
         result.foo();
     });
-    import(/* webpackChunkName: "helpers" */ './bundle-b2e77bb6.js').then(({ bar  })=>{
+    import(/* webpackChunkName: "helpers" */ './bundle-b2e77bb6.js').then(({ bar })=>{
         bar();
     });
 });
@@ -1913,7 +1913,7 @@ exports[`Dynamic imports swc transforms example test case: electron-current-esm 
 import('./bundle-0e22177c.js').then((result)=>{
     result.foo();
 });
-import(/* webpackChunkName: "helpers" */ './bundle-0e22177c.js').then(({ bar  })=>{
+import(/* webpackChunkName: "helpers" */ './bundle-0e22177c.js').then(({ bar })=>{
     bar();
 });
 //# sourceMappingURL=index-electron-current-esm.js.map
@@ -1945,7 +1945,7 @@ exports[`Dynamic imports swc transforms example test case: electron-current-lib 
 import('./bundle-0f05df70.js').then((result)=>{
     result.foo();
 });
-import(/* webpackChunkName: "helpers" */ './bundle-0f05df70.js').then(({ bar  })=>{
+import(/* webpackChunkName: "helpers" */ './bundle-0f05df70.js').then(({ bar })=>{
     bar();
 });
 //# sourceMappingURL=index-electron-current-lib.js.map
@@ -1974,7 +1974,7 @@ exports[`Dynamic imports swc transforms example test case: electron-experimental
 import('./bundle-760a74b4.js').then((result)=>{
     result.foo();
 });
-import(/* webpackChunkName: "helpers" */ './bundle-760a74b4.js').then(({ bar  })=>{
+import(/* webpackChunkName: "helpers" */ './bundle-760a74b4.js').then(({ bar })=>{
     bar();
 });
 //# sourceMappingURL=index-electron-experimental-esm.js.map
@@ -2006,7 +2006,7 @@ exports[`Dynamic imports swc transforms example test case: electron-experimental
 import('./bundle-4c9550cb.js').then((result)=>{
     result.foo();
 });
-import(/* webpackChunkName: "helpers" */ './bundle-4c9550cb.js').then(({ bar  })=>{
+import(/* webpackChunkName: "helpers" */ './bundle-4c9550cb.js').then(({ bar })=>{
     bar();
 });
 //# sourceMappingURL=index-electron-experimental-lib.js.map
@@ -2035,7 +2035,7 @@ exports[`Dynamic imports swc transforms example test case: electron-legacy-esm 2
 import('./bundle-a1efeb31.js').then((result)=>{
     result.foo();
 });
-import(/* webpackChunkName: "helpers" */ './bundle-a1efeb31.js').then(({ bar  })=>{
+import(/* webpackChunkName: "helpers" */ './bundle-a1efeb31.js').then(({ bar })=>{
     bar();
 });
 //# sourceMappingURL=index-electron-legacy-esm.js.map
@@ -2067,7 +2067,7 @@ exports[`Dynamic imports swc transforms example test case: electron-legacy-lib 2
 import('./bundle-c42cc57f.js').then((result)=>{
     result.foo();
 });
-import(/* webpackChunkName: "helpers" */ './bundle-c42cc57f.js').then(({ bar  })=>{
+import(/* webpackChunkName: "helpers" */ './bundle-c42cc57f.js').then(({ bar })=>{
     bar();
 });
 //# sourceMappingURL=index-electron-legacy-lib.js.map
@@ -2096,7 +2096,7 @@ exports[`Dynamic imports swc transforms example test case: electron-stable-esm 2
 import('./bundle-b7ad37aa.js').then((result)=>{
     result.foo();
 });
-import(/* webpackChunkName: "helpers" */ './bundle-b7ad37aa.js').then(({ bar  })=>{
+import(/* webpackChunkName: "helpers" */ './bundle-b7ad37aa.js').then(({ bar })=>{
     bar();
 });
 //# sourceMappingURL=index-electron-stable-esm.js.map
@@ -2128,7 +2128,7 @@ exports[`Dynamic imports swc transforms example test case: electron-stable-lib 2
 import('./bundle-8b301a85.js').then((result)=>{
     result.foo();
 });
-import(/* webpackChunkName: "helpers" */ './bundle-8b301a85.js').then(({ bar  })=>{
+import(/* webpackChunkName: "helpers" */ './bundle-8b301a85.js').then(({ bar })=>{
     bar();
 });
 //# sourceMappingURL=index-electron-stable-lib.js.map
@@ -2160,7 +2160,7 @@ exports[`Dynamic imports swc transforms example test case: native-current-lib 2`
 Promise.resolve().then(()=>require('./bundle-e2e71871.js')).then((result)=>{
     result.foo();
 });
-Promise.resolve().then(()=>require(/* webpackChunkName: "helpers" */ './bundle-e2e71871.js')).then(({ bar  })=>{
+Promise.resolve().then(()=>require(/* webpackChunkName: "helpers" */ './bundle-e2e71871.js')).then(({ bar })=>{
     bar();
 });
 //# sourceMappingURL=index-native-current-lib.js.map
@@ -2192,7 +2192,7 @@ exports[`Dynamic imports swc transforms example test case: native-experimental-l
 Promise.resolve().then(()=>require('./bundle-3ea4f381.js')).then((result)=>{
     result.foo();
 });
-Promise.resolve().then(()=>require(/* webpackChunkName: "helpers" */ './bundle-3ea4f381.js')).then(({ bar  })=>{
+Promise.resolve().then(()=>require(/* webpackChunkName: "helpers" */ './bundle-3ea4f381.js')).then(({ bar })=>{
     bar();
 });
 //# sourceMappingURL=index-native-experimental-lib.js.map
@@ -2224,7 +2224,7 @@ exports[`Dynamic imports swc transforms example test case: native-legacy-lib 2`]
 Promise.resolve().then(()=>require('./bundle-82543cc5.js')).then((result)=>{
     result.foo();
 });
-Promise.resolve().then(()=>require(/* webpackChunkName: "helpers" */ './bundle-82543cc5.js')).then(({ bar  })=>{
+Promise.resolve().then(()=>require(/* webpackChunkName: "helpers" */ './bundle-82543cc5.js')).then(({ bar })=>{
     bar();
 });
 //# sourceMappingURL=index-native-legacy-lib.js.map
@@ -2256,7 +2256,7 @@ exports[`Dynamic imports swc transforms example test case: native-stable-lib 2`]
 Promise.resolve().then(()=>require('./bundle-c101e488.js')).then((result)=>{
     result.foo();
 });
-Promise.resolve().then(()=>require(/* webpackChunkName: "helpers" */ './bundle-c101e488.js')).then(({ bar  })=>{
+Promise.resolve().then(()=>require(/* webpackChunkName: "helpers" */ './bundle-c101e488.js')).then(({ bar })=>{
     bar();
 });
 //# sourceMappingURL=index-native-stable-lib.js.map
@@ -2298,7 +2298,7 @@ exports[`Dynamic imports swc transforms example test case: node-current-cjs 3`] 
 import('./bundle-aab517bb.cjs').then((result)=>{
     result.foo();
 });
-import(/* webpackChunkName: "helpers" */ './bundle-aab517bb.cjs').then(({ bar  })=>{
+import(/* webpackChunkName: "helpers" */ './bundle-aab517bb.cjs').then(({ bar })=>{
     bar();
 });
 //# sourceMappingURL=index-node-current-cjs.cjs.map
@@ -2330,7 +2330,7 @@ exports[`Dynamic imports swc transforms example test case: node-current-lib 2`] 
 import('./bundle-0249d878.js').then((result)=>{
     result.foo();
 });
-import(/* webpackChunkName: "helpers" */ './bundle-0249d878.js').then(({ bar  })=>{
+import(/* webpackChunkName: "helpers" */ './bundle-0249d878.js').then(({ bar })=>{
     bar();
 });
 //# sourceMappingURL=index-node-current-lib.js.map
@@ -2359,7 +2359,7 @@ exports[`Dynamic imports swc transforms example test case: node-current-mjs 2`] 
 import('./bundle-a6a28363.mjs').then((result)=>{
     result.foo();
 });
-import(/* webpackChunkName: "helpers" */ './bundle-a6a28363.mjs').then(({ bar  })=>{
+import(/* webpackChunkName: "helpers" */ './bundle-a6a28363.mjs').then(({ bar })=>{
     bar();
 });
 //# sourceMappingURL=index-node-current-mjs.mjs.map
@@ -2401,7 +2401,7 @@ exports[`Dynamic imports swc transforms example test case: node-experimental-cjs
 import('./bundle-5db749e8.cjs').then((result)=>{
     result.foo();
 });
-import(/* webpackChunkName: "helpers" */ './bundle-5db749e8.cjs').then(({ bar  })=>{
+import(/* webpackChunkName: "helpers" */ './bundle-5db749e8.cjs').then(({ bar })=>{
     bar();
 });
 //# sourceMappingURL=index-node-experimental-cjs.cjs.map
@@ -2433,7 +2433,7 @@ exports[`Dynamic imports swc transforms example test case: node-experimental-lib
 import('./bundle-2106f853.js').then((result)=>{
     result.foo();
 });
-import(/* webpackChunkName: "helpers" */ './bundle-2106f853.js').then(({ bar  })=>{
+import(/* webpackChunkName: "helpers" */ './bundle-2106f853.js').then(({ bar })=>{
     bar();
 });
 //# sourceMappingURL=index-node-experimental-lib.js.map
@@ -2462,7 +2462,7 @@ exports[`Dynamic imports swc transforms example test case: node-experimental-mjs
 import('./bundle-e35310ac.mjs').then((result)=>{
     result.foo();
 });
-import(/* webpackChunkName: "helpers" */ './bundle-e35310ac.mjs').then(({ bar  })=>{
+import(/* webpackChunkName: "helpers" */ './bundle-e35310ac.mjs').then(({ bar })=>{
     bar();
 });
 //# sourceMappingURL=index-node-experimental-mjs.mjs.map
@@ -2504,7 +2504,7 @@ exports[`Dynamic imports swc transforms example test case: node-legacy-cjs 3`] =
 import('./bundle-37fb9b69.cjs').then((result)=>{
     result.foo();
 });
-import(/* webpackChunkName: "helpers" */ './bundle-37fb9b69.cjs').then(({ bar  })=>{
+import(/* webpackChunkName: "helpers" */ './bundle-37fb9b69.cjs').then(({ bar })=>{
     bar();
 });
 //# sourceMappingURL=index-node-legacy-cjs.cjs.map
@@ -2536,7 +2536,7 @@ exports[`Dynamic imports swc transforms example test case: node-legacy-lib 2`] =
 import('./bundle-560e9dac.js').then((result)=>{
     result.foo();
 });
-import(/* webpackChunkName: "helpers" */ './bundle-560e9dac.js').then(({ bar  })=>{
+import(/* webpackChunkName: "helpers" */ './bundle-560e9dac.js').then(({ bar })=>{
     bar();
 });
 //# sourceMappingURL=index-node-legacy-lib.js.map
@@ -2565,7 +2565,7 @@ exports[`Dynamic imports swc transforms example test case: node-legacy-mjs 2`] =
 import('./bundle-f9bec76a.mjs').then((result)=>{
     result.foo();
 });
-import(/* webpackChunkName: "helpers" */ './bundle-f9bec76a.mjs').then(({ bar  })=>{
+import(/* webpackChunkName: "helpers" */ './bundle-f9bec76a.mjs').then(({ bar })=>{
     bar();
 });
 //# sourceMappingURL=index-node-legacy-mjs.mjs.map
@@ -2607,7 +2607,7 @@ exports[`Dynamic imports swc transforms example test case: node-stable-cjs 3`] =
 import('./bundle-19351a45.cjs').then((result)=>{
     result.foo();
 });
-import(/* webpackChunkName: "helpers" */ './bundle-19351a45.cjs').then(({ bar  })=>{
+import(/* webpackChunkName: "helpers" */ './bundle-19351a45.cjs').then(({ bar })=>{
     bar();
 });
 //# sourceMappingURL=index-node-stable-cjs.cjs.map
@@ -2639,7 +2639,7 @@ exports[`Dynamic imports swc transforms example test case: node-stable-lib 2`] =
 import('./bundle-2a96e413.js').then((result)=>{
     result.foo();
 });
-import(/* webpackChunkName: "helpers" */ './bundle-2a96e413.js').then(({ bar  })=>{
+import(/* webpackChunkName: "helpers" */ './bundle-2a96e413.js').then(({ bar })=>{
     bar();
 });
 //# sourceMappingURL=index-node-stable-lib.js.map
@@ -2668,7 +2668,7 @@ exports[`Dynamic imports swc transforms example test case: node-stable-mjs 2`] =
 import('./bundle-12a18185.mjs').then((result)=>{
     result.foo();
 });
-import(/* webpackChunkName: "helpers" */ './bundle-12a18185.mjs').then(({ bar  })=>{
+import(/* webpackChunkName: "helpers" */ './bundle-12a18185.mjs').then(({ bar })=>{
     bar();
 });
 //# sourceMappingURL=index-node-stable-mjs.mjs.map
