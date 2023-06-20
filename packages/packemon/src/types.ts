@@ -66,6 +66,7 @@ export type InputMap = Record<string, string>;
 
 export interface PackemonPackageFeatures {
 	babelHelpers?: 'bundled' | 'external' | 'inline' | 'runtime';
+	swc?: boolean;
 }
 
 export interface PackemonPackageConfig {

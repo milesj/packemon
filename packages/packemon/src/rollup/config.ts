@@ -81,6 +81,7 @@ export function getRollupExternals(artifact: Artifact) {
 	};
 }
 
+// eslint-disable-next-line complexity
 export function getRollupOutputConfig(
 	artifact: Artifact,
 	features: FeatureFlags,
@@ -90,7 +91,7 @@ export function getRollupOutputConfig(
 	const { platform, support } = artifact;
 	const { entryExt, folder } = artifact.getBuildOutput(format, 'index');
 	// eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
-	const isSwc = packemonConfig.swc || !!process.env.PACKEMON_SWC;
+	const isSwc = packemonConfig.swc || artifact.features.swc || !!process.env.PACKEMON_SWC;
 	const isEsm = format === 'esm' || format === 'mjs';
 
 	const output: OutputOptions = {

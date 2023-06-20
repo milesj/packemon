@@ -1215,6 +1215,7 @@ describe('Package', () => {
 	describe('setConfigs()', () => {
 		const COMMON_FEATURES = {
 			babelHelpers: 'bundled',
+			swc: false,
 		};
 
 		beforeEach(() => {
@@ -1482,6 +1483,7 @@ describe('Package', () => {
 					bundle: false,
 					externals: [],
 					features: {
+						...COMMON_FEATURES,
 						babelHelpers: 'runtime',
 					},
 					formats: ['esm'],

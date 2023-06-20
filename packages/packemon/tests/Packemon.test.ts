@@ -195,6 +195,7 @@ describe('Packemon', () => {
 					externals: [],
 					features: {
 						babelHelpers: 'bundled',
+						swc: false,
 					},
 					formats: ['mjs'],
 					inputs: { core: './src/core.ts' },
@@ -218,6 +219,7 @@ describe('Packemon', () => {
 					externals: [],
 					features: {
 						babelHelpers: 'bundled',
+						swc: false,
 					},
 					formats: ['lib'],
 					inputs: { index: 'src/index.ts' },
@@ -231,6 +233,7 @@ describe('Packemon', () => {
 					externals: [],
 					features: {
 						babelHelpers: 'bundled',
+						swc: false,
 					},
 					formats: ['esm'],
 					inputs: { index: 'src/index.ts' },

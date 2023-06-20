@@ -72,6 +72,7 @@ export const packemonFeaturesBlueprint: Blueprint<PackemonPackageFeatures> = {
 		'inline',
 		'runtime',
 	]),
+	swc: bool(),
 };
 
 export const packemonBlueprint: Blueprint<PackemonPackageConfig> = {
