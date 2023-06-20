@@ -203,7 +203,7 @@ export async function getRollupConfig(
 				  })
 				: getBabelInputPlugin({
 						...getBabelInputConfig(artifact, features, packemonConfig),
-						babelHelpers: 'bundled',
+						babelHelpers: artifact.features.babelHelpers ?? 'bundled',
 						exclude: isTest ? [] : EXCLUDE,
 						extensions: EXTENSIONS,
 						filename: artifact.package.path.path(),

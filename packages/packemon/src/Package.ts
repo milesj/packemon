@@ -204,6 +204,7 @@ export class Package {
 			artifact.bundle = config.bundle;
 			artifact.configGroup = index;
 			artifact.externals = config.externals;
+			artifact.features = config.features;
 			artifact.inputs = config.inputs;
 			artifact.namespace = config.namespace;
 			artifact.platform = config.platform;
@@ -370,6 +371,7 @@ export class Package {
 					api,
 					bundle,
 					externals: toArray(config.externals),
+					features: config.features,
 					formats,
 					inputs: config.inputs,
 					namespace: config.namespace,

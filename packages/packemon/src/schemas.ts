@@ -20,12 +20,13 @@ import {
 	NativeFormat,
 	NodeFormat,
 	PackemonPackageConfig,
+	PackemonPackageFeatures,
 	Platform,
 	Support,
 	ValidateOptions,
 } from './types';
 
-const { array, bool, number, object, string, union } = schemas;
+const { array, bool, number, object, shape, string, union } = schemas;
 
 // PLATFORMS
 
@@ -64,10 +65,20 @@ const support = string<Support>(DEFAULT_SUPPORT).oneOf(SUPPORTS);
 
 // BLUEPRINTS
 
+export const packemonFeaturesBlueprint: Blueprint<PackemonPackageFeatures> = {
+	babelHelpers: string('bundled').oneOf<NonNullable<PackemonPackageFeatures['babelHelpers']>>([
+		'bundled',
+		'external',
+		'inline',
+		'runtime',
+	]),
+};
+
 export const packemonBlueprint: Blueprint<PackemonPackageConfig> = {
 	api: string('private').oneOf<ApiType>(['public', 'private']),
 	bundle: bool(true),
 	externals: union([]).of([string(), array().of(string())]),
+	features: shape(packemonFeaturesBlueprint),
 	format: union(undefined)
 		.of([format, array().of(format)])
 		.undefinable(),

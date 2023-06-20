@@ -20,6 +20,7 @@ import type {
 	InputMap,
 	PackageExportPaths,
 	PackageExports,
+	PackemonPackageFeatures,
 	Platform,
 	Support,
 } from './types';
@@ -40,6 +41,9 @@ export class Artifact {
 
 	// List of custom Rollup externals
 	externals: string[] = [];
+
+	// Features unique to this artifact
+	features: PackemonPackageFeatures = {};
 
 	// Mapping of output names to input paths
 	inputs: InputMap = {};
