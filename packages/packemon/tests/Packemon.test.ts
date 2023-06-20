@@ -193,6 +193,9 @@ describe('Packemon', () => {
 					api: 'public',
 					bundle: false,
 					externals: [],
+					features: {
+						babelHelpers: 'bundled',
+					},
 					formats: ['mjs'],
 					inputs: { core: './src/core.ts' },
 					namespace: '',
@@ -213,6 +216,9 @@ describe('Packemon', () => {
 					api: 'public',
 					bundle: false,
 					externals: [],
+					features: {
+						babelHelpers: 'bundled',
+					},
 					formats: ['lib'],
 					inputs: { index: 'src/index.ts' },
 					namespace: '',
@@ -223,6 +229,9 @@ describe('Packemon', () => {
 					api: 'private',
 					bundle: true,
 					externals: [],
+					features: {
+						babelHelpers: 'bundled',
+					},
 					formats: ['esm'],
 					inputs: { index: 'src/index.ts' },
 					namespace: '',
