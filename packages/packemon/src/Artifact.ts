@@ -1,10 +1,10 @@
 import execa from 'execa';
-import glob from 'fast-glob';
 import fs from 'fs-extra';
 import { rollup } from 'rollup';
 import { applyStyle } from '@boost/cli';
 import { isObject, Path, toArray, VirtualPath } from '@boost/common';
 import { createDebugger, Debugger } from '@boost/debug';
+import { convertCjsTypes } from './helpers/compat/convertCjsTypes';
 import { removeSourcePath } from './helpers/removeSourcePath';
 import type { Package } from './Package';
 import { getRollupConfig } from './rollup/config';
@@ -195,22 +195,7 @@ export class Artifact {
 			if (hasCjs) {
 				this.debug('CJS types compatibility enabled, renaming `.d.ts` to `.d.cts`');
 
-				const dtsFiles = await glob('**/*.d.ts', {
-					absolute: true,
-					cwd: this.package.path.append('cjs').path(),
-				});
-
-				await Promise.all(
-					dtsFiles.map((dtsFile) => {
-						const dtsPath = Path.create(dtsFile);
-						const dtsName = dtsPath.name();
-
-						return fs.rename(
-							dtsPath.path(),
-							dtsPath.parent().append(dtsName.replace('.d.ts', '.d.cts')).path(),
-						);
-					}),
-				);
+				await convertCjsTypes(this.package.path.append('cjs'));
 			}
 		}
 	}
