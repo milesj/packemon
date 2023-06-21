@@ -227,3 +227,57 @@ describe('Special formats', () => {
 		});
 	});
 });
+
+describe('Feature flags', () => {
+	const root = new Path(getFixturePath('features'));
+	const snapshots = createSnapshotSpies(root, true);
+
+	it('compiles', async () => {
+		const pkg = loadPackageAtPath(root);
+
+		const babelRuntime = new Artifact(pkg, [{ format: 'lib' }]);
+		babelRuntime.bundle = false;
+		babelRuntime.platform = 'browser';
+		babelRuntime.support = 'legacy';
+		babelRuntime.inputs = { index: 'src/helpers.ts' };
+		babelRuntime.features = { helpers: 'runtime' };
+
+		pkg.artifacts.push(babelRuntime);
+
+		const babelExternal = new Artifact(pkg, [{ format: 'lib' }]);
+		babelExternal.bundle = false;
+		babelExternal.platform = 'browser';
+		babelExternal.support = 'legacy';
+		babelExternal.inputs = { index: 'src/helpers.ts' };
+		babelExternal.features = { helpers: 'external' };
+
+		pkg.artifacts.push(babelExternal);
+
+		const swc = new Artifact(pkg, [{ format: 'lib' }]);
+		swc.bundle = false;
+		swc.platform = 'browser';
+		swc.support = 'legacy';
+		swc.inputs = { index: 'src/helpers.ts' };
+		swc.features = { swc: true };
+
+		pkg.artifacts.push(swc);
+
+		const swcExternal = new Artifact(pkg, [{ format: 'lib' }]);
+		swcExternal.bundle = false;
+		swcExternal.platform = 'browser';
+		swcExternal.support = 'legacy';
+		swcExternal.inputs = { index: 'src/helpers.ts' };
+		swcExternal.features = { swc: true, helpers: 'external' };
+
+		pkg.artifacts.push(swcExternal);
+
+		await pkg.build({}, {});
+
+		snapshots(pkg).forEach((ss) => {
+			// eslint-disable-next-line jest/no-conditional-in-test
+			if (ss[0].endsWith('.js')) {
+				expect(ss).toMatchSnapshot();
+			}
+		});
+	});
+});

@@ -64,10 +64,16 @@ export type ApiType = 'private' | 'public';
 
 export type InputMap = Record<string, string>;
 
+export interface PackemonPackageFeatures {
+	helpers?: 'bundled' | 'external' | 'inline' | 'runtime';
+	swc?: boolean;
+}
+
 export interface PackemonPackageConfig {
 	api?: ApiType;
 	bundle?: boolean;
 	externals?: string[] | string;
+	features?: PackemonPackageFeatures;
 	format?: Format | Format[];
 	inputs?: InputMap;
 	namespace?: string;
@@ -84,6 +90,7 @@ export interface PackageConfig {
 	api: ApiType;
 	bundle: boolean;
 	externals: string[];
+	features: PackemonPackageFeatures;
 	formats: Format[];
 	inputs: InputMap;
 	namespace: string;

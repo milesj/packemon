@@ -13,6 +13,7 @@ const SUPPORTS: Support[] = ['legacy', 'stable', 'current', 'experimental'];
 
 describe('getBabelInputConfig()', () => {
 	const bundleArtifact: any = {
+		features: {},
 		package: { hasDependency: () => false },
 	};
 

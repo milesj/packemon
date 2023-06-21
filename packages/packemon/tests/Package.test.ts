@@ -1213,6 +1213,11 @@ describe('Package', () => {
 	});
 
 	describe('setConfigs()', () => {
+		const COMMON_FEATURES = {
+			helpers: 'bundled',
+			swc: false,
+		};
+
 		beforeEach(() => {
 			pkg = loadPackageAtPath(getFixturePath('workspaces-feature-flags', 'packages/common'));
 			// @ts-expect-error Allow override
@@ -1236,6 +1241,7 @@ describe('Package', () => {
 					api: 'private',
 					bundle: true,
 					externals: [],
+					features: COMMON_FEATURES,
 					formats: ['esm'],
 					inputs: {},
 					platform: 'browser',
@@ -1262,6 +1268,7 @@ describe('Package', () => {
 					api: 'private',
 					bundle: true,
 					externals: [],
+					features: COMMON_FEATURES,
 					formats: ['esm', 'umd'],
 					inputs: {},
 					platform: 'browser',
@@ -1288,6 +1295,7 @@ describe('Package', () => {
 					api: 'private',
 					bundle: true,
 					externals: [],
+					features: COMMON_FEATURES,
 					formats: ['lib'],
 					inputs: {},
 					platform: 'native',
@@ -1314,6 +1322,7 @@ describe('Package', () => {
 					api: 'public',
 					bundle: false,
 					externals: [],
+					features: COMMON_FEATURES,
 					formats: ['mjs'],
 					inputs: {},
 					platform: 'node',
@@ -1339,6 +1348,7 @@ describe('Package', () => {
 					api: 'public',
 					bundle: false,
 					externals: [],
+					features: COMMON_FEATURES,
 					formats: ['mjs'],
 					inputs: {},
 					platform: 'node',
@@ -1361,6 +1371,7 @@ describe('Package', () => {
 					api: 'private',
 					bundle: true,
 					externals: [],
+					features: COMMON_FEATURES,
 					formats: ['esm'],
 					inputs: {},
 					platform: 'browser',
@@ -1371,6 +1382,7 @@ describe('Package', () => {
 					api: 'public',
 					bundle: false,
 					externals: [],
+					features: COMMON_FEATURES,
 					formats: ['mjs'],
 					inputs: {},
 					platform: 'node',
@@ -1405,6 +1417,7 @@ describe('Package', () => {
 					api: 'private',
 					bundle: true,
 					externals: [],
+					features: COMMON_FEATURES,
 					formats: ['esm'],
 					inputs: {},
 					platform: 'browser',
@@ -1415,6 +1428,7 @@ describe('Package', () => {
 					api: 'public',
 					bundle: false,
 					externals: [],
+					features: COMMON_FEATURES,
 					formats: ['mjs'],
 					inputs: {},
 					platform: 'node',
@@ -1425,6 +1439,7 @@ describe('Package', () => {
 					api: 'private',
 					bundle: true,
 					externals: [],
+					features: COMMON_FEATURES,
 					formats: ['lib'],
 					inputs: {},
 					platform: 'native',
@@ -1445,6 +1460,9 @@ describe('Package', () => {
 					api: 'public',
 					bundle: false,
 					platform: 'browser',
+					features: {
+						helpers: 'runtime',
+					},
 				},
 			]);
 
@@ -1453,6 +1471,7 @@ describe('Package', () => {
 					api: 'private',
 					bundle: true,
 					externals: [],
+					features: COMMON_FEATURES,
 					formats: ['mjs'],
 					inputs: { index: 'src/index.ts' },
 					platform: 'node',
@@ -1463,6 +1482,10 @@ describe('Package', () => {
 					api: 'public',
 					bundle: false,
 					externals: [],
+					features: {
+						...COMMON_FEATURES,
+						helpers: 'runtime',
+					},
 					formats: ['esm'],
 					inputs: { index: 'src/index.ts' },
 					platform: 'browser',
@@ -1484,6 +1507,7 @@ describe('Package', () => {
 					api: 'private',
 					bundle: true,
 					externals: ['foo', 'bar'],
+					features: COMMON_FEATURES,
 					formats: ['esm'],
 					inputs: { index: 'src/index.ts' },
 					platform: 'browser',
@@ -1505,6 +1529,7 @@ describe('Package', () => {
 					api: 'private',
 					bundle: true,
 					externals: ['foo'],
+					features: COMMON_FEATURES,
 					formats: ['esm'],
 					inputs: { index: 'src/index.ts' },
 					platform: 'browser',

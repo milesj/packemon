@@ -103,8 +103,8 @@ export function getSwcInputConfig(
 				dynamicImport: true,
 			},
 			transform,
-			// Keep the input as similar as possible
-			externalHelpers: false,
+			externalHelpers:
+				artifact.features.helpers === 'external' || artifact.features.helpers === 'runtime',
 			loose: false,
 			target: SUPPORT_TO_ESM_SPEC.experimental,
 		},
@@ -207,7 +207,12 @@ export function getSwcOutputConfig(
 	const config = getSharedConfig(baseConfig);
 
 	// Allow consumers to mutate
-	packemonConfig.swcOutput?.(config, { features, format, platform, support });
+	packemonConfig.swcOutput?.(config, {
+		features,
+		format,
+		platform,
+		support,
+	});
 
 	return config;
 }

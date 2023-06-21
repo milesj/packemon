@@ -158,6 +158,15 @@ export function getBabelInputConfig(
 		presets.push(resolve('babel-preset-solid'));
 	}
 
+	if (artifact.features.helpers === 'runtime') {
+		plugins.push([
+			resolve('@babel/plugin-transform-runtime'),
+			{ corejs: false, helpers: true, regenerator: false },
+		]);
+	} else if (artifact.features.helpers === 'external') {
+		plugins.push(resolve('@babel/plugin-external-helpers'));
+	}
+
 	const config = getSharedConfig(plugins, presets, features);
 
 	// Allow consumers to mutate
@@ -224,7 +233,12 @@ export function getBabelOutputConfig(
 	const config = getSharedConfig(plugins, presets, features);
 
 	// Allow consumers to mutate
-	packemonConfig.babelOutput?.(config, { features, format, platform, support });
+	packemonConfig.babelOutput?.(config, {
+		features,
+		format,
+		platform,
+		support,
+	});
 
 	return config;
 }

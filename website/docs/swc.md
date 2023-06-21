@@ -7,12 +7,25 @@ replacement for Babel. If you want improved performance for less features, we su
 
 ## Enabling swc
 
-There are 3 ways to enable swc:
+There are 4 ways to enable swc:
 
 Define the `PACKEMON_SWC` environment variable.
 
 ```shell
 PACKEMON_SWC=true packemon build
+```
+
+Enable the `swc` [feature flag](./config#features).
+
+```json title="package.json"
+{
+  // ...
+  "packemon": {
+    "features": {
+      "swc": true
+    }
+  }
+}
 ```
 
 Enable for all packages through a root `packemon.config.{js,ts}` (requires
