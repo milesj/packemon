@@ -1,4 +1,5 @@
 import execa from 'execa';
+import glob from 'fast-glob';
 import fs from 'fs-extra';
 import { rollup } from 'rollup';
 import { applyStyle } from '@boost/cli';
@@ -187,6 +188,31 @@ export class Artifact {
 				});
 			}),
 		);
+
+		if (this.features.cjsTypesCompat) {
+			const hasCjs = this.builds.some((build) => build.format === 'cjs');
+
+			if (hasCjs) {
+				this.debug('CJS types compatibility enabled, renaming `.d.ts` to `.d.cts`');
+
+				const dtsFiles = await glob('**/*.d.ts', {
+					absolute: true,
+					cwd: this.package.path.append('cjs').path(),
+				});
+
+				await Promise.all(
+					dtsFiles.map((dtsFile) => {
+						const dtsPath = Path.create(dtsFile);
+						const dtsName = dtsPath.name();
+
+						return fs.rename(
+							dtsPath.path(),
+							dtsPath.parent().append(dtsName.replace('.d.ts', '.d.cts')).path(),
+						);
+					}),
+				);
+			}
+		}
 	}
 
 	async clean() {
@@ -237,7 +263,9 @@ export class Artifact {
 		let declExt: string | undefined;
 
 		if (declaration) {
-			if (!inputFile || /\.tsx?$/.test(inputFile)) {
+			if (format === 'cjs' && this.features.cjsTypesCompat) {
+				declExt = 'd.cts';
+			} else if (!inputFile || /\.tsx?$/.test(inputFile)) {
 				declExt = 'd.ts';
 			} else if (inputFile.endsWith('.cts')) {
 				declExt = 'd.cts';

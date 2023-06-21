@@ -1214,6 +1214,7 @@ describe('Package', () => {
 
 	describe('setConfigs()', () => {
 		const COMMON_FEATURES = {
+			cjsTypesCompat: false,
 			helpers: 'bundled',
 			swc: false,
 		};

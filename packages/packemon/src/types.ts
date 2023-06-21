@@ -65,6 +65,7 @@ export type ApiType = 'private' | 'public';
 export type InputMap = Record<string, string>;
 
 export interface PackemonPackageFeatures {
+	cjsTypesCompat?: boolean;
 	helpers?: 'bundled' | 'external' | 'inline' | 'runtime';
 	swc?: boolean;
 }

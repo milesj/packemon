@@ -66,6 +66,7 @@ const support = string<Support>(DEFAULT_SUPPORT).oneOf(SUPPORTS);
 // BLUEPRINTS
 
 export const packemonFeaturesBlueprint: Blueprint<PackemonPackageFeatures> = {
+	cjsTypesCompat: bool(),
 	helpers: string('bundled').oneOf<NonNullable<PackemonPackageFeatures['helpers']>>([
 		'bundled',
 		'external',
