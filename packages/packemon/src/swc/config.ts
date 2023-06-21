@@ -154,7 +154,8 @@ export function getSwcInputConfig(
 // The output config does all the transformation and downleveling through the preset-env.
 // This is handled per output since we need to configure based on target + format combinations.
 export function getSwcOutputConfig(
-	artifact: Artifact,
+	platform: Platform,
+	support: Support,
 	format: Format,
 	features: FeatureFlags,
 	packemonConfig: ConfigFile = {},
@@ -169,12 +170,12 @@ export function getSwcOutputConfig(
 		bugfixes: true,
 		shippedProposals: true,
 		// Platform specific
-		...getPlatformEnvOptions(artifact.platform, artifact.support, format),
+		...getPlatformEnvOptions(platform, support, format),
 	};
 
 	const module: ModuleConfig = {
 		type: getModuleConfigType(format),
-		ignoreDynamic: shouldKeepDynamicImport(artifact.platform, artifact.support),
+		ignoreDynamic: shouldKeepDynamicImport(platform, support),
 	};
 
 	// This is to trick the Babel plugin to not transform the const
@@ -199,7 +200,7 @@ export function getSwcOutputConfig(
 					},
 				},
 			},
-			target: SUPPORT_TO_ESM_SPEC[artifact.support],
+			target: SUPPORT_TO_ESM_SPEC[support],
 		},
 	};
 
@@ -209,8 +210,8 @@ export function getSwcOutputConfig(
 	packemonConfig.swcOutput?.(config, {
 		features,
 		format,
-		platform: artifact.platform,
-		support: artifact.support,
+		platform,
+		support,
 	});
 
 	return config;

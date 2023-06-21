@@ -158,8 +158,6 @@ export function getBabelInputConfig(
 		presets.push(resolve('babel-preset-solid'));
 	}
 
-	const config = getSharedConfig(plugins, presets, features);
-
 	if (artifact.features.helpers === 'runtime') {
 		plugins.push([
 			resolve('@babel/plugin-transform-runtime'),
@@ -168,6 +166,8 @@ export function getBabelInputConfig(
 	} else if (artifact.features.helpers === 'external') {
 		plugins.push(resolve('@babel/plugin-external-helpers'));
 	}
+
+	const config = getSharedConfig(plugins, presets, features);
 
 	// Allow consumers to mutate
 	packemonConfig.babelInput?.(config);
@@ -178,7 +178,8 @@ export function getBabelInputConfig(
 // The output config does all the transformation and downleveling through the preset-env.
 // This is handled per output since we need to configure based on target + format combinations.
 export function getBabelOutputConfig(
-	artifact: Artifact,
+	platform: Platform,
+	support: Support,
 	format: Format,
 	features: FeatureFlags,
 	packemonConfig: ConfigFile = {},
@@ -199,7 +200,7 @@ export function getBabelOutputConfig(
 		bugfixes: true,
 		shippedProposals: true,
 		// Platform specific
-		...getPlatformEnvOptions(artifact.platform, artifact.support, format),
+		...getPlatformEnvOptions(platform, support, format),
 	};
 
 	presets.push([resolve('@babel/preset-env'), envOptions]);
@@ -212,11 +213,11 @@ export function getBabelOutputConfig(
 		[resolveFromBabel('@babel/plugin-transform-object-rest-spread'), { useBuiltIns: true }],
 	);
 
-	if (artifact.platform === 'node') {
+	if (platform === 'node') {
 		plugins.push([resolve('babel-plugin-cjs-esm-interop'), { format: isESM ? 'mjs' : 'cjs' }]);
 
 		// Node 14 does not support ??=, etc
-		if (artifact.support === 'legacy') {
+		if (support === 'legacy') {
 			plugins.push(
 				resolveFromBabel('@babel/plugin-transform-logical-assignment-operators'),
 				resolveFromBabel('@babel/plugin-transform-nullish-coalescing-operator'),
@@ -235,8 +236,8 @@ export function getBabelOutputConfig(
 	packemonConfig.babelOutput?.(config, {
 		features,
 		format,
-		platform: artifact.platform,
-		support: artifact.support,
+		platform,
+		support,
 	});
 
 	return config;

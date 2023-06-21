@@ -123,13 +123,13 @@ export function getRollupOutputConfig(
 			preserveDynamicImport(platform, support),
 			isSwc
 				? swcOutput({
-						...getSwcOutputConfig(artifact, format, features, packemonConfig),
+						...getSwcOutputConfig(platform, support, format, features, packemonConfig),
 						filename: artifact.package.path.path(),
 						// Maps were extracted before transformation
 						sourceMaps: false,
 				  })
 				: getBabelOutputPlugin({
-						...getBabelOutputConfig(artifact, format, features, packemonConfig),
+						...getBabelOutputConfig(platform, support, format, features, packemonConfig),
 						filename: artifact.package.path.path(),
 						// Provide a custom name for the UMD global
 						moduleId: format === 'umd' ? artifact.namespace : undefined,
@@ -212,7 +212,7 @@ export async function getRollupConfig(
 						exclude: isTest ? [] : EXCLUDE,
 						extensions: EXTENSIONS,
 						filename: artifact.package.path.path(),
-						skipPreflightCheck: !isTest,
+						skipPreflightCheck: true,
 						// Extract maps from the original source
 						sourceMaps: !isNode,
 				  }),

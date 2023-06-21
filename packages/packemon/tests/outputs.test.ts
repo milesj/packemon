@@ -232,7 +232,7 @@ describe('Feature flags', () => {
 	const root = new Path(getFixturePath('features'));
 	const snapshots = createSnapshotSpies(root, true);
 
-	it.only('compiles', async () => {
+	it('compiles', async () => {
 		const pkg = loadPackageAtPath(root);
 
 		const babelRuntime = new Artifact(pkg, [{ format: 'lib' }]);
