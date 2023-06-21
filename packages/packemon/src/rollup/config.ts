@@ -65,6 +65,10 @@ export function getRollupExternals(artifact: Artifact) {
 	}
 
 	return (id: string, parent: string = '<unknown>') => {
+		if (id.includes('@babel/') || id.includes('@swc/helpers')) {
+			return true;
+		}
+
 		if (foreignInputs.has(id)) {
 			throw new Error(
 				`Unexpected foreign input import. May only import sibling files within the same \`inputs\` configuration group. File "${parent}" attempted to import "${id}".`,
@@ -119,13 +123,13 @@ export function getRollupOutputConfig(
 			preserveDynamicImport(platform, support),
 			isSwc
 				? swcOutput({
-						...getSwcOutputConfig(platform, support, format, features, packemonConfig),
+						...getSwcOutputConfig(artifact, format, features, packemonConfig),
 						filename: artifact.package.path.path(),
 						// Maps were extracted before transformation
 						sourceMaps: false,
 				  })
 				: getBabelOutputPlugin({
-						...getBabelOutputConfig(platform, support, format, features, packemonConfig),
+						...getBabelOutputConfig(artifact, format, features, packemonConfig),
 						filename: artifact.package.path.path(),
 						// Provide a custom name for the UMD global
 						moduleId: format === 'umd' ? artifact.namespace : undefined,
@@ -167,7 +171,7 @@ export async function getRollupConfig(
 	const isNode = artifact.platform === 'node';
 	const isTest = process.env.NODE_ENV === 'test';
 	// eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
-	const isSwc = packemonConfig.swc || !!process.env.PACKEMON_SWC;
+	const isSwc = packemonConfig.swc || artifact.features.swc || !!process.env.PACKEMON_SWC;
 
 	const config: RollupOptions = {
 		external: getRollupExternals(artifact),
@@ -204,11 +208,11 @@ export async function getRollupConfig(
 				  })
 				: getBabelInputPlugin({
 						...getBabelInputConfig(artifact, features, packemonConfig),
-						babelHelpers: artifact.features.babelHelpers ?? 'bundled',
+						babelHelpers: artifact.features.helpers,
 						exclude: isTest ? [] : EXCLUDE,
 						extensions: EXTENSIONS,
 						filename: artifact.package.path.path(),
-						skipPreflightCheck: true,
+						skipPreflightCheck: !isTest,
 						// Extract maps from the original source
 						sourceMaps: !isNode,
 				  }),

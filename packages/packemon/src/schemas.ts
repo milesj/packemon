@@ -66,7 +66,7 @@ const support = string<Support>(DEFAULT_SUPPORT).oneOf(SUPPORTS);
 // BLUEPRINTS
 
 export const packemonFeaturesBlueprint: Blueprint<PackemonPackageFeatures> = {
-	babelHelpers: string('bundled').oneOf<NonNullable<PackemonPackageFeatures['babelHelpers']>>([
+	helpers: string('bundled').oneOf<NonNullable<PackemonPackageFeatures['helpers']>>([
 		'bundled',
 		'external',
 		'inline',

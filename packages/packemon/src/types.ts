@@ -65,7 +65,7 @@ export type ApiType = 'private' | 'public';
 export type InputMap = Record<string, string>;
 
 export interface PackemonPackageFeatures {
-	babelHelpers?: 'bundled' | 'external' | 'inline' | 'runtime';
+	helpers?: 'bundled' | 'external' | 'inline' | 'runtime';
 	swc?: boolean;
 }
 

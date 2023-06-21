@@ -160,6 +160,15 @@ export function getBabelInputConfig(
 
 	const config = getSharedConfig(plugins, presets, features);
 
+	if (artifact.features.helpers === 'runtime') {
+		plugins.push([
+			resolve('@babel/plugin-transform-runtime'),
+			{ corejs: false, helpers: true, regenerator: false },
+		]);
+	} else if (artifact.features.helpers === 'external') {
+		plugins.push(resolve('@babel/plugin-external-helpers'));
+	}
+
 	// Allow consumers to mutate
 	packemonConfig.babelInput?.(config);
 
@@ -169,8 +178,7 @@ export function getBabelInputConfig(
 // The output config does all the transformation and downleveling through the preset-env.
 // This is handled per output since we need to configure based on target + format combinations.
 export function getBabelOutputConfig(
-	platform: Platform,
-	support: Support,
+	artifact: Artifact,
 	format: Format,
 	features: FeatureFlags,
 	packemonConfig: ConfigFile = {},
@@ -191,7 +199,7 @@ export function getBabelOutputConfig(
 		bugfixes: true,
 		shippedProposals: true,
 		// Platform specific
-		...getPlatformEnvOptions(platform, support, format),
+		...getPlatformEnvOptions(artifact.platform, artifact.support, format),
 	};
 
 	presets.push([resolve('@babel/preset-env'), envOptions]);
@@ -204,11 +212,11 @@ export function getBabelOutputConfig(
 		[resolveFromBabel('@babel/plugin-transform-object-rest-spread'), { useBuiltIns: true }],
 	);
 
-	if (platform === 'node') {
+	if (artifact.platform === 'node') {
 		plugins.push([resolve('babel-plugin-cjs-esm-interop'), { format: isESM ? 'mjs' : 'cjs' }]);
 
 		// Node 14 does not support ??=, etc
-		if (support === 'legacy') {
+		if (artifact.support === 'legacy') {
 			plugins.push(
 				resolveFromBabel('@babel/plugin-transform-logical-assignment-operators'),
 				resolveFromBabel('@babel/plugin-transform-nullish-coalescing-operator'),
@@ -224,7 +232,12 @@ export function getBabelOutputConfig(
 	const config = getSharedConfig(plugins, presets, features);
 
 	// Allow consumers to mutate
-	packemonConfig.babelOutput?.(config, { features, format, platform, support });
+	packemonConfig.babelOutput?.(config, {
+		features,
+		format,
+		platform: artifact.platform,
+		support: artifact.support,
+	});
 
 	return config;
 }

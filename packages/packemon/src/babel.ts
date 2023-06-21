@@ -20,13 +20,7 @@ const support = (process.env.PACKEMON_SUPPORT ?? DEFAULT_SUPPORT) as Support;
 
 function getBabelConfig(artifact: Artifact, featureFlags: FeatureFlags): ConfigStructure {
 	const inputConfig = getBabelInputConfig(artifact, featureFlags, {});
-	const outputConfig = getBabelOutputConfig(
-		artifact.platform,
-		artifact.support,
-		artifact.builds[0].format,
-		featureFlags,
-		{},
-	);
+	const outputConfig = getBabelOutputConfig(artifact, artifact.builds[0].format, featureFlags, {});
 
 	return {
 		// Input must come first

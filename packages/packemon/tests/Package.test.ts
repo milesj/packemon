@@ -1461,7 +1461,7 @@ describe('Package', () => {
 					bundle: false,
 					platform: 'browser',
 					features: {
-						babelHelpers: 'runtime',
+						helpers: 'runtime',
 					},
 				},
 			]);
