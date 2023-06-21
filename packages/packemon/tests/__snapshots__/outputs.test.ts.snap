@@ -3326,6 +3326,45 @@ exports[`Outputs (swc) no bundle with assets creates individual files and refere
 ]
 `;
 
+exports[`Special formats cjs supports .ts -> .cjs / .d.cts (compat) 1`] = `
+[
+  "cjs/index.cjs",
+  "// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: cjs
+
+'use strict';
+
+function test() {
+  return 123;
+}
+module.exports = test;
+//# sourceMappingURL=index.cjs.map
+",
+]
+`;
+
+exports[`Special formats cjs supports .ts -> .cjs / .d.cts (compat) 2`] = `
+[
+  "package.json",
+  {
+    "main": "./cjs/index.cjs",
+    "name": "project-cjs-compat",
+    "packemon": {
+      "format": "cjs",
+      "inputs": {
+        "index": "src/index.ts",
+      },
+    },
+    "types": "./cjs/index.d.cts",
+  },
+]
+`;
+
+exports[`Special formats cjs supports .ts -> .cjs / .d.cts (compat) 3`] = `
+"export default function test(): number;
+//# sourceMappingURL=index.d.ts.map"
+`;
+
 exports[`Special formats cts supports .cts -> .cjs / .d.cts 1`] = `
 [
   "cjs/index.cjs",

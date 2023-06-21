@@ -175,6 +175,33 @@ import {
 describe('Special formats', () => {
 	jest.setTimeout(30_000);
 
+	describe('cjs', () => {
+		const root = new Path(getFixturePath('project-cjs-compat'));
+		const snapshots = createSnapshotSpies(root, true);
+
+		it('supports .ts -> .cjs / .d.cts (compat)', async () => {
+			const pkg = loadPackageAtPath(root);
+
+			const index = new Artifact(pkg, [{ declaration: true, format: 'cjs' }]);
+			index.bundle = true;
+			index.platform = 'node';
+			index.support = 'stable';
+			index.inputs = { index: 'src/index.ts' };
+			index.features = { cjsTypesCompat: true };
+
+			pkg.artifacts.push(index);
+
+			await pkg.build({}, {});
+
+			snapshots(pkg).forEach((ss) => {
+				expect(ss).toMatchSnapshot();
+			});
+
+			// Declaration snapshots are not captured above because it runs in a child process
+			expect(fs.readFileSync(root.append('cjs/index.d.cts').path(), 'utf8')).toMatchSnapshot();
+		});
+	});
+
 	describe('cts', () => {
 		const root = new Path(getFixturePath('project-cts'));
 		const snapshots = createSnapshotSpies(root, true);
