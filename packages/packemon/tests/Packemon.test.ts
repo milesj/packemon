@@ -194,7 +194,7 @@ describe('Packemon', () => {
 					bundle: false,
 					externals: [],
 					features: {
-						babelHelpers: 'bundled',
+						helpers: 'bundled',
 						swc: false,
 					},
 					formats: ['mjs'],
@@ -218,7 +218,7 @@ describe('Packemon', () => {
 					bundle: false,
 					externals: [],
 					features: {
-						babelHelpers: 'bundled',
+						helpers: 'bundled',
 						swc: false,
 					},
 					formats: ['lib'],
@@ -232,7 +232,7 @@ describe('Packemon', () => {
 					bundle: true,
 					externals: [],
 					features: {
-						babelHelpers: 'bundled',
+						helpers: 'bundled',
 						swc: false,
 					},
 					formats: ['esm'],

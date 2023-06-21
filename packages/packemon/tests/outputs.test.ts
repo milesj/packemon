@@ -254,7 +254,7 @@ describe('Feature flags', () => {
 		pkg.artifacts.push(babelExternal);
 
 		const swc = new Artifact(pkg, [{ format: 'lib' }]);
-		swc.bundle = true;
+		swc.bundle = false;
 		swc.platform = 'browser';
 		swc.support = 'legacy';
 		swc.inputs = { index: 'src/helpers.ts' };
@@ -263,7 +263,7 @@ describe('Feature flags', () => {
 		pkg.artifacts.push(swc);
 
 		const swcExternal = new Artifact(pkg, [{ format: 'lib' }]);
-		swcExternal.bundle = true;
+		swcExternal.bundle = false;
 		swcExternal.platform = 'browser';
 		swcExternal.support = 'legacy';
 		swcExternal.inputs = { index: 'src/helpers.ts' };

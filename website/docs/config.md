@@ -177,14 +177,14 @@ need to configure this.
 Feature flags can be enabled on a per-package basis, providing far more granular control, and
 providing an opt-in mechanism for experimental features. The following features are available:
 
-- `babelHelpers` (`string`) - How Babel helpers should be handled when transpiling. Accepts
-  `bundled` (default), `external`, `runtime`, or `inline`.
+- `helpers` (`string`) - How Babel/swc helpers should be handled when transpiling. Accepts `bundled`
+  (default), `external`, `runtime`, or `inline`.
 - `swc` (`bool`) - Transpile source files with [swc](./swc) instead of Babel. Defaults to `false`.
 
 ```json
 {
   "features": {
-    "babelHelpers": "runtime"
+    "helpers": "runtime"
   }
 }
 ```

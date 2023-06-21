@@ -1214,7 +1214,7 @@ describe('Package', () => {
 
 	describe('setConfigs()', () => {
 		const COMMON_FEATURES = {
-			babelHelpers: 'bundled',
+			helpers: 'bundled',
 			swc: false,
 		};
 
@@ -1484,7 +1484,7 @@ describe('Package', () => {
 					externals: [],
 					features: {
 						...COMMON_FEATURES,
-						babelHelpers: 'runtime',
+						helpers: 'runtime',
 					},
 					formats: ['esm'],
 					inputs: { index: 'src/index.ts' },

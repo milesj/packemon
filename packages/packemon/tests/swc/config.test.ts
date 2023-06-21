@@ -7,6 +7,7 @@ const SUPPORTS: Support[] = ['legacy', 'stable', 'current', 'experimental'];
 
 describe('getSwcInputConfig()', () => {
 	const bundleArtifact: any = {
+		features: {},
 		package: { hasDependency: () => false },
 	};
 
