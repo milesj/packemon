@@ -199,6 +199,7 @@ describe('Special formats', () => {
 
 			// Declaration snapshots are not captured above because it runs in a child process
 			expect(fs.readFileSync(root.append('cjs/index.d.cts').path(), 'utf8')).toMatchSnapshot();
+			expect(fs.readFileSync(root.append('cjs/index.d.cts.map').path(), 'utf8')).toMatchSnapshot();
 		});
 	});
 

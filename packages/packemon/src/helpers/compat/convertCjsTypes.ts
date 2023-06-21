@@ -2,8 +2,8 @@ import glob from 'fast-glob';
 import fs from 'fs-extra';
 import { Path } from '@boost/common';
 
-async function renameDtsFiles(cjsDir: Path) {
-	const dtsFiles = await glob('**/*.d.ts', {
+export async function convertCjsTypes(cjsDir: Path) {
+	const dtsFiles = await glob(['**/*.d.ts', '**/*.d.ts.map'], {
 		absolute: true,
 		cwd: cjsDir.path(),
 	});
@@ -11,21 +11,21 @@ async function renameDtsFiles(cjsDir: Path) {
 	await Promise.all(
 		dtsFiles.map(async (dtsFile) => {
 			const dtsPath = Path.create(dtsFile);
-			const dtsName = dtsPath.name();
-			const dctsName = dtsName.replace('.d.ts', '.d.cts');
+			const inName = dtsPath.name();
+			const outName = inName.replace('.d.ts', '.d.cts');
 
 			// Read contents and fix source map paths
-			const contents = (await fs.readFile(dtsPath.path(), 'utf8')).replace(dtsName, dctsName);
+			let contents = (await fs.readFile(dtsPath.path(), 'utf8')).replace(inName, outName);
+
+			if (dtsFile.endsWith('.map')) {
+				contents = contents.replace(inName.replace('.map', ''), outName.replace('.map', ''));
+			}
 
 			// Write the new file
-			await fs.writeFile(dtsPath.parent().append(dctsName).path(), contents);
+			await fs.writeFile(dtsPath.parent().append(outName).path(), contents);
 
 			// Delete the old file
 			await fs.unlink(dtsPath.path());
 		}),
 	);
-}
-
-export async function convertCjsTypes(cjsDir: Path) {
-	await renameDtsFiles(cjsDir);
 }
