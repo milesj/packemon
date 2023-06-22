@@ -4,6 +4,7 @@ import { rollup } from 'rollup';
 import { applyStyle } from '@boost/cli';
 import { isObject, Path, toArray, VirtualPath } from '@boost/common';
 import { createDebugger, Debugger } from '@boost/debug';
+import { convertCjsTypes } from './helpers/compat/convertCjsTypes';
 import { removeSourcePath } from './helpers/removeSourcePath';
 import type { Package } from './Package';
 import { getRollupConfig } from './rollup/config';
@@ -187,6 +188,16 @@ export class Artifact {
 				});
 			}),
 		);
+
+		if (this.features.cjsTypesCompat) {
+			const hasCjs = this.builds.some((build) => build.format === 'cjs');
+
+			if (hasCjs) {
+				this.debug('CJS types compatibility enabled, renaming `.d.ts` to `.d.cts`');
+
+				await convertCjsTypes(this.package.path.append('cjs'));
+			}
+		}
 	}
 
 	async clean() {
@@ -237,7 +248,9 @@ export class Artifact {
 		let declExt: string | undefined;
 
 		if (declaration) {
-			if (!inputFile || /\.tsx?$/.test(inputFile)) {
+			if (format === 'cjs' && this.features.cjsTypesCompat) {
+				declExt = 'd.cts';
+			} else if (!inputFile || /\.tsx?$/.test(inputFile)) {
 				declExt = 'd.ts';
 			} else if (inputFile.endsWith('.cts')) {
 				declExt = 'd.cts';

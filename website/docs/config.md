@@ -177,6 +177,10 @@ need to configure this.
 Feature flags can be enabled on a per-package basis, providing far more granular control, and
 providing an opt-in mechanism for experimental features. The following features are available:
 
+- `cjsTypesCompat` (`bool`) - When dual-building a package to both CJS and ESM outputs, this feature
+  will automatically rename `.d.ts` files to `.d.cts` for the `cjs` format. This is a compatibility
+  hack and may not work correctly, and _should only_ be used if source files are `.ts` and not
+  `.cts`. Defaults to `false`.
 - `helpers` (`string`) - How Babel/swc helpers should be handled when transpiling. Accepts `bundled`
   (default), `external`, `runtime`, or `inline`.
 - `swc` (`bool`) - Transpile source files with [swc](./swc) instead of Babel. Defaults to `false`.
