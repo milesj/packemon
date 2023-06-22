@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.2.0 - 2023-06-22
+
+#### 🚀 Updates
+
+- Add `cjsTypesCompat` feature, to convert `.d.ts` to `.d.cts` for CJS builds. (#213) ([f00c9aa](https://github.com/milesj/packemon/commit/f00c9aa)), closes [#213](https://github.com/milesj/packemon/issues/213)
+- Support package-level features, starting with `helpers` and `swc`. (#211) ([5e95631](https://github.com/milesj/packemon/commit/5e95631)), closes [#211](https://github.com/milesj/packemon/issues/211)
+
+#### 📦 Dependencies
+
+- **[babel]** Update to v7.22 latest. ([5cc3d9b](https://github.com/milesj/packemon/commit/5cc3d9b))
+- **[rollup]** Update to v3.25. ([5d105f1](https://github.com/milesj/packemon/commit/5d105f1))
+- **[swc]** Update to v1.3.64. ([c52c46d](https://github.com/milesj/packemon/commit/c52c46d))
+
+**Note:** Version bump only for package packemon
+
+
+
+
+
 ### 3.1.1 - 2023-05-29
 
 #### 📦 Dependencies

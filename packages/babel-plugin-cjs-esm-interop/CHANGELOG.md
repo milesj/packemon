@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 3.0.2 - 2023-06-22
+
+#### 📦 Dependencies
+
+- **[babel]** Update to v7.22 latest. ([5cc3d9b](https://github.com/milesj/packemon/commit/5cc3d9b))
+
+**Note:** Version bump only for package babel-plugin-cjs-esm-interop
+
+
+
+
+
 ### 3.0.1 - 2023-05-11
 
 #### 📦 Dependencies
