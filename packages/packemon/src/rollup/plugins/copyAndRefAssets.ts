@@ -32,7 +32,25 @@ export function copyAndRefAssets({ dir }: CopyAssetsOptions): Plugin {
 	const assetsToCopy: Record<string, VirtualPath> = {};
 
 	function determineNewAsset(source: string, importer?: string): VirtualPath {
-		const id = new VirtualPath(importer ? path.dirname(importer) : '', source);
+		let preparedImporter = importer ? path.dirname(importer) : '';
+
+		// Find overlapping directory names and remove them
+		const normalizedRelativePath = path.normalize(source);
+		const absoluteParts = preparedImporter.split(path.sep);
+		const relativeParts = normalizedRelativePath.split(path.sep);
+
+		for (let i = absoluteParts.length - 1; i >= 0; i -= 1) {
+			if (
+				absoluteParts[i] === relativeParts[0] &&
+				absoluteParts.slice(i).every((p: string, idx: number) => p === relativeParts[idx])
+			) {
+				const overlap = absoluteParts.slice(i, absoluteParts.length).join(path.sep);
+				preparedImporter = preparedImporter.slice(0, -overlap.length);
+			}
+		}
+
+		const fullPath = path.join(preparedImporter, source);
+		const id = new VirtualPath(fullPath);
 		const ext = id.ext();
 		const name = id.name(true);
 
@@ -84,6 +102,14 @@ export function copyAndRefAssets({ dir }: CopyAssetsOptions): Plugin {
 				return null;
 			}
 
+			/* 
+				chunk.facadeModuleId is not ideal because the bundled code gets moved up to the 
+				root (output) directory compared to where it was located in the source files, 
+				the imports in the source files that get bundled get changed to be relative 
+				to the new bundle location, but the chunk.facadeModuleId is the old location of 
+				the index. So, you have the old path + the new updated imports and there could be 
+				overlap due to this "hoisting", which has a workaround in determineNewAsset
+			*/
 			const parentId = chunk.facadeModuleId!; // This correct?
 			const magicString = new MagicString(code);
 			let hasChanged = false;
