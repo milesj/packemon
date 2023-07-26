@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 3.2.1 - 2023-07-26
+
+#### 🐞 Fixes
+
+- Remove possible overlaps in paths (#216) ([d61490d](https://github.com/milesj/packemon/commit/d61490d)), closes [#216](https://github.com/milesj/packemon/issues/216)
+
+**Note:** Version bump only for package packemon
+
+
+
+
+
 ## 3.2.0 - 2023-06-22
 
 #### 🚀 Updates
