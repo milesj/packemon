@@ -28,8 +28,11 @@ export interface CopyAssetsOptions {
 	dir: string;
 }
 
-export function copyAndRefAssets({ dir }: CopyAssetsOptions): Plugin {
-	const assetsToCopy: Record<string, VirtualPath> = {};
+export function copyAndRefAssets(
+	{ dir }: CopyAssetsOptions,
+	assetsToCopyInit: Record<string, VirtualPath> = {},
+): Plugin {
+	const assetsToCopy = assetsToCopyInit;
 
 	function determineNewAsset(source: string, importer?: string): VirtualPath {
 		let preparedImporter = importer ? path.dirname(importer) : '';
