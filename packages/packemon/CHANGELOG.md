@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 3.2.2 - 2023-10-02
+
+#### 🐞 Fixes
+
+- Fix babel helpers not compiling correctly. ([1dab541](https://github.com/milesj/packemon/commit/1dab541))
+- Fix clean command not working. ([76d5d73](https://github.com/milesj/packemon/commit/76d5d73))
+
+#### 📦 Dependencies
+
+- **[babel]** Update to v7.23. ([d8fcf2f](https://github.com/milesj/packemon/commit/d8fcf2f))
+- **[docusaurus]** Update to v2.4.3. ([6c82816](https://github.com/milesj/packemon/commit/6c82816))
+- **[rollup]** Update to v3.29. ([a72308a](https://github.com/milesj/packemon/commit/a72308a))
+- **[semver]** Update to v7.5.4. ([62fced9](https://github.com/milesj/packemon/commit/62fced9))
+- Update dev and test dependencies. ([78a160c](https://github.com/milesj/packemon/commit/78a160c))
+- Update minor dependencies. ([8c2a34e](https://github.com/milesj/packemon/commit/8c2a34e))
+
+**Note:** Version bump only for package packemon
+
+
+
+
+
 ### 3.2.1 - 2023-07-26
 
 #### 🐞 Fixes
