@@ -459,6 +459,7 @@ export class Artifact {
 			);
 		}
 
+		// eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
 		if (sourceLine || sourceColumn) {
 			meta.push(`line=${sourceLine ?? '?'}:${sourceColumn ?? '?'}`);
 		}

@@ -83,8 +83,7 @@ exports[`JSON imports babel transforms example test case: browser-current-umd 1`
   };
 
   // @ts-expect-error resolveJsonModule is not on
-  const keys = Object.keys(data);
-  _exports.keys = keys;
+  const keys = _exports.keys = Object.keys(data);
 });
 //# sourceMappingURL=index-browser-current-umd.js.map
 ",
@@ -174,8 +173,7 @@ exports[`JSON imports babel transforms example test case: browser-experimental-u
   };
 
   // @ts-expect-error resolveJsonModule is not on
-  const keys = Object.keys(data);
-  _exports.keys = keys;
+  const keys = _exports.keys = Object.keys(data);
 });
 //# sourceMappingURL=index-browser-experimental-umd.js.map
 ",
@@ -265,8 +263,7 @@ exports[`JSON imports babel transforms example test case: browser-legacy-umd 1`]
   };
 
   // @ts-expect-error resolveJsonModule is not on
-  var keys = Object.keys(data);
-  _exports.keys = keys;
+  var keys = _exports.keys = Object.keys(data);
 });
 //# sourceMappingURL=index-browser-legacy-umd.js.map
 ",
@@ -356,8 +353,7 @@ exports[`JSON imports babel transforms example test case: browser-stable-umd 1`]
   };
 
   // @ts-expect-error resolveJsonModule is not on
-  const keys = Object.keys(data);
-  _exports.keys = keys;
+  const keys = _exports.keys = Object.keys(data);
 });
 //# sourceMappingURL=index-browser-stable-umd.js.map
 ",

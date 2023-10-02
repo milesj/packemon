@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/prefer-nullish-coalescing */
+
 import { OutputPlugin } from 'rollup';
 
 export function addBinShebang(): OutputPlugin {

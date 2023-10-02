@@ -273,6 +273,7 @@ export class Package {
 
 			flags.typescript = true;
 			flags.typescriptComposite = Boolean(
+				// eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
 				tsConfig?.options?.composite ||
 					(tsConfig?.projectReferences && tsConfig?.projectReferences.length > 0),
 			);
