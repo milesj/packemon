@@ -42,6 +42,8 @@ export class Packemon {
 	async clean(pkg: Package) {
 		this.debug('Starting `clean` process');
 
+		pkg.generateArtifacts({});
+
 		await pkg.clean();
 	}
 
