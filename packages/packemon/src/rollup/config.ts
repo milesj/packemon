@@ -129,7 +129,14 @@ export function getRollupOutputConfig(
 						sourceMaps: false,
 				  })
 				: getBabelOutputPlugin({
-						...getBabelOutputConfig(platform, support, format, features, packemonConfig),
+						...getBabelOutputConfig(
+							platform,
+							support,
+							format,
+							features,
+							packemonConfig,
+							artifact.features.helpers,
+						),
 						filename: artifact.package.path.path(),
 						// Provide a custom name for the UMD global
 						moduleId: format === 'umd' ? artifact.namespace : undefined,

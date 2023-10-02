@@ -7,7 +7,14 @@ import {
 	NODE_SUPPORTED_VERSIONS,
 } from '../constants';
 import { shouldKeepDynamicImport } from '../helpers/shouldKeepDynamicImport';
-import { ConfigFile, FeatureFlags, Format, Platform, Support } from '../types';
+import {
+	ConfigFile,
+	FeatureFlags,
+	Format,
+	PackemonPackageFeatures,
+	Platform,
+	Support,
+} from '../types';
 import { resolve, resolveFromBabel } from './resolve';
 
 // https://babeljs.io/docs/en/babel-preset-env
@@ -86,6 +93,21 @@ function getPlatformEnvOptions(
 	}
 }
 
+function injectHelperPlugins(
+	plugins: PluginItem[],
+	babelHelpers: PackemonPackageFeatures['helpers'],
+	isESM: boolean,
+) {
+	if (babelHelpers === 'runtime') {
+		plugins.push([
+			resolve('@babel/plugin-transform-runtime'),
+			{ corejs: false, helpers: true, regenerator: false, useESModules: isESM },
+		]);
+	} else if (babelHelpers === 'external') {
+		plugins.push(resolve('@babel/plugin-external-helpers'));
+	}
+}
+
 function getSharedConfig(
 	plugins: PluginItem[],
 	presets: PluginItem[],
@@ -158,14 +180,7 @@ export function getBabelInputConfig(
 		presets.push(resolve('babel-preset-solid'));
 	}
 
-	if (artifact.features.helpers === 'runtime') {
-		plugins.push([
-			resolve('@babel/plugin-transform-runtime'),
-			{ corejs: false, helpers: true, regenerator: false },
-		]);
-	} else if (artifact.features.helpers === 'external') {
-		plugins.push(resolve('@babel/plugin-external-helpers'));
-	}
+	injectHelperPlugins(plugins, artifact.features.helpers, true);
 
 	const config = getSharedConfig(plugins, presets, features);
 
@@ -183,6 +198,7 @@ export function getBabelOutputConfig(
 	format: Format,
 	features: FeatureFlags,
 	packemonConfig: ConfigFile = {},
+	babelHelpers?: PackemonPackageFeatures['helpers'],
 ): ConfigStructure {
 	const plugins: PluginItem[] = [];
 	const presets: PluginItem[] = [];
@@ -229,6 +245,8 @@ export function getBabelOutputConfig(
 		resolve('babel-plugin-conditional-invariant'),
 		resolve('babel-plugin-env-constants'),
 	);
+
+	injectHelperPlugins(plugins, babelHelpers, isESM);
 
 	const config = getSharedConfig(plugins, presets, features);
 
