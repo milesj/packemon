@@ -11,6 +11,7 @@ export class FilesCommand extends BaseCommand {
 		choices: ['list', 'tree'],
 	})
 	format: FileFormat = 'tree';
+
 	async run() {
 		const pkg = await this.getPackage();
 		const files = await pkg.findDistributableFiles();

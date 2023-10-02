@@ -70,12 +70,11 @@ exports[`Namespaces babel transforms example test case: browser-current-umd 1`] 
 
   function foo() {}
   function bar() {}
-  const helpers = /*#__PURE__*/Object.freeze({
+  const helpers = _exports.ns2 = _exports.ns1 = /*#__PURE__*/Object.freeze({
     __proto__: null,
     bar,
     foo
   });
-  _exports.ns2 = _exports.ns1 = helpers;
 });
 //# sourceMappingURL=index-browser-current-umd.js.map
 ",
@@ -152,12 +151,11 @@ exports[`Namespaces babel transforms example test case: browser-experimental-umd
 
   function foo() {}
   function bar() {}
-  const helpers = /*#__PURE__*/Object.freeze({
+  const helpers = _exports.ns2 = _exports.ns1 = /*#__PURE__*/Object.freeze({
     __proto__: null,
     bar,
     foo
   });
-  _exports.ns2 = _exports.ns1 = helpers;
 });
 //# sourceMappingURL=index-browser-experimental-umd.js.map
 ",
@@ -234,12 +232,11 @@ exports[`Namespaces babel transforms example test case: browser-legacy-umd 1`] =
 
   function foo() {}
   function bar() {}
-  var helpers = /*#__PURE__*/Object.freeze({
+  var helpers = _exports.ns2 = _exports.ns1 = /*#__PURE__*/Object.freeze({
     __proto__: null,
     bar: bar,
     foo: foo
   });
-  _exports.ns2 = _exports.ns1 = helpers;
 });
 //# sourceMappingURL=index-browser-legacy-umd.js.map
 ",
@@ -316,12 +313,11 @@ exports[`Namespaces babel transforms example test case: browser-stable-umd 1`] =
 
   function foo() {}
   function bar() {}
-  const helpers = /*#__PURE__*/Object.freeze({
+  const helpers = _exports.ns2 = _exports.ns1 = /*#__PURE__*/Object.freeze({
     __proto__: null,
     bar,
     foo
   });
-  _exports.ns2 = _exports.ns1 = helpers;
 });
 //# sourceMappingURL=index-browser-stable-umd.js.map
 ",
