@@ -35,7 +35,10 @@ if (!fs.existsSync(cjsDir)) {
 	await fs.promises.mkdir(cjsDir);
 }
 
-await fs.promises.writeFile(path.join(cjsDir, 'bin.cjs'), `require('../lib/bin.js');`);
+await fs.promises.writeFile(
+	path.join(cjsDir, 'bin.cjs'),
+	`#!/usr/bin/env node\nrequire('../lib/bin.js');`,
+);
 
 // We need to link the new binaries to node_modules/.bin
 await execa('yarn', ['install']);
