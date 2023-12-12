@@ -172,8 +172,8 @@ function foo() {}
 function bar() {}
 var helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
   __proto__: null,
-  bar: bar,
-  foo: foo
+  bar,
+  foo
 }, Symbol.toStringTag, {
   value: 'Module'
 }));
@@ -195,8 +195,8 @@ function foo() {}
 function bar() {}
 var helpers = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  bar: bar,
-  foo: foo
+  bar,
+  foo
 });
 exports.ns1 = helpers;
 exports.ns2 = helpers;
@@ -234,8 +234,8 @@ exports[`Namespaces babel transforms example test case: browser-legacy-umd 1`] =
   function bar() {}
   var helpers = _exports.ns2 = _exports.ns1 = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    bar: bar,
-    foo: foo
+    bar,
+    foo
   });
 });
 //# sourceMappingURL=index-browser-legacy-umd.js.map

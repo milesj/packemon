@@ -177,7 +177,7 @@ exports[`Solid/JSX babel transforms example test case: browser-legacy-esm 1`] = 
 // Platform: browser, Support: legacy, Format: esm
 
 import { template } from 'solid-js/web';
-var _tmpl$ = /*#__PURE__*/template("<button>");
+var _tmpl$ = /*#__PURE__*/template(\`<button>\`);
 function Button() {
   return _tmpl$();
 }
@@ -202,7 +202,7 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 var web = require('solid-js/web');
-var _tmpl$ = /*#__PURE__*/web.template("<button>");
+var _tmpl$ = /*#__PURE__*/web.template(\`<button>\`);
 function Button() {
   return _tmpl$();
 }
@@ -242,7 +242,7 @@ exports[`Solid/JSX babel transforms example test case: browser-legacy-umd 1`] = 
   // Bundled with Packemon: https://packemon.dev
   // Platform: browser, Support: legacy, Format: umd
 
-  var _tmpl$ = /*#__PURE__*/(0, _web.template)("<button>");
+  var _tmpl$ = /*#__PURE__*/(0, _web.template)(\`<button>\`);
   function Button() {
     return _tmpl$();
   }
