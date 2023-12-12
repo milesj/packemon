@@ -127,7 +127,7 @@ export function getRollupOutputConfig(
 						filename: artifact.package.path.path(),
 						// Maps were extracted before transformation
 						sourceMaps: false,
-				  })
+					})
 				: getBabelOutputPlugin({
 						...getBabelOutputConfig(
 							platform,
@@ -142,7 +142,7 @@ export function getRollupOutputConfig(
 						moduleId: format === 'umd' ? artifact.namespace : undefined,
 						// Maps were extracted before transformation
 						sourceMaps: false,
-				  }),
+					}),
 			addBinShebang(),
 		],
 		// Always include source maps
@@ -212,7 +212,7 @@ export async function getRollupConfig(
 						filename: artifact.package.path.path(),
 						// Extract maps from the original source
 						sourceMaps: !isNode,
-				  })
+					})
 				: getBabelInputPlugin({
 						...getBabelInputConfig(artifact, features, packemonConfig),
 						babelHelpers: artifact.features.helpers,
@@ -222,7 +222,7 @@ export async function getRollupConfig(
 						skipPreflightCheck: true,
 						// Extract maps from the original source
 						sourceMaps: !isNode,
-				  }),
+					}),
 		],
 		// Treeshake for smaller builds
 		treeshake: artifact.bundle,
