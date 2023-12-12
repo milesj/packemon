@@ -620,7 +620,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/plugin-proposal-decorators@npm:^7.23.3, @babel/plugin-proposal-decorators@npm:^7.23.6":
+"@babel/plugin-proposal-decorators@npm:^7.23.5, @babel/plugin-proposal-decorators@npm:^7.23.6":
   version: 7.23.6
   resolution: "@babel/plugin-proposal-decorators@npm:7.23.6"
   dependencies:
@@ -1629,7 +1629,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/preset-env@npm:^7.19.4, @babel/preset-env@npm:^7.22.9, @babel/preset-env@npm:^7.23.3, @babel/preset-env@npm:^7.23.6":
+"@babel/preset-env@npm:^7.19.4, @babel/preset-env@npm:^7.22.9, @babel/preset-env@npm:^7.23.5, @babel/preset-env@npm:^7.23.6":
   version: 7.23.6
   resolution: "@babel/preset-env@npm:7.23.6"
   dependencies:
@@ -3416,17 +3416,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@moonrepo/cli@npm:^1.14.4":
-  version: 1.14.4
-  resolution: "@moonrepo/cli@npm:1.14.4"
+"@moonrepo/cli@npm:^1.18.0":
+  version: 1.18.0
+  resolution: "@moonrepo/cli@npm:1.18.0"
   dependencies:
-    "@moonrepo/core-linux-arm64-gnu": "npm:^1.14.4"
-    "@moonrepo/core-linux-arm64-musl": "npm:^1.14.4"
-    "@moonrepo/core-linux-x64-gnu": "npm:^1.14.4"
-    "@moonrepo/core-linux-x64-musl": "npm:^1.14.4"
-    "@moonrepo/core-macos-arm64": "npm:^1.14.4"
-    "@moonrepo/core-macos-x64": "npm:^1.14.4"
-    "@moonrepo/core-windows-x64-msvc": "npm:^1.14.4"
+    "@moonrepo/core-linux-arm64-gnu": "npm:^1.18.0"
+    "@moonrepo/core-linux-arm64-musl": "npm:^1.18.0"
+    "@moonrepo/core-linux-x64-gnu": "npm:^1.18.0"
+    "@moonrepo/core-linux-x64-musl": "npm:^1.18.0"
+    "@moonrepo/core-macos-arm64": "npm:^1.18.0"
+    "@moonrepo/core-macos-x64": "npm:^1.18.0"
+    "@moonrepo/core-windows-x64-msvc": "npm:^1.18.0"
     detect-libc: "npm:^2.0.2"
   dependenciesMeta:
     "@moonrepo/core-linux-arm64-gnu":
@@ -3445,55 +3445,55 @@ __metadata:
       optional: true
   bin:
     moon: moon
-  checksum: 23b7b1c9e5c2efa1776ab3b3325e30c8a42fcdd0aef3a6d2ef0c3b94569d6ef7daa1b046c2e425c4170d19a3dfeda168b5736034f64dc4a46a6863814a64c9aa
+  checksum: de9be88d48be5a0276f35a5aa77c6e504036450a65223bfd35361daf0620088c6c0de281bbb932f6b319a0fd56b8cedeea8867cdd05f24c2ee65159071dc1a19
   languageName: node
   linkType: hard
 
-"@moonrepo/core-linux-arm64-gnu@npm:^1.14.4":
-  version: 1.14.4
-  resolution: "@moonrepo/core-linux-arm64-gnu@npm:1.14.4"
+"@moonrepo/core-linux-arm64-gnu@npm:^1.18.0":
+  version: 1.18.0
+  resolution: "@moonrepo/core-linux-arm64-gnu@npm:1.18.0"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@moonrepo/core-linux-arm64-musl@npm:^1.14.4":
-  version: 1.14.4
-  resolution: "@moonrepo/core-linux-arm64-musl@npm:1.14.4"
+"@moonrepo/core-linux-arm64-musl@npm:^1.18.0":
+  version: 1.18.0
+  resolution: "@moonrepo/core-linux-arm64-musl@npm:1.18.0"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@moonrepo/core-linux-x64-gnu@npm:^1.14.4":
-  version: 1.14.4
-  resolution: "@moonrepo/core-linux-x64-gnu@npm:1.14.4"
+"@moonrepo/core-linux-x64-gnu@npm:^1.18.0":
+  version: 1.18.0
+  resolution: "@moonrepo/core-linux-x64-gnu@npm:1.18.0"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@moonrepo/core-linux-x64-musl@npm:^1.14.4":
-  version: 1.14.4
-  resolution: "@moonrepo/core-linux-x64-musl@npm:1.14.4"
+"@moonrepo/core-linux-x64-musl@npm:^1.18.0":
+  version: 1.18.0
+  resolution: "@moonrepo/core-linux-x64-musl@npm:1.18.0"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@moonrepo/core-macos-arm64@npm:^1.14.4":
-  version: 1.14.4
-  resolution: "@moonrepo/core-macos-arm64@npm:1.14.4"
+"@moonrepo/core-macos-arm64@npm:^1.18.0":
+  version: 1.18.0
+  resolution: "@moonrepo/core-macos-arm64@npm:1.18.0"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@moonrepo/core-macos-x64@npm:^1.14.4":
-  version: 1.14.4
-  resolution: "@moonrepo/core-macos-x64@npm:1.14.4"
+"@moonrepo/core-macos-x64@npm:^1.18.0":
+  version: 1.18.0
+  resolution: "@moonrepo/core-macos-x64@npm:1.18.0"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@moonrepo/core-windows-x64-msvc@npm:^1.14.4":
-  version: 1.14.4
-  resolution: "@moonrepo/core-windows-x64-msvc@npm:1.14.4"
+"@moonrepo/core-windows-x64-msvc@npm:^1.18.0":
+  version: 1.18.0
+  resolution: "@moonrepo/core-windows-x64-msvc@npm:1.18.0"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
@@ -6240,7 +6240,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/eslint-plugin@npm:^6.11.0":
+"@typescript-eslint/eslint-plugin@npm:^6.13.2":
   version: 6.14.0
   resolution: "@typescript-eslint/eslint-plugin@npm:6.14.0"
   dependencies:
@@ -6265,7 +6265,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/parser@npm:^6.11.0":
+"@typescript-eslint/parser@npm:^6.13.2":
   version: 6.14.0
   resolution: "@typescript-eslint/parser@npm:6.14.0"
   dependencies:
@@ -7565,28 +7565,28 @@ __metadata:
   languageName: node
   linkType: hard
 
-"babel-preset-moon@npm:^2.0.11":
-  version: 2.0.11
-  resolution: "babel-preset-moon@npm:2.0.11"
+"babel-preset-moon@npm:^2.0.12":
+  version: 2.0.12
+  resolution: "babel-preset-moon@npm:2.0.12"
   dependencies:
     "@babel/plugin-proposal-class-properties": "npm:^7.18.6"
-    "@babel/plugin-proposal-decorators": "npm:^7.23.3"
+    "@babel/plugin-proposal-decorators": "npm:^7.23.5"
     "@babel/plugin-proposal-export-default-from": "npm:^7.23.3"
     "@babel/plugin-proposal-export-namespace-from": "npm:^7.18.9"
     "@babel/plugin-proposal-private-methods": "npm:^7.18.6"
-    "@babel/preset-env": "npm:^7.23.3"
+    "@babel/preset-env": "npm:^7.23.5"
     "@babel/preset-react": "npm:^7.23.3"
     "@babel/preset-typescript": "npm:^7.23.3"
     babel-plugin-conditional-invariant: "npm:^3.0.1"
     babel-plugin-env-constants: "npm:^3.0.1"
-    babel-preset-solid: "npm:^1.8.4"
+    babel-preset-solid: "npm:^1.8.6"
   peerDependencies:
     "@babel/core": ">=7.0.0"
-  checksum: b82ba0f7af5712acbebf6a210f0ece1dbc4df058f9fce7b77097ffa708b5908025c705df0ee8a96bd962ec92c7ad154b33e9d28d4c2a5a4aa270ba67766eee71
+  checksum: be0dfd5fb501e728fd4565d0f3facd611fec3ab608e825324c790cf445a3a69bc2fc5b2d3b7e4de0da3923cf0979f4ae5a97cefc990445ce8be085b91d686f09
   languageName: node
   linkType: hard
 
-"babel-preset-solid@npm:^1.8.4, babel-preset-solid@npm:^1.8.6":
+"babel-preset-solid@npm:^1.8.6":
   version: 1.8.6
   resolution: "babel-preset-solid@npm:1.8.6"
   dependencies:
@@ -10455,15 +10455,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-moon@npm:^2.0.12":
-  version: 2.0.12
-  resolution: "eslint-config-moon@npm:2.0.12"
+"eslint-config-moon@npm:^2.0.13":
+  version: 2.0.13
+  resolution: "eslint-config-moon@npm:2.0.13"
   dependencies:
     "@moonrepo/dev": "npm:^2.0.1"
-    "@typescript-eslint/eslint-plugin": "npm:^6.11.0"
-    "@typescript-eslint/parser": "npm:^6.11.0"
+    "@typescript-eslint/eslint-plugin": "npm:^6.13.2"
+    "@typescript-eslint/parser": "npm:^6.13.2"
     eslint-config-airbnb-base: "npm:^15.0.0"
-    eslint-config-prettier: "npm:^9.0.0"
+    eslint-config-prettier: "npm:^9.1.0"
     eslint-plugin-compat: "npm:^4.2.0"
     eslint-plugin-import: "npm:^2.29.0"
     eslint-plugin-jest: "npm:^27.6.0"
@@ -10478,18 +10478,18 @@ __metadata:
     eslint-plugin-unicorn: "npm:^49.0.0"
   peerDependencies:
     eslint: ^8.0.0
-  checksum: 1f479e7a13ab530b9a948f9925bfa7d069103f0edef3528977ac48e12dd00977856d8fdae5eae5caf8d54027d568d4654e56cec743e993b889a4f35b6ea2306e
+  checksum: 6d8b1185396190662fb8d25669681d8f124e6b1af31672a53d7697c9da8795a08a1e6270ded176c4eec93e255fc04fd68f05047f16e7fb7a62fe111a7ffbce81
   languageName: node
   linkType: hard
 
-"eslint-config-prettier@npm:^9.0.0":
-  version: 9.0.0
-  resolution: "eslint-config-prettier@npm:9.0.0"
+"eslint-config-prettier@npm:^9.1.0":
+  version: 9.1.0
+  resolution: "eslint-config-prettier@npm:9.1.0"
   peerDependencies:
     eslint: ">=7.0.0"
   bin:
     eslint-config-prettier: bin/cli.js
-  checksum: 276b0b5b5b19066962a9ff3a16a553bdad28e1c0a2ea33a1d75d65c0428bb7b37f6e85ac111ebefcc9bdefb544385856dbe6eaeda5279c639e5549c113d27dda
+  checksum: 411e3b3b1c7aa04e3e0f20d561271b3b909014956c4dba51c878bf1a23dbb8c800a3be235c46c4732c70827276e540b6eed4636d9b09b444fd0a8e07f0fcd830
   languageName: node
   linkType: hard
 
@@ -18044,7 +18044,7 @@ __metadata:
   dependencies:
     "@babel/cli": "npm:^7.23.4"
     "@babel/core": "npm:^7.23.6"
-    "@moonrepo/cli": "npm:^1.14.4"
+    "@moonrepo/cli": "npm:^1.18.0"
     "@moonrepo/dev": "npm:^2.0.1"
     "@types/fs-extra": "npm:^11.0.4"
     "@types/jest": "npm:^29.5.11"
@@ -18052,11 +18052,11 @@ __metadata:
     "@types/node": "npm:^16.18.68"
     "@types/react": "npm:^18.2.43"
     "@types/semver": "npm:^7.5.6"
-    babel-preset-moon: "npm:^2.0.11"
+    babel-preset-moon: "npm:^2.0.12"
     chokidar: "npm:^3.5.3"
     electron-to-chromium: "npm:^1.4.610"
     eslint: "npm:^8.55.0"
-    eslint-config-moon: "npm:^2.0.12"
+    eslint-config-moon: "npm:^2.0.13"
     jest: "npm:^29.7.0"
     jest-preset-moon: "npm:^2.0.6"
     lerna: "npm:^8.0.0"
@@ -22458,11 +22458,11 @@ __metadata:
 
 "typescript@patch:typescript@npm%3A>=3 < 6#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.3.3#optional!builtin<compat/typescript>":
   version: 5.3.3
-  resolution: "typescript@patch:typescript@npm%3A5.3.3#optional!builtin<compat/typescript>::version=5.3.3&hash=29ae49"
+  resolution: "typescript@patch:typescript@npm%3A5.3.3#optional!builtin<compat/typescript>::version=5.3.3&hash=e012d7"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 57bf073a0b88f9bf76e5a24be3df864a8f9d0e70f8316969f4992ae26e30cb8d078708922da2ade1f2c8d1faee13b28bcb69876ebb1e37910e31c54aa9126aa2
+  checksum: c93786fcc9a70718ba1e3819bab56064ead5817004d1b8186f8ca66165f3a2d0100fee91fa64c840dcd45f994ca5d615d8e1f566d39a7470fc1e014dbb4cf15d
   languageName: node
   linkType: hard
 
