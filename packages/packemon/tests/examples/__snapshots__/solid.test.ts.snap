@@ -7,7 +7,7 @@ exports[`Solid/JSX babel transforms example test case: browser-current-esm 1`] =
 // Platform: browser, Support: current, Format: esm
 
 import { template } from 'solid-js/web';
-const _tmpl$ = /*#__PURE__*/template(\`<button>\`);
+var _tmpl$ = /*#__PURE__*/template(\`<button>\`);
 function Button() {
   return _tmpl$();
 }
@@ -32,7 +32,7 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 const web = require('solid-js/web');
-const _tmpl$ = /*#__PURE__*/web.template(\`<button>\`);
+var _tmpl$ = /*#__PURE__*/web.template(\`<button>\`);
 function Button() {
   return _tmpl$();
 }
@@ -72,7 +72,7 @@ exports[`Solid/JSX babel transforms example test case: browser-current-umd 1`] =
   // Bundled with Packemon: https://packemon.dev
   // Platform: browser, Support: current, Format: umd
 
-  const _tmpl$ = /*#__PURE__*/(0, _web.template)(\`<button>\`);
+  var _tmpl$ = /*#__PURE__*/(0, _web.template)(\`<button>\`);
   function Button() {
     return _tmpl$();
   }
@@ -92,7 +92,7 @@ exports[`Solid/JSX babel transforms example test case: browser-experimental-esm 
 // Platform: browser, Support: experimental, Format: esm
 
 import { template } from 'solid-js/web';
-const _tmpl$ = /*#__PURE__*/template(\`<button>\`);
+var _tmpl$ = /*#__PURE__*/template(\`<button>\`);
 function Button() {
   return _tmpl$();
 }
@@ -117,7 +117,7 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 const web = require('solid-js/web');
-const _tmpl$ = /*#__PURE__*/web.template(\`<button>\`);
+var _tmpl$ = /*#__PURE__*/web.template(\`<button>\`);
 function Button() {
   return _tmpl$();
 }
@@ -157,7 +157,7 @@ exports[`Solid/JSX babel transforms example test case: browser-experimental-umd 
   // Bundled with Packemon: https://packemon.dev
   // Platform: browser, Support: experimental, Format: umd
 
-  const _tmpl$ = /*#__PURE__*/(0, _web.template)(\`<button>\`);
+  var _tmpl$ = /*#__PURE__*/(0, _web.template)(\`<button>\`);
   function Button() {
     return _tmpl$();
   }
@@ -262,7 +262,7 @@ exports[`Solid/JSX babel transforms example test case: browser-stable-esm 1`] = 
 // Platform: browser, Support: stable, Format: esm
 
 import { template } from 'solid-js/web';
-const _tmpl$ = /*#__PURE__*/template(\`<button>\`);
+var _tmpl$ = /*#__PURE__*/template(\`<button>\`);
 function Button() {
   return _tmpl$();
 }
@@ -287,7 +287,7 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 const web = require('solid-js/web');
-const _tmpl$ = /*#__PURE__*/web.template(\`<button>\`);
+var _tmpl$ = /*#__PURE__*/web.template(\`<button>\`);
 function Button() {
   return _tmpl$();
 }
@@ -327,7 +327,7 @@ exports[`Solid/JSX babel transforms example test case: browser-stable-umd 1`] = 
   // Bundled with Packemon: https://packemon.dev
   // Platform: browser, Support: stable, Format: umd
 
-  const _tmpl$ = /*#__PURE__*/(0, _web.template)(\`<button>\`);
+  var _tmpl$ = /*#__PURE__*/(0, _web.template)(\`<button>\`);
   function Button() {
     return _tmpl$();
   }
@@ -347,7 +347,7 @@ exports[`Solid/JSX babel transforms example test case: electron-current-esm 1`] 
 // Platform: electron, Support: current, Format: esm
 
 import { template } from 'solid-js/web';
-const _tmpl$ = /*#__PURE__*/template(\`<button>\`);
+var _tmpl$ = /*#__PURE__*/template(\`<button>\`);
 function Button() {
   return _tmpl$();
 }
@@ -372,7 +372,7 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 const web = require('solid-js/web');
-const _tmpl$ = /*#__PURE__*/web.template(\`<button>\`);
+var _tmpl$ = /*#__PURE__*/web.template(\`<button>\`);
 function Button() {
   return _tmpl$();
 }
@@ -393,7 +393,7 @@ exports[`Solid/JSX babel transforms example test case: electron-experimental-esm
 // Platform: electron, Support: experimental, Format: esm
 
 import { template } from 'solid-js/web';
-const _tmpl$ = /*#__PURE__*/template(\`<button>\`);
+var _tmpl$ = /*#__PURE__*/template(\`<button>\`);
 function Button() {
   return _tmpl$();
 }
@@ -418,7 +418,7 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 const web = require('solid-js/web');
-const _tmpl$ = /*#__PURE__*/web.template(\`<button>\`);
+var _tmpl$ = /*#__PURE__*/web.template(\`<button>\`);
 function Button() {
   return _tmpl$();
 }
@@ -439,7 +439,7 @@ exports[`Solid/JSX babel transforms example test case: electron-legacy-esm 1`] =
 // Platform: electron, Support: legacy, Format: esm
 
 import { template } from 'solid-js/web';
-const _tmpl$ = /*#__PURE__*/template(\`<button>\`);
+var _tmpl$ = /*#__PURE__*/template(\`<button>\`);
 function Button() {
   return _tmpl$();
 }
@@ -464,7 +464,7 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 const web = require('solid-js/web');
-const _tmpl$ = /*#__PURE__*/web.template(\`<button>\`);
+var _tmpl$ = /*#__PURE__*/web.template(\`<button>\`);
 function Button() {
   return _tmpl$();
 }
@@ -485,7 +485,7 @@ exports[`Solid/JSX babel transforms example test case: electron-stable-esm 1`] =
 // Platform: electron, Support: stable, Format: esm
 
 import { template } from 'solid-js/web';
-const _tmpl$ = /*#__PURE__*/template(\`<button>\`);
+var _tmpl$ = /*#__PURE__*/template(\`<button>\`);
 function Button() {
   return _tmpl$();
 }
@@ -510,7 +510,7 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 const web = require('solid-js/web');
-const _tmpl$ = /*#__PURE__*/web.template(\`<button>\`);
+var _tmpl$ = /*#__PURE__*/web.template(\`<button>\`);
 function Button() {
   return _tmpl$();
 }
@@ -536,7 +536,7 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 const web = require('solid-js/web');
-const _tmpl$ = /*#__PURE__*/web.template(\`<button>\`);
+var _tmpl$ = /*#__PURE__*/web.template(\`<button>\`);
 function Button() {
   return _tmpl$();
 }
@@ -562,7 +562,7 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 const web = require('solid-js/web');
-const _tmpl$ = /*#__PURE__*/web.template(\`<button>\`);
+var _tmpl$ = /*#__PURE__*/web.template(\`<button>\`);
 function Button() {
   return _tmpl$();
 }
@@ -588,7 +588,7 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 const web = require('solid-js/web');
-const _tmpl$ = /*#__PURE__*/web.template(\`<button>\`);
+var _tmpl$ = /*#__PURE__*/web.template(\`<button>\`);
 function Button() {
   return _tmpl$();
 }
@@ -614,7 +614,7 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 const web = require('solid-js/web');
-const _tmpl$ = /*#__PURE__*/web.template(\`<button>\`);
+var _tmpl$ = /*#__PURE__*/web.template(\`<button>\`);
 function Button() {
   return _tmpl$();
 }
@@ -653,7 +653,7 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 const web = require('solid-js/web');
-const _tmpl$ = /*#__PURE__*/web.template(\`<button>\`);
+var _tmpl$ = /*#__PURE__*/web.template(\`<button>\`);
 function Button() {
   return _tmpl$();
 }
@@ -679,7 +679,7 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 const web = require('solid-js/web');
-const _tmpl$ = /*#__PURE__*/web.template(\`<button>\`);
+var _tmpl$ = /*#__PURE__*/web.template(\`<button>\`);
 function Button() {
   return _tmpl$();
 }
@@ -700,7 +700,7 @@ exports[`Solid/JSX babel transforms example test case: node-current-mjs 1`] = `
 // Platform: node, Support: current, Format: mjs
 
 import { template } from 'solid-js/web';
-const _tmpl$ = /*#__PURE__*/template(\`<button>\`);
+var _tmpl$ = /*#__PURE__*/template(\`<button>\`);
 function Button() {
   return _tmpl$();
 }
@@ -738,7 +738,7 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 const web = require('solid-js/web');
-const _tmpl$ = /*#__PURE__*/web.template(\`<button>\`);
+var _tmpl$ = /*#__PURE__*/web.template(\`<button>\`);
 function Button() {
   return _tmpl$();
 }
@@ -764,7 +764,7 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 const web = require('solid-js/web');
-const _tmpl$ = /*#__PURE__*/web.template(\`<button>\`);
+var _tmpl$ = /*#__PURE__*/web.template(\`<button>\`);
 function Button() {
   return _tmpl$();
 }
@@ -785,7 +785,7 @@ exports[`Solid/JSX babel transforms example test case: node-experimental-mjs 1`]
 // Platform: node, Support: experimental, Format: mjs
 
 import { template } from 'solid-js/web';
-const _tmpl$ = /*#__PURE__*/template(\`<button>\`);
+var _tmpl$ = /*#__PURE__*/template(\`<button>\`);
 function Button() {
   return _tmpl$();
 }
@@ -823,7 +823,7 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 const web = require('solid-js/web');
-const _tmpl$ = /*#__PURE__*/web.template(\`<button>\`);
+var _tmpl$ = /*#__PURE__*/web.template(\`<button>\`);
 function Button() {
   return _tmpl$();
 }
@@ -849,7 +849,7 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 const web = require('solid-js/web');
-const _tmpl$ = /*#__PURE__*/web.template(\`<button>\`);
+var _tmpl$ = /*#__PURE__*/web.template(\`<button>\`);
 function Button() {
   return _tmpl$();
 }
@@ -870,7 +870,7 @@ exports[`Solid/JSX babel transforms example test case: node-legacy-mjs 1`] = `
 // Platform: node, Support: legacy, Format: mjs
 
 import { template } from 'solid-js/web';
-const _tmpl$ = /*#__PURE__*/template(\`<button>\`);
+var _tmpl$ = /*#__PURE__*/template(\`<button>\`);
 function Button() {
   return _tmpl$();
 }
@@ -908,7 +908,7 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 const web = require('solid-js/web');
-const _tmpl$ = /*#__PURE__*/web.template(\`<button>\`);
+var _tmpl$ = /*#__PURE__*/web.template(\`<button>\`);
 function Button() {
   return _tmpl$();
 }
@@ -934,7 +934,7 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 const web = require('solid-js/web');
-const _tmpl$ = /*#__PURE__*/web.template(\`<button>\`);
+var _tmpl$ = /*#__PURE__*/web.template(\`<button>\`);
 function Button() {
   return _tmpl$();
 }
@@ -955,7 +955,7 @@ exports[`Solid/JSX babel transforms example test case: node-stable-mjs 1`] = `
 // Platform: node, Support: stable, Format: mjs
 
 import { template } from 'solid-js/web';
-const _tmpl$ = /*#__PURE__*/template(\`<button>\`);
+var _tmpl$ = /*#__PURE__*/template(\`<button>\`);
 function Button() {
   return _tmpl$();
 }
