@@ -230,11 +230,16 @@ export class PackageValidator {
 		this.package.debug('Checking license');
 
 		const { license } = this.package.json;
-		const spdxLicenseTypes = new Set(
-			Object.keys(spdxLicenses).map((key) => key.toLocaleLowerCase()),
-		);
 
 		if (license) {
+			if (license === 'UNLICENSED') {
+				return;
+			}
+
+			const spdxLicenseTypes = new Set(
+				Object.keys(spdxLicenses).map((key) => key.toLocaleLowerCase()),
+			);
+
 			toArray(
 				typeof license === 'string' ? { type: license, url: spdxLicenses[license] } : license,
 			).forEach((l) => {

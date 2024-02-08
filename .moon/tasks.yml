@@ -16,5 +16,15 @@ tasks:
       - 'package.json'
     outputs:
       - 'lib'
+    deps:
+      - '^:build'
     env:
       NODE_ENV: 'production'
+
+  test:
+    deps:
+      - '^:build'
+
+  typecheck:
+    deps:
+      - '^:build'
