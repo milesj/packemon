@@ -82,9 +82,13 @@ export function copyAndRefAssets(
 
 		// Find assets and mark as external
 		resolveId(source, importer) {
-			if (isAsset(source)) {
-				if (source.startsWith('.')) {
-					return { id: path.join(path.dirname(importer!), source), external: true };
+			if (isAsset(source) && importer) {
+				const id = path.join(path.dirname(importer), source);
+
+				// Check that the file actually exists, because they may be
+				// using path aliases, or bundler specific syntax
+				if (source.startsWith('.') && fs.existsSync(id)) {
+					return { id, external: true };
 				}
 
 				// Ignore files coming from node modules
@@ -105,12 +109,12 @@ export function copyAndRefAssets(
 				return null;
 			}
 
-			/* 
-				chunk.facadeModuleId is not ideal because the bundled code gets moved up to the 
-				root (output) directory compared to where it was located in the source files, 
-				the imports in the source files that get bundled get changed to be relative 
-				to the new bundle location, but the chunk.facadeModuleId is the old location of 
-				the index. So, you have the old path + the new updated imports and there could be 
+			/*
+				chunk.facadeModuleId is not ideal because the bundled code gets moved up to the
+				root (output) directory compared to where it was located in the source files,
+				the imports in the source files that get bundled get changed to be relative
+				to the new bundle location, but the chunk.facadeModuleId is the old location of
+				the index. So, you have the old path + the new updated imports and there could be
 				overlap due to this "hoisting", which has a workaround in determineNewAsset
 			*/
 			const parentId = chunk.facadeModuleId!; // This correct?
@@ -139,15 +143,23 @@ export function copyAndRefAssets(
 					source = node.declarations[0].init.arguments[0] as TSESTree.Literal;
 				}
 
+				if (!source?.value) {
+					return;
+				}
+
 				// Update to new path (ignore files coming from node modules)
+				const sourcePath = String(source.value);
+				const parentDir = path.dirname(parentId);
+
 				if (
-					source?.value &&
-					isAsset(String(source.value)) &&
-					String(source.value).startsWith('.')
+					sourcePath &&
+					isAsset(sourcePath) &&
+					sourcePath.startsWith('.') &&
+					fs.existsSync(path.join(parentDir, sourcePath))
 				) {
-					const newId = determineNewAsset(String(source.value), parentId);
+					const newId = determineNewAsset(sourcePath, parentId);
 					const importPath = options.preserveModules
-						? new VirtualPath(path.relative(path.dirname(parentId), newId.path())).path()
+						? new VirtualPath(path.relative(parentDir, newId.path())).path()
 						: `../assets/${newId.name()}`;
 
 					// @ts-expect-error Not typed
