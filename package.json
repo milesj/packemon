@@ -4,6 +4,7 @@
   "scripts": {
     "docs": "yarn run moon run website:start",
     "moon": "$(yarn bin moon)",
+    "clean": "rm -rf packages/*/{cjs,lib}",
     "packemon": "node ./packages/packemon/cjs/bin.cjs",
     "prerelease": "yarn run setup && yarn run moon run :build -u",
     "release": "yarn prerelease && lerna-release",
