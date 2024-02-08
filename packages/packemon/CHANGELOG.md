@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.3.0 - 2024-02-08
+
+#### 🚀 Updates
+
+- Support UNLICENSED license format. ([992f0cb](https://github.com/milesj/packemon/commit/992f0cb))
+
+#### 🐞 Fixes
+
+- Check that assets exist before referencing them. ([56ab882](https://github.com/milesj/packemon/commit/56ab882))
+
+#### 📦 Dependencies
+
+- **[babel]** Update to v7.23 latest. ([5039f4e](https://github.com/milesj/packemon/commit/5039f4e))
+- **[docusaurus]** Update to v3.1. ([9e8e7ff](https://github.com/milesj/packemon/commit/9e8e7ff))
+- **[moon]** Update to v1.21. ([e99870a](https://github.com/milesj/packemon/commit/e99870a))
+- **[rollup]** Update to v4.9. ([6765108](https://github.com/milesj/packemon/commit/6765108))
+- **[semver]** Update to v7.6. ([85f0f1e](https://github.com/milesj/packemon/commit/85f0f1e))
+- **[swc]** Update to v1.4. ([5ae401d](https://github.com/milesj/packemon/commit/5ae401d))
+- Update bundler tests. ([dbaa4c2](https://github.com/milesj/packemon/commit/dbaa4c2))
+
+**Note:** Version bump only for package packemon
+
+
+
+
+
 ### 3.2.3 - 2023-12-12
 
 #### 📦 Dependencies
