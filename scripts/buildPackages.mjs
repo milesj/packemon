@@ -10,6 +10,7 @@ async function build(cwd) {
 			'--out-dir',
 			'lib',
 			'--delete-dir-on-start',
+			'--strip-leading-paths',
 			'--extensions',
 			'.ts,.tsx',
 			'--config-file',
