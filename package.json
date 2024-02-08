@@ -8,7 +8,8 @@
     "prerelease": "yarn run setup && yarn run moon run :build -u",
     "release": "yarn prerelease && lerna-release",
     "setup": "node ./scripts/buildPackages.mjs",
-    "version": "yarn install && git add yarn.lock"
+    "version": "yarn install && git add yarn.lock",
+    "postinstall": "node ./scripts/deleteSwcTypes.mjs"
   },
   "workspaces": [
     "packages/*",

@@ -189,7 +189,6 @@ exports[`getSwcOutputConfig() can mutate config 1`] = `
       "syntax": "ecmascript",
     },
     "preserveAllComments": true,
-    "target": "es2019",
     "transform": {
       "optimizer": {
         "globals": {
@@ -534,7 +533,6 @@ exports[`getSwcOutputConfig() transforms async/await to promises when \`browser\
       "syntax": "ecmascript",
     },
     "preserveAllComments": true,
-    "target": "es2019",
     "transform": {
       "optimizer": {
         "globals": {
@@ -574,7 +572,6 @@ exports[`getSwcOutputConfig() transforms async/await to promises when \`browser\
       "syntax": "ecmascript",
     },
     "preserveAllComments": true,
-    "target": "es2022",
     "transform": {
       "optimizer": {
         "globals": {
@@ -616,7 +613,6 @@ exports[`getSwcOutputConfig() uses built-in destructuring and object spread when
       "syntax": "ecmascript",
     },
     "preserveAllComments": true,
-    "target": "es2020",
     "transform": {
       "optimizer": {
         "globals": {
@@ -658,7 +654,6 @@ exports[`getSwcOutputConfig() uses built-in destructuring and object spread when
       "syntax": "ecmascript",
     },
     "preserveAllComments": true,
-    "target": "es2022",
     "transform": {
       "optimizer": {
         "globals": {
