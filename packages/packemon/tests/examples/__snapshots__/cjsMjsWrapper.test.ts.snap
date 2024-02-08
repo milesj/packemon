@@ -1588,11 +1588,11 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: browse
   "esm/index-browser-current-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: esm
-export * from 'optimal';
-import * as optimal from 'optimal';
+export * from "optimal";
+import * as optimal from "optimal";
 export { optimal };
-export { func, string } from 'optimal';
-export { useState } from 'react';
+export { func, string } from "optimal";
+export { useState } from "react";
 //# sourceMappingURL=index-browser-current-esm.js.map
 ",
 ]
@@ -1603,15 +1603,15 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: browse
   "lib/index-browser-current-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: lib
-'use strict';
-const optimal = require('optimal');
-const react = require('react');
+"use strict";
+const optimal = require("optimal");
+const react = require("react");
 function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
         for(const k in e){
-            if (k !== 'default') {
+            if (k !== "default") {
                 const d = Object.getOwnPropertyDescriptor(e, k);
                 Object.defineProperty(n, k, d.get ? d : {
                     enumerable: true,
@@ -1638,7 +1638,7 @@ Object.defineProperty(exports, "useState", {
     get: ()=>react.useState
 });
 Object.keys(optimal).forEach((k)=>{
-    if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
+    if (k !== "default" && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
         enumerable: true,
         get: ()=>optimal[k]
     });
@@ -1671,11 +1671,11 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: browse
         });
     }
     _export(exports, {
-        optimal: function() {
-            return _optimal;
-        },
         func: function() {
             return _optimal.func;
+        },
+        optimal: function() {
+            return _optimal;
         },
         string: function() {
             return _optimal.string;
@@ -1719,7 +1719,9 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: browse
         if (cache && cache.has(obj)) {
             return cache.get(obj);
         }
-        var newObj = {};
+        var newObj = {
+            __proto__: null
+        };
         var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;
         for(var key in obj){
             if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) {
@@ -1748,11 +1750,11 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: browse
   "esm/index-browser-experimental-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: experimental, Format: esm
-export * from 'optimal';
-import * as optimal from 'optimal';
+export * from "optimal";
+import * as optimal from "optimal";
 export { optimal };
-export { func, string } from 'optimal';
-export { useState } from 'react';
+export { func, string } from "optimal";
+export { useState } from "react";
 //# sourceMappingURL=index-browser-experimental-esm.js.map
 ",
 ]
@@ -1763,15 +1765,15 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: browse
   "lib/index-browser-experimental-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: experimental, Format: lib
-'use strict';
-const optimal = require('optimal');
-const react = require('react');
+"use strict";
+const optimal = require("optimal");
+const react = require("react");
 function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
         for(const k in e){
-            if (k !== 'default') {
+            if (k !== "default") {
                 const d = Object.getOwnPropertyDescriptor(e, k);
                 Object.defineProperty(n, k, d.get ? d : {
                     enumerable: true,
@@ -1798,7 +1800,7 @@ Object.defineProperty(exports, "useState", {
     get: ()=>react.useState
 });
 Object.keys(optimal).forEach((k)=>{
-    if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
+    if (k !== "default" && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
         enumerable: true,
         get: ()=>optimal[k]
     });
@@ -1831,11 +1833,11 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: browse
         });
     }
     _export(exports, {
-        optimal: function() {
-            return _optimal;
-        },
         func: function() {
             return _optimal.func;
+        },
+        optimal: function() {
+            return _optimal;
         },
         string: function() {
             return _optimal.string;
@@ -1879,7 +1881,9 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: browse
         if (cache && cache.has(obj)) {
             return cache.get(obj);
         }
-        var newObj = {};
+        var newObj = {
+            __proto__: null
+        };
         var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;
         for(var key in obj){
             if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) {
@@ -1908,11 +1912,11 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: browse
   "esm/index-browser-legacy-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: esm
-export * from 'optimal';
-import * as optimal from 'optimal';
+export * from "optimal";
+import * as optimal from "optimal";
 export { optimal };
-export { func, string } from 'optimal';
-export { useState } from 'react';
+export { func, string } from "optimal";
+export { useState } from "react";
 //# sourceMappingURL=index-browser-legacy-esm.js.map
 ",
 ]
@@ -1923,15 +1927,15 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: browse
   "lib/index-browser-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: lib
-'use strict';
-var optimal = require('optimal');
-var react = require('react');
+"use strict";
+var optimal = require("optimal");
+var react = require("react");
 function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     var n = Object.create(null);
     if (e) {
         var _loop = function(k) {
-            if (k !== 'default') {
+            if (k !== "default") {
                 var d = Object.getOwnPropertyDescriptor(e, k);
                 Object.defineProperty(n, k, d.get ? d : {
                     enumerable: true,
@@ -1967,7 +1971,7 @@ Object.defineProperty(exports, "useState", {
     }
 });
 Object.keys(optimal).forEach(function(k) {
-    if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
+    if (k !== "default" && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
         enumerable: true,
         get: function() {
             return optimal[k];
@@ -2002,11 +2006,11 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: browse
         });
     }
     _export(exports, {
-        optimal: function() {
-            return _optimal;
-        },
         func: function() {
             return _optimal.func;
+        },
+        optimal: function() {
+            return _optimal;
         },
         string: function() {
             return _optimal.string;
@@ -2050,7 +2054,9 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: browse
         if (cache && cache.has(obj)) {
             return cache.get(obj);
         }
-        var newObj = {};
+        var newObj = {
+            __proto__: null
+        };
         var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;
         for(var key in obj){
             if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) {
@@ -2079,11 +2085,11 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: browse
   "esm/index-browser-stable-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: esm
-export * from 'optimal';
-import * as optimal from 'optimal';
+export * from "optimal";
+import * as optimal from "optimal";
 export { optimal };
-export { func, string } from 'optimal';
-export { useState } from 'react';
+export { func, string } from "optimal";
+export { useState } from "react";
 //# sourceMappingURL=index-browser-stable-esm.js.map
 ",
 ]
@@ -2094,15 +2100,15 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: browse
   "lib/index-browser-stable-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: lib
-'use strict';
-const optimal = require('optimal');
-const react = require('react');
+"use strict";
+const optimal = require("optimal");
+const react = require("react");
 function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
         for(const k in e){
-            if (k !== 'default') {
+            if (k !== "default") {
                 const d = Object.getOwnPropertyDescriptor(e, k);
                 Object.defineProperty(n, k, d.get ? d : {
                     enumerable: true,
@@ -2129,7 +2135,7 @@ Object.defineProperty(exports, "useState", {
     get: ()=>react.useState
 });
 Object.keys(optimal).forEach((k)=>{
-    if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
+    if (k !== "default" && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
         enumerable: true,
         get: ()=>optimal[k]
     });
@@ -2162,11 +2168,11 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: browse
         });
     }
     _export(exports, {
-        optimal: function() {
-            return _optimal;
-        },
         func: function() {
             return _optimal.func;
+        },
+        optimal: function() {
+            return _optimal;
         },
         string: function() {
             return _optimal.string;
@@ -2210,7 +2216,9 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: browse
         if (cache && cache.has(obj)) {
             return cache.get(obj);
         }
-        var newObj = {};
+        var newObj = {
+            __proto__: null
+        };
         var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;
         for(var key in obj){
             if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) {
@@ -2239,11 +2247,11 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: electr
   "esm/index-electron-current-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: current, Format: esm
-export * from 'optimal';
-import * as optimal from 'optimal';
+export * from "optimal";
+import * as optimal from "optimal";
 export { optimal };
-export { func, string } from 'optimal';
-export { useState } from 'react';
+export { func, string } from "optimal";
+export { useState } from "react";
 //# sourceMappingURL=index-electron-current-esm.js.map
 ",
 ]
@@ -2254,15 +2262,15 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: electr
   "lib/index-electron-current-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: current, Format: lib
-'use strict';
-const optimal = require('optimal');
-const react = require('react');
+"use strict";
+const optimal = require("optimal");
+const react = require("react");
 function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
         for(const k in e){
-            if (k !== 'default') {
+            if (k !== "default") {
                 const d = Object.getOwnPropertyDescriptor(e, k);
                 Object.defineProperty(n, k, d.get ? d : {
                     enumerable: true,
@@ -2289,7 +2297,7 @@ Object.defineProperty(exports, "useState", {
     get: ()=>react.useState
 });
 Object.keys(optimal).forEach((k)=>{
-    if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
+    if (k !== "default" && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
         enumerable: true,
         get: ()=>optimal[k]
     });
@@ -2304,11 +2312,11 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: electr
   "esm/index-electron-experimental-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: experimental, Format: esm
-export * from 'optimal';
-import * as optimal from 'optimal';
+export * from "optimal";
+import * as optimal from "optimal";
 export { optimal };
-export { func, string } from 'optimal';
-export { useState } from 'react';
+export { func, string } from "optimal";
+export { useState } from "react";
 //# sourceMappingURL=index-electron-experimental-esm.js.map
 ",
 ]
@@ -2319,15 +2327,15 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: electr
   "lib/index-electron-experimental-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: experimental, Format: lib
-'use strict';
-const optimal = require('optimal');
-const react = require('react');
+"use strict";
+const optimal = require("optimal");
+const react = require("react");
 function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
         for(const k in e){
-            if (k !== 'default') {
+            if (k !== "default") {
                 const d = Object.getOwnPropertyDescriptor(e, k);
                 Object.defineProperty(n, k, d.get ? d : {
                     enumerable: true,
@@ -2354,7 +2362,7 @@ Object.defineProperty(exports, "useState", {
     get: ()=>react.useState
 });
 Object.keys(optimal).forEach((k)=>{
-    if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
+    if (k !== "default" && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
         enumerable: true,
         get: ()=>optimal[k]
     });
@@ -2369,11 +2377,11 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: electr
   "esm/index-electron-legacy-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: legacy, Format: esm
-export * from 'optimal';
-import * as optimal from 'optimal';
+export * from "optimal";
+import * as optimal from "optimal";
 export { optimal };
-export { func, string } from 'optimal';
-export { useState } from 'react';
+export { func, string } from "optimal";
+export { useState } from "react";
 //# sourceMappingURL=index-electron-legacy-esm.js.map
 ",
 ]
@@ -2384,15 +2392,15 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: electr
   "lib/index-electron-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: legacy, Format: lib
-'use strict';
-const optimal = require('optimal');
-const react = require('react');
+"use strict";
+const optimal = require("optimal");
+const react = require("react");
 function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
         for(const k in e){
-            if (k !== 'default') {
+            if (k !== "default") {
                 const d = Object.getOwnPropertyDescriptor(e, k);
                 Object.defineProperty(n, k, d.get ? d : {
                     enumerable: true,
@@ -2419,7 +2427,7 @@ Object.defineProperty(exports, "useState", {
     get: ()=>react.useState
 });
 Object.keys(optimal).forEach((k)=>{
-    if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
+    if (k !== "default" && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
         enumerable: true,
         get: ()=>optimal[k]
     });
@@ -2434,11 +2442,11 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: electr
   "esm/index-electron-stable-esm.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: stable, Format: esm
-export * from 'optimal';
-import * as optimal from 'optimal';
+export * from "optimal";
+import * as optimal from "optimal";
 export { optimal };
-export { func, string } from 'optimal';
-export { useState } from 'react';
+export { func, string } from "optimal";
+export { useState } from "react";
 //# sourceMappingURL=index-electron-stable-esm.js.map
 ",
 ]
@@ -2449,15 +2457,15 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: electr
   "lib/index-electron-stable-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: stable, Format: lib
-'use strict';
-const optimal = require('optimal');
-const react = require('react');
+"use strict";
+const optimal = require("optimal");
+const react = require("react");
 function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
         for(const k in e){
-            if (k !== 'default') {
+            if (k !== "default") {
                 const d = Object.getOwnPropertyDescriptor(e, k);
                 Object.defineProperty(n, k, d.get ? d : {
                     enumerable: true,
@@ -2484,7 +2492,7 @@ Object.defineProperty(exports, "useState", {
     get: ()=>react.useState
 });
 Object.keys(optimal).forEach((k)=>{
-    if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
+    if (k !== "default" && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
         enumerable: true,
         get: ()=>optimal[k]
     });
@@ -2499,15 +2507,15 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: native
   "lib/index-native-current-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: current, Format: lib
-'use strict';
-const optimal = require('optimal');
-const react = require('react');
+"use strict";
+const optimal = require("optimal");
+const react = require("react");
 function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
         for(const k in e){
-            if (k !== 'default') {
+            if (k !== "default") {
                 const d = Object.getOwnPropertyDescriptor(e, k);
                 Object.defineProperty(n, k, d.get ? d : {
                     enumerable: true,
@@ -2534,7 +2542,7 @@ Object.defineProperty(exports, "useState", {
     get: ()=>react.useState
 });
 Object.keys(optimal).forEach((k)=>{
-    if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
+    if (k !== "default" && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
         enumerable: true,
         get: ()=>optimal[k]
     });
@@ -2549,15 +2557,15 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: native
   "lib/index-native-experimental-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: experimental, Format: lib
-'use strict';
-const optimal = require('optimal');
-const react = require('react');
+"use strict";
+const optimal = require("optimal");
+const react = require("react");
 function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
         for(const k in e){
-            if (k !== 'default') {
+            if (k !== "default") {
                 const d = Object.getOwnPropertyDescriptor(e, k);
                 Object.defineProperty(n, k, d.get ? d : {
                     enumerable: true,
@@ -2584,7 +2592,7 @@ Object.defineProperty(exports, "useState", {
     get: ()=>react.useState
 });
 Object.keys(optimal).forEach((k)=>{
-    if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
+    if (k !== "default" && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
         enumerable: true,
         get: ()=>optimal[k]
     });
@@ -2599,15 +2607,15 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: native
   "lib/index-native-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: legacy, Format: lib
-'use strict';
-const optimal = require('optimal');
-const react = require('react');
+"use strict";
+const optimal = require("optimal");
+const react = require("react");
 function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
         for(const k in e){
-            if (k !== 'default') {
+            if (k !== "default") {
                 const d = Object.getOwnPropertyDescriptor(e, k);
                 Object.defineProperty(n, k, d.get ? d : {
                     enumerable: true,
@@ -2634,7 +2642,7 @@ Object.defineProperty(exports, "useState", {
     get: ()=>react.useState
 });
 Object.keys(optimal).forEach((k)=>{
-    if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
+    if (k !== "default" && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
         enumerable: true,
         get: ()=>optimal[k]
     });
@@ -2649,15 +2657,15 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: native
   "lib/index-native-stable-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: stable, Format: lib
-'use strict';
-const optimal = require('optimal');
-const react = require('react');
+"use strict";
+const optimal = require("optimal");
+const react = require("react");
 function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
         for(const k in e){
-            if (k !== 'default') {
+            if (k !== "default") {
                 const d = Object.getOwnPropertyDescriptor(e, k);
                 Object.defineProperty(n, k, d.get ? d : {
                     enumerable: true,
@@ -2684,7 +2692,7 @@ Object.defineProperty(exports, "useState", {
     get: ()=>react.useState
 });
 Object.keys(optimal).forEach((k)=>{
-    if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
+    if (k !== "default" && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
         enumerable: true,
         get: ()=>optimal[k]
     });
@@ -2714,15 +2722,15 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: node-c
   "cjs/index-node-current-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: cjs
-'use strict';
-const optimal = require('optimal');
-const react = require('react');
+"use strict";
+const optimal = require("optimal");
+const react = require("react");
 function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
         for(const k in e){
-            if (k !== 'default') {
+            if (k !== "default") {
                 const d = Object.getOwnPropertyDescriptor(e, k);
                 Object.defineProperty(n, k, d.get ? d : {
                     enumerable: true,
@@ -2749,7 +2757,7 @@ Object.defineProperty(exports, "useState", {
     get: ()=>react.useState
 });
 Object.keys(optimal).forEach((k)=>{
-    if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
+    if (k !== "default" && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
         enumerable: true,
         get: ()=>optimal[k]
     });
@@ -2764,15 +2772,15 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: node-c
   "lib/index-node-current-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: lib
-'use strict';
-const optimal = require('optimal');
-const react = require('react');
+"use strict";
+const optimal = require("optimal");
+const react = require("react");
 function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
         for(const k in e){
-            if (k !== 'default') {
+            if (k !== "default") {
                 const d = Object.getOwnPropertyDescriptor(e, k);
                 Object.defineProperty(n, k, d.get ? d : {
                     enumerable: true,
@@ -2799,7 +2807,7 @@ Object.defineProperty(exports, "useState", {
     get: ()=>react.useState
 });
 Object.keys(optimal).forEach((k)=>{
-    if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
+    if (k !== "default" && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
         enumerable: true,
         get: ()=>optimal[k]
     });
@@ -2814,11 +2822,11 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: node-c
   "mjs/index-node-current-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: mjs
-export * from 'optimal';
-import * as optimal from 'optimal';
+export * from "optimal";
+import * as optimal from "optimal";
 export { optimal };
-export { func, string } from 'optimal';
-export { useState } from 'react';
+export { func, string } from "optimal";
+export { useState } from "react";
 //# sourceMappingURL=index-node-current-mjs.mjs.map
 ",
 ]
@@ -2844,15 +2852,15 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: node-e
   "cjs/index-node-experimental-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: cjs
-'use strict';
-const optimal = require('optimal');
-const react = require('react');
+"use strict";
+const optimal = require("optimal");
+const react = require("react");
 function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
         for(const k in e){
-            if (k !== 'default') {
+            if (k !== "default") {
                 const d = Object.getOwnPropertyDescriptor(e, k);
                 Object.defineProperty(n, k, d.get ? d : {
                     enumerable: true,
@@ -2879,7 +2887,7 @@ Object.defineProperty(exports, "useState", {
     get: ()=>react.useState
 });
 Object.keys(optimal).forEach((k)=>{
-    if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
+    if (k !== "default" && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
         enumerable: true,
         get: ()=>optimal[k]
     });
@@ -2894,15 +2902,15 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: node-e
   "lib/index-node-experimental-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: lib
-'use strict';
-const optimal = require('optimal');
-const react = require('react');
+"use strict";
+const optimal = require("optimal");
+const react = require("react");
 function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
         for(const k in e){
-            if (k !== 'default') {
+            if (k !== "default") {
                 const d = Object.getOwnPropertyDescriptor(e, k);
                 Object.defineProperty(n, k, d.get ? d : {
                     enumerable: true,
@@ -2929,7 +2937,7 @@ Object.defineProperty(exports, "useState", {
     get: ()=>react.useState
 });
 Object.keys(optimal).forEach((k)=>{
-    if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
+    if (k !== "default" && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
         enumerable: true,
         get: ()=>optimal[k]
     });
@@ -2944,11 +2952,11 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: node-e
   "mjs/index-node-experimental-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: mjs
-export * from 'optimal';
-import * as optimal from 'optimal';
+export * from "optimal";
+import * as optimal from "optimal";
 export { optimal };
-export { func, string } from 'optimal';
-export { useState } from 'react';
+export { func, string } from "optimal";
+export { useState } from "react";
 //# sourceMappingURL=index-node-experimental-mjs.mjs.map
 ",
 ]
@@ -2974,15 +2982,15 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: node-l
   "cjs/index-node-legacy-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: cjs
-'use strict';
-const optimal = require('optimal');
-const react = require('react');
+"use strict";
+const optimal = require("optimal");
+const react = require("react");
 function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
         for(const k in e){
-            if (k !== 'default') {
+            if (k !== "default") {
                 const d = Object.getOwnPropertyDescriptor(e, k);
                 Object.defineProperty(n, k, d.get ? d : {
                     enumerable: true,
@@ -3009,7 +3017,7 @@ Object.defineProperty(exports, "useState", {
     get: ()=>react.useState
 });
 Object.keys(optimal).forEach((k)=>{
-    if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
+    if (k !== "default" && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
         enumerable: true,
         get: ()=>optimal[k]
     });
@@ -3024,15 +3032,15 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: node-l
   "lib/index-node-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: lib
-'use strict';
-const optimal = require('optimal');
-const react = require('react');
+"use strict";
+const optimal = require("optimal");
+const react = require("react");
 function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
         for(const k in e){
-            if (k !== 'default') {
+            if (k !== "default") {
                 const d = Object.getOwnPropertyDescriptor(e, k);
                 Object.defineProperty(n, k, d.get ? d : {
                     enumerable: true,
@@ -3059,7 +3067,7 @@ Object.defineProperty(exports, "useState", {
     get: ()=>react.useState
 });
 Object.keys(optimal).forEach((k)=>{
-    if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
+    if (k !== "default" && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
         enumerable: true,
         get: ()=>optimal[k]
     });
@@ -3074,11 +3082,11 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: node-l
   "mjs/index-node-legacy-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: mjs
-export * from 'optimal';
-import * as optimal from 'optimal';
+export * from "optimal";
+import * as optimal from "optimal";
 export { optimal };
-export { func, string } from 'optimal';
-export { useState } from 'react';
+export { func, string } from "optimal";
+export { useState } from "react";
 //# sourceMappingURL=index-node-legacy-mjs.mjs.map
 ",
 ]
@@ -3104,15 +3112,15 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: node-s
   "cjs/index-node-stable-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: cjs
-'use strict';
-const optimal = require('optimal');
-const react = require('react');
+"use strict";
+const optimal = require("optimal");
+const react = require("react");
 function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
         for(const k in e){
-            if (k !== 'default') {
+            if (k !== "default") {
                 const d = Object.getOwnPropertyDescriptor(e, k);
                 Object.defineProperty(n, k, d.get ? d : {
                     enumerable: true,
@@ -3139,7 +3147,7 @@ Object.defineProperty(exports, "useState", {
     get: ()=>react.useState
 });
 Object.keys(optimal).forEach((k)=>{
-    if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
+    if (k !== "default" && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
         enumerable: true,
         get: ()=>optimal[k]
     });
@@ -3154,15 +3162,15 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: node-s
   "lib/index-node-stable-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: lib
-'use strict';
-const optimal = require('optimal');
-const react = require('react');
+"use strict";
+const optimal = require("optimal");
+const react = require("react");
 function _interopNamespace(e) {
     if (e && e.__esModule) return e;
     const n = Object.create(null);
     if (e) {
         for(const k in e){
-            if (k !== 'default') {
+            if (k !== "default") {
                 const d = Object.getOwnPropertyDescriptor(e, k);
                 Object.defineProperty(n, k, d.get ? d : {
                     enumerable: true,
@@ -3189,7 +3197,7 @@ Object.defineProperty(exports, "useState", {
     get: ()=>react.useState
 });
 Object.keys(optimal).forEach((k)=>{
-    if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
+    if (k !== "default" && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
         enumerable: true,
         get: ()=>optimal[k]
     });
@@ -3204,11 +3212,11 @@ exports[`CJS -> MJS wrapper (externals) swc transforms example test case: node-s
   "mjs/index-node-stable-mjs.mjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: mjs
-export * from 'optimal';
-import * as optimal from 'optimal';
+export * from "optimal";
+import * as optimal from "optimal";
 export { optimal };
-export { func, string } from 'optimal';
-export { useState } from 'react';
+export { func, string } from "optimal";
+export { useState } from "react";
 //# sourceMappingURL=index-node-stable-mjs.mjs.map
 ",
 ]
@@ -5150,9 +5158,9 @@ const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty(
     bar,
     foo
 }, Symbol.toStringTag, {
-    value: 'Module'
+    value: "Module"
 }));
-let a = 'abc';
+let a = "abc";
 const b = 123;
 const { c } = {
     c: true
@@ -5160,7 +5168,7 @@ const { c } = {
 const [d] = [
     {}
 ];
-const e = 456, f = 'xyz';
+const e = 456, f = "xyz";
 let ClassName = class ClassName {
 };
 function func() {}
@@ -5180,8 +5188,8 @@ exports[`CJS -> MJS wrapper swc transforms example test case: browser-current-li
   "lib/index-browser-current-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: lib
-'use strict';
-Object.defineProperty(exports, '__esModule', {
+"use strict";
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
 function foo() {}
@@ -5191,7 +5199,7 @@ const helpers = /*#__PURE__*/ Object.freeze({
     bar,
     foo
 });
-let a = 'abc';
+let a = "abc";
 const b = 123;
 const { c } = {
     c: true
@@ -5199,7 +5207,7 @@ const { c } = {
 const [d] = [
     {}
 ];
-const e = 456, f = 'xyz';
+const e = 456, f = "xyz";
 let ClassName = class ClassName {
 };
 function func() {}
@@ -5311,7 +5319,7 @@ exports[`CJS -> MJS wrapper swc transforms example test case: browser-current-um
         bar,
         foo
     });
-    let a = 'abc';
+    let a = "abc";
     const b = 123;
     const { c } = {
         c: true
@@ -5319,7 +5327,7 @@ exports[`CJS -> MJS wrapper swc transforms example test case: browser-current-um
     const [d] = [
         {}
     ];
-    const e = 456, f = 'xyz';
+    const e = 456, f = "xyz";
     let ClassName = class ClassName {
     };
     function func() {}
@@ -5345,9 +5353,9 @@ const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty(
     bar,
     foo
 }, Symbol.toStringTag, {
-    value: 'Module'
+    value: "Module"
 }));
-let a = 'abc';
+let a = "abc";
 const b = 123;
 const { c } = {
     c: true
@@ -5355,7 +5363,7 @@ const { c } = {
 const [d] = [
     {}
 ];
-const e = 456, f = 'xyz';
+const e = 456, f = "xyz";
 let ClassName = class ClassName {
 };
 function func() {}
@@ -5375,8 +5383,8 @@ exports[`CJS -> MJS wrapper swc transforms example test case: browser-experiment
   "lib/index-browser-experimental-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: experimental, Format: lib
-'use strict';
-Object.defineProperty(exports, '__esModule', {
+"use strict";
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
 function foo() {}
@@ -5386,7 +5394,7 @@ const helpers = /*#__PURE__*/ Object.freeze({
     bar,
     foo
 });
-let a = 'abc';
+let a = "abc";
 const b = 123;
 const { c } = {
     c: true
@@ -5394,7 +5402,7 @@ const { c } = {
 const [d] = [
     {}
 ];
-const e = 456, f = 'xyz';
+const e = 456, f = "xyz";
 let ClassName = class ClassName {
 };
 function func() {}
@@ -5506,7 +5514,7 @@ exports[`CJS -> MJS wrapper swc transforms example test case: browser-experiment
         bar,
         foo
     });
-    let a = 'abc';
+    let a = "abc";
     const b = 123;
     const { c } = {
         c: true
@@ -5514,7 +5522,7 @@ exports[`CJS -> MJS wrapper swc transforms example test case: browser-experiment
     const [d] = [
         {}
     ];
-    const e = 456, f = 'xyz';
+    const e = 456, f = "xyz";
     let ClassName = class ClassName {
     };
     function func() {}
@@ -5542,18 +5550,18 @@ function foo() {}
 function bar() {}
 var helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty({
     __proto__: null,
-    bar: bar,
-    foo: foo
+    bar,
+    foo
 }, Symbol.toStringTag, {
-    value: 'Module'
+    value: "Module"
 }));
-var a = 'abc';
+var a = "abc";
 var b = 123;
 var c = {
     c: true
 }.c;
 var d = {};
-var e = 456, f = 'xyz';
+var e = 456, f = "xyz";
 var ClassName = function ClassName() {
     "use strict";
     _class_call_check(this, ClassName);
@@ -5577,29 +5585,29 @@ exports[`CJS -> MJS wrapper swc transforms example test case: browser-legacy-lib
   "lib/index-browser-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: lib
-'use strict';
+"use strict";
 function _class_call_check(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
         throw new TypeError("Cannot call a class as a function");
     }
 }
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
 function foo() {}
 function bar() {}
 var helpers = /*#__PURE__*/ Object.freeze({
     __proto__: null,
-    bar: bar,
-    foo: foo
+    bar,
+    foo
 });
-var a = 'abc';
+var a = "abc";
 var b = 123;
 var c = {
     c: true
 }.c;
 var d = {};
-var e = 456, f = 'xyz';
+var e = 456, f = "xyz";
 var ClassName = function ClassName() {
     _class_call_check(this, ClassName);
 };
@@ -5715,16 +5723,16 @@ exports[`CJS -> MJS wrapper swc transforms example test case: browser-legacy-umd
     function bar() {}
     var helpers = /*#__PURE__*/ Object.freeze({
         __proto__: null,
-        bar: bar,
-        foo: foo
+        bar,
+        foo
     });
-    var a = 'abc';
+    var a = "abc";
     var b = 123;
     var c = {
         c: true
     }.c;
     var d = {};
-    var e = 456, f = 'xyz';
+    var e = 456, f = "xyz";
     var ClassName = function ClassName() {
         "use strict";
         _class_call_check(this, ClassName);
@@ -5754,9 +5762,9 @@ const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty(
     bar,
     foo
 }, Symbol.toStringTag, {
-    value: 'Module'
+    value: "Module"
 }));
-let a = 'abc';
+let a = "abc";
 const b = 123;
 const { c } = {
     c: true
@@ -5764,7 +5772,7 @@ const { c } = {
 const [d] = [
     {}
 ];
-const e = 456, f = 'xyz';
+const e = 456, f = "xyz";
 let ClassName = class ClassName {
 };
 function func() {}
@@ -5784,8 +5792,8 @@ exports[`CJS -> MJS wrapper swc transforms example test case: browser-stable-lib
   "lib/index-browser-stable-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: lib
-'use strict';
-Object.defineProperty(exports, '__esModule', {
+"use strict";
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
 function foo() {}
@@ -5795,7 +5803,7 @@ const helpers = /*#__PURE__*/ Object.freeze({
     bar,
     foo
 });
-let a = 'abc';
+let a = "abc";
 const b = 123;
 const { c } = {
     c: true
@@ -5803,7 +5811,7 @@ const { c } = {
 const [d] = [
     {}
 ];
-const e = 456, f = 'xyz';
+const e = 456, f = "xyz";
 let ClassName = class ClassName {
 };
 function func() {}
@@ -5915,7 +5923,7 @@ exports[`CJS -> MJS wrapper swc transforms example test case: browser-stable-umd
         bar,
         foo
     });
-    let a = 'abc';
+    let a = "abc";
     const b = 123;
     const { c } = {
         c: true
@@ -5923,7 +5931,7 @@ exports[`CJS -> MJS wrapper swc transforms example test case: browser-stable-umd
     const [d] = [
         {}
     ];
-    const e = 456, f = 'xyz';
+    const e = 456, f = "xyz";
     let ClassName = class ClassName {
     };
     function func() {}
@@ -5949,9 +5957,9 @@ const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty(
     bar,
     foo
 }, Symbol.toStringTag, {
-    value: 'Module'
+    value: "Module"
 }));
-let a = 'abc';
+let a = "abc";
 const b = 123;
 const { c } = {
     c: true
@@ -5959,7 +5967,7 @@ const { c } = {
 const [d] = [
     {}
 ];
-const e = 456, f = 'xyz';
+const e = 456, f = "xyz";
 let ClassName = class ClassName {
 };
 function func() {}
@@ -5979,8 +5987,8 @@ exports[`CJS -> MJS wrapper swc transforms example test case: electron-current-l
   "lib/index-electron-current-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: current, Format: lib
-'use strict';
-Object.defineProperty(exports, '__esModule', {
+"use strict";
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
 function foo() {}
@@ -5990,7 +5998,7 @@ const helpers = /*#__PURE__*/ Object.freeze({
     bar,
     foo
 });
-let a = 'abc';
+let a = "abc";
 const b = 123;
 const { c } = {
     c: true
@@ -5998,7 +6006,7 @@ const { c } = {
 const [d] = [
     {}
 ];
-const e = 456, f = 'xyz';
+const e = 456, f = "xyz";
 let ClassName = class ClassName {
 };
 function func() {}
@@ -6041,9 +6049,9 @@ const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty(
     bar,
     foo
 }, Symbol.toStringTag, {
-    value: 'Module'
+    value: "Module"
 }));
-let a = 'abc';
+let a = "abc";
 const b = 123;
 const { c } = {
     c: true
@@ -6051,7 +6059,7 @@ const { c } = {
 const [d] = [
     {}
 ];
-const e = 456, f = 'xyz';
+const e = 456, f = "xyz";
 let ClassName = class ClassName {
 };
 function func() {}
@@ -6071,8 +6079,8 @@ exports[`CJS -> MJS wrapper swc transforms example test case: electron-experimen
   "lib/index-electron-experimental-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: experimental, Format: lib
-'use strict';
-Object.defineProperty(exports, '__esModule', {
+"use strict";
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
 function foo() {}
@@ -6082,7 +6090,7 @@ const helpers = /*#__PURE__*/ Object.freeze({
     bar,
     foo
 });
-let a = 'abc';
+let a = "abc";
 const b = 123;
 const { c } = {
     c: true
@@ -6090,7 +6098,7 @@ const { c } = {
 const [d] = [
     {}
 ];
-const e = 456, f = 'xyz';
+const e = 456, f = "xyz";
 let ClassName = class ClassName {
 };
 function func() {}
@@ -6133,9 +6141,9 @@ const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty(
     bar,
     foo
 }, Symbol.toStringTag, {
-    value: 'Module'
+    value: "Module"
 }));
-let a = 'abc';
+let a = "abc";
 const b = 123;
 const { c } = {
     c: true
@@ -6143,7 +6151,7 @@ const { c } = {
 const [d] = [
     {}
 ];
-const e = 456, f = 'xyz';
+const e = 456, f = "xyz";
 let ClassName = class ClassName {
 };
 function func() {}
@@ -6163,8 +6171,8 @@ exports[`CJS -> MJS wrapper swc transforms example test case: electron-legacy-li
   "lib/index-electron-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: legacy, Format: lib
-'use strict';
-Object.defineProperty(exports, '__esModule', {
+"use strict";
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
 function foo() {}
@@ -6174,7 +6182,7 @@ const helpers = /*#__PURE__*/ Object.freeze({
     bar,
     foo
 });
-let a = 'abc';
+let a = "abc";
 const b = 123;
 const { c } = {
     c: true
@@ -6182,7 +6190,7 @@ const { c } = {
 const [d] = [
     {}
 ];
-const e = 456, f = 'xyz';
+const e = 456, f = "xyz";
 let ClassName = class ClassName {
 };
 function func() {}
@@ -6225,9 +6233,9 @@ const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty(
     bar,
     foo
 }, Symbol.toStringTag, {
-    value: 'Module'
+    value: "Module"
 }));
-let a = 'abc';
+let a = "abc";
 const b = 123;
 const { c } = {
     c: true
@@ -6235,7 +6243,7 @@ const { c } = {
 const [d] = [
     {}
 ];
-const e = 456, f = 'xyz';
+const e = 456, f = "xyz";
 let ClassName = class ClassName {
 };
 function func() {}
@@ -6255,8 +6263,8 @@ exports[`CJS -> MJS wrapper swc transforms example test case: electron-stable-li
   "lib/index-electron-stable-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: stable, Format: lib
-'use strict';
-Object.defineProperty(exports, '__esModule', {
+"use strict";
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
 function foo() {}
@@ -6266,7 +6274,7 @@ const helpers = /*#__PURE__*/ Object.freeze({
     bar,
     foo
 });
-let a = 'abc';
+let a = "abc";
 const b = 123;
 const { c } = {
     c: true
@@ -6274,7 +6282,7 @@ const { c } = {
 const [d] = [
     {}
 ];
-const e = 456, f = 'xyz';
+const e = 456, f = "xyz";
 let ClassName = class ClassName {
 };
 function func() {}
@@ -6310,8 +6318,8 @@ exports[`CJS -> MJS wrapper swc transforms example test case: native-current-lib
   "lib/index-native-current-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: current, Format: lib
-'use strict';
-Object.defineProperty(exports, '__esModule', {
+"use strict";
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
 function foo() {}
@@ -6321,7 +6329,7 @@ const helpers = /*#__PURE__*/ Object.freeze({
     bar,
     foo
 });
-let a = 'abc';
+let a = "abc";
 const b = 123;
 const { c } = {
     c: true
@@ -6329,7 +6337,7 @@ const { c } = {
 const [d] = [
     {}
 ];
-const e = 456, f = 'xyz';
+const e = 456, f = "xyz";
 let ClassName = class ClassName {
 };
 function func() {}
@@ -6365,8 +6373,8 @@ exports[`CJS -> MJS wrapper swc transforms example test case: native-experimenta
   "lib/index-native-experimental-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: experimental, Format: lib
-'use strict';
-Object.defineProperty(exports, '__esModule', {
+"use strict";
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
 function foo() {}
@@ -6376,7 +6384,7 @@ const helpers = /*#__PURE__*/ Object.freeze({
     bar,
     foo
 });
-let a = 'abc';
+let a = "abc";
 const b = 123;
 const { c } = {
     c: true
@@ -6384,7 +6392,7 @@ const { c } = {
 const [d] = [
     {}
 ];
-const e = 456, f = 'xyz';
+const e = 456, f = "xyz";
 let ClassName = class ClassName {
 };
 function func() {}
@@ -6420,8 +6428,8 @@ exports[`CJS -> MJS wrapper swc transforms example test case: native-legacy-lib 
   "lib/index-native-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: legacy, Format: lib
-'use strict';
-Object.defineProperty(exports, '__esModule', {
+"use strict";
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
 function foo() {}
@@ -6431,7 +6439,7 @@ const helpers = /*#__PURE__*/ Object.freeze({
     bar,
     foo
 });
-let a = 'abc';
+let a = "abc";
 const b = 123;
 const { c } = {
     c: true
@@ -6439,7 +6447,7 @@ const { c } = {
 const [d] = [
     {}
 ];
-const e = 456, f = 'xyz';
+const e = 456, f = "xyz";
 let ClassName = class ClassName {
 };
 function func() {}
@@ -6475,8 +6483,8 @@ exports[`CJS -> MJS wrapper swc transforms example test case: native-stable-lib 
   "lib/index-native-stable-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: stable, Format: lib
-'use strict';
-Object.defineProperty(exports, '__esModule', {
+"use strict";
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
 function foo() {}
@@ -6486,7 +6494,7 @@ const helpers = /*#__PURE__*/ Object.freeze({
     bar,
     foo
 });
-let a = 'abc';
+let a = "abc";
 const b = 123;
 const { c } = {
     c: true
@@ -6494,7 +6502,7 @@ const { c } = {
 const [d] = [
     {}
 ];
-const e = 456, f = 'xyz';
+const e = 456, f = "xyz";
 let ClassName = class ClassName {
 };
 function func() {}
@@ -6543,8 +6551,8 @@ exports[`CJS -> MJS wrapper swc transforms example test case: node-current-cjs 2
   "cjs/index-node-current-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: cjs
-'use strict';
-Object.defineProperty(exports, '__esModule', {
+"use strict";
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
 function foo() {}
@@ -6554,7 +6562,7 @@ const helpers = /*#__PURE__*/ Object.freeze({
     bar,
     foo
 });
-let a = 'abc';
+let a = "abc";
 const b = 123;
 const { c } = {
     c: true
@@ -6562,7 +6570,7 @@ const { c } = {
 const [d] = [
     {}
 ];
-const e = 456, f = 'xyz';
+const e = 456, f = "xyz";
 let ClassName = class ClassName {
 };
 function func() {}
@@ -6598,8 +6606,8 @@ exports[`CJS -> MJS wrapper swc transforms example test case: node-current-lib 1
   "lib/index-node-current-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: lib
-'use strict';
-Object.defineProperty(exports, '__esModule', {
+"use strict";
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
 function foo() {}
@@ -6609,7 +6617,7 @@ const helpers = /*#__PURE__*/ Object.freeze({
     bar,
     foo
 });
-let a = 'abc';
+let a = "abc";
 const b = 123;
 const { c } = {
     c: true
@@ -6617,7 +6625,7 @@ const { c } = {
 const [d] = [
     {}
 ];
-const e = 456, f = 'xyz';
+const e = 456, f = "xyz";
 let ClassName = class ClassName {
 };
 function func() {}
@@ -6660,9 +6668,9 @@ const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty(
     bar,
     foo
 }, Symbol.toStringTag, {
-    value: 'Module'
+    value: "Module"
 }));
-let a = 'abc';
+let a = "abc";
 const b = 123;
 const { c } = {
     c: true
@@ -6670,7 +6678,7 @@ const { c } = {
 const [d] = [
     {}
 ];
-const e = 456, f = 'xyz';
+const e = 456, f = "xyz";
 let ClassName = class ClassName {
 };
 function func() {}
@@ -6703,8 +6711,8 @@ exports[`CJS -> MJS wrapper swc transforms example test case: node-experimental-
   "cjs/index-node-experimental-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: cjs
-'use strict';
-Object.defineProperty(exports, '__esModule', {
+"use strict";
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
 function foo() {}
@@ -6714,7 +6722,7 @@ const helpers = /*#__PURE__*/ Object.freeze({
     bar,
     foo
 });
-let a = 'abc';
+let a = "abc";
 const b = 123;
 const { c } = {
     c: true
@@ -6722,7 +6730,7 @@ const { c } = {
 const [d] = [
     {}
 ];
-const e = 456, f = 'xyz';
+const e = 456, f = "xyz";
 let ClassName = class ClassName {
 };
 function func() {}
@@ -6758,8 +6766,8 @@ exports[`CJS -> MJS wrapper swc transforms example test case: node-experimental-
   "lib/index-node-experimental-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: lib
-'use strict';
-Object.defineProperty(exports, '__esModule', {
+"use strict";
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
 function foo() {}
@@ -6769,7 +6777,7 @@ const helpers = /*#__PURE__*/ Object.freeze({
     bar,
     foo
 });
-let a = 'abc';
+let a = "abc";
 const b = 123;
 const { c } = {
     c: true
@@ -6777,7 +6785,7 @@ const { c } = {
 const [d] = [
     {}
 ];
-const e = 456, f = 'xyz';
+const e = 456, f = "xyz";
 let ClassName = class ClassName {
 };
 function func() {}
@@ -6820,9 +6828,9 @@ const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty(
     bar,
     foo
 }, Symbol.toStringTag, {
-    value: 'Module'
+    value: "Module"
 }));
-let a = 'abc';
+let a = "abc";
 const b = 123;
 const { c } = {
     c: true
@@ -6830,7 +6838,7 @@ const { c } = {
 const [d] = [
     {}
 ];
-const e = 456, f = 'xyz';
+const e = 456, f = "xyz";
 let ClassName = class ClassName {
 };
 function func() {}
@@ -6863,8 +6871,8 @@ exports[`CJS -> MJS wrapper swc transforms example test case: node-legacy-cjs 2`
   "cjs/index-node-legacy-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: cjs
-'use strict';
-Object.defineProperty(exports, '__esModule', {
+"use strict";
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
 function foo() {}
@@ -6874,7 +6882,7 @@ const helpers = /*#__PURE__*/ Object.freeze({
     bar,
     foo
 });
-let a = 'abc';
+let a = "abc";
 const b = 123;
 const { c } = {
     c: true
@@ -6882,7 +6890,7 @@ const { c } = {
 const [d] = [
     {}
 ];
-const e = 456, f = 'xyz';
+const e = 456, f = "xyz";
 let ClassName = class ClassName {
 };
 function func() {}
@@ -6918,8 +6926,8 @@ exports[`CJS -> MJS wrapper swc transforms example test case: node-legacy-lib 1`
   "lib/index-node-legacy-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: lib
-'use strict';
-Object.defineProperty(exports, '__esModule', {
+"use strict";
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
 function foo() {}
@@ -6929,7 +6937,7 @@ const helpers = /*#__PURE__*/ Object.freeze({
     bar,
     foo
 });
-let a = 'abc';
+let a = "abc";
 const b = 123;
 const { c } = {
     c: true
@@ -6937,7 +6945,7 @@ const { c } = {
 const [d] = [
     {}
 ];
-const e = 456, f = 'xyz';
+const e = 456, f = "xyz";
 let ClassName = class ClassName {
 };
 function func() {}
@@ -6980,9 +6988,9 @@ const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty(
     bar,
     foo
 }, Symbol.toStringTag, {
-    value: 'Module'
+    value: "Module"
 }));
-let a = 'abc';
+let a = "abc";
 const b = 123;
 const { c } = {
     c: true
@@ -6990,7 +6998,7 @@ const { c } = {
 const [d] = [
     {}
 ];
-const e = 456, f = 'xyz';
+const e = 456, f = "xyz";
 let ClassName = class ClassName {
 };
 function func() {}
@@ -7023,8 +7031,8 @@ exports[`CJS -> MJS wrapper swc transforms example test case: node-stable-cjs 2`
   "cjs/index-node-stable-cjs.cjs",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: cjs
-'use strict';
-Object.defineProperty(exports, '__esModule', {
+"use strict";
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
 function foo() {}
@@ -7034,7 +7042,7 @@ const helpers = /*#__PURE__*/ Object.freeze({
     bar,
     foo
 });
-let a = 'abc';
+let a = "abc";
 const b = 123;
 const { c } = {
     c: true
@@ -7042,7 +7050,7 @@ const { c } = {
 const [d] = [
     {}
 ];
-const e = 456, f = 'xyz';
+const e = 456, f = "xyz";
 let ClassName = class ClassName {
 };
 function func() {}
@@ -7078,8 +7086,8 @@ exports[`CJS -> MJS wrapper swc transforms example test case: node-stable-lib 1`
   "lib/index-node-stable-lib.js",
   "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: lib
-'use strict';
-Object.defineProperty(exports, '__esModule', {
+"use strict";
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
 function foo() {}
@@ -7089,7 +7097,7 @@ const helpers = /*#__PURE__*/ Object.freeze({
     bar,
     foo
 });
-let a = 'abc';
+let a = "abc";
 const b = 123;
 const { c } = {
     c: true
@@ -7097,7 +7105,7 @@ const { c } = {
 const [d] = [
     {}
 ];
-const e = 456, f = 'xyz';
+const e = 456, f = "xyz";
 let ClassName = class ClassName {
 };
 function func() {}
@@ -7140,9 +7148,9 @@ const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty(
     bar,
     foo
 }, Symbol.toStringTag, {
-    value: 'Module'
+    value: "Module"
 }));
-let a = 'abc';
+let a = "abc";
 const b = 123;
 const { c } = {
     c: true
@@ -7150,7 +7158,7 @@ const { c } = {
 const [d] = [
     {}
 ];
-const e = 456, f = 'xyz';
+const e = 456, f = "xyz";
 let ClassName = class ClassName {
 };
 function func() {}

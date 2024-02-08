@@ -1,5 +1,5 @@
-import { OutputPlugin, Plugin } from 'rollup';
-import { Options, transform } from '@swc/core';
+import type { OutputPlugin, Plugin } from 'rollup';
+import { type Options, transform } from '@swc/core';
 
 export function swcInput(config: Partial<Options>): Plugin {
 	return {

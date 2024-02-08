@@ -1,4 +1,4 @@
-import {
+import type {
 	Config,
 	EnvConfig,
 	ModuleConfig,
@@ -200,7 +200,7 @@ export function getSwcOutputConfig(
 					},
 				},
 			},
-			target: SUPPORT_TO_ESM_SPEC[support],
+			// target: SUPPORT_TO_ESM_SPEC[support],
 		},
 	};
 

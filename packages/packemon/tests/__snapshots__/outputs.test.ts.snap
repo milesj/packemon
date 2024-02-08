@@ -73,7 +73,7 @@ exports.Example = Example;
 exports[`Feature flags compiles 3`] = `
 [
   "lib/helpers.js",
-  "'use strict';
+  ""use strict";
 function _array_like_to_array(arr, len) {
     if (len == null || len > arr.length) len = arr.length;
     for(var i = 0, arr2 = new Array(len); i < len; i++)arr2[i] = arr[i];
@@ -147,7 +147,7 @@ var Example = /*#__PURE__*/ function() {
         {
             key: "foo",
             get: function get() {
-                return '';
+                return "";
             },
             set: function set(value) {}
         }
@@ -163,7 +163,7 @@ exports.Example = Example;
 exports[`Feature flags compiles 4`] = `
 [
   "lib/helpers.js",
-  "'use strict';
+  ""use strict";
 function _array_like_to_array(arr, len) {
     if (len == null || len > arr.length) len = arr.length;
     for(var i = 0, arr2 = new Array(len); i < len; i++)arr2[i] = arr[i];
@@ -237,7 +237,7 @@ var Example = /*#__PURE__*/ function() {
         {
             key: "foo",
             get: function get() {
-                return '';
+                return "";
             },
             set: function set(value) {}
         }
