@@ -18170,7 +18170,7 @@ __metadata:
     rollup: "npm:^4.9.6"
     rollup-plugin-node-externals: "npm:^5.1.3"
     rollup-plugin-polyfill-node: "npm:^0.13.0"
-    semver: "npm:^7.5.4"
+    semver: "npm:^7.6.0"
     spdx-license-list: "npm:^6.8.0"
   peerDependencies:
     chokidar: ^3.5.1
@@ -20769,6 +20769,17 @@ __metadata:
   bin:
     semver: bin/semver.js
   checksum: 985dec0d372370229a262c737063860fabd4a1c730662c1ea3200a2f649117761a42184c96df62a0e885e76fbd5dace41087d6c1ac0351b13c0df5d6bcb1b5ac
+  languageName: node
+  linkType: hard
+
+"semver@npm:^7.6.0":
+  version: 7.6.0
+  resolution: "semver@npm:7.6.0"
+  dependencies:
+    lru-cache: "npm:^6.0.0"
+  bin:
+    semver: bin/semver.js
+  checksum: 1b41018df2d8aca5a1db4729985e8e20428c650daea60fcd16e926e9383217d00f574fab92d79612771884a98d2ee2a1973f49d630829a8d54d6570defe62535
   languageName: node
   linkType: hard
 
