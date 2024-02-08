@@ -461,6 +461,15 @@ describe('PackageValidator', () => {
 			expect(validator.errors).toEqual([]);
 		});
 
+		it('doesnt error if license field is defined but is UNLICENSED', async () => {
+			validator.package.json.license = 'UNLICENSED';
+
+			await validator.validate({ license: true });
+
+			expect(validator.warnings).toEqual([]);
+			expect(validator.errors).toEqual([]);
+		});
+
 		it('errors if license field is not defined', async () => {
 			validator.package.json.license = undefined;
 
