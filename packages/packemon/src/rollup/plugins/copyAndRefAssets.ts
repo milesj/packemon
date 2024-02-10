@@ -34,7 +34,7 @@ export function copyAndRefAssets(
 ): Plugin {
 	const assetsToCopy = assetsToCopyInit;
 
-	function determineNewAsset(source: string, importer?: string): VirtualPath {
+	function determineNewAsset(source: string, importer?: string | null): VirtualPath {
 		let preparedImporter = importer ? path.dirname(importer) : '';
 
 		// Find overlapping directory names and remove them
@@ -117,7 +117,7 @@ export function copyAndRefAssets(
 				the index. So, you have the old path + the new updated imports and there could be
 				overlap due to this "hoisting", which has a workaround in determineNewAsset
 			*/
-			const parentId = chunk.facadeModuleId!; // This correct?
+			const parentId = chunk.facadeModuleId; // This correct?
 			const magicString = new MagicString(code);
 			let hasChanged = false;
 
@@ -149,7 +149,12 @@ export function copyAndRefAssets(
 
 				// Update to new path (ignore files coming from node modules)
 				const sourcePath = String(source.value);
-				const parentDir = path.dirname(parentId);
+
+				if (sourcePath.includes(':')) {
+					return;
+				}
+
+				const parentDir = parentId ? path.dirname(parentId) : '';
 
 				if (
 					sourcePath &&
