@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 3.3.1 - 2024-02-10
+
+#### 🐞 Fixes
+
+- Fix asset failure for node: imports. ([4d8d5d0](https://github.com/milesj/packemon/commit/4d8d5d0))
+
+**Note:** Version bump only for package packemon
+
+
+
+
+
 ## 3.3.0 - 2024-02-08
 
 #### 🚀 Updates
