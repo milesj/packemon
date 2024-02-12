@@ -28,16 +28,19 @@
     "./package.json": "./package.json",
     "./babel": {
       "node": {
+        "types": "./mjs/babel.d.ts",
         "import": "./mjs/babel.mjs"
       }
     },
     "./bin": {
       "node": {
+        "types": "./mjs/bin.d.ts",
         "import": "./mjs/bin.mjs"
       }
     },
     ".": {
       "node": {
+        "types": "./mjs/index.d.ts",
         "import": "./mjs/index.mjs"
       }
     }

@@ -302,7 +302,6 @@ describe('Feature flags', () => {
 		await pkg.build({}, {});
 
 		snapshots(pkg).forEach((ss) => {
-			// eslint-disable-next-line jest/no-conditional-in-test
 			if (ss[0].endsWith('.js')) {
 				expect(ss).toMatchSnapshot();
 			}

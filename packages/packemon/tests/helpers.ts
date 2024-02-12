@@ -157,7 +157,6 @@ export function testExampleOutput(
 	options?: Partial<PackageConfig>,
 	customRoot?: Path,
 ) {
-	// eslint-disable-next-line jest/valid-title
 	describe(transformer, () => {
 		const root = customRoot ?? getFixturePath('examples');
 		const snapshots = createSnapshotSpies(root);
@@ -185,7 +184,6 @@ export function testExampleOutput(
 				artifact.support = build.support;
 				artifact.inputs = { [`index-${env}`]: file };
 
-				// eslint-disable-next-line jest/no-conditional-in-test
 				if (options) {
 					Object.assign(artifact, options);
 				}
