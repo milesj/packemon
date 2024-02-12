@@ -18405,6 +18405,7 @@ __metadata:
     "@babel/core": "npm:^7.23.9"
     "@moonrepo/cli": "npm:^1.21.3"
     "@moonrepo/dev": "npm:^2.0.1"
+    "@swc/cli": "npm:^0.3.9"
     "@types/fs-extra": "npm:^11.0.4"
     "@types/jest": "npm:^29.5.12"
     "@types/micromatch": "npm:^4.0.6"
@@ -18450,7 +18451,6 @@ __metadata:
     "@rollup/plugin-commonjs": "npm:^25.0.7"
     "@rollup/plugin-json": "npm:^6.1.0"
     "@rollup/plugin-node-resolve": "npm:^15.2.3"
-    "@swc/cli": "npm:^0.3.9"
     "@swc/core": "npm:^1.4.0"
     "@swc/helpers": "npm:^0.5.6"
     "@typescript-eslint/types": "npm:^6.21.0"
@@ -18485,7 +18485,7 @@ __metadata:
     typescript:
       optional: true
   bin:
-    packemon: ./cjs/bin.cjs
+    packemon: ./mjs/bin.mjs
   languageName: unknown
   linkType: soft
 

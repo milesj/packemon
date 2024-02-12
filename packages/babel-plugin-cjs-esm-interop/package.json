@@ -44,19 +44,11 @@
   "exports": {
     "./package.json": "./package.json",
     "./*": {
-      "types": "./lib/*.d.ts",
-      "node": {
-        "types": "./lib/*.d.ts",
-        "default": "./lib/*.js"
-      },
+      "node": "./lib/*.js",
       "default": "./lib/*.js"
     },
     ".": {
-      "types": "./lib/index.d.ts",
-      "node": {
-        "types": "./lib/index.d.ts",
-        "default": "./lib/index.js"
-      },
+      "node": "./lib/index.js",
       "default": "./lib/index.js"
     }
   }
