@@ -1,7 +1,7 @@
 {
   "name": "packemon",
   "version": "3.3.1",
-  "type": "commonjs",
+  "type": "module",
   "description": "Build and prepare packages for npm distribution using standardized configurations and practices. Gotta pack 'em all!",
   "keywords": [
     "build",
@@ -58,7 +58,7 @@
       "babel": "src/babel.ts",
       "bin": "src/bin.ts"
     },
-    "format": "cjs",
+    "format": "mjs",
     "platform": "node"
   },
   "dependencies": {
