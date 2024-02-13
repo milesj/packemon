@@ -31,7 +31,7 @@ The following templates can be scaffolded.
 
 Structures a project to be a monorepo of many packages.
 
-- Creates config files for common developer tools (Babel, ESLint, Jest, TypeScript, etc), based on
+- Creates config files for common developer tools (Babel, ESLint, Vitest, TypeScript, etc), based on
   [moonrepo presets](https://github.com/moonrepo/dev).
 - Creates a `packages` folder where all packages will exist. Create a package with the
   `monorepo-package` template.
@@ -52,7 +52,7 @@ first!
 
 Structures a project to be a polyrepo. Creates a single npm package within the current folder.
 
-- Creates config files for common developer tools (Babel, ESLint, Jest, TypeScript, etc), based on
+- Creates config files for common developer tools (Babel, ESLint, Vitest, TypeScript, etc), based on
   [moonrepo presets](https://github.com/moonrepo/dev).
 - Creates `src` and `tests` folders with example TypeScript files.
 - Creates a `package.json` with information gathered from the prompts.

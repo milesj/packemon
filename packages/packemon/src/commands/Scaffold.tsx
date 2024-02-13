@@ -150,17 +150,15 @@ export class ScaffoldCommand extends Command {
 		}
 
 		const args = [
-			'@types/jest',
 			'@types/node',
 			'eslint-config-moon',
 			'eslint',
-			'jest-preset-moon',
-			'jest',
 			'packemon',
 			'prettier-config-moon',
 			'prettier',
 			'tsconfig-moon',
 			'typescript',
+			'vitest',
 		];
 
 		switch (this.packageManager) {

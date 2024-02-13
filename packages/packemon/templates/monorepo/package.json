@@ -11,7 +11,7 @@
     "pack": "packemon pack-workspace --addEngines --declaration",
     "prelease": "yarn run pack && yarn run check",
     "release": "echo 'Customize your own release script!'",
-    "test": "jest",
+    "test": "vitest",
     "type": "tsc --build"
   },
   "workspaces": [
