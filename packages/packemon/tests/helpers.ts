@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import fsx from 'fs-extra';
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, type MockInstance, vi } from 'vitest';
 import { Path, PortablePath } from '@boost/common';
 import {
 	Artifact,
@@ -68,8 +68,8 @@ FORMATS.forEach((format) => {
 	});
 });
 
-export function mockSpy(instance: unknown): vi.SpyInstance {
-	return instance as vi.SpyInstance;
+export function mockSpy(instance: unknown): MockInstance {
+	return instance as MockInstance;
 }
 
 export function loadPackageAtPath(pkgPath: PortablePath, workspaceRoot?: PortablePath): Package {
@@ -89,11 +89,14 @@ function formatSnapshotFilePath(file: string, root: string): string {
 
 export function createSnapshotSpies(root: PortablePath, captureJson: boolean = false) {
 	let snapshots: [string, unknown][] = [];
-	const spies: vi.SpyInstance[] = [];
+	const spies: MockInstance[] = [];
 
 	beforeEach(() => {
+		console.log('BEFORE EACH');
 		const handler = (file: unknown, content: unknown, cb?: unknown) => {
 			const filePath = formatSnapshotFilePath(String(file), String(root));
+
+			console.log(filePath);
 
 			if (
 				filePath.endsWith('.js') ||
@@ -122,7 +125,7 @@ export function createSnapshotSpies(root: PortablePath, captureJson: boolean = f
 		};
 
 		spies.push(
-			vi.spyOn(console, 'warn').mockImplementation(),
+			vi.spyOn(console, 'warn').mockImplementation(() => {}),
 			// Rollup
 			vi.spyOn(fs.promises, 'writeFile').mockImplementation(asyncHandler),
 			// Packemon
@@ -135,6 +138,7 @@ export function createSnapshotSpies(root: PortablePath, captureJson: boolean = f
 	});
 
 	afterEach(() => {
+		console.log('AFTER EACH', spies);
 		snapshots = [];
 		spies.forEach((spy) => void spy.mockRestore());
 	});
@@ -180,6 +184,7 @@ export function testExampleOutput(
 			const env = `${build.platform}-${build.support}-${build.format}`;
 
 			it(`transforms example test case: ${env}`, async () => {
+				console.log(env);
 				const artifact = new Artifact(pkg, [build]);
 				artifact.platform = build.platform;
 				artifact.support = build.support;

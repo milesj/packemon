@@ -6,6 +6,7 @@ import {
 	NATIVE_TARGETS,
 	NODE_SUPPORTED_VERSIONS,
 } from '../constants';
+import { shouldKeepDynamicImport } from '../helpers/shouldKeepDynamicImport';
 import {
 	ConfigFile,
 	FeatureFlags,
@@ -54,7 +55,7 @@ function getPlatformEnvOptions(
 	];
 
 	// https://caniuse.com/es6-module-dynamic-import
-	if (format !== 'umd') {
+	if (shouldKeepDynamicImport(platform, format)) {
 		exclude.push('@babel/plugin-proposal-dynamic-import');
 	}
 
