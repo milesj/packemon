@@ -85,11 +85,21 @@ export function mockSpy(instance: unknown): MockInstance {
 	return instance as MockInstance;
 }
 
-export function loadPackageAtPath(pkgPath: PortablePath, workspaceRoot?: PortablePath): Package {
+export function loadPackageAtPath(
+	pkgPath: PortablePath,
+	workspaceRoot?: PortablePath | null,
+	fs?: FileSystem,
+): Package {
 	const root = Path.create(pkgPath);
 	const json = nodeFileSystem.readJson<PackemonPackage>(root.append('package.json').path());
 
-	return new Package(root, json, workspaceRoot ? Path.create(workspaceRoot) : root);
+	const pkg = new Package(root, json, workspaceRoot ? Path.create(workspaceRoot) : root);
+
+	if (fs) {
+		pkg.fs = fs;
+	}
+
+	return pkg;
 }
 
 function formatSnapshotFilePath(file: string, root: string): string {

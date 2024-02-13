@@ -38,7 +38,7 @@ describe('Config files', () => {
 			packemon.fs = snapshots.fs;
 
 			// bar (using push)
-			await packemon.build(loadPackageAtPath(root.append('packages/bar'), root), {
+			await packemon.build(loadPackageAtPath(root.append('packages/bar'), root, snapshots.fs), {
 				loadConfigs: true,
 			});
 
@@ -85,7 +85,7 @@ describe('Config files', () => {
 			);
 
 			// baz (using unshift)
-			await packemon.build(loadPackageAtPath(root.append('packages/baz'), root), {
+			await packemon.build(loadPackageAtPath(root.append('packages/baz'), root, snapshots.fs), {
 				loadConfigs: true,
 			});
 
@@ -132,7 +132,7 @@ describe('Config files', () => {
 			);
 
 			// foo (using push)
-			await packemon.build(loadPackageAtPath(root.append('packages/foo'), root), {
+			await packemon.build(loadPackageAtPath(root.append('packages/foo'), root, snapshots.fs), {
 				loadConfigs: true,
 			});
 
@@ -184,7 +184,7 @@ describe('Config files', () => {
 			packemon.fs = snapshots.fs;
 
 			// bar (using push)
-			await packemon.build(loadPackageAtPath(root.append('packages/bar'), root), {
+			await packemon.build(loadPackageAtPath(root.append('packages/bar'), root, snapshots.fs), {
 				loadConfigs: false,
 			});
 
@@ -231,7 +231,7 @@ describe('Config files', () => {
 			);
 
 			// baz (using unshift)
-			await packemon.build(loadPackageAtPath(root.append('packages/baz'), root), {
+			await packemon.build(loadPackageAtPath(root.append('packages/baz'), root, snapshots.fs), {
 				loadConfigs: false,
 			});
 
@@ -278,7 +278,7 @@ describe('Config files', () => {
 			);
 
 			// foo (using push)
-			await packemon.build(loadPackageAtPath(root.append('packages/foo'), root), {
+			await packemon.build(loadPackageAtPath(root.append('packages/foo'), root, snapshots.fs), {
 				loadConfigs: false,
 			});
 
@@ -334,7 +334,7 @@ describe('Config files', () => {
 			const packemon = new Packemon(root);
 			packemon.fs = snapshots.fs;
 
-			await packemon.build(loadPackageAtPath(root), {
+			await packemon.build(loadPackageAtPath(root, null, snapshots.fs), {
 				loadConfigs: true,
 			});
 
@@ -385,7 +385,7 @@ describe('Config files', () => {
 			const packemon = new Packemon(root);
 			packemon.fs = snapshots.fs;
 
-			await packemon.build(loadPackageAtPath(root), {
+			await packemon.build(loadPackageAtPath(root, null, snapshots.fs), {
 				loadConfigs: false,
 			});
 
