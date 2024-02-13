@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`getBabelInputConfig() can mutate config 1`] = `
+exports[`getBabelInputConfig() > can mutate config 1`] = `
 {
   "babelrc": false,
   "caller": {
@@ -20,7 +20,7 @@ exports[`getBabelInputConfig() can mutate config 1`] = `
 }
 `;
 
-exports[`getBabelInputConfig() doesnt include typescript decorators if \`typescript\` feature flag is false 1`] = `
+exports[`getBabelInputConfig() > doesnt include typescript decorators if \`typescript\` feature flag is false 1`] = `
 {
   "babelrc": false,
   "caller": {
@@ -37,7 +37,7 @@ exports[`getBabelInputConfig() doesnt include typescript decorators if \`typescr
 }
 `;
 
-exports[`getBabelInputConfig() includes flow preset if \`flow\` feature flag is true 1`] = `
+exports[`getBabelInputConfig() > includes flow preset if \`flow\` feature flag is true 1`] = `
 [
   [
     "@babel/preset-flow",
@@ -48,7 +48,7 @@ exports[`getBabelInputConfig() includes flow preset if \`flow\` feature flag is 
 ]
 `;
 
-exports[`getBabelInputConfig() includes no plugins or presets by default 1`] = `
+exports[`getBabelInputConfig() > includes no plugins or presets by default 1`] = `
 {
   "babelrc": false,
   "caller": {
@@ -65,7 +65,7 @@ exports[`getBabelInputConfig() includes no plugins or presets by default 1`] = `
 }
 `;
 
-exports[`getBabelInputConfig() includes react preset if \`react\` feature flag is true 1`] = `
+exports[`getBabelInputConfig() > includes react preset if \`react\` feature flag is true 1`] = `
 [
   [
     "@babel/preset-react",
@@ -78,7 +78,7 @@ exports[`getBabelInputConfig() includes react preset if \`react\` feature flag i
 ]
 `;
 
-exports[`getBabelInputConfig() includes react preset if \`react\` feature flag is true 2`] = `
+exports[`getBabelInputConfig() > includes react preset if \`react\` feature flag is true 2`] = `
 [
   [
     "@babel/preset-react",
@@ -91,13 +91,13 @@ exports[`getBabelInputConfig() includes react preset if \`react\` feature flag i
 ]
 `;
 
-exports[`getBabelInputConfig() includes solid preset if \`solid\` feature flag is true 1`] = `
+exports[`getBabelInputConfig() > includes solid preset if \`solid\` feature flag is true 1`] = `
 [
   "babel-preset-solid",
 ]
 `;
 
-exports[`getBabelInputConfig() includes typescript decorators if \`typescript\` and \`decorators\` feature flag is true 1`] = `
+exports[`getBabelInputConfig() > includes typescript decorators if \`typescript\` and \`decorators\` feature flag is true 1`] = `
 {
   "babelrc": false,
   "caller": {
@@ -156,7 +156,7 @@ exports[`getBabelInputConfig() includes typescript decorators if \`typescript\` 
 }
 `;
 
-exports[`getBabelInputConfig() includes typescript preset if \`typescript\` feature flag is true 1`] = `
+exports[`getBabelInputConfig() > includes typescript preset if \`typescript\` feature flag is true 1`] = `
 [
   [
     "@babel/preset-typescript",
@@ -169,7 +169,7 @@ exports[`getBabelInputConfig() includes typescript preset if \`typescript\` feat
 ]
 `;
 
-exports[`getBabelInputConfig() supports private properties with decorators if dep exists 1`] = `
+exports[`getBabelInputConfig() > supports private properties with decorators if dep exists 1`] = `
 {
   "babelrc": false,
   "caller": {
@@ -228,7 +228,7 @@ exports[`getBabelInputConfig() supports private properties with decorators if de
 }
 `;
 
-exports[`getBabelOutputConfig() can mutate config 1`] = `
+exports[`getBabelOutputConfig() > can mutate config 1`] = `
 {
   "babelrc": false,
   "caller": {
@@ -285,7 +285,7 @@ exports[`getBabelOutputConfig() can mutate config 1`] = `
 }
 `;
 
-exports[`getBabelOutputConfig() handles preset-env: browser + esm + current 1`] = `
+exports[`getBabelOutputConfig() > handles preset-env: browser + esm + current 1`] = `
 [
   "@babel/preset-env",
   {
@@ -310,7 +310,7 @@ exports[`getBabelOutputConfig() handles preset-env: browser + esm + current 1`] 
 ]
 `;
 
-exports[`getBabelOutputConfig() handles preset-env: browser + esm + experimental 1`] = `
+exports[`getBabelOutputConfig() > handles preset-env: browser + esm + experimental 1`] = `
 [
   "@babel/preset-env",
   {
@@ -335,7 +335,7 @@ exports[`getBabelOutputConfig() handles preset-env: browser + esm + experimental
 ]
 `;
 
-exports[`getBabelOutputConfig() handles preset-env: browser + esm + legacy 1`] = `
+exports[`getBabelOutputConfig() > handles preset-env: browser + esm + legacy 1`] = `
 [
   "@babel/preset-env",
   {
@@ -360,7 +360,7 @@ exports[`getBabelOutputConfig() handles preset-env: browser + esm + legacy 1`] =
 ]
 `;
 
-exports[`getBabelOutputConfig() handles preset-env: browser + esm + stable 1`] = `
+exports[`getBabelOutputConfig() > handles preset-env: browser + esm + stable 1`] = `
 [
   "@babel/preset-env",
   {
@@ -385,7 +385,7 @@ exports[`getBabelOutputConfig() handles preset-env: browser + esm + stable 1`] =
 ]
 `;
 
-exports[`getBabelOutputConfig() handles preset-env: browser + lib + current 1`] = `
+exports[`getBabelOutputConfig() > handles preset-env: browser + lib + current 1`] = `
 [
   "@babel/preset-env",
   {
@@ -410,7 +410,7 @@ exports[`getBabelOutputConfig() handles preset-env: browser + lib + current 1`] 
 ]
 `;
 
-exports[`getBabelOutputConfig() handles preset-env: browser + lib + experimental 1`] = `
+exports[`getBabelOutputConfig() > handles preset-env: browser + lib + experimental 1`] = `
 [
   "@babel/preset-env",
   {
@@ -435,7 +435,7 @@ exports[`getBabelOutputConfig() handles preset-env: browser + lib + experimental
 ]
 `;
 
-exports[`getBabelOutputConfig() handles preset-env: browser + lib + legacy 1`] = `
+exports[`getBabelOutputConfig() > handles preset-env: browser + lib + legacy 1`] = `
 [
   "@babel/preset-env",
   {
@@ -460,7 +460,7 @@ exports[`getBabelOutputConfig() handles preset-env: browser + lib + legacy 1`] =
 ]
 `;
 
-exports[`getBabelOutputConfig() handles preset-env: browser + lib + stable 1`] = `
+exports[`getBabelOutputConfig() > handles preset-env: browser + lib + stable 1`] = `
 [
   "@babel/preset-env",
   {
@@ -485,7 +485,7 @@ exports[`getBabelOutputConfig() handles preset-env: browser + lib + stable 1`] =
 ]
 `;
 
-exports[`getBabelOutputConfig() handles preset-env: browser + umd + current 1`] = `
+exports[`getBabelOutputConfig() > handles preset-env: browser + umd + current 1`] = `
 [
   "@babel/preset-env",
   {
@@ -510,7 +510,7 @@ exports[`getBabelOutputConfig() handles preset-env: browser + umd + current 1`] 
 ]
 `;
 
-exports[`getBabelOutputConfig() handles preset-env: browser + umd + experimental 1`] = `
+exports[`getBabelOutputConfig() > handles preset-env: browser + umd + experimental 1`] = `
 [
   "@babel/preset-env",
   {
@@ -535,7 +535,7 @@ exports[`getBabelOutputConfig() handles preset-env: browser + umd + experimental
 ]
 `;
 
-exports[`getBabelOutputConfig() handles preset-env: browser + umd + legacy 1`] = `
+exports[`getBabelOutputConfig() > handles preset-env: browser + umd + legacy 1`] = `
 [
   "@babel/preset-env",
   {
@@ -560,7 +560,7 @@ exports[`getBabelOutputConfig() handles preset-env: browser + umd + legacy 1`] =
 ]
 `;
 
-exports[`getBabelOutputConfig() handles preset-env: browser + umd + stable 1`] = `
+exports[`getBabelOutputConfig() > handles preset-env: browser + umd + stable 1`] = `
 [
   "@babel/preset-env",
   {
@@ -585,7 +585,7 @@ exports[`getBabelOutputConfig() handles preset-env: browser + umd + stable 1`] =
 ]
 `;
 
-exports[`getBabelOutputConfig() handles preset-env: native + lib + current 1`] = `
+exports[`getBabelOutputConfig() > handles preset-env: native + lib + current 1`] = `
 [
   "@babel/preset-env",
   {
@@ -606,7 +606,7 @@ exports[`getBabelOutputConfig() handles preset-env: native + lib + current 1`] =
 ]
 `;
 
-exports[`getBabelOutputConfig() handles preset-env: native + lib + experimental 1`] = `
+exports[`getBabelOutputConfig() > handles preset-env: native + lib + experimental 1`] = `
 [
   "@babel/preset-env",
   {
@@ -627,7 +627,7 @@ exports[`getBabelOutputConfig() handles preset-env: native + lib + experimental 
 ]
 `;
 
-exports[`getBabelOutputConfig() handles preset-env: native + lib + legacy 1`] = `
+exports[`getBabelOutputConfig() > handles preset-env: native + lib + legacy 1`] = `
 [
   "@babel/preset-env",
   {
@@ -648,7 +648,7 @@ exports[`getBabelOutputConfig() handles preset-env: native + lib + legacy 1`] = 
 ]
 `;
 
-exports[`getBabelOutputConfig() handles preset-env: native + lib + stable 1`] = `
+exports[`getBabelOutputConfig() > handles preset-env: native + lib + stable 1`] = `
 [
   "@babel/preset-env",
   {
@@ -669,7 +669,7 @@ exports[`getBabelOutputConfig() handles preset-env: native + lib + stable 1`] = 
 ]
 `;
 
-exports[`getBabelOutputConfig() handles preset-env: node + cjs + current 1`] = `
+exports[`getBabelOutputConfig() > handles preset-env: node + cjs + current 1`] = `
 [
   "@babel/preset-env",
   {
@@ -691,7 +691,7 @@ exports[`getBabelOutputConfig() handles preset-env: node + cjs + current 1`] = `
 ]
 `;
 
-exports[`getBabelOutputConfig() handles preset-env: node + cjs + experimental 1`] = `
+exports[`getBabelOutputConfig() > handles preset-env: node + cjs + experimental 1`] = `
 [
   "@babel/preset-env",
   {
@@ -713,7 +713,7 @@ exports[`getBabelOutputConfig() handles preset-env: node + cjs + experimental 1`
 ]
 `;
 
-exports[`getBabelOutputConfig() handles preset-env: node + cjs + legacy 1`] = `
+exports[`getBabelOutputConfig() > handles preset-env: node + cjs + legacy 1`] = `
 [
   "@babel/preset-env",
   {
@@ -735,7 +735,7 @@ exports[`getBabelOutputConfig() handles preset-env: node + cjs + legacy 1`] = `
 ]
 `;
 
-exports[`getBabelOutputConfig() handles preset-env: node + cjs + stable 1`] = `
+exports[`getBabelOutputConfig() > handles preset-env: node + cjs + stable 1`] = `
 [
   "@babel/preset-env",
   {
@@ -757,7 +757,7 @@ exports[`getBabelOutputConfig() handles preset-env: node + cjs + stable 1`] = `
 ]
 `;
 
-exports[`getBabelOutputConfig() handles preset-env: node + lib + current 1`] = `
+exports[`getBabelOutputConfig() > handles preset-env: node + lib + current 1`] = `
 [
   "@babel/preset-env",
   {
@@ -779,7 +779,7 @@ exports[`getBabelOutputConfig() handles preset-env: node + lib + current 1`] = `
 ]
 `;
 
-exports[`getBabelOutputConfig() handles preset-env: node + lib + experimental 1`] = `
+exports[`getBabelOutputConfig() > handles preset-env: node + lib + experimental 1`] = `
 [
   "@babel/preset-env",
   {
@@ -801,7 +801,7 @@ exports[`getBabelOutputConfig() handles preset-env: node + lib + experimental 1`
 ]
 `;
 
-exports[`getBabelOutputConfig() handles preset-env: node + lib + legacy 1`] = `
+exports[`getBabelOutputConfig() > handles preset-env: node + lib + legacy 1`] = `
 [
   "@babel/preset-env",
   {
@@ -823,7 +823,7 @@ exports[`getBabelOutputConfig() handles preset-env: node + lib + legacy 1`] = `
 ]
 `;
 
-exports[`getBabelOutputConfig() handles preset-env: node + lib + stable 1`] = `
+exports[`getBabelOutputConfig() > handles preset-env: node + lib + stable 1`] = `
 [
   "@babel/preset-env",
   {
@@ -845,7 +845,7 @@ exports[`getBabelOutputConfig() handles preset-env: node + lib + stable 1`] = `
 ]
 `;
 
-exports[`getBabelOutputConfig() handles preset-env: node + mjs + current 1`] = `
+exports[`getBabelOutputConfig() > handles preset-env: node + mjs + current 1`] = `
 [
   "@babel/preset-env",
   {
@@ -867,7 +867,7 @@ exports[`getBabelOutputConfig() handles preset-env: node + mjs + current 1`] = `
 ]
 `;
 
-exports[`getBabelOutputConfig() handles preset-env: node + mjs + experimental 1`] = `
+exports[`getBabelOutputConfig() > handles preset-env: node + mjs + experimental 1`] = `
 [
   "@babel/preset-env",
   {
@@ -889,7 +889,7 @@ exports[`getBabelOutputConfig() handles preset-env: node + mjs + experimental 1`
 ]
 `;
 
-exports[`getBabelOutputConfig() handles preset-env: node + mjs + legacy 1`] = `
+exports[`getBabelOutputConfig() > handles preset-env: node + mjs + legacy 1`] = `
 [
   "@babel/preset-env",
   {
@@ -911,7 +911,7 @@ exports[`getBabelOutputConfig() handles preset-env: node + mjs + legacy 1`] = `
 ]
 `;
 
-exports[`getBabelOutputConfig() handles preset-env: node + mjs + stable 1`] = `
+exports[`getBabelOutputConfig() > handles preset-env: node + mjs + stable 1`] = `
 [
   "@babel/preset-env",
   {
@@ -933,7 +933,7 @@ exports[`getBabelOutputConfig() handles preset-env: node + mjs + stable 1`] = `
 ]
 `;
 
-exports[`getBabelOutputConfig() transforms async/await to promises when \`browser\` or \`native\` 1`] = `
+exports[`getBabelOutputConfig() > transforms async/await to promises when \`browser\` or \`native\` 1`] = `
 {
   "babelrc": false,
   "caller": {
@@ -988,7 +988,7 @@ exports[`getBabelOutputConfig() transforms async/await to promises when \`browse
 }
 `;
 
-exports[`getBabelOutputConfig() transforms async/await to promises when \`browser\` or \`native\` 2`] = `
+exports[`getBabelOutputConfig() > transforms async/await to promises when \`browser\` or \`native\` 2`] = `
 {
   "babelrc": false,
   "caller": {
@@ -1039,7 +1039,7 @@ exports[`getBabelOutputConfig() transforms async/await to promises when \`browse
 }
 `;
 
-exports[`getBabelOutputConfig() uses built-in destructuring and object spread when \`current\` or \`experimental\` 1`] = `
+exports[`getBabelOutputConfig() > uses built-in destructuring and object spread when \`current\` or \`experimental\` 1`] = `
 {
   "babelrc": false,
   "caller": {
@@ -1097,7 +1097,7 @@ exports[`getBabelOutputConfig() uses built-in destructuring and object spread wh
 }
 `;
 
-exports[`getBabelOutputConfig() uses built-in destructuring and object spread when \`current\` or \`experimental\` 2`] = `
+exports[`getBabelOutputConfig() > uses built-in destructuring and object spread when \`current\` or \`experimental\` 2`] = `
 {
   "babelrc": false,
   "caller": {

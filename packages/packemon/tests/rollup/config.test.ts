@@ -10,9 +10,15 @@ import {
 } from '../../src/rollup/config';
 import { getFixturePath } from '../helpers';
 
-vi.mock('@rollup/plugin-commonjs', () => () => 'commonjs()');
-vi.mock('@rollup/plugin-json', () => () => 'json()');
-vi.mock('@rollup/plugin-node-resolve', () => () => 'resolve()');
+vi.mock('@rollup/plugin-commonjs', () => ({
+	default: () => 'commonjs()',
+}));
+vi.mock('@rollup/plugin-json', () => ({
+	default: () => 'json()',
+}));
+vi.mock('@rollup/plugin-node-resolve', () => ({
+	default: () => 'resolve()',
+}));
 vi.mock('@rollup/plugin-babel', () => ({
 	getBabelInputPlugin: (options: any) => `babelInput(${options.filename})`,
 	getBabelOutputPlugin: (options: any) =>
@@ -21,7 +27,9 @@ vi.mock('@rollup/plugin-babel', () => ({
 vi.mock('rollup-plugin-node-externals', () => ({
 	externals: (options: any) => `externals(${options.packagePath})`,
 }));
-vi.mock('rollup-plugin-polyfill-node', () => () => `polyfillNode()`);
+vi.mock('rollup-plugin-polyfill-node', () => ({
+	default: () => `polyfillNode()`,
+}));
 
 const fixturePath = new Path(getFixturePath('project-rollup'));
 const srcInputFile = fixturePath.append('src/index.ts').path();
