@@ -39,8 +39,7 @@ describe('Package', () => {
 	}
 
 	beforeEach(() => {
-		pkg = loadPackageAtPath(fixturePath);
-		pkg.fs = createStubbedFileSystem();
+		pkg = loadPackageAtPath(fixturePath, null, createStubbedFileSystem());
 	});
 
 	it('sets properties on instantiation', () => {
@@ -761,7 +760,7 @@ describe('Package', () => {
 			});
 
 			it('includes assets folder if it exists', async () => {
-				pkg = loadPackageAtPath(getFixturePath('project-assets'));
+				pkg = loadPackageAtPath(getFixturePath('project-assets'), null, createStubbedFileSystem());
 
 				try {
 					nodeFileSystem.createDirAll(pkg.path.append('assets').path());
@@ -1129,9 +1128,22 @@ describe('Package', () => {
 
 	describe('generateArtifacts()', () => {
 		it('generates build artifacts for each config in a package', () => {
-			const pkg1 = loadPackageAtPath(getFixturePath('workspaces', 'packages/valid-array'));
-			const pkg2 = loadPackageAtPath(getFixturePath('workspaces', 'packages/valid-object'));
-			const pkg3 = loadPackageAtPath(getFixturePath('workspaces', 'packages/valid-object-private'));
+			const fs = createStubbedFileSystem();
+			const pkg1 = loadPackageAtPath(
+				getFixturePath('workspaces', 'packages/valid-array'),
+				null,
+				fs,
+			);
+			const pkg2 = loadPackageAtPath(
+				getFixturePath('workspaces', 'packages/valid-object'),
+				null,
+				fs,
+			);
+			const pkg3 = loadPackageAtPath(
+				getFixturePath('workspaces', 'packages/valid-object-private'),
+				null,
+				fs,
+			);
 
 			pkg1.generateArtifacts({});
 			pkg2.generateArtifacts({});
@@ -1151,9 +1163,22 @@ describe('Package', () => {
 		});
 
 		it('generates type artifacts for each config in a package', () => {
-			const pkg1 = loadPackageAtPath(getFixturePath('workspaces', 'packages/valid-array'));
-			const pkg2 = loadPackageAtPath(getFixturePath('workspaces', 'packages/valid-object'));
-			const pkg3 = loadPackageAtPath(getFixturePath('workspaces', 'packages/valid-object-private'));
+			const fs = createStubbedFileSystem();
+			const pkg1 = loadPackageAtPath(
+				getFixturePath('workspaces', 'packages/valid-array'),
+				null,
+				fs,
+			);
+			const pkg2 = loadPackageAtPath(
+				getFixturePath('workspaces', 'packages/valid-object'),
+				null,
+				fs,
+			);
+			const pkg3 = loadPackageAtPath(
+				getFixturePath('workspaces', 'packages/valid-object-private'),
+				null,
+				fs,
+			);
 
 			pkg1.generateArtifacts({ declaration: true });
 			pkg2.generateArtifacts({ declaration: true });
@@ -1174,7 +1199,11 @@ describe('Package', () => {
 		});
 
 		it('generates build artifacts for projects with multiple platforms', () => {
-			pkg = loadPackageAtPath(getFixturePath('project-multi-platform'));
+			pkg = loadPackageAtPath(
+				getFixturePath('project-multi-platform'),
+				null,
+				createStubbedFileSystem(),
+			);
 
 			pkg.generateArtifacts({});
 
@@ -1186,7 +1215,11 @@ describe('Package', () => {
 		});
 
 		it('filters formats using `filterFormats`', () => {
-			pkg = loadPackageAtPath(getFixturePath('project-multi-platform'));
+			pkg = loadPackageAtPath(
+				getFixturePath('project-multi-platform'),
+				null,
+				createStubbedFileSystem(),
+			);
 
 			pkg.generateArtifacts({
 				filterFormats: 'esm',
@@ -1197,7 +1230,11 @@ describe('Package', () => {
 		});
 
 		it('filters platforms using `filterPlatforms`', () => {
-			pkg = loadPackageAtPath(getFixturePath('project-multi-platform'));
+			pkg = loadPackageAtPath(
+				getFixturePath('project-multi-platform'),
+				null,
+				createStubbedFileSystem(),
+			);
 
 			pkg.generateArtifacts({
 				filterPlatforms: 'node',
@@ -1216,7 +1253,11 @@ describe('Package', () => {
 		};
 
 		beforeEach(() => {
-			pkg = loadPackageAtPath(getFixturePath('workspaces-feature-flags', 'packages/common'));
+			pkg = loadPackageAtPath(
+				getFixturePath('workspaces-feature-flags', 'packages/common'),
+				null,
+				createStubbedFileSystem(),
+			);
 			// @ts-expect-error Allow override
 			pkg.configs = [];
 		});
@@ -1595,24 +1636,20 @@ describe('Package', () => {
 	});
 
 	describe('syncJson()', () => {
-		it('writes to `package.json', () => {
+		it('writes to `package.json`', () => {
 			const spy = vi.spyOn(pkg.fs, 'writeJson').mockImplementation(() => {});
 
 			pkg.syncJson();
 
-			expect(spy).toHaveBeenCalledWith(
-				pkg.jsonPath.path(),
-				{
-					name: 'project',
-					packemon: {
-						inputs: {
-							index: 'src/index.ts',
-							test: 'src/sub/test.ts',
-						},
+			expect(spy).toHaveBeenCalledWith(pkg.jsonPath.path(), {
+				name: 'project',
+				packemon: {
+					inputs: {
+						index: 'src/index.ts',
+						test: 'src/sub/test.ts',
 					},
 				},
-				{ spaces: 2 },
-			);
+			});
 		});
 	});
 });
