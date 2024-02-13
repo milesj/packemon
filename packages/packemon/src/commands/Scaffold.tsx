@@ -3,9 +3,9 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import glob from 'fast-glob';
-import fs from 'fs-extra';
 import { Arg, Command, Config } from '@boost/cli';
 import { json } from '@boost/common';
+import { nodeFileSystem } from '../FileSystem';
 import { InfraType, ScaffoldParams, TemplateType } from '../types';
 
 @Config('scaffold', 'Scaffold projects and packages with ease')
@@ -80,7 +80,7 @@ export class ScaffoldCommand extends Command {
 	}
 
 	async scaffoldMonorepo(params: ScaffoldParams) {
-		await this.checkExistingInfrastructure('monorepo');
+		this.checkExistingInfrastructure('monorepo');
 		await this.copyFilesFromTemplate('base', this.destDir, params);
 		await this.copyFilesFromTemplate('monorepo', this.destDir, {
 			...params,
@@ -89,7 +89,7 @@ export class ScaffoldCommand extends Command {
 		await this.installDependencies('monorepo');
 
 		try {
-			await fs.mkdir(path.join(this.destDir, this.packagesFolder));
+			nodeFileSystem.createDirAll(path.join(this.destDir, this.packagesFolder));
 		} catch {
 			// Ignore
 		}
@@ -98,7 +98,7 @@ export class ScaffoldCommand extends Command {
 	async scaffoldMonorepoPackage(params: ScaffoldParams) {
 		const packagesDir = path.join(this.destDir, this.packagesFolder);
 
-		fs.mkdirSync(packagesDir, { recursive: true });
+		nodeFileSystem.createDirAll(packagesDir);
 
 		const { packageName } = params;
 		const folderName = packageName.startsWith('@') ? packageName.split('/')[1] : packageName;
@@ -111,11 +111,11 @@ export class ScaffoldCommand extends Command {
 			packagePath,
 		});
 
-		await this.addProjectReference(packagePath);
+		this.addProjectReference(packagePath);
 	}
 
 	async scaffoldPolyrepo(params: ScaffoldParams) {
-		await this.checkExistingInfrastructure('polyrepo');
+		this.checkExistingInfrastructure('polyrepo');
 		await this.copyFilesFromTemplate('base', this.destDir, params);
 		await this.copyFilesFromTemplate('polyrepo', this.destDir, params);
 		await this.installDependencies('polyrepo');
@@ -127,9 +127,9 @@ export class ScaffoldCommand extends Command {
 		await this.copyFilesFromTemplate('package', this.destDir, params);
 	}
 
-	async addProjectReference(packagePath: string) {
+	addProjectReference(packagePath: string) {
 		const tsconfigPath = path.join(this.destDir, 'tsconfig.json');
-		const tsconfig = await this.loadJsonConfig<{ references?: { path: string }[] }>(tsconfigPath);
+		const tsconfig = nodeFileSystem.readJson<{ references?: { path: string }[] }>(tsconfigPath);
 
 		if (!Array.isArray(tsconfig.references)) {
 			tsconfig.references = [];
@@ -141,7 +141,7 @@ export class ScaffoldCommand extends Command {
 
 		tsconfig.references.sort((a, b) => a.path.localeCompare(b.path));
 
-		await fs.writeJson(tsconfigPath, tsconfig, { spaces: 2 });
+		nodeFileSystem.writeJson(tsconfigPath, tsconfig);
 	}
 
 	async installDependencies(type: InfraType) {
@@ -185,14 +185,14 @@ export class ScaffoldCommand extends Command {
 		});
 	}
 
-	async checkExistingInfrastructure(type: InfraType) {
+	checkExistingInfrastructure(type: InfraType) {
 		const packagePath = path.join(this.destDir, 'package.json');
 
-		if (!fs.existsSync(packagePath)) {
+		if (!nodeFileSystem.exists(packagePath)) {
 			return;
 		}
 
-		const pkg = await this.loadJsonConfig<{ infra: string }>(packagePath);
+		const pkg = nodeFileSystem.readJson<{ infra: string }>(packagePath);
 
 		if (pkg.infra === undefined) {
 			throw new Error(
@@ -205,37 +205,37 @@ export class ScaffoldCommand extends Command {
 		}
 	}
 
-	async copyFile(fromTemplate: string, toDest: string, params: Record<string, number | string>) {
+	copyFile(fromTemplate: string, toDest: string, params: Record<string, number | string>) {
 		const isPackage = fromTemplate.endsWith('package.json') && toDest.endsWith('package.json');
 
 		// Dont overwrite existing files (except package.json)
-		if (fs.existsSync(toDest) && !this.force && !isPackage) {
+		if (nodeFileSystem.exists(toDest) && !this.force && !isPackage) {
 			return;
 		}
 
 		const toDir = path.dirname(toDest);
 
-		if (!fs.existsSync(toDir)) {
-			await fs.ensureDir(toDir);
+		if (!nodeFileSystem.exists(toDir)) {
+			nodeFileSystem.createDirAll(toDir);
 		}
 
 		// Interpolate params into string content
-		let content = await fs.readFile(fromTemplate, 'utf8');
+		let content = nodeFileSystem.readFile(fromTemplate);
 
 		Object.entries(params).forEach(([key, value]) => {
 			content = content.replace(new RegExp(`<${key}>`, 'g'), String(value));
 		});
 
 		// Instead of overwriting package.json, we want to merge them
-		if (fs.existsSync(toDest) && isPackage) {
-			const prevContent = await this.loadJsonConfig<object>(toDest);
+		if (nodeFileSystem.exists(toDest) && isPackage) {
+			const prevContent = nodeFileSystem.readJson<object>(toDest);
 			const nextContent = json.parse(content);
 
-			await fs.writeJson(toDest, { ...prevContent, ...nextContent }, { spaces: 2 });
+			nodeFileSystem.writeJson(toDest, { ...prevContent, ...nextContent });
 
 			// Otherwise write content as a string
 		} else {
-			await fs.writeFile(toDest, content, 'utf8');
+			nodeFileSystem.writeFile(toDest, content);
 		}
 	}
 
@@ -252,14 +252,10 @@ export class ScaffoldCommand extends Command {
 		});
 
 		return Promise.all(
-			files.map((file) =>
-				this.copyFile(path.join(templateDir, file), path.join(destDir, file), { ...params }),
+			files.map(
+				(file) =>
+					void this.copyFile(path.join(templateDir, file), path.join(destDir, file), { ...params }),
 			),
 		);
-	}
-
-	async loadJsonConfig<T>(filePath: string) {
-		// Supports comments
-		return json.parse<T>(await fs.readFile(filePath, 'utf8'));
 	}
 }

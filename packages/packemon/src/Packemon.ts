@@ -1,8 +1,8 @@
-import fs from 'fs-extra';
 import { json, Path, PortablePath, Project } from '@boost/common';
 import { optimal } from '@boost/common/optimal';
 import { createDebugger, Debugger } from '@boost/debug';
 import { Config } from './Config';
+import { FileSystem, nodeFileSystem } from './FileSystem';
 import { matchesPattern } from './helpers/matchesPattern';
 import { Package } from './Package';
 import { PackageValidator } from './PackageValidator';
@@ -13,6 +13,8 @@ export class Packemon {
 	readonly config: Config = new Config('packemon');
 
 	readonly debug: Debugger;
+
+	readonly fs: FileSystem = nodeFileSystem;
 
 	readonly workingDir: Path;
 
@@ -68,7 +70,7 @@ export class Packemon {
 			throw new Error(`No \`package.json\` found in ${this.workingDir}.`);
 		}
 
-		const pkgContents = json.parse<PackemonPackage>(await fs.readFile(pkgPath.path(), 'utf8'));
+		const pkgContents = json.parse<PackemonPackage>(await this.fs.readFile(pkgPath.path()));
 
 		if (skipPrivate && pkgContents.private) {
 			this.debug('Package is private and `skipPrivate` has been provided');
@@ -82,7 +84,7 @@ export class Packemon {
 			return null;
 		}
 
-		return new Package(this.workingDir, pkgContents, this.findWorkspaceRoot());
+		return new Package(this.workingDir, pkgContents, await this.findWorkspaceRoot());
 	}
 
 	/**
@@ -92,7 +94,7 @@ export class Packemon {
 	async findPackages({ filter, skipPrivate }: FilterOptions = {}): Promise<Package[]> {
 		this.debug('Finding packages in project');
 
-		const workspaceRoot = this.findWorkspaceRoot();
+		const workspaceRoot = await this.findWorkspaceRoot();
 		const project = new Project(workspaceRoot);
 		const workspaces = project.getWorkspaceGlobs({ relative: true });
 
@@ -114,7 +116,7 @@ export class Packemon {
 					return;
 				}
 
-				const contents = json.parse<PackemonPackage>(await fs.readFile(pkgPath.path(), 'utf8'));
+				const contents = json.parse<PackemonPackage>(await this.fs.readFile(pkgPath.path()));
 
 				if (contents.packemon) {
 					this.debug(' - %s (%s)', contents.name, pkgPath.path());
@@ -189,7 +191,7 @@ export class Packemon {
 		const pkgPath = dir.append('package.json');
 
 		if (pkgPath.exists()) {
-			const pkg = json.parse<PackemonPackage>(fs.readFileSync(pkgPath.path(), 'utf8'));
+			const pkg = this.fs.readJson<PackemonPackage>(pkgPath.path());
 
 			if (pkg.workspaces) {
 				return dir;

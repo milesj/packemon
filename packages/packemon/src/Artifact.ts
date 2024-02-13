@@ -1,5 +1,4 @@
 import { execa } from 'execa';
-import fs from 'fs-extra';
 import { rollup } from 'rollup';
 import { applyStyle } from '@boost/cli';
 import { isObject, Path, toArray, VirtualPath } from '@boost/common';
@@ -195,7 +194,7 @@ export class Artifact {
 			if (hasCjs) {
 				this.debug('CJS types compatibility enabled, renaming `.d.ts` to `.d.cts`');
 
-				await convertCjsTypes(this.package.path.append('cjs'));
+				await convertCjsTypes(this.package.path.append('cjs'), this.package.fs);
 			}
 		}
 	}
@@ -206,12 +205,13 @@ export class Artifact {
 		const dirs = ['assets', 'dts', ...this.builds.map((build) => build.format)];
 
 		await Promise.all(
+			// eslint-disable-next-line @typescript-eslint/require-await
 			dirs.map(async (dir) => {
 				const dirPath = this.package.path.append(dir).path();
 
 				this.debug('  - %s', dirPath);
 
-				await fs.remove(dirPath);
+				this.package.fs.remove(dirPath);
 			}),
 		);
 	}

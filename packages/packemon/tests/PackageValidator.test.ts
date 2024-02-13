@@ -1,5 +1,5 @@
+import fs from 'node:fs';
 import { execa } from 'execa';
-import fs from 'fs-extra';
 import { beforeEach, describe, expect, it, type MockInstance, vi } from 'vitest';
 import { Path } from '@boost/common';
 import { Package } from '../src/Package';
@@ -18,7 +18,7 @@ function createValidator(fixture: string) {
 			description: 'Test',
 			keywords: ['test'],
 			packemon: {},
-			...fs.readJsonSync(root.append('package.json').path()),
+			...fsx.readJsonSync(root.append('package.json').path()),
 		}),
 	);
 }

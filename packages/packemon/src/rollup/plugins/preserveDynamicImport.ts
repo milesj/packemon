@@ -1,9 +1,9 @@
 import { OutputPlugin } from 'rollup';
 import { shouldKeepDynamicImport } from '../../helpers/shouldKeepDynamicImport';
-import { Platform, Support } from '../../types';
+import { Format, Platform } from '../../types';
 
-export function preserveDynamicImport(platform: Platform, support: Support): OutputPlugin {
-	const preserve = shouldKeepDynamicImport(platform, support);
+export function preserveDynamicImport(platform: Platform, format: Format): OutputPlugin {
+	const preserve = shouldKeepDynamicImport(platform, format);
 
 	return {
 		name: 'packemon-preserve-dynamic-import',

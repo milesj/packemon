@@ -1,5 +1,5 @@
+import fs from 'node:fs';
 import { execa } from 'execa';
-import fsx from 'fs-extra';
 import { rollup } from 'rollup';
 import { beforeEach, describe, expect, it, type MockInstance, vi } from 'vitest';
 import { applyStyle } from '@boost/cli';
@@ -176,7 +176,7 @@ describe('Artifact', () => {
 
 	describe('clean()', () => {
 		it('removes the dir for each format', async () => {
-			const spy = vi.spyOn(fsx, 'remove');
+			const spy = vi.spyOn(fs, 'unlink');
 
 			await artifact.clean();
 

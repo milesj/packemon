@@ -1,4 +1,4 @@
-import fsx from 'fs-extra';
+import fs from 'node:fs';
 import { afterEach, beforeEach, describe, expect, it, type MockInstance, vi } from 'vitest';
 import { Path } from '@boost/common';
 import { mockNormalizedFilePath } from '@boost/common/test';

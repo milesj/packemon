@@ -17,6 +17,7 @@ export * from './commands/Scaffold';
 export * from './commands/Validate';
 export * from './commands/Watch';
 export * from './constants';
+export type { FileSystem } from './FileSystem';
 export * from './Package';
 export * from './PackageValidator';
 export * from './Packemon';

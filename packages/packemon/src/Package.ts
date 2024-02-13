@@ -3,7 +3,6 @@
 /* eslint-disable @typescript-eslint/member-ordering */
 
 import glob from 'fast-glob';
-import fs from 'fs-extra';
 import semver from 'semver';
 import { isObject, Memoize, PackageStructure, Path, toArray } from '@boost/common';
 import { optimal } from '@boost/common/optimal';
@@ -19,6 +18,7 @@ import {
 	NODE_SUPPORTED_VERSIONS,
 	SUPPORT_PRIORITY,
 } from './constants';
+import { FileSystem, nodeFileSystem } from './FileSystem';
 import { loadTsconfigJson } from './helpers/loadTsconfigJson';
 import { matchesPattern } from './helpers/matchesPattern';
 import { mergeExports } from './helpers/mergeExports';
@@ -42,6 +42,8 @@ export class Package {
 	readonly configs: PackageConfig[] = [];
 
 	readonly debug!: Debugger;
+
+	readonly fs: FileSystem = nodeFileSystem;
 
 	readonly json: PackemonPackage;
 
@@ -119,7 +121,7 @@ export class Package {
 		}
 
 		// Sync `package.json` in case it was modified
-		await this.syncJson();
+		this.syncJson();
 	}
 
 	async clean(): Promise<void> {
@@ -269,7 +271,7 @@ export class Package {
 			this.path.append('tsconfig.json').exists() ||
 			this.workspaceRoot.append('tsconfig.json').exists()
 		) {
-			const tsConfig = loadTsconfigJson(this.path.append('tsconfig.json'));
+			const tsConfig = loadTsconfigJson(this.path.append('tsconfig.json'), this.fs);
 
 			flags.typescript = true;
 			flags.typescriptComposite = Boolean(
@@ -383,8 +385,8 @@ export class Package {
 		});
 	}
 
-	async syncJson() {
-		await fs.writeJson(this.jsonPath.path(), this.json, { spaces: 2 });
+	syncJson() {
+		this.fs.writeJson(this.jsonPath.path(), this.json);
 	}
 
 	protected addEngines() {

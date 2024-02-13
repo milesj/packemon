@@ -1,6 +1,5 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import fsx from 'fs-extra';
 import { afterEach, beforeEach, describe, expect, it, type MockInstance, vi } from 'vitest';
 import { Path, PortablePath } from '@boost/common';
 import {

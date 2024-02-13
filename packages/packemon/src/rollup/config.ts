@@ -120,7 +120,7 @@ export function getRollupOutputConfig(
 		},
 		// Output specific plugins
 		plugins: [
-			preserveDynamicImport(platform, support),
+			preserveDynamicImport(platform, format),
 			isSwc
 				? swcOutput({
 						...getSwcOutputConfig(platform, support, format, features, packemonConfig),
@@ -203,6 +203,7 @@ export async function getRollupConfig(
 			// Copy assets and update import references
 			copyAndRefAssets({
 				dir: artifact.package.path.append('assets').path(),
+				fs: artifact.package.fs,
 			}),
 			// Declare Babel/swc here so we can parse TypeScript/Flow
 			isSwc

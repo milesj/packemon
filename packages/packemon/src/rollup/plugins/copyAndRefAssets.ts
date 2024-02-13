@@ -1,11 +1,11 @@
 import { createHash } from 'node:crypto';
 import path from 'node:path';
-import fs from 'fs-extra';
 import MagicString from 'magic-string';
 import { Plugin } from 'rollup';
 import { VirtualPath } from '@boost/common';
 import type { TSESTree } from '@typescript-eslint/types';
 import { ASSETS } from '../../constants';
+import { FileSystem } from '../../FileSystem';
 
 function isAsset(id: string): boolean {
 	return ASSETS.some((ext) => id.endsWith(ext));
@@ -26,10 +26,11 @@ function isRequireStatement(node: TSESTree.Expression): node is TSESTree.CallExp
 
 export interface CopyAssetsOptions {
 	dir: string;
+	fs: FileSystem;
 }
 
 export function copyAndRefAssets(
-	{ dir }: CopyAssetsOptions,
+	{ dir, fs }: CopyAssetsOptions,
 	assetsToCopyInit: Record<string, VirtualPath> = {},
 ): Plugin {
 	const assetsToCopy = assetsToCopyInit;
@@ -76,8 +77,8 @@ export function copyAndRefAssets(
 		name: 'packemon-copy-and-ref-assets',
 
 		// Delete old assets to remove any possible stale assets
-		async buildStart() {
-			await fs.remove(dir);
+		buildStart() {
+			fs.remove(dir);
 		},
 
 		// Find assets and mark as external
@@ -87,7 +88,7 @@ export function copyAndRefAssets(
 
 				// Check that the file actually exists, because they may be
 				// using path aliases, or bundler specific syntax
-				if (source.startsWith('.') && fs.existsSync(id)) {
+				if (source.startsWith('.') && fs.exists(id)) {
 					return { id, external: true };
 				}
 
@@ -160,7 +161,7 @@ export function copyAndRefAssets(
 					sourcePath &&
 					isAsset(sourcePath) &&
 					sourcePath.startsWith('.') &&
-					fs.existsSync(path.join(parentDir, sourcePath))
+					fs.exists(path.join(parentDir, sourcePath))
 				) {
 					const newId = determineNewAsset(sourcePath, parentId);
 					const importPath = options.preserveModules
@@ -189,7 +190,7 @@ export function copyAndRefAssets(
 			// Only create the folder if we have assets to copy,
 			// otherwise it throws off `files` and other detection!
 			if (Object.keys(assetsToCopy).length > 0) {
-				await fs.mkdir(dir, { recursive: true });
+				fs.createDirAll(dir);
 			}
 
 			// We don't use `assetFileNames` as we want a single assets folder
@@ -198,7 +199,7 @@ export function copyAndRefAssets(
 			await Promise.all(
 				Object.entries(assetsToCopy).map(async ([oldId, newId]) => {
 					if (!newId.exists()) {
-						await fs.copyFile(oldId, newId.path());
+						fs.copyFile(oldId, newId.path());
 					}
 				}),
 			);

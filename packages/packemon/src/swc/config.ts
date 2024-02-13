@@ -175,7 +175,7 @@ export function getSwcOutputConfig(
 
 	const module: ModuleConfig = {
 		type: getModuleConfigType(format),
-		ignoreDynamic: shouldKeepDynamicImport(platform, support),
+		ignoreDynamic: shouldKeepDynamicImport(platform, format),
 	};
 
 	// This is to trick the Babel plugin to not transform the const
