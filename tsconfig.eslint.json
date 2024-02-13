@@ -3,12 +3,13 @@
   "include": [
     "packages/**/*",
     "website/**/*",
-    "**/.eslintrc.js"
+    "**/.eslintrc.cjs"
   ],
   "exclude": [
     "**/cjs/**/*",
     "**/dts/**/*",
     "**/lib/**/*",
+    "**/mjs/**/*",
     "**/node_modules/**/*"
   ]
 }

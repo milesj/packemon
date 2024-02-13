@@ -1,4 +1,4 @@
-import execa from 'execa';
+import { execa } from 'execa';
 import fs from 'fs-extra';
 import { Path } from '@boost/common';
 import { Package } from '../src/Package';

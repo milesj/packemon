@@ -80,7 +80,6 @@ describe('getBabelInputConfig()', () => {
 });
 
 function renderPresetEnv(platform: Platform, format: Format, support: Support) {
-	// eslint-disable-next-line jest/require-top-level-describe
 	test(`handles preset-env: ${platform} + ${format} + ${support}`, () => {
 		expect(getBabelOutputConfig(platform, support, format, {})?.presets?.[0]).toMatchSnapshot();
 	});

@@ -1,4 +1,4 @@
-import execa from 'execa';
+import { execa } from 'execa';
 import fs from 'fs-extra';
 import { rollup } from 'rollup';
 import { applyStyle } from '@boost/cli';
