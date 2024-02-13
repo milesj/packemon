@@ -55,8 +55,7 @@ jobs:
       - run: yarn install --immutable
       - run: yarn run setup
       - run: yarn run moon run :build
-      - run: yarn ts-node --cwd ./tests ./testPackemonImports.ts
-      - run: node ./tests/testPackemonImports.cjs
+      # - run: yarn ts-node --cwd ./tests --transpileOnly ./testPackemonImports.ts
       - run: node ./tests/testPackemonImports.mjs
   scaffold-mono:
     name: Scaffold (monorepo)

@@ -16,7 +16,7 @@ async function build(cwd) {
 await build('packages/babel-plugin-cjs-esm-interop');
 await build('packages/babel-plugin-conditional-invariant');
 await build('packages/babel-plugin-env-constants');
-await build('packages/packemon', true);
+await build('packages/packemon');
 
 // We need to link the new binaries to node_modules/.bin
 await execa('yarn', ['install']);
