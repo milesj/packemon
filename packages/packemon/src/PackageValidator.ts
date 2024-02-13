@@ -1,6 +1,6 @@
 import http from 'node:http';
 import https from 'node:https';
-import execa from 'execa';
+import { execa } from 'execa';
 import semver from 'semver';
 import spdxLicenses from 'spdx-license-list';
 import {

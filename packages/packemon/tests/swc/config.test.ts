@@ -67,7 +67,6 @@ describe('getSwcInputConfig()', () => {
 });
 
 function renderPresetEnv(platform: Platform, format: Format, support: Support) {
-	// eslint-disable-next-line jest/require-top-level-describe
 	test(`handles preset-env: ${platform} + ${format} + ${support}`, () => {
 		expect(getSwcOutputConfig(platform, support, format, {})?.env).toMatchSnapshot();
 	});

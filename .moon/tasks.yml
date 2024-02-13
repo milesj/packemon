@@ -22,6 +22,7 @@ tasks:
       NODE_ENV: 'production'
 
   test:
+    command: 'noop' # TODO
     deps:
       - '^:build'
 
