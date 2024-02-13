@@ -1,4 +1,5 @@
 import fsx from 'fs-extra';
+import { afterEach, beforeEach, describe, expect, it, type MockInstance, vi } from 'vitest';
 import { Path } from '@boost/common';
 import { mockNormalizedFilePath } from '@boost/common/test';
 import { Artifact } from '../src/Artifact';
@@ -6,7 +7,7 @@ import { Package } from '../src/Package';
 import { Build, ConfigFile, Platform, Support } from '../src/types';
 import { getFixturePath, loadPackageAtPath } from './helpers';
 
-jest.mock('rollup', () => ({ rollup: jest.fn() }));
+vi.mock('rollup', () => ({ rollup: vi.fn() }));
 
 describe('Package', () => {
 	const fixturePath = getFixturePath('project');
@@ -63,11 +64,11 @@ describe('Package', () => {
 	});
 
 	describe('build()', () => {
-		let writeSpy: jest.SpyInstance;
+		let writeSpy: MockInstance;
 		let config: ConfigFile;
 
 		beforeEach(() => {
-			writeSpy = jest.spyOn(fsx, 'writeJson').mockImplementation();
+			writeSpy = vi.spyOn(fsx, 'writeJson').mockImplementation(() => Promise.resolve());
 			config = {};
 		});
 
@@ -77,9 +78,9 @@ describe('Package', () => {
 
 		it('calls `build` on each artifact', async () => {
 			const [a, b, c] = createArtifacts();
-			const aSpy = jest.spyOn(a, 'build').mockImplementation();
-			const bSpy = jest.spyOn(b, 'build').mockImplementation();
-			const cSpy = jest.spyOn(c, 'build').mockImplementation();
+			const aSpy = vi.spyOn(a, 'build').mockImplementation(() => Promise.resolve());
+			const bSpy = vi.spyOn(b, 'build').mockImplementation(() => Promise.resolve());
+			const cSpy = vi.spyOn(c, 'build').mockImplementation(() => Promise.resolve());
 
 			pkg.artifacts.push(a, b, c);
 
@@ -108,7 +109,7 @@ describe('Package', () => {
 		it('sets failed state and result time on error', async () => {
 			const artifact = new Artifact(pkg, []);
 
-			jest.spyOn(artifact, 'build').mockImplementation(() => {
+			vi.spyOn(artifact, 'build').mockImplementation(() => {
 				throw new Error('Whoops');
 			});
 
@@ -127,7 +128,7 @@ describe('Package', () => {
 
 		it('syncs `package.json` when done building', async () => {
 			const artifact = new Artifact(pkg, []);
-			const spy = jest.spyOn(pkg, 'syncJson');
+			const spy = vi.spyOn(pkg, 'syncJson');
 
 			pkg.artifacts.push(artifact);
 
@@ -995,9 +996,9 @@ describe('Package', () => {
 	describe('cleanup()', () => {
 		it('calls `cleanup` on each artifact', async () => {
 			const [a, b, c] = createArtifacts();
-			const aSpy = jest.spyOn(a, 'clean');
-			const bSpy = jest.spyOn(b, 'clean');
-			const cSpy = jest.spyOn(c, 'clean');
+			const aSpy = vi.spyOn(a, 'clean');
+			const bSpy = vi.spyOn(b, 'clean');
+			const cSpy = vi.spyOn(c, 'clean');
 
 			pkg.artifacts.push(a, b, c);
 
@@ -1600,7 +1601,7 @@ describe('Package', () => {
 
 	describe('syncJson()', () => {
 		it('writes to `package.json', async () => {
-			const spy = jest.spyOn(fsx, 'writeJson').mockImplementation();
+			const spy = vi.spyOn(fsx, 'writeJson').mockImplementation(() => Promise.resolve());
 
 			await pkg.syncJson();
 

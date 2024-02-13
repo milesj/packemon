@@ -1,11 +1,12 @@
 import { execa } from 'execa';
 import fs from 'fs-extra';
+import { beforeEach, describe, expect, it, type MockInstance, vi } from 'vitest';
 import { Path } from '@boost/common';
 import { Package } from '../src/Package';
 import { PackageValidator } from '../src/PackageValidator';
 import { getFixturePath, mockSpy } from './helpers';
 
-jest.mock('execa');
+vi.mock('execa');
 
 function createValidator(fixture: string) {
 	const root = new Path(getFixturePath(fixture));
@@ -24,11 +25,11 @@ function createValidator(fixture: string) {
 
 describe('PackageValidator', () => {
 	let validator: PackageValidator;
-	let urlSpy: jest.SpyInstance;
+	let urlSpy: MockInstance;
 
 	function createUrlSpy() {
 		// @ts-expect-error Private
-		urlSpy = jest.spyOn(validator, 'doesUrlExist').mockImplementation(() => true);
+		urlSpy = vi.spyOn(validator, 'doesUrlExist').mockImplementation(() => true);
 	}
 
 	describe('hasErrors()', () => {
@@ -198,8 +199,8 @@ describe('PackageValidator', () => {
 		describe('lerna', () => {
 			beforeEach(() => {
 				// @ts-expect-error Allow override
-				jest.spyOn(validator, 'isLernaManaged').mockImplementation(() => true);
-				jest
+				vi.spyOn(validator, 'isLernaManaged').mockImplementation(() => true);
+				vi
 					// @ts-expect-error Allow override
 					.spyOn(validator, 'getWorkspacePackageNames')
 					.mockImplementation(() => ['foo', 'bar', 'baz']);

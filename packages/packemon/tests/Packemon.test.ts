@@ -1,12 +1,13 @@
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { Path } from '@boost/common';
 import { Package } from '../src/Package';
 import { Packemon } from '../src/Packemon';
 import { BuildOptions } from '../src/types';
 import { getFixturePath, loadPackageAtPath } from './helpers';
 
-jest.mock('../src/PackageValidator', () => ({
+vi.mock('../src/PackageValidator', () => ({
 	PackageValidator: class MockValidator {
-		validate = jest.fn(() => this);
+		validate = vi.fn(() => this);
 	},
 }));
 
@@ -46,7 +47,7 @@ describe('Packemon', () => {
 		};
 
 		it('runs build on package', async () => {
-			const spy = jest.spyOn(pkg, 'build').mockImplementation();
+			const spy = vi.spyOn(pkg, 'build').mockImplementation(() => Promise.resolve());
 
 			await packemon.build(pkg, { addEngines: true, concurrency: 3 });
 
@@ -54,7 +55,7 @@ describe('Packemon', () => {
 		});
 
 		it('throws if build fails', async () => {
-			jest.spyOn(pkg, 'build').mockImplementation(() => {
+			vi.spyOn(pkg, 'build').mockImplementation(() => {
 				throw new Error('Oops');
 			});
 
@@ -65,7 +66,7 @@ describe('Packemon', () => {
 			it('inherits for a polyrepo', async () => {
 				pkg = loadPackageAtPath(getFixturePath('config-files-polyrepo'));
 
-				const spy = jest.spyOn(pkg, 'build').mockImplementation();
+				const spy = vi.spyOn(pkg, 'build').mockImplementation(() => Promise.resolve());
 
 				await packemon.build(pkg, { loadConfigs: true });
 
@@ -86,7 +87,7 @@ describe('Packemon', () => {
 			it('inherits for a monorepo', async () => {
 				pkg = loadPackageAtPath(getFixturePath('config-files-monorepo', 'packages/baz'));
 
-				const spy = jest.spyOn(pkg, 'build').mockImplementation();
+				const spy = vi.spyOn(pkg, 'build').mockImplementation(() => Promise.resolve());
 
 				await packemon.build(pkg, { loadConfigs: true });
 
@@ -107,7 +108,7 @@ describe('Packemon', () => {
 			it('doesnt inherit if `loadConfigs` is false', async () => {
 				pkg = loadPackageAtPath(getFixturePath('config-files-polyrepo'));
 
-				const spy = jest.spyOn(pkg, 'build').mockImplementation();
+				const spy = vi.spyOn(pkg, 'build').mockImplementation(() => Promise.resolve());
 
 				await packemon.build(pkg, { loadConfigs: false });
 
@@ -122,7 +123,7 @@ describe('Packemon', () => {
 		});
 
 		it('runs clean on package', async () => {
-			const spy = jest.spyOn(pkg, 'clean').mockImplementation();
+			const spy = vi.spyOn(pkg, 'clean').mockImplementation(() => Promise.resolve());
 
 			await packemon.clean(pkg);
 

@@ -1,3 +1,4 @@
+import { describe } from 'vitest';
 import { testExampleOutput } from '../helpers';
 
 // Automatic only

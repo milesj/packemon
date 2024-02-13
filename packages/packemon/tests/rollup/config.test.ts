@@ -1,4 +1,5 @@
 /* eslint-disable no-param-reassign */
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { Path } from '@boost/common';
 import { Artifact } from '../../src/Artifact';
 import { Package } from '../../src/Package';
@@ -9,18 +10,18 @@ import {
 } from '../../src/rollup/config';
 import { getFixturePath } from '../helpers';
 
-jest.mock('@rollup/plugin-commonjs', () => () => 'commonjs()');
-jest.mock('@rollup/plugin-json', () => () => 'json()');
-jest.mock('@rollup/plugin-node-resolve', () => () => 'resolve()');
-jest.mock('@rollup/plugin-babel', () => ({
+vi.mock('@rollup/plugin-commonjs', () => () => 'commonjs()');
+vi.mock('@rollup/plugin-json', () => () => 'json()');
+vi.mock('@rollup/plugin-node-resolve', () => () => 'resolve()');
+vi.mock('@rollup/plugin-babel', () => ({
 	getBabelInputPlugin: (options: any) => `babelInput(${options.filename})`,
 	getBabelOutputPlugin: (options: any) =>
 		`babelOutput(${options.filename}, ${options.moduleId || '*'})`,
 }));
-jest.mock('rollup-plugin-node-externals', () => ({
+vi.mock('rollup-plugin-node-externals', () => ({
 	externals: (options: any) => `externals(${options.packagePath})`,
 }));
-jest.mock('rollup-plugin-polyfill-node', () => () => `polyfillNode()`);
+vi.mock('rollup-plugin-polyfill-node', () => () => `polyfillNode()`);
 
 const fixturePath = new Path(getFixturePath('project-rollup'));
 const srcInputFile = fixturePath.append('src/index.ts').path();
@@ -424,7 +425,7 @@ describe('getRollupOutputConfig()', () => {
 	});
 
 	it('passes build params to config', () => {
-		const spy = jest.fn();
+		const spy = vi.fn();
 
 		getRollupOutputConfig(artifact, {}, 'lib', {
 			rollupOutput: spy,

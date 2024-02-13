@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import fsx from 'fs-extra';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { Path, PortablePath } from '@boost/common';
 import {
 	Artifact,
@@ -67,8 +68,8 @@ FORMATS.forEach((format) => {
 	});
 });
 
-export function mockSpy(instance: unknown): jest.SpyInstance {
-	return instance as jest.SpyInstance;
+export function mockSpy(instance: unknown): vi.SpyInstance {
+	return instance as vi.SpyInstance;
 }
 
 export function loadPackageAtPath(pkgPath: PortablePath, workspaceRoot?: PortablePath): Package {
@@ -88,7 +89,7 @@ function formatSnapshotFilePath(file: string, root: string): string {
 
 export function createSnapshotSpies(root: PortablePath, captureJson: boolean = false) {
 	let snapshots: [string, unknown][] = [];
-	const spies: jest.SpyInstance[] = [];
+	const spies: vi.SpyInstance[] = [];
 
 	beforeEach(() => {
 		const handler = (file: unknown, content: unknown, cb?: unknown) => {
@@ -121,15 +122,15 @@ export function createSnapshotSpies(root: PortablePath, captureJson: boolean = f
 		};
 
 		spies.push(
-			jest.spyOn(console, 'warn').mockImplementation(),
+			vi.spyOn(console, 'warn').mockImplementation(),
 			// Rollup
-			jest.spyOn(fs.promises, 'writeFile').mockImplementation(asyncHandler),
+			vi.spyOn(fs.promises, 'writeFile').mockImplementation(asyncHandler),
 			// Packemon
 			// @ts-expect-error Bad types
-			jest.spyOn(fsx, 'writeJson').mockImplementation(handler),
+			vi.spyOn(fsx, 'writeJson').mockImplementation(handler),
 			// Assets
-			jest.spyOn(fsx, 'copyFile').mockImplementation(handler),
-			jest.spyOn(fsx, 'mkdir'),
+			vi.spyOn(fsx, 'copyFile').mockImplementation(handler),
+			vi.spyOn(fsx, 'mkdir'),
 		);
 	});
 

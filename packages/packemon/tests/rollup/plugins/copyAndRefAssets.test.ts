@@ -1,5 +1,6 @@
 import path from 'node:path';
 import { InputOption, rollup } from 'rollup';
+import { describe, expect, it, vi } from 'vitest';
 import { VirtualPath } from '@boost/common';
 import commonjs from '@rollup/plugin-commonjs';
 import { copyAndRefAssets } from '../../../src/rollup/plugins/copyAndRefAssets';
@@ -26,13 +27,14 @@ async function transform(
 	return output[0].code || '';
 }
 
-jest.mock('fs', () => {
-	const originalFs = jest.requireActual('fs');
+vi.mock('fs', async (importOriginal) => {
+	const originalFs = await importOriginal<typeof import('fs')>();
+
 	return {
 		__esModule: true,
 		...originalFs,
-		mkdir: jest.fn(),
-		readFileSync: jest.fn((p, options) => {
+		mkdir: vi.fn(),
+		readFileSync: vi.fn((p, options) => {
 			if (typeof p === 'string' && p.endsWith('.svg')) {
 				return 'Mock SVG Content';
 			}

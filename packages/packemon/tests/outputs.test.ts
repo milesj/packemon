@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import { describe, expect, it } from 'vitest';
 import { Path } from '@boost/common';
 import { Artifact } from '../src';
 import {
@@ -173,7 +174,8 @@ import {
 });
 
 describe('Special formats', () => {
-	jest.setTimeout(30_000);
+	// TODO
+	// jest.setTimeout(30_000);
 
 	describe('cjs', () => {
 		const root = new Path(getFixturePath('project-cjs-compat'));

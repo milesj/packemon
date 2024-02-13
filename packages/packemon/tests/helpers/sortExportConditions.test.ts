@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import { sortExportConditions } from '../../src/helpers/sortExportConditions';
 
 describe('sortExportConditions()', () => {
