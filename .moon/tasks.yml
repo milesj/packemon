@@ -22,7 +22,9 @@ tasks:
       NODE_ENV: 'production'
 
   test:
-    command: 'noop' # TODO
+    command: 'vitest run --config ../../vitest.config.ts .'
+    inputs:
+      - '/vitest.config.ts'
     deps:
       - '^:build'
 
