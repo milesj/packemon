@@ -1,11 +1,11 @@
-import fs from 'node:fs';
-import { afterEach, beforeEach, describe, expect, it, type MockInstance, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { Path } from '@boost/common';
 import { mockNormalizedFilePath } from '@boost/common/test';
 import { Artifact } from '../src/Artifact';
+import { nodeFileSystem } from '../src/FileSystem';
 import { Package } from '../src/Package';
 import { Build, ConfigFile, Platform, Support } from '../src/types';
-import { getFixturePath, loadPackageAtPath } from './helpers';
+import { createStubbedFileSystem, getFixturePath, loadPackageAtPath } from './helpers';
 
 vi.mock('rollup', () => ({ rollup: vi.fn() }));
 
@@ -40,6 +40,7 @@ describe('Package', () => {
 
 	beforeEach(() => {
 		pkg = loadPackageAtPath(fixturePath);
+		pkg.fs = createStubbedFileSystem();
 	});
 
 	it('sets properties on instantiation', () => {
@@ -64,16 +65,10 @@ describe('Package', () => {
 	});
 
 	describe('build()', () => {
-		let writeSpy: MockInstance;
 		let config: ConfigFile;
 
 		beforeEach(() => {
-			writeSpy = vi.spyOn(fsx, 'writeJson').mockImplementation(() => Promise.resolve());
 			config = {};
-		});
-
-		afterEach(() => {
-			writeSpy.mockRestore();
 		});
 
 		it('calls `build` on each artifact', async () => {
@@ -769,7 +764,7 @@ describe('Package', () => {
 				pkg = loadPackageAtPath(getFixturePath('project-assets'));
 
 				try {
-					fsx.mkdirSync(pkg.path.append('assets').path());
+					nodeFileSystem.createDirAll(pkg.path.append('assets').path());
 				} catch {
 					// Ignore
 				}
@@ -1600,10 +1595,10 @@ describe('Package', () => {
 	});
 
 	describe('syncJson()', () => {
-		it('writes to `package.json', async () => {
-			const spy = vi.spyOn(fsx, 'writeJson').mockImplementation(() => Promise.resolve());
+		it('writes to `package.json', () => {
+			const spy = vi.spyOn(pkg.fs, 'writeJson').mockImplementation(() => {});
 
-			await pkg.syncJson();
+			pkg.syncJson();
 
 			expect(spy).toHaveBeenCalledWith(
 				pkg.jsonPath.path(),

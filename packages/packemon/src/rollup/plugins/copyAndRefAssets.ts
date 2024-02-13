@@ -197,6 +197,7 @@ export function copyAndRefAssets(
 			// at the root of the package, which Rollup does not allow. It wants
 			// multiple asset folders within each format!
 			await Promise.all(
+				// eslint-disable-next-line @typescript-eslint/require-await
 				Object.entries(assetsToCopy).map(async ([oldId, newId]) => {
 					if (!newId.exists()) {
 						fs.copyFile(oldId, newId.path());

@@ -14,7 +14,7 @@ export class Packemon {
 
 	readonly debug: Debugger;
 
-	readonly fs: FileSystem = nodeFileSystem;
+	fs: FileSystem = nodeFileSystem;
 
 	readonly workingDir: Path;
 
@@ -84,7 +84,10 @@ export class Packemon {
 			return null;
 		}
 
-		return new Package(this.workingDir, pkgContents, await this.findWorkspaceRoot());
+		const pkg = new Package(this.workingDir, pkgContents, await this.findWorkspaceRoot());
+		pkg.fs = this.fs;
+
+		return pkg;
 	}
 
 	/**
@@ -111,17 +114,21 @@ export class Packemon {
 		let packages: Package[] = [];
 
 		await Promise.all(
+			// eslint-disable-next-line @typescript-eslint/require-await
 			pkgPaths.map(async (pkgPath) => {
 				if (!pkgPath.exists()) {
 					return;
 				}
 
-				const contents = json.parse<PackemonPackage>(await this.fs.readFile(pkgPath.path()));
+				const contents = this.fs.readJson<PackemonPackage>(pkgPath.path());
 
 				if (contents.packemon) {
 					this.debug(' - %s (%s)', contents.name, pkgPath.path());
 
-					packages.push(new Package(pkgPath.parent(), contents, workspaceRoot));
+					const pkg = new Package(pkgPath.parent(), contents, workspaceRoot);
+					pkg.fs = this.fs;
+
+					packages.push(pkg);
 				} else {
 					this.debug('No `packemon` configuration found for %s, skipping', contents.name);
 				}

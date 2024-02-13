@@ -31,11 +31,11 @@ describe('Config files', () => {
 
 	describe('monorepo', () => {
 		const root = Path.create(getFixturePath('config-files-monorepo'));
-
-		createSnapshotSpies(root); // Mock fs
+		const snapshots = createSnapshotSpies(root); // Mock fs
 
 		it('inherits config from root and branches', async () => {
 			const packemon = new Packemon(root);
+			packemon.fs = snapshots.fs;
 
 			// bar (using push)
 			await packemon.build(loadPackageAtPath(root.append('packages/bar'), root), {
@@ -181,6 +181,7 @@ describe('Config files', () => {
 
 		it('doesnt inherit config if option is false', async () => {
 			const packemon = new Packemon(root);
+			packemon.fs = snapshots.fs;
 
 			// bar (using push)
 			await packemon.build(loadPackageAtPath(root.append('packages/bar'), root), {
@@ -327,11 +328,11 @@ describe('Config files', () => {
 
 	describe('polyrepo', () => {
 		const root = getFixturePath('config-files-polyrepo');
-
-		createSnapshotSpies(root); // Mock fs
+		const snapshots = createSnapshotSpies(root); // Mock fs
 
 		it('inherits config from root and branches', async () => {
 			const packemon = new Packemon(root);
+			packemon.fs = snapshots.fs;
 
 			await packemon.build(loadPackageAtPath(root), {
 				loadConfigs: true,
@@ -382,6 +383,7 @@ describe('Config files', () => {
 
 		it('doesnt inherit config if option is false', async () => {
 			const packemon = new Packemon(root);
+			packemon.fs = snapshots.fs;
 
 			await packemon.build(loadPackageAtPath(root), {
 				loadConfigs: false,

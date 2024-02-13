@@ -1,4 +1,3 @@
-import fs from 'node:fs';
 import { execa } from 'execa';
 import { rollup } from 'rollup';
 import { beforeEach, describe, expect, it, type MockInstance, vi } from 'vitest';
@@ -176,7 +175,7 @@ describe('Artifact', () => {
 
 	describe('clean()', () => {
 		it('removes the dir for each format', async () => {
-			const spy = vi.spyOn(fs, 'unlink');
+			const spy = vi.spyOn(artifact.package.fs, 'remove').mockImplementation(() => {});
 
 			await artifact.clean();
 

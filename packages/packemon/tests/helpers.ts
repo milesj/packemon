@@ -1,9 +1,9 @@
-import fs from 'node:fs';
 import path from 'node:path';
 import { afterEach, beforeEach, describe, expect, it, type MockInstance, vi } from 'vitest';
 import { Path, PortablePath } from '@boost/common';
 import {
 	Artifact,
+	FileSystem,
 	Format,
 	FORMATS,
 	FORMATS_BROWSER,
@@ -18,6 +18,7 @@ import {
 	Support,
 	SUPPORTS,
 } from '../src';
+import { nodeFileSystem } from '../src/FileSystem';
 
 const FIXTURES_DIR = path.join(
 	// eslint-disable-next-line unicorn/prefer-module
@@ -25,6 +26,19 @@ const FIXTURES_DIR = path.join(
 	'tests',
 	'__fixtures__',
 );
+
+export function createStubbedFileSystem(): FileSystem {
+	return {
+		copyFile: vi.fn(),
+		createDirAll: vi.fn(),
+		exists: vi.fn(),
+		readFile: vi.fn(),
+		readJson: vi.fn(),
+		remove: vi.fn(),
+		writeFile: vi.fn(),
+		writeJson: vi.fn(),
+	};
+}
 
 export function normalizeSeparators(part: string) {
 	if (process.platform === 'win32') {
@@ -73,7 +87,7 @@ export function mockSpy(instance: unknown): MockInstance {
 
 export function loadPackageAtPath(pkgPath: PortablePath, workspaceRoot?: PortablePath): Package {
 	const root = Path.create(pkgPath);
-	const json = fsx.readJsonSync(root.append('package.json').path()) as PackemonPackage;
+	const json = nodeFileSystem.readJson<PackemonPackage>(root.append('package.json').path());
 
 	return new Package(root, json, workspaceRoot ? Path.create(workspaceRoot) : root);
 }
@@ -87,8 +101,8 @@ function formatSnapshotFilePath(file: string, root: string): string {
 }
 
 export function createSnapshotSpies(root: PortablePath, captureJson: boolean = false) {
+	const fs = createStubbedFileSystem();
 	let snapshots: [string, unknown][] = [];
-	const spies: MockInstance[] = [];
 
 	beforeEach(() => {
 		console.log('BEFORE EACH');
@@ -118,40 +132,30 @@ export function createSnapshotSpies(root: PortablePath, captureJson: boolean = f
 			}
 		};
 
-		// eslint-disable-next-line @typescript-eslint/require-await
-		const asyncHandler = async (file: unknown, content: unknown) => {
-			handler(file, content);
-		};
+		(fs.copyFile as unknown as MockInstance).mockImplementation(handler);
+		(fs.writeFile as unknown as MockInstance).mockImplementation(handler);
+		(fs.writeJson as unknown as MockInstance).mockImplementation(handler);
 
-		spies.push(
-			vi.spyOn(console, 'warn').mockImplementation(() => {}),
-			// Rollup
-			vi.spyOn(fs.promises, 'writeFile').mockImplementation(asyncHandler),
-			// Packemon
-			// @ts-expect-error Bad types
-			vi.spyOn(fsx, 'writeJson').mockImplementation(handler),
-			// Assets
-			vi.spyOn(fsx, 'copyFile').mockImplementation(handler),
-			vi.spyOn(fsx, 'mkdir'),
-		);
+		// 	vi.spyOn(console, 'warn').mockImplementation(() => {});
 	});
 
 	afterEach(() => {
-		console.log('AFTER EACH', spies);
 		snapshots = [];
-		spies.forEach((spy) => void spy.mockRestore());
 	});
 
-	return (pkg?: Package) => {
-		if (pkg) {
-			pkg.artifacts.forEach((artifact) => {
-				artifact.buildResult.files.forEach((file) => {
-					snapshots.push([file.file, file.code]);
+	return {
+		assert(pkg?: Package) {
+			if (pkg) {
+				pkg.artifacts.forEach((artifact) => {
+					artifact.buildResult.files.forEach((file) => {
+						snapshots.push([file.file, file.code]);
+					});
 				});
-			});
-		}
+			}
 
-		return snapshots.sort((a, b) => a[0].localeCompare(b[0]));
+			return snapshots.sort((a, b) => a[0].localeCompare(b[0]));
+		},
+		fs,
 	};
 }
 
@@ -180,6 +184,8 @@ export function testExampleOutput(
 
 		[...BUILDS.values()].forEach((build) => {
 			const pkg = loadPackageAtPath(root);
+			pkg.fs = snapshots.fs;
+
 			const env = `${build.platform}-${build.support}-${build.format}`;
 
 			it(`transforms example test case: ${env}`, async () => {
@@ -201,7 +207,7 @@ export function testExampleOutput(
 					console.error(error);
 				}
 
-				snapshots().forEach((ss) => {
+				snapshots.assert().forEach((ss) => {
 					expect(ss).toMatchSnapshot();
 				});
 			});

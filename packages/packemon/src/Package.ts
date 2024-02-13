@@ -43,7 +43,7 @@ export class Package {
 
 	readonly debug!: Debugger;
 
-	readonly fs: FileSystem = nodeFileSystem;
+	fs: FileSystem = nodeFileSystem;
 
 	readonly json: PackemonPackage;
 
