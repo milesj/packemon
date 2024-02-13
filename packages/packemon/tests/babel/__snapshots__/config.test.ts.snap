@@ -493,7 +493,6 @@ exports[`getBabelOutputConfig() > handles preset-env: browser + umd + current 1`
     "exclude": [
       "@babel/plugin-transform-regenerator",
       "@babel/plugin-transform-async-to-generator",
-      "@babel/plugin-proposal-dynamic-import",
     ],
     "loose": false,
     "modules": "umd",
@@ -518,7 +517,6 @@ exports[`getBabelOutputConfig() > handles preset-env: browser + umd + experiment
     "exclude": [
       "@babel/plugin-transform-regenerator",
       "@babel/plugin-transform-async-to-generator",
-      "@babel/plugin-proposal-dynamic-import",
     ],
     "loose": false,
     "modules": "umd",
@@ -543,7 +541,6 @@ exports[`getBabelOutputConfig() > handles preset-env: browser + umd + legacy 1`]
     "exclude": [
       "@babel/plugin-transform-regenerator",
       "@babel/plugin-transform-async-to-generator",
-      "@babel/plugin-proposal-dynamic-import",
     ],
     "loose": false,
     "modules": "umd",
@@ -568,7 +565,6 @@ exports[`getBabelOutputConfig() > handles preset-env: browser + umd + stable 1`]
     "exclude": [
       "@babel/plugin-transform-regenerator",
       "@babel/plugin-transform-async-to-generator",
-      "@babel/plugin-proposal-dynamic-import",
     ],
     "loose": false,
     "modules": "umd",
@@ -593,6 +589,7 @@ exports[`getBabelOutputConfig() > handles preset-env: native + lib + current 1`]
     "exclude": [
       "@babel/plugin-transform-regenerator",
       "@babel/plugin-transform-async-to-generator",
+      "@babel/plugin-proposal-dynamic-import",
     ],
     "loose": false,
     "modules": "cjs",
@@ -614,6 +611,7 @@ exports[`getBabelOutputConfig() > handles preset-env: native + lib + experimenta
     "exclude": [
       "@babel/plugin-transform-regenerator",
       "@babel/plugin-transform-async-to-generator",
+      "@babel/plugin-proposal-dynamic-import",
     ],
     "loose": false,
     "modules": "cjs",
@@ -635,6 +633,7 @@ exports[`getBabelOutputConfig() > handles preset-env: native + lib + legacy 1`] 
     "exclude": [
       "@babel/plugin-transform-regenerator",
       "@babel/plugin-transform-async-to-generator",
+      "@babel/plugin-proposal-dynamic-import",
     ],
     "loose": false,
     "modules": "cjs",
@@ -656,6 +655,7 @@ exports[`getBabelOutputConfig() > handles preset-env: native + lib + stable 1`] 
     "exclude": [
       "@babel/plugin-transform-regenerator",
       "@babel/plugin-transform-async-to-generator",
+      "@babel/plugin-proposal-dynamic-import",
     ],
     "loose": false,
     "modules": "cjs",
@@ -1024,6 +1024,7 @@ exports[`getBabelOutputConfig() > transforms async/await to promises when \`brow
         "exclude": [
           "@babel/plugin-transform-regenerator",
           "@babel/plugin-transform-async-to-generator",
+          "@babel/plugin-proposal-dynamic-import",
         ],
         "loose": false,
         "modules": "cjs",
