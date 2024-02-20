@@ -32,6 +32,7 @@ describe('Packemon', () => {
 
 		const options: BuildOptions = {
 			addEngines: false,
+			addEntries: true,
 			addExports: false,
 			addFiles: false,
 			concurrency: 1,

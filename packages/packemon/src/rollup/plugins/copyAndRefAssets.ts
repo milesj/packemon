@@ -81,7 +81,6 @@ export function copyAndRefAssets(
 		buildStart() {
 			if (fs.exists(dir) && process.env.NODE_ENV !== 'test') {
 				fs.removeDir(dir);
-				fs.createDirAll(dir);
 			}
 		},
 

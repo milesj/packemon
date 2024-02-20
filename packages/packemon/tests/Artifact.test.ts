@@ -175,12 +175,16 @@ describe('Artifact', () => {
 
 	describe('clean()', () => {
 		it('removes the dir for each format', async () => {
-			const spy = vi.spyOn(artifact.package.fs, 'remove').mockImplementation(() => {});
+			const spy = vi.spyOn(artifact.package.fs, 'removeDir').mockImplementation(() => {});
+
+			// Folders have to exist
+			artifact.package.fs.createDirAll(fixturePath.append('cjs').path());
+			artifact.package.fs.createDirAll(fixturePath.append('mjs').path());
 
 			await artifact.clean();
 
-			expect(spy).toHaveBeenCalledWith(fixturePath.append('assets').path());
-			expect(spy).toHaveBeenCalledWith(fixturePath.append('dts').path());
+			expect(spy).not.toHaveBeenCalledWith(fixturePath.append('assets').path());
+			expect(spy).not.toHaveBeenCalledWith(fixturePath.append('dts').path());
 			expect(spy).toHaveBeenCalledWith(fixturePath.append('cjs').path());
 			expect(spy).toHaveBeenCalledWith(fixturePath.append('mjs').path());
 		});

@@ -2,7 +2,7 @@ import { rollup } from 'rollup';
 import { beforeEach, describe, expect, it, type Mock, type MockInstance, vi } from 'vitest';
 import { Path } from '@boost/common';
 import { Packemon } from '../src';
-import { createSnapshotSpies, getFixturePath, loadPackageAtPath } from './helpers';
+import { getFixturePath, loadPackageAtPath } from './helpers';
 
 vi.mock('execa');
 
@@ -31,14 +31,13 @@ describe('Config files', () => {
 
 	describe('monorepo', () => {
 		const root = Path.create(getFixturePath('config-files-monorepo'));
-		const snapshots = createSnapshotSpies(root); // Mock fs
 
 		it('inherits config from root and branches', async () => {
 			const packemon = new Packemon(root);
-			packemon.fs = snapshots.fs;
 
 			// bar (using push)
-			await packemon.build(loadPackageAtPath(root.append('packages/bar'), root, snapshots.fs), {
+			await packemon.build(loadPackageAtPath(root.append('packages/bar'), root), {
+				addEntries: false,
 				loadConfigs: true,
 			});
 
@@ -85,7 +84,8 @@ describe('Config files', () => {
 			);
 
 			// baz (using unshift)
-			await packemon.build(loadPackageAtPath(root.append('packages/baz'), root, snapshots.fs), {
+			await packemon.build(loadPackageAtPath(root.append('packages/baz'), root), {
+				addEntries: false,
 				loadConfigs: true,
 			});
 
@@ -132,7 +132,8 @@ describe('Config files', () => {
 			);
 
 			// foo (using push)
-			await packemon.build(loadPackageAtPath(root.append('packages/foo'), root, snapshots.fs), {
+			await packemon.build(loadPackageAtPath(root.append('packages/foo'), root), {
+				addEntries: false,
 				loadConfigs: true,
 			});
 
@@ -181,10 +182,10 @@ describe('Config files', () => {
 
 		it('doesnt inherit config if option is false', async () => {
 			const packemon = new Packemon(root);
-			packemon.fs = snapshots.fs;
 
 			// bar (using push)
-			await packemon.build(loadPackageAtPath(root.append('packages/bar'), root, snapshots.fs), {
+			await packemon.build(loadPackageAtPath(root.append('packages/bar'), root), {
+				addEntries: false,
 				loadConfigs: false,
 			});
 
@@ -231,7 +232,8 @@ describe('Config files', () => {
 			);
 
 			// baz (using unshift)
-			await packemon.build(loadPackageAtPath(root.append('packages/baz'), root, snapshots.fs), {
+			await packemon.build(loadPackageAtPath(root.append('packages/baz'), root), {
+				addEntries: false,
 				loadConfigs: false,
 			});
 
@@ -278,7 +280,8 @@ describe('Config files', () => {
 			);
 
 			// foo (using push)
-			await packemon.build(loadPackageAtPath(root.append('packages/foo'), root, snapshots.fs), {
+			await packemon.build(loadPackageAtPath(root.append('packages/foo'), root), {
+				addEntries: false,
 				loadConfigs: false,
 			});
 
@@ -328,13 +331,12 @@ describe('Config files', () => {
 
 	describe('polyrepo', () => {
 		const root = getFixturePath('config-files-polyrepo');
-		const snapshots = createSnapshotSpies(root); // Mock fs
 
 		it('inherits config from root and branches', async () => {
 			const packemon = new Packemon(root);
-			packemon.fs = snapshots.fs;
 
-			await packemon.build(loadPackageAtPath(root, null, snapshots.fs), {
+			await packemon.build(loadPackageAtPath(root, null), {
+				addEntries: false,
 				loadConfigs: true,
 			});
 
@@ -383,9 +385,9 @@ describe('Config files', () => {
 
 		it('doesnt inherit config if option is false', async () => {
 			const packemon = new Packemon(root);
-			packemon.fs = snapshots.fs;
 
-			await packemon.build(loadPackageAtPath(root, null, snapshots.fs), {
+			await packemon.build(loadPackageAtPath(root, null), {
+				addEntries: false,
 				loadConfigs: false,
 			});
 

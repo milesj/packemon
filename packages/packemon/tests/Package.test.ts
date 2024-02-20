@@ -126,7 +126,7 @@ describe('Package', () => {
 
 			pkg.artifacts.push(artifact);
 
-			await pkg.build({}, config);
+			await pkg.build({ addEntries: true }, config);
 
 			expect(spy).toHaveBeenCalled();
 		});
@@ -209,7 +209,7 @@ describe('Package', () => {
 				it('adds "main" for node `lib` format', async () => {
 					pkg.artifacts.push(createCodeArtifact([{ format: 'lib' }]));
 
-					await pkg.build({}, config);
+					await pkg.build({ addEntries: true }, config);
 
 					expect(pkg.json).toEqual(
 						expect.objectContaining({
@@ -221,7 +221,7 @@ describe('Package', () => {
 				it('adds "main" for node `cjs` format', async () => {
 					pkg.artifacts.push(createCodeArtifact([{ format: 'cjs' }]));
 
-					await pkg.build({}, config);
+					await pkg.build({ addEntries: true }, config);
 
 					expect(pkg.json).toEqual(
 						expect.objectContaining({
@@ -233,7 +233,7 @@ describe('Package', () => {
 				it('adds "main" for node `mjs` format', async () => {
 					pkg.artifacts.push(createCodeArtifact([{ format: 'mjs' }]));
 
-					await pkg.build({}, config);
+					await pkg.build({ addEntries: true }, config);
 
 					expect(pkg.json).toEqual(
 						expect.objectContaining({
@@ -246,7 +246,7 @@ describe('Package', () => {
 					const a = createCodeArtifact([{ format: 'lib' }], 'browser');
 					pkg.artifacts.push(a);
 
-					await pkg.build({}, config);
+					await pkg.build({ addEntries: true }, config);
 
 					expect(pkg.json).toEqual(
 						expect.objectContaining({
@@ -258,7 +258,7 @@ describe('Package', () => {
 				it('adds "main" for browser `esm` format', async () => {
 					pkg.artifacts.push(createCodeArtifact([{ format: 'esm' }], 'browser'));
 
-					await pkg.build({}, config);
+					await pkg.build({ addEntries: true }, config);
 
 					expect(pkg.json).toEqual(
 						expect.objectContaining({
@@ -271,7 +271,7 @@ describe('Package', () => {
 					const a = createCodeArtifact([{ format: 'lib' }], 'native');
 					pkg.artifacts.push(a);
 
-					await pkg.build({}, config);
+					await pkg.build({ addEntries: true }, config);
 
 					expect(pkg.json).toEqual(
 						expect.objectContaining({
@@ -285,7 +285,7 @@ describe('Package', () => {
 					a.inputs = { server: 'src/index.ts' };
 					pkg.artifacts.push(a);
 
-					await pkg.build({}, config);
+					await pkg.build({ addEntries: true }, config);
 
 					expect(pkg.json.main).toBe('./lib/server.js');
 				});
@@ -299,7 +299,7 @@ describe('Package', () => {
 					b.sharedLib = true;
 					pkg.artifacts.push(b);
 
-					await pkg.build({}, config);
+					await pkg.build({ addEntries: true }, config);
 
 					expect(pkg.json).toEqual(
 						expect.objectContaining({
@@ -317,7 +317,7 @@ describe('Package', () => {
 					a.sharedLib = true;
 					pkg.artifacts.push(a);
 
-					await pkg.build({}, config);
+					await pkg.build({ addEntries: true }, config);
 
 					expect(pkg.json).toEqual(
 						expect.objectContaining({
@@ -332,7 +332,7 @@ describe('Package', () => {
 					const a = createCodeArtifact([{ format: 'esm' }], 'browser');
 					pkg.artifacts.push(a);
 
-					await pkg.build({}, config);
+					await pkg.build({ addEntries: true }, config);
 
 					expect(pkg.json).toEqual(
 						expect.objectContaining({
@@ -354,7 +354,7 @@ describe('Package', () => {
 				});
 
 				it('adds "browser" when browser and node are sharing a lib', async () => {
-					await pkg.build({}, config);
+					await pkg.build({ addEntries: true }, config);
 
 					expect(pkg.json).toEqual(
 						expect.objectContaining({
@@ -367,7 +367,7 @@ describe('Package', () => {
 				it('adds "browser" for umd builds', async () => {
 					pkg.artifacts[1] = createCodeArtifact([{ format: 'umd' }], 'browser');
 
-					await pkg.build({}, config);
+					await pkg.build({ addEntries: true }, config);
 
 					expect(pkg.json).toEqual(
 						expect.objectContaining({
@@ -381,7 +381,7 @@ describe('Package', () => {
 					// @ts-expect-error Types are wrong
 					pkg.json.browser = { module: 'foo' };
 
-					await pkg.build({}, config);
+					await pkg.build({ addEntries: true }, config);
 
 					expect(pkg.json).toEqual(
 						expect.objectContaining({
@@ -396,7 +396,7 @@ describe('Package', () => {
 				it('adds "types" when a types artifact exists', async () => {
 					pkg.artifacts.push(createCodeArtifact([{ declaration: true, format: 'lib' }]));
 
-					await pkg.build({}, config);
+					await pkg.build({ addEntries: true }, config);
 
 					expect(pkg.json).toEqual(
 						expect.objectContaining({
@@ -412,7 +412,7 @@ describe('Package', () => {
 					a.inputs = { bin: 'src/bin.ts' };
 					pkg.artifacts.push(a);
 
-					await pkg.build({}, config);
+					await pkg.build({ addEntries: true }, config);
 
 					expect(pkg.json).toEqual(
 						expect.objectContaining({
@@ -426,7 +426,7 @@ describe('Package', () => {
 					a.inputs = { bin: 'src/bin.ts' };
 					pkg.artifacts.push(a);
 
-					await pkg.build({}, config);
+					await pkg.build({ addEntries: true }, config);
 
 					expect(pkg.json).toEqual(
 						expect.objectContaining({
@@ -440,7 +440,7 @@ describe('Package', () => {
 					a.inputs = { bin: 'src/bin.ts' };
 					pkg.artifacts.push(a);
 
-					await pkg.build({}, config);
+					await pkg.build({ addEntries: true }, config);
 
 					expect(pkg.json).toEqual(
 						expect.objectContaining({
@@ -456,7 +456,7 @@ describe('Package', () => {
 
 					pkg.json.bin = {};
 
-					await pkg.build({}, config);
+					await pkg.build({ addEntries: true }, config);
 
 					expect(pkg.json.bin).toEqual({});
 				});
@@ -805,7 +805,7 @@ describe('Package', () => {
 
 			pkg.artifacts.push(a, b, c, d);
 
-			await pkg.build({ addExports: true }, config);
+			await pkg.build({ addExports: true, addEntries: true }, config);
 
 			expect(pkg.json).toEqual(
 				expect.objectContaining({
@@ -871,7 +871,7 @@ describe('Package', () => {
 
 			pkg.artifacts.push(a, b, c, d);
 
-			await pkg.build({ addExports: true }, config);
+			await pkg.build({ addExports: true, addEntries: true }, config);
 
 			expect(pkg.json).toEqual(
 				expect.objectContaining({
@@ -940,7 +940,7 @@ describe('Package', () => {
 
 			pkg.artifacts.push(a, b, c, d);
 
-			await pkg.build({ addExports: true }, config);
+			await pkg.build({ addExports: true, addEntries: true }, config);
 
 			expect(pkg.json).toEqual(
 				expect.objectContaining({

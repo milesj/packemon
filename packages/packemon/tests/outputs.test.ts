@@ -7,6 +7,7 @@ import {
 	createSnapshotSpies,
 	getFixturePath,
 	loadPackageAtPath,
+	snapshotPackageBuildOutputs,
 } from './helpers';
 
 ['babel', 'swc'].forEach((transformer) => {
@@ -49,9 +50,7 @@ import {
 
 				await pkg.build({}, {});
 
-				snapshots(pkg).forEach((ss) => {
-					expect(ss).toMatchSnapshot();
-				});
+				snapshotPackageBuildOutputs(pkg);
 
 				expect(index.builds).toMatchSnapshot();
 			});

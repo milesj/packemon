@@ -127,7 +127,6 @@ describe('getRollupConfig()', () => {
 		artifact.builds.push({ format: 'lib' }, { format: 'esm' }, { format: 'mjs' });
 
 		await expect(getRollupConfig(artifact, {})).resolves.toEqual({
-			cache: undefined,
 			external: expect.any(Function),
 			input: {
 				index: srcInputFile,
@@ -159,6 +158,7 @@ describe('getRollupConfig()', () => {
 					chunkFileNames: 'bundle-[hash].js',
 					dir: fixturePath.append('esm').path(),
 					entryFileNames: '[name].js',
+					exports: 'named',
 					format: 'esm',
 					generatedCode: {
 						...generatedCode,
@@ -178,6 +178,7 @@ describe('getRollupConfig()', () => {
 					chunkFileNames: 'bundle-[hash].mjs',
 					dir: fixturePath.append('mjs').path(),
 					entryFileNames: '[name].mjs',
+					exports: 'named',
 					format: 'esm',
 					generatedCode: {
 						...generatedCode,
@@ -558,20 +559,20 @@ describe('getRollupOutputConfig()', () => {
 			expect(getRollupOutputConfig(artifact, {}, 'cjs').exports).toBe('auto');
 		});
 
-		it('disables auto-exports for `mjs` format', () => {
-			expect(getRollupOutputConfig(artifact, {}, 'mjs').exports).toBeUndefined();
+		it('enables auto-exports for `mjs` format', () => {
+			expect(getRollupOutputConfig(artifact, {}, 'mjs').exports).toBe('named');
 		});
 
-		it('disables auto-exports for `esm` format', () => {
+		it('enables auto-exports for `esm` format', () => {
 			artifact.platform = 'browser';
 
-			expect(getRollupOutputConfig(artifact, {}, 'esm').exports).toBeUndefined();
+			expect(getRollupOutputConfig(artifact, {}, 'esm').exports).toBe('named');
 		});
 
-		it('disables auto-exports for `umd` format', () => {
+		it('enables auto-exports for `umd` format', () => {
 			artifact.platform = 'browser';
 
-			expect(getRollupOutputConfig(artifact, {}, 'umd').exports).toBeUndefined();
+			expect(getRollupOutputConfig(artifact, {}, 'umd').exports).toBe('named');
 		});
 	});
 
@@ -586,6 +587,7 @@ describe('getRollupOutputConfig()', () => {
 			chunkFileNames: 'bundle-[hash].js',
 			dir: fixturePath.append('umd').path(),
 			entryFileNames: '[name].js',
+			exports: 'named',
 			format: 'esm',
 			generatedCode: {
 				...generatedCode,

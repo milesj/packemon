@@ -186,6 +186,8 @@ export function testExampleOutput(
 	describe(transformer, () => {
 		const root = customRoot ?? Path.create(getFixturePath('examples'));
 
+		vi.spyOn(console, 'warn').mockImplementation(() => {});
+
 		beforeEach(() => {
 			process.env.PACKEMON_TEST_WRITE = 'true';
 
