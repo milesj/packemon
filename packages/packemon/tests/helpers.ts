@@ -164,6 +164,16 @@ export function createSnapshotSpies(root: PortablePath, captureJson: boolean = f
 	};
 }
 
+export function snapshotPackageBuildOutputs(pkg: Package) {
+	pkg.artifacts.forEach((art) => {
+		art.buildResult.files.forEach((chunk) => {
+			if (!chunk.file.endsWith('.map')) {
+				expect(chunk.code).toMatchSnapshot(chunk.file);
+			}
+		});
+	});
+}
+
 export function testExampleOutput(
 	file: string,
 	transformer: 'babel' | 'swc',
@@ -216,11 +226,7 @@ export function testExampleOutput(
 					console.error(error);
 				}
 
-				pkg.artifacts.forEach((art) => {
-					art.buildResult.files.forEach((builtFile) => {
-						expect(builtFile.code).toMatchSnapshot(builtFile.file);
-					});
-				});
+				snapshotPackageBuildOutputs(pkg);
 			});
 		});
 	});

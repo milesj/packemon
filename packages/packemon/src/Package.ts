@@ -97,33 +97,42 @@ export class Package {
 			}),
 		);
 
+		let updated = false;
+
 		// Add package entry points based on artifacts
 		if (options.addEntries) {
+			updated = true;
 			this.addEntryPoints();
 		}
 
 		// Add package `engines` based on artifacts
 		if (options.addEngines) {
+			updated = true;
 			this.addEngines();
 		}
 
 		// Add package `exports` based on artifacts
 		if (options.addExports) {
+			updated = true;
 			this.addExports(features);
 		}
 
 		// Add package `files` whitelist
 		if (options.addFiles) {
+			updated = true;
 			this.addFiles();
 		}
 
 		// Stamp with a timestamp
 		if (options.stamp) {
+			updated = true;
 			this.json.release = String(Date.now());
 		}
 
 		// Sync `package.json` in case it was modified
-		this.syncJson();
+		if (updated) {
+			this.syncJson();
+		}
 	}
 
 	async clean(): Promise<void> {

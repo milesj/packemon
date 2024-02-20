@@ -158,13 +158,13 @@ export interface BuildParams {
 	support: Support;
 }
 
-export interface BuildResultFiles {
+export interface BuildResultFile {
 	code: string;
 	file: string;
 }
 
 export interface BuildResult {
-	files: BuildResultFiles[];
+	files: BuildResultFile[];
 	time: number;
 }
 

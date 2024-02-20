@@ -95,28 +95,6 @@ console.log(json);
 "
 `;
 
-exports[`Assets > babel > transforms example test case: browser-experimental-lib > lib/index-browser-experimental-lib.js 1`] = `
-"// Bundled with Packemon: https://packemon.dev
-// Platform: browser, Support: experimental, Format: lib
-
-'use strict';
-
-require('../assets/styles-17df299b.css');
-require('../assets/logo-c21f559f.svg');
-require('website/src/css/custom.css');
-const json = {
-  list: ["foo", "bar", "baz"],
-  number: 123,
-  string: "abc",
-  object: {
-    foo: true
-  }
-};
-console.log(json);
-//# sourceMappingURL=index-browser-experimental-lib.js.map
-"
-`;
-
 exports[`Assets > babel > transforms example test case: browser-experimental-umd > umd/index-browser-experimental-umd.js 1`] = `
 "(function (global, factory) {
   if (typeof define === "function" && define.amd) {
@@ -404,6 +382,28 @@ console.log(json);
 "
 `;
 
+exports[`Assets > babel > transforms example test case: electron-legacy-lib > lib/index-electron-legacy-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: legacy, Format: lib
+
+'use strict';
+
+require('../assets/styles-17df299b.css');
+require('../assets/logo-c21f559f.svg');
+require('website/src/css/custom.css');
+const json = {
+  list: ["foo", "bar", "baz"],
+  number: 123,
+  string: "abc",
+  object: {
+    foo: true
+  }
+};
+console.log(json);
+//# sourceMappingURL=index-electron-legacy-lib.js.map
+"
+`;
+
 exports[`Assets > babel > transforms example test case: electron-stable-esm > esm/index-electron-stable-esm.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: stable, Format: esm
@@ -556,6 +556,13 @@ console.log(json);
 "
 `;
 
+exports[`Assets > babel > transforms example test case: node-current-cjs > cjs/index-node-current-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-current-cjs.cjs';"
+`;
+
 exports[`Assets > babel > transforms example test case: node-current-lib > lib/index-node-current-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: lib
@@ -620,6 +627,13 @@ console.log(json);
 "
 `;
 
+exports[`Assets > babel > transforms example test case: node-experimental-cjs > cjs/index-node-experimental-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-experimental-cjs.cjs';"
+`;
+
 exports[`Assets > babel > transforms example test case: node-experimental-lib > lib/index-node-experimental-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: lib
@@ -659,28 +673,6 @@ const json = {
 };
 console.log(json);
 //# sourceMappingURL=index-node-experimental-mjs.mjs.map
-"
-`;
-
-exports[`Assets > babel > transforms example test case: node-legacy-cjs > cjs/index-node-legacy-cjs.cjs 1`] = `
-"// Bundled with Packemon: https://packemon.dev
-// Platform: node, Support: legacy, Format: cjs
-
-'use strict';
-
-require('../assets/styles-17df299b.css');
-require('../assets/logo-c21f559f.svg');
-require('website/src/css/custom.css');
-const json = {
-  list: ["foo", "bar", "baz"],
-  number: 123,
-  string: "abc",
-  object: {
-    foo: true
-  }
-};
-console.log(json);
-//# sourceMappingURL=index-node-legacy-cjs.cjs.map
 "
 `;
 
@@ -746,6 +738,13 @@ const json = {
 console.log(json);
 //# sourceMappingURL=index-node-stable-cjs.cjs.map
 "
+`;
+
+exports[`Assets > babel > transforms example test case: node-stable-cjs > cjs/index-node-stable-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-stable-cjs.cjs';"
 `;
 
 exports[`Assets > babel > transforms example test case: node-stable-lib > lib/index-node-stable-lib.js 1`] = `
@@ -1418,6 +1417,13 @@ console.log(json);
 "
 `;
 
+exports[`Assets > swc > transforms example test case: node-current-cjs > cjs/index-node-current-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-current-cjs.cjs';"
+`;
+
 exports[`Assets > swc > transforms example test case: node-current-lib > lib/index-node-current-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: lib
@@ -1487,6 +1493,13 @@ const json = {
 console.log(json);
 //# sourceMappingURL=index-node-experimental-cjs.cjs.map
 "
+`;
+
+exports[`Assets > swc > transforms example test case: node-experimental-cjs > cjs/index-node-experimental-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-experimental-cjs.cjs';"
 `;
 
 exports[`Assets > swc > transforms example test case: node-experimental-lib > lib/index-node-experimental-lib.js 1`] = `
@@ -1560,6 +1573,13 @@ console.log(json);
 "
 `;
 
+exports[`Assets > swc > transforms example test case: node-legacy-cjs > cjs/index-node-legacy-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-legacy-cjs.cjs';"
+`;
+
 exports[`Assets > swc > transforms example test case: node-legacy-lib > lib/index-node-legacy-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: lib
@@ -1581,29 +1601,6 @@ const json = {
 };
 console.log(json);
 //# sourceMappingURL=index-node-legacy-lib.js.map
-"
-`;
-
-exports[`Assets > swc > transforms example test case: node-legacy-mjs > mjs/index-node-legacy-mjs.mjs 1`] = `
-"// Bundled with Packemon: https://packemon.dev
-// Platform: node, Support: legacy, Format: mjs
-import "../assets/styles-17df299b.css";
-import "../assets/logo-c21f559f.svg";
-import "website/src/css/custom.css";
-const json = {
-    list: [
-        "foo",
-        "bar",
-        "baz"
-    ],
-    number: 123,
-    string: "abc",
-    object: {
-        foo: true
-    }
-};
-console.log(json);
-//# sourceMappingURL=index-node-legacy-mjs.mjs.map
 "
 `;
 
@@ -1629,6 +1626,13 @@ const json = {
 console.log(json);
 //# sourceMappingURL=index-node-stable-cjs.cjs.map
 "
+`;
+
+exports[`Assets > swc > transforms example test case: node-stable-cjs > cjs/index-node-stable-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-stable-cjs.cjs';"
 `;
 
 exports[`Assets > swc > transforms example test case: node-stable-lib > lib/index-node-stable-lib.js 1`] = `

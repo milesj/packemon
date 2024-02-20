@@ -530,6 +530,15 @@ exports.runGen = runGen;
 "
 `;
 
+exports[`Generators > babel > transforms example test case: node-current-cjs > cjs/index-node-current-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-current-cjs.cjs';
+
+export const { gen, runGen } = data;"
+`;
+
 exports[`Generators > babel > transforms example test case: node-current-lib > lib/index-node-current-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: lib
@@ -579,6 +588,15 @@ exports.gen = gen;
 exports.runGen = runGen;
 //# sourceMappingURL=index-node-experimental-cjs.cjs.map
 "
+`;
+
+exports[`Generators > babel > transforms example test case: node-experimental-cjs > cjs/index-node-experimental-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-experimental-cjs.cjs';
+
+export const { gen, runGen } = data;"
 `;
 
 exports[`Generators > babel > transforms example test case: node-experimental-lib > lib/index-node-experimental-lib.js 1`] = `
@@ -632,6 +650,15 @@ exports.runGen = runGen;
 "
 `;
 
+exports[`Generators > babel > transforms example test case: node-legacy-cjs > cjs/index-node-legacy-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-legacy-cjs.cjs';
+
+export const { gen, runGen } = data;"
+`;
+
 exports[`Generators > babel > transforms example test case: node-legacy-lib > lib/index-node-legacy-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: lib
@@ -681,6 +708,15 @@ exports.gen = gen;
 exports.runGen = runGen;
 //# sourceMappingURL=index-node-stable-cjs.cjs.map
 "
+`;
+
+exports[`Generators > babel > transforms example test case: node-stable-cjs > cjs/index-node-stable-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-stable-cjs.cjs';
+
+export const { gen, runGen } = data;"
 `;
 
 exports[`Generators > babel > transforms example test case: node-stable-lib > lib/index-node-stable-lib.js 1`] = `
@@ -1301,6 +1337,43 @@ exports.runGen = runGen;
 "
 `;
 
+exports[`Generators > swc > transforms example test case: browser-stable-umd > umd/index-browser-stable-umd.js 1`] = `
+"(function(global, factory) {
+    if (typeof module === "object" && typeof module.exports === "object") factory(exports);
+    else if (typeof define === "function" && define.amd) define([
+        "exports"
+    ], factory);
+    else if (global = typeof globalThis !== "undefined" ? globalThis : global || self) factory(global.examples = {});
+})(this, function(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+    function _export(target, all) {
+        for(var name in all)Object.defineProperty(target, name, {
+            enumerable: true,
+            get: all[name]
+        });
+    }
+    _export(exports, {
+        gen: function() {
+            return gen;
+        },
+        runGen: function() {
+            return runGen;
+        }
+    });
+    function* gen() {}
+    function runGen() {
+        for (const iterator of gen()){
+            console.log(iterator);
+        }
+    }
+});
+//# sourceMappingURL=index-browser-stable-umd.js.map
+"
+`;
+
 exports[`Generators > swc > transforms example test case: electron-current-esm > esm/index-electron-current-esm.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: current, Format: esm
@@ -1501,6 +1574,15 @@ exports.runGen = runGen;
 "
 `;
 
+exports[`Generators > swc > transforms example test case: node-current-cjs > cjs/index-node-current-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-current-cjs.cjs';
+
+export const { gen, runGen } = data;"
+`;
+
 exports[`Generators > swc > transforms example test case: node-current-lib > lib/index-node-current-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: lib
@@ -1545,6 +1627,15 @@ exports.gen = gen;
 exports.runGen = runGen;
 //# sourceMappingURL=index-node-experimental-cjs.cjs.map
 "
+`;
+
+exports[`Generators > swc > transforms example test case: node-experimental-cjs > cjs/index-node-experimental-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-experimental-cjs.cjs';
+
+export const { gen, runGen } = data;"
 `;
 
 exports[`Generators > swc > transforms example test case: node-experimental-lib > lib/index-node-experimental-lib.js 1`] = `
@@ -1593,6 +1684,15 @@ exports.runGen = runGen;
 "
 `;
 
+exports[`Generators > swc > transforms example test case: node-legacy-cjs > cjs/index-node-legacy-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-legacy-cjs.cjs';
+
+export const { gen, runGen } = data;"
+`;
+
 exports[`Generators > swc > transforms example test case: node-legacy-lib > lib/index-node-legacy-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: lib
@@ -1637,6 +1737,15 @@ exports.gen = gen;
 exports.runGen = runGen;
 //# sourceMappingURL=index-node-stable-cjs.cjs.map
 "
+`;
+
+exports[`Generators > swc > transforms example test case: node-stable-cjs > cjs/index-node-stable-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-stable-cjs.cjs';
+
+export const { gen, runGen } = data;"
 `;
 
 exports[`Generators > swc > transforms example test case: node-stable-lib > lib/index-node-stable-lib.js 1`] = `

@@ -1020,6 +1020,18 @@ Object.keys(optimal).forEach(k => {
 "
 `;
 
+exports[`CJS -> MJS wrapper (externals) > babel > transforms example test case: node-current-cjs > cjs/index-node-current-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-current-cjs.cjs';
+
+export * from 'optimal';
+export * as optimal from 'optimal';
+export { string, func } from 'optimal';
+export { useState } from 'react';"
+`;
+
 exports[`CJS -> MJS wrapper (externals) > babel > transforms example test case: node-current-lib > lib/index-node-current-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: lib
@@ -1129,6 +1141,18 @@ Object.keys(optimal).forEach(k => {
 });
 //# sourceMappingURL=index-node-experimental-cjs.cjs.map
 "
+`;
+
+exports[`CJS -> MJS wrapper (externals) > babel > transforms example test case: node-experimental-cjs > cjs/index-node-experimental-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-experimental-cjs.cjs';
+
+export * from 'optimal';
+export * as optimal from 'optimal';
+export { string, func } from 'optimal';
+export { useState } from 'react';"
 `;
 
 exports[`CJS -> MJS wrapper (externals) > babel > transforms example test case: node-experimental-lib > lib/index-node-experimental-lib.js 1`] = `
@@ -1242,6 +1266,18 @@ Object.keys(optimal).forEach(k => {
 "
 `;
 
+exports[`CJS -> MJS wrapper (externals) > babel > transforms example test case: node-legacy-cjs > cjs/index-node-legacy-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-legacy-cjs.cjs';
+
+export * from 'optimal';
+export * as optimal from 'optimal';
+export { string, func } from 'optimal';
+export { useState } from 'react';"
+`;
+
 exports[`CJS -> MJS wrapper (externals) > babel > transforms example test case: node-legacy-lib > lib/index-node-legacy-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: lib
@@ -1351,6 +1387,18 @@ Object.keys(optimal).forEach(k => {
 });
 //# sourceMappingURL=index-node-stable-cjs.cjs.map
 "
+`;
+
+exports[`CJS -> MJS wrapper (externals) > babel > transforms example test case: node-stable-cjs > cjs/index-node-stable-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-stable-cjs.cjs';
+
+export * from 'optimal';
+export * as optimal from 'optimal';
+export { string, func } from 'optimal';
+export { useState } from 'react';"
 `;
 
 exports[`CJS -> MJS wrapper (externals) > babel > transforms example test case: node-stable-lib > lib/index-node-stable-lib.js 1`] = `
@@ -2321,6 +2369,53 @@ Object.keys(optimal).forEach((k)=>{
 "
 `;
 
+exports[`CJS -> MJS wrapper (externals) > swc > transforms example test case: native-experimental-lib > lib/index-native-experimental-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: experimental, Format: lib
+"use strict";
+const optimal = require("optimal");
+const react = require("react");
+function _interopNamespace(e) {
+    if (e && e.__esModule) return e;
+    const n = Object.create(null);
+    if (e) {
+        for(const k in e){
+            if (k !== "default") {
+                const d = Object.getOwnPropertyDescriptor(e, k);
+                Object.defineProperty(n, k, d.get ? d : {
+                    enumerable: true,
+                    get: ()=>e[k]
+                });
+            }
+        }
+    }
+    n.default = e;
+    return Object.freeze(n);
+}
+const optimal__namespace = /*#__PURE__*/ _interopNamespace(optimal);
+Object.defineProperty(exports, "func", {
+    enumerable: true,
+    get: ()=>optimal.func
+});
+exports.optimal = optimal__namespace;
+Object.defineProperty(exports, "string", {
+    enumerable: true,
+    get: ()=>optimal.string
+});
+Object.defineProperty(exports, "useState", {
+    enumerable: true,
+    get: ()=>react.useState
+});
+Object.keys(optimal).forEach((k)=>{
+    if (k !== "default" && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
+        enumerable: true,
+        get: ()=>optimal[k]
+    });
+});
+//# sourceMappingURL=index-native-experimental-lib.js.map
+"
+`;
+
 exports[`CJS -> MJS wrapper (externals) > swc > transforms example test case: native-legacy-lib > lib/index-native-legacy-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: legacy, Format: lib
@@ -2462,6 +2557,18 @@ Object.keys(optimal).forEach((k)=>{
 "
 `;
 
+exports[`CJS -> MJS wrapper (externals) > swc > transforms example test case: node-current-cjs > cjs/index-node-current-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-current-cjs.cjs';
+
+export * from 'optimal';
+export * as optimal from 'optimal';
+export { string, func } from 'optimal';
+export { useState } from 'react';"
+`;
+
 exports[`CJS -> MJS wrapper (externals) > swc > transforms example test case: node-current-lib > lib/index-node-current-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: lib
@@ -2566,6 +2673,18 @@ Object.keys(optimal).forEach((k)=>{
 });
 //# sourceMappingURL=index-node-experimental-cjs.cjs.map
 "
+`;
+
+exports[`CJS -> MJS wrapper (externals) > swc > transforms example test case: node-experimental-cjs > cjs/index-node-experimental-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-experimental-cjs.cjs';
+
+export * from 'optimal';
+export * as optimal from 'optimal';
+export { string, func } from 'optimal';
+export { useState } from 'react';"
 `;
 
 exports[`CJS -> MJS wrapper (externals) > swc > transforms example test case: node-experimental-lib > lib/index-node-experimental-lib.js 1`] = `
@@ -2674,6 +2793,18 @@ Object.keys(optimal).forEach((k)=>{
 "
 `;
 
+exports[`CJS -> MJS wrapper (externals) > swc > transforms example test case: node-legacy-cjs > cjs/index-node-legacy-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-legacy-cjs.cjs';
+
+export * from 'optimal';
+export * as optimal from 'optimal';
+export { string, func } from 'optimal';
+export { useState } from 'react';"
+`;
+
 exports[`CJS -> MJS wrapper (externals) > swc > transforms example test case: node-legacy-lib > lib/index-node-legacy-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: lib
@@ -2778,6 +2909,18 @@ Object.keys(optimal).forEach((k)=>{
 });
 //# sourceMappingURL=index-node-stable-cjs.cjs.map
 "
+`;
+
+exports[`CJS -> MJS wrapper (externals) > swc > transforms example test case: node-stable-cjs > cjs/index-node-stable-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-stable-cjs.cjs';
+
+export * from 'optimal';
+export * as optimal from 'optimal';
+export { string, func } from 'optimal';
+export { useState } from 'react';"
 `;
 
 exports[`CJS -> MJS wrapper (externals) > swc > transforms example test case: node-stable-lib > lib/index-node-stable-lib.js 1`] = `
@@ -4085,6 +4228,16 @@ exports.ns3 = helpers;
 "
 `;
 
+exports[`CJS -> MJS wrapper > babel > transforms example test case: node-current-cjs > cjs/index-node-current-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-current-cjs.cjs';
+
+export const { CONST, ClassName, a, arrowFunc, b, bar, c, d, e, f, foo, fooRenamed, func, ns1, ns2, ns3 } = data;
+export default data.default;"
+`;
+
 exports[`CJS -> MJS wrapper > babel > transforms example test case: node-current-lib > lib/index-node-current-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: lib
@@ -4226,6 +4379,16 @@ exports.ns2 = helpers;
 exports.ns3 = helpers;
 //# sourceMappingURL=index-node-experimental-cjs.cjs.map
 "
+`;
+
+exports[`CJS -> MJS wrapper > babel > transforms example test case: node-experimental-cjs > cjs/index-node-experimental-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-experimental-cjs.cjs';
+
+export const { CONST, ClassName, a, arrowFunc, b, bar, c, d, e, f, foo, fooRenamed, func, ns1, ns2, ns3 } = data;
+export default data.default;"
 `;
 
 exports[`CJS -> MJS wrapper > babel > transforms example test case: node-experimental-lib > lib/index-node-experimental-lib.js 1`] = `
@@ -4371,6 +4534,16 @@ exports.ns3 = helpers;
 "
 `;
 
+exports[`CJS -> MJS wrapper > babel > transforms example test case: node-legacy-cjs > cjs/index-node-legacy-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-legacy-cjs.cjs';
+
+export const { CONST, ClassName, a, arrowFunc, b, bar, c, d, e, f, foo, fooRenamed, func, ns1, ns2, ns3 } = data;
+export default data.default;"
+`;
+
 exports[`CJS -> MJS wrapper > babel > transforms example test case: node-legacy-lib > lib/index-node-legacy-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: lib
@@ -4512,6 +4685,16 @@ exports.ns2 = helpers;
 exports.ns3 = helpers;
 //# sourceMappingURL=index-node-stable-cjs.cjs.map
 "
+`;
+
+exports[`CJS -> MJS wrapper > babel > transforms example test case: node-stable-cjs > cjs/index-node-stable-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-stable-cjs.cjs';
+
+export const { CONST, ClassName, a, arrowFunc, b, bar, c, d, e, f, foo, fooRenamed, func, ns1, ns2, ns3 } = data;
+export default data.default;"
 `;
 
 exports[`CJS -> MJS wrapper > babel > transforms example test case: node-stable-lib > lib/index-node-stable-lib.js 1`] = `
@@ -5366,6 +5549,40 @@ exports[`CJS -> MJS wrapper > swc > transforms example test case: browser-stable
 "
 `;
 
+exports[`CJS -> MJS wrapper > swc > transforms example test case: electron-current-esm > esm/index-electron-current-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: current, Format: esm
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty({
+    __proto__: null,
+    bar,
+    foo
+}, Symbol.toStringTag, {
+    value: "Module"
+}));
+let a = "abc";
+const b = 123;
+const { c } = {
+    c: true
+};
+const [d] = [
+    {}
+];
+const e = 456, f = "xyz";
+let ClassName = class ClassName {
+};
+function func() {}
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
+};
+// Types should be ignored
+export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, foo as fooRenamed, func, helpers as ns1, helpers as ns2, helpers as ns3 };
+//# sourceMappingURL=index-electron-current-esm.js.map
+"
+`;
+
 exports[`CJS -> MJS wrapper > swc > transforms example test case: electron-current-lib > lib/index-electron-current-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: current, Format: lib
@@ -5936,6 +6153,16 @@ exports.ns3 = helpers;
 "
 `;
 
+exports[`CJS -> MJS wrapper > swc > transforms example test case: node-current-cjs > cjs/index-node-current-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-current-cjs.cjs';
+
+export const { CONST, ClassName, a, arrowFunc, b, bar, c, d, e, f, foo, fooRenamed, func, ns1, ns2, ns3 } = data;
+export default data.default;"
+`;
+
 exports[`CJS -> MJS wrapper > swc > transforms example test case: node-current-lib > lib/index-node-current-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: lib
@@ -6072,6 +6299,16 @@ exports.ns2 = helpers;
 exports.ns3 = helpers;
 //# sourceMappingURL=index-node-experimental-cjs.cjs.map
 "
+`;
+
+exports[`CJS -> MJS wrapper > swc > transforms example test case: node-experimental-cjs > cjs/index-node-experimental-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-experimental-cjs.cjs';
+
+export const { CONST, ClassName, a, arrowFunc, b, bar, c, d, e, f, foo, fooRenamed, func, ns1, ns2, ns3 } = data;
+export default data.default;"
 `;
 
 exports[`CJS -> MJS wrapper > swc > transforms example test case: node-experimental-lib > lib/index-node-experimental-lib.js 1`] = `
@@ -6212,6 +6449,16 @@ exports.ns3 = helpers;
 "
 `;
 
+exports[`CJS -> MJS wrapper > swc > transforms example test case: node-legacy-cjs > cjs/index-node-legacy-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-legacy-cjs.cjs';
+
+export const { CONST, ClassName, a, arrowFunc, b, bar, c, d, e, f, foo, fooRenamed, func, ns1, ns2, ns3 } = data;
+export default data.default;"
+`;
+
 exports[`CJS -> MJS wrapper > swc > transforms example test case: node-legacy-lib > lib/index-node-legacy-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: lib
@@ -6261,6 +6508,40 @@ exports.ns1 = helpers;
 exports.ns2 = helpers;
 exports.ns3 = helpers;
 //# sourceMappingURL=index-node-legacy-lib.js.map
+"
+`;
+
+exports[`CJS -> MJS wrapper > swc > transforms example test case: node-legacy-mjs > mjs/index-node-legacy-mjs.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: legacy, Format: mjs
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty({
+    __proto__: null,
+    bar,
+    foo
+}, Symbol.toStringTag, {
+    value: "Module"
+}));
+let a = "abc";
+const b = 123;
+const { c } = {
+    c: true
+};
+const [d] = [
+    {}
+];
+const e = 456, f = "xyz";
+let ClassName = class ClassName {
+};
+function func() {}
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
+};
+// Types should be ignored
+export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, foo as fooRenamed, func, helpers as ns1, helpers as ns2, helpers as ns3 };
+//# sourceMappingURL=index-node-legacy-mjs.mjs.map
 "
 `;
 
@@ -6314,6 +6595,16 @@ exports.ns2 = helpers;
 exports.ns3 = helpers;
 //# sourceMappingURL=index-node-stable-cjs.cjs.map
 "
+`;
+
+exports[`CJS -> MJS wrapper > swc > transforms example test case: node-stable-cjs > cjs/index-node-stable-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-stable-cjs.cjs';
+
+export const { CONST, ClassName, a, arrowFunc, b, bar, c, d, e, f, foo, fooRenamed, func, ns1, ns2, ns3 } = data;
+export default data.default;"
 `;
 
 exports[`CJS -> MJS wrapper > swc > transforms example test case: node-stable-lib > lib/index-node-stable-lib.js 1`] = `

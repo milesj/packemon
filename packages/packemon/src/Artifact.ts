@@ -13,7 +13,7 @@ import type {
 	Build,
 	BuildOptions,
 	BuildResult,
-	BuildResultFiles,
+	BuildResultFile,
 	ConfigFile,
 	FeatureFlags,
 	Format,
@@ -107,7 +107,7 @@ export class Artifact {
 			},
 		});
 
-		const files: BuildResultFiles[] = [];
+		const files: BuildResultFile[] = [];
 
 		await Promise.all(
 			toArray(output).map(async (out, index) => {
@@ -125,6 +125,13 @@ export class Artifact {
 
 				// Update build results and stats
 				const bundledCode = result.output.reduce((code, chunk) => {
+					if (chunk.type === 'asset') {
+						files.push({
+							code: typeof chunk.source === 'string' ? chunk.source : '',
+							file: `${chunk.fileName.endsWith('js') ? originalFormat : 'assets'}/${chunk.fileName}`,
+						});
+					}
+
 					if (chunk.type === 'chunk') {
 						files.push({
 							code: chunk.code,

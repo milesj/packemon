@@ -653,6 +653,15 @@ exports.wait = wait;
 "
 `;
 
+exports[`Async/await > babel > transforms example test case: node-current-cjs > cjs/index-node-current-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-current-cjs.cjs';
+
+export const { run, wait } = data;"
+`;
+
 exports[`Async/await > babel > transforms example test case: node-current-lib > lib/index-node-current-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: lib
@@ -720,6 +729,15 @@ exports.run = run;
 exports.wait = wait;
 //# sourceMappingURL=index-node-experimental-cjs.cjs.map
 "
+`;
+
+exports[`Async/await > babel > transforms example test case: node-experimental-cjs > cjs/index-node-experimental-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-experimental-cjs.cjs';
+
+export const { run, wait } = data;"
 `;
 
 exports[`Async/await > babel > transforms example test case: node-experimental-lib > lib/index-node-experimental-lib.js 1`] = `
@@ -791,6 +809,15 @@ exports.wait = wait;
 "
 `;
 
+exports[`Async/await > babel > transforms example test case: node-legacy-cjs > cjs/index-node-legacy-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-legacy-cjs.cjs';
+
+export const { run, wait } = data;"
+`;
+
 exports[`Async/await > babel > transforms example test case: node-legacy-lib > lib/index-node-legacy-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: lib
@@ -860,6 +887,15 @@ exports.wait = wait;
 "
 `;
 
+exports[`Async/await > babel > transforms example test case: node-stable-cjs > cjs/index-node-stable-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-stable-cjs.cjs';
+
+export const { run, wait } = data;"
+`;
+
 exports[`Async/await > babel > transforms example test case: node-stable-lib > lib/index-node-stable-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: lib
@@ -922,6 +958,28 @@ async function run() {
 }
 export { run, wait };
 //# sourceMappingURL=index-browser-current-esm.js.map
+"
+`;
+
+exports[`Async/await > swc > transforms example test case: browser-current-lib > lib/index-browser-current-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: current, Format: lib
+"use strict";
+async function wait() {
+    return new Promise((resolve)=>{
+        setTimeout(resolve, 100);
+    });
+}
+async function run() {
+    try {
+        await wait();
+    } catch  {
+        throw new Error("Fail");
+    }
+}
+exports.run = run;
+exports.wait = wait;
+//# sourceMappingURL=index-browser-current-lib.js.map
 "
 `;
 
@@ -1844,6 +1902,26 @@ exports.wait = wait;
 "
 `;
 
+exports[`Async/await > swc > transforms example test case: electron-stable-esm > esm/index-electron-stable-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: stable, Format: esm
+async function wait() {
+    return new Promise((resolve)=>{
+        setTimeout(resolve, 100);
+    });
+}
+async function run() {
+    try {
+        await wait();
+    } catch  {
+        throw new Error("Fail");
+    }
+}
+export { run, wait };
+//# sourceMappingURL=index-electron-stable-esm.js.map
+"
+`;
+
 exports[`Async/await > swc > transforms example test case: electron-stable-lib > lib/index-electron-stable-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: stable, Format: lib
@@ -1976,6 +2054,15 @@ exports.wait = wait;
 "
 `;
 
+exports[`Async/await > swc > transforms example test case: node-current-cjs > cjs/index-node-current-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-current-cjs.cjs';
+
+export const { run, wait } = data;"
+`;
+
 exports[`Async/await > swc > transforms example test case: node-current-lib > lib/index-node-current-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: lib
@@ -2038,6 +2125,15 @@ exports.run = run;
 exports.wait = wait;
 //# sourceMappingURL=index-node-experimental-cjs.cjs.map
 "
+`;
+
+exports[`Async/await > swc > transforms example test case: node-experimental-cjs > cjs/index-node-experimental-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-experimental-cjs.cjs';
+
+export const { run, wait } = data;"
 `;
 
 exports[`Async/await > swc > transforms example test case: node-experimental-lib > lib/index-node-experimental-lib.js 1`] = `
@@ -2104,6 +2200,15 @@ exports.wait = wait;
 "
 `;
 
+exports[`Async/await > swc > transforms example test case: node-legacy-cjs > cjs/index-node-legacy-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-legacy-cjs.cjs';
+
+export const { run, wait } = data;"
+`;
+
 exports[`Async/await > swc > transforms example test case: node-legacy-lib > lib/index-node-legacy-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: lib
@@ -2166,6 +2271,15 @@ exports.run = run;
 exports.wait = wait;
 //# sourceMappingURL=index-node-stable-cjs.cjs.map
 "
+`;
+
+exports[`Async/await > swc > transforms example test case: node-stable-cjs > cjs/index-node-stable-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-stable-cjs.cjs';
+
+export const { run, wait } = data;"
 `;
 
 exports[`Async/await > swc > transforms example test case: node-stable-lib > lib/index-node-stable-lib.js 1`] = `

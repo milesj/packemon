@@ -602,6 +602,15 @@ exports.keys = keys;
 "
 `;
 
+exports[`JSON imports > babel > transforms example test case: node-current-cjs > cjs/index-node-current-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-current-cjs.cjs';
+
+export const { keys } = data;"
+`;
+
 exports[`JSON imports > babel > transforms example test case: node-current-lib > lib/index-node-current-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: lib
@@ -664,6 +673,15 @@ const keys = Object.keys(data);
 exports.keys = keys;
 //# sourceMappingURL=index-node-experimental-cjs.cjs.map
 "
+`;
+
+exports[`JSON imports > babel > transforms example test case: node-experimental-cjs > cjs/index-node-experimental-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-experimental-cjs.cjs';
+
+export const { keys } = data;"
 `;
 
 exports[`JSON imports > babel > transforms example test case: node-experimental-lib > lib/index-node-experimental-lib.js 1`] = `
@@ -730,6 +748,15 @@ exports.keys = keys;
 "
 `;
 
+exports[`JSON imports > babel > transforms example test case: node-legacy-cjs > cjs/index-node-legacy-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-legacy-cjs.cjs';
+
+export const { keys } = data;"
+`;
+
 exports[`JSON imports > babel > transforms example test case: node-legacy-lib > lib/index-node-legacy-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: lib
@@ -792,6 +819,15 @@ const keys = Object.keys(data);
 exports.keys = keys;
 //# sourceMappingURL=index-node-stable-cjs.cjs.map
 "
+`;
+
+exports[`JSON imports > babel > transforms example test case: node-stable-cjs > cjs/index-node-stable-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-stable-cjs.cjs';
+
+export const { keys } = data;"
 `;
 
 exports[`JSON imports > babel > transforms example test case: node-stable-lib > lib/index-node-stable-lib.js 1`] = `
@@ -1459,6 +1495,15 @@ exports.keys = keys;
 "
 `;
 
+exports[`JSON imports > swc > transforms example test case: node-current-cjs > cjs/index-node-current-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-current-cjs.cjs';
+
+export const { keys } = data;"
+`;
+
 exports[`JSON imports > swc > transforms example test case: node-current-lib > lib/index-node-current-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: lib
@@ -1525,6 +1570,15 @@ const keys = Object.keys(data);
 exports.keys = keys;
 //# sourceMappingURL=index-node-experimental-cjs.cjs.map
 "
+`;
+
+exports[`JSON imports > swc > transforms example test case: node-experimental-cjs > cjs/index-node-experimental-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-experimental-cjs.cjs';
+
+export const { keys } = data;"
 `;
 
 exports[`JSON imports > swc > transforms example test case: node-experimental-lib > lib/index-node-experimental-lib.js 1`] = `
@@ -1595,6 +1649,15 @@ exports.keys = keys;
 "
 `;
 
+exports[`JSON imports > swc > transforms example test case: node-legacy-cjs > cjs/index-node-legacy-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-legacy-cjs.cjs';
+
+export const { keys } = data;"
+`;
+
 exports[`JSON imports > swc > transforms example test case: node-legacy-lib > lib/index-node-legacy-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: lib
@@ -1661,6 +1724,15 @@ const keys = Object.keys(data);
 exports.keys = keys;
 //# sourceMappingURL=index-node-stable-cjs.cjs.map
 "
+`;
+
+exports[`JSON imports > swc > transforms example test case: node-stable-cjs > cjs/index-node-stable-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-stable-cjs.cjs';
+
+export const { keys } = data;"
 `;
 
 exports[`JSON imports > swc > transforms example test case: node-stable-lib > lib/index-node-stable-lib.js 1`] = `

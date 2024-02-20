@@ -172,6 +172,16 @@ __filename;
 "
 `;
 
+exports[`CJS/ESM interop > babel > transforms example test case: electron-legacy-esm > esm/index-electron-legacy-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: legacy, Format: esm
+
+__dirname;
+__filename;
+//# sourceMappingURL=index-electron-legacy-esm.js.map
+"
+`;
+
 exports[`CJS/ESM interop > babel > transforms example test case: electron-legacy-lib > lib/index-electron-legacy-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: legacy, Format: lib
@@ -266,6 +276,13 @@ __filename;
 "
 `;
 
+exports[`CJS/ESM interop > babel > transforms example test case: node-current-cjs > cjs/index-node-current-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-current-cjs.cjs';"
+`;
+
 exports[`CJS/ESM interop > babel > transforms example test case: node-current-lib > lib/index-node-current-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: lib
@@ -300,6 +317,13 @@ __dirname;
 __filename;
 //# sourceMappingURL=index-node-experimental-cjs.cjs.map
 "
+`;
+
+exports[`CJS/ESM interop > babel > transforms example test case: node-experimental-cjs > cjs/index-node-experimental-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-experimental-cjs.cjs';"
 `;
 
 exports[`CJS/ESM interop > babel > transforms example test case: node-experimental-lib > lib/index-node-experimental-lib.js 1`] = `
@@ -338,6 +362,13 @@ __filename;
 "
 `;
 
+exports[`CJS/ESM interop > babel > transforms example test case: node-legacy-cjs > cjs/index-node-legacy-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-legacy-cjs.cjs';"
+`;
+
 exports[`CJS/ESM interop > babel > transforms example test case: node-legacy-lib > lib/index-node-legacy-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: lib
@@ -372,6 +403,13 @@ __dirname;
 __filename;
 //# sourceMappingURL=index-node-stable-cjs.cjs.map
 "
+`;
+
+exports[`CJS/ESM interop > babel > transforms example test case: node-stable-cjs > cjs/index-node-stable-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-stable-cjs.cjs';"
 `;
 
 exports[`CJS/ESM interop > babel > transforms example test case: node-stable-lib > lib/index-node-stable-lib.js 1`] = `

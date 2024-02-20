@@ -316,6 +316,13 @@ require('@packemon/bar');
 "
 `;
 
+exports[`Rollup externals (regex) > babel > transforms example test case: node-current-cjs > cjs/index-node-current-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-current-cjs.cjs';"
+`;
+
 exports[`Rollup externals (regex) > babel > transforms example test case: node-current-lib > lib/index-node-current-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: lib
@@ -348,6 +355,13 @@ require('@packemon/foo');
 require('@packemon/bar');
 //# sourceMappingURL=index-node-experimental-cjs.cjs.map
 "
+`;
+
+exports[`Rollup externals (regex) > babel > transforms example test case: node-experimental-cjs > cjs/index-node-experimental-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-experimental-cjs.cjs';"
 `;
 
 exports[`Rollup externals (regex) > babel > transforms example test case: node-experimental-lib > lib/index-node-experimental-lib.js 1`] = `
@@ -384,6 +398,13 @@ require('@packemon/bar');
 "
 `;
 
+exports[`Rollup externals (regex) > babel > transforms example test case: node-legacy-cjs > cjs/index-node-legacy-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-legacy-cjs.cjs';"
+`;
+
 exports[`Rollup externals (regex) > babel > transforms example test case: node-legacy-lib > lib/index-node-legacy-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: lib
@@ -416,6 +437,13 @@ require('@packemon/foo');
 require('@packemon/bar');
 //# sourceMappingURL=index-node-stable-cjs.cjs.map
 "
+`;
+
+exports[`Rollup externals (regex) > babel > transforms example test case: node-stable-cjs > cjs/index-node-stable-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-stable-cjs.cjs';"
 `;
 
 exports[`Rollup externals (regex) > babel > transforms example test case: node-stable-lib > lib/index-node-stable-lib.js 1`] = `
@@ -489,6 +517,18 @@ exports[`Rollup externals > babel > transforms example test case: browser-experi
 import '@packemon/foo';
 import '@packemon/bar';
 //# sourceMappingURL=index-browser-experimental-esm.js.map
+"
+`;
+
+exports[`Rollup externals > babel > transforms example test case: browser-experimental-lib > lib/index-browser-experimental-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: experimental, Format: lib
+
+'use strict';
+
+require('@packemon/foo');
+require('@packemon/bar');
+//# sourceMappingURL=index-browser-experimental-lib.js.map
 "
 `;
 
@@ -744,6 +784,13 @@ require('@packemon/bar');
 "
 `;
 
+exports[`Rollup externals > babel > transforms example test case: node-current-cjs > cjs/index-node-current-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-current-cjs.cjs';"
+`;
+
 exports[`Rollup externals > babel > transforms example test case: node-current-lib > lib/index-node-current-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: lib
@@ -776,6 +823,13 @@ require('@packemon/foo');
 require('@packemon/bar');
 //# sourceMappingURL=index-node-experimental-cjs.cjs.map
 "
+`;
+
+exports[`Rollup externals > babel > transforms example test case: node-experimental-cjs > cjs/index-node-experimental-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-experimental-cjs.cjs';"
 `;
 
 exports[`Rollup externals > babel > transforms example test case: node-experimental-lib > lib/index-node-experimental-lib.js 1`] = `
@@ -812,6 +866,13 @@ require('@packemon/bar');
 "
 `;
 
+exports[`Rollup externals > babel > transforms example test case: node-legacy-cjs > cjs/index-node-legacy-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-legacy-cjs.cjs';"
+`;
+
 exports[`Rollup externals > babel > transforms example test case: node-legacy-lib > lib/index-node-legacy-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: lib
@@ -843,6 +904,25 @@ exports[`Rollup externals > babel > transforms example test case: node-stable-cj
 require('@packemon/foo');
 require('@packemon/bar');
 //# sourceMappingURL=index-node-stable-cjs.cjs.map
+"
+`;
+
+exports[`Rollup externals > babel > transforms example test case: node-stable-cjs > cjs/index-node-stable-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-stable-cjs.cjs';"
+`;
+
+exports[`Rollup externals > babel > transforms example test case: node-stable-lib > lib/index-node-stable-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: stable, Format: lib
+
+'use strict';
+
+require('@packemon/foo');
+require('@packemon/bar');
+//# sourceMappingURL=index-node-stable-lib.js.map
 "
 `;
 
