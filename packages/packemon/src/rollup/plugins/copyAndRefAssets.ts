@@ -35,27 +35,30 @@ export function copyAndRefAssets(
 	assetsToCopyInit: Record<string, VirtualPath> = {},
 ): Plugin {
 	const assetsToCopy = assetsToCopyInit;
+	const assetSourceMap = new Set<string>();
 
-	function determineNewAsset(source: string, importer?: string | null): VirtualPath {
-		let preparedImporter = importer ? path.dirname(importer) : '';
+	function findMatchingSource(relSource: string): string | undefined {
+		if (relSource.includes(':')) {
+			return undefined;
+		}
 
-		// Find overlapping directory names and remove them
-		const normalizedRelativePath = path.normalize(source);
-		const absoluteParts = preparedImporter.split(path.sep);
-		const relativeParts = normalizedRelativePath.split(path.sep);
+		let source = relSource;
 
-		for (let i = absoluteParts.length - 1; i >= 0; i -= 1) {
-			if (
-				absoluteParts[i] === relativeParts[0] &&
-				absoluteParts.slice(i).every((p: string, idx: number) => p === relativeParts[idx])
-			) {
-				const overlap = absoluteParts.slice(i, absoluteParts.length).join(path.sep);
-				preparedImporter = preparedImporter.slice(0, -overlap.length);
+		while (source.startsWith('.')) {
+			source = source.replace('../', '').replace('./', '');
+		}
+
+		for (const id of assetSourceMap) {
+			if (id.endsWith(source)) {
+				return id;
 			}
 		}
 
-		const fullPath = path.join(preparedImporter, source);
-		const id = new VirtualPath(fullPath);
+		return undefined;
+	}
+
+	function determineNewAsset(absSource: string): VirtualPath {
+		const id = new VirtualPath(absSource);
 		const ext = id.ext();
 		const name = id.name(true);
 
@@ -92,6 +95,8 @@ export function copyAndRefAssets(
 				// Check that the file actually exists, because they may be
 				// using path aliases, or bundler specific syntax
 				if (source.startsWith('.') && fs.exists(id)) {
+					assetSourceMap.add(id);
+
 					return { id, external: true };
 				}
 
@@ -113,19 +118,9 @@ export function copyAndRefAssets(
 				return null;
 			}
 
-			/*
-				chunk.facadeModuleId is not ideal because the bundled code gets moved up to the
-				root (output) directory compared to where it was located in the source files,
-				the imports in the source files that get bundled get changed to be relative
-				to the new bundle location, but the chunk.facadeModuleId is the old location of
-				the index. So, you have the old path + the new updated imports and there could be
-				overlap due to this "hoisting", which has a workaround in determineNewAsset
-			*/
-			const parentId = chunk.facadeModuleId; // This correct?
 			const magicString = new MagicString(code);
 			let hasChanged = false;
 
-			// eslint-disable-next-line complexity
 			ast.body.forEach((node) => {
 				let source: TSESTree.Literal | undefined;
 
@@ -152,22 +147,12 @@ export function copyAndRefAssets(
 				}
 
 				// Update to new path (ignore files coming from node modules)
-				const sourcePath = String(source.value);
+				const relSource = String(source.value);
+				const absSource = findMatchingSource(relSource);
 
-				if (sourcePath.includes(':')) {
-					return;
-				}
-
-				const parentDir = parentId ? path.dirname(parentId) : '';
-
-				if (
-					sourcePath &&
-					isAsset(sourcePath) &&
-					sourcePath.startsWith('.') &&
-					fs.exists(path.join(parentDir, sourcePath))
-				) {
-					const newId = determineNewAsset(sourcePath, parentId);
-
+				if (absSource) {
+					const newId = determineNewAsset(absSource);
+					const parentDir = path.dirname(chunk.facadeModuleId!);
 					const importPath = options.preserveModules
 						? new VirtualPath(path.relative(parentDir, newId.path())).path()
 						: `../assets/${newId.name()}`;

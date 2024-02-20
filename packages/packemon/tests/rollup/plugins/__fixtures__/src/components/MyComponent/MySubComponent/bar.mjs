@@ -1,3 +1,3 @@
-import svg from './icons/test.svg';
+import svg from './test.svg';
 
 export const newSvg = `new: ${svg}`;

@@ -32,7 +32,7 @@ export function createStubbedFileSystem(): FileSystem {
 	return {
 		copyFile: vi.fn(),
 		createDirAll: vi.fn(),
-		exists: vi.fn(),
+		exists: vi.fn().mockImplementation(nodeFileSystem.exists),
 		readFile: vi.fn().mockImplementation(nodeFileSystem.readFile),
 		readJson: vi.fn().mockImplementation(nodeFileSystem.readJson),
 		removeDir: vi.fn(),

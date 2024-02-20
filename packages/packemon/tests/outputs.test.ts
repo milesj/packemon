@@ -11,6 +11,7 @@ import {
 
 ['babel', 'swc'].forEach((transformer) => {
 	describe(`Outputs (${transformer})`, () => {
+		vi.spyOn(console, 'info').mockImplementation(() => {});
 		vi.spyOn(console, 'warn').mockImplementation(() => {});
 
 		describe('artifacts', () => {
