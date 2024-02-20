@@ -211,7 +211,9 @@ export class Artifact {
 
 				this.debug('  - %s', dirPath);
 
-				this.package.fs.remove(dirPath);
+				if (this.package.fs.exists(dirPath)) {
+					this.package.fs.removeDir(dirPath);
+				}
 			}),
 		);
 	}

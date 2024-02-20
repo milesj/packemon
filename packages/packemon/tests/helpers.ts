@@ -34,7 +34,8 @@ export function createStubbedFileSystem(): FileSystem {
 		exists: vi.fn(),
 		readFile: vi.fn().mockImplementation(nodeFileSystem.readFile),
 		readJson: vi.fn().mockImplementation(nodeFileSystem.readJson),
-		remove: vi.fn(),
+		removeDir: vi.fn(),
+		removeFile: vi.fn(),
 		writeFile: vi.fn(),
 		writeJson: vi.fn(),
 	};
@@ -111,49 +112,44 @@ function formatSnapshotFilePath(file: string, root: string): string {
 }
 
 export function createSnapshotSpies(root: PortablePath, captureJson: boolean = false) {
-	const fs = createStubbedFileSystem();
 	let snapshots: [string, unknown][] = [];
 
-	beforeEach(() => {
-		console.log('BEFORE EACH');
-		const handler = (file: unknown, content: unknown, cb?: unknown) => {
-			const filePath = formatSnapshotFilePath(String(file), String(root));
+	const handler = (file: unknown, content: unknown) => {
+		const filePath = formatSnapshotFilePath(String(file), String(root));
 
-			console.log(filePath);
+		// console.log(filePath, content);
 
-			if (
-				filePath.endsWith('.js') ||
-				filePath.endsWith('.cjs') ||
-				filePath.endsWith('.mjs') ||
-				filePath.endsWith('.d.ts') ||
-				filePath.endsWith('.d.cts') ||
-				filePath.endsWith('.d.mts') ||
-				(captureJson && filePath.endsWith('.json'))
-			) {
-				snapshots.push([filePath, content]);
-			}
+		if (
+			filePath.endsWith('.js') ||
+			filePath.endsWith('.cjs') ||
+			filePath.endsWith('.mjs') ||
+			filePath.endsWith('.d.ts') ||
+			filePath.endsWith('.d.cts') ||
+			filePath.endsWith('.d.mts') ||
+			(captureJson && filePath.endsWith('.json'))
+		) {
+			snapshots.push([filePath, content]);
+		}
 
-			if (filePath.endsWith('.css')) {
-				snapshots.push([filePath, formatSnapshotFilePath(String(content), String(root))]);
-			}
+		if (filePath.endsWith('.css')) {
+			snapshots.push([filePath, formatSnapshotFilePath(String(content), String(root))]);
+		}
+	};
+	// beforeEach(() => {
+	// 	(fs.copyFile as unknown as MockInstance).mockImplementation(handler);
+	// 	(fs.writeFile as unknown as MockInstance).mockImplementation(handler);
+	// 	(fs.writeJson as unknown as MockInstance).mockImplementation(handler);
 
-			if (typeof cb === 'function') {
-				cb(null);
-			}
-		};
-
-		(fs.copyFile as unknown as MockInstance).mockImplementation(handler);
-		(fs.writeFile as unknown as MockInstance).mockImplementation(handler);
-		(fs.writeJson as unknown as MockInstance).mockImplementation(handler);
-
-		// 	vi.spyOn(console, 'warn').mockImplementation(() => {});
-	});
+	// 	// 	vi.spyOn(console, 'warn').mockImplementation(() => {});
+	// });
 
 	afterEach(() => {
+		// console.log(snapshots);
 		snapshots = [];
 	});
 
 	return {
+		handler,
 		assert(pkg?: Package) {
 			if (pkg) {
 				pkg.artifacts.forEach((artifact) => {
@@ -165,7 +161,6 @@ export function createSnapshotSpies(root: PortablePath, captureJson: boolean = f
 
 			return snapshots.sort((a, b) => a[0].localeCompare(b[0]));
 		},
-		fs,
 	};
 }
 
@@ -176,8 +171,7 @@ export function testExampleOutput(
 	customRoot?: Path,
 ) {
 	describe(transformer, () => {
-		const root = customRoot ?? getFixturePath('examples');
-		const snapshots = createSnapshotSpies(root);
+		const root = customRoot ?? Path.create(getFixturePath('examples'));
 
 		beforeEach(() => {
 			process.env.PACKEMON_TEST_WRITE = 'true';
@@ -194,12 +188,9 @@ export function testExampleOutput(
 
 		[...BUILDS.values()].forEach((build) => {
 			const pkg = loadPackageAtPath(root);
-			pkg.fs = snapshots.fs;
-
 			const env = `${build.platform}-${build.support}-${build.format}`;
 
 			it(`transforms example test case: ${env}`, async () => {
-				console.log(env);
 				const artifact = new Artifact(pkg, [build]);
 				artifact.platform = build.platform;
 				artifact.support = build.support;
@@ -212,13 +203,23 @@ export function testExampleOutput(
 				pkg.artifacts.push(artifact);
 
 				try {
-					await pkg.build({}, {});
+					await pkg.build(
+						{
+							addEngines: false,
+							addEntries: false,
+							addExports: false,
+							addFiles: false,
+						},
+						{},
+					);
 				} catch (error: unknown) {
 					console.error(error);
 				}
 
-				snapshots.assert().forEach((ss) => {
-					expect(ss).toMatchSnapshot();
+				pkg.artifacts.forEach((art) => {
+					art.buildResult.files.forEach((builtFile) => {
+						expect(builtFile.code).toMatchSnapshot(builtFile.file);
+					});
 				});
 			});
 		});

@@ -98,7 +98,9 @@ export class Package {
 		);
 
 		// Add package entry points based on artifacts
-		this.addEntryPoints();
+		if (options.addEntries) {
+			this.addEntryPoints();
+		}
 
 		// Add package `engines` based on artifacts
 		if (options.addEngines) {

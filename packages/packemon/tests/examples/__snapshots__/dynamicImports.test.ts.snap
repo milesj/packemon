@@ -1,23 +1,18 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Dynamic imports babel transforms example test case: browser-current-esm 1`] = `
-[
-  "esm/bundle-3M9lVmk8.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: browser-current-esm > esm/bundle-3M9lVmk8.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: esm
 
 function foo() {}
 function bar() {}
 export { bar, foo };
 //# sourceMappingURL=bundle-3M9lVmk8.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: browser-current-esm 2`] = `
-[
-  "esm/index-browser-current-esm.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: browser-current-esm > esm/index-browser-current-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: esm
 
 import('./bundle-3M9lVmk8.js').then(result => {
@@ -29,14 +24,11 @@ import( /* webpackChunkName: "helpers" */'./bundle-3M9lVmk8.js').then(({
   bar();
 });
 //# sourceMappingURL=index-browser-current-esm.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: browser-current-lib 1`] = `
-[
-  "lib/bundle-kHKBi9mZ.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: browser-current-lib > lib/bundle-kHKBi9mZ.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: lib
 
 'use strict';
@@ -46,14 +38,11 @@ function bar() {}
 exports.bar = bar;
 exports.foo = foo;
 //# sourceMappingURL=bundle-kHKBi9mZ.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: browser-current-lib 2`] = `
-[
-  "lib/index-browser-current-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: browser-current-lib > lib/index-browser-current-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: lib
 
 'use strict';
@@ -67,14 +56,11 @@ import( /* webpackChunkName: "helpers" */'./bundle-kHKBi9mZ.js').then(({
   bar();
 });
 //# sourceMappingURL=index-browser-current-lib.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: browser-current-umd 1`] = `
-[
-  "umd/bundle-ABwVSm2R.js",
-  "(function (global, factory) {
+exports[`Dynamic imports > babel > transforms example test case: browser-current-umd > umd/bundle-ABwVSm2R.js 1`] = `
+"(function (global, factory) {
   if (typeof define === "function" && define.amd) {
     define(["exports"], factory);
   } else if (typeof exports !== "undefined") {
@@ -101,14 +87,11 @@ exports[`Dynamic imports babel transforms example test case: browser-current-umd
   function bar() {}
 });
 //# sourceMappingURL=bundle-ABwVSm2R.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: browser-current-umd 2`] = `
-[
-  "umd/index-browser-current-umd.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: browser-current-umd > umd/index-browser-current-umd.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: umd
 
 import('./bundle-ABwVSm2R.js').then(result => {
@@ -120,28 +103,22 @@ import( /* webpackChunkName: "helpers" */'./bundle-ABwVSm2R.js').then(({
   bar();
 });
 //# sourceMappingURL=index-browser-current-umd.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: browser-experimental-esm 1`] = `
-[
-  "esm/bundle-zhaXZT2y.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: browser-experimental-esm > esm/bundle-zhaXZT2y.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: experimental, Format: esm
 
 function foo() {}
 function bar() {}
 export { bar, foo };
 //# sourceMappingURL=bundle-zhaXZT2y.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: browser-experimental-esm 2`] = `
-[
-  "esm/index-browser-experimental-esm.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: browser-experimental-esm > esm/index-browser-experimental-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: experimental, Format: esm
 
 import('./bundle-zhaXZT2y.js').then(result => {
@@ -153,14 +130,11 @@ import( /* webpackChunkName: "helpers" */'./bundle-zhaXZT2y.js').then(({
   bar();
 });
 //# sourceMappingURL=index-browser-experimental-esm.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: browser-experimental-lib 1`] = `
-[
-  "lib/bundle-h_GDa_5w.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: browser-experimental-lib > lib/bundle-h_GDa_5w.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: experimental, Format: lib
 
 'use strict';
@@ -170,14 +144,11 @@ function bar() {}
 exports.bar = bar;
 exports.foo = foo;
 //# sourceMappingURL=bundle-h_GDa_5w.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: browser-experimental-lib 2`] = `
-[
-  "lib/index-browser-experimental-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: browser-experimental-lib > lib/index-browser-experimental-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: experimental, Format: lib
 
 'use strict';
@@ -191,14 +162,11 @@ import( /* webpackChunkName: "helpers" */'./bundle-h_GDa_5w.js').then(({
   bar();
 });
 //# sourceMappingURL=index-browser-experimental-lib.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: browser-experimental-umd 1`] = `
-[
-  "umd/bundle-xYfI8Fmt.js",
-  "(function (global, factory) {
+exports[`Dynamic imports > babel > transforms example test case: browser-experimental-umd > umd/bundle-xYfI8Fmt.js 1`] = `
+"(function (global, factory) {
   if (typeof define === "function" && define.amd) {
     define(["exports"], factory);
   } else if (typeof exports !== "undefined") {
@@ -225,14 +193,11 @@ exports[`Dynamic imports babel transforms example test case: browser-experimenta
   function bar() {}
 });
 //# sourceMappingURL=bundle-xYfI8Fmt.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: browser-experimental-umd 2`] = `
-[
-  "umd/index-browser-experimental-umd.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: browser-experimental-umd > umd/index-browser-experimental-umd.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: experimental, Format: umd
 
 import('./bundle-xYfI8Fmt.js').then(result => {
@@ -244,28 +209,22 @@ import( /* webpackChunkName: "helpers" */'./bundle-xYfI8Fmt.js').then(({
   bar();
 });
 //# sourceMappingURL=index-browser-experimental-umd.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: browser-legacy-esm 1`] = `
-[
-  "esm/bundle-Zh8W98hu.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: browser-legacy-esm > esm/bundle-Zh8W98hu.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: esm
 
 function foo() {}
 function bar() {}
 export { bar, foo };
 //# sourceMappingURL=bundle-Zh8W98hu.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: browser-legacy-esm 2`] = `
-[
-  "esm/index-browser-legacy-esm.js",
-  "var _this = this;
+exports[`Dynamic imports > babel > transforms example test case: browser-legacy-esm > esm/index-browser-legacy-esm.js 1`] = `
+"var _this = this;
 function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError("Cannot instantiate an arrow function"); } }
 // Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: esm
@@ -280,14 +239,11 @@ import( /* webpackChunkName: "helpers" */'./bundle-Zh8W98hu.js').then(function (
   bar();
 }.bind(this));
 //# sourceMappingURL=index-browser-legacy-esm.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: browser-legacy-lib 1`] = `
-[
-  "lib/bundle-vPF_A4rU.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: browser-legacy-lib > lib/bundle-vPF_A4rU.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: lib
 
 'use strict';
@@ -297,14 +253,11 @@ function bar() {}
 exports.bar = bar;
 exports.foo = foo;
 //# sourceMappingURL=bundle-vPF_A4rU.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: browser-legacy-lib 2`] = `
-[
-  "lib/index-browser-legacy-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: browser-legacy-lib > lib/index-browser-legacy-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: lib
 
 'use strict';
@@ -321,14 +274,11 @@ import( /* webpackChunkName: "helpers" */'./bundle-vPF_A4rU.js').then(function (
   bar();
 }.bind(this));
 //# sourceMappingURL=index-browser-legacy-lib.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: browser-legacy-umd 1`] = `
-[
-  "umd/bundle-fXSu6JQY.js",
-  "(function (global, factory) {
+exports[`Dynamic imports > babel > transforms example test case: browser-legacy-umd > umd/bundle-fXSu6JQY.js 1`] = `
+"(function (global, factory) {
   if (typeof define === "function" && define.amd) {
     define(["exports"], factory);
   } else if (typeof exports !== "undefined") {
@@ -355,14 +305,11 @@ exports[`Dynamic imports babel transforms example test case: browser-legacy-umd 
   function bar() {}
 });
 //# sourceMappingURL=bundle-fXSu6JQY.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: browser-legacy-umd 2`] = `
-[
-  "umd/index-browser-legacy-umd.js",
-  "var _this = this;
+exports[`Dynamic imports > babel > transforms example test case: browser-legacy-umd > umd/index-browser-legacy-umd.js 1`] = `
+"var _this = this;
 function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError("Cannot instantiate an arrow function"); } }
 // Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: umd
@@ -377,28 +324,22 @@ import( /* webpackChunkName: "helpers" */'./bundle-fXSu6JQY.js').then(function (
   bar();
 }.bind(this));
 //# sourceMappingURL=index-browser-legacy-umd.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: browser-stable-esm 1`] = `
-[
-  "esm/bundle-bXN382qE.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: browser-stable-esm > esm/bundle-bXN382qE.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: esm
 
 function foo() {}
 function bar() {}
 export { bar, foo };
 //# sourceMappingURL=bundle-bXN382qE.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: browser-stable-esm 2`] = `
-[
-  "esm/index-browser-stable-esm.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: browser-stable-esm > esm/index-browser-stable-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: esm
 
 import('./bundle-bXN382qE.js').then(result => {
@@ -410,14 +351,11 @@ import( /* webpackChunkName: "helpers" */'./bundle-bXN382qE.js').then(({
   bar();
 });
 //# sourceMappingURL=index-browser-stable-esm.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: browser-stable-lib 1`] = `
-[
-  "lib/bundle-kysAUAQe.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: browser-stable-lib > lib/bundle-kysAUAQe.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: lib
 
 'use strict';
@@ -427,14 +365,11 @@ function bar() {}
 exports.bar = bar;
 exports.foo = foo;
 //# sourceMappingURL=bundle-kysAUAQe.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: browser-stable-lib 2`] = `
-[
-  "lib/index-browser-stable-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: browser-stable-lib > lib/index-browser-stable-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: lib
 
 'use strict';
@@ -448,14 +383,11 @@ import( /* webpackChunkName: "helpers" */'./bundle-kysAUAQe.js').then(({
   bar();
 });
 //# sourceMappingURL=index-browser-stable-lib.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: browser-stable-umd 1`] = `
-[
-  "umd/bundle-DoGq67TH.js",
-  "(function (global, factory) {
+exports[`Dynamic imports > babel > transforms example test case: browser-stable-umd > umd/bundle-DoGq67TH.js 1`] = `
+"(function (global, factory) {
   if (typeof define === "function" && define.amd) {
     define(["exports"], factory);
   } else if (typeof exports !== "undefined") {
@@ -482,14 +414,11 @@ exports[`Dynamic imports babel transforms example test case: browser-stable-umd 
   function bar() {}
 });
 //# sourceMappingURL=bundle-DoGq67TH.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: browser-stable-umd 2`] = `
-[
-  "umd/index-browser-stable-umd.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: browser-stable-umd > umd/index-browser-stable-umd.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: umd
 
 import('./bundle-DoGq67TH.js').then(result => {
@@ -501,28 +430,22 @@ import( /* webpackChunkName: "helpers" */'./bundle-DoGq67TH.js').then(({
   bar();
 });
 //# sourceMappingURL=index-browser-stable-umd.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: electron-current-esm 1`] = `
-[
-  "esm/bundle-AuRQPVx5.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: electron-current-esm > esm/bundle-AuRQPVx5.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: current, Format: esm
 
 function foo() {}
 function bar() {}
 export { bar, foo };
 //# sourceMappingURL=bundle-AuRQPVx5.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: electron-current-esm 2`] = `
-[
-  "esm/index-electron-current-esm.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: electron-current-esm > esm/index-electron-current-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: current, Format: esm
 
 import('./bundle-AuRQPVx5.js').then(result => {
@@ -534,14 +457,11 @@ import( /* webpackChunkName: "helpers" */'./bundle-AuRQPVx5.js').then(({
   bar();
 });
 //# sourceMappingURL=index-electron-current-esm.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: electron-current-lib 1`] = `
-[
-  "lib/bundle-1obYgplG.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: electron-current-lib > lib/bundle-1obYgplG.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: current, Format: lib
 
 'use strict';
@@ -551,14 +471,11 @@ function bar() {}
 exports.bar = bar;
 exports.foo = foo;
 //# sourceMappingURL=bundle-1obYgplG.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: electron-current-lib 2`] = `
-[
-  "lib/index-electron-current-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: electron-current-lib > lib/index-electron-current-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: current, Format: lib
 
 'use strict';
@@ -572,28 +489,22 @@ import( /* webpackChunkName: "helpers" */'./bundle-1obYgplG.js').then(({
   bar();
 });
 //# sourceMappingURL=index-electron-current-lib.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: electron-experimental-esm 1`] = `
-[
-  "esm/bundle-fcjp6VW1.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: electron-experimental-esm > esm/bundle-fcjp6VW1.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: experimental, Format: esm
 
 function foo() {}
 function bar() {}
 export { bar, foo };
 //# sourceMappingURL=bundle-fcjp6VW1.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: electron-experimental-esm 2`] = `
-[
-  "esm/index-electron-experimental-esm.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: electron-experimental-esm > esm/index-electron-experimental-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: experimental, Format: esm
 
 import('./bundle-fcjp6VW1.js').then(result => {
@@ -605,14 +516,11 @@ import( /* webpackChunkName: "helpers" */'./bundle-fcjp6VW1.js').then(({
   bar();
 });
 //# sourceMappingURL=index-electron-experimental-esm.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: electron-experimental-lib 1`] = `
-[
-  "lib/bundle-ERO7dll3.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: electron-experimental-lib > lib/bundle-ERO7dll3.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: experimental, Format: lib
 
 'use strict';
@@ -622,14 +530,11 @@ function bar() {}
 exports.bar = bar;
 exports.foo = foo;
 //# sourceMappingURL=bundle-ERO7dll3.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: electron-experimental-lib 2`] = `
-[
-  "lib/index-electron-experimental-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: electron-experimental-lib > lib/index-electron-experimental-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: experimental, Format: lib
 
 'use strict';
@@ -643,28 +548,22 @@ import( /* webpackChunkName: "helpers" */'./bundle-ERO7dll3.js').then(({
   bar();
 });
 //# sourceMappingURL=index-electron-experimental-lib.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: electron-legacy-esm 1`] = `
-[
-  "esm/bundle-0b7TsP3m.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: electron-legacy-esm > esm/bundle-0b7TsP3m.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: legacy, Format: esm
 
 function foo() {}
 function bar() {}
 export { bar, foo };
 //# sourceMappingURL=bundle-0b7TsP3m.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: electron-legacy-esm 2`] = `
-[
-  "esm/index-electron-legacy-esm.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: electron-legacy-esm > esm/index-electron-legacy-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: legacy, Format: esm
 
 import('./bundle-0b7TsP3m.js').then(result => {
@@ -676,14 +575,11 @@ import( /* webpackChunkName: "helpers" */'./bundle-0b7TsP3m.js').then(({
   bar();
 });
 //# sourceMappingURL=index-electron-legacy-esm.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: electron-legacy-lib 1`] = `
-[
-  "lib/bundle-HVCtTKei.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: electron-legacy-lib > lib/bundle-HVCtTKei.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: legacy, Format: lib
 
 'use strict';
@@ -693,14 +589,11 @@ function bar() {}
 exports.bar = bar;
 exports.foo = foo;
 //# sourceMappingURL=bundle-HVCtTKei.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: electron-legacy-lib 2`] = `
-[
-  "lib/index-electron-legacy-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: electron-legacy-lib > lib/index-electron-legacy-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: legacy, Format: lib
 
 'use strict';
@@ -714,28 +607,22 @@ import( /* webpackChunkName: "helpers" */'./bundle-HVCtTKei.js').then(({
   bar();
 });
 //# sourceMappingURL=index-electron-legacy-lib.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: electron-stable-esm 1`] = `
-[
-  "esm/bundle-eJ16P6Ik.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: electron-stable-esm > esm/bundle-eJ16P6Ik.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: stable, Format: esm
 
 function foo() {}
 function bar() {}
 export { bar, foo };
 //# sourceMappingURL=bundle-eJ16P6Ik.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: electron-stable-esm 2`] = `
-[
-  "esm/index-electron-stable-esm.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: electron-stable-esm > esm/index-electron-stable-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: stable, Format: esm
 
 import('./bundle-eJ16P6Ik.js').then(result => {
@@ -747,14 +634,11 @@ import( /* webpackChunkName: "helpers" */'./bundle-eJ16P6Ik.js').then(({
   bar();
 });
 //# sourceMappingURL=index-electron-stable-esm.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: electron-stable-lib 1`] = `
-[
-  "lib/bundle-TH51JAs8.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: electron-stable-lib > lib/bundle-TH51JAs8.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: stable, Format: lib
 
 'use strict';
@@ -764,14 +648,11 @@ function bar() {}
 exports.bar = bar;
 exports.foo = foo;
 //# sourceMappingURL=bundle-TH51JAs8.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: electron-stable-lib 2`] = `
-[
-  "lib/index-electron-stable-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: electron-stable-lib > lib/index-electron-stable-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: stable, Format: lib
 
 'use strict';
@@ -785,14 +666,11 @@ import( /* webpackChunkName: "helpers" */'./bundle-TH51JAs8.js').then(({
   bar();
 });
 //# sourceMappingURL=index-electron-stable-lib.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: native-current-lib 1`] = `
-[
-  "lib/bundle-Pctkl0OM.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: native-current-lib > lib/bundle-Pctkl0OM.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: current, Format: lib
 
 'use strict';
@@ -802,35 +680,29 @@ function bar() {}
 exports.bar = bar;
 exports.foo = foo;
 //# sourceMappingURL=bundle-Pctkl0OM.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: native-current-lib 2`] = `
-[
-  "lib/index-native-current-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: native-current-lib > lib/index-native-current-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: current, Format: lib
 
 'use strict';
 
-Promise.resolve().then(() => require('./bundle-Pctkl0OM.js')).then(result => {
+import('./bundle-Pctkl0OM.js').then(result => {
   result.foo();
 });
-Promise.resolve().then(() => require( /* webpackChunkName: "helpers" */'./bundle-Pctkl0OM.js')).then(({
+import( /* webpackChunkName: "helpers" */'./bundle-Pctkl0OM.js').then(({
   bar
 }) => {
   bar();
 });
 //# sourceMappingURL=index-native-current-lib.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: native-experimental-lib 1`] = `
-[
-  "lib/bundle-9YJidWY8.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: native-experimental-lib > lib/bundle-9YJidWY8.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: experimental, Format: lib
 
 'use strict';
@@ -840,35 +712,29 @@ function bar() {}
 exports.bar = bar;
 exports.foo = foo;
 //# sourceMappingURL=bundle-9YJidWY8.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: native-experimental-lib 2`] = `
-[
-  "lib/index-native-experimental-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: native-experimental-lib > lib/index-native-experimental-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: experimental, Format: lib
 
 'use strict';
 
-Promise.resolve().then(() => require('./bundle-9YJidWY8.js')).then(result => {
+import('./bundle-9YJidWY8.js').then(result => {
   result.foo();
 });
-Promise.resolve().then(() => require( /* webpackChunkName: "helpers" */'./bundle-9YJidWY8.js')).then(({
+import( /* webpackChunkName: "helpers" */'./bundle-9YJidWY8.js').then(({
   bar
 }) => {
   bar();
 });
 //# sourceMappingURL=index-native-experimental-lib.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: native-legacy-lib 1`] = `
-[
-  "lib/bundle-N5SU9kaz.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: native-legacy-lib > lib/bundle-N5SU9kaz.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: legacy, Format: lib
 
 'use strict';
@@ -878,35 +744,29 @@ function bar() {}
 exports.bar = bar;
 exports.foo = foo;
 //# sourceMappingURL=bundle-N5SU9kaz.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: native-legacy-lib 2`] = `
-[
-  "lib/index-native-legacy-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: native-legacy-lib > lib/index-native-legacy-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: legacy, Format: lib
 
 'use strict';
 
-Promise.resolve().then(() => require('./bundle-N5SU9kaz.js')).then(result => {
+import('./bundle-N5SU9kaz.js').then(result => {
   result.foo();
 });
-Promise.resolve().then(() => require( /* webpackChunkName: "helpers" */'./bundle-N5SU9kaz.js')).then(({
+import( /* webpackChunkName: "helpers" */'./bundle-N5SU9kaz.js').then(({
   bar
 }) => {
   bar();
 });
 //# sourceMappingURL=index-native-legacy-lib.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: native-stable-lib 1`] = `
-[
-  "lib/bundle-jpwc-oDR.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: native-stable-lib > lib/bundle-jpwc-oDR.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: stable, Format: lib
 
 'use strict';
@@ -916,35 +776,29 @@ function bar() {}
 exports.bar = bar;
 exports.foo = foo;
 //# sourceMappingURL=bundle-jpwc-oDR.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: native-stable-lib 2`] = `
-[
-  "lib/index-native-stable-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: native-stable-lib > lib/index-native-stable-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: stable, Format: lib
 
 'use strict';
 
-Promise.resolve().then(() => require('./bundle-jpwc-oDR.js')).then(result => {
+import('./bundle-jpwc-oDR.js').then(result => {
   result.foo();
 });
-Promise.resolve().then(() => require( /* webpackChunkName: "helpers" */'./bundle-jpwc-oDR.js')).then(({
+import( /* webpackChunkName: "helpers" */'./bundle-jpwc-oDR.js').then(({
   bar
 }) => {
   bar();
 });
 //# sourceMappingURL=index-native-stable-lib.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: node-current-cjs 1`] = `
-[
-  "cjs/bundle-_71PWQLV.cjs",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: node-current-cjs > cjs/bundle-_71PWQLV.cjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: cjs
 
 'use strict';
@@ -954,24 +808,11 @@ function bar() {}
 exports.bar = bar;
 exports.foo = foo;
 //# sourceMappingURL=bundle-_71PWQLV.cjs.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: node-current-cjs 2`] = `
-[
-  "cjs/index-node-current-cjs-wrapper.mjs",
-  "// Bundled with Packemon: https://packemon.dev
-// This is an MJS wrapper for a sibling CJS file
-
-import './index-node-current-cjs.cjs';",
-]
-`;
-
-exports[`Dynamic imports babel transforms example test case: node-current-cjs 3`] = `
-[
-  "cjs/index-node-current-cjs.cjs",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: node-current-cjs > cjs/index-node-current-cjs.cjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: cjs
 
 'use strict';
@@ -985,14 +826,11 @@ import( /* webpackChunkName: "helpers" */'./bundle-_71PWQLV.cjs').then(({
   bar();
 });
 //# sourceMappingURL=index-node-current-cjs.cjs.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: node-current-lib 1`] = `
-[
-  "lib/bundle-kA87Rk4F.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: node-current-lib > lib/bundle-kA87Rk4F.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: lib
 
 'use strict';
@@ -1002,14 +840,11 @@ function bar() {}
 exports.bar = bar;
 exports.foo = foo;
 //# sourceMappingURL=bundle-kA87Rk4F.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: node-current-lib 2`] = `
-[
-  "lib/index-node-current-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: node-current-lib > lib/index-node-current-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: lib
 
 'use strict';
@@ -1023,28 +858,22 @@ import( /* webpackChunkName: "helpers" */'./bundle-kA87Rk4F.js').then(({
   bar();
 });
 //# sourceMappingURL=index-node-current-lib.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: node-current-mjs 1`] = `
-[
-  "mjs/bundle-BK-paazK.mjs",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: node-current-mjs > mjs/bundle-BK-paazK.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: mjs
 
 function foo() {}
 function bar() {}
 export { bar, foo };
 //# sourceMappingURL=bundle-BK-paazK.mjs.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: node-current-mjs 2`] = `
-[
-  "mjs/index-node-current-mjs.mjs",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: node-current-mjs > mjs/index-node-current-mjs.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: mjs
 
 import('./bundle-BK-paazK.mjs').then(result => {
@@ -1056,14 +885,11 @@ import( /* webpackChunkName: "helpers" */'./bundle-BK-paazK.mjs').then(({
   bar();
 });
 //# sourceMappingURL=index-node-current-mjs.mjs.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: node-experimental-cjs 1`] = `
-[
-  "cjs/bundle-DAKsN3xY.cjs",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: node-experimental-cjs > cjs/bundle-DAKsN3xY.cjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: cjs
 
 'use strict';
@@ -1073,24 +899,11 @@ function bar() {}
 exports.bar = bar;
 exports.foo = foo;
 //# sourceMappingURL=bundle-DAKsN3xY.cjs.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: node-experimental-cjs 2`] = `
-[
-  "cjs/index-node-experimental-cjs-wrapper.mjs",
-  "// Bundled with Packemon: https://packemon.dev
-// This is an MJS wrapper for a sibling CJS file
-
-import './index-node-experimental-cjs.cjs';",
-]
-`;
-
-exports[`Dynamic imports babel transforms example test case: node-experimental-cjs 3`] = `
-[
-  "cjs/index-node-experimental-cjs.cjs",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: node-experimental-cjs > cjs/index-node-experimental-cjs.cjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: cjs
 
 'use strict';
@@ -1104,14 +917,11 @@ import( /* webpackChunkName: "helpers" */'./bundle-DAKsN3xY.cjs').then(({
   bar();
 });
 //# sourceMappingURL=index-node-experimental-cjs.cjs.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: node-experimental-lib 1`] = `
-[
-  "lib/bundle-az7ZSxOo.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: node-experimental-lib > lib/bundle-az7ZSxOo.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: lib
 
 'use strict';
@@ -1121,14 +931,11 @@ function bar() {}
 exports.bar = bar;
 exports.foo = foo;
 //# sourceMappingURL=bundle-az7ZSxOo.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: node-experimental-lib 2`] = `
-[
-  "lib/index-node-experimental-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: node-experimental-lib > lib/index-node-experimental-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: lib
 
 'use strict';
@@ -1142,28 +949,22 @@ import( /* webpackChunkName: "helpers" */'./bundle-az7ZSxOo.js').then(({
   bar();
 });
 //# sourceMappingURL=index-node-experimental-lib.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: node-experimental-mjs 1`] = `
-[
-  "mjs/bundle-UAQNGTBj.mjs",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: node-experimental-mjs > mjs/bundle-UAQNGTBj.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: mjs
 
 function foo() {}
 function bar() {}
 export { bar, foo };
 //# sourceMappingURL=bundle-UAQNGTBj.mjs.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: node-experimental-mjs 2`] = `
-[
-  "mjs/index-node-experimental-mjs.mjs",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: node-experimental-mjs > mjs/index-node-experimental-mjs.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: mjs
 
 import('./bundle-UAQNGTBj.mjs').then(result => {
@@ -1175,14 +976,11 @@ import( /* webpackChunkName: "helpers" */'./bundle-UAQNGTBj.mjs').then(({
   bar();
 });
 //# sourceMappingURL=index-node-experimental-mjs.mjs.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: node-legacy-cjs 1`] = `
-[
-  "cjs/bundle-R7c4FVRE.cjs",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: node-legacy-cjs > cjs/bundle-R7c4FVRE.cjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: cjs
 
 'use strict';
@@ -1192,24 +990,11 @@ function bar() {}
 exports.bar = bar;
 exports.foo = foo;
 //# sourceMappingURL=bundle-R7c4FVRE.cjs.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: node-legacy-cjs 2`] = `
-[
-  "cjs/index-node-legacy-cjs-wrapper.mjs",
-  "// Bundled with Packemon: https://packemon.dev
-// This is an MJS wrapper for a sibling CJS file
-
-import './index-node-legacy-cjs.cjs';",
-]
-`;
-
-exports[`Dynamic imports babel transforms example test case: node-legacy-cjs 3`] = `
-[
-  "cjs/index-node-legacy-cjs.cjs",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: node-legacy-cjs > cjs/index-node-legacy-cjs.cjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: cjs
 
 'use strict';
@@ -1223,14 +1008,11 @@ import( /* webpackChunkName: "helpers" */'./bundle-R7c4FVRE.cjs').then(({
   bar();
 });
 //# sourceMappingURL=index-node-legacy-cjs.cjs.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: node-legacy-lib 1`] = `
-[
-  "lib/bundle-3n_KI-v0.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: node-legacy-lib > lib/bundle-3n_KI-v0.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: lib
 
 'use strict';
@@ -1240,14 +1022,11 @@ function bar() {}
 exports.bar = bar;
 exports.foo = foo;
 //# sourceMappingURL=bundle-3n_KI-v0.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: node-legacy-lib 2`] = `
-[
-  "lib/index-node-legacy-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: node-legacy-lib > lib/index-node-legacy-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: lib
 
 'use strict';
@@ -1261,28 +1040,22 @@ import( /* webpackChunkName: "helpers" */'./bundle-3n_KI-v0.js').then(({
   bar();
 });
 //# sourceMappingURL=index-node-legacy-lib.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: node-legacy-mjs 1`] = `
-[
-  "mjs/bundle-YzUH8RD0.mjs",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: node-legacy-mjs > mjs/bundle-YzUH8RD0.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: mjs
 
 function foo() {}
 function bar() {}
 export { bar, foo };
 //# sourceMappingURL=bundle-YzUH8RD0.mjs.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: node-legacy-mjs 2`] = `
-[
-  "mjs/index-node-legacy-mjs.mjs",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: node-legacy-mjs > mjs/index-node-legacy-mjs.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: mjs
 
 import('./bundle-YzUH8RD0.mjs').then(result => {
@@ -1294,14 +1067,11 @@ import( /* webpackChunkName: "helpers" */'./bundle-YzUH8RD0.mjs').then(({
   bar();
 });
 //# sourceMappingURL=index-node-legacy-mjs.mjs.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: node-stable-cjs 1`] = `
-[
-  "cjs/bundle-9YUm9Bbo.cjs",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: node-stable-cjs > cjs/bundle-9YUm9Bbo.cjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: cjs
 
 'use strict';
@@ -1311,24 +1081,11 @@ function bar() {}
 exports.bar = bar;
 exports.foo = foo;
 //# sourceMappingURL=bundle-9YUm9Bbo.cjs.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: node-stable-cjs 2`] = `
-[
-  "cjs/index-node-stable-cjs-wrapper.mjs",
-  "// Bundled with Packemon: https://packemon.dev
-// This is an MJS wrapper for a sibling CJS file
-
-import './index-node-stable-cjs.cjs';",
-]
-`;
-
-exports[`Dynamic imports babel transforms example test case: node-stable-cjs 3`] = `
-[
-  "cjs/index-node-stable-cjs.cjs",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: node-stable-cjs > cjs/index-node-stable-cjs.cjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: cjs
 
 'use strict';
@@ -1342,14 +1099,11 @@ import( /* webpackChunkName: "helpers" */'./bundle-9YUm9Bbo.cjs').then(({
   bar();
 });
 //# sourceMappingURL=index-node-stable-cjs.cjs.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: node-stable-lib 1`] = `
-[
-  "lib/bundle-hCJ2hPkz.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: node-stable-lib > lib/bundle-hCJ2hPkz.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: lib
 
 'use strict';
@@ -1359,14 +1113,11 @@ function bar() {}
 exports.bar = bar;
 exports.foo = foo;
 //# sourceMappingURL=bundle-hCJ2hPkz.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: node-stable-lib 2`] = `
-[
-  "lib/index-node-stable-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: node-stable-lib > lib/index-node-stable-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: lib
 
 'use strict';
@@ -1380,28 +1131,22 @@ import( /* webpackChunkName: "helpers" */'./bundle-hCJ2hPkz.js').then(({
   bar();
 });
 //# sourceMappingURL=index-node-stable-lib.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: node-stable-mjs 1`] = `
-[
-  "mjs/bundle-N2mxTj-7.mjs",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: node-stable-mjs > mjs/bundle-N2mxTj-7.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: mjs
 
 function foo() {}
 function bar() {}
 export { bar, foo };
 //# sourceMappingURL=bundle-N2mxTj-7.mjs.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports babel transforms example test case: node-stable-mjs 2`] = `
-[
-  "mjs/index-node-stable-mjs.mjs",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > babel > transforms example test case: node-stable-mjs > mjs/index-node-stable-mjs.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: mjs
 
 import('./bundle-N2mxTj-7.mjs').then(result => {
@@ -1413,27 +1158,21 @@ import( /* webpackChunkName: "helpers" */'./bundle-N2mxTj-7.mjs').then(({
   bar();
 });
 //# sourceMappingURL=index-node-stable-mjs.mjs.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: browser-current-esm 1`] = `
-[
-  "esm/bundle-NLqBMetY.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: browser-current-esm > esm/bundle-NLqBMetY.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: esm
 function foo() {}
 function bar() {}
 export { bar, foo };
 //# sourceMappingURL=bundle-NLqBMetY.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: browser-current-esm 2`] = `
-[
-  "esm/index-browser-current-esm.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: browser-current-esm > esm/index-browser-current-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: esm
 import("./bundle-NLqBMetY.js").then((result)=>{
     result.foo();
@@ -1442,14 +1181,11 @@ import(/* webpackChunkName: "helpers" */ "./bundle-NLqBMetY.js").then(({ bar })=
     bar();
 });
 //# sourceMappingURL=index-browser-current-esm.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: browser-current-lib 1`] = `
-[
-  "lib/bundle-utDa9_O8.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: browser-current-lib > lib/bundle-utDa9_O8.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: lib
 "use strict";
 function foo() {}
@@ -1457,14 +1193,11 @@ function bar() {}
 exports.bar = bar;
 exports.foo = foo;
 //# sourceMappingURL=bundle-utDa9_O8.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: browser-current-lib 2`] = `
-[
-  "lib/index-browser-current-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: browser-current-lib > lib/index-browser-current-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: lib
 "use strict";
 import("./bundle-utDa9_O8.js").then((result)=>{
@@ -1474,14 +1207,11 @@ import(/* webpackChunkName: "helpers" */ "./bundle-utDa9_O8.js").then(({ bar })=
     bar();
 });
 //# sourceMappingURL=index-browser-current-lib.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: browser-current-umd 1`] = `
-[
-  "umd/bundle-b2GC_i-K.js",
-  "(function(global, factory) {
+exports[`Dynamic imports > swc > transforms example test case: browser-current-umd > umd/bundle-b2GC_i-K.js 1`] = `
+"(function(global, factory) {
     if (typeof module === "object" && typeof module.exports === "object") factory(exports);
     else if (typeof define === "function" && define.amd) define([
         "exports"
@@ -1510,19 +1240,57 @@ exports[`Dynamic imports swc transforms example test case: browser-current-umd 1
     function bar() {}
 });
 //# sourceMappingURL=bundle-b2GC_i-K.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: browser-current-umd 2`] = `
-[
-  "umd/index-browser-current-umd.js",
-  "(function(global, factory) {
+exports[`Dynamic imports > swc > transforms example test case: browser-current-umd > umd/index-browser-current-umd.js 1`] = `
+"(function(global, factory) {
     if (typeof module === "object" && typeof module.exports === "object") factory();
     else if (typeof define === "function" && define.amd) define([], factory);
     else if (global = typeof globalThis !== "undefined" ? globalThis : global || self) factory();
 })(this, function() {
     "use strict";
+    function _getRequireWildcardCache(nodeInterop) {
+        if (typeof WeakMap !== "function") return null;
+        var cacheBabelInterop = new WeakMap();
+        var cacheNodeInterop = new WeakMap();
+        return (_getRequireWildcardCache = function(nodeInterop) {
+            return nodeInterop ? cacheNodeInterop : cacheBabelInterop;
+        })(nodeInterop);
+    }
+    function _interop_require_wildcard(obj, nodeInterop) {
+        if (!nodeInterop && obj && obj.__esModule) {
+            return obj;
+        }
+        if (obj === null || typeof obj !== "object" && typeof obj !== "function") {
+            return {
+                default: obj
+            };
+        }
+        var cache = _getRequireWildcardCache(nodeInterop);
+        if (cache && cache.has(obj)) {
+            return cache.get(obj);
+        }
+        var newObj = {
+            __proto__: null
+        };
+        var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;
+        for(var key in obj){
+            if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) {
+                var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;
+                if (desc && (desc.get || desc.set)) {
+                    Object.defineProperty(newObj, key, desc);
+                } else {
+                    newObj[key] = obj[key];
+                }
+            }
+        }
+        newObj.default = obj;
+        if (cache) {
+            cache.set(obj, newObj);
+        }
+        return newObj;
+    }
     import("./bundle-b2GC_i-K.js").then((result)=>{
         result.foo();
     });
@@ -1531,27 +1299,21 @@ exports[`Dynamic imports swc transforms example test case: browser-current-umd 2
     });
 });
 //# sourceMappingURL=index-browser-current-umd.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: browser-experimental-esm 1`] = `
-[
-  "esm/bundle-oBG6aZke.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: browser-experimental-esm > esm/bundle-oBG6aZke.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: experimental, Format: esm
 function foo() {}
 function bar() {}
 export { bar, foo };
 //# sourceMappingURL=bundle-oBG6aZke.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: browser-experimental-esm 2`] = `
-[
-  "esm/index-browser-experimental-esm.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: browser-experimental-esm > esm/index-browser-experimental-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: experimental, Format: esm
 import("./bundle-oBG6aZke.js").then((result)=>{
     result.foo();
@@ -1560,14 +1322,11 @@ import(/* webpackChunkName: "helpers" */ "./bundle-oBG6aZke.js").then(({ bar })=
     bar();
 });
 //# sourceMappingURL=index-browser-experimental-esm.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: browser-experimental-lib 1`] = `
-[
-  "lib/bundle-azzoyFhI.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: browser-experimental-lib > lib/bundle-azzoyFhI.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: experimental, Format: lib
 "use strict";
 function foo() {}
@@ -1575,14 +1334,11 @@ function bar() {}
 exports.bar = bar;
 exports.foo = foo;
 //# sourceMappingURL=bundle-azzoyFhI.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: browser-experimental-lib 2`] = `
-[
-  "lib/index-browser-experimental-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: browser-experimental-lib > lib/index-browser-experimental-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: experimental, Format: lib
 "use strict";
 import("./bundle-azzoyFhI.js").then((result)=>{
@@ -1592,14 +1348,11 @@ import(/* webpackChunkName: "helpers" */ "./bundle-azzoyFhI.js").then(({ bar })=
     bar();
 });
 //# sourceMappingURL=index-browser-experimental-lib.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: browser-experimental-umd 1`] = `
-[
-  "umd/bundle-b2GC_i-K.js",
-  "(function(global, factory) {
+exports[`Dynamic imports > swc > transforms example test case: browser-experimental-umd > umd/bundle-b2GC_i-K.js 1`] = `
+"(function(global, factory) {
     if (typeof module === "object" && typeof module.exports === "object") factory(exports);
     else if (typeof define === "function" && define.amd) define([
         "exports"
@@ -1628,19 +1381,57 @@ exports[`Dynamic imports swc transforms example test case: browser-experimental-
     function bar() {}
 });
 //# sourceMappingURL=bundle-b2GC_i-K.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: browser-experimental-umd 2`] = `
-[
-  "umd/index-browser-experimental-umd.js",
-  "(function(global, factory) {
+exports[`Dynamic imports > swc > transforms example test case: browser-experimental-umd > umd/index-browser-experimental-umd.js 1`] = `
+"(function(global, factory) {
     if (typeof module === "object" && typeof module.exports === "object") factory();
     else if (typeof define === "function" && define.amd) define([], factory);
     else if (global = typeof globalThis !== "undefined" ? globalThis : global || self) factory();
 })(this, function() {
     "use strict";
+    function _getRequireWildcardCache(nodeInterop) {
+        if (typeof WeakMap !== "function") return null;
+        var cacheBabelInterop = new WeakMap();
+        var cacheNodeInterop = new WeakMap();
+        return (_getRequireWildcardCache = function(nodeInterop) {
+            return nodeInterop ? cacheNodeInterop : cacheBabelInterop;
+        })(nodeInterop);
+    }
+    function _interop_require_wildcard(obj, nodeInterop) {
+        if (!nodeInterop && obj && obj.__esModule) {
+            return obj;
+        }
+        if (obj === null || typeof obj !== "object" && typeof obj !== "function") {
+            return {
+                default: obj
+            };
+        }
+        var cache = _getRequireWildcardCache(nodeInterop);
+        if (cache && cache.has(obj)) {
+            return cache.get(obj);
+        }
+        var newObj = {
+            __proto__: null
+        };
+        var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;
+        for(var key in obj){
+            if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) {
+                var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;
+                if (desc && (desc.get || desc.set)) {
+                    Object.defineProperty(newObj, key, desc);
+                } else {
+                    newObj[key] = obj[key];
+                }
+            }
+        }
+        newObj.default = obj;
+        if (cache) {
+            cache.set(obj, newObj);
+        }
+        return newObj;
+    }
     import("./bundle-b2GC_i-K.js").then((result)=>{
         result.foo();
     });
@@ -1649,27 +1440,21 @@ exports[`Dynamic imports swc transforms example test case: browser-experimental-
     });
 });
 //# sourceMappingURL=index-browser-experimental-umd.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: browser-legacy-esm 1`] = `
-[
-  "esm/bundle-92DHqCjr.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: browser-legacy-esm > esm/bundle-92DHqCjr.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: esm
 function foo() {}
 function bar() {}
 export { bar, foo };
 //# sourceMappingURL=bundle-92DHqCjr.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: browser-legacy-esm 2`] = `
-[
-  "esm/index-browser-legacy-esm.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: browser-legacy-esm > esm/index-browser-legacy-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: esm
 import("./bundle-92DHqCjr.js").then(function(result) {
     result.foo();
@@ -1679,14 +1464,11 @@ import(/* webpackChunkName: "helpers" */ "./bundle-92DHqCjr.js").then(function(p
     bar();
 });
 //# sourceMappingURL=index-browser-legacy-esm.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: browser-legacy-lib 1`] = `
-[
-  "lib/bundle-E6nrlNAi.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: browser-legacy-lib > lib/bundle-E6nrlNAi.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: lib
 "use strict";
 function foo() {}
@@ -1694,14 +1476,11 @@ function bar() {}
 exports.bar = bar;
 exports.foo = foo;
 //# sourceMappingURL=bundle-E6nrlNAi.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: browser-legacy-lib 2`] = `
-[
-  "lib/index-browser-legacy-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: browser-legacy-lib > lib/index-browser-legacy-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: lib
 "use strict";
 import("./bundle-E6nrlNAi.js").then(function(result) {
@@ -1712,14 +1491,11 @@ import(/* webpackChunkName: "helpers" */ "./bundle-E6nrlNAi.js").then(function(p
     bar();
 });
 //# sourceMappingURL=index-browser-legacy-lib.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: browser-legacy-umd 1`] = `
-[
-  "umd/bundle-b2GC_i-K.js",
-  "(function(global, factory) {
+exports[`Dynamic imports > swc > transforms example test case: browser-legacy-umd > umd/bundle-b2GC_i-K.js 1`] = `
+"(function(global, factory) {
     if (typeof module === "object" && typeof module.exports === "object") factory(exports);
     else if (typeof define === "function" && define.amd) define([
         "exports"
@@ -1748,19 +1524,57 @@ exports[`Dynamic imports swc transforms example test case: browser-legacy-umd 1`
     function bar() {}
 });
 //# sourceMappingURL=bundle-b2GC_i-K.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: browser-legacy-umd 2`] = `
-[
-  "umd/index-browser-legacy-umd.js",
-  "(function(global, factory) {
+exports[`Dynamic imports > swc > transforms example test case: browser-legacy-umd > umd/index-browser-legacy-umd.js 1`] = `
+"(function(global, factory) {
     if (typeof module === "object" && typeof module.exports === "object") factory();
     else if (typeof define === "function" && define.amd) define([], factory);
     else if (global = typeof globalThis !== "undefined" ? globalThis : global || self) factory();
 })(this, function() {
     "use strict";
+    function _getRequireWildcardCache(nodeInterop) {
+        if (typeof WeakMap !== "function") return null;
+        var cacheBabelInterop = new WeakMap();
+        var cacheNodeInterop = new WeakMap();
+        return (_getRequireWildcardCache = function(nodeInterop) {
+            return nodeInterop ? cacheNodeInterop : cacheBabelInterop;
+        })(nodeInterop);
+    }
+    function _interop_require_wildcard(obj, nodeInterop) {
+        if (!nodeInterop && obj && obj.__esModule) {
+            return obj;
+        }
+        if (obj === null || typeof obj !== "object" && typeof obj !== "function") {
+            return {
+                default: obj
+            };
+        }
+        var cache = _getRequireWildcardCache(nodeInterop);
+        if (cache && cache.has(obj)) {
+            return cache.get(obj);
+        }
+        var newObj = {
+            __proto__: null
+        };
+        var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;
+        for(var key in obj){
+            if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) {
+                var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;
+                if (desc && (desc.get || desc.set)) {
+                    Object.defineProperty(newObj, key, desc);
+                } else {
+                    newObj[key] = obj[key];
+                }
+            }
+        }
+        newObj.default = obj;
+        if (cache) {
+            cache.set(obj, newObj);
+        }
+        return newObj;
+    }
     import("./bundle-b2GC_i-K.js").then(function(result) {
         result.foo();
     });
@@ -1770,27 +1584,21 @@ exports[`Dynamic imports swc transforms example test case: browser-legacy-umd 2`
     });
 });
 //# sourceMappingURL=index-browser-legacy-umd.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: browser-stable-esm 1`] = `
-[
-  "esm/bundle-2ydu3TQy.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: browser-stable-esm > esm/bundle-2ydu3TQy.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: esm
 function foo() {}
 function bar() {}
 export { bar, foo };
 //# sourceMappingURL=bundle-2ydu3TQy.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: browser-stable-esm 2`] = `
-[
-  "esm/index-browser-stable-esm.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: browser-stable-esm > esm/index-browser-stable-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: esm
 import("./bundle-2ydu3TQy.js").then((result)=>{
     result.foo();
@@ -1799,14 +1607,11 @@ import(/* webpackChunkName: "helpers" */ "./bundle-2ydu3TQy.js").then(({ bar })=
     bar();
 });
 //# sourceMappingURL=index-browser-stable-esm.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: browser-stable-lib 1`] = `
-[
-  "lib/bundle-ktd5u-Mc.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: browser-stable-lib > lib/bundle-ktd5u-Mc.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: lib
 "use strict";
 function foo() {}
@@ -1814,14 +1619,11 @@ function bar() {}
 exports.bar = bar;
 exports.foo = foo;
 //# sourceMappingURL=bundle-ktd5u-Mc.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: browser-stable-lib 2`] = `
-[
-  "lib/index-browser-stable-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: browser-stable-lib > lib/index-browser-stable-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: lib
 "use strict";
 import("./bundle-ktd5u-Mc.js").then((result)=>{
@@ -1831,14 +1633,11 @@ import(/* webpackChunkName: "helpers" */ "./bundle-ktd5u-Mc.js").then(({ bar })=
     bar();
 });
 //# sourceMappingURL=index-browser-stable-lib.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: browser-stable-umd 1`] = `
-[
-  "umd/bundle-b2GC_i-K.js",
-  "(function(global, factory) {
+exports[`Dynamic imports > swc > transforms example test case: browser-stable-umd > umd/bundle-b2GC_i-K.js 1`] = `
+"(function(global, factory) {
     if (typeof module === "object" && typeof module.exports === "object") factory(exports);
     else if (typeof define === "function" && define.amd) define([
         "exports"
@@ -1867,19 +1666,57 @@ exports[`Dynamic imports swc transforms example test case: browser-stable-umd 1`
     function bar() {}
 });
 //# sourceMappingURL=bundle-b2GC_i-K.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: browser-stable-umd 2`] = `
-[
-  "umd/index-browser-stable-umd.js",
-  "(function(global, factory) {
+exports[`Dynamic imports > swc > transforms example test case: browser-stable-umd > umd/index-browser-stable-umd.js 1`] = `
+"(function(global, factory) {
     if (typeof module === "object" && typeof module.exports === "object") factory();
     else if (typeof define === "function" && define.amd) define([], factory);
     else if (global = typeof globalThis !== "undefined" ? globalThis : global || self) factory();
 })(this, function() {
     "use strict";
+    function _getRequireWildcardCache(nodeInterop) {
+        if (typeof WeakMap !== "function") return null;
+        var cacheBabelInterop = new WeakMap();
+        var cacheNodeInterop = new WeakMap();
+        return (_getRequireWildcardCache = function(nodeInterop) {
+            return nodeInterop ? cacheNodeInterop : cacheBabelInterop;
+        })(nodeInterop);
+    }
+    function _interop_require_wildcard(obj, nodeInterop) {
+        if (!nodeInterop && obj && obj.__esModule) {
+            return obj;
+        }
+        if (obj === null || typeof obj !== "object" && typeof obj !== "function") {
+            return {
+                default: obj
+            };
+        }
+        var cache = _getRequireWildcardCache(nodeInterop);
+        if (cache && cache.has(obj)) {
+            return cache.get(obj);
+        }
+        var newObj = {
+            __proto__: null
+        };
+        var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;
+        for(var key in obj){
+            if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) {
+                var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;
+                if (desc && (desc.get || desc.set)) {
+                    Object.defineProperty(newObj, key, desc);
+                } else {
+                    newObj[key] = obj[key];
+                }
+            }
+        }
+        newObj.default = obj;
+        if (cache) {
+            cache.set(obj, newObj);
+        }
+        return newObj;
+    }
     import("./bundle-b2GC_i-K.js").then((result)=>{
         result.foo();
     });
@@ -1888,27 +1725,21 @@ exports[`Dynamic imports swc transforms example test case: browser-stable-umd 2`
     });
 });
 //# sourceMappingURL=index-browser-stable-umd.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: electron-current-esm 1`] = `
-[
-  "esm/bundle-cJW1qcOY.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: electron-current-esm > esm/bundle-cJW1qcOY.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: current, Format: esm
 function foo() {}
 function bar() {}
 export { bar, foo };
 //# sourceMappingURL=bundle-cJW1qcOY.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: electron-current-esm 2`] = `
-[
-  "esm/index-electron-current-esm.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: electron-current-esm > esm/index-electron-current-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: current, Format: esm
 import("./bundle-cJW1qcOY.js").then((result)=>{
     result.foo();
@@ -1917,14 +1748,11 @@ import(/* webpackChunkName: "helpers" */ "./bundle-cJW1qcOY.js").then(({ bar })=
     bar();
 });
 //# sourceMappingURL=index-electron-current-esm.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: electron-current-lib 1`] = `
-[
-  "lib/bundle-aqzY33Db.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: electron-current-lib > lib/bundle-aqzY33Db.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: current, Format: lib
 "use strict";
 function foo() {}
@@ -1932,14 +1760,11 @@ function bar() {}
 exports.bar = bar;
 exports.foo = foo;
 //# sourceMappingURL=bundle-aqzY33Db.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: electron-current-lib 2`] = `
-[
-  "lib/index-electron-current-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: electron-current-lib > lib/index-electron-current-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: current, Format: lib
 "use strict";
 import("./bundle-aqzY33Db.js").then((result)=>{
@@ -1949,27 +1774,21 @@ import(/* webpackChunkName: "helpers" */ "./bundle-aqzY33Db.js").then(({ bar })=
     bar();
 });
 //# sourceMappingURL=index-electron-current-lib.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: electron-experimental-esm 1`] = `
-[
-  "esm/bundle-okQF6WJs.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: electron-experimental-esm > esm/bundle-okQF6WJs.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: experimental, Format: esm
 function foo() {}
 function bar() {}
 export { bar, foo };
 //# sourceMappingURL=bundle-okQF6WJs.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: electron-experimental-esm 2`] = `
-[
-  "esm/index-electron-experimental-esm.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: electron-experimental-esm > esm/index-electron-experimental-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: experimental, Format: esm
 import("./bundle-okQF6WJs.js").then((result)=>{
     result.foo();
@@ -1978,14 +1797,11 @@ import(/* webpackChunkName: "helpers" */ "./bundle-okQF6WJs.js").then(({ bar })=
     bar();
 });
 //# sourceMappingURL=index-electron-experimental-esm.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: electron-experimental-lib 1`] = `
-[
-  "lib/bundle-90F0lDEa.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: electron-experimental-lib > lib/bundle-90F0lDEa.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: experimental, Format: lib
 "use strict";
 function foo() {}
@@ -1993,14 +1809,11 @@ function bar() {}
 exports.bar = bar;
 exports.foo = foo;
 //# sourceMappingURL=bundle-90F0lDEa.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: electron-experimental-lib 2`] = `
-[
-  "lib/index-electron-experimental-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: electron-experimental-lib > lib/index-electron-experimental-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: experimental, Format: lib
 "use strict";
 import("./bundle-90F0lDEa.js").then((result)=>{
@@ -2010,27 +1823,21 @@ import(/* webpackChunkName: "helpers" */ "./bundle-90F0lDEa.js").then(({ bar })=
     bar();
 });
 //# sourceMappingURL=index-electron-experimental-lib.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: electron-legacy-esm 1`] = `
-[
-  "esm/bundle-2IkUES5f.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: electron-legacy-esm > esm/bundle-2IkUES5f.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: legacy, Format: esm
 function foo() {}
 function bar() {}
 export { bar, foo };
 //# sourceMappingURL=bundle-2IkUES5f.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: electron-legacy-esm 2`] = `
-[
-  "esm/index-electron-legacy-esm.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: electron-legacy-esm > esm/index-electron-legacy-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: legacy, Format: esm
 import("./bundle-2IkUES5f.js").then((result)=>{
     result.foo();
@@ -2039,14 +1846,11 @@ import(/* webpackChunkName: "helpers" */ "./bundle-2IkUES5f.js").then(({ bar })=
     bar();
 });
 //# sourceMappingURL=index-electron-legacy-esm.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: electron-legacy-lib 1`] = `
-[
-  "lib/bundle-ebugfJSh.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: electron-legacy-lib > lib/bundle-ebugfJSh.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: legacy, Format: lib
 "use strict";
 function foo() {}
@@ -2054,14 +1858,11 @@ function bar() {}
 exports.bar = bar;
 exports.foo = foo;
 //# sourceMappingURL=bundle-ebugfJSh.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: electron-legacy-lib 2`] = `
-[
-  "lib/index-electron-legacy-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: electron-legacy-lib > lib/index-electron-legacy-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: legacy, Format: lib
 "use strict";
 import("./bundle-ebugfJSh.js").then((result)=>{
@@ -2071,27 +1872,21 @@ import(/* webpackChunkName: "helpers" */ "./bundle-ebugfJSh.js").then(({ bar })=
     bar();
 });
 //# sourceMappingURL=index-electron-legacy-lib.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: electron-stable-esm 1`] = `
-[
-  "esm/bundle-a93ZhMR_.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: electron-stable-esm > esm/bundle-a93ZhMR_.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: stable, Format: esm
 function foo() {}
 function bar() {}
 export { bar, foo };
 //# sourceMappingURL=bundle-a93ZhMR_.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: electron-stable-esm 2`] = `
-[
-  "esm/index-electron-stable-esm.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: electron-stable-esm > esm/index-electron-stable-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: stable, Format: esm
 import("./bundle-a93ZhMR_.js").then((result)=>{
     result.foo();
@@ -2100,14 +1895,11 @@ import(/* webpackChunkName: "helpers" */ "./bundle-a93ZhMR_.js").then(({ bar })=
     bar();
 });
 //# sourceMappingURL=index-electron-stable-esm.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: electron-stable-lib 1`] = `
-[
-  "lib/bundle-Hqs1JeVJ.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: electron-stable-lib > lib/bundle-Hqs1JeVJ.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: stable, Format: lib
 "use strict";
 function foo() {}
@@ -2115,14 +1907,11 @@ function bar() {}
 exports.bar = bar;
 exports.foo = foo;
 //# sourceMappingURL=bundle-Hqs1JeVJ.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: electron-stable-lib 2`] = `
-[
-  "lib/index-electron-stable-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: electron-stable-lib > lib/index-electron-stable-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: stable, Format: lib
 "use strict";
 import("./bundle-Hqs1JeVJ.js").then((result)=>{
@@ -2132,14 +1921,11 @@ import(/* webpackChunkName: "helpers" */ "./bundle-Hqs1JeVJ.js").then(({ bar })=
     bar();
 });
 //# sourceMappingURL=index-electron-stable-lib.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: native-current-lib 1`] = `
-[
-  "lib/bundle-3zLFMKSE.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: native-current-lib > lib/bundle-3zLFMKSE.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: current, Format: lib
 "use strict";
 function foo() {}
@@ -2147,31 +1933,25 @@ function bar() {}
 exports.bar = bar;
 exports.foo = foo;
 //# sourceMappingURL=bundle-3zLFMKSE.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: native-current-lib 2`] = `
-[
-  "lib/index-native-current-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: native-current-lib > lib/index-native-current-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: current, Format: lib
 "use strict";
-Promise.resolve().then(()=>require("./bundle-3zLFMKSE.js")).then((result)=>{
+import("./bundle-3zLFMKSE.js").then((result)=>{
     result.foo();
 });
-Promise.resolve().then(()=>require(/* webpackChunkName: "helpers" */ "./bundle-3zLFMKSE.js")).then(({ bar })=>{
+import(/* webpackChunkName: "helpers" */ "./bundle-3zLFMKSE.js").then(({ bar })=>{
     bar();
 });
 //# sourceMappingURL=index-native-current-lib.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: native-experimental-lib 1`] = `
-[
-  "lib/bundle-yUS5CVMs.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: native-experimental-lib > lib/bundle-yUS5CVMs.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: experimental, Format: lib
 "use strict";
 function foo() {}
@@ -2179,31 +1959,25 @@ function bar() {}
 exports.bar = bar;
 exports.foo = foo;
 //# sourceMappingURL=bundle-yUS5CVMs.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: native-experimental-lib 2`] = `
-[
-  "lib/index-native-experimental-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: native-experimental-lib > lib/index-native-experimental-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: experimental, Format: lib
 "use strict";
-Promise.resolve().then(()=>require("./bundle-yUS5CVMs.js")).then((result)=>{
+import("./bundle-yUS5CVMs.js").then((result)=>{
     result.foo();
 });
-Promise.resolve().then(()=>require(/* webpackChunkName: "helpers" */ "./bundle-yUS5CVMs.js")).then(({ bar })=>{
+import(/* webpackChunkName: "helpers" */ "./bundle-yUS5CVMs.js").then(({ bar })=>{
     bar();
 });
 //# sourceMappingURL=index-native-experimental-lib.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: native-legacy-lib 1`] = `
-[
-  "lib/bundle-XkHFZVb6.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: native-legacy-lib > lib/bundle-XkHFZVb6.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: legacy, Format: lib
 "use strict";
 function foo() {}
@@ -2211,31 +1985,25 @@ function bar() {}
 exports.bar = bar;
 exports.foo = foo;
 //# sourceMappingURL=bundle-XkHFZVb6.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: native-legacy-lib 2`] = `
-[
-  "lib/index-native-legacy-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: native-legacy-lib > lib/index-native-legacy-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: legacy, Format: lib
 "use strict";
-Promise.resolve().then(()=>require("./bundle-XkHFZVb6.js")).then((result)=>{
+import("./bundle-XkHFZVb6.js").then((result)=>{
     result.foo();
 });
-Promise.resolve().then(()=>require(/* webpackChunkName: "helpers" */ "./bundle-XkHFZVb6.js")).then(({ bar })=>{
+import(/* webpackChunkName: "helpers" */ "./bundle-XkHFZVb6.js").then(({ bar })=>{
     bar();
 });
 //# sourceMappingURL=index-native-legacy-lib.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: native-stable-lib 1`] = `
-[
-  "lib/bundle-ax2or5ZR.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: native-stable-lib > lib/bundle-ax2or5ZR.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: stable, Format: lib
 "use strict";
 function foo() {}
@@ -2243,31 +2011,25 @@ function bar() {}
 exports.bar = bar;
 exports.foo = foo;
 //# sourceMappingURL=bundle-ax2or5ZR.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: native-stable-lib 2`] = `
-[
-  "lib/index-native-stable-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: native-stable-lib > lib/index-native-stable-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: stable, Format: lib
 "use strict";
-Promise.resolve().then(()=>require("./bundle-ax2or5ZR.js")).then((result)=>{
+import("./bundle-ax2or5ZR.js").then((result)=>{
     result.foo();
 });
-Promise.resolve().then(()=>require(/* webpackChunkName: "helpers" */ "./bundle-ax2or5ZR.js")).then(({ bar })=>{
+import(/* webpackChunkName: "helpers" */ "./bundle-ax2or5ZR.js").then(({ bar })=>{
     bar();
 });
 //# sourceMappingURL=index-native-stable-lib.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: node-current-cjs 1`] = `
-[
-  "cjs/bundle-a0TmwKVU.cjs",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: node-current-cjs > cjs/bundle-a0TmwKVU.cjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: cjs
 "use strict";
 function foo() {}
@@ -2275,24 +2037,11 @@ function bar() {}
 exports.bar = bar;
 exports.foo = foo;
 //# sourceMappingURL=bundle-a0TmwKVU.cjs.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: node-current-cjs 2`] = `
-[
-  "cjs/index-node-current-cjs-wrapper.mjs",
-  "// Bundled with Packemon: https://packemon.dev
-// This is an MJS wrapper for a sibling CJS file
-
-import './index-node-current-cjs.cjs';",
-]
-`;
-
-exports[`Dynamic imports swc transforms example test case: node-current-cjs 3`] = `
-[
-  "cjs/index-node-current-cjs.cjs",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: node-current-cjs > cjs/index-node-current-cjs.cjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: cjs
 "use strict";
 import("./bundle-a0TmwKVU.cjs").then((result)=>{
@@ -2302,14 +2051,11 @@ import(/* webpackChunkName: "helpers" */ "./bundle-a0TmwKVU.cjs").then(({ bar })
     bar();
 });
 //# sourceMappingURL=index-node-current-cjs.cjs.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: node-current-lib 1`] = `
-[
-  "lib/bundle-nwisUpj0.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: node-current-lib > lib/bundle-nwisUpj0.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: lib
 "use strict";
 function foo() {}
@@ -2317,14 +2063,11 @@ function bar() {}
 exports.bar = bar;
 exports.foo = foo;
 //# sourceMappingURL=bundle-nwisUpj0.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: node-current-lib 2`] = `
-[
-  "lib/index-node-current-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: node-current-lib > lib/index-node-current-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: lib
 "use strict";
 import("./bundle-nwisUpj0.js").then((result)=>{
@@ -2334,27 +2077,21 @@ import(/* webpackChunkName: "helpers" */ "./bundle-nwisUpj0.js").then(({ bar })=
     bar();
 });
 //# sourceMappingURL=index-node-current-lib.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: node-current-mjs 1`] = `
-[
-  "mjs/bundle-bDQYClYL.mjs",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: node-current-mjs > mjs/bundle-bDQYClYL.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: mjs
 function foo() {}
 function bar() {}
 export { bar, foo };
 //# sourceMappingURL=bundle-bDQYClYL.mjs.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: node-current-mjs 2`] = `
-[
-  "mjs/index-node-current-mjs.mjs",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: node-current-mjs > mjs/index-node-current-mjs.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: mjs
 import("./bundle-bDQYClYL.mjs").then((result)=>{
     result.foo();
@@ -2363,14 +2100,11 @@ import(/* webpackChunkName: "helpers" */ "./bundle-bDQYClYL.mjs").then(({ bar })
     bar();
 });
 //# sourceMappingURL=index-node-current-mjs.mjs.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: node-experimental-cjs 1`] = `
-[
-  "cjs/bundle-bGhDu9dC.cjs",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: node-experimental-cjs > cjs/bundle-bGhDu9dC.cjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: cjs
 "use strict";
 function foo() {}
@@ -2378,24 +2112,11 @@ function bar() {}
 exports.bar = bar;
 exports.foo = foo;
 //# sourceMappingURL=bundle-bGhDu9dC.cjs.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: node-experimental-cjs 2`] = `
-[
-  "cjs/index-node-experimental-cjs-wrapper.mjs",
-  "// Bundled with Packemon: https://packemon.dev
-// This is an MJS wrapper for a sibling CJS file
-
-import './index-node-experimental-cjs.cjs';",
-]
-`;
-
-exports[`Dynamic imports swc transforms example test case: node-experimental-cjs 3`] = `
-[
-  "cjs/index-node-experimental-cjs.cjs",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: node-experimental-cjs > cjs/index-node-experimental-cjs.cjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: cjs
 "use strict";
 import("./bundle-bGhDu9dC.cjs").then((result)=>{
@@ -2405,14 +2126,11 @@ import(/* webpackChunkName: "helpers" */ "./bundle-bGhDu9dC.cjs").then(({ bar })
     bar();
 });
 //# sourceMappingURL=index-node-experimental-cjs.cjs.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: node-experimental-lib 1`] = `
-[
-  "lib/bundle-7mP55VlV.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: node-experimental-lib > lib/bundle-7mP55VlV.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: lib
 "use strict";
 function foo() {}
@@ -2420,14 +2138,11 @@ function bar() {}
 exports.bar = bar;
 exports.foo = foo;
 //# sourceMappingURL=bundle-7mP55VlV.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: node-experimental-lib 2`] = `
-[
-  "lib/index-node-experimental-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: node-experimental-lib > lib/index-node-experimental-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: lib
 "use strict";
 import("./bundle-7mP55VlV.js").then((result)=>{
@@ -2437,27 +2152,21 @@ import(/* webpackChunkName: "helpers" */ "./bundle-7mP55VlV.js").then(({ bar })=
     bar();
 });
 //# sourceMappingURL=index-node-experimental-lib.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: node-experimental-mjs 1`] = `
-[
-  "mjs/bundle-Oxmf1_V_.mjs",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: node-experimental-mjs > mjs/bundle-Oxmf1_V_.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: mjs
 function foo() {}
 function bar() {}
 export { bar, foo };
 //# sourceMappingURL=bundle-Oxmf1_V_.mjs.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: node-experimental-mjs 2`] = `
-[
-  "mjs/index-node-experimental-mjs.mjs",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: node-experimental-mjs > mjs/index-node-experimental-mjs.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: mjs
 import("./bundle-Oxmf1_V_.mjs").then((result)=>{
     result.foo();
@@ -2466,14 +2175,11 @@ import(/* webpackChunkName: "helpers" */ "./bundle-Oxmf1_V_.mjs").then(({ bar })
     bar();
 });
 //# sourceMappingURL=index-node-experimental-mjs.mjs.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: node-legacy-cjs 1`] = `
-[
-  "cjs/bundle-_ofX8Blw.cjs",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: node-legacy-cjs > cjs/bundle-_ofX8Blw.cjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: cjs
 "use strict";
 function foo() {}
@@ -2481,24 +2187,11 @@ function bar() {}
 exports.bar = bar;
 exports.foo = foo;
 //# sourceMappingURL=bundle-_ofX8Blw.cjs.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: node-legacy-cjs 2`] = `
-[
-  "cjs/index-node-legacy-cjs-wrapper.mjs",
-  "// Bundled with Packemon: https://packemon.dev
-// This is an MJS wrapper for a sibling CJS file
-
-import './index-node-legacy-cjs.cjs';",
-]
-`;
-
-exports[`Dynamic imports swc transforms example test case: node-legacy-cjs 3`] = `
-[
-  "cjs/index-node-legacy-cjs.cjs",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: node-legacy-cjs > cjs/index-node-legacy-cjs.cjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: cjs
 "use strict";
 import("./bundle-_ofX8Blw.cjs").then((result)=>{
@@ -2508,14 +2201,11 @@ import(/* webpackChunkName: "helpers" */ "./bundle-_ofX8Blw.cjs").then(({ bar })
     bar();
 });
 //# sourceMappingURL=index-node-legacy-cjs.cjs.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: node-legacy-lib 1`] = `
-[
-  "lib/bundle-f1fTiCe3.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: node-legacy-lib > lib/bundle-f1fTiCe3.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: lib
 "use strict";
 function foo() {}
@@ -2523,14 +2213,11 @@ function bar() {}
 exports.bar = bar;
 exports.foo = foo;
 //# sourceMappingURL=bundle-f1fTiCe3.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: node-legacy-lib 2`] = `
-[
-  "lib/index-node-legacy-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: node-legacy-lib > lib/index-node-legacy-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: lib
 "use strict";
 import("./bundle-f1fTiCe3.js").then((result)=>{
@@ -2540,27 +2227,21 @@ import(/* webpackChunkName: "helpers" */ "./bundle-f1fTiCe3.js").then(({ bar })=
     bar();
 });
 //# sourceMappingURL=index-node-legacy-lib.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: node-legacy-mjs 1`] = `
-[
-  "mjs/bundle-boLczVlg.mjs",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: node-legacy-mjs > mjs/bundle-boLczVlg.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: mjs
 function foo() {}
 function bar() {}
 export { bar, foo };
 //# sourceMappingURL=bundle-boLczVlg.mjs.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: node-legacy-mjs 2`] = `
-[
-  "mjs/index-node-legacy-mjs.mjs",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: node-legacy-mjs > mjs/index-node-legacy-mjs.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: mjs
 import("./bundle-boLczVlg.mjs").then((result)=>{
     result.foo();
@@ -2569,14 +2250,11 @@ import(/* webpackChunkName: "helpers" */ "./bundle-boLczVlg.mjs").then(({ bar })
     bar();
 });
 //# sourceMappingURL=index-node-legacy-mjs.mjs.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: node-stable-cjs 1`] = `
-[
-  "cjs/bundle-_xpKJhek.cjs",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: node-stable-cjs > cjs/bundle-_xpKJhek.cjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: cjs
 "use strict";
 function foo() {}
@@ -2584,24 +2262,11 @@ function bar() {}
 exports.bar = bar;
 exports.foo = foo;
 //# sourceMappingURL=bundle-_xpKJhek.cjs.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: node-stable-cjs 2`] = `
-[
-  "cjs/index-node-stable-cjs-wrapper.mjs",
-  "// Bundled with Packemon: https://packemon.dev
-// This is an MJS wrapper for a sibling CJS file
-
-import './index-node-stable-cjs.cjs';",
-]
-`;
-
-exports[`Dynamic imports swc transforms example test case: node-stable-cjs 3`] = `
-[
-  "cjs/index-node-stable-cjs.cjs",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: node-stable-cjs > cjs/index-node-stable-cjs.cjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: cjs
 "use strict";
 import("./bundle-_xpKJhek.cjs").then((result)=>{
@@ -2611,14 +2276,11 @@ import(/* webpackChunkName: "helpers" */ "./bundle-_xpKJhek.cjs").then(({ bar })
     bar();
 });
 //# sourceMappingURL=index-node-stable-cjs.cjs.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: node-stable-lib 1`] = `
-[
-  "lib/bundle-fRyzw-H0.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: node-stable-lib > lib/bundle-fRyzw-H0.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: lib
 "use strict";
 function foo() {}
@@ -2626,14 +2288,11 @@ function bar() {}
 exports.bar = bar;
 exports.foo = foo;
 //# sourceMappingURL=bundle-fRyzw-H0.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: node-stable-lib 2`] = `
-[
-  "lib/index-node-stable-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: node-stable-lib > lib/index-node-stable-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: lib
 "use strict";
 import("./bundle-fRyzw-H0.js").then((result)=>{
@@ -2643,27 +2302,21 @@ import(/* webpackChunkName: "helpers" */ "./bundle-fRyzw-H0.js").then(({ bar })=
     bar();
 });
 //# sourceMappingURL=index-node-stable-lib.js.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: node-stable-mjs 1`] = `
-[
-  "mjs/bundle-jxsTfifR.mjs",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: node-stable-mjs > mjs/bundle-jxsTfifR.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: mjs
 function foo() {}
 function bar() {}
 export { bar, foo };
 //# sourceMappingURL=bundle-jxsTfifR.mjs.map
-",
-]
+"
 `;
 
-exports[`Dynamic imports swc transforms example test case: node-stable-mjs 2`] = `
-[
-  "mjs/index-node-stable-mjs.mjs",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`Dynamic imports > swc > transforms example test case: node-stable-mjs > mjs/index-node-stable-mjs.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: mjs
 import("./bundle-jxsTfifR.mjs").then((result)=>{
     result.foo();
@@ -2672,6 +2325,5 @@ import(/* webpackChunkName: "helpers" */ "./bundle-jxsTfifR.mjs").then(({ bar })
     bar();
 });
 //# sourceMappingURL=index-node-stable-mjs.mjs.map
-",
-]
+"
 `;

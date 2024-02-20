@@ -94,6 +94,7 @@ export const packemonBlueprint: Blueprint<PackemonPackageConfig> = {
 
 export const buildBlueprint: Blueprint<BuildOptions> = {
 	addEngines: bool(),
+	addEntries: bool(true),
 	addExports: bool(),
 	addFiles: bool(),
 	concurrency: number(1).gte(1),

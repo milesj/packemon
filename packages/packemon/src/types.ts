@@ -140,6 +140,7 @@ export interface FilterOptions {
 
 export interface BuildOptions extends FilterOptions {
 	addEngines?: boolean;
+	addEntries?: boolean;
 	addExports?: boolean;
 	addFiles?: boolean;
 	concurrency?: number;

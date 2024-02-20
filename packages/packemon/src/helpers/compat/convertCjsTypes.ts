@@ -26,7 +26,9 @@ export async function convertCjsTypes(cjsDir: Path, fs: FileSystem) {
 			fs.writeFile(dtsPath.parent().append(outName).path(), contents);
 
 			// Delete the old file
-			fs.remove(dtsPath.path());
+			if (fs.exists(dtsPath.path())) {
+				fs.removeFile(dtsPath.path());
+			}
 		}),
 	);
 }

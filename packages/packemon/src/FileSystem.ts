@@ -7,7 +7,8 @@ export interface FileSystem {
 	exists: (path: string) => boolean;
 	readFile: (path: string) => string;
 	readJson: <T>(path: string) => T;
-	remove: (path: string) => void;
+	removeDir: (path: string) => void;
+	removeFile: (path: string) => void;
 	writeFile: (path: string, data: string) => void;
 	writeJson: (path: string, data: unknown) => void;
 }
@@ -18,9 +19,12 @@ export const nodeFileSystem: FileSystem = {
 	exists: (path) => fs.existsSync(path),
 	readFile: (path) => fs.readFileSync(path, 'utf8'),
 	readJson: (path) => json.parse(nodeFileSystem.readFile(path)),
-	remove: fs.unlinkSync,
+	removeDir: (path) => {
+		fs.rmSync(path, { recursive: true });
+	},
+	removeFile: fs.unlinkSync,
 	writeFile: (path, data) => {
-		fs.writeFileSync(path, data, 'utf8');
+		fs.writeFileSync(path, `${data.trim()}\n`, 'utf8');
 	},
 	writeJson: (path, data) => {
 		nodeFileSystem.writeFile(path, JSON.stringify(data, null, 2));

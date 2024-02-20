@@ -78,7 +78,9 @@ export function copyAndRefAssets(
 
 		// Delete old assets to remove any possible stale assets
 		buildStart() {
-			fs.remove(dir);
+			if (fs.exists(dir)) {
+				fs.removeDir(dir);
+			}
 		},
 
 		// Find assets and mark as external

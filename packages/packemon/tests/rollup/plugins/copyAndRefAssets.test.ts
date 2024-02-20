@@ -36,7 +36,6 @@ vi.mock('fs', async (importOriginal) => {
 			...originalFs,
 			mkdir: vi.fn(),
 			readFileSync: vi.fn((p, options) => {
-				console.log('readFileSync', p, options);
 				if (typeof p === 'string' && p.endsWith('.svg')) {
 					return 'Mock SVG Content';
 				}
