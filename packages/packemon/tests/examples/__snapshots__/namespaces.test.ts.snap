@@ -1111,6 +1111,23 @@ export { helpers as ns1, helpers as ns2 };
 "
 `;
 
+exports[`Namespaces > swc > transforms example test case: electron-experimental-lib > lib/index-electron-experimental-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: electron, Support: experimental, Format: lib
+"use strict";
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    bar,
+    foo
+});
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+//# sourceMappingURL=index-electron-experimental-lib.js.map
+"
+`;
+
 exports[`Namespaces > swc > transforms example test case: electron-legacy-esm > esm/index-electron-legacy-esm.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: legacy, Format: esm
@@ -1245,6 +1262,32 @@ exports.ns1 = helpers;
 exports.ns2 = helpers;
 //# sourceMappingURL=index-native-stable-lib.js.map
 "
+`;
+
+exports[`Namespaces > swc > transforms example test case: node-current-cjs > cjs/index-node-current-cjs.cjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: current, Format: cjs
+"use strict";
+function foo() {}
+function bar() {}
+const helpers = /*#__PURE__*/ Object.freeze({
+    __proto__: null,
+    bar,
+    foo
+});
+exports.ns1 = helpers;
+exports.ns2 = helpers;
+//# sourceMappingURL=index-node-current-cjs.cjs.map
+"
+`;
+
+exports[`Namespaces > swc > transforms example test case: node-current-cjs > cjs/index-node-current-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-current-cjs.cjs';
+
+export const { ns1, ns2 } = data;"
 `;
 
 exports[`Namespaces > swc > transforms example test case: node-current-lib > lib/index-node-current-lib.js 1`] = `

@@ -1,5 +1,11 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Assets > babel > transforms example test case: browser-current-esm > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
+"
+`;
+
 exports[`Assets > babel > transforms example test case: browser-current-esm > esm/index-browser-current-esm.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: esm
@@ -17,6 +23,12 @@ const json = {
 };
 console.log(json);
 //# sourceMappingURL=index-browser-current-esm.js.map
+"
+`;
+
+exports[`Assets > babel > transforms example test case: browser-current-lib > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
 "
 `;
 
@@ -39,6 +51,12 @@ const json = {
 };
 console.log(json);
 //# sourceMappingURL=index-browser-current-lib.js.map
+"
+`;
+
+exports[`Assets > babel > transforms example test case: browser-current-umd > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
 "
 `;
 
@@ -75,6 +93,12 @@ exports[`Assets > babel > transforms example test case: browser-current-umd > um
 "
 `;
 
+exports[`Assets > babel > transforms example test case: browser-experimental-esm > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
+"
+`;
+
 exports[`Assets > babel > transforms example test case: browser-experimental-esm > esm/index-browser-experimental-esm.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: experimental, Format: esm
@@ -92,6 +116,40 @@ const json = {
 };
 console.log(json);
 //# sourceMappingURL=index-browser-experimental-esm.js.map
+"
+`;
+
+exports[`Assets > babel > transforms example test case: browser-experimental-lib > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
+"
+`;
+
+exports[`Assets > babel > transforms example test case: browser-experimental-lib > lib/index-browser-experimental-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: experimental, Format: lib
+
+'use strict';
+
+require('../assets/styles-17df299b.css');
+require('../assets/logo-c21f559f.svg');
+require('website/src/css/custom.css');
+const json = {
+  list: ["foo", "bar", "baz"],
+  number: 123,
+  string: "abc",
+  object: {
+    foo: true
+  }
+};
+console.log(json);
+//# sourceMappingURL=index-browser-experimental-lib.js.map
+"
+`;
+
+exports[`Assets > babel > transforms example test case: browser-experimental-umd > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
 "
 `;
 
@@ -128,6 +186,12 @@ exports[`Assets > babel > transforms example test case: browser-experimental-umd
 "
 `;
 
+exports[`Assets > babel > transforms example test case: browser-legacy-esm > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
+"
+`;
+
 exports[`Assets > babel > transforms example test case: browser-legacy-esm > esm/index-browser-legacy-esm.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: esm
@@ -145,6 +209,12 @@ var json = {
 };
 console.log(json);
 //# sourceMappingURL=index-browser-legacy-esm.js.map
+"
+`;
+
+exports[`Assets > babel > transforms example test case: browser-legacy-lib > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
 "
 `;
 
@@ -167,6 +237,12 @@ var json = {
 };
 console.log(json);
 //# sourceMappingURL=index-browser-legacy-lib.js.map
+"
+`;
+
+exports[`Assets > babel > transforms example test case: browser-legacy-umd > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
 "
 `;
 
@@ -203,6 +279,12 @@ exports[`Assets > babel > transforms example test case: browser-legacy-umd > umd
 "
 `;
 
+exports[`Assets > babel > transforms example test case: browser-stable-esm > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
+"
+`;
+
 exports[`Assets > babel > transforms example test case: browser-stable-esm > esm/index-browser-stable-esm.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: esm
@@ -220,6 +302,12 @@ const json = {
 };
 console.log(json);
 //# sourceMappingURL=index-browser-stable-esm.js.map
+"
+`;
+
+exports[`Assets > babel > transforms example test case: browser-stable-lib > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
 "
 `;
 
@@ -242,6 +330,12 @@ const json = {
 };
 console.log(json);
 //# sourceMappingURL=index-browser-stable-lib.js.map
+"
+`;
+
+exports[`Assets > babel > transforms example test case: browser-stable-umd > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
 "
 `;
 
@@ -278,6 +372,12 @@ exports[`Assets > babel > transforms example test case: browser-stable-umd > umd
 "
 `;
 
+exports[`Assets > babel > transforms example test case: electron-current-esm > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
+"
+`;
+
 exports[`Assets > babel > transforms example test case: electron-current-esm > esm/index-electron-current-esm.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: current, Format: esm
@@ -295,6 +395,12 @@ const json = {
 };
 console.log(json);
 //# sourceMappingURL=index-electron-current-esm.js.map
+"
+`;
+
+exports[`Assets > babel > transforms example test case: electron-current-lib > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
 "
 `;
 
@@ -320,6 +426,12 @@ console.log(json);
 "
 `;
 
+exports[`Assets > babel > transforms example test case: electron-experimental-esm > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
+"
+`;
+
 exports[`Assets > babel > transforms example test case: electron-experimental-esm > esm/index-electron-experimental-esm.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: experimental, Format: esm
@@ -337,6 +449,12 @@ const json = {
 };
 console.log(json);
 //# sourceMappingURL=index-electron-experimental-esm.js.map
+"
+`;
+
+exports[`Assets > babel > transforms example test case: electron-experimental-lib > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
 "
 `;
 
@@ -362,6 +480,12 @@ console.log(json);
 "
 `;
 
+exports[`Assets > babel > transforms example test case: electron-legacy-esm > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
+"
+`;
+
 exports[`Assets > babel > transforms example test case: electron-legacy-esm > esm/index-electron-legacy-esm.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: legacy, Format: esm
@@ -379,6 +503,12 @@ const json = {
 };
 console.log(json);
 //# sourceMappingURL=index-electron-legacy-esm.js.map
+"
+`;
+
+exports[`Assets > babel > transforms example test case: electron-legacy-lib > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
 "
 `;
 
@@ -404,6 +534,12 @@ console.log(json);
 "
 `;
 
+exports[`Assets > babel > transforms example test case: electron-stable-esm > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
+"
+`;
+
 exports[`Assets > babel > transforms example test case: electron-stable-esm > esm/index-electron-stable-esm.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: stable, Format: esm
@@ -421,6 +557,12 @@ const json = {
 };
 console.log(json);
 //# sourceMappingURL=index-electron-stable-esm.js.map
+"
+`;
+
+exports[`Assets > babel > transforms example test case: electron-stable-lib > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
 "
 `;
 
@@ -446,6 +588,12 @@ console.log(json);
 "
 `;
 
+exports[`Assets > babel > transforms example test case: native-current-lib > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
+"
+`;
+
 exports[`Assets > babel > transforms example test case: native-current-lib > lib/index-native-current-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: current, Format: lib
@@ -465,6 +613,12 @@ const json = {
 };
 console.log(json);
 //# sourceMappingURL=index-native-current-lib.js.map
+"
+`;
+
+exports[`Assets > babel > transforms example test case: native-experimental-lib > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
 "
 `;
 
@@ -490,6 +644,12 @@ console.log(json);
 "
 `;
 
+exports[`Assets > babel > transforms example test case: native-legacy-lib > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
+"
+`;
+
 exports[`Assets > babel > transforms example test case: native-legacy-lib > lib/index-native-legacy-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: legacy, Format: lib
@@ -512,6 +672,12 @@ console.log(json);
 "
 `;
 
+exports[`Assets > babel > transforms example test case: native-stable-lib > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
+"
+`;
+
 exports[`Assets > babel > transforms example test case: native-stable-lib > lib/index-native-stable-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: stable, Format: lib
@@ -531,6 +697,12 @@ const json = {
 };
 console.log(json);
 //# sourceMappingURL=index-native-stable-lib.js.map
+"
+`;
+
+exports[`Assets > babel > transforms example test case: node-current-cjs > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
 "
 `;
 
@@ -563,6 +735,12 @@ exports[`Assets > babel > transforms example test case: node-current-cjs > cjs/i
 import './index-node-current-cjs.cjs';"
 `;
 
+exports[`Assets > babel > transforms example test case: node-current-lib > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
+"
+`;
+
 exports[`Assets > babel > transforms example test case: node-current-lib > lib/index-node-current-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: lib
@@ -585,6 +763,12 @@ console.log(json);
 "
 `;
 
+exports[`Assets > babel > transforms example test case: node-current-mjs > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
+"
+`;
+
 exports[`Assets > babel > transforms example test case: node-current-mjs > mjs/index-node-current-mjs.mjs 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: mjs
@@ -602,6 +786,12 @@ const json = {
 };
 console.log(json);
 //# sourceMappingURL=index-node-current-mjs.mjs.map
+"
+`;
+
+exports[`Assets > babel > transforms example test case: node-experimental-cjs > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
 "
 `;
 
@@ -634,6 +824,12 @@ exports[`Assets > babel > transforms example test case: node-experimental-cjs > 
 import './index-node-experimental-cjs.cjs';"
 `;
 
+exports[`Assets > babel > transforms example test case: node-experimental-lib > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
+"
+`;
+
 exports[`Assets > babel > transforms example test case: node-experimental-lib > lib/index-node-experimental-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: lib
@@ -656,6 +852,12 @@ console.log(json);
 "
 `;
 
+exports[`Assets > babel > transforms example test case: node-experimental-mjs > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
+"
+`;
+
 exports[`Assets > babel > transforms example test case: node-experimental-mjs > mjs/index-node-experimental-mjs.mjs 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: mjs
@@ -673,6 +875,47 @@ const json = {
 };
 console.log(json);
 //# sourceMappingURL=index-node-experimental-mjs.mjs.map
+"
+`;
+
+exports[`Assets > babel > transforms example test case: node-legacy-cjs > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
+"
+`;
+
+exports[`Assets > babel > transforms example test case: node-legacy-cjs > cjs/index-node-legacy-cjs.cjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: legacy, Format: cjs
+
+'use strict';
+
+require('../assets/styles-17df299b.css');
+require('../assets/logo-c21f559f.svg');
+require('website/src/css/custom.css');
+const json = {
+  list: ["foo", "bar", "baz"],
+  number: 123,
+  string: "abc",
+  object: {
+    foo: true
+  }
+};
+console.log(json);
+//# sourceMappingURL=index-node-legacy-cjs.cjs.map
+"
+`;
+
+exports[`Assets > babel > transforms example test case: node-legacy-cjs > cjs/index-node-legacy-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import './index-node-legacy-cjs.cjs';"
+`;
+
+exports[`Assets > babel > transforms example test case: node-legacy-lib > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
 "
 `;
 
@@ -698,6 +941,12 @@ console.log(json);
 "
 `;
 
+exports[`Assets > babel > transforms example test case: node-legacy-mjs > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
+"
+`;
+
 exports[`Assets > babel > transforms example test case: node-legacy-mjs > mjs/index-node-legacy-mjs.mjs 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: mjs
@@ -715,6 +964,12 @@ const json = {
 };
 console.log(json);
 //# sourceMappingURL=index-node-legacy-mjs.mjs.map
+"
+`;
+
+exports[`Assets > babel > transforms example test case: node-stable-cjs > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
 "
 `;
 
@@ -747,6 +1002,12 @@ exports[`Assets > babel > transforms example test case: node-stable-cjs > cjs/in
 import './index-node-stable-cjs.cjs';"
 `;
 
+exports[`Assets > babel > transforms example test case: node-stable-lib > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
+"
+`;
+
 exports[`Assets > babel > transforms example test case: node-stable-lib > lib/index-node-stable-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: lib
@@ -769,6 +1030,12 @@ console.log(json);
 "
 `;
 
+exports[`Assets > babel > transforms example test case: node-stable-mjs > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
+"
+`;
+
 exports[`Assets > babel > transforms example test case: node-stable-mjs > mjs/index-node-stable-mjs.mjs 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: mjs
@@ -786,6 +1053,12 @@ const json = {
 };
 console.log(json);
 //# sourceMappingURL=index-node-stable-mjs.mjs.map
+"
+`;
+
+exports[`Assets > swc > transforms example test case: browser-current-esm > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
 "
 `;
 
@@ -812,6 +1085,12 @@ console.log(json);
 "
 `;
 
+exports[`Assets > swc > transforms example test case: browser-current-lib > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
+"
+`;
+
 exports[`Assets > swc > transforms example test case: browser-current-lib > lib/index-browser-current-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: lib
@@ -833,6 +1112,12 @@ const json = {
 };
 console.log(json);
 //# sourceMappingURL=index-browser-current-lib.js.map
+"
+`;
+
+exports[`Assets > swc > transforms example test case: browser-current-umd > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
 "
 `;
 
@@ -869,6 +1154,12 @@ exports[`Assets > swc > transforms example test case: browser-current-umd > umd/
 "
 `;
 
+exports[`Assets > swc > transforms example test case: browser-experimental-esm > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
+"
+`;
+
 exports[`Assets > swc > transforms example test case: browser-experimental-esm > esm/index-browser-experimental-esm.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: experimental, Format: esm
@@ -889,6 +1180,12 @@ const json = {
 };
 console.log(json);
 //# sourceMappingURL=index-browser-experimental-esm.js.map
+"
+`;
+
+exports[`Assets > swc > transforms example test case: browser-experimental-lib > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
 "
 `;
 
@@ -913,6 +1210,12 @@ const json = {
 };
 console.log(json);
 //# sourceMappingURL=index-browser-experimental-lib.js.map
+"
+`;
+
+exports[`Assets > swc > transforms example test case: browser-experimental-umd > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
 "
 `;
 
@@ -949,6 +1252,12 @@ exports[`Assets > swc > transforms example test case: browser-experimental-umd >
 "
 `;
 
+exports[`Assets > swc > transforms example test case: browser-legacy-esm > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
+"
+`;
+
 exports[`Assets > swc > transforms example test case: browser-legacy-esm > esm/index-browser-legacy-esm.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: esm
@@ -969,6 +1278,12 @@ var json = {
 };
 console.log(json);
 //# sourceMappingURL=index-browser-legacy-esm.js.map
+"
+`;
+
+exports[`Assets > swc > transforms example test case: browser-legacy-lib > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
 "
 `;
 
@@ -993,6 +1308,12 @@ var json = {
 };
 console.log(json);
 //# sourceMappingURL=index-browser-legacy-lib.js.map
+"
+`;
+
+exports[`Assets > swc > transforms example test case: browser-legacy-umd > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
 "
 `;
 
@@ -1029,6 +1350,12 @@ exports[`Assets > swc > transforms example test case: browser-legacy-umd > umd/i
 "
 `;
 
+exports[`Assets > swc > transforms example test case: browser-stable-esm > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
+"
+`;
+
 exports[`Assets > swc > transforms example test case: browser-stable-esm > esm/index-browser-stable-esm.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: esm
@@ -1049,6 +1376,12 @@ const json = {
 };
 console.log(json);
 //# sourceMappingURL=index-browser-stable-esm.js.map
+"
+`;
+
+exports[`Assets > swc > transforms example test case: browser-stable-lib > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
 "
 `;
 
@@ -1073,6 +1406,12 @@ const json = {
 };
 console.log(json);
 //# sourceMappingURL=index-browser-stable-lib.js.map
+"
+`;
+
+exports[`Assets > swc > transforms example test case: browser-stable-umd > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
 "
 `;
 
@@ -1109,6 +1448,12 @@ exports[`Assets > swc > transforms example test case: browser-stable-umd > umd/i
 "
 `;
 
+exports[`Assets > swc > transforms example test case: electron-current-esm > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
+"
+`;
+
 exports[`Assets > swc > transforms example test case: electron-current-esm > esm/index-electron-current-esm.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: current, Format: esm
@@ -1129,6 +1474,12 @@ const json = {
 };
 console.log(json);
 //# sourceMappingURL=index-electron-current-esm.js.map
+"
+`;
+
+exports[`Assets > swc > transforms example test case: electron-current-lib > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
 "
 `;
 
@@ -1156,6 +1507,12 @@ console.log(json);
 "
 `;
 
+exports[`Assets > swc > transforms example test case: electron-experimental-esm > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
+"
+`;
+
 exports[`Assets > swc > transforms example test case: electron-experimental-esm > esm/index-electron-experimental-esm.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: experimental, Format: esm
@@ -1176,6 +1533,12 @@ const json = {
 };
 console.log(json);
 //# sourceMappingURL=index-electron-experimental-esm.js.map
+"
+`;
+
+exports[`Assets > swc > transforms example test case: electron-experimental-lib > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
 "
 `;
 
@@ -1203,6 +1566,12 @@ console.log(json);
 "
 `;
 
+exports[`Assets > swc > transforms example test case: electron-legacy-esm > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
+"
+`;
+
 exports[`Assets > swc > transforms example test case: electron-legacy-esm > esm/index-electron-legacy-esm.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: legacy, Format: esm
@@ -1223,6 +1592,12 @@ const json = {
 };
 console.log(json);
 //# sourceMappingURL=index-electron-legacy-esm.js.map
+"
+`;
+
+exports[`Assets > swc > transforms example test case: electron-legacy-lib > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
 "
 `;
 
@@ -1250,6 +1625,12 @@ console.log(json);
 "
 `;
 
+exports[`Assets > swc > transforms example test case: electron-stable-esm > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
+"
+`;
+
 exports[`Assets > swc > transforms example test case: electron-stable-esm > esm/index-electron-stable-esm.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: stable, Format: esm
@@ -1270,6 +1651,12 @@ const json = {
 };
 console.log(json);
 //# sourceMappingURL=index-electron-stable-esm.js.map
+"
+`;
+
+exports[`Assets > swc > transforms example test case: electron-stable-lib > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
 "
 `;
 
@@ -1297,6 +1684,12 @@ console.log(json);
 "
 `;
 
+exports[`Assets > swc > transforms example test case: native-current-lib > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
+"
+`;
+
 exports[`Assets > swc > transforms example test case: native-current-lib > lib/index-native-current-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: current, Format: lib
@@ -1318,6 +1711,12 @@ const json = {
 };
 console.log(json);
 //# sourceMappingURL=index-native-current-lib.js.map
+"
+`;
+
+exports[`Assets > swc > transforms example test case: native-experimental-lib > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
 "
 `;
 
@@ -1345,6 +1744,12 @@ console.log(json);
 "
 `;
 
+exports[`Assets > swc > transforms example test case: native-legacy-lib > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
+"
+`;
+
 exports[`Assets > swc > transforms example test case: native-legacy-lib > lib/index-native-legacy-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: legacy, Format: lib
@@ -1369,6 +1774,12 @@ console.log(json);
 "
 `;
 
+exports[`Assets > swc > transforms example test case: native-stable-lib > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
+"
+`;
+
 exports[`Assets > swc > transforms example test case: native-stable-lib > lib/index-native-stable-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: stable, Format: lib
@@ -1390,6 +1801,12 @@ const json = {
 };
 console.log(json);
 //# sourceMappingURL=index-native-stable-lib.js.map
+"
+`;
+
+exports[`Assets > swc > transforms example test case: node-current-cjs > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
 "
 `;
 
@@ -1424,6 +1841,12 @@ exports[`Assets > swc > transforms example test case: node-current-cjs > cjs/ind
 import './index-node-current-cjs.cjs';"
 `;
 
+exports[`Assets > swc > transforms example test case: node-current-lib > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
+"
+`;
+
 exports[`Assets > swc > transforms example test case: node-current-lib > lib/index-node-current-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: lib
@@ -1448,6 +1871,12 @@ console.log(json);
 "
 `;
 
+exports[`Assets > swc > transforms example test case: node-current-mjs > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
+"
+`;
+
 exports[`Assets > swc > transforms example test case: node-current-mjs > mjs/index-node-current-mjs.mjs 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: mjs
@@ -1468,6 +1897,12 @@ const json = {
 };
 console.log(json);
 //# sourceMappingURL=index-node-current-mjs.mjs.map
+"
+`;
+
+exports[`Assets > swc > transforms example test case: node-experimental-cjs > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
 "
 `;
 
@@ -1502,6 +1937,12 @@ exports[`Assets > swc > transforms example test case: node-experimental-cjs > cj
 import './index-node-experimental-cjs.cjs';"
 `;
 
+exports[`Assets > swc > transforms example test case: node-experimental-lib > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
+"
+`;
+
 exports[`Assets > swc > transforms example test case: node-experimental-lib > lib/index-node-experimental-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: lib
@@ -1526,6 +1967,12 @@ console.log(json);
 "
 `;
 
+exports[`Assets > swc > transforms example test case: node-experimental-mjs > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
+"
+`;
+
 exports[`Assets > swc > transforms example test case: node-experimental-mjs > mjs/index-node-experimental-mjs.mjs 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: mjs
@@ -1546,6 +1993,12 @@ const json = {
 };
 console.log(json);
 //# sourceMappingURL=index-node-experimental-mjs.mjs.map
+"
+`;
+
+exports[`Assets > swc > transforms example test case: node-legacy-cjs > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
 "
 `;
 
@@ -1580,6 +2033,12 @@ exports[`Assets > swc > transforms example test case: node-legacy-cjs > cjs/inde
 import './index-node-legacy-cjs.cjs';"
 `;
 
+exports[`Assets > swc > transforms example test case: node-legacy-lib > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
+"
+`;
+
 exports[`Assets > swc > transforms example test case: node-legacy-lib > lib/index-node-legacy-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: lib
@@ -1601,6 +2060,41 @@ const json = {
 };
 console.log(json);
 //# sourceMappingURL=index-node-legacy-lib.js.map
+"
+`;
+
+exports[`Assets > swc > transforms example test case: node-legacy-mjs > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
+"
+`;
+
+exports[`Assets > swc > transforms example test case: node-legacy-mjs > mjs/index-node-legacy-mjs.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: node, Support: legacy, Format: mjs
+import "../assets/styles-17df299b.css";
+import "../assets/logo-c21f559f.svg";
+import "website/src/css/custom.css";
+const json = {
+    list: [
+        "foo",
+        "bar",
+        "baz"
+    ],
+    number: 123,
+    string: "abc",
+    object: {
+        foo: true
+    }
+};
+console.log(json);
+//# sourceMappingURL=index-node-legacy-mjs.mjs.map
+"
+`;
+
+exports[`Assets > swc > transforms example test case: node-stable-cjs > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
 "
 `;
 
@@ -1635,6 +2129,12 @@ exports[`Assets > swc > transforms example test case: node-stable-cjs > cjs/inde
 import './index-node-stable-cjs.cjs';"
 `;
 
+exports[`Assets > swc > transforms example test case: node-stable-lib > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
+"
+`;
+
 exports[`Assets > swc > transforms example test case: node-stable-lib > lib/index-node-stable-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: lib
@@ -1656,6 +2156,12 @@ const json = {
 };
 console.log(json);
 //# sourceMappingURL=index-node-stable-lib.js.map
+"
+`;
+
+exports[`Assets > swc > transforms example test case: node-stable-mjs > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
 "
 `;
 

@@ -1,10 +1,11 @@
 import { createHash } from 'node:crypto';
+import fsn from 'node:fs';
 import path from 'node:path';
 import MagicString from 'magic-string';
 import { Plugin } from 'rollup';
 import { VirtualPath } from '@boost/common';
 import type { TSESTree } from '@typescript-eslint/types';
-import { ASSETS } from '../../constants';
+import { ASSETS, TEXT_ASSETS } from '../../constants';
 import { FileSystem } from '../../FileSystem';
 
 function isAsset(id: string): boolean {
@@ -78,8 +79,9 @@ export function copyAndRefAssets(
 
 		// Delete old assets to remove any possible stale assets
 		buildStart() {
-			if (fs.exists(dir)) {
+			if (fs.exists(dir) && process.env.NODE_ENV !== 'test') {
 				fs.removeDir(dir);
+				fs.createDirAll(dir);
 			}
 		},
 
@@ -166,6 +168,7 @@ export function copyAndRefAssets(
 					fs.exists(path.join(parentDir, sourcePath))
 				) {
 					const newId = determineNewAsset(sourcePath, parentId);
+
 					const importPath = options.preserveModules
 						? new VirtualPath(path.relative(parentDir, newId.path())).path()
 						: `../assets/${newId.name()}`;
@@ -188,22 +191,30 @@ export function copyAndRefAssets(
 		},
 
 		// Copy all found assets
-		async generateBundle() {
+		async generateBundle(options, bundle) {
 			// Only create the folder if we have assets to copy,
 			// otherwise it throws off `files` and other detection!
 			if (Object.keys(assetsToCopy).length > 0) {
 				fs.createDirAll(dir);
 			}
 
-			// We don't use `assetFileNames` as we want a single assets folder
+			// We don't use `assetFileNames` or `emitFile` as we want a single assets folder
 			// at the root of the package, which Rollup does not allow. It wants
 			// multiple asset folders within each format!
 			await Promise.all(
 				// eslint-disable-next-line @typescript-eslint/require-await
 				Object.entries(assetsToCopy).map(async ([oldId, newId]) => {
-					if (!newId.exists()) {
-						fs.copyFile(oldId, newId.path());
-					}
+					const newName = newId.name();
+					const isStringSource = TEXT_ASSETS.some((ext) => newName.endsWith(ext));
+
+					// eslint-disable-next-line no-param-reassign
+					bundle[newId.path()] = {
+						fileName: `../assets/${newName}`,
+						name: undefined,
+						needsCodeReference: false,
+						source: isStringSource ? fs.readFile(oldId) : fsn.readFileSync(oldId),
+						type: 'asset',
+					};
 				}),
 			);
 		},

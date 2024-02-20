@@ -3,6 +3,7 @@ import { afterEach, beforeEach, describe, expect, it, type MockInstance, vi } fr
 import { Path, PortablePath } from '@boost/common';
 import {
 	Artifact,
+	BINARY_ASSETS,
 	FileSystem,
 	Format,
 	FORMATS,
@@ -167,9 +168,11 @@ export function createSnapshotSpies(root: PortablePath, captureJson: boolean = f
 export function snapshotPackageBuildOutputs(pkg: Package) {
 	pkg.artifacts.forEach((art) => {
 		art.buildResult.files.forEach((chunk) => {
-			if (!chunk.file.endsWith('.map')) {
-				expect(chunk.code).toMatchSnapshot(chunk.file);
+			if (BINARY_ASSETS.some((ext) => chunk.file.endsWith(ext)) || chunk.file.endsWith('.map')) {
+				return;
 			}
+
+			expect(chunk.code).toMatchSnapshot(chunk.file);
 		});
 	});
 }
