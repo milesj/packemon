@@ -1,4 +1,4 @@
-import { json, Path, PortablePath, Project } from '@boost/common';
+import { Path, PortablePath, Project } from '@boost/common';
 import { optimal } from '@boost/common/optimal';
 import { createDebugger, Debugger } from '@boost/debug';
 import { Config } from './Config';
@@ -61,7 +61,7 @@ export class Packemon {
 	 * Find and load the package that has been configured with a `packemon`
 	 * block in the `package.json`. Once loaded, validate the configuration.
 	 */
-	async findPackage({ skipPrivate }: FilterOptions = {}): Promise<Package | null> {
+	findPackage({ skipPrivate }: FilterOptions = {}): Package | null {
 		this.debug('Finding package in %s', this.workingDir);
 
 		const pkgPath = this.workingDir.append('package.json');
@@ -70,7 +70,7 @@ export class Packemon {
 			throw new Error(`No \`package.json\` found in ${this.workingDir}.`);
 		}
 
-		const pkgContents = json.parse<PackemonPackage>(await this.fs.readFile(pkgPath.path()));
+		const pkgContents = this.fs.readJson<PackemonPackage>(pkgPath.path());
 
 		if (skipPrivate && pkgContents.private) {
 			this.debug('Package is private and `skipPrivate` has been provided');
@@ -84,7 +84,7 @@ export class Packemon {
 			return null;
 		}
 
-		const pkg = new Package(this.workingDir, pkgContents, await this.findWorkspaceRoot());
+		const pkg = new Package(this.workingDir, pkgContents, this.findWorkspaceRoot());
 		pkg.fs = this.fs;
 
 		return pkg;
@@ -97,7 +97,7 @@ export class Packemon {
 	async findPackages({ filter, skipPrivate }: FilterOptions = {}): Promise<Package[]> {
 		this.debug('Finding packages in project');
 
-		const workspaceRoot = await this.findWorkspaceRoot();
+		const workspaceRoot = this.findWorkspaceRoot();
 		const project = new Project(workspaceRoot);
 		const workspaces = project.getWorkspaceGlobs({ relative: true });
 
