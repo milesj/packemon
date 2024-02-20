@@ -104,65 +104,8 @@ export function loadPackageAtPath(
 	return pkg;
 }
 
-function formatSnapshotFilePath(file: string, root: string): string {
-	return new Path(String(file))
-		.path()
-		.replace(String(root), '')
-		.replace(/^(\/|\\)/, '')
-		.replace(/\\/g, '/');
-}
-
-export function createSnapshotSpies(root: PortablePath, captureJson: boolean = false) {
-	let snapshots: [string, unknown][] = [];
-
-	const handler = (file: unknown, content: unknown) => {
-		const filePath = formatSnapshotFilePath(String(file), String(root));
-
-		// console.log(filePath, content);
-
-		if (
-			filePath.endsWith('.js') ||
-			filePath.endsWith('.cjs') ||
-			filePath.endsWith('.mjs') ||
-			filePath.endsWith('.d.ts') ||
-			filePath.endsWith('.d.cts') ||
-			filePath.endsWith('.d.mts') ||
-			(captureJson && filePath.endsWith('.json'))
-		) {
-			snapshots.push([filePath, content]);
-		}
-
-		if (filePath.endsWith('.css')) {
-			snapshots.push([filePath, formatSnapshotFilePath(String(content), String(root))]);
-		}
-	};
-	// beforeEach(() => {
-	// 	(fs.copyFile as unknown as MockInstance).mockImplementation(handler);
-	// 	(fs.writeFile as unknown as MockInstance).mockImplementation(handler);
-	// 	(fs.writeJson as unknown as MockInstance).mockImplementation(handler);
-
-	// 	// 	vi.spyOn(console, 'warn').mockImplementation(() => {});
-	// });
-
-	afterEach(() => {
-		// console.log(snapshots);
-		snapshots = [];
-	});
-
-	return {
-		handler,
-		assert(pkg?: Package) {
-			if (pkg) {
-				pkg.artifacts.forEach((artifact) => {
-					artifact.buildResult.files.forEach((file) => {
-						snapshots.push([file.file, file.code]);
-					});
-				});
-			}
-
-			return snapshots.sort((a, b) => a[0].localeCompare(b[0]));
-		},
-	};
+function formatSnapshotFilePath(file: string): string {
+	return file.replace(/^(\/|\\)/, '').replace(/\\/g, '/');
 }
 
 export function snapshotPackageBuildOutputs(pkg: Package) {
@@ -172,7 +115,7 @@ export function snapshotPackageBuildOutputs(pkg: Package) {
 				return;
 			}
 
-			expect(chunk.code).toMatchSnapshot(chunk.file);
+			expect(chunk.code).toMatchSnapshot(formatSnapshotFilePath(chunk.file));
 		});
 	});
 }
