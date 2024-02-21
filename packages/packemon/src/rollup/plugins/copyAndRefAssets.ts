@@ -26,14 +26,16 @@ function isRequireStatement(node: TSESTree.Expression): node is TSESTree.CallExp
 }
 
 export interface CopyAssetsOptions {
-	dir: string;
+	dir?: string;
 	fs: FileSystem;
+	root: string;
 }
 
 export function copyAndRefAssets(
-	{ dir, fs }: CopyAssetsOptions,
+	{ dir: customDir, fs, root }: CopyAssetsOptions,
 	assetsToCopyInit: Record<string, VirtualPath> = {},
 ): Plugin {
+	const dir = customDir ?? path.join(root, 'assets');
 	const assetsToCopy = assetsToCopyInit;
 	const assetSourceMap = new Set<string>();
 	const pattern = /^\.{1,2}(\/|\\)/;
@@ -66,7 +68,7 @@ export function copyAndRefAssets(
 		// Generate a hash of the source file path,
 		// and have it match between nix and windows
 		const hash = createHash('sha256')
-			.update(id.path().replace(new VirtualPath(path.dirname(dir)).path(), ''))
+			.update(id.path().replace(new VirtualPath(root).path(), ''))
 			.digest('hex')
 			.slice(0, 8);
 

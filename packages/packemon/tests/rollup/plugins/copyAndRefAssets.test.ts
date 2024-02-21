@@ -19,7 +19,14 @@ describe('copyAndRefAssets()', () => {
 		const assetsToCopy = {};
 		const fs = createStubbedFileSystem();
 
-		const copyRefPlugin = copyAndRefAssets({ dir: '/root/fakeAssets', fs }, assetsToCopy);
+		const copyRefPlugin = copyAndRefAssets(
+			{
+				dir: '/root/fakeAssets',
+				fs,
+				root: path.join(__dirname, '__fixtures__'),
+			},
+			assetsToCopy,
+		);
 		copyRefPlugin.buildStart = vi.fn();
 		copyRefPlugin.generateBundle = vi.fn();
 
@@ -34,7 +41,7 @@ describe('copyAndRefAssets()', () => {
 			format: 'cjs',
 		});
 
-		const result = new VirtualPath('/root/fakeAssets/test-e00c9790.svg');
+		const result = new VirtualPath('/root/fakeAssets/test-7751cc4a.svg');
 		result.path();
 
 		expect(assetsToCopy).toEqual({

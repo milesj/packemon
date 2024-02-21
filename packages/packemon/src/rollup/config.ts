@@ -203,8 +203,8 @@ export async function getRollupConfig(
 			json({ compact: true, namedExports: false }),
 			// Copy assets and update import references
 			copyAndRefAssets({
-				dir: artifact.package.path.append('assets').path(),
 				fs: artifact.package.fs,
+				root: artifact.package.path.path(),
 			}),
 			// Declare Babel/swc here so we can parse TypeScript/Flow
 			isSwc

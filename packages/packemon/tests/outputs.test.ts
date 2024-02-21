@@ -9,6 +9,8 @@ import {
 	snapshotPackageBuildOutputs,
 } from './helpers';
 
+vi.setConfig({ testTimeout: 30_000 });
+
 ['babel', 'swc'].forEach((transformer) => {
 	describe(`Outputs (${transformer})`, () => {
 		vi.spyOn(console, 'info').mockImplementation(() => {});
@@ -160,9 +162,6 @@ import {
 });
 
 describe('Special formats', () => {
-	// TODO
-	// jest.setTimeout(30_000);
-
 	describe('cjs', () => {
 		const root = new Path(getFixturePath('project-cjs-compat'));
 
