@@ -38,7 +38,9 @@ export class InitCommand extends BaseCommand<InitOptions> {
 		return (
 			<Init
 				packageName={name}
-				onComplete={(config) => this.writeConfigToPackageJson(pkg, config)}
+				onComplete={(config) => {
+					this.writeConfigToPackageJson(pkg, config);
+				}}
 			/>
 		);
 	}
@@ -84,10 +86,9 @@ export class InitCommand extends BaseCommand<InitOptions> {
 		return config;
 	}
 
-	async writeConfigToPackageJson(pkg: Package, config: PackemonPackageConfig) {
+	writeConfigToPackageJson(pkg: Package, config: PackemonPackageConfig) {
 		// eslint-disable-next-line no-param-reassign
 		pkg.json.packemon = this.formatConfigObject(config);
-
-		return pkg.syncJson();
+		pkg.syncJson();
 	}
 }

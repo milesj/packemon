@@ -11,7 +11,7 @@
     "pack": "packemon pack --addEngines --declaration",
     "prelease": "yarn run pack && yarn run check",
     "release": "echo 'Customize your own release script!'",
-    "test": "jest",
+    "test": "vitest",
     "type": "tsc && tsc -p ./tests",
     "validate": "packemon validate",
     "watch": "packemon watch"

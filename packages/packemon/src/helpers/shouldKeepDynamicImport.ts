@@ -1,7 +1,11 @@
-import { Platform, Support } from '../types';
+import { Format, Platform } from '../types';
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#browser_compatibility
-export function shouldKeepDynamicImport(platform: Platform, support: Support): boolean {
+export function shouldKeepDynamicImport(platform: Platform, format: Format): boolean {
+	if (format === 'umd') {
+		return false;
+	}
+
 	switch (platform) {
 		case 'node':
 			// >= v13.2
@@ -12,9 +16,11 @@ export function shouldKeepDynamicImport(platform: Platform, support: Support): b
 			// >= 2019
 			// https://caniuse.com/es6-module-dynamic-import
 			return true;
+		case 'native':
+			// >= RN 0.72
+			// https://metrobundler.dev/docs/module-api/#import-dynamic-import
+			return true;
 		default:
-			// RN does not support code splitting
-			// https://github.com/facebook/metro/issues/52
 			return false;
 	}
 }

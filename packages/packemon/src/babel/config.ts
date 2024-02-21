@@ -55,7 +55,7 @@ function getPlatformEnvOptions(
 	];
 
 	// https://caniuse.com/es6-module-dynamic-import
-	if (shouldKeepDynamicImport(platform, support)) {
+	if (shouldKeepDynamicImport(platform, format)) {
 		exclude.push('@babel/plugin-proposal-dynamic-import');
 	}
 

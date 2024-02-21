@@ -1,43 +1,43 @@
 import { rollup } from 'rollup';
+import { beforeEach, describe, expect, it, type Mock, type MockInstance, vi } from 'vitest';
 import { Path } from '@boost/common';
 import { Packemon } from '../src';
-import { createSnapshotSpies, getFixturePath, loadPackageAtPath } from './helpers';
+import { getFixturePath, loadPackageAtPath } from './helpers';
 
-jest.mock('execa');
+vi.mock('execa');
 
-jest.mock('rollup', () => ({
-	...jest.requireActual('rollup'),
-	rollup: jest.fn(),
+vi.mock('rollup', async (importOriginal) => ({
+	...(await importOriginal<object>()),
+	rollup: vi.fn(),
 }));
 
-jest.mock('@rollup/plugin-babel', () => ({
-	...jest.requireActual('@rollup/plugin-babel'),
+vi.mock('@rollup/plugin-babel', async (importOriginal) => ({
+	...(await importOriginal<object>()),
 	// Pipe options through so we can inspect them
 	getBabelInputPlugin: (opts: object) => ({ name: '@rollup/plugin-babel-input', ...opts }),
 	getBabelOutputPlugin: (opts: object) => ({ name: '@rollup/plugin-babel-output', ...opts }),
 }));
 
 describe('Config files', () => {
-	let rollupSpy: jest.Mock;
-	let generateSpy: jest.Mock;
+	let rollupSpy: Mock;
+	let generateSpy: Mock;
 
 	beforeEach(() => {
-		generateSpy = jest.fn(() => ({ output: [] }));
-		rollupSpy = jest.fn(() => ({ generate: generateSpy }));
+		generateSpy = vi.fn(() => ({ output: [] }));
+		rollupSpy = vi.fn(() => ({ generate: generateSpy }));
 
-		(rollup as unknown as jest.SpyInstance).mockImplementation(rollupSpy);
+		(rollup as unknown as MockInstance).mockImplementation(rollupSpy);
 	});
 
 	describe('monorepo', () => {
 		const root = Path.create(getFixturePath('config-files-monorepo'));
-
-		createSnapshotSpies(root); // Mock fs
 
 		it('inherits config from root and branches', async () => {
 			const packemon = new Packemon(root);
 
 			// bar (using push)
 			await packemon.build(loadPackageAtPath(root.append('packages/bar'), root), {
+				addEntries: false,
 				loadConfigs: true,
 			});
 
@@ -85,6 +85,7 @@ describe('Config files', () => {
 
 			// baz (using unshift)
 			await packemon.build(loadPackageAtPath(root.append('packages/baz'), root), {
+				addEntries: false,
 				loadConfigs: true,
 			});
 
@@ -132,6 +133,7 @@ describe('Config files', () => {
 
 			// foo (using push)
 			await packemon.build(loadPackageAtPath(root.append('packages/foo'), root), {
+				addEntries: false,
 				loadConfigs: true,
 			});
 
@@ -183,6 +185,7 @@ describe('Config files', () => {
 
 			// bar (using push)
 			await packemon.build(loadPackageAtPath(root.append('packages/bar'), root), {
+				addEntries: false,
 				loadConfigs: false,
 			});
 
@@ -230,6 +233,7 @@ describe('Config files', () => {
 
 			// baz (using unshift)
 			await packemon.build(loadPackageAtPath(root.append('packages/baz'), root), {
+				addEntries: false,
 				loadConfigs: false,
 			});
 
@@ -277,6 +281,7 @@ describe('Config files', () => {
 
 			// foo (using push)
 			await packemon.build(loadPackageAtPath(root.append('packages/foo'), root), {
+				addEntries: false,
 				loadConfigs: false,
 			});
 
@@ -327,12 +332,11 @@ describe('Config files', () => {
 	describe('polyrepo', () => {
 		const root = getFixturePath('config-files-polyrepo');
 
-		createSnapshotSpies(root); // Mock fs
-
 		it('inherits config from root and branches', async () => {
 			const packemon = new Packemon(root);
 
-			await packemon.build(loadPackageAtPath(root), {
+			await packemon.build(loadPackageAtPath(root, null), {
+				addEntries: false,
 				loadConfigs: true,
 			});
 
@@ -382,7 +386,8 @@ describe('Config files', () => {
 		it('doesnt inherit config if option is false', async () => {
 			const packemon = new Packemon(root);
 
-			await packemon.build(loadPackageAtPath(root), {
+			await packemon.build(loadPackageAtPath(root, null), {
+				addEntries: false,
 				loadConfigs: false,
 			});
 

@@ -1,5 +1,4 @@
 import { execa } from 'execa';
-import fs from 'fs-extra';
 import { rollup } from 'rollup';
 import { applyStyle } from '@boost/cli';
 import { isObject, Path, toArray, VirtualPath } from '@boost/common';
@@ -14,7 +13,7 @@ import type {
 	Build,
 	BuildOptions,
 	BuildResult,
-	BuildResultFiles,
+	BuildResultFile,
 	ConfigFile,
 	FeatureFlags,
 	Format,
@@ -108,7 +107,7 @@ export class Artifact {
 			},
 		});
 
-		const files: BuildResultFiles[] = [];
+		const files: BuildResultFile[] = [];
 
 		await Promise.all(
 			toArray(output).map(async (out, index) => {
@@ -126,6 +125,15 @@ export class Artifact {
 
 				// Update build results and stats
 				const bundledCode = result.output.reduce((code, chunk) => {
+					if (chunk.type === 'asset') {
+						files.push({
+							code: typeof chunk.source === 'string' ? chunk.source : '',
+							file: chunk.fileName.endsWith('js')
+								? `${originalFormat}/${chunk.fileName}`
+								: chunk.fileName,
+						});
+					}
+
 					if (chunk.type === 'chunk') {
 						files.push({
 							code: chunk.code,
@@ -195,7 +203,7 @@ export class Artifact {
 			if (hasCjs) {
 				this.debug('CJS types compatibility enabled, renaming `.d.ts` to `.d.cts`');
 
-				await convertCjsTypes(this.package.path.append('cjs'));
+				await convertCjsTypes(this.package.path.append('cjs'), this.package.fs);
 			}
 		}
 	}
@@ -206,12 +214,15 @@ export class Artifact {
 		const dirs = ['assets', 'dts', ...this.builds.map((build) => build.format)];
 
 		await Promise.all(
+			// eslint-disable-next-line @typescript-eslint/require-await
 			dirs.map(async (dir) => {
 				const dirPath = this.package.path.append(dir).path();
 
 				this.debug('  - %s', dirPath);
 
-				await fs.remove(dirPath);
+				if (this.package.fs.exists(dirPath)) {
+					this.package.fs.removeDir(dirPath);
+				}
 			}),
 		);
 	}

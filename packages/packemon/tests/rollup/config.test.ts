@@ -1,4 +1,5 @@
 /* eslint-disable no-param-reassign */
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { Path } from '@boost/common';
 import { Artifact } from '../../src/Artifact';
 import { Package } from '../../src/Package';
@@ -9,18 +10,26 @@ import {
 } from '../../src/rollup/config';
 import { getFixturePath } from '../helpers';
 
-jest.mock('@rollup/plugin-commonjs', () => () => 'commonjs()');
-jest.mock('@rollup/plugin-json', () => () => 'json()');
-jest.mock('@rollup/plugin-node-resolve', () => () => 'resolve()');
-jest.mock('@rollup/plugin-babel', () => ({
+vi.mock('@rollup/plugin-commonjs', () => ({
+	default: () => 'commonjs()',
+}));
+vi.mock('@rollup/plugin-json', () => ({
+	default: () => 'json()',
+}));
+vi.mock('@rollup/plugin-node-resolve', () => ({
+	default: () => 'resolve()',
+}));
+vi.mock('@rollup/plugin-babel', () => ({
 	getBabelInputPlugin: (options: any) => `babelInput(${options.filename})`,
 	getBabelOutputPlugin: (options: any) =>
 		`babelOutput(${options.filename}, ${options.moduleId || '*'})`,
 }));
-jest.mock('rollup-plugin-node-externals', () => ({
+vi.mock('rollup-plugin-node-externals', () => ({
 	externals: (options: any) => `externals(${options.packagePath})`,
 }));
-jest.mock('rollup-plugin-polyfill-node', () => () => `polyfillNode()`);
+vi.mock('rollup-plugin-polyfill-node', () => ({
+	default: () => `polyfillNode()`,
+}));
 
 const fixturePath = new Path(getFixturePath('project-rollup'));
 const srcInputFile = fixturePath.append('src/index.ts').path();
@@ -118,7 +127,6 @@ describe('getRollupConfig()', () => {
 		artifact.builds.push({ format: 'lib' }, { format: 'esm' }, { format: 'mjs' });
 
 		await expect(getRollupConfig(artifact, {})).resolves.toEqual({
-			cache: undefined,
 			external: expect.any(Function),
 			input: {
 				index: srcInputFile,
@@ -150,6 +158,7 @@ describe('getRollupConfig()', () => {
 					chunkFileNames: 'bundle-[hash].js',
 					dir: fixturePath.append('esm').path(),
 					entryFileNames: '[name].js',
+					exports: 'named',
 					format: 'esm',
 					generatedCode: {
 						...generatedCode,
@@ -169,6 +178,7 @@ describe('getRollupConfig()', () => {
 					chunkFileNames: 'bundle-[hash].mjs',
 					dir: fixturePath.append('mjs').path(),
 					entryFileNames: '[name].mjs',
+					exports: 'named',
 					format: 'esm',
 					generatedCode: {
 						...generatedCode,
@@ -424,7 +434,7 @@ describe('getRollupOutputConfig()', () => {
 	});
 
 	it('passes build params to config', () => {
-		const spy = jest.fn();
+		const spy = vi.fn();
 
 		getRollupOutputConfig(artifact, {}, 'lib', {
 			rollupOutput: spy,
@@ -549,20 +559,20 @@ describe('getRollupOutputConfig()', () => {
 			expect(getRollupOutputConfig(artifact, {}, 'cjs').exports).toBe('auto');
 		});
 
-		it('disables auto-exports for `mjs` format', () => {
-			expect(getRollupOutputConfig(artifact, {}, 'mjs').exports).toBeUndefined();
+		it('enables auto-exports for `mjs` format', () => {
+			expect(getRollupOutputConfig(artifact, {}, 'mjs').exports).toBe('named');
 		});
 
-		it('disables auto-exports for `esm` format', () => {
+		it('enables auto-exports for `esm` format', () => {
 			artifact.platform = 'browser';
 
-			expect(getRollupOutputConfig(artifact, {}, 'esm').exports).toBeUndefined();
+			expect(getRollupOutputConfig(artifact, {}, 'esm').exports).toBe('named');
 		});
 
-		it('disables auto-exports for `umd` format', () => {
+		it('enables auto-exports for `umd` format', () => {
 			artifact.platform = 'browser';
 
-			expect(getRollupOutputConfig(artifact, {}, 'umd').exports).toBeUndefined();
+			expect(getRollupOutputConfig(artifact, {}, 'umd').exports).toBe('named');
 		});
 	});
 
@@ -577,6 +587,7 @@ describe('getRollupOutputConfig()', () => {
 			chunkFileNames: 'bundle-[hash].js',
 			dir: fixturePath.append('umd').path(),
 			entryFileNames: '[name].js',
+			exports: 'named',
 			format: 'esm',
 			generatedCode: {
 				...generatedCode,

@@ -1,9 +1,10 @@
-import fs from 'node:fs';
 import path from 'node:path';
-import fsx from 'fs-extra';
+import { afterEach, beforeEach, describe, expect, it, type MockInstance, vi } from 'vitest';
 import { Path, PortablePath } from '@boost/common';
 import {
 	Artifact,
+	BINARY_ASSETS,
+	FileSystem,
 	Format,
 	FORMATS,
 	FORMATS_BROWSER,
@@ -18,6 +19,7 @@ import {
 	Support,
 	SUPPORTS,
 } from '../src';
+import { nodeFileSystem } from '../src/FileSystem';
 
 const FIXTURES_DIR = path.join(
 	// eslint-disable-next-line unicorn/prefer-module
@@ -25,6 +27,20 @@ const FIXTURES_DIR = path.join(
 	'tests',
 	'__fixtures__',
 );
+
+export function createStubbedFileSystem(): FileSystem {
+	return {
+		copyFile: vi.fn(),
+		createDirAll: vi.fn(),
+		exists: vi.fn().mockImplementation(nodeFileSystem.exists),
+		readFile: vi.fn().mockImplementation(nodeFileSystem.readFile),
+		readJson: vi.fn().mockImplementation(nodeFileSystem.readJson),
+		removeDir: vi.fn(),
+		removeFile: vi.fn(),
+		writeFile: vi.fn(),
+		writeJson: vi.fn(),
+	};
+}
 
 export function normalizeSeparators(part: string) {
 	if (process.platform === 'win32') {
@@ -67,88 +83,41 @@ FORMATS.forEach((format) => {
 	});
 });
 
-export function mockSpy(instance: unknown): jest.SpyInstance {
-	return instance as jest.SpyInstance;
+export function mockSpy(instance: unknown): MockInstance {
+	return instance as MockInstance;
 }
 
-export function loadPackageAtPath(pkgPath: PortablePath, workspaceRoot?: PortablePath): Package {
+export function loadPackageAtPath(
+	pkgPath: PortablePath,
+	workspaceRoot?: PortablePath | null,
+	fs?: FileSystem,
+): Package {
 	const root = Path.create(pkgPath);
-	const json = fsx.readJsonSync(root.append('package.json').path()) as PackemonPackage;
+	const json = nodeFileSystem.readJson<PackemonPackage>(root.append('package.json').path());
 
-	return new Package(root, json, workspaceRoot ? Path.create(workspaceRoot) : root);
+	const pkg = new Package(root, json, workspaceRoot ? Path.create(workspaceRoot) : root);
+
+	if (fs) {
+		pkg.fs = fs;
+	}
+
+	return pkg;
 }
 
-function formatSnapshotFilePath(file: string, root: string): string {
-	return new Path(String(file))
-		.path()
-		.replace(String(root), '')
-		.replace(/^(\/|\\)/, '')
-		.replace(/\\/g, '/');
+function formatSnapshotFilePath(file: string): string {
+	return file.replace(/^(\/|\\)/, '').replace(/\\/g, '/');
 }
 
-export function createSnapshotSpies(root: PortablePath, captureJson: boolean = false) {
-	let snapshots: [string, unknown][] = [];
-	const spies: jest.SpyInstance[] = [];
-
-	beforeEach(() => {
-		const handler = (file: unknown, content: unknown, cb?: unknown) => {
-			const filePath = formatSnapshotFilePath(String(file), String(root));
-
-			if (
-				filePath.endsWith('.js') ||
-				filePath.endsWith('.cjs') ||
-				filePath.endsWith('.mjs') ||
-				filePath.endsWith('.d.ts') ||
-				filePath.endsWith('.d.cts') ||
-				filePath.endsWith('.d.mts') ||
-				(captureJson && filePath.endsWith('.json'))
-			) {
-				snapshots.push([filePath, content]);
+export function snapshotPackageBuildOutputs(pkg: Package) {
+	pkg.artifacts.forEach((art) => {
+		art.buildResult.files.forEach((chunk) => {
+			if (BINARY_ASSETS.some((ext) => chunk.file.endsWith(ext)) || chunk.file.endsWith('.map')) {
+				return;
 			}
 
-			if (filePath.endsWith('.css')) {
-				snapshots.push([filePath, formatSnapshotFilePath(String(content), String(root))]);
-			}
-
-			if (typeof cb === 'function') {
-				cb(null);
-			}
-		};
-
-		// eslint-disable-next-line @typescript-eslint/require-await
-		const asyncHandler = async (file: unknown, content: unknown) => {
-			handler(file, content);
-		};
-
-		spies.push(
-			jest.spyOn(console, 'warn').mockImplementation(),
-			// Rollup
-			jest.spyOn(fs.promises, 'writeFile').mockImplementation(asyncHandler),
-			// Packemon
-			// @ts-expect-error Bad types
-			jest.spyOn(fsx, 'writeJson').mockImplementation(handler),
-			// Assets
-			jest.spyOn(fsx, 'copyFile').mockImplementation(handler),
-			jest.spyOn(fsx, 'mkdir'),
-		);
+			expect(chunk.code).toMatchSnapshot(formatSnapshotFilePath(chunk.file));
+		});
 	});
-
-	afterEach(() => {
-		snapshots = [];
-		spies.forEach((spy) => void spy.mockRestore());
-	});
-
-	return (pkg?: Package) => {
-		if (pkg) {
-			pkg.artifacts.forEach((artifact) => {
-				artifact.buildResult.files.forEach((file) => {
-					snapshots.push([file.file, file.code]);
-				});
-			});
-		}
-
-		return snapshots.sort((a, b) => a[0].localeCompare(b[0]));
-	};
 }
 
 export function testExampleOutput(
@@ -158,8 +127,9 @@ export function testExampleOutput(
 	customRoot?: Path,
 ) {
 	describe(transformer, () => {
-		const root = customRoot ?? getFixturePath('examples');
-		const snapshots = createSnapshotSpies(root);
+		const root = customRoot ?? Path.create(getFixturePath('examples'));
+
+		vi.spyOn(console, 'warn').mockImplementation(() => {});
 
 		beforeEach(() => {
 			process.env.PACKEMON_TEST_WRITE = 'true';
@@ -191,14 +161,20 @@ export function testExampleOutput(
 				pkg.artifacts.push(artifact);
 
 				try {
-					await pkg.build({}, {});
+					await pkg.build(
+						{
+							addEngines: false,
+							addEntries: false,
+							addExports: false,
+							addFiles: false,
+						},
+						{},
+					);
 				} catch (error: unknown) {
 					console.error(error);
 				}
 
-				snapshots().forEach((ss) => {
-					expect(ss).toMatchSnapshot();
-				});
+				snapshotPackageBuildOutputs(pkg);
 			});
 		});
 	});

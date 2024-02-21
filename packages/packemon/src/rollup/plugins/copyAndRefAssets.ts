@@ -1,11 +1,12 @@
 import { createHash } from 'node:crypto';
+import fsn from 'node:fs';
 import path from 'node:path';
-import fs from 'fs-extra';
 import MagicString from 'magic-string';
 import { Plugin } from 'rollup';
 import { VirtualPath } from '@boost/common';
 import type { TSESTree } from '@typescript-eslint/types';
-import { ASSETS } from '../../constants';
+import { ASSETS, TEXT_ASSETS } from '../../constants';
+import { FileSystem } from '../../FileSystem';
 
 function isAsset(id: string): boolean {
 	return ASSETS.some((ext) => id.endsWith(ext));
@@ -25,42 +26,49 @@ function isRequireStatement(node: TSESTree.Expression): node is TSESTree.CallExp
 }
 
 export interface CopyAssetsOptions {
-	dir: string;
+	dir?: string;
+	fs: FileSystem;
+	root: string;
 }
 
 export function copyAndRefAssets(
-	{ dir }: CopyAssetsOptions,
+	{ dir: customDir, fs, root }: CopyAssetsOptions,
 	assetsToCopyInit: Record<string, VirtualPath> = {},
 ): Plugin {
+	const dir = customDir ?? path.join(root, 'assets');
 	const assetsToCopy = assetsToCopyInit;
+	const assetSourceMap = new Set<string>();
+	const pattern = /^\.{1,2}(\/|\\)/;
 
-	function determineNewAsset(source: string, importer?: string | null): VirtualPath {
-		let preparedImporter = importer ? path.dirname(importer) : '';
+	function findMatchingSource(relSource: string): string | undefined {
+		let source = relSource;
 
-		// Find overlapping directory names and remove them
-		const normalizedRelativePath = path.normalize(source);
-		const absoluteParts = preparedImporter.split(path.sep);
-		const relativeParts = normalizedRelativePath.split(path.sep);
+		if (source.startsWith('node:') || source.startsWith('bun:')) {
+			return undefined;
+		}
 
-		for (let i = absoluteParts.length - 1; i >= 0; i -= 1) {
-			if (
-				absoluteParts[i] === relativeParts[0] &&
-				absoluteParts.slice(i).every((p: string, idx: number) => p === relativeParts[idx])
-			) {
-				const overlap = absoluteParts.slice(i, absoluteParts.length).join(path.sep);
-				preparedImporter = preparedImporter.slice(0, -overlap.length);
+		while (source.startsWith('.')) {
+			source = source.replace(pattern, '');
+		}
+
+		for (const id of assetSourceMap) {
+			if (id.endsWith(source)) {
+				return id;
 			}
 		}
 
-		const fullPath = path.join(preparedImporter, source);
-		const id = new VirtualPath(fullPath);
+		return undefined;
+	}
+
+	function determineNewAsset(absSource: string): VirtualPath {
+		const id = new VirtualPath(absSource);
 		const ext = id.ext();
 		const name = id.name(true);
 
 		// Generate a hash of the source file path,
 		// and have it match between nix and windows
 		const hash = createHash('sha256')
-			.update(id.path().replace(new VirtualPath(path.dirname(dir)).path(), ''))
+			.update(id.path().replace(new VirtualPath(root).path(), ''))
 			.digest('hex')
 			.slice(0, 8);
 
@@ -76,8 +84,10 @@ export function copyAndRefAssets(
 		name: 'packemon-copy-and-ref-assets',
 
 		// Delete old assets to remove any possible stale assets
-		async buildStart() {
-			await fs.remove(dir);
+		buildStart() {
+			if (fs.exists(dir) && process.env.NODE_ENV !== 'test') {
+				fs.removeDir(dir);
+			}
 		},
 
 		// Find assets and mark as external
@@ -87,7 +97,9 @@ export function copyAndRefAssets(
 
 				// Check that the file actually exists, because they may be
 				// using path aliases, or bundler specific syntax
-				if (source.startsWith('.') && fs.existsSync(id)) {
+				if (source.startsWith('.') && fs.exists(id)) {
+					assetSourceMap.add(id);
+
 					return { id, external: true };
 				}
 
@@ -109,15 +121,6 @@ export function copyAndRefAssets(
 				return null;
 			}
 
-			/*
-				chunk.facadeModuleId is not ideal because the bundled code gets moved up to the
-				root (output) directory compared to where it was located in the source files,
-				the imports in the source files that get bundled get changed to be relative
-				to the new bundle location, but the chunk.facadeModuleId is the old location of
-				the index. So, you have the old path + the new updated imports and there could be
-				overlap due to this "hoisting", which has a workaround in determineNewAsset
-			*/
-			const parentId = chunk.facadeModuleId; // This correct?
 			const magicString = new MagicString(code);
 			let hasChanged = false;
 
@@ -147,22 +150,17 @@ export function copyAndRefAssets(
 					return;
 				}
 
-				// Update to new path (ignore files coming from node modules)
-				const sourcePath = String(source.value);
+				const relSource = String(source.value);
 
-				if (sourcePath.includes(':')) {
+				if (!ASSETS.some((ext) => relSource.endsWith(ext))) {
 					return;
 				}
 
-				const parentDir = parentId ? path.dirname(parentId) : '';
+				const absSource = findMatchingSource(relSource);
 
-				if (
-					sourcePath &&
-					isAsset(sourcePath) &&
-					sourcePath.startsWith('.') &&
-					fs.existsSync(path.join(parentDir, sourcePath))
-				) {
-					const newId = determineNewAsset(sourcePath, parentId);
+				if (absSource) {
+					const newId = determineNewAsset(absSource);
+					const parentDir = path.dirname(chunk.facadeModuleId!);
 					const importPath = options.preserveModules
 						? new VirtualPath(path.relative(parentDir, newId.path())).path()
 						: `../assets/${newId.name()}`;
@@ -185,21 +183,30 @@ export function copyAndRefAssets(
 		},
 
 		// Copy all found assets
-		async generateBundle() {
+		async generateBundle(options, bundle) {
 			// Only create the folder if we have assets to copy,
 			// otherwise it throws off `files` and other detection!
 			if (Object.keys(assetsToCopy).length > 0) {
-				await fs.mkdir(dir, { recursive: true });
+				fs.createDirAll(dir);
 			}
 
-			// We don't use `assetFileNames` as we want a single assets folder
+			// We don't use `assetFileNames` or `emitFile` as we want a single assets folder
 			// at the root of the package, which Rollup does not allow. It wants
 			// multiple asset folders within each format!
 			await Promise.all(
+				// eslint-disable-next-line @typescript-eslint/require-await
 				Object.entries(assetsToCopy).map(async ([oldId, newId]) => {
-					if (!newId.exists()) {
-						await fs.copyFile(oldId, newId.path());
-					}
+					const newName = newId.name();
+					const isStringSource = TEXT_ASSETS.some((ext) => newName.endsWith(ext));
+
+					// eslint-disable-next-line no-param-reassign
+					bundle[newId.path()] = {
+						fileName: `../assets/${newName}`,
+						name: undefined,
+						needsCodeReference: false,
+						source: isStringSource ? fs.readFile(oldId) : fsn.readFileSync(oldId),
+						type: 'asset',
+					};
 				}),
 			);
 		},

@@ -1,12 +1,12 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`conditionalInvariantPlugin() will not transform if wrapped in a matching conditional 1`] = `
+exports[`conditionalInvariantPlugin() > will not transform if wrapped in a matching conditional 1`] = `
 "if (process.env.NODE_ENV !== 'production') {
   invariant();
 }"
 `;
 
-exports[`conditionalInvariantPlugin() will not transform if wrapped in a matching conditional that is layers deep 1`] = `
+exports[`conditionalInvariantPlugin() > will not transform if wrapped in a matching conditional that is layers deep 1`] = `
 "if (process.env.NODE_ENV !== 'production') {
   if (true) {
     if (false) {
@@ -16,7 +16,7 @@ exports[`conditionalInvariantPlugin() will not transform if wrapped in a matchin
 }"
 `;
 
-exports[`conditionalInvariantPlugin() will transform if wrapped in a non-matching conditional 1`] = `
+exports[`conditionalInvariantPlugin() > will transform if wrapped in a non-matching conditional 1`] = `
 "if (process.env.NODE_ENV === 'development') {
   if (process.env.NODE_ENV !== 'production') {
     invariant();
@@ -24,7 +24,7 @@ exports[`conditionalInvariantPlugin() will transform if wrapped in a non-matchin
 }"
 `;
 
-exports[`conditionalInvariantPlugin() will transform if wrapped in a non-matching conditional that is layers deep 1`] = `
+exports[`conditionalInvariantPlugin() > will transform if wrapped in a non-matching conditional that is layers deep 1`] = `
 "if (process.env.NODE_ENV === 'development') {
   if (true) {
     if (false) {
@@ -36,7 +36,7 @@ exports[`conditionalInvariantPlugin() will transform if wrapped in a non-matchin
 }"
 `;
 
-exports[`conditionalInvariantPlugin() will transform valid expressions 1`] = `
+exports[`conditionalInvariantPlugin() > will transform valid expressions 1`] = `
 "if (process.env.NODE_ENV !== 'production') {
   invariant();
 }

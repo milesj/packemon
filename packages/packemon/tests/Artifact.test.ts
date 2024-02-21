@@ -1,14 +1,14 @@
 import { execa } from 'execa';
-import fsx from 'fs-extra';
 import { rollup } from 'rollup';
+import { beforeEach, describe, expect, it, type MockInstance, vi } from 'vitest';
 import { applyStyle } from '@boost/cli';
 import { Path } from '@boost/common';
 import { Artifact } from '../src/Artifact';
 import { getRollupConfig } from '../src/rollup/config';
 import { getFixturePath, loadPackageAtPath, mockSpy } from './helpers';
 
-jest.mock('../src/rollup/config', () => ({
-	getRollupConfig: jest.fn(() => ({
+vi.mock('../src/rollup/config', () => ({
+	getRollupConfig: vi.fn(() => ({
 		input: true,
 		output: [
 			{ originalFormat: 'lib', a: true },
@@ -18,15 +18,15 @@ jest.mock('../src/rollup/config', () => ({
 	})),
 }));
 
-jest.mock('execa');
+vi.mock('execa');
 
-jest.mock('rimraf', () =>
-	jest.fn((path, cb) => {
+vi.mock('rimraf', () =>
+	vi.fn((path, cb) => {
 		cb();
 	}),
 );
 
-jest.mock('rollup', () => ({ rollup: jest.fn() }));
+vi.mock('rollup', () => ({ rollup: vi.fn() }));
 
 class TestArtifact extends Artifact {
 	log = this.logWithSource.bind(this);
@@ -50,8 +50,8 @@ describe('Artifact', () => {
 
 	describe('build()', () => {
 		it('builds code and types', async () => {
-			const codeSpy = jest.spyOn(artifact, 'buildCode').mockImplementation();
-			const typesSpy = jest.spyOn(artifact, 'buildTypes').mockImplementation();
+			const codeSpy = vi.spyOn(artifact, 'buildCode').mockImplementation(() => Promise.resolve());
+			const typesSpy = vi.spyOn(artifact, 'buildTypes').mockImplementation(() => Promise.resolve());
 
 			await artifact.build({}, {}, {});
 
@@ -61,10 +61,10 @@ describe('Artifact', () => {
 	});
 
 	describe('buildCode()', () => {
-		let bundleWriteSpy: jest.SpyInstance;
+		let bundleWriteSpy: MockInstance;
 
 		beforeEach(() => {
-			bundleWriteSpy = jest.fn(() => ({ output: [{ type: 'chunk', code: 'code' }] }));
+			bundleWriteSpy = vi.fn(() => ({ output: [{ type: 'chunk', code: 'code' }] }));
 
 			mockSpy(rollup)
 				.mockReset()
@@ -175,12 +175,16 @@ describe('Artifact', () => {
 
 	describe('clean()', () => {
 		it('removes the dir for each format', async () => {
-			const spy = jest.spyOn(fsx, 'remove');
+			const spy = vi.spyOn(artifact.package.fs, 'removeDir').mockImplementation(() => {});
+
+			// Folders have to exist
+			artifact.package.fs.createDirAll(fixturePath.append('cjs').path());
+			artifact.package.fs.createDirAll(fixturePath.append('mjs').path());
 
 			await artifact.clean();
 
-			expect(spy).toHaveBeenCalledWith(fixturePath.append('assets').path());
-			expect(spy).toHaveBeenCalledWith(fixturePath.append('dts').path());
+			expect(spy).not.toHaveBeenCalledWith(fixturePath.append('assets').path());
+			expect(spy).not.toHaveBeenCalledWith(fixturePath.append('dts').path());
 			expect(spy).toHaveBeenCalledWith(fixturePath.append('cjs').path());
 			expect(spy).toHaveBeenCalledWith(fixturePath.append('mjs').path());
 		});
@@ -658,7 +662,7 @@ describe('Artifact', () => {
 
 	describe('logWithSource()', () => {
 		it('logs a message to level', () => {
-			const spy = jest.spyOn(console, 'info').mockImplementation();
+			const spy = vi.spyOn(console, 'info').mockImplementation(() => {});
 
 			artifact.log('Hello', 'info');
 
@@ -668,7 +672,7 @@ describe('Artifact', () => {
 		});
 
 		it('includes output name and ID', () => {
-			const spy = jest.spyOn(console, 'error').mockImplementation();
+			const spy = vi.spyOn(console, 'error').mockImplementation(() => {});
 
 			artifact.log('Hello', 'error', { id: 'id', output: 'index' });
 
@@ -678,7 +682,7 @@ describe('Artifact', () => {
 		});
 
 		it('includes source information', () => {
-			const spy = jest.spyOn(console, 'warn').mockImplementation();
+			const spy = vi.spyOn(console, 'warn').mockImplementation(() => {});
 
 			artifact.log('Hello', 'warn', {
 				sourceFile: fixturePath.append('test.js').path(),
@@ -694,7 +698,7 @@ describe('Artifact', () => {
 		});
 
 		it('includes source line without column', () => {
-			const spy = jest.spyOn(console, 'warn').mockImplementation();
+			const spy = vi.spyOn(console, 'warn').mockImplementation(() => {});
 
 			artifact.log('Hello', 'warn', {
 				sourceLine: 10,
@@ -706,7 +710,7 @@ describe('Artifact', () => {
 		});
 
 		it('includes source column without line', () => {
-			const spy = jest.spyOn(console, 'info').mockImplementation();
+			const spy = vi.spyOn(console, 'info').mockImplementation(() => {});
 
 			artifact.log('Hello', 'info', {
 				sourceColumn: 55,

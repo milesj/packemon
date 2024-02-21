@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import { loadModule } from '../../src/helpers/loadModule';
 
 describe('loadModule()', () => {
