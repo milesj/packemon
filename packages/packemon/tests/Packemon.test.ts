@@ -156,38 +156,37 @@ describe('Packemon', () => {
 	});
 
 	describe('findPackage()', () => {
-		it('errors if no `package.json`', async () => {
+		it('errors if no `package.json`', () => {
 			packemon = new Packemon(getFixturePath('workspaces', 'no-package'));
 
-			await expect(packemon.findPackage()).rejects.toThrow(
+			expect(() => packemon.findPackage()).toThrow(
 				`No \`package.json\` found in ${packemon.workingDir}.`,
 			);
 		});
 
-		it('errors for invalid `packemon` config', async () => {
+		it('errors for invalid `packemon` config', () => {
 			packemon = new Packemon(getFixturePath('workspaces', 'packages/invalid-config'));
 
-			await expect(packemon.findPackage()).rejects.toThrow(
+			expect(() => packemon.findPackage()).toThrow(
 				'Invalid `packemon` configuration for pkg-invalid-config, must be an object or array of objects.',
 			);
 		});
 
-		it('returns null if package is private and `skipPrivate` is true', async () => {
+		it('returns null if package is private and `skipPrivate` is true', () => {
 			packemon = new Packemon(getFixturePath('workspace-private'));
 
-			await expect(packemon.findPackage({ skipPrivate: true })).resolves.toBeNull();
+			expect(packemon.findPackage({ skipPrivate: true })).toBeNull();
 		});
 
-		it('returns null if package does not have a `packemon` config', async () => {
+		it('returns null if package does not have a `packemon` config', () => {
 			packemon = new Packemon(getFixturePath('workspaces', 'packages/no-config'));
 
-			await expect(packemon.findPackage({})).resolves.toBeNull();
+			expect(packemon.findPackage({})).toBeNull();
 		});
 
-		it('loads a package with a single `packemon` config', async () => {
+		it('loads a package with a single `packemon` config', () => {
 			packemon = new Packemon(getFixturePath('workspaces', 'packages/valid-object'));
-
-			pkg = (await packemon.findPackage({}))!;
+			pkg = packemon.findPackage({})!;
 
 			expect(pkg).toBeInstanceOf(Package);
 			expect(pkg.configs).toEqual([
@@ -205,10 +204,9 @@ describe('Packemon', () => {
 			]);
 		});
 
-		it('loads a package with multiple `packemon` configs', async () => {
+		it('loads a package with multiple `packemon` configs', () => {
 			packemon = new Packemon(getFixturePath('workspaces', 'packages/valid-array'));
-
-			pkg = (await packemon.findPackage({}))!;
+			pkg = packemon.findPackage({})!;
 
 			expect(pkg).toBeInstanceOf(Package);
 			expect(pkg.configs).toEqual([
