@@ -17,7 +17,7 @@ exports[`Package > setConfigs() > errors if invalid format is provided for \`bro
 
 exports[`Package > setConfigs() > errors if invalid format is provided for \`native\` platform 1`] = `
 [OptimalError: The following validations have failed for \`flag-common\`:
-  - Invalid field "format". String must be one of: lib. Received "esm".]
+  - Invalid field "format". String must be one of: lib, esm. Received "mjs".]
 `;
 
 exports[`Package > setConfigs() > errors if invalid format is provided for \`node\` platform 1`] = `
