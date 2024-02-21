@@ -171,7 +171,7 @@ describe('Package', () => {
 
 				await pkg.build({ addEngines: true }, config);
 
-				expect(pkg.json.engines).toEqual({ node: '>=16.12.0' });
+				expect(pkg.json.engines).toEqual({ node: '>=18.12.0' });
 			});
 
 			it('uses oldest `node` build', async () => {
@@ -183,7 +183,7 @@ describe('Package', () => {
 
 				await pkg.build({ addEngines: true }, config);
 
-				expect(pkg.json.engines).toEqual({ node: '>=14.15.0' });
+				expect(pkg.json.engines).toEqual({ node: '>=16.12.0' });
 			});
 
 			it('merges with existing engines', async () => {
@@ -199,7 +199,7 @@ describe('Package', () => {
 
 				expect(pkg.json.engines).toEqual({
 					packemon: '*',
-					node: '>=16.12.0',
+					node: '>=18.12.0',
 				});
 			});
 		});
@@ -1334,7 +1334,7 @@ describe('Package', () => {
 					bundle: true,
 					externals: [],
 					features: COMMON_FEATURES,
-					formats: ['lib'],
+					formats: ['esm'],
 					inputs: {},
 					platform: 'native',
 					namespace: '',
@@ -1478,7 +1478,7 @@ describe('Package', () => {
 					bundle: true,
 					externals: [],
 					features: COMMON_FEATURES,
-					formats: ['lib'],
+					formats: ['esm'],
 					inputs: {},
 					platform: 'native',
 					namespace: '',
@@ -1592,7 +1592,7 @@ describe('Package', () => {
 			expect(() => {
 				pkg.setConfigs([
 					{
-						format: 'esm',
+						format: 'mjs',
 						platform: 'native',
 					},
 				]);

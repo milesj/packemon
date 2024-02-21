@@ -533,6 +533,27 @@ exports.wait = wait;
 "
 `;
 
+exports[`Async/await > babel > transforms example test case: native-current-esm > esm/index-native-current-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: current, Format: esm
+
+async function wait() {
+  return new Promise(resolve => {
+    setTimeout(resolve, 100);
+  });
+}
+async function run() {
+  try {
+    await wait();
+  } catch {
+    throw new Error('Fail');
+  }
+}
+export { run, wait };
+//# sourceMappingURL=index-native-current-esm.js.map
+"
+`;
+
 exports[`Async/await > babel > transforms example test case: native-current-lib > lib/index-native-current-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: current, Format: lib
@@ -554,6 +575,27 @@ async function run() {
 exports.run = run;
 exports.wait = wait;
 //# sourceMappingURL=index-native-current-lib.js.map
+"
+`;
+
+exports[`Async/await > babel > transforms example test case: native-experimental-esm > esm/index-native-experimental-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: experimental, Format: esm
+
+async function wait() {
+  return new Promise(resolve => {
+    setTimeout(resolve, 100);
+  });
+}
+async function run() {
+  try {
+    await wait();
+  } catch {
+    throw new Error('Fail');
+  }
+}
+export { run, wait };
+//# sourceMappingURL=index-native-experimental-esm.js.map
 "
 `;
 
@@ -581,6 +623,27 @@ exports.wait = wait;
 "
 `;
 
+exports[`Async/await > babel > transforms example test case: native-legacy-esm > esm/index-native-legacy-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: legacy, Format: esm
+
+async function wait() {
+  return new Promise(resolve => {
+    setTimeout(resolve, 100);
+  });
+}
+async function run() {
+  try {
+    await wait();
+  } catch {
+    throw new Error('Fail');
+  }
+}
+export { run, wait };
+//# sourceMappingURL=index-native-legacy-esm.js.map
+"
+`;
+
 exports[`Async/await > babel > transforms example test case: native-legacy-lib > lib/index-native-legacy-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: legacy, Format: lib
@@ -602,6 +665,27 @@ async function run() {
 exports.run = run;
 exports.wait = wait;
 //# sourceMappingURL=index-native-legacy-lib.js.map
+"
+`;
+
+exports[`Async/await > babel > transforms example test case: native-stable-esm > esm/index-native-stable-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: stable, Format: esm
+
+async function wait() {
+  return new Promise(resolve => {
+    setTimeout(resolve, 100);
+  });
+}
+async function run() {
+  try {
+    await wait();
+  } catch {
+    throw new Error('Fail');
+  }
+}
+export { run, wait };
+//# sourceMappingURL=index-native-stable-esm.js.map
 "
 `;
 
@@ -1944,6 +2028,26 @@ exports.wait = wait;
 "
 `;
 
+exports[`Async/await > swc > transforms example test case: native-current-esm > esm/index-native-current-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: current, Format: esm
+async function wait() {
+    return new Promise((resolve)=>{
+        setTimeout(resolve, 100);
+    });
+}
+async function run() {
+    try {
+        await wait();
+    } catch  {
+        throw new Error("Fail");
+    }
+}
+export { run, wait };
+//# sourceMappingURL=index-native-current-esm.js.map
+"
+`;
+
 exports[`Async/await > swc > transforms example test case: native-current-lib > lib/index-native-current-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: current, Format: lib
@@ -1963,6 +2067,26 @@ async function run() {
 exports.run = run;
 exports.wait = wait;
 //# sourceMappingURL=index-native-current-lib.js.map
+"
+`;
+
+exports[`Async/await > swc > transforms example test case: native-experimental-esm > esm/index-native-experimental-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: experimental, Format: esm
+async function wait() {
+    return new Promise((resolve)=>{
+        setTimeout(resolve, 100);
+    });
+}
+async function run() {
+    try {
+        await wait();
+    } catch  {
+        throw new Error("Fail");
+    }
+}
+export { run, wait };
+//# sourceMappingURL=index-native-experimental-esm.js.map
 "
 `;
 
@@ -1988,6 +2112,26 @@ exports.wait = wait;
 "
 `;
 
+exports[`Async/await > swc > transforms example test case: native-legacy-esm > esm/index-native-legacy-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: legacy, Format: esm
+async function wait() {
+    return new Promise((resolve)=>{
+        setTimeout(resolve, 100);
+    });
+}
+async function run() {
+    try {
+        await wait();
+    } catch  {
+        throw new Error("Fail");
+    }
+}
+export { run, wait };
+//# sourceMappingURL=index-native-legacy-esm.js.map
+"
+`;
+
 exports[`Async/await > swc > transforms example test case: native-legacy-lib > lib/index-native-legacy-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: legacy, Format: lib
@@ -2007,6 +2151,26 @@ async function run() {
 exports.run = run;
 exports.wait = wait;
 //# sourceMappingURL=index-native-legacy-lib.js.map
+"
+`;
+
+exports[`Async/await > swc > transforms example test case: native-stable-esm > esm/index-native-stable-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: stable, Format: esm
+async function wait() {
+    return new Promise((resolve)=>{
+        setTimeout(resolve, 100);
+    });
+}
+async function run() {
+    try {
+        await wait();
+    } catch  {
+        throw new Error("Fail");
+    }
+}
+export { run, wait };
+//# sourceMappingURL=index-native-stable-esm.js.map
 "
 `;
 

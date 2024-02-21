@@ -588,6 +588,32 @@ console.log(json);
 "
 `;
 
+exports[`Assets > babel > transforms example test case: native-current-esm > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
+"
+`;
+
+exports[`Assets > babel > transforms example test case: native-current-esm > esm/index-native-current-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: current, Format: esm
+
+import '../assets/styles-17df299b.css';
+import '../assets/logo-c21f559f.svg';
+import 'website/src/css/custom.css';
+const json = {
+  list: ["foo", "bar", "baz"],
+  number: 123,
+  string: "abc",
+  object: {
+    foo: true
+  }
+};
+console.log(json);
+//# sourceMappingURL=index-native-current-esm.js.map
+"
+`;
+
 exports[`Assets > babel > transforms example test case: native-current-lib > ../assets/styles-17df299b.css 1`] = `
 ".baz {
 }
@@ -613,6 +639,32 @@ const json = {
 };
 console.log(json);
 //# sourceMappingURL=index-native-current-lib.js.map
+"
+`;
+
+exports[`Assets > babel > transforms example test case: native-experimental-esm > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
+"
+`;
+
+exports[`Assets > babel > transforms example test case: native-experimental-esm > esm/index-native-experimental-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: experimental, Format: esm
+
+import '../assets/styles-17df299b.css';
+import '../assets/logo-c21f559f.svg';
+import 'website/src/css/custom.css';
+const json = {
+  list: ["foo", "bar", "baz"],
+  number: 123,
+  string: "abc",
+  object: {
+    foo: true
+  }
+};
+console.log(json);
+//# sourceMappingURL=index-native-experimental-esm.js.map
 "
 `;
 
@@ -644,6 +696,32 @@ console.log(json);
 "
 `;
 
+exports[`Assets > babel > transforms example test case: native-legacy-esm > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
+"
+`;
+
+exports[`Assets > babel > transforms example test case: native-legacy-esm > esm/index-native-legacy-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: legacy, Format: esm
+
+import '../assets/styles-17df299b.css';
+import '../assets/logo-c21f559f.svg';
+import 'website/src/css/custom.css';
+const json = {
+  list: ["foo", "bar", "baz"],
+  number: 123,
+  string: "abc",
+  object: {
+    foo: true
+  }
+};
+console.log(json);
+//# sourceMappingURL=index-native-legacy-esm.js.map
+"
+`;
+
 exports[`Assets > babel > transforms example test case: native-legacy-lib > ../assets/styles-17df299b.css 1`] = `
 ".baz {
 }
@@ -669,6 +747,32 @@ const json = {
 };
 console.log(json);
 //# sourceMappingURL=index-native-legacy-lib.js.map
+"
+`;
+
+exports[`Assets > babel > transforms example test case: native-stable-esm > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
+"
+`;
+
+exports[`Assets > babel > transforms example test case: native-stable-esm > esm/index-native-stable-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: stable, Format: esm
+
+import '../assets/styles-17df299b.css';
+import '../assets/logo-c21f559f.svg';
+import 'website/src/css/custom.css';
+const json = {
+  list: ["foo", "bar", "baz"],
+  number: 123,
+  string: "abc",
+  object: {
+    foo: true
+  }
+};
+console.log(json);
+//# sourceMappingURL=index-native-stable-esm.js.map
 "
 `;
 
@@ -1684,6 +1788,35 @@ console.log(json);
 "
 `;
 
+exports[`Assets > swc > transforms example test case: native-current-esm > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
+"
+`;
+
+exports[`Assets > swc > transforms example test case: native-current-esm > esm/index-native-current-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: current, Format: esm
+import "../assets/styles-17df299b.css";
+import "../assets/logo-c21f559f.svg";
+import "website/src/css/custom.css";
+const json = {
+    list: [
+        "foo",
+        "bar",
+        "baz"
+    ],
+    number: 123,
+    string: "abc",
+    object: {
+        foo: true
+    }
+};
+console.log(json);
+//# sourceMappingURL=index-native-current-esm.js.map
+"
+`;
+
 exports[`Assets > swc > transforms example test case: native-current-lib > ../assets/styles-17df299b.css 1`] = `
 ".baz {
 }
@@ -1711,6 +1844,35 @@ const json = {
 };
 console.log(json);
 //# sourceMappingURL=index-native-current-lib.js.map
+"
+`;
+
+exports[`Assets > swc > transforms example test case: native-experimental-esm > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
+"
+`;
+
+exports[`Assets > swc > transforms example test case: native-experimental-esm > esm/index-native-experimental-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: experimental, Format: esm
+import "../assets/styles-17df299b.css";
+import "../assets/logo-c21f559f.svg";
+import "website/src/css/custom.css";
+const json = {
+    list: [
+        "foo",
+        "bar",
+        "baz"
+    ],
+    number: 123,
+    string: "abc",
+    object: {
+        foo: true
+    }
+};
+console.log(json);
+//# sourceMappingURL=index-native-experimental-esm.js.map
 "
 `;
 
@@ -1744,6 +1906,35 @@ console.log(json);
 "
 `;
 
+exports[`Assets > swc > transforms example test case: native-legacy-esm > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
+"
+`;
+
+exports[`Assets > swc > transforms example test case: native-legacy-esm > esm/index-native-legacy-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: legacy, Format: esm
+import "../assets/styles-17df299b.css";
+import "../assets/logo-c21f559f.svg";
+import "website/src/css/custom.css";
+const json = {
+    list: [
+        "foo",
+        "bar",
+        "baz"
+    ],
+    number: 123,
+    string: "abc",
+    object: {
+        foo: true
+    }
+};
+console.log(json);
+//# sourceMappingURL=index-native-legacy-esm.js.map
+"
+`;
+
 exports[`Assets > swc > transforms example test case: native-legacy-lib > ../assets/styles-17df299b.css 1`] = `
 ".baz {
 }
@@ -1771,6 +1962,35 @@ const json = {
 };
 console.log(json);
 //# sourceMappingURL=index-native-legacy-lib.js.map
+"
+`;
+
+exports[`Assets > swc > transforms example test case: native-stable-esm > ../assets/styles-17df299b.css 1`] = `
+".baz {
+}
+"
+`;
+
+exports[`Assets > swc > transforms example test case: native-stable-esm > esm/index-native-stable-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: stable, Format: esm
+import "../assets/styles-17df299b.css";
+import "../assets/logo-c21f559f.svg";
+import "website/src/css/custom.css";
+const json = {
+    list: [
+        "foo",
+        "bar",
+        "baz"
+    ],
+    number: 123,
+    string: "abc",
+    object: {
+        foo: true
+    }
+};
+console.log(json);
+//# sourceMappingURL=index-native-stable-esm.js.map
 "
 `;
 

@@ -256,6 +256,16 @@ require('@packemon/bar');
 "
 `;
 
+exports[`Rollup externals (regex) > babel > transforms example test case: native-current-esm > esm/index-native-current-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: current, Format: esm
+
+import '@packemon/foo';
+import '@packemon/bar';
+//# sourceMappingURL=index-native-current-esm.js.map
+"
+`;
+
 exports[`Rollup externals (regex) > babel > transforms example test case: native-current-lib > lib/index-native-current-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: current, Format: lib
@@ -265,6 +275,16 @@ exports[`Rollup externals (regex) > babel > transforms example test case: native
 require('@packemon/foo');
 require('@packemon/bar');
 //# sourceMappingURL=index-native-current-lib.js.map
+"
+`;
+
+exports[`Rollup externals (regex) > babel > transforms example test case: native-experimental-esm > esm/index-native-experimental-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: experimental, Format: esm
+
+import '@packemon/foo';
+import '@packemon/bar';
+//# sourceMappingURL=index-native-experimental-esm.js.map
 "
 `;
 
@@ -280,6 +300,16 @@ require('@packemon/bar');
 "
 `;
 
+exports[`Rollup externals (regex) > babel > transforms example test case: native-legacy-esm > esm/index-native-legacy-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: legacy, Format: esm
+
+import '@packemon/foo';
+import '@packemon/bar';
+//# sourceMappingURL=index-native-legacy-esm.js.map
+"
+`;
+
 exports[`Rollup externals (regex) > babel > transforms example test case: native-legacy-lib > lib/index-native-legacy-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: legacy, Format: lib
@@ -289,6 +319,16 @@ exports[`Rollup externals (regex) > babel > transforms example test case: native
 require('@packemon/foo');
 require('@packemon/bar');
 //# sourceMappingURL=index-native-legacy-lib.js.map
+"
+`;
+
+exports[`Rollup externals (regex) > babel > transforms example test case: native-stable-esm > esm/index-native-stable-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: stable, Format: esm
+
+import '@packemon/foo';
+import '@packemon/bar';
+//# sourceMappingURL=index-native-stable-esm.js.map
 "
 `;
 
@@ -724,6 +764,16 @@ require('@packemon/bar');
 "
 `;
 
+exports[`Rollup externals > babel > transforms example test case: native-current-esm > esm/index-native-current-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: current, Format: esm
+
+import '@packemon/foo';
+import '@packemon/bar';
+//# sourceMappingURL=index-native-current-esm.js.map
+"
+`;
+
 exports[`Rollup externals > babel > transforms example test case: native-current-lib > lib/index-native-current-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: current, Format: lib
@@ -733,6 +783,16 @@ exports[`Rollup externals > babel > transforms example test case: native-current
 require('@packemon/foo');
 require('@packemon/bar');
 //# sourceMappingURL=index-native-current-lib.js.map
+"
+`;
+
+exports[`Rollup externals > babel > transforms example test case: native-experimental-esm > esm/index-native-experimental-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: experimental, Format: esm
+
+import '@packemon/foo';
+import '@packemon/bar';
+//# sourceMappingURL=index-native-experimental-esm.js.map
 "
 `;
 
@@ -748,6 +808,16 @@ require('@packemon/bar');
 "
 `;
 
+exports[`Rollup externals > babel > transforms example test case: native-legacy-esm > esm/index-native-legacy-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: legacy, Format: esm
+
+import '@packemon/foo';
+import '@packemon/bar';
+//# sourceMappingURL=index-native-legacy-esm.js.map
+"
+`;
+
 exports[`Rollup externals > babel > transforms example test case: native-legacy-lib > lib/index-native-legacy-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: legacy, Format: lib
@@ -757,6 +827,16 @@ exports[`Rollup externals > babel > transforms example test case: native-legacy-
 require('@packemon/foo');
 require('@packemon/bar');
 //# sourceMappingURL=index-native-legacy-lib.js.map
+"
+`;
+
+exports[`Rollup externals > babel > transforms example test case: native-stable-esm > esm/index-native-stable-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: stable, Format: esm
+
+import '@packemon/foo';
+import '@packemon/bar';
+//# sourceMappingURL=index-native-stable-esm.js.map
 "
 `;
 
