@@ -669,6 +669,33 @@ import( /* webpackChunkName: "helpers" */'./bundle-TH51JAs8.js').then(({
 "
 `;
 
+exports[`Dynamic imports > babel > transforms example test case: native-current-esm > esm/bundle-xCWKeE1B.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: current, Format: esm
+
+function foo() {}
+function bar() {}
+export { bar, foo };
+//# sourceMappingURL=bundle-xCWKeE1B.js.map
+"
+`;
+
+exports[`Dynamic imports > babel > transforms example test case: native-current-esm > esm/index-native-current-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: current, Format: esm
+
+import('./bundle-xCWKeE1B.js').then(result => {
+  result.foo();
+});
+import( /* webpackChunkName: "helpers" */'./bundle-xCWKeE1B.js').then(({
+  bar
+}) => {
+  bar();
+});
+//# sourceMappingURL=index-native-current-esm.js.map
+"
+`;
+
 exports[`Dynamic imports > babel > transforms example test case: native-current-lib > lib/bundle-Pctkl0OM.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: current, Format: lib
@@ -698,6 +725,33 @@ import( /* webpackChunkName: "helpers" */'./bundle-Pctkl0OM.js').then(({
   bar();
 });
 //# sourceMappingURL=index-native-current-lib.js.map
+"
+`;
+
+exports[`Dynamic imports > babel > transforms example test case: native-experimental-esm > esm/bundle-Cbp3T7Wc.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: experimental, Format: esm
+
+function foo() {}
+function bar() {}
+export { bar, foo };
+//# sourceMappingURL=bundle-Cbp3T7Wc.js.map
+"
+`;
+
+exports[`Dynamic imports > babel > transforms example test case: native-experimental-esm > esm/index-native-experimental-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: experimental, Format: esm
+
+import('./bundle-Cbp3T7Wc.js').then(result => {
+  result.foo();
+});
+import( /* webpackChunkName: "helpers" */'./bundle-Cbp3T7Wc.js').then(({
+  bar
+}) => {
+  bar();
+});
+//# sourceMappingURL=index-native-experimental-esm.js.map
 "
 `;
 
@@ -733,6 +787,33 @@ import( /* webpackChunkName: "helpers" */'./bundle-9YJidWY8.js').then(({
 "
 `;
 
+exports[`Dynamic imports > babel > transforms example test case: native-legacy-esm > esm/bundle-G3NsE1i0.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: legacy, Format: esm
+
+function foo() {}
+function bar() {}
+export { bar, foo };
+//# sourceMappingURL=bundle-G3NsE1i0.js.map
+"
+`;
+
+exports[`Dynamic imports > babel > transforms example test case: native-legacy-esm > esm/index-native-legacy-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: legacy, Format: esm
+
+import('./bundle-G3NsE1i0.js').then(result => {
+  result.foo();
+});
+import( /* webpackChunkName: "helpers" */'./bundle-G3NsE1i0.js').then(({
+  bar
+}) => {
+  bar();
+});
+//# sourceMappingURL=index-native-legacy-esm.js.map
+"
+`;
+
 exports[`Dynamic imports > babel > transforms example test case: native-legacy-lib > lib/bundle-N5SU9kaz.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: legacy, Format: lib
@@ -762,6 +843,33 @@ import( /* webpackChunkName: "helpers" */'./bundle-N5SU9kaz.js').then(({
   bar();
 });
 //# sourceMappingURL=index-native-legacy-lib.js.map
+"
+`;
+
+exports[`Dynamic imports > babel > transforms example test case: native-stable-esm > esm/bundle-vvMLEGOy.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: stable, Format: esm
+
+function foo() {}
+function bar() {}
+export { bar, foo };
+//# sourceMappingURL=bundle-vvMLEGOy.js.map
+"
+`;
+
+exports[`Dynamic imports > babel > transforms example test case: native-stable-esm > esm/index-native-stable-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: stable, Format: esm
+
+import('./bundle-vvMLEGOy.js').then(result => {
+  result.foo();
+});
+import( /* webpackChunkName: "helpers" */'./bundle-vvMLEGOy.js').then(({
+  bar
+}) => {
+  bar();
+});
+//# sourceMappingURL=index-native-stable-esm.js.map
 "
 `;
 
@@ -1952,6 +2060,29 @@ import(/* webpackChunkName: "helpers" */ "./bundle-Hqs1JeVJ.js").then(({ bar })=
 "
 `;
 
+exports[`Dynamic imports > swc > transforms example test case: native-current-esm > esm/bundle-X2q-vQY8.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: current, Format: esm
+function foo() {}
+function bar() {}
+export { bar, foo };
+//# sourceMappingURL=bundle-X2q-vQY8.js.map
+"
+`;
+
+exports[`Dynamic imports > swc > transforms example test case: native-current-esm > esm/index-native-current-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: current, Format: esm
+import("./bundle-X2q-vQY8.js").then((result)=>{
+    result.foo();
+});
+import(/* webpackChunkName: "helpers" */ "./bundle-X2q-vQY8.js").then(({ bar })=>{
+    bar();
+});
+//# sourceMappingURL=index-native-current-esm.js.map
+"
+`;
+
 exports[`Dynamic imports > swc > transforms example test case: native-current-lib > lib/bundle-3zLFMKSE.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: current, Format: lib
@@ -1975,6 +2106,29 @@ import(/* webpackChunkName: "helpers" */ "./bundle-3zLFMKSE.js").then(({ bar })=
     bar();
 });
 //# sourceMappingURL=index-native-current-lib.js.map
+"
+`;
+
+exports[`Dynamic imports > swc > transforms example test case: native-experimental-esm > esm/bundle-tBezjkDD.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: experimental, Format: esm
+function foo() {}
+function bar() {}
+export { bar, foo };
+//# sourceMappingURL=bundle-tBezjkDD.js.map
+"
+`;
+
+exports[`Dynamic imports > swc > transforms example test case: native-experimental-esm > esm/index-native-experimental-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: experimental, Format: esm
+import("./bundle-tBezjkDD.js").then((result)=>{
+    result.foo();
+});
+import(/* webpackChunkName: "helpers" */ "./bundle-tBezjkDD.js").then(({ bar })=>{
+    bar();
+});
+//# sourceMappingURL=index-native-experimental-esm.js.map
 "
 `;
 
@@ -2004,6 +2158,29 @@ import(/* webpackChunkName: "helpers" */ "./bundle-yUS5CVMs.js").then(({ bar })=
 "
 `;
 
+exports[`Dynamic imports > swc > transforms example test case: native-legacy-esm > esm/bundle-xv2pYuZl.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: legacy, Format: esm
+function foo() {}
+function bar() {}
+export { bar, foo };
+//# sourceMappingURL=bundle-xv2pYuZl.js.map
+"
+`;
+
+exports[`Dynamic imports > swc > transforms example test case: native-legacy-esm > esm/index-native-legacy-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: legacy, Format: esm
+import("./bundle-xv2pYuZl.js").then((result)=>{
+    result.foo();
+});
+import(/* webpackChunkName: "helpers" */ "./bundle-xv2pYuZl.js").then(({ bar })=>{
+    bar();
+});
+//# sourceMappingURL=index-native-legacy-esm.js.map
+"
+`;
+
 exports[`Dynamic imports > swc > transforms example test case: native-legacy-lib > lib/bundle-XkHFZVb6.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: legacy, Format: lib
@@ -2027,6 +2204,29 @@ import(/* webpackChunkName: "helpers" */ "./bundle-XkHFZVb6.js").then(({ bar })=
     bar();
 });
 //# sourceMappingURL=index-native-legacy-lib.js.map
+"
+`;
+
+exports[`Dynamic imports > swc > transforms example test case: native-stable-esm > esm/bundle-CqQ5YlW0.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: stable, Format: esm
+function foo() {}
+function bar() {}
+export { bar, foo };
+//# sourceMappingURL=bundle-CqQ5YlW0.js.map
+"
+`;
+
+exports[`Dynamic imports > swc > transforms example test case: native-stable-esm > esm/index-native-stable-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: stable, Format: esm
+import("./bundle-CqQ5YlW0.js").then((result)=>{
+    result.foo();
+});
+import(/* webpackChunkName: "helpers" */ "./bundle-CqQ5YlW0.js").then(({ bar })=>{
+    bar();
+});
+//# sourceMappingURL=index-native-stable-esm.js.map
 "
 `;
 

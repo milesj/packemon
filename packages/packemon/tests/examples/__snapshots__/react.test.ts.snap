@@ -348,6 +348,19 @@ module.exports = Button;
 "
 `;
 
+exports[`React/JSX > babel > transforms example test case: native-current-esm > esm/index-native-current-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: current, Format: esm
+
+import { jsx } from 'react/jsx-runtime';
+function Button() {
+  return /*#__PURE__*/jsx("button", {});
+}
+export { Button as default };
+//# sourceMappingURL=index-native-current-esm.js.map
+"
+`;
+
 exports[`React/JSX > babel > transforms example test case: native-current-lib > lib/index-native-current-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: current, Format: lib
@@ -360,6 +373,19 @@ function Button() {
 }
 module.exports = Button;
 //# sourceMappingURL=index-native-current-lib.js.map
+"
+`;
+
+exports[`React/JSX > babel > transforms example test case: native-experimental-esm > esm/index-native-experimental-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: experimental, Format: esm
+
+import { jsx } from 'react/jsx-runtime';
+function Button() {
+  return /*#__PURE__*/jsx("button", {});
+}
+export { Button as default };
+//# sourceMappingURL=index-native-experimental-esm.js.map
 "
 `;
 
@@ -378,6 +404,19 @@ module.exports = Button;
 "
 `;
 
+exports[`React/JSX > babel > transforms example test case: native-legacy-esm > esm/index-native-legacy-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: legacy, Format: esm
+
+import { jsx } from 'react/jsx-runtime';
+function Button() {
+  return /*#__PURE__*/jsx("button", {});
+}
+export { Button as default };
+//# sourceMappingURL=index-native-legacy-esm.js.map
+"
+`;
+
 exports[`React/JSX > babel > transforms example test case: native-legacy-lib > lib/index-native-legacy-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: legacy, Format: lib
@@ -390,6 +429,19 @@ function Button() {
 }
 module.exports = Button;
 //# sourceMappingURL=index-native-legacy-lib.js.map
+"
+`;
+
+exports[`React/JSX > babel > transforms example test case: native-stable-esm > esm/index-native-stable-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: stable, Format: esm
+
+import { jsx } from 'react/jsx-runtime';
+function Button() {
+  return /*#__PURE__*/jsx("button", {});
+}
+export { Button as default };
+//# sourceMappingURL=index-native-stable-esm.js.map
 "
 `;
 
@@ -924,6 +976,18 @@ module.exports = Button;
 "
 `;
 
+exports[`React/JSX > swc > transforms example test case: native-current-esm > esm/index-native-current-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: current, Format: esm
+import { jsx } from "react/jsx-runtime";
+function Button() {
+    return /*#__PURE__*/ jsx("button", {});
+}
+export { Button as default };
+//# sourceMappingURL=index-native-current-esm.js.map
+"
+`;
+
 exports[`React/JSX > swc > transforms example test case: native-current-lib > lib/index-native-current-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: current, Format: lib
@@ -934,6 +998,18 @@ function Button() {
 }
 module.exports = Button;
 //# sourceMappingURL=index-native-current-lib.js.map
+"
+`;
+
+exports[`React/JSX > swc > transforms example test case: native-experimental-esm > esm/index-native-experimental-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: experimental, Format: esm
+import { jsx } from "react/jsx-runtime";
+function Button() {
+    return /*#__PURE__*/ jsx("button", {});
+}
+export { Button as default };
+//# sourceMappingURL=index-native-experimental-esm.js.map
 "
 `;
 
@@ -950,6 +1026,18 @@ module.exports = Button;
 "
 `;
 
+exports[`React/JSX > swc > transforms example test case: native-legacy-esm > esm/index-native-legacy-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: legacy, Format: esm
+import { jsx } from "react/jsx-runtime";
+function Button() {
+    return /*#__PURE__*/ jsx("button", {});
+}
+export { Button as default };
+//# sourceMappingURL=index-native-legacy-esm.js.map
+"
+`;
+
 exports[`React/JSX > swc > transforms example test case: native-legacy-lib > lib/index-native-legacy-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: legacy, Format: lib
@@ -960,6 +1048,18 @@ function Button() {
 }
 module.exports = Button;
 //# sourceMappingURL=index-native-legacy-lib.js.map
+"
+`;
+
+exports[`React/JSX > swc > transforms example test case: native-stable-esm > esm/index-native-stable-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: stable, Format: esm
+import { jsx } from "react/jsx-runtime";
+function Button() {
+    return /*#__PURE__*/ jsx("button", {});
+}
+export { Button as default };
+//# sourceMappingURL=index-native-stable-esm.js.map
 "
 `;
 
