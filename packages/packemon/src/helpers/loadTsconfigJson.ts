@@ -1,11 +1,14 @@
-import fs from 'node:fs';
 import { Path, PortablePath } from '@boost/common';
+import { FileSystem } from '../FileSystem';
 import { TSConfigStructure } from '../types';
 import { loadModule } from './loadModule';
 
 const CACHE = new Map<Path, TSConfigStructure>();
 
-export function loadTsconfigJson(path: PortablePath): TSConfigStructure | undefined {
+export function loadTsconfigJson(
+	path: PortablePath,
+	fs: FileSystem,
+): TSConfigStructure | undefined {
 	const tsconfigJsonPath = Path.create(path);
 	const tsconfig = CACHE.get(tsconfigJsonPath);
 
@@ -23,9 +26,7 @@ export function loadTsconfigJson(path: PortablePath): TSConfigStructure | undefi
 	) as typeof import('typescript');
 
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-	const { config, error } = ts.readConfigFile(tsconfigJsonPath.path(), (name) =>
-		fs.readFileSync(name, 'utf8'),
-	);
+	const { config, error } = ts.readConfigFile(tsconfigJsonPath.path(), fs.readFile);
 
 	const host = {
 		getCanonicalFileName: (fileName: string) => fileName,

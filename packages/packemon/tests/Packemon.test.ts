@@ -1,12 +1,13 @@
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { Path } from '@boost/common';
 import { Package } from '../src/Package';
 import { Packemon } from '../src/Packemon';
 import { BuildOptions } from '../src/types';
 import { getFixturePath, loadPackageAtPath } from './helpers';
 
-jest.mock('../src/PackageValidator', () => ({
+vi.mock('../src/PackageValidator', () => ({
 	PackageValidator: class MockValidator {
-		validate = jest.fn(() => this);
+		validate = vi.fn(() => this);
 	},
 }));
 
@@ -31,6 +32,7 @@ describe('Packemon', () => {
 
 		const options: BuildOptions = {
 			addEngines: false,
+			addEntries: true,
 			addExports: false,
 			addFiles: false,
 			concurrency: 1,
@@ -46,7 +48,7 @@ describe('Packemon', () => {
 		};
 
 		it('runs build on package', async () => {
-			const spy = jest.spyOn(pkg, 'build').mockImplementation();
+			const spy = vi.spyOn(pkg, 'build').mockImplementation(() => Promise.resolve());
 
 			await packemon.build(pkg, { addEngines: true, concurrency: 3 });
 
@@ -54,7 +56,7 @@ describe('Packemon', () => {
 		});
 
 		it('throws if build fails', async () => {
-			jest.spyOn(pkg, 'build').mockImplementation(() => {
+			vi.spyOn(pkg, 'build').mockImplementation(() => {
 				throw new Error('Oops');
 			});
 
@@ -65,7 +67,7 @@ describe('Packemon', () => {
 			it('inherits for a polyrepo', async () => {
 				pkg = loadPackageAtPath(getFixturePath('config-files-polyrepo'));
 
-				const spy = jest.spyOn(pkg, 'build').mockImplementation();
+				const spy = vi.spyOn(pkg, 'build').mockImplementation(() => Promise.resolve());
 
 				await packemon.build(pkg, { loadConfigs: true });
 
@@ -86,7 +88,7 @@ describe('Packemon', () => {
 			it('inherits for a monorepo', async () => {
 				pkg = loadPackageAtPath(getFixturePath('config-files-monorepo', 'packages/baz'));
 
-				const spy = jest.spyOn(pkg, 'build').mockImplementation();
+				const spy = vi.spyOn(pkg, 'build').mockImplementation(() => Promise.resolve());
 
 				await packemon.build(pkg, { loadConfigs: true });
 
@@ -107,7 +109,7 @@ describe('Packemon', () => {
 			it('doesnt inherit if `loadConfigs` is false', async () => {
 				pkg = loadPackageAtPath(getFixturePath('config-files-polyrepo'));
 
-				const spy = jest.spyOn(pkg, 'build').mockImplementation();
+				const spy = vi.spyOn(pkg, 'build').mockImplementation(() => Promise.resolve());
 
 				await packemon.build(pkg, { loadConfigs: false });
 
@@ -122,7 +124,7 @@ describe('Packemon', () => {
 		});
 
 		it('runs clean on package', async () => {
-			const spy = jest.spyOn(pkg, 'clean').mockImplementation();
+			const spy = vi.spyOn(pkg, 'clean').mockImplementation(() => Promise.resolve());
 
 			await packemon.clean(pkg);
 
@@ -154,38 +156,37 @@ describe('Packemon', () => {
 	});
 
 	describe('findPackage()', () => {
-		it('errors if no `package.json`', async () => {
+		it('errors if no `package.json`', () => {
 			packemon = new Packemon(getFixturePath('workspaces', 'no-package'));
 
-			await expect(packemon.findPackage()).rejects.toThrow(
+			expect(() => packemon.findPackage()).toThrow(
 				`No \`package.json\` found in ${packemon.workingDir}.`,
 			);
 		});
 
-		it('errors for invalid `packemon` config', async () => {
+		it('errors for invalid `packemon` config', () => {
 			packemon = new Packemon(getFixturePath('workspaces', 'packages/invalid-config'));
 
-			await expect(packemon.findPackage()).rejects.toThrow(
+			expect(() => packemon.findPackage()).toThrow(
 				'Invalid `packemon` configuration for pkg-invalid-config, must be an object or array of objects.',
 			);
 		});
 
-		it('returns null if package is private and `skipPrivate` is true', async () => {
+		it('returns null if package is private and `skipPrivate` is true', () => {
 			packemon = new Packemon(getFixturePath('workspace-private'));
 
-			await expect(packemon.findPackage({ skipPrivate: true })).resolves.toBeNull();
+			expect(packemon.findPackage({ skipPrivate: true })).toBeNull();
 		});
 
-		it('returns null if package does not have a `packemon` config', async () => {
+		it('returns null if package does not have a `packemon` config', () => {
 			packemon = new Packemon(getFixturePath('workspaces', 'packages/no-config'));
 
-			await expect(packemon.findPackage({})).resolves.toBeNull();
+			expect(packemon.findPackage({})).toBeNull();
 		});
 
-		it('loads a package with a single `packemon` config', async () => {
+		it('loads a package with a single `packemon` config', () => {
 			packemon = new Packemon(getFixturePath('workspaces', 'packages/valid-object'));
-
-			pkg = (await packemon.findPackage({}))!;
+			pkg = packemon.findPackage({})!;
 
 			expect(pkg).toBeInstanceOf(Package);
 			expect(pkg.configs).toEqual([
@@ -203,10 +204,9 @@ describe('Packemon', () => {
 			]);
 		});
 
-		it('loads a package with multiple `packemon` configs', async () => {
+		it('loads a package with multiple `packemon` configs', () => {
 			packemon = new Packemon(getFixturePath('workspaces', 'packages/valid-array'));
-
-			pkg = (await packemon.findPackage({}))!;
+			pkg = packemon.findPackage({})!;
 
 			expect(pkg).toBeInstanceOf(Package);
 			expect(pkg.configs).toEqual([

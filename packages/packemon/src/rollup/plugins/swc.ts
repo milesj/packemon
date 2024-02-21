@@ -9,6 +9,7 @@ export function swcInput(config: Partial<Options>): Plugin {
 			return transform(code, {
 				...config,
 				filename,
+				sourceMaps: true,
 			});
 		},
 	};
@@ -19,7 +20,10 @@ export function swcOutput(config: Partial<Options>): OutputPlugin {
 		name: 'packemon-swc-output',
 
 		async renderChunk(code) {
-			return transform(code, config);
+			return transform(code, {
+				...config,
+				sourceMaps: true,
+			});
 		},
 	};
 }

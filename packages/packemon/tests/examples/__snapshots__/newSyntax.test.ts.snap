@@ -1,9 +1,7 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`New syntax babel transforms example test case: browser-current-esm 1`] = `
-[
-  "esm/index-browser-current-esm.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > babel > transforms example test case: browser-current-esm > esm/index-browser-current-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: esm
 
 const foo = {};
@@ -13,14 +11,11 @@ foo.bar ??= 'bar';
 foo.baz ||= 'baz';
 export { foo, nullCoalesc, optionalChain };
 //# sourceMappingURL=index-browser-current-esm.js.map
-",
-]
+"
 `;
 
-exports[`New syntax babel transforms example test case: browser-current-lib 1`] = `
-[
-  "lib/index-browser-current-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > babel > transforms example test case: browser-current-lib > lib/index-browser-current-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: lib
 
 'use strict';
@@ -34,14 +29,11 @@ exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
 //# sourceMappingURL=index-browser-current-lib.js.map
-",
-]
+"
 `;
 
-exports[`New syntax babel transforms example test case: browser-current-umd 1`] = `
-[
-  "umd/index-browser-current-umd.js",
-  "(function (global, factory) {
+exports[`New syntax > babel > transforms example test case: browser-current-umd > umd/index-browser-current-umd.js 1`] = `
+"(function (global, factory) {
   if (typeof define === "function" && define.amd) {
     define(["exports"], factory);
   } else if (typeof exports !== "undefined") {
@@ -70,14 +62,11 @@ exports[`New syntax babel transforms example test case: browser-current-umd 1`] 
   foo.baz ||= 'baz';
 });
 //# sourceMappingURL=index-browser-current-umd.js.map
-",
-]
+"
 `;
 
-exports[`New syntax babel transforms example test case: browser-experimental-esm 1`] = `
-[
-  "esm/index-browser-experimental-esm.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > babel > transforms example test case: browser-experimental-esm > esm/index-browser-experimental-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: experimental, Format: esm
 
 const foo = {};
@@ -87,14 +76,11 @@ foo.bar ??= 'bar';
 foo.baz ||= 'baz';
 export { foo, nullCoalesc, optionalChain };
 //# sourceMappingURL=index-browser-experimental-esm.js.map
-",
-]
+"
 `;
 
-exports[`New syntax babel transforms example test case: browser-experimental-lib 1`] = `
-[
-  "lib/index-browser-experimental-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > babel > transforms example test case: browser-experimental-lib > lib/index-browser-experimental-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: experimental, Format: lib
 
 'use strict';
@@ -108,14 +94,11 @@ exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
 //# sourceMappingURL=index-browser-experimental-lib.js.map
-",
-]
+"
 `;
 
-exports[`New syntax babel transforms example test case: browser-experimental-umd 1`] = `
-[
-  "umd/index-browser-experimental-umd.js",
-  "(function (global, factory) {
+exports[`New syntax > babel > transforms example test case: browser-experimental-umd > umd/index-browser-experimental-umd.js 1`] = `
+"(function (global, factory) {
   if (typeof define === "function" && define.amd) {
     define(["exports"], factory);
   } else if (typeof exports !== "undefined") {
@@ -144,14 +127,11 @@ exports[`New syntax babel transforms example test case: browser-experimental-umd
   foo.baz ||= 'baz';
 });
 //# sourceMappingURL=index-browser-experimental-umd.js.map
-",
-]
+"
 `;
 
-exports[`New syntax babel transforms example test case: browser-legacy-esm 1`] = `
-[
-  "esm/index-browser-legacy-esm.js",
-  "var _foo$bar;
+exports[`New syntax > babel > transforms example test case: browser-legacy-esm > esm/index-browser-legacy-esm.js 1`] = `
+"var _foo$bar;
 // Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: esm
 
@@ -162,14 +142,11 @@ var nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
 foo.baz || (foo.baz = 'baz');
 export { foo, nullCoalesc, optionalChain };
 //# sourceMappingURL=index-browser-legacy-esm.js.map
-",
-]
+"
 `;
 
-exports[`New syntax babel transforms example test case: browser-legacy-lib 1`] = `
-[
-  "lib/index-browser-legacy-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > babel > transforms example test case: browser-legacy-lib > lib/index-browser-legacy-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: lib
 
 'use strict';
@@ -184,14 +161,11 @@ exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
 //# sourceMappingURL=index-browser-legacy-lib.js.map
-",
-]
+"
 `;
 
-exports[`New syntax babel transforms example test case: browser-legacy-umd 1`] = `
-[
-  "umd/index-browser-legacy-umd.js",
-  "(function (global, factory) {
+exports[`New syntax > babel > transforms example test case: browser-legacy-umd > umd/index-browser-legacy-umd.js 1`] = `
+"(function (global, factory) {
   if (typeof define === "function" && define.amd) {
     define(["exports"], factory);
   } else if (typeof exports !== "undefined") {
@@ -221,14 +195,11 @@ exports[`New syntax babel transforms example test case: browser-legacy-umd 1`] =
   foo.baz || (foo.baz = 'baz');
 });
 //# sourceMappingURL=index-browser-legacy-umd.js.map
-",
-]
+"
 `;
 
-exports[`New syntax babel transforms example test case: browser-stable-esm 1`] = `
-[
-  "esm/index-browser-stable-esm.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > babel > transforms example test case: browser-stable-esm > esm/index-browser-stable-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: esm
 
 const foo = {};
@@ -238,14 +209,11 @@ foo.bar ??= 'bar';
 foo.baz ||= 'baz';
 export { foo, nullCoalesc, optionalChain };
 //# sourceMappingURL=index-browser-stable-esm.js.map
-",
-]
+"
 `;
 
-exports[`New syntax babel transforms example test case: browser-stable-lib 1`] = `
-[
-  "lib/index-browser-stable-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > babel > transforms example test case: browser-stable-lib > lib/index-browser-stable-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: lib
 
 'use strict';
@@ -259,14 +227,11 @@ exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
 //# sourceMappingURL=index-browser-stable-lib.js.map
-",
-]
+"
 `;
 
-exports[`New syntax babel transforms example test case: browser-stable-umd 1`] = `
-[
-  "umd/index-browser-stable-umd.js",
-  "(function (global, factory) {
+exports[`New syntax > babel > transforms example test case: browser-stable-umd > umd/index-browser-stable-umd.js 1`] = `
+"(function (global, factory) {
   if (typeof define === "function" && define.amd) {
     define(["exports"], factory);
   } else if (typeof exports !== "undefined") {
@@ -295,14 +260,11 @@ exports[`New syntax babel transforms example test case: browser-stable-umd 1`] =
   foo.baz ||= 'baz';
 });
 //# sourceMappingURL=index-browser-stable-umd.js.map
-",
-]
+"
 `;
 
-exports[`New syntax babel transforms example test case: electron-current-esm 1`] = `
-[
-  "esm/index-electron-current-esm.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > babel > transforms example test case: electron-current-esm > esm/index-electron-current-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: current, Format: esm
 
 const foo = {};
@@ -312,14 +274,11 @@ foo.bar ??= 'bar';
 foo.baz ||= 'baz';
 export { foo, nullCoalesc, optionalChain };
 //# sourceMappingURL=index-electron-current-esm.js.map
-",
-]
+"
 `;
 
-exports[`New syntax babel transforms example test case: electron-current-lib 1`] = `
-[
-  "lib/index-electron-current-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > babel > transforms example test case: electron-current-lib > lib/index-electron-current-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: current, Format: lib
 
 'use strict';
@@ -333,14 +292,11 @@ exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
 //# sourceMappingURL=index-electron-current-lib.js.map
-",
-]
+"
 `;
 
-exports[`New syntax babel transforms example test case: electron-experimental-esm 1`] = `
-[
-  "esm/index-electron-experimental-esm.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > babel > transforms example test case: electron-experimental-esm > esm/index-electron-experimental-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: experimental, Format: esm
 
 const foo = {};
@@ -350,14 +306,11 @@ foo.bar ??= 'bar';
 foo.baz ||= 'baz';
 export { foo, nullCoalesc, optionalChain };
 //# sourceMappingURL=index-electron-experimental-esm.js.map
-",
-]
+"
 `;
 
-exports[`New syntax babel transforms example test case: electron-experimental-lib 1`] = `
-[
-  "lib/index-electron-experimental-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > babel > transforms example test case: electron-experimental-lib > lib/index-electron-experimental-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: experimental, Format: lib
 
 'use strict';
@@ -371,14 +324,11 @@ exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
 //# sourceMappingURL=index-electron-experimental-lib.js.map
-",
-]
+"
 `;
 
-exports[`New syntax babel transforms example test case: electron-legacy-esm 1`] = `
-[
-  "esm/index-electron-legacy-esm.js",
-  "var _foo$bar;
+exports[`New syntax > babel > transforms example test case: electron-legacy-esm > esm/index-electron-legacy-esm.js 1`] = `
+"var _foo$bar;
 // Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: legacy, Format: esm
 
@@ -389,14 +339,11 @@ const nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
 foo.baz || (foo.baz = 'baz');
 export { foo, nullCoalesc, optionalChain };
 //# sourceMappingURL=index-electron-legacy-esm.js.map
-",
-]
+"
 `;
 
-exports[`New syntax babel transforms example test case: electron-legacy-lib 1`] = `
-[
-  "lib/index-electron-legacy-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > babel > transforms example test case: electron-legacy-lib > lib/index-electron-legacy-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: legacy, Format: lib
 
 'use strict';
@@ -411,14 +358,11 @@ exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
 //# sourceMappingURL=index-electron-legacy-lib.js.map
-",
-]
+"
 `;
 
-exports[`New syntax babel transforms example test case: electron-stable-esm 1`] = `
-[
-  "esm/index-electron-stable-esm.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > babel > transforms example test case: electron-stable-esm > esm/index-electron-stable-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: stable, Format: esm
 
 const foo = {};
@@ -428,14 +372,11 @@ foo.bar ??= 'bar';
 foo.baz ||= 'baz';
 export { foo, nullCoalesc, optionalChain };
 //# sourceMappingURL=index-electron-stable-esm.js.map
-",
-]
+"
 `;
 
-exports[`New syntax babel transforms example test case: electron-stable-lib 1`] = `
-[
-  "lib/index-electron-stable-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > babel > transforms example test case: electron-stable-lib > lib/index-electron-stable-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: stable, Format: lib
 
 'use strict';
@@ -449,14 +390,11 @@ exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
 //# sourceMappingURL=index-electron-stable-lib.js.map
-",
-]
+"
 `;
 
-exports[`New syntax babel transforms example test case: native-current-lib 1`] = `
-[
-  "lib/index-native-current-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > babel > transforms example test case: native-current-lib > lib/index-native-current-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: current, Format: lib
 
 'use strict';
@@ -470,14 +408,11 @@ exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
 //# sourceMappingURL=index-native-current-lib.js.map
-",
-]
+"
 `;
 
-exports[`New syntax babel transforms example test case: native-experimental-lib 1`] = `
-[
-  "lib/index-native-experimental-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > babel > transforms example test case: native-experimental-lib > lib/index-native-experimental-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: experimental, Format: lib
 
 'use strict';
@@ -491,14 +426,11 @@ exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
 //# sourceMappingURL=index-native-experimental-lib.js.map
-",
-]
+"
 `;
 
-exports[`New syntax babel transforms example test case: native-legacy-lib 1`] = `
-[
-  "lib/index-native-legacy-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > babel > transforms example test case: native-legacy-lib > lib/index-native-legacy-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: legacy, Format: lib
 
 'use strict';
@@ -513,14 +445,11 @@ exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
 //# sourceMappingURL=index-native-legacy-lib.js.map
-",
-]
+"
 `;
 
-exports[`New syntax babel transforms example test case: native-stable-lib 1`] = `
-[
-  "lib/index-native-stable-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > babel > transforms example test case: native-stable-lib > lib/index-native-stable-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: stable, Format: lib
 
 'use strict';
@@ -534,26 +463,11 @@ exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
 //# sourceMappingURL=index-native-stable-lib.js.map
-",
-]
+"
 `;
 
-exports[`New syntax babel transforms example test case: node-current-cjs 1`] = `
-[
-  "cjs/index-node-current-cjs-wrapper.mjs",
-  "// Bundled with Packemon: https://packemon.dev
-// This is an MJS wrapper for a sibling CJS file
-
-import data from './index-node-current-cjs.cjs';
-
-export const { foo, nullCoalesc, optionalChain } = data;",
-]
-`;
-
-exports[`New syntax babel transforms example test case: node-current-cjs 2`] = `
-[
-  "cjs/index-node-current-cjs.cjs",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > babel > transforms example test case: node-current-cjs > cjs/index-node-current-cjs.cjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: cjs
 
 'use strict';
@@ -567,14 +481,20 @@ exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
 //# sourceMappingURL=index-node-current-cjs.cjs.map
-",
-]
+"
 `;
 
-exports[`New syntax babel transforms example test case: node-current-lib 1`] = `
-[
-  "lib/index-node-current-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > babel > transforms example test case: node-current-cjs > cjs/index-node-current-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-current-cjs.cjs';
+
+export const { foo, nullCoalesc, optionalChain } = data;"
+`;
+
+exports[`New syntax > babel > transforms example test case: node-current-lib > lib/index-node-current-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: lib
 
 'use strict';
@@ -588,14 +508,11 @@ exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
 //# sourceMappingURL=index-node-current-lib.js.map
-",
-]
+"
 `;
 
-exports[`New syntax babel transforms example test case: node-current-mjs 1`] = `
-[
-  "mjs/index-node-current-mjs.mjs",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > babel > transforms example test case: node-current-mjs > mjs/index-node-current-mjs.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: mjs
 
 const foo = {};
@@ -605,26 +522,11 @@ foo.bar ??= 'bar';
 foo.baz ||= 'baz';
 export { foo, nullCoalesc, optionalChain };
 //# sourceMappingURL=index-node-current-mjs.mjs.map
-",
-]
+"
 `;
 
-exports[`New syntax babel transforms example test case: node-experimental-cjs 1`] = `
-[
-  "cjs/index-node-experimental-cjs-wrapper.mjs",
-  "// Bundled with Packemon: https://packemon.dev
-// This is an MJS wrapper for a sibling CJS file
-
-import data from './index-node-experimental-cjs.cjs';
-
-export const { foo, nullCoalesc, optionalChain } = data;",
-]
-`;
-
-exports[`New syntax babel transforms example test case: node-experimental-cjs 2`] = `
-[
-  "cjs/index-node-experimental-cjs.cjs",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > babel > transforms example test case: node-experimental-cjs > cjs/index-node-experimental-cjs.cjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: cjs
 
 'use strict';
@@ -638,14 +540,20 @@ exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
 //# sourceMappingURL=index-node-experimental-cjs.cjs.map
-",
-]
+"
 `;
 
-exports[`New syntax babel transforms example test case: node-experimental-lib 1`] = `
-[
-  "lib/index-node-experimental-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > babel > transforms example test case: node-experimental-cjs > cjs/index-node-experimental-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-experimental-cjs.cjs';
+
+export const { foo, nullCoalesc, optionalChain } = data;"
+`;
+
+exports[`New syntax > babel > transforms example test case: node-experimental-lib > lib/index-node-experimental-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: lib
 
 'use strict';
@@ -659,14 +567,11 @@ exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
 //# sourceMappingURL=index-node-experimental-lib.js.map
-",
-]
+"
 `;
 
-exports[`New syntax babel transforms example test case: node-experimental-mjs 1`] = `
-[
-  "mjs/index-node-experimental-mjs.mjs",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > babel > transforms example test case: node-experimental-mjs > mjs/index-node-experimental-mjs.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: mjs
 
 const foo = {};
@@ -676,26 +581,11 @@ foo.bar ??= 'bar';
 foo.baz ||= 'baz';
 export { foo, nullCoalesc, optionalChain };
 //# sourceMappingURL=index-node-experimental-mjs.mjs.map
-",
-]
+"
 `;
 
-exports[`New syntax babel transforms example test case: node-legacy-cjs 1`] = `
-[
-  "cjs/index-node-legacy-cjs-wrapper.mjs",
-  "// Bundled with Packemon: https://packemon.dev
-// This is an MJS wrapper for a sibling CJS file
-
-import data from './index-node-legacy-cjs.cjs';
-
-export const { foo, nullCoalesc, optionalChain } = data;",
-]
-`;
-
-exports[`New syntax babel transforms example test case: node-legacy-cjs 2`] = `
-[
-  "cjs/index-node-legacy-cjs.cjs",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > babel > transforms example test case: node-legacy-cjs > cjs/index-node-legacy-cjs.cjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: cjs
 
 'use strict';
@@ -710,14 +600,20 @@ exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
 //# sourceMappingURL=index-node-legacy-cjs.cjs.map
-",
-]
+"
 `;
 
-exports[`New syntax babel transforms example test case: node-legacy-lib 1`] = `
-[
-  "lib/index-node-legacy-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > babel > transforms example test case: node-legacy-cjs > cjs/index-node-legacy-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-legacy-cjs.cjs';
+
+export const { foo, nullCoalesc, optionalChain } = data;"
+`;
+
+exports[`New syntax > babel > transforms example test case: node-legacy-lib > lib/index-node-legacy-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: lib
 
 'use strict';
@@ -732,14 +628,11 @@ exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
 //# sourceMappingURL=index-node-legacy-lib.js.map
-",
-]
+"
 `;
 
-exports[`New syntax babel transforms example test case: node-legacy-mjs 1`] = `
-[
-  "mjs/index-node-legacy-mjs.mjs",
-  "var _foo$bar;
+exports[`New syntax > babel > transforms example test case: node-legacy-mjs > mjs/index-node-legacy-mjs.mjs 1`] = `
+"var _foo$bar;
 // Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: mjs
 
@@ -750,26 +643,11 @@ const nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
 foo.baz || (foo.baz = 'baz');
 export { foo, nullCoalesc, optionalChain };
 //# sourceMappingURL=index-node-legacy-mjs.mjs.map
-",
-]
+"
 `;
 
-exports[`New syntax babel transforms example test case: node-stable-cjs 1`] = `
-[
-  "cjs/index-node-stable-cjs-wrapper.mjs",
-  "// Bundled with Packemon: https://packemon.dev
-// This is an MJS wrapper for a sibling CJS file
-
-import data from './index-node-stable-cjs.cjs';
-
-export const { foo, nullCoalesc, optionalChain } = data;",
-]
-`;
-
-exports[`New syntax babel transforms example test case: node-stable-cjs 2`] = `
-[
-  "cjs/index-node-stable-cjs.cjs",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > babel > transforms example test case: node-stable-cjs > cjs/index-node-stable-cjs.cjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: cjs
 
 'use strict';
@@ -783,14 +661,20 @@ exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
 //# sourceMappingURL=index-node-stable-cjs.cjs.map
-",
-]
+"
 `;
 
-exports[`New syntax babel transforms example test case: node-stable-lib 1`] = `
-[
-  "lib/index-node-stable-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > babel > transforms example test case: node-stable-cjs > cjs/index-node-stable-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-stable-cjs.cjs';
+
+export const { foo, nullCoalesc, optionalChain } = data;"
+`;
+
+exports[`New syntax > babel > transforms example test case: node-stable-lib > lib/index-node-stable-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: lib
 
 'use strict';
@@ -804,14 +688,11 @@ exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
 //# sourceMappingURL=index-node-stable-lib.js.map
-",
-]
+"
 `;
 
-exports[`New syntax babel transforms example test case: node-stable-mjs 1`] = `
-[
-  "mjs/index-node-stable-mjs.mjs",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > babel > transforms example test case: node-stable-mjs > mjs/index-node-stable-mjs.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: mjs
 
 const foo = {};
@@ -821,14 +702,11 @@ foo.bar ??= 'bar';
 foo.baz ||= 'baz';
 export { foo, nullCoalesc, optionalChain };
 //# sourceMappingURL=index-node-stable-mjs.mjs.map
-",
-]
+"
 `;
 
-exports[`New syntax swc transforms example test case: browser-current-esm 1`] = `
-[
-  "esm/index-browser-current-esm.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > swc > transforms example test case: browser-current-esm > esm/index-browser-current-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: esm
 const foo = {};
 const optionalChain = foo?.bar;
@@ -837,14 +715,11 @@ foo.bar ??= "bar";
 foo.baz ||= "baz";
 export { foo, nullCoalesc, optionalChain };
 //# sourceMappingURL=index-browser-current-esm.js.map
-",
-]
+"
 `;
 
-exports[`New syntax swc transforms example test case: browser-current-lib 1`] = `
-[
-  "lib/index-browser-current-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > swc > transforms example test case: browser-current-lib > lib/index-browser-current-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: lib
 "use strict";
 const foo = {};
@@ -856,14 +731,11 @@ exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
 //# sourceMappingURL=index-browser-current-lib.js.map
-",
-]
+"
 `;
 
-exports[`New syntax swc transforms example test case: browser-current-umd 1`] = `
-[
-  "umd/index-browser-current-umd.js",
-  "(function(global, factory) {
+exports[`New syntax > swc > transforms example test case: browser-current-umd > umd/index-browser-current-umd.js 1`] = `
+"(function(global, factory) {
     if (typeof module === "object" && typeof module.exports === "object") factory(exports);
     else if (typeof define === "function" && define.amd) define([
         "exports"
@@ -898,14 +770,11 @@ exports[`New syntax swc transforms example test case: browser-current-umd 1`] = 
     foo.baz ||= "baz";
 });
 //# sourceMappingURL=index-browser-current-umd.js.map
-",
-]
+"
 `;
 
-exports[`New syntax swc transforms example test case: browser-experimental-esm 1`] = `
-[
-  "esm/index-browser-experimental-esm.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > swc > transforms example test case: browser-experimental-esm > esm/index-browser-experimental-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: experimental, Format: esm
 const foo = {};
 const optionalChain = foo?.bar;
@@ -914,14 +783,11 @@ foo.bar ??= "bar";
 foo.baz ||= "baz";
 export { foo, nullCoalesc, optionalChain };
 //# sourceMappingURL=index-browser-experimental-esm.js.map
-",
-]
+"
 `;
 
-exports[`New syntax swc transforms example test case: browser-experimental-lib 1`] = `
-[
-  "lib/index-browser-experimental-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > swc > transforms example test case: browser-experimental-lib > lib/index-browser-experimental-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: experimental, Format: lib
 "use strict";
 const foo = {};
@@ -933,14 +799,11 @@ exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
 //# sourceMappingURL=index-browser-experimental-lib.js.map
-",
-]
+"
 `;
 
-exports[`New syntax swc transforms example test case: browser-experimental-umd 1`] = `
-[
-  "umd/index-browser-experimental-umd.js",
-  "(function(global, factory) {
+exports[`New syntax > swc > transforms example test case: browser-experimental-umd > umd/index-browser-experimental-umd.js 1`] = `
+"(function(global, factory) {
     if (typeof module === "object" && typeof module.exports === "object") factory(exports);
     else if (typeof define === "function" && define.amd) define([
         "exports"
@@ -975,14 +838,11 @@ exports[`New syntax swc transforms example test case: browser-experimental-umd 1
     foo.baz ||= "baz";
 });
 //# sourceMappingURL=index-browser-experimental-umd.js.map
-",
-]
+"
 `;
 
-exports[`New syntax swc transforms example test case: browser-legacy-esm 1`] = `
-[
-  "esm/index-browser-legacy-esm.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > swc > transforms example test case: browser-legacy-esm > esm/index-browser-legacy-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: esm
 var _foo, _foo1;
 var foo = {};
@@ -993,14 +853,11 @@ var _bar;
 (_foo1 = foo).baz || (_foo1.baz = "baz");
 export { foo, nullCoalesc, optionalChain };
 //# sourceMappingURL=index-browser-legacy-esm.js.map
-",
-]
+"
 `;
 
-exports[`New syntax swc transforms example test case: browser-legacy-lib 1`] = `
-[
-  "lib/index-browser-legacy-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > swc > transforms example test case: browser-legacy-lib > lib/index-browser-legacy-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: lib
 "use strict";
 var _foo, _foo1;
@@ -1014,14 +871,11 @@ exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
 //# sourceMappingURL=index-browser-legacy-lib.js.map
-",
-]
+"
 `;
 
-exports[`New syntax swc transforms example test case: browser-legacy-umd 1`] = `
-[
-  "umd/index-browser-legacy-umd.js",
-  "(function(global, factory) {
+exports[`New syntax > swc > transforms example test case: browser-legacy-umd > umd/index-browser-legacy-umd.js 1`] = `
+"(function(global, factory) {
     if (typeof module === "object" && typeof module.exports === "object") factory(exports);
     else if (typeof define === "function" && define.amd) define([
         "exports"
@@ -1058,14 +912,11 @@ exports[`New syntax swc transforms example test case: browser-legacy-umd 1`] = `
     (_foo1 = foo).baz || (_foo1.baz = "baz");
 });
 //# sourceMappingURL=index-browser-legacy-umd.js.map
-",
-]
+"
 `;
 
-exports[`New syntax swc transforms example test case: browser-stable-esm 1`] = `
-[
-  "esm/index-browser-stable-esm.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > swc > transforms example test case: browser-stable-esm > esm/index-browser-stable-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: esm
 const foo = {};
 const optionalChain = foo?.bar;
@@ -1074,14 +925,11 @@ foo.bar ??= "bar";
 foo.baz ||= "baz";
 export { foo, nullCoalesc, optionalChain };
 //# sourceMappingURL=index-browser-stable-esm.js.map
-",
-]
+"
 `;
 
-exports[`New syntax swc transforms example test case: browser-stable-lib 1`] = `
-[
-  "lib/index-browser-stable-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > swc > transforms example test case: browser-stable-lib > lib/index-browser-stable-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: lib
 "use strict";
 const foo = {};
@@ -1093,14 +941,11 @@ exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
 //# sourceMappingURL=index-browser-stable-lib.js.map
-",
-]
+"
 `;
 
-exports[`New syntax swc transforms example test case: browser-stable-umd 1`] = `
-[
-  "umd/index-browser-stable-umd.js",
-  "(function(global, factory) {
+exports[`New syntax > swc > transforms example test case: browser-stable-umd > umd/index-browser-stable-umd.js 1`] = `
+"(function(global, factory) {
     if (typeof module === "object" && typeof module.exports === "object") factory(exports);
     else if (typeof define === "function" && define.amd) define([
         "exports"
@@ -1135,14 +980,11 @@ exports[`New syntax swc transforms example test case: browser-stable-umd 1`] = `
     foo.baz ||= "baz";
 });
 //# sourceMappingURL=index-browser-stable-umd.js.map
-",
-]
+"
 `;
 
-exports[`New syntax swc transforms example test case: electron-current-esm 1`] = `
-[
-  "esm/index-electron-current-esm.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > swc > transforms example test case: electron-current-esm > esm/index-electron-current-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: current, Format: esm
 const foo = {};
 const optionalChain = foo?.bar;
@@ -1151,14 +993,11 @@ foo.bar ??= "bar";
 foo.baz ||= "baz";
 export { foo, nullCoalesc, optionalChain };
 //# sourceMappingURL=index-electron-current-esm.js.map
-",
-]
+"
 `;
 
-exports[`New syntax swc transforms example test case: electron-current-lib 1`] = `
-[
-  "lib/index-electron-current-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > swc > transforms example test case: electron-current-lib > lib/index-electron-current-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: current, Format: lib
 "use strict";
 const foo = {};
@@ -1170,14 +1009,11 @@ exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
 //# sourceMappingURL=index-electron-current-lib.js.map
-",
-]
+"
 `;
 
-exports[`New syntax swc transforms example test case: electron-experimental-esm 1`] = `
-[
-  "esm/index-electron-experimental-esm.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > swc > transforms example test case: electron-experimental-esm > esm/index-electron-experimental-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: experimental, Format: esm
 const foo = {};
 const optionalChain = foo?.bar;
@@ -1186,14 +1022,11 @@ foo.bar ??= "bar";
 foo.baz ||= "baz";
 export { foo, nullCoalesc, optionalChain };
 //# sourceMappingURL=index-electron-experimental-esm.js.map
-",
-]
+"
 `;
 
-exports[`New syntax swc transforms example test case: electron-experimental-lib 1`] = `
-[
-  "lib/index-electron-experimental-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > swc > transforms example test case: electron-experimental-lib > lib/index-electron-experimental-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: experimental, Format: lib
 "use strict";
 const foo = {};
@@ -1205,14 +1038,11 @@ exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
 //# sourceMappingURL=index-electron-experimental-lib.js.map
-",
-]
+"
 `;
 
-exports[`New syntax swc transforms example test case: electron-legacy-esm 1`] = `
-[
-  "esm/index-electron-legacy-esm.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > swc > transforms example test case: electron-legacy-esm > esm/index-electron-legacy-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: legacy, Format: esm
 var _foo, _foo1;
 const foo = {};
@@ -1223,14 +1053,11 @@ var _bar;
 (_foo1 = foo).baz || (_foo1.baz = "baz");
 export { foo, nullCoalesc, optionalChain };
 //# sourceMappingURL=index-electron-legacy-esm.js.map
-",
-]
+"
 `;
 
-exports[`New syntax swc transforms example test case: electron-legacy-lib 1`] = `
-[
-  "lib/index-electron-legacy-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > swc > transforms example test case: electron-legacy-lib > lib/index-electron-legacy-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: legacy, Format: lib
 "use strict";
 var _foo, _foo1;
@@ -1244,14 +1071,11 @@ exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
 //# sourceMappingURL=index-electron-legacy-lib.js.map
-",
-]
+"
 `;
 
-exports[`New syntax swc transforms example test case: electron-stable-esm 1`] = `
-[
-  "esm/index-electron-stable-esm.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > swc > transforms example test case: electron-stable-esm > esm/index-electron-stable-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: stable, Format: esm
 const foo = {};
 const optionalChain = foo?.bar;
@@ -1260,14 +1084,11 @@ foo.bar ??= "bar";
 foo.baz ||= "baz";
 export { foo, nullCoalesc, optionalChain };
 //# sourceMappingURL=index-electron-stable-esm.js.map
-",
-]
+"
 `;
 
-exports[`New syntax swc transforms example test case: electron-stable-lib 1`] = `
-[
-  "lib/index-electron-stable-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > swc > transforms example test case: electron-stable-lib > lib/index-electron-stable-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: stable, Format: lib
 "use strict";
 const foo = {};
@@ -1279,14 +1100,11 @@ exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
 //# sourceMappingURL=index-electron-stable-lib.js.map
-",
-]
+"
 `;
 
-exports[`New syntax swc transforms example test case: native-current-lib 1`] = `
-[
-  "lib/index-native-current-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > swc > transforms example test case: native-current-lib > lib/index-native-current-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: current, Format: lib
 "use strict";
 const foo = {};
@@ -1298,14 +1116,11 @@ exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
 //# sourceMappingURL=index-native-current-lib.js.map
-",
-]
+"
 `;
 
-exports[`New syntax swc transforms example test case: native-experimental-lib 1`] = `
-[
-  "lib/index-native-experimental-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > swc > transforms example test case: native-experimental-lib > lib/index-native-experimental-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: experimental, Format: lib
 "use strict";
 const foo = {};
@@ -1317,14 +1132,11 @@ exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
 //# sourceMappingURL=index-native-experimental-lib.js.map
-",
-]
+"
 `;
 
-exports[`New syntax swc transforms example test case: native-legacy-lib 1`] = `
-[
-  "lib/index-native-legacy-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > swc > transforms example test case: native-legacy-lib > lib/index-native-legacy-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: legacy, Format: lib
 "use strict";
 var _foo, _foo1;
@@ -1338,14 +1150,11 @@ exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
 //# sourceMappingURL=index-native-legacy-lib.js.map
-",
-]
+"
 `;
 
-exports[`New syntax swc transforms example test case: native-stable-lib 1`] = `
-[
-  "lib/index-native-stable-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > swc > transforms example test case: native-stable-lib > lib/index-native-stable-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: stable, Format: lib
 "use strict";
 const foo = {};
@@ -1357,26 +1166,11 @@ exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
 //# sourceMappingURL=index-native-stable-lib.js.map
-",
-]
+"
 `;
 
-exports[`New syntax swc transforms example test case: node-current-cjs 1`] = `
-[
-  "cjs/index-node-current-cjs-wrapper.mjs",
-  "// Bundled with Packemon: https://packemon.dev
-// This is an MJS wrapper for a sibling CJS file
-
-import data from './index-node-current-cjs.cjs';
-
-export const { foo, nullCoalesc, optionalChain } = data;",
-]
-`;
-
-exports[`New syntax swc transforms example test case: node-current-cjs 2`] = `
-[
-  "cjs/index-node-current-cjs.cjs",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > swc > transforms example test case: node-current-cjs > cjs/index-node-current-cjs.cjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: cjs
 "use strict";
 const foo = {};
@@ -1388,14 +1182,20 @@ exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
 //# sourceMappingURL=index-node-current-cjs.cjs.map
-",
-]
+"
 `;
 
-exports[`New syntax swc transforms example test case: node-current-lib 1`] = `
-[
-  "lib/index-node-current-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > swc > transforms example test case: node-current-cjs > cjs/index-node-current-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-current-cjs.cjs';
+
+export const { foo, nullCoalesc, optionalChain } = data;"
+`;
+
+exports[`New syntax > swc > transforms example test case: node-current-lib > lib/index-node-current-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: lib
 "use strict";
 const foo = {};
@@ -1407,14 +1207,11 @@ exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
 //# sourceMappingURL=index-node-current-lib.js.map
-",
-]
+"
 `;
 
-exports[`New syntax swc transforms example test case: node-current-mjs 1`] = `
-[
-  "mjs/index-node-current-mjs.mjs",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > swc > transforms example test case: node-current-mjs > mjs/index-node-current-mjs.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: mjs
 const foo = {};
 const optionalChain = foo?.bar;
@@ -1423,26 +1220,11 @@ foo.bar ??= "bar";
 foo.baz ||= "baz";
 export { foo, nullCoalesc, optionalChain };
 //# sourceMappingURL=index-node-current-mjs.mjs.map
-",
-]
+"
 `;
 
-exports[`New syntax swc transforms example test case: node-experimental-cjs 1`] = `
-[
-  "cjs/index-node-experimental-cjs-wrapper.mjs",
-  "// Bundled with Packemon: https://packemon.dev
-// This is an MJS wrapper for a sibling CJS file
-
-import data from './index-node-experimental-cjs.cjs';
-
-export const { foo, nullCoalesc, optionalChain } = data;",
-]
-`;
-
-exports[`New syntax swc transforms example test case: node-experimental-cjs 2`] = `
-[
-  "cjs/index-node-experimental-cjs.cjs",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > swc > transforms example test case: node-experimental-cjs > cjs/index-node-experimental-cjs.cjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: cjs
 "use strict";
 const foo = {};
@@ -1454,14 +1236,20 @@ exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
 //# sourceMappingURL=index-node-experimental-cjs.cjs.map
-",
-]
+"
 `;
 
-exports[`New syntax swc transforms example test case: node-experimental-lib 1`] = `
-[
-  "lib/index-node-experimental-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > swc > transforms example test case: node-experimental-cjs > cjs/index-node-experimental-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-experimental-cjs.cjs';
+
+export const { foo, nullCoalesc, optionalChain } = data;"
+`;
+
+exports[`New syntax > swc > transforms example test case: node-experimental-lib > lib/index-node-experimental-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: lib
 "use strict";
 const foo = {};
@@ -1473,14 +1261,11 @@ exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
 //# sourceMappingURL=index-node-experimental-lib.js.map
-",
-]
+"
 `;
 
-exports[`New syntax swc transforms example test case: node-experimental-mjs 1`] = `
-[
-  "mjs/index-node-experimental-mjs.mjs",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > swc > transforms example test case: node-experimental-mjs > mjs/index-node-experimental-mjs.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: mjs
 const foo = {};
 const optionalChain = foo?.bar;
@@ -1489,26 +1274,11 @@ foo.bar ??= "bar";
 foo.baz ||= "baz";
 export { foo, nullCoalesc, optionalChain };
 //# sourceMappingURL=index-node-experimental-mjs.mjs.map
-",
-]
+"
 `;
 
-exports[`New syntax swc transforms example test case: node-legacy-cjs 1`] = `
-[
-  "cjs/index-node-legacy-cjs-wrapper.mjs",
-  "// Bundled with Packemon: https://packemon.dev
-// This is an MJS wrapper for a sibling CJS file
-
-import data from './index-node-legacy-cjs.cjs';
-
-export const { foo, nullCoalesc, optionalChain } = data;",
-]
-`;
-
-exports[`New syntax swc transforms example test case: node-legacy-cjs 2`] = `
-[
-  "cjs/index-node-legacy-cjs.cjs",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > swc > transforms example test case: node-legacy-cjs > cjs/index-node-legacy-cjs.cjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: cjs
 "use strict";
 var _foo, _foo1;
@@ -1521,14 +1291,20 @@ exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
 //# sourceMappingURL=index-node-legacy-cjs.cjs.map
-",
-]
+"
 `;
 
-exports[`New syntax swc transforms example test case: node-legacy-lib 1`] = `
-[
-  "lib/index-node-legacy-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > swc > transforms example test case: node-legacy-cjs > cjs/index-node-legacy-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-legacy-cjs.cjs';
+
+export const { foo, nullCoalesc, optionalChain } = data;"
+`;
+
+exports[`New syntax > swc > transforms example test case: node-legacy-lib > lib/index-node-legacy-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: lib
 "use strict";
 var _foo, _foo1;
@@ -1541,14 +1317,11 @@ exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
 //# sourceMappingURL=index-node-legacy-lib.js.map
-",
-]
+"
 `;
 
-exports[`New syntax swc transforms example test case: node-legacy-mjs 1`] = `
-[
-  "mjs/index-node-legacy-mjs.mjs",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > swc > transforms example test case: node-legacy-mjs > mjs/index-node-legacy-mjs.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: mjs
 var _foo, _foo1;
 const foo = {};
@@ -1558,26 +1331,11 @@ const nullCoalesc = foo ?? 0;
 (_foo1 = foo).baz || (_foo1.baz = "baz");
 export { foo, nullCoalesc, optionalChain };
 //# sourceMappingURL=index-node-legacy-mjs.mjs.map
-",
-]
+"
 `;
 
-exports[`New syntax swc transforms example test case: node-stable-cjs 1`] = `
-[
-  "cjs/index-node-stable-cjs-wrapper.mjs",
-  "// Bundled with Packemon: https://packemon.dev
-// This is an MJS wrapper for a sibling CJS file
-
-import data from './index-node-stable-cjs.cjs';
-
-export const { foo, nullCoalesc, optionalChain } = data;",
-]
-`;
-
-exports[`New syntax swc transforms example test case: node-stable-cjs 2`] = `
-[
-  "cjs/index-node-stable-cjs.cjs",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > swc > transforms example test case: node-stable-cjs > cjs/index-node-stable-cjs.cjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: cjs
 "use strict";
 const foo = {};
@@ -1589,14 +1347,20 @@ exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
 //# sourceMappingURL=index-node-stable-cjs.cjs.map
-",
-]
+"
 `;
 
-exports[`New syntax swc transforms example test case: node-stable-lib 1`] = `
-[
-  "lib/index-node-stable-lib.js",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > swc > transforms example test case: node-stable-cjs > cjs/index-node-stable-cjs-wrapper.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// This is an MJS wrapper for a sibling CJS file
+
+import data from './index-node-stable-cjs.cjs';
+
+export const { foo, nullCoalesc, optionalChain } = data;"
+`;
+
+exports[`New syntax > swc > transforms example test case: node-stable-lib > lib/index-node-stable-lib.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: lib
 "use strict";
 const foo = {};
@@ -1608,14 +1372,11 @@ exports.foo = foo;
 exports.nullCoalesc = nullCoalesc;
 exports.optionalChain = optionalChain;
 //# sourceMappingURL=index-node-stable-lib.js.map
-",
-]
+"
 `;
 
-exports[`New syntax swc transforms example test case: node-stable-mjs 1`] = `
-[
-  "mjs/index-node-stable-mjs.mjs",
-  "// Bundled with Packemon: https://packemon.dev
+exports[`New syntax > swc > transforms example test case: node-stable-mjs > mjs/index-node-stable-mjs.mjs 1`] = `
+"// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: mjs
 const foo = {};
 const optionalChain = foo?.bar;
@@ -1624,6 +1385,5 @@ foo.bar ??= "bar";
 foo.baz ||= "baz";
 export { foo, nullCoalesc, optionalChain };
 //# sourceMappingURL=index-node-stable-mjs.mjs.map
-",
-]
+"
 `;

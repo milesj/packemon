@@ -140,6 +140,7 @@ export interface FilterOptions {
 
 export interface BuildOptions extends FilterOptions {
 	addEngines?: boolean;
+	addEntries?: boolean;
 	addExports?: boolean;
 	addFiles?: boolean;
 	concurrency?: number;
@@ -157,13 +158,13 @@ export interface BuildParams {
 	support: Support;
 }
 
-export interface BuildResultFiles {
+export interface BuildResultFile {
 	code: string;
 	file: string;
 }
 
 export interface BuildResult {
-	files: BuildResultFiles[];
+	files: BuildResultFile[];
 	time: number;
 }
 

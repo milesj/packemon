@@ -1,3 +1,4 @@
+import { describe } from 'vitest';
 import { testExampleOutput } from '../helpers';
 
 // Dont need to test swc here

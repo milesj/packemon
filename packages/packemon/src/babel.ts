@@ -1,4 +1,3 @@
-import fs from 'fs-extra';
 import { TransformOptions as ConfigStructure } from '@babel/core';
 import { Path, toArray } from '@boost/common';
 import { FeatureFlags } from './types';
@@ -44,8 +43,8 @@ export interface ConfigOptions {
 
 export function createConfig(folder: string, options: ConfigOptions = {}): ConfigStructure {
 	const path = new Path(folder);
-	const contents = fs.readJsonSync(path.append('package.json').path()) as PackemonPackage;
 	const packemon = new Packemon();
+	const contents = packemon.fs.readJson<PackemonPackage>(path.append('package.json').path());
 
 	// Create package and configs
 	const pkg = new Package(path, contents, packemon.findWorkspaceRoot());

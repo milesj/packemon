@@ -1,10 +1,6 @@
-import fs from 'node:fs';
 import { PackageStructure } from '@boost/common';
+import { FileSystem } from '../FileSystem';
 
-export function getVersion(): string {
-	return (
-		JSON.parse(
-			fs.readFileSync(new URL('../../package.json', import.meta.url), 'utf8'),
-		) as PackageStructure
-	).version;
+export function getVersion(fs: FileSystem): string {
+	return fs.readJson<PackageStructure>(new URL('../../package.json', import.meta.url).href).version;
 }

@@ -1,8 +1,8 @@
-import fs from 'fs-extra';
-import { json, Path, PortablePath, Project } from '@boost/common';
+import { Path, PortablePath, Project } from '@boost/common';
 import { optimal } from '@boost/common/optimal';
 import { createDebugger, Debugger } from '@boost/debug';
 import { Config } from './Config';
+import { FileSystem, nodeFileSystem } from './FileSystem';
 import { matchesPattern } from './helpers/matchesPattern';
 import { Package } from './Package';
 import { PackageValidator } from './PackageValidator';
@@ -13,6 +13,8 @@ export class Packemon {
 	readonly config: Config = new Config('packemon');
 
 	readonly debug: Debugger;
+
+	fs: FileSystem = nodeFileSystem;
 
 	readonly workingDir: Path;
 
@@ -59,7 +61,7 @@ export class Packemon {
 	 * Find and load the package that has been configured with a `packemon`
 	 * block in the `package.json`. Once loaded, validate the configuration.
 	 */
-	async findPackage({ skipPrivate }: FilterOptions = {}): Promise<Package | null> {
+	findPackage({ skipPrivate }: FilterOptions = {}): Package | null {
 		this.debug('Finding package in %s', this.workingDir);
 
 		const pkgPath = this.workingDir.append('package.json');
@@ -68,7 +70,7 @@ export class Packemon {
 			throw new Error(`No \`package.json\` found in ${this.workingDir}.`);
 		}
 
-		const pkgContents = json.parse<PackemonPackage>(await fs.readFile(pkgPath.path(), 'utf8'));
+		const pkgContents = this.fs.readJson<PackemonPackage>(pkgPath.path());
 
 		if (skipPrivate && pkgContents.private) {
 			this.debug('Package is private and `skipPrivate` has been provided');
@@ -82,7 +84,10 @@ export class Packemon {
 			return null;
 		}
 
-		return new Package(this.workingDir, pkgContents, this.findWorkspaceRoot());
+		const pkg = new Package(this.workingDir, pkgContents, this.findWorkspaceRoot());
+		pkg.fs = this.fs;
+
+		return pkg;
 	}
 
 	/**
@@ -109,17 +114,21 @@ export class Packemon {
 		let packages: Package[] = [];
 
 		await Promise.all(
+			// eslint-disable-next-line @typescript-eslint/require-await
 			pkgPaths.map(async (pkgPath) => {
 				if (!pkgPath.exists()) {
 					return;
 				}
 
-				const contents = json.parse<PackemonPackage>(await fs.readFile(pkgPath.path(), 'utf8'));
+				const contents = this.fs.readJson<PackemonPackage>(pkgPath.path());
 
 				if (contents.packemon) {
 					this.debug(' - %s (%s)', contents.name, pkgPath.path());
 
-					packages.push(new Package(pkgPath.parent(), contents, workspaceRoot));
+					const pkg = new Package(pkgPath.parent(), contents, workspaceRoot);
+					pkg.fs = this.fs;
+
+					packages.push(pkg);
 				} else {
 					this.debug('No `packemon` configuration found for %s, skipping', contents.name);
 				}
@@ -189,7 +198,7 @@ export class Packemon {
 		const pkgPath = dir.append('package.json');
 
 		if (pkgPath.exists()) {
-			const pkg = json.parse<PackemonPackage>(fs.readFileSync(pkgPath.path(), 'utf8'));
+			const pkg = this.fs.readJson<PackemonPackage>(pkgPath.path());
 
 			if (pkg.workspaces) {
 				return dir;

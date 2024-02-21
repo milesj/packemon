@@ -1,3 +1,5 @@
+import { vi } from 'vitest';
+
 class Spy {
 	called: boolean = false;
 
@@ -9,7 +11,7 @@ class Spy {
 export function spy() {
 	const inst = new Spy();
 
-	return jest.fn(inst.mock);
+	return vi.fn(inst.mock);
 }
 
 export async function wait(): Promise<void> {}

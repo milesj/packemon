@@ -17,8 +17,6 @@ installed and [pre-configured using moonrepo presets](https://github.com/moonrep
   [babel-preset-moon](https://www.npmjs.com/package/babel-preset-moon).
 - [ESLint](https://eslint.org/) for linting, configured with
   [eslint-config-moon](https://www.npmjs.com/package/eslint-config-moon).
-- [Jest](https://jestjs.io/) for unit testing, configured with
-  [jest-preset-moon](https://www.npmjs.com/package/jest-preset-moon).
 - [Prettier](https://prettier.io/) for code formatting, configured with
   [prettier-config-moon](https://www.npmjs.com/package/prettier-config-moon).
 - [Rollup](https://rollupjs.org) for bundling and distributing, configured dynamically with
@@ -35,7 +33,6 @@ simple! Open the following files and remove the `// Uncomment if using React/Sol
 surrounding comments.
 
 - root `.eslintrc.js` (also replace `moon/node` with `moon/browser`)
-- root `jest.config.js`
 - every `tsconfig.json`
 - root `tsconfig.options.json`
 
@@ -72,7 +69,7 @@ The tooling mentioned above can be ran with the following yarn/npm scripts. For 
 - `check` - Run the type checker, linter, and testing suite all at once.
 - `format` - Run Prettier and format all files in the project.
 - `lint` - Run the linter with ESLint.
-- `test`, `coverage` - Run the unit testing suite with Jest, and optionally with code coverage.
+- `test`, `coverage` - Run the unit testing suite with Vitest, and optionally with code coverage.
 - `type` - Run the type checker with TypeScript.
 
 ## What's next?

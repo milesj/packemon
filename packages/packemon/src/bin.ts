@@ -1,5 +1,6 @@
 import debug from 'debug';
 import { checkPackageOutdated, Program } from '@boost/cli';
+import { nodeFileSystem } from './FileSystem';
 import { getVersion } from './helpers/getVersion';
 import {
 	BuildCommand,
@@ -17,7 +18,7 @@ import {
 let version = '0.0.0-internal';
 
 try {
-	version = getVersion();
+	version = getVersion(nodeFileSystem);
 } catch {
 	// Ignore
 }

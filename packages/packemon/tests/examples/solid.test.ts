@@ -1,3 +1,4 @@
+import { describe } from 'vitest';
 import { Path } from '@boost/common';
 import { getFixturePath, testExampleOutput } from '../helpers';
 

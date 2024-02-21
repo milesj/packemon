@@ -1,5 +1,6 @@
 import path from 'node:path';
 import { InputOption, OutputOptions, rollup } from 'rollup';
+import { describe, expect, it } from 'vitest';
 import { addBinShebang } from '../../../src/rollup/plugins/addBinShebang';
 
 async function transform(input: InputOption, options: OutputOptions = {}): Promise<string> {

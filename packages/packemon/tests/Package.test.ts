@@ -1,12 +1,13 @@
-import fsx from 'fs-extra';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { Path } from '@boost/common';
 import { mockNormalizedFilePath } from '@boost/common/test';
 import { Artifact } from '../src/Artifact';
+import { nodeFileSystem } from '../src/FileSystem';
 import { Package } from '../src/Package';
 import { Build, ConfigFile, Platform, Support } from '../src/types';
-import { getFixturePath, loadPackageAtPath } from './helpers';
+import { createStubbedFileSystem, getFixturePath, loadPackageAtPath } from './helpers';
 
-jest.mock('rollup', () => ({ rollup: jest.fn() }));
+vi.mock('rollup', () => ({ rollup: vi.fn() }));
 
 describe('Package', () => {
 	const fixturePath = getFixturePath('project');
@@ -38,7 +39,7 @@ describe('Package', () => {
 	}
 
 	beforeEach(() => {
-		pkg = loadPackageAtPath(fixturePath);
+		pkg = loadPackageAtPath(fixturePath, null, createStubbedFileSystem());
 	});
 
 	it('sets properties on instantiation', () => {
@@ -63,23 +64,17 @@ describe('Package', () => {
 	});
 
 	describe('build()', () => {
-		let writeSpy: jest.SpyInstance;
 		let config: ConfigFile;
 
 		beforeEach(() => {
-			writeSpy = jest.spyOn(fsx, 'writeJson').mockImplementation();
 			config = {};
-		});
-
-		afterEach(() => {
-			writeSpy.mockRestore();
 		});
 
 		it('calls `build` on each artifact', async () => {
 			const [a, b, c] = createArtifacts();
-			const aSpy = jest.spyOn(a, 'build').mockImplementation();
-			const bSpy = jest.spyOn(b, 'build').mockImplementation();
-			const cSpy = jest.spyOn(c, 'build').mockImplementation();
+			const aSpy = vi.spyOn(a, 'build').mockImplementation(() => Promise.resolve());
+			const bSpy = vi.spyOn(b, 'build').mockImplementation(() => Promise.resolve());
+			const cSpy = vi.spyOn(c, 'build').mockImplementation(() => Promise.resolve());
 
 			pkg.artifacts.push(a, b, c);
 
@@ -108,7 +103,7 @@ describe('Package', () => {
 		it('sets failed state and result time on error', async () => {
 			const artifact = new Artifact(pkg, []);
 
-			jest.spyOn(artifact, 'build').mockImplementation(() => {
+			vi.spyOn(artifact, 'build').mockImplementation(() => {
 				throw new Error('Whoops');
 			});
 
@@ -127,11 +122,11 @@ describe('Package', () => {
 
 		it('syncs `package.json` when done building', async () => {
 			const artifact = new Artifact(pkg, []);
-			const spy = jest.spyOn(pkg, 'syncJson');
+			const spy = vi.spyOn(pkg, 'syncJson');
 
 			pkg.artifacts.push(artifact);
 
-			await pkg.build({}, config);
+			await pkg.build({ addEntries: true }, config);
 
 			expect(spy).toHaveBeenCalled();
 		});
@@ -214,7 +209,7 @@ describe('Package', () => {
 				it('adds "main" for node `lib` format', async () => {
 					pkg.artifacts.push(createCodeArtifact([{ format: 'lib' }]));
 
-					await pkg.build({}, config);
+					await pkg.build({ addEntries: true }, config);
 
 					expect(pkg.json).toEqual(
 						expect.objectContaining({
@@ -226,7 +221,7 @@ describe('Package', () => {
 				it('adds "main" for node `cjs` format', async () => {
 					pkg.artifacts.push(createCodeArtifact([{ format: 'cjs' }]));
 
-					await pkg.build({}, config);
+					await pkg.build({ addEntries: true }, config);
 
 					expect(pkg.json).toEqual(
 						expect.objectContaining({
@@ -238,7 +233,7 @@ describe('Package', () => {
 				it('adds "main" for node `mjs` format', async () => {
 					pkg.artifacts.push(createCodeArtifact([{ format: 'mjs' }]));
 
-					await pkg.build({}, config);
+					await pkg.build({ addEntries: true }, config);
 
 					expect(pkg.json).toEqual(
 						expect.objectContaining({
@@ -251,7 +246,7 @@ describe('Package', () => {
 					const a = createCodeArtifact([{ format: 'lib' }], 'browser');
 					pkg.artifacts.push(a);
 
-					await pkg.build({}, config);
+					await pkg.build({ addEntries: true }, config);
 
 					expect(pkg.json).toEqual(
 						expect.objectContaining({
@@ -263,7 +258,7 @@ describe('Package', () => {
 				it('adds "main" for browser `esm` format', async () => {
 					pkg.artifacts.push(createCodeArtifact([{ format: 'esm' }], 'browser'));
 
-					await pkg.build({}, config);
+					await pkg.build({ addEntries: true }, config);
 
 					expect(pkg.json).toEqual(
 						expect.objectContaining({
@@ -276,7 +271,7 @@ describe('Package', () => {
 					const a = createCodeArtifact([{ format: 'lib' }], 'native');
 					pkg.artifacts.push(a);
 
-					await pkg.build({}, config);
+					await pkg.build({ addEntries: true }, config);
 
 					expect(pkg.json).toEqual(
 						expect.objectContaining({
@@ -290,7 +285,7 @@ describe('Package', () => {
 					a.inputs = { server: 'src/index.ts' };
 					pkg.artifacts.push(a);
 
-					await pkg.build({}, config);
+					await pkg.build({ addEntries: true }, config);
 
 					expect(pkg.json.main).toBe('./lib/server.js');
 				});
@@ -304,7 +299,7 @@ describe('Package', () => {
 					b.sharedLib = true;
 					pkg.artifacts.push(b);
 
-					await pkg.build({}, config);
+					await pkg.build({ addEntries: true }, config);
 
 					expect(pkg.json).toEqual(
 						expect.objectContaining({
@@ -322,7 +317,7 @@ describe('Package', () => {
 					a.sharedLib = true;
 					pkg.artifacts.push(a);
 
-					await pkg.build({}, config);
+					await pkg.build({ addEntries: true }, config);
 
 					expect(pkg.json).toEqual(
 						expect.objectContaining({
@@ -337,7 +332,7 @@ describe('Package', () => {
 					const a = createCodeArtifact([{ format: 'esm' }], 'browser');
 					pkg.artifacts.push(a);
 
-					await pkg.build({}, config);
+					await pkg.build({ addEntries: true }, config);
 
 					expect(pkg.json).toEqual(
 						expect.objectContaining({
@@ -359,7 +354,7 @@ describe('Package', () => {
 				});
 
 				it('adds "browser" when browser and node are sharing a lib', async () => {
-					await pkg.build({}, config);
+					await pkg.build({ addEntries: true }, config);
 
 					expect(pkg.json).toEqual(
 						expect.objectContaining({
@@ -372,7 +367,7 @@ describe('Package', () => {
 				it('adds "browser" for umd builds', async () => {
 					pkg.artifacts[1] = createCodeArtifact([{ format: 'umd' }], 'browser');
 
-					await pkg.build({}, config);
+					await pkg.build({ addEntries: true }, config);
 
 					expect(pkg.json).toEqual(
 						expect.objectContaining({
@@ -386,7 +381,7 @@ describe('Package', () => {
 					// @ts-expect-error Types are wrong
 					pkg.json.browser = { module: 'foo' };
 
-					await pkg.build({}, config);
+					await pkg.build({ addEntries: true }, config);
 
 					expect(pkg.json).toEqual(
 						expect.objectContaining({
@@ -401,7 +396,7 @@ describe('Package', () => {
 				it('adds "types" when a types artifact exists', async () => {
 					pkg.artifacts.push(createCodeArtifact([{ declaration: true, format: 'lib' }]));
 
-					await pkg.build({}, config);
+					await pkg.build({ addEntries: true }, config);
 
 					expect(pkg.json).toEqual(
 						expect.objectContaining({
@@ -417,7 +412,7 @@ describe('Package', () => {
 					a.inputs = { bin: 'src/bin.ts' };
 					pkg.artifacts.push(a);
 
-					await pkg.build({}, config);
+					await pkg.build({ addEntries: true }, config);
 
 					expect(pkg.json).toEqual(
 						expect.objectContaining({
@@ -431,7 +426,7 @@ describe('Package', () => {
 					a.inputs = { bin: 'src/bin.ts' };
 					pkg.artifacts.push(a);
 
-					await pkg.build({}, config);
+					await pkg.build({ addEntries: true }, config);
 
 					expect(pkg.json).toEqual(
 						expect.objectContaining({
@@ -445,7 +440,7 @@ describe('Package', () => {
 					a.inputs = { bin: 'src/bin.ts' };
 					pkg.artifacts.push(a);
 
-					await pkg.build({}, config);
+					await pkg.build({ addEntries: true }, config);
 
 					expect(pkg.json).toEqual(
 						expect.objectContaining({
@@ -461,7 +456,7 @@ describe('Package', () => {
 
 					pkg.json.bin = {};
 
-					await pkg.build({}, config);
+					await pkg.build({ addEntries: true }, config);
 
 					expect(pkg.json.bin).toEqual({});
 				});
@@ -765,10 +760,10 @@ describe('Package', () => {
 			});
 
 			it('includes assets folder if it exists', async () => {
-				pkg = loadPackageAtPath(getFixturePath('project-assets'));
+				pkg = loadPackageAtPath(getFixturePath('project-assets'), null, createStubbedFileSystem());
 
 				try {
-					fsx.mkdirSync(pkg.path.append('assets').path());
+					nodeFileSystem.createDirAll(pkg.path.append('assets').path());
 				} catch {
 					// Ignore
 				}
@@ -810,7 +805,7 @@ describe('Package', () => {
 
 			pkg.artifacts.push(a, b, c, d);
 
-			await pkg.build({ addExports: true }, config);
+			await pkg.build({ addExports: true, addEntries: true }, config);
 
 			expect(pkg.json).toEqual(
 				expect.objectContaining({
@@ -876,7 +871,7 @@ describe('Package', () => {
 
 			pkg.artifacts.push(a, b, c, d);
 
-			await pkg.build({ addExports: true }, config);
+			await pkg.build({ addExports: true, addEntries: true }, config);
 
 			expect(pkg.json).toEqual(
 				expect.objectContaining({
@@ -945,7 +940,7 @@ describe('Package', () => {
 
 			pkg.artifacts.push(a, b, c, d);
 
-			await pkg.build({ addExports: true }, config);
+			await pkg.build({ addExports: true, addEntries: true }, config);
 
 			expect(pkg.json).toEqual(
 				expect.objectContaining({
@@ -995,9 +990,9 @@ describe('Package', () => {
 	describe('cleanup()', () => {
 		it('calls `cleanup` on each artifact', async () => {
 			const [a, b, c] = createArtifacts();
-			const aSpy = jest.spyOn(a, 'clean');
-			const bSpy = jest.spyOn(b, 'clean');
-			const cSpy = jest.spyOn(c, 'clean');
+			const aSpy = vi.spyOn(a, 'clean');
+			const bSpy = vi.spyOn(b, 'clean');
+			const cSpy = vi.spyOn(c, 'clean');
 
 			pkg.artifacts.push(a, b, c);
 
@@ -1133,9 +1128,22 @@ describe('Package', () => {
 
 	describe('generateArtifacts()', () => {
 		it('generates build artifacts for each config in a package', () => {
-			const pkg1 = loadPackageAtPath(getFixturePath('workspaces', 'packages/valid-array'));
-			const pkg2 = loadPackageAtPath(getFixturePath('workspaces', 'packages/valid-object'));
-			const pkg3 = loadPackageAtPath(getFixturePath('workspaces', 'packages/valid-object-private'));
+			const fs = createStubbedFileSystem();
+			const pkg1 = loadPackageAtPath(
+				getFixturePath('workspaces', 'packages/valid-array'),
+				null,
+				fs,
+			);
+			const pkg2 = loadPackageAtPath(
+				getFixturePath('workspaces', 'packages/valid-object'),
+				null,
+				fs,
+			);
+			const pkg3 = loadPackageAtPath(
+				getFixturePath('workspaces', 'packages/valid-object-private'),
+				null,
+				fs,
+			);
 
 			pkg1.generateArtifacts({});
 			pkg2.generateArtifacts({});
@@ -1155,9 +1163,22 @@ describe('Package', () => {
 		});
 
 		it('generates type artifacts for each config in a package', () => {
-			const pkg1 = loadPackageAtPath(getFixturePath('workspaces', 'packages/valid-array'));
-			const pkg2 = loadPackageAtPath(getFixturePath('workspaces', 'packages/valid-object'));
-			const pkg3 = loadPackageAtPath(getFixturePath('workspaces', 'packages/valid-object-private'));
+			const fs = createStubbedFileSystem();
+			const pkg1 = loadPackageAtPath(
+				getFixturePath('workspaces', 'packages/valid-array'),
+				null,
+				fs,
+			);
+			const pkg2 = loadPackageAtPath(
+				getFixturePath('workspaces', 'packages/valid-object'),
+				null,
+				fs,
+			);
+			const pkg3 = loadPackageAtPath(
+				getFixturePath('workspaces', 'packages/valid-object-private'),
+				null,
+				fs,
+			);
 
 			pkg1.generateArtifacts({ declaration: true });
 			pkg2.generateArtifacts({ declaration: true });
@@ -1178,7 +1199,11 @@ describe('Package', () => {
 		});
 
 		it('generates build artifacts for projects with multiple platforms', () => {
-			pkg = loadPackageAtPath(getFixturePath('project-multi-platform'));
+			pkg = loadPackageAtPath(
+				getFixturePath('project-multi-platform'),
+				null,
+				createStubbedFileSystem(),
+			);
 
 			pkg.generateArtifacts({});
 
@@ -1190,7 +1215,11 @@ describe('Package', () => {
 		});
 
 		it('filters formats using `filterFormats`', () => {
-			pkg = loadPackageAtPath(getFixturePath('project-multi-platform'));
+			pkg = loadPackageAtPath(
+				getFixturePath('project-multi-platform'),
+				null,
+				createStubbedFileSystem(),
+			);
 
 			pkg.generateArtifacts({
 				filterFormats: 'esm',
@@ -1201,7 +1230,11 @@ describe('Package', () => {
 		});
 
 		it('filters platforms using `filterPlatforms`', () => {
-			pkg = loadPackageAtPath(getFixturePath('project-multi-platform'));
+			pkg = loadPackageAtPath(
+				getFixturePath('project-multi-platform'),
+				null,
+				createStubbedFileSystem(),
+			);
 
 			pkg.generateArtifacts({
 				filterPlatforms: 'node',
@@ -1220,7 +1253,11 @@ describe('Package', () => {
 		};
 
 		beforeEach(() => {
-			pkg = loadPackageAtPath(getFixturePath('workspaces-feature-flags', 'packages/common'));
+			pkg = loadPackageAtPath(
+				getFixturePath('workspaces-feature-flags', 'packages/common'),
+				null,
+				createStubbedFileSystem(),
+			);
 			// @ts-expect-error Allow override
 			pkg.configs = [];
 		});
@@ -1599,24 +1636,20 @@ describe('Package', () => {
 	});
 
 	describe('syncJson()', () => {
-		it('writes to `package.json', async () => {
-			const spy = jest.spyOn(fsx, 'writeJson').mockImplementation();
+		it('writes to `package.json`', () => {
+			const spy = vi.spyOn(pkg.fs, 'writeJson').mockImplementation(() => {});
 
-			await pkg.syncJson();
+			pkg.syncJson();
 
-			expect(spy).toHaveBeenCalledWith(
-				pkg.jsonPath.path(),
-				{
-					name: 'project',
-					packemon: {
-						inputs: {
-							index: 'src/index.ts',
-							test: 'src/sub/test.ts',
-						},
+			expect(spy).toHaveBeenCalledWith(pkg.jsonPath.path(), {
+				name: 'project',
+				packemon: {
+					inputs: {
+						index: 'src/index.ts',
+						test: 'src/sub/test.ts',
 					},
 				},
-				{ spaces: 2 },
-			);
+			});
 		});
 	});
 });

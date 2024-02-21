@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
 
+import { describe, expect, it, vi } from 'vitest';
 import { getSwcInputConfig, getSwcOutputConfig } from '../../src/swc/config';
 import { Format, Platform, Support } from '../../src/types';
 
@@ -38,7 +39,7 @@ describe('getSwcInputConfig()', () => {
 	});
 
 	it('supports private properties with decorators if dep exists', () => {
-		const spy = jest.spyOn(bundleArtifact.package, 'hasDependency').mockImplementation(() => true);
+		const spy = vi.spyOn(bundleArtifact.package, 'hasDependency').mockImplementation(() => true);
 
 		expect(
 			getSwcInputConfig(bundleArtifact, { decorators: true, typescript: true }),
@@ -67,7 +68,7 @@ describe('getSwcInputConfig()', () => {
 });
 
 function renderPresetEnv(platform: Platform, format: Format, support: Support) {
-	test(`handles preset-env: ${platform} + ${format} + ${support}`, () => {
+	it(`handles preset-env: ${platform} + ${format} + ${support}`, () => {
 		expect(getSwcOutputConfig(platform, support, format, {})?.env).toMatchSnapshot();
 	});
 }
@@ -125,7 +126,7 @@ describe('getSwcOutputConfig()', () => {
 	});
 
 	it('passes build params to config', () => {
-		const spy = jest.fn();
+		const spy = vi.fn();
 
 		getSwcOutputConfig(
 			'browser',

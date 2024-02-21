@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`getSwcInputConfig() can mutate config 1`] = `
+exports[`getSwcInputConfig() > can mutate config 1`] = `
 {
   "caller": {
     "name": "packemon",
@@ -31,7 +31,7 @@ exports[`getSwcInputConfig() can mutate config 1`] = `
 }
 `;
 
-exports[`getSwcInputConfig() doesnt include typescript decorators if \`typescript\` feature flag is false 1`] = `
+exports[`getSwcInputConfig() > doesnt include typescript decorators if \`typescript\` feature flag is false 1`] = `
 {
   "caller": {
     "name": "packemon",
@@ -60,7 +60,7 @@ exports[`getSwcInputConfig() doesnt include typescript decorators if \`typescrip
 }
 `;
 
-exports[`getSwcInputConfig() includes no parser/transformer options by default 1`] = `
+exports[`getSwcInputConfig() > includes no parser/transformer options by default 1`] = `
 {
   "caller": {
     "name": "packemon",
@@ -89,7 +89,7 @@ exports[`getSwcInputConfig() includes no parser/transformer options by default 1
 }
 `;
 
-exports[`getSwcInputConfig() includes react transformer if \`react\` feature flag is true 1`] = `
+exports[`getSwcInputConfig() > includes react transformer if \`react\` feature flag is true 1`] = `
 {
   "optimizer": undefined,
   "react": {
@@ -99,7 +99,7 @@ exports[`getSwcInputConfig() includes react transformer if \`react\` feature fla
 }
 `;
 
-exports[`getSwcInputConfig() includes typescript decorators if \`typescript\` and \`decorators\` feature flag is true 1`] = `
+exports[`getSwcInputConfig() > includes typescript decorators if \`typescript\` and \`decorators\` feature flag is true 1`] = `
 {
   "caller": {
     "name": "packemon",
@@ -130,7 +130,7 @@ exports[`getSwcInputConfig() includes typescript decorators if \`typescript\` an
 }
 `;
 
-exports[`getSwcInputConfig() includes typescript parser if \`typescript\` feature flag is true 1`] = `
+exports[`getSwcInputConfig() > includes typescript parser if \`typescript\` feature flag is true 1`] = `
 {
   "dynamicImport": true,
   "syntax": "typescript",
@@ -138,7 +138,7 @@ exports[`getSwcInputConfig() includes typescript parser if \`typescript\` featur
 }
 `;
 
-exports[`getSwcInputConfig() supports private properties with decorators if dep exists 1`] = `
+exports[`getSwcInputConfig() > supports private properties with decorators if dep exists 1`] = `
 {
   "caller": {
     "name": "packemon",
@@ -169,7 +169,7 @@ exports[`getSwcInputConfig() supports private properties with decorators if dep 
 }
 `;
 
-exports[`getSwcOutputConfig() can mutate config 1`] = `
+exports[`getSwcOutputConfig() > can mutate config 1`] = `
 {
   "caller": {
     "name": "packemon",
@@ -210,7 +210,7 @@ exports[`getSwcOutputConfig() can mutate config 1`] = `
 }
 `;
 
-exports[`getSwcOutputConfig() handles preset-env: browser + esm + current 1`] = `
+exports[`getSwcOutputConfig() > handles preset-env: browser + esm + current 1`] = `
 {
   "bugfixes": true,
   "loose": false,
@@ -220,7 +220,7 @@ exports[`getSwcOutputConfig() handles preset-env: browser + esm + current 1`] = 
 }
 `;
 
-exports[`getSwcOutputConfig() handles preset-env: browser + esm + experimental 1`] = `
+exports[`getSwcOutputConfig() > handles preset-env: browser + esm + experimental 1`] = `
 {
   "bugfixes": true,
   "loose": false,
@@ -230,7 +230,7 @@ exports[`getSwcOutputConfig() handles preset-env: browser + esm + experimental 1
 }
 `;
 
-exports[`getSwcOutputConfig() handles preset-env: browser + esm + legacy 1`] = `
+exports[`getSwcOutputConfig() > handles preset-env: browser + esm + legacy 1`] = `
 {
   "bugfixes": true,
   "loose": false,
@@ -240,7 +240,7 @@ exports[`getSwcOutputConfig() handles preset-env: browser + esm + legacy 1`] = `
 }
 `;
 
-exports[`getSwcOutputConfig() handles preset-env: browser + esm + stable 1`] = `
+exports[`getSwcOutputConfig() > handles preset-env: browser + esm + stable 1`] = `
 {
   "bugfixes": true,
   "loose": false,
@@ -250,7 +250,7 @@ exports[`getSwcOutputConfig() handles preset-env: browser + esm + stable 1`] = `
 }
 `;
 
-exports[`getSwcOutputConfig() handles preset-env: browser + lib + current 1`] = `
+exports[`getSwcOutputConfig() > handles preset-env: browser + lib + current 1`] = `
 {
   "bugfixes": true,
   "loose": false,
@@ -260,7 +260,7 @@ exports[`getSwcOutputConfig() handles preset-env: browser + lib + current 1`] = 
 }
 `;
 
-exports[`getSwcOutputConfig() handles preset-env: browser + lib + experimental 1`] = `
+exports[`getSwcOutputConfig() > handles preset-env: browser + lib + experimental 1`] = `
 {
   "bugfixes": true,
   "loose": false,
@@ -270,7 +270,7 @@ exports[`getSwcOutputConfig() handles preset-env: browser + lib + experimental 1
 }
 `;
 
-exports[`getSwcOutputConfig() handles preset-env: browser + lib + legacy 1`] = `
+exports[`getSwcOutputConfig() > handles preset-env: browser + lib + legacy 1`] = `
 {
   "bugfixes": true,
   "loose": false,
@@ -280,7 +280,7 @@ exports[`getSwcOutputConfig() handles preset-env: browser + lib + legacy 1`] = `
 }
 `;
 
-exports[`getSwcOutputConfig() handles preset-env: browser + lib + stable 1`] = `
+exports[`getSwcOutputConfig() > handles preset-env: browser + lib + stable 1`] = `
 {
   "bugfixes": true,
   "loose": false,
@@ -290,7 +290,7 @@ exports[`getSwcOutputConfig() handles preset-env: browser + lib + stable 1`] = `
 }
 `;
 
-exports[`getSwcOutputConfig() handles preset-env: browser + umd + current 1`] = `
+exports[`getSwcOutputConfig() > handles preset-env: browser + umd + current 1`] = `
 {
   "bugfixes": true,
   "loose": false,
@@ -300,7 +300,7 @@ exports[`getSwcOutputConfig() handles preset-env: browser + umd + current 1`] = 
 }
 `;
 
-exports[`getSwcOutputConfig() handles preset-env: browser + umd + experimental 1`] = `
+exports[`getSwcOutputConfig() > handles preset-env: browser + umd + experimental 1`] = `
 {
   "bugfixes": true,
   "loose": false,
@@ -310,7 +310,7 @@ exports[`getSwcOutputConfig() handles preset-env: browser + umd + experimental 1
 }
 `;
 
-exports[`getSwcOutputConfig() handles preset-env: browser + umd + legacy 1`] = `
+exports[`getSwcOutputConfig() > handles preset-env: browser + umd + legacy 1`] = `
 {
   "bugfixes": true,
   "loose": false,
@@ -320,7 +320,7 @@ exports[`getSwcOutputConfig() handles preset-env: browser + umd + legacy 1`] = `
 }
 `;
 
-exports[`getSwcOutputConfig() handles preset-env: browser + umd + stable 1`] = `
+exports[`getSwcOutputConfig() > handles preset-env: browser + umd + stable 1`] = `
 {
   "bugfixes": true,
   "loose": false,
@@ -330,7 +330,7 @@ exports[`getSwcOutputConfig() handles preset-env: browser + umd + stable 1`] = `
 }
 `;
 
-exports[`getSwcOutputConfig() handles preset-env: native + lib + current 1`] = `
+exports[`getSwcOutputConfig() > handles preset-env: native + lib + current 1`] = `
 {
   "bugfixes": true,
   "loose": false,
@@ -340,7 +340,7 @@ exports[`getSwcOutputConfig() handles preset-env: native + lib + current 1`] = `
 }
 `;
 
-exports[`getSwcOutputConfig() handles preset-env: native + lib + experimental 1`] = `
+exports[`getSwcOutputConfig() > handles preset-env: native + lib + experimental 1`] = `
 {
   "bugfixes": true,
   "loose": false,
@@ -350,7 +350,7 @@ exports[`getSwcOutputConfig() handles preset-env: native + lib + experimental 1`
 }
 `;
 
-exports[`getSwcOutputConfig() handles preset-env: native + lib + legacy 1`] = `
+exports[`getSwcOutputConfig() > handles preset-env: native + lib + legacy 1`] = `
 {
   "bugfixes": true,
   "loose": false,
@@ -360,7 +360,7 @@ exports[`getSwcOutputConfig() handles preset-env: native + lib + legacy 1`] = `
 }
 `;
 
-exports[`getSwcOutputConfig() handles preset-env: native + lib + stable 1`] = `
+exports[`getSwcOutputConfig() > handles preset-env: native + lib + stable 1`] = `
 {
   "bugfixes": true,
   "loose": false,
@@ -370,7 +370,7 @@ exports[`getSwcOutputConfig() handles preset-env: native + lib + stable 1`] = `
 }
 `;
 
-exports[`getSwcOutputConfig() handles preset-env: node + cjs + current 1`] = `
+exports[`getSwcOutputConfig() > handles preset-env: node + cjs + current 1`] = `
 {
   "bugfixes": true,
   "loose": false,
@@ -382,7 +382,7 @@ exports[`getSwcOutputConfig() handles preset-env: node + cjs + current 1`] = `
 }
 `;
 
-exports[`getSwcOutputConfig() handles preset-env: node + cjs + experimental 1`] = `
+exports[`getSwcOutputConfig() > handles preset-env: node + cjs + experimental 1`] = `
 {
   "bugfixes": true,
   "loose": false,
@@ -394,7 +394,7 @@ exports[`getSwcOutputConfig() handles preset-env: node + cjs + experimental 1`] 
 }
 `;
 
-exports[`getSwcOutputConfig() handles preset-env: node + cjs + legacy 1`] = `
+exports[`getSwcOutputConfig() > handles preset-env: node + cjs + legacy 1`] = `
 {
   "bugfixes": true,
   "loose": false,
@@ -406,7 +406,7 @@ exports[`getSwcOutputConfig() handles preset-env: node + cjs + legacy 1`] = `
 }
 `;
 
-exports[`getSwcOutputConfig() handles preset-env: node + cjs + stable 1`] = `
+exports[`getSwcOutputConfig() > handles preset-env: node + cjs + stable 1`] = `
 {
   "bugfixes": true,
   "loose": false,
@@ -418,7 +418,7 @@ exports[`getSwcOutputConfig() handles preset-env: node + cjs + stable 1`] = `
 }
 `;
 
-exports[`getSwcOutputConfig() handles preset-env: node + lib + current 1`] = `
+exports[`getSwcOutputConfig() > handles preset-env: node + lib + current 1`] = `
 {
   "bugfixes": true,
   "loose": false,
@@ -430,7 +430,7 @@ exports[`getSwcOutputConfig() handles preset-env: node + lib + current 1`] = `
 }
 `;
 
-exports[`getSwcOutputConfig() handles preset-env: node + lib + experimental 1`] = `
+exports[`getSwcOutputConfig() > handles preset-env: node + lib + experimental 1`] = `
 {
   "bugfixes": true,
   "loose": false,
@@ -442,7 +442,7 @@ exports[`getSwcOutputConfig() handles preset-env: node + lib + experimental 1`] 
 }
 `;
 
-exports[`getSwcOutputConfig() handles preset-env: node + lib + legacy 1`] = `
+exports[`getSwcOutputConfig() > handles preset-env: node + lib + legacy 1`] = `
 {
   "bugfixes": true,
   "loose": false,
@@ -454,7 +454,7 @@ exports[`getSwcOutputConfig() handles preset-env: node + lib + legacy 1`] = `
 }
 `;
 
-exports[`getSwcOutputConfig() handles preset-env: node + lib + stable 1`] = `
+exports[`getSwcOutputConfig() > handles preset-env: node + lib + stable 1`] = `
 {
   "bugfixes": true,
   "loose": false,
@@ -466,7 +466,7 @@ exports[`getSwcOutputConfig() handles preset-env: node + lib + stable 1`] = `
 }
 `;
 
-exports[`getSwcOutputConfig() handles preset-env: node + mjs + current 1`] = `
+exports[`getSwcOutputConfig() > handles preset-env: node + mjs + current 1`] = `
 {
   "bugfixes": true,
   "loose": false,
@@ -478,7 +478,7 @@ exports[`getSwcOutputConfig() handles preset-env: node + mjs + current 1`] = `
 }
 `;
 
-exports[`getSwcOutputConfig() handles preset-env: node + mjs + experimental 1`] = `
+exports[`getSwcOutputConfig() > handles preset-env: node + mjs + experimental 1`] = `
 {
   "bugfixes": true,
   "loose": false,
@@ -490,7 +490,7 @@ exports[`getSwcOutputConfig() handles preset-env: node + mjs + experimental 1`] 
 }
 `;
 
-exports[`getSwcOutputConfig() handles preset-env: node + mjs + legacy 1`] = `
+exports[`getSwcOutputConfig() > handles preset-env: node + mjs + legacy 1`] = `
 {
   "bugfixes": true,
   "loose": false,
@@ -502,7 +502,7 @@ exports[`getSwcOutputConfig() handles preset-env: node + mjs + legacy 1`] = `
 }
 `;
 
-exports[`getSwcOutputConfig() handles preset-env: node + mjs + stable 1`] = `
+exports[`getSwcOutputConfig() > handles preset-env: node + mjs + stable 1`] = `
 {
   "bugfixes": true,
   "loose": false,
@@ -514,7 +514,7 @@ exports[`getSwcOutputConfig() handles preset-env: node + mjs + stable 1`] = `
 }
 `;
 
-exports[`getSwcOutputConfig() transforms async/await to promises when \`browser\` or \`native\` 1`] = `
+exports[`getSwcOutputConfig() > transforms async/await to promises when \`browser\` or \`native\` 1`] = `
 {
   "caller": {
     "name": "packemon",
@@ -553,7 +553,7 @@ exports[`getSwcOutputConfig() transforms async/await to promises when \`browser\
 }
 `;
 
-exports[`getSwcOutputConfig() transforms async/await to promises when \`browser\` or \`native\` 2`] = `
+exports[`getSwcOutputConfig() > transforms async/await to promises when \`browser\` or \`native\` 2`] = `
 {
   "caller": {
     "name": "packemon",
@@ -585,14 +585,14 @@ exports[`getSwcOutputConfig() transforms async/await to promises when \`browser\
     },
   },
   "module": {
-    "ignoreDynamic": false,
+    "ignoreDynamic": true,
     "type": "commonjs",
   },
   "swcrc": false,
 }
 `;
 
-exports[`getSwcOutputConfig() uses built-in destructuring and object spread when \`current\` or \`experimental\` 1`] = `
+exports[`getSwcOutputConfig() > uses built-in destructuring and object spread when \`current\` or \`experimental\` 1`] = `
 {
   "caller": {
     "name": "packemon",
@@ -633,7 +633,7 @@ exports[`getSwcOutputConfig() uses built-in destructuring and object spread when
 }
 `;
 
-exports[`getSwcOutputConfig() uses built-in destructuring and object spread when \`current\` or \`experimental\` 2`] = `
+exports[`getSwcOutputConfig() > uses built-in destructuring and object spread when \`current\` or \`experimental\` 2`] = `
 {
   "caller": {
     "name": "packemon",

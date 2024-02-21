@@ -45,7 +45,7 @@ The following plugins are enabled when one of their conditions are met.
     expressions.
 - [`babel-plugin-conditional-invariant`](#invariant-checks)
   - Always enabled. Will wrap `invariant()` calls with `process.env.NODE_ENV` conditionals.
-- [`babel-plugin-cjs-esm-interop`](#cjs--esm-interoperability)
+- [`babel-plugin-cjs-esm-interop`](#commonjs--ecmascript-interoperability)
   - Enabled when package [platform](./config.md#platforms) is configured to `node`. Will convert ESM
     code to CJS and vice-versa.
 

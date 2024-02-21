@@ -103,6 +103,7 @@ export function getRollupOutputConfig(
 		format: getRollupModuleFormat(format),
 		originalFormat: format,
 		interop: 'auto',
+		exports: 'named',
 		// Map our externals to local paths with trailing extension
 		paths: getRollupPaths(artifact, entryExt),
 		// Use our extension for file names
@@ -120,7 +121,7 @@ export function getRollupOutputConfig(
 		},
 		// Output specific plugins
 		plugins: [
-			preserveDynamicImport(platform, support),
+			preserveDynamicImport(platform, format),
 			isSwc
 				? swcOutput({
 						...getSwcOutputConfig(platform, support, format, features, packemonConfig),
@@ -202,7 +203,8 @@ export async function getRollupConfig(
 			json({ compact: true, namedExports: false }),
 			// Copy assets and update import references
 			copyAndRefAssets({
-				dir: artifact.package.path.append('assets').path(),
+				fs: artifact.package.fs,
+				root: artifact.package.path.path(),
 			}),
 			// Declare Babel/swc here so we can parse TypeScript/Flow
 			isSwc
@@ -215,7 +217,7 @@ export async function getRollupConfig(
 					})
 				: getBabelInputPlugin({
 						...getBabelInputConfig(artifact, features, packemonConfig),
-						babelHelpers: artifact.features.helpers,
+						babelHelpers: artifact.features.helpers ?? 'bundled',
 						exclude: isTest ? [] : EXCLUDE,
 						extensions: EXTENSIONS,
 						filename: artifact.package.path.path(),

@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import { transformAsync, TransformOptions } from '@babel/core';
 import cjsEsmInterop, { CjsEsmInteropOptions } from '../src';
 

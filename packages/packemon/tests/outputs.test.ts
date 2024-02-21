@@ -1,18 +1,23 @@
 import fs from 'node:fs';
+import { describe, expect, it, vi } from 'vitest';
 import { Path } from '@boost/common';
 import { Artifact } from '../src';
 import {
 	BUILDS_NO_SUPPORT,
-	createSnapshotSpies,
 	getFixturePath,
 	loadPackageAtPath,
+	snapshotPackageBuildOutputs,
 } from './helpers';
+
+vi.setConfig({ testTimeout: 30_000 });
 
 ['babel', 'swc'].forEach((transformer) => {
 	describe(`Outputs (${transformer})`, () => {
+		vi.spyOn(console, 'info').mockImplementation(() => {});
+		vi.spyOn(console, 'warn').mockImplementation(() => {});
+
 		describe('artifacts', () => {
 			const root = new Path(getFixturePath('project-rollup'));
-			const snapshots = createSnapshotSpies(root, true);
 
 			it('builds all the artifacts with rollup', async () => {
 				const pkg = loadPackageAtPath(root);
@@ -46,11 +51,9 @@ import {
 
 				pkg.artifacts.push(test);
 
-				await pkg.build({}, {});
+				await pkg.build({ addEntries: false }, {});
 
-				snapshots(pkg).forEach((ss) => {
-					expect(ss).toMatchSnapshot();
-				});
+				snapshotPackageBuildOutputs(pkg);
 
 				expect(index.builds).toMatchSnapshot();
 			});
@@ -58,7 +61,6 @@ import {
 
 		describe('bundle', () => {
 			const root = new Path(getFixturePath('project-bundle'));
-			const snapshots = createSnapshotSpies(root, true);
 
 			it('bundles all files into a single file with rollup', async () => {
 				const pkg = loadPackageAtPath(root);
@@ -71,17 +73,14 @@ import {
 
 				pkg.artifacts.push(index);
 
-				await pkg.build({}, {});
+				await pkg.build({ addEntries: false }, {});
 
-				snapshots(pkg).forEach((ss) => {
-					expect(ss).toMatchSnapshot();
-				});
+				snapshotPackageBuildOutputs(pkg);
 			});
 		});
 
 		describe('bundle with assets', () => {
 			const root = new Path(getFixturePath('project-assets'));
-			const snapshots = createSnapshotSpies(root, true);
 
 			BUILDS_NO_SUPPORT.forEach((build) => {
 				it(`bundles all files and references assets (${build.platform}, ${build.format})`, async () => {
@@ -95,11 +94,9 @@ import {
 
 					pkg.artifacts.push(index);
 
-					await pkg.build({}, {});
+					await pkg.build({ addEntries: false }, {});
 
-					snapshots(pkg).forEach((ss) => {
-						expect(ss).toMatchSnapshot();
-					});
+					snapshotPackageBuildOutputs(pkg);
 				});
 			});
 
@@ -114,17 +111,14 @@ import {
 
 				pkg.artifacts.push(index);
 
-				await pkg.build({}, {});
+				await pkg.build({ addEntries: false }, {});
 
-				snapshots(pkg).forEach((ss) => {
-					expect(ss).toMatchSnapshot();
-				});
+				snapshotPackageBuildOutputs(pkg);
 			});
 		});
 
 		describe('no bundle', () => {
 			const root = new Path(getFixturePath('project-bundle'));
-			const snapshots = createSnapshotSpies(root, true);
 
 			it('creates individual files for every source file', async () => {
 				const pkg = loadPackageAtPath(root);
@@ -137,17 +131,14 @@ import {
 
 				pkg.artifacts.push(index);
 
-				await pkg.build({}, {});
+				await pkg.build({ addEntries: false }, {});
 
-				snapshots(pkg).forEach((ss) => {
-					expect(ss).toMatchSnapshot();
-				});
+				snapshotPackageBuildOutputs(pkg);
 			});
 		});
 
 		describe('no bundle with assets', () => {
 			const root = new Path(getFixturePath('project-assets'));
-			const snapshots = createSnapshotSpies(root, true);
 
 			BUILDS_NO_SUPPORT.forEach((build) => {
 				it(`creates individual files and references assets (${build.platform}, ${build.format})`, async () => {
@@ -161,11 +152,9 @@ import {
 
 					pkg.artifacts.push(index);
 
-					await pkg.build({}, {});
+					await pkg.build({ addEntries: false }, {});
 
-					snapshots(pkg).forEach((ss) => {
-						expect(ss).toMatchSnapshot();
-					});
+					snapshotPackageBuildOutputs(pkg);
 				});
 			});
 		});
@@ -173,11 +162,8 @@ import {
 });
 
 describe('Special formats', () => {
-	jest.setTimeout(30_000);
-
 	describe('cjs', () => {
 		const root = new Path(getFixturePath('project-cjs-compat'));
-		const snapshots = createSnapshotSpies(root, true);
 
 		it('supports .ts -> .cjs / .d.cts (compat)', async () => {
 			const pkg = loadPackageAtPath(root);
@@ -191,11 +177,9 @@ describe('Special formats', () => {
 
 			pkg.artifacts.push(index);
 
-			await pkg.build({}, {});
+			await pkg.build({ addEntries: false }, {});
 
-			snapshots(pkg).forEach((ss) => {
-				expect(ss).toMatchSnapshot();
-			});
+			snapshotPackageBuildOutputs(pkg);
 
 			// Declaration snapshots are not captured above because it runs in a child process
 			expect(fs.readFileSync(root.append('cjs/index.d.cts').path(), 'utf8')).toMatchSnapshot();
@@ -205,7 +189,6 @@ describe('Special formats', () => {
 
 	describe('cts', () => {
 		const root = new Path(getFixturePath('project-cts'));
-		const snapshots = createSnapshotSpies(root, true);
 
 		it('supports .cts -> .cjs / .d.cts', async () => {
 			const pkg = loadPackageAtPath(root);
@@ -218,11 +201,9 @@ describe('Special formats', () => {
 
 			pkg.artifacts.push(index);
 
-			await pkg.build({}, {});
+			await pkg.build({ addEntries: false }, {});
 
-			snapshots(pkg).forEach((ss) => {
-				expect(ss).toMatchSnapshot();
-			});
+			snapshotPackageBuildOutputs(pkg);
 
 			// Declaration snapshots are not captured above because it runs in a child process
 			expect(fs.readFileSync(root.append('cjs/index.d.cts').path(), 'utf8')).toMatchSnapshot();
@@ -231,7 +212,6 @@ describe('Special formats', () => {
 
 	describe('mts', () => {
 		const root = new Path(getFixturePath('project-mts'));
-		const snapshots = createSnapshotSpies(root, true);
 
 		it('supports .mts -> .mjs / .d.mts', async () => {
 			const pkg = loadPackageAtPath(root);
@@ -244,11 +224,9 @@ describe('Special formats', () => {
 
 			pkg.artifacts.push(index);
 
-			await pkg.build({}, {});
+			await pkg.build({ addEntries: false }, {});
 
-			snapshots(pkg).forEach((ss) => {
-				expect(ss).toMatchSnapshot();
-			});
+			snapshotPackageBuildOutputs(pkg);
 
 			// Declaration snapshots are not captured above because it runs in a child process
 			expect(fs.readFileSync(root.append('mjs/index.d.mts').path(), 'utf8')).toMatchSnapshot();
@@ -258,7 +236,6 @@ describe('Special formats', () => {
 
 describe('Feature flags', () => {
 	const root = new Path(getFixturePath('features'));
-	const snapshots = createSnapshotSpies(root, true);
 
 	it('compiles', async () => {
 		const pkg = loadPackageAtPath(root);
@@ -299,12 +276,8 @@ describe('Feature flags', () => {
 
 		pkg.artifacts.push(swcExternal);
 
-		await pkg.build({}, {});
+		await pkg.build({ addEntries: false }, {});
 
-		snapshots(pkg).forEach((ss) => {
-			if (ss[0].endsWith('.js')) {
-				expect(ss).toMatchSnapshot();
-			}
-		});
+		snapshotPackageBuildOutputs(pkg);
 	});
 });

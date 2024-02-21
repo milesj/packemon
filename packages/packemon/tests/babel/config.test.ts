@@ -1,10 +1,11 @@
 /* eslint-disable no-param-reassign */
 
 // import { createConfig, createRootConfig } from '../../src/babel';
+import { describe, expect, it, vi } from 'vitest';
 import { getBabelInputConfig, getBabelOutputConfig } from '../../src/babel/config';
 import { Format, Platform, Support } from '../../src/types';
 
-jest.mock('../../src/babel/resolve', () => ({
+vi.mock('../../src/babel/resolve', () => ({
 	resolve: (name: string) => name,
 	resolveFromBabel: (name: string) => name,
 }));
@@ -51,7 +52,7 @@ describe('getBabelInputConfig()', () => {
 	});
 
 	it('supports private properties with decorators if dep exists', () => {
-		const spy = jest.spyOn(bundleArtifact.package, 'hasDependency').mockImplementation(() => true);
+		const spy = vi.spyOn(bundleArtifact.package, 'hasDependency').mockImplementation(() => true);
 
 		expect(
 			getBabelInputConfig(bundleArtifact, { decorators: true, typescript: true }),
@@ -80,7 +81,7 @@ describe('getBabelInputConfig()', () => {
 });
 
 function renderPresetEnv(platform: Platform, format: Format, support: Support) {
-	test(`handles preset-env: ${platform} + ${format} + ${support}`, () => {
+	it(`handles preset-env: ${platform} + ${format} + ${support}`, () => {
 		expect(getBabelOutputConfig(platform, support, format, {})?.presets?.[0]).toMatchSnapshot();
 	});
 }
@@ -149,7 +150,7 @@ describe('getBabelOutputConfig()', () => {
 	});
 
 	it('passes build params to config', () => {
-		const spy = jest.fn();
+		const spy = vi.fn();
 
 		getBabelOutputConfig(
 			'browser',

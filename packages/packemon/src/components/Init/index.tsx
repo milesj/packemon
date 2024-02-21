@@ -10,7 +10,7 @@ export type InitPackageConfigs = Record<string, PackemonPackageConfig>;
 
 export interface InitProps {
 	packageName: string;
-	onComplete: (config: PackemonPackageConfig) => Promise<unknown>;
+	onComplete: (config: PackemonPackageConfig) => void;
 }
 
 export function Init({ packageName, onComplete }: InitProps) {
@@ -18,17 +18,13 @@ export function Init({ packageName, onComplete }: InitProps) {
 
 	const handleSubmit = useCallback(
 		(config: PackemonPackageConfig) => {
-			async function complete() {
-				try {
-					await onComplete(config);
-				} catch (error: unknown) {
-					exit(error as Error);
-				} finally {
-					exit();
-				}
+			try {
+				onComplete(config);
+			} catch (error: unknown) {
+				exit(error as Error);
+			} finally {
+				exit();
 			}
-
-			void complete();
 		},
 		[exit, onComplete],
 	);

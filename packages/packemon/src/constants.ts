@@ -9,12 +9,15 @@ import {
 	Support,
 } from './types';
 
-export const ASSETS = [
+export const TEXT_ASSETS = [
 	// Styles
 	'.css',
 	'.scss',
 	'.sass',
 	'.less',
+];
+
+export const BINARY_ASSETS = [
 	// Images
 	'.svg',
 	'.png',
@@ -38,6 +41,8 @@ export const ASSETS = [
 	'.woff2',
 	'.ttf',
 ];
+
+export const ASSETS = [...TEXT_ASSETS, ...BINARY_ASSETS];
 
 export const EXTENSIONS = ['.ts', '.tsx', '.cts', '.mts', '.js', '.jsx', '.cjs', '.mjs'];
 
