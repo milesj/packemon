@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 4.0.0-alpha.0 - 2024-02-21
+
+#### 💥 Breaking
+
+- Update build targets. (#237) ([7cfb027](https://github.com/milesj/packemon/commit/7cfb027)), closes [#237](https://github.com/milesj/packemon/issues/237)
+
+#### 🛠 Internals
+
+- Migrate to Vitest from Jest. (#236) ([04fbfd3](https://github.com/milesj/packemon/commit/04fbfd3)), closes [#236](https://github.com/milesj/packemon/issues/236)
+
+**Note:** Version bump only for package babel-plugin-env-constants
+
+
+
+
+
 ### 3.0.1 - 2023-05-11
 
 #### 🛠 Internals

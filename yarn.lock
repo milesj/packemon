@@ -7581,7 +7581,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"babel-plugin-cjs-esm-interop@npm:^3.0.3, babel-plugin-cjs-esm-interop@workspace:packages/babel-plugin-cjs-esm-interop":
+"babel-plugin-cjs-esm-interop@npm:^4.0.0-alpha.0, babel-plugin-cjs-esm-interop@workspace:packages/babel-plugin-cjs-esm-interop":
   version: 0.0.0-use.local
   resolution: "babel-plugin-cjs-esm-interop@workspace:packages/babel-plugin-cjs-esm-interop"
   dependencies:
@@ -7591,7 +7591,16 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"babel-plugin-conditional-invariant@npm:^3.0.1, babel-plugin-conditional-invariant@workspace:packages/babel-plugin-conditional-invariant":
+"babel-plugin-conditional-invariant@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "babel-plugin-conditional-invariant@npm:3.0.1"
+  peerDependencies:
+    "@babel/core": ^7.0.0
+  checksum: 10/3ea9cfbc30783a6ca92dbf22cfc8eeea93d7d73baeb829ec8888c651f4aee3b20f41861fb3c34471c5d584dcc308b428314ae6ff384e46648bdda1c6d54fd62e
+  languageName: node
+  linkType: hard
+
+"babel-plugin-conditional-invariant@npm:^4.0.0-alpha.0, babel-plugin-conditional-invariant@workspace:packages/babel-plugin-conditional-invariant":
   version: 0.0.0-use.local
   resolution: "babel-plugin-conditional-invariant@workspace:packages/babel-plugin-conditional-invariant"
   peerDependencies:
@@ -7608,7 +7617,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"babel-plugin-env-constants@npm:^3.0.1, babel-plugin-env-constants@workspace:packages/babel-plugin-env-constants":
+"babel-plugin-env-constants@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "babel-plugin-env-constants@npm:3.0.1"
+  peerDependencies:
+    "@babel/core": ^7.0.0
+  checksum: 10/4efaa34d03074f0b8d537127d56861646e49d5bb59c24ede71a09d502d7541a6914fadf1afe1a5bc1fab744bc1b4ff514064e2a5edfe0d81456c9bd9be3e00c1
+  languageName: node
+  linkType: hard
+
+"babel-plugin-env-constants@npm:^4.0.0-alpha.0, babel-plugin-env-constants@workspace:packages/babel-plugin-env-constants":
   version: 0.0.0-use.local
   resolution: "babel-plugin-env-constants@workspace:packages/babel-plugin-env-constants"
   peerDependencies:
@@ -18590,9 +18608,9 @@ __metadata:
     "@swc/core": "npm:^1.4.2"
     "@swc/helpers": "npm:^0.5.6"
     "@typescript-eslint/types": "npm:^6.21.0"
-    babel-plugin-cjs-esm-interop: "npm:^3.0.3"
-    babel-plugin-conditional-invariant: "npm:^3.0.1"
-    babel-plugin-env-constants: "npm:^3.0.1"
+    babel-plugin-cjs-esm-interop: "npm:^4.0.0-alpha.0"
+    babel-plugin-conditional-invariant: "npm:^4.0.0-alpha.0"
+    babel-plugin-env-constants: "npm:^4.0.0-alpha.0"
     babel-preset-solid: "npm:^1.8.15"
     browserslist: "npm:^4.23.0"
     debug: "npm:^4.3.4"

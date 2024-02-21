@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 4.0.0-alpha.0 - 2024-02-21
+
+#### 💥 Breaking
+
+- Migrate to ESM only. (#233) ([430b564](https://github.com/milesj/packemon/commit/430b564)), closes [#233](https://github.com/milesj/packemon/issues/233)
+- Update build targets. (#237) ([7cfb027](https://github.com/milesj/packemon/commit/7cfb027)), closes [#237](https://github.com/milesj/packemon/issues/237)
+
+#### 🚀 Updates
+
+- Update build-workspace and pack-workspace to run in topological order. ([c2be2b5](https://github.com/milesj/packemon/commit/c2be2b5))
+
+#### 📦 Dependencies
+
+- **[rollup-plugin-node-externals]** Update to v7. ([0409d7a](https://github.com/milesj/packemon/commit/0409d7a))
+- **[rollup]** Update to v4.12." ([382b9be](https://github.com/milesj/packemon/commit/382b9be))
+
+#### 🛠 Internals
+
+- Migrate to Vitest from Jest. (#236) ([04fbfd3](https://github.com/milesj/packemon/commit/04fbfd3)), closes [#236](https://github.com/milesj/packemon/issues/236)
+
+**Note:** Version bump only for package packemon
+
+
+
+
+
 ### 3.3.1 - 2024-02-10
 
 #### 🐞 Fixes
