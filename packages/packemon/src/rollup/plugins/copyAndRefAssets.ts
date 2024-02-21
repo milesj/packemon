@@ -36,16 +36,17 @@ export function copyAndRefAssets(
 ): Plugin {
 	const assetsToCopy = assetsToCopyInit;
 	const assetSourceMap = new Set<string>();
+	const pattern = /^\.{1,2}(\/|\\)/;
 
 	function findMatchingSource(relSource: string): string | undefined {
-		if (relSource.includes(':')) {
+		let source = relSource;
+
+		if (source.startsWith('node:') || source.startsWith('bun:')) {
 			return undefined;
 		}
 
-		let source = relSource;
-
 		while (source.startsWith('.')) {
-			source = source.replace('../', '').replace('./', '');
+			source = source.replace(pattern, '');
 		}
 
 		for (const id of assetSourceMap) {
@@ -121,6 +122,7 @@ export function copyAndRefAssets(
 			const magicString = new MagicString(code);
 			let hasChanged = false;
 
+			// eslint-disable-next-line complexity
 			ast.body.forEach((node) => {
 				let source: TSESTree.Literal | undefined;
 
@@ -146,8 +148,12 @@ export function copyAndRefAssets(
 					return;
 				}
 
-				// Update to new path (ignore files coming from node modules)
 				const relSource = String(source.value);
+
+				if (!ASSETS.some((ext) => relSource.endsWith(ext))) {
+					return;
+				}
+
 				const absSource = findMatchingSource(relSource);
 
 				if (absSource) {
