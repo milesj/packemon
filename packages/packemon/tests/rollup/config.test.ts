@@ -25,7 +25,7 @@ vi.mock('@rollup/plugin-babel', () => ({
 		`babelOutput(${options.filename}, ${options.moduleId || '*'})`,
 }));
 vi.mock('rollup-plugin-node-externals', () => ({
-	externals: (options: any) => `externals(${options.packagePath})`,
+	nodeExternals: (options: any) => `externals(${options.packagePath})`,
 }));
 vi.mock('rollup-plugin-polyfill-node', () => ({
 	default: () => `polyfillNode()`,

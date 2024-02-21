@@ -1,5 +1,5 @@
 import { ModuleFormat, OutputOptions, Plugin, RollupOptions } from 'rollup';
-import { externals as nodeExternals } from 'rollup-plugin-node-externals';
+import { nodeExternals } from 'rollup-plugin-node-externals';
 import nodePolyfills from 'rollup-plugin-polyfill-node';
 import { getBabelInputPlugin, getBabelOutputPlugin } from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
