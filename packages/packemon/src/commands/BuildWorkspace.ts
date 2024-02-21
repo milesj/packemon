@@ -1,4 +1,5 @@
 import { Arg, Config } from '@boost/cli';
+import { PackageGraph } from '@boost/common';
 import { Context, PooledPipeline } from '@boost/pipeline';
 import { Package } from '../Package';
 import { BuildCommand } from './Build';
@@ -13,27 +14,31 @@ export class BuildWorkspaceCommand extends BuildCommand {
 	}
 
 	protected async runPipeline(run: (pkg: Package) => Promise<unknown>) {
-		const pipeline = new PooledPipeline(new Context());
 		const packages = await this.packemon.findPackages({
 			filter: this.filter,
 			skipPrivate: this.skipPrivate,
 		});
 
-		pipeline.configure({
-			concurrency: this.concurrency,
-			timeout: this.timeout,
-		});
+		const map = Object.fromEntries(packages.map((pkg) => [pkg.getName(), pkg]));
+		const graph = new PackageGraph(packages.map((pkg) => pkg.json));
 
-		packages.forEach((pkg) => {
-			pipeline.add(pkg.getName(), async () => {
-				await run(pkg);
+		for await (const batch of graph.resolveBatchList()) {
+			const pipeline = new PooledPipeline(new Context(), undefined, {
+				concurrency: this.concurrency,
+				timeout: this.timeout,
 			});
-		});
 
-		const { errors } = await pipeline.run();
+			batch.forEach((pkgJson) => {
+				pipeline.add(pkgJson.name, async () => {
+					await run(map[pkgJson.name]);
+				});
+			});
 
-		if (errors.length > 0) {
-			throw errors[0];
+			const { errors } = await pipeline.run();
+
+			if (errors.length > 0) {
+				throw errors[0];
+			}
 		}
 	}
 }
