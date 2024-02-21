@@ -47,7 +47,7 @@ export type ElectronFormat =
 	// ECMAScript modules with ".js" file extension
 	| 'esm';
 
-export type NativeFormat = CommonFormat;
+export type NativeFormat = CommonFormat | 'esm';
 
 export type NodeFormat =
 	| CommonFormat

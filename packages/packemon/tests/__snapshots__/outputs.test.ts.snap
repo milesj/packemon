@@ -9029,6 +9029,37 @@ exports.button = button;
 "
 `;
 
+exports[`Outputs (babel) > bundle with assets > bundles all files and references assets (native, esm) > ../assets/fonts-4e5dc96c.css 1`] = `
+"@font-face {
+}
+"
+`;
+
+exports[`Outputs (babel) > bundle with assets > bundles all files and references assets (native, esm) > ../assets/globals-107ab52e.css 1`] = `
+"html {
+}
+"
+`;
+
+exports[`Outputs (babel) > bundle with assets > bundles all files and references assets (native, esm) > ../assets/styles-b11c3a83.css 1`] = `
+".button {
+}
+"
+`;
+
+exports[`Outputs (babel) > bundle with assets > bundles all files and references assets (native, esm) > esm/index.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: stable, Format: esm
+
+import '../assets/globals-107ab52e.css';
+import '../assets/fonts-4e5dc96c.css';
+import '../assets/styles-b11c3a83.css';
+function button() {}
+export { button };
+//# sourceMappingURL=index.js.map
+"
+`;
+
 exports[`Outputs (babel) > bundle with assets > bundles all files and references assets (native, lib) > ../assets/fonts-4e5dc96c.css 1`] = `
 "@font-face {
 }
@@ -9537,6 +9568,40 @@ require('../assets/globals-107ab52e.css');
 require('../assets/fonts-4e5dc96c.css');
 const index = require('./button/index.js');
 exports.button = index.button;
+//# sourceMappingURL=index.js.map
+"
+`;
+
+exports[`Outputs (babel) > no bundle with assets > creates individual files and references assets (native, esm) > ../assets/fonts-4e5dc96c.css 1`] = `
+"@font-face {
+}
+"
+`;
+
+exports[`Outputs (babel) > no bundle with assets > creates individual files and references assets (native, esm) > ../assets/globals-107ab52e.css 1`] = `
+"html {
+}
+"
+`;
+
+exports[`Outputs (babel) > no bundle with assets > creates individual files and references assets (native, esm) > ../assets/styles-b11c3a83.css 1`] = `
+".button {
+}
+"
+`;
+
+exports[`Outputs (babel) > no bundle with assets > creates individual files and references assets (native, esm) > esm/button/index.js 1`] = `
+"import '../../assets/styles-b11c3a83.css';
+function button() {}
+export { button };
+//# sourceMappingURL=index.js.map
+"
+`;
+
+exports[`Outputs (babel) > no bundle with assets > creates individual files and references assets (native, esm) > esm/index.js 1`] = `
+"import '../assets/globals-107ab52e.css';
+import '../assets/fonts-4e5dc96c.css';
+export { button } from './button/index.js';
 //# sourceMappingURL=index.js.map
 "
 `;
@@ -18492,6 +18557,37 @@ exports.button = button;
 "
 `;
 
+exports[`Outputs (swc) > bundle with assets > bundles all files and references assets (native, esm) > ../assets/fonts-4e5dc96c.css 1`] = `
+"@font-face {
+}
+"
+`;
+
+exports[`Outputs (swc) > bundle with assets > bundles all files and references assets (native, esm) > ../assets/globals-107ab52e.css 1`] = `
+"html {
+}
+"
+`;
+
+exports[`Outputs (swc) > bundle with assets > bundles all files and references assets (native, esm) > ../assets/styles-b11c3a83.css 1`] = `
+".button {
+}
+"
+`;
+
+exports[`Outputs (swc) > bundle with assets > bundles all files and references assets (native, esm) > esm/index.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: stable, Format: esm
+
+import '../assets/globals-107ab52e.css';
+import '../assets/fonts-4e5dc96c.css';
+import '../assets/styles-b11c3a83.css';
+function button() {}
+export { button };
+//# sourceMappingURL=index.js.map
+"
+`;
+
 exports[`Outputs (swc) > bundle with assets > bundles all files and references assets (native, lib) > ../assets/fonts-4e5dc96c.css 1`] = `
 "@font-face {
 }
@@ -19000,6 +19096,40 @@ require('../assets/globals-107ab52e.css');
 require('../assets/fonts-4e5dc96c.css');
 const index = require('./button/index.js');
 exports.button = index.button;
+//# sourceMappingURL=index.js.map
+"
+`;
+
+exports[`Outputs (swc) > no bundle with assets > creates individual files and references assets (native, esm) > ../assets/fonts-4e5dc96c.css 1`] = `
+"@font-face {
+}
+"
+`;
+
+exports[`Outputs (swc) > no bundle with assets > creates individual files and references assets (native, esm) > ../assets/globals-107ab52e.css 1`] = `
+"html {
+}
+"
+`;
+
+exports[`Outputs (swc) > no bundle with assets > creates individual files and references assets (native, esm) > ../assets/styles-b11c3a83.css 1`] = `
+".button {
+}
+"
+`;
+
+exports[`Outputs (swc) > no bundle with assets > creates individual files and references assets (native, esm) > esm/button/index.js 1`] = `
+"import '../../assets/styles-b11c3a83.css';
+function button() {}
+export { button };
+//# sourceMappingURL=index.js.map
+"
+`;
+
+exports[`Outputs (swc) > no bundle with assets > creates individual files and references assets (native, esm) > esm/index.js 1`] = `
+"import '../assets/globals-107ab52e.css';
+import '../assets/fonts-4e5dc96c.css';
+export { button } from './button/index.js';
 //# sourceMappingURL=index.js.map
 "
 `;

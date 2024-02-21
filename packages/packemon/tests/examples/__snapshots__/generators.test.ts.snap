@@ -440,6 +440,21 @@ exports.runGen = runGen;
 "
 `;
 
+exports[`Generators > babel > transforms example test case: native-current-esm > esm/index-native-current-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: current, Format: esm
+
+function* gen() {}
+function runGen() {
+  for (const iterator of gen()) {
+    console.log(iterator);
+  }
+}
+export { gen, runGen };
+//# sourceMappingURL=index-native-current-esm.js.map
+"
+`;
+
 exports[`Generators > babel > transforms example test case: native-current-lib > lib/index-native-current-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: current, Format: lib
@@ -455,6 +470,21 @@ function runGen() {
 exports.gen = gen;
 exports.runGen = runGen;
 //# sourceMappingURL=index-native-current-lib.js.map
+"
+`;
+
+exports[`Generators > babel > transforms example test case: native-experimental-esm > esm/index-native-experimental-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: experimental, Format: esm
+
+function* gen() {}
+function runGen() {
+  for (const iterator of gen()) {
+    console.log(iterator);
+  }
+}
+export { gen, runGen };
+//# sourceMappingURL=index-native-experimental-esm.js.map
 "
 `;
 
@@ -476,6 +506,21 @@ exports.runGen = runGen;
 "
 `;
 
+exports[`Generators > babel > transforms example test case: native-legacy-esm > esm/index-native-legacy-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: legacy, Format: esm
+
+function* gen() {}
+function runGen() {
+  for (const iterator of gen()) {
+    console.log(iterator);
+  }
+}
+export { gen, runGen };
+//# sourceMappingURL=index-native-legacy-esm.js.map
+"
+`;
+
 exports[`Generators > babel > transforms example test case: native-legacy-lib > lib/index-native-legacy-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: legacy, Format: lib
@@ -491,6 +536,21 @@ function runGen() {
 exports.gen = gen;
 exports.runGen = runGen;
 //# sourceMappingURL=index-native-legacy-lib.js.map
+"
+`;
+
+exports[`Generators > babel > transforms example test case: native-stable-esm > esm/index-native-stable-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: stable, Format: esm
+
+function* gen() {}
+function runGen() {
+  for (const iterator of gen()) {
+    console.log(iterator);
+  }
+}
+export { gen, runGen };
+//# sourceMappingURL=index-native-stable-esm.js.map
 "
 `;
 
@@ -1494,6 +1554,20 @@ exports.runGen = runGen;
 "
 `;
 
+exports[`Generators > swc > transforms example test case: native-current-esm > esm/index-native-current-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: current, Format: esm
+function* gen() {}
+function runGen() {
+    for (const iterator of gen()){
+        console.log(iterator);
+    }
+}
+export { gen, runGen };
+//# sourceMappingURL=index-native-current-esm.js.map
+"
+`;
+
 exports[`Generators > swc > transforms example test case: native-current-lib > lib/index-native-current-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: current, Format: lib
@@ -1507,6 +1581,20 @@ function runGen() {
 exports.gen = gen;
 exports.runGen = runGen;
 //# sourceMappingURL=index-native-current-lib.js.map
+"
+`;
+
+exports[`Generators > swc > transforms example test case: native-experimental-esm > esm/index-native-experimental-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: experimental, Format: esm
+function* gen() {}
+function runGen() {
+    for (const iterator of gen()){
+        console.log(iterator);
+    }
+}
+export { gen, runGen };
+//# sourceMappingURL=index-native-experimental-esm.js.map
 "
 `;
 
@@ -1526,6 +1614,20 @@ exports.runGen = runGen;
 "
 `;
 
+exports[`Generators > swc > transforms example test case: native-legacy-esm > esm/index-native-legacy-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: legacy, Format: esm
+function* gen() {}
+function runGen() {
+    for (const iterator of gen()){
+        console.log(iterator);
+    }
+}
+export { gen, runGen };
+//# sourceMappingURL=index-native-legacy-esm.js.map
+"
+`;
+
 exports[`Generators > swc > transforms example test case: native-legacy-lib > lib/index-native-legacy-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: legacy, Format: lib
@@ -1539,6 +1641,20 @@ function runGen() {
 exports.gen = gen;
 exports.runGen = runGen;
 //# sourceMappingURL=index-native-legacy-lib.js.map
+"
+`;
+
+exports[`Generators > swc > transforms example test case: native-stable-esm > esm/index-native-stable-esm.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: native, Support: stable, Format: esm
+function* gen() {}
+function runGen() {
+    for (const iterator of gen()){
+        console.log(iterator);
+    }
+}
+export { gen, runGen };
+//# sourceMappingURL=index-native-stable-esm.js.map
 "
 `;
 

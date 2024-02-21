@@ -336,7 +336,7 @@ exports[`getSwcOutputConfig() > handles preset-env: native + lib + current 1`] =
   "loose": false,
   "mode": undefined,
   "shippedProposals": true,
-  "targets": "iOS 15",
+  "targets": "iOS 16",
 }
 `;
 
@@ -346,7 +346,7 @@ exports[`getSwcOutputConfig() > handles preset-env: native + lib + experimental 
   "loose": false,
   "mode": undefined,
   "shippedProposals": true,
-  "targets": "iOS 16",
+  "targets": "iOS 17",
 }
 `;
 
@@ -356,7 +356,7 @@ exports[`getSwcOutputConfig() > handles preset-env: native + lib + legacy 1`] = 
   "loose": false,
   "mode": undefined,
   "shippedProposals": true,
-  "targets": "iOS 13",
+  "targets": "iOS 14",
 }
 `;
 
@@ -366,7 +366,7 @@ exports[`getSwcOutputConfig() > handles preset-env: native + lib + stable 1`] = 
   "loose": false,
   "mode": undefined,
   "shippedProposals": true,
-  "targets": "iOS 14",
+  "targets": "iOS 15",
 }
 `;
 
@@ -377,7 +377,7 @@ exports[`getSwcOutputConfig() > handles preset-env: node + cjs + current 1`] = `
   "mode": undefined,
   "shippedProposals": true,
   "targets": {
-    "node": "18.12.0",
+    "node": "20.10.0",
   },
 }
 `;
@@ -389,7 +389,7 @@ exports[`getSwcOutputConfig() > handles preset-env: node + cjs + experimental 1`
   "mode": undefined,
   "shippedProposals": true,
   "targets": {
-    "node": "19.0.0",
+    "node": "21.6.0",
   },
 }
 `;
@@ -401,7 +401,7 @@ exports[`getSwcOutputConfig() > handles preset-env: node + cjs + legacy 1`] = `
   "mode": undefined,
   "shippedProposals": true,
   "targets": {
-    "node": "14.15.0",
+    "node": "16.12.0",
   },
 }
 `;
@@ -413,7 +413,7 @@ exports[`getSwcOutputConfig() > handles preset-env: node + cjs + stable 1`] = `
   "mode": undefined,
   "shippedProposals": true,
   "targets": {
-    "node": "16.12.0",
+    "node": "18.12.0",
   },
 }
 `;
@@ -425,7 +425,7 @@ exports[`getSwcOutputConfig() > handles preset-env: node + lib + current 1`] = `
   "mode": undefined,
   "shippedProposals": true,
   "targets": {
-    "node": "18.12.0",
+    "node": "20.10.0",
   },
 }
 `;
@@ -437,7 +437,7 @@ exports[`getSwcOutputConfig() > handles preset-env: node + lib + experimental 1`
   "mode": undefined,
   "shippedProposals": true,
   "targets": {
-    "node": "19.0.0",
+    "node": "21.6.0",
   },
 }
 `;
@@ -449,7 +449,7 @@ exports[`getSwcOutputConfig() > handles preset-env: node + lib + legacy 1`] = `
   "mode": undefined,
   "shippedProposals": true,
   "targets": {
-    "node": "14.15.0",
+    "node": "16.12.0",
   },
 }
 `;
@@ -461,7 +461,7 @@ exports[`getSwcOutputConfig() > handles preset-env: node + lib + stable 1`] = `
   "mode": undefined,
   "shippedProposals": true,
   "targets": {
-    "node": "16.12.0",
+    "node": "18.12.0",
   },
 }
 `;
@@ -473,7 +473,7 @@ exports[`getSwcOutputConfig() > handles preset-env: node + mjs + current 1`] = `
   "mode": undefined,
   "shippedProposals": true,
   "targets": {
-    "node": "18.12.0",
+    "node": "20.10.0",
   },
 }
 `;
@@ -485,7 +485,7 @@ exports[`getSwcOutputConfig() > handles preset-env: node + mjs + experimental 1`
   "mode": undefined,
   "shippedProposals": true,
   "targets": {
-    "node": "19.0.0",
+    "node": "21.6.0",
   },
 }
 `;
@@ -497,7 +497,7 @@ exports[`getSwcOutputConfig() > handles preset-env: node + mjs + legacy 1`] = `
   "mode": undefined,
   "shippedProposals": true,
   "targets": {
-    "node": "14.15.0",
+    "node": "16.12.0",
   },
 }
 `;
@@ -509,7 +509,7 @@ exports[`getSwcOutputConfig() > handles preset-env: node + mjs + stable 1`] = `
   "mode": undefined,
   "shippedProposals": true,
   "targets": {
-    "node": "16.12.0",
+    "node": "18.12.0",
   },
 }
 `;
@@ -564,7 +564,7 @@ exports[`getSwcOutputConfig() > transforms async/await to promises when \`browse
     "loose": false,
     "mode": undefined,
     "shippedProposals": true,
-    "targets": "iOS 16",
+    "targets": "iOS 17",
   },
   "jsc": {
     "keepClassNames": true,
@@ -604,7 +604,7 @@ exports[`getSwcOutputConfig() > uses built-in destructuring and object spread wh
     "mode": undefined,
     "shippedProposals": true,
     "targets": {
-      "node": "18.12.0",
+      "node": "20.10.0",
     },
   },
   "jsc": {
@@ -645,7 +645,7 @@ exports[`getSwcOutputConfig() > uses built-in destructuring and object spread wh
     "mode": undefined,
     "shippedProposals": true,
     "targets": {
-      "node": "19.0.0",
+      "node": "21.6.0",
     },
   },
   "jsc": {
