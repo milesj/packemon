@@ -70,25 +70,25 @@ export const EXCLUDE_RUST = [
 // https://reactnative.dev/docs/javascript-environment
 // Based on browserslist: https://github.com/browserslist/browserslist
 export const NATIVE_TARGETS: { [K in Support]: string } = {
-	legacy: 'iOS 13', // 2019
-	stable: 'iOS 14', // 2020
-	current: 'iOS 15', // 2021
-	experimental: 'iOS 16', // 2022
+	legacy: 'iOS 14', // 2020
+	stable: 'iOS 15', // 2021
+	current: 'iOS 16', // 2022
+	experimental: 'iOS 17', // 2023
 };
 
 // Based on LTS schedule: https://nodejs.org/en/about/releases/
 export const NODE_SUPPORTED_VERSIONS: { [K in Support]: string } = {
-	legacy: '14.15.0', // LTS support started
-	stable: '16.12.0', // ESM loader hooks
-	current: '18.12.0', // LTS support started
-	experimental: '19.0.0',
+	legacy: '16.12.0', // ESM loader hooks
+	stable: '18.12.0', // LTS support started
+	current: '20.10.0', // Detect module / CJS compat
+	experimental: '21.6.0',
 };
 
 export const NPM_SUPPORTED_VERSIONS: { [K in Support]: string } = {
-	legacy: '6.14.0',
-	stable: '8.1.0',
-	current: '8.19.0',
-	experimental: '9.0.0',
+	legacy: '8.1.0',
+	stable: '8.19.0',
+	current: '10.0.0',
+	experimental: '10.4.0',
 };
 
 // Based on browserslist: https://github.com/browserslist/browserslist
@@ -100,16 +100,16 @@ export const BROWSER_TARGETS: { [K in Support]: string[] | string } = {
 };
 
 export const ELECTRON_TARGETS: { [K in Support]: string } = {
-	legacy: '7.0.0', // Oct 2019
-	stable: '11.0.0', // Nov 2020
-	current: '16.0.0', // Nov 2021
-	experimental: '21.0.0', // Sep 2022
+	legacy: '11.0.0', // Nov 2020
+	stable: '16.0.0', // Nov 2021
+	current: '21.0.0', // Sep 2022
+	experimental: '26.0.0', // June 2023
 };
 
 export const SUPPORT_TO_ESM_SPEC = {
-	legacy: 'es2018',
-	stable: 'es2019',
-	current: 'es2020',
+	legacy: 'es2019',
+	stable: 'es2020',
+	current: 'es2021',
 	experimental: 'es2022',
 } as const;
 
@@ -122,7 +122,7 @@ export const STATE_COLORS: { [K in ArtifactState]?: StyleType } = {
 export const DEFAULT_FORMATS: Record<Platform, Format> = {
 	browser: 'esm',
 	electron: 'esm',
-	native: 'lib',
+	native: 'esm',
 	node: 'mjs',
 };
 
@@ -130,7 +130,7 @@ export const FORMATS_BROWSER: BrowserFormat[] = ['lib', 'esm', 'umd'];
 
 export const FORMATS_ELECTRON: BrowserFormat[] = ['lib', 'esm'];
 
-export const FORMATS_NATIVE: NativeFormat[] = ['lib'];
+export const FORMATS_NATIVE: NativeFormat[] = ['lib', 'esm'];
 
 export const FORMATS_NODE: NodeFormat[] = ['lib', 'mjs', 'cjs'];
 
