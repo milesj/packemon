@@ -367,6 +367,20 @@ export class Artifact {
 			}
 		}
 
+		// Always support a default condition if possible
+		if (!paths.default && cjsEntry?.folder !== 'lib') {
+			const libEntry = this.findEntryPoint(['lib'], outputName);
+
+			if (libEntry) {
+				paths.default = libEntry.declPath
+					? {
+							types: libEntry.declPath,
+							default: libEntry.entryPath,
+						}
+					: libEntry.entryPath;
+			}
+		}
+
 		const pathsMap: Record<string, PackageExportPaths | string> = {
 			[this.platform === 'native' ? 'react-native' : this.platform]: paths,
 		};

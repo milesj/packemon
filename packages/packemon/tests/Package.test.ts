@@ -698,34 +698,9 @@ describe('Package', () => {
 				expect.objectContaining({
 					main: './cjs/index.cjs',
 					bin: './lib/bin.js',
-					exports: {
-						'./package.json': './package.json',
-						'.': {
-							node: {
-								import: './cjs/index-wrapper.mjs',
-								require: './cjs/index.cjs',
-								types: './cjs/node.d.ts',
-							},
-						},
-						'./bin': {
-							types: './lib/cli.d.ts',
-							node: { default: './lib/bin.js', types: './lib/cli.d.ts' },
-							default: './lib/bin.js',
-						},
-						'./web': {
-							types: './lib/web.d.ts',
-							browser: {
-								import: './esm/web.js',
-								module: './esm/web.js',
-								default: './lib/web.js',
-								types: './esm/web.d.ts',
-							},
-							default: './lib/web.js',
-						},
-						'./import': { node: { import: './mjs/import.mjs', types: './mjs/web.d.ts' } },
-					},
 				}),
 			);
+			expect(pkg.json.exports).toMatchSnapshot();
 		});
 
 		it('public api + bundle: uses inputs as subpath imports (non-deep imports)', async () => {
@@ -764,37 +739,9 @@ describe('Package', () => {
 				expect.objectContaining({
 					main: './cjs/node.cjs',
 					bin: './lib/cli.js',
-					exports: {
-						'./package.json': './package.json',
-						'./bin': {
-							types: './lib/cli.d.ts',
-							node: {
-								default: './lib/cli.js',
-								types: './lib/cli.d.ts',
-							},
-							default: './lib/cli.js',
-						},
-						'./import': { node: { import: './mjs/web.mjs', types: './mjs/web.d.ts' } },
-						'./web': {
-							types: './lib/web.d.ts',
-							browser: {
-								import: './esm/web.js',
-								module: './esm/web.js',
-								default: './lib/web.js',
-								types: './esm/web.d.ts',
-							},
-							default: './lib/web.js',
-						},
-						'.': {
-							node: {
-								import: './cjs/node-wrapper.mjs',
-								require: './cjs/node.cjs',
-								types: './cjs/node.d.ts',
-							},
-						},
-					},
 				}),
 			);
+			expect(pkg.json.exports).toMatchSnapshot();
 		});
 
 		it('public api + no bundle: uses patterns as subpath imports (deep imports)', async () => {
@@ -834,43 +781,9 @@ describe('Package', () => {
 					main: './cjs/node.cjs',
 					module: './esm/web.js',
 					bin: './lib/cli.js',
-					exports: {
-						'./package.json': './package.json',
-						'./*': {
-							types: './lib/*.d.ts',
-							browser: {
-								import: './esm/*.js',
-								module: './esm/*.js',
-								default: './lib/*.js',
-								types: './esm/*.d.ts',
-							},
-							node: {
-								import: './mjs/*.mjs',
-								require: './cjs/*.cjs',
-								default: './lib/*.js',
-								types: './mjs/*.d.ts',
-							},
-							default: './lib/*.js',
-						},
-						'.': {
-							types: './lib/web.d.ts',
-							browser: {
-								import: './esm/web.js',
-								module: './esm/web.js',
-								default: './lib/web.js',
-								types: './esm/web.d.ts',
-							},
-							node: {
-								import: './mjs/web.mjs',
-								require: './cjs/node.cjs',
-								default: './lib/cli.js',
-								types: './mjs/web.d.ts',
-							},
-							default: './lib/web.js',
-						},
-					},
 				}),
 			);
+			expect(pkg.json.exports).toMatchSnapshot();
 		});
 	});
 

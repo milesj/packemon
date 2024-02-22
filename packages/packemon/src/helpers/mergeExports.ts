@@ -25,22 +25,29 @@ export function mergeExports(
 	});
 
 	// Always include a default export for tooling to work correctly
-	if (root && !prev.default) {
-		for (const key of [
-			'react-native',
-			'electron',
-			'browser',
-			'node',
-			'import',
-			'require',
-		] as PackageExportConditions[]) {
-			if (prev[key]) {
-				prev.default = prev[key];
-				delete prev[key];
-				break;
-			}
-		}
-	}
+	const keys = Object.keys(prev);
+
+	// if (root && !prev.default) {
+	// 	for (const key of [
+	// 		'react-native',
+	// 		'electron',
+	// 		'browser',
+	// 		'node',
+	// 		'import',
+	// 		'require',
+	// 	] as PackageExportConditions[]) {
+	// 		if (prev[key]) {
+	// 			if (keys.length === 1) {
+	// 				return prev[key] as PackageExportPaths;
+	// 			}
+
+	// 			prev.default = prev[key];
+	// 			delete prev[key];
+
+	// 			break;
+	// 		}
+	// 	}
+	// }
 
 	return prev;
 }
