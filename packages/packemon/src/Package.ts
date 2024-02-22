@@ -497,7 +497,7 @@ export class Package {
 		this.artifacts.forEach((artifact) => {
 			Object.entries(artifact.getPackageExports(features)).forEach(([path, conditions]) => {
 				if (conditions) {
-					exportMap[path] = mergeExports(exportMap[path] ?? {}, conditions);
+					exportMap[path] = mergeExports(exportMap[path] ?? {}, conditions, true);
 				}
 			});
 		});

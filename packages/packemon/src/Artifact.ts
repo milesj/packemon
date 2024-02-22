@@ -1,7 +1,7 @@
 import { execa } from 'execa';
 import { rollup } from 'rollup';
 import { applyStyle } from '@boost/cli';
-import { isObject, Path, toArray, VirtualPath } from '@boost/common';
+import { Path, toArray, VirtualPath } from '@boost/common';
 import { createDebugger, Debugger } from '@boost/debug';
 import { convertCjsTypes } from './helpers/compat/convertCjsTypes';
 import { removeSourcePath } from './helpers/removeSourcePath';
@@ -335,83 +335,36 @@ export class Artifact {
 		features: FeatureFlags,
 		index: boolean = false,
 	) {
-		const defaultEntry = this.findEntryPoint(['lib'], outputName);
+		const mjsEntry = this.findEntryPoint(['mjs', 'esm'], outputName);
+		const cjsEntry = this.findEntryPoint(['cjs', 'lib'], outputName);
 		let paths: PackageExportPaths = {};
 
-		switch (this.platform) {
-			case 'electron':
-			case 'browser': {
-				const esmEntry = this.findEntryPoint(['esm'], outputName);
+		if (mjsEntry && cjsEntry) {
+			paths = {
+				import: {
+					types: mjsEntry.declPath,
+					default: mjsEntry.entryPath,
+				},
+				require: {
+					types: cjsEntry.declPath,
+					default: cjsEntry.entryPath,
+				},
+			};
+		} else if (mjsEntry) {
+			paths = {
+				types: mjsEntry.declPath,
+				import: mjsEntry.entryPath,
+			};
+		} else if (cjsEntry) {
+			paths = {
+				types: cjsEntry.declPath,
+				default: cjsEntry.entryPath,
+			};
 
-				if (esmEntry) {
-					paths = {
-						types: esmEntry.declPath,
-						module: esmEntry.entryPath, // Bundlers
-						import: esmEntry.entryPath,
-					};
-				}
-
-				// Node.js tooling
-				const libEntry = this.findEntryPoint(['umd', 'lib'], outputName);
-
-				paths.types ??= libEntry?.declPath;
-				paths.default = libEntry?.entryPath;
-
-				break;
+			// Automatically apply the mjs wrapper for cjs
+			if (outputName !== '*' && cjsEntry.entryExt === 'cjs') {
+				paths.import = cjsEntry.entryPath.replace('.cjs', '-wrapper.mjs');
 			}
-
-			case 'node': {
-				const mjsEntry = this.findEntryPoint(['mjs'], outputName);
-				const cjsEntry = this.findEntryPoint(['cjs'], outputName);
-
-				if (mjsEntry && cjsEntry) {
-					paths = {
-						import: {
-							types: mjsEntry.declPath,
-							default: mjsEntry.entryPath,
-						},
-						require: {
-							types: cjsEntry.declPath,
-							default: cjsEntry.entryPath,
-						},
-					};
-				} else if (mjsEntry) {
-					paths = {
-						types: mjsEntry.declPath,
-						import: mjsEntry.entryPath,
-					};
-				} else if (cjsEntry) {
-					paths = {
-						types: cjsEntry.declPath,
-						require: cjsEntry.entryPath,
-					};
-
-					// Automatically apply the mjs wrapper for cjs
-					if (!paths.import && outputName !== '*') {
-						paths.import = cjsEntry.entryPath.replace('.cjs', '-wrapper.mjs');
-					}
-				}
-
-				if (defaultEntry) {
-					if (!paths.types && !isObject(paths.import) && !isObject(paths.require)) {
-						paths.types = defaultEntry.declPath;
-					}
-
-					if (!paths.require) {
-						paths.default = defaultEntry.entryPath;
-					}
-				}
-
-				break;
-			}
-
-			case 'native':
-				paths.types = defaultEntry?.declPath;
-				paths.default = defaultEntry?.entryPath;
-				break;
-
-			default:
-				break;
 		}
 
 		const pathsMap: Record<string, PackageExportPaths | string> = {
@@ -427,12 +380,6 @@ export class Artifact {
 
 				pathsMap.solid = input.startsWith('./') ? input : `./${input}`;
 			}
-		}
-
-		// Provide fallbacks if condition above is not
-		if (defaultEntry) {
-			pathsMap.default = defaultEntry.entryPath;
-			pathsMap.types = defaultEntry.declPath!;
 		}
 
 		// eslint-disable-next-line no-param-reassign
