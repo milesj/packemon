@@ -3,10 +3,8 @@
 exports[`Package > build() > exports > adds "mjs wrapper" exports for a single cjs format 1`] = `
 {
   ".": {
-    "node": {
-      "import": "./cjs/index-wrapper.mjs",
-      "require": "./cjs/index.cjs",
-    },
+    "default": "./cjs/index.cjs",
+    "import": "./cjs/index-wrapper.mjs",
   },
   "./package.json": "./package.json",
 }
@@ -16,7 +14,6 @@ exports[`Package > build() > exports > adds exports for a single artifact and fo
 {
   ".": {
     "default": "./lib/index.js",
-    "node": "./lib/index.js",
   },
   "./package.json": "./package.json",
 }
@@ -26,10 +23,8 @@ exports[`Package > build() > exports > adds exports for a single artifact and mu
 {
   ".": {
     "default": "./lib/index.js",
-    "node": {
-      "import": "./mjs/index.mjs",
-      "require": "./cjs/index.cjs",
-    },
+    "import": "./mjs/index.mjs",
+    "require": "./cjs/index.cjs",
   },
   "./package.json": "./package.json",
 }
@@ -39,10 +34,6 @@ exports[`Package > build() > exports > adds exports for bundle and types artifac
 {
   ".": {
     "default": "./lib/index.js",
-    "node": {
-      "default": "./lib/index.js",
-      "types": "./lib/index.d.ts",
-    },
     "types": "./lib/index.d.ts",
   },
   "./package.json": "./package.json",
@@ -53,18 +44,12 @@ exports[`Package > build() > exports > adds exports for multiple artifacts + for
 {
   ".": {
     "default": "./lib/index.js",
-    "node": {
-      "import": "./mjs/index.mjs",
-      "require": "./cjs/index.cjs",
-    },
+    "import": "./mjs/index.mjs",
+    "require": "./cjs/index.cjs",
   },
   "./client": {
-    "browser": {
-      "default": "./umd/client.js",
-      "import": "./esm/client.js",
-      "module": "./esm/client.js",
-    },
-    "default": "./lib/client.js",
+    "import": "./esm/client.js",
+    "require": "./lib/client.js",
   },
   "./package.json": "./package.json",
 }
@@ -73,13 +58,12 @@ exports[`Package > build() > exports > adds exports for multiple artifacts + for
 exports[`Package > build() > exports > adds exports for multiple artifacts + formats of the same output name 1`] = `
 {
   ".": {
-    "browser": {
-      "default": "./umd/index.js",
+    "default": {
       "import": "./esm/index.js",
-      "module": "./esm/index.js",
+      "require": "./lib/index.js",
     },
-    "default": "./lib/index.js",
     "node": {
+      "default": "./lib/index.js",
       "import": "./mjs/index.mjs",
       "require": "./cjs/index.cjs",
     },
@@ -92,10 +76,8 @@ exports[`Package > build() > exports > adds exports for multiple artifacts of di
 {
   ".": {
     "default": "./lib/index.js",
-    "node": "./lib/index.js",
   },
   "./client": {
-    "browser": "./lib/client.js",
     "default": "./lib/client.js",
   },
   "./package.json": "./package.json",
@@ -105,8 +87,7 @@ exports[`Package > build() > exports > adds exports for multiple artifacts of di
 exports[`Package > build() > exports > adds exports for multiple artifacts of the same output name 1`] = `
 {
   ".": {
-    "browser": "./lib/browser/index.js",
-    "default": "./lib/native/index.js",
+    "default": "./lib/browser/index.js",
     "node": "./lib/node/index.js",
     "react-native": "./lib/native/index.js",
   },
@@ -117,31 +98,25 @@ exports[`Package > build() > exports > adds exports for multiple artifacts of th
 exports[`Package > build() > exports > adds exports for multiple artifacts with different bundle types 1`] = `
 {
   ".": {
-    "browser": {
+    "default": {
       "import": "./esm/index.js",
-      "module": "./esm/index.js",
       "types": "./esm/index.d.ts",
     },
-    "default": "./lib/index.js",
     "node": {
       "default": "./lib/index.js",
       "types": "./lib/index.d.ts",
     },
-    "types": "./lib/index.d.ts",
   },
   "./package.json": "./package.json",
   "./utils": {
-    "browser": {
+    "default": {
       "import": "./esm/utils.js",
-      "module": "./esm/utils.js",
       "types": "./esm/utils/index.d.ts",
     },
-    "default": "./lib/utils/index.js",
     "node": {
       "default": "./lib/utils/index.js",
       "types": "./lib/utils/index.d.ts",
     },
-    "types": "./lib/utils/index.d.ts",
   },
 }
 `;
@@ -150,7 +125,6 @@ exports[`Package > build() > exports > merges with existing exports 1`] = `
 {
   ".": {
     "default": "./lib/index.js",
-    "node": "./lib/index.js",
   },
   "./foo": "./lib/foo.js",
   "./package.json": "./package.json",
@@ -160,10 +134,8 @@ exports[`Package > build() > exports > merges with existing exports 1`] = `
 exports[`Package > build() > exports > supports dual cjs/mjs exports 1`] = `
 {
   ".": {
-    "node": {
-      "import": "./mjs/index.mjs",
-      "require": "./cjs/index.cjs",
-    },
+    "default": "./cjs/index.cjs",
+    "import": "./mjs/index.mjs",
   },
   "./package.json": "./package.json",
 }
@@ -230,7 +202,7 @@ exports[`Package > build() > public api + bundle: uses inputs as subpath imports
 exports[`Package > build() > public api + no bundle: uses patterns as subpath imports (deep imports) 1`] = `
 {
   ".": {
-    "browser": {
+    "default": {
       "import": {
         "default": "./esm/web.js",
         "types": "./esm/web.d.ts",
@@ -240,17 +212,14 @@ exports[`Package > build() > public api + no bundle: uses patterns as subpath im
         "types": "./lib/web.d.ts",
       },
     },
-    "default": "./cjs/node.cjs",
-    "import": "./cjs/node-wrapper.mjs",
     "node": {
       "default": "./lib/cli.js",
       "import": "./mjs/web.mjs",
       "types": "./mjs/web.d.ts",
     },
-    "types": "./cjs/node.d.ts",
   },
   "./*": {
-    "browser": {
+    "default": {
       "import": {
         "default": "./esm/*.js",
         "types": "./esm/*.d.ts",
@@ -260,13 +229,11 @@ exports[`Package > build() > public api + no bundle: uses patterns as subpath im
         "types": "./lib/*.d.ts",
       },
     },
-    "default": "./cjs/*.cjs",
     "node": {
       "default": "./lib/*.js",
       "import": "./mjs/*.mjs",
       "types": "./mjs/*.d.ts",
     },
-    "types": "./cjs/*.d.ts",
   },
   "./package.json": "./package.json",
 }

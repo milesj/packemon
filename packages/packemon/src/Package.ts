@@ -19,6 +19,7 @@ import {
 	SUPPORT_PRIORITY,
 } from './constants';
 import { FileSystem, nodeFileSystem } from './FileSystem';
+import { injectDefaultCondition } from './helpers/injectDefaultCondition';
 import { loadTsconfigJson } from './helpers/loadTsconfigJson';
 import { matchesPattern } from './helpers/matchesPattern';
 import { mergeExports } from './helpers/mergeExports';
@@ -35,6 +36,7 @@ import {
 	PackemonPackageConfig,
 	Platform,
 } from './types';
+import { isMemberName } from 'typescript';
 
 export class Package {
 	readonly artifacts: Artifact[] = [];
@@ -497,10 +499,13 @@ export class Package {
 		this.artifacts.forEach((artifact) => {
 			Object.entries(artifact.getPackageExports(features)).forEach(([path, conditions]) => {
 				if (conditions) {
-					exportMap[path] = mergeExports(exportMap[path] ?? {}, conditions, true);
+					exportMap[path] = mergeExports(exportMap[path] ?? {}, conditions);
 				}
 			});
 		});
+
+		// Inject a default field
+		injectDefaultCondition(exportMap);
 
 		// Sort and flatten exports
 		exportMap = sortExports(exportMap);
