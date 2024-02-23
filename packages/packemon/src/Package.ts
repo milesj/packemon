@@ -36,7 +36,6 @@ import {
 	PackemonPackageConfig,
 	Platform,
 } from './types';
-import { isMemberName } from 'typescript';
 
 export class Package {
 	readonly artifacts: Artifact[] = [];
