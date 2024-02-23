@@ -1,0 +1,258 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Artifact > getPackageExports() > adds exports based on input file and output name 1`] = `
+{
+  ".": {
+    "node": {
+      "default": "./lib/index.js",
+      "types": undefined,
+    },
+  },
+}
+`;
+
+exports[`Artifact > getPackageExports() > adds exports based on input file and output name when shared lib required 1`] = `
+{
+  ".": {
+    "node": {
+      "default": "./lib/node/index.js",
+      "types": undefined,
+    },
+  },
+}
+`;
+
+exports[`Artifact > getPackageExports() > changes export namespace to "browser" when a \`browser\` platform 1`] = `
+{
+  ".": {
+    "browser": {
+      "default": "./lib/index.js",
+      "types": undefined,
+    },
+  },
+}
+`;
+
+exports[`Artifact > getPackageExports() > changes export namespace to "react-native" when a \`native\` platform 1`] = `
+{
+  ".": {
+    "react-native": {
+      "default": "./lib/index.js",
+      "types": undefined,
+    },
+  },
+}
+`;
+
+exports[`Artifact > getPackageExports() > skips \`default\` export when there is no \`lib\` build 1`] = `
+{
+  "./sub": {
+    "node": {
+      "import": {
+        "default": "./mjs/sub.mjs",
+        "types": undefined,
+      },
+      "require": {
+        "default": "./cjs/sub.cjs",
+        "types": undefined,
+      },
+    },
+  },
+}
+`;
+
+exports[`Artifact > getPackageExports() > solid > adds entry point to source code 1`] = `
+{
+  ".": {
+    "node": {
+      "default": "./lib/index.js",
+      "types": undefined,
+    },
+    "solid": "./src/index.ts",
+  },
+}
+`;
+
+exports[`Artifact > getPackageExports() > solid > supports non-bundle 1`] = `
+{
+  ".": {
+    "node": {
+      "default": "./lib/index.js",
+      "types": undefined,
+    },
+    "solid": "./src/index.ts",
+  },
+  "./*": {
+    "node": {
+      "default": "./lib/*.js",
+      "types": undefined,
+    },
+    "solid": "./src/*.js",
+  },
+}
+`;
+
+exports[`Artifact > getPackageExports() > solid > supports shared lib 1`] = `
+{
+  ".": {
+    "node": {
+      "default": "./lib/node/index.js",
+      "types": undefined,
+    },
+    "solid": "./src/index.ts",
+  },
+}
+`;
+
+exports[`Artifact > getPackageExports() > solid > supports types 1`] = `
+{
+  ".": {
+    "browser": {
+      "import": "./esm/index.js",
+      "types": "./esm/index.d.ts",
+    },
+    "solid": "./src/index.ts",
+  },
+}
+`;
+
+exports[`Artifact > getPackageExports() > supports .d.cts 1`] = `
+{
+  ".": {
+    "node": {
+      "default": "./cjs/index.cjs",
+      "import": "./cjs/index-wrapper.mjs",
+      "types": "./cjs/index.d.cts",
+    },
+  },
+}
+`;
+
+exports[`Artifact > getPackageExports() > supports .d.mts 1`] = `
+{
+  ".": {
+    "node": {
+      "import": "./mjs/index.mjs",
+      "types": "./mjs/index.d.mts",
+    },
+  },
+}
+`;
+
+exports[`Artifact > getPackageExports() > supports cjs 1`] = `
+{
+  ".": {
+    "node": {
+      "default": "./cjs/index.cjs",
+      "import": "./cjs/index-wrapper.mjs",
+      "types": undefined,
+    },
+  },
+}
+`;
+
+exports[`Artifact > getPackageExports() > supports cjs with types 1`] = `
+{
+  ".": {
+    "node": {
+      "default": "./cjs/index.cjs",
+      "import": "./cjs/index-wrapper.mjs",
+      "types": "./cjs/index.d.ts",
+    },
+  },
+}
+`;
+
+exports[`Artifact > getPackageExports() > supports conditional exports when there are multiple builds 1`] = `
+{
+  ".": {
+    "node": {
+      "default": "./lib/index.js",
+      "import": {
+        "default": "./mjs/index.mjs",
+        "types": undefined,
+      },
+      "require": {
+        "default": "./cjs/index.cjs",
+        "types": undefined,
+      },
+    },
+  },
+}
+`;
+
+exports[`Artifact > getPackageExports() > supports conditional exports with types when there are multiple builds 1`] = `
+{
+  ".": {
+    "node": {
+      "default": {
+        "default": "./lib/index.js",
+        "types": "./lib/index.d.ts",
+      },
+      "import": {
+        "default": "./mjs/index.mjs",
+        "types": "./mjs/index.d.ts",
+      },
+      "require": {
+        "default": "./cjs/index.cjs",
+        "types": "./cjs/index.d.ts",
+      },
+    },
+  },
+}
+`;
+
+exports[`Artifact > getPackageExports() > supports lib 1`] = `
+{
+  ".": {
+    "node": {
+      "default": "./lib/index.js",
+      "types": undefined,
+    },
+  },
+}
+`;
+
+exports[`Artifact > getPackageExports() > supports lib with types 1`] = `
+{
+  ".": {
+    "node": {
+      "default": "./lib/index.js",
+      "types": "./lib/index.d.ts",
+    },
+  },
+}
+`;
+
+exports[`Artifact > getPackageExports() > supports mjs 1`] = `
+{
+  ".": {
+    "node": {
+      "import": "./mjs/index.mjs",
+      "types": undefined,
+    },
+  },
+}
+`;
+
+exports[`Artifact > getPackageExports() > supports mjs with types 1`] = `
+{
+  ".": {
+    "node": {
+      "import": "./mjs/index.mjs",
+      "types": "./mjs/index.d.ts",
+    },
+  },
+}
+`;
+
+exports[`Artifact > getPackageExports() > supports subpath file exports when output name is not "index" 1`] = `
+{
+  "./sub": {
+    "node": {
+      "default": "./lib/sub.js",
+      "types": undefined,
+    },
+  },
+}
+`;

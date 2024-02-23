@@ -19,6 +19,7 @@ import {
 	SUPPORT_PRIORITY,
 } from './constants';
 import { FileSystem, nodeFileSystem } from './FileSystem';
+import { injectDefaultCondition } from './helpers/injectDefaultCondition';
 import { loadTsconfigJson } from './helpers/loadTsconfigJson';
 import { matchesPattern } from './helpers/matchesPattern';
 import { mergeExports } from './helpers/mergeExports';
@@ -501,6 +502,9 @@ export class Package {
 				}
 			});
 		});
+
+		// Inject a default field
+		injectDefaultCondition(exportMap);
 
 		// Sort and flatten exports
 		exportMap = sortExports(exportMap);

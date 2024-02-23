@@ -485,10 +485,7 @@ describe('Package', () => {
 
 				await pkg.build({ addExports: true }, config);
 
-				expect(pkg.json.exports).toEqual({
-					'.': { node: './lib/index.js', default: './lib/index.js' },
-					'./package.json': './package.json',
-				});
+				expect(pkg.json.exports).toMatchSnapshot();
 			});
 
 			it('adds exports for a single artifact and multiple format', async () => {
@@ -498,16 +495,7 @@ describe('Package', () => {
 
 				await pkg.build({ addExports: true }, config);
 
-				expect(pkg.json.exports).toEqual({
-					'.': {
-						node: {
-							import: './mjs/index.mjs',
-							require: './cjs/index.cjs',
-						},
-						default: './lib/index.js',
-					},
-					'./package.json': './package.json',
-				});
+				expect(pkg.json.exports).toMatchSnapshot();
 			});
 
 			it('adds exports for multiple artifacts of the same output name', async () => {
@@ -525,15 +513,7 @@ describe('Package', () => {
 
 				await pkg.build({ addExports: true }, config);
 
-				expect(pkg.json.exports).toEqual({
-					'.': {
-						node: './lib/node/index.js',
-						browser: './lib/browser/index.js',
-						'react-native': './lib/native/index.js',
-						default: './lib/native/index.js',
-					},
-					'./package.json': './package.json',
-				});
+				expect(pkg.json.exports).toMatchSnapshot();
 			});
 
 			it('adds exports for multiple artifacts + formats of the same output name', async () => {
@@ -548,21 +528,7 @@ describe('Package', () => {
 
 				await pkg.build({ addExports: true }, config);
 
-				expect(pkg.json.exports).toEqual({
-					'.': {
-						node: {
-							import: './mjs/index.mjs',
-							require: './cjs/index.cjs',
-						},
-						browser: {
-							import: './esm/index.js',
-							module: './esm/index.js',
-							default: './umd/index.js',
-						},
-						default: './lib/index.js',
-					},
-					'./package.json': './package.json',
-				});
+				expect(pkg.json.exports).toMatchSnapshot();
 			});
 
 			it('adds exports for multiple artifacts of different output names', async () => {
@@ -575,11 +541,7 @@ describe('Package', () => {
 
 				await pkg.build({ addExports: true }, config);
 
-				expect(pkg.json.exports).toEqual({
-					'.': { node: './lib/index.js', default: './lib/index.js' },
-					'./client': { browser: './lib/client.js', default: './lib/client.js' },
-					'./package.json': './package.json',
-				});
+				expect(pkg.json.exports).toMatchSnapshot();
 			});
 
 			it('adds exports for multiple artifacts + formats of different output names', async () => {
@@ -595,24 +557,7 @@ describe('Package', () => {
 
 				await pkg.build({ addExports: true }, config);
 
-				expect(pkg.json.exports).toEqual({
-					'.': {
-						node: {
-							import: './mjs/index.mjs',
-							require: './cjs/index.cjs',
-						},
-						default: './lib/index.js',
-					},
-					'./client': {
-						browser: {
-							import: './esm/client.js',
-							module: './esm/client.js',
-							default: './umd/client.js',
-						},
-						default: './lib/client.js',
-					},
-					'./package.json': './package.json',
-				});
+				expect(pkg.json.exports).toMatchSnapshot();
 			});
 
 			it('adds exports for multiple artifacts with different bundle types', async () => {
@@ -628,35 +573,7 @@ describe('Package', () => {
 
 				await pkg.build({ addExports: true }, config);
 
-				expect(pkg.json.exports).toEqual({
-					'.': {
-						types: './lib/index.d.ts',
-						node: {
-							default: './lib/index.js',
-							types: './lib/index.d.ts',
-						},
-						browser: {
-							import: './esm/index.js',
-							module: './esm/index.js',
-							types: './esm/index.d.ts',
-						},
-						default: './lib/index.js',
-					},
-					'./utils': {
-						types: './lib/utils/index.d.ts',
-						node: {
-							default: './lib/utils/index.js',
-							types: './lib/utils/index.d.ts',
-						},
-						browser: {
-							import: './esm/utils.js',
-							module: './esm/utils.js',
-							types: './esm/utils/index.d.ts',
-						},
-						default: './lib/utils/index.js',
-					},
-					'./package.json': './package.json',
-				});
+				expect(pkg.json.exports).toMatchSnapshot();
 			});
 
 			it('adds exports for bundle and types artifacts in parallel', async () => {
@@ -664,17 +581,7 @@ describe('Package', () => {
 
 				await pkg.build({ addExports: true }, config);
 
-				expect(pkg.json.exports).toEqual({
-					'.': {
-						types: './lib/index.d.ts',
-						node: {
-							types: './lib/index.d.ts',
-							default: './lib/index.js',
-						},
-						default: './lib/index.js',
-					},
-					'./package.json': './package.json',
-				});
+				expect(pkg.json.exports).toMatchSnapshot();
 			});
 
 			it('merges with existing exports', async () => {
@@ -686,11 +593,7 @@ describe('Package', () => {
 
 				await pkg.build({ addExports: true }, config);
 
-				expect(pkg.json.exports).toEqual({
-					'.': { node: './lib/index.js', default: './lib/index.js' },
-					'./foo': './lib/foo.js',
-					'./package.json': './package.json',
-				});
+				expect(pkg.json.exports).toMatchSnapshot();
 			});
 
 			it('adds "mjs wrapper" exports for a single cjs format', async () => {
@@ -698,15 +601,7 @@ describe('Package', () => {
 
 				await pkg.build({ addExports: true }, config);
 
-				expect(pkg.json.exports).toEqual({
-					'.': {
-						node: {
-							import: './cjs/index-wrapper.mjs',
-							require: './cjs/index.cjs',
-						},
-					},
-					'./package.json': './package.json',
-				});
+				expect(pkg.json.exports).toMatchSnapshot();
 			});
 
 			it('supports dual cjs/mjs exports', async () => {
@@ -717,15 +612,7 @@ describe('Package', () => {
 
 				await pkg.build({ addExports: true }, config);
 
-				expect(pkg.json.exports).toEqual({
-					'.': {
-						node: {
-							import: './mjs/index.mjs',
-							require: './cjs/index.cjs',
-						},
-					},
-					'./package.json': './package.json',
-				});
+				expect(pkg.json.exports).toMatchSnapshot();
 			});
 		});
 
@@ -811,34 +698,9 @@ describe('Package', () => {
 				expect.objectContaining({
 					main: './cjs/index.cjs',
 					bin: './lib/bin.js',
-					exports: {
-						'./package.json': './package.json',
-						'.': {
-							node: {
-								import: './cjs/index-wrapper.mjs',
-								require: './cjs/index.cjs',
-								types: './cjs/node.d.ts',
-							},
-						},
-						'./bin': {
-							types: './lib/cli.d.ts',
-							node: { default: './lib/bin.js', types: './lib/cli.d.ts' },
-							default: './lib/bin.js',
-						},
-						'./web': {
-							types: './lib/web.d.ts',
-							browser: {
-								import: './esm/web.js',
-								module: './esm/web.js',
-								default: './lib/web.js',
-								types: './esm/web.d.ts',
-							},
-							default: './lib/web.js',
-						},
-						'./import': { node: { import: './mjs/import.mjs', types: './mjs/web.d.ts' } },
-					},
 				}),
 			);
+			expect(pkg.json.exports).toMatchSnapshot();
 		});
 
 		it('public api + bundle: uses inputs as subpath imports (non-deep imports)', async () => {
@@ -877,37 +739,9 @@ describe('Package', () => {
 				expect.objectContaining({
 					main: './cjs/node.cjs',
 					bin: './lib/cli.js',
-					exports: {
-						'./package.json': './package.json',
-						'./bin': {
-							types: './lib/cli.d.ts',
-							node: {
-								default: './lib/cli.js',
-								types: './lib/cli.d.ts',
-							},
-							default: './lib/cli.js',
-						},
-						'./import': { node: { import: './mjs/web.mjs', types: './mjs/web.d.ts' } },
-						'./web': {
-							types: './lib/web.d.ts',
-							browser: {
-								import: './esm/web.js',
-								module: './esm/web.js',
-								default: './lib/web.js',
-								types: './esm/web.d.ts',
-							},
-							default: './lib/web.js',
-						},
-						'.': {
-							node: {
-								import: './cjs/node-wrapper.mjs',
-								require: './cjs/node.cjs',
-								types: './cjs/node.d.ts',
-							},
-						},
-					},
 				}),
 			);
+			expect(pkg.json.exports).toMatchSnapshot();
 		});
 
 		it('public api + no bundle: uses patterns as subpath imports (deep imports)', async () => {
@@ -947,43 +781,9 @@ describe('Package', () => {
 					main: './cjs/node.cjs',
 					module: './esm/web.js',
 					bin: './lib/cli.js',
-					exports: {
-						'./package.json': './package.json',
-						'./*': {
-							types: './lib/*.d.ts',
-							browser: {
-								import: './esm/*.js',
-								module: './esm/*.js',
-								default: './lib/*.js',
-								types: './esm/*.d.ts',
-							},
-							node: {
-								import: './mjs/*.mjs',
-								require: './cjs/*.cjs',
-								default: './lib/*.js',
-								types: './mjs/*.d.ts',
-							},
-							default: './lib/*.js',
-						},
-						'.': {
-							types: './lib/web.d.ts',
-							browser: {
-								import: './esm/web.js',
-								module: './esm/web.js',
-								default: './lib/web.js',
-								types: './esm/web.d.ts',
-							},
-							node: {
-								import: './mjs/web.mjs',
-								require: './cjs/node.cjs',
-								default: './lib/cli.js',
-								types: './mjs/web.d.ts',
-							},
-							default: './lib/web.js',
-						},
-					},
 				}),
 			);
+			expect(pkg.json.exports).toMatchSnapshot();
 		});
 	});
 

@@ -1,5 +1,244 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Package > build() > exports > adds "mjs wrapper" exports for a single cjs format 1`] = `
+{
+  ".": {
+    "default": "./cjs/index.cjs",
+    "import": "./cjs/index-wrapper.mjs",
+  },
+  "./package.json": "./package.json",
+}
+`;
+
+exports[`Package > build() > exports > adds exports for a single artifact and format 1`] = `
+{
+  ".": {
+    "default": "./lib/index.js",
+  },
+  "./package.json": "./package.json",
+}
+`;
+
+exports[`Package > build() > exports > adds exports for a single artifact and multiple format 1`] = `
+{
+  ".": {
+    "default": "./lib/index.js",
+    "import": "./mjs/index.mjs",
+    "require": "./cjs/index.cjs",
+  },
+  "./package.json": "./package.json",
+}
+`;
+
+exports[`Package > build() > exports > adds exports for bundle and types artifacts in parallel 1`] = `
+{
+  ".": {
+    "default": "./lib/index.js",
+    "types": "./lib/index.d.ts",
+  },
+  "./package.json": "./package.json",
+}
+`;
+
+exports[`Package > build() > exports > adds exports for multiple artifacts + formats of different output names 1`] = `
+{
+  ".": {
+    "default": "./lib/index.js",
+    "import": "./mjs/index.mjs",
+    "require": "./cjs/index.cjs",
+  },
+  "./client": {
+    "import": "./esm/client.js",
+    "require": "./lib/client.js",
+  },
+  "./package.json": "./package.json",
+}
+`;
+
+exports[`Package > build() > exports > adds exports for multiple artifacts + formats of the same output name 1`] = `
+{
+  ".": {
+    "default": {
+      "import": "./esm/index.js",
+      "require": "./lib/index.js",
+    },
+    "node": {
+      "default": "./lib/index.js",
+      "import": "./mjs/index.mjs",
+      "require": "./cjs/index.cjs",
+    },
+  },
+  "./package.json": "./package.json",
+}
+`;
+
+exports[`Package > build() > exports > adds exports for multiple artifacts of different output names 1`] = `
+{
+  ".": {
+    "default": "./lib/index.js",
+  },
+  "./client": {
+    "default": "./lib/client.js",
+  },
+  "./package.json": "./package.json",
+}
+`;
+
+exports[`Package > build() > exports > adds exports for multiple artifacts of the same output name 1`] = `
+{
+  ".": {
+    "default": "./lib/browser/index.js",
+    "node": "./lib/node/index.js",
+    "react-native": "./lib/native/index.js",
+  },
+  "./package.json": "./package.json",
+}
+`;
+
+exports[`Package > build() > exports > adds exports for multiple artifacts with different bundle types 1`] = `
+{
+  ".": {
+    "default": {
+      "import": "./esm/index.js",
+      "types": "./esm/index.d.ts",
+    },
+    "node": {
+      "default": "./lib/index.js",
+      "types": "./lib/index.d.ts",
+    },
+  },
+  "./package.json": "./package.json",
+  "./utils": {
+    "default": {
+      "import": "./esm/utils.js",
+      "types": "./esm/utils/index.d.ts",
+    },
+    "node": {
+      "default": "./lib/utils/index.js",
+      "types": "./lib/utils/index.d.ts",
+    },
+  },
+}
+`;
+
+exports[`Package > build() > exports > merges with existing exports 1`] = `
+{
+  ".": {
+    "default": "./lib/index.js",
+  },
+  "./foo": "./lib/foo.js",
+  "./package.json": "./package.json",
+}
+`;
+
+exports[`Package > build() > exports > supports dual cjs/mjs exports 1`] = `
+{
+  ".": {
+    "default": "./cjs/index.cjs",
+    "import": "./mjs/index.mjs",
+  },
+  "./package.json": "./package.json",
+}
+`;
+
+exports[`Package > build() > private api: uses inputs as subpath imports 1`] = `
+{
+  ".": {
+    "default": "./cjs/index.cjs",
+    "import": "./cjs/index-wrapper.mjs",
+    "types": "./cjs/node.d.ts",
+  },
+  "./bin": {
+    "default": "./lib/bin.js",
+    "types": "./lib/cli.d.ts",
+  },
+  "./import": {
+    "import": "./mjs/import.mjs",
+    "types": "./mjs/web.d.ts",
+  },
+  "./package.json": "./package.json",
+  "./web": {
+    "import": {
+      "default": "./esm/web.js",
+      "types": "./esm/web.d.ts",
+    },
+    "require": {
+      "default": "./lib/web.js",
+      "types": "./lib/web.d.ts",
+    },
+  },
+}
+`;
+
+exports[`Package > build() > public api + bundle: uses inputs as subpath imports (non-deep imports) 1`] = `
+{
+  ".": {
+    "default": "./cjs/node.cjs",
+    "import": "./cjs/node-wrapper.mjs",
+    "types": "./cjs/node.d.ts",
+  },
+  "./bin": {
+    "default": "./lib/cli.js",
+    "types": "./lib/cli.d.ts",
+  },
+  "./import": {
+    "import": "./mjs/web.mjs",
+    "types": "./mjs/web.d.ts",
+  },
+  "./package.json": "./package.json",
+  "./web": {
+    "import": {
+      "default": "./esm/web.js",
+      "types": "./esm/web.d.ts",
+    },
+    "require": {
+      "default": "./lib/web.js",
+      "types": "./lib/web.d.ts",
+    },
+  },
+}
+`;
+
+exports[`Package > build() > public api + no bundle: uses patterns as subpath imports (deep imports) 1`] = `
+{
+  ".": {
+    "default": {
+      "import": {
+        "default": "./esm/web.js",
+        "types": "./esm/web.d.ts",
+      },
+      "require": {
+        "default": "./lib/web.js",
+        "types": "./lib/web.d.ts",
+      },
+    },
+    "node": {
+      "default": "./lib/cli.js",
+      "import": "./mjs/web.mjs",
+      "types": "./mjs/web.d.ts",
+    },
+  },
+  "./*": {
+    "default": {
+      "import": {
+        "default": "./esm/*.js",
+        "types": "./esm/*.d.ts",
+      },
+      "require": {
+        "default": "./lib/*.js",
+        "types": "./lib/*.d.ts",
+      },
+    },
+    "node": {
+      "default": "./lib/*.js",
+      "import": "./mjs/*.mjs",
+      "types": "./mjs/*.d.ts",
+    },
+  },
+  "./package.json": "./package.json",
+}
+`;
+
 exports[`Package > setConfigs() > errors if input name contains a slash 1`] = `
 [OptimalError: The following validations have failed for \`flag-common\`:
   - Invalid field "inputs". Invalid key "foo/bar". String does not match. (pattern "^[a-zA-Z0-9-_]+$")]
