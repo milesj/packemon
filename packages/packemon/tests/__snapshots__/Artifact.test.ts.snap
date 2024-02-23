@@ -167,6 +167,7 @@ exports[`Artifact > getPackageExports() > supports conditional exports when ther
 {
   ".": {
     "node": {
+      "default": "./lib/index.js",
       "import": {
         "default": "./mjs/index.mjs",
         "types": undefined,
@@ -184,6 +185,10 @@ exports[`Artifact > getPackageExports() > supports conditional exports with type
 {
   ".": {
     "node": {
+      "default": {
+        "default": "./lib/index.js",
+        "types": "./lib/index.d.ts",
+      },
       "import": {
         "default": "./mjs/index.mjs",
         "types": "./mjs/index.d.ts",
