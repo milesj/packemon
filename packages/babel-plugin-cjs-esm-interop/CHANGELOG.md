@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 4.0.0-alpha.1 - 2024-02-29
+
+#### 💥 Breaking
+
+- Rework exports and default condition. (#239) ([aa93b8e](https://github.com/milesj/packemon/commit/aa93b8e)), closes [#239](https://github.com/milesj/packemon/issues/239)
+
+**Note:** Version bump only for package babel-plugin-cjs-esm-interop
+
+
+
+
+
 # 4.0.0-alpha.0 - 2024-02-21
 
 #### 💥 Breaking
