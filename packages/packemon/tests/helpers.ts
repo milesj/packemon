@@ -144,7 +144,7 @@ export function testExampleOutput(
 			delete process.env.PACKEMON_SWC;
 		});
 
-		[...BUILDS.values()].forEach((build) => {
+		[...BUILDS.values()].some((build) => {
 			const pkg = loadPackageAtPath(root);
 			const env = `${build.platform}-${build.support}-${build.format}`;
 
@@ -176,6 +176,8 @@ export function testExampleOutput(
 
 				snapshotPackageBuildOutputs(pkg);
 			});
+
+			return false;
 		});
 	});
 }

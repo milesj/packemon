@@ -1,0 +1,173 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`vanilla extract > bundle + compile > assets/src/styles.css.ts.vanilla.css 1`] = `
+".styles_redText__exh0q70 {
+  color: red;
+}"
+`;
+
+exports[`vanilla extract > bundle + compile > assets/src/styles.css.ts.vanilla.css 2`] = `
+".styles_redText__exh0q70 {
+  color: red;
+}"
+`;
+
+exports[`vanilla extract > bundle + compile > esm/index.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: stable, Format: esm
+
+import './assets/src/styles.css.ts.vanilla.css';
+var redText = 'styles_redText__exh0q70';
+const MyComponent = props => /*#__PURE__*/React.createElement("div", Object.assign({
+  className: redText
+}, props));
+export { MyComponent };
+//# sourceMappingURL=index.js.map
+"
+`;
+
+exports[`vanilla extract > bundle + compile > lib/index.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: stable, Format: lib
+
+'use strict';
+
+require('./assets/src/styles.css.ts.vanilla.css');
+var redText = 'styles_redText__exh0q70';
+const MyComponent = props => /*#__PURE__*/React.createElement("div", Object.assign({
+  className: redText
+}, props));
+exports.MyComponent = MyComponent;
+//# sourceMappingURL=index.js.map
+"
+`;
+
+exports[`vanilla extract > bundle + no compile > esm/index.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: stable, Format: esm
+
+import { style } from '@vanilla-extract/css';
+const redText = style({
+  color: 'red'
+});
+const MyComponent = props => /*#__PURE__*/React.createElement("div", Object.assign({
+  className: redText
+}, props));
+export { MyComponent };
+//# sourceMappingURL=index.js.map
+"
+`;
+
+exports[`vanilla extract > bundle + no compile > lib/index.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: stable, Format: lib
+
+'use strict';
+
+const css = require('@vanilla-extract/css');
+const redText = css.style({
+  color: 'red'
+});
+const MyComponent = props => /*#__PURE__*/React.createElement("div", Object.assign({
+  className: redText
+}, props));
+exports.MyComponent = MyComponent;
+//# sourceMappingURL=index.js.map
+"
+`;
+
+exports[`vanilla extract > no bundle + compile > assets/src/styles.css.ts.vanilla.css 1`] = `
+".styles_redText__exh0q70 {
+  color: red;
+}"
+`;
+
+exports[`vanilla extract > no bundle + compile > assets/src/styles.css.ts.vanilla.css 2`] = `
+".styles_redText__exh0q70 {
+  color: red;
+}"
+`;
+
+exports[`vanilla extract > no bundle + compile > esm/index.js 1`] = `
+"import { redText } from './styles.css.js';
+const MyComponent = props => /*#__PURE__*/React.createElement("div", Object.assign({
+  className: redText
+}, props));
+export { MyComponent };
+//# sourceMappingURL=index.js.map
+"
+`;
+
+exports[`vanilla extract > no bundle + compile > esm/styles.css.js 1`] = `
+"import './assets/src/styles.css.ts.vanilla.css';
+var redText = 'styles_redText__exh0q70';
+export { redText };
+//# sourceMappingURL=styles.css.js.map
+"
+`;
+
+exports[`vanilla extract > no bundle + compile > lib/index.js 1`] = `
+"'use strict';
+
+const styles_css = require('./styles.css.js');
+const MyComponent = props => /*#__PURE__*/React.createElement("div", Object.assign({
+  className: styles_css.redText
+}, props));
+exports.MyComponent = MyComponent;
+//# sourceMappingURL=index.js.map
+"
+`;
+
+exports[`vanilla extract > no bundle + compile > lib/styles.css.js 1`] = `
+"'use strict';
+
+require('./assets/src/styles.css.ts.vanilla.css');
+var redText = 'styles_redText__exh0q70';
+exports.redText = redText;
+//# sourceMappingURL=styles.css.js.map
+"
+`;
+
+exports[`vanilla extract > no bundle + no compile > esm/index.js 1`] = `
+"import { redText } from './styles.css.js';
+const MyComponent = props => /*#__PURE__*/React.createElement("div", Object.assign({
+  className: redText
+}, props));
+export { MyComponent };
+//# sourceMappingURL=index.js.map
+"
+`;
+
+exports[`vanilla extract > no bundle + no compile > esm/styles.css.js 1`] = `
+"import { style } from '@vanilla-extract/css';
+const redText = style({
+  color: 'red'
+});
+export { redText };
+//# sourceMappingURL=styles.css.js.map
+"
+`;
+
+exports[`vanilla extract > no bundle + no compile > lib/index.js 1`] = `
+"'use strict';
+
+const styles_css = require('./styles.css.js');
+const MyComponent = props => /*#__PURE__*/React.createElement("div", Object.assign({
+  className: styles_css.redText
+}, props));
+exports.MyComponent = MyComponent;
+//# sourceMappingURL=index.js.map
+"
+`;
+
+exports[`vanilla extract > no bundle + no compile > lib/styles.css.js 1`] = `
+"'use strict';
+
+const css = require('@vanilla-extract/css');
+const redText = css.style({
+  color: 'red'
+});
+exports.redText = redText;
+//# sourceMappingURL=styles.css.js.map
+"
+`;
