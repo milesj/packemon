@@ -36,7 +36,7 @@ describe('vanilla extract', () => {
 		snapshotPackageBuildOutputs(pkg);
 	});
 
-	it.skip('bundle + compile', async () => {
+	it('bundle + compile', async () => {
 		const root = new Path(getFixturePath('project-assets-vanilla'));
 		const pkg = loadPackageAtPath(root);
 
@@ -60,6 +60,40 @@ describe('vanilla extract', () => {
 				},
 			},
 		);
+
+		snapshotPackageBuildOutputs(pkg);
+	});
+
+	it('no bundle + no compile', async () => {
+		const root = new Path(getFixturePath('project-assets-vanilla'));
+		const pkg = loadPackageAtPath(root);
+
+		const index = new Artifact(pkg, [{ format: 'lib' }, { format: 'esm' }]);
+		index.bundle = false;
+		index.platform = 'browser';
+		index.support = 'stable';
+		index.inputs = { index: 'src/index.tsx' };
+
+		pkg.artifacts.push(index);
+
+		await pkg.build({ addEntries: false }, {});
+
+		snapshotPackageBuildOutputs(pkg);
+	});
+
+	it('bundle + no compile', async () => {
+		const root = new Path(getFixturePath('project-assets-vanilla'));
+		const pkg = loadPackageAtPath(root);
+
+		const index = new Artifact(pkg, [{ format: 'lib' }, { format: 'esm' }]);
+		index.bundle = true;
+		index.platform = 'browser';
+		index.support = 'stable';
+		index.inputs = { index: 'src/index.tsx' };
+
+		pkg.artifacts.push(index);
+
+		await pkg.build({ addEntries: false }, {});
 
 		snapshotPackageBuildOutputs(pkg);
 	});
