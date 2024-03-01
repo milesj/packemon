@@ -5459,13 +5459,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swc/cli@npm:^0.3.9":
-  version: 0.3.9
-  resolution: "@swc/cli@npm:0.3.9"
+"@swc/cli@npm:^0.3.10":
+  version: 0.3.10
+  resolution: "@swc/cli@npm:0.3.10"
   dependencies:
     "@mole-inc/bin-wrapper": "npm:^8.0.1"
     "@swc/counter": "npm:^0.1.3"
-    commander: "npm:^7.1.0"
+    commander: "npm:^8.3.0"
     fast-glob: "npm:^3.2.5"
     minimatch: "npm:^9.0.3"
     piscina: "npm:^4.3.0"
@@ -5482,7 +5482,7 @@ __metadata:
     spack: bin/spack.js
     swc: bin/swc.js
     swcx: bin/swcx.js
-  checksum: 10/3dde580c822e35bb6bea7857c6fbc2f9a326d1c2c061fb0aa90a8ac42c369302fdaffbf954c3d74b48e07c03d82737de6f8aee3ed1945251941385267624ab52
+  checksum: 10/95d2ffba809dc49e5b9ae7be689657c85934c1c6c39c7ba2e326169e5c0974838cf673f0e7b4b3dda277eec81c696bb5d0ce8afbd95856cffa7b0d903b327848
   languageName: node
   linkType: hard
 
@@ -6108,10 +6108,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^16.18.85":
-  version: 16.18.85
-  resolution: "@types/node@npm:16.18.85"
-  checksum: 10/c9ca16492b05bd4142cb70215697f013529017e5f8115bb22bb9d8744936915735a464fe081742501fc0a23656a781957bc6af633be8a67b16f0970a4f67c3c0
+"@types/node@npm:^16.18.86":
+  version: 16.18.86
+  resolution: "@types/node@npm:16.18.86"
+  checksum: 10/a2d4f36698abd0da6ec548d72a154566729b80dbec7cf14ddcc444ced14f483733a29eaa65d4128ffc9720414b2b4d5c35085b9cebfdf8ef43bf644e12c991b9
   languageName: node
   linkType: hard
 
@@ -6189,14 +6189,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:^18.2.60":
-  version: 18.2.60
-  resolution: "@types/react@npm:18.2.60"
+"@types/react@npm:*, @types/react@npm:^18.2.61":
+  version: 18.2.61
+  resolution: "@types/react@npm:18.2.61"
   dependencies:
     "@types/prop-types": "npm:*"
     "@types/scheduler": "npm:*"
     csstype: "npm:^3.0.2"
-  checksum: 10/5f2f6091623f13375a5bbc7e5c222cd212b5d6366ead737b76c853f6f52b314db24af5ae3f688d2d49814c668c216858a75433f145311839d8989d46bb3cbecf
+  checksum: 10/74c2920ccca83fc51190ed4eda1066fa6a644197839dd37765fcce93cbd50b7a52b75815ce0083bb95195f886c80b57745314dd49ecbf235fa93d753ae2260bc
   languageName: node
   linkType: hard
 
@@ -8961,7 +8961,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"commander@npm:^7.0.0, commander@npm:^7.1.0, commander@npm:^7.2.0":
+"commander@npm:^7.0.0, commander@npm:^7.2.0":
   version: 7.2.0
   resolution: "commander@npm:7.2.0"
   checksum: 10/9973af10727ad4b44f26703bf3e9fdc323528660a7590efe3aa9ad5042b4584c0deed84ba443f61c9d6f02dade54a5a5d3c95e306a1e1630f8374ae6db16c06d
@@ -10329,10 +10329,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"electron-to-chromium@npm:^1.4.668, electron-to-chromium@npm:^1.4.687":
-  version: 1.4.687
-  resolution: "electron-to-chromium@npm:1.4.687"
-  checksum: 10/a617b0c659a1717fa5315100d9dabf637bdf1dfd2d4eaca3e9e7710802e2a8561cd2bdf91fb5d6d9a6e94c7ba93c98745523f3828d990a9e6ac5a40639e11e41
+"electron-to-chromium@npm:^1.4.668, electron-to-chromium@npm:^1.4.689":
+  version: 1.4.689
+  resolution: "electron-to-chromium@npm:1.4.689"
+  checksum: 10/a1267505d9bc78477ea89a44b81e3a4b116b27b3d1213510f66f8a71a9a5b61acf5d630dd1d5acdf3cb8a79ff7124da7834e8a0d2d073d5f3cb717776786eddc
   languageName: node
   linkType: hard
 
@@ -18675,15 +18675,15 @@ __metadata:
     "@babel/core": "npm:^7.24.0"
     "@moonrepo/cli": "npm:^1.22.2"
     "@moonrepo/dev": "npm:^2.0.1"
-    "@swc/cli": "npm:^0.3.9"
+    "@swc/cli": "npm:^0.3.10"
     "@types/micromatch": "npm:^4.0.6"
-    "@types/node": "npm:^16.18.85"
-    "@types/react": "npm:^18.2.60"
+    "@types/node": "npm:^16.18.86"
+    "@types/react": "npm:^18.2.61"
     "@types/semver": "npm:^7.5.8"
     "@vanilla-extract/rollup-plugin": "npm:^1.3.4"
     babel-preset-moon: "npm:^2.0.15"
     chokidar: "npm:^3.6.0"
-    electron-to-chromium: "npm:^1.4.687"
+    electron-to-chromium: "npm:^1.4.689"
     eslint: "npm:^8.57.0"
     eslint-config-moon: "npm:^2.1.2"
     lerna: "npm:^8.1.2"
