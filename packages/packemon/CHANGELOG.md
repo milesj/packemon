@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 4.0.0-alpha.2 - 2024-03-01
+
+#### 🐞 Fixes
+
+- Improve assets handling and support vanilla extract styles. (#240) ([a52c5a6](https://github.com/milesj/packemon/commit/a52c5a6)), closes [#240](https://github.com/milesj/packemon/issues/240)
+
+**Note:** Version bump only for package packemon
+
+
+
+
+
 # 4.0.0-alpha.1 - 2024-02-29
 
 #### 💥 Breaking
