@@ -1,3 +1,3 @@
-import { redText } from './style.css';
+import { redText } from './styles.css';
 
 export const MyComponent = (props) => <div className={redText} {...props} />;

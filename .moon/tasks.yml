@@ -23,8 +23,6 @@ tasks:
 
   test:
     command: 'vitest run --config ../../vitest.config.ts'
-    inputs:
-      - '/vitest.config.ts'
     deps:
       - '^:build'
 

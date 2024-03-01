@@ -30,6 +30,7 @@
     "@types/node": "^16.18.85",
     "@types/react": "^18.2.60",
     "@types/semver": "^7.5.8",
+    "@vanilla-extract/rollup-plugin": "^1.3.4",
     "babel-preset-moon": "^2.0.15",
     "chokidar": "^3.6.0",
     "electron-to-chromium": "^1.4.687",
@@ -47,9 +48,5 @@
     "type": "ko-fi",
     "url": "https://ko-fi.com/milesjohnson"
   },
-  "packageManager": "yarn@4.1.0",
-  "resolutions": {
-    "@rollup/plugin-commonjs@^22.0.2": "patch:@rollup/plugin-commonjs@npm:22.0.2#.yarn/patches/@rollup-plugin-commonjs-npm-22.0.2-6275b92096.patch",
-    "@rollup/plugin-node-resolve@^13.3.0": "patch:@rollup/plugin-node-resolve@npm:13.3.0#.yarn/patches/@rollup-plugin-node-resolve-npm-13.3.0-a93dd11647.patch"
-  }
+  "packageManager": "yarn@4.1.0"
 }

@@ -102,9 +102,6 @@ export function copyAndRefAssets(
 
 					return { id, external: true };
 				}
-
-				// Ignore files coming from node modules
-				return false;
 			}
 
 			return null;
