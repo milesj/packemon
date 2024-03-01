@@ -1,0 +1,29 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`vanilla extract > uses same assets across multiple formats > esm/index.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: stable, Format: esm
+
+import { redText } from './style.css';
+const MyComponent = props => /*#__PURE__*/React.createElement("div", Object.assign({
+  className: redText
+}, props));
+export { MyComponent };
+//# sourceMappingURL=index.js.map
+"
+`;
+
+exports[`vanilla extract > uses same assets across multiple formats > lib/index.js 1`] = `
+"// Bundled with Packemon: https://packemon.dev
+// Platform: browser, Support: stable, Format: lib
+
+'use strict';
+
+const style_css = require('./style.css');
+const MyComponent = props => /*#__PURE__*/React.createElement("div", Object.assign({
+  className: style_css.redText
+}, props));
+exports.MyComponent = MyComponent;
+//# sourceMappingURL=index.js.map
+"
+`;
