@@ -1855,43 +1855,43 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@boost/args@npm:^5.0.0-alpha.2":
-  version: 5.0.0-alpha.2
-  resolution: "@boost/args@npm:5.0.0-alpha.2"
+"@boost/args@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "@boost/args@npm:5.0.0"
   dependencies:
-    "@boost/internal": "npm:^5.0.0-alpha.2"
+    "@boost/internal": "npm:^5.0.0"
     levenary: "npm:^1.1.1"
-  checksum: 10/38ec99f69eb45ad6e81abed17cb9d747d336e0b1bf8f05c39919e9617c74972b415538605c523558df9ea85da475df7b2c33e35c1d938d265b545fe717f84002
+  checksum: 10/b6a574083149970b38c78f2e3f37e0d09d32004eeeae20d734b5be09f6af5d949b07bcede48633d266cea536dd915558886ee46e4fefc1ce3673ba55dedca5b1
   languageName: node
   linkType: hard
 
-"@boost/cli@npm:^5.0.0-alpha.3":
-  version: 5.0.0-alpha.3
-  resolution: "@boost/cli@npm:5.0.0-alpha.3"
+"@boost/cli@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "@boost/cli@npm:5.0.0"
   dependencies:
-    "@boost/args": "npm:^5.0.0-alpha.2"
-    "@boost/common": "npm:^5.0.0-alpha.2"
-    "@boost/event": "npm:^5.0.0-alpha.2"
-    "@boost/internal": "npm:^5.0.0-alpha.2"
-    "@boost/log": "npm:^5.0.0-alpha.3"
-    "@boost/terminal": "npm:^5.0.0-alpha.2"
-    "@boost/translate": "npm:^5.0.0-alpha.2"
+    "@boost/args": "npm:^5.0.0"
+    "@boost/common": "npm:^5.0.0"
+    "@boost/event": "npm:^5.0.0"
+    "@boost/internal": "npm:^5.0.0"
+    "@boost/log": "npm:^5.0.0"
+    "@boost/terminal": "npm:^5.0.0"
+    "@boost/translate": "npm:^5.0.0"
     execa: "npm:^8.0.1"
     levenary: "npm:^1.1.1"
     semver: "npm:^7.6.0"
   peerDependencies:
     ink: ^4.0.0
     react: ^18.0.0
-  checksum: 10/45946dc02594f467fce0213b0ec574b3577f8c5ccbcb6fbd7f97b7256118328d2c76080d335c96dcc09ceb4e4e33a171ea31dbe5a008aa8e5116b328b1a5f888
+  checksum: 10/06d940e28e6fa7b17ba8cf881f33795be3ca094b1c5bd93fdbb2f17880434712ccb3ed69b4c8d8596b22e05176b4d2b3edb445f280afae5a90671aef2428efa4
   languageName: node
   linkType: hard
 
-"@boost/common@npm:^5.0.0-alpha.2":
-  version: 5.0.0-alpha.2
-  resolution: "@boost/common@npm:5.0.0-alpha.2"
+"@boost/common@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "@boost/common@npm:5.0.0"
   dependencies:
-    "@boost/decorators": "npm:^5.0.0-alpha.2"
-    "@boost/internal": "npm:^5.0.0-alpha.2"
+    "@boost/decorators": "npm:^5.0.0"
+    "@boost/internal": "npm:^5.0.0"
     enhanced-resolve: "npm:^5.15.0"
     fast-glob: "npm:^3.3.2"
     json5: "npm:^2.2.3"
@@ -1903,106 +1903,106 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10/bc7a451ea1668dd494acbcf8dd9eca90b5a05005b3608914b68c34bfdfc38e2de5eb71fe1978f19f31a59135b8e98fc6298baa5a4b4bda4501cc3b62b75e4fa4
+  checksum: 10/4a074eabc21ef036ad2edecc8d3ec96e954f2680e78afb68f39f865ca8d602eca1cdf7fb9740ce7a657bb0db568dca6ebbc17ecd3acf74b7ac608cde9c5b76df
   languageName: node
   linkType: hard
 
-"@boost/config@npm:^5.0.0-alpha.2":
-  version: 5.0.0-alpha.2
-  resolution: "@boost/config@npm:5.0.0-alpha.2"
+"@boost/config@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "@boost/config@npm:5.0.0"
   dependencies:
-    "@boost/common": "npm:^5.0.0-alpha.2"
-    "@boost/debug": "npm:^5.0.0-alpha.2"
-    "@boost/event": "npm:^5.0.0-alpha.2"
-    "@boost/internal": "npm:^5.0.0-alpha.2"
-    "@boost/module": "npm:^5.0.0-alpha.2"
+    "@boost/common": "npm:^5.0.0"
+    "@boost/debug": "npm:^5.0.0"
+    "@boost/event": "npm:^5.0.0"
+    "@boost/internal": "npm:^5.0.0"
+    "@boost/module": "npm:^5.0.0"
     minimatch: "npm:^9.0.3"
-  checksum: 10/2b3617b65b89cc83fedf1fa722938fc8575b0d39c15539daa6cd699639fd4e2e4ffeb3f8ea3c2f1442d10b16a3db1aede68735040eb0d888dd5fdb50d15d5ca6
+  checksum: 10/0b8a82140963d379dcf6b8f6dca6bd2c4248ef9b2358a633d8d9903039c2374943be7d704277680f47d7e3023bd0875844af93fb49aaf7fb77548f8ef73b83d5
   languageName: node
   linkType: hard
 
-"@boost/debug@npm:^5.0.0-alpha.2":
-  version: 5.0.0-alpha.2
-  resolution: "@boost/debug@npm:5.0.0-alpha.2"
+"@boost/debug@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "@boost/debug@npm:5.0.0"
   dependencies:
-    "@boost/common": "npm:^5.0.0-alpha.2"
-    "@boost/internal": "npm:^5.0.0-alpha.2"
+    "@boost/common": "npm:^5.0.0"
+    "@boost/internal": "npm:^5.0.0"
     "@types/debug": "npm:^4.1.12"
     debug: "npm:^4.3.4"
     execa: "npm:^8.0.1"
     fast-glob: "npm:^3.3.2"
-  checksum: 10/5d6ccbdf00c69e34eeb58d11bde79a3b8465d68c0b104d2cc691539aa9c4c7d69b358a72abaa4d2a873340f76d2155f9780bade7ef218299fc1ae1e93a109a08
+  checksum: 10/ddd6e028a0b1b15fef7e277e09bee18fd99dc6effa2d1373120063985e86c949667350ea4cd91581d3cc8e0013225b66d0c27fbf60cbd0184c231e1edb3b6f3d
   languageName: node
   linkType: hard
 
-"@boost/decorators@npm:^5.0.0-alpha.2":
-  version: 5.0.0-alpha.2
-  resolution: "@boost/decorators@npm:5.0.0-alpha.2"
-  checksum: 10/c43c9f0bfdb6ef9b05adc111a1bc978e34d38d0246497d1fd473b394e068bdb15082528b0e51f7e44c787df2141fa2d3182155954cf6968efc1ae3c1a12a431e
+"@boost/decorators@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "@boost/decorators@npm:5.0.0"
+  checksum: 10/773dfe3f0802ee003d7e88fd0b075196aad15e094a64244d6af853baa154886163e77d27c30ca269661ea5bda60bdae388726dc46675a204905af89e5290e7b0
   languageName: node
   linkType: hard
 
-"@boost/event@npm:^5.0.0-alpha.2":
-  version: 5.0.0-alpha.2
-  resolution: "@boost/event@npm:5.0.0-alpha.2"
+"@boost/event@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "@boost/event@npm:5.0.0"
   dependencies:
-    "@boost/internal": "npm:^5.0.0-alpha.2"
-  checksum: 10/6d31eba32b9477150a3273b0455e249ceeef7f0a5bdbf4f1b131acc160394f87a335f78197364c8c83931fbe900792b6dce1524182dba539f54194b86674370a
+    "@boost/internal": "npm:^5.0.0"
+  checksum: 10/19a058235d409dfdb7f4294bfba6e6968fb61b7de57d6605f2deea81a1ae7e521012b4da9283b5fa4450e2c7f41d3c5acef5816a94a54bd2dca37090c4f6fdf4
   languageName: node
   linkType: hard
 
-"@boost/internal@npm:^5.0.0-alpha.2":
-  version: 5.0.0-alpha.2
-  resolution: "@boost/internal@npm:5.0.0-alpha.2"
+"@boost/internal@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "@boost/internal@npm:5.0.0"
   dependencies:
     debug: "npm:^4.3.4"
-  checksum: 10/0237356f0bb36ad64340c1f5810281bd8332ca687f0b8c4fb0fe5a78d855df15265b3e4ed82e8dc8d02ba248f4981eb9540d81f8c7010ad59549cdfdd8609908
+  checksum: 10/ed9e2e2eb02702ec7afc70c4437401a67fcf7e4f690ce6a2140746cc076865b26811e1f174b31cac85c2ef0686fc10e21c0cf74e938977425c1eff68b51472a4
   languageName: node
   linkType: hard
 
-"@boost/log@npm:^5.0.0-alpha.3":
-  version: 5.0.0-alpha.3
-  resolution: "@boost/log@npm:5.0.0-alpha.3"
+"@boost/log@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "@boost/log@npm:5.0.0"
   dependencies:
-    "@boost/common": "npm:^5.0.0-alpha.2"
-    "@boost/internal": "npm:^5.0.0-alpha.2"
-    "@boost/translate": "npm:^5.0.0-alpha.2"
+    "@boost/common": "npm:^5.0.0"
+    "@boost/internal": "npm:^5.0.0"
+    "@boost/translate": "npm:^5.0.0"
     chalk: "npm:^5.3.0"
-  checksum: 10/2fdd25debe8eddc2558b645375ea96c85fc4d076338b948b0ab0a27aa0cdd13957983a3b9cbac8f4cade5b7b606331f1a95552cacee0e4626160f224fdd51ec6
+  checksum: 10/0ec9129e45b6f720f56ab965f338aa54d50421a3ede70954e67bc1f625f00c6e2b3a39e42fcced697bd4a8ceb402b689aea6d0e8845b8a907d517cfb6d3b1dab
   languageName: node
   linkType: hard
 
-"@boost/module@npm:^5.0.0-alpha.2":
-  version: 5.0.0-alpha.2
-  resolution: "@boost/module@npm:5.0.0-alpha.2"
+"@boost/module@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "@boost/module@npm:5.0.0"
   peerDependencies:
     typescript: ^5.0.0
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10/e395f57712c6e25233c2fae555e61b54cf2183d14a75104a72feabaa1e0452c5f3a8b0820761f99f77cf31252ab7364f29a48e28348288c424a361248493174b
+  checksum: 10/3fa0462ad00b839e5805e7ce3033cbea115f8033437986f1284511b555ccf74637dac07aea734dcfebc187e8085b6835af3c754e8f5fbb8e7bc5d188dc40491a
   languageName: node
   linkType: hard
 
-"@boost/pipeline@npm:^5.0.0-alpha.2":
-  version: 5.0.0-alpha.2
-  resolution: "@boost/pipeline@npm:5.0.0-alpha.2"
+"@boost/pipeline@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "@boost/pipeline@npm:5.0.0"
   dependencies:
-    "@boost/common": "npm:^5.0.0-alpha.2"
-    "@boost/debug": "npm:^5.0.0-alpha.2"
-    "@boost/event": "npm:^5.0.0-alpha.2"
-    "@boost/internal": "npm:^5.0.0-alpha.2"
-    "@boost/translate": "npm:^5.0.0-alpha.2"
+    "@boost/common": "npm:^5.0.0"
+    "@boost/debug": "npm:^5.0.0"
+    "@boost/event": "npm:^5.0.0"
+    "@boost/internal": "npm:^5.0.0"
+    "@boost/translate": "npm:^5.0.0"
     execa: "npm:^8.0.1"
     lodash-es: "npm:^4.17.21"
     split: "npm:^1.0.1"
-  checksum: 10/dc99acc27cab9841b89a0b465551fc2927d3c198692a635faf0c77fdb3d6aec78f170bf1fd91172702190563526dab6fe1445c3db9628d641d9e03f279ad8020
+  checksum: 10/0354f7ce1e9e38d86ada1e12d102ad637f59ff917061092901506b90807ae3504eeff732cdb20ab57a7656b174fb5b18eba419c464fdeba23c36057421b4ae1e
   languageName: node
   linkType: hard
 
-"@boost/terminal@npm:^5.0.0-alpha.2":
-  version: 5.0.0-alpha.2
-  resolution: "@boost/terminal@npm:5.0.0-alpha.2"
+"@boost/terminal@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "@boost/terminal@npm:5.0.0"
   dependencies:
     ansi-escapes: "npm:^6.2.0"
     ansi-regex: "npm:^6.0.1"
@@ -2015,19 +2015,19 @@ __metadata:
     supports-hyperlinks: "npm:^3.0.0"
     term-size: "npm:^3.0.2"
     wrap-ansi: "npm:^8.1.0"
-  checksum: 10/e3fee812a1d2f1c259d67aaeff619d2a675fbd5b6ff5081d6c734257f549d9bdc17940a390bf848b8be08b0426ccde9a7892bae7284a8adf1a77da7e2c6a5876
+  checksum: 10/396b59b63f7596edb4df2db417d175611c3807447ad1ce879370e130875ef74f2c5b9659563f939e7c5b9d463383d1ba08efb959f58e9410650d737ddedb1aa2
   languageName: node
   linkType: hard
 
-"@boost/translate@npm:^5.0.0-alpha.2":
-  version: 5.0.0-alpha.2
-  resolution: "@boost/translate@npm:5.0.0-alpha.2"
+"@boost/translate@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "@boost/translate@npm:5.0.0"
   dependencies:
-    "@boost/common": "npm:^5.0.0-alpha.2"
-    "@boost/internal": "npm:^5.0.0-alpha.2"
+    "@boost/common": "npm:^5.0.0"
+    "@boost/internal": "npm:^5.0.0"
     i18next: "npm:^23.8.2"
     os-locale: "npm:^6.0.2"
-  checksum: 10/c134daba0a5838141d40396db01c6a16307f9012356531b70333c88925f7247ae82de6a02148adcddc574096f8f55685c5a4022a505a2f115f85a43e3c85d434
+  checksum: 10/6d26fd509fc30efa422ade26dbdf32da64162fc5f7e60ecc4a58effd3e0f4d087924c86745949d87d109b95367a384d1d9f0a118dffc0e6304ae3eeee4d0ae6d
   languageName: node
   linkType: hard
 
@@ -3437,17 +3437,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@moonrepo/cli@npm:^1.22.2":
-  version: 1.22.2
-  resolution: "@moonrepo/cli@npm:1.22.2"
+"@moonrepo/cli@npm:^1.22.5":
+  version: 1.22.5
+  resolution: "@moonrepo/cli@npm:1.22.5"
   dependencies:
-    "@moonrepo/core-linux-arm64-gnu": "npm:1.22.2"
-    "@moonrepo/core-linux-arm64-musl": "npm:1.22.2"
-    "@moonrepo/core-linux-x64-gnu": "npm:1.22.2"
-    "@moonrepo/core-linux-x64-musl": "npm:1.22.2"
-    "@moonrepo/core-macos-arm64": "npm:1.22.2"
-    "@moonrepo/core-macos-x64": "npm:1.22.2"
-    "@moonrepo/core-windows-x64-msvc": "npm:1.22.2"
+    "@moonrepo/core-linux-arm64-gnu": "npm:1.22.5"
+    "@moonrepo/core-linux-arm64-musl": "npm:1.22.5"
+    "@moonrepo/core-linux-x64-gnu": "npm:1.22.5"
+    "@moonrepo/core-linux-x64-musl": "npm:1.22.5"
+    "@moonrepo/core-macos-arm64": "npm:1.22.5"
+    "@moonrepo/core-macos-x64": "npm:1.22.5"
+    "@moonrepo/core-windows-x64-msvc": "npm:1.22.5"
     detect-libc: "npm:^2.0.2"
   dependenciesMeta:
     "@moonrepo/core-linux-arm64-gnu":
@@ -3466,55 +3466,55 @@ __metadata:
       optional: true
   bin:
     moon: moon
-  checksum: 10/7a2effe45942eeffb612f7e2b142c9abf5dbb394071128bd8c0636b55741058c2396b7cdf35214e74ccfe8205bbc3c39e4b886a0075471761b8df47b7140ef3c
+  checksum: 10/f2cfa04a879d1781689fb1efb965a3b577a62859c6d6d143434cc0260cf783914dd7c3301a9c68e920aea6fb492b80bba11f0bd8482fdb3a62a05693b9991ea0
   languageName: node
   linkType: hard
 
-"@moonrepo/core-linux-arm64-gnu@npm:1.22.2":
-  version: 1.22.2
-  resolution: "@moonrepo/core-linux-arm64-gnu@npm:1.22.2"
+"@moonrepo/core-linux-arm64-gnu@npm:1.22.5":
+  version: 1.22.5
+  resolution: "@moonrepo/core-linux-arm64-gnu@npm:1.22.5"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@moonrepo/core-linux-arm64-musl@npm:1.22.2":
-  version: 1.22.2
-  resolution: "@moonrepo/core-linux-arm64-musl@npm:1.22.2"
+"@moonrepo/core-linux-arm64-musl@npm:1.22.5":
+  version: 1.22.5
+  resolution: "@moonrepo/core-linux-arm64-musl@npm:1.22.5"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@moonrepo/core-linux-x64-gnu@npm:1.22.2":
-  version: 1.22.2
-  resolution: "@moonrepo/core-linux-x64-gnu@npm:1.22.2"
+"@moonrepo/core-linux-x64-gnu@npm:1.22.5":
+  version: 1.22.5
+  resolution: "@moonrepo/core-linux-x64-gnu@npm:1.22.5"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@moonrepo/core-linux-x64-musl@npm:1.22.2":
-  version: 1.22.2
-  resolution: "@moonrepo/core-linux-x64-musl@npm:1.22.2"
+"@moonrepo/core-linux-x64-musl@npm:1.22.5":
+  version: 1.22.5
+  resolution: "@moonrepo/core-linux-x64-musl@npm:1.22.5"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@moonrepo/core-macos-arm64@npm:1.22.2":
-  version: 1.22.2
-  resolution: "@moonrepo/core-macos-arm64@npm:1.22.2"
+"@moonrepo/core-macos-arm64@npm:1.22.5":
+  version: 1.22.5
+  resolution: "@moonrepo/core-macos-arm64@npm:1.22.5"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@moonrepo/core-macos-x64@npm:1.22.2":
-  version: 1.22.2
-  resolution: "@moonrepo/core-macos-x64@npm:1.22.2"
+"@moonrepo/core-macos-x64@npm:1.22.5":
+  version: 1.22.5
+  resolution: "@moonrepo/core-macos-x64@npm:1.22.5"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@moonrepo/core-windows-x64-msvc@npm:1.22.2":
-  version: 1.22.2
-  resolution: "@moonrepo/core-windows-x64-msvc@npm:1.22.2"
+"@moonrepo/core-windows-x64-msvc@npm:1.22.5":
+  version: 1.22.5
+  resolution: "@moonrepo/core-windows-x64-msvc@npm:1.22.5"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
@@ -18682,7 +18682,7 @@ __metadata:
   dependencies:
     "@babel/cli": "npm:^7.23.9"
     "@babel/core": "npm:^7.24.0"
-    "@moonrepo/cli": "npm:^1.22.2"
+    "@moonrepo/cli": "npm:^1.22.5"
     "@moonrepo/dev": "npm:^2.0.1"
     "@swc/cli": "npm:^0.3.10"
     "@types/micromatch": "npm:^4.0.6"
@@ -18718,13 +18718,13 @@ __metadata:
     "@babel/preset-flow": "npm:^7.24.0"
     "@babel/preset-react": "npm:^7.23.3"
     "@babel/preset-typescript": "npm:^7.23.3"
-    "@boost/cli": "npm:^5.0.0-alpha.3"
-    "@boost/common": "npm:^5.0.0-alpha.2"
-    "@boost/config": "npm:^5.0.0-alpha.2"
-    "@boost/debug": "npm:^5.0.0-alpha.2"
-    "@boost/event": "npm:^5.0.0-alpha.2"
-    "@boost/pipeline": "npm:^5.0.0-alpha.2"
-    "@boost/terminal": "npm:^5.0.0-alpha.2"
+    "@boost/cli": "npm:^5.0.0"
+    "@boost/common": "npm:^5.0.0"
+    "@boost/config": "npm:^5.0.0"
+    "@boost/debug": "npm:^5.0.0"
+    "@boost/event": "npm:^5.0.0"
+    "@boost/pipeline": "npm:^5.0.0"
+    "@boost/terminal": "npm:^5.0.0"
     "@rollup/plugin-babel": "npm:^6.0.4"
     "@rollup/plugin-commonjs": "npm:^25.0.7"
     "@rollup/plugin-json": "npm:^6.1.0"
