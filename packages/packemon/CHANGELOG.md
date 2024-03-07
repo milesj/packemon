@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 4.0.0 - 2024-03-07
+
+#### 💥 Breaking
+
+- Upgrade to [@boost](https://github.com/boost) v5. ([a839044](https://github.com/milesj/packemon/commit/a839044))
+
+**Note:** Version bump only for package packemon
+
+
+
+
+
 ### 4.0.0-alpha.2 - 2024-03-01
 
 #### 🐞 Fixes
