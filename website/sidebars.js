@@ -30,7 +30,7 @@ module.exports = {
 		{
 			type: 'category',
 			label: 'Migration',
-			items: ['migrate/3.0', 'migrate/2.0'],
+			items: ['migrate/4.0', 'migrate/3.0', 'migrate/2.0'],
 		},
 		{
 			type: 'link',
