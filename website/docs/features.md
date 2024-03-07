@@ -104,6 +104,36 @@ packemon build # development
 packemon pack # production
 ```
 
+## Automatic package `exports`
+
+When the `--addExports` CLI option is enabled, Packemon will automatically generate an `exports`
+field in `package.json`, based on the configured inputs, formats, and platforms for the package.
+Packemon will do its best to map the configuration to exports conditions, such as `browser`, `node`,
+`import`, etc. When `--declaration` is passed, it'll also include the `types` condition for
+TypeScript.
+
+As a demonstration, this is the `packemon` package itself:
+
+```json
+{
+  "exports": {
+    "./package.json": "./package.json",
+    "./babel": {
+      "types": "./mjs/babel.d.ts",
+      "import": "./mjs/babel.mjs"
+    },
+    "./bin": {
+      "types": "./mjs/bin.d.ts",
+      "import": "./mjs/bin.mjs"
+    },
+    ".": {
+      "types": "./mjs/index.d.ts",
+      "import": "./mjs/index.mjs"
+    }
+  }
+}
+```
+
 ## Tree-shaking optimization
 
 When a package is [bundled](./config.md#bundle), tree-shaking and pure annotations are automatically

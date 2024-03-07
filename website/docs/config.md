@@ -90,9 +90,9 @@ The supported environments above map to the following platform targets.
 |          | Legacy              | Stable              | Current         | Experimental           |
 | -------- | ------------------- | ------------------- | --------------- | ---------------------- |
 | Browser  | >= 0.10%, not IE 11 | defaults, not IE 11 | >= 1%, not dead | last 2 chrome versions |
-| Electron | >= 7.0.0            | >= 11.0.0           | >= 16.0.0       | >= 21.0.0              |
-| Native   | >= iOS 13           | >= iOS 14           | >= iOS 15       | >= iOS 16              |
-| Node     | >= 14.15.0          | >= 16.12.0          | >= 18.12.0      | >= 19.0.0              |
+| electron | >= 11               | >= 16               | >= 21           | >= 26                  |
+| Native   | >= iOS 14           | >= iOS 15           | >= iOS 16       | >= iOS 17              |
+| Node     | >= 16.12.0          | >= 18.12.0          | >= 20.10.0      | >= 21.6.0              |
 
 ## Formats
 
@@ -105,8 +105,7 @@ project root that will house the built files.
 
 - `lib` - [CommonJS](https://nodejs.org/api/modules.html) output using `.js` file extension. For
   standard JavaScript and TypeScript projects.
-- `esm` _(default)_ - ECMAScript module output using `.js` file extension. The same as `lib`, but
-  uses `import/export` instead of `require`.
+- `esm` _(default)_ - ECMAScript module output using `.js` file extension.
 - `umd` - Universal Module Definition output using `.js` file extension. Meant to be used directly
   in the browser (via CDN) instead of being bundled. Will be automatically enabled if
   [namespace](#namespace) is provided and using default formats.
@@ -115,14 +114,13 @@ project root that will house the built files.
 
 - `lib` - [CommonJS](https://nodejs.org/api/modules.html) output using `.js` file extension. For
   standard JavaScript and TypeScript projects.
-- `esm` _(default)_ - ECMAScript module output using `.js` file extension. The same as `lib`, but
-  uses `import/export` instead of `require`.
+- `esm` _(default)_ - ECMAScript module output using `.js` file extension.
 
 ### Native
 
-- `lib` _(default)_ - [CommonJS](https://nodejs.org/api/modules.html) output using `.js` file
-  extension. For standard JavaScript and TypeScript projects. _This is the only format supported by
-  React Native and Metro._
+- `lib` - [CommonJS](https://nodejs.org/api/modules.html) output using `.js` file extension. For
+  standard JavaScript and TypeScript projects.
+- `esm` _(default)_ - ECMAScript module output using `.js` file extension.
 
 ### Node
 
