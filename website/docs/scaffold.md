@@ -4,6 +4,7 @@ title: scaffold
 
 The `scaffold` command is an interactive prompt that scaffolds a project or package from scratch. It
 creates all the necessary files, folders, and configurations for maintaining an npm package(s).
+Packages are structured for the `browser` platform, using the `esm` format.
 
 The command _requires_ a destination folder param to copy files to. The path is relative to the
 current working directory.

@@ -3,9 +3,8 @@
   "extends": "tsconfig-moon/tsconfig.json",
   "compilerOptions": {
     "declaration": true,
-    "declarationDir": "dts",
     "emitDeclarationOnly": true,
-    "outDir": "dts",
+    "outDir": "esm",
     "rootDir": "src"
   },
   "include": ["src/**/*", "types/**/*"]
