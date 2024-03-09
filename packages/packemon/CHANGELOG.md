@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 4.0.1 - 2024-03-09
+
+#### 🐞 Fixes
+
+- Fix scaffold generating incorrect TS files. ([55f5d9f](https://github.com/milesj/packemon/commit/55f5d9f))
+- Fix the wrong version being displayed. ([13e464e](https://github.com/milesj/packemon/commit/13e464e))
+
+#### 📘 Docs
+
+- Update node requirements. ([328c28f](https://github.com/milesj/packemon/commit/328c28f))
+
+**Note:** Version bump only for package packemon
+
+
+
+
+
 # 4.0.0 - 2024-03-07
 
 #### 💥 Breaking
