@@ -1,4 +1,4 @@
-/* eslint-disable sort-keys, @typescript-eslint/no-unsafe-call */
+/* eslint-disable sort-keys */
 
 const path = require('node:path');
 

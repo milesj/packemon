@@ -10519,10 +10519,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"electron-to-chromium@npm:^1.4.668, electron-to-chromium@npm:^1.4.689":
-  version: 1.4.689
-  resolution: "electron-to-chromium@npm:1.4.689"
-  checksum: 10/a1267505d9bc78477ea89a44b81e3a4b116b27b3d1213510f66f8a71a9a5b61acf5d630dd1d5acdf3cb8a79ff7124da7834e8a0d2d073d5f3cb717776786eddc
+"electron-to-chromium@npm:^1.4.668, electron-to-chromium@npm:^1.4.759":
+  version: 1.4.759
+  resolution: "electron-to-chromium@npm:1.4.759"
+  checksum: 10/195ae176399de44602cb336540844f1beaba29123b291cf47110da939fd35ca02e2a54f1c768571a578e3bbd31dd35410f5776ca8955fbcfba17d6ca986141c8
   languageName: node
   linkType: hard
 
@@ -18954,7 +18954,7 @@ __metadata:
     babel-preset-moon: "npm:^3.0.1"
     bootstrap: "npm:^5.3.3"
     chokidar: "npm:^3.6.0"
-    electron-to-chromium: "npm:^1.4.689"
+    electron-to-chromium: "npm:^1.4.759"
     eslint: "npm:^8.57.0"
     eslint-config-moon: "npm:^2.1.2"
     lerna: "npm:^8.1.2"
@@ -18962,7 +18962,7 @@ __metadata:
     prettier-config-moon: "npm:^1.1.2"
     ts-node: "npm:^10.9.2"
     tsconfig-moon: "npm:^1.3.0"
-    typescript: "npm:^5.3.3"
+    typescript: "npm:^5.4.5"
     vitest: "npm:^1.6.0"
   languageName: unknown
   linkType: soft
@@ -19012,7 +19012,7 @@ __metadata:
     rollup: "npm:^4.17.2"
     rollup-plugin-node-externals: "npm:^7.1.2"
     rollup-plugin-polyfill-node: "npm:^0.13.0"
-    semver: "npm:^7.6.0"
+    semver: "npm:^7.6.1"
     spdx-license-list: "npm:^6.9.0"
     typescript: "npm:*"
   peerDependencies:
@@ -21635,14 +21635,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"semver@npm:^7.0.0, semver@npm:^7.1.1, semver@npm:^7.3.2, semver@npm:^7.3.4, semver@npm:^7.3.5, semver@npm:^7.3.7, semver@npm:^7.3.8, semver@npm:^7.5.2, semver@npm:^7.5.3, semver@npm:^7.5.4, semver@npm:^7.6.0":
-  version: 7.6.0
-  resolution: "semver@npm:7.6.0"
-  dependencies:
-    lru-cache: "npm:^6.0.0"
+"semver@npm:^7.0.0, semver@npm:^7.1.1, semver@npm:^7.3.2, semver@npm:^7.3.4, semver@npm:^7.3.5, semver@npm:^7.3.7, semver@npm:^7.3.8, semver@npm:^7.5.2, semver@npm:^7.5.3, semver@npm:^7.5.4, semver@npm:^7.6.0, semver@npm:^7.6.1":
+  version: 7.6.1
+  resolution: "semver@npm:7.6.1"
   bin:
     semver: bin/semver.js
-  checksum: 10/1b41018df2d8aca5a1db4729985e8e20428c650daea60fcd16e926e9383217d00f574fab92d79612771884a98d2ee2a1973f49d630829a8d54d6570defe62535
+  checksum: 10/a05a641ebaa65f4a35970bb587c4178dc50931e15261ca60c9d531b4fc2b70a2d24b3f300a3bf6c37f37ce9d007b0071abca2f87c0f947f09a253ecfb0df4026
   languageName: node
   linkType: hard
 
@@ -23508,7 +23506,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:*, typescript@npm:>=3 < 6, typescript@npm:^5.3.3":
+"typescript@npm:*, typescript@npm:>=3 < 6, typescript@npm:^5.4.5":
   version: 5.4.5
   resolution: "typescript@npm:5.4.5"
   bin:
@@ -23518,7 +23516,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A*#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A>=3 < 6#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.3.3#optional!builtin<compat/typescript>":
+"typescript@patch:typescript@npm%3A*#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A>=3 < 6#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.4.5#optional!builtin<compat/typescript>":
   version: 5.4.5
   resolution: "typescript@patch:typescript@npm%3A5.4.5#optional!builtin<compat/typescript>::version=5.4.5&hash=d69c25"
   bin:
