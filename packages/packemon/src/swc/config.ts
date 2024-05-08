@@ -166,7 +166,6 @@ export function getSwcOutputConfig(
 		// Consumers must polyfill accordingly
 		mode: undefined, // useBuiltIns
 		// Transform features accordingly
-		// @ts-expect-error Not typed
 		bugfixes: true,
 		shippedProposals: true,
 		// Platform specific
