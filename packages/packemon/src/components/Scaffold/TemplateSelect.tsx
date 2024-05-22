@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react';
-import { Select, SelectOptionLike } from '@boost/cli/react';
-import { TemplateType } from '../../types';
+import { Select, type SelectOptionLike } from '@boost/cli/react';
+import type { TemplateType } from '../../types';
 
 export interface TemplateSelectProps {
 	defaultTemplate?: TemplateType;

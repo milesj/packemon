@@ -1,4 +1,4 @@
-import { PluginItem, TransformOptions as ConfigStructure } from '@babel/core';
+import type { PluginItem, TransformOptions as ConfigStructure } from '@babel/core';
 import { Artifact } from '../Artifact';
 import {
 	BROWSER_TARGETS,
@@ -7,7 +7,7 @@ import {
 	NODE_SUPPORTED_VERSIONS,
 } from '../constants';
 import { shouldKeepDynamicImport } from '../helpers/shouldKeepDynamicImport';
-import {
+import type {
 	ConfigFile,
 	FeatureFlags,
 	Format,

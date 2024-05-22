@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 
-import { PackageExportConditions, PackageExports } from '../types';
+import type { PackageExportConditions, PackageExports } from '../types';
 
 export function injectDefaultCondition(exportMap: PackageExports) {
 	Object.entries(exportMap).forEach(([path, conditions]) => {

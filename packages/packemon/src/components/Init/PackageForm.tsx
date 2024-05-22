@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { applyStyle } from '@boost/cli';
-import { Input, MultiSelect, Select, SelectOptionLike } from '@boost/cli/react';
+import { Input, MultiSelect, Select, type SelectOptionLike } from '@boost/cli/react';
 import { toArray } from '@boost/common';
 import {
 	BROWSER_TARGETS,
@@ -11,7 +11,7 @@ import {
 	NATIVE_TARGETS,
 	NODE_SUPPORTED_VERSIONS,
 } from '../../constants';
-import { Format, PackemonPackageConfig, Platform, Support } from '../../types';
+import type { Format, PackemonPackageConfig, Platform, Support } from '../../types';
 
 export interface PackageFormProps {
 	onSubmit: (config: PackemonPackageConfig) => void;

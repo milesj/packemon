@@ -1,5 +1,5 @@
 import { Arg, Config } from '@boost/cli';
-import { ValidateOptions } from '../types';
+import type { ValidateOptions } from '../types';
 import { BaseCommand } from './Base';
 
 @Config('validate', 'Validate package metadata and configuration')

@@ -3,7 +3,7 @@
 import { Arg, Config } from '@boost/cli';
 import { DEFAULT_INPUT, DEFAULT_SUPPORT } from '../constants';
 import { Package } from '../Package';
-import { PackemonPackageConfig } from '../types';
+import type { PackemonPackageConfig } from '../types';
 import { BaseCommand } from './Base';
 
 export interface InitOptions {

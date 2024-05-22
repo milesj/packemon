@@ -1,6 +1,6 @@
-import { Path, PortablePath } from '@boost/common';
-import { FileSystem } from '../FileSystem';
-import { TSConfigStructure } from '../types';
+import { Path, type PortablePath } from '@boost/common';
+import type { FileSystem } from '../FileSystem';
+import type { TSConfigStructure } from '../types';
 import { loadModule } from './loadModule';
 
 const CACHE = new Map<Path, TSConfigStructure>();

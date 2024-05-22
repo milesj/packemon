@@ -1,5 +1,5 @@
 import './types';
-import { NodePath, PluginObj, types as t } from '@babel/core';
+import { NodePath, type PluginObj, types as t } from '@babel/core';
 
 const exprs = {
 	DEV: ['!==', 'production'],

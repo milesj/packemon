@@ -1,6 +1,6 @@
 import glob from 'fast-glob';
 import { Path } from '@boost/common';
-import { FileSystem } from '../../FileSystem';
+import type { FileSystem } from '../../FileSystem';
 
 export async function convertCjsTypes(cjsDir: Path, fs: FileSystem) {
 	const dtsFiles = await glob(['**/*.d.ts', '**/*.d.ts.map'], {
