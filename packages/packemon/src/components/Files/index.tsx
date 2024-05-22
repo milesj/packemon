@@ -3,7 +3,7 @@
 import { Box, Static } from 'ink';
 import { Header } from '@boost/cli/react';
 import { List } from './List';
-import { FileTree, Tree } from './Tree';
+import { type FileTree, Tree } from './Tree';
 
 export type FileFormat = 'list' | 'tree';
 
