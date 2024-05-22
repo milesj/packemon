@@ -119,6 +119,7 @@ export function getRollupOutputConfig(
 			objectShorthand: true,
 			symbols: isEsm,
 		},
+		importAttributesKey: 'with',
 		// Output specific plugins
 		plugins: [
 			preserveDynamicImport(platform, format),
