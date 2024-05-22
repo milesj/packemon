@@ -671,7 +671,7 @@ export { Button as default };
 exports[`React/JSX > swc > transforms example test case: browser-current-esm > esm/index-browser-current-esm.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: esm
-import { jsx } from "react/jsx-runtime";
+import { jsx } from 'react/jsx-runtime';
 function Button() {
     return /*#__PURE__*/ jsx("button", {});
 }
@@ -683,8 +683,8 @@ export { Button as default };
 exports[`React/JSX > swc > transforms example test case: browser-current-lib > lib/index-browser-current-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: current, Format: lib
-"use strict";
-const jsxRuntime = require("react/jsx-runtime");
+'use strict';
+const jsxRuntime = require('react/jsx-runtime');
 function Button() {
     return /*#__PURE__*/ jsxRuntime.jsx("button", {});
 }
@@ -723,7 +723,7 @@ exports[`React/JSX > swc > transforms example test case: browser-current-umd > u
 exports[`React/JSX > swc > transforms example test case: browser-experimental-esm > esm/index-browser-experimental-esm.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: experimental, Format: esm
-import { jsx } from "react/jsx-runtime";
+import { jsx } from 'react/jsx-runtime';
 function Button() {
     return /*#__PURE__*/ jsx("button", {});
 }
@@ -735,8 +735,8 @@ export { Button as default };
 exports[`React/JSX > swc > transforms example test case: browser-experimental-lib > lib/index-browser-experimental-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: experimental, Format: lib
-"use strict";
-const jsxRuntime = require("react/jsx-runtime");
+'use strict';
+const jsxRuntime = require('react/jsx-runtime');
 function Button() {
     return /*#__PURE__*/ jsxRuntime.jsx("button", {});
 }
@@ -775,7 +775,7 @@ exports[`React/JSX > swc > transforms example test case: browser-experimental-um
 exports[`React/JSX > swc > transforms example test case: browser-legacy-esm > esm/index-browser-legacy-esm.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: esm
-import { jsx } from "react/jsx-runtime";
+import { jsx } from 'react/jsx-runtime';
 function Button() {
     return /*#__PURE__*/ jsx("button", {});
 }
@@ -787,8 +787,8 @@ export { Button as default };
 exports[`React/JSX > swc > transforms example test case: browser-legacy-lib > lib/index-browser-legacy-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: lib
-"use strict";
-var jsxRuntime = require("react/jsx-runtime");
+'use strict';
+var jsxRuntime = require('react/jsx-runtime');
 function Button() {
     return /*#__PURE__*/ jsxRuntime.jsx("button", {});
 }
@@ -827,7 +827,7 @@ exports[`React/JSX > swc > transforms example test case: browser-legacy-umd > um
 exports[`React/JSX > swc > transforms example test case: browser-stable-esm > esm/index-browser-stable-esm.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: esm
-import { jsx } from "react/jsx-runtime";
+import { jsx } from 'react/jsx-runtime';
 function Button() {
     return /*#__PURE__*/ jsx("button", {});
 }
@@ -839,8 +839,8 @@ export { Button as default };
 exports[`React/JSX > swc > transforms example test case: browser-stable-lib > lib/index-browser-stable-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: stable, Format: lib
-"use strict";
-const jsxRuntime = require("react/jsx-runtime");
+'use strict';
+const jsxRuntime = require('react/jsx-runtime');
 function Button() {
     return /*#__PURE__*/ jsxRuntime.jsx("button", {});
 }
@@ -879,7 +879,7 @@ exports[`React/JSX > swc > transforms example test case: browser-stable-umd > um
 exports[`React/JSX > swc > transforms example test case: electron-current-esm > esm/index-electron-current-esm.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: current, Format: esm
-import { jsx } from "react/jsx-runtime";
+import { jsx } from 'react/jsx-runtime';
 function Button() {
     return /*#__PURE__*/ jsx("button", {});
 }
@@ -891,8 +891,8 @@ export { Button as default };
 exports[`React/JSX > swc > transforms example test case: electron-current-lib > lib/index-electron-current-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: current, Format: lib
-"use strict";
-const jsxRuntime = require("react/jsx-runtime");
+'use strict';
+const jsxRuntime = require('react/jsx-runtime');
 function Button() {
     return /*#__PURE__*/ jsxRuntime.jsx("button", {});
 }
@@ -904,7 +904,7 @@ module.exports = Button;
 exports[`React/JSX > swc > transforms example test case: electron-experimental-esm > esm/index-electron-experimental-esm.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: experimental, Format: esm
-import { jsx } from "react/jsx-runtime";
+import { jsx } from 'react/jsx-runtime';
 function Button() {
     return /*#__PURE__*/ jsx("button", {});
 }
@@ -916,8 +916,8 @@ export { Button as default };
 exports[`React/JSX > swc > transforms example test case: electron-experimental-lib > lib/index-electron-experimental-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: experimental, Format: lib
-"use strict";
-const jsxRuntime = require("react/jsx-runtime");
+'use strict';
+const jsxRuntime = require('react/jsx-runtime');
 function Button() {
     return /*#__PURE__*/ jsxRuntime.jsx("button", {});
 }
@@ -929,7 +929,7 @@ module.exports = Button;
 exports[`React/JSX > swc > transforms example test case: electron-legacy-esm > esm/index-electron-legacy-esm.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: legacy, Format: esm
-import { jsx } from "react/jsx-runtime";
+import { jsx } from 'react/jsx-runtime';
 function Button() {
     return /*#__PURE__*/ jsx("button", {});
 }
@@ -941,8 +941,8 @@ export { Button as default };
 exports[`React/JSX > swc > transforms example test case: electron-legacy-lib > lib/index-electron-legacy-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: legacy, Format: lib
-"use strict";
-const jsxRuntime = require("react/jsx-runtime");
+'use strict';
+const jsxRuntime = require('react/jsx-runtime');
 function Button() {
     return /*#__PURE__*/ jsxRuntime.jsx("button", {});
 }
@@ -954,7 +954,7 @@ module.exports = Button;
 exports[`React/JSX > swc > transforms example test case: electron-stable-esm > esm/index-electron-stable-esm.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: stable, Format: esm
-import { jsx } from "react/jsx-runtime";
+import { jsx } from 'react/jsx-runtime';
 function Button() {
     return /*#__PURE__*/ jsx("button", {});
 }
@@ -966,8 +966,8 @@ export { Button as default };
 exports[`React/JSX > swc > transforms example test case: electron-stable-lib > lib/index-electron-stable-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: electron, Support: stable, Format: lib
-"use strict";
-const jsxRuntime = require("react/jsx-runtime");
+'use strict';
+const jsxRuntime = require('react/jsx-runtime');
 function Button() {
     return /*#__PURE__*/ jsxRuntime.jsx("button", {});
 }
@@ -979,7 +979,7 @@ module.exports = Button;
 exports[`React/JSX > swc > transforms example test case: native-current-esm > esm/index-native-current-esm.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: current, Format: esm
-import { jsx } from "react/jsx-runtime";
+import { jsx } from 'react/jsx-runtime';
 function Button() {
     return /*#__PURE__*/ jsx("button", {});
 }
@@ -991,8 +991,8 @@ export { Button as default };
 exports[`React/JSX > swc > transforms example test case: native-current-lib > lib/index-native-current-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: current, Format: lib
-"use strict";
-const jsxRuntime = require("react/jsx-runtime");
+'use strict';
+const jsxRuntime = require('react/jsx-runtime');
 function Button() {
     return /*#__PURE__*/ jsxRuntime.jsx("button", {});
 }
@@ -1004,7 +1004,7 @@ module.exports = Button;
 exports[`React/JSX > swc > transforms example test case: native-experimental-esm > esm/index-native-experimental-esm.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: experimental, Format: esm
-import { jsx } from "react/jsx-runtime";
+import { jsx } from 'react/jsx-runtime';
 function Button() {
     return /*#__PURE__*/ jsx("button", {});
 }
@@ -1016,8 +1016,8 @@ export { Button as default };
 exports[`React/JSX > swc > transforms example test case: native-experimental-lib > lib/index-native-experimental-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: experimental, Format: lib
-"use strict";
-const jsxRuntime = require("react/jsx-runtime");
+'use strict';
+const jsxRuntime = require('react/jsx-runtime');
 function Button() {
     return /*#__PURE__*/ jsxRuntime.jsx("button", {});
 }
@@ -1029,7 +1029,7 @@ module.exports = Button;
 exports[`React/JSX > swc > transforms example test case: native-legacy-esm > esm/index-native-legacy-esm.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: legacy, Format: esm
-import { jsx } from "react/jsx-runtime";
+import { jsx } from 'react/jsx-runtime';
 function Button() {
     return /*#__PURE__*/ jsx("button", {});
 }
@@ -1041,8 +1041,8 @@ export { Button as default };
 exports[`React/JSX > swc > transforms example test case: native-legacy-lib > lib/index-native-legacy-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: legacy, Format: lib
-"use strict";
-const jsxRuntime = require("react/jsx-runtime");
+'use strict';
+const jsxRuntime = require('react/jsx-runtime');
 function Button() {
     return /*#__PURE__*/ jsxRuntime.jsx("button", {});
 }
@@ -1054,7 +1054,7 @@ module.exports = Button;
 exports[`React/JSX > swc > transforms example test case: native-stable-esm > esm/index-native-stable-esm.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: stable, Format: esm
-import { jsx } from "react/jsx-runtime";
+import { jsx } from 'react/jsx-runtime';
 function Button() {
     return /*#__PURE__*/ jsx("button", {});
 }
@@ -1066,8 +1066,8 @@ export { Button as default };
 exports[`React/JSX > swc > transforms example test case: native-stable-lib > lib/index-native-stable-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: native, Support: stable, Format: lib
-"use strict";
-const jsxRuntime = require("react/jsx-runtime");
+'use strict';
+const jsxRuntime = require('react/jsx-runtime');
 function Button() {
     return /*#__PURE__*/ jsxRuntime.jsx("button", {});
 }
@@ -1079,8 +1079,8 @@ module.exports = Button;
 exports[`React/JSX > swc > transforms example test case: node-current-cjs > cjs/index-node-current-cjs.cjs 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: cjs
-"use strict";
-const jsxRuntime = require("react/jsx-runtime");
+'use strict';
+const jsxRuntime = require('react/jsx-runtime');
 function Button() {
     return /*#__PURE__*/ jsxRuntime.jsx("button", {});
 }
@@ -1101,8 +1101,8 @@ export default data;"
 exports[`React/JSX > swc > transforms example test case: node-current-lib > lib/index-node-current-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: lib
-"use strict";
-const jsxRuntime = require("react/jsx-runtime");
+'use strict';
+const jsxRuntime = require('react/jsx-runtime');
 function Button() {
     return /*#__PURE__*/ jsxRuntime.jsx("button", {});
 }
@@ -1114,7 +1114,7 @@ module.exports = Button;
 exports[`React/JSX > swc > transforms example test case: node-current-mjs > mjs/index-node-current-mjs.mjs 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: mjs
-import { jsx } from "react/jsx-runtime";
+import { jsx } from 'react/jsx-runtime';
 function Button() {
     return /*#__PURE__*/ jsx("button", {});
 }
@@ -1126,8 +1126,8 @@ export { Button as default };
 exports[`React/JSX > swc > transforms example test case: node-experimental-cjs > cjs/index-node-experimental-cjs.cjs 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: cjs
-"use strict";
-const jsxRuntime = require("react/jsx-runtime");
+'use strict';
+const jsxRuntime = require('react/jsx-runtime');
 function Button() {
     return /*#__PURE__*/ jsxRuntime.jsx("button", {});
 }
@@ -1148,8 +1148,8 @@ export default data;"
 exports[`React/JSX > swc > transforms example test case: node-experimental-lib > lib/index-node-experimental-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: lib
-"use strict";
-const jsxRuntime = require("react/jsx-runtime");
+'use strict';
+const jsxRuntime = require('react/jsx-runtime');
 function Button() {
     return /*#__PURE__*/ jsxRuntime.jsx("button", {});
 }
@@ -1161,7 +1161,7 @@ module.exports = Button;
 exports[`React/JSX > swc > transforms example test case: node-experimental-mjs > mjs/index-node-experimental-mjs.mjs 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: mjs
-import { jsx } from "react/jsx-runtime";
+import { jsx } from 'react/jsx-runtime';
 function Button() {
     return /*#__PURE__*/ jsx("button", {});
 }
@@ -1173,8 +1173,8 @@ export { Button as default };
 exports[`React/JSX > swc > transforms example test case: node-legacy-cjs > cjs/index-node-legacy-cjs.cjs 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: cjs
-"use strict";
-const jsxRuntime = require("react/jsx-runtime");
+'use strict';
+const jsxRuntime = require('react/jsx-runtime');
 function Button() {
     return /*#__PURE__*/ jsxRuntime.jsx("button", {});
 }
@@ -1195,8 +1195,8 @@ export default data;"
 exports[`React/JSX > swc > transforms example test case: node-legacy-lib > lib/index-node-legacy-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: lib
-"use strict";
-const jsxRuntime = require("react/jsx-runtime");
+'use strict';
+const jsxRuntime = require('react/jsx-runtime');
 function Button() {
     return /*#__PURE__*/ jsxRuntime.jsx("button", {});
 }
@@ -1208,7 +1208,7 @@ module.exports = Button;
 exports[`React/JSX > swc > transforms example test case: node-legacy-mjs > mjs/index-node-legacy-mjs.mjs 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: mjs
-import { jsx } from "react/jsx-runtime";
+import { jsx } from 'react/jsx-runtime';
 function Button() {
     return /*#__PURE__*/ jsx("button", {});
 }
@@ -1220,8 +1220,8 @@ export { Button as default };
 exports[`React/JSX > swc > transforms example test case: node-stable-cjs > cjs/index-node-stable-cjs.cjs 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: cjs
-"use strict";
-const jsxRuntime = require("react/jsx-runtime");
+'use strict';
+const jsxRuntime = require('react/jsx-runtime');
 function Button() {
     return /*#__PURE__*/ jsxRuntime.jsx("button", {});
 }
@@ -1242,8 +1242,8 @@ export default data;"
 exports[`React/JSX > swc > transforms example test case: node-stable-lib > lib/index-node-stable-lib.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: lib
-"use strict";
-const jsxRuntime = require("react/jsx-runtime");
+'use strict';
+const jsxRuntime = require('react/jsx-runtime');
 function Button() {
     return /*#__PURE__*/ jsxRuntime.jsx("button", {});
 }
@@ -1255,7 +1255,7 @@ module.exports = Button;
 exports[`React/JSX > swc > transforms example test case: node-stable-mjs > mjs/index-node-stable-mjs.mjs 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: mjs
-import { jsx } from "react/jsx-runtime";
+import { jsx } from 'react/jsx-runtime';
 function Button() {
     return /*#__PURE__*/ jsx("button", {});
 }
