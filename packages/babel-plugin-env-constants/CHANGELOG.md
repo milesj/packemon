@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 4.0.1 - 2024-05-22
+
+#### 🐞 Fixes
+
+- Use verbatim types. (#254) ([6dd029e](https://github.com/milesj/packemon/commit/6dd029e)), closes [#254](https://github.com/milesj/packemon/issues/254)
+
+#### 📘 Docs
+
+- Update node requirements. ([328c28f](https://github.com/milesj/packemon/commit/328c28f))
+
+**Note:** Version bump only for package babel-plugin-env-constants
+
+
+
+
+
 ### 4.0.0 - 2024-03-07
 
 **Note:** Version bump only for package babel-plugin-env-constants

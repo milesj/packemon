@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 4.1.0 - 2024-05-22
+
+#### 🚀 Updates
+
+- Support import attributes (with only). (#256) ([b25fd9b](https://github.com/milesj/packemon/commit/b25fd9b)), closes [#256](https://github.com/milesj/packemon/issues/256)
+
+#### 🐞 Fixes
+
+- Fix types missing from published package. ([7f7ca10](https://github.com/milesj/packemon/commit/7f7ca10))
+- Use verbatim types. (#254) ([6dd029e](https://github.com/milesj/packemon/commit/6dd029e)), closes [#254](https://github.com/milesj/packemon/issues/254)
+
+#### 📦 Dependencies
+
+- **[babel]** Update to v7.24 latest. ([80e59d6](https://github.com/milesj/packemon/commit/80e59d6))
+- **[react]** Update to v18.3. ([13338f9](https://github.com/milesj/packemon/commit/13338f9))
+- **[rollup-plugin-node-externals]** Update to v7.1. ([460e1b6](https://github.com/milesj/packemon/commit/460e1b6))
+- **[rollup]** Update to v4.17. ([79249d5](https://github.com/milesj/packemon/commit/79249d5))
+- **[swc]** Update to v1.5. ([f8da285](https://github.com/milesj/packemon/commit/f8da285))
+- **[typescript]** Update to v5.4.5. ([1263ce8](https://github.com/milesj/packemon/commit/1263ce8))
+- Update dev and test dependencies. ([477307c](https://github.com/milesj/packemon/commit/477307c))
+- Update dev and test dependencies. ([799d5e0](https://github.com/milesj/packemon/commit/799d5e0))
+
+#### 🛠 Internals
+
+- Temporarily disable polyfill tests. ([27837f1](https://github.com/milesj/packemon/commit/27837f1))
+- Update snapshots. ([49aea80](https://github.com/milesj/packemon/commit/49aea80))
+
+**Note:** Version bump only for package packemon
+
+
+
+
+
 ### 4.0.1 - 2024-03-09
 
 #### 🐞 Fixes
