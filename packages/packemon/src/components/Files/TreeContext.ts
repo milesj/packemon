@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react';
-import { StyleType } from '@boost/cli';
+import type { StyleType } from '@boost/cli';
 
 interface TreeContextType {
 	folderStyle?: StyleType;

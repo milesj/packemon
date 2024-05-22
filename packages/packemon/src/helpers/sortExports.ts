@@ -1,4 +1,4 @@
-import { PackageExports } from '../types';
+import type { PackageExports } from '../types';
 import { sortExportConditions } from './sortExportConditions';
 
 const WEIGHTS: Record<string, number> = {

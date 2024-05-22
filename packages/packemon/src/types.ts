@@ -1,6 +1,6 @@
-import { OutputOptions as RollupOutputOptions, RollupOptions } from 'rollup';
-import { TransformOptions as BabelOptions } from '@babel/core';
-import { PackageStructure } from '@boost/common';
+import type { OutputOptions as RollupOutputOptions, RollupOptions } from 'rollup';
+import type { TransformOptions as BabelOptions } from '@babel/core';
+import type { PackageStructure } from '@boost/common';
 import type { Options as SwcOptions } from '@swc/core';
 
 // Platform = The runtime or operating system the code will run in.

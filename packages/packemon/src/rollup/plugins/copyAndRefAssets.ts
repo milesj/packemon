@@ -2,11 +2,11 @@ import { createHash } from 'node:crypto';
 import fsn from 'node:fs';
 import path from 'node:path';
 import MagicString from 'magic-string';
-import { Plugin } from 'rollup';
+import type { Plugin } from 'rollup';
 import { VirtualPath } from '@boost/common';
 import type { TSESTree } from '@typescript-eslint/types';
 import { ASSETS, TEXT_ASSETS } from '../../constants';
-import { FileSystem } from '../../FileSystem';
+import type { FileSystem } from '../../FileSystem';
 
 function isAsset(id: string): boolean {
 	return ASSETS.some((ext) => id.endsWith(ext));

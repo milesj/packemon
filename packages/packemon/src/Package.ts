@@ -25,7 +25,7 @@ import { matchesPattern } from './helpers/matchesPattern';
 import { mergeExports } from './helpers/mergeExports';
 import { sortExports } from './helpers/sortExports';
 import { packemonBlueprint } from './schemas';
-import {
+import type {
 	ApiType,
 	BuildOptions,
 	ConfigFile,

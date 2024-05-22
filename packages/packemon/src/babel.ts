@@ -1,17 +1,17 @@
-import { TransformOptions as ConfigStructure } from '@babel/core';
+import type { TransformOptions as ConfigStructure } from '@babel/core';
 import { Path, toArray } from '@boost/common';
-import { FeatureFlags } from './types';
+import type { FeatureFlags } from './types';
 import {
 	Artifact,
 	DEFAULT_SUPPORT,
-	Format,
+	type Format,
 	getBabelInputConfig,
 	getBabelOutputConfig,
 	Package,
 	Packemon,
-	PackemonPackage,
-	Platform,
-	Support,
+	type PackemonPackage,
+	type Platform,
+	type Support,
 } from '.';
 
 const format = (process.env.PACKEMON_FORMAT ?? 'lib') as Format;

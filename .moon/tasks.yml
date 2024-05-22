@@ -25,7 +25,3 @@ tasks:
     command: 'vitest run --config ../../vitest.config.ts'
     deps:
       - '^:build'
-
-  typecheck:
-    deps:
-      - '^:build'

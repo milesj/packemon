@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 
-import { PackageExportConditions, PackageExportPaths } from '../types';
+import type { PackageExportConditions, PackageExportPaths } from '../types';
 
 export function mergeExports(
 	prev: PackageExportPaths | string,

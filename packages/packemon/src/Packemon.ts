@@ -1,8 +1,8 @@
-import { Path, PortablePath, Project } from '@boost/common';
+import { Path, type PortablePath, Project } from '@boost/common';
 import { optimal } from '@boost/common/optimal';
-import { createDebugger, Debugger } from '@boost/debug';
+import { createDebugger, type Debugger } from '@boost/debug';
 import { Config } from './Config';
-import { FileSystem, nodeFileSystem } from './FileSystem';
+import { type FileSystem, nodeFileSystem } from './FileSystem';
 import { matchesPattern } from './helpers/matchesPattern';
 import { Package } from './Package';
 import { PackageValidator } from './PackageValidator';

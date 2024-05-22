@@ -3,7 +3,7 @@
 // import { createConfig, createRootConfig } from '../../src/babel';
 import { describe, expect, it, vi } from 'vitest';
 import { getBabelInputConfig, getBabelOutputConfig } from '../../src/babel/config';
-import { Format, Platform, Support } from '../../src/types';
+import type { Format, Platform, Support } from '../../src/types';
 
 vi.mock('../../src/babel/resolve', () => ({
 	resolve: (name: string) => name,

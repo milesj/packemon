@@ -1,4 +1,4 @@
-import { InputPluginOption } from 'rollup';
+import type { InputPluginOption } from 'rollup';
 import { describe, it, vi } from 'vitest';
 import { Path } from '@boost/common';
 import { vanillaExtractPlugin } from '@vanilla-extract/rollup-plugin';
