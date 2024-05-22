@@ -397,6 +397,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/helper-import-to-platform-api@npm:^7.24.1":
+  version: 7.24.1
+  resolution: "@babel/helper-import-to-platform-api@npm:7.24.1"
+  dependencies:
+    "@babel/helper-compilation-targets": "npm:^7.23.6"
+    "@babel/helper-module-imports": "npm:^7.24.1"
+  peerDependencies:
+    "@babel/core": ^7.0.0-0
+  checksum: 10/1d054a8136a378b530c4af88c81a8ae599112a1469ccfce8c609e65fd2544f0c814676e5055c138155c1c5fbf3c5d875de80001b7014abe0c529662455872c18
+  languageName: node
+  linkType: hard
+
 "@babel/helper-member-expression-to-functions@npm:^7.23.0, @babel/helper-member-expression-to-functions@npm:^7.24.5":
   version: 7.24.5
   resolution: "@babel/helper-member-expression-to-functions@npm:7.24.5"
@@ -677,6 +689,19 @@ __metadata:
   peerDependencies:
     "@babel/core": ^7.0.0-0
   checksum: 10/84ff22bacc5d30918a849bfb7e0e90ae4c5b8d8b65f2ac881803d1cf9068dffbe53bd657b0e4bc4c20b4db301b1c85f1e74183cf29a0dd31e964bd4e97c363ef
+  languageName: node
+  linkType: hard
+
+"@babel/plugin-proposal-json-modules@npm:^7.24.3":
+  version: 7.24.3
+  resolution: "@babel/plugin-proposal-json-modules@npm:7.24.3"
+  dependencies:
+    "@babel/helper-import-to-platform-api": "npm:^7.24.1"
+    "@babel/helper-plugin-utils": "npm:^7.24.0"
+    "@babel/plugin-syntax-import-attributes": "npm:^7.24.1"
+  peerDependencies:
+    "@babel/core": ^7.22.0
+  checksum: 10/0002c144aff4b136b9439507096d63b9aa3796f086f43f9e1da341ff8a5dfd26b59a195fbdef168c4b3e2a09d33577017f3e1744526cd3734bd28faeb34de053
   languageName: node
   linkType: hard
 
@@ -19081,6 +19106,8 @@ __metadata:
     "@babel/core": "npm:^7.24.5"
     "@babel/plugin-external-helpers": "npm:^7.24.1"
     "@babel/plugin-proposal-decorators": "npm:^7.24.1"
+    "@babel/plugin-proposal-json-modules": "npm:^7.24.3"
+    "@babel/plugin-syntax-import-attributes": "npm:^7.24.1"
     "@babel/plugin-transform-runtime": "npm:^7.24.3"
     "@babel/preset-env": "npm:^7.24.5"
     "@babel/preset-flow": "npm:^7.24.1"

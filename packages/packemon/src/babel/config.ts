@@ -113,6 +113,11 @@ function getSharedConfig(
 	presets: PluginItem[],
 	features: FeatureFlags,
 ): ConfigStructure {
+	plugins.push(
+		resolve('@babel/plugin-syntax-import-attributes'),
+		resolve('@babel/plugin-proposal-json-modules'),
+	);
+
 	return {
 		caller: {
 			name: 'packemon',
