@@ -1,4 +1,4 @@
-import { PackageExportPaths } from '../types';
+import type { PackageExportPaths } from '../types';
 
 // https://nodejs.org/api/packages.html#conditional-exports
 const WEIGHTS = {

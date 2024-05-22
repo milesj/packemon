@@ -1,4 +1,4 @@
-import { Format, Platform } from '../types';
+import type { Format, Platform } from '../types';
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#browser_compatibility
 export function shouldKeepDynamicImport(platform: Platform, format: Format): boolean {

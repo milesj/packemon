@@ -1,22 +1,22 @@
 import path from 'node:path';
 import { afterEach, beforeEach, describe, expect, it, type MockInstance, vi } from 'vitest';
-import { Path, PortablePath } from '@boost/common';
+import { Path, type PortablePath } from '@boost/common';
 import {
 	Artifact,
 	BINARY_ASSETS,
-	FileSystem,
-	Format,
+	type FileSystem,
+	type Format,
 	FORMATS,
 	FORMATS_BROWSER,
 	FORMATS_ELECTRON,
 	FORMATS_NATIVE,
 	FORMATS_NODE,
 	Package,
-	PackageConfig,
-	PackemonPackage,
-	Platform,
+	type PackageConfig,
+	type PackemonPackage,
+	type Platform,
 	PLATFORMS,
-	Support,
+	type Support,
 	SUPPORTS,
 } from '../src';
 import { nodeFileSystem } from '../src/FileSystem';

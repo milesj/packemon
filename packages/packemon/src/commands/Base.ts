@@ -1,4 +1,4 @@
-import { applyStyle, Arg, Command, GlobalOptions, PrimitiveType } from '@boost/cli';
+import { applyStyle, Arg, Command, type GlobalOptions, type PrimitiveType } from '@boost/cli';
 import { figures } from '@boost/terminal';
 import { PackageValidator } from '../PackageValidator';
 import { Packemon } from '../Packemon';

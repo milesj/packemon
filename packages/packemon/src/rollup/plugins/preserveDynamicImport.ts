@@ -1,6 +1,6 @@
-import { OutputPlugin } from 'rollup';
+import type { OutputPlugin } from 'rollup';
 import { shouldKeepDynamicImport } from '../../helpers/shouldKeepDynamicImport';
-import { Format, Platform } from '../../types';
+import type { Format, Platform } from '../../types';
 
 export function preserveDynamicImport(platform: Platform, format: Format): OutputPlugin {
 	const preserve = shouldKeepDynamicImport(platform, format);

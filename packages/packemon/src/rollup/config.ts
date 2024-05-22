@@ -1,4 +1,4 @@
-import { ModuleFormat, OutputOptions, Plugin, RollupOptions } from 'rollup';
+import type { ModuleFormat, OutputOptions, Plugin, RollupOptions } from 'rollup';
 import { nodeExternals } from 'rollup-plugin-node-externals';
 import nodePolyfills from 'rollup-plugin-polyfill-node';
 import { getBabelInputPlugin, getBabelOutputPlugin } from '@rollup/plugin-babel';
@@ -9,7 +9,7 @@ import type { Artifact } from '../Artifact';
 import { getBabelInputConfig, getBabelOutputConfig } from '../babel/config';
 import { EXCLUDE, EXCLUDE_RUST, EXTENSIONS } from '../constants';
 import { getSwcInputConfig, getSwcOutputConfig } from '../swc/config';
-import { ConfigFile, FeatureFlags, Format } from '../types';
+import type { ConfigFile, FeatureFlags, Format } from '../types';
 import { addBinShebang } from './plugins/addBinShebang';
 import { addMjsWrapperForCjs } from './plugins/addMjsWrapperForCjs';
 import { copyAndRefAssets } from './plugins/copyAndRefAssets';

@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { Path } from '@boost/common';
 import { Package } from '../src/Package';
 import { Packemon } from '../src/Packemon';
-import { BuildOptions } from '../src/types';
+import type { BuildOptions } from '../src/types';
 import { getFixturePath, loadPackageAtPath } from './helpers';
 
 vi.mock('../src/PackageValidator', () => ({

@@ -4,9 +4,9 @@
 
 import glob from 'fast-glob';
 import semver from 'semver';
-import { isObject, Memoize, PackageStructure, Path, toArray } from '@boost/common';
+import { isObject, Memoize, type PackageStructure, Path, toArray } from '@boost/common';
 import { optimal } from '@boost/common/optimal';
-import { createDebugger, Debugger } from '@boost/debug';
+import { createDebugger, type Debugger } from '@boost/debug';
 import { Artifact } from './Artifact';
 import {
 	DEFAULT_FORMATS,
@@ -18,14 +18,14 @@ import {
 	NODE_SUPPORTED_VERSIONS,
 	SUPPORT_PRIORITY,
 } from './constants';
-import { FileSystem, nodeFileSystem } from './FileSystem';
+import { type FileSystem, nodeFileSystem } from './FileSystem';
 import { injectDefaultCondition } from './helpers/injectDefaultCondition';
 import { loadTsconfigJson } from './helpers/loadTsconfigJson';
 import { matchesPattern } from './helpers/matchesPattern';
 import { mergeExports } from './helpers/mergeExports';
 import { sortExports } from './helpers/sortExports';
 import { packemonBlueprint } from './schemas';
-import {
+import type {
 	ApiType,
 	BuildOptions,
 	ConfigFile,

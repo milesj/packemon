@@ -15,7 +15,7 @@ import {
 	SUPPORT_TO_ESM_SPEC,
 } from '../constants';
 import { shouldKeepDynamicImport } from '../helpers/shouldKeepDynamicImport';
-import { ConfigFile, FeatureFlags, Format, Platform, Support } from '../types';
+import type { ConfigFile, FeatureFlags, Format, Platform, Support } from '../types';
 
 function getModuleConfigType(format: Format): ModuleConfig['type'] {
 	switch (format) {

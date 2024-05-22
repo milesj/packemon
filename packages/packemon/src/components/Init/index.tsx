@@ -3,7 +3,7 @@
 import { useCallback } from 'react';
 import { Box, Text } from 'ink';
 import { Header, Style, useProgram } from '@boost/cli/react';
-import { PackemonPackageConfig } from '../../types';
+import type { PackemonPackageConfig } from '../../types';
 import { PackageForm } from './PackageForm';
 
 export type InitPackageConfigs = Record<string, PackemonPackageConfig>;

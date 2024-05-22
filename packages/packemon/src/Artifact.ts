@@ -2,7 +2,7 @@ import { execa } from 'execa';
 import { rollup } from 'rollup';
 import { applyStyle } from '@boost/cli';
 import { Path, toArray, VirtualPath } from '@boost/common';
-import { createDebugger, Debugger } from '@boost/debug';
+import { createDebugger, type Debugger } from '@boost/debug';
 import { convertCjsTypes } from './helpers/compat/convertCjsTypes';
 import { removeSourcePath } from './helpers/removeSourcePath';
 import type { Package } from './Package';

@@ -2,7 +2,7 @@
 
 import { describe, expect, it, vi } from 'vitest';
 import { getSwcInputConfig, getSwcOutputConfig } from '../../src/swc/config';
-import { Format, Platform, Support } from '../../src/types';
+import type { Format, Platform, Support } from '../../src/types';
 
 const SUPPORTS: Support[] = ['legacy', 'stable', 'current', 'experimental'];
 

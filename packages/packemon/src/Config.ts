@@ -1,6 +1,6 @@
-import { Blueprint, Schemas } from '@boost/common';
+import type { Blueprint, Schemas } from '@boost/common';
 import { Configuration } from '@boost/config';
-import { BuildParams, ConfigFile, ConfigMutator, ConfigMutatorWithBuild } from './types';
+import type { BuildParams, ConfigFile, ConfigMutator, ConfigMutatorWithBuild } from './types';
 
 export class Config extends Configuration<ConfigFile> {
 	blueprint({ bool, func }: Schemas): Blueprint<ConfigFile> {

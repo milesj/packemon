@@ -4,7 +4,7 @@ import { mockNormalizedFilePath } from '@boost/common/test';
 import { Artifact } from '../src/Artifact';
 import { nodeFileSystem } from '../src/FileSystem';
 import { Package } from '../src/Package';
-import { Build, ConfigFile, Platform, Support } from '../src/types';
+import type { Build, ConfigFile, Platform, Support } from '../src/types';
 import { createStubbedFileSystem, getFixturePath, loadPackageAtPath } from './helpers';
 
 vi.mock('rollup', () => ({ rollup: vi.fn() }));

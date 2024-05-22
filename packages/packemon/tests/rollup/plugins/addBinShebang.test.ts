@@ -1,5 +1,5 @@
 import path from 'node:path';
-import { InputOption, OutputOptions, rollup } from 'rollup';
+import { type InputOption, type OutputOptions, rollup } from 'rollup';
 import { describe, expect, it } from 'vitest';
 import { addBinShebang } from '../../../src/rollup/plugins/addBinShebang';
 

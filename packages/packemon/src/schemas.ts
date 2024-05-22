@@ -1,4 +1,4 @@
-import { Blueprint, toArray } from '@boost/common';
+import { type Blueprint, toArray } from '@boost/common';
 import { schemas } from '@boost/common/optimal';
 import {
 	DEFAULT_INPUT,
@@ -11,7 +11,7 @@ import {
 	PLATFORMS,
 	SUPPORTS,
 } from './constants';
-import {
+import type {
 	ApiType,
 	BrowserFormat,
 	BuildOptions,

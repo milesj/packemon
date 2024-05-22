@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { transformAsync, TransformOptions } from '@babel/core';
+import { transformAsync, type TransformOptions } from '@babel/core';
 import envConstantsPlugin from '../src';
 
 async function transform(code: string, options?: TransformOptions): Promise<string> {

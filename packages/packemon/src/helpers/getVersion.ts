@@ -1,7 +1,7 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { PackageStructure } from '@boost/common';
-import { FileSystem } from '../FileSystem';
+import type { PackageStructure } from '@boost/common';
+import type { FileSystem } from '../FileSystem';
 
 const PKG_PATH = path.join(path.dirname(fileURLToPath(import.meta.url)), '../../package.json');
 

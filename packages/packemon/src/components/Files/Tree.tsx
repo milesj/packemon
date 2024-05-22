@@ -2,7 +2,7 @@
 
 import { useMemo } from 'react';
 import { Box, Text } from 'ink';
-import { StyleType } from '@boost/cli';
+import type { StyleType } from '@boost/cli';
 import { Style } from '@boost/cli/react';
 import { Symbol } from './Symbol';
 import { TreeContext, useTree } from './TreeContext';

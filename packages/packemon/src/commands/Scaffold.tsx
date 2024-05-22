@@ -6,7 +6,7 @@ import glob from 'fast-glob';
 import { Arg, Command, Config } from '@boost/cli';
 import { json } from '@boost/common';
 import { nodeFileSystem } from '../FileSystem';
-import { InfraType, ScaffoldParams, TemplateType } from '../types';
+import type { InfraType, ScaffoldParams, TemplateType } from '../types';
 
 @Config('scaffold', 'Scaffold projects and packages with ease')
 export class ScaffoldCommand extends Command {

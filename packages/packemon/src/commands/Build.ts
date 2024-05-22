@@ -4,7 +4,7 @@ import { formatMs } from '@boost/common';
 import { figures } from '@boost/terminal';
 import { STATE_COLORS } from '../constants';
 import { Package } from '../Package';
-import { BuildOptions } from '../types';
+import type { BuildOptions } from '../types';
 import { BaseCommand } from './Base';
 
 @Config('build', 'Build a standardized package for distribution')

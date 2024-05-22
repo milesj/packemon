@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { Box, Text } from 'ink';
 import { Input, useProgram } from '@boost/cli/react';
 import { isModuleName } from '@boost/common';
-import { ScaffoldParams, TemplateType } from '../../types';
+import type { ScaffoldParams, TemplateType } from '../../types';
 import { TemplateSelect } from './TemplateSelect';
 
 export interface ScaffoldProps {

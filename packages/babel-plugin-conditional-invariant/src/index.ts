@@ -1,4 +1,4 @@
-import { NodePath, PluginObj, types as t } from '@babel/core';
+import { NodePath, type PluginObj, types as t } from '@babel/core';
 
 function isWrappedWithConditional(path: NodePath<t.ExpressionStatement>): boolean {
 	let currentPath: NodePath<t.Node> | null = path;

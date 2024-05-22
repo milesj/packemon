@@ -1,5 +1,5 @@
-import { StyleType } from '@boost/cli';
-import {
+import type { StyleType } from '@boost/cli';
+import type {
 	ArtifactState,
 	BrowserFormat,
 	Format,
