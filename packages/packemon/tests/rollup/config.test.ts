@@ -76,7 +76,11 @@ describe('getRollupConfig()', () => {
 		`babelInput(${fixturePath})`,
 	];
 
-	const sharedNonNodePlugins = ['polyfillNode()', ...sharedPlugins];
+	const sharedNonNodePlugins = [
+		...sharedPlugins.slice(0, 1),
+		'polyfillNode()',
+		...sharedPlugins.slice(1),
+	];
 
 	let artifact: Artifact;
 

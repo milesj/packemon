@@ -198,7 +198,7 @@ export async function getRollupConfig(
 				peerDeps: true,
 			}),
 			// Externals MUST be listed before shared plugins
-			resolve({ extensions: EXTENSIONS, preferBuiltins: true }),
+			resolve({ extensions: EXTENSIONS, preferBuiltins: isNode }),
 			commonjs(),
 			json({ compact: true, namedExports: false }),
 			// Copy assets and update import references
@@ -232,7 +232,7 @@ export async function getRollupConfig(
 
 	// Polyfill node modules when platform is not node
 	if (!isNode) {
-		(config.plugins as Plugin[]).unshift(nodePolyfills());
+		(config.plugins as Plugin[]).splice(1, 0, nodePolyfills()); // after externals
 	}
 
 	// Add an output for each format
