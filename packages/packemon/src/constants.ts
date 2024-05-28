@@ -63,8 +63,8 @@ export const EXCLUDE_RUST = [
 	'__fixtures__',
 	'__mocks__',
 	'__tests__',
-	'\\.(config|test|spec)\\.[a-z]+$',
-	'\\.(test|spec)\\.[a-z]+$',
+	String.raw`\.(config|test|spec)\.[a-z]+$`,
+	String.raw`\.(test|spec)\.[a-z]+$`,
 ];
 
 // https://reactnative.dev/docs/javascript-environment
