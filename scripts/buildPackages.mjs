@@ -3,8 +3,8 @@ import path from 'path';
 
 async function build(cwd) {
 	await execa(
-		'yarn',
-		['dlx', '--package', 'packemon', '--package', 'typescript', '--quiet', 'packemon', 'build'],
+		'npx',
+		['--yes', '--package', 'packemon', '--package', 'typescript', '--quiet', 'packemon', 'build'],
 		{
 			cwd: path.join(process.cwd(), cwd),
 			preferLocal: true,
