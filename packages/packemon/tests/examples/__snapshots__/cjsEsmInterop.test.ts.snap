@@ -337,7 +337,7 @@ __filename;
 
 exports[`CJS/ESM interop > babel > transforms example test case: node-current-mjs > mjs/index-node-current-mjs.mjs 1`] = `
 "var _path = _interopRequireDefault(require("path")).default;
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 // Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: current, Format: mjs
 
@@ -380,7 +380,7 @@ __filename;
 
 exports[`CJS/ESM interop > babel > transforms example test case: node-experimental-mjs > mjs/index-node-experimental-mjs.mjs 1`] = `
 "var _path = _interopRequireDefault(require("path")).default;
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 // Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: experimental, Format: mjs
 
@@ -423,7 +423,7 @@ __filename;
 
 exports[`CJS/ESM interop > babel > transforms example test case: node-legacy-mjs > mjs/index-node-legacy-mjs.mjs 1`] = `
 "var _path = _interopRequireDefault(require("path")).default;
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 // Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: legacy, Format: mjs
 
@@ -466,7 +466,7 @@ __filename;
 
 exports[`CJS/ESM interop > babel > transforms example test case: node-stable-mjs > mjs/index-node-stable-mjs.mjs 1`] = `
 "var _path = _interopRequireDefault(require("path")).default;
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 // Bundled with Packemon: https://packemon.dev
 // Platform: node, Support: stable, Format: mjs
 

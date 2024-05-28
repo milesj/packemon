@@ -225,7 +225,7 @@ export { bar, foo };
 
 exports[`Dynamic imports > babel > transforms example test case: browser-legacy-esm > esm/index-browser-legacy-esm.js 1`] = `
 "var _this = this;
-function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError("Cannot instantiate an arrow function"); } }
+function _newArrowCheck(n, r) { if (n !== r) throw new TypeError("Cannot instantiate an arrow function"); }
 // Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: esm
 
@@ -263,7 +263,7 @@ exports[`Dynamic imports > babel > transforms example test case: browser-legacy-
 'use strict';
 
 var _this = this;
-function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError("Cannot instantiate an arrow function"); } }
+function _newArrowCheck(n, r) { if (n !== r) throw new TypeError("Cannot instantiate an arrow function"); }
 import('./bundle-BjYzmFy9.js').then(function (result) {
   _newArrowCheck(this, _this);
   result.foo();
@@ -310,7 +310,7 @@ exports[`Dynamic imports > babel > transforms example test case: browser-legacy-
 
 exports[`Dynamic imports > babel > transforms example test case: browser-legacy-umd > umd/index-browser-legacy-umd.js 1`] = `
 "var _this = this;
-function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError("Cannot instantiate an arrow function"); } }
+function _newArrowCheck(n, r) { if (n !== r) throw new TypeError("Cannot instantiate an arrow function"); }
 // Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: umd
 
