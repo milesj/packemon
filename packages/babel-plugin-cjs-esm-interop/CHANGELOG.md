@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>4.0.2 (2024-05-28)</small>
+
+* deps(babel): Update to v7.24 latest. ([df0be16](https://github.com/milesj/packemon/commit/df0be16))
+
+
+
+
+
 ### 4.0.1 - 2024-05-22
 
 #### 🐞 Fixes

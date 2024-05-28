@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>4.1.1 (2024-05-28)</small>
+
+* deps(babel): Update to v7.24 latest. ([df0be16](https://github.com/milesj/packemon/commit/df0be16))
+* deps(execa): Update to v9. ([5aa6ab7](https://github.com/milesj/packemon/commit/5aa6ab7))
+* deps(ink): Update to v5. ([9f64852](https://github.com/milesj/packemon/commit/9f64852))
+* deps(moon): Update to v1.25. ([6136704](https://github.com/milesj/packemon/commit/6136704))
+* deps(rollup): Update to v4.18. ([259e1d3](https://github.com/milesj/packemon/commit/259e1d3))
+* internal: Use export type star. ([59bfd90](https://github.com/milesj/packemon/commit/59bfd90))
+
+
+
+
+
 ## 4.1.0 - 2024-05-22
 
 #### 🚀 Updates
