@@ -14,7 +14,6 @@ exports[`getBabelInputConfig() > can mutate config 1`] = `
   },
   "plugins": [
     "@babel/plugin-syntax-import-attributes",
-    "@babel/plugin-proposal-json-modules",
     "babel-plugin-example",
   ],
   "presets": [],
@@ -36,7 +35,6 @@ exports[`getBabelInputConfig() > doesnt include typescript decorators if \`types
   },
   "plugins": [
     "@babel/plugin-syntax-import-attributes",
-    "@babel/plugin-proposal-json-modules",
   ],
   "presets": [],
 }
@@ -67,7 +65,6 @@ exports[`getBabelInputConfig() > includes no plugins or presets by default 1`] =
   },
   "plugins": [
     "@babel/plugin-syntax-import-attributes",
-    "@babel/plugin-proposal-json-modules",
   ],
   "presets": [],
 }
@@ -151,7 +148,6 @@ exports[`getBabelInputConfig() > includes typescript decorators if \`typescript\
       },
     ],
     "@babel/plugin-syntax-import-attributes",
-    "@babel/plugin-proposal-json-modules",
   ],
   "presets": [
     [
@@ -225,7 +221,6 @@ exports[`getBabelInputConfig() > supports private properties with decorators if 
       },
     ],
     "@babel/plugin-syntax-import-attributes",
-    "@babel/plugin-proposal-json-modules",
   ],
   "presets": [
     [
@@ -268,7 +263,6 @@ exports[`getBabelOutputConfig() > can mutate config 1`] = `
     "babel-plugin-conditional-invariant",
     "babel-plugin-env-constants",
     "@babel/plugin-syntax-import-attributes",
-    "@babel/plugin-proposal-json-modules",
     "babel-plugin-example",
   ],
   "presets": [
@@ -975,7 +969,6 @@ exports[`getBabelOutputConfig() > transforms async/await to promises when \`brow
     "babel-plugin-conditional-invariant",
     "babel-plugin-env-constants",
     "@babel/plugin-syntax-import-attributes",
-    "@babel/plugin-proposal-json-modules",
   ],
   "presets": [
     [
@@ -1032,7 +1025,6 @@ exports[`getBabelOutputConfig() > transforms async/await to promises when \`brow
     "babel-plugin-conditional-invariant",
     "babel-plugin-env-constants",
     "@babel/plugin-syntax-import-attributes",
-    "@babel/plugin-proposal-json-modules",
   ],
   "presets": [
     [
@@ -1092,7 +1084,6 @@ exports[`getBabelOutputConfig() > uses built-in destructuring and object spread 
     "babel-plugin-conditional-invariant",
     "babel-plugin-env-constants",
     "@babel/plugin-syntax-import-attributes",
-    "@babel/plugin-proposal-json-modules",
   ],
   "presets": [
     [
@@ -1152,7 +1143,6 @@ exports[`getBabelOutputConfig() > uses built-in destructuring and object spread 
     "babel-plugin-conditional-invariant",
     "babel-plugin-env-constants",
     "@babel/plugin-syntax-import-attributes",
-    "@babel/plugin-proposal-json-modules",
   ],
   "presets": [
     [
