@@ -8,5 +8,5 @@ describe('Rollup externals', () => {
 });
 
 describe('Rollup externals (regex)', () => {
-	testExampleOutput('externals.ts', 'babel', { externals: ['@packemon/\\*'] });
+	testExampleOutput('externals.ts', 'babel', { externals: [String.raw`@packemon/\*`] });
 });
