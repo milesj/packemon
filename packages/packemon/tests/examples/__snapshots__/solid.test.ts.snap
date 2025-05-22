@@ -178,7 +178,7 @@ exports[`Solid/JSX > babel > transforms example test case: browser-legacy-lib > 
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var web = require('solid-js/web');
+const web = require('solid-js/web');
 var _tmpl$ = /*#__PURE__*/web.template(\`<button>\`);
 function Button() {
   return _tmpl$();

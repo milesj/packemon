@@ -166,7 +166,7 @@ exports[`JSON imports > babel > transforms example test case: browser-legacy-esm
 "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: esm
 
-var data = {
+const data = {
   list: ["foo", "bar", "baz"],
   number: 123,
   string: "abc",
@@ -176,7 +176,7 @@ var data = {
 };
 
 // @ts-expect-error resolveJsonModule is not on
-var keys = Object.keys(data);
+const keys = Object.keys(data);
 export { keys };
 //# sourceMappingURL=index-browser-legacy-esm.js.map
 "
@@ -188,7 +188,7 @@ exports[`JSON imports > babel > transforms example test case: browser-legacy-lib
 
 'use strict';
 
-var data = {
+const data = {
   list: ["foo", "bar", "baz"],
   number: 123,
   string: "abc",
@@ -198,7 +198,7 @@ var data = {
 };
 
 // @ts-expect-error resolveJsonModule is not on
-var keys = Object.keys(data);
+const keys = Object.keys(data);
 exports.keys = keys;
 //# sourceMappingURL=index-browser-legacy-lib.js.map
 "
@@ -227,7 +227,7 @@ exports[`JSON imports > babel > transforms example test case: browser-legacy-umd
   // Bundled with Packemon: https://packemon.dev
   // Platform: browser, Support: legacy, Format: umd
 
-  var data = {
+  const data = {
     list: ["foo", "bar", "baz"],
     number: 123,
     string: "abc",
@@ -237,7 +237,7 @@ exports[`JSON imports > babel > transforms example test case: browser-legacy-umd
   };
 
   // @ts-expect-error resolveJsonModule is not on
-  var keys = _exports.keys = Object.keys(data);
+  const keys = _exports.keys = Object.keys(data);
 });
 //# sourceMappingURL=index-browser-legacy-umd.js.map
 "
