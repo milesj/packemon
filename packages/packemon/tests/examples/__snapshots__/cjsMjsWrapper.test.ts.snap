@@ -1549,7 +1549,7 @@ Object.keys(optimal).forEach((k)=>{
 
 exports[`CJS -> MJS wrapper (externals) > swc > transforms example test case: browser-current-umd > umd/index-browser-current-umd.js 1`] = `
 "(function(global, factory) {
-    if (typeof module === "object" && typeof module.exports === "object") factory(exports, require("optimal"), require("react" /*#__PURE__*/ ));
+    if (typeof module === "object" && typeof module.exports === "object") factory(exports, require("optimal"), require("react"));
     else if (typeof define === "function" && define.amd) define([
         "exports",
         "optimal",
@@ -1564,24 +1564,24 @@ exports[`CJS -> MJS wrapper (externals) > swc > transforms example test case: br
     function _export(target, all) {
         for(var name in all)Object.defineProperty(target, name, {
             enumerable: true,
-            get: all[name]
+            get: Object.getOwnPropertyDescriptor(all, name).get
         });
     }
     _export(exports, {
-        func: function() {
+        get func () {
             return _optimal.func;
         },
-        optimal: function() {
+        get optimal () {
             return _optimal;
         },
-        string: function() {
+        get string () {
             return _optimal.string;
         },
-        useState: function() {
+        get useState () {
             return _react.useState;
         }
     });
-    _optimal = _interop_require_wildcard(_export_star(_optimal, exports));
+    _optimal = /*#__PURE__*/ _interop_require_wildcard(_export_star(_optimal, exports));
     function _export_star(from, to) {
         Object.keys(from).forEach(function(k) {
             if (k !== "default" && !Object.prototype.hasOwnProperty.call(to, k)) {
@@ -1702,7 +1702,7 @@ Object.keys(optimal).forEach((k)=>{
 
 exports[`CJS -> MJS wrapper (externals) > swc > transforms example test case: browser-experimental-umd > umd/index-browser-experimental-umd.js 1`] = `
 "(function(global, factory) {
-    if (typeof module === "object" && typeof module.exports === "object") factory(exports, require("optimal"), require("react" /*#__PURE__*/ ));
+    if (typeof module === "object" && typeof module.exports === "object") factory(exports, require("optimal"), require("react"));
     else if (typeof define === "function" && define.amd) define([
         "exports",
         "optimal",
@@ -1717,24 +1717,24 @@ exports[`CJS -> MJS wrapper (externals) > swc > transforms example test case: br
     function _export(target, all) {
         for(var name in all)Object.defineProperty(target, name, {
             enumerable: true,
-            get: all[name]
+            get: Object.getOwnPropertyDescriptor(all, name).get
         });
     }
     _export(exports, {
-        func: function() {
+        get func () {
             return _optimal.func;
         },
-        optimal: function() {
+        get optimal () {
             return _optimal;
         },
-        string: function() {
+        get string () {
             return _optimal.string;
         },
-        useState: function() {
+        get useState () {
             return _react.useState;
         }
     });
-    _optimal = _interop_require_wildcard(_export_star(_optimal, exports));
+    _optimal = /*#__PURE__*/ _interop_require_wildcard(_export_star(_optimal, exports));
     function _export_star(from, to) {
         Object.keys(from).forEach(function(k) {
             if (k !== "default" && !Object.prototype.hasOwnProperty.call(to, k)) {
@@ -1810,54 +1810,43 @@ exports[`CJS -> MJS wrapper (externals) > swc > transforms example test case: br
 "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: lib
 'use strict';
-var optimal = require('optimal');
-var react = require('react');
+const optimal = require('optimal');
+const react = require('react');
 function _interopNamespace(e) {
     if (e && e.__esModule) return e;
-    var n = Object.create(null);
+    const n = Object.create(null);
     if (e) {
-        var _loop = function(k) {
+        for(const k in e){
             if (k !== 'default') {
-                var d = Object.getOwnPropertyDescriptor(e, k);
+                const d = Object.getOwnPropertyDescriptor(e, k);
                 Object.defineProperty(n, k, d.get ? d : {
                     enumerable: true,
-                    get: function() {
-                        return e[k];
-                    }
+                    get: ()=>e[k]
                 });
             }
-        };
-        for(var k in e)_loop(k);
+        }
     }
     n.default = e;
     return Object.freeze(n);
 }
-var optimal__namespace = /*#__PURE__*/ _interopNamespace(optimal);
+const optimal__namespace = /*#__PURE__*/ _interopNamespace(optimal);
 Object.defineProperty(exports, "func", {
     enumerable: true,
-    get: function() {
-        return optimal.func;
-    }
+    get: ()=>optimal.func
 });
 exports.optimal = optimal__namespace;
 Object.defineProperty(exports, "string", {
     enumerable: true,
-    get: function() {
-        return optimal.string;
-    }
+    get: ()=>optimal.string
 });
 Object.defineProperty(exports, "useState", {
     enumerable: true,
-    get: function() {
-        return react.useState;
-    }
+    get: ()=>react.useState
 });
-Object.keys(optimal).forEach(function(k) {
+Object.keys(optimal).forEach((k)=>{
     if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
         enumerable: true,
-        get: function() {
-            return optimal[k];
-        }
+        get: ()=>optimal[k]
     });
 });
 //# sourceMappingURL=index-browser-legacy-lib.js.map
@@ -1866,7 +1855,7 @@ Object.keys(optimal).forEach(function(k) {
 
 exports[`CJS -> MJS wrapper (externals) > swc > transforms example test case: browser-legacy-umd > umd/index-browser-legacy-umd.js 1`] = `
 "(function(global, factory) {
-    if (typeof module === "object" && typeof module.exports === "object") factory(exports, require("optimal"), require("react" /*#__PURE__*/ ));
+    if (typeof module === "object" && typeof module.exports === "object") factory(exports, require("optimal"), require("react"));
     else if (typeof define === "function" && define.amd) define([
         "exports",
         "optimal",
@@ -1881,24 +1870,24 @@ exports[`CJS -> MJS wrapper (externals) > swc > transforms example test case: br
     function _export(target, all) {
         for(var name in all)Object.defineProperty(target, name, {
             enumerable: true,
-            get: all[name]
+            get: Object.getOwnPropertyDescriptor(all, name).get
         });
     }
     _export(exports, {
-        func: function() {
+        get func () {
             return _optimal.func;
         },
-        optimal: function() {
+        get optimal () {
             return _optimal;
         },
-        string: function() {
+        get string () {
             return _optimal.string;
         },
-        useState: function() {
+        get useState () {
             return _react.useState;
         }
     });
-    _optimal = _interop_require_wildcard(_export_star(_optimal, exports));
+    _optimal = /*#__PURE__*/ _interop_require_wildcard(_export_star(_optimal, exports));
     function _export_star(from, to) {
         Object.keys(from).forEach(function(k) {
             if (k !== "default" && !Object.prototype.hasOwnProperty.call(to, k)) {
@@ -2019,7 +2008,7 @@ Object.keys(optimal).forEach((k)=>{
 
 exports[`CJS -> MJS wrapper (externals) > swc > transforms example test case: browser-stable-umd > umd/index-browser-stable-umd.js 1`] = `
 "(function(global, factory) {
-    if (typeof module === "object" && typeof module.exports === "object") factory(exports, require("optimal"), require("react" /*#__PURE__*/ ));
+    if (typeof module === "object" && typeof module.exports === "object") factory(exports, require("optimal"), require("react"));
     else if (typeof define === "function" && define.amd) define([
         "exports",
         "optimal",
@@ -2034,24 +2023,24 @@ exports[`CJS -> MJS wrapper (externals) > swc > transforms example test case: br
     function _export(target, all) {
         for(var name in all)Object.defineProperty(target, name, {
             enumerable: true,
-            get: all[name]
+            get: Object.getOwnPropertyDescriptor(all, name).get
         });
     }
     _export(exports, {
-        func: function() {
+        get func () {
             return _optimal.func;
         },
-        optimal: function() {
+        get optimal () {
             return _optimal;
         },
-        string: function() {
+        get string () {
             return _optimal.string;
         },
-        useState: function() {
+        get useState () {
             return _react.useState;
         }
     });
-    _optimal = _interop_require_wildcard(_export_star(_optimal, exports));
+    _optimal = /*#__PURE__*/ _interop_require_wildcard(_export_star(_optimal, exports));
     function _export_star(from, to) {
         Object.keys(from).forEach(function(k) {
             if (k !== "default" && !Object.prototype.hasOwnProperty.call(to, k)) {
@@ -5072,60 +5061,60 @@ exports[`CJS -> MJS wrapper > swc > transforms example test case: browser-curren
     function _export(target, all) {
         for(var name in all)Object.defineProperty(target, name, {
             enumerable: true,
-            get: all[name]
+            get: Object.getOwnPropertyDescriptor(all, name).get
         });
     }
     _export(exports, {
-        // Types should be ignored
-        CONST: function() {
+        get // Types should be ignored
+        CONST () {
             return CONST;
         },
-        ClassName: function() {
+        get ClassName () {
             return ClassName;
         },
-        a: function() {
+        get a () {
             return a;
         },
-        arrowFunc: function() {
+        get arrowFunc () {
             return arrowFunc;
         },
-        b: function() {
+        get b () {
             return b;
         },
-        bar: function() {
+        get bar () {
             return bar;
         },
-        c: function() {
+        get c () {
             return c;
         },
-        d: function() {
+        get d () {
             return d;
         },
-        default: function() {
+        get default () {
             return DefaultClass;
         },
-        e: function() {
+        get e () {
             return e;
         },
-        f: function() {
+        get f () {
             return f;
         },
-        foo: function() {
+        get foo () {
             return foo;
         },
-        fooRenamed: function() {
+        get fooRenamed () {
             return foo;
         },
-        func: function() {
+        get func () {
             return func;
         },
-        ns1: function() {
+        get ns1 () {
             return helpers;
         },
-        ns2: function() {
+        get ns2 () {
             return helpers;
         },
-        ns3: function() {
+        get ns3 () {
             return helpers;
         }
     });
@@ -5258,60 +5247,60 @@ exports[`CJS -> MJS wrapper > swc > transforms example test case: browser-experi
     function _export(target, all) {
         for(var name in all)Object.defineProperty(target, name, {
             enumerable: true,
-            get: all[name]
+            get: Object.getOwnPropertyDescriptor(all, name).get
         });
     }
     _export(exports, {
-        // Types should be ignored
-        CONST: function() {
+        get // Types should be ignored
+        CONST () {
             return CONST;
         },
-        ClassName: function() {
+        get ClassName () {
             return ClassName;
         },
-        a: function() {
+        get a () {
             return a;
         },
-        arrowFunc: function() {
+        get arrowFunc () {
             return arrowFunc;
         },
-        b: function() {
+        get b () {
             return b;
         },
-        bar: function() {
+        get bar () {
             return bar;
         },
-        c: function() {
+        get c () {
             return c;
         },
-        d: function() {
+        get d () {
             return d;
         },
-        default: function() {
+        get default () {
             return DefaultClass;
         },
-        e: function() {
+        get e () {
             return e;
         },
-        f: function() {
+        get f () {
             return f;
         },
-        foo: function() {
+        get foo () {
             return foo;
         },
-        fooRenamed: function() {
+        get fooRenamed () {
             return foo;
         },
-        func: function() {
+        get func () {
             return func;
         },
-        ns1: function() {
+        get ns1 () {
             return helpers;
         },
-        ns2: function() {
+        get ns2 () {
             return helpers;
         },
-        ns3: function() {
+        get ns3 () {
             return helpers;
         }
     });
@@ -5346,37 +5335,30 @@ exports[`CJS -> MJS wrapper > swc > transforms example test case: browser-experi
 exports[`CJS -> MJS wrapper > swc > transforms example test case: browser-legacy-esm > esm/index-browser-legacy-esm.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: esm
-function _class_call_check(instance, Constructor) {
-    if (!(instance instanceof Constructor)) {
-        throw new TypeError("Cannot call a class as a function");
-    }
-}
 function foo() {}
 function bar() {}
-var helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty({
+const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty({
     __proto__: null,
     bar,
     foo
 }, Symbol.toStringTag, {
     value: 'Module'
 }));
-var a = 'abc';
-var b = 123;
-var c = {
+let a = 'abc';
+const b = 123;
+const { c } = {
     c: true
-}.c;
-var d = {};
-var e = 456, f = 'xyz';
-var ClassName = function ClassName() {
-    "use strict";
-    _class_call_check(this, ClassName);
+};
+const [d] = [
+    {}
+];
+const e = 456, f = 'xyz';
+let ClassName = class ClassName {
 };
 function func() {}
-var arrowFunc = function() {};
-var CONST = 123;
-var DefaultClass = function DefaultClass() {
-    "use strict";
-    _class_call_check(this, DefaultClass);
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
 };
 // Types should be ignored
 export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, foo as fooRenamed, func, helpers as ns1, helpers as ns2, helpers as ns3 };
@@ -5388,36 +5370,31 @@ exports[`CJS -> MJS wrapper > swc > transforms example test case: browser-legacy
 "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: lib
 'use strict';
-function _class_call_check(instance, Constructor) {
-    if (!(instance instanceof Constructor)) {
-        throw new TypeError("Cannot call a class as a function");
-    }
-}
 Object.defineProperty(exports, '__esModule', {
     value: true
 });
 function foo() {}
 function bar() {}
-var helpers = /*#__PURE__*/ Object.freeze({
+const helpers = /*#__PURE__*/ Object.freeze({
     __proto__: null,
     bar,
     foo
 });
-var a = 'abc';
-var b = 123;
-var c = {
+let a = 'abc';
+const b = 123;
+const { c } = {
     c: true
-}.c;
-var d = {};
-var e = 456, f = 'xyz';
-var ClassName = function ClassName() {
-    _class_call_check(this, ClassName);
+};
+const [d] = [
+    {}
+];
+const e = 456, f = 'xyz';
+let ClassName = class ClassName {
 };
 function func() {}
-var arrowFunc = function() {};
-var CONST = 123;
-var DefaultClass = function DefaultClass() {
-    _class_call_check(this, DefaultClass);
+const arrowFunc = ()=>{};
+const CONST = 123;
+let DefaultClass = class DefaultClass {
 };
 // Types should be ignored
 exports.CONST = CONST;
@@ -5456,92 +5433,85 @@ exports[`CJS -> MJS wrapper > swc > transforms example test case: browser-legacy
     function _export(target, all) {
         for(var name in all)Object.defineProperty(target, name, {
             enumerable: true,
-            get: all[name]
+            get: Object.getOwnPropertyDescriptor(all, name).get
         });
     }
     _export(exports, {
-        // Types should be ignored
-        CONST: function() {
+        get // Types should be ignored
+        CONST () {
             return CONST;
         },
-        ClassName: function() {
+        get ClassName () {
             return ClassName;
         },
-        a: function() {
+        get a () {
             return a;
         },
-        arrowFunc: function() {
+        get arrowFunc () {
             return arrowFunc;
         },
-        b: function() {
+        get b () {
             return b;
         },
-        bar: function() {
+        get bar () {
             return bar;
         },
-        c: function() {
+        get c () {
             return c;
         },
-        d: function() {
+        get d () {
             return d;
         },
-        default: function() {
+        get default () {
             return DefaultClass;
         },
-        e: function() {
+        get e () {
             return e;
         },
-        f: function() {
+        get f () {
             return f;
         },
-        foo: function() {
+        get foo () {
             return foo;
         },
-        fooRenamed: function() {
+        get fooRenamed () {
             return foo;
         },
-        func: function() {
+        get func () {
             return func;
         },
-        ns1: function() {
+        get ns1 () {
             return helpers;
         },
-        ns2: function() {
+        get ns2 () {
             return helpers;
         },
-        ns3: function() {
+        get ns3 () {
             return helpers;
         }
     });
-    function _class_call_check(instance, Constructor) {
-        if (!(instance instanceof Constructor)) {
-            throw new TypeError("Cannot call a class as a function");
-        }
-    }
     function foo() {}
     function bar() {}
-    var helpers = /*#__PURE__*/ Object.freeze({
+    const helpers = /*#__PURE__*/ Object.freeze({
         __proto__: null,
         bar,
         foo
     });
-    var a = 'abc';
-    var b = 123;
-    var c = {
+    let a = 'abc';
+    const b = 123;
+    const { c } = {
         c: true
-    }.c;
-    var d = {};
-    var e = 456, f = 'xyz';
-    var ClassName = function ClassName() {
-        "use strict";
-        _class_call_check(this, ClassName);
+    };
+    const [d] = [
+        {}
+    ];
+    const e = 456, f = 'xyz';
+    let ClassName = class ClassName {
     };
     function func() {}
-    var arrowFunc = function() {};
-    var CONST = 123;
-    var DefaultClass = function DefaultClass() {
-        "use strict";
-        _class_call_check(this, DefaultClass);
+    const arrowFunc = ()=>{};
+    const CONST = 123;
+    let DefaultClass = class DefaultClass {
     };
 });
 //# sourceMappingURL=index-browser-legacy-umd.js.map
@@ -5649,60 +5619,60 @@ exports[`CJS -> MJS wrapper > swc > transforms example test case: browser-stable
     function _export(target, all) {
         for(var name in all)Object.defineProperty(target, name, {
             enumerable: true,
-            get: all[name]
+            get: Object.getOwnPropertyDescriptor(all, name).get
         });
     }
     _export(exports, {
-        // Types should be ignored
-        CONST: function() {
+        get // Types should be ignored
+        CONST () {
             return CONST;
         },
-        ClassName: function() {
+        get ClassName () {
             return ClassName;
         },
-        a: function() {
+        get a () {
             return a;
         },
-        arrowFunc: function() {
+        get arrowFunc () {
             return arrowFunc;
         },
-        b: function() {
+        get b () {
             return b;
         },
-        bar: function() {
+        get bar () {
             return bar;
         },
-        c: function() {
+        get c () {
             return c;
         },
-        d: function() {
+        get d () {
             return d;
         },
-        default: function() {
+        get default () {
             return DefaultClass;
         },
-        e: function() {
+        get e () {
             return e;
         },
-        f: function() {
+        get f () {
             return f;
         },
-        foo: function() {
+        get foo () {
             return foo;
         },
-        fooRenamed: function() {
+        get fooRenamed () {
             return foo;
         },
-        func: function() {
+        get func () {
             return func;
         },
-        ns1: function() {
+        get ns1 () {
             return helpers;
         },
-        ns2: function() {
+        get ns2 () {
             return helpers;
         },
-        ns3: function() {
+        get ns3 () {
             return helpers;
         }
     });

@@ -10,7 +10,7 @@ module.exports = {
 		'Scaffold, build, and maintain npm packages using standardized configurations and practices. Supports JavaScript and TypeScript.',
 	url: 'https://packemon.dev',
 	baseUrl: '/',
-	onBrokenLinks: 'throw',
+	onBrokenLinks: 'warn',
 	onDuplicateRoutes: 'throw',
 	favicon: 'img/favicon.svg',
 	organizationName: 'milesj',

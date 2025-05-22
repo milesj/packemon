@@ -802,17 +802,17 @@ exports[`New syntax > swc > transforms example test case: browser-current-umd > 
     function _export(target, all) {
         for(var name in all)Object.defineProperty(target, name, {
             enumerable: true,
-            get: all[name]
+            get: Object.getOwnPropertyDescriptor(all, name).get
         });
     }
     _export(exports, {
-        foo: function() {
+        get foo () {
             return foo;
         },
-        nullCoalesc: function() {
+        get nullCoalesc () {
             return nullCoalesc;
         },
-        optionalChain: function() {
+        get optionalChain () {
             return optionalChain;
         }
     });
@@ -870,17 +870,17 @@ exports[`New syntax > swc > transforms example test case: browser-experimental-u
     function _export(target, all) {
         for(var name in all)Object.defineProperty(target, name, {
             enumerable: true,
-            get: all[name]
+            get: Object.getOwnPropertyDescriptor(all, name).get
         });
     }
     _export(exports, {
-        foo: function() {
+        get foo () {
             return foo;
         },
-        nullCoalesc: function() {
+        get nullCoalesc () {
             return nullCoalesc;
         },
-        optionalChain: function() {
+        get optionalChain () {
             return optionalChain;
         }
     });
@@ -898,9 +898,9 @@ exports[`New syntax > swc > transforms example test case: browser-legacy-esm > e
 "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: esm
 var _foo, _foo1;
-var foo = {};
-var optionalChain = foo === null || foo === void 0 ? void 0 : foo.bar;
-var nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
+const foo = {};
+const optionalChain = foo === null || foo === void 0 ? void 0 : foo.bar;
+const nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
 var _bar;
 (_bar = (_foo = foo).bar) !== null && _bar !== void 0 ? _bar : _foo.bar = 'bar';
 (_foo1 = foo).baz || (_foo1.baz = 'baz');
@@ -914,9 +914,9 @@ exports[`New syntax > swc > transforms example test case: browser-legacy-lib > l
 // Platform: browser, Support: legacy, Format: lib
 'use strict';
 var _foo, _foo1;
-var foo = {};
-var optionalChain = foo === null || foo === void 0 ? void 0 : foo.bar;
-var nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
+const foo = {};
+const optionalChain = foo === null || foo === void 0 ? void 0 : foo.bar;
+const nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
 var _bar;
 (_bar = (_foo = foo).bar) !== null && _bar !== void 0 ? _bar : _foo.bar = 'bar';
 (_foo1 = foo).baz || (_foo1.baz = 'baz');
@@ -942,24 +942,24 @@ exports[`New syntax > swc > transforms example test case: browser-legacy-umd > u
     function _export(target, all) {
         for(var name in all)Object.defineProperty(target, name, {
             enumerable: true,
-            get: all[name]
+            get: Object.getOwnPropertyDescriptor(all, name).get
         });
     }
     _export(exports, {
-        foo: function() {
+        get foo () {
             return foo;
         },
-        nullCoalesc: function() {
+        get nullCoalesc () {
             return nullCoalesc;
         },
-        optionalChain: function() {
+        get optionalChain () {
             return optionalChain;
         }
     });
     var _foo, _foo1;
-    var foo = {};
-    var optionalChain = foo === null || foo === void 0 ? void 0 : foo.bar;
-    var nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
+    const foo = {};
+    const optionalChain = foo === null || foo === void 0 ? void 0 : foo.bar;
+    const nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
     var _bar;
     (_bar = (_foo = foo).bar) !== null && _bar !== void 0 ? _bar : _foo.bar = 'bar';
     (_foo1 = foo).baz || (_foo1.baz = 'baz');
@@ -1012,17 +1012,17 @@ exports[`New syntax > swc > transforms example test case: browser-stable-umd > u
     function _export(target, all) {
         for(var name in all)Object.defineProperty(target, name, {
             enumerable: true,
-            get: all[name]
+            get: Object.getOwnPropertyDescriptor(all, name).get
         });
     }
     _export(exports, {
-        foo: function() {
+        get foo () {
             return foo;
         },
-        nullCoalesc: function() {
+        get nullCoalesc () {
             return nullCoalesc;
         },
-        optionalChain: function() {
+        get optionalChain () {
             return optionalChain;
         }
     });

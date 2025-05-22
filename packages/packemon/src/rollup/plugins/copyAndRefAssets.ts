@@ -206,7 +206,7 @@ export function copyAndRefAssets(
 						// Required for types
 						names: [],
 						originalFileNames: [],
-						originalFileName: null
+						originalFileName: null,
 					};
 				}),
 			);

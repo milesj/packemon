@@ -1119,7 +1119,7 @@ exports[`JSON imports > swc > transforms example test case: browser-experimental
 exports[`JSON imports > swc > transforms example test case: browser-legacy-esm > esm/index-browser-legacy-esm.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: esm
-var data = {
+const data = {
     list: [
         "foo",
         "bar",
@@ -1132,7 +1132,7 @@ var data = {
     }
 };
 // @ts-expect-error resolveJsonModule is not on
-var keys = Object.keys(data);
+const keys = Object.keys(data);
 export { keys };
 //# sourceMappingURL=index-browser-legacy-esm.js.map
 "
@@ -1142,7 +1142,7 @@ exports[`JSON imports > swc > transforms example test case: browser-legacy-lib >
 "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: lib
 'use strict';
-var data = {
+const data = {
     list: [
         "foo",
         "bar",
@@ -1155,7 +1155,7 @@ var data = {
     }
 };
 // @ts-expect-error resolveJsonModule is not on
-var keys = Object.keys(data);
+const keys = Object.keys(data);
 exports.keys = keys;
 //# sourceMappingURL=index-browser-legacy-lib.js.map
 "
@@ -1179,7 +1179,7 @@ exports[`JSON imports > swc > transforms example test case: browser-legacy-umd >
             return keys;
         }
     });
-    var data = {
+    const data = {
         list: [
             "foo",
             "bar",
@@ -1192,7 +1192,7 @@ exports[`JSON imports > swc > transforms example test case: browser-legacy-umd >
         }
     };
     // @ts-expect-error resolveJsonModule is not on
-    var keys = Object.keys(data);
+    const keys = Object.keys(data);
 });
 //# sourceMappingURL=index-browser-legacy-umd.js.map
 "

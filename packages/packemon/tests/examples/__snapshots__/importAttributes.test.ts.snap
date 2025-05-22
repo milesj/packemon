@@ -883,7 +883,7 @@ exports[`Import attributes > swc > transforms example test case: browser-experim
 exports[`Import attributes > swc > transforms example test case: browser-legacy-esm > esm/index-browser-legacy-esm.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: esm
-var data = {
+const data = {
     list: [
         "foo",
         "bar",
@@ -904,7 +904,7 @@ exports[`Import attributes > swc > transforms example test case: browser-legacy-
 "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: lib
 'use strict';
-var data = {
+const data = {
     list: [
         "foo",
         "bar",
@@ -928,7 +928,7 @@ exports[`Import attributes > swc > transforms example test case: browser-legacy-
     else if (global = typeof globalThis !== "undefined" ? globalThis : global || self) factory();
 })(this, function() {
     "use strict";
-    var data = {
+    const data = {
         list: [
             "foo",
             "bar",

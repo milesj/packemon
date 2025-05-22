@@ -1337,7 +1337,7 @@ import(/* webpackChunkName: "helpers" */ './bundle-CW8zVdan.js').then(({ bar })=
 "
 `;
 
-exports[`Dynamic imports > swc > transforms example test case: browser-current-umd > umd/bundle-BPR4J9Lg.js 1`] = `
+exports[`Dynamic imports > swc > transforms example test case: browser-current-umd > umd/bundle-M3oBoAdi.js 1`] = `
 "(function(global, factory) {
     if (typeof module === "object" && typeof module.exports === "object") factory(exports);
     else if (typeof define === "function" && define.amd) define([
@@ -1352,21 +1352,21 @@ exports[`Dynamic imports > swc > transforms example test case: browser-current-u
     function _export(target, all) {
         for(var name in all)Object.defineProperty(target, name, {
             enumerable: true,
-            get: all[name]
+            get: Object.getOwnPropertyDescriptor(all, name).get
         });
     }
     _export(exports, {
-        bar: function() {
+        get bar () {
             return bar;
         },
-        foo: function() {
+        get foo () {
             return foo;
         }
     });
     function foo() {}
     function bar() {}
 });
-//# sourceMappingURL=bundle-BPR4J9Lg.js.map
+//# sourceMappingURL=bundle-M3oBoAdi.js.map
 "
 `;
 
@@ -1418,10 +1418,10 @@ exports[`Dynamic imports > swc > transforms example test case: browser-current-u
         }
         return newObj;
     }
-    import('./bundle-BPR4J9Lg.js').then((result)=>{
+    import('./bundle-M3oBoAdi.js').then((result)=>{
         result.foo();
     });
-    import(/* webpackChunkName: "helpers" */ './bundle-BPR4J9Lg.js').then(({ bar })=>{
+    import(/* webpackChunkName: "helpers" */ './bundle-M3oBoAdi.js').then(({ bar })=>{
         bar();
     });
 });
@@ -1478,7 +1478,7 @@ import(/* webpackChunkName: "helpers" */ './bundle-D10yhi0X.js').then(({ bar })=
 "
 `;
 
-exports[`Dynamic imports > swc > transforms example test case: browser-experimental-umd > umd/bundle-BPR4J9Lg.js 1`] = `
+exports[`Dynamic imports > swc > transforms example test case: browser-experimental-umd > umd/bundle-M3oBoAdi.js 1`] = `
 "(function(global, factory) {
     if (typeof module === "object" && typeof module.exports === "object") factory(exports);
     else if (typeof define === "function" && define.amd) define([
@@ -1493,21 +1493,21 @@ exports[`Dynamic imports > swc > transforms example test case: browser-experimen
     function _export(target, all) {
         for(var name in all)Object.defineProperty(target, name, {
             enumerable: true,
-            get: all[name]
+            get: Object.getOwnPropertyDescriptor(all, name).get
         });
     }
     _export(exports, {
-        bar: function() {
+        get bar () {
             return bar;
         },
-        foo: function() {
+        get foo () {
             return foo;
         }
     });
     function foo() {}
     function bar() {}
 });
-//# sourceMappingURL=bundle-BPR4J9Lg.js.map
+//# sourceMappingURL=bundle-M3oBoAdi.js.map
 "
 `;
 
@@ -1559,10 +1559,10 @@ exports[`Dynamic imports > swc > transforms example test case: browser-experimen
         }
         return newObj;
     }
-    import('./bundle-BPR4J9Lg.js').then((result)=>{
+    import('./bundle-M3oBoAdi.js').then((result)=>{
         result.foo();
     });
-    import(/* webpackChunkName: "helpers" */ './bundle-BPR4J9Lg.js').then(({ bar })=>{
+    import(/* webpackChunkName: "helpers" */ './bundle-M3oBoAdi.js').then(({ bar })=>{
         bar();
     });
 });
@@ -1583,11 +1583,10 @@ export { bar, foo };
 exports[`Dynamic imports > swc > transforms example test case: browser-legacy-esm > esm/index-browser-legacy-esm.js 1`] = `
 "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: esm
-import('./bundle-CZ6Dz33i.js').then(function(result) {
+import('./bundle-CZ6Dz33i.js').then((result)=>{
     result.foo();
 });
-import(/* webpackChunkName: "helpers" */ './bundle-CZ6Dz33i.js').then(function(param) {
-    var bar = param.bar;
+import(/* webpackChunkName: "helpers" */ './bundle-CZ6Dz33i.js').then(({ bar })=>{
     bar();
 });
 //# sourceMappingURL=index-browser-legacy-esm.js.map
@@ -1610,18 +1609,17 @@ exports[`Dynamic imports > swc > transforms example test case: browser-legacy-li
 "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: lib
 'use strict';
-import('./bundle-D1ovl8sQ.js').then(function(result) {
+import('./bundle-D1ovl8sQ.js').then((result)=>{
     result.foo();
 });
-import(/* webpackChunkName: "helpers" */ './bundle-D1ovl8sQ.js').then(function(param) {
-    var bar = param.bar;
+import(/* webpackChunkName: "helpers" */ './bundle-D1ovl8sQ.js').then(({ bar })=>{
     bar();
 });
 //# sourceMappingURL=index-browser-legacy-lib.js.map
 "
 `;
 
-exports[`Dynamic imports > swc > transforms example test case: browser-legacy-umd > umd/bundle-BPR4J9Lg.js 1`] = `
+exports[`Dynamic imports > swc > transforms example test case: browser-legacy-umd > umd/bundle-M3oBoAdi.js 1`] = `
 "(function(global, factory) {
     if (typeof module === "object" && typeof module.exports === "object") factory(exports);
     else if (typeof define === "function" && define.amd) define([
@@ -1636,21 +1634,21 @@ exports[`Dynamic imports > swc > transforms example test case: browser-legacy-um
     function _export(target, all) {
         for(var name in all)Object.defineProperty(target, name, {
             enumerable: true,
-            get: all[name]
+            get: Object.getOwnPropertyDescriptor(all, name).get
         });
     }
     _export(exports, {
-        bar: function() {
+        get bar () {
             return bar;
         },
-        foo: function() {
+        get foo () {
             return foo;
         }
     });
     function foo() {}
     function bar() {}
 });
-//# sourceMappingURL=bundle-BPR4J9Lg.js.map
+//# sourceMappingURL=bundle-M3oBoAdi.js.map
 "
 `;
 
@@ -1702,11 +1700,10 @@ exports[`Dynamic imports > swc > transforms example test case: browser-legacy-um
         }
         return newObj;
     }
-    import('./bundle-BPR4J9Lg.js').then(function(result) {
+    import('./bundle-M3oBoAdi.js').then((result)=>{
         result.foo();
     });
-    import(/* webpackChunkName: "helpers" */ './bundle-BPR4J9Lg.js').then(function(param) {
-        var bar = param.bar;
+    import(/* webpackChunkName: "helpers" */ './bundle-M3oBoAdi.js').then(({ bar })=>{
         bar();
     });
 });
@@ -1763,7 +1760,7 @@ import(/* webpackChunkName: "helpers" */ './bundle-BqRtymkt.js').then(({ bar })=
 "
 `;
 
-exports[`Dynamic imports > swc > transforms example test case: browser-stable-umd > umd/bundle-BPR4J9Lg.js 1`] = `
+exports[`Dynamic imports > swc > transforms example test case: browser-stable-umd > umd/bundle-M3oBoAdi.js 1`] = `
 "(function(global, factory) {
     if (typeof module === "object" && typeof module.exports === "object") factory(exports);
     else if (typeof define === "function" && define.amd) define([
@@ -1778,21 +1775,21 @@ exports[`Dynamic imports > swc > transforms example test case: browser-stable-um
     function _export(target, all) {
         for(var name in all)Object.defineProperty(target, name, {
             enumerable: true,
-            get: all[name]
+            get: Object.getOwnPropertyDescriptor(all, name).get
         });
     }
     _export(exports, {
-        bar: function() {
+        get bar () {
             return bar;
         },
-        foo: function() {
+        get foo () {
             return foo;
         }
     });
     function foo() {}
     function bar() {}
 });
-//# sourceMappingURL=bundle-BPR4J9Lg.js.map
+//# sourceMappingURL=bundle-M3oBoAdi.js.map
 "
 `;
 
@@ -1844,10 +1841,10 @@ exports[`Dynamic imports > swc > transforms example test case: browser-stable-um
         }
         return newObj;
     }
-    import('./bundle-BPR4J9Lg.js').then((result)=>{
+    import('./bundle-M3oBoAdi.js').then((result)=>{
         result.foo();
     });
-    import(/* webpackChunkName: "helpers" */ './bundle-BPR4J9Lg.js').then(({ bar })=>{
+    import(/* webpackChunkName: "helpers" */ './bundle-M3oBoAdi.js').then(({ bar })=>{
         bar();
     });
 });

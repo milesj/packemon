@@ -788,7 +788,7 @@ exports[`React/JSX > swc > transforms example test case: browser-legacy-lib > li
 "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: lib
 'use strict';
-var jsxRuntime = require('react/jsx-runtime');
+const jsxRuntime = require('react/jsx-runtime');
 function Button() {
     return /*#__PURE__*/ jsxRuntime.jsx("button", {});
 }
