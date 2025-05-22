@@ -135,9 +135,9 @@ exports[`New syntax > babel > transforms example test case: browser-legacy-esm >
 // Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: esm
 
-var foo = {};
-var optionalChain = foo === null || foo === void 0 ? void 0 : foo.bar;
-var nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
+const foo = {};
+const optionalChain = foo === null || foo === void 0 ? void 0 : foo.bar;
+const nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
 (_foo$bar = foo.bar) !== null && _foo$bar !== void 0 ? _foo$bar : foo.bar = 'bar';
 foo.baz || (foo.baz = 'baz');
 export { foo, nullCoalesc, optionalChain };
@@ -152,9 +152,9 @@ exports[`New syntax > babel > transforms example test case: browser-legacy-lib >
 'use strict';
 
 var _foo$bar;
-var foo = {};
-var optionalChain = foo === null || foo === void 0 ? void 0 : foo.bar;
-var nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
+const foo = {};
+const optionalChain = foo === null || foo === void 0 ? void 0 : foo.bar;
+const nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
 (_foo$bar = foo.bar) !== null && _foo$bar !== void 0 ? _foo$bar : foo.bar = 'bar';
 foo.baz || (foo.baz = 'baz');
 exports.foo = foo;
@@ -188,9 +188,9 @@ exports[`New syntax > babel > transforms example test case: browser-legacy-umd >
   // Bundled with Packemon: https://packemon.dev
   // Platform: browser, Support: legacy, Format: umd
 
-  var foo = _exports.foo = {};
-  var optionalChain = _exports.optionalChain = foo === null || foo === void 0 ? void 0 : foo.bar;
-  var nullCoalesc = _exports.nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
+  const foo = _exports.foo = {};
+  const optionalChain = _exports.optionalChain = foo === null || foo === void 0 ? void 0 : foo.bar;
+  const nullCoalesc = _exports.nullCoalesc = foo !== null && foo !== void 0 ? foo : 0;
   (_foo$bar = foo.bar) !== null && _foo$bar !== void 0 ? _foo$bar : foo.bar = 'bar';
   foo.baz || (foo.baz = 'baz');
 });

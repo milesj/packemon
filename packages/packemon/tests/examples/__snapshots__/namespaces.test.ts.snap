@@ -6,7 +6,7 @@ exports[`Namespaces > babel > transforms example test case: browser-current-esm 
 
 function foo() {}
 function bar() {}
-const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
+const helpers = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,
   bar,
   foo
@@ -78,7 +78,7 @@ exports[`Namespaces > babel > transforms example test case: browser-experimental
 
 function foo() {}
 function bar() {}
-const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
+const helpers = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,
   bar,
   foo
@@ -150,7 +150,7 @@ exports[`Namespaces > babel > transforms example test case: browser-legacy-esm >
 
 function foo() {}
 function bar() {}
-var helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
+const helpers = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,
   bar,
   foo
@@ -170,7 +170,7 @@ exports[`Namespaces > babel > transforms example test case: browser-legacy-lib >
 
 function foo() {}
 function bar() {}
-var helpers = /*#__PURE__*/Object.freeze({
+const helpers = /*#__PURE__*/Object.freeze({
   __proto__: null,
   bar,
   foo
@@ -206,7 +206,7 @@ exports[`Namespaces > babel > transforms example test case: browser-legacy-umd >
 
   function foo() {}
   function bar() {}
-  var helpers = _exports.ns2 = _exports.ns1 = /*#__PURE__*/Object.freeze({
+  const helpers = _exports.ns2 = _exports.ns1 = /*#__PURE__*/Object.freeze({
     __proto__: null,
     bar,
     foo
@@ -222,7 +222,7 @@ exports[`Namespaces > babel > transforms example test case: browser-stable-esm >
 
 function foo() {}
 function bar() {}
-const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
+const helpers = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,
   bar,
   foo
@@ -294,7 +294,7 @@ exports[`Namespaces > babel > transforms example test case: electron-current-esm
 
 function foo() {}
 function bar() {}
-const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
+const helpers = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,
   bar,
   foo
@@ -331,7 +331,7 @@ exports[`Namespaces > babel > transforms example test case: electron-experimenta
 
 function foo() {}
 function bar() {}
-const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
+const helpers = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,
   bar,
   foo
@@ -368,7 +368,7 @@ exports[`Namespaces > babel > transforms example test case: electron-legacy-esm 
 
 function foo() {}
 function bar() {}
-const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
+const helpers = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,
   bar,
   foo
@@ -405,7 +405,7 @@ exports[`Namespaces > babel > transforms example test case: electron-stable-esm 
 
 function foo() {}
 function bar() {}
-const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
+const helpers = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,
   bar,
   foo
@@ -442,7 +442,7 @@ exports[`Namespaces > babel > transforms example test case: native-current-esm >
 
 function foo() {}
 function bar() {}
-const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
+const helpers = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,
   bar,
   foo
@@ -479,7 +479,7 @@ exports[`Namespaces > babel > transforms example test case: native-experimental-
 
 function foo() {}
 function bar() {}
-const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
+const helpers = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,
   bar,
   foo
@@ -516,7 +516,7 @@ exports[`Namespaces > babel > transforms example test case: native-legacy-esm > 
 
 function foo() {}
 function bar() {}
-const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
+const helpers = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,
   bar,
   foo
@@ -553,7 +553,7 @@ exports[`Namespaces > babel > transforms example test case: native-stable-esm > 
 
 function foo() {}
 function bar() {}
-const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
+const helpers = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,
   bar,
   foo
@@ -637,7 +637,7 @@ exports[`Namespaces > babel > transforms example test case: node-current-mjs > m
 
 function foo() {}
 function bar() {}
-const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
+const helpers = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,
   bar,
   foo
@@ -702,7 +702,7 @@ exports[`Namespaces > babel > transforms example test case: node-experimental-mj
 
 function foo() {}
 function bar() {}
-const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
+const helpers = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,
   bar,
   foo
@@ -767,7 +767,7 @@ exports[`Namespaces > babel > transforms example test case: node-legacy-mjs > mj
 
 function foo() {}
 function bar() {}
-const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
+const helpers = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,
   bar,
   foo
@@ -832,7 +832,7 @@ exports[`Namespaces > babel > transforms example test case: node-stable-mjs > mj
 
 function foo() {}
 function bar() {}
-const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
+const helpers = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,
   bar,
   foo

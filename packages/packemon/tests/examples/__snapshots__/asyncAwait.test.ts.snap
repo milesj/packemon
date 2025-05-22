@@ -173,16 +173,13 @@ exports[`Async/await > babel > transforms example test case: browser-experimenta
 `;
 
 exports[`Async/await > babel > transforms example test case: browser-legacy-esm > esm/index-browser-legacy-esm.js 1`] = `
-"function _newArrowCheck(n, r) { if (n !== r) throw new TypeError("Cannot instantiate an arrow function"); }
-// Bundled with Packemon: https://packemon.dev
+"// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: esm
 
 async function wait() {
-  var _this = this;
-  return new Promise(function (resolve) {
-    _newArrowCheck(this, _this);
+  return new Promise(resolve => {
     setTimeout(resolve, 100);
-  }.bind(this));
+  });
 }
 async function run() {
   try {
@@ -202,13 +199,10 @@ exports[`Async/await > babel > transforms example test case: browser-legacy-lib 
 
 'use strict';
 
-function _newArrowCheck(n, r) { if (n !== r) throw new TypeError("Cannot instantiate an arrow function"); }
 async function wait() {
-  var _this = this;
-  return new Promise(function (resolve) {
-    _newArrowCheck(this, _this);
+  return new Promise(resolve => {
     setTimeout(resolve, 100);
-  }.bind(this));
+  });
 }
 async function run() {
   try {
@@ -244,16 +238,13 @@ exports[`Async/await > babel > transforms example test case: browser-legacy-umd 
   });
   _exports.run = run;
   _exports.wait = wait;
-  function _newArrowCheck(n, r) { if (n !== r) throw new TypeError("Cannot instantiate an arrow function"); }
   // Bundled with Packemon: https://packemon.dev
   // Platform: browser, Support: legacy, Format: umd
 
   async function wait() {
-    var _this = this;
-    return new Promise(function (resolve) {
-      _newArrowCheck(this, _this);
+    return new Promise(resolve => {
       setTimeout(resolve, 100);
-    }.bind(this));
+    });
   }
   async function run() {
     try {

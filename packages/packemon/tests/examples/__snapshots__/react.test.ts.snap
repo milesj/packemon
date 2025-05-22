@@ -137,7 +137,7 @@ exports[`React/JSX > babel > transforms example test case: browser-legacy-lib > 
 
 'use strict';
 
-var jsxRuntime = require('react/jsx-runtime');
+const jsxRuntime = require('react/jsx-runtime');
 function Button() {
   return /*#__PURE__*/jsxRuntime.jsx("button", {});
 }

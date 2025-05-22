@@ -119,8 +119,7 @@ exports[`CJS -> MJS wrapper (externals) > babel > transforms example test case: 
       }
     });
   });
-  function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
-  function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
+  function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function (e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (const t in e) "default" !== t && {}.hasOwnProperty.call(e, t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, t)) && (i.get || i.set) ? o(f, t, i) : f[t] = e[t]); return f; })(e, t); }
 });
 //# sourceMappingURL=index-browser-current-umd.js.map
 "
@@ -245,8 +244,7 @@ exports[`CJS -> MJS wrapper (externals) > babel > transforms example test case: 
       }
     });
   });
-  function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
-  function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
+  function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function (e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (const t in e) "default" !== t && {}.hasOwnProperty.call(e, t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, t)) && (i.get || i.set) ? o(f, t, i) : f[t] = e[t]); return f; })(e, t); }
 });
 //# sourceMappingURL=index-browser-experimental-umd.js.map
 "
@@ -271,68 +269,45 @@ exports[`CJS -> MJS wrapper (externals) > babel > transforms example test case: 
 
 'use strict';
 
-var _this2 = this;
-function _newArrowCheck(n, r) { if (n !== r) throw new TypeError("Cannot instantiate an arrow function"); }
-var optimal = require('optimal');
-var react = require('react');
+const optimal = require('optimal');
+const react = require('react');
 function _interopNamespace(e) {
   if (e && e.__esModule) return e;
-  var n = Object.create(null);
+  const n = Object.create(null);
   if (e) {
-    var _loop = function _loop(k) {
-      var _this = this;
+    for (const k in e) {
       if (k !== 'default') {
-        var d = Object.getOwnPropertyDescriptor(e, k);
+        const d = Object.getOwnPropertyDescriptor(e, k);
         Object.defineProperty(n, k, d.get ? d : {
           enumerable: true,
-          get: function get() {
-            _newArrowCheck(this, _this);
-            return e[k];
-          }.bind(this)
+          get: () => e[k]
         });
       }
-    };
-    for (var k in e) {
-      _loop(k);
     }
   }
   n.default = e;
   return Object.freeze(n);
 }
-var optimal__namespace = /*#__PURE__*/_interopNamespace(optimal);
+const optimal__namespace = /*#__PURE__*/_interopNamespace(optimal);
 Object.defineProperty(exports, "func", {
   enumerable: true,
-  get: function get() {
-    _newArrowCheck(this, _this2);
-    return optimal.func;
-  }.bind(this)
+  get: () => optimal.func
 });
 exports.optimal = optimal__namespace;
 Object.defineProperty(exports, "string", {
   enumerable: true,
-  get: function get() {
-    _newArrowCheck(this, _this2);
-    return optimal.string;
-  }.bind(this)
+  get: () => optimal.string
 });
 Object.defineProperty(exports, "useState", {
   enumerable: true,
-  get: function get() {
-    _newArrowCheck(this, _this2);
-    return react.useState;
-  }.bind(this)
+  get: () => react.useState
 });
-Object.keys(optimal).forEach(function (k) {
-  var _this3 = this;
-  _newArrowCheck(this, _this2);
+Object.keys(optimal).forEach(k => {
   if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
     enumerable: true,
-    get: function get() {
-      _newArrowCheck(this, _this3);
-      return optimal[k];
-    }.bind(this)
+    get: () => optimal[k]
   });
-}.bind(this));
+});
 //# sourceMappingURL=index-browser-legacy-lib.js.map
 "
 `;
@@ -364,20 +339,20 @@ exports[`CJS -> MJS wrapper (externals) > babel > transforms example test case: 
   };
   Object.defineProperty(_exports, "func", {
     enumerable: true,
-    get: function get() {
+    get: function () {
       return optimal.func;
     }
   });
   _exports.optimal = void 0;
   Object.defineProperty(_exports, "string", {
     enumerable: true,
-    get: function get() {
+    get: function () {
       return optimal.string;
     }
   });
   Object.defineProperty(_exports, "useState", {
     enumerable: true,
-    get: function get() {
+    get: function () {
       return _react.useState;
     }
   });
@@ -389,13 +364,12 @@ exports[`CJS -> MJS wrapper (externals) > babel > transforms example test case: 
     if (key in _exports && _exports[key] === optimal[key]) return;
     Object.defineProperty(_exports, key, {
       enumerable: true,
-      get: function get() {
+      get: function () {
         return optimal[key];
       }
     });
   });
-  function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
-  function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
+  function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function (e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (const t in e) "default" !== t && {}.hasOwnProperty.call(e, t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, t)) && (i.get || i.set) ? o(f, t, i) : f[t] = e[t]); return f; })(e, t); }
 });
 //# sourceMappingURL=index-browser-legacy-umd.js.map
 "
@@ -520,8 +494,7 @@ exports[`CJS -> MJS wrapper (externals) > babel > transforms example test case: 
       }
     });
   });
-  function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
-  function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
+  function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function (e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (const t in e) "default" !== t && {}.hasOwnProperty.call(e, t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, t)) && (i.get || i.set) ? o(f, t, i) : f[t] = e[t]); return f; })(e, t); }
 });
 //# sourceMappingURL=index-browser-stable-umd.js.map
 "
@@ -3088,7 +3061,7 @@ exports[`CJS -> MJS wrapper > babel > transforms example test case: browser-curr
 
 function foo() {}
 function bar() {}
-const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
+const helpers = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,
   bar,
   foo
@@ -3236,7 +3209,7 @@ exports[`CJS -> MJS wrapper > babel > transforms example test case: browser-expe
 
 function foo() {}
 function bar() {}
-const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
+const helpers = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,
   bar,
   foo
@@ -3379,45 +3352,35 @@ exports[`CJS -> MJS wrapper > babel > transforms example test case: browser-expe
 `;
 
 exports[`CJS -> MJS wrapper > babel > transforms example test case: browser-legacy-esm > esm/index-browser-legacy-esm.js 1`] = `
-"var _this = this;
-function _newArrowCheck(n, r) { if (n !== r) throw new TypeError("Cannot instantiate an arrow function"); }
-function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
-function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
-function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
-// Bundled with Packemon: https://packemon.dev
+"// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: esm
 
 function foo() {}
 function bar() {}
-var helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
+const helpers = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,
   bar,
   foo
 }, Symbol.toStringTag, {
   value: 'Module'
 }));
-var a = 'abc';
-var b = 123;
-var _c = {
+let a = 'abc';
+const b = 123;
+const _c = {
     c: true
   },
   c = _c.c;
-var d = {};
-var e = 456,
+const d = {};
+const e = 456,
   f = 'xyz';
-var ClassName = /*#__PURE__*/_createClass(function ClassName() {
-  _classCallCheck(this, ClassName);
-});
+class ClassName {}
 function func() {}
-var arrowFunc = function arrowFunc() {
-  _newArrowCheck(this, _this);
-}.bind(this);
-var CONST = 123;
-var DefaultClass = /*#__PURE__*/_createClass(function DefaultClass() {
-  _classCallCheck(this, DefaultClass);
-}); // Types should be ignored
+const arrowFunc = () => {};
+const CONST = 123;
+class DefaultClass {}
+
+// Types should be ignored
+
 export { CONST, ClassName, a, arrowFunc, b, bar, c, d, DefaultClass as default, e, f, foo, foo as fooRenamed, func, helpers as ns1, helpers as ns2, helpers as ns3 };
 //# sourceMappingURL=index-browser-legacy-esm.js.map
 "
@@ -3429,43 +3392,33 @@ exports[`CJS -> MJS wrapper > babel > transforms example test case: browser-lega
 
 'use strict';
 
-var _this = this;
-function _newArrowCheck(n, r) { if (n !== r) throw new TypeError("Cannot instantiate an arrow function"); }
-function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
-function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
-function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
 function foo() {}
 function bar() {}
-var helpers = /*#__PURE__*/Object.freeze({
+const helpers = /*#__PURE__*/Object.freeze({
   __proto__: null,
   bar,
   foo
 });
-var a = 'abc';
-var b = 123;
-var _c = {
+let a = 'abc';
+const b = 123;
+const _c = {
     c: true
   },
   c = _c.c;
-var d = {};
-var e = 456,
+const d = {};
+const e = 456,
   f = 'xyz';
-var ClassName = /*#__PURE__*/_createClass(function ClassName() {
-  _classCallCheck(this, ClassName);
-});
+class ClassName {}
 function func() {}
-var arrowFunc = function arrowFunc() {
-  _newArrowCheck(this, _this);
-}.bind(this);
-var CONST = 123;
-var DefaultClass = /*#__PURE__*/_createClass(function DefaultClass() {
-  _classCallCheck(this, DefaultClass);
-}); // Types should be ignored
+const arrowFunc = () => {};
+const CONST = 123;
+class DefaultClass {}
+
+// Types should be ignored
+
 exports.CONST = CONST;
 exports.ClassName = ClassName;
 exports.a = a;
@@ -3512,43 +3465,35 @@ exports[`CJS -> MJS wrapper > babel > transforms example test case: browser-lega
   _exports.fooRenamed = _exports.foo = foo;
   _exports.func = func;
   _exports.ns3 = _exports.ns2 = _exports.ns1 = void 0;
-  var _this = void 0;
-  function _newArrowCheck(n, r) { if (n !== r) throw new TypeError("Cannot instantiate an arrow function"); }
-  function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
-  function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
-  function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
-  function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
-  function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
   // Bundled with Packemon: https://packemon.dev
   // Platform: browser, Support: legacy, Format: umd
 
   function foo() {}
   function bar() {}
-  var helpers = _exports.ns3 = _exports.ns2 = _exports.ns1 = /*#__PURE__*/Object.freeze({
+  const helpers = _exports.ns3 = _exports.ns2 = _exports.ns1 = /*#__PURE__*/Object.freeze({
     __proto__: null,
     bar,
     foo
   });
-  var a = _exports.a = 'abc';
-  var b = _exports.b = 123;
-  var _c = {
+  let a = _exports.a = 'abc';
+  const b = _exports.b = 123;
+  const _c = {
       c: true
     },
     c = _exports.c = _c.c;
-  var d = _exports.d = {};
-  var e = _exports.e = 456,
+  const d = _exports.d = {};
+  const e = _exports.e = 456,
     f = _exports.f = 'xyz';
-  var ClassName = _exports.ClassName = /*#__PURE__*/_createClass(function ClassName() {
-    _classCallCheck(this, ClassName);
-  });
+  class ClassName {}
+  _exports.ClassName = ClassName;
   function func() {}
-  var arrowFunc = _exports.arrowFunc = function arrowFunc() {
-    _newArrowCheck(this, _this);
-  }.bind(void 0);
-  var CONST = _exports.CONST = 123;
-  var DefaultClass = _exports.default = /*#__PURE__*/_createClass(function DefaultClass() {
-    _classCallCheck(this, DefaultClass);
-  }); // Types should be ignored
+  const arrowFunc = () => {};
+  _exports.arrowFunc = arrowFunc;
+  const CONST = _exports.CONST = 123;
+  class DefaultClass {}
+
+  // Types should be ignored
+  _exports.default = DefaultClass;
 });
 //# sourceMappingURL=index-browser-legacy-umd.js.map
 "
@@ -3560,7 +3505,7 @@ exports[`CJS -> MJS wrapper > babel > transforms example test case: browser-stab
 
 function foo() {}
 function bar() {}
-const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
+const helpers = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,
   bar,
   foo
@@ -3708,7 +3653,7 @@ exports[`CJS -> MJS wrapper > babel > transforms example test case: electron-cur
 
 function foo() {}
 function bar() {}
-const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
+const helpers = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,
   bar,
   foo
@@ -3797,7 +3742,7 @@ exports[`CJS -> MJS wrapper > babel > transforms example test case: electron-exp
 
 function foo() {}
 function bar() {}
-const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
+const helpers = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,
   bar,
   foo
@@ -3886,7 +3831,7 @@ exports[`CJS -> MJS wrapper > babel > transforms example test case: electron-leg
 
 function foo() {}
 function bar() {}
-const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
+const helpers = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,
   bar,
   foo
@@ -3975,7 +3920,7 @@ exports[`CJS -> MJS wrapper > babel > transforms example test case: electron-sta
 
 function foo() {}
 function bar() {}
-const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
+const helpers = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,
   bar,
   foo
@@ -4064,7 +4009,7 @@ exports[`CJS -> MJS wrapper > babel > transforms example test case: native-curre
 
 function foo() {}
 function bar() {}
-const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
+const helpers = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,
   bar,
   foo
@@ -4153,7 +4098,7 @@ exports[`CJS -> MJS wrapper > babel > transforms example test case: native-exper
 
 function foo() {}
 function bar() {}
-const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
+const helpers = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,
   bar,
   foo
@@ -4242,7 +4187,7 @@ exports[`CJS -> MJS wrapper > babel > transforms example test case: native-legac
 
 function foo() {}
 function bar() {}
-const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
+const helpers = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,
   bar,
   foo
@@ -4331,7 +4276,7 @@ exports[`CJS -> MJS wrapper > babel > transforms example test case: native-stabl
 
 function foo() {}
 function bar() {}
-const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
+const helpers = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,
   bar,
   foo
@@ -4538,7 +4483,7 @@ exports[`CJS -> MJS wrapper > babel > transforms example test case: node-current
 
 function foo() {}
 function bar() {}
-const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
+const helpers = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,
   bar,
   foo
@@ -4691,7 +4636,7 @@ exports[`CJS -> MJS wrapper > babel > transforms example test case: node-experim
 
 function foo() {}
 function bar() {}
-const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
+const helpers = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,
   bar,
   foo
@@ -4844,7 +4789,7 @@ exports[`CJS -> MJS wrapper > babel > transforms example test case: node-legacy-
 
 function foo() {}
 function bar() {}
-const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
+const helpers = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,
   bar,
   foo
@@ -4997,7 +4942,7 @@ exports[`CJS -> MJS wrapper > babel > transforms example test case: node-stable-
 
 function foo() {}
 function bar() {}
-const helpers = /*#__PURE__*/Object.freeze( /*#__PURE__*/Object.defineProperty({
+const helpers = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,
   bar,
   foo

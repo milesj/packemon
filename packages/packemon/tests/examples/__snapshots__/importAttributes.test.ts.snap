@@ -110,7 +110,7 @@ exports[`Import attributes > babel > transforms example test case: browser-legac
 "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: esm
 
-var data = {
+const data = {
   list: ["foo", "bar", "baz"],
   number: 123,
   string: "abc",
@@ -129,7 +129,7 @@ exports[`Import attributes > babel > transforms example test case: browser-legac
 
 'use strict';
 
-var data = {
+const data = {
   list: ["foo", "bar", "baz"],
   number: 123,
   string: "abc",
@@ -146,7 +146,7 @@ exports[`Import attributes > babel > transforms example test case: browser-legac
 "// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: umd
 
-var data = {
+const data = {
   list: ["foo", "bar", "baz"],
   number: 123,
   string: "abc",

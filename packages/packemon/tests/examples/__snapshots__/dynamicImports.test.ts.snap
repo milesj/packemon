@@ -18,7 +18,7 @@ exports[`Dynamic imports > babel > transforms example test case: browser-current
 import('./bundle-D82STK_r.js').then(result => {
   result.foo();
 });
-import( /* webpackChunkName: "helpers" */'./bundle-D82STK_r.js').then(({
+import(/* webpackChunkName: "helpers" */'./bundle-D82STK_r.js').then(({
   bar
 }) => {
   bar();
@@ -50,7 +50,7 @@ exports[`Dynamic imports > babel > transforms example test case: browser-current
 import('./bundle-Bq7r2jrL.js').then(result => {
   result.foo();
 });
-import( /* webpackChunkName: "helpers" */'./bundle-Bq7r2jrL.js').then(({
+import(/* webpackChunkName: "helpers" */'./bundle-Bq7r2jrL.js').then(({
   bar
 }) => {
   bar();
@@ -97,7 +97,7 @@ exports[`Dynamic imports > babel > transforms example test case: browser-current
 import('./bundle-D9oOijGe.js').then(result => {
   result.foo();
 });
-import( /* webpackChunkName: "helpers" */'./bundle-D9oOijGe.js').then(({
+import(/* webpackChunkName: "helpers" */'./bundle-D9oOijGe.js').then(({
   bar
 }) => {
   bar();
@@ -124,7 +124,7 @@ exports[`Dynamic imports > babel > transforms example test case: browser-experim
 import('./bundle-W-WVz7e7.js').then(result => {
   result.foo();
 });
-import( /* webpackChunkName: "helpers" */'./bundle-W-WVz7e7.js').then(({
+import(/* webpackChunkName: "helpers" */'./bundle-W-WVz7e7.js').then(({
   bar
 }) => {
   bar();
@@ -156,7 +156,7 @@ exports[`Dynamic imports > babel > transforms example test case: browser-experim
 import('./bundle-CZ-rm3zT.js').then(result => {
   result.foo();
 });
-import( /* webpackChunkName: "helpers" */'./bundle-CZ-rm3zT.js').then(({
+import(/* webpackChunkName: "helpers" */'./bundle-CZ-rm3zT.js').then(({
   bar
 }) => {
   bar();
@@ -203,7 +203,7 @@ exports[`Dynamic imports > babel > transforms example test case: browser-experim
 import('./bundle-BN3HgrXG.js').then(result => {
   result.foo();
 });
-import( /* webpackChunkName: "helpers" */'./bundle-BN3HgrXG.js').then(({
+import(/* webpackChunkName: "helpers" */'./bundle-BN3HgrXG.js').then(({
   bar
 }) => {
   bar();
@@ -224,20 +224,17 @@ export { bar, foo };
 `;
 
 exports[`Dynamic imports > babel > transforms example test case: browser-legacy-esm > esm/index-browser-legacy-esm.js 1`] = `
-"var _this = this;
-function _newArrowCheck(n, r) { if (n !== r) throw new TypeError("Cannot instantiate an arrow function"); }
-// Bundled with Packemon: https://packemon.dev
+"// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: esm
 
-import('./bundle-BmLKGDrv.js').then(function (result) {
-  _newArrowCheck(this, _this);
+import('./bundle-BmLKGDrv.js').then(result => {
   result.foo();
-}.bind(this));
-import( /* webpackChunkName: "helpers" */'./bundle-BmLKGDrv.js').then(function (_ref) {
-  _newArrowCheck(this, _this);
-  var bar = _ref.bar;
+});
+import(/* webpackChunkName: "helpers" */'./bundle-BmLKGDrv.js').then(({
+  bar
+}) => {
   bar();
-}.bind(this));
+});
 //# sourceMappingURL=index-browser-legacy-esm.js.map
 "
 `;
@@ -262,17 +259,14 @@ exports[`Dynamic imports > babel > transforms example test case: browser-legacy-
 
 'use strict';
 
-var _this = this;
-function _newArrowCheck(n, r) { if (n !== r) throw new TypeError("Cannot instantiate an arrow function"); }
-import('./bundle-BjYzmFy9.js').then(function (result) {
-  _newArrowCheck(this, _this);
+import('./bundle-BjYzmFy9.js').then(result => {
   result.foo();
-}.bind(this));
-import( /* webpackChunkName: "helpers" */'./bundle-BjYzmFy9.js').then(function (_ref) {
-  _newArrowCheck(this, _this);
-  var bar = _ref.bar;
+});
+import(/* webpackChunkName: "helpers" */'./bundle-BjYzmFy9.js').then(({
+  bar
+}) => {
   bar();
-}.bind(this));
+});
 //# sourceMappingURL=index-browser-legacy-lib.js.map
 "
 `;
@@ -309,20 +303,17 @@ exports[`Dynamic imports > babel > transforms example test case: browser-legacy-
 `;
 
 exports[`Dynamic imports > babel > transforms example test case: browser-legacy-umd > umd/index-browser-legacy-umd.js 1`] = `
-"var _this = this;
-function _newArrowCheck(n, r) { if (n !== r) throw new TypeError("Cannot instantiate an arrow function"); }
-// Bundled with Packemon: https://packemon.dev
+"// Bundled with Packemon: https://packemon.dev
 // Platform: browser, Support: legacy, Format: umd
 
-import('./bundle-C1Y69HP8.js').then(function (result) {
-  _newArrowCheck(this, _this);
+import('./bundle-C1Y69HP8.js').then(result => {
   result.foo();
-}.bind(this));
-import( /* webpackChunkName: "helpers" */'./bundle-C1Y69HP8.js').then(function (_ref) {
-  _newArrowCheck(this, _this);
-  var bar = _ref.bar;
+});
+import(/* webpackChunkName: "helpers" */'./bundle-C1Y69HP8.js').then(({
+  bar
+}) => {
   bar();
-}.bind(this));
+});
 //# sourceMappingURL=index-browser-legacy-umd.js.map
 "
 `;
@@ -345,7 +336,7 @@ exports[`Dynamic imports > babel > transforms example test case: browser-stable-
 import('./bundle-DdcL7K5d.js').then(result => {
   result.foo();
 });
-import( /* webpackChunkName: "helpers" */'./bundle-DdcL7K5d.js').then(({
+import(/* webpackChunkName: "helpers" */'./bundle-DdcL7K5d.js').then(({
   bar
 }) => {
   bar();
@@ -377,7 +368,7 @@ exports[`Dynamic imports > babel > transforms example test case: browser-stable-
 import('./bundle-Ucw2QFX_.js').then(result => {
   result.foo();
 });
-import( /* webpackChunkName: "helpers" */'./bundle-Ucw2QFX_.js').then(({
+import(/* webpackChunkName: "helpers" */'./bundle-Ucw2QFX_.js').then(({
   bar
 }) => {
   bar();
@@ -424,7 +415,7 @@ exports[`Dynamic imports > babel > transforms example test case: browser-stable-
 import('./bundle-CMm7JrmR.js').then(result => {
   result.foo();
 });
-import( /* webpackChunkName: "helpers" */'./bundle-CMm7JrmR.js').then(({
+import(/* webpackChunkName: "helpers" */'./bundle-CMm7JrmR.js').then(({
   bar
 }) => {
   bar();
@@ -451,7 +442,7 @@ exports[`Dynamic imports > babel > transforms example test case: electron-curren
 import('./bundle-BwKU3we9.js').then(result => {
   result.foo();
 });
-import( /* webpackChunkName: "helpers" */'./bundle-BwKU3we9.js').then(({
+import(/* webpackChunkName: "helpers" */'./bundle-BwKU3we9.js').then(({
   bar
 }) => {
   bar();
@@ -483,7 +474,7 @@ exports[`Dynamic imports > babel > transforms example test case: electron-curren
 import('./bundle-CcB-Z59d.js').then(result => {
   result.foo();
 });
-import( /* webpackChunkName: "helpers" */'./bundle-CcB-Z59d.js').then(({
+import(/* webpackChunkName: "helpers" */'./bundle-CcB-Z59d.js').then(({
   bar
 }) => {
   bar();
@@ -510,7 +501,7 @@ exports[`Dynamic imports > babel > transforms example test case: electron-experi
 import('./bundle-8c6lkRLE.js').then(result => {
   result.foo();
 });
-import( /* webpackChunkName: "helpers" */'./bundle-8c6lkRLE.js').then(({
+import(/* webpackChunkName: "helpers" */'./bundle-8c6lkRLE.js').then(({
   bar
 }) => {
   bar();
@@ -542,7 +533,7 @@ exports[`Dynamic imports > babel > transforms example test case: electron-experi
 import('./bundle-5f9vkDmK.js').then(result => {
   result.foo();
 });
-import( /* webpackChunkName: "helpers" */'./bundle-5f9vkDmK.js').then(({
+import(/* webpackChunkName: "helpers" */'./bundle-5f9vkDmK.js').then(({
   bar
 }) => {
   bar();
@@ -569,7 +560,7 @@ exports[`Dynamic imports > babel > transforms example test case: electron-legacy
 import('./bundle-CPi22CpX.js').then(result => {
   result.foo();
 });
-import( /* webpackChunkName: "helpers" */'./bundle-CPi22CpX.js').then(({
+import(/* webpackChunkName: "helpers" */'./bundle-CPi22CpX.js').then(({
   bar
 }) => {
   bar();
@@ -601,7 +592,7 @@ exports[`Dynamic imports > babel > transforms example test case: electron-legacy
 import('./bundle-CmvYKEmi.js').then(result => {
   result.foo();
 });
-import( /* webpackChunkName: "helpers" */'./bundle-CmvYKEmi.js').then(({
+import(/* webpackChunkName: "helpers" */'./bundle-CmvYKEmi.js').then(({
   bar
 }) => {
   bar();
@@ -628,7 +619,7 @@ exports[`Dynamic imports > babel > transforms example test case: electron-stable
 import('./bundle-N2wmUB4h.js').then(result => {
   result.foo();
 });
-import( /* webpackChunkName: "helpers" */'./bundle-N2wmUB4h.js').then(({
+import(/* webpackChunkName: "helpers" */'./bundle-N2wmUB4h.js').then(({
   bar
 }) => {
   bar();
@@ -660,7 +651,7 @@ exports[`Dynamic imports > babel > transforms example test case: electron-stable
 import('./bundle-CPNlHAFQ.js').then(result => {
   result.foo();
 });
-import( /* webpackChunkName: "helpers" */'./bundle-CPNlHAFQ.js').then(({
+import(/* webpackChunkName: "helpers" */'./bundle-CPNlHAFQ.js').then(({
   bar
 }) => {
   bar();
@@ -687,7 +678,7 @@ exports[`Dynamic imports > babel > transforms example test case: native-current-
 import('./bundle-Z5ELlHRO.js').then(result => {
   result.foo();
 });
-import( /* webpackChunkName: "helpers" */'./bundle-Z5ELlHRO.js').then(({
+import(/* webpackChunkName: "helpers" */'./bundle-Z5ELlHRO.js').then(({
   bar
 }) => {
   bar();
@@ -719,7 +710,7 @@ exports[`Dynamic imports > babel > transforms example test case: native-current-
 import('./bundle-C9B7Zqwp.js').then(result => {
   result.foo();
 });
-import( /* webpackChunkName: "helpers" */'./bundle-C9B7Zqwp.js').then(({
+import(/* webpackChunkName: "helpers" */'./bundle-C9B7Zqwp.js').then(({
   bar
 }) => {
   bar();
@@ -746,7 +737,7 @@ exports[`Dynamic imports > babel > transforms example test case: native-experime
 import('./bundle-B6wDYFRF.js').then(result => {
   result.foo();
 });
-import( /* webpackChunkName: "helpers" */'./bundle-B6wDYFRF.js').then(({
+import(/* webpackChunkName: "helpers" */'./bundle-B6wDYFRF.js').then(({
   bar
 }) => {
   bar();
@@ -778,7 +769,7 @@ exports[`Dynamic imports > babel > transforms example test case: native-experime
 import('./bundle-C20QOfW7.js').then(result => {
   result.foo();
 });
-import( /* webpackChunkName: "helpers" */'./bundle-C20QOfW7.js').then(({
+import(/* webpackChunkName: "helpers" */'./bundle-C20QOfW7.js').then(({
   bar
 }) => {
   bar();
@@ -805,7 +796,7 @@ exports[`Dynamic imports > babel > transforms example test case: native-legacy-e
 import('./bundle-QC_8PKdX.js').then(result => {
   result.foo();
 });
-import( /* webpackChunkName: "helpers" */'./bundle-QC_8PKdX.js').then(({
+import(/* webpackChunkName: "helpers" */'./bundle-QC_8PKdX.js').then(({
   bar
 }) => {
   bar();
@@ -837,7 +828,7 @@ exports[`Dynamic imports > babel > transforms example test case: native-legacy-l
 import('./bundle-B7BhzbO0.js').then(result => {
   result.foo();
 });
-import( /* webpackChunkName: "helpers" */'./bundle-B7BhzbO0.js').then(({
+import(/* webpackChunkName: "helpers" */'./bundle-B7BhzbO0.js').then(({
   bar
 }) => {
   bar();
@@ -864,7 +855,7 @@ exports[`Dynamic imports > babel > transforms example test case: native-stable-e
 import('./bundle-DMvfKcwU.js').then(result => {
   result.foo();
 });
-import( /* webpackChunkName: "helpers" */'./bundle-DMvfKcwU.js').then(({
+import(/* webpackChunkName: "helpers" */'./bundle-DMvfKcwU.js').then(({
   bar
 }) => {
   bar();
@@ -896,7 +887,7 @@ exports[`Dynamic imports > babel > transforms example test case: native-stable-l
 import('./bundle-xh_8fCfs.js').then(result => {
   result.foo();
 });
-import( /* webpackChunkName: "helpers" */'./bundle-xh_8fCfs.js').then(({
+import(/* webpackChunkName: "helpers" */'./bundle-xh_8fCfs.js').then(({
   bar
 }) => {
   bar();
@@ -928,7 +919,7 @@ exports[`Dynamic imports > babel > transforms example test case: node-current-cj
 import('./bundle-ChQgONl7.cjs').then(result => {
   result.foo();
 });
-import( /* webpackChunkName: "helpers" */'./bundle-ChQgONl7.cjs').then(({
+import(/* webpackChunkName: "helpers" */'./bundle-ChQgONl7.cjs').then(({
   bar
 }) => {
   bar();
@@ -967,7 +958,7 @@ exports[`Dynamic imports > babel > transforms example test case: node-current-li
 import('./bundle-G0qgVHQZ.js').then(result => {
   result.foo();
 });
-import( /* webpackChunkName: "helpers" */'./bundle-G0qgVHQZ.js').then(({
+import(/* webpackChunkName: "helpers" */'./bundle-G0qgVHQZ.js').then(({
   bar
 }) => {
   bar();
@@ -994,7 +985,7 @@ exports[`Dynamic imports > babel > transforms example test case: node-current-mj
 import('./bundle-DakD1F53.mjs').then(result => {
   result.foo();
 });
-import( /* webpackChunkName: "helpers" */'./bundle-DakD1F53.mjs').then(({
+import(/* webpackChunkName: "helpers" */'./bundle-DakD1F53.mjs').then(({
   bar
 }) => {
   bar();
@@ -1026,7 +1017,7 @@ exports[`Dynamic imports > babel > transforms example test case: node-experiment
 import('./bundle-DZUya8wb.cjs').then(result => {
   result.foo();
 });
-import( /* webpackChunkName: "helpers" */'./bundle-DZUya8wb.cjs').then(({
+import(/* webpackChunkName: "helpers" */'./bundle-DZUya8wb.cjs').then(({
   bar
 }) => {
   bar();
@@ -1065,7 +1056,7 @@ exports[`Dynamic imports > babel > transforms example test case: node-experiment
 import('./bundle-D3PZHRSm.js').then(result => {
   result.foo();
 });
-import( /* webpackChunkName: "helpers" */'./bundle-D3PZHRSm.js').then(({
+import(/* webpackChunkName: "helpers" */'./bundle-D3PZHRSm.js').then(({
   bar
 }) => {
   bar();
@@ -1092,7 +1083,7 @@ exports[`Dynamic imports > babel > transforms example test case: node-experiment
 import('./bundle-B0XLXup0.mjs').then(result => {
   result.foo();
 });
-import( /* webpackChunkName: "helpers" */'./bundle-B0XLXup0.mjs').then(({
+import(/* webpackChunkName: "helpers" */'./bundle-B0XLXup0.mjs').then(({
   bar
 }) => {
   bar();
@@ -1124,7 +1115,7 @@ exports[`Dynamic imports > babel > transforms example test case: node-legacy-cjs
 import('./bundle-BFOaEL8C.cjs').then(result => {
   result.foo();
 });
-import( /* webpackChunkName: "helpers" */'./bundle-BFOaEL8C.cjs').then(({
+import(/* webpackChunkName: "helpers" */'./bundle-BFOaEL8C.cjs').then(({
   bar
 }) => {
   bar();
@@ -1163,7 +1154,7 @@ exports[`Dynamic imports > babel > transforms example test case: node-legacy-lib
 import('./bundle-DUpKNZJ-.js').then(result => {
   result.foo();
 });
-import( /* webpackChunkName: "helpers" */'./bundle-DUpKNZJ-.js').then(({
+import(/* webpackChunkName: "helpers" */'./bundle-DUpKNZJ-.js').then(({
   bar
 }) => {
   bar();
@@ -1190,7 +1181,7 @@ exports[`Dynamic imports > babel > transforms example test case: node-legacy-mjs
 import('./bundle-fmin1R5t.mjs').then(result => {
   result.foo();
 });
-import( /* webpackChunkName: "helpers" */'./bundle-fmin1R5t.mjs').then(({
+import(/* webpackChunkName: "helpers" */'./bundle-fmin1R5t.mjs').then(({
   bar
 }) => {
   bar();
@@ -1222,7 +1213,7 @@ exports[`Dynamic imports > babel > transforms example test case: node-stable-cjs
 import('./bundle-C4XEzhWi.cjs').then(result => {
   result.foo();
 });
-import( /* webpackChunkName: "helpers" */'./bundle-C4XEzhWi.cjs').then(({
+import(/* webpackChunkName: "helpers" */'./bundle-C4XEzhWi.cjs').then(({
   bar
 }) => {
   bar();
@@ -1261,7 +1252,7 @@ exports[`Dynamic imports > babel > transforms example test case: node-stable-lib
 import('./bundle-Bsa35Cn_.js').then(result => {
   result.foo();
 });
-import( /* webpackChunkName: "helpers" */'./bundle-Bsa35Cn_.js').then(({
+import(/* webpackChunkName: "helpers" */'./bundle-Bsa35Cn_.js').then(({
   bar
 }) => {
   bar();
@@ -1288,7 +1279,7 @@ exports[`Dynamic imports > babel > transforms example test case: node-stable-mjs
 import('./bundle-C1_vvsAZ.mjs').then(result => {
   result.foo();
 });
-import( /* webpackChunkName: "helpers" */'./bundle-C1_vvsAZ.mjs').then(({
+import(/* webpackChunkName: "helpers" */'./bundle-C1_vvsAZ.mjs').then(({
   bar
 }) => {
   bar();
