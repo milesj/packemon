@@ -196,14 +196,17 @@ export function copyAndRefAssets(
 					const newName = newId.name();
 					const isStringSource = TEXT_ASSETS.some((ext) => newName.endsWith(ext));
 
-					// @ts-expect-error TODO
 					// eslint-disable-next-line no-param-reassign
 					bundle[newId.path()] = {
 						fileName: `../assets/${newName}`,
 						name: undefined,
 						needsCodeReference: false,
-						source: isStringSource ? fs.readFile(oldId) : fsn.readFileSync(oldId),
+						source: isStringSource ? fs.readFile(oldId) : fsn.readFileSync(oldId, 'utf8'),
 						type: 'asset',
+						// Required for types
+						names: [],
+						originalFileNames: [],
+						originalFileName: null
 					};
 				}),
 			);
