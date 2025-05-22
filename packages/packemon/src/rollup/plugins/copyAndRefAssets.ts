@@ -196,6 +196,7 @@ export function copyAndRefAssets(
 					const newName = newId.name();
 					const isStringSource = TEXT_ASSETS.some((ext) => newName.endsWith(ext));
 
+					// @ts-expect-error TODO
 					// eslint-disable-next-line no-param-reassign
 					bundle[newId.path()] = {
 						fileName: `../assets/${newName}`,
