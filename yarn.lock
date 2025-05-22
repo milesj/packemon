@@ -5191,14 +5191,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/plugin-node-resolve@npm:^15.2.3":
-  version: 15.2.3
-  resolution: "@rollup/plugin-node-resolve@npm:15.2.3"
+"@rollup/plugin-node-resolve@npm:^15.3.1":
+  version: 15.3.1
+  resolution: "@rollup/plugin-node-resolve@npm:15.3.1"
   dependencies:
     "@rollup/pluginutils": "npm:^5.0.1"
     "@types/resolve": "npm:1.20.2"
     deepmerge: "npm:^4.2.2"
-    is-builtin-module: "npm:^3.2.1"
     is-module: "npm:^1.0.0"
     resolve: "npm:^1.22.1"
   peerDependencies:
@@ -5206,7 +5205,7 @@ __metadata:
   peerDependenciesMeta:
     rollup:
       optional: true
-  checksum: 10/d36a6792fbe9d8673d3a7c7dc88920be669ac54fba02ac0093d3c00fc9463fce2e87da1906a2651016742709c3d202b367fb49a62acd0d98f18409343f27b8b4
+  checksum: 10/874494c0daca8fb0d633a237dd9df0d30609b374326e57508710f2b6d7ddaa93d203d8daa0257960b2b6723f56dfec1177573126f31ff9604700303b6f5fdbe3
   languageName: node
   linkType: hard
 
@@ -19116,7 +19115,7 @@ __metadata:
     "@rollup/plugin-babel": "npm:^6.0.4"
     "@rollup/plugin-commonjs": "npm:^25.0.8"
     "@rollup/plugin-json": "npm:^6.1.0"
-    "@rollup/plugin-node-resolve": "npm:^15.2.3"
+    "@rollup/plugin-node-resolve": "npm:^15.3.1"
     "@swc/core": "npm:^1.5.7"
     "@swc/helpers": "npm:^0.5.11"
     "@typescript-eslint/types": "npm:^7.8.0"
@@ -19136,8 +19135,8 @@ __metadata:
     micromatch: "npm:^4.0.8"
     react: "npm:^18.3.1"
     resolve: "npm:^1.22.10"
-    rollup: "npm:^4.18.0"
-    rollup-plugin-node-externals: "npm:^7.1.2"
+    rollup: "npm:^4.41.0"
+    rollup-plugin-node-externals: "npm:^7.1.3"
     rollup-plugin-polyfill-node: "npm:^0.13.0"
     semver: "npm:^7.7.2"
     spdx-license-list: "npm:^6.10.0"
@@ -21404,12 +21403,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup-plugin-node-externals@npm:^7.1.2":
-  version: 7.1.2
-  resolution: "rollup-plugin-node-externals@npm:7.1.2"
+"rollup-plugin-node-externals@npm:^7.1.3":
+  version: 7.1.3
+  resolution: "rollup-plugin-node-externals@npm:7.1.3"
   peerDependencies:
     rollup: ^3.0.0 || ^4.0.0
-  checksum: 10/aaf99b409bac1549e530c72a7c40ddfc05e8663fb457f5fea93bb4a42326e22b2f4e3f34eb87033ffc62b1e72620ab6583b6f63587372bbb2be285557d98a782
+  checksum: 10/4e8d38ebc3c8a29cb72d11a73f97ba810a4560b5b0f0be445ba32180875073ce4752a9ea4d0b658717ddae642d314738047677e5c818b1893f3d715d18fe413c
   languageName: node
   linkType: hard
 
@@ -21447,7 +21446,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup@npm:^4.18.0, rollup@npm:^4.20.0":
+"rollup@npm:^4.20.0, rollup@npm:^4.41.0":
   version: 4.41.0
   resolution: "rollup@npm:4.41.0"
   dependencies:
