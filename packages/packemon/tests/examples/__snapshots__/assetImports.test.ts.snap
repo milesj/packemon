@@ -1368,7 +1368,7 @@ exports[`Assets > swc > transforms example test case: browser-legacy-esm > esm/i
 import '../assets/styles-17df299b.css';
 import '../assets/logo-c21f559f.svg';
 import 'bootstrap/dist/css/bootstrap.css';
-var json = {
+const json = {
     list: [
         "foo",
         "bar",
@@ -1398,7 +1398,7 @@ exports[`Assets > swc > transforms example test case: browser-legacy-lib > lib/i
 require('../assets/styles-17df299b.css');
 require('../assets/logo-c21f559f.svg');
 require('bootstrap/dist/css/bootstrap.css');
-var json = {
+const json = {
     list: [
         "foo",
         "bar",
@@ -1436,7 +1436,7 @@ exports[`Assets > swc > transforms example test case: browser-legacy-umd > umd/i
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
-    var json = {
+    const json = {
         list: [
             "foo",
             "bar",

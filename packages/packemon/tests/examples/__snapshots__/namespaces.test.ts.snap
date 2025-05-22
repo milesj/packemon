@@ -893,14 +893,14 @@ exports[`Namespaces > swc > transforms example test case: browser-current-umd > 
     function _export(target, all) {
         for(var name in all)Object.defineProperty(target, name, {
             enumerable: true,
-            get: all[name]
+            get: Object.getOwnPropertyDescriptor(all, name).get
         });
     }
     _export(exports, {
-        ns1: function() {
+        get ns1 () {
             return helpers;
         },
-        ns2: function() {
+        get ns2 () {
             return helpers;
         }
     });
@@ -965,14 +965,14 @@ exports[`Namespaces > swc > transforms example test case: browser-experimental-u
     function _export(target, all) {
         for(var name in all)Object.defineProperty(target, name, {
             enumerable: true,
-            get: all[name]
+            get: Object.getOwnPropertyDescriptor(all, name).get
         });
     }
     _export(exports, {
-        ns1: function() {
+        get ns1 () {
             return helpers;
         },
-        ns2: function() {
+        get ns2 () {
             return helpers;
         }
     });
@@ -993,7 +993,7 @@ exports[`Namespaces > swc > transforms example test case: browser-legacy-esm > e
 // Platform: browser, Support: legacy, Format: esm
 function foo() {}
 function bar() {}
-var helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty({
+const helpers = /*#__PURE__*/ Object.freeze(/*#__PURE__*/ Object.defineProperty({
     __proto__: null,
     bar,
     foo
@@ -1011,7 +1011,7 @@ exports[`Namespaces > swc > transforms example test case: browser-legacy-lib > l
 'use strict';
 function foo() {}
 function bar() {}
-var helpers = /*#__PURE__*/ Object.freeze({
+const helpers = /*#__PURE__*/ Object.freeze({
     __proto__: null,
     bar,
     foo
@@ -1037,20 +1037,20 @@ exports[`Namespaces > swc > transforms example test case: browser-legacy-umd > u
     function _export(target, all) {
         for(var name in all)Object.defineProperty(target, name, {
             enumerable: true,
-            get: all[name]
+            get: Object.getOwnPropertyDescriptor(all, name).get
         });
     }
     _export(exports, {
-        ns1: function() {
+        get ns1 () {
             return helpers;
         },
-        ns2: function() {
+        get ns2 () {
             return helpers;
         }
     });
     function foo() {}
     function bar() {}
-    var helpers = /*#__PURE__*/ Object.freeze({
+    const helpers = /*#__PURE__*/ Object.freeze({
         __proto__: null,
         bar,
         foo
@@ -1109,14 +1109,14 @@ exports[`Namespaces > swc > transforms example test case: browser-stable-umd > u
     function _export(target, all) {
         for(var name in all)Object.defineProperty(target, name, {
             enumerable: true,
-            get: all[name]
+            get: Object.getOwnPropertyDescriptor(all, name).get
         });
     }
     _export(exports, {
-        ns1: function() {
+        get ns1 () {
             return helpers;
         },
-        ns2: function() {
+        get ns2 () {
             return helpers;
         }
     });
