@@ -34,7 +34,7 @@ function getPlatformEnvOptions(platform: Platform, support: Support, format: For
 		case 'browser':
 			return {
 				targets: Array.isArray(BROWSER_TARGETS[support])
-					? (BROWSER_TARGETS[support]).join(', ')
+					? BROWSER_TARGETS[support].join(', ')
 					: BROWSER_TARGETS[support],
 			};
 
