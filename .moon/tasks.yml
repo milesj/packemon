@@ -25,3 +25,6 @@ tasks:
     command: 'vitest run --config ../../vitest.config.ts'
     deps:
       - '^:build'
+
+  lint:
+    command: noop
