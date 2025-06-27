@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 4.1.2 - 2025-06-27
+
+#### 📦 Dependencies
+
+- **[babel]** Update to v7.27. ([11f8564](https://github.com/milesj/packemon/commit/11f8564))
+- **[chokidar]** Update to v4. ([0be3dd4](https://github.com/milesj/packemon/commit/0be3dd4))
+- **[execa]** Update to v9.5. ([344c86f](https://github.com/milesj/packemon/commit/344c86f))
+- **[ink]** Update to v5.2. ([7109959](https://github.com/milesj/packemon/commit/7109959))
+- **[rollup-plugin-node-externals]** Update to v8. ([73b1343](https://github.com/milesj/packemon/commit/73b1343))
+- **[rollup]** Update to v4.41. ([182357a](https://github.com/milesj/packemon/commit/182357a))
+- **[swc]** Update to v1.11. ([32abb4e](https://github.com/milesj/packemon/commit/32abb4e))
+- **[typescript]** Update to v5.8.3. ([3c3f11e](https://github.com/milesj/packemon/commit/3c3f11e))
+- Update dev and test dependencies. ([e143ab0](https://github.com/milesj/packemon/commit/e143ab0))
+- Update minor dependencies. ([11bb166](https://github.com/milesj/packemon/commit/11bb166))
+- Update more random dependencies. ([a6d6252](https://github.com/milesj/packemon/commit/a6d6252))
+- **[vitest]** Update to v3. ([8f73ecd](https://github.com/milesj/packemon/commit/8f73ecd))
+
+#### 🛠 Internals
+
+- Update TS stuff. ([0820841](https://github.com/milesj/packemon/commit/0820841))
+
+**Note:** Version bump only for package packemon
+
+
+
+
+
 ## <small>4.1.1 (2024-05-28)</small>
 
 * deps(babel): Update to v7.24 latest. ([df0be16](https://github.com/milesj/packemon/commit/df0be16))
