@@ -3,6 +3,11 @@ title: Introduction
 slug: /
 ---
 
+> ‼️ Packemon is deprecated and will not receive future updates. This library served its purpose
+> during the CJS vs ESM wars, but there are better options now a days. I suggest using
+> [tsdown](https://tsdown.dev/), which is _very_ similar to Packemon, but is backed by VoidZero, the
+> team behind Vite and Rolldown.
+
 Are you a library maintainer? Confused on how to build packages for consumers? Unsure of what
 tooling and plugins to use? What about CommonJS vs ECMAScript? TypeScript, JavaScript, or FlowType?
 Forget that headache and let Packemon do the heavy lifting for you. No need to fiddle with Babel or

@@ -1,3 +1,10 @@
+# ‼️ DEPRECATED
+
+Packemon is deprecated and will not receive future updates. This library served its purpose during
+the CJS vs ESM wars, but there are better options now a days. I suggest using
+[tsdown](https://tsdown.dev/), which is _very_ similar to Packemon, but is backed by VoidZero, the
+team behind Vite and Rolldown.
+
 # Packemon
 
 [![Build Status](https://github.com/milesj/packemon/workflows/Build/badge.svg)](https://github.com/milesj/packemon/actions?query=branch%3Amaster)
