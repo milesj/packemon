@@ -1,12 +1,27 @@
 import { execa } from 'execa';
 import path from 'path';
+import os from 'os';
 
-async function build(cwd) {
+const CWD = process.cwd();
+const TEMP_DIR = os.tmpdir();
+
+async function build(dir) {
 	await execa(
 		'npx',
-		['--yes', '--package', 'packemon', '--package', 'typescript', '--quiet', 'packemon', 'build'],
+		[
+			'--yes',
+			'--package',
+			'packemon',
+			'--package',
+			'typescript',
+			'--',
+			'packemon',
+			'build',
+			'--cwd',
+			path.join(CWD, dir),
+		],
 		{
-			cwd: path.join(process.cwd(), cwd),
+			cwd: TEMP_DIR,
 			preferLocal: true,
 			stdio: 'inherit',
 		},

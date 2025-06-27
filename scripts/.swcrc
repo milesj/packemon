@@ -1,0 +1,31 @@
+{
+	"module": {
+		"type": "commonjs",
+		"resolveFully": true,
+		"outFileExtension": "cjs"
+	},
+	"jsc": {
+		"parser": {
+			"syntax": "typescript",
+			"tsx": true,
+			"dynamicImport": true,
+			"decorators": true
+		},
+		"transform": {
+			"legacyDecorator": true,
+			"react": {
+				"runtime": "automatic"
+			},
+			"optimizer": {
+				"globals": {
+					"vars": {
+						"__DEV__": "process.env.NODE_ENV !== 'production'"
+					}
+				}
+			}
+		},
+		"externalHelpers": false,
+		"loose": false,
+		"target": "es2018"
+	}
+}
